@@ -1,7 +1,7 @@
 ---
 title: "Release Notes"
 linkTitle: "Release Notes"
-
+weight: 6
 description: >
   Armory Halyard and Armory Spinnaker release notes
 ---
