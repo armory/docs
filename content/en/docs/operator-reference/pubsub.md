@@ -1,6 +1,10 @@
 ---
 title: PubSub Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.pubsub`.
+aliases:
+  - /operator_reference/pubsub/
 ---
 
 
