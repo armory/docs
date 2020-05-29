@@ -1,0 +1,14 @@
+{{/* This puts a deprecated warning on the page; copied from github.com/kubernetes/website */}}
+{{ if .Page.Param "deprecated" }}
+<section id="deprecationWarning">
+  <main>
+    <div class="content deprecation-warning">
+      <h3>
+	 Armory Spinnaker {{ .Page.Param "version" }}
+	 {{ T "deprecation_warning" }}
+	 <a href="{{ site.Params.currentUrl }}">{{ T "latest_version" }}</a>
+      </h3>
+    </div>
+  </main>
+</section>
+{{ end }}
