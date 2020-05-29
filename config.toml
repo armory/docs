@@ -153,8 +153,8 @@ footer_about_disable = false
 [params.ui.feedback]
 enable = true
 # The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
-yes = 'Glad to hear it! Please <a href="https://github.com/armory/docs/issues/new">tell us how we can improve</a>.'
-no = 'Sorry to hear that. Please <a href="https://github.com/armory/docs/issues/new">tell us how we can improve</a>.'
+yes = 'Glad to hear it! Please <a href="https://github.com/armory/docs-hugo/issues/new">tell us how we can improve</a>.'
+no = 'Sorry to hear that. Please <a href="https://github.com/armory/docs-hugo/issues/new">tell us how we can improve</a>.'
 
 # Adds a reading time to the top of each doc.
 # If you want this feature, but occasionally need to remove the Reading time from a single page,
@@ -182,11 +182,11 @@ enable = false
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
 	name = "GitHub"
-	url = "https://github.com/armory/docs"
+	url = "https://github.com/armory/docs-hugo"
 	icon = "fab fa-github"
-        desc = "Documentation repository"
+   desc = "Documentation repository"
 [[params.links.developer]]
 	name = "Slack"
 	url = "https://join.spinnaker.io/"
 	icon = "fab fa-slack"
-        desc = "Chat with Armory users and developers in the Spinnaker Slack"
+   desc = "Chat with Armory users and developers in the Spinnaker Slack"
