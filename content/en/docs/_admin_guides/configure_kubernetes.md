@@ -1,18 +1,11 @@
 ---
 layout: post
 title: Kubernetes Configuration
-order: 70
+weight: 70
 published: True
 ---
 
-{% include components/legacy_documentation.html %}
-
-To configure Kubernetes, you need to:
-{:.no_toc}
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
+{{< legacy >}}
 
 ## Configure your Docker Registries
 

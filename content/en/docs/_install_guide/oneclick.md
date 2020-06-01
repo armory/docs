@@ -1,14 +1,10 @@
 ---
-layout: post
+
 title: 1-Click App Creation
-order: 125
+weight: 125
 ---
 
-{% include components/legacy_documentation.html %}
-
-# What To Expect
-This guide should include:
-- Configuration changes needed to configure the 1-click app/resource provisioning feature
+{{< legacy >}}
 
 ## Overview
 Armory's 1-click app/resource provisioning feature allows you to bootstrap a brand new application and provision the following resources for the app with the click of a button:

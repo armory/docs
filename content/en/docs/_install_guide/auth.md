@@ -1,27 +1,11 @@
 ---
-layout: post
 title: Authentication
-order: 110
-published: True
+weight: 110
 ---
-
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
 Refer to the Spinnaker documentation for configuring authentication at
 [https://www.spinnaker.io/setup/security/authentication/](https://www.spinnaker.io/setup/security/authentication/)
-
-<div class="deprecation-warning">
-  The information below has been deprecated.
-</div>
-
-# What To Expect
-{:.no_toc}
-This guide should include:
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
-
-
 
 > *Note*: If you are going to use authentication with your Spinnaker instance you will no longer be able to use the API without setting up x509 authentication
 

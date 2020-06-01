@@ -1,25 +1,17 @@
 ---
-layout: post
+
 title: Authorization
-order: 120
-published: True
+weight: 120
 ---
 
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
 Refer to the Spinnaker documentation for configuring authorization at
 [https://www.spinnaker.io/setup/security/authorization/](https://www.spinnaker.io/setup/security/authorization/)
 
-<div class="deprecation-warning">
-  The information below has been deprecated.
-</div>
-
-# Turning on Fiat
-{:.no_toc}
+## Turning on Fiat
 
 Authorization is handled by a micro-service called `Fiat`.  Fiat is responsible for access control for both applications and accounts.  It's also responsible for executing triggers with service accounts. Fiat authorization model is open by default, read more about authorizations [here](https://www.spinnaker.io/setup/security/authorization).
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 
 

@@ -1,16 +1,10 @@
 ---
-layout: post
+
 title: Pipelines as Code
-order: 108
-redirect_from:
-  - /user-guides/pipeline-templates/
+weight: 108
 ---
 
-<div class="deprecation-warning">
-  The information below was written for a previous version of Armory Spinnaker
-  (v1.13 and earlier).  Please look <a href="/spinnaker/using_dinghy">here</a> for
-  documentation on the latest version.
-</div>
+{{< legacy >}}
 
 Armory's Pipelines As Code feature provides a way to specify pipeline definitions in source code repos (like GitHub & BitBucket).
 

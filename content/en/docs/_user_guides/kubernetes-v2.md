@@ -1,16 +1,10 @@
 ---
-layout: post
+
 title: Early Access Kubernetes V2 Provider Guide
-order: 100
+weight: 100
 # No redirect - setup for ec2 vs. halyard installer is diffferent.
 ---
-{% include components/legacy_documentation.html %}
-
-This guide includes:
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
+{{< legacy >}}
 
 ## Kubernetes V2 Provider Overview
 The new Kubernetes provider is centered on delivering and promoting Kubernetes manifests to different Kubernetes environments. These manifests are delivered to Spinnaker using [artifacts](https://www.spinnaker.io/reference/artifacts/in-kubernetes-v2/#kubernetes-objects-as-artifacts) and applied to the target cluster using `kubectl` in the background. Currently, there is support to supply artifacts through Git, GCS and Google Pub/Sub.  The V2 provider manages the version of the artifacts deployed to Kubernetes by appending a string such as `v421` to the resource that was deployed to Kubernetes.  This allows for easy rollbacks and management of resources.

@@ -1,20 +1,14 @@
 ---
-layout: post
+
 title: DNS and SSL
-order: 100
+weight: 100
 # This page should not be redirected to a new page, as it is significantly different from the Kubernetes DNS-SSL page.
 redirect_from:
   - /install_guide/dns_and_ssl/
   - /install-guide/dns_and_ssl/
 ---
 
-{% include components/legacy_documentation.html %}
-
-# What To Expect
-{:.no_toc}
-This guide should include:
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
+{{< legacy >}}
 
 ## Create a DNS Entry for your Load Balancer
 

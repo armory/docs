@@ -1,11 +1,11 @@
 ---
-layout: post
+
 title: SLA
-order: 76
-published: false
+weight: 76
+draft: true
 ---
 
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
 # What is the SLA?
 

@@ -1,23 +1,14 @@
 ---
-layout: post
 title: Adding Accounts
-order: 70
+weight: 70
 ---
+{{< legacy >}}
 
-{% include components/legacy_documentation.html %}
-
-This guide should include:
-
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
-
-# Adding A Kubernetes Account
+## Adding A Kubernetes Account
 
 Spinnaker supports deploying to multiple cloud environments. If you're using Kubernetes you'll need to [follow this guide]({% link _admin_guides/configure_kubernetes.md %})  
 
-# Adding Additional AWS Accounts
+## Adding Additional AWS Accounts
 
 Spinnaker supports adding multiple AWS accounts with some users reaching 100s of accounts in production.  Spinnaker uses AWS assume roles to create resources in the target account and then passes the role to a target instance profile if it's creating an instance resource.
 

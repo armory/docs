@@ -1,18 +1,11 @@
 ---
 layout: post
 title: Integration Test Pipelines
-order: 70
+weight: 70
 published: True
 ---
 
-This guide should include:
-{:.no_toc}
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
-
-# Approach
+## Approach
 
 Using Spinnaker's orchestration engine, we can quickly create pipelines that exercise the integration between Spinnaker and your cloud environment before deploying any upgrades to Spinnaker.  We'll walk through creating a master pipeline that kicks off sub-pipelines asynchronously and waits for them complete.
 

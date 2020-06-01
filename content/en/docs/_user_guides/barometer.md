@@ -1,14 +1,14 @@
 ---
-layout: post
+
 title: Barometer
-order: 75
-published: False
+weight: 75
+draft: true
 # this only applies to ec2 installer, I think.
 ---
 
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
-# What is Barometer
+## What is Barometer
 
 Barometer is an automated canarying analysis (ACA) service that is provided through Armory Spinnaker. The goal of Barometer is to provide the end user with confidence that a deployment is safe through automation and intelligence.
 

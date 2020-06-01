@@ -1,10 +1,10 @@
 ---
-layout: post
+
 title: Glossary of Definitions
 published : false
 ---
 
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
 <!-- For colin reference
 
