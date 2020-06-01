@@ -5,7 +5,9 @@ weight: 1
 summary: "Read about what Armory Spinnaker is and its benefits."
 ---
 
-<a href="https://kb.armory.io/spinnaker/what-is-spinnaker"><img height="20" style="float: left;" src="https://drod.io/1h3I273p002U/video-file.png"></a>[ Watch Ethan explain Spinnaker in three minutes](https://kb.armory.io/spinnaker/what-is-spinnaker/)
+Watch Ethan explain Spinnaker in three minutes:
+
+{{< youtube H_rFShgmJHY >}}
 
 Spinnaker is an open source, multi-cloud Continuous Delivery and Deployment platform that provides a single pane of glass with visibility across your deployment for deployment status, infrastructure, security and compliance, and metrics. By using pipelines, flexible and customizable series of deployment stages, Spinnaker can fit a variety of deployment needs. application
 
