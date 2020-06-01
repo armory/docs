@@ -1,9 +1,10 @@
 ---
 title: "Smoke Test"
 linkTitle: "Smoke Test"
-date: 2017-01-05
+weight: 999
+draft: false
 description: >
-  A short lead descripton about this content page. It can be **bold** or _italic_ and can be split over multiple paragraphs.
+  Markdown stuff - change to draft before publication
 ---
 
 {{% pageinfo %}}
