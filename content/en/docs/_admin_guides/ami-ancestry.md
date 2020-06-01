@@ -1,5 +1,5 @@
 ---
-
+title: AMI Ancestry
 weight: 90
 ---
 
