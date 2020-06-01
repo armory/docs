@@ -1,6 +1,10 @@
 ---
 title: Artifact Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.artifacts`.
+aliases:
+  - /operator_reference/artifact/
 ---
 
 **spec.spinnakerConfig.config.artifacts**

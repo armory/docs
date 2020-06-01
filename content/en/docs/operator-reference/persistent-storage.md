@@ -1,6 +1,10 @@
 ---
 title: Persistent Storage Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.persistentStorage`.
+aliases:
+  - /operator_reference/persistent-storage/
 ---
 
 **spec.spinnakerConfig.config.persistentStorage**

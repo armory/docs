@@ -1,6 +1,10 @@
 ---
 title: Notification Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.notifications`.
+aliases:
+  - /operator_reference/notification/
 ---
 
 **spec.spinnakerConfig.config.notifications**

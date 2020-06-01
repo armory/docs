@@ -1,6 +1,10 @@
 ---
 title: Armory Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.armory`.
+aliases:
+  - /operator_reference/armory/
 ---
 
 **spec.spinnakerConfig.config.armory**

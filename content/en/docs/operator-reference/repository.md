@@ -1,6 +1,10 @@
 ---
 title: Repository Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.repository`.
+aliases:
+  - /operator_reference/repository/
 ---
 
 
