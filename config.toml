@@ -102,19 +102,19 @@ github_repo = "https://github.com/armory/docs"
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
 [[params.versions]]
- version = "v2.11.65"
- githubbranch = "master"
- url = "https://docs.armory.io"
+#  version = "v2.11.65"
+#  githubbranch = "master"
+#  url = "https://docs.armory.io"
 
-[[params.versions]]
- version = "v0.2"
- githubbranch = "v0.2-branch"
- url = "https://v0-2.kubeflow.org"
+# [[params.versions]]
+#  version = "v0.2"
+#  githubbranch = "v0.2-branch"
+#  url = "https://v0-2.kubeflow.org"
 
-[[params.versions]]
- version = "v0.3"
- githubbranch = "v0.3-branch"
- url = "https://v0-3.kubeflow.org"
+# [[params.versions]]
+#  version = "v0.3"
+#  githubbranch = "v0.3-branch"
+#  url = "https://v0-3.kubeflow.org"
 
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
