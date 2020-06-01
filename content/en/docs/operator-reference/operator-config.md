@@ -1,6 +1,10 @@
 ---
 title: Spinnaker Operator Configuration
 weight: 1
+description: >
+  This page describes the fields in `SpinnakerService` CRD and example manifests.
+aliases:
+  - /operator_reference/operator-config/
 ---
 This page describes the fields in `SpinnakerService` CRD and example manifests.
 

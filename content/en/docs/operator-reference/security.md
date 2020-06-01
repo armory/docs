@@ -1,6 +1,10 @@
 ---
 title: Security Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.security`.
+aliases:
+  - /operator_reference/security/
 ---
 
 

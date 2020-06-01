@@ -1,6 +1,10 @@
 ---
 title: Stats Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.stats`.
+aliases:
+  - /operator_reference/stats/
 ---
 
 **spec.spinnakerConfig.config.stats**

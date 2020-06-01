@@ -1,6 +1,10 @@
 ---
 title: CI Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.ci`.
+aliases:
+  - /operator_reference/ci/
 ---
 
 

@@ -1,6 +1,10 @@
 ---
 title: Plugins Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.spinnaker.extensibility.plugins`.
+aliases:
+  - /operator_reference/plugins/
 ---
 
 ## Parameters
