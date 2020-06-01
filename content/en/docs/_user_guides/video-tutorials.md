@@ -6,13 +6,7 @@ order: 9
 published: false
 ---
 
-{% include components/legacy_documentation.html %}
-
-This guide should include:
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
+{{< legacy >}}
 
 Spinnaker is the continuous delivery platform that codifies the software delivery best practices that put Netflix and Google a decade ahead of most other companies.
 
@@ -20,24 +14,24 @@ Spinnaker is the continuous delivery platform that codifies the software deliver
 <br/>
 What is Spinnaker
 
-{% include components/youtubePlayer.html id="H_rFShgmJHY" %}<br/>
+{{< youtube H_rFShgmJHY >}}
 
 
 Concepts / Naming Conventions<br/>
 
-{% include components/youtubePlayer.html id="b8N23gcdRHc" %}
+{{< youtube b8N23gcdRHc >}}
 
 
 ## How To Create a Pipeline
 <br/>
 
-{% include components/youtubePlayer.html id="NBeUAjlcVJw" %}
+{{< youtube NBeUAjlcVJw >}}
 
 
 ## How to Build a Pipeline
 <br/>
 
-{% include components/youtubePlayer.html id="L8bJUFhcqGs" %}
+{{< youtube L8bJUFhcqGs >}}
 
 
 ## Various Pipline Stages
@@ -48,6 +42,4 @@ Concepts / Naming Conventions<br/>
  - Check Preconditions
  - Adding a Parallel Stage
  
-{% include components/youtubePlayer.html id="dM1trF4rsqU" %}
-
-
+{{< youtube dM1trF4rsqU >}}

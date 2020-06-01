@@ -135,7 +135,7 @@ spec:
 
 ![No CREATE Permission](/images/Deployment-Validation.png)
 
-# Congratulations!
+## Congratulations!
 
 You completed the Armory Spinnaker QuickStart exercise!  You can now deploy to AWS using Spinnaker.  What's Next?
 
@@ -146,9 +146,5 @@ You completed the Armory Spinnaker QuickStart exercise!  You can now deploy to A
 
 To get expert help in any of the areas above you can contact Armory.io at https://go.armory.io/needs-analysis
 
-# AWS QuickStart Step 3 Video
-<!-- blank line -->
-<figure class="video_container">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/Yi-2AZ5n_kA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</figure>
-<!-- blank line -->
+## AWS QuickStart Step 3 Video
+{{< youtube Yi-2AZ5n_kA >}}

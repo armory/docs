@@ -21,7 +21,7 @@ Before you start, ensure that have completed the following requirements:
 * Have a way to copy files from your local workstation to the Minnaker VM, such as `scp`.
 
 
-# First: Configure the AWS Provider for Spinnaker
+## First: Configure the AWS Provider for Spinnaker
 
 ![No CREATE Permission](/images/AWS-Deploy-Spinnaker.png)
 
@@ -159,9 +159,5 @@ hal deploy apply --wait-for-completion
 ## Congratulations!  
 You have configured the Spinnaker AWS Provider and Kubernetes Account for EKS.  You can now deploy to EC2, ECS, Fargate, and EKS.  Lets build some pipelines in [AWS QuickStart Step 3](/spinnaker/Armory-Spinnaker-Quickstart-3).
 
-# AWS QuickStart Step 2 Video
-<!-- blank line -->
-<figure class="video_container">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/XBdc0z-xdS0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</figure>
-<!-- blank line -->
+## AWS QuickStart Step 2 Video
+{{< youtube XBdc0z-xdS0 >}}
