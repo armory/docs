@@ -1,6 +1,10 @@
 ---
 title: Metric Stores Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.metricStores`.
+aliases:
+  - /operator_reference/metricstores/
 ---
 
 

@@ -1,6 +1,10 @@
 ---
 title: Canary Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.canary`.
+aliases:
+  - /operator_reference/canary/
 ---
 
 **spec.spinnakerConfig.config.canary**
