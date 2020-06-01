@@ -1,17 +1,14 @@
 ---
 
 title: v2.17.0 Armory Release (OSS Release 1.17.1)
-weight: -21720191114011639
 toc_hide: true
 ---
 
 # 11/14/19 Release Notes
-{:.no_toc}
+
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 
 ## Known Issues

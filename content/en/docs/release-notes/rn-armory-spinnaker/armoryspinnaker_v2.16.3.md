@@ -1,17 +1,13 @@
 ---
 
 title: v2.16.3 Armory Release (OSS Release 1.16.4)
-weight: -21620191108230433
 toc_hide: true
 ---
 
 # 11/08/19 Release Notes
-{:.no_toc}
+
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 
 ## Known Issues
@@ -87,7 +83,7 @@ No Changes
 #### Armory Deck  - f0fdf1e...cbab764
  - refactor(stepbystep): removed stepbystep (#531)
  - refactor(configurator): removed configurator (#530)
- 
+
 #### Armory Echo  - 16a503d...b8d5392
  - fix(dinghy): Added GitLab dinghy support (#109)
 
@@ -118,7 +114,7 @@ No Changes
 
 
 ###  Spinnaker Community Contributions
-See Spinnaker's release notes that are included in this release: 
+See Spinnaker's release notes that are included in this release:
 
 [Spinnaker 1.16.4](https://www.spinnaker.io/community/releases/versions/1-16-4-changelog#individual-service-changes)  
 

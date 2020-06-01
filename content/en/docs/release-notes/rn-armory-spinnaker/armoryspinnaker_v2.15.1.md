@@ -1,12 +1,10 @@
 ---
 
 title: v2.15.1 Armory Release (OSS Release 1.15.2)
-weight: -21520190826232221
 toc_hide: true
 ---
 
 # 08/26/19 Release Notes
-{:.no_toc}
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 

@@ -1,17 +1,12 @@
 ---
-
 title: v2.19.4 Armory Release (OSS Release 1.19.4)
-weight: -21920200416012751
 toc_hide: true
 ---
 
 # 04/15/20 Release Notes
-{:.no_toc}
+
 
 > Note: Do not upgrade to Armory Spinnaker 2.19.4 (this version). Instead, upgrade to Armory Spinnaker [2.19.7](/release-notes/armoryspinnaker_v2.19.7/) or later.
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 ## Breaking Changes
 <!--

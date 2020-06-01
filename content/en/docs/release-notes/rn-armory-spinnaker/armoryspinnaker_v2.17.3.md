@@ -1,18 +1,12 @@
 ---
-
 title: v2.17.3 Armory Release (OSS Release 1.17.6)
-weight: -21720200114222529
 toc_hide: true
 ---
 
 # 01/14/20 Release Notes
-{:.no_toc}
+
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
 
 ## Known Issues
 
@@ -30,7 +24,7 @@ This release includes the following:
 
 ###  Spinnaker Community Contributions
 
-This release also includes a number of fixes submitted to OSS Spinnaker; additional details can be found below. 
+This release also includes a number of fixes submitted to OSS Spinnaker; additional details can be found below.
 
 <br>
 
@@ -102,7 +96,7 @@ No Changes
  - feat(terraform): job logs modal (#549)
 
 #### Armory Echo  - 4f2b8ee...c413c8a
- - No relevant changes 
+ - No relevant changes
 
 #### Armory Fiat  - 9f554ae...940de73
  - chore(releases): use alpine containers instead of open-jdk (#30)

@@ -1,5 +1,4 @@
 ---
-
 title: v1.6.0 Armory Halyard
 toc_hide: true
 ---
@@ -11,7 +10,7 @@ toc_hide: true
 
 ## Known Issues
 
-- `hal shutdown` returns an `Error 400` message. We will be submitting a PR to OSS Spinnaker to resolve this. 
+- `hal shutdown` returns an `Error 400` message. We will be submitting a PR to OSS Spinnaker to resolve this.
 
 ## Halyard Armory Enterprise Spinnaker
  - chore(gradle): move to gradle5 (#220)

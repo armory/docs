@@ -7,7 +7,7 @@ aliases:
   - /halyard-versions/
   - /halyard-version/
   - /halyard-release-notes/
-simple_list: true
+simple_list_reverse: true
 ---
 
 > You can also find [Armory Spinnaker's releases notes here](https://docs.armory.io/release-notes/).

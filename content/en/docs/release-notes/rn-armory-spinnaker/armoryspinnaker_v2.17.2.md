@@ -1,17 +1,13 @@
 ---
 
 title: v2.17.2 Armory Release (OSS Release 1.17.5)
-weight: -21720191216230858
 toc_hide: true
 ---
 
 # 12/16/19 Release Notes
-{:.no_toc}
+
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 
 ## Known Issues
@@ -23,7 +19,7 @@ This has been fixed in `Armory Spinnaker 2.17.4`.
 ## Highlighted Updates
 ### Armory
 
-This release includes the following: 
+This release includes the following:
 
 * Alpha release of `Terraformer` UI
 * Dynatrace provider support in Kayenta

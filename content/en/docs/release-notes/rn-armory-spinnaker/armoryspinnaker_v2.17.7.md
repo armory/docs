@@ -1,28 +1,22 @@
 ---
-
 title: v2.17.7 Armory Release (OSS Release 1.17.8)
-weight: -21720200330201939
 toc_hide: true
 ---
 
 # 03/30/20 Release Notes
-{:.no_toc}
+
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
 
 ## Known Issues
 
 * **Policy Engine**
-  
+
     If your OPA policies contain any top level declarations other than `deny`, the Policy Engine prevents pipelines from being saved.
 
-    **Workaround** 
-    
-    Only use `deny` declarations at the top level. Other declarations can still be used at lower levels of the policy. 
+    **Workaround**
+
+    Only use `deny` declarations at the top level. Other declarations can still be used at lower levels of the policy.
 
 ## Highlighted Updates
 ### Armory
@@ -35,7 +29,7 @@ This release includes the following:
 
 ###  Spinnaker Community Contributions
 
-No changes to report. 
+No changes to report.
 
 <br>
 

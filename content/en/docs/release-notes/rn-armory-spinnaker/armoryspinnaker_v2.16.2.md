@@ -1,17 +1,13 @@
 ---
 
 title: v2.16.2 Armory Release (OSS Release 1.16.4)
-weight: -21620191028214927
 toc_hide: true
 ---
 
 # 10/28/19 Release Notes
-{:.no_toc}
+
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 
 ## Known Issues
@@ -116,7 +112,7 @@ No Changes
 
 
 ###  Spinnaker Community Contributions
-See Spinnaker's release notes that are included in this release: 
+See Spinnaker's release notes that are included in this release:
 
 [Spinnaker 1.16.4](https://www.spinnaker.io/community/releases/versions/1-16-4-changelog#individual-service-changes)  
 

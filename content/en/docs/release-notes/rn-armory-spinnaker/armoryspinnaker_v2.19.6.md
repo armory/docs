@@ -1,17 +1,12 @@
 ---
-
 title: v2.19.6 Armory Release (OSS Release 1.19.5)
-weight: -21920200420212728
 toc_hide: true
 ---
 
 # 04/20/20 Release Notes
-{:.no_toc}
+
 
 > Note: Do not upgrade to Armory Spinnaker 2.19.6 (this version). Instead, upgrade to Armory Spinnaker [2.19.7](/release-notes/armoryspinnaker_v2.19.7/) or later.
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 ## Breaking Changes
 
@@ -62,7 +57,7 @@ Additionally, this version of Spinnaker includes updates to how Deck is built. P
 
 **Managed Pipeline Templates v2 UI**
 
-Armory Spinnaker 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in OSS Spinnaker. 
+Armory Spinnaker 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in OSS Spinnaker.
 
 Armory recommends using Armory's Pipeline as Code feature instead of MPTv2 because it offers the following benefits:
 
@@ -183,6 +178,6 @@ See the Open Source Spinnaker Release Notes for the versions included in this re
 * [Spinnaker's v1.19.2](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#spinnaker-release-1-19-2)
 * [Spinnaker's v1.19.3](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#spinnaker-release-1-19-3)
 * [Spinnaker's v1.19.4](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#spinnaker-release-1-19-4)
-* [Spinnaker's v1.19.5](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#individual-service-changes) 
+* [Spinnaker's v1.19.5](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#individual-service-changes)
 
 This version cherry picks [spinnaker/deck/pull/8180](https://github.com/spinnaker/deck/pull/8180).

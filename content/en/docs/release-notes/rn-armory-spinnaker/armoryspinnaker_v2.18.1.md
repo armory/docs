@@ -1,17 +1,11 @@
 ---
-
 title: v2.18.1 Armory Release (OSS Release 1.18.7)
-weight: -21820200403172919
 toc_hide: true
 ---
 
 # 04/03/20 Release Notes
-{:.no_toc}
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 
 ## Known Issues
@@ -19,9 +13,9 @@ toc_hide: true
 
 There is a known issue where Armory Halyard 1.9.0 fails to install Armory Spinnaker 2.18.1. The Pod for Echo enters a crash loop.
 
-**Workaround** 
+**Workaround**
 
-Use Armory Halyard 1.8.3 if you want to install Armory Spinnaker 2.18.1. 
+Use Armory Halyard 1.8.3 if you want to install Armory Spinnaker 2.18.1.
 
 
 ## Highlighted Updates

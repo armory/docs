@@ -1,17 +1,13 @@
 ---
 
 title: v2.16.1 Armory Release (OSS Release 1.16.3)
-weight: -21620191017014817
 toc_hide: true
 ---
 
 # 10/17/19 Release Notes
-{:.no_toc}
+
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 
 ## Known Issues
@@ -117,7 +113,7 @@ No Changes
  - fix(debug): Log fatal Redis error (#73)
 
 ###  Spinnaker Community Contributions
-See Spinnaker's release notes that are included in this release: 
+See Spinnaker's release notes that are included in this release:
 
 [Spinnaker 1.16.3](https://www.spinnaker.io/community/releases/versions/1-16-3-changelog#individual-service-changes)  
 

@@ -1,17 +1,12 @@
 ---
-
 title: v2.19.7 Armory Release (OSS Release 1.19.5)
-weight: -21920200421040114
 toc_hide: true
 ---
 
 # 04/20/20 Release Notes
-{:.no_toc}
+
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 ## Breaking Changes
 
@@ -40,7 +35,7 @@ Highlighted Updates describe some of the major changes in this release. Highligh
 
 **Service Accounts using Fiat**
 
-This version includes a cherry picked commit that fixes an issue with creating or updating service accounts. The issue caused pipeline permissions to not work. 
+This version includes a cherry picked commit that fixes an issue with creating or updating service accounts. The issue caused pipeline permissions to not work.
 
 **Policy Engine**
 
@@ -58,7 +53,7 @@ Additionally, this version of Spinnaker includes updates to how Deck is built. P
 
 **Managed Pipeline Templates v2 UI**
 
-Armory Spinnaker 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in OSS Spinnaker. 
+Armory Spinnaker 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in OSS Spinnaker.
 
 Armory recommends using Armory's Pipeline as Code feature instead of MPTv2 because it offers the following benefits:
 
@@ -182,8 +177,6 @@ See the Open Source Spinnaker Release Notes for the versions included in this re
 * [Spinnaker's v1.19.2](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#spinnaker-release-1-19-2)
 * [Spinnaker's v1.19.3](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#spinnaker-release-1-19-3)
 * [Spinnaker's v1.19.4](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#spinnaker-release-1-19-4)
-* [Spinnaker's v1.19.5](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#individual-service-changes) 
+* [Spinnaker's v1.19.5](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#individual-service-changes)
 
 Armory Spinnaker 2.19.7 cherry-picks [spinnaker/fiat/pull/656](https://github.com/spinnaker/fiat/pull/656), which resolves an issue with Fiat and service accounts.
-
-

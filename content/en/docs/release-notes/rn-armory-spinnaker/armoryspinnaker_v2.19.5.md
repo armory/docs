@@ -1,17 +1,12 @@
 ---
-
 title: v2.19.5 Armory Release (OSS Release 1.19.5)
-weight: -21920200417225655
 toc_hide: true
 ---
 
 # 04/17/20 Release Notes
-{:.no_toc}
+
 
 > Note: Do not upgrade to Armory Spinnaker 2.19.5 (this version). Instead, upgrade to Armory Spinnaker [2.19.7](/release-notes/armoryspinnaker_v2.19.7/) or later.
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 
 ## Breaking Changes
@@ -56,7 +51,7 @@ Fixed a recently discovered CVE that affects Igor: [`CVE-2020-11612`](https://nv
 
 **Managed Pipeline Templates v2 UI**
 
-Armory Spinnaker 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in OSS Spinnaker. 
+Armory Spinnaker 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in OSS Spinnaker.
 
 Armory recommends using Armory's Pipeline as Code feature instead of MPTv2 because it offers the following benefits:
 
@@ -184,7 +179,7 @@ artifactSources:
 
 
 ###  Spinnaker Community Contributions
- 
+
 See the Open Source Spinnaker Release Notes for the versions included in this release:  
 
 * [Spinnaker's v1.19.0](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#spinnaker-release-1-19-0)  
@@ -192,4 +187,4 @@ See the Open Source Spinnaker Release Notes for the versions included in this re
 * [Spinnaker's v1.19.2](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#spinnaker-release-1-19-2)
 * [Spinnaker's v1.19.3](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#spinnaker-release-1-19-3)
 * [Spinnaker's v1.19.4](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#spinnaker-release-1-19-4)
-* [Spinnaker's v1.19.5](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#individual-service-changes) 
+* [Spinnaker's v1.19.5](https://www.spinnaker.io/community/releases/versions/1-19-5-changelog#individual-service-changes)

@@ -8,7 +8,7 @@ aliases:
   - /version/
   - /versions/
   - /release-notes/
-simple_list: true
+simple_list_reverse: true
 ---
 
 > You can also find [Armory's Halyard releases notes here](https://docs.armory.io/halyard-release-notes/).

@@ -1,12 +1,10 @@
 ---
 
 title: v2.15.0 Armory Release (OSS Release 1.15.1)
-weight: -21520190805061413
 toc_hide: true
 ---
 
 # 08/05/19 Release Notes
-{:.no_toc}
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
@@ -18,7 +16,7 @@ We have made the decision to bump the minor version of our releases to match the
 
 As such, `Armory Spinnaker 2.15.x` tracks `OSS Release 1.15.x`.
 
-This decision has no effect on previous release names. 
+This decision has no effect on previous release names.
 
 ## Known Issues
 
@@ -90,10 +88,10 @@ No Changes
 
 #### Armory Clouddriver  - 88e5012...1862b8b
  - feat(aws): upgrade awscli (#39) (#41)
- 
+
 #### Armory Deck  - fec48f6...1c65f72
  - chore(kayenta): Bump version (#519)
- 
+
 #### Armory Echo  - 7f44a96
 No Changes
 
@@ -129,7 +127,7 @@ No Changes
  - feat(configurablebranch): remove the need for the full branch path (#57)
 
 ###  Spinnaker Community Contributions
-See Spinnaker's release notes that are included in this release: 
+See Spinnaker's release notes that are included in this release:
 
 [Spinnaker 1.15.1](https://www.spinnaker.io/community/releases/versions/1-15-1-changelog#individual-service-changes)  
 
