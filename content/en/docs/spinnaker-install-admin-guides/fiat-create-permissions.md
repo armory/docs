@@ -120,4 +120,4 @@ Perform the following steps:
 5. Apply your configuration changes to Spinnaker by running the following command: `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if you are using Operator, or `hal deploy apply` if you are using Halyard.
 
 The following screenshot shows what happens when a user without sufficient permissions attempts to create an application in Deck, Spinnaker's UI: 
-![No CREATE Permission](/assets/images/authz_create_permission.png)
+![No CREATE Permission](/images/authz_create_permission.png)

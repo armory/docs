@@ -25,7 +25,7 @@ or via a [Helm bake stage](https://kb.armory.io/kubernetes/using-spinnaker-and-h
 As a matter of fact, the deployment manifest is not entirely static: Spinnaker will replace the image name with the actual tagged name from the bound artifact.
 
 Let's see how a new version of the container gets deployed with this pipeline:
-![image](/assets/images/rollingupdate-default.gif)
+![image](/images/rollingupdate-default.gif)
 
 
 ## Can we change how containers are deployed?
@@ -40,6 +40,6 @@ Let's modify our deployment manifest and ensure that we always have 4 pods runni
 ![image](/images/kubernetes_deployments_3.png)
 
 Let's see how we deploy with our new configuration:
-![image](/assets/images/rollingupdate-0.gif)
+![image](/images/rollingupdate-0.gif)
 
 We keep 4 pods running throughout the deployment and never more than 5 non *Terminating* pods (4 pods + 25%) existing at any given time.
