@@ -8,13 +8,13 @@ Okta is a authorization and authentication service provider using SAML.
 ## Configure a Spinnaker Application in Okta
 
 Select Applications -> Applications from the top menu.
-![Applications Screen](/assets/images/okta-applications.png)
+![Applications Screen](/images/okta-applications.png)
 
 Click the green "Add Application" button.
-![AddApplicationButton](/assets/images/okta-addapplication.png)
+![AddApplicationButton](/images/okta-addapplication.png)
 
 Click the green "Create New App" button.
-![CreateNewApp](/assets/images/okta-createnewapp.png)
+![CreateNewApp](/images/okta-createnewapp.png)
 
 In the dialog "Create a New Application Integration", select the following values:
 
@@ -23,11 +23,11 @@ In the dialog "Create a New Application Integration", select the following value
 
 Then hit the green "Create" button.
 
-![CreateNewIntegration](/assets/images/okta-createnewintegration.png)
+![CreateNewIntegration](/images/okta-createnewintegration.png)
 
 
 On "Create SAML Integration" page, enter an app name and hit the green "Next" button.
-![CreateNewIntegration](/assets/images/okta-appname.png)
+![CreateNewIntegration](/images/okta-appname.png)
 
 On the "Configure SAML page", configure the following settings:
 
@@ -46,10 +46,10 @@ In the GROUP ATTRIBUTE STATEMENTS section:
 * Name = memberOf, Name format = Unspecified, Filter = Regex: .*
 
 Then, hit the green "Next" button
-![SamlSettings](/assets/images/okta-samlsettings.png)
+![SamlSettings](/images/okta-samlsettings.png)
 
 On the Create SAML Integration Feedback page, select the "I'm an Okta customer adding an internal app" button, then hit the green "Finish" button.
-![Feedback](/assets/images/okta-feedback.png)
+![Feedback](/images/okta-feedback.png)
 
 
 This takes you to the "Sign On" tab of the application you just created.
@@ -57,10 +57,10 @@ This takes you to the "Sign On" tab of the application you just created.
 You can navigate back to this page by going to applications -> applicationName -> Sign On tab.
 Click the button "View Setup Instructions".  This will display the page with configuration information
 necessary to configure Spinnaker.
-![ViewSetupInstructions](/assets/images/okta-viewsetupinstructions.png)
+![ViewSetupInstructions](/images/okta-viewsetupinstructions.png)
 
 Under the "Optional" section near the bottom, copy the contents of IDP metadata and save to file. For example, under `/Users/armory/.hal/saml/metadata.xml`.
-![IDPmetadata](/assets/images/okta-idpmetadata.png)
+![IDPmetadata](/images/okta-idpmetadata.png)
 
 ## Configure Spinnaker to use Okta
 

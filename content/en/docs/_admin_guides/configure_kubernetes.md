@@ -160,11 +160,11 @@ You must restart or redeploy Spinnaker before these changes will take effect.
 If Kubernetes is properly configured, kubernetes will appear as one of the choices for "Cloud Providers" when you use
 the New Application dialog:
 
-![NewApplication](/assets/images/kubernetes-newapplication.png)
+![NewApplication](/images/kubernetes-newapplication.png)
 
 You should see a similar option in the "Cloud Provider" section of the Edit Application dialog when editing existing application attributes via: config -> Edit Application Attributes:
 
-![EditApplication](/assets/images/kubernetes-editapplication.png)
+![EditApplication](/images/kubernetes-editapplication.png)
 
 
 ## Additional Information
