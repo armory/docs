@@ -1,6 +1,6 @@
 ---
 
-title: v1.8.0 Armory Halyard (OSS 1.27)
+title: v1.8.0 Armory Halyard
 toc_hide: true
 ---
 

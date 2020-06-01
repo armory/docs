@@ -7,9 +7,10 @@ aliases:
   - /halyard-versions/
   - /halyard-version/
   - /halyard-release-notes/
+simple_list: true
 ---
 
-> You can also find [Armory's releases notes here](https://docs.armory.io/release-notes/).
+> You can also find [Armory Spinnaker's releases notes here](https://docs.armory.io/release-notes/).
 
 ## Armory Halyard
 Armory Halyard is an extended version of Halyard that deploys Armory features. You can find the base OSS version:
