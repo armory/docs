@@ -1,9 +1,9 @@
 ---
-layout: post
-order: 110
+title: Troubleshooting
+weight: 110
 ---
 
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
 
 For help with the following topics, please checkout the troubleshooting sections embedded in the corresponding guide:
@@ -12,11 +12,6 @@ For help with the following topics, please checkout the troubleshooting sections
 - [Deploying]({% link _spinnaker_user_guides/deploying.md %}#common-errors-and-troubleshooting)
 - [Expression language]({% link _spinnaker_user_guides/expression-language.md %}#troubleshooting)
 
-
-## FAQ 
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 
 #### Why are tasks hanging on the 'Force Cache Refresh' stage?

@@ -1,9 +1,9 @@
 ---
-layout: post
+
 title: Video Tutorials
-order: 9
+weight: 9
 # migrated to spinnaker-user-gudies/video-tutorials
-published: false
+draft: true
 ---
 
 {{< legacy >}}
@@ -14,7 +14,7 @@ Spinnaker is the continuous delivery platform that codifies the software deliver
 <br/>
 What is Spinnaker
 
-{{< youtube H_rFShgmJHY >}}
+{{< youtube H_rFShgmJHY >}}<br/>
 
 
 Concepts / Naming Conventions<br/>

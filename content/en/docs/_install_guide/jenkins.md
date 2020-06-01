@@ -1,23 +1,13 @@
 ---
-layout: post
+
 title: Jenkins
-order: 50
+weight: 50
 ---
 
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
 Refer to the Spinnaker documentation for configuring Jenkins at
 [https://www.spinnaker.io/setup/ci/jenkins/](https://www.spinnaker.io/setup/ci/jenkins/)
-
-<div class="deprecation-warning">
-  The information below has been deprecated.
-</div>
-
-# What To Expect
-{:.no_toc}
-This guide should include:
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 # Continuous Integration (CI)
 Spinnaker's goal is to leverage existing CI solutions to build and produce an artifact that can be deployed.

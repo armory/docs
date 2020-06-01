@@ -1,16 +1,13 @@
 ---
-layout: post
-order: 20
+title: Subservices
+weight: 20
 ---
 
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
 Spinnaker is the composition of a few sub-services for resiliency
 and follows the single-responsibility principle.  It allows for faster iteration on each
 individual component and a more pluggable architecture for custom components.
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 ### Orca
 

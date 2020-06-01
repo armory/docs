@@ -1,16 +1,14 @@
 ---
-layout: post
+
 title: Kayenta
-order: 74
+weight: 74
 # migrated to spinnaker-user-guides/kayenta
-published: false
+draft: true
 ---
 
+{{< legacy >}}
 
-{% include components/legacy_documentation.html %}
-
-# What is Kayenta
-{:.no_toc}
+## What is Kayenta
 
 Kayenta is an automated canarying analysis (ACA) service that is provided through Armory Spinnaker. The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence.
 
@@ -20,9 +18,6 @@ Kayenta uses real-time data sources to validate that a canary is good or bad. To
 * Stackdriver (Google)
 
 
-This guide includes:
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 
 ## Configuring Kayenta on an Application
@@ -343,7 +338,3 @@ example), the steps are:
 This should give you some idea of how you might want to integrate the Kayenta
 Canary Analysis stage into your production pipelines, and automate your
 deployments!
-
-
-
-

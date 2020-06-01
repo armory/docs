@@ -1,17 +1,11 @@
 ---
-layout: post
+
 title: Spinnaker Deploy Spinnaker
-order: 60
+weight: 60
 ---
 
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
-
-# What To Expect
-{:.no_toc}
-This guide should include:
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 The installer scripts setup an initial Spinnaker environment. To keep Spinnaker up to date and to release changes to configuration, we'll teach Spinnaker how to redeploy itself. We call this the "Spinnaker deploy Spinnaker" pipeline.
 
@@ -19,7 +13,7 @@ This is a step by step guide to creating the pipeline.
 
 Once the pipeline is fully configured it should look like this:
 
-![Redeploy Overall](/assets/images/redeploy-overall.png)
+![Redeploy Overall](/images/redeploy-overall.png)
 
 
 
@@ -34,7 +28,7 @@ Create a pipeline and attach it to Jenkins so that it runs automatically wheneve
 
 Once configured the trigger should look like this:
 
-![Trigger](/assets/images/redeploy-trigger.png)
+![Trigger](/images/redeploy-trigger.png)
 
 
 
@@ -76,7 +70,7 @@ In this stage we'll look up the AMI id for the image we just baked so we can fee
 
 Once configured the stage should look like this:
 
-![Find armoryspinnaker](/assets/images/redeploy-find-armoryspinnaker.png)
+![Find armoryspinnaker](/images/redeploy-find-armoryspinnaker.png)
 
 
 
@@ -99,7 +93,7 @@ ${#stage('Find armoryspinnaker')['context']['amiDetails'][0]['imageId']}
 
 Once configured the stage should look like this:
 
-![Bake config](/assets/images/redeploy-bake-config.png)
+![Bake config](/images/redeploy-bake-config.png)
 
 
 
@@ -119,7 +113,7 @@ In this stage we'll take the image, which now contains both armoryspinnaker and 
 
 Once the stage is configured it should look like this:
 
-![Deploy](/assets/images/redeploy-deploy.png)
+![Deploy](/images/redeploy-deploy.png)
 
 
 ## Add more confidence
@@ -131,7 +125,7 @@ a [stage environment and integration tests]({% link _admin_guides/preprod_enviro
 
 To make sure that everything is working well you can manually run the pipeline. If all goes well the execution should show green for all stages. And you should be able to see multiple server groups in the custer view for the armoryspinnaker application. It should look something like the following:
 
-![Redeploy Clusters](/assets/images/redeploy-clusters.png)
+![Redeploy Clusters](/images/redeploy-clusters.png)
 
 Check to make sure that:
 

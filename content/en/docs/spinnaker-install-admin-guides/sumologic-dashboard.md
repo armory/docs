@@ -86,9 +86,9 @@ Go to Sumo Logic App Catalog and search for "Spinnaker" by Armory
 The Spinnaker Pipelines dashboard has a set of filters that you can apply to the entire dashboard as shown in the following example. Click the funnel icon in the top dashboard menu bar to display a scrollable list of filters that are applied across the entire dashboard.
 
 NOTE: You can use filters to drill down and examine the data on a granular level by application and pipeline
-![GlobalDashboardFilter](/assets/images/sumologic-dashboard-filter.png)
+![GlobalDashboardFilter](/images/sumologic-dashboard-filter.png)
 Each panel has a set of filters that are applied to the results for that panel only, as shown in the following example. Click the funnel icon in the top panel menu bar to display a list of panel-specific filters.
-![DashboardFilter](/assets/images/sumologic-dashboard-filter2.png)
+![DashboardFilter](/images/sumologic-dashboard-filter2.png)
 
 ### Spinnaker Overview Dashboard
 The Spinnaker Overview provides the health and usage of your Spinnaker instance at a quick glance, including applications deployed, clusters targeted, pipelines run, and users in spinnaker.
@@ -96,7 +96,7 @@ Use this dashboard to:
 * Quickly see number of active apps, clusters, pipelines, and users.
 * See activity levels apps, clusters, pipelines and users
 
-![SpinnakerOverviewDashboard](/assets/images/sumologic-dashboard-overview.png)
+![SpinnakerOverviewDashboard](/images/sumologic-dashboard-overview.png)
 
 ### Spinnaker Pipelines Dashboard
 This is a dashboard that contains pipeline execution history and metrics, including most common errors.
@@ -107,7 +107,7 @@ Use this dashboard to:
 * Uncover the most common errors in your pipelines
 * See how many pipelines have failed and completed over time
 
-![SpinnakerPipelinesDashboard](/assets/images/sumologic-dashboard-pipelines.png)
+![SpinnakerPipelinesDashboard](/images/sumologic-dashboard-pipelines.png)
 
 ### Spinnaker User Activity Dashboard
 This is a dashboard that contains user activity, manual judgments, rollbacks, canary, and trigger metrics.
@@ -116,7 +116,7 @@ Use this dashboard to:
 * See which users are most active and usage trends over time
 * Understand how pipelines are getting triggered
 
-![SpinnakerPipelinesDashboard](/assets/images/sumologic-dashboard-useractivity.png)
+![SpinnakerPipelinesDashboard](/images/sumologic-dashboard-useractivity.png)
 
 # Limitations
 

@@ -1,16 +1,10 @@
 ---
-layout: post
+
 title: Logging And Monitoring
-order: 130
+weight: 130
 ---
 
-{% include components/legacy_documentation.html %}
-
-# What To Expect
-{:.no_toc}
-This guide should include:
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
+{{< legacy >}}
 
 ## Armory Spinnaker's Application Logs with Docker
 Pushing your logs to a distributed service is as simple as using one of the logging drivers provided by Docker.   All logging comes from `STDOUT` inside of Docker and can be pushed to various endpoints.

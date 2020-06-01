@@ -1,19 +1,12 @@
 ---
-layout: post
-order: 70
-published: false
+
+weight: 70
+draft: true
 # migrated to spinnaker-user-guides/best-practices
 ---
 
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
-This guide should include:
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
-
-## Configuration Management
-{:.no_toc}
 
 ### Baking Configuration
 

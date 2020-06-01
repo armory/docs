@@ -1,17 +1,11 @@
 ---
-layout: post
-order: 50
+
+weight: 50
 # Migrated to spinnaker-user-guides/pipelines
-published: false
+draft: true
 ---
 
-{% include components/legacy_documentation.html %}
-
-This guide should include:
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
+{{< legacy >}}
 
 Pipelines are a combination of stages that enable some very sophisticated coordination and branching. They are the key to orchestrating deploys in Spinnaker and each one is specific to an application. To see an application's pipelines, select 'Applications' from Spinnaker's top navigation bar, click on an application's name, and then press the 'Pipelines' tab. The result from a pipeline running is called an execution.	
 
@@ -82,4 +76,3 @@ You can select different revisions using the dropdown menu labeled 'Revision' in
 ### Hanging or Timed Out Pipelines
 
 A lot of the time pipelines hang because of a misconfigured stage. This is a common occurrence when a server group does not complete its deploy because the deployed instances never pass the healthcheck. This happens both when the healthcheck is misconfigured and/or when the image doesn't bake as expected. These two areas should be investigated first. For more information you can see the troubleshooting topic in the [deployment guide]({% link _spinnaker_user_guides/deploying.md %}).
-

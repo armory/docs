@@ -1,17 +1,13 @@
 ---
-layout: post
-order: 80
+
+weight: 80
 # migrated to spinnaker-user-guides/expression-langauge
-published: false
+draft: true
 ---
 
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
-This guide should include:
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
+## Overview
 
 The expression language is a powerful tool that you can use to add logic and decision-making to your pipelines. While a lot of the time you will probably use it to evaluate variables, it can do a lot more. You can write straight Java/Groovy into it. This means you can do transformations, filters, maps, etc. You can use it to branch your pipeline into different directions.
 
