@@ -101,7 +101,7 @@ github_repo = "https://github.com/armory/docs"
 
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
-[[params.versions]]
+# [[params.versions]]
 #  version = "v2.11.65"
 #  githubbranch = "master"
 #  url = "https://docs.armory.io"
