@@ -1,6 +1,10 @@
 ---
 title: Providers Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.providers`.
+aliases:
+  - /operator_reference/providers/
 ---
 
 ## Providers Parameters

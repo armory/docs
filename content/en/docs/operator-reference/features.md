@@ -1,6 +1,10 @@
 ---
 title: Features Config
 weight: 2
+description: >
+  This page describes `spec.spinnakerConfig.config.features`.
+aliases:
+  - /operator_reference/features/
 ---
 
 **spec.spinnakerConfig.config.features**
