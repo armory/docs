@@ -99,24 +99,6 @@ github_repo = "https://github.com/armory/docs"
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""
 
-#Add new release versions here. These entries appear in the drop-down menu
-# at the top of the website.
-# [[params.versions]]
-#  version = "v2.11.65"
-#  githubbranch = "master"
-#  url = "https://docs.armory.io"
-
-# [[params.versions]]
-#  version = "v0.2"
-#  githubbranch = "v0.2-branch"
-#  url = "https://v0-2.kubeflow.org"
-
-# [[params.versions]]
-#  version = "v0.3"
-#  githubbranch = "v0.3-branch"
-#  url = "https://v0-3.kubeflow.org"
-
-
 # Google Custom Search Engine ID. Remove or comment out to disable search.
 # gcs_engine_id = "011737558837375720776:fsdu1nryfng"
 
@@ -183,3 +165,20 @@ enable = false
 	url = "https://join.spinnaker.io/"
 	icon = "fab fa-slack"
    desc = "Chat with Armory users and developers in the Spinnaker Slack"
+
+#Add new release versions here. These entries appear in the drop-down menu
+# at the top of the website.
+[[params.versions]]
+  version = "v2.11.65"
+  githubbranch = "master"
+  url = "https://docs-hugo.netlify.app"
+
+[[params.versions]]
+  version = "v0.2"
+  githubbranch = "v0.2-branch"
+  url = "https://v0-2.kubeflow.org"
+
+[[params.versions]]
+  version = "v0.3"
+  githubbranch = "v0.3-branch"
+  url = "https://v0-3.kubeflow.org"
