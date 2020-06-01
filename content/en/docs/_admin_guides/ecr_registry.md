@@ -1,14 +1,14 @@
 ---
 layout: post
 title: Configuring an ECR as a registry
-order: 120
+weight: 120
 # migrated to spinnaker-install-admin-guides/ecr-registry
-published: false
+draft: true
 ---
 
-This document reviews configuring ECR as a registry for a Spinnaker installation
+This document reviews configuring ECR as a registry for a Spinnaker installation.
 
-### Adding ECR as a Docker Registry
+## Adding ECR as a Docker Registry
 
 When configuring a registry, you normally use the `hal` command for [adding a Docker Registry](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-docker-registry-account-add).
 

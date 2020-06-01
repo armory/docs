@@ -1,11 +1,11 @@
 ---
-layout: post
-order: 20
+
+weight: 20
 # migrated to spinnaker-user-gudies/working-with-jenkins
-published: false
+draft: true
 ---
 
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
 This guide should include:
 {:.no_toc}

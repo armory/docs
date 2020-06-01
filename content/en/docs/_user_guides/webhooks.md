@@ -1,20 +1,15 @@
 ---
-layout: post
-order: 105
+
+weight: 105
 # migrated to spinnaker-user-guides/webhooks
-published: false
+draft: true
 ---
 
-{% include components/legacy_documentation.html %}
-
-This guide should include:
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
+{{< legacy >}}
 
 
-# How does Spinnaker use webhooks?
-{:.no_toc}
+## How does Spinnaker use webhooks?
+
 Spinnaker has a stage type called "Webhook" which allows it to call out to APIs as part of running a pipeline:
 
 ![Webhook Type Selection](/assets/images/webhook-type-selection.png)

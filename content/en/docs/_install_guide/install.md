@@ -1,15 +1,11 @@
 ---
-layout: post
+
 title: Installation
-order: 20
+weight: 20
 # This has been redirected to spinnaker/install
 ---
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
-# Installing Armory Spinnaker
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 ## Installing Armory Spinnaker In Kubernetes
 

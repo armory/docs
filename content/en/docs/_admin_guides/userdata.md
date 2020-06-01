@@ -1,14 +1,11 @@
 ---
-layout: post
+
 title: User Data
-order: 100
+weight: 100
 ---
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
-# Modify Global User-Data For All Deployments
+## Modify Global User-Data For All Deployments
 
 When new server-groups are deployed Spinnaker attaches a global [user-data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)  script/file that is prepended to any application specific user-data configured in a server Spinnaker pipeline. By default Armory Spinnaker comes with a user-data file which is placed in `/opt/spinnaker/config/udf/udf0`.  This can be modified and overwritten to your specific needs.
 
