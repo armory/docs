@@ -89,7 +89,7 @@ version = "v1.0"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
-url_latest_version = "https://docs-hugo.netlify.app"
+url_latest_version = "https://docs-hugo.netlify.app/docs"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/armory/docs-hugo"
@@ -169,16 +169,11 @@ enable = false
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
 [[params.versions]]
-  version = "v2.11.65"
-  githubbranch = "master"
-  url = "https://docs-hugo.netlify.app"
-
-[[params.versions]]
-  version = "archive-test"
+  version = "v1.0"
   githubbranch = "archive-test"
   url = "https://v0-2.kubeflow.org"
 
 [[params.versions]]
-  version = "v0.3"
+  version = "v0.3 (kubeflow)"
   githubbranch = "v0.3-branch"
   url = "https://v0-3.kubeflow.org"
