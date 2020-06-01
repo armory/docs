@@ -1,18 +1,12 @@
 ---
-layout: post
+
 title: Barometer
-order: 70
-published: False
+weight: 70
+draft: true
 ---
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
-{:.no_toc}
-
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
-
-# Enabling Barometer
+## Enabling Barometer
 
 Update your environment file in `/opt/spinnaker/env/` to enable barometer with the following:
 `BAROMETER_ENABLED=true`

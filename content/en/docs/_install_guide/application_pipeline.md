@@ -1,20 +1,11 @@
 ---
-layout: post
 title: Application Deployment Pipeline
-order: 90
+weight: 90
 # Migrated to spinnaker-user-guides/application-pipeline
-published: false
+draft: true
 ---
 
-{% include components/legacy_documentation.html %}
-
-# What To Expect
-{:.no_toc}
-
-This guide should include:
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
+{{< legacy >}}
 
 ## Creating A Pipeline
 

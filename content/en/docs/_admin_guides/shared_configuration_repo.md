@@ -1,18 +1,10 @@
 ---
 layout: post
 title: Shared Configuration Repositories
-order: 101
+weight: 101
 ---
 
-{% include components/legacy_documentation.html %}
-
-## What to expect
-{:.no_toc}
-
-This guide will walk you through setting up a shared configuration repository between multiple Spinnaker installations, and using multiple AWS accounts.
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
+{{< legacy >}}
 
 ## What you will need
 Here is an [example configuration repository](https://github.com/armory/spinnaker-config-deb) to start with.
@@ -51,4 +43,3 @@ Now that we have our configs setup for both `ha` and `staging`, we can use the s
 [Information on the Debian configuaration repository](https://github.com/armory/spinnaker-config-deb)
 
 [More about env files](https://github.com/armory/spinnaker-config-deb/tree/master/deb-config/spinnaker/env)
-

@@ -1,16 +1,12 @@
 ---
-layout: post
-order: 20
+
+weight: 20
 # migrated to spinnaker-user-gudies/working-with-jenkins
-published: false
+draft: true
 ---
 
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
-This guide should include:
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 ## Triggering a pipeline with Jenkins
 

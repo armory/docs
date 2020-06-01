@@ -1,19 +1,10 @@
 ---
-layout: post
+
 title: Pipelines as Code
-order: 130
+weight: 130
 ---
+{{< legacy >}}
 
-<div class="deprecation-warning">
-  The information below was written for a previous version of Armory Spinnaker
-  (v1.13 and earlier).  Please look <a href="/spinnaker/install_dinghy">here</a> for
-  documentation on the latest version.
-</div>
-
-# What To Expect
-This guide should include:
-- Configurator changes needed before enabling Armory's "Pipelines as code" feature
-- Setting up GitHub or Stash webhooks to work with the "Pipelines as code" feature
 
 ## Overview
 To get an overview of Pipelines as code, check out the [user guide](http://docs.armory.io/user-guides/dinghy)

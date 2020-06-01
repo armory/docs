@@ -1,13 +1,12 @@
 ---
-layout: post
+
 title: Initial Setup
-order: 1
+weight: 1
 published: false
 ---
-{% include components/legacy_documentation.html %}
+{{< legacy >}}
 
-# Setting Up Armory Spinnaker
-{:.no_toc}
+## Setting Up Armory Spinnaker
 
 The [installation guide]({% link _spinnaker_install_admin_guides/aws-subnets.md %}) described how to install Armory Spinnaker for the first time. Once it is installed you will need to configure your environment in order to fully utilize Spinnaker.
 

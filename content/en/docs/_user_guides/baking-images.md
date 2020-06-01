@@ -1,17 +1,11 @@
 ---
-layout: post
-order: 30
-published: false
+
+weight: 30
+draft: true
 # migrated to spinnaker-user-guides/baking-images
 ---
 
-{% include components/legacy_documentation.html %}
-
-This guide should include:
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
+{{< legacy >}}
 
 Definition: The term 'Baking' is used within Spinnaker to refer to the process of creating machine images.
 
