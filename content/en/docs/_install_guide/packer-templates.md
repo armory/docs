@@ -1,6 +1,6 @@
 ---
-
-title: Understanding Bake Scripts (Packer templates)
+title: Understanding Bake Scripts (Packer Templates)
+linkTitle: Understanding Bake Scripts
 weight: 80
 # Do not redirect; substantially different from new version.
 aliases:
