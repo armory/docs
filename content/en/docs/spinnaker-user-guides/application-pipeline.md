@@ -98,7 +98,7 @@ _Note_: Different deployment strategies are important and there will be a separa
 The security group will define the access rights to your resource.
 
 #### Step 16: Select Instance Type.
-Make sure to select the right instance type for your application, perferrably the one that is running in production currently.
+Make sure to select the right instance type for your application, preferably the one that is running in production currently.
 
 #### Step 17: Select the Capactity
 Select how many instances you want in your server group on deploy. For our example, we will set it at 1.
@@ -128,4 +128,4 @@ You should see a progress bar where blue represents running and green represents
 
 ![](/images/Image-2017-03-24-at-4.45.33-PM.png)
 
-If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({% link _spinnaker_user_guides/pipelines.md %}#troubleshooting), [baking]({% link _spinnaker_user_guides/baking-images.md %}#troubleshooting), or [deploying]({% link _spinnaker_user_guides/deploying.md %}#common-errors-and-troubleshooting) guides.
+If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "pipelines#troubleshooting" >}}), [baking]({{< ref "baking-images#troubleshooting" >}}), or [deploying]({{< ref "deploying#common-errors-and-troubleshooting" >}}) guides.

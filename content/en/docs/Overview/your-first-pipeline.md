@@ -112,6 +112,6 @@ Step 22: Press “Run”, and you should see a progress bar where blue represent
 
 ![](/images/Image-2017-03-24-at-4.45.33-PM.png)
 
-If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({% link _spinnaker_user_guides/pipelines.md %}#troubleshooting), [baking]({% link _spinnaker_user_guides/baking-images.md %}#troubleshooting), or [deploying]({% link _spinnaker_user_guides/deploying.md %}#common-errors-and-troubleshooting) guides.
+If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "pipelines#troubleshooting" >}}), [baking]({{< ref "baking-images#troubleshooting" >}}), or [deploying]({{< ref "deploying#common-errors-and-troubleshooting" >}}) guides.
 
 Note: Always remember to save your changes by clicking the button in the bottom right of the window.

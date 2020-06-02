@@ -101,7 +101,7 @@ When this pipeline finishes the Bake stage, we can see it's current stage/tasks 
 
 ![](/images/Image-2017-03-30-at-3.23.24-PM.png)
 
-For more information about the details of this screen, check out the [application screen description guide]({% link _spinnaker_user_guides/application-screen" >}})
+For more information about the details of this screen, check out the [application screen description guide]({{< ref "application-screen" >}})
 
 I can see here that a new server has indeed come up and is healthy. Healthy in this case means that it has passed the ELB healthcheck. If you are having problems with your instances not passing the healthcheck, check out the [common errors section](#common-errors).
 
@@ -143,7 +143,7 @@ You have the option when deploying a new server group to use either EC2 or ELB h
 
 ### Deploy AZs vs ELB AZs
 
-It is possible to set your ELB to work with certain AZs but then deploy your server group to another AZ. If you have your healthcheck set to ELB, then your instances will never become healthy. You can tell when this happens by hovering you mouse over the red triangle [described above](https://docs.armory.io/user-guides/deploying/#investigating-red-instances).
+It is possible to set your ELB to work with certain AZs but then deploy your server group to another AZ. If you have your healthcheck set to ELB, then your instances will never become healthy. You can tell when this happens by hovering you mouse over the red triangle [described above](#investigating-red-instances).
 
 ### Unknown errors
 
@@ -239,7 +239,7 @@ If you want additional block devices or a larger root partition you'll need to
 add an a new list to the pipeline JSON.  Unfortunately at this time there is no
 UI to add block devices.
 
-1.  [Edit Your Pipelines JSON](https://docs.armory.io/spinnaker-user-guides/pipelines/#pipeline-json)
+1.  [Edit Your Pipelines JSON]({{< ref "pipelines#pipeline-json" >}})
 2.  Find your deployment dictionary.  You'll need to add the object of pairs for each cluster definition.
 3.  Add your custom block devices for launch under the key `blockDevices`.
 4.  Make sure that `AMI Block Device Mappings` is set to `Defaults for selected instance type `.

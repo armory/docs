@@ -130,7 +130,7 @@ Often you will want to specify a base image for use in your bake. In that case y
 
 In this situation, the base OS selection (ubuntu/trusty/windows) will be ignored.
 
-You can also select a base AMI more dynamically by combing the 'Bake' stage type with the 'Find Image' stage type. For more details check out the [Find Images Guide]({% link _spinnaker_user_guides/find-images.md %})
+You can also select a base AMI more dynamically by combing the 'Bake' stage type with the 'Find Image' stage type. For more details check out the [Find Images Guide]({{< ref "find-images" >}}).
 
 
 ### Adding Debian Repositories
