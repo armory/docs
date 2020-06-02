@@ -1,5 +1,4 @@
 ---
-
 title: User Data
 weight: 100
 ---
@@ -19,4 +18,4 @@ See [udf0 docs](https://www.spinnaker.io/setup/features/user-data/), which by de
 
 ### Related Guides
 
-- [Dynamically defining User-Data]({% link _spinnaker_user_guides/expression-language.md %}#dynamically-defining-user-data)
+- [Dynamically defining User-Data]({{< ref "expression-language#dynamically-defining-user-data" >}})

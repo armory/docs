@@ -3,6 +3,8 @@
 title: Understanding Bake Scripts (Packer templates)
 weight: 80
 # Do not redirect; substantially different from new version.
+aliases:
+  - /_install_guide/packer/
 ---
 
 {{< legacy >}}

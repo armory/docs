@@ -1,19 +1,18 @@
 ---
-layout: post
-title: Preprod Environment for Spinnaker
+title: Preproduction Environment for Spinnaker
+linkTitle: Preprod Env for Spinnaker
 weight: 110
-published: true
 ---
 
 {{< legacy >}}
 
 
-## Why Do I Need A Preprod Environment?
+## Why Do I Need A Preproduction Environment?
 Spinnaker is still actively being developed by a community of over 50 engineers across
 many different large organizations and changes are happening rapidly. This introduces a level of risk that can be reduced by creating a preprod environment coupled with a suite of integration pipelines that exercise the base functionality of Spinnaker. Additionally, everyone's cloud environment is unique. Permissions, networking, authentication, baking, and cloud targets differ wildly from environment to environment. This will help add confidence into your deployment practices to practice continuous delivery with Spinnaker itself.
 
 ## Setting Up A Preprod Environment
-When Armory Spinnaker starts, it looks for a property file that matches its [stack name]({% link _overview/naming-conventions.md %}).  This file should contain key/value pairs that it will use for its environment. It pulls this stack name from an environment file located at: `/etc/default/server-env`.  If you're using Armory Spinnaker, this file is managed for you by using [clouddriver's global userdata]({% link _admin_guides/userdata.md %}). If a file is found it is appended to `default.env` and generates a `resolved.env` for use.
+When Armory Spinnaker starts, it looks for a property file that matches its [stack name]({{< ref "naming-conventions" >}}).  This file should contain key/value pairs that it will use for its environment. It pulls this stack name from an environment file located at: `/etc/default/server-env`.  If you're using Armory Spinnaker, this file is managed for you by using [clouddriver's global userdata]({{< ref "userdata" >}}). If a file is found it is appended to `default.env` and generates a `resolved.env` for use.
 
 For example, if the stack of your deploy is named `preprod`, Armory Spinnaker will look for a corresponding environment file named `/opt/spinnaker/env/preprod.env` and append those values to `default.env` should one exist.
 
@@ -23,7 +22,8 @@ For your preprod environment you will want to have it match your production prop
 ##### S3 Properties
 The following determines where Spinnaker will store persistent items like application details, pipelines, etc.  
 It's critical that these are not the same as your production deployment.
-```  
+
+```bash  
 ARMORYSPINNAKER_S3_BUCKET=mycompany-preprod-spinnaker
 ARMORYSPINNAKER_S3_PREFIX=front50
 SPINNAKER_AWS_DEFAULT_REGION=us-west-2
@@ -31,13 +31,15 @@ SPINNAKER_AWS_DEFAULT_REGION=us-west-2
 
 ##### Redis
 Redis is used to maintain state of your cloud resources, pipeline executions, authentication sessions and other transient state. For your preprod environment you might want to use a local Redis instead of creating a new one using Elasticache.
-```
+
+```bash
 LOCAL_REDIS=true
 REDIS_HOST=redis
 ```
 
 Otherwise, if you want to use an external Redis to more closely match your production setup, do the following:
-```
+
+```bash
 LOCAL_REDIS=false
 REDIS_HOST=armoryspinnaker-preprod.aaaaaaaaa.aa.0001.usw2.cache.amazonaws.com
 ```
@@ -63,7 +65,7 @@ Add a new deploy stage to your "Spinnaker Deploy Spinnaker" pipeline. When addin
 
 ![deploy configuration](/images/Image-2017-10-20-at-1.06.30-PM.png)
 
-<br/>
+
 Your finished pipeline should resemble the following:
-<br/><br/>
+
 ![preprod environment](/images/Image-2017-10-20-at-1.06.00-PM.png)

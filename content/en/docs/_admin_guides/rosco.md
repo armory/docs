@@ -8,7 +8,7 @@ weight: 120
 
 ## What is Rosco?
 
-Rosco is the sub-service that manages baking using [Packer](https://www.packer.io/docs/), a cloud agnostic tool that automates the creation of images.  Rosco is a small API which manages the state of packer jobs and their executions so that it can report to other sub-systems. Make sure to read up on [Understanding Bake Scripts (Packer scripts)]({% link _install_guide/packer.md %}).
+Rosco is the sub-service that manages baking using [Packer](https://www.packer.io/docs/), a cloud agnostic tool that automates the creation of images.  Rosco is a small API which manages the state of packer jobs and their executions so that it can report to other sub-systems. Make sure to read up on [Understanding Bake Scripts]({{< ref "packer-templates" >}}).
 
 
 ## Configurations for Baking
@@ -33,7 +33,7 @@ In some cases you'll want to bake in multiple multiple regions but in order to d
 
 
 ### Using Templates
-When selecting a **Base OS**, the default template will be used. The default is **Base OS** is `Ubuntu 12.04/14.0`, which uses `aws-ebs.json` and `install_package.sh`. See [Setting Up Base OS Defaults for Baking](#setting-up-base-o-s-defaults-for-baking) on how to change the defaults.
+When selecting a **Base OS**, the default template will be used. The default is **Base OS** is `Ubuntu 12.04/14.0`, which uses `aws-ebs.json` and `install_package.sh`. See [Setting Up Base OS Defaults for Baking](#setting-up-base-os-defaults-for-baking) on how to change the defaults.
 
 You can also specify a template in the bake stage.  The example below shows the template being set to `mycompany-ebs.json` using the **Template File Name** setting for the stage. Spinnaker allows variables so you can even make each template dynamic.  
 ![bake configuration](/images/Image-2017-08-07-at-12.45.20-PM.png)
@@ -225,4 +225,4 @@ aws:
 * Instead, have a single base image, (potentially a security hardened) image, shared across the entire organization. Here's some ways to accomplish this:
   - Fill the **Base AMI** section for a Bake
   - Have a `Find Image` stage which would pick the latest base image.
-  - [Allow packer to find the latest image](#dynamically-generating-base-a-m-i).
+  - [Allow packer to find the latest image](#dynamically-generating-base-ami).
