@@ -42,4 +42,4 @@ Concepts / Naming Conventions<br/>
  - Check Preconditions
  - Adding a Parallel Stage
  
-{% include components/youtubePlayer.html id="dM1trF4rsqU" %}
+{{< youtube dM1trF4rsqU >}}

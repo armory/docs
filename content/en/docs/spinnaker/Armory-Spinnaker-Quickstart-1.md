@@ -14,7 +14,7 @@ Before you start, ensure that you complete the following requirements:
 
 Need help setting this up? -  For a guided tutorial, watch the **Video Walkthrough** at the bottom of this document.
 
-# Prepare AWS by creating Roles, Permissions, and Trust
+## Prepare AWS by creating Roles, Permissions, and Trust
 
 ![No CREATE Permission](/images/AWS-Roles-Spinnaker.png)
 
@@ -156,13 +156,9 @@ Need help setting this up? -  For a guided tutorial, watch the **Video Walkthrou
        }
    }
    ```
-### Congratulations!
+## Congratulations!
 You have completed the 1st step in setting up the Spinnaker AWS Provider.  For Step 2, see [AWS Quick Start Step 2](/spinnaker/Armory-Spinnaker-Quickstart-2).
 
-# AWS QuickStart Step 1 Video
+## AWS QuickStart Step 1 Video
 
-<!-- blank line -->
-<figure class="video_container">
- <iframe width="560" height="315" src="https://www.youtube.com/embed/rHd0xyC7__c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</figure>
-<!-- blank line -->
+{{< youtube rHd0xyC7__c >}}
