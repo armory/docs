@@ -6,7 +6,7 @@ weight: 70
 
 ## Adding A Kubernetes Account
 
-Spinnaker supports deploying to multiple cloud environments. If you're using Kubernetes you'll need to [follow this guide]({% link _admin_guides/configure_kubernetes.md %})  
+Spinnaker supports deploying to multiple cloud environments. If you're using Kubernetes you'll need to [follow this guide]({{< ref "configure_kubernetes" >}})  
 
 ## Adding Additional AWS Accounts
 

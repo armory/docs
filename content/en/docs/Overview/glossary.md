@@ -15,7 +15,7 @@ Amazon Machine Images (AMIs) are predetermined 'templates' for instances that ca
 
 
 ## Application
-An [application]({% link _spinnaker_user_guides/application-screen.md %}) inside Spinnaker represents what you would typically find in a single [code repository](#Code-Repository) - and in many cases, an application maps directly to a microservice.
+An [application]({{< ref "application-screen" >}}) inside Spinnaker represents what you would typically find in a single [code repository](#Code-Repository) - and in many cases, an application maps directly to a microservice.
 
 ## Auto-Scaling Group
 An auto-scaling group (ASG) contains a collection of [EC2](#elastic_compute_cloud) instances that share similar characteristics and are treated as a logical grouping for the purposes of instance scaling and management.
@@ -26,14 +26,14 @@ Authorization (Auth) is the level of access to APIs that a user, application or 
 
 
 ## Baking
-The term '[Baking]({% link _spinnaker_user_guides/baking-images.md %})' is used within Spinnaker to refer to the process of creating machine images, usually with [AMIs](#Amazon_Machine_Images).
+The term '[Baking]({{< ref "baking-images" >}})' is used within Spinnaker to refer to the process of creating machine images, usually with [AMIs](#Amazon_Machine_Images).
 
 
 ## Cloud
 Short for cloud computing, the cloud as we refer to it is internet-based computing that provides processing resources (e.g.; database storage, networks, servers, applications) on demand to devices connected to the internet.
 
-## CloudDriver
-A sub-service within Spinnaker. For more information, go to [sub-services]({% link _admin_guides/subservices.md %}#Clouddriver).
+## Clouddriver
+A sub-service within Spinnaker. See the [Spinnaker Architecture](https://www.spinnaker.io/reference/architecture/) for more information.
 
 ## Cluster
 A server group is a regional view of servers, whereas a cluster is a world-wide view of server groups.
@@ -50,7 +50,7 @@ Continuous Integration (CI) is a development practice where software developers 
 
 
 ## Deck
-A sub-service within Spinnaker. For more information, go to [sub-services]({% link _admin_guides/subservices.md %}#Deck).
+A sub-service within Spinnaker. See the [Spinnaker Architecture](https://www.spinnaker.io/reference/architecture/) for more information.
 
 ## Debian Package
 Debian packages (deb) are two tar archives contained in standard Unix ar archives - one holds the control information and the other contains the data used for installation.
@@ -61,7 +61,7 @@ For cluster and server group configurations, 'Detail' is usually any additional 
 
 
 ## Echo
-A sub-service within Spinnaker. For more information, go to [sub-services]({% link _admin_guides/subservices.md %}#Echo).
+A sub-service within Spinnaker. See the [Spinnaker Architecture](https://www.spinnaker.io/reference/architecture/) for more information.
 
 ## Elastic Compute Cloud
 Elastic Compute Cloud (EC2) is part of the AWS cloud platform, a "pay as you go" virtual computer renting system that contains preconfigured software and applications requested by the user.
@@ -73,11 +73,11 @@ When a pipeline runs, the end result is called an execution.
 
 
 ## Gate
-A sub-service within Spinnaker. For more information, go to [sub-services]({% link _admin_guides/subservices.md %}#Gate).
+A sub-service within Spinnaker. See the [Spinnaker Architecture](https://www.spinnaker.io/reference/architecture/) for more information.
 
 
 ## Igor
-A sub-service within Spinnaker. For more information, go to [sub-services]({% link _admin_guides/subservices.md %}#Igor).
+A sub-service within Spinnaker. See the [Spinnaker Architecture](https://www.spinnaker.io/reference/architecture/) for more information.
 
 ## Infrastructure Version
 The infrastructure's version number; such as v011, v012, etc. This is automatically appended and is not user defined.
@@ -88,32 +88,28 @@ Please note that if your user definition includes a hyphen, it will disrupt the 
 
 
 #### Jenkins
-[Jenkins]({% link _spinnaker_user_guides/working-with-jenkins.md %})  is an open source automation server that can package applications for distribution. Spinnaker pipelines can be [triggered](#trigger) from a build on Jenkins.  
-
-
-#### Lighthouse
-A sub-service within Spinnaker. For more information, go to [sub-services]({% link _admin_guides/subservices.md %}#Armory_Lighthouse).
+[Jenkins]({{< ref "working-with-jenkins" >}})  is an open source automation server that can package applications for distribution. Spinnaker pipelines can be [triggered](#trigger) from a build on Jenkins.  
 
 
 #### Load Balancer
-For Spinnaker's purposes, a [load balancer]({% link _overview/load-balancers.md %})  is a service that automatically distributes incoming traffic across all instances. The one most commonly used within AWS is the Elastic Load Balancer (ELB).
+For Spinnaker's purposes, a [load balancer]({{< ref "load-balancers" >}})  is a service that automatically distributes incoming traffic across all instances. The one most commonly used within AWS is the Elastic Load Balancer (ELB).
 
 
 #### Orca
-A sub-service within Spinnaker. For more information, go to [sub-services]({% link _admin_guides/subservices.md %}#Orca).
+A sub-service within Spinnaker. See the [Spinnaker Architecture](https://www.spinnaker.io/reference/architecture/) for more information.
 
 
 #### Pipeline
 A pipeline in Spinnaker is a series of stages linked together that can be executed serially or in parallel. All pipelines are defined in the context of an application. A typical pipeline will contain stages for “creating images”, “testing”, and “deploying”. The process of “creating images” is also commonly referred to as a “bake”.
 
-Learn to create [your first pipeline here]({% link _overview/your-first-pipeline.md %}).
+Learn to create [your first pipeline here]({{< ref "your-first-pipeline" >}}).
 
 
 #### Project
 A project inside Spinnaker is a logical grouping of applications. For example, we might create a project called “Spinnaker” and its applications would be “Deck”, “Orca”, “Clouddriver”, etc. Spinnaker provides a helpful dashboard view using Deck for each project to visualize its applications and status of each application contained within it.
 
 #### Rosco
-A sub-service within Spinnaker. For more information, go to [sub-services]({% link _admin_guides/subservices.md %}#Rosco).
+A sub-service within Spinnaker. See the [Spinnaker Architecture](https://www.spinnaker.io/reference/architecture/) for more information.
 
 #### Scale Server Group
 Reduce the total number of server groups remaining in the cluster.

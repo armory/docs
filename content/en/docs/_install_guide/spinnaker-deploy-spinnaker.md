@@ -1,5 +1,4 @@
 ---
-
 title: Spinnaker Deploy Spinnaker
 weight: 60
 ---
@@ -76,7 +75,7 @@ Once configured the stage should look like this:
 
 ## Bake with Custom Config
 
-In this stage we'll create another AMI, this time including any site specific config. By doing a 2 part bake, configuration changes is a bit quicker. 
+In this stage we'll create another AMI, this time including any site specific config. By doing a 2 part bake, configuration changes is a bit quicker.
 
 - Add a Bake stage and set the Stage Name to `Bake config`
 - Check the region where your Spinnaker instance runs
@@ -118,7 +117,7 @@ Once the stage is configured it should look like this:
 
 ## Add more confidence
 To add more confidence to your upgrade path consider creating
-a [stage environment and integration tests]({% link _admin_guides/preprod_environment.md %}).
+a [stage environment and integration tests]({{< ref "preprod_environment" >}}).
 
 
 ## Verify with a Manual Run
