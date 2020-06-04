@@ -108,11 +108,11 @@ now, I'm omitting this section of the docs. When we start to firm up the details
 of how this will be installed and run we can expand the Installation section
 and include details about customizing an install.
 
-# Installation
+## Installation
 
 !-->
 
-# Usage
+## Usage
 
 Once you have PaCRD installed and running in your cluster, you can define your applications and pipelines. Then apply them to the cluster.
 
@@ -457,7 +457,7 @@ Events:
   Warning  PipelineValidationFailed  0s (x4 over 3s)        pipelines  artifact with id "a-nonsense-value" and name "" could not be found for this pipeline
 ```
 
-# Known Limitations
+## Known Limitations
 
 ## v0.1.x - v0.7.x
 

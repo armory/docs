@@ -5,7 +5,7 @@ aliases:
   - armoryspinnaker_v2.19.4
 ---
 
-# 04/15/20 Release Notes
+## 04/15/20 Release Notes
 
 > Note: Do not upgrade to Armory Spinnaker 2.19.4 (this version). Instead, upgrade to Armory Spinnaker [2.19.7]({{< ref "armoryspinnaker_v2-19-7" >}}) or later.
 

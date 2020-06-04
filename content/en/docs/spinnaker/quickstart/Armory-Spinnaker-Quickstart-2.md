@@ -92,7 +92,7 @@ immutable_metadata  {"purpose":"example-purpose"}
 * Key: `immutable_metadata`
 * Value: `{"purpose":"us-west-2-dev-subnet"}`
 
-# Second: Connect Spinnaker to an Amazon EKS cluster
+## Second: Connect Spinnaker to an Amazon EKS cluster
 
 For the tasks in this section, complete them on your local workstation, *not from the Minnaker VM*.
 
