@@ -32,7 +32,7 @@ Make sure it's checked and saved.
 If you don't see this option in your application config, make sure you've
 [configured Kayenta](https://www.spinnaker.io/guides/user/canary/).
 
-You can also find more information about Kayenta on [Automated Canary Deployments]({{< ref "configure_kayenta" >}}).
+You can also find more information about Kayenta on [Automated Canary Deployments]({{< ref "configure-kayenta" >}}).
 
 In this document, we will quickly run through the process to simply get you
 going.
