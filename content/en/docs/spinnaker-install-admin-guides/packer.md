@@ -28,7 +28,7 @@ This User must have all permissions necessary to bake (for example, PowerUserAcc
 
 This User may be, but does not have to be, the same as the Managing Account User.
 
-Spinnaker will always bake with this user.  If you need to deploy to other accounts, update your Packer template to support sharing the baked image with other accounts.  For example, add this to your `builder` configuration in your packer template (and add the custom packer template following the instructions in [the Spinnaker Packer documentation](https://docs.armory.io/spinnaker-install-admin-guides/packer/)):
+Spinnaker will always bake with this user.  If you need to deploy to other accounts, update your Packer template to support sharing the baked image with other accounts.  For example, add this to your `builder` configuration in your packer template (and add the custom packer template following the instructions in [the Spinnaker Packer documentation]({{< ref "packer" >}}")):
 
 ```json
     "ami_users": ["222222222222","333333333333"]
@@ -97,7 +97,7 @@ If you're using IAM Instance Roles, you need to provide credentials to Spinnaker
 
 These policies must have all permissions necessary to bake (for example, PowerUserAccess and associated PassRoles)
 
-Spinnaker will always bake with the EC2 instance role (unless you specify explicit baking creds).  If you need to deploy to other accounts, update your Packer template to support sharing the baked image with other accounts.  For example, add this to your `builder` configuration in your packer template (and add the custom packer template following the instructions in [the Spinnaker Packer documentation](https://docs.armory.io/spinnaker-install-admin-guides/packer/)):
+Spinnaker will always bake with the EC2 instance role (unless you specify explicit baking creds).  If you need to deploy to other accounts, update your Packer template to support sharing the baked image with other accounts.  For example, add this to your `builder` configuration in your packer template (and add the custom packer template following the instructions in [the Spinnaker Packer documentation]({{< ref "packer" >}}")):
 
 ```json
     "ami_users": ["222222222222","333333333333"]

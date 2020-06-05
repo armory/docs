@@ -18,7 +18,7 @@ To set this up, edit your Armory Spinnaker deploy pipeline so it looks like this
 
 #### "Disable Poller" stage
 Armory includes a service (Lighthouse) that will wait for existing jobs to complete before shutting itself down.
-If Fiat is enabled, make sure that you have [configured a service account](https://docs.armory.io/install-guide/authz/#configure-a-service-account).
+If Fiat is enabled, make sure that you have [configured a service account]({{< ref "authz#configure-a-service-account" >}}).
 ![](/images/Image-2018-05-16-at-14.35.42.png)
 
 #### "Deploy to Prod nonpolling"

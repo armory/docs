@@ -16,7 +16,7 @@ For each stage in the pipeline, we're calling other pipelines that contain the r
 ![](/images/Image-2018-04-06-at-11.32.51-AM.png)
 
 ### Where & When Should My Tests Run
-The tests should run on a [pre-prod or staging environment](https://docs.armory.io/admin-guides/preprod_environment/) and should be integrated as part of your [Spinnaker deploy Spinnaker](https://docs.armory.io/install-guide/spinnaker-deploy-spinnaker/) pipeline.  We'll use a Jenkins stage to execute the integration pipeline on the pre-prod or dev environment.
+The tests should run on a [pre-prod or staging environment]({{< ref "preprod-environment" >}}) and should be integrated as part of your [Spinnaker deploy Spinnaker]({{< ref "spinnaker-deploy-spinnaker" >}}) pipeline.  We'll use a Jenkins stage to execute the integration pipeline on the pre-prod or dev environment.
 
 ![pipeline image](/images/Image-2018-04-05-at-9.45.15-PM.png)
 
@@ -71,9 +71,9 @@ The example above will run the master pipeline `Preprod-Integration-Test-Suite-R
 
 ## Authentication & Authorization
 
-If you have configuring [authentication or authorization](https://docs.armory.io/install-guide/authz/) on your Armory instance then you'll need to make sure to also setup x509 certificate and potentially [service accounts](https://docs.armory.io/install-guide/authz/#configure-a-service-account) if you lock down applications and accounts with Fiat.
+If you have configuring [authentication or authorization]({{< ref "authz" >}}) on your Armory instance then you'll need to make sure to also setup x509 certificate and potentially [service accounts]({{< ref "authz#configure-a-service-account" >}}) if you lock down applications and accounts with Fiat.
 
-If you have [x509 certificate and keys](https://docs.armory.io/install-guide/auth/#x509), you can pass them in with the follow CLI options:
+If you have [x509 certificate and keys]({{< ref "auth#x509" >}}), you can pass them in with the follow CLI options:
 ```
 --certPath value, -c value  HTTPS/x509/cert/path
 --keyPath value, -k value   HTTPS/x509/key/path

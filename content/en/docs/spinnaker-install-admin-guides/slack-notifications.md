@@ -34,58 +34,58 @@ Spinnaker only requires to be able to publish on a channel to interact with Slac
 
 You are now ready to configure Spinnaker with the bot you’ve just registered.
 
-* **Operator**
+**Operator**
 
-    Add the following snippet to the `SpinnakerService` manifest:
+Add the following snippet to the `SpinnakerService` manifest:
 
-    ```yaml
-    apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
-    kind: SpinnakerService
-    metadata:
-      name: spinnaker
-    spec:
-      spinnakerConfig:  
-        config:
-          notifications:
-            slack:
-              enabled: true
-              botName: spinnaker                                         # The name of your slack bot.
-              token: xoxb-xxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx # Your slack bot token. This field supports "encrypted" secret references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
-    ```
+```yaml
+apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:  
+    config:
+      notifications:
+        slack:
+          enabled: true
+          botName: spinnaker                                         # The name of your slack bot.
+          token: xoxb-xxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx # Your slack bot token. This field supports "encrypted" secret references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+```
 
-    Apply the changes:
+Apply the changes:
 
-    ```bash
-    kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
-    ```
+```bash
+kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
+```
 
-* **Halyard**
+**Halyard**
 
-    Start by setting the variables below:
+Start by setting the variables below:
 
-    ```bash
-    export TOKEN_FROM_SLACK="xoxb-xxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx"
-    export SLACK_BOT=spinnaker
-    ```
+```bash
+export TOKEN_FROM_SLACK="xoxb-xxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx"
+export SLACK_BOT=spinnaker
+```
 
-    Register the token and bot name in the configuration:
+Register the token and bot name in the configuration:
 
-    ```bash
-    $ echo $TOKEN_FROM_SLACK | hal config notification slack edit --bot-name \
-       $SLACK_BOT --token
-    ```
+```bash
+$ echo $TOKEN_FROM_SLACK | hal config notification slack edit --bot-name \
+   $SLACK_BOT --token
+```
 
-    Set the configuration that enables Slack:
+Set the configuration that enables Slack:
 
-    ```bash
-    $ hal config notification slack enable
-    ```
+```bash
+$ hal config notification slack enable
+```
 
-    Redeploy the configuration:
+Redeploy the configuration:
 
-    ```bash
-    $ hal deploy apply
-    ```
+```bash
+$ hal deploy apply
+```
 
 ## Test Spinnaker
 You should then make sure Spinnaker can send the notifications as expected. You can configure a notification within a channel you have invited your bot in and test by running a test pipeline. See example below:

@@ -36,7 +36,7 @@ Secrets should be different for each environment, we provide an entrypoint scrip
 
 
 ## Deploying
-Now that we have our configs setup for both `ha` and `staging`, we can use the same debian generated in both [Spinnaker Deploy Spinnaker pipelines](https://docs.armory.io/install-guide/spinnaker-deploy-spinnaker/)
+Now that we have our configs setup for both `ha` and `staging`, we can use the same debian generated in both [Spinnaker Deploy Spinnaker pipelines]({{< ref "spinnaker-deploy-spinnaker" >}}).
 
 
 

@@ -47,9 +47,9 @@ spec:
 hal armory secrets vault enable
 hal armory secrets vault edit \
     --auth-method KUBERNETES \
-    --url <Vault server URL>:<port, if required> \
+    --url <Vault server URL>:<port if required> \
     --role <Role in Vault> \
-    --path <k8s cluster path> (*optional*, default is 'kubernetes')
+    --path <k8s cluster path> # Optional.default is kubernetes
 ```
 
 ### 2. Token authentication
@@ -75,7 +75,7 @@ spec:
           vault:
             enabled: true
             authMethod: TOKEN                           # Method used to authenticate with the Vault endpoint. Must be either KUBERNETES for Kubernetes service account auth or TOKEN for Vault token auth. The TOKEN method will require a VAULT_TOKEN environment variable set for Operator and the services.  
-            url: <Vault server URL>:<port, if required> # URL of the Vault endpoint from Spinnaker services.
+            url: <Vault server URL>:<port if required> # URL of the Vault endpoint from Spinnaker services.
 ```
 
 **Halyard**
@@ -84,12 +84,12 @@ spec:
 hal armory secrets vault enable
 hal armory secrets vault edit \
     --auth-method TOKEN \
-    --url <Vault server URL>:<port, if required>
+    --url <Vault server URL>:<port if required>
 ```
 
 ## Configuring the Operator to use Vault secrets
 
-If you are using the Spinnaker Operator, set up a custom Halyard configuration per [this section](https://docs.armory.io/spinnaker/operator/#custom-halyard-configuration) with this content:
+If you are using the Spinnaker Operator, set up a custom Halyard configuration per [this section]({{< ref "operator#custom-halyard-configuration" >}}) with this content:
 
 ```yaml
 secrets:
@@ -125,7 +125,9 @@ secrets:
     url: <Vault server URL>
     authMethod: TOKEN
 ```
+
 Then, restart the daemon if this is the first time you are configuring the Token auth method:
+
 ```
 hal shutdown
 ```
