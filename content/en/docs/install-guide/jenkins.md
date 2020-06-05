@@ -9,7 +9,7 @@ weight: 50
 Refer to the Spinnaker documentation for configuring Jenkins at
 [https://www.spinnaker.io/setup/ci/jenkins/](https://www.spinnaker.io/setup/ci/jenkins/)
 
-# Continuous Integration (CI)
+## Continuous Integration (CI)
 Spinnaker's goal is to leverage existing CI solutions to build and produce an artifact that can be deployed.
 
 ## Enabling Spinnaker to Communicate with Jenkins

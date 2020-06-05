@@ -19,36 +19,36 @@ In the context of Spinnaker, Kustomize lets you generate a custom manifest, whic
 Spinnaker uses the latest non-kubectl version of Kustomize.
 ​
 
-# Kustomize in 2.16 (Beta)
+## Kustomize in 2.16 (Beta)
 ​
 ## Enabling Kustomize in 2.16 (Beta)
 ​
 Kustomize can be enabled by a feature flag in 2.16.
 
-* **Operator**
+**Operator**
 
-    Add the following settings to the `SpinnakerService` manifest:
+Add the following settings to the `SpinnakerService` manifest:
 
-    ```yaml
-    apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
-    kind: SpinnakerService
-    metadata:
-      name: spinnaker
-    spec:
-      spinnakerConfig:    
-        profiles:
-          deck:
-            settings-local.js: |
-              window.spinnakerSettings.feature.kustomizeEnabled = true;
-    ```
+```yaml
+apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:    
+    profiles:
+      deck:
+        settings-local.js: |
+          window.spinnakerSettings.feature.kustomizeEnabled = true;
+```
 ​
-* **Halyard**
+**Halyard**
 
-    Add the following line to `~/.hal/{DEPLOYMENT_NAME}/profiles/settings-local.js`:
-​
-    ```javascript
-    window.spinnakerSettings.feature.kustomizeEnabled = true;
-    ```
+Add the following line to `~/.hal/{DEPLOYMENT_NAME}/profiles/settings-local.js`:
+
+```javascript
+window.spinnakerSettings.feature.kustomizeEnabled = true;
+```
 ​
 ## Using Kustomize
 ​
@@ -70,7 +70,7 @@ Define the artifact:
 ​
 You can now run your pipeline and get a Kustomize rendered manifest!
 ​
-# Kustomize in 2.17 (Beta)
+## Kustomize in 2.17 (Beta)
 ​
 ### Requirements
 Kustomize in 2.17+ requires the [git/repo](https://www.spinnaker.io/reference/artifacts/types/git-repo/) artifact type.
@@ -79,32 +79,32 @@ Kustomize in 2.17+ requires the [git/repo](https://www.spinnaker.io/reference/ar
 ​
 Kustomize can be enabled by a feature flag in Armory Spinnaker 2.16 and later.
 
-* **Operator**
+**Operator**
 
-    Add the following settings to the `SpinnakerService` manifest and apply the changes:
+Add the following settings to the `SpinnakerService` manifest and apply the changes:
 
-    ```yaml
-    apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
-    kind: SpinnakerService
-    metadata:
-      name: spinnaker
-    spec:
-      spinnakerConfig:    
-        profiles:
-          deck:
-            settings-local.js: |
-              window.spinnakerSettings.feature.kustomizeEnabled = true;
-    ```
+```yaml
+apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:    
+    profiles:
+      deck:
+        settings-local.js: |
+          window.spinnakerSettings.feature.kustomizeEnabled = true;
+```
 
-* **Halyard**
+**Halyard**
 
-    Add the following line to `~/.hal/{DEPLOYMENT_NAME}/profiles/settings-local.js`:
-​
-    ```javascript
-    window.spinnakerSettings.feature.kustomizeEnabled = true;
-    ```
+Add the following line to `~/.hal/{DEPLOYMENT_NAME}/profiles/settings-local.js`:
 
-    Apply your changes to your Spinnaker deployment:  `hal deploy apply`. Wait until the pods are in a RUNNING state before proceeding.
+```javascript
+window.spinnakerSettings.feature.kustomizeEnabled = true;
+```
+
+Apply your changes to your Spinnaker deployment:  `hal deploy apply`. Wait until the pods are in RUNNING state before proceeding.
 ​
 
 You can now use the *KUSTOMIZE* option on a _Bake (Manifest)_ stage.
@@ -117,7 +117,7 @@ You can now use the *KUSTOMIZE* option on a _Bake (Manifest)_ stage.
 ## Build the Pipeline
 ​
 For this example, we are going to use this [kustomize public repository](https://github.com/kubernetes-sigs/kustomize), specifically the *helloWorld* example.
-* * *
+
 ### Step 1 - Add an Expected Artifact
 ​
 Add a **git/repo** Expected Artifact in the _Configuration_ section:

@@ -5,7 +5,7 @@ aliases:
   - armoryspinnaker_v2.19.7
 ---
 
-# 04/20/20 Release Notes
+## 04/20/20 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
