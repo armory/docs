@@ -22,7 +22,7 @@ Note: This document focuses on Armory Spinnaker but can be adapted to install Op
 
 ## Choosing an installation method
 
-There are two recommended ways of installing Spinnaker: using the [Spinnaker Operator](https://docs.armory.io/spinnaker/operator/) or using [Halyard](https://www.spinnaker.io/setup/install/halyard/).
+There are two recommended ways of installing Spinnaker: using the [Spinnaker Operator]({{< ref "operator" >}}") or using [Halyard](https://www.spinnaker.io/setup/install/halyard/).
 
 ### Spinnaker Operator
 
@@ -32,7 +32,7 @@ The _Spinnaker Operator_ is the newest installation and configuration method for
 
 * Your Kubernetes API Server is running version `1.13` or later.
 * You have admin rights to install the Custom Resource Definition (CRD) for Operator.
-* You can assign a ClusterRole to Operator. This means that Operator has access to all namespaces in the cluster. Operator can still run in an isolated namespace in [Basic](https://docs.armory.io/spinnaker/operator/#installing-operator-in-basic-mode) mode (not covered in this installation guide), but it will not be able to run admission validations.
+* You can assign a ClusterRole to Operator. This means that Operator has access to all namespaces in the cluster. Operator can still run in an isolated namespace in [Basic]({{< ref "operator#installing-operator-in-basic-mode" >}}) mode (not covered in this installation guide), but it will not be able to run admission validations.
 
 *General workflow*
 
@@ -307,7 +307,7 @@ You define and configure Spinnaker in a YAML file and use `kubectl` to create th
 
 Note the values that you need to modify:
 
-- Spinnaker `version`: Use the version of Spinnaker that you want to deploy, which can be found [here](https://docs.armory.io/release-notes/#list-of-stable-armory-releases).
+- Spinnaker `version`: Use the version of Spinnaker that you want to deploy, which can be found [here]({{< ref "rn-armory-spinnaker#list-of-stable-armory-releases" >}}).
 - S3 `bucket`: Use the name of the S3 bucket created above.
 - S3 `region`: Region where the S3 bucket is located.
 - S3 `accessKeyId`: Optional, set when using IAM user credentials to authenticate to the S3 bucket.

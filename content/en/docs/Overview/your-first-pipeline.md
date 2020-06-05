@@ -49,7 +49,7 @@ Step 6: For this example we will select Jenkins. By adding a trigger we are defi
 
 ![](/images/Image-2017-03-24-at-3.50.27-PM.png)
 
-Note: The Property File is an important topic that will be covered in a [separate guide](https://docs.armory.io/user-guides/working-with-jenkins/#property-file).
+Note: The Property File is an important topic that will be covered in a [separate guide]({{< ref "working-with-jenkins#property-file" >}}).
 
 Step 7: Before you test your pipeline, you may want to consider enabling or disabling the trigger via the checklist at the bottom.
 

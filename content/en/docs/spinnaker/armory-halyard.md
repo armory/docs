@@ -392,7 +392,7 @@ hal armory secrets [subcommands] [parameters]
 ---
 ## hal armory secrets vault
 
-Configure settings for secrets management with Vault in the Spinnaker services. [See our documentation for configuring Halyard itself to use Vault](https://docs.armory.io/spinnaker-install-admin-guides/secrets-vault/#configuring-halyard-to-use-vault-secrets).
+Configure settings for secrets management with Vault in the Spinnaker services. [See our documentation for configuring Halyard itself to use Vault]({{< ref "secrets-vault#configuring-halyard-to-use-vault-secrets" >}}).
 
 ### Usage
 ```

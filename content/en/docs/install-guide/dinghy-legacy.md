@@ -7,7 +7,7 @@ weight: 130
 
 
 ## Overview
-To get an overview of Pipelines as code, check out the [user guide](http://docs.armory.io/user-guides/dinghy)
+To get an overview of Pipelines as code, check out the [user guide]({{< ref "using-dinghy" >}})
 
 
 ## Steps to follow to configure Pipelines as code:
@@ -63,4 +63,4 @@ armorywebhooks:
 
 - Configure your spinnaker installation's _internal load balancer_ to forward all traffic on port 8081. Here's a [video](https://marketplace.atlassian.com/plugins/com.atlassian.stash.plugin.stash-web-post-receive-hooks-plugin/server/overview) that walks you through the process.
 
-Now that all the configs are in place, upgrade to the release you recieved from Armory and the "Pipelines as Code" feature should be up and running. Refer to the [user guide](http://docs.armory.io/user-guides/dinghy) on how to use this feature!
+Now that all the configs are in place, upgrade to the release you recieved from Armory and the "Pipelines as Code" feature should be up and running. Refer to the [user guide]({{< ref "dinghy" >}}) on how to use this feature!

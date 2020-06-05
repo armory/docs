@@ -10,7 +10,7 @@ This post will show you how to configure GitHub and Spinnaker to use GitHub as a
 
 * Ability to modify developer settings for your GitHub organization
 * Access to Halyard 
-* A Spinnaker deployment with [DNS and SSL](https://docs.armory.io/install-guide/dns-and-ssl/) configured
+* A Spinnaker deployment with [DNS and SSL]({{< ref "dns-and-ssl" >}}") configured
 
 ## Configuring GitHub OAuth
 
@@ -41,5 +41,5 @@ hal config security authn oauth2 enable
 ## Related Links:
 * [Spinnaker: OAuth](https://www.spinnaker.io/setup/security/authentication/oauth/)
 * [Github: OAuth](https://help.github.com/en/articles/authorizing-oauth-apps)
-* [Armory: DNS and SSL](https://docs.armory.io/install-guide/dns-and-ssl/) 
+* [Armory: DNS and SSL](({{< ref "dns-and-ssl" >}}")) 
 * [Spinnaker: SSL](https://www.spinnaker.io/setup/security/authentication/ssl/)

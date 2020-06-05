@@ -200,7 +200,7 @@ services:
       - /opt/spinnaker/config/:/opt/spinnaker-monitoring/config/
 ```
 
-In the configuration above `/opt/spinnaker/config/datadog_api_token.txt` is a [secrets file](https://docs.armory.io/install-guide/config_repo/#secrets) which contains your Datadog API key
+In the configuration above `/opt/spinnaker/config/datadog_api_token.txt` is a [secrets file]({{< ref "config-repo#secrets" >}}) which contains your Datadog API key
 
 ```
 API_KEY=${YOUR_DATADOG_API_KEY}

@@ -11,7 +11,7 @@ aliases:
 simple_list_reverse: true
 ---
 
-> You can also find [Armory's Halyard releases notes here](https://docs.armory.io/halyard-release-notes/).
+> You can find [Armory's Halyard releases notes here]({{< ref rn-armory-halyard >}}).
 
 ## Different Armory Release Types
 
@@ -130,3 +130,4 @@ See [halyard reference](https://www.spinnaker.io/reference/halyard/commands/#hal
 
 
 ## List of Stable Armory Releases
+<!-- Hugo/docsy auto generates a list of the child pages here. The front matter configures it to go from newest to oldest --!> 

@@ -57,7 +57,7 @@ By default, the 1-Click App Creation performs the following tasks:
   
 - `createLoadBalancer` : This step creates a load balancer in the Kubernetes cluster where the app will be deployed. (If deploying to a non-Kubernetes cloud provider, this step should be disabled in the configs)
 
-- `createGithubRepo` : This step creates a repo in github to bootstrap the app. Ideally this repo follows a widly adopted project structure (such as [this](https://github.com/golang-standards/project-layout) for Golang). It has a `Jenkinsfile` which triggers of a build of the repo on every check-in. That build can push an artifact to a repository (like docker hub), which can be the trigger for the Deploy pipeline created above (in the `createPipeline` step). Additionally, this repo can also have a `dinghyfile` [Pipelines-as-code](http://docs.armory.io/user-guides/dinghy) to create a custom pipeline instead of using the one created above.
+- `createGithubRepo` : This step creates a repo in github to bootstrap the app. Ideally this repo follows a widly adopted project structure (such as [this](https://github.com/golang-standards/project-layout) for Golang). It has a `Jenkinsfile` which triggers of a build of the repo on every check-in. That build can push an artifact to a repository (like docker hub), which can be the trigger for the Deploy pipeline created above (in the `createPipeline` step). Additionally, this repo can also have a `dinghyfile` [Pipelines-as-code]({{< ref "using-dinghy" >}}) to create a custom pipeline instead of using the one created above.
 
 - `createGoogleDNSEntry` : This step creates a DNS entry (in GCP for the alpha version) for the app that is deployed.
 

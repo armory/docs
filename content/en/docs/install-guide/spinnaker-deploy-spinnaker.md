@@ -37,7 +37,7 @@ Steps to create an AMI that pulls in the Armory package:
 
 - Add a **Bake stage** and set the Stage Name to `Bake Armory Spinnaker`
 - Make sure to check the `region` where your Armory Spinnaker instance runs
-- Set the **Package** select a version of [Armory](https://docs.armory.io/release-notes/)
+- Set the **Package** select a version of [Armory]({{< ref "rn-armory-spinnaker#list-of-stable-armory-releases" >}})
 ```
 docker-engine armoryspinnaker=SELECT_A_VERSION
 ```
