@@ -874,6 +874,9 @@ In the template, the access path for that variable is: `.RawData.pusher.name`.
 
 *Note: The structure of the webhook data passed to Dinghy's template engine depends on the Git service that sends the webhook. This example uses a GitHub webhook.*
 
+## Example Templates
+
+Armory provides example dinghy templates you can copy and extend. You can find the examples in the [Armory GitHub repo](https://github.com/armory-io/dinghy-templates).
 
 ## Known Issue
 
