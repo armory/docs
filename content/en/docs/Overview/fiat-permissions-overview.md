@@ -180,6 +180,7 @@ Check the permissions for all applications in Spinnaker with a REST API call to 
 
 **Headers**
 
+| Header | Information | 
 | ----------------| -------------------------- |
 |  Request URL  |  `$GATE_URL/applications`  |
 |  Request Method  |  `GET`  |
