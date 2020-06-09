@@ -52,7 +52,7 @@ accounts
 Download the current `pacrd` manifest to your local machine:
 
 ```
-curl -fsSL https://engineering.armory.io/manifests/pacrd-0.7.0.yaml > pacrd-0.7.0.yaml
+curl -fsSL https://engineering.armory.io/manifests/pacrd-0.9.0.yaml > pacrd-0.9.0.yaml
 ```
 
 Then, inspect the manifest to make sure it is compatible with your cluster.
@@ -66,7 +66,7 @@ the installation settings:
 ```yaml
 # file: kustomization.yaml
 resources:
-  - pacrd-0.7.0.yaml
+  - pacrd-0.9.0.yaml
 patchesStrategicMerge:
   - patch.yaml
 namespace: spinnaker  # Note: you should change this value if you are _not_ deploying into the `spinnaker` namespace.
@@ -88,6 +88,8 @@ data:
       # NOTE: change `spinnaker` to your namespace name here
       front50: http://spin-front50.spinnaker:8080
       orca: http://spin-orca.spinnaker:8083
+      # OPTIONAL: uncomment the next line to configure a Fiat service account.
+      # fiatServiceAccount: my-service-account
 
 ```
 
@@ -459,7 +461,7 @@ Events:
 
 ## Known Limitations
 
-## v0.1.x - v0.7.x
+## v0.1.x - v0.9.x
 
 ### Applications
 
