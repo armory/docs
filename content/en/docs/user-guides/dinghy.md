@@ -26,7 +26,8 @@ GitHub (or BitBucket) webhooks are sent off when either the Templates or the Mod
 ![](/images/dinghy-template-repo.png)
 
  They are JSON files with replacable values in them. e.g., a module that defines a wait stage in a pipeline might look like:
-```
+
+```json
 {
     "name": "Wait",
     "refId": "1",
@@ -35,12 +36,14 @@ GitHub (or BitBucket) webhooks are sent off when either the Templates or the Mod
     "waitTime": 42
 }
 ```
+
 - **Pipeline definitions**: These define a pipeline for an application in a file called `dinghyfile`. The `dinghyfile` usually resides at the root level of the application repo. eg:
 
 ![](/images/dinghyfile.png)
 
 You can compose stage/task templates to make a full definition. e.g., a Pipeline definition that has a single wait stage might look like:
-```
+
+```json
 {
   "application": "yourspinnakerapplicationname",
   "pipelines": [
@@ -67,7 +70,8 @@ You can compose stage/task templates to make a full definition. e.g., a Pipeline
 ## Template variables and substitution
 
 Pipeline definitions can include Modules defined in another GitHub Repo. e.g.:
-```{% raw %}
+
+```json
 {
   "application": "yourspinnakerapplicationname",
   "pipelines": [
@@ -83,13 +87,13 @@ Pipeline definitions can include Modules defined in another GitHub Repo. e.g.:
     }
   ]
 }
-{% endraw %}```
+```
 
-The `{% raw %}{{ module "wait.stage.module" }}{% endraw %}` takes the wait.stage.module file inside the dinghy-templates repo, and includes it in the current template.
+The `{{ module "wait.stage.module" }}` takes the wait.stage.module file inside the dinghy-templates repo, and includes it in the current template.
 
 We can also pass variables to our modules like so:
 
-```{% raw %}
+```json
 {
   "application": "yourspinnakerapplicationname",
   "pipelines": [
@@ -105,23 +109,22 @@ We can also pass variables to our modules like so:
     }
   ]
 }
-{% endraw %}```
+```
 
-Any number of variables can be passed to a module by simply specifying them as arguments, e.g.: `{% raw %}{{ module "wait.stage.module" "waitTime" 100 "name" "simpleWait" }}{% endraw %}`.
+Any number of variables can be passed to a module by simply specifying them as arguments, e.g.: `{{ module "wait.stage.module" "waitTime" 100 "name" "simpleWait" }}`.
 
 Inside wait.stage.module, we can then include these variables inline:
 
-```{% raw %}
+```json
 {
   "waitTime": {{ var "waitTime" ?: 10 }}
   "name": "{{ var "name" ?: "defaultname" }}",
 }
-{% endraw %}
 ```
 
-The `{% raw %}{{ var }}{% endraw %}` function is used to access variables passed to the `{% raw %}{{ module }}{% endraw %}` call.
-The first parameter is the variable name: `{% raw %}{{ var "waitName" }}{% endraw %}`
-Optionally, you can include a default parameter: `{% raw %}{{ var "waitName" ?: "defaultValue" }}{% endraw %}`.
+The `{{ var }}` function is used to access variables passed to the `{{ module }}` call.
+The first parameter is the variable name: `{{ var "waitName" }}`
+Optionally, you can include a default parameter: `{{ var "waitName" ?: "defaultValue" }}`.
 
 Let us create a more realistic pipeline using templates. One that would look like this:
 
@@ -129,7 +132,7 @@ Let us create a more realistic pipeline using templates. One that would look lik
 
 You would use the following JSON to create such. Note that any of the stages could have come from an imported module, but we show the full JSON here for readability:
 
-```{% raw %}
+```json
 {
   "application": "yourspinnakerapplicationname",
   "pipelines": [
@@ -197,10 +200,11 @@ You would use the following JSON to create such. Note that any of the stages cou
     }
   ]
 }
-{% endraw %}```
+``
 
 The file `deploy.stage.module` would look like this:
-```{% raw %}
+
+```json
 {
   "clusters": [],
   "isNew": true,
@@ -209,25 +213,26 @@ The file `deploy.stage.module` would look like this:
   "requisiteStageRefIds": {{ var "requisiteStageRefIds" ?: [] }},
   "type": "deploy"
 }
-{% endraw %}```
+```
 
 ## Multiple level inheritance:
 
 In the below example, we show a pipeline that is created with multiple levels of module inheritance. The application's dinghyfile looks like this:
 
-```{% raw %}
+```json
 {
   "application": "dinghytest",
   "pipelines": [
     {{ module "simple.pipeline.module" "application" "dinghytest" }}
   ]
 }
-{% endraw %}```
+```
+
 The dinghyfile inherits its pipeline from a _module_ named `simple.pipeline.module` that looks as shown below. Note that it also overrides the application name in the module to avoid conflict.
 
-> It is worth noting in the below example, where we are substituting a string variable, the call to {% raw %}{{ var ... }}{% endraw %} is also surrounded by quotes, unlike when substituting non-string variables (ie, int, array, json...)
+> It is worth noting in the example below, where we are substituting a string variable, the call to `{{ var ... }}` is also surrounded by quotes, unlike when substituting non-string variables (ie, int, array, json...)
 
-```{% raw %}
+```json
 {
   "application": "{{ var "application" ?: "yourspinnakerapplicationname" }}",
   "keepWaitingPipelines": false,
@@ -239,11 +244,11 @@ The dinghyfile inherits its pipeline from a _module_ named `simple.pipeline.modu
   ],
   "triggers": []
 }
-{% endraw %}```
+```
 
 This module inherits two stages and overrides variables within them. The `wait.stage.module` is same as the one shown above. The `deploy.stage.module` looks like this:
 
-```{% raw %}
+```json
 {
   "clusters": [],
   "isNew": true,
@@ -252,7 +257,7 @@ This module inherits two stages and overrides variables within them. The `wait.s
   "requisiteStageRefIds": {{ var "requisiteStageRefIds" ?: [] }},
   "type": "deploy"
 }
-{% endraw %}```
+```
 
 Note how the `requisiteStageRefIds` is overwritten while calling the module so that the deploy stage _depends on_ the wait stage. This pipeline would look like this in the spinnaker UI:
 
@@ -262,20 +267,20 @@ Note how the `requisiteStageRefIds` is overwritten while calling the module so t
 
 If you want any pipelines in the spinnaker application that are not part of the `dinghyfile` to be deleted automatically when the `dinghyfile` is updated, then you can set `deleteStalePipelines` to `true` in the JSON like so:
 
-```{% raw %}
+```json
 {
   "application": "yourspinnakerapplicationname",
   "deleteStalePipelines": true
   "pipelines": [
   ]
 }
-{% endraw %}```
+```
 
 ## Triggering other pipelines from within a stage
 
 The spinnaker `pipeline` stage allows you to trigger other pipelines. However, typically you need the UUID of the pipeline to be triggered. To make it easier to write dinghy templates, we have a `pipelineID` function which can be used in dinghyfiles to trigger pipelines. Consider the below example (`pipeline.stage.module`):
 
-```{% raw %}
+```json
 {
 		"application": "pipelineidexample",
 		"failPipeline": true,
@@ -286,16 +291,17 @@ The spinnaker `pipeline` stage allows you to trigger other pipelines. However, t
 		"type": "pipeline",
 		"waitForCompletion": true
 }
-{% endraw %}```
+```
 
-In the above example, we are triggering a pipeline by the name `default-pipeline` under `default-app` spinnaker application. The app name and the pipeline name can be overwritten when calling this module. At any higher level, simply pass in `"triggerApp"` and `"triggerPipeline"` like so: `{% raw %}{{ module "pipeline.stage.module" "triggerApp" "pipelineidtest" "triggerPipeline" "testpipelinename" }}{% endraw %}`
+In the above example, we are triggering a pipeline by the name `default-pipeline` under `default-app` spinnaker application. The app name and the pipeline name can be overwritten when calling this module. At any higher level, simply pass in `"triggerApp"` and `"triggerPipeline"` like so: `{{ module "pipeline.stage.module" "triggerApp" "pipelineidtest" "triggerPipeline" "testpipelinename" }}`
 
 
 ## Advanced features:
 
 ### Monorepo
 Dinghy supports multiple spinnaker applications under the same git repo. eg:
-```{% raw %}
+
+```
 monorepo/
 ├── app1
 │   ├── bin
@@ -311,7 +317,7 @@ monorepo/
     └── src
         ├── app2.go
         └── dinghyfile
-{% endraw %}```
+```
 
 Notice both `app1` and `app2` are under the same repo, each app has its own `dinghyfile` and its own spinnaker application that can be referenced in the `dinghyfile`.
 
@@ -320,7 +326,8 @@ If, while rendering a `dinghyfile`, a malformed JSON file is encountered, the lo
 
 ### Newlines
 For ease of readablilty, you can split a single call to `module` across multiple lines. For example, the following two `dinghyfile`s are both valid & produce identical pipelines in spinnaker:
-```{% raw %}
+
+```json
 {
   "application": "yourspinnakerapplicationname",
   "pipelines": [
@@ -333,9 +340,9 @@ For ease of readablilty, you can split a single call to `module` across multiple
     }
   ]
 }
-{% endraw %}```
+```
 
-```{% raw %}
+```json
 {
   "application": "yourspinnakerapplicationname",
   "pipelines": [
@@ -352,11 +359,12 @@ For ease of readablilty, you can split a single call to `module` across multiple
     }
   ]
 }
-{% endraw %}```
+```
 
 ### Top-level variables in dinghyfiles
 When passing in variables to modules, you have the option of defining variables at the top-level `dinghyfile` like so:
-```{% raw %}
+
+```json
 {
   "application": "yourspinnakerapplicationname",
   "globals": {
@@ -373,11 +381,13 @@ When passing in variables to modules, you have the option of defining variables 
     }
   ]
 }
-{% endraw %}```
+```
+
 In the above example, the variables `waitTime` and `name` (used inside `wait.stage.module`) are defined at the top level, and not explicitly defined when the call to `wait.stage.module` is made.
 
 Note that top-level variables are overwritten by variables in the call to module if both are present. For instance, in the below example, the `waitTime` after the `dinghyfile` is rendered would be `43`:
-```{% raw %}
+
+```json
 {
   "application": "yourspinnakerapplicationname",
   "globals": {
@@ -394,19 +404,21 @@ Note that top-level variables are overwritten by variables in the call to module
     }
   ]
 }
-{% endraw %}```
+```
 
 ### Nested variables
 Another neat little trick with variables is support for nested variables. Consider the following variable usage in a module:
-```{% raw %}
+
+```json
 "name": "{{ var "name" ?: "some-name" }}"
-{% endraw %}```
+```
+
 Here, if the variable `"name"` was passed in, or is a top-level variable in the `dinghyfile`, then use that value, or else _default to_ `some-name`.
 
 With nested variables, instead of using a hardcoded default value, the default can from another variable. eg:
 
-```{% raw %}
+```json
 "name": "{{ var "name" ?: "@different_var" }}"
-{% endraw %}```
+```
+
 Here, if the variable `"name"` was not passed into the module call and is not a top-level variable in the `dinghyfile`, its value will come from a variable called `"different_var"` that is either a top-level variable or another variable passed in when the module is called. Note the `@` syntax for the nested variable. The `@` symbol is only used where the variable is used, not when it is passed in.
-le

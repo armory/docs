@@ -36,7 +36,7 @@ Many people have Spinnaker sitting in a different AWS account than where they ar
             primaryAccount: my-aws-account
             bakeryDefaults:
               baseImages: []
-            {% raw %}defaultKeyPairTemplate: '{{"{{"}}name{{"}}"}}-keypair'{% endraw %}
+            defaultKeyPairTemplate: '{{"{{"}}name{{"}}"}}-keypair'
             defaultRegions:
             - name: us-west-2
             defaults:

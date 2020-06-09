@@ -18,7 +18,7 @@ Entering in an AMI ID will return the parents and descendents of the AMI that wa
 We first need to enable Armory Lighthouse to cache the AMIs.  Add the following to `/opt/spinnaker/config/spinnaker-local.yml`:
 
 
-```
+```yaml
 services:
   lighthouse:
     amiCache:
@@ -27,12 +27,12 @@ services:
 
 Then we need to add a tag to all packer templates that require tracking through this tool.  This is done by adding the `base_ami` tag to `builders` section of your packer template, typically kept at `/opt/spinnaker/config/packer`:
 
-```
+```json
 {
   "builders": [
      {
        "tags": {
-         "parent_ami": "{% raw  %}{{ user `aws_source_ami`}}{% endraw  %}"
+         "parent_ami": "{{ user `aws_source_ami`}}"
        }
 }
 ```

@@ -19,7 +19,8 @@ Rosco is the sub-service that manages baking using [Packer](https://www.packer.i
 The default location is `/opt/spinnaker/config/packer` for Armory Spinnaker, however this can be changed.
 You can specify the following in  
 `/opt/spinnaker/config/rosco-local.yml`:
-```
+
+```yaml
 rosco:
   configDir: ${services.rosco.configDir:/opt/rosco/config/packer}
 ```
@@ -44,6 +45,7 @@ Example of baking `armory-spinnaker` in CentOS (without defining the correct Bas
 
 
 ### Getting to Know Packer
+
 [Packer's documentation can be found here](https://www.packer.io/docs/index.html). In brief, Spinnaker will execute `packer build` with the provided json, which then will execute the `packer_script.sh`.
 
 
@@ -52,7 +54,7 @@ Example of baking `armory-spinnaker` in CentOS (without defining the correct Bas
 
 In some cases you'll want to dynamically generate a Base AMI for all deployments of Spinnaker instead of using the `Find Images` stage to determine the latest base AMI to use.  This effectively saves a step for every deployment.  You can [specify a  source_ami_filter](https://www.packer.io/docs/builders/amazon-ebs.html#source_ami_filter) in your packer template which is run before the packer instance is created to find the base AMI to use.
 
-```
+```json
 {
   "source_ami_filter": {
     "filters": {
@@ -120,22 +122,20 @@ Lets install Docker and make sure we get add the GPG key for their repo.
 - Let's start by copying [`install_packages.sh`](https://github.com/spinnaker/rosco/blob/master/rosco-web/config/packer/install_packages.sh) to `my-custom-install_packages.sh`.
 
 In the `my-custom-baker.json`, modify the **provisioners** section so that the script entry points to our custom installer script:
-```
-{% raw %}
+
+```json
 "script": "{{user `configDir`}}/my-custom-install_packages.sh",
-{% endraw %}
 ```
 
 In `my-custom-install_packages.sh` script, add the logic you need to have run when a bake instance starts up.
-```
-{% raw %}
+
+```shell
 # Add the docker gpg key
 curl -fsSL https://yum.dockerproject.org/gpg | sudo apt-key add -
 
 # Add the docker repo to the sources list
 echo "deb https://apt.dockerproject.org/repo/ ubuntu-$(lsb_release -cs) main" \
       | sudo tee -a /etc/apt/sources.list
-{% endraw %}
 ```
 
 Once you have the custom template and script deployed onto your Spinnaker cluster you can now set **Template File Name** in Bake Configuration to `my-custom-baker.json`.
@@ -150,7 +150,8 @@ The default configurations use `Ubuntu 12.04/14.0` as the default choices for Ba
 
 
 Here's a simple version of `rosco-local.yml`. See [Full Version](https://github.com/spinnaker/rosco/blob/master/rosco-web/config/rosco.yml)
-```
+
+```yaml
 aws:
   enabled: true
   bakeryDefaults:

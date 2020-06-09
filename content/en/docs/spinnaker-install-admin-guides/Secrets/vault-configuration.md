@@ -33,7 +33,7 @@ subjects:
   namespace: default
 ```
 
-```
+```bash
 # Create a service account, 'vault-auth'
 $ kubectl -n default create serviceaccount vault-auth
 
@@ -65,14 +65,14 @@ path "secret/data/spinnaker/*" {
 }
 ```
 
-```
+```bash
 $ vault policy write spinnaker-kv-ro spinnaker-kv-ro.hcl
 ```
 
 
 **3. Set environment variables required for Vault configuration**
 
-```
+```bash
 # Set VAULT_SA_NAME to the service account you created earlier
 $ export VAULT_SA_NAME=$(kubectl -n default get sa vault-auth -o jsonpath="{.secrets[*]['name']}")
 
@@ -102,7 +102,7 @@ The Kubernetes Vault Auth Secrets Engine does not currently support token renewa
 ---
 
 
-```
+```bash
 # Enable the Kubernetes auth method at the default path ("kubernetes")
 $ vault auth enable kubernetes
 
@@ -129,26 +129,30 @@ It is time verify that the Kubernetes auth method has been properly configured.
 
 **Note: This should be deployed into the same namespace as your Spinnaker install**
 
-```$ kubectl apply -f  https://raw.githubusercontent.com/armory/docker-debugging-tools/master/deployment.yml```
+```bash
+kubectl apply -f  https://raw.githubusercontent.com/armory/docker-debugging-tools/master/deployment.yml
+```
 
 **6. `exec` into the pod**
 
-```
-$ POD_NAME=$(kubectl get pod -l app=debugging-tools -o go-template --template '{% raw %}{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}{% endraw %}' --sort-by=".status.startTime" | tail -n 1)
-$ kubectl exec -it $POD_NAME bash
+```bash
+POD_NAME=$(kubectl get pod -l app=debugging-tools -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' --sort-by=".status.startTime" | tail -n 1)
+
+kubectl exec -it $POD_NAME bash
 ```
 
 **7. Test the auth method**
 
-```
-$ export VAULT_ADDR='http://your.vault.address:port'
-$ SA_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+```bash
+export VAULT_ADDR='http://your.vault.address:port'
+SA_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
 
-$ vault write auth/kubernetes/login role=spinnaker jwt=$SA_TOKEN
+vault write auth/kubernetes/login role=spinnaker jwt=$SA_TOKEN
 ```
 
 This command should return output like the following
-```
+
+```bash
 Key                                       Value
 ---                                       -----
 token                                     s.bKSSrYOcETCADGvGxhbDaaaD
@@ -167,14 +171,14 @@ token_meta_service_account_uid            13cee6Dbc-0bc2-11e9-9fd2-0a32f8e530cc
 
 Using the token from the output above allows for the following
 
-```
-$ vault login s.bKSSrYOcETCADGvGxhbDaaaD
+```bash
+vault login s.bKSSrYOcETCADGvGxhbDaaaD
 ```
 
 Once logged in you should be able to read secrets
 
-```
-$ vault kv get secret/spinnaker/test
+```bash
+vault kv get secret/spinnaker/test
 ```
 
-As a reminder, the policy we created provides ro access *only* so you will need to have written the secret using a separate authenticated client.
+As a reminder, the policy we created provides RO access *only* so you will need to have written the secret using a separate authenticated client.
