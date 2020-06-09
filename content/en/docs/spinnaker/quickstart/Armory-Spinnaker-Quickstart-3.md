@@ -81,7 +81,7 @@ kubectl create ns quickstart
 11. Scroll down and paste in the **Service** yaml below.
 12. Click **Save Changes**.
 
-# Time to run your EKS pipeline and validate
+## Time to run your EKS pipeline and validate
 
 1. Click back to the pipeline page using the **Back to Executions** to the left of the pipeline name.
 2. Click on the **Start Manual Execution** on the new pipeline. Then, click **Execution Details** to see pipeline in action.
@@ -133,7 +133,7 @@ spec:
   type: LoadBalancer
 ```
 
-# Validation in EKS and in Spinnaker
+## Validation in EKS and in Spinnaker
 
 1. In EKS run the following commands to see nginx pods being created: `kubectl get pods -n quickstart`.
 2. In Deck, the Spinnaker UI, navigate to the **Applications** page and see the deployment and containers there.
@@ -147,7 +147,7 @@ spec:
 
 ![No CREATE Permission](/images/Deployment-Validation.png)
 
-# Congratulations!
+## Congratulations!
 
 You completed the Armory Spinnaker QuickStart exercise! You can now deploy to AWS using Spinnaker. What's Next?
 
@@ -158,6 +158,6 @@ You completed the Armory Spinnaker QuickStart exercise! You can now deploy to AW
 
 To get expert help in any of the areas above you can contact Armory.io at <https://go.armory.io/needs-analysis>
 
-# AWS QuickStart Step 3 Video
+## AWS QuickStart Step 3 Video
 
 {{< youtube Yi-2AZ5n_kA >}}
