@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Air-Gapped Environments
-order: 60
-published: true
+weight: 60
 aliases:
   - /spinnaker-install-admin-guides/air-gapped/
 ---
@@ -15,7 +13,7 @@ An Air-gapped environment is one where any combination of the following conditio
 
 ## Host Armory's Bill Of Materials
 
-Armory's BOMs are stored in the following bucket and are publicly available: `s3://halconfig`. 
+Armory's BOMs are stored in the following bucket and are publicly available: `s3://halconfig`.
 
 If you are unable to access this bucket from the machine running Halyard, host the BOM in either a GCS or S3 compatible storage, such as MinIO.
 
@@ -129,15 +127,15 @@ kubectl apply -f manifest.yml
 
 Finally, to access the deployed Halyard environment, perform the following steps:
 
-1. Get the name for the Halyard pod: 
+1. Get the name for the Halyard pod:
    ```
    kubectl get pods
    ```
-2. Exec into the pod: 
+2. Exec into the pod:
    ```
    kubectl exec -it {pod-name} /bin/bash
-   ``` 
-    
+   ```
+
 ### Option 2: Spinnaker Operator
 
 The [Spinnaker Operator](/spinnaker/operator/) lets you manage Spinnaker with `kubectl`.

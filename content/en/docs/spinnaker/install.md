@@ -17,7 +17,7 @@ Your VM should have 4 vCPUs, 16G of memory and 30G of HDD space.
 
 ## Getting Started
 
-Check out the [GitHub project](https://github.com/armory/minnaker) for more information. After you install Minnaker, use the [AWS Quick Start](/spinnaker/Armory-Spinnaker-Quickstart-1) to learn how to configure Spinnaker to deploy to AWS.
+Check out the [GitHub project](https://github.com/armory/minnaker) for more information. After you install Minnaker, use the [AWS Quick Start]({{< ref "Armory-Spinnaker-Quickstart-1" >}}) to learn how to configure Spinnaker to deploy to AWS.
 
 # Installing Armory Spinnaker for Medium to Large Enterprise Deployments
 
@@ -30,7 +30,7 @@ Make sure you have a kubernetes cluster with a minimum of **15 GB** of memory an
 Install Armory's version of Halyard in a Docker container or Kubernetes cluster in order
 to run Halyard and its command line interface.
 
-See also [Armory Halyard configuration](/spinnaker-install-admin-guides/configure-halyard/).
+See also [Armory Halyard configuration]({{< ref "configure-halyard" >}}).
 
 ### Run Armory Halyard in Docker
 
@@ -148,9 +148,11 @@ OSS are as follows:
 
 To install Armory Spinnaker, you use the same `hal` commands as Open Source Spinnaker.  Here are some guides on how to install Spinnaker based on your environment:
 
-* [Install Armory Spinnaker on K8s](/spinnaker-install-admin-guides/install-on-k8s/)
-* [Install Armory Spinnaker on AWS](/spinnaker-install-admin-guides/install-on-aws/)
-* [Install Armory Spinnaker on GKE](/spinnaker-install-admin-guides/install-on-gke/)
+* [Install Armory Spinnaker on K8s]({{< ref "install-on-k8s" >}})
+* [Install Armory Spinnanker on AKS]({{< ref "install-on-aks" >}})
+* [Install Armory Spinnaker on AWS]({{< ref "install-on-aws" >}})
+* [Install Armory Spinnaker from the AWS Container Marketplace]({{< ref "aws-container-marketplace" >}})
+* [Install Armory Spinnaker on GKE]({{< ref "install-on-gke" >}})
 
 #### Notes on Docker
 

@@ -3,12 +3,17 @@ title: AWS QuickStart Step 2
 weight: 2
 aliases:
   - /spinnaker/Armory-Spinnaker-Quickstart-2/
+description: >
+  Configure the AWS Provider for Spinnaker and connect to an EKS cluster.
 ---
 
 
 Need help setting this up? - For a guided tutorial, see the [video walkthrough](#aws-quickstart-step-2-video) at the bottom of this page.
 
+{{% alert title="Note" %}}This guide assumes that Spinnaker is installed with Halyard, not Operator.{{% /alert %}}
+
 ## Prerequisites
+
 Before you start, ensure that have completed the following requirements:
 * Finish [AWS QuickStart Step 1]({{< ref "Armory-Spinnaker-Quickstart-1" >}}).
 * Have access to the Kubernetes cluster you would like to deploy to, and you need cluster admin permissions on that Kubernetes cluster.
