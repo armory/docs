@@ -17,7 +17,7 @@ Before you start, ensure that have completed the following requirements:
 
 - Finish [AWS QuickStart Step 2]({{< ref "Armory-Spinnaker-Quickstart-2" >}})
 
-# Deploy to EC2 and EKS
+## Deploy to EC2 and EKS
 
 Before you start, you need to log in to Deck, the Spinnaker UI.
 
