@@ -1,13 +1,18 @@
 ---
 title: AWS QuickStart Step 3
 weight: 2
+description: >
+  Deploy to EKS and EC2.
 aliases:
   - /spinnaker/Armory-Spinnaker-Quickstart-3/
 ---
 
 Need help setting this up? - For a guided tutorial the video walkthrough](#aws-quickstart-step-3-video) at the bottom of this page.
 
+{{% alert title="Note" %}}This guide assumes that Spinnaker is installed with Halyard, not Operator.{{% /alert %}}
+
 ## Prerequisite
+
 Before you start, ensure that have completed the following requirements:
 * Finish [AWS QuickStart Step 2]({{< ref "Armory-Spinnaker-Quickstart-2" >}})
 

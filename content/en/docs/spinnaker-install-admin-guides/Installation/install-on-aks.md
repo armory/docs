@@ -1,12 +1,12 @@
 ---
 title: Installing Spinnaker in AKS
 linkTitle: "Install in AKS"
+weight: 2
 aliases:
   - /spinnaker_install_admin_guides/install_on_aks/
   - /spinnaker_install_admin_guides/install-on-aks/
   - /spinnaker-install-admin-guides/install_on_aks/
   - /spinnaker-install-admin-guides/install-on-aks/
-weight: 40
 ---
 
 ## Overview
@@ -15,9 +15,9 @@ This guide describes how to install Spinnaker in Azure Kubernetes Service (AKS).
 
 * An AKS cluster. You can also use an existing cluster.
 * An AZS (Azure Storage) bucket. You can also use an existing bucket.
-* An NGINX Ingress controller in your AKS cluster. This resource is only needed if your cluster doesn't already have an ingress installed. Note that the examples on this page for NGINX only work on Kubernetes version 1.14 or later. 
+* An NGINX Ingress controller in your AKS cluster. This resource is only needed if your cluster doesn't already have an ingress installed. Note that the examples on this page for NGINX only work on Kubernetes version 1.14 or later.
 
-This document does not cover the following: 
+This document does not cover the following:
 
 * TLS Encryption
 * Authentication and authorization
@@ -34,7 +34,7 @@ To follow the steps described in this guide, make sure the following prerequisit
 
 * You have login credentials to Azure that allow you to create resources
 * You have an Azure subscription defined where you will install Spinnaker
-* You have `az` (the Azure CLI tool) and a recent version of `kubectl` (the Kubernetes CLI tool) on a machine (referred to as the `workstation machine`). 
+* You have `az` (the Azure CLI tool) and a recent version of `kubectl` (the Kubernetes CLI tool) on a machine (referred to as the `workstation machine`).
 * You have Docker available and can run containers on a machine (referred to as the `Halyard machine`). An easy way to install Docker on your machine is with [Docker Desktop](https://www.docker.com/products/docker-desktop).
 * You can transfer files created on the `workstation machine` to the Docker container that runs Halyard on the  `Halyard machine`.
 * The `workstation` and `Halyard` machines can be the same machine
@@ -47,8 +47,8 @@ With `az`, you create and manage the following resources:
 
   * AKS clusters
   * AZS buckets
- 
-With `kubectl`, you need to 
+
+With `kubectl`, you need to
 
 * Have a persistent working directory in which to work in.  This guide uses `~/aks-spinnaker`
 * Create AKS resources, such as service accounts that will be permanently associated with your Spinnaker cluster
@@ -92,7 +92,7 @@ To create an AKS cluster, perform the following steps on the `workstation machin
    mkdir ~/aks-spinnaker
    cd ~/aks-spinnaker
    ```
-   
+
    For this guide, use the `~/aks-spinnaker` directory, but this can be any persistent directory on any Linux or OSX machine.
 
 2. Run the following commands to set up the `az` CLI:
@@ -104,26 +104,26 @@ To create an AKS cluster, perform the following steps on the `workstation machin
    ```
 
 3. Determine which Azure locations (like `westus`) are available for your account:
-   
+
    ```bash
    az account list-locations --query "[].name"
    ```
 
 4. Create a resource group for your AKS cluster in a location available for your account.
-   
+
    ```bash
    RESOURCE_GROUP="Spinnaker"
    az group create --name ${RESOURCE_GROUP}  --location <location>
    ```
 
-5. Skip this step if you are using an existing AKS cluster. Create the AKS cluster: 
+5. Skip this step if you are using an existing AKS cluster. Create the AKS cluster:
 
    ```bash
    az aks create --resource-group ${RESOURCE_GROUP} --name spinnaker-cluster --node-count 2 --enable-addons monitoring --generate-ssh-keys
    ```
 
 6. Configure the Kubernetes context so that `kubectl` uses your AKS cluster:
-    
+
    To use the cluster created in the previous step, run the following command:
 
    ```bash
@@ -191,7 +191,7 @@ The commands create a file called `kubeconfig-spinnaker-system-sa` (or something
 
 ## Create an AZS source for Spinnaker
 
-Spinnaker uses an AZS bucket to store persistent configuration (such as pipeline definitions).  This section walks you through creating a storage resource group and a storage account. 
+Spinnaker uses an AZS bucket to store persistent configuration (such as pipeline definitions).  This section walks you through creating a storage resource group and a storage account.
 
 1. Create a resource group for your storage account in a location available for your account:
    ```bash
@@ -205,10 +205,10 @@ Spinnaker uses an AZS bucket to store persistent configuration (such as pipeline
    az storage account create --resource-group ${STORAGE_RESOURCE_GROUP} --sku STANDARD_LRS --name ${STORAGE_ACCOUNT_NAME}
    STORAGE_ACCOUNT_KEY=$(az storage account keys list --resource-group ${STORAGE_RESOURCE_GROUP} --account-name ${STORAGE_ACCOUNT_NAME} --query "[0].value" | tr -d '"')
    ```
-   Keep the following Azure requirements in mind when defining `STORAGE_ACCOUNT_NAME`: 
+   Keep the following Azure requirements in mind when defining `STORAGE_ACCOUNT_NAME`:
     * The name must be between 3 and 24 characters
     * Only numbers and lowercase characters are valid
-    
+
 ## Stage files on the `Halyard machine`
 
 In the `aks-spinnaker` working directory, create the following folders:
@@ -248,7 +248,7 @@ docker run --name armory-halyard -it --rm \
   armory/halyard-armory:<image_version>
 ```
 
-**Note**: For image version, you must enter a valid version number, such as 1.8.1. Do not use `latest`. 
+**Note**: For image version, you must enter a valid version number, such as 1.8.1. Do not use `latest`.
 
 ## Enter the Halyard container
 
@@ -326,7 +326,7 @@ artifacts feature with the `http` artifact provider.  This allows Spinnaker to r
 
 ## Configure Spinnaker to use your AZS bucket
 
-Use the Halyard `hal` command line tool to configure Spinnaker to use your AZS storage account. 
+Use the Halyard `hal` command line tool to configure Spinnaker to use your AZS storage account.
 `storage-container-name` is optional and has a default value of "spinnaker". If you're using a pre-existing container, update `storage-container-name` with the name of that container.
 
 ```bash
@@ -336,7 +336,7 @@ hal config storage azs edit \
     --storage-account-name <storage_account_name> \
     --storage-account-key <storage_account_key> \
     --storage-container-name <name>
-    
+
 # test connection to azs storage
 hal config storage azs
 
@@ -355,7 +355,7 @@ hal version list
 ```
 Note that Armory Spinnaker uses a major version numbering scheme that is one version higher than Open Source Spinnaker. For example, Armory Spinnaker  `2.x.x` correlates to Open Source Spinnaker `1.x.x`.
 
-After you decide on a version, run the following commands to specify the version: 
+After you decide on a version, run the following commands to specify the version:
 
 ```bash
 # Replace with version of choice:
@@ -391,14 +391,14 @@ Then, you can access Spinnaker at `http://localhost:9000`.
 
 Trying to connect from a remote machine will not work because your browser attempts to access localhost on your local workstation rather than on the remote machine where the port is forwarded.
 
-__Note:__ Even if the `hal deploy apply` command returns successfully, the 
-installation may not be complete yet. This is especially the case with 
+__Note:__ Even if the `hal deploy apply` command returns successfully, the
+installation may not be complete yet. This is especially the case with
 distributed Kubernetes installs. If you see errors such as `Connection refused`,
 the containers may not be available yet. Either wait and try again
 or check the status of all of the containers using the command for your cloud provider,  
 such as `kubectl get pods --namespace spinnaker`.
 
-Once the pods are running and Spinnaker is available, you can access Deck (Spinnaker's UI) at http://localhost:9000. 
+Once the pods are running and Spinnaker is available, you can access Deck (Spinnaker's UI) at http://localhost:9000.
 
 Note that trying to connect from a remote machine will not work because your browser attempts to access localhost on your local workstation rather than on the remote machine where the port is forwarded.
 
