@@ -18,7 +18,8 @@ The above is just a sample list of steps that will happen during  app provisioni
 ## Steps to follow to configure 1-click app creation:
 
 - Enable the *Armory Platform*, by setting the following feature flags in `spinnaker-local.yml`:
-```
+
+```yaml
 features:
     armoryPlatform:
       enabled: true
@@ -26,13 +27,15 @@ features:
 ```
 
 - If this is on the AWS EC2 installation of spinnaker, set the following environment variables in your `prod.env` (or `preprod.env` or `dev.env` depending on where you are running the platform):
-```
+
+```yaml
 PLATFORM_ENABLED=true
 PLATFORM_UI_ENABLED=true
 ```
 
 - Create a new file: `config/platform-local.yml` with the following contents:
-```
+
+```yaml
 github:
     apiCredentialsPath: /opt/spinnaker/credentials/github-creds.txt
     organization: armory-io  # your github Org
@@ -54,7 +57,7 @@ Clicking on the `Create App` button on the top right corner should bring up a mo
 
 By default, the 1-Click App Creation performs the following tasks:
 - `createPipeline` : This step creates a Deploy pipeline in spinnaker for the new app. If the spinnaker application doesn't exist, it creates the application first before creating the pipeline. This pipeline is copied over from a template pipeline that is already in spinnaker and defaults to `oneclickgotemplate` app in spinnker. The default app to copy from can be overwritten in the configs (explained below)
-  
+
 - `createLoadBalancer` : This step creates a load balancer in the Kubernetes cluster where the app will be deployed. (If deploying to a non-Kubernetes cloud provider, this step should be disabled in the configs)
 
 - `createGithubRepo` : This step creates a repo in github to bootstrap the app. Ideally this repo follows a widly adopted project structure (such as [this](https://github.com/golang-standards/project-layout) for Golang). It has a `Jenkinsfile` which triggers of a build of the repo on every check-in. That build can push an artifact to a repository (like docker hub), which can be the trigger for the Deploy pipeline created above (in the `createPipeline` step). Additionally, this repo can also have a `dinghyfile` [Pipelines-as-code]({{< ref "using-dinghy" >}}) to create a custom pipeline instead of using the one created above.
@@ -68,9 +71,9 @@ The follwing is a sample `config/oneclick-local.yml` template that can be used t
 - The `name` field is used for the name of the template to copy from (usually same as `basePipelineApp`)
 - The `image` field controls what image is displayed in the modal while choosing templates. (leave it as `gopher` in the alpha version)
 
-```{% raw %}
-templates: 
-  - actions: 
+```yaml
+templates:
+  - actions:
       - createPipeline
       - createGithubRepo
       - createGoogleDNSEntry
@@ -79,4 +82,4 @@ templates:
     name: oneclick-go-template
     repoURL: "https://github.com/armory-io/oneclick-go-template"
     githubOrg: "armory-io"
-{% endraw %}```
+```

@@ -28,7 +28,7 @@ You can use any of the available logging drivers for Docker.  At the time of thi
 
 Below is a sample logging-splunk.yml file that can be used to **extend Armory Spinnaker to log to Splunk**.  As there are [many configuration options](https://docs.docker.com/engine/admin/logging/splunk/#usage) for Splunk and Docker. The one below is just a simple example of how to log to Splunk HTTP Event Collector. Place this file at `/opt/spinnaker/compose/logging-splunk.yml` and set `LOGGING_PROFILE=splunk` in your environment file located at `/opt/spinnaker/env`.
 
-```
+```yaml
 version: "2.1"
 services:
   lighthouse:
@@ -85,7 +85,8 @@ services:
 ## Example: Logging to Syslog
 
 Below is a sample logging-syslog.yml file that can be used to **extend Armory Spinnaker to log to syslog**. This example sends just clouddriver and lighthouse logs to syslog, but you can add the additional services as well by copying the configuration and changing the service name.  Place this file at `/opt/spinnaker/compose/logging-syslog.yml` and set `LOGGING_PROFILE=syslog` in your environment file located at `/opt/spinnaker/env`.
-```
+
+```yaml
 version: "2.1"
 services:
   lighthouse:
@@ -105,7 +106,7 @@ services:
 
 Sumo Logic uses a different mechanism than Splunk and syslog. The preferred method is to run the sumologic-collector container (provided by Sumo Logic) alongside the default logging settings. To do this add/edit the `/opt/spinnaker/compose/docker-compose.override.yml` file and set `DOCKER_COMPOSE_OVERRIDE=true` in your environment file located at `/opt/spinnaker/env`. This is an example of **a fresh docker-compose.override.yml that runs the Sumo Logic collector to send all Spinnaker logs**:
 
-```
+```yaml
 version: "2.1"
 services:
   sumologic-collector:
@@ -123,7 +124,7 @@ Note that `${ACCESSID}` and `${ACCESSKEY}` in the example above should be replac
 
 In a similar fashion to Sumo Logic, Datadog uses an agent running on the host to collect and ship logs. To use the Datadog agent with your Armory Spinnaker installation, add/edit `/opt/spinnaker/compose/docker-compose.override.yml` and set `DOCKER_COMPOSE_OVERRIDE=true` in `/opt/spinnaker/env`. If you've created `/opt/spinnaker/componse/docker-compose.override.yml`, you would add the following content to the file:
 
-```
+```yaml
 version: "2.1"
 services:
   datadog-agent:
@@ -151,10 +152,8 @@ After configuring distributed logging make sure logs are arriving before moving 
 
 If not all the logs are showing up you can get info about the logging setup from the Docker daemon. For example to **see information about where clouddriver logs are going** you can use this command:
 
-```
-{% raw %}
+```shell
 docker inspect -f '{{.HostConfig.LogConfig}}' clouddriver
-{% endraw %}
 ```
 
 If the log config isn't what you expect then something is wrong in the Armory Spinnaker config, and if the config is what you expect the problem is likely in your distributed logging setup.
@@ -165,7 +164,7 @@ Spinnaker provides a monitoring container which exports metrics from the core su
 
 First, ensure the the metrics endpoint is enabled by adding the following configuration to `spinnaker-local.yml` if it isn't already present.
 
-```
+```yaml
 services:
   spectator:
     webEndpoint:
@@ -173,7 +172,8 @@ services:
 ```
 
 Add the following to `/opt/spinnaker/compose/docker-compose.override.yml`
-```
+
+```yaml
 version: "2.1"
 services:
   datadog:
@@ -208,13 +208,14 @@ API_KEY=${YOUR_DATADOG_API_KEY}
 
 Add a registry entry for each service you wish to monitor in `/opt/spinnaker/config/monitoring/registry`. You'll need to create 1 file per service. The filename should correspond to the service being monitored and the contents should contain a `metrics_url` of the service. For example, an entry for monitoring Clouddriver would have a filename such as `clouddriver.yml` and the contents would be:
 
-```
+```bash
 # /opt/spinnaker/config/monitoring/registry/clouddriver.yml
 metrics_url: http://clouddriver:7002/spectator/metrics
 ```
 
 Add the Spinnaker monitoring configuration file in `/opt/spinnaker/config/spinnaker-monitoring-local.yml`:
-```
+
+```yaml
 registry_dir: /opt/spinnaker-monitoring/registry
 
 server:
@@ -234,9 +235,8 @@ datadog:
 
 We'll then need to enable Armory to look for the override file.  Add the following in your env file which is located at `/opt/spinnaker/env/${STACK}.env`
 
-```
+```bash
 DOCKER_COMPOSE_OVERRIDE=true
 ```
 
-Then restart Armory Spinnaker:
-`service armory-spinnaker restart`
+Then restart Armory Spinnaker: `service armory-spinnaker restart`
