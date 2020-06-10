@@ -2,7 +2,7 @@
 title: "Smoke Test"
 linkTitle: "Smoke Test"
 weight: 999
-draft: false
+draft: true
 description: >
   Markdown stuff - change to draft before publication
 ---
