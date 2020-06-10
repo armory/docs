@@ -75,7 +75,7 @@ privacy_policy = "https://www.armory.io/privacy-policy"
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
-version_menu = "v2.11.65"
+version_menu = "v2.19"
 
 # Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
@@ -85,7 +85,7 @@ archived_version = false
 # The version number for the version of the docs represented in this doc set.
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
-version = "2.11.65"
+version = "2.19"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
@@ -169,16 +169,11 @@ enable = false
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
 [[params.versions]]
-  version = "v2.11.65"
+  version = "v2.19"
   githubbranch = "master"
   url = "https://docs-hugo.netlify.app"
 
 [[params.versions]]
-  version = "v1.0"
-  githubbranch = "archive-test"
-  url = "https://deploy-preview-16--docs-hugo.netlify.app/docs"
-
-[[params.versions]]
-  version = "v0.3 (kubeflow)"
-  githubbranch = "v0.3-branch"
-  url = "https://v0-3.kubeflow.org"
+  version = "v2.18"
+  githubbranch = "release-2.18"
+  url = "https://docs-v2-18.netlify.app/docs/"
