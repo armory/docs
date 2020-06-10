@@ -171,6 +171,4 @@ enable = false
 [[params.versions]]
   version = "v2.18"
   githubbranch = "release-2.18"
-  url = "https://v2-18.docs-hugo.netlify.app"
-
-[
+  url = "https://docs-v2-18.netlify.app/"
