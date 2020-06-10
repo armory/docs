@@ -209,11 +209,129 @@ _The photo above of the Spruce Picea abies shoot with foliage buds: Bjørn Erik 
 ### Alerts
 
 {{< alert >}}This is an alert.{{< /alert >}}
+
 {{< alert title="Note" >}}This is an alert with a title.{{< /alert >}}
+
 {{% alert title="Note" %}}This is an alert with a title and **Markdown**.{{% /alert %}}
+
 {{< alert color="success" >}}This is a successful alert.{{< /alert >}}
+
 {{< alert color="warning" >}}This is a warning.{{< /alert >}}
+
 {{< alert color="warning" title="Warning" >}}This is a warning with a title.{{< /alert >}}
 
 
 ## Another Heading
+
+## Inserting raw HTML
+
+The `rawhtml` shortcode is in `docs-hugo\layouts`.
+
+Usage:
+
+```md
+## Heading
+{{</* rawhtml */>}}
+<p>
+    This is <strong>raw HTML</strong>, inside Markdown.
+  </p>
+{{</* /rawhtml */>}}
+```
+
+
+{{< rawhtml >}}
+<p>
+    This is <strong>raw HTML</strong>, inside Markdown.
+  </p>
+{{< /rawhtml >}}  
+
+### CRD example
+## pacrd.armory.spinnaker.io/v1alpha1
+
+<p>
+<p>Package v1alpha1 contains API Schema definitions for the pacrd.armory.spinnaker.io Applications and Pipelines.</p>
+</p>
+
+## Resource Types:
+
+<ul></ul>
+
+### Application
+
+<p>Application is the Schema for the applications API</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>spec</code><br />
+<em>
+<a href="#applicationspec">
+ApplicationSpec
+</a>
+</em>
+</td>
+<td>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>email</code><br />
+<em>
+string
+</em>
+</td>
+<td>
+<p>Email points to the e-mail user or list that owns this application.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>description</code><br />
+<em>
+string
+</em>
+</td>
+<td>
+<p>Description explains the purpose of this application.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dataSources</code><br />
+<em>
+<a href="#datasources">
+DataSources
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DataSources optionally enable and disable elements of the Spinnaker Application UI.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>permissions</code><br />
+<em>
+<a href="#permissions">
+Permissions
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Permissions maps actions inside Spinnaker to authenticated roles that can take them.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody>
+</table>

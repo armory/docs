@@ -5,12 +5,17 @@ weight: 171
 {{< include "experimental-feature.html" >}}
 
 ## pacrd.armory.spinnaker.io/v1alpha1
+{{< rawhtml >}}
 <p>
 <p>Package v1alpha1 contains API Schema definitions for the pacrd.armory.spinnaker.io Applications and Pipelines.</p>
 </p>
+{{< /rawhtml >}}
 ## Resource Types:
+{{< rawhtml >}}
 <ul></ul>
+{{< /rawhtml >}}
 ### Application
+{{< rawhtml >}}
 <p>Application is the Schema for the applications API</p>
 <table>
 <thead>
@@ -88,8 +93,10 @@ Permissions
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### Artifact
-(__Appears on:__
+(<b>Appears on:</b>
+{{< rawhtml >}}
 <a href="#bakemanifest">BakeManifest</a>,
 <a href="#webhook">Webhook</a>)
 <p>Artifact is an object that references an external resource. It could be a
@@ -188,7 +195,9 @@ for more information.</p>
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### ArtifactReference
+{{< rawhtml >}}
 <table>
 <thead>
 <tr>
@@ -221,8 +230,10 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### BakeManifest
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#stageunion">StageUnion</a>)
 <p>BakeManifest represents a bake manifest stage in Spinnaker.
 NOTE: I suspect this only supports <code>helm2</code> style deployments right now.
@@ -369,8 +380,10 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### CheckPreconditions
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#stageunion">StageUnion</a>)
 <table>
 <thead>
@@ -395,8 +408,10 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### Context
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#precondition">Precondition</a>)
 <table>
 <thead>
@@ -429,7 +444,9 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### CustomArtifact
+{{< rawhtml >}}
 <table>
 <thead>
 <tr>
@@ -510,10 +527,14 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### DataSource (<code>string</code> alias)
+{{< rawhtml >}}
 <p>DataSource is a tab in the Spinnaker UI representing a kind of managed resource.
 Allowed values include: serverGroups,executions,loadBalancers,securityGroups.</p>
+{{< /rawhtml >}}
 ### DataSources
+{{< rawhtml >}}
 <p>DataSources optionally enable and disable elements of the Spinnaker Application UI.</p>
 <table>
 <thead>
@@ -553,8 +574,10 @@ Allowed values include: serverGroups,executions,loadBalancers,securityGroups.</p
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### DeleteManifest
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#stageunion">StageUnion</a>)
 <table>
 <thead>
@@ -708,12 +731,16 @@ TargetCriteria
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### DeleteManifestMode (<code>string</code> alias)
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#deletemanifest">DeleteManifest</a>)
 <p>Not sure where these values are in the service, need to find more but for the moment this are all possible</p>
+{{< /rawhtml >}}
 ### DeployManifest
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#stageunion">StageUnion</a>)
 <p>DeployManifest deploys a Kubernetes manifest to a target Kubernetes cluster. Spinnaker will periodically check the status of the manifest to make sure the manifest converges on the target cluster until it reaches a timeout
 FIXME: trafficManagement, relationships</p>
@@ -849,7 +876,9 @@ Source
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### DockerArtifact
+{{< rawhtml >}}
 <p>DockerArtifact represents a container in the target Docker registry.</p>
 <table>
 <thead>
@@ -904,7 +933,9 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### EmbeddedArtifact
+{{< rawhtml >}}
 <p>EmbeddedArtifact represents a base64 encoded artifact.</p>
 <table>
 <thead>
@@ -946,7 +977,9 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### ErrNameUndefined
+{{< rawhtml >}}
 <table>
 <thead>
 <tr>
@@ -967,8 +1000,10 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### FindArtifactsFromResource
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#stageunion">StageUnion</a>)
 <p>FindArtifactsFromResource represents the stage of the same name in Spinnaker.</p>
 <table>
@@ -1041,8 +1076,10 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### Jitter
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#restrictedexecutionwindow">RestrictedExecutionWindow</a>)
 <p>Jitter TODO description</p>
 <table>
@@ -1095,7 +1132,9 @@ bool
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### JudgmentInput
+{{< rawhtml >}}
 <p>JudgmentInput TODO description</p>
 <table>
 <thead>
@@ -1117,8 +1156,10 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### JudgmentMessage
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#manualjudgmentnotification">ManualJudgmentNotification</a>)
 <p>JudgmentMessage TODO description</p>
 <table>
@@ -1155,8 +1196,10 @@ JudgmentMessageValue
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### JudgmentMessageValue
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#judgmentmessage">JudgmentMessage</a>)
 <p>JudgmentMessageValue TODO description</p>
 <table>
@@ -1179,16 +1222,22 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### JudgmentState (<code>string</code> alias)
+{{< rawhtml >}}
 <p>JudgmentState TODO description</p>
+{{< /rawhtml >}}
 ### KubernetesKind (<code>string</code> alias)
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#deletemanifest">DeleteManifest</a>,
 <a href="#undorolloutmanifest">UndoRolloutManifest</a>)
-<p>KubernetesKind comes from the Object spinnakerKindMap in call: <a href="http://localhost:8084/credentials?expand=true">http://localhost:8084/credentials?expand=true</a>.
+<p>KubernetesKind comes from the Object spinnakerKindMap in call: <code>http://localhost:8084/credentials?expand=true</code>.
 Also this can be found in class  /clouddriver/clouddriver-kubernetes-v2/src/main/java/com/netflix/spinnaker/clouddriver/kubernetes/v2/description/manifest/KubernetesKind.java</p>
+{{< /rawhtml >}}
 ### LabelSelector
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#deletemanifest">DeleteManifest</a>)
 <table>
 <thead>
@@ -1212,8 +1261,10 @@ Also this can be found in class  /clouddriver/clouddriver-kubernetes-v2/src/main
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### ManualJudgment
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#stageunion">StageUnion</a>)
 <p>ManualJudgment TODO description</p>
 <table>
@@ -1303,8 +1354,10 @@ bool
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### ManualJudgmentNotification
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#manualjudgment">ManualJudgment</a>)
 <p>ManualJudgmentNotification TODO description</p>
 <table>
@@ -1371,8 +1424,10 @@ JudgmentMessage
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### MatchArtifact
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#artifact">Artifact</a>)
 <table>
 <thead>
@@ -1407,8 +1462,10 @@ k8s.io/apimachinery/pkg/runtime.RawExtension
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### Moniker
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#deploymanifest">DeployManifest</a>)
 <p>Moniker TODO</p>
 <table>
@@ -1431,7 +1488,9 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### OptionValue
+{{< rawhtml >}}
 <table>
 <thead>
 <tr>
@@ -1452,8 +1511,10 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### Options
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#deletemanifest">DeleteManifest</a>)
 <table>
 <thead>
@@ -1487,7 +1548,9 @@ int
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### Parameter
+{{< rawhtml >}}
 <table>
 <thead>
 <tr>
@@ -1587,7 +1650,9 @@ bool
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### Permissions
+{{< rawhtml >}}
 <p>Permissions maps actions inside Spinnaker to authenticated roles that can take them.</p>
 <table>
 <thead>
@@ -1635,7 +1700,9 @@ bool
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### Pipeline
+{{< rawhtml >}}
 <p>Pipeline is the Schema for the pipelines API</p>
 <table>
 <thead>
@@ -1768,8 +1835,10 @@ bool
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### PipelineStatus
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#pipeline">Pipeline</a>)
 <p>PipelineStatus defines the observed state of Pipeline</p>
 <table>
@@ -1829,7 +1898,9 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### Precondition
+{{< rawhtml >}}
 <p>Precondition TODO likely needs to be refined to support more than expressions</p>
 <table>
 <thead>
@@ -1873,8 +1944,10 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### RestrictedExecutionWindow
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#stageunion">StageUnion</a>)
 <p>RestrictedExecutionWindow TODO description</p>
 <table>
@@ -1922,8 +1995,10 @@ Jitter
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### Selector
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#labelselector">LabelSelector</a>)
 <table>
 <thead>
@@ -1967,18 +2042,26 @@ SelectorsKind
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### SelectorsKind (<code>string</code> alias)
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#selector">Selector</a>)
 <p>This value comes from: /clouddriver/clouddriver-kubernetes-v2/src/main/java/com/netflix/spinnaker/clouddriver/kubernetes/v2/security/KubernetesSelector.java</p>
+{{< /rawhtml >}}
 ### Source (<code>string</code> alias)
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#deploymanifest">DeployManifest</a>)
 <p>Source represents the kind of DeployManifest stage is defined.</p>
+{{< /rawhtml >}}
 ### SpinnakerMatchArtifact
+{{< rawhtml >}}
 <p>SpinnakerMatchArtifact represents TODO</p>
+{{< /rawhtml >}}
 ### StageEnabled
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#stageunion">StageUnion</a>,
 <a href="#webhook">Webhook</a>)
 <p>StageEnabled represents whether this stage is active in a pipeline graph.</p>
@@ -2012,7 +2095,9 @@ string
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### StageUnion
+{{< rawhtml >}}
 <p>Stage is a union type that encompasses strongly typed stage defnitions.</p>
 <table>
 <thead>
@@ -2246,20 +2331,28 @@ UndoRolloutManifest
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### StageUnionType (<code>string</code> alias)
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#stageunion">StageUnion</a>)
 <p>StageUnionType is an alias for the type name of the pipeline&rsquo;s stage.</p>
+{{< /rawhtml >}}
 ### StatusUrlResolution (<code>string</code> alias)
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#webhook">Webhook</a>)
 <p>StatusUrlResolution will poll a status url to determine the progress of the stage.</p>
+{{< /rawhtml >}}
 ### TargetCriteria (<code>string</code> alias)
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#deletemanifest">DeleteManifest</a>)
 <p>These values can be found in: /clouddriver/clouddriver-kubernetes-v2/src/main/java/com/netflix/spinnaker/clouddriver/kubernetes/v2/controllers/ManifestController.java</p>
+{{< /rawhtml >}}
 ### UndoRolloutManifest
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#stageunion">StageUnion</a>)
 <p>UndoRolloutManifest is a stage that rolls back a manifest.</p>
 <table>
@@ -2349,11 +2442,15 @@ KubernetesKind
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### UndoRolloutManifestMode (<code>string</code> alias)
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#undorolloutmanifest">UndoRolloutManifest</a>)
 <p>UndoRolloutManifestMode is the means for undoing a manifest rollout.</p>
+{{< /rawhtml >}}
 ### UnknownArtifact
+{{< rawhtml >}}
 <table>
 <thead>
 <tr>
@@ -2384,8 +2481,10 @@ map[string]interface{}
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### Webhook
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#stageunion">StageUnion</a>)
 <p>Webhook represents a webhook stage in Spinnaker.
 NOTE: notifications currently not supported for this stage.</p>
@@ -2645,8 +2744,10 @@ bool
 </tr>
 </tbody>
 </table>
+{{< /rawhtml >}}
 ### WhiteListWindow
-(__Appears on:__
+{{< rawhtml >}}
+(<b>Appears on:</b>
 <a href="#restrictedexecutionwindow">RestrictedExecutionWindow</a>)
 <p>WhiteListWindow TODO description</p>
 <table>
@@ -2704,3 +2805,4 @@ int
 Generated with <code>gen-crd-api-reference-docs</code>
 on git commit <code>5c79111</code>.
 </em></p>
+{{< /rawhtml >}}
