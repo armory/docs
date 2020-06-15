@@ -2,7 +2,7 @@
 layout: post
 title: Enabling the Terraform Integration Stage
 weight: 141
-redirect_from:
+aliases:
   - /spinnaker/terraform_integration/
   - /spinnaker/terraform-configure-integration/
 ---
@@ -12,10 +12,6 @@ redirect_from:
 The examples on this page describe how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket. Note that the Terraform Integration also requires a `git/repo` artifact account. For information about how to use the stage, see [Using the Terraform Integration](/spinnaker/terraform_use_integration).
 
 Armory Spinnaker's Terraform Integration integrates your infrastructure-as-code Terraform workflow into your SDLC. Armory's Terraform Integration interacts with a source repository you specify to deploy your infrastructure as part of a Spinnaker pipeline.
-
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 ## Supported Terraform versions
 
@@ -27,11 +23,11 @@ When creating a Terraform Integration stage, pipeline creators select a specific
 
 Note that all Terraform stages within a Pipeline that affect state must use the same Terraform version.
 
-## Redis
+## Terraform logs
 
-Terraformer uses Redis to store Terraform logs and plans. An external Redis instance is highly recommended for production use.
+The Terraform integration uses Redis to store Terraform logs and plans. An external Redis instance is highly recommended for production use.
 
-**Note:** Terraformer can only be configured to use a password with the default Redis user.
+**Note:** The Terraform integration can only be configured to use a password with the default Redis user.
 
 To set/override the Spinnaker Redis settings do the following:
 
@@ -78,7 +74,6 @@ Then run `hal deploy apply` to deploy the changes.
 
 
 ### Generating a GitHub Personal Access Token (PAT)
-{:.no_toc}
 
 Skip this section if you are using BitBucket, which requires your username and password.
 

@@ -23,15 +23,7 @@ By storing configuration in source control we get all of the benefits that go al
   + stored in a versioned, encrypted s3 bucket
   + simple revision history
 
-
-## Overview
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
-
-
-# Understanding config files
+## Understanding config files
 See the example files here: [https://github.com/Armory/spinnaker-config-deb/tree/master/deb-config/spinnaker](https://github.com/Armory/spinnaker-config-deb/tree/master/deb-config/spinnaker)
 
 Spinnaker uses Spring's configuration ymls located in `/opt/spinnaker/config/`. Files are merged in top down order.  

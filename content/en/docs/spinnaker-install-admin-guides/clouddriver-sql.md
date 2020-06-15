@@ -100,14 +100,12 @@ redis:
 To avoid downtime for your deployment, use the following three steps:
 
 #### Step 1:  Warm up the cache
-{:.no_toc}
 
 The first step is to start a Clouddriver that is not accessible from other services to validate the installation and warm up the cache.
 
 You can do it manually or by using the [following script](https://gist.github.com/ncknt/983bb800451f00b39401852fefde69bf). Make sure tables are properly created and being populated by these instances of Clouddriver.
 
 #### Step 2:  Use MySQL to back new tasks
-{:.no_toc}
 
 After waiting a few minutes (from 2 to 10 minutes depending on how many accounts are connected), we'll update Spinnaker to use MySQL but remain aware of task statuses in Redis.
 
@@ -163,7 +161,6 @@ dualTaskRepository:
 Note: At this point, you can stop the pods you created in step 1. If you used the script above, just delete the `spin-clouddriver-sql` deployment.
 
 #### Step 3:  Remove Redis
-{:.no_toc}
 
 After waiting a few minutes so that Redis tasks are no longer relevant, we finish by removing Redis entirely:
 

@@ -19,10 +19,6 @@ At a high level, a Terraform Integration stage performs the following actions wh
 3. Optionally uses a Spinnaker artifact provider (Github, BitBucket, or HTTP) to pull in a `tfvars`-formatted variable file.
 4. Runs the Terraform action you select.   
 
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
 ## Creating a Terraform Integration stage
 
 ![Terraform Stage in Deck](/images/terraform_stage_ui.png)

@@ -123,7 +123,7 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-* **Halyard**
+**Halyard**
 
 ```bash
 hal armory dinghy edit \

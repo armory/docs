@@ -16,10 +16,6 @@ Kayenta uses real-time data sources to validate that a canary is good or bad. To
 * Prometheus
 * New Relic
 
-This guide includes:
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
 ## Configuring Kayenta on an Application
 
 If Kayenta is enabled for you instance, if you go to an application's config
