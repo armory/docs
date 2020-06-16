@@ -10,3 +10,9 @@
   HUGO_VERSION = "0.71.1"
   HUGO_THEME = "docsy"
   HUGO_ENV = "production"
+
+[[plugins]]
+package = "@netlify/plugin-sitemap"
+
+  [plugins.inputs]
+  buildDir = "public"
