@@ -24,7 +24,7 @@ This document details the following:
 * Enabling Gate to use the JKS
 * Configuring Gate to support X509 client certificate-based authentication, on a second port.
 
-## Spinnaker Endpoints
+## Spinnaker endpoints
 
 At the end of this process, you will end up with three endpoints for Spinnaker:
 * A UI endpoint on the Deck microservice.  You can terminate TLS on the load balancer (Ingress or other load balancer), and end up with a flow that looks like this:
@@ -44,7 +44,7 @@ At the end of this process, you will end up with three endpoints for Spinnaker:
   [API Client] ---HTTPS--> [TLS Pass Through Load Balancer] ---HTTPS--> [Gate:8085]
   ```
 
-## Decision Points
+## Decision points
 
 Before moving on, you should decide the following:
 * For the CA used to validate client certificates, are you using an organization CA or creating a self-signed CA?
@@ -55,13 +55,13 @@ Before moving on, you should decide the following:
 
 This document borrows heavily from the Open Source Spinnaker document on SSL, found here: [Setup / Security / SSL](https://www.spinnaker.io/setup/security/ssl/).
 
-## Obtaining / Creating a Self-Signed CA Certificate
+## Getting a self-signed CA certificate
 
 If your organization has a CA that you can use to sign client certificates, then you must obtain a copy of the CA certificate (note: this is generally the public-facing certificate, and therefore not sensitive information).  You must get this in a PEM-formatted file, or convert it to a PEM-formatted file.
 
 Alternatively, you can create a self-signed CA certificate to use to sign client certificates, and configure Gate to trust certificates signed by this CA certificate.
 
-### Obtaining the Organization Certificate
+### Obtaining the crganization certificate
 
 If your organization has a CA certificate, you should obtain the CA certificate in PEM format.  You do not need the private key, as long as your organization has a way to request client certificates signed by the CA.
 
@@ -69,7 +69,7 @@ You should have the following items:
 
 * `ca.crt`: a `pem`-formatted certificate.  Spinnaker will trust client certificates that were signed by this CA.
 
-### Creating a Self-Signed CA Certificate
+### Creating a self-signed CA certificate
 
 If your organization has a CA certificate or you do not have a way to request client certificates signed by the CA, you can generate a self-signed CA certificate and private key.  We will use this
 
@@ -114,7 +114,7 @@ encrypt `ca.key`.
      -passin pass:${CA_KEY_PASSWORD}
    ```
 
-## Obtain or Generate a Server Certificate for the Deck (UI) Service
+## Get a server certificate for the Deck (UI) service
 
 _This step is technically optional, but it requires setting up separate exposure mechanisms for Deck and Gate if this step is skipped.  For simplicity' sake, we recommend completing this step_
 
@@ -183,7 +183,7 @@ Deck's eventual fully-qualified domain name (FQDN) as the Common Name (CN).
     * `deck.key`: a `pem`-formatted private key, which will have a pass phrase
     * `deck.crt`: a `pem`-formatted x509 certificate, which matches the private key and was signed by your CA
 
-## Obtain or Generate a Server Certificate for the Gate (API) Service
+## Get a server certificate for the Gate (API) Service
 
 You will need a server certificate and private key.  This server certificate will be used for both Gate endpoints - one for the authenticated API endpoint used by browser clients, one for the certificate-authenticated (X509) API endpoint used by automated clients.
 
@@ -279,7 +279,7 @@ Also, if you are using a self-signed CA, you will also have these files:
 
 We will use all of these below.
 
-## Create JKS
+## Create a JKS
 
 Gate expects all certificates in JKS (Java KeyStore) format, so we have to do some conversion and combination.  Specifically, we will generate a JKS that has these two items in it:
 
@@ -385,52 +385,52 @@ hal backup create
 
 Next, we will configure Spinnaker's Deck service to use the Deck certificate and private key that we've generated.
 
-* **Operator**
+**Operator**
 
-    Add the following snippet to the `SpinnakerService` manifest:
+Add the following snippet to the `SpinnakerService` manifest:
 
-    ```yaml
-    apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
-    kind: SpinnakerService
-    metadata:
-      name: spinnaker
-    spec:
-      spinnakerConfig:  
-        config:
-          security:
-            uiSecurity:
-              ssl:
-                enabled: true
-                sslCertificateFile: encrypted:k8s!n:spin-deck-secrets!k:deck.crt
-                sslCertificateKeyFile: encrypted:k8s!n:spin-deck-secrets!k:deck.key
-                sslCertificatePassphrase: abc # Your passphrase
-    ```
+```yaml
+apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:  
+    config:
+      security:
+        uiSecurity:
+          ssl:
+            enabled: true
+            sslCertificateFile: encrypted:k8s!n:spin-deck-secrets!k:deck.crt
+            sslCertificateKeyFile: encrypted:k8s!n:spin-deck-secrets!k:deck.key
+            sslCertificatePassphrase: abc # Your passphrase
+```
 
-    Create a new Kubernetes secret having the above files. Here we assume that Spinnaker is installed in the `spinnaker` namespace, and you are in the folder where `deck.crt` and `deck.key` are located:
+Create a new Kubernetes secret having the above files. Here we assume that Spinnaker is installed in the `spinnaker` namespace, and you are in the folder where `deck.crt` and `deck.key` are located:
 
-    ```bash
-    kubectl -n spinnaker create secret generic spin-deck-secrets --from-file=deck.crt --from-file=deck.key
-    ```
+```bash
+kubectl -n spinnaker create secret generic spin-deck-secrets --from-file=deck.crt --from-file=deck.key
+```
 
-* **Halyard**
+**Halyard**
 
-    Copy `deck.crt` and `deck.key` to locations accessible to your Halyard. For example, if Halyard is a Docker container with the `.secret` directory mounted into it, copy `deck.crt` and `deck.key` to `.secret/`.
+Copy `deck.crt` and `deck.key` to locations accessible to your Halyard. For example, if Halyard is a Docker container with the `.secret` directory mounted into it, copy `deck.crt` and `deck.key` to `.secret/`.
 
-    Then, run this Halyard configuration:
+Then, run this Halyard configuration:
 
-    *This will prompt for the pass phrase used to encrypt `deck.crt`.*
+*This will prompt for the pass phrase used to encrypt `deck.crt`.*
 
-    ```bash
-    SERVER_CERT=   # /path/to/deck.crt
-    SERVER_KEY=    # /path/to/deck.key
+```bash
+SERVER_CERT=   # /path/to/deck.crt
+SERVER_KEY=    # /path/to/deck.key
 
-    hal config security ui ssl edit \
-        --ssl-certificate-file ${SERVER_CERT} \
-        --ssl-certificate-key-file ${SERVER_KEY} \
-        --ssl-certificate-passphrase
+hal config security ui ssl edit \
+    --ssl-certificate-file ${SERVER_CERT} \
+    --ssl-certificate-key-file ${SERVER_KEY} \
+    --ssl-certificate-passphrase
 
-    hal config security ui ssl enable
-    ```
+hal config security ui ssl enable
+```
 
 Depending on how your load balancer is configured (if you're using an Ingress vs. a Service), you may have to change your service and/or ingress configuration. This is discussed below, in **Update Load Balancers and URLs**
 
@@ -440,60 +440,60 @@ Next, we will configure Spinnaker's Gate service to use the JKS that we've gener
 
 **Operator**
 
-   Add the following snippet to the `SpinnakerService` manifest:
+Add the following snippet to the `SpinnakerService` manifest:
 
-   ```yaml
-   apiVersion: spinnaker.armory.io/{{ site.data.versions.perator-extended-crd-version }}
-   kind: SpinnakerService
-   metadata:
-     name: spinnaker
-   spec:
-     spinnakerConfig:  
-       config:
-         security:
-           apiSecurity:
-             ssl:
-               enabled: true
-               keyAlias: gate
-               keyStore: encrypted:k8s!n:spin-gate-secrets!k:gate.jks
-               keyStoreType: jks
-               keyStorePassword: abc # The password to unlock your keystore. Due to a limitation in Tomcat, this must match your key's password in the keystore.
-               trustStore: encrypted:k8s!n:spin-gate-secrets!k:gate.jks
-               trustStoreType: jks
-               trustStorePassword: abc # The password to unlock your truststore.
-               clientAuth: WANT # Declare 'WANT' when client auth is wanted but not mandatory, or 'NEED', when client auth is mandatory.
-   ```
+```yaml
+apiVersion: spinnaker.armory.io/{{ site.data.versions.perator-extended-crd-version }}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:  
+    config:
+      security:
+        apiSecurity:
+          ssl:
+            enabled: true
+            keyAlias: gate
+            keyStore: encrypted:k8s!n:spin-gate-secrets!k:gate.jks
+            keyStoreType: jks
+            keyStorePassword: abc # The password to unlock your keystore. Due to a limitation in Tomcat, this must match your key's password in the keystore.
+            trustStore: encrypted:k8s!n:spin-gate-secrets!k:gate.jks
+            trustStoreType: jks
+            trustStorePassword: abc # The password to unlock your truststore.
+            clientAuth: WANT # Declare 'WANT' when client auth is wanted but not mandatory, or 'NEED', when client auth is mandatory.
+```
 
-   Create a new Kubernetes secret having the above files. Here we assume that Spinnaker is installed in the `spinnaker` namespace, and you are in the folder where `gate.jks` is located:
+Create a new Kubernetes secret having the above files. Here we assume that Spinnaker is installed in the `spinnaker` namespace, and you are in the folder where `gate.jks` is located:
 
-   ```bash
-   kubectl -n spinnaker create secret generic spin-gate-secrets --from-file=gate.jks
-   ```
+```bash
+kubectl -n spinnaker create secret generic spin-gate-secrets --from-file=gate.jks
+```
 
 **Halyard**
 
-   First, copy `gate.jks` to a location accessible to your Halyard.  For example, if Halyard is a Docker container with the `.secret` directory mounted into it, copy `gate.jks` to `.secret/`.
+First, copy `gate.jks` to a location accessible to your Halyard.  For example, if Halyard is a Docker container with the `.secret` directory mounted into it, copy `gate.jks` to `.secret/`.
 
-   Then, run this Halyard configuration:
+Then, run this Halyard configuration:
 
-   *This will prompt twice, once for the keystore password and once for the truststore password, which are the same.*
+*This will prompt twice, once for the keystore password and once for the truststore password, which are the same.*
 
-   ```bash
-   KEYSTORE_PATH= # /path/to/gate.jks
+```bash
+KEYSTORE_PATH= # /path/to/gate.jks
 
-   hal config security api ssl edit \
-       --key-alias gate \
-       --keystore ${KEYSTORE_PATH} \
-       --keystore-password \
-       --keystore-type jks \
-       --truststore ${KEYSTORE_PATH} \
-       --truststore-password \
-       --truststore-type jks
+hal config security api ssl edit \
+    --key-alias gate \
+    --keystore ${KEYSTORE_PATH} \
+    --keystore-password \
+    --keystore-type jks \
+    --truststore ${KEYSTORE_PATH} \
+    --truststore-password \
+    --truststore-type jks
 
-   hal config security api ssl enable
-   ```
+hal config security api ssl enable
+```
 
-## Update Load Balancers and URLs
+## Update load balancers and URLs
 
 When you apply the above changes, Gate and Deck will change in the following ways:
 
@@ -505,7 +505,7 @@ Depending on your load balancer and infrastructure configuration, this will like
 * If you have a load balancer (such as an Ingress) in front of your Gate/Deck, you'll likely need to change the way that Ingress communicates with Deck/Gate.
 * If you have no load balancer in front of your Gate/Deck and are instead using a basic Kubernetes Service, you'll likely need to change the base URL overrides for Deck and Gate
 
-### Changing Ingress
+### Changing ingress
 
 If you are using an Ingress in front of Deck and Gate, the Ingress is likely configured to communicate via HTTP to your backend services.  You'll need to change this to communicate via HTTPS.
 
@@ -524,7 +524,7 @@ The mechanism to achieve this will depend on what type of Ingress you are using.
   alb.ingress.kubernetes.io/healthcheck-protocol: "HTTPS"
   ```
 
-### Changing URL Overrides
+### Changing URL overrides
 
 If you are instead using a Layer 4 (TCP) load balancer (such as a `Service` configured as a `LoadBalancer` in EKS), or directly exposing your Kubernetes `Service` objects using a `NodePort` configuration, then you'll need to change the base URL overrides.
 
@@ -571,7 +571,7 @@ hal config security ui edit --override-base-url https://${SPINNAKER_FQDN}
 hal config security api edit --override-base-url https://${GATE_FQDN}
 ```
 
-## Apply SSL Changes and Test Changes
+## Apply SSL Changes
 
 Before enabling the API endpoint, we should apply the changes that we've made so far and make sure everything continues to work.
 
@@ -675,7 +675,7 @@ Once you've verified that your existing Gate and Deck endpoints continue to work
 
 Gate will now have a second API port set up listening on port 8085, which will expect an x509 client certificate from all clients trying to communicate with it.  We have to expose this port externally.
 
-## Update Load Balancers and URLs
+## Update load balancers and URLs
 
 You must expose port 8085 on your Gate containers externally, and you should **not** terminate TLS in front of them.  Depending on how your Kubernetes cluster lives, you may be able to use a `LoadBalancer` or `NodePort` Service.  Alternatively, if your Ingress Controller is configured to support TLS pass-through, you can use that.
 
@@ -790,7 +790,7 @@ curl https://abcd-123456789.us-west-2.elb.amazonaws.com:8085 -v -k
 curl: (35) error:1401E412:SSL routines:CONNECT_CR_FINISHED:sslv3 alert bad certificate
 ```
 
-## Signing Client Certificates using the Self-Signed CA
+## Signing client certificates using the self-signed CA
 If you created a self-signed CA, you can use that CA to sign certificates for your API clients to use.
 
 1. Create the client key. Keep this file safe!

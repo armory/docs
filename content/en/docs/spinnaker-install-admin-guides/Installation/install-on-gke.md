@@ -532,7 +532,7 @@ Events:
 
 Set up DNS so that your two URLs point to the IP address for the ingress (in the above, configure `spinnaker.some-url.com` and `api.some-url.com` to point to `35.233.216.189`).  This can be done via whatever your organization uses for DNS.
 
-## Configuring TLS Certificates
+## Configuring TLS certificates
 
 Configuration of TLS certificates for ingresses is often very organization-specific.  In general, you would want to do the following:
 
@@ -552,7 +552,7 @@ Configuration of TLS certificates for ingresses is often very organization-speci
   hal deploy apply
   ```
 
-## Next Steps
+## Next steps
 
 Now that you have Spinnaker up and running, here are some of the next things you may want to do:
 

@@ -12,7 +12,7 @@ Spinnaker services communicate with each other and can exchange potentially sens
 Switching from plain HTTP to HTTPS will cause some short disruption to the services as they become healthy at different times.
 
 
-## Introduction
+## Overview
 
 When a client attempts to communicate with a server over SSL:
 - the server must present a certificate to the user.
@@ -33,7 +33,7 @@ Java services can present #1 as a keystore and #2 as a trust store in PKCS12 (pr
 Golang services need a X509 certificate (PEM format) and a private key for #1 as well as the X509 certificate of the CA for #2.
 
 
-## What You Need
+## What you need
 
 The following table lists the Armory Spinnaker services, their type (Java or Golang), and which certificates they need:
 
@@ -111,7 +111,7 @@ http:
   cacertFile: <reference to ca.pem>
 ```
 
-## Changing Service Endpoints
+## Changing service endpoints
 
 ### Halyard
 You can change each Java or Golang service endpoints by adding the following in `<hal directory>/<deployment>/service-settings/<service>.yml`:
@@ -162,7 +162,7 @@ Switching from plain HTTP to HTTPS will cause some short disruption to the servi
 
 ## Providing certificates and passwords to services
 
-### Secret Engines
+### Secret engines
 
 You can store secrets (and non secrets) in [supported secret stores](../secrets) as well as in Kubernetes secrets if using the [Spinnaker Operator](../../spinnaker/operator/). This is the simplest route.
 

@@ -5,7 +5,7 @@ weight: 160
 
 Okta is a authorization and authentication service provider using SAML.
 
-## Configure a Spinnaker Application in Okta
+## Configure a Spinnaker application in Okta
 
 Select Applications -> Applications from the top menu.
 ![Applications Screen](/images/okta-applications.png)
@@ -77,71 +77,71 @@ keytool -genkey -v -keystore $KEYSTORE_PATH -alias saml -keyalg RSA -keysize 204
 
 > Note: The value you enter for `issuerId` must match the value entered in "Audience URI (SP Entity ID)" when configuring the app in Okta
 
-* **Operator**
+**Operator**
 
-    Add the following snippet to `SpinnakerService` manifest. This references secrets stored in a Kubernetes secrets in the same namespace as Spinnaker, but secrets can be stored in any of the supported [secret engines](/spinnaker-install-admin-guides/secrets):
+Add the following snippet to `SpinnakerService` manifest. This references secrets stored in a Kubernetes secrets in the same namespace as Spinnaker, but secrets can be stored in any of the supported [secret engines](/spinnaker-install-admin-guides/secrets):
 
-    ```yaml
-    apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
-    kind: SpinnakerService
-    metadata:
-      name: spinnaker
-    spec:
-      spinnakerConfig:  
-        config:
-          security:
-            authn:
-              saml:
-                enabled: true
-                keyStore: encryptedFile:k8s!spin-secrets!k:saml.jks
-                keyStoreAliasName: saml
-                keyStorePassword: encrypted:k8s!spin-secrets!k:keystorePassword
-                metadataLocal: encryptedFile:k8s!spin-secrets!k:metadata.xml
-                issuerId: io.armory.spinnaker.oktatest # The identity of the Spinnaker application registered with the SAML provider.
-                serviceAddress: https://<gate-URL>     # The address of the Gate server that will be accesible by the SAML identity provider. This should be the full URL, including port, e.g. https://gate.org.com:8084/. If deployed behind a load balancer, this would be the laod balancer's address.
-    ```
+```yaml
+apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:  
+    config:
+      security:
+        authn:
+          saml:
+            enabled: true
+            keyStore: encryptedFile:k8s!spin-secrets!k:saml.jks
+            keyStoreAliasName: saml
+            keyStorePassword: encrypted:k8s!spin-secrets!k:keystorePassword
+            metadataLocal: encryptedFile:k8s!spin-secrets!k:metadata.xml
+            issuerId: io.armory.spinnaker.oktatest # The identity of the Spinnaker application registered with the SAML provider.
+            serviceAddress: https://<gate-URL>     # The address of the Gate server that will be accesible by the SAML identity provider. This should be the full URL, including port, e.g. https://gate.org.com:8084/. If deployed behind a load balancer, this would be the laod balancer's address.
+```
 
-    Create the kubernetes secret holding the spinnaker secrets:
+Create the kubernetes secret holding the spinnaker secrets:
 
-    ```bash
-    kubectl -n <spinnaker namespace> create secret generic spin-secrets \
-        --from-file=saml.jks \
-        --from-file=metadata.xml \
-        --from-literal=keystorePassword=<password-entered-in-step-1>
-    ```
+```bash
+kubectl -n <spinnaker namespace> create secret generic spin-secrets \
+    --from-file=saml.jks \
+    --from-file=metadata.xml \
+    --from-literal=keystorePassword=<password-entered-in-step-1>
+```
 
-    Apply the changes of `SpinnakerService` manifest:
+Apply the changes of `SpinnakerService` manifest:
 
-    ```bash
-    kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
-    ```
+```bash
+kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
+```
 
-* **Halyard**
+**Halyard**
 
-    ```bash
-    KEYSTORE_PATH=/Users/armory/.hal/saml/saml.jks
-    KEYSTORE_PASSWORD=<password-entered-in-step-1>
-    METADATA_PATH=/Users/armory/.hal/saml/metadata.xml
-    SERVICE_ADDR_URL=https://<gate-URL>
-    ISSUER_ID=io.armory.spinnaker.oktatest
+```bash
+KEYSTORE_PATH=/Users/armory/.hal/saml/saml.jks
+KEYSTORE_PASSWORD=<password-entered-in-step-1>
+METADATA_PATH=/Users/armory/.hal/saml/metadata.xml
+SERVICE_ADDR_URL=https://<gate-URL>
+ISSUER_ID=io.armory.spinnaker.oktatest
 
-    hal config security authn saml edit \
-        --keystore $KEYSTORE_PATH \
-        --keystore-alias saml \
-        --keystore-password $KEYSTORE_PASSWORD \
-        --metadata $METADATA_PATH \
-        --issuer-id $ISSUER_ID \
-        --service-address-url $SERVICE_ADDR_URL
+hal config security authn saml edit \
+    --keystore $KEYSTORE_PATH \
+    --keystore-alias saml \
+    --keystore-password $KEYSTORE_PASSWORD \
+    --metadata $METADATA_PATH \
+    --issuer-id $ISSUER_ID \
+    --service-address-url $SERVICE_ADDR_URL
 
-    hal config security authn saml enable
-	 hal deploy apply
-    ```
+hal config security authn saml enable
+hal deploy apply
+```
 
 
 ## Troubleshooting
 
-Make sure the dns are correctly pointing to the loadbalancers of gate-URL and deck-URL.
+Make sure the dns are correctly pointing to the load balancers of `gate-URL` and `deck-URL`.
 
 Verify that the gate-URL is the one entered in Okta with `:8084/saml/SSO` appended to it.
 
-Validate that the service-addess-url in your configuration is the gate-URL.
+Validate that the service-address-url in your configuration is the `gate-URL`.

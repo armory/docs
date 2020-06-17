@@ -182,7 +182,7 @@ Halyard uses this Kubeconfig file to create the Kubernetes deployment objects th
 
 You should be left with a file called `kubeconfig-spinnaker-system-sa` (or something similar, if you're using a different namespace for spinnaker)
 
-## Create the S3 Bucket and Credentials
+## Create the S3 bucket and credentials
 
 If you do not yet have an S3 bucket, create the S3 bucket:
 
@@ -206,7 +206,7 @@ Spinnaker (the `front50` service, specifically) will need access to your newly-c
 
 By default, Spinnaker will store all Spinnaker information in a folder called `front50` in your bucket. You can optionally specify a different directory (for example, if you're using a pre-existing or shared S3 bucket).
 
-### Create an IAM user, using an inline policy
+### Create an IAM user using an inline policy
 
 You can create an IAM user with credentials, and provide that to Spinnaker via Halyard
 
@@ -251,7 +251,7 @@ Then, add an inline policy to your IAM user:
 
 7. Click "Create Policy"
 
-## Create an IAM policy attached to the Kubernetes nodes, using an inline policy
+## Create an IAM policy attached to the Kubernetes nodes using an inline policy
 
 Alternately, you can attach an IAM policy to the role attached to your Kubernetes nodes.
 
@@ -285,7 +285,7 @@ Alternately, you can attach an IAM policy to the role attached to your Kubernete
 
 10. Click "Create Policy"
 
-# Stage files on the Halyard machine
+## Stage files on the Halyard machine
 
 On the Halyard machine, choose a local working directory for Halyard. In it, we will create two folders:
 
@@ -640,7 +640,7 @@ Events:
 
 Set up DNS so that your two URLs point to the IP address for the ingress (in the above, configure `spinnaker.some-url.com` and `api.some-url.com` to point to `35.233.216.189`). This can be done via whatever your organization uses for DNS.
 
-## Configuring TLS Certificates
+## Configuring TLS certificates
 
 Configuration of TLS certificates for ingresses is often very organization-specific. In general, you would want to do the following:
 
@@ -658,7 +658,7 @@ hal config security api edit --override-base-url ${SPIN_GATE_URL}
 hal deploy apply
 ```
 
-## Next Steps
+## Next steps
 
 Now that you have Spinnaker up and running, here are some of the next things you may want to do:
 

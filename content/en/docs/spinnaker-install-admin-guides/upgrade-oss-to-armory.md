@@ -3,6 +3,8 @@ title: Upgrading Open Source Spinnaker to Armory Spinnaker
 weight: 2
 ---
 
+## Overview
+
 Armory Spinnaker is installed with Armory Halyard, very similarly to the way Open Source Spinnaker is installed with Open Source Halyard. These are the key differences:
 
 * Armory Halyard installs Armory Spinnaker; Open Source Halyard installs Open Source Spinnaker.

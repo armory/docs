@@ -1,19 +1,20 @@
 ---
 title: Sumo Logic Dashboard Integration
+linkTitle: Sumo Logic Integration
 weight: 200
 ---
 
-*This application has been developed and is supported by Armory Inc. In case of technical questions, please [contact Armory](https://armory.io/contact) for support.*
+*This application has been developed and is supported by Armory, Inc. In case of technical questions, please [contact Armory](https://armory.io/contact) for support.*
 
-The integration of Spinnaker and Sumo Logic provides customers with the ability to monitor the health and productivity of their end-to-end software delivery process through live dashboards. Customers will gain at-a-glance visibility and longitudinal trends in usage and pipeline deployments across all dev, staging, and production environments.
+Integrating Spinnaker and Sumo Logic provides customers with the ability to monitor the health and productivity of their end-to-end software delivery process through live dashboards. Customers will gain at-a-glance visibility and longitudinal trends in usage and pipeline deployments across all dev, staging, and production environments.
 
 
-## Log Types
+## Log types
 The Spinnaker Sumo Logic App uses echo logs that output event information from Spinnaker to Sumo Logic. Events include the following:
 * Calls made to gate
 * Pipeline events, which includes stages and tasks
 
-## Sample Log Message
+## Sample log message
 ```json
 {"details":{"source":"gate","type":"gate:session","created":"1567639483521","organization":null,"project":null,"application":null,"_content_id":null,"attributes":null,"requestHeaders":{}},"content":{"headers":{"x-request-id":"50cc1dcafa77a7fcf85612678cca01a6","sec-fetch-mode":"cors","referer":"https://spinnaker.se.armory.io/","sec-fetch-site":"same-site","x-forwarded-proto":"https","accept-language":"en-...
 ```
@@ -31,53 +32,53 @@ _sourceCategory="dev/sales-demo-cluster/echo" and _collector="Spinnaker Instance
 | transpose row _timeslice column pipeline
 ```
 
-## Collect Logs for Spinnaker
+## Collect logs for Spinnaker
 
-### Collection Process Overview
+### Collection process overview
 Note: This assumes you have already installed Spinnaker and have access to the configuration files to make changes to Spinnaker.
 
-**Collection Step 1: Retrieve SumoLogic URL for HTTP logs**
+### Collection Step 1: Retrieve SumoLogic URL for HTTP logs**
 
 Configure an HTTP Source. And get a copy of the endpoint URL from your SumoLogic console.
 
-**Collection Step 2: Modify Spinnaker configuration to export logs to SumoLogic**
+### Collection Step 2: Modify Spinnaker configuration to export logs to SumoLogic**
 
-* **Operator**
+**Operator**
 
-    Add to the `SpinnakerService` manifest the following snippet:
+Add to the `SpinnakerService` manifest the following snippet:
 
-    ```yaml
-    apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
-    kind: SpinnakerService
-    metadata:
-      name: spinnaker
-    spec:
-      spinnakerConfig:  
-        profiles:
-          echo:
-            rest:
-              enabled: true
-              endpoints:
-              - wrap: false
-                url: [insert your custom HTTP endpoint] #e.g. https://endpoint1.collection.us1.sumologic.com/...
-    ```
+```yaml
+apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:  
+    profiles:
+      echo:
+        rest:
+          enabled: true
+          endpoints:
+          - wrap: false
+            url: [insert your custom HTTP endpoint] #e.g. https://endpoint1.collection.us1.sumologic.com/...
+```
 
-* **Halyard**
+**Halyard**
 
-    Add (and create if necessary) to `.hal/default/profiles/echo-local.yml` the following:
-    ```yaml
-    rest:
-      enabled: true
-      endpoints:
-      - wrap: false
-        url: [insert your custom HTTP endpoint] #e.g. https://endpoint1.collection.us1.sumologic.com/...
-    ```
+Add (and create if necessary) to `.hal/default/profiles/echo-local.yml` the following:
+```yaml
+rest:
+  enabled: true
+  endpoints:
+  - wrap: false
+    url: [insert your custom HTTP endpoint] #e.g. https://endpoint1.collection.us1.sumologic.com/...
+```
 
-**Collection Step 3: Apply changes**
+### Collection Step 3: Apply changes**
 
 Run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if using the Operator, or `hal deploy apply` if using Halyard, and wait for the services to restart. Check SumoLogic console for ingestion of data.
 
-## Install the Spinnaker App and View the Dashboards
+## Install the Spinnaker app and view the Dashboards
 
 Go to Sumo Logic App Catalog and search for "Spinnaker" by Armory
 
@@ -90,7 +91,7 @@ NOTE: You can use filters to drill down and examine the data on a granular level
 Each panel has a set of filters that are applied to the results for that panel only, as shown in the following example. Click the funnel icon in the top panel menu bar to display a list of panel-specific filters.
 ![DashboardFilter](/images/sumologic-dashboard-filter2.png)
 
-### Spinnaker Overview Dashboard
+### Spinnaker Overview dashboard
 The Spinnaker Overview provides the health and usage of your Spinnaker instance at a quick glance, including applications deployed, clusters targeted, pipelines run, and users in spinnaker.
 Use this dashboard to:
 * Quickly see number of active apps, clusters, pipelines, and users.
@@ -98,7 +99,7 @@ Use this dashboard to:
 
 ![SpinnakerOverviewDashboard](/images/sumologic-dashboard-overview.png)
 
-### Spinnaker Pipelines Dashboard
+### Spinnaker Pipelines dashboard
 This is a dashboard that contains pipeline execution history and metrics, including most common errors.
 Use this dashboard to:
 * See pipeline execution history and compare the last 14 days to the 14 days that preceded them
@@ -109,7 +110,7 @@ Use this dashboard to:
 
 ![SpinnakerPipelinesDashboard](/images/sumologic-dashboard-pipelines.png)
 
-### Spinnaker User Activity Dashboard
+### Spinnaker User Activity dashboard
 This is a dashboard that contains user activity, manual judgments, rollbacks, canary, and trigger metrics.
 Use this dashboard to:
 * See how many manual judgments, rollbacks, and canaries have occurred over time

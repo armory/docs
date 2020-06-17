@@ -1,5 +1,5 @@
 ---
-title: "AWS: Configuring AWS ECR as a registry"
+title: "AWS: Configuring AWS ECR as a Registry"
 weight: 52
 aliases:
   - /admin-guides/ecr-registry/
@@ -13,7 +13,7 @@ aliases:
 
 This document reviews configuring ECR as a registry for a Spinnaker installation.
 
-## Adding ECR as a Docker Registry
+## Adding ECR as a Docker registry
 
 When configuring a registry, you normally use standard `SpinnakerService` configuration if using the Operator, or the `hal` command for [adding a Docker Registry](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-docker-registry-account-add) if using Halyard.
 
@@ -27,9 +27,9 @@ The sidecar we're going to add does not start with an access token, it needs to 
 Note: If using Halyard, this process is easier in version `v1.10` and later. In these later versions, use the `--password-command` option to pass the command to update your access token.
 
 
-## Update Configs
+## Update configs
 
-### Add a Sidecar for Token Refresh
+### Add a sidecar for token refresh
 
 In your `SpinnakerService` manifest, update the `spec.spinnakerConfig.config.deploymentEnvironment.sidecars` section if using Operator. If using Halyard, update your `~/.hal/config` in the `deploymentEnvironment.sidecars` section:
 

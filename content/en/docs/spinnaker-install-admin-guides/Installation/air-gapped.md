@@ -11,13 +11,13 @@ An Air-gapped environment is one where any combination of the following conditio
 - No ability to pull images from docker.io/armory
 - No ability for engineers to deploy with Halyard from their machines
 
-## Host Armory's Bill Of Materials
+## Host Armory's Bill Of Materials (BOM)
 
 Armory's BOMs are stored in the following bucket and are publicly available: `s3://halconfig`.
 
 If you are unable to access this bucket from the machine running Halyard, host the BOM in either a GCS or S3 compatible storage, such as MinIO.
 
-### Using a Custom Bucket and Bills of Materials
+### Using a custom bucket and BOM
 
 Your GCS or S3 compatible bucket needs to contain a `versions.yml` at the root of the bucket with the following information:
 
@@ -34,7 +34,7 @@ versions:
 
 `latestHalyard` and `latestSpinnaker` are used to notify users of new version of Halyard and Spinnaker. You can optionally update them with newer versions. `versions` is a list of available versions. It is optional if you don't intend to show new versions when `hal version list` is run.
 
-### Enabling a Custom Bucket From Halyard
+### Enabling a custom bucket From Halyard
 
 To enable custom storage in Halyard, create `/opt/spinnaker/config/halyard-local.yml` with the following content and restart Halyard:
 
@@ -57,7 +57,7 @@ spinnaker:
 ```
 
 
-### Enabling a New Version of Armory Spinnaker
+### Enabling a new version of Armory Spinnaker
 
 You can download version `x.y.z` of Armory Spinnaker with this [script](https://gist.github.com/ncknt/37b1743111eb727bcd81e21dffda90d6). Set the value for `NEW_DOCKER_REGISTRY` to point to your docker repository if needed.
 
@@ -80,15 +80,15 @@ $ aws cp --recursive versions/ s3://myownbucket
 $ gsutil cp -m -r ...
 ```
 
-## Use Custom Docker Registry
+## Use a custom Docker registry
 
 If you're unable to pull from `docker.io/armory` directly, you can use your own registry.
 
-### Docker Registry Proxy
+### Docker registry proxy
 
 Some registries allow pulling remote Docker images from another source. You can replace the `dockerRegistry` value in the script above via `NEW_DOCKER_REGISTRY`.
 
-### Isolated Docker Registry
+### Isolated Docker registry
 
 If you cannot proxy `docker.io/armory`, push images to your own registry. Images are determined from the BOM. For instance:
 
@@ -106,11 +106,11 @@ artifactSources:
 
 You need to copy `docker.io/armory/deck/2.11.0-896d15d-b0aac47-rc8` and `docker.io/armory/gate/1.11.0-83b97ab-fd0128a-rc4` to your own registry.
 
-## Halyard Cannot Run on the Local Machine
+## Halyard cannot run on the local machine
 
 The following solutions assume the that you can use `kubectl` to access the cluster where Spinnaker is installed.
 
-### Option 1: Halyard as a Deployment
+### Option 1: Halyard as a deployment
 
 You can run Halyard as a `Deployment` within the cluster that runs Spinnaker if the following conditions are true:
 

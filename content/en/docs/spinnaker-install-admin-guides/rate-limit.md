@@ -11,14 +11,11 @@ aliases:
   - /spinnaker-install-admin-guides/rate_limit/
 ---
 
-
-## Running into AWS Rate Limits
-
-## How Spinnaker Monitors a Deployment
+## How Spinnaker monitors a deployment
 
 By default Spinnaker queries (e.g. polls) the entire state of the AWS resources managed by Spinnaker every 30 seconds through the Clouddriver sub-service. This can cause AWS to throttle the requests on your account. If you have a large number of Auto-Scaling Groups and Elastic Load Balancers in your account or other services commonly querying the same APIs then you can expect to see throttling exceptions in your Spinnaker logs.
 
-### How to alleviate AWS Throttling Exceptions
+### How to alleviate AWS throttling exceptions
 
 There are several things you can do to help reduce the effects of throttling:
 - Set fine tune rate limits within Spinnaker.
@@ -26,7 +23,7 @@ There are several things you can do to help reduce the effects of throttling:
 - Decrease the polling interval.
 
 
-## Fine Grained Rate Limits
+## Fine grained rate limits
 
 Spinnaker queries your Cloud Provider (AWS, GCP, Azure, Kubernetes, etc) frequently to understand the state of your existing infrastructure and current deployments.  However, this might cause you to run into rate limits imposed by the Cloud Provider. To help avoid this Spinnaker provides controls to limit the number of requests it generates. The unit used for these controls is "requests per second" (a double float value). Global defaults are `10.0` max requests per second.
 
@@ -68,6 +65,7 @@ max_req_second = num_of_x_resources / clouddriver_30s_poll_interval
 For example, if we have 90 load balancers and clouddriver polls every 30 seconds, then we'll end up with a rate limit of 3 reqs/second for `AmazonElasticLoadBalancing`.
 
 Here's the list of rate limits you can adjust created from [AmazonClientProvider.java@v5.36.0](https://github.com/spinnaker/clouddriver/blob/v5.36.0/clouddriver-aws/src/main/groovy/com/netflix/spinnaker/clouddriver/aws/security/AmazonClientProvider.java) on 05/14/2019 by using the regex `\w+\.class`:
+
 ```yml
 serviceLimits:
   implementationLimits:
@@ -189,7 +187,7 @@ serviceLimits:
 
 Using these settings will help you avoid hitting the AWS rate limits. They can also help Spinnaker be more responsive since the cloud provider clients will not implement their back-off strategy to continue to query the infrastructure.
 
-## Request Retry
+## Request retry
 
 You can set the number of retries per request with the following setting:
 
@@ -201,7 +199,7 @@ aws:
 This is the number of retries before the request fails. It's used with an exponential backoff, maxing out at 20 seconds.
 
 
-# Fiat hitting rate limits
+## Fiat hitting rate limits
 
 If Fiat is configured to poll Github or Google, you may end up seeing rate limits when Fiat does its polling for user groups. Some symptoms that you might see are:
 

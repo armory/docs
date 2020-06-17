@@ -55,36 +55,36 @@ Navigate to `http://localhost:9090/targets`.
 
 To enable monitoring of Spinnaker by Prometheus, enable the `metric-stores` configuration.
 
-* **Halyard**
+**Halyard**
 
-  Issue these halyard commands from within your hal directory or within your halyard container:
+Issue these halyard commands from within your hal directory or within your halyard container:
 
-  ```bash
-  halyard-0:~ $ hal config metric-stores prometheus enable
+```bash
+halyard-0:~ $ hal config metric-stores prometheus enable
 
-  + Get current deployment
-    Success
-  + Edit prometheus metric store
-    Success
-  + Successfully enabled prometheus
++ Get current deployment
+  Success
++ Edit prometheus metric store
+  Success
++ Successfully enabled prometheus
 
-  halyard-0:~ $ hal deploy apply
-  ```
+halyard-0:~ $ hal deploy apply
+```
 
-* **Operator**
-  ```bash
-    apiVersion: spinnaker.armory.io/v1alpha2
-    kind: SpinnakerService
-    metadata:
-      name: spinnaker
-    spec:
-      spinnakerConfig:  
-        config:
-          metricStores:
-            prometheus:
-              enabled: true
-              add_source_metalabels: true          
-  ```
+**Operator**
+```yaml
+  apiVersion: spinnaker.armory.io/v1alpha2
+  kind: SpinnakerService
+  metadata:
+    name: spinnaker
+  spec:
+    spinnakerConfig:  
+      config:
+        metricStores:
+          prometheus:
+            enabled: true
+            add_source_metalabels: true          
+```
 
 Wait for all of the Spinnaker pods to be ready before proceeding to the next step. You can check the status by running the `kubectl get pods` command.  Because you are adding a sidecar to each pod, you may need to ensure you have enough capacity in your Kubernetes cluster to be able to support the additional resource requirements.
 
@@ -97,7 +97,7 @@ There are two steps to configure Prometheus to monitor Spinnaker:
 
 Add permissions for Prometheus by applying the following configuration to your cluster:
 
-```bash
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -132,7 +132,7 @@ subjects:
 
 Configure Prometheus to find the Spinnaker metrics endpoints by applying this to your spinnaker-system namespace:
 
-```bash
+```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:

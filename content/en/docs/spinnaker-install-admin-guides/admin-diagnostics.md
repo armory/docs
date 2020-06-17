@@ -27,7 +27,7 @@ hal armory diagnostics edit --logging-enabled=false
 You need to  to run `hal deploy apply` after enabling or disabling the diagnostics.
 
 
-## What Gets Sent
+## What gets sent
 
 You're probably wondering exactly what gets sent to Armory when you're sharing
 your log output with us.

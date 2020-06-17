@@ -1,9 +1,12 @@
 ---
 title: Dynamic Kubernetes Accounts With Vault
 weight: 32
+aliases:
+  - /spinnaker_install_admin_guides/dynamic_accounts/
+  - /spinnaker-install-admin-guides/dynamic_accounts/
 ---
 
-## Dynamic Kubernetes Accounts with Vault
+## Overview
 
 If you add, delete, or modify Kubernetes deployment targets on a regular basis, you may find that redeploying Clouddriver to pull in new
 account configuration impacts your teams. Spinnaker's [External Account Configuration](https://www.spinnaker.io/setup/configuration/#external-account-configuration) feature allows you to manage account configuration
@@ -34,7 +37,7 @@ The steps involved in setting up Dynamic Kubernetes Accounts are:
 1. Redeploy Spinnaker.
 
 
-## Create the Secret in Vault
+## Create the secret in vault
 
 The secret in Vault contains the `accounts` section that was previously in your Halyard or Operator configuration. Note that you still need to leave the configuration in Halyard or Operator for the Kubernetes account where Spinnaker is deployed. Clouddriver *replaces* all of its account information with what it finds in the Vault token. You need to add the configuration for the Spinnaker cluster if you want to use that cluster as a deployment target for Clouddriver.
 
@@ -120,7 +123,7 @@ Methods for accessing Vault other than by token are available. See the [Spring C
 
 You need to redeploy Spinnaker after making the changes to `spinnakerconfig.yml`. Do a `hal deploy apply` and wait for all pods to be running and ready.
 
-## Check Spinnaker for New Accounts
+## Check Spinnaker for new accounts
 
 When all of the pods are running and ready, do a hard refresh of the Spinnaker web interface. The accounts you added in the Vault secret should now be available in the web interface for you to use.
 

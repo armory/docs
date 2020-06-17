@@ -3,7 +3,7 @@ layout: post
 title: DNS and SSL
 weight: 43
 # This has different content than install-guide/dns-and-ssl
-redirect_from:
+aliases:
   - /spinnaker_install_admin_guides/dns_and_ssl/
   - /spinnaker_install_admin_guides/dns-and-ssl/
   - /spinnaker-install-admin-guides/dns_and_ssl/
@@ -42,7 +42,7 @@ There are a number of ways to achieve all of these - you can work with your Kube
 
 If you need to terminate TLS on the backend containers (the second or third options), review the Open Source Spinnaker documentation regarding configuring TLS certificates on the backend microservices: (Setup/Security/Authentication/SSL)[https://www.spinnaker.io/setup/security/authentication/ssl/].
 
-## Create a DNS Entry for your Load Balancer
+## Create a DNS Entry for your load balancer
 
 Add a DNS Entry to your DNS management system.  You should only need to add a DNS entry for the user-facing ALB, ELB, or other load balancer which is what you use to currently access Spinnaker.   It typically has a name such as the one below
 
@@ -52,7 +52,7 @@ armoryspinnaker-prod-external-123456789.us-west-1.elb.amazonaws.com
 
 Add a CNAME entry for the given ELB to create a simple name you will use to access your instance of Spinnaker, e.g. `spinnaker.armory.io`.
 
-## Update Spinnaker Configuration
+## Update Spinnaker configuration
 
 Update the endpoints for Spinnaker Deck (the Spinnaker UI microservice) and Spinnaker Gate (the Spinnaker API microservice)
 

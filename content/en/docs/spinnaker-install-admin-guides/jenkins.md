@@ -9,7 +9,7 @@ Before you can make use of Jenkins in Spinnaker, you'll need to
 configure access to your Jenkins masters.
 
 > The Spinnaker project has more in-depth documentation on configuring Jenkins
-> in Spinnaker [here](https://www.spinnaker.io/setup/ci/jenkins/)
+> in Spinnaker [here](https://www.spinnaker.io/setup/ci/jenkins/).
 
 ## Enable Jenkins Support
 

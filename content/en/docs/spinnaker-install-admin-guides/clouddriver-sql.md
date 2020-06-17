@@ -10,12 +10,12 @@ Since version 2.5.x (OSS 1.14.x), Clouddriver can store its data (task, infrastr
 
 Armory recommends MySQL 5.7. For AWS, you can use Aurora.
 
-## Base Configuration
+## Base configuration
 
 You can find a complete description of the options in the [open source documentation](https://www.spinnaker.io/setup/productionize/persistence/clouddriver-sql/). 
 
 
-## Database Setup
+## Database setup
 You can skip this step if you create the database during provisioning - for instance with Terraform.
 
 Once you've provisioned your RDBMS and ensured connectivity with Spinnaker, you need to create the database:
@@ -45,7 +45,7 @@ The above configuration grants authorization from any host. You can restrict it 
 
 You have two options for deploying Clouddriver with MySQL: a simpler deployment, which involves downtime, or a three-step method that avoids downtime. Pick the method that best fits your requirements.
 
-### Simple Deployment
+### Simple deployment
 
 If you are not worried about downtime or if Spinnaker is not currently executing any pipelines, you can run a simple deployment by adding the following snippet to `SpinnakerService` manifest under `spec.spinnakerConfig.profiles.clouddriver` if using the Operator, or to `<HALYARD>/<DEPLOYMENT>/profiles/clouddriver-local.yml` if using Halyard:
 
@@ -95,7 +95,7 @@ redis:
 ```
 
 
-### No Downtime Deployment
+### No downtime deployment
 
 To avoid downtime for your deployment, use the following three steps:
 

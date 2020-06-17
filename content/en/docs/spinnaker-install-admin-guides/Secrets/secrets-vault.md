@@ -107,7 +107,7 @@ Once you've mounted your `ConfigMap` to the `spinnaker-operator` deployment, it 
 
 Halyard will need access to the Vault server in order to decrypt secrets for validation and deployment. While the Spinnaker services are configured through `~/.hal/config`, the Halyard daemon has its own configuration file found at `/opt/spinnaker/config/halyard.yml`. The contents of your file may look different than this example, but just make sure to add the secrets block somewhere at the root level.
 
-### Halyard Locally or in Docker
+### Halyard locally or in Docker
 If you're running Halyard locally, you can use Token auth method. Set your `VAULT_TOKEN` environment variable and add the secrets block to `halyard.yml` like so:
 
 ```

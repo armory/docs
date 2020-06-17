@@ -26,7 +26,7 @@ To set up TLS, provide the following:
 - Chain of certificates to validate the server (if self signed)
 
 
-## What You Need
+## What you need
 
 In the following sections, you need the same information that you needed for [TLS setup](../services-tls#what-you-need):
 
@@ -92,11 +92,11 @@ http:
   clientKeyPassword: <[GOSERVICE]_KEY_PASS if required>
 ```
 
-## Changing Service Endpoints
+## Changing service endpoints
 
 This section is identical to [changing endpoints for TLS](../services-tls#changing-service-endpoints).
 
-## Changing Readiness Probe
+## Changing readiness probe
 
 Change the readiness probe used by Kubernetes from an HTTP request to a TCP probe.
 

@@ -4,6 +4,8 @@ title: "Kubernetes: Creating Service Accounts and Kubeconfigs"
 weight: 20
 ---
 
+## Overview
+
 When connecting Spinnaker to Kubernetes, Spinnaker needs the following:
 
 * A service account in the relevant Kubernetes cluster (or namespace in a cluster).  *In Kubernetes, a service account exists in a given namespace but may have access to other namespaces or to the whole cluster*
@@ -37,7 +39,7 @@ Then create the object:
 kubectl apply -f spinnaker-service-account.yml
 ```
 
-## Grant Cluster Admin Permissions
+## Grant cluster admin permissions
 
 Do this only if you want to grant the service account access to all namespaces in your cluster.
 
@@ -69,7 +71,7 @@ Then, create the binding:
 kubectl apply -f spinnaker-service-account.yml
 ```
 
-## Grant Namespace Specific Permissions
+## Grant namespace specific permissions
 
 If you only want the service account to be able to access specific namespaces, then you can create a role with a set of permissions and rolebinding to attach the role to the service account.  You can do this multiple times.  Additionally, you will  also have explicitly  do this for the namespace where the service account is, as it is not implicit.
 
@@ -120,7 +122,7 @@ Then, create the object:
 kubectl apply -f spinnaker-role-and-rolebinding-target.yml
 ```
 
-## Get the Service Account and Token. Generate the Kubeconfig
+## Get the service account and token
 
 Run these commands (or commands like these) to get the token for your service account and create a kubeconfig with access to the service account.
 

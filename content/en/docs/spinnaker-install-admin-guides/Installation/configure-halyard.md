@@ -1,6 +1,7 @@
 ---
 title: Configure Armory Halyard
-weight: 51
+aliases:
+  - /docs/spinnaker-install-admin-guides/configure-halyard/
 ---
 
 ## Overview

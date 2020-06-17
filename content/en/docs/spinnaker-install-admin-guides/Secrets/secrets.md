@@ -15,9 +15,9 @@ We can now store secrets (tokens, passwords, sensitive files) separately from th
 - Operator (or Halyard) can send secret references to the services that support decryption or send decrypted secrets if the service does not support it.
 
 
-## Using Secrets
+## Using secrets
 
-### Secret Format
+### Secret format
 
 When referencing string secrets (passwords, tokens) in configs, use the following general format:
 
@@ -82,7 +82,7 @@ And for an older release of Clouddriver that does not support decryption:
 You can also provide secret references directly in `SpinnakerService` manifest under section `spec.spinnakerConfig.profiles` if using the Operator, or in `*-local.yml` profile files if using Halyard, as well as directly in Spinnaker services.
 
 
-### Secret Engines Supported
+### Supported secret engines
 
 * [Encrypted S3 buckets](../secrets-s3/) (Open Source Spinnaker)
 * [Google Storage (GCS)](../secrets-gcs/) (Open Source Spinnaker)

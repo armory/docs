@@ -23,7 +23,7 @@ A passive Spinnaker means that the deployment:
 - Does not schedule pipelines
 - Cannot have pipelines triggered by CI jobs
 
-## Storage Considerations
+## Storage considerations
 
 {{% alert title="Note" %}}The storage you use should be replicated across regions since these contain all the application and pipeline definitions.{{% /alert %}}
 
@@ -104,7 +104,7 @@ Once you're done configuring for the passive Spinnaker, run `kubectl -n <spinnak
 
 {{% alert title="Note" %}}Armory recommends performing a DR exercise run to make sure the passive Spinnaker is set up correctly. Ideally, the DR exercise should include both failing over to the DR region and failing back to the primary region.{{% /alert %}}
 
-## Performing Disaster Recovery
+## Performing disaster recovery
 
 If the active Spinnaker is failing, the following actions need to be taken:
 

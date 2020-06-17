@@ -91,7 +91,7 @@ The following script generates these files in the `services` directory:
 - a `tls-passwords` file containing all the passwords. You can store as-is in a bucket.
 
 
-```
+```bash
 #!/bin/bash -e
 
 # You can change it to a different method

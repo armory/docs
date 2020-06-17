@@ -18,7 +18,7 @@ This document is written with the following workflow in mind:
 * You have logged into the `gcloud` CLI and have permissions to create GKE clusters and a service account
 
 
-## Installation Summary
+## Installation summary
 
 Installing Spinnaker with the Operator consists of the following steps:
 
@@ -31,7 +31,7 @@ Installing Spinnaker with the Operator consists of the following steps:
 * Modify the Operator kustomize files for your installation
 * Deploy Spinnaker through the Operator
 
-## Create GKE Cluster
+## Create GKE cluster
 
 This creates a minimal GKE cluster in your default region and zone.
 
@@ -100,7 +100,7 @@ clusterrolebinding.rbac.authorization.k8s.io/spinnaker-operator-binding created
 serviceaccount/spinnaker-operator created
 ```
 
-## Create GCS Service Account
+## Create GCS service sccount
 
 ```bash
 export SERVICE_ACCOUNT_NAME=<name-for-your-service-account>
@@ -124,7 +124,7 @@ gcloud --project ${PROJECT} iam service-accounts keys create ${SERVICE_ACCOUNT_F
     --iam-account ${SA_EMAIL}
 ```
 
-## Create Kubernetes Service Account
+## Create Kubernetes service account
 
 ```bash
 CONTEXT=$(kubectl config current-context)
@@ -147,7 +147,7 @@ kubectl config set-credentials ${CONTEXT}-token-user --token $TOKEN
 kubectl config set-context $CONTEXT --user ${CONTEXT}-token-user
 ```
 
-## Create GCS Bucket
+## Create GCS bucket
 
 Use the Cloud Console to do create your bucket. If you're going to put secrets in the bucket, make sure to create a secrets directory in the bucket. Also, ensure the bucket is accessible from the service account you created.
 
@@ -192,7 +192,7 @@ files:
     }
 ```
 
-## Add the Kubernetes Provider Account
+## Add the Kubernetes provider account
 
 There are a few ways to do this with Operator. This uses the typical way of doing it with config. The Account CRD is probably the way this will be done in the future.
 
@@ -247,19 +247,19 @@ kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 sudo mv kustomize /usr/local/bin/
 ```
 
-## Deploy Spinnaker Using Kustomize
+## Deploy Spinnaker using Kustomize
 
 ```bash
 kubectl create ns <spinnaker-namespace>
 kustomize build deploy/spinnaker/kustomize | kubectl -n <spinnaker-namespace> apply -f -
 ```
 
-## Configure Ingress
+## Configure ingress
 
 The `SpinnakerService.yml` file contains an `expose` section fthat defines how a LoadBalancer object will be setup to publicly expose Deck and Gate. See [spec.expose](/operator_reference/operator-config/#specexpose) for details.
 
 
-## Configure Authentication
+## Configure authentication
 
 To enable basic form authentication in Spinnaker as in this KB [article](https://kb.armory.io/installation/enabling-basic-auth/), you need to understand how your `kustomization.yml` file is [configured](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/fields.md). If you have the `profiles-patch.yml`, you are telling Kustomize to overwrite the profiles section of the config with entries for each of the components (clouddriver, deck, gate, etc). So you can put all of the entries for those profile files into `profiles-patch.yml`.
 
@@ -332,7 +332,7 @@ spec:
 
 Now add an entry to the end of `kustomization.yml` to include `patch-dinghy.yml`.
 
-## Other Patch Files
+## Other patch files
 
 You can add additional patch files to turn on functionality. Examples are in the `minnaker` [repository](https://github.com/armory/minnaker/tree/master/operator/install).
 
