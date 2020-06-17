@@ -25,7 +25,7 @@ The feature is working, and installation works. All of the major known issues ar
 
 ### Where To Install Beta
 
-Pretty much anywhere except production. A production installation could occur but proceed with caution and have proper rollbacks ready. If you want to experiment with the feature, Armory recommends using your development, QA, staging, or pre-prod environments. This release is meant to give the user a chance to set up new functionality and hit the ground running when GA releases. It is also an oppurtunity to give feedback on any final major issues.
+Pretty much anywhere except production. A production installation could occur but proceed with caution and have proper rollbacks ready. If you want to experiment with the feature, Armory recommends using your development, QA, staging, or pre-prod environments. This release is meant to give the user a chance to set up new functionality and hit the ground running when GA releases. It is also an opportunity to give feedback on any final major issues.
 
 ## GA
 All major technical issues have been identified and/or resolved. The application is available for install by all customers in the official Armory release.
