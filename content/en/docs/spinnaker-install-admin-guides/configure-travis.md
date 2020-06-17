@@ -3,12 +3,10 @@ title: Configure Travis
 weight: 51
 ---
 
+## Overview
+
 Before you can make use of Jenkins in Spinnaker, you'll need to
 configure access to your Jenkins masters.
-
-{:.no_toc}
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
 
 Configuring Travis in your Spinnaker instance with Halyard is pretty easy, but
 there are a few "gotchas" to watch out for.

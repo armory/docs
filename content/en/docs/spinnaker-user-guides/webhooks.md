@@ -7,7 +7,7 @@ aliases:
   - /spinnaker_user_guides/webhooks/
 ---
 
-> Spinnaker uses "webhooks" in two ways -- as a trigger for pipeline execution,
+> Spinnaker uses "webhooks" in two ways -- as a trigger for pipeline execution
 > and as a stage that can make arbitrary calls to another service.  If you're
 > looking for information on configuring a webhook trigger that you can use
 > to run a pipeline, the open source community [has a very good guide for that](https://www.spinnaker.io/guides/user/pipeline/triggers/webhooks/).  Below we
@@ -25,7 +25,7 @@ The basic configuration is what you might expect. Fill in the URL to make the re
 
 ![Webhook Basic Config](/images/webhook-basic.png)
 
-Of particular note is that you can use [the Spinnaker pipeline expression language](/spinnaker-user-guides/expression-language/) both as part of the URL field and within the payload, making it easy to pass anything that's available as part of the pipeline context.
+Of particular note is that you can use [the Spinnaker pipeline expression language]({{< ref "expression-language" >}}) both as part of the URL field and within the payload, making it easy to pass anything that's available as part of the pipeline context.
 
 In this simple configuration the stage will be marked as successful if it gets a 2XX status code back, and will fail on anything else. If the return value from the request itself isn't enough to determine the overall success you can check the "Wait for completion" checkbox and get a set of additional configuration:
 

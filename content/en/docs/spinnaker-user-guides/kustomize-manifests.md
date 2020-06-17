@@ -4,8 +4,11 @@ title: Using Kustomize for Manifests
 weight: 170
 ---
 
-Note that Kustomize is currently in [Beta](https://kb.armory.io/releases/early-release-beta-GA/). The feature is working and installable but is not meant for production use.
+## Overview
+
+> Note that Kustomize is currently in [Beta]({{< ref "release-definitions" >}}). The feature is working and installable but is not meant for production use.
 ​​
+
 Kustomize is a tool that lets you create customized Kubernetes deployments without modifying underlying YAML configuration files. Since the files remain unchanged, others are able to reuse the same files to build their own customizations. Your customizations are stored in a file called `kustomization.yaml`. If configuration changes are needed, the underlying YAML files and `kustomization.yaml` can be updated independently of each other.
 ​
 To learn more about Kustomize and how to define a `kustomization.yaml` file, see the following links:
@@ -21,7 +24,7 @@ Spinnaker uses the latest non-kubectl version of Kustomize.
 
 ## Kustomize in 2.16 (Beta)
 ​
-## Enabling Kustomize in 2.16 (Beta)
+### Enabling Kustomize in 2.16 (Beta)
 ​
 Kustomize can be enabled by a feature flag in 2.16.
 
@@ -50,7 +53,7 @@ Add the following line to `~/.hal/{DEPLOYMENT_NAME}/profiles/settings-local.js`:
 window.spinnakerSettings.feature.kustomizeEnabled = true;
 ```
 ​
-## Using Kustomize
+### Using Kustomize
 ​
 Kustomize works by running `kustomize build` against a `kustomization.yaml` file located in a Git repository. This file defines all of the other files needed by Kustomize to render a fully hydrated manifest.
 ​
@@ -75,7 +78,7 @@ You can now run your pipeline and get a Kustomize rendered manifest!
 ### Requirements
 Kustomize in 2.17+ requires the [git/repo](https://www.spinnaker.io/reference/artifacts/types/git-repo/) artifact type.
 ​
-## Enable Kustomize
+### Enable Kustomize
 ​
 Kustomize can be enabled by a feature flag in Armory Spinnaker 2.16 and later.
 
@@ -114,7 +117,7 @@ You can now use the *KUSTOMIZE* option on a _Bake (Manifest)_ stage.
 > **Note:** Sometimes you will need to clear the cache in your browser in order to see the new *KUSTOMIZE* option available on a _Bake (Manifest)_ stage.
 
 ​
-## Build the Pipeline
+### Build the Pipeline
 ​
 For this example, we are going to use this [kustomize public repository](https://github.com/kubernetes-sigs/kustomize), specifically the *helloWorld* example.
 
@@ -152,7 +155,7 @@ Finally, add a **Deploy (Manifest)** stage. Make sure to select the _Manifest So
 ​
 > **Note:** Due we are deploying a manifest without a specified namespace we need to override the namespace checking the _"Override Namespace"_ option in the deployment stage.
 
-## Run the Pipeline
+### Run the Pipeline
 ​
 After you execute the pipeline, you can see the manifest generated in YAML format by clicking on the _Baked Manifest YAML_ link:
 ​

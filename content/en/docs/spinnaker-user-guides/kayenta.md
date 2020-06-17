@@ -7,6 +7,8 @@ aliases:
   - /spinnaker_user_guides/kayenta/
 ---
 
+## Overview
+
 Kayenta is an automated canarying analysis (ACA) service that is provided through Armory Spinnaker. The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence.
 
 Kayenta uses real-time data sources to validate that a canary is good or bad. Today, Kayenta supports the following real-time data sources:
@@ -16,11 +18,7 @@ Kayenta uses real-time data sources to validate that a canary is good or bad. To
 * Prometheus
 * New Relic
 
-This guide includes:
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
-
-## Configuring Kayenta on an Application
+## Configuring Kayenta on an application
 
 If Kayenta is enabled for you instance, if you go to an application's config
 you should see a checkbox to enable Canarying:
@@ -37,7 +35,7 @@ You can also find more information about Kayenta on [Automated Canary Deployment
 In this document, we will quickly run through the process to simply get you
 going.
 
-## Canary Configs
+## Canary configs
 
 NOTE:  You may need to refresh your browser page to see these changes
 after enabling the Canary above.
@@ -107,7 +105,7 @@ be sure you've removed all the metrics from that group before saving.
 Grouping is used to add different weights to the importance of different
 metrics or groups of metrics (see "Scoring" below).
 
-## Add Metric
+## Add metric
 
 When you add a metric, the UI will be slightly different depending on what
 Metric Store you selected earlier.  The DataDog dialog looks like:
@@ -132,7 +130,7 @@ usage, etc, where a significant improvement is not a failure), or, conversely,
 select "decrease" for the opposite (useful for metrics that measure things
 where bigger numbers are always better).
 
-### DataDog Metrics
+### DataDog metrics
 
 For DataDog, the metric is simply the aggregation function you wish to use
 (avg, min, max, sum), a colon, and the name of the metric.  You can use the
@@ -144,16 +142,16 @@ these names:
 For example, if you wanted to measure the average amount of CPU used, you could
 enter `avg:system.cpu.user`.
 
-### Stackdriver Metrics
+### Stackdriver metrics
 
 Please refer to the [Spinnaker Kayenta documentation](https://www.spinnaker.io/guides/user/canary/config/#create-metric-groups-and-add-metrics) for information
 on configuring Stackdriver metrics.
 
-### New Relic Metrics
+### New Relic metrics
 Use a NRQL Select statement (without the WHERE clause) to specify the metric to measure.
 You can use [New Relic Insights](https://newrelic.com/products/insights) to find the available events and metrics.  Please refer to the [NRQL documentation](https://docs.newrelic.com/docs/query-data/nrql-new-relic-query-language/getting-started/nrql-syntax-components-functions) for more information.
 
-## Filter Templates
+## Filter templates
 
 Please refer to the [Spinnaker Kayenta documentation](https://www.spinnaker.io/guides/user/canary/config/filter_templates/) for information on configuring
 Filter Templates.  They are completely optional and may not be necessary for
@@ -187,7 +185,7 @@ although it will not have been pre-emptively cancelled.  This is intended to
 allow someone to look at the marginal responses and make their own evaluation
 of whether or not the pipeline should continue.
 
-## Configuring A Canary Analysis Stage
+## Configuring a Canary Analysis stage
 
 If everything is configured properly, you should be able to create a stage
 of Type "Canary Analysis".  The stage form should look like this:
@@ -244,7 +242,7 @@ and graphs.
 
 *Scope Name*:  Select Default for now.
 
-### Metric Scopes
+### Metric scopes
 
 This section gets filled in differently, depending on which metrics provider
 you're using, and how you've set up your pipeline prior to this stage.  For
@@ -266,7 +264,7 @@ For NewRelic, use the "Add Field" button in the "Extended Params" section to spe
 For more information on configuring these scopes, please refer to the
 [Spinnaker Kayenta Documentation](https://www.spinnaker.io/guides/user/canary/stage/#define-the-canary-stage).
 
-### Automating Canary Analysis In A Pipeline
+### Automating Canary Analysis in a pipeline
 
 The Kayenta stage lets you run canary analysis against pretty much anything, so
 it's hard to prescribe a specific usage that would best fit your scenario.  To

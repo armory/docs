@@ -5,9 +5,9 @@ aliases:
   - /spinnaker_user_guides/github/
 ---
 
-## Trigger a Pipeline with a Github Commit
+## Trigger a Pipeline with a Github commit
 
-> Before you start, you'll need to [configure your Github repositories](/spinnaker-install-admin-guides/github/#configuring-a-github-trigger)
+> Before you start, you'll need to [configure your Github repositories](/docs/spinnaker-install-admin-guides/github).
 > You'll be able to configure a pipeline trigger without having configured
 > your Github webhook, but the trigger won't fire until Spinnaker can receive
 > those calls from Github.
@@ -26,7 +26,7 @@ with common patterns or partial matches.
 
 ![Configure Github Trigger](/images/github-user-guide-1.gif)
 
-## Using Artifacts from Github
+## Using artifacts from Github
 
-> Before you start, you'll need to [configure Github as an artifact source](/spinnaker-install-admin-guides/github/#configuring-github-as-an-artifact-source)
+> Before you start, you'll need to [configure Github as an artifact source](/docs/spinnaker-install-admin-guides/github#configuring-github-as-an-artifact-source)
 > You won't see the Github artifact type until this is configured.

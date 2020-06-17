@@ -12,8 +12,6 @@ weight: 171
 
 {{< include "experimental-feature.html" >}}
 
-PaCRD is considered [**Experimental**](https://kb.armory.io/releases/early-release-beta-GA/) software. This feature is working and
-installable but is missing functionality and subject to rapid change.
 
 __Interested in joining this experiment?
 [Contact us](mailto:pipelines-as-code@armory.io) for more information.__
@@ -118,7 +116,7 @@ and include details about customizing an install.
 
 Once you have PaCRD installed and running in your cluster, you can define your applications and pipelines. Then apply them to the cluster.
 
-While this product is in an [**Experimental**](https://kb.armory.io/releases/early-release-beta-GA/) state, [kind](https://github.com/kubernetes-sigs/kind) objects for PaCRD
+While this product is in an [**Experimental**]({{< ref "release-definitions" >}}) state, [kind](https://github.com/kubernetes-sigs/kind) objects for PaCRD
 live under the `pacrd.armory.spinnaker.io/v1alpha1` version moniker.
 
 ## Applications

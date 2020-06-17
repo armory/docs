@@ -29,7 +29,7 @@ Gate is the front-end API that is exposed to the users of your Spinnaker instanc
 
 ### Rosco
 
-Rosco is the "bakery" service.  It is a wrapper around Hashicorp's Packer command line tool which bakes images for AWS, GCP, Docker, Azure, and [other builders](https://www.packer.io/docs/builders/index.html).
+Rosco is the "bakery" service.  It is a wrapper around Hashicorp's Packer command line tool which bakes images for AWS, GCP, Docker, Azure, and [other builders](https://www.packer.io/docs/builders).
 
 ### Deck
 

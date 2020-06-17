@@ -7,7 +7,7 @@ aliases:
   - /spinnaker_user_guides/deploying/
 ---
 
-## Prerequisites and Assumptions:
+## Prerequisites and assumptions:
 
 - You are deploying to Amazon Web Services (AWS)
 - You know how to create pipelines and utilize the [Bake stage]({{< ref "baking-images" >}})
@@ -25,7 +25,7 @@ To start off, let's go through an example. This example continues from the examp
 
 ## Example
 
-### Creating a Load Balancer
+### Creating a load balancer
 In this example we are going to deploy a simple web server that serves a page with details about its environment.
 
 Go to the application screen to create a load balancer. Select the 'Load Balancers' tab:
@@ -45,7 +45,7 @@ Now we can hit create.
 ![](/images/Image-2019-02-21-at-16.33.44.png)
 
 
-### Creating a Deploy Pipeline
+### Creating a deploy pipeline
 
 Navigate to the configuration screen of the previously created pipeline from the [Baking guide]({{< ref "baking-images" >}}).
 
@@ -137,7 +137,7 @@ Select your red instance and hover your cursor over the red triangle next to the
 
 ![](/images/Image-2017-03-30-at-3.29.02-PM.png)
 
-### Incorrect Healthcheck
+### Incorrect healthcheck
 
 You have the option when deploying a new server group to use either EC2 or ELB healthchecking. When instances aren't passing this healthcheck they will be terminated and replaced. If you are experiencing strange behavior, double check that the correct healthcheck is selected.
 
@@ -233,7 +233,7 @@ If you are ever in a situation where you need to roll back without Spinnaker, yo
 - Scale down or delete the new ASG
 
 
-## Additional Launch Block Devices
+## Additional launch block devices
 
 If you want additional block devices or a larger root partition you'll need to
 add an a new list to the pipeline JSON.  Unfortunately at this time there is no
@@ -244,7 +244,7 @@ UI to add block devices.
 3.  Add your custom block devices for launch under the key `blockDevices`.
 4.  Make sure that `AMI Block Device Mappings` is set to `Defaults for selected instance type `.
 
-### Block Devices Definition
+### Block devices definition
 
 ```
 "blockDevices": [
@@ -257,7 +257,7 @@ UI to add block devices.
   }
 ]
 ```
-### Example of Additional Block Devices
+### Example of additional block devices
 ```
 "clusters": [
         {
@@ -279,7 +279,7 @@ UI to add block devices.
 ```
 
 
-## VPC Subnet Type
+## VPC subnet type
 
 Throughout Spinnaker, Subnet Type is an abstraction of subnets within AWS.
 

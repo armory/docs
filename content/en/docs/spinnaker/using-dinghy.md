@@ -5,7 +5,7 @@ aliases:
   - /spinnaker/using_dinghy/
 ---
 
-Armory's _Pipelines-as-Code_ feature provides a way to specify pipeline definitions in source code repos such as GitHub and BitBucket.
+Armory's _Pipelines as Code_ feature provides a way to specify pipeline definitions in source code repos such as GitHub and BitBucket.
 
 The Armory Spinnaker installation provides a service called _Dinghy_, which keeps the pipeline in Spinnaker in sync with what is defined in the GitHub repo. Also, users are able to make a pipeline by composing other pipelines, stages, or tasks and templating certain values.
 
@@ -17,7 +17,28 @@ Before you can use this feature, please ensure you have [configured]({{< ref "in
 
 GitHub (or BitBucket) webhooks are sent off when you modify either the Templates or the Module definitions. The Dinghy service looks for and fetches all dependent modules and parses the template and updates the pipelines in Spinnaker. The pipelines get automatically updated whenever a module that is used by a pipeline is updated in VCS. This is done by maintaining a dependency graph.  Dinghy will look for a `dinghyfile` in all directories, not just the root path.  Unless otherwise configured, Dinghy will process changes found in the master branch. For more information on how to configure branches, see [Custom branch configuration]({{< ref "install-dinghy#custom-branch-configuration" >}})
 
-For a deeper look at how Pipelines-as-Code works in your SDLC, take a look at the [Pipelines-as-Code-Workflow](https://kb.armory.io/concepts/Pipelines-as-Code-Workflow/) article.
+### Intended Workflow
+
+The Pipelines as Code feature is intended to make it much faster and easier
+for developers to get a brand new application up and running.  The general
+workflow for new projects is:
+
+1. Developer creates a new project in source control
+2. They create a Dinghyfile to build the application and pipelines in
+   Spinnaker (even easier if there is a Module Repo set up with a
+templatized set of pipelines)
+3. When the code is committed to "master", Armory Spinnaker picks up the
+   Dinghyfile, renders it, and applies it to Spinnaker, creating the
+application and the pipelines.
+
+Job done!  If everything's been configured properly, your developers should
+be able to deploy their code using a previously-proven pipeline model
+without ever having had to go into Spinnaker to configure anything.
+
+As an added bonus, the pipeline definitions have now been saved in source
+control, along with the rest of the project's files.  If changes are made
+to the Dinghyfile, when committed/merged into the "master" branch, the
+pipelines are automatically re-rendered and updated.
 
 ## Basic Format
 
@@ -876,7 +897,7 @@ In the template, the access path for that variable is: `.RawData.pusher.name`.
 
 ## Example Templates
 
-Armory provides example dinghy templates you can copy and extend. You can find the examples in the [Armory GitHub repo](https://github.com/armory-io/dinghy-templates).
+Armory provides example dinghy templates you can copy and extend. You can find the examples in the [Armory GitHub repo](https://github.com/armory/dinghyTemplates).
 
 ## Known Issue
 

@@ -4,12 +4,12 @@ weight: 87
 ---
 This article describes how to configure Spinnaker to send Slack notifications.  
 
-## Create A Slack Application
+## Create a Slack application
 Go to the [Apps Management URL](https://api.slack.com/apps) and click on the “Create New App” button. Once done, you will get access to the basic configuration pane. You might want to customize some settings, like the color or the logo of your application at the bottom of it.
 
 ![Github Webhook](/images/slack-notifications-1.png)
 
-## Create A Bot
+## Create a bot
 Once the application has been created, you will create a Bot. Next, select the “Add features and functionality” menu and then select “Bots”.
 
 Enter the following fields:
@@ -18,7 +18,7 @@ Enter the following fields:
 - The Bot Username
 - The “Always Show My Bot as Online” to On
 
-##  Deploy The Bot
+##  Deploy the bot
 
 Select the “OAuth & Permissions” menu, copy the *Bot User OAuth Access Token* this is the token needed in Spinnaker configuration, also on the *Bot Token Scopes* section add a scope of type `chat:write` like in the screenshot below:
 
@@ -26,11 +26,11 @@ Select the “OAuth & Permissions” menu, copy the *Bot User OAuth Access Token
 
 Select the “Install your app to your workspace” from the Bot “Basic Information” page and deploy it.
 
-## Invite The Bot To A Channel
+## Invite the bot to a channel
 
 Spinnaker only requires to be able to publish on a channel to interact with Slack. All you have to do is connect to a channel or create a new channel and name the bot you’ve just created. Slack will propose to invite the bot. Accept the invitation.
 
-## Register The Slack Token With Spinnaker
+## Register the Slack token with Spinnaker
 
 You are now ready to configure Spinnaker with the bot you’ve just registered.
 
@@ -88,6 +88,7 @@ $ hal deploy apply
 ```
 
 ## Test Spinnaker
+
 You should then make sure Spinnaker can send the notifications as expected. You can configure a notification within a channel you have invited your bot in and test by running a test pipeline. See example below:
 
 ![Github Webhook](/images/slack-notifications-3.png)

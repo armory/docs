@@ -13,7 +13,7 @@ We currently support two methods of authentication with Vault servers.
 
 ### 1. Kubernetes service account (recommended)
 
-You'll need to configure Vault to authenticate with Kubernetes per our [Vault Configuration Guide](/spinnaker-install-admin-guides/vault-configuration/) or [Hashicorp's documentation](https://www.vaultproject.io/docs/auth/kubernetes.html#configuration).
+You'll need to configure Vault to authenticate with Kubernetes per our [Vault Configuration Guide]({{< ref "vault-k8s-configuration" >}}) or [Hashicorp's documentation](https://www.vaultproject.io/docs/auth/kubernetes.html#configuration).
 
 Note: If multiple clusters need to access the same Vault server, you'll need to use the [-path flag](https://www.vaultproject.io/docs/commands/auth/enable.html#usage) and give each cluster a different path name. This becomes `<cluster auth path>` in the example below. If using just one cluster, you can use the default `vault auth enable kubernetes` command, in which case your path will be `kubernetes`.
 
@@ -107,7 +107,7 @@ Once you've mounted your `ConfigMap` to the `spinnaker-operator` deployment, it 
 
 Halyard will need access to the Vault server in order to decrypt secrets for validation and deployment. While the Spinnaker services are configured through `~/.hal/config`, the Halyard daemon has its own configuration file found at `/opt/spinnaker/config/halyard.yml`. The contents of your file may look different than this example, but just make sure to add the secrets block somewhere at the root level.
 
-### Halyard Locally or in Docker
+### Halyard locally or in Docker
 If you're running Halyard locally, you can use Token auth method. Set your `VAULT_TOKEN` environment variable and add the secrets block to `halyard.yml` like so:
 
 ```

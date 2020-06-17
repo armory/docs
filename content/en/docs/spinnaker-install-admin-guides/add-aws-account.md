@@ -7,13 +7,7 @@ aliases:
   - /spinnaker-install-admin-guides/add_aws_account/
 ---
 
-Once you have (OSS or Armory) Spinnaker up and running in Kubernetes, you'll want to start adding deployment targets.
-
-Note that this document assumes the following conditions are true:
-
-* Spinnaker was installed with Operator or Halyard.
-* You have access to the Spinnaker config files, and a way to apply them (`kubectl` for Operator or `hal` for Halyard),
-* You have a way to create AWS permissions, users, and roles.
+Once you have (OSS or Armory) Spinnaker up and running in Kubernetes, start adding deployment targets.
 
 ## Overview
 
@@ -29,6 +23,12 @@ This document will guide you through the following:
   * Configuring the Managed Accounts IAM Roles to trust the IAM Instance Role from the AWS nodes
   * Adding the Managed Accounts to Spinnaker
   * Adding/Enabling the AWS Cloud Provider to Spinnaker
+
+## Assumptions
+
+* Spinnaker was installed with Operator or Halyard.
+* You have access to the Spinnaker config files, and a way to apply them (`kubectl` for Operator or `hal` for Halyard),
+* You have a way to create AWS permissions, users, and roles.
 
 ## Background: Understanding AWS Deployment from Spinnaker
 
@@ -275,7 +275,7 @@ When deploying EC2 instances, Spinnaker currently requires that you attach a rol
 1. Optionally, add tags if required by your organization.  Then, click "Next: Review".
 1. Specify the Role Name as "BaseIAMRole"
 
-### IAM User Part 3: Creating a Managing Account IAM Policy in your primary AWS Account
+### IAM User Part 3: Creating a Managing Account IAM Policy in your primary AWS account
 
 In the account that Spinnaker lives in (i.e., the AWS account that owns the EKS cluster where Spinnaker is installed), create an IAM Policy with permissions to assume all of your Managed Roles.
 
@@ -373,7 +373,7 @@ For each account you want to deploy to, perform the following:
 
 1. Click "Update Trust Policy", in the bottom right.
 
-### IAM User Part 6: Adding the Managing Account User and Managed Accounts to Spinnaker
+### IAM User Part 6: Adding the Managing Account User and managed accounts to Spinnaker
 
 The Clouddriver pod(s) should be now able to assume each of the Managed Roles (Target Roles) in each of your Deployment Target accounts.  We need to configure Spinnaker to be aware of the accounts and roles it is allowed to consume.
 

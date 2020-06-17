@@ -14,7 +14,7 @@ udf:
   udfRoot: /opt/spinnaker/config/udf
 ```
 
-See [udf0 docs](https://www.spinnaker.io/setup/features/user-data/), which by default Spinnaker will create an [`/etc/default/server-env`](https://kb.armory.io/aws/18-what-is-server-env/) file which contain cluster and server group information.
+See [udf0 docs](https://www.spinnaker.io/setup/features/user-data/), which by default Spinnaker will create an `/etc/default/server-env` file which contain cluster and server group information.
 
 ### Related Guides
 

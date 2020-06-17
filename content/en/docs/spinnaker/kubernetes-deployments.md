@@ -20,7 +20,10 @@ You'd usually get the image from a trigger via container registry or a Jenkins j
 
 
 The second step defines the deployment of that image. It's a simple "*Deploy (Manifest)*" stage. Here we're adding the static deployment manifest via a text field but you'd usually retrieve it as an artifact directly
-or via a [Helm bake stage](https://kb.armory.io/kubernetes/using-spinnaker-and-helm/).
+or via a Helm bake stage.
+
+{{% alert title="Note" %}}For more information, watch this video about [Deploying Helm Charts with Armory Spinnaker](https://youtu.be/u7QF2X4WzE8?t=360) -- Example of artifact promotion through environments managed by a single pipeline.{{% /alert %}}
+
 
 ![image](/images/kubernetes_deployments_2.png)
 

@@ -5,6 +5,8 @@ aliases:
   - /spinnaker_install_admin_guides/orca-sql/
 ---
 
+## Overview
+
 By default, Orca (the task orchestration service) uses Redis as its backing store. You can now configure Orca to use a relational database to store its pipeline execution. The main advantage of doing so is a gain in performance and the removal of Redis as a single point of failure.
 
 Armory recommends MySQL 5.7. For AWS, you can use Aurora.
@@ -42,7 +44,7 @@ monitor:
     redis: false
 ```
 
-## Initial Run
+## Initial run
 
 Once you've provisioned your RDBMS and ensured connectivity from Spinnaker, you'll need to create the database. You can skip this step if you create the database during provisioning - for instance with Terraform:
 
@@ -132,7 +134,7 @@ You can find the dialect below:
 | PostgreSQL 9.5 | `POSTGRES_9_5`  | -->
 
 
-## Database Maintenance
+## Database maintenance
 
 Each new version of Orca may potentially migrate the database schema. This is done with the `orca_migrate` user defined above.
 

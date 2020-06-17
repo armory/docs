@@ -16,15 +16,15 @@ aliases:
   - /spinnaker-user-guides/baking_images/
 ---
 
-Definition: The term 'Baking' is used within Spinnaker to refer to the process of creating machine images.
+Definition: The term 'baking' is used within Spinnaker to refer to the process of creating machine images.
 
-Prerequisites and assumptions:
+## Prerequisites and assumptions:
 
 - You are familiar with creating [applications]({{< ref "your-first-application" >}}) and [pipelines]({{< ref "your-first-pipeline" >}})
 - You are deploying to Amazon Web Services (AWS)
 
 
-## Baking in a Pipeline
+## Baking in a pipeline
 
 First let's go through an example of baking, then we can go into some details and information sharing.
 
@@ -94,7 +94,7 @@ If I press 'Start Manual Execution' again, since the package version hasn't chan
 
 Notice the whole pipeline only ran for '00:00' and in the lower right Spinnaker says 'No changes detected; reused existing bake'
 
-## Advanced Options
+## Advanced options
 
 You can do additional things like use a specific base AMI, specify your baked AMI's name, use a custom packer script, or pass variables to a packer script.
 
@@ -133,7 +133,7 @@ In this situation, the base OS selection (ubuntu/trusty/windows) will be ignored
 You can also select a base AMI more dynamically by combing the 'Bake' stage type with the 'Find Image' stage type. For more details check out the [Find Images Guide]({{< ref "find-images" >}}).
 
 
-### Adding Debian Repositories
+### Adding Debian repositories
 
 It is common practice to use a base image throughout your team or organization. Usually this base image will be kept up to date with security patches and will contain common tools (DataDog, Splunk, etc.). It is also a good place to register your Debian repository's GPG keys.
 
@@ -154,24 +154,24 @@ When a bake step executes, Spinnaker looks for a previously created image before
 You can force Spinnaker to always bake by selecting the 'Rebake: Rebake image without regard to the status of any existing bake' checkbox on the bake stage configuration screen. You also have the option to force rebaking when manually executing a pipeline.
 
 
-## Bake and Copy vs Multi-Region Bake
+## Bake and copy vs multi-region bake
 
 There are two options for getting an image to multiple regions in AWS. A common practice outside of Spinnaker is to create your AMI and then copy it to the regions you need. However, Spinnaker by default will do a multi-region bake. This means if you select more than one region it will go through the process of creating an image in each region (spin up an instance, install the packages, etc).
 
 There are trade-offs to each approach. Generally, Spinnaker's default multi-region bake approach is faster than the bake and copy approach. However, if you need to limit all baking activities to one region then there isn't much of a choice.
 
 
-## Custom Bake Scripts
+## Custom bake scripts
 
 If you would like to use a custom Packer script to bake your AMI you will need to contact your Spinnaker Administrator. The script will have to be installed on your Spinnaker instances.
 
-## Caching Bakes
+## Caching bakes
 
 Spinnaker will cache bakes and not re-run a bake to save time if it finds the bake key in its cache.
 When Spinnaker bakes a package it creates a unique key based on the following components:
 Cloud Provider Type, Base OS, Base AMI, AMI Name, Packer Template Filename, Var Filename, Package Name and Package Version. If any of those components change at the time of bake it will rebake otherwise it'll use the cached AMI.
 
-#### Package Name and Version
+#### Package name and version
 
 By default, Spinnaker looks for an artifact from the Jenkins build that triggered the bake to [parse out version information](https://github.com/spinnaker/rosco/blob/ddd6ed4689b8a769e4b7331acdca2c0ba1b29a66/rosco-core/src/main/groovy/com/netflix/spinnaker/rosco/providers/util/PackageNameConverter.groovy#L54).  Below are valid names to packages:
 

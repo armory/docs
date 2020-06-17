@@ -4,14 +4,15 @@ weight: 51
 aliases:
   - /spinnaker_install_admin_guides/docker/
 ---
-## Configuring Docker Registries
+
+## Overview
 
 This is a quick walkthrough of how to configure your Spinnaker to access a
 Docker registry.  Many of the commands below have additional options that
 may be useful (or possibly required).  If you need more detailed help, take
 a look at the [Halyard command reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-docker-registry) if you're using Halyard to deploy Spinnaker.
 
-### Enable Docker Registries
+## Enable Docker Registries
 
 If you haven't done this yet (for example, if you've just installed Armory
 Spinnaker fresh), you'll need to enable Docker registry providers:
@@ -84,7 +85,7 @@ spec:
             # passwordFile: docker-pass        # The path to a file containing your docker password in plaintext (not docker/config.json file). This field support "encryptedFile" secret references.
             # passwordCommand: abc # Command to retrieve docker token/password, commands must be available in environment
             # environment: dev # The environment name for the account. Many accounts can share the same environmen(e.g. dev, test, prod)
-    ```
+```
 
 **Halyard**
 
@@ -103,4 +104,4 @@ repositories explicitly, like above.  Some do not (such as the Google
 Container Registry).  Further details can be found [here](https://www.spinnaker.io/setup/install/providers/docker-registry/).
 
 Amazon's ECR requires additional configuration to work properly with Spinnaker.
-[We've documented this separately.](/spinnaker-install-admin-guides/ecr-registry/)
+[We've documented this separately]({{< ref "ecr-registry" >}}).

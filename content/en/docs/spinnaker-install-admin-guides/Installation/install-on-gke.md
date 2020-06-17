@@ -137,7 +137,7 @@ By default, Google IAM users do not have all necessary permissions on GKE cluste
 kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user $(gcloud config get-value account)
 ```
 
-1. Obtain the `spinnaker-tools` CLI tool.  Go to https://github.com/armory/spinnaker-tools/releases, and download the latest release for your operating system (OSX and Linux available).  You can also use curl:
+1. Obtain the `spinnaker-tools` CLI tool.  Go to <https://github.com/armory/spinnaker-tools/releases>, and download the latest release for your operating system (OSX and Linux available).  You can also use curl:
 
    ```bash
    # If you're not already in the directory
@@ -532,7 +532,7 @@ Events:
 
 Set up DNS so that your two URLs point to the IP address for the ingress (in the above, configure `spinnaker.some-url.com` and `api.some-url.com` to point to `35.233.216.189`).  This can be done via whatever your organization uses for DNS.
 
-## Configuring TLS Certificates
+## Configuring TLS certificates
 
 Configuration of TLS certificates for ingresses is often very organization-specific.  In general, you would want to do the following:
 
@@ -552,12 +552,12 @@ Configuration of TLS certificates for ingresses is often very organization-speci
   hal deploy apply
   ```
 
-## Next Steps
+## Next steps
 
 Now that you have Spinnaker up and running, here are some of the next things you may want to do:
 
 * Configuration of certificates to secure your cluster (see [this section](#configuring-tls-certificates) for notes on this)
 * Configuration of Authentication/Authorization (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/security/))
-* Add Kubernetes accounts to deploy applications to (see [this KB article](https://kb.armory.io/installation/spinnaker-add-kubernetes/))
+* Add Kubernetes accounts to deploy applications to (see [Creating and Adding a Kubernetes Account to Spinnaker as a Deployment Target]({{< ref "add-kubernetes-account" >}}))
 * Add GCP accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/gce/))
 * Add AWS accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/aws/))
