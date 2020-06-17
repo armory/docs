@@ -45,7 +45,7 @@ To learn how to generate these files, refer to [generating certificates](../gene
 
 ## Configuration (Java services)
 
-Add the following to each Java service profile: `<deploy>/profiles/<service>-local.yml` in Halyard or under `profiles` in the [SpinnakerService's profiles](../../spinnaker/operator-config/#specspinnakerconfigprofiles):
+Add the following to each Java service profile: `<deploy>/profiles/<service>-local.yml` in Halyard or under `profiles` in the [SpinnakerService's profiles]({{< ref "operator-config#specspinnakerconfigprofiles" >}}):
 
 ```yaml
 # Only needed for "server" role

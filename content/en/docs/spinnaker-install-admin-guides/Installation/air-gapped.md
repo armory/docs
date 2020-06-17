@@ -138,6 +138,6 @@ Finally, to access the deployed Halyard environment, perform the following steps
 
 ### Option 2: Spinnaker Operator
 
-The [Spinnaker Operator](/spinnaker/operator/) lets you manage Spinnaker with `kubectl`.
+The [Spinnaker Operator]({{< ref "operator" >}}) lets you manage Spinnaker with `kubectl`.
 
-If you also need to use privately hosted bill of materials, configure the operator to point to your bucket. See [Custom Halyard Configuration](/spinnaker/operator/#custom-halyard-configuration)
+If you also need to use privately hosted bill of materials, configure the operator to point to your bucket. See [Custom Halyard Configuration]({{< ref "operator#custom-halyard-configuration" >}}).

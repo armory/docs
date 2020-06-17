@@ -6,7 +6,7 @@ weight: 142
 
 ## Overview
 
-Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. For more information, see [Enabling the Terraform Integration](/spinnaker/terraform_integration). To familiarize yourself with the Terraform stage, you can take a tour of the Terraform Integration Stage UI by watching the [erraform Integration UI video:
+Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. For more information, see [Enabling the Terraform Integration]({{< ref "terraform-enable-integration">}}). To familiarize yourself with the Terraform stage, you can take a tour of the Terraform Integration Stage UI by watching the [erraform Integration UI video:
 
 {{< youtube Xsjql3g-wtU >}}
 
@@ -149,4 +149,4 @@ ${#stage('My Output Stage')["context"]["status"]["outputs"]["bucket_arn"]["value
 
 ## Submit feedback
 
-Let us know what you think at [go.armory.io/ideas](go.armory.io/ideas) or [feedback.armory.io](https://feedback.armory.io). We're constantly iterating on customer feedback to ensure that the features we build make your life easier!
+Let us know what you think at [go.armory.io/ideas](https://go.armory.io/ideas) or [feedback.armory.io](https://feedback.armory.io). We're constantly iterating on customer feedback to ensure that the features we build make your life easier!

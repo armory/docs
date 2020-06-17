@@ -9,7 +9,7 @@ aliases:
 
 ## Overview
 
-The examples on this page describe how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket. Note that the Terraform Integration also requires a `git/repo` artifact account. For information about how to use the stage, see [Using the Terraform Integration](/spinnaker/terraform_use_integration).
+The examples on this page describe how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket. Note that the Terraform Integration also requires a `git/repo` artifact account. For information about how to use the stage, see [Using the Terraform Integration]({{< ref "terraform-use-integration" >}}).
 
 Armory Spinnaker's Terraform Integration integrates your infrastructure-as-code Terraform workflow into your SDLC. Armory's Terraform Integration interacts with a source repository you specify to deploy your infrastructure as part of a Spinnaker pipeline.
 
@@ -542,4 +542,4 @@ The Terraform Integration now has access to clone private remote Git repositorie
 
 ## Submit feedback
 
-Let us know what you think at [go.armory.io/ideas](go.armory.io/ideas) or [feedback.armory.io](https://feedback.armory.io). We're constantly iterating on customer feedback to ensure that the features we build make your life easier!
+Let us know what you think at [go.armory.io/ideas](https://go.armory.io/ideas) or [feedback.armory.io](https://feedback.armory.io). We're constantly iterating on customer feedback to ensure that the features we build make your life easier!

@@ -137,7 +137,7 @@ By default, Google IAM users do not have all necessary permissions on GKE cluste
 kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user $(gcloud config get-value account)
 ```
 
-1. Obtain the `spinnaker-tools` CLI tool.  Go to https://github.com/armory/spinnaker-tools/releases, and download the latest release for your operating system (OSX and Linux available).  You can also use curl:
+1. Obtain the `spinnaker-tools` CLI tool.  Go to <https://github.com/armory/spinnaker-tools/releases>, and download the latest release for your operating system (OSX and Linux available).  You can also use curl:
 
    ```bash
    # If you're not already in the directory

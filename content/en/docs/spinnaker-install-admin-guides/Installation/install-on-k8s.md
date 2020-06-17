@@ -21,7 +21,7 @@ Note: This document focuses on Armory Spinnaker but can be adapted to install Op
 
 ## Choosing an installation method
 
-There are two recommended ways of installing Spinnaker: using the [Spinnaker Operator]({{< ref "operator" >}}") or using [Halyard](https://www.spinnaker.io/setup/install/halyard/).
+There are two recommended ways of installing Spinnaker: using the [Spinnaker Operator]({{< ref "operator" >}}) or using [Halyard](https://www.spinnaker.io/setup/install/halyard/).
 
 ### Spinnaker Operator
 

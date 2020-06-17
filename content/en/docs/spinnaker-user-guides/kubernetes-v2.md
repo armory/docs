@@ -81,6 +81,4 @@ volumes:
 Your final pipeline should look similar to the one below.
 ![final pipeline](/images/pipeline.png)
 
-In order to execute your pipeline the first time you'll need to edit both the `config-map.yml` and `deployment.yml`, commit the changes to git and push the changes to Github. The pipeline should trigger and execute flawlessly =)
-
-but if it doesn't, don't hesitate to reach out: http://go.armory.io/chat
+In order to execute your pipeline the first time you'll need to edit both the `config-map.yml` and `deployment.yml`, commit the changes to git and push the changes to Github. The pipeline should trigger and execute.

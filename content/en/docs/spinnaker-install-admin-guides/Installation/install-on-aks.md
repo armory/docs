@@ -159,7 +159,7 @@ Halyard uses this `kubeconfig` file to create the Kubernetes deployment objects 
 
 We use the Armory `spinnaker-tools` Go CLI (available on [Github](https://github.com/armory/spinnaker-tools)) to create many of these resources.  There are separate instructions to perform these steps manually.
 
-1. Obtain the `spinnaker-tools` CLI tool.  Go to https://github.com/armory/spinnaker-tools/releases, and download the latest release for your operating system (OSX and Linux available).  Alternatively, run the following commands::
+1. Obtain the `spinnaker-tools` CLI tool.  Go to <https://github.com/armory/spinnaker-tools/releases>, and download the latest release for your operating system (OSX and Linux available).  Alternatively, run the following commands::
 
    ```bash
    # If you're not already in the directory

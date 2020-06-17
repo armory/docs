@@ -876,7 +876,7 @@ In the template, the access path for that variable is: `.RawData.pusher.name`.
 
 ## Example Templates
 
-Armory provides example dinghy templates you can copy and extend. You can find the examples in the [Armory GitHub repo](https://github.com/armory-io/dinghy-templates).
+Armory provides example dinghy templates you can copy and extend. You can find the examples in the [Armory GitHub repo](https://github.com/armory/dinghyTemplates).
 
 ## Known Issue
 

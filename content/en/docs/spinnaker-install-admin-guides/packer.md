@@ -29,7 +29,7 @@ This User must have all permissions necessary to bake (for example, PowerUserAcc
 
 This User may be, but does not have to be, the same as the Managing Account User.
 
-Spinnaker will always bake with this user.  If you need to deploy to other accounts, update your Packer template to support sharing the baked image with other accounts.  For example, add this to your `builder` configuration in your packer template (and add the custom packer template following the instructions in [the Spinnaker Packer documentation]({{< ref "packer" >}}")):
+Spinnaker will always bake with this user.  If you need to deploy to other accounts, update your Packer template to support sharing the baked image with other accounts.  For example, add this to your `builder` configuration in your packer template (and add the custom packer template following the instructions in [the Spinnaker Packer documentation](https://www.spinnaker.io/setup/bakery/#packer-templates):
 
 ```json
     "ami_users": ["222222222222","333333333333"]
@@ -98,7 +98,7 @@ If you're using IAM Instance Roles, you need to provide credentials to Spinnaker
 
 These policies must have all permissions necessary to bake (for example, PowerUserAccess and associated PassRoles)
 
-Spinnaker will always bake with the EC2 instance role (unless you specify explicit baking creds).  If you need to deploy to other accounts, update your Packer template to support sharing the baked image with other accounts.  For example, add this to your `builder` configuration in your packer template (and add the custom packer template following the instructions in [the Spinnaker Packer documentation]({{< ref "packer" >}}")):
+Spinnaker will always bake with the EC2 instance role (unless you specify explicit baking creds).  If you need to deploy to other accounts, update your Packer template to support sharing the baked image with other accounts.  For example, add this to your `builder` configuration in your packer template (and add the custom packer template following the instructions in [the Spinnaker Packer documentation](https://www.spinnaker.io/setup/bakery/#packer-templates):
 
 ```json
     "ami_users": ["222222222222","333333333333"]
@@ -107,11 +107,11 @@ Spinnaker will always bake with the EC2 instance role (unless you specify explic
 If you don't configure Rosco with explicit AWS credentials to use, Packer will default to the AWS permissions available to the Rosco container.  In general, this means that Packer will use the IAM Role/Profile attached to the Kubernetes nodes where Spinnaker is running.  In order for this to work, the IAM Role/Profile attached to your Kubernetes cluster will need a set of permissions to be able to create and interact with EC2 instances (and assign roles to those EC2 instances).
 
 1. First, identify the IAM Profile attached to the Kubernetes cluster where Spinnaker is running.  If you're running EKS, this will be the role attached to the EKS EC2 worker nodes.
-1. Go to the Role Summary for the IAM Profile, and click "Attach policies"
-1. Find and select the AWS "PowerUserAccess" Policy
-1. Click "Attach policy"
-1. Click on "Add inline policy" (on the right).
-1. Click on the "JSON" tab, and paste in this:
+2. Go to the Role Summary for the IAM Profile, and click "Attach policies"
+3. Find and select the AWS "PowerUserAccess" Policy
+4. Click "Attach policy"
+5. Click on "Add inline policy" (on the right).
+6. Click on the "JSON" tab, and paste in this:
 
    ```json
    {
@@ -130,8 +130,8 @@ If you don't configure Rosco with explicit AWS credentials to use, Packer will d
    }
    ```
 
-1. Click on "Review Policy"
-1. Call it "PassRole" and then click "Create Policy"
+7. Click on "Review Policy"
+8. Call it "PassRole" and then click "Create Policy"
 
 You don't have to configure anything in Halyard for this, since this role should be immediately available to your Rosco instance.
 
@@ -160,7 +160,7 @@ By default, Rosco performs the following actions in a "Bake" stage:
 * Takes a list of desired packages specified in the pipeline definition
 * Identifies the `deb` files produced by your CI pipeline and matches those to the desired package
 * Creates a set of Packer variables using the name/repository of the matched `deb` file(s)
-* Bakes an AMI using the `aws-ebs.json` packer template (visible [here](https://github.com/spinnaker/rosco/blob/master/rosco-web/config/packer/aws-ebs.json))
+* Bakes an AMI using the `aws-ebs.json` packer template (visible [here](https://github.com/spinnaker/rosco/blob/master/rosco-web/config/packer/aws-ebs.json)
 * Runs the `install_packages.sh` script (visible [here](https://github.com/spinnaker/rosco/blob/master/rosco-web/config/packer/install_packages.sh)) to install the identified `deb` packages into the AMI
 * Make the AMI ID available to later stages in the Spinnaker pipeline (such as deployments)
 
