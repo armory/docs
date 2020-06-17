@@ -1,10 +1,10 @@
-+++
-title = "Armory Docs"
-linkTitle = "ArmoryDocs"
+---
+title: "Armory Docs"
+abstract: "Enterprise distribution of Spinnaker"
+cid: home
+---
 
-+++
-
-{{< blocks/cover title="Armory Documentation" image_anchor="top" height="min" color="orange" >}}
+{{< blocks/cover title="Armory Documentation" image_anchor="top" height="min" id="cover-section">}}
 <div class="mx-auto">
 	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
 	Read the Docs<i class="fas fa-arrow-alt-circle-right ml-2"></i>
@@ -15,11 +15,11 @@ linkTitle = "ArmoryDocs"
 {{< /blocks/cover >}}
 
 
-{{% blocks/lead color="primary" %}}
+{{% blocks/lead color="primary" id="armory-desc" %}}
 Armory provides an enterprise distribution of Spinnaker, the cloud native, open source, continuous delivery platform that creates a paved road for your developers to deploy with speed and resilience.
 {{% /blocks/lead %}}
 
-{{< blocks/section color="300" >}}
+{{< blocks/section color="#101415" id="section-armory-links">}}
 
 {{% blocks/feature icon="fas fa-blog" title="Armory Blog"
 url="https://armory.io/blog" %}}
@@ -38,7 +38,7 @@ Watch vidoes about Armory features
 {{< /blocks/section >}}
 
 
-{{< blocks/section  color="primary" >}}
+{{< blocks/section  color="primary" id="section-spinnaker-links" >}}
 
 {{% blocks/feature icon="fas fa-shield-alt" title="Spinnaker in Production"
 url="https://resources.armory.io/" %}}
@@ -57,3 +57,7 @@ Learnd about the Open Source Spinnaker Community
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
+
+{{< blocks/bottom-image image_anchor="bottom" height="min" >}}
+
+{{< /blocks/bottom-image >}}
