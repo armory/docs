@@ -8,6 +8,7 @@ You can find detailed theme instructions in the Docsy user guide: https://docsy.
 
 This is not an officially supported Google product. This project is currently maintained.
 
+
 ## Cloning the Docsy Example Project
 
 The following will give you a project that is set up and ready to use (don't forget to use `--recurse-submodules` or you won't pull down some of the code you need to generate a working site). The `hugo server` command builds and serves the site. If you just want to build the site, run `hugo` instead.
@@ -48,6 +49,7 @@ git subtree add --prefix exampleSite https://github.com/google/docsy.git  master
 ```
 
 To pull in changes, see `pull-deps.sh` script in the theme.-->
+
 
 ## Running the website locally
 
