@@ -89,13 +89,13 @@ Answer the following questions to figure out how to map roles and permissions in
 - Which roles/groups have READ, WRITE, EXECUTE access to each Spinnaker Application
 - Which roles/groups have READ and/or WRITE/EXECUTE access to which CI/Build accounts
 
-The following image shows an example result of this exercise based on the user roles described in [Example Roles](##example-roles):
+The following image shows an example result of this exercise based on the user roles described in [Example Roles](#example-roles):
 
 ![Mapping Exercise Role Matrix](/images/fiat_overview_role_matrix.png)
 
 ## Example Configurations
 
-The following sections describe some of the roles from the role matrix example in the [Mapping exercise](##mapping-exercise).
+The following sections describe some of the roles from the role matrix example in the [Mapping exercise](#mapping-exercise).
 
 ## Superuser
 
@@ -111,7 +111,7 @@ admin:
 
 ## Infrastructure
 
-`dev-infra` is one of the potential deployment targets (pictured in ([Mapping exercise](##mapping-exercise)).
+`dev-infra` is one of the potential deployment targets (pictured in ([Mapping exercise](#mapping-exercise)).
 
 The Halconfig snippet for configuring access to `dev-infra` based on our mapping exercise looks similar to the following:
 

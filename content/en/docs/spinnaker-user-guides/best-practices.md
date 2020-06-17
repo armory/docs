@@ -12,23 +12,23 @@ aliases:
   - /spinnaker-user-guides/best_practices/
 ---
 
-## Configuration Management
+## Configuration management
 
-### Baking Configuration
+### Baking configuration
 
 It is common practice to bake the bulk of your application's configuration into your AMI. Secrets should not be included. Configurations that frequently change and service discovery is often managed by another system. Some common system choices include but are not limited to: [Consul](https://www.consul.io/), [Archaius](https://github.com/Netflix/archaius), [Zookeeper](https://zookeeper.apache.org/), and [etcd](https://github.com/coreos/etcd).
 
 If you are running the default installation of Armory Spinnaker, then every AWS instance will have details about its environment/stack stored in `/etc/default/server-env`. This can be used to load the correct configuration.
 
 
-### Service Discovery
+### Service discovery
 
 While it is not feasible for every type of application, using a load balancer can greatly simplify things. Spinnaker gives load balancers first-class citizenship and will not need additional integrations to work right out of the box.
 
 For applications and workloads that cannot utilize a load balancer, the tools listed above may help.
 
 
-## Secret Management
+## Secret management
 
 Managing Secrets is a major part of deploying software. Spinnaker does not directly do this for you. However, there are still some guiding principles to help you along the way.
 
@@ -57,7 +57,7 @@ $ vault auth-enable aws-ec2
 
 And then proceeding with any additional vault commands and execution that needs to happen.  These steps need to happen at startup you'll want add this script as a [base 64 encoded users-data in your deployment steps]({{< ref "deploying" >}}).
 
-### Isolate Delivery Pipelines from Integration
+### Isolate delivery pipelines from integration
 
 There are several ways to trigger a deployment pipeline. However, depending on the asset you are delivering, some methods are easier to work with than others.
 

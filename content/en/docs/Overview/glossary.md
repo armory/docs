@@ -14,19 +14,19 @@ Amazon Machine Images (AMIs) are predetermined 'templates' for instances that ca
 
 ## Application
 
-An [application]({{< ref "application-screen" >}}) inside Spinnaker represents what you would typically find in a single [code repository](##Code-Repository) - and in many cases, an application maps directly to a microservice.
+An [application]({{< ref "application-screen" >}}) inside Spinnaker represents what you would typically find in a single [code repository](#Code-Repository) - and in many cases, an application maps directly to a microservice.
 
 ## Auto-Scaling Group
 
-An auto-scaling group (ASG) contains a collection of [EC2](##elastic_compute_cloud) instances that share similar characteristics and are treated as a logical grouping for the purposes of instance scaling and management.
+An auto-scaling group (ASG) contains a collection of [EC2](#elastic_compute_cloud) instances that share similar characteristics and are treated as a logical grouping for the purposes of instance scaling and management.
 
 ## Authorization
 
-Authorization (Auth) is the level of access to APIs that a user, application or role has within your [AWS](##Amazon_Web_Services) account. This is usually configured by your administrator.
+Authorization (Auth) is the level of access to APIs that a user, application or role has within your [AWS](#Amazon_Web_Services) account. This is usually configured by your administrator.
 
 ## Baking
 
-The term '[Baking]({{< ref "baking-images" >}})' is used within Spinnaker to refer to the process of creating machine images, usually with [AMIs](##Amazon_Machine_Images).
+The term '[Baking]({{< ref "baking-images" >}})' is used within Spinnaker to refer to the process of creating machine images, usually with [AMIs](#Amazon_Machine_Images).
 
 ## Cloud
 
@@ -94,7 +94,7 @@ Please note that if your user definition includes a hyphen, it will disrupt the 
 
 #### Jenkins
 
-[Jenkins]({{< ref "working-with-jenkins" >}}) is an open source automation server that can package applications for distribution. Spinnaker pipelines can be [triggered](##trigger) from a build on Jenkins.
+[Jenkins]({{< ref "working-with-jenkins" >}}) is an open source automation server that can package applications for distribution. Spinnaker pipelines can be [triggered]trigger) from a build on Jenkins.
 
 #### Load balancer
 
@@ -132,7 +132,7 @@ Reduce the number of instances in a particular server group.
 
 #### Stack
 
-You can think of a 'Stack' as a tag you give to anything that you want to be integrated together. Environments are usually a good example of something you would tag with a Stack. If you have an app that has an ELB, a Cache, and an [ASG](##auto-scaling-group), usually you would want to run integration tests on your staging environment separately from your production environment. In that case, you would give the staging ELB, Cache, and ASG all the "staging" stack, while prod ELB, Cache, and ASG would be the "prod" stack.
+You can think of a 'Stack' as a tag you give to anything that you want to be integrated together. Environments are usually a good example of something you would tag with a Stack. If you have an app that has an ELB, a Cache, and an [ASG](#auto-scaling-group), usually you would want to run integration tests on your staging environment separately from your production environment. In that case, you would give the staging ELB, Cache, and ASG all the "staging" stack, while prod ELB, Cache, and ASG would be the "prod" stack.
 
 Note that Stack names are defined by the user in the Spinnaker configuration User Interface (UI).
 
@@ -142,4 +142,4 @@ Within a pipeline, the tasks that pipeline performs are called stages.
 
 #### Trigger
 
-A trigger is the entry point to a [pipeline](##pipeline) - when a pipeline is triggered, it attempts to [execute](##execution).
+A trigger is the entry point to a [pipeline](#pipeline) - when a pipeline is triggered, it attempts to [execute](#execution).

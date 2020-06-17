@@ -6,12 +6,12 @@ aliases:
 ---
 
 
-> Before you start, you'll need to [configure a Docker registry](/spinnaker-install-admin-guides/docker/).  If
+> Before you start, you'll need to [configure a Docker registry](/docs/spinnaker-install-admin-guides/docker/).  If
 > you don't see your Docker registry as an option, or you're missing your
 > organization or image in the UI, you'll need to double-check your Spinnaker
 > is configured to use that registry (and/or repository)
 
-## Triggering a Pipeline with a Docker Registry Update
+## Triggering a Pipeline with a Docker Registry update
 
 To add a Jenkins trigger to your pipeline, go to your configurations stage and
 select "Add Trigger", then select "Docker Registry" from the Type dropdown
@@ -28,7 +28,7 @@ expression here to limit triggering to tag pattern names (for example,
 
 ![Add Trigger](/images/docker-user-guide-1.gif)
 
-## Referencing the New Image
+## Referencing the new image
 
 When a new Docker image (that matches the Tag pattern, if set) is detected,
 the Docker Registry trigger will fill in some context, which can be used

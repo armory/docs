@@ -46,7 +46,7 @@ Example of baking `armory-spinnaker` in CentOS (without defining the correct Bas
 
 ### Getting to Know Packer
 
-[Packer's documentation can be found here](https://www.packer.io/docs/index.html). In brief, Spinnaker will execute `packer build` with the provided json, which then will execute the `packer_script.sh`.
+[Packer's documentation can be found here](https://www.packer.io/docs). In brief, Spinnaker will execute `packer build` with the provided json, which then will execute the `packer_script.sh`.
 
 
 

@@ -7,7 +7,7 @@ aliases:
   - /spinnaker_user_guides/webhooks/
 ---
 
-> Spinnaker uses "webhooks" in two ways -- as a trigger for pipeline execution,
+> Spinnaker uses "webhooks" in two ways -- as a trigger for pipeline execution
 > and as a stage that can make arbitrary calls to another service.  If you're
 > looking for information on configuring a webhook trigger that you can use
 > to run a pipeline, the open source community [has a very good guide for that](https://www.spinnaker.io/guides/user/pipeline/triggers/webhooks/).  Below we

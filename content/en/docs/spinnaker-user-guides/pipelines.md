@@ -7,6 +7,8 @@ aliases:
   - /spinnaker_user_guides/pipelines/
 ---
 
+## Overview
+
 Pipelines are a combination of stages that enable some very sophisticated coordination and branching. They are the key to orchestrating deploys in Spinnaker and each one is specific to an application. To see an application's pipelines, select 'Applications' from Spinnaker's top navigation bar, click on an application's name, and then press the 'Pipelines' tab. The result from a pipeline running is called an execution.
 
 Take this screenshot for example:
@@ -18,7 +20,7 @@ There is a pipeline called 'Deploy' with two executions, both labeled 'Manual St
 For more information on creating bake and deploy pipelines, checkout the [baking]({{< ref "baking-images" >}}) and [deploying]({{< ref "deploying" >}}) guides.
 
 
-## Manual Execution
+## Manual execution
 
 You can re-run an execution by pressing the 'Start Manual Execution'.
 
@@ -73,6 +75,6 @@ You can select different revisions using the dropdown menu labeled 'Revision' in
 
 ## Troubleshooting
 
-### Hanging or Timed Out Pipelines
+### Hanging or timed out pipelines
 
 A lot of the time pipelines hang because of a misconfigured stage. This is a common occurrence when a server group does not complete its deploy because the deployed instances never pass the healthcheck. This happens both when the healthcheck is misconfigured and/or when the image doesn't bake as expected. These two areas should be investigated first. For more information you can see the troubleshooting topic in the [deployment guide]({{< ref "deploying" >}}).

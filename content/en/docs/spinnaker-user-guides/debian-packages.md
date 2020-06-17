@@ -11,7 +11,7 @@ aliases:
   - /spinnaker-user-guides/debian_packages/
 ---
 
-## Why Use Debian Packages
+## Why Use Debian packages
 
 While Spinnaker is flexible to use any dependency management system, it is predisposed to manage Debian packages due to its default settings with Rosco, Orca and Jenkins.  
 
@@ -20,7 +20,7 @@ While Spinnaker is flexible to use any dependency management system, it is predi
 - Debian packaging allows service teams to easily add their app specific configuration to common packer templates.  If you're using any Debian linux based system (Ubuntu, DSL, Astra, etc) you'll likely be using Debian packages for your system configuration and dependency management so it's a natural extension to use it for your own applications.  Using Debian packages will help reduce the variations in packer templates or variables passed to packer templates during the bake process.
 
 
-## Creating Debian Packages
+## Creating Debian packages
 
 Creating a Debian package can be done through various open-source packaging tools.  If you're using Java, using the `OS Package` library is a good place to start.  Of course you can always use the [packaging tools provided by Debian](https://www.debian.org/doc/manuals/maint-guide/build.en.html).  Here is a good example of using a Debian package for a [Spinnaker configuration repo](https://github.com/armory-io/spinnaker-config).
 
@@ -34,7 +34,7 @@ Creating a Debian package can be done through various open-source packaging tool
 | Any     | [fpm](https://github.com/jordansissel/fpm/wiki) | deb/rpm/others |
 
 
-### Example: Debian Package with OSPackage Gradle Plugin
+### Example: Debian package with OSPackage Gradle plugin
 
 Begin by creating a `build.gradle`.  Below is an example of what a gradle file might look like for a application that builds a war.
 

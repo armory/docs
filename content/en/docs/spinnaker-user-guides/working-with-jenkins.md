@@ -11,7 +11,7 @@ aliases:
   - /spinnaker-user-guides/working_with_jenkins/
 ---
 
-> Before you start, you'll need to [configure Jenkins](/spinnaker-install-admin-guides/jenkins/).  If
+> Before you start, you'll need to [configure Jenkins](/docs/spinnaker-install-admin-guides/jenkins/).  If
 > you don't see Jenkins as an option, or you're not seeing the correct
 > master/job combination in the UI, you'll need to double-check your Spinnaker
 > is configured to use that resource.
@@ -48,7 +48,7 @@ In any given stage we can use the expression `${ trigger.properties['BRANCH_NAME
 Note: For more elaborate instructions on expression language, please refer to the [Spinnaker Expression Language Guide]({{< ref "expression-language" >}}).
 
 
-## How to Trigger a Jenkins Job through Spinnaker
+## How to trigger a Jenkins job through Spinnaker
 
 
 Step 1: In pipelines, click on 'Add stage'.

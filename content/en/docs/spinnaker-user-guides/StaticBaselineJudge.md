@@ -3,17 +3,19 @@ title: Static Judge Canary Analysis (Kayenta)
 weight: 130
 ---
 
+## Overview
+
 Most metric stores (DataDog, NewRelic, AppDynamics, etc.) have a way for users to set thresholds. When a threshold is exceeded, an alarm or event gets triggered. This alarm or event API can usually be queried. However, Graphite doesn’t natively support setting thresholds (although it supports it with third party plugins). Therefore, you need to set these thresholds in Spinnaker.
 
 We created a Judge (StaticBaselineJudge-v1.0) that allows you to set a static baseline parameter. When running a Canary Analysis, Spinnaker takes the value of this parameter and uses it to compare against the canary data.
 
-## Configuring The Static Baseline Judge
+## Configuring the Static Baseline Judge
 
 On the Canary Configuration page when creating a new Config, you can select the *StaticBaselineJudge-v1.0* or regular *NetflixACAJudge-v1.0*.
 
 ![image](/images/static_baseline_dropdown_judges_options.png)
 
-Select the Static Judge
+**Select the Static Judge**
 
 To input the metric value needed, edit the config as JSON.
 
