@@ -1,7 +1,6 @@
 ---
 title: Monitoring Spinnaker with Prometheus
 order: 920
-draft: true
 description: >
   Monitoring Spinnaker using Prometheus and Grafana
 ---
