@@ -1,6 +1,7 @@
 ---
 title: Monitoring Spinnaker with Prometheus
 order: 920
+draft: true
 description: >
   Monitoring Spinnaker using Prometheus and Grafana
 ---
@@ -174,17 +175,18 @@ Access the Grafana web interface via http://localhost:3000 and use the default g
 
 ## Add Armory dashboards to Grafana
 
-Armory provides a JSON file that you can import into Grafana as a starting point for metrics to graph for monitoring. You can skip this step if you are a Grafana expert.
+Armory provides some sample dashboards (in JSON format) that you can import into Grafana as a starting point for metrics to graph for monitoring. 
+Armory has additional dashboards that are availabe to Armory customers. You can skip this section if you are a Grafana expert.
 
-<!-- armory-io is the private armory one. it needs to be replaced w/ a public gh -->
-- Git clone this repo to your local workstation: https://github.com/armory-io/spin-monitoring-dashboards.git
-- Access the Grafana web interface (as shown above)
-- Navigate to Dashboards then Manage
-- Click on the _Import_ button
-- Upload the `spin-monitoring-dashboards/grafana/spinnaker-main.json` file from the directory you cloned above
+To import the sample dashboards, perform the following steps: 
 
-After importing the dashboards, you explore graphs for each service by clicking on _Dashboards_, _Manage_, and then _Spinnaker-main_.
+1. Git clone this repo to your local workstation: (https://github.com/spinnaker/spinnaker-monitoring)
+2. Access the Grafana web interface (as shown above)
+3. Navigate to Dashboards then Manage
+4. Click on the _Import_ button
+5. Upload the one or more of the sample dashboard files from the repo you cloned
+
+After importing the dashboards, you can explore graphs for each service by clicking on _Dashboards_, _Manage_, and then _Spinnaker-main_.
 
 ![Grafana Dashboard](/images/install-admin/grafana.png)
 
-Additional example dashboards are in the [spinnaker-monitoring](https://github.com/spinnaker/spinnaker-monitoring) repo.
