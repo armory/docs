@@ -22,7 +22,7 @@ While Spinnaker is flexible to use any dependency management system, it is predi
 
 ## Creating Debian packages
 
-Creating a Debian package can be done through various open-source packaging tools.  If you're using Java, using the `OS Package` library is a good place to start.  Of course you can always use the [packaging tools provided by Debian](https://www.debian.org/doc/manuals/maint-guide/build.en.html).  Here is a good example of using a Debian package for a [Spinnaker configuration repo](https://github.com/armory-io/spinnaker-config).
+Creating a Debian package can be done through various open-source packaging tools.  If you're using Java, using the `OS Package` library is a good place to start.  Of course you can always use the [packaging tools provided by Debian](https://www.debian.org/doc/manuals/maint-guide/build.en.html).  
 
 | Language | Tool | Package Types |
 |---|---|---|

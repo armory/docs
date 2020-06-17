@@ -104,4 +104,4 @@ repositories explicitly, like above.  Some do not (such as the Google
 Container Registry).  Further details can be found [here](https://www.spinnaker.io/setup/install/providers/docker-registry/).
 
 Amazon's ECR requires additional configuration to work properly with Spinnaker.
-[We've documented this separately.](/spinnaker-install-admin-guides/ecr-registry/)
+[We've documented this separately]({{< ref "ecr-registry" >}}).

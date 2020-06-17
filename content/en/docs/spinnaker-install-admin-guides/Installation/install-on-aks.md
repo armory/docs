@@ -309,7 +309,7 @@ hal config deploy edit \
   --location ${NAMESPACE}
 ```
 
-## Enable Artifacts
+## Enable artifacts
 
 Within Spinnaker, 'artifacts' are consumable references to items that live outside of Spinnaker. An artifact can be a file in a git repository or a file in an S3 bucket.  This feature must be explicitly turned on.
 
@@ -436,7 +436,7 @@ Install the NGINX ingress controller aks-specific service:
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
 ```
 
-## Set up the Ingress for `spin-deck` and `spin-gate`
+## Set up the ingress for `spin-deck` and `spin-gate`
 
 Identify the URLs you will use to expose Spinnaker's UI and API.
 
@@ -560,13 +560,13 @@ Configuration of TLS certificates for ingresses is often very organization-speci
   hal deploy apply
   ```
 
-## Next Steps
+## Next steps
 
 Now that you have Spinnaker up and running, here are some of the next things you may want to do:
 
 * Configuration of certificates to secure your cluster (see [this section](#configuring-tls-certificates) for notes on this)
 * Configuration of Authentication/Authorization (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/security/))
-* Add Kubernetes accounts to deploy applications to (see [this KB article](https://kb.armory.io/installation/spinnaker-add-kubernetes/))
+* Add Kubernetes accounts to deploy applications to (see [Creating and Adding a Kubernetes Account to Spinnaker as a Deployment Target]({{< ref "add-kubernetes-account" >}}))
 * Add Azure accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/azure/))
 * Add GCP accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/gce/))
 * Add AWS accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/aws/))

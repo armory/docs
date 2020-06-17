@@ -593,7 +593,7 @@ hal deploy apply
 
 3. Verify that you can still see Spinnaker applications and pipelines as before.
 
-4. If you have any issues, perform various troubleshooting steps (such as those related to HTTPS in our [KB](https://kb.armory.io/category/troubleshooting/)), or restore your prior backup:
+4. If you have any issues, perform various troubleshooting steps (such as those related to HTTPS in our [KB](https://kb.armory.io/s/category-knowledge?categ=Troubleshooting)), or restore your prior backup:
 
 **Operator**
 

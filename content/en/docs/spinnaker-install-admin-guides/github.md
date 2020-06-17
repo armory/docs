@@ -10,7 +10,7 @@ aliases:
 
 Spinnaker pipelines can be configured to trigger when a change is committed
 to a Github repository.  This doesn't require any configuration of Spinnaker
-other than [adding a Github trigger](/spinnaker-user-guides/github/) but does
+other than [adding a Github trigger](/docs/spinnaker-user-guides/github/) but does
 require administration of the Github repositories to configure the webhook.
 
 The open source documentation

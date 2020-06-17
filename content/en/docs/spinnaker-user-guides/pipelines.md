@@ -13,7 +13,7 @@ Pipelines are a combination of stages that enable some very sophisticated coordi
 
 Take this screenshot for example:
 
-![](/images/Image%22017%204%203%2at%24.35.40%2PM.png)
+![](/images/pipelines-deploy-2-executions.png)
 
 There is a pipeline called 'Deploy' with two executions, both labeled 'Manual Start'. The top execution is marked as 'Succeeded' while the bottom is marked as 'Cancelled'.
 
@@ -24,7 +24,7 @@ For more information on creating bake and deploy pipelines, checkout the [baking
 
 You can re-run an execution by pressing the 'Start Manual Execution'.
 
-![](/images/Image%202017-04-03%20at%204.51.41%20PM.png)
+![](/images/pipelines-rerun-manual-execution.png)
 
 If your pipeline has a Jenkins' trigger, you can select which Jenkins' build number to use for running the pipeline.
 

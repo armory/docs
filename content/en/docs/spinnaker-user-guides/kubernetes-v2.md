@@ -52,13 +52,13 @@ We'll configure the `configMap` to be deployed first. Add a `Deploy (Manifest)` 
 ![deploy manifest](/images/deploy_manifest.png)
 
 
-Once you've added the stage, select `Artifact` from the `Manifest Source` below and it will allow you to choose one of the expected artifacts that we configured in the previous section.  Choose `config-map.yml` and hit `save`. Spinnaker will deploy the chosen artifact but append a version to the name of the artifact. For [our example config map](https://github.com/Armory/spinnaker-k8s-v2-example/blob/master/config-map.yml). So for the name `k8-v2-config-map` it will appear in the Kubernetes cluster with `k8-v2-config-map-v001`.
+Once you've added the stage, select `Artifact` from the `Manifest Source` below and it will allow you to choose one of the expected artifacts that we configured in the previous section.  Choose `config-map.yml` and hit `save`. Spinnaker will deploy the chosen artifact but append a version to the name of the artifact. For [our example config map](https://github.com/armory/spinnaker-k8s-v2-example/blob/master/manifests/demo.yml). So for the name `k8-v2-config-map` it will appear in the Kubernetes cluster with `k8-v2-config-map-v001`.
 
 ![config map](/images/config-map.png)
 
 ### Configuring deployment manifest delivery
 
-Next we'll configure a new `Deploy (Manifest)` stage to deploy the [deployment.yml](https://github.com/Armory/spinnaker-k8s-v2-example/blob/master/deployment.yml) manifest.  This manifest references our config-map as a volume and it's source will be replaced by the versioned artifact deployed in the previous step: `k8-v2-config-map-v001`.  So if our `deployment.yml` contains the following:
+Next we'll configure a new `Deploy (Manifest)` stage to deploy the [deployment.yml](https://github.com/armory/spinnaker-k8s-v2-example/blob/master/manifests/demo.yml) manifest.  This manifest references our config-map as a volume and it's source will be replaced by the versioned artifact deployed in the previous step: `k8-v2-config-map-v001`.  So if our `deployment.yml` contains the following:
 
 ```yaml
 volumes:

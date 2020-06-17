@@ -160,8 +160,8 @@ By default, Rosco performs the following actions in a "Bake" stage:
 * Takes a list of desired packages specified in the pipeline definition
 * Identifies the `deb` files produced by your CI pipeline and matches those to the desired package
 * Creates a set of Packer variables using the name/repository of the matched `deb` file(s)
-* Bakes an AMI using the `aws-ebs.json` packer template (visible [here](https://github.com/spinnaker/rosco/blob/master/rosco-web/config/packer/aws-ebs.json)
-* Runs the `install_packages.sh` script (visible [here](https://github.com/spinnaker/rosco/blob/master/rosco-web/config/packer/install_packages.sh)) to install the identified `deb` packages into the AMI
+* Bakes an AMI using the packer template (visible [here](https://github.com/spinnaker/rosco/blob/master/halconfig/packer/aws-ebs.json)
+* Runs the `install_packages.sh` script (visible [here](https://github.com/spinnaker/rosco/blob/master/halconfig/packer/install_packages.sh)) to install the identified `deb` packages into the AMI
 * Make the AMI ID available to later stages in the Spinnaker pipeline (such as deployments)
 
 In a bake stage configuration, you can specify other packer templates to use.

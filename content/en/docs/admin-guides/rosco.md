@@ -118,8 +118,8 @@ If your organization uses different repositories between groups or if you need s
 #### Example: Installing Docker before Each Bake
 Lets install Docker and make sure we get add the GPG key for their repo.
 
-- Let's start by copying [`aws-ebs.json`](https://github.com/spinnaker/rosco/blob/master/rosco-web/config/packer/aws-ebs.json) to `my-custom-baker.json`.
-- Let's start by copying [`install_packages.sh`](https://github.com/spinnaker/rosco/blob/master/rosco-web/config/packer/install_packages.sh) to `my-custom-install_packages.sh`.
+- Let's start by copying [`aws-ebs.json`](https://github.com/spinnaker/rosco/blob/master/halconfig/packer/aws-ebs.json) to `my-custom-baker.json`.
+- Let's start by copying [`install_packages.sh`](https://github.com/spinnaker/rosco/blob/master/halconfig/packer/install_packages.sh) to `my-custom-install_packages.sh`.
 
 In the `my-custom-baker.json`, modify the **provisioners** section so that the script entry points to our custom installer script:
 
@@ -211,7 +211,7 @@ aws:
 #### Try to use only 1 packer script across an organization
 * Otherwise this can lead to packer script explosion and splits the ownership of the app.
 * There's going to be a lot of changes to the `spinnaker-config` which will become a nightmare.
-* Checkout [`install_package.sh`](https://github.com/spinnaker/rosco/blob/master/rosco-web/config/packer/install_packages.sh) to get an idea.
+* Checkout [`install_package.sh`](https://github.com/spinnaker/rosco/blob/master/halconfig/packer/install_packages.sh) to get an idea.
 
 #### Avoid install secrets during bake time
 * A potential security issue.

@@ -28,5 +28,5 @@ with common patterns or partial matches.
 
 ## Using artifacts from Github
 
-> Before you start, you'll need to [configure Github as an artifact source](/spinnaker-install-admin-guides/github/#configuring-github-as-an-artifact-source)
+> Before you start, you'll need to [configure Github as an artifact source](/docs/spinnaker-install-admin-guides/github#configuring-github-as-an-artifact-source)
 > You won't see the Github artifact type until this is configured.

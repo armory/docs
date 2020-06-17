@@ -176,6 +176,7 @@ Access the Grafana web interface via http://localhost:3000 and use the default g
 
 Armory provides a JSON file that you can import into Grafana as a starting point for metrics to graph for monitoring. You can skip this step if you are a Grafana expert.
 
+<!-- armory-io is the private armory one. it needs to be replaced w/ a public gh -->
 - Git clone this repo to your local workstation: https://github.com/armory-io/spin-monitoring-dashboards.git
 - Access the Grafana web interface (as shown above)
 - Navigate to Dashboards then Manage

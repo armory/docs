@@ -51,7 +51,7 @@ spec:
 
 **Halyard**
 
-First, add the AWS provider account with [Halyard](https://github.com/spinnaker/halyard/blob/master/doccommands.md#hal-config-provider-aws-account-add). Next, make sure to enable the AWS provider:
+First, add the AWS provider account with [Halyard](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-aws-account-add). Next, make sure to enable the AWS provider:
 
 ```bash
 hal config provider aws enable

@@ -219,7 +219,7 @@ The AWS provider requires a central "Managing Account" to authenticate on behalf
  - `shortDescription`:A short description to help human operators identify the image.
  - `detailedDescription`:A long description to help human operators identify the image.
  - `packageType`:This is used to help Spinnaker's bakery download the build artifacts you supply it with. For example, specifying deb indicates that your artifacts will need to be fetched from a debian repository.
- - `templateFile`: The name of the Packer template that will be used to bake images from this base image. The template file must be found in this list: https://github.com/spinnaker/rosco/tree/master/rosco-web/config/packer, or supplied as described here: https://spinnaker.io/setup/bakery/.
+ - `templateFile`: The name of the Packer template that will be used to bake images from this base image. The template file must be found in this list: <https://github.com/spinnaker/rosco/tree/master/rosco-web/config/packer>, or supplied as described here: <https://spinnaker.io/setup/bakery/>.
  - `virtualizationSettings`:
      - `region`:The name of the region in which to launch the EC2 instance to create the AMI.
      - `virtualizationType`: The type of virtualization for the AMI you are building. This option must match the supported virtualization type of sourceAmi. Acceptable values: pv, hvm.
@@ -763,9 +763,9 @@ huaweicloud:
 
 **spec.spinnakerConfig.config.providers.kubernetes**
 
-The Kubernetes provider is used to deploy Kubernetes resources to any number of Kubernetes clusters. Spinnaker assumes you have a Kubernetes cluster already running. If you don't, you must configure one: [https://Kubernetes.io/docs/getting-started-guides/](https://Kubernetes.io/docs/getting-started-guides/).
+The Kubernetes provider is used to deploy Kubernetes resources to any number of Kubernetes clusters. Spinnaker assumes you have a Kubernetes cluster already running. If you don't, you must configure one: [https://Kubernetes.io/docs/getting-started-guides/](https://kubernetes.io/docs/setup/).
 
-Before proceeding, please visit [https://Kubernetes.io/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/](https://Kubernetes.io/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/) to make sure you're familiar with the authentication terminology.
+Before proceeding, please visit [https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) to make sure you're familiar with the authentication terminology.
 
 
 ```yaml

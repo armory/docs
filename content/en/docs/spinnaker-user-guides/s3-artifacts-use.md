@@ -3,7 +3,7 @@ weight: 60
 title: Working with S3 Artifacts
 aliases:
   - /spinnaker_user_guides/s3/
-  - /docs/spinnaker-user-guides/s3/
+
 ---
 
 > Before you start, you'll need to [configure an S3 artifact account](/docs/spinnaker-install-admin-guides/s3/).  If

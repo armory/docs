@@ -942,12 +942,12 @@ Configuring TLS certificates for ingresses is often very environment-specific. I
 * Configure the ingress(es) so that NGINX (or the load balancer in front of NGINX, or your alternative ingress controller) terminates TLS using the certificate(s)
 * Update Spinnaker to be aware of the new TLS endpoints, by replacing `http` by `https` to override the base URLs in the previous section.
 
-## Next Steps
+## Next steps
 
 Now that Spinnaker is running, here are potential next steps:
 
 * Configuration of certificates to secure our cluster (see [this section](#configuring-tls-certificates) for notes on this)
 * Configuration of Authentication/Authorization (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/security/))
-* Add Kubernetes accounts to deploy applications to (see [this KB article](https://kb.armory.io/installation/spinnaker-add-kubernetes/))
+* Add Kubernetes accounts to deploy applications to (see [Creating and Adding a Kubernetes Account to Spinnaker as a Deployment Target]({{< ref "add-kubernetes-account" >}}))
 * Add GCP accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/gce/))
 * Add AWS accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/aws/))

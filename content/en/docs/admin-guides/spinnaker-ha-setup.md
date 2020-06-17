@@ -5,7 +5,7 @@ aliases:
   - /admin-guides/spinnaker_ha_setup/
 ---
 
-> The information on this page is deprecated. If you want to configure your Spinnaker to be more resilient, Armory recommends configuring Clouddriver and Orca to use relational databases instead of Redis. For more information, see  [Clouddriver with RDBMS](/spinnaker-install-admin-guides/clouddriver-sql/) and [Orca with RDBMS](/spinnaker-install-admin-guides/orca-sql/).
+> The information on this page is deprecated. If you want to configure your Spinnaker to be more resilient, Armory recommends configuring Clouddriver and Orca to use relational databases instead of Redis. For more information, see  [Clouddriver with RDBMS]({{< ref "clouddriver-sql" >}}) and [Orca with RDBMS]({{< ref "orca-sql" >}}).
 
 
 ### Setting up Polling and Nonpolling
@@ -14,7 +14,7 @@ For certain components you’ll only want a single instance running on an ASG on
 To set this up, edit your Armory Spinnaker deploy pipeline so it looks like this.
 ![](/images/Image-2018-05-16-at-14.39.40.png)
 
-> Note, the cloud_details set to `nonpolling` is required. On boot, Armory Spinnaker will use [/etc/default/server-env](https://kb.armory.io/aws/18-what-is-server-env/) to determine which group this instance belongs to.
+> Note, the cloud_details set to `nonpolling` is required. On boot, Armory Spinnaker will use /etc/default/server-env to determine which group this instance belongs to.
 
 #### "Disable Poller" stage
 Armory includes a service (Lighthouse) that will wait for existing jobs to complete before shutting itself down.

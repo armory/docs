@@ -2,6 +2,8 @@
 layout: post
 title: Configuring Vault for Kubernetes Auth
 weight: 10
+aliases:
+  - /spinnaker-install-admin-guides/vault-configuration/
 ---
 
 ## Overview
@@ -125,7 +127,7 @@ $ vault write auth/kubernetes/role/spinnaker \
 
 It is time verify that the Kubernetes auth method has been properly configured.
 
-**5. Deploy Armory's [debug container](https://github.com/armory/docker-debugging-tools/blob/master/Dockerfile) into your cluster -- this container has the Vault cli pre-installed.**
+**5. Deploy Armory's [debug container](https://github.com/armory/troubleshooting-toolbox/blob/master/docker-debugging-tools/Dockerfile) into your cluster -- this container has the Vault cli pre-installed.**
 
 **Note: This should be deployed into the same namespace as your Spinnaker install**
 
