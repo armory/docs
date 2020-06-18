@@ -13,6 +13,12 @@
 
 # section redirects
 [[redirects]]
+  from = "/overview"
+  to = "/docs/overview"
+  status = 301
+  force = false
+
+[[redirects]]
   from = "/halyard-release-notes"
   to = "/docs/release-notes/rn-armory-halyard"
   status = 301
