@@ -1,13 +1,15 @@
 ---
 layout: post
-title: Spinnaker Secrets
+title: Spinnaker Secrets Overview
 weight: 1
 aliases:
   - /spinnaker-install-admin-guides/secrets/
 ---
-Storing Spinnaker configs in a git repository is a great solution for maintaining versions of your configurations, but storing secrets in plain text is a bad security practice. If you're using the Operator to deploy Spinnaker, separating your secrets from your configs through end-to-end secrets management is already supported. If you're using Halyard, this is supported as of `halyard-armory:1.4.1`. All you need to do is replace secrets in the configuration files with the syntax described here, and Spinnaker will decrypt them as needed.
 
 ## Overview
+
+Storing Spinnaker configs in a git repository is a great solution for maintaining versions of your configurations, but storing secrets in plain text is a bad security practice. If you're using the Operator to deploy Spinnaker, separating your secrets from your configs through end-to-end secrets management is already supported. If you're using Halyard, this is supported as of `halyard-armory:1.4.1`. All you need to do is replace secrets in the configuration files with the syntax described here, and Spinnaker will decrypt them as needed.
+
 We can now store secrets (tokens, passwords, sensitive files) separately from the Spinnaker configurations. We'll provide references to these secrets to services that need them.
 
 - Spinnaker services that support decryption will decrypt these secrets upon startup.
@@ -84,8 +86,9 @@ You can also provide secret references directly in `SpinnakerService` manifest u
 
 ### Supported secret engines
 
-* [Encrypted S3 buckets](../secrets-s3/) (Open Source Spinnaker)
-* [Google Storage (GCS)](../secrets-gcs/) (Open Source Spinnaker)
-* [Kubernetes Secrets](../secrets-kubernetes/) (Open Source Spinnaker, only available if using the Operator)
-* [Hashicorp Vault](../secrets-vault/) (Armory Spinnaker)
-* Is there a secret engine you'd like us to support? Submit a feature request [here](http://go.armory.io/support)!
+* [Encrypted S3 buckets]({{< ref "secrets-s3" >}}) (Open Source Spinnaker)
+* [Google Storage (GCS)]({{< ref "secrets-gcs" >}}) (Open Source Spinnaker)
+* [Kubernetes Secrets]({{< ref "secrets-kubernetes" >}}) (Open Source Spinnaker, only available if using the Operator)
+* [Hashicorp Vault]({{< ref "secrets-vault" >}}) (Armory Spinnaker)
+
+Is there a secret engine you'd like us to support? Submit a feature request [here](http://go.armory.io/support)!
