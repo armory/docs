@@ -23,3 +23,27 @@
   to = "/docs/release-notes/rn-armory-spinnaker"
   status = 301
   force = false
+
+[[redirects]]
+  from = "/spinnaker"
+  to = "/docs/spinnaker"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/operator_reference"
+  to = "/docs/operator_reference"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/spinnaker-user-guides"
+  to = "/docs/spinnaker-user-guides"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/spinnaker-install-admin-guides"
+  to = "/docs/spinnaker-install-admin-guides"
+  status = 301
+  force = false
