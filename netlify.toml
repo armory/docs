@@ -32,7 +32,7 @@
 
 [[redirects]]
   from = "/spinnaker/*"
-  to = "/docs/spinnaker/*"
+  to = "/docs/spinnaker/:splat"
   status = 301
   force = false
 
@@ -51,5 +51,11 @@
 [[redirects]]
   from = "/spinnaker-install-admin-guides/*"
   to = "/docs/spinnaker-install-admin-guides/:splat"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/glossary/glossary"
+  to = "/docs/overview/glossary/"
   status = 301
   force = false
