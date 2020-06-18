@@ -10,3 +10,16 @@
   HUGO_VERSION = "0.71.1"
   HUGO_THEME = "docsy"
   HUGO_ENV = "production"
+
+# section redirects
+[[redirects]]
+  from = "/halyard-release-notes"
+  to = "/docs/release-notes/rn-armory-halyard"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/release-notes"
+  to = "/docs/release-notes/rn-armory-spinnaker"
+  status = 301
+  force = false
