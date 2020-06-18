@@ -7,11 +7,11 @@ summary: Read about what Armory Spinnaker is and its benefits.
 
 Watch Ethan, an Armory engineer, explain [Spinnaker in three minutes](https://youtu.be/H_rFShgmJHY).
 
-Spinnaker is an open source, multi-cloud Continuous Delivery and Deployment platform that provides a single pane of glass with visibility across your deployment for deployment status, infrastructure, security and compliance, and metrics. By using pipelines, flexible and customizable series of deployment stages, Spinnaker can fit a variety of deployment needs. application
+Spinnaker is an open source, multi-cloud Continuous Delivery and Deployment platform that provides a single pane of glass with visibility across your deployment for deployment status, infrastructure, security and compliance, and metrics. By using pipelines, flexible and customizable series of deployment stages, Spinnaker can fit a variety of deployment needs.
 
 Spinnaker can deploy to and manage clusters across Amazon Web Services (AWS), Kubernetes, and Google Cloud Platform (GCP). More functionality is being added all the time. For example, work is being done to improve integrations with all cloud the providers, including Cloud Foundry and Microsoft Azure.
 
-Spinnaker not only enables businesses to move to the cloud but makes it easier for them to adopt the cloud's advantages. 
+Spinnaker not only enables businesses to move to the cloud but makes it easier for them to adopt the cloud's advantages.
 
 ## Safety and speed
 
@@ -21,7 +21,7 @@ Shipping changes more frequently allows developers to gather real user feedback 
 
 In the past, releases were large monoliths, and ensuring uptime (or deployment safety) meant a long wait between each release, including maybe even extended code freezes. A company that wanted to maintain a stable environment could become averse to pushing out new features, leading to a slowdown in innovation. This tradeoff is getting more and more difficult to justify. To thrive, businesses need a way to deploy software with velocity.
 
-Spinnaker solves these problems by enabling safer and faster deployments with the following benefits::
+Spinnaker solves these problems by enabling safer and faster deployments with the following benefits:
 
 **Immutable infrastructure** that builds trust by making sure infrastructure matches an understood and explicit pattern that does not change once it is deployed. If changes are required, a brand new instance gets deployed. Having unique instances for each build enables the use of different deployment strategies, which are another benefit of Spinnaker.
 
@@ -49,16 +49,3 @@ Armory Spinnaker is an enterprise-grade distribution of Spinnaker that forms the
 - Armory Spinnaker Operator helps you configure, deploy, and update Spinnaker on Kubernetes clusters. If you cannot use a Kubernetes Operatork, you can use Armory Halyard to accomplish the same tasks.
 - Policy Engine helps you meet compliance requirements based on custom policies you set.
 - Integrations with many of your existing tools, such as Terraform. For a full list, see [Integrations](https://www.armory.io/armory-integrations/.)
-
-## Need more help?
-
-If you have questions, comments or suggestions about this documentation _(especially if anything is unclear)_, chat with us by clicking on the icon on the bottom right of each page. Our entire team monitors these chats and we'll respond as quickly as we can.
-
-## Want to help?
-
-- We encourage you to [issue pull requests](https://github.com/armory/documentation) to improve this documentation.
-- Join the Spinnaker Open Source Community on the [Spinnaker Slack channel](http://join.spinnaker.io/)
-
-## Features and pricing
-
-Armory Spinnaker is an enterprise-grade distribution of Spinnaker that forms the core of Armory's Platform. Armory's Platform helps software teams ship better software, faster. [Learn more here](https://www.armory.io/pricing).

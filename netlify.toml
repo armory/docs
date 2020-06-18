@@ -10,3 +10,52 @@
   HUGO_VERSION = "0.71.1"
   HUGO_THEME = "docsy"
   HUGO_ENV = "production"
+
+# section redirects
+[[redirects]]
+  from = "/overview/*"
+  to = "/docs/overview/:splat"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/halyard-release-notes/*"
+  to = "/docs/release-notes/rn-armory-halyard/"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/release-notes/*"
+  to = "/docs/release-notes/rn-armory-spinnaker/"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/spinnaker/*"
+  to = "/docs/spinnaker/:splat"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/operator_reference/*"
+  to = "/docs/operator-reference/:splat"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/spinnaker-user-guides/*"
+  to = "/docs/spinnaker-user-guides/:splat"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/spinnaker-install-admin-guides/*"
+  to = "/docs/spinnaker-install-admin-guides/:splat"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/glossary/glossary"
+  to = "/docs/overview/glossary/"
+  status = 301
+  force = false
