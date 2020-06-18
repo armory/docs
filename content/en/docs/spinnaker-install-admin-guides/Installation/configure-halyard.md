@@ -1,7 +1,7 @@
 ---
 title: Configure Armory Halyard
 aliases:
-  - /docs/spinnaker-install-admin-guides/configure-halyard/
+  - /spinnaker-install-admin-guides/configure-halyard/
 ---
 
 ## Overview

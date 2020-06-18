@@ -1,6 +1,8 @@
 ---
 title: Static Judge Canary Analysis (Kayenta)
 weight: 130
+aliases:
+  - /spinnaker-user-guides/StaticBaselineJudge/
 ---
 
 ## Overview

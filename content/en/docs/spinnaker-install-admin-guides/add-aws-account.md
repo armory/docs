@@ -5,6 +5,7 @@ aliases:
   - /spinnaker_install_admin_guides/add-aws-account/
   - /spinnaker_install_admin_guides/add_aws_account/
   - /spinnaker-install-admin-guides/add_aws_account/
+  - /spinnaker-install-admin-guides/add-aws-account/
 ---
 
 Once you have (OSS or Armory) Spinnaker up and running in Kubernetes, start adding deployment targets.

@@ -9,6 +9,7 @@ aliases:
   - /spinnaker_user_guides/expression_language/
   - /spinnaker_user_guides/expression-language/
   - /spinnaker-user-guides/expression_language/
+  - /spinnaker-user-guides/expression-language/
 ---
 
 ## Overview

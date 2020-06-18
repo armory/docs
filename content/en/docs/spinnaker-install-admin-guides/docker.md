@@ -3,6 +3,7 @@ title: Docker Registries
 weight: 51
 aliases:
   - /spinnaker_install_admin_guides/docker/
+  - /spinnaker-install-admin-guides/docker/
 ---
 
 ## Overview

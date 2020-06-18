@@ -3,6 +3,7 @@ weight: 40
 title: Working with Github
 aliases:
   - /spinnaker_user_guides/github/
+  - /spinnaker-user-guides/github/
 ---
 
 ## Trigger a Pipeline with a Github commit

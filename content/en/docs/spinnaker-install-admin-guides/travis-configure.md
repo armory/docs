@@ -1,6 +1,8 @@
 ---
 title: Configure Travis
 weight: 51
+aliases:
+  - /spinnaker-install-admin-guides/configure-travis/
 ---
 
 ## Overview

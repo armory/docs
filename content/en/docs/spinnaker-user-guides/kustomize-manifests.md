@@ -2,6 +2,8 @@
 layout: post
 title: Using Kustomize for Manifests
 weight: 170
+aliases:
+  - /spinnaker-user-guides/kustomize-manifests/
 ---
 
 ## Overview

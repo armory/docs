@@ -2,6 +2,8 @@
 title: Configuring GitHub OAuth for Spinnaker
 linkTitle: GitHub OAuth for Spinnaker
 weight: 900
+aliases:
+  - /spinnaker-install-admin-guides/authn-github/
 ---
 
 This post describes how to configure GitHub and Spinnaker to use GitHub as an OAuth2 authenticator. 

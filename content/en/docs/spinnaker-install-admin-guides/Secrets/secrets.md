@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Spinnaker Secrets
+title: Spinnaker Secrets Overview
 weight: 1
 aliases:
   - /spinnaker-install-admin-guides/secrets/
@@ -84,8 +84,9 @@ You can also provide secret references directly in `SpinnakerService` manifest u
 
 ### Supported secret engines
 
-* [Encrypted S3 buckets](../secrets-s3/) (Open Source Spinnaker)
-* [Google Storage (GCS)](../secrets-gcs/) (Open Source Spinnaker)
-* [Kubernetes Secrets](../secrets-kubernetes/) (Open Source Spinnaker, only available if using the Operator)
-* [Hashicorp Vault](../secrets-vault/) (Armory Spinnaker)
-* Is there a secret engine you'd like us to support? Submit a feature request [here](http://go.armory.io/support)!
+* [Encrypted S3 buckets]({{< ref "secrets-s3" >}}) (Open Source Spinnaker)
+* [Google Storage (GCS)]({{< ref "secrets-gcs" >}}) (Open Source Spinnaker)
+* [Kubernetes Secrets]({{< ref "secrets-kubernetes" >}}) (Open Source Spinnaker, only available if using the Operator)
+* [Hashicorp Vault]({{< ref "secrets-vault" >}}) (Armory Spinnaker)
+
+Is there a secret engine you'd like us to support? Submit a feature request [here](http://go.armory.io/support)!

@@ -3,6 +3,7 @@ title: Configure Jenkins
 weight: 50
 aliases:
   - /spinnaker_install_admin_guides/jenkins/
+  - /spinnaker-install-admin-guides/jenkins/
 ---
 
 Before you can make use of Jenkins in Spinnaker, you'll need to

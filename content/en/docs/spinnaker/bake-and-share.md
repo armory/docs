@@ -1,6 +1,8 @@
 ---
 title: Bake and Share AMIs Across Accounts
 weight: 100
+aliases:
+  - /spinnaker/bake-and-share/
 ---
 
 ## Overview

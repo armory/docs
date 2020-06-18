@@ -5,6 +5,7 @@ aliases:
   - /user-guides/webhooks/
   - /user_guides/webhooks/
   - /spinnaker_user_guides/webhooks/
+  - /spinnaker-user-guides/webhooks/
 ---
 
 > Spinnaker uses "webhooks" in two ways -- as a trigger for pipeline execution

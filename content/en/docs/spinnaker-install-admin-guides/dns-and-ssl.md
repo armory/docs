@@ -7,6 +7,7 @@ aliases:
   - /spinnaker_install_admin_guides/dns_and_ssl/
   - /spinnaker_install_admin_guides/dns-and-ssl/
   - /spinnaker-install-admin-guides/dns_and_ssl/
+  - /spinnaker-install-admin-guides/dns-and-ssl/
 ---
 
 ## Overview 

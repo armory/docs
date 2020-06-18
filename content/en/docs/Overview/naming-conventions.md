@@ -3,6 +3,8 @@ title: Nomenclature and Naming Conventions
 summary: "Learn how Spinnaker refers to things like different parts of applications and infrastructure."
 weight: 3
 linkTitle: Naming Conventions
+aliases:
+    - /overview/naming-conventions/
 ---
 
 ## Nomenclature

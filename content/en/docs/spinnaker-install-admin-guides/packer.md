@@ -5,6 +5,7 @@ weight: 35
 # Substantially different from install_guide/packer
 aliases:
   - /spinnaker_install_admin_guides/packer/
+  - /spinnaker-install-admin-guides/packer/
 ---
 
 ## Overview

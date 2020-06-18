@@ -2,6 +2,8 @@
 title: Sumo Logic Dashboard Integration
 linkTitle: Sumo Logic Integration
 weight: 200
+aliases: 
+  - /spinnaker-install-admin-guides/sumologic-dashboard/
 ---
 
 *This application has been developed and is supported by Armory, Inc. In case of technical questions, please [contact Armory](https://armory.io/contact) for support.*

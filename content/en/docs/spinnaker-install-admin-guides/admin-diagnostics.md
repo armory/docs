@@ -1,6 +1,8 @@
 ---
 title: Armory Diagnostics
 weight: 999
+aliases:
+    - /spinnaker-install-admin-guides/admin-diagnostics/
 ---
 
 ## Turning on Armory Diagnostics

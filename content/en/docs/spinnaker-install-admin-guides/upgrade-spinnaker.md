@@ -1,6 +1,8 @@
 ---
 title: Upgrade Spinnaker using Halyard
 weight: 2
+aliases:
+  - /spinnaker-install-admin-guides/upgrade-spinnaker/
 ---
 
 ## Determining the target version

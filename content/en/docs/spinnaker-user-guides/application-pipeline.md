@@ -9,6 +9,7 @@ aliases:
   - /spinnaker_user_guides/application_pipeline/
   - /spinnaker_user_guides/application-pipeline/
   - /spinnaker-user-guides/application_pipeline/
+  - /spinnaker-user-guides/application-pipeline/
 ---
 
 ## Creating a pipeline

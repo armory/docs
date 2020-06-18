@@ -14,6 +14,7 @@ aliases:
   - /spinnaker_user_guides/baking_images/
   - /spinnaker_user_guides/baking-images/
   - /spinnaker-user-guides/baking_images/
+  - /spinnaker-user-guides/baking-images/
 ---
 
 Definition: The term 'baking' is used within Spinnaker to refer to the process of creating machine images.

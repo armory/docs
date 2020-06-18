@@ -9,6 +9,7 @@ aliases:
   - /spinnaker_user_guides/writing_scripts/
   - /spinnaker_user_guides/writing-scripts/
   - /spinnaker-user-guides/writing_scripts/
+  - /spinnaker-user-guides/writing-scripts/
 ---
 
 ## API docs

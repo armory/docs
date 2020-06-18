@@ -5,6 +5,7 @@ aliases:
   - /user-guides/deploying/
   - /user_guides/deploying/
   - /spinnaker_user_guides/deploying/
+  - /spinnaker-user-guides/deploying/
 ---
 
 ## Prerequisites and assumptions:

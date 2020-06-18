@@ -1,6 +1,8 @@
 ---
 title: Spinnaker Operator
 weight: 11
+aliases:
+  - /spinnaker/operator/
 ---
 
 ## Overview

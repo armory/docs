@@ -2,6 +2,8 @@
 layout: post
 title: Using the Terraform Integration Stage
 weight: 142
+aliases:
+  - /spinnaker/terraform-use-integration/
 ---
 
 ## Overview

@@ -1,6 +1,8 @@
 ---
 title: Restrict Application Creation
 weight: 210
+aliases:
+  - /spinnaker-install-admin-guides/fiat-create-permissions/
 ---
 
 ## Overview

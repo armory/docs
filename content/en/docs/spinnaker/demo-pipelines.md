@@ -4,7 +4,6 @@ weight: 170
 aliases:
   - /spinnaker/demo_pipelines/
 ---
----
 
 > NOTE:  This is an "alpha" feature, we would love your feedback and bug reports!
 

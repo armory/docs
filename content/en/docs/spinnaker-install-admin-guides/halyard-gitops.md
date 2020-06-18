@@ -1,6 +1,8 @@
 ---
 title: Spinnaker GitOps with Halyard
 weight: 158
+aliases:
+  - /spinnaker-install-admin-guides/halyard-gitops/
 ---
 This article describes how to automate the deployment of Spinnaker and manage its configuration in source control.
 

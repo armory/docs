@@ -2,6 +2,8 @@
 
 title: "Kubernetes: Creating Service Accounts and Kubeconfigs"
 weight: 20
+aliases:
+  - /spinnaker-install-admin-guides/manual-service-account/
 ---
 
 ## Overview

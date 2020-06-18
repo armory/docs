@@ -1,6 +1,8 @@
 ---
 title: PaCRD CRD Documentation
 weight: 171
+aliases:
+    - /spinnaker/pacrd-crd-docs/
 ---
 {{< include "experimental-feature.html" >}}
 

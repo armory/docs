@@ -9,6 +9,7 @@ aliases:
   - /spinnaker_user_guides/working_with_jenkins/
   - /spinnaker_user_guides/working-with-jenkins/
   - /spinnaker-user-guides/working_with_jenkins/
+  - /spinnaker-user-guides/working-with-jenkins/
 ---
 
 > Before you start, you'll need to [configure Jenkins](/docs/spinnaker-install-admin-guides/jenkins/).  If

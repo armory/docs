@@ -9,6 +9,7 @@ aliases:
   - /spinnaker_install_admin_guides/rate_limit/
   - /spinnaker_install_admin_guides/rate-limit/
   - /spinnaker-install-admin-guides/rate_limit/
+  - /spinnaker-install-admin-guides/rate-limit/
 ---
 
 ## How Spinnaker monitors a deployment

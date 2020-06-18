@@ -1,7 +1,8 @@
 ---
 title: "Configuring Spinnaker on AWS for Disaster Recovery"
 weight: 35
-
+aliases:
+  - /spinnaker-install-admin-guides/aws-dr/
 ---
 
 ## Overview

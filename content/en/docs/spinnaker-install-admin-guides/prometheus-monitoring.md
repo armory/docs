@@ -3,6 +3,8 @@ title: Monitoring Spinnaker with Prometheus
 order: 920
 description: >
   Monitoring Spinnaker using Prometheus and Grafana
+aliases:
+  - /spinnaker-install-admin-guides/prometheus-monitoring/
 ---
 
 ## Overview

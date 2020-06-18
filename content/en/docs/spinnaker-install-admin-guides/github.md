@@ -4,6 +4,7 @@ linkTitle: Github as an Artifact Source
 weight: 49
 aliases:
   - /spinnaker_install_admin_guides/github/
+  - /spinnaker-install-admin-guides/github/
 ---
 
 ## Configuring a Github Trigger

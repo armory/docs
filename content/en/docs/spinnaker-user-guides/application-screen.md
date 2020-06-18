@@ -9,6 +9,7 @@ aliases:
   - /spinnaker_user_guides/application_screen/
   - /spinnaker_user_guides/application-screen/
   - /spinnaker-user-guides/application_screen/
+  - /spinnaker-user-guides/application-screen/
 ---
 
 An application within Spinnaker is a combination of clusters and load balancers.

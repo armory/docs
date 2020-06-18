@@ -2,6 +2,8 @@
 
 title: Generating Certificates
 weight: 46
+aliases:
+  - /spinnaker-install-admin-guides/generating-certificates/
 ---
 
 ## Requirements

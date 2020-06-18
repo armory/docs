@@ -4,6 +4,7 @@ weight: 45
 aliases:
   - /spinnaker_install_admin_guides/spinnaker-services-mtls/
   - /spinnaker_install_admin_guides/services_mtls/
+  - /spinnaker-install-admin-guides/services-mtls/
 ---
 
 This guide describes how to enable mutual TLS (mTLS) between Spinnaker services and is building on top of [how to enable TLS](../services-tls). Adding mTLS provides additional security for your Spinnaker services as only validated clients can interact with services when mTLS is enabled.

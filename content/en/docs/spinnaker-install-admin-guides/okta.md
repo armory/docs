@@ -1,6 +1,8 @@
 ---
 title: Okta Integration
 weight: 160
+aliases:
+  - /spinnaker-install-admin-guides/okta/
 ---
 
 Okta is a authorization and authentication service provider using SAML.

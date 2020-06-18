@@ -5,6 +5,7 @@ aliases:
   - /user-guides/pipelines/
   - /user_guides/pipelines/
   - /spinnaker_user_guides/pipelines/
+  - spinnaker-user-guides/pipelines/
 ---
 
 ## Overview

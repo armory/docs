@@ -9,6 +9,7 @@ aliases:
   - /spinnaker_user_guides/debian_packages/
   - /spinnaker_user_guides/debian-packages/
   - /spinnaker-user-guides/debian_packages/
+  - /spinnaker-user-guides/debian-packages/
 ---
 
 ## Why Use Debian packages

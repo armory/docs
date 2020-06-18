@@ -1,8 +1,9 @@
 ---
 title: "Your First Application"
 linkTitle: "Your First Application"
-
 weight: 4
+aliases:
+    - /overview/your-first-application/
 ---
 
 Spinnaker is organized around the concept of applications. An application in Spinnaker is a collection of clusters, which in turn are collections of server groups. The application also includes firewalls and load balancers.

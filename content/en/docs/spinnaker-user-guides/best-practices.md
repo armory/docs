@@ -10,6 +10,7 @@ aliases:
   - /spinnaker_user_guides/best-practices/
   - /spinnaker_user_guides/best_practices/
   - /spinnaker-user-guides/best_practices/
+  - /spinnaker-user-guides/best-practices/
 ---
 
 ## Configuration management

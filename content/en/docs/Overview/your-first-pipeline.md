@@ -1,6 +1,8 @@
 ---
 title: "Your First Pipeline"
 weight: 60
+aliases:
+    - /overview/your-first-pipeline/
 ---
 
 The pipeline is the key deployment management construct in Spinnaker. It consists of a sequence of actions, known as stages. You can pass parameters from stage to stage along the pipeline.

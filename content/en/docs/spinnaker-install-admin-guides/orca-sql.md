@@ -3,6 +3,7 @@ title: Orca with RDBMS
 weight: 48
 aliases:
   - /spinnaker_install_admin_guides/orca-sql/
+  - /spinnaker-install-admin-guides/orca-sql/
 ---
 
 ## Overview

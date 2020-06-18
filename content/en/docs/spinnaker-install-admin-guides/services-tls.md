@@ -5,6 +5,7 @@ aliases:
   - /spinnaker_install_admin_guides/spinnaker-services-tls/
   - /spinnaker_install_admin_guides/services_tls/
   - /spinnaker-install-admin-guides/spinnaker-services-ssl/
+  - /spinnaker-install-admin-guides/services-tls/
 ---
 
 Spinnaker services communicate with each other and can exchange potentially sensitive data. Enabling TLS between services ensures that this data is encrypted and that a service will only communicate with another service that has a valid certificate.

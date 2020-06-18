@@ -5,6 +5,7 @@ aliases:
   - /user-guides/kayenta/
   - /user_guides/kayenta/
   - /spinnaker_user_guides/kayenta/
+  - /spinnaker-user-guides/kayenta/
 ---
 
 ## Overview

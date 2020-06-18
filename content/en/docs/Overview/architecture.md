@@ -3,6 +3,8 @@ title: "Spinnaker Architecture"
 summary: "Learn about the services that work together in Spinnaker."
 weight: 2
 linkTitle: "Architecture"
+aliases:
+  - /spinnaker-install-admin-guides/architecture/
 ---
 
 Spinnaker is composed of several microservices for resiliency

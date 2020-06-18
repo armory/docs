@@ -10,6 +10,7 @@ aliases:
   - /spinnaker_user_guides/find_images/
   - /spinnaker_user_guides/find-images/
   - /spinnaker-user-guides/find_images/
+  - /spinnaker-user-guides/find-images/
 ---
 
 ## Prerequisites and assumptions:

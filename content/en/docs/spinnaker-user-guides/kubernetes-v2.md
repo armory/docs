@@ -6,6 +6,7 @@ aliases:
   - /spinnaker_user_guides/kubernetes-v2/
   - /spinnaker_user_guides/kubernetes_v2/
   - /spinnaker-user-guides/kubernetes_v2/
+  - /spinnaker-user-guides/kubernetes-v2/
 ---
 
 ## Overview

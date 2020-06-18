@@ -1,6 +1,8 @@
 ---
 title: PaCRD
 weight: 171
+aliases:
+  - /spinnaker/pacrd/
 ---
 
 <!-- Note:

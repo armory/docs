@@ -9,6 +9,7 @@ aliases:
   - /spinnaker_user_guides/video_tutorials/
   - /spinnaker_user_guides/video-tutorials/
   - /spinnaker-user-guides/video_tutorials/
+  - /spinnaker-user-guides/video-tutorials/
 ---
 
 Spinnaker is the continuous delivery platform that codifies the software delivery best practices that put Netflix and Google a decade ahead of most other companies.
