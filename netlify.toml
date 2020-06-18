@@ -20,13 +20,13 @@
 
 [[redirects]]
   from = "/halyard-release-notes/*"
-  to = "/docs/release-notes/rn-armory-halyard/:splat"
+  to = "/docs/release-notes/rn-armory-halyard/"
   status = 301
   force = false
 
 [[redirects]]
   from = "/release-notes/*"
-  to = "/docs/release-notes/rn-armory-spinnaker/:splat"
+  to = "/docs/release-notes/rn-armory-spinnaker/"
   status = 301
   force = false
 
