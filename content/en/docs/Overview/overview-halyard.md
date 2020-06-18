@@ -4,6 +4,8 @@ weight: 2
 summary: Read about what Halyard is and how it is used to manage Spinnaker.
 ---
 
+## Overview
+
 First, a bit of background.  Spinnaker is composed of a numnber of microservices (primarily Spring Java-based), that often run as Docker containers in a Kubernetes cluster.
 
 The OSS Halyard installer works roughly as follows:
@@ -24,9 +26,9 @@ Then, you'd add additional cloud providers (again, via `hal config`), and apply 
 
 *†This is greatly simplified, but should provide enough background to understand what's going on.*
 
-## The Armory Halyard installer is an extension of the OSS Halyard installer  
+## An extension of the OSS Halyard   
 
-We make the initial deployment of Spinnaker much simpler if you're working with a Kubernetes cluster and AWS S3, by adding a command that triggers a series of prompts (sort of a mini tutorial) that handles a lot of the initial configuration.  This occurs when you run `hal armory init` - it will prompt you for the following information:
+Armory Halyard is an extension of OSS Halyard. We make the initial deployment of Spinnaker much simpler if you're working with a Kubernetes cluster and AWS S3, by adding a command that triggers a series of prompts (sort of a mini tutorial) that handles a lot of the initial configuration.  This occurs when you run `hal armory init` - it will prompt you for the following information:
 * Which kubeconfig to use, and which Kubernetes cluster within that kubeconfig to deploy to
 * Which AWS credential profile to use to connect to S3
 * Which S3 bucket to store state in
