@@ -6,7 +6,7 @@ weight: 142
 
 ## Overview
 
-Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. For more information, see [Enabling the Terraform Integration]({{< ref "terraform-enable-integration">}}). To familiarize yourself with the Terraform stage, you can take a tour of the Terraform Integration Stage UI by watching the [erraform Integration UI video:
+Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. For more information, see [Enabling the Terraform Integration]({{< ref "terraform-enable-integration">}}). To familiarize yourself with the Terraform stage, you can take a tour of the Terraform Integration Stage UI by watching the Terraform Integration UI video:
 
 {{< youtube Xsjql3g-wtU >}}
 
