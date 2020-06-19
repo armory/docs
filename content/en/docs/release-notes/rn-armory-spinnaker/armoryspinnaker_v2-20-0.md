@@ -64,8 +64,9 @@ There have also been numerous enhancements, fixes and features across all of Spi
 Here's the bom for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
-<code>version: 2.20.0-rc.5
-timestamp: "2020-06-19 06:26:18"
+<code>
+version: 2.20.0
+timestamp: "2020-06-19 08:01:13"
 services:
     clouddriver:
         commit: 6d1cfe10
@@ -83,14 +84,14 @@ services:
         commit: f7c1d974
         version: 2.20.2
     front50:
-        commit: 97ae40e8
-        version: 2.20.2
+        commit: ed4b3b62
+        version: 2.20.3
     gate:
         commit: 69ba2895
         version: 2.20.2
     igor:
-        commit: d7f3747a
-        version: 2.20.2
+        commit: eef1ee6b
+        version: 2.20.3
     kayenta:
         commit: 4b9f2d68
         version: 2.20.2
@@ -105,8 +106,8 @@ services:
         commit: 59a9a00b
         version: 2.20.2
     terraformer:
-        commit: e042ac6a
-        version: 2.20.1
+        commit: 5b00d7a6
+        version: 2.20.3
 dependencies:
     redis:
         version: 2:2.8.4-2
