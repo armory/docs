@@ -48,11 +48,7 @@ For more information, see /spinnaker/terraform-enable-integration#profiles
 
 ### Pipelines as code
 
-Application-level notifications are now available. When the Dinghy service sends a notification, it will send it to application-level Slack channels.
-
-### PCF Clouddriver improvements 
-
-
+Application-level notifications are now available for Pipelines as code. When the Dinghy, the service for Pipelines as code, sends a notification, it will send it to application-level Slack channels.
 
 ### Security update
 
