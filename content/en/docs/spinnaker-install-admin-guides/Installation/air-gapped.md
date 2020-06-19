@@ -46,16 +46,68 @@ spinnaker:
       gcs:
         enabled: false
       # Name of your private bucket
-      bucket: myownbucket
+      bucket: halconfig
       # If your s3 bucket is not in us-west-2 (region does not matter for Minio)
       region: us-east-1
       # If you are using a platform that does not support PathStyleAccess, such as Minio, switch this to true
       # https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro
       enablePathStyleAccess: false
       # For s3 like storage with custom endpoint, such as Minio:
-      # endpoint: https://my.minio:9000
+      # endpoint: https://minio.minio:9000
+      # anonymousAccess: false
 ```
 
+If you're running Halyard in Kubernetes or Spinnaker Operator, first create a the halyard-local.yml in your local directory, then create a `configmap` in the same namespace as halyard or operator with the halyard-local.yml file e.g.
+`kubectl create configmap halyard-custom-config --from-file=halyard-local.yml=path/to/halyard-local.yml -n halyard`
+
+Then, if you're running Halyard in Kubernetes, then mount the configmap with the following addition in volumeMounts / volume in your halyard manifest:
+
+```
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: halyard
+  namespace: halyard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: halyard
+  serviceName: halyard
+  template:
+    metadata:
+      labels:
+        app: halyard
+    spec:
+      containers:
+      - name: halyard
+        image: index.docker.io/armory/halyard-armory:{{ site.data.versions.halyard-armory-version }}
+        volumeMounts:
+        - name: halconfig
+          mountPath: /home/spinnaker/
+        ### mount halyard-local.yml into /opt/spinnaker/config/
+        - name: halyard-custom-config
+          mountPath: /opt/spinnaker/config
+        ### add AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY if necessary
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          value: xxxx
+        - name: AWS_SECRET_ACCESS_KEY
+          value: xxxx
+      securityContext:
+        fsGroup: 65533
+      volumes:
+      - name: halconfig
+        persistentVolumeClaim:
+          claimName: halconfig-pvc
+      ### use configMap/halyard-custom-config 
+      - name: halyard-custom-config
+        configMap:
+          name: halyard-custom-config
+      ### 
+```
+
+It may be necessary to include your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY for your custom/private s3 bucket.
 
 ### Enabling a new version of Armory Spinnaker
 
@@ -64,7 +116,7 @@ You can download version `x.y.z` of Armory Spinnaker with this [script](https://
 For example:
 
 ```bash
-$ download-bom.sh 2.16.0 versions/
+$ download-bom.sh 2.20.0 versions/
 ```
 
 You can then upload the files you just downloaded to your storage. Make sure they are readable from wherever Halyard (not necessarily Spinnaker services) will run. For example:
