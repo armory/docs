@@ -104,7 +104,6 @@ spec:
       - name: halyard-custom-config
         configMap:
           name: halyard-custom-config
-      ### 
 ```
 
 It may be necessary to include your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY for your custom/private s3 bucket.
