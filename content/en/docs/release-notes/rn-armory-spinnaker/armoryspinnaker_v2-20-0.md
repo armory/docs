@@ -48,6 +48,14 @@ For more information, see /spinnaker/terraform-enable-integration#profiles
 
 Application-level notifications are now available for Pipelines as code. When the Dinghy, the service for Pipelines as code, sends a notification, it will send it to application-level Slack channels.
 
+### Clouddriver
+
+The Plugins framework now supports cloud provider plugins. You can see an example for Nomad in the Plugins example [repo](https://github.com/spinnaker-plugin-examples/nomadPlugin).
+
+### Cloud Foundry
+
+Improved latency for large Cloud Foundry deployments with the Space Caching Agent.
+
 ### Security update
 
 This releases focuses on making Spinnaker more secure. Although several CVEs are resolved, the following still exist:
