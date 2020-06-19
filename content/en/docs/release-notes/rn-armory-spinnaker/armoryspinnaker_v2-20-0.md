@@ -1,27 +1,58 @@
 ---
 layout: post
 title: v2.20.0 Armory Release (OSS Spinnaker v1.20.5)
-order: -2201592574068
-hidden: false
+toc_hide: true
 ---
 
-# 2020/06/19 Release Notes
-{:.no_toc}
+## 2020/06/19 Release Notes
 
-> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+{{% alert title="Note" %}} 
+If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "troubleshooting#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback" >}} and please report issues to <http://go.armory.io/support>.
+{{% /alert %}}
 
-* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
-{:toc}
+## Required Halyard version
 
+Armory Spinnaker 2.20.x requires Armory Halyard 1.8.3 or later.
+
+## Breaking changes
+
+### HTTP sessions for Gate
+Armory Spinnaker 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
+
+### Scheduled Removal of Kubernetes V1 Provider
+The Kubernetes V1 provider will be removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
+
+Breaking change: Kubernetes accounts with an unspecified providerVersion will now default to V2. Update your Halconfig to specify `providerVersion: v1` for any Kubernetes accounts you are currently using with the V1 provider.
 
 ## Known Issues
-There are currently no known issues with this release.
+
+### Upgrading from 2.18.x with MySQL used for Front50 renames the plugin_artifacts table
+As a part of the upgrade from 2.18.x to 2.19.x, the table **plugin_artifacts** gets renamed to `plugin_info`. Downgrades from 2.19.x to 2.18.x do not revert the table name. The table remains named `plugin_info`, preventing access to the table.  
+
+This issue only occurs if you upgrade to 2.19.x and then downgrade.
 
 ## Highlighted Updates
 
 ### Armory
 
-Summary of changes in the latest release.
+### Terraform integration profiles
+
+The Terraform integration now supports profiles that allow you control which users have the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. 
+
+Supported credentials:
+* AWS
+* SSH
+* Static
+
+For more information, see /spinnaker/terraform-enable-integration#profiles
+
+### Pipelines as code
+
+Application-level notifications are now available. When the Dinghy service sends a notification, it will send it to application-level Slack channels.
+
+### PCF Clouddriver improvements 
+
+
 
 ### Security update
 
@@ -58,7 +89,38 @@ The following CVEs also exist for the service:
 There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
 [Spinnaker v1.20.5](https://www.spinnaker.io/community/releases/versions/1-20-5-changelog)
 
+### Open source highlights
+
+#### Kubernetes V2 Run Job Stage
+
+Spinnaker 1.20 no longer automatically adds a unique suffix to the name of jobs. Prior to this release, the Kubernetes V2 Run Job stage added a unique suffix to the name of the deployed job, with no ability to control or configure this behavior.
+
+To continue having a random suffix added to the job name, set the metadata.generateName field instead of metadata.name, which causes the Kubernetes API to append a random suffix to the name.
+
+If a job sets metadata.name directly, that name will be used without modification for each execution of the job. As jobs are immutable, each execution of the stage will delete any existing job with the supplied name before creating the job.
+
+#### Kustomize Enabled by Default
+
+Starting in Spinnaker 1.20, Kustomize support in Spinnaker is GA, and the Kustomize option in the Bake (Manifest) stage is enabled by default. Previously, the Kustomize option in the Bake (Manifest) stage was hidden behind a feature flag.
+
+#### Support for Hiding Arbitrary Stages from End Users
+
+In this release, all stages that are not provider-specific will be exposed by default. Operators can now choose to hide any stages from end-users using [Deck’s `hiddenStages` setting](https://www.spinnaker.io/guides/operator/hiding-stages/#hiding-stages). The flags to enable the Gremlin, Travis, Wercker, and Create Load Balancers stages are no longer supported in Spinnaker 1.20 or Halyard 1.35. If using a version of Spinnaker prior to 1.20 with Halyard 1.35, you may still enable the `travis`, `wercker`, and `infrastructureStages` flags by setting them in your `settings-local.js`.
+
+#### Docker Registry Changing
+
+Spinnaker’s Docker containers are now hosted on `us-docker.pkg.dev/spinnaker-community`. Previously, they were hosted on `gcr.io/spinnaker-marketplace`.
+
+#### ECS Support for Load Balancer Views and Task Health Status in Deployments
+
+In this release, users can now view the load balancers, listeners and target groups associated with their ECS services within the Load Balancers Infrastructure tab. 
+
+Also in this release, pipeline deployments now take into account container health checks and the overall task health status before determining a service to be up. If using a prior version, pipeline deployments would consider the service healthy once the tasks were started, but potentially prior to the container health checks running. This could lead to prematurely marking a deployment as successful.
+
+
 ## Detailed Updates
+
+
 
 ### Bill of Materials
 Here's the bom for this version.
