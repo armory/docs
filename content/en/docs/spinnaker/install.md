@@ -11,30 +11,30 @@ aliases:
 
 Armory Minnaker is an easy to use installation script that leverages the power of **Kubernetes** with the simplicity of a _Virtual Machine_.  The Kubernetes environmnent that will get installed on your behalf is based on [Rancher's K3s](https://k3s.io/).  You do not need to know how to setup Kubernetes as we have done all of the hard parts for you allowing you to get up and running with Spinnaker in under 10 minutes.  Check out [our video](https://youtu.be/jg8vJEzcuAA) on running Spinnaker across all of the public clouds including VMWare Fusion locally.  This deployment makes it easy to get up and running today and let's you scale your deployment into a medium to large deployment down the road.
 
-## Prerequisites
+### Prerequisites
 
 Your VM should have 4 vCPUs, 16G of memory and 30G of HDD space.
 
-## Getting Started
+### Getting Started
 
 Check out the [GitHub project](https://github.com/armory/minnaker) for more information. After you install Minnaker, use the [AWS Quick Start]({{< ref "Armory-Spinnaker-Quickstart-1" >}}) to learn how to configure Spinnaker to deploy to AWS.
 
-# Installing Armory Spinnaker for Medium to Large Enterprise Deployments
+## Installing Armory Spinnaker for Medium to Large Enterprise Deployments
 
-## Prerequisites
+### Prerequisites
 
 Make sure you have a kubernetes cluster with a minimum of **15 GB** of memory and **8 CPU's** total _available_ to be used by Spinnaker. At least a single node should have 4 GB and 1 CPU available.
 
-## Install Armory Halyard
+### Install Armory Halyard
 
 Install Armory's version of Halyard in a Docker container or Kubernetes cluster in order
 to run Halyard and its command line interface.
 
 See also [Armory Halyard configuration]({{< ref "configure-halyard" >}}).
 
-### Run Armory Halyard in Docker
+#### Run Armory Halyard in Docker
 
-#### Before You Start
+##### Before You Start
 
 The Docker image will contain most of the files you will need.  However,
 you may need to update your `.kube/config` file to use
@@ -50,7 +50,7 @@ Our installer currently expects to find your kubeconfig named `config` in
 the `.kube` directory you map below.  If you've named your config something
 else, you'll need to rename or symlink the file accordingly.
 
-#### Running Armory Halyard in Docker
+##### Running Armory Halyard in Docker
 
 You can start Armory Halyard in a Docker container with the following command:
 
@@ -76,7 +76,7 @@ docker exec -it armory-halyard bash
 
 From there, you can issue all your [halyard commands](https://www.spinnaker.io/reference/halyard/).
 
-### Run Armory Halyard in Kubernetes
+#### Run Armory Halyard in Kubernetes
 You can start Armory Halyard in a pod with the following manifest:
 ```
 ---
@@ -136,7 +136,7 @@ Once the pod is deployed - you can interact with it by running:
 kubectl -n halyard exec -ti halyard-xxxxx bash  # make sure you get the exact pod name
 ```
 
-## Installing Armory Spinnaker
+### Install Armory Spinnaker
 
 With Armory's version of Halyard installed, you can interact with Armory Spinnaker with the exact same
 commands used to interact with Open Source Halyard.  The key differences between Armory and
@@ -154,7 +154,7 @@ To install Armory Spinnaker, you use the same `hal` commands as Open Source Spin
 * [Install Armory Spinnaker from the AWS Container Marketplace]({{< ref "aws-container-marketplace" >}})
 * [Install Armory Spinnaker on GKE]({{< ref "install-on-gke" >}})
 
-#### Notes on Docker
+##### Notes on Docker
 
 You will not be able to access the proxy in the Docker container from your
 machine directly, so you'll need to install kubectl natively on your system
