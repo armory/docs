@@ -57,12 +57,15 @@ spinnaker:
       # anonymousAccess: false
 ```
 
-If you're running Halyard in Kubernetes or Spinnaker Operator, first create a the halyard-local.yml in your local directory, then create a `configmap` in the same namespace as halyard or operator with the halyard-local.yml file e.g.
-`kubectl create configmap halyard-custom-config --from-file=halyard-local.yml=path/to/halyard-local.yml -n halyard`
+If you're running Halyard in Kubernetes or Spinnaker Operator, you need to create `halyard-local.yml` in your local directory. Then, create a `configmap` in the same namespace as Halyard or Operator with the `halyard-local.yml` file:
 
-Then, if you're running Halyard in Kubernetes, then mount the configmap with the following addition in volumeMounts / volume in your halyard manifest:
-
+```bash
+kubectl create configmap halyard-custom-config --from-file=halyard-local.yml=path/to/halyard-local.yml -n halyard
 ```
+
+If you're running Halyard in Kubernetes, you then need to mount the configmap with the following addition in volumeMounts / volume in your Halyard manifest:
+
+```yaml
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
