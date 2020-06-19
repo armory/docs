@@ -11,6 +11,15 @@ linkTitle: "Documentation"
 
 [ 
 
+
+}
+
+
+)
+
+
+
+(
 - [Pipeline as Code (Dinghy)]({{< ref "using-dinghy" >}}) allows you to store Spinnaker pipelines in Github and manage them like you would manage code, including version control, templatization, and modularization. Spinnaker pipelines are flexible and customizable series of deployment stages. Combine all these to rapidly and repeatably scale pipelines in your Spinnaker deployment.
 - [Armory Spinnaker Operator]({{< ref "operator" >}}) helps you configure, deploy, and update Spinnaker on Kubernetes clusters. If you cannot use a Kubernetes Operatork, you can use Armory Halyard to accomplish the same tasks.
 - [Policy Engine]({{< ref "policy-engine" >}}) helps you meet compliance requirements based on custom policies you set.
