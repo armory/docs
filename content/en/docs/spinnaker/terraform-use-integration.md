@@ -6,9 +6,7 @@ weight: 142
 
 ## Overview
 
-Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. For more information, see [Enabling the Terraform Integration]({{< ref "terraform-enable-integration">}}). To familiarize yourself with the Terraform stage, you can take a tour of the Terraform Integration Stage UI by watching the Terraform Integration UI video:
-
-{{< youtube Xsjql3g-wtU >}}
+Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. For more information, see [Enabling the Terraform Integration]({{< ref "terraform-enable-integration">}}). To familiarize yourself with the Terraform stage, you can take a tour of the Terraform Integration Stage UI by watching the Terraform Integration [UI video](https://youtu.be/Xsjql3g-wtU).
 
 At the core of the Terraform Integration is the Terraformer service. This service fetches your Terraform projects from source and executes various Terraform commands against them. When a `terraform` stage starts, Orca submits the task to Terraformer and monitors it until completion. Once a task is submitted, Terraformer fetches your target project, runs `terraform init` to initialize the project, and then runs your desired `action` (`plan` or `apply`). If the task is successful, the stage gets marked successful as well. If the task fails, the stage gets marked as a failure, and the pipeline stops.
 
