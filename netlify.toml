@@ -5,6 +5,7 @@
   publish = "public"
   command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
 
+
 # "production" environment specific build settings
 [build.environment]
   HUGO_VERSION = "0.71.1"
@@ -59,3 +60,10 @@
   to = "/docs/overview/glossary/"
   status = 301
   force = false
+
+
+[[plugins]]
+package = "@netlify/plugin-sitemap"
+
+  [plugins.inputs]
+  buildDir = "public"
