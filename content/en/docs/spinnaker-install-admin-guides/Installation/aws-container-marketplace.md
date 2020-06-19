@@ -17,7 +17,7 @@ Spinnaker Operator is a Kubernetes Operator that makes it easier to install, dep
 
 ## Prerequisites
 
-To use the Armory Spinnaker Marketplace offering, make sure the following requirements are met:
+To use the Armory Spinnaker Marketplace offering, make sure you meet the following requirements:
 
 * An EKS cluster (Kubernetes 1.16 or above) configured with [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 * An ingress controller for your EKS cluster. This document assumes the EKS cluster is using the NGINX Ingress Controller.
@@ -35,18 +35,7 @@ This document covers the following high-level steps:
 4. Creating a SpinnakerService Custom Resource
 5. Exposing your Spinnaker instance
 
-
-## Creating and configuring the AWS IAM roles for your Kubernetes cluster
-
-AWS IAM permissions are granted to Spinnaker through the use of AWS's IAM roles for Kubernetes Service Accounts. This feature must be enabled at a cluster level.  You need to create three IAM roles:
-
-* An IAM role for Operator (`spinnaker-operator` ServiceAccount in `spinnaker-operator` Namespace) that will have these permissions:
-    * `aws-marketplace:RegisterUsage`
-    * `s3:*` on your AWS Bucket
-* An IAM role for the Spinnaker Front50 service (`front50` ServiceAccount in `spinnaker` Namespace), that will have these permissions:
-    * `s3:*` on your AWS Bucket
-* An IAM role for the Spinnaker Clouddriver service (`clouddriver` ServiceAccount in `spinnaker` Namespace).  This IAM role does not require any explicit permissions for now. If you want Spinnaker to deploy AWS resources (AWS EC2, AWS ECS, AWS Lambda, or other AWS EKS clusters), you can add these permissions later.
-    * _AWS permissions are **not** needed to deploy to the EKS cluster where Spinnaker is installed._
+## Create an AWS bucket
 
 If you do not already have an AWS S3 bucket, create one with these settings:
 
@@ -54,7 +43,19 @@ If you do not already have an AWS S3 bucket, create one with these settings:
 * Default encryption turned on
 * All public access blocked
 
-You should end up with these three IAM roles:
+## Create and configure the AWS IAM roles for your Kubernetes cluster
+
+AWS IAM permissions are granted to Spinnaker through the use of AWS's IAM roles for Kubernetes Service Accounts. This feature must be enabled at a cluster level.  You need to create three IAM roles:
+
+* An IAM role for Operator (`spinnaker-operator` ServiceAccount in `spinnaker-operator` Namespace) that has these permissions:
+    * `aws-marketplace:RegisterUsage`
+    * `s3:*` on your AWS Bucket
+* An IAM role for the Spinnaker Front50 service (`front50` ServiceAccount in `spinnaker` Namespace), that has these permissions:
+    * `s3:*` on your AWS Bucket
+* An IAM role for the Spinnaker Clouddriver service (`clouddriver` ServiceAccount in `spinnaker` Namespace).  This IAM role does not require any explicit permissions. If you want Spinnaker to deploy AWS resources (AWS EC2, AWS ECS, AWS Lambda, or other AWS EKS clusters), you can add these permissions later.
+    * _AWS permissions are **not** needed to deploy to the EKS cluster where Spinnaker is installed._
+
+Upon completion of this section, you should have these three IAM roles:
 * `arn:aws:iam::AWS_ACCOUNT_ID:role/eks-spinnaker-operator` granted to the Kubernetes Service Account `system:serviceaccount:spinnaker-operator:spinnaker-operator`
 * `arn:aws:iam::AWS_ACCOUNT_ID:role/eks-spinnaker-front50` granted to the Kubernetes Service Account `system:serviceaccount:spinnaker:front50`
 * `arn:aws:iam::AWS_ACCOUNT_ID:role/eks-spinnaker-clouddriver` granted to the Kubernetes Service Account `system:serviceaccount:spinnaker:clouddriver`
@@ -62,11 +63,11 @@ You should end up with these three IAM roles:
 
 ### IAM role for Operator Pod
 
-Create an IAM role to be used by the Operator pod (call it `eks-spinnaker-operator`) and configure it for use by EC2. The trust relationship will be replaced later.
+Create an IAM role for the Operator pod (call it `eks-spinnaker-operator`) and configure it for use by EC2. You will replace the trust relationship later.
 
-Grant it the AWS managed policy `AWSMarketplaceMeteringRegisterUsage`
+Grant the role the AWS managed policy `AWSMarketplaceMeteringRegisterUsage`.
 
-Grant it an inline policy granting permissions on your S3 bucket (replace `BUCKET_NAME` with the name of your bucket):
+Grant the role an inline policy granting permissions on your S3 bucket (replace `BUCKET_NAME` with the name of your bucket):
 
 ```json
 {
@@ -102,7 +103,8 @@ For example:
 }
 ```
 
-Create this trust relationship on the IAM role; with these fields replaced:
+Create this trust relationship on the IAM role, with these fields replaced:
+
 * replace `AWS_ACCOUNT_ID` with your AWS account ID
 * replace `OIDC_PROVIDER` with the "OpenID Connect provider URL" for your Kubernetes cluster (_with the `https://` removed_)
 
@@ -150,9 +152,9 @@ For example:
 
 ### IAM role for Front50 Pod
 
-Create an IAM role for the Operator pod (call it `eks-spinnaker-front50`)  and configure it for use by EC2. The trust relationship will be replaced later. 
+Create an IAM role for the Operator pod (call it `eks-spinnaker-front50`)  and configure it for use by EC2. You will replace the trust relationship later.
 
-Grant it an inline policy granting permissions on your S3 bucket (replace `BUCKET_NAME` with the name of your bucket):
+Grant the role an inline policy granting permissions on your S3 bucket (replace `BUCKET_NAME` with the name of your bucket):
 
 ```json
 {
@@ -188,7 +190,8 @@ For example:
 }
 ```
 
-Create this trust relationship on the IAM role with these fields replaced:
+Create this trust relationship on the IAM role, with these fields replaced:
+
 * Replace `AWS_ACCOUNT_ID` with your AWS account ID
 * Replace `OIDC_PROVIDER` with the "OpenID Connect provider URL" for your Kubernetes cluster (_with the `https://` removed_)
 
@@ -238,9 +241,10 @@ For example:
 
 ### IAM role for Clouddriver Pod
 
-Create an IAM role for the Operator pod (call it `eks-spinnaker-clouddriver`) and configure it for use by EC2. The trust relationship will be replaced later. It will not need explicit AWS permissions (for now).
+Create an IAM role for the Operator pod (call it `eks-spinnaker-clouddriver`) and configure it for use by EC2. You will replace the trust relationship later. It does not need explicit AWS permissions.
 
-Create this trust relationship on the IAM role with these fields replaced:
+Create this trust relationship on the IAM role, with these fields replaced:
+
 * Replace `AWS_ACCOUNT_ID` with your AWS account ID
 * Replace `OIDC_PROVIDER` with the "OpenID Connect provider URL" for your Kubernetes cluster (_with the `https://` removed_)
 
@@ -288,7 +292,7 @@ For example:
 
 ## Installing Armory Spinnaker Custom Resource Definitions (CRDs)
 
-Download the Kubernetes manifest for Operator, and install them into your Kubernetes cluster:
+Download the Kubernetes manifest for Operator, and install it into your Kubernetes cluster:
 
 ```bash
 mkdir -p spinnaker-operator && cd spinnaker-operator
@@ -300,7 +304,8 @@ kubectl apply -f manifests/crds/
 
 ## Installing the Armory Spinnaker Operator
 
-The manifest for the Armory Spinnaker Operator has to be updated with this:
+Update the manifest for the Armory Spinnaker Operator with your AWS Account ID:
+
 * `AWS_ACCOUNT_ID` (in the ServiceAccount annotation) has to be updated with your account ID, so the ServiceAccount can accesss your AWS IAM roles
 
 ```bash
@@ -313,19 +318,20 @@ rm manifests/operator/ServiceAccount.yaml.bak
 kubectl apply -f manifests/operator
 ```
 
-It may take a little bit of time for the Operator to come up.  You can monitor its status by running this command:
+Deploying the Operator may take a little bit of time.  You can monitor its status by running this command:
 
 ```bash
 kubectl -n spinnaker-operator get pod -owide
 ```
 
-You're looking for the Deployment to be completely up (READY of `2/2` and STATUS of `Running`)
+You're looking for the deployment to be completely up (READY of `2/2` and STATUS of `Running`).
 
 ### Creating a SpinnakerService Custom Resource
 
-The manifest for the SpinnakerService object needs to be updated with these:
-* `AWS_ACCOUNT_ID` (in both ServiceAccount annotations) has to be updated with your account ID, so the ServiceAccount can accesss your AWS IAM roles
-* `BUCKET_NAME` (in the SpinnakerService) needs to be updated with the name of your AWS S3 Bucket
+Update the manifest for the SpinnakerService object with these:
+
+* `AWS_ACCOUNT_ID` (in both ServiceAccount annotations) - your account ID, so the ServiceAccount can access your AWS IAM roles
+* `BUCKET_NAME` (in the SpinnakerService) - the name of your AWS S3 Bucket
 
 ```bash
 export AWS_ACCOUNT_ID=111122223333
@@ -360,11 +366,12 @@ Given a domain name (or IP address) (such as spinnaker.domain.com or 55.55.55.55
 
 * Reach the `spin-deck` service at the root of the domain (`http://spinnaker.domain.com` or `http://55.55.55.55`)
 * Reach the `spin-gate` service at the root of the domain (`http://spinnaker.domain.com/api/v1` or `http://55.55.55.55/api/v1`)
-  
-You can use either http or https, as long as you use the same for both. Additionally, you have to configure Spinnaker to be aware of its endpoints.  
+
+You can use either `http` or `https`, as long as you use the same for both. Additionally, you have to configure Spinnaker to be aware of its endpoints.  
 
 This section assumes the following:
-* The [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/#aws) has been installed in the EKS cluster
+
+* You have installed the [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/#aws) in the EKS cluster
 * You can set up a DNS CNAME Record pointing at the AWS Load Balancer in front of your NGINX Ingress Controller
 
 ## Set up an Ingress for `spin-deck` and `spin-gate`
@@ -391,7 +398,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - 
+  -
     host: spinnaker.domain.com # Make sure to update this field
     http:
       paths:
@@ -416,7 +423,7 @@ kubectl -n spinnaker apply -f spin-ingress.yml
 ## Configure Spinnaker to be aware of its endpoints
 
 Update the spec.spinnakerConfig.config.security section of `manifests/spinnaker/SpinnakerService.yaml`:
-    
+
 ```yaml
 spec:
   spinnakerConfig:
@@ -430,10 +437,10 @@ spec:
       # ... more configuration
 ```
 
-_**Make sure to specify http or https according to your environment**_
+_**Make sure to specify `http` or `https` according to your environment**_
 
 Apply the changes:
-    
+
 ```bash
 kubectl apply -f manifests/spinnaker/SpinnakerService.yaml
 ```
@@ -452,7 +459,7 @@ Configuring TLS certificates for ingresses is environment-specific. In general, 
 
 Now that Spinnaker is running, here are potential next steps:
 
-* Configuring certificates to secure our cluster (see [this section](#configuring-tls-certificates) for notes on this)
-* Configuring authentication/authorization (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/security/))
-* Adding external Kubernetes accounts to deploy applications to (see [Creating and Adding a Kubernetes Account to Spinnaker (Deployment Target)]({{< ref "add-kubernetes-account" >}}))
-* Adding AWS accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/aws/))
+* Configure certificates to secure our cluster (see [this section](#configuring-tls-certificates) for notes on this)
+* Configure authentication/authorization (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/security/))
+* Add external Kubernetes accounts to deploy applications to (see [Creating and Adding a Kubernetes Account to Spinnaker (Deployment Target)]({{< ref "add-kubernetes-account" >}}))
+* Add AWS accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/aws/))
