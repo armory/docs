@@ -46,7 +46,7 @@ spinnaker:
       gcs:
         enabled: false
       # Name of your private bucket
-      bucket: halconfig
+      bucket: myownbucket
       # If your s3 bucket is not in us-west-2 (region does not matter for Minio)
       region: us-east-1
       # If you are using a platform that does not support PathStyleAccess, such as Minio, switch this to true
