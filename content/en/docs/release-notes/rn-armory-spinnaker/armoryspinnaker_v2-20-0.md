@@ -1,11 +1,17 @@
 ---
-title: v2.20.0 Armory Release (OSS Release 1.20.5)
-toc_hide: true
+layout: post
+title: v2.20.0 Armory Release (OSS Spinnaker v1.20.5)
+order: -2201592574068
+hidden: false
 ---
 
 # 2020/06/19 Release Notes
+{:.no_toc}
 
-> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version](http://docs.armory.io/admin-guides/troubleshooting/#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+
+* This is a placeholder for an unordered list that will be replaced with ToC. To exclude a header, add {:.no_toc} after it.
+{:toc}
 
 
 ## Known Issues
@@ -16,6 +22,36 @@ There are currently no known issues with this release.
 ### Armory
 
 Summary of changes in the latest release.
+
+### Security update
+
+This releases focuses on making Spinnaker more secure. Although several CVEs are resolved, the following still exist:
+
+#### General
+
+- CVE-2020-13790
+
+This is an embedded dependency in OpenJDK11. A version of OpenJDK11 that addresses
+this CVE has only recently been released, and will be fixed in the next release. The risk to services users is low: the CVE deals with processing jpeg images in the Java Runtime Environment, a task our services donot utilize.
+
+The following list of CVEs will be addressed in the next release:
+
+- CVE-2020-5410
+- CVE-2020-13757
+
+#### Clouddriver
+
+The following three CVEs still exist in Clouddriver:
+
+- CVE-2020-1747
+- CVE-2017-18342
+- CVE-2016-10745
+
+All three are embedded dependencies in the Google Cloud SDK. A version of the Google Cloud SDK addressing these CVEs has not been released. The risk to Clouddriver users is low: all three CVEs deal with untrusted input, which Clouddriver does not provide to the Google Cloud SDK. Additionally, users deploying to other cloud providers are not at risk for this vulernability.
+
+The following CVEs also exist for the service:
+
+- CVE-2020-7014 - deals with an Elasticsearch exploit. Clouddriver only makes use of entity tags and does not allow for token generation or authentication.
 
 ###  Spinnaker Community Contributions
 
@@ -59,9 +95,9 @@ services:
         commit: 4b9f2d68
         version: 2.20.2
     monitoring-daemon:
-        version: 2.20.0-rc.5
+        version: 2.20.0
     monitoring-third-party:
-        version: 2.20.0-rc.5
+        version: 2.20.0
     orca:
         commit: 3d2cf0a1
         version: 2.20.1
