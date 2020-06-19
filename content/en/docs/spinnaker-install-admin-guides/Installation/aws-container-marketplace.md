@@ -7,7 +7,9 @@ aliases:
   - /spinnaker/aws-container-marketplace/
 ---
 
-{{< alert title="Note" >}}This document is intended for users who have purchased the Armory AWS Container Marketplace offering. It will not work if you have not subscribed to the Armory Container Marketplace offering{{< /alert >}}
+{{% alert title="Note" %}}This document is intended for users who have purchased the Armory AWS Container Marketplace offering. It will not work if you have not subscribed to the Armory Container Marketplace offering.
+
+Please contact [Armory](mailto:hello@armory.io) if you're interested in an AWS Marketplace Private Offer.{{% /alert %}}
 
 ## Overview
 
@@ -60,7 +62,7 @@ You should end up with these three IAM roles:
 
 ### IAM role for Operator Pod
 
-Create an IAM role to be used by the Operator pod (call it `eks-spinnaker-operator`)
+Create an IAM role to be used by the Operator pod (call it `eks-spinnaker-operator`) and configure it for use by EC2. The trust relationship will be replaced later.
 
 Grant it the AWS managed policy `AWSMarketplaceMeteringRegisterUsage`
 
@@ -148,7 +150,9 @@ For example:
 
 ### IAM role for Front50 Pod
 
-Create an IAM role for the Operator pod (call it `eks-spinnaker-front50`). Grant it an inline policy granting permissions on your S3 bucket (replace `BUCKET_NAME` with the name of your bucket):
+Create an IAM role for the Operator pod (call it `eks-spinnaker-front50`)  and configure it for use by EC2. The trust relationship will be replaced later. 
+
+Grant it an inline policy granting permissions on your S3 bucket (replace `BUCKET_NAME` with the name of your bucket):
 
 ```json
 {
@@ -234,7 +238,7 @@ For example:
 
 ### IAM role for Clouddriver Pod
 
-Create an IAM role for the Operator pod (call it `eks-spinnaker-clouddriver`). It will not need explicit AWS permissions (for now).
+Create an IAM role for the Operator pod (call it `eks-spinnaker-clouddriver`) and configure it for use by EC2. The trust relationship will be replaced later. It will not need explicit AWS permissions (for now).
 
 Create this trust relationship on the IAM role with these fields replaced:
 * Replace `AWS_ACCOUNT_ID` with your AWS account ID
@@ -373,9 +377,9 @@ First, determine a DNS name that you can use for Spinnaker, and set up a CNAME p
 
 Then, create a Kubernetes Ingress to expose `spin-deck` and `spin-gate`.  Create a file called `spin-ingress.yml` with the following content:
 
-```bash
+```yaml
 ---
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: spin-ingress
@@ -401,7 +405,7 @@ spec:
         path: /api/v1
 ```
 
-_**Make sure the host field is updated with the correct DNS record!**_
+_**Make sure the host field is updated with the correct DNS record.**_
 
 Apply the ingress file you just created:
 
@@ -411,7 +415,7 @@ kubectl -n spinnaker apply -f spin-ingress.yml
 
 ## Configure Spinnaker to be aware of its endpoints
 
-Uncomment and update the spec.spinnakerConfig.config.security section of `manifests/spinnaker/SpinnakerService.yaml`:
+Update the spec.spinnakerConfig.config.security section of `manifests/spinnaker/SpinnakerService.yaml`:
     
 ```yaml
 spec:
@@ -426,13 +430,15 @@ spec:
       # ... more configuration
 ```
 
-_**Make sure to specify http or https according to your environment!**_
+_**Make sure to specify http or https according to your environment**_
 
 Apply the changes:
     
 ```bash
 kubectl apply -f manifests/spinnaker/SpinnakerService.yaml
 ```
+
+If you encounter an error, delete and recreate the SpinnakerService.
 
 ## Configure TLS certificates
 
