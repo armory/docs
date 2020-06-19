@@ -1,7 +1,7 @@
 ---
 title: "Install Spinnaker"
 description: >
-  You can install Spinnaker in the public clouds or any Kubernetes cluster.
+   This sections details installing Spinnaker in Kubernetes, Azure, GKE, and AWS (including from the AWS Marketplace). Instructions cover Halyard, Spinnaker Operator, and air-gapped environments. 
 weight: 1
 ---
 
