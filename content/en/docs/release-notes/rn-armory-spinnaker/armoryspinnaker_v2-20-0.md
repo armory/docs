@@ -6,9 +6,7 @@ toc_hide: true
 
 ## 2020/06/19 Release Notes
 
-{{% alert title="Note" %}} 
-If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "troubleshooting#i-upgraded-spinnaker-and-it-is-no-longer-responding-how-do-i-rollback" >}} and please report issues to <http://go.armory.io/support>.
-{{% /alert %}}
+> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Halyard version
 
