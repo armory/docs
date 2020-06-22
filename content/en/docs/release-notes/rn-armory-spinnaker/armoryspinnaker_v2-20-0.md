@@ -24,6 +24,14 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 ## Known Issues
 
+### Dinghy Behavior Change for Application Spec
+
+If you use the application spec in your dinghyfile please skip 2.20.0 and wait for 2.20.1.
+
+Dinghy will create an application for a pipeline in a dinghyfile if the application doesn't exist. You can specify an initial permission specification for the application too as [documented here](https://docs.armory.io/docs/spinnaker/using-dinghy/#application-permissions). However the application specification is not updated if the application already exists, ie. after the initial application creation no further changes to it will be made by Dinghy even if you change the application spec in the dinghyfile.
+
+This behavior was changed in 2.20.0 when a new feature was added. In 2.20.0, Dinghy will save your application every time there is a change to a dinghyfile. We are working on making the behavior backward compatible in 2.20.1, where you need to specify a variable/flag to enable updating application specifications.
+
 ### Upgrading from 2.18.x with MySQL used for Front50 renames the plugin_artifacts table
 As a part of the upgrade from 2.18.x to 2.19.x, the table **plugin_artifacts** gets renamed to `plugin_info`. Downgrades from 2.19.x to 2.18.x do not revert the table name. The table remains named `plugin_info`, preventing access to the table.  
 
