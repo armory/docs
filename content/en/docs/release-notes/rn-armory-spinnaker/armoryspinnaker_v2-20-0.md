@@ -17,12 +17,22 @@ Armory Spinnaker 2.20.x requires Armory Halyard 1.8.3 or later.
 ### HTTP sessions for Gate
 Armory Spinnaker 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
 
-### Scheduled Removal of Kubernetes V1 Provider
+### Scheduled removal of Kubernetes V1 provider
 The Kubernetes V1 provider will be removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
 
 Breaking change: Kubernetes accounts with an unspecified providerVersion will now default to V2. Update your Halconfig to specify `providerVersion: v1` for any Kubernetes accounts you are currently using with the V1 provider.
 
 ## Known Issues
+
+### Pipelines as code behavior change for application spec
+
+If you use Pipelines as code, skip Armory Spinnaker 2.20.0 and wait for 2.20.1.
+
+Dinghy, the Pipelines as code service, creates an application for a pipeline in a dinghyfile if the application doesn't exist. You can specify an initial permission specification for the application as [documented here]({{< ref "using-dinghy#application-permissions" >}}). 
+
+Previously, the application specification is not updated if the application already exists. This means that after the initial application creation, no further changes to it get made by Dinghy even if you change the application spec in the `dinghyfile`.
+
+This behavior was changed in 2.20.0. In 2.20.0, Dinghy saves your application every time there is a change to a `dinghyfile`. This change in behavior may break some workflows.
 
 ### Upgrading from 2.18.x with MySQL used for Front50 renames the plugin_artifacts table
 As a part of the upgrade from 2.18.x to 2.19.x, the table **plugin_artifacts** gets renamed to `plugin_info`. Downgrades from 2.19.x to 2.18.x do not revert the table name. The table remains named `plugin_info`, preventing access to the table.  
