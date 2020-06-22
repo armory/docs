@@ -89,6 +89,7 @@ You can also provide secret references directly in `SpinnakerService` manifest u
 * [Encrypted S3 buckets]({{< ref "secrets-s3" >}}) (Open Source Spinnaker)
 * [Google Storage (GCS)]({{< ref "secrets-gcs" >}}) (Open Source Spinnaker)
 * [Kubernetes Secrets]({{< ref "secrets-kubernetes" >}}) (Open Source Spinnaker, only available if using the Operator)
+* [AWS Secrets Manager]({{< ref "secrets-aws-sm">}})(Open Source Spinnaker)
 * [Hashicorp Vault]({{< ref "secrets-vault" >}}) (Armory Spinnaker)
 
 Is there a secret engine you'd like us to support? Submit a feature request [here](http://go.armory.io/support)!
