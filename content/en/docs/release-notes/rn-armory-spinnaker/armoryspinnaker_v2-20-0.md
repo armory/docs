@@ -24,7 +24,7 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 ## Known Issues
 
-### Pipelines as code behavior Change for application spec
+### Pipelines as code behavior change for application spec
 
 If you use the application spec in your `dinghyfile`, skip Armory Spinnaker 2.20.0 and wait for 2.20.1.
 
