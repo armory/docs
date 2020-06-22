@@ -26,7 +26,7 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 ### Pipelines as code behavior change for application spec
 
-If you use the application spec in your `dinghyfile`, skip Armory Spinnaker 2.20.0 and wait for 2.20.1.
+If you use Dinghy, skip Armory Spinnaker 2.20.0 and wait for 2.20.1.
 
 Dinghy, the Pipelines as code service, creates an application for a pipeline in a dinghyfile if the application doesn't exist. You can specify an initial permission specification for the application as [documented here]({{< ref "using-dinghy#application-permissions" >}}). 
 
