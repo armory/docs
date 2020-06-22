@@ -26,7 +26,7 @@ You can reference a KeyStore or KeyStore password stored in AWS Secrets Manager.
 * `!` - **Required**. Delimiter between parameters.
 * `r:<AWS region>` - **Required**. The AWS region your secret is stored in. For example, use `r:us-west-2` for a secret stored in the `us-west-2` region.
 * `s:<Secret name>` - **Required**. The name of the secret stored in AWS Secrets Manager
-* `k<some-key>` - **Required** for encrypted strings. The Secret Key. Omit for KeyStores.
+* `k<some-key>` - **Required** for encrypted strings. The Secret key. Omit for KeyStores.
 
 For example, the following example references a KeyStore stored in `us-west-2`:
 
