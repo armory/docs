@@ -49,4 +49,4 @@ If you already have a Kubernetes cluster, and you already have access to S3, we 
 
 If you're not using S3 or not using Kubernetes, you can still get all the other benefits of the Armory distribution, just by following the standard OSS `hal` configuration steps using our extended Halyard package.
 
-Either way, feel free to reach out to us at [hello@armory.io](hello@armory.io) and we can help you get started!
+Either way, feel free to reach out to us at [hello@armory.io](mailto:hello@armory.io) and we can help you get started!

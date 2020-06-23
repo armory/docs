@@ -470,4 +470,4 @@ Configure profiles that users can select when creating a Terraform Integration s
 
 ## Submit feedback
 
-Let us know what you think at [go.armory.io/ideas](go.armory.io/ideas) or [feedback.armory.io](https://feedback.armory.io). We're constantly iterating on customer feedback to ensure that the features we build make your life easier!
+Let us know what you think at [go.armory.io/ideas](https://go.armory.io/ideas) or [feedback.armory.io](https://feedback.armory.io). We're constantly iterating on customer feedback to ensure that the features we build make your life easier!
