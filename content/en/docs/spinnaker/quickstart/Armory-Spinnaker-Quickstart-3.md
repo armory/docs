@@ -44,7 +44,8 @@ After you log in to Deck, perform the following steps:
 
 3. Click **Add Stage +** and search for a **Bake** stage to bake an AMI.
 4. Select the AWS Region you want to deploy to.
-5. Click **Add Server Group** and configure basic AMI bake settings: Account, Region, Subnet, Instance Type, and AWS SSH key.
+5. Click **Add Server Group** and configure basic AMI bake settings: Account, Region, Subnet, Instance Type, and AWS SSH key. 
+(Note: For more information about setting up your Bake Stage, please check out <https://docs.armory.io/docs/spinnaker-install-admin-guides/packer/#configuring-aws-networks> which includes guides about requirements regarding subnet configuration)
 6. Click **Done** and then **Save Changes** in the bottom right corner.
 7. Click **Add Stage** and add another stage called **Deploy** for AWS EC2.
 8. Click the "**Back to Execution**" button on the top left of the Pipeline Name
