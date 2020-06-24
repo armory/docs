@@ -58,7 +58,7 @@ docker run --name armory-halyard --rm \
     -it docker.io/armory/halyard-armory:<Armory Halyard version>
 ```
 
-Replace \<Armory Halyard version\> with the version of Halyard you want to run.
+Replace `<Armory Halyard version>` with the version of Halyard you want to run.
 
 ### Using a private s3 bucket with assume role
 
