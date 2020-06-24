@@ -52,7 +52,7 @@ This issue only occurs if you upgrade to 2.19.x and then downgrade.
 
 **Workaround**
 
-You can resolve this issue by rolling back changes to the MySQL database. For more information, see [MySQL Table Name Change Error When Rolling Back Spinnaker (Undo Renamed Values)](https://armoryspinnaker.force.com/s/article/SQL-Migration-Rollback-Undo-Renamed-Tables).
+You can resolve this issue by rolling back changes to the MySQL database. For more information, see [MySQL Table Name Change Error When Rolling Back Spinnaker (Undo Renamed Values)](https://kb.armory.io/s/article/SQL-Migration-Rollback-Undo-Renamed-Tables).
 
 ## Highlighted Updates
 
