@@ -55,8 +55,10 @@ docker run --name armory-halyard --rm \
     -e AWS_SECRET_ACCESS_KEY=<AWS secret key> \
     -v ~/.hal:/home/spinnaker/.hal \
     -v ~/.kube:/home/spinnaker/.kube \
-    -it docker.io/armory/halyard-armory:{{ site.data.versions.halyard-armory-version }}
+    -it docker.io/armory/halyard-armory:<Armory Halyard version>
 ```
+
+Replace \<Armory Halyard version\> with the version of Halyard you want to run.
 
 ### Using a private s3 bucket with assume role
 
