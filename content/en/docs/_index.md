@@ -11,6 +11,7 @@ menu:
 [Armory Spinnaker](https://www.armory.io) is an enterprise-grade distribution of Spinnaker that forms the core of Armory's Platform. Armory's Platform helps software teams ship better software, faster. It is preconfigured and runs in your Kubernetes cluster. The platform is an extension of open source Spinnaker and includes all those benefits as well as the following:
 
 - [Pipeline as Code (Dinghy)]({{< ref "using-dinghy" >}}) allows you to store Spinnaker pipelines in Github and manage them like you would manage code, including version control, templatization, and modularization. Spinnaker pipelines are flexible and customizable series of deployment stages. Combine all these to rapidly and repeatably scale pipelines in your Spinnaker deployment.
-- [Armory Spinnaker Operator]({{< ref "operator" >}}) helps you configure, deploy, and update Spinnaker on Kubernetes clusters. If you cannot use a Kubernetes Operatork, you can use Armory Halyard to accomplish the same tasks.
+- [Armory Spinnaker Operator]({{< ref "operator" >}}) helps you configure, deploy, and update Spinnaker on Kubernetes clusters. If you cannot use a Kubernetes Operator, you can use Armory Halyard to accomplish the same tasks.
 - [Policy Engine]({{< ref "policy-engine" >}}) helps you meet compliance requirements based on custom policies you set.
-- [Integrations](https://www.armory.io/armory-integrations/) with many of your existing tools, such as Terraform.
+- [Terraformer] ({{< ref "terraform-use-integration" >}}) allows you to automate the planning approval and execution of terraform in spinnaker pipelines
+- [PaCRD] ({{< ref "pacrd" >}}) is a Kubernetes controller that manages the lifecycle of Spinnaker applications and pipelines as objects within your cluster. PaCRD extends Kubernetes functionality to support Spinnaker Application and Pipeline objects that can be observed for changes through a mature lifecycle management API. (experimental feature)
