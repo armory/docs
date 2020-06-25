@@ -80,6 +80,10 @@ weight = 1
   weight = 7
   url = "https://kb.armory.io"
 
+[[menu.main]]
+  name = "Blog"
+  weight = 8
+  url = "https://www.armory.io/blog/"
 # Everything below this are Site Params
 
 [params]
