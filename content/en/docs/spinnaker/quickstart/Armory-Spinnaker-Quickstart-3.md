@@ -7,7 +7,7 @@ aliases:
   - /spinnaker/Armory-Spinnaker-Quickstart-3/
 ---
 
-Need help setting this up? - For a guided tutorial, see the [video walkthrough](#aws-quickstart-step-3-video) at the bottom of this page.
+Need help setting this up? - For a guided tutorial, see the [video walkthrough](#aws-quickstart-step-3-video) at the bottom of this page. 
 
 {{% alert title="Note" %}}This guide assumes that Spinnaker is installed with Halyard, not Operator.{{% /alert %}}
 
