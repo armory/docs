@@ -196,20 +196,12 @@ spec:
       armory:
         terraform:
           enabled: true
-          git:
-            enabled: true
-            accessToken: <Your GitHub PAT>  # PAT GitHub token. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
 ```
 
 **Halyard**
 
 ```
 hal armory terraform enable
-
-# This will prompt for the token
-hal armory terraform edit \
---git-enabled \
---git-access-token
 ```
 
 Next, go to [Enabling the Terraform UI](#enabling-the-terraform-integration-ui) if you are using an Armory Spinnaker version before 2.17.3. Otherwise, go to [Completing the installation](#completing-the-installation).
