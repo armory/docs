@@ -11,6 +11,8 @@ individual component and a more pluggable architecture for custom components.
 
 ![Architecture Diagram](/images/install_admin_guides_SpinnakerArchitecture.png)
 
+This is a test
+
 ## Spinnaker microservices
 
 ### Orca
