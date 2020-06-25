@@ -24,7 +24,7 @@ After configuring authentication on the Vault side, use the following configurat
 Add the following snippet to the `SpinnakerService` manifest:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -63,7 +63,7 @@ Use the following configuration to enable Vault secrets using token auth:
 Add the following snippet to the `SpinnakerService` manifest:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

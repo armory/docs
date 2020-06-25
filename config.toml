@@ -88,6 +88,9 @@ weight = 1
 # Everything below this are Site Params
 
 [params]
+halyard-armory-version = "1.9.3"
+operator-extended-crd-version = "v1alpha2"
+operator-oss-crd-version = "v1alpha2"
 copyright = "Armory Inc."
 privacy_policy = "https://www.armory.io/privacy-policy"
 terms_of_service = "https://www.armory.io/terms-of-service"

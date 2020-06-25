@@ -236,7 +236,7 @@ docker run --name armory-halyard -it --rm \
   -v ${WORKING_DIRECTORY}/.hal:/home/spinnaker/.hal \
   -v ${WORKING_DIRECTORY}/.secret:/home/spinnaker/.secret \
   -v ${WORKING_DIRECTORY}/resources:/home/spinnaker/resources \
-  armory/halyard-armory:{{ site.data.versions.halyard-armory-version }}
+  armory/halyard-armory:{{< param halyard-armory-version >}}
 ```
 
 ## Enter the Halyard container

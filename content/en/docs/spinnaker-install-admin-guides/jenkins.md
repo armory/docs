@@ -18,7 +18,7 @@ configure access to your Jenkins masters.
 Add the following snippet to your `SpinnakerService` manifest:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -61,7 +61,7 @@ Add the Jenkins master to Spinnaker:
 Add the following snippet to your `SpinnakerService` manifest:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

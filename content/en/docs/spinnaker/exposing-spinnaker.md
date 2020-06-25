@@ -26,7 +26,7 @@ While there are many ways to expose Spinnaker, we find the method described in t
 Update your `SpinnakerService` manifest with the following example `expose` configuration, which will automatically create one Kubernetes service LoadBalancer for the API (Gate) and one for the UI (Deck):
 
 ```yaml
-apiversion: spinnaker.io/{{ site.data.versions.operator-extended-crd-version }}
+apiversion: spinnaker.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -100,7 +100,7 @@ This tutorial presumes you've already created a certificate in the AWS Certifica
 Update and apply the `SpinnakerService` manifest to specify the DNS names for Gate and Deck, and to provide annotations specific for EKS LoadBalancers:
 
 ```yaml
-apiversion: spinnaker.io/{{ site.data.versions.operator-extended-crd-version }}
+apiversion: spinnaker.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -180,7 +180,7 @@ A `NodePort` Kubernetes service opens the same port (automatically chosen) on al
 **Operator**
 
 ```yaml
-apiversion: spinnaker.io/{{ site.data.versions.operator-extended-crd-version }}
+apiversion: spinnaker.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -279,7 +279,7 @@ Spinnaker needs to know which url's are used to access it. After you have update
 Update and apply the `SpinnakerService` manifest:
 
 ```yaml
-apiversion: spinnaker.io/{{ site.data.versions.operator-extended-crd-version }}
+apiversion: spinnaker.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -365,7 +365,7 @@ Now tell Spinnaker about its external endpoints:
 Update and apply the `SpinnakerService` manifest:
 
 ```yaml
-apiversion: spinnaker.io/{{ site.data.versions.operator-extended-crd-version }}
+apiversion: spinnaker.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -413,7 +413,7 @@ To enable redirects, complete the following steps:
 Update the `SpinnakerService` manifest with the following:
 
 ```yaml
-apiversion: spinnaker.io/{{ site.data.versions.operator-extended-crd-version }}
+apiversion: spinnaker.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

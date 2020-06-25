@@ -87,7 +87,7 @@ To keep the configurations in sync, set up automation to create a passive Spinna
 Make sure you set replicas for all Spinnaker services to 0. Example in `SpinnakerService` manifest for service `gate`:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

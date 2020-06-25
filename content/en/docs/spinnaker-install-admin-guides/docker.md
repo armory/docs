@@ -22,7 +22,7 @@ Spinnaker fresh), you'll need to enable Docker registry providers:
 Add the following snippet to `SpinnakerService` manifest:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -54,7 +54,7 @@ as an example.
 Add the following snippet to `SpinnakerService` manifest:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

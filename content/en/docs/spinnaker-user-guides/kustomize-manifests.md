@@ -33,7 +33,7 @@ Kustomize can be enabled by a feature flag in 2.16.
 Add the following settings to the `SpinnakerService` manifest:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -87,7 +87,7 @@ Kustomize can be enabled by a feature flag in Armory Spinnaker 2.16 and later.
 Add the following settings to the `SpinnakerService` manifest and apply the changes:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

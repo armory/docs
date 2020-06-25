@@ -169,7 +169,7 @@ You can store secrets (and non secrets) in [supported secret stores]({{< ref "se
 For instance, assuming all the information is stored in a bucket named `mybucket` on s3 that all services have access to, `SpinnakerService` manifest (or the corresponding `echo-local.yml` in Halyard) might look like:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

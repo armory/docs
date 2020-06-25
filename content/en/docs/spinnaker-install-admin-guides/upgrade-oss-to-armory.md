@@ -57,7 +57,7 @@ If Halyard is running locally on your workstation, then perform the following st
      -v ${HOME}/armory/.config:/home/spinnaker/.config \
      -d \
      -u $(id -u) \
-     index.docker.io/armory/halyard-armory:{{ site.data.versions.halyard-armory-version }}
+     index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}
    ```
 
    Omit any directories that do not apply to you. For example, if you do not use Azure, omit it.
@@ -90,7 +90,7 @@ If Halyard is already running in a Docker container in your Docker daemon, you c
 
 1. First, do a backup of your existing Halyard configuration. Exec into the Docker container, then run `hal backup create`.
 
-2. Stop the Halyard docker container, and re-start it with the Armory Halyard image (`index.docker.io/armory/halyard-armory:{{ site.data.versions.halyard-armory-version }}`) instead of the OSS Halyard image (`gcr.io/spinnaker-marketplace/halyard:stable`). Also, change the user id for Armory Halyard to be `1000`. For example, if you run the previous Docker image (OSS Halyard) like this:
+2. Stop the Halyard docker container, and re-start it with the Armory Halyard image (`index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}`) instead of the OSS Halyard image (`gcr.io/spinnaker-marketplace/halyard:stable`). Also, change the user id for Armory Halyard to be `1000`. For example, if you run the previous Docker image (OSS Halyard) like this:
 
    ```bash
    docker run --name halyard --rm \
@@ -107,7 +107,7 @@ If Halyard is already running in a Docker container in your Docker daemon, you c
      -v ${HOME}/armory/.hal:/home/spinnaker/.hal \
      -v ${HOME}/armory/.kube:/home/spinnaker/.kube \
      -d \
-     index.docker.io/armory/halyard-armory:{{ site.data.versions.halyard-armory-version }}
+     index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}
    ```
 
     Note the different Docker image and different container name.
@@ -136,7 +136,7 @@ If Halyard is already running in a Docker container in your Docker daemon, you c
 
 If Halyard is running in your Kubernetes cluster, either as a Kubernetes Deployment or a Kubernetes StatefulSet, then you can do an in-place upgrade:
 
-1. First, update the image for your Halyard Deployment / StatefulSet from the OSS Halyard image (`gcr.io/spinnaker-marketplace/halyard:stable`) to the Armory Halyard image (`index.docker.io/armory/halyard-armory:{{ site.data.versions.halyard-armory-version }}`)
+1. First, update the image for your Halyard Deployment / StatefulSet from the OSS Halyard image (`gcr.io/spinnaker-marketplace/halyard:stable`) to the Armory Halyard image (`index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}`)
 
 1. Wait for the pod to start up.
 

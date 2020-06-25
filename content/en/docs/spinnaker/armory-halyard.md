@@ -104,7 +104,7 @@ hal armory diagnostics edit [parameters]
 #### Equivalent SpinnakerService.yml config for Spinnaker Operator
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -199,7 +199,7 @@ hal armory dinghy edit [parameters]
 #### Equivalent SpinnakerService.yml config for Spinnaker Operator
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -443,7 +443,7 @@ hal armory secrets vault edit [parameters]
 #### Equivalent SpinnakerService.yml config for Spinnaker Operator
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

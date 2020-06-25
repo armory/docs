@@ -59,7 +59,7 @@ Update the endpoints for Spinnaker Deck (the Spinnaker UI microservice) and Spin
 * **Operator**
 
     ```yaml
-    apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+    apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
     kind: SpinnakerService
     metadata:
       name: spinnaker
