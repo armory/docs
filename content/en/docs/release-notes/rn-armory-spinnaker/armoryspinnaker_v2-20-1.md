@@ -1,14 +1,14 @@
 ---
-title: v2.20.1-rc.5 Armory Release (OSS Spinnaker v1.20.6)
+title: v2.20.1 Armory Release (OSS Spinnaker v1.20.6)
 toc_hide: true
 ---
 
-## 2020/06/90 Release Notes
+## 2020/06/26 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard version
 
-Armory Spinnaker 2.20.1-rc.5 requires Armory Halyard <PUT IN A VERSION NUMBER> or later.
+Armory Spinnaker 2.20.1 requires Armory Halyard 1.9.4 or later.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
@@ -36,7 +36,7 @@ There have also been numerous enhancements, fixes and features across all of Spi
 Here's the bom for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
-<code>version: 2.20.1-rc.5
+<code>version: 2.20.1
 timestamp: "2020-06-26 08:33:42"
 services:
     clouddriver:
