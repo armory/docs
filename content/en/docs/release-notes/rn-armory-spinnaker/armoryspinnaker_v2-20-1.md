@@ -42,6 +42,35 @@ This issue only occurs if you upgrade to 2.19.x and then downgrade.
 
 You can resolve this issue by rolling back changes to the MySQL database. For more information, see [MySQL Table Name Change Error When Rolling Back Spinnaker (Undo Renamed Values)](https://kb.armory.io/s/article/SQL-Migration-Rollback-Undo-Renamed-Tables).
 
+### Security update
+
+We continue to make Spinnaker's security a top priority. Although several CVEs are resolved, the following still exist:
+
+#### Orca
+
+- CVE-2020-13790
+
+This is an embedded dependency in OpenJDK11. A version of OpenJDK11 that addresses
+this CVE has only recently been released, and will be fixed in the next release. The risk to services users is low: the CVE deals with processing jpeg images in the Java Runtime Environment, a task our services do not utilize.
+
+The following CVEs have been recently identified and will be addressed in the next released:
+
+- CVE-2020-14155
+
+#### Clouddriver
+
+The following three CVEs still exist in Clouddriver:
+
+- CVE-2020-1747
+- CVE-2017-18342
+- CVE-2020-13757
+- CVE-2016-10745
+
+All of them are embedded dependencies in the Google Cloud SDK. A version of the Google Cloud SDK addressing these CVEs has not been released. The risk to Clouddriver users is low: all three CVEs deal with untrusted input, which Clouddriver does not provide to the Google Cloud SDK. Additionally, users deploying to other cloud providers are not at risk for this vulernability.
+
+The following CVEs also exist for the service:
+
+- CVE-2020-7014 - deals with an Elasticsearch exploit. Clouddriver only makes use of entity tags and does not allow for token generation or authentication.
 
 ## Highlighted Updates
 
