@@ -55,7 +55,7 @@ docker run --name armory-halyard --rm \
     -e AWS_SECRET_ACCESS_KEY=<AWS secret key> \
     -v ~/.hal:/home/spinnaker/.hal \
     -v ~/.kube:/home/spinnaker/.kube \
-    -it docker.io/armory/halyard-armory:<Armory Halyard version>
+    -it docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}
 ```
 
 Replace `<Armory Halyard version>` with the version of Halyard you want to run.

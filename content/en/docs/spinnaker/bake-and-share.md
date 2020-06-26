@@ -14,7 +14,7 @@ Many people have Spinnaker sitting in a different AWS account than where they ar
 You can add the following snippet to your `SpinnakerService` manifest and apply it after replacing the examplvalues with ones that correspond to your environment. The example adds an AWS account and configures the bakinservice (Rosco) with default values:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

@@ -59,7 +59,7 @@ docker run --name armory-halyard --rm \
     -v ~/.hal:/home/spinnaker/.hal \
     -v ~/.kube:/home/spinnaker/.kube \
     -v ~/.aws:/home/spinnaker/.aws \
-    -it docker.io/armory/halyard-armory:{{ site.data.versions.halyard-armory-version }}
+    -it docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}
 ```
 
 > Note: If you're installing to Google Cloud, you'll want to change the
@@ -113,7 +113,7 @@ spec:
     spec:
       containers:
       - name: halyard
-        image: index.docker.io/armory/halyard-armory:{{ site.data.versions.halyard-armory-version }}
+        image: index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}
         volumeMounts:
         - name: halconfig
           mountPath: /home/spinnaker/

@@ -48,7 +48,7 @@ Perform the following steps:
     Here is an example configuration with in-line comments:
 
     ```yaml
-    apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+    apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
     kind: SpinnakerService
     metadata:
       name: spinnaker
@@ -87,7 +87,7 @@ Perform the following steps:
     The following example builds upon the example from the previous steps. In-line comments describe additions:
 
     ```yaml
-    apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+    apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
     kind: SpinnakerService
     metadata:
       name: spinnaker

@@ -390,7 +390,7 @@ Next, we will configure Spinnaker's Deck service to use the Deck certificate and
 Add the following snippet to the `SpinnakerService` manifest:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -533,7 +533,7 @@ If you are instead using a Layer 4 (TCP) load balancer (such as a `Service` conf
 In the `SpinnakerService` manifest you need to change the `overrideBaseUrl` settings of Deck and Gate in the following way:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -614,7 +614,7 @@ Once you've verified that your existing Gate and Deck endpoints continue to work
    **Operator**
 
    ```yaml
-   apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+   apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
    kind: SpinnakerService
    metadata:
      name: spinnaker
@@ -638,7 +638,7 @@ Once you've verified that your existing Gate and Deck endpoints continue to work
    **Operator**
 
    ```yaml
-   apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+   apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
    kind: SpinnakerService
    metadata:
      name: spinnaker
@@ -868,7 +868,7 @@ You can configure Gate to look for a list of endline-delimited groups in the `1.
 **Operator**
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -1024,7 +1024,7 @@ When looking at audit logs, it can be helpful to differentiate different API cli
 **Operator**
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

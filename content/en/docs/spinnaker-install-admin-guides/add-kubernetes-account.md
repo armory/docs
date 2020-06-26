@@ -160,7 +160,7 @@ export TARGET_NAMESPACES_COMMA_SEPARATED=dev-1,dev-2
 Add the following configuration to the `SpinnakerServce` manifest, replacing values as needed:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

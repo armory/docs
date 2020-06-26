@@ -78,7 +78,7 @@ services:
 In your `SpinnakerService` manifest, add the following snippet:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
   kind: SpinnakerService
   metadata:
     name: spinnaker

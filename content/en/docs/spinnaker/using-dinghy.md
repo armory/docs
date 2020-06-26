@@ -909,7 +909,7 @@ You have probably configured global logging levels with `spinnaker-local.yml`. T
 **Operator**
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

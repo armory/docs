@@ -523,7 +523,7 @@ spec:
       containers:
       -
         name: halyard
-        image: armory/halyard-armory:{{ site.data.versions.halyard-armory-version }}
+        image: armory/halyard-armory:{{< param halyard-armory-version >}}
         volumeMounts:
         -
           name: hal

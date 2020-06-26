@@ -105,7 +105,7 @@ Change the readiness probe used by Kubernetes from an HTTP request to a TCP prob
 Add the following snippet to each service in `SpinnakerService` manifest:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

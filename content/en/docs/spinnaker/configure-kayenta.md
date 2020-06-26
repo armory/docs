@@ -15,7 +15,7 @@ configure Kayenta using Halyard at
 For Operator, the following example is an equivalent `SpinnakerService` manifest. The example config uses Datadog as a metrics provider and stores canary configs and analysis in a GCS bucket:
 
 ```yaml
-apiversion: spinnaker.io/{{ site.data.versions.operator-extended-crd-version }}
+apiversion: spinnaker.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

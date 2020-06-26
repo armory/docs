@@ -82,7 +82,7 @@ keytool -genkey -v -keystore $KEYSTORE_PATH -alias saml -keyalg RSA -keysize 204
 Add the following snippet to `SpinnakerService` manifest. This references secrets stored in a Kubernetes secrets in the same namespace as Spinnaker, but secrets can be stored in any of the supported [secret engines](/spinnaker-install-admin-guides/secrets):
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

@@ -48,7 +48,7 @@ Configure an HTTP Source. And get a copy of the endpoint URL from your SumoLogic
 Add to the `SpinnakerService` manifest the following snippet:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
