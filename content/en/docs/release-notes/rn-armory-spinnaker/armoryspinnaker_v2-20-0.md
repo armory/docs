@@ -58,16 +58,18 @@ You can resolve this issue by rolling back changes to the MySQL database. For mo
 
 ### Armory
 
-### Terraform integration profiles
+### Terraform integration Named Profiles
 
-The Terraform integration now supports profiles that allow you control which users have the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. 
+The Terraform integration now supports Profiles that allow you control which users have the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. 
 
 Supported credentials:
 * AWS
 * SSH
 * Static
 
-For more information, see /spinnaker/terraform-enable-integration#profiles
+Additionally, you can enforce authz for any Named Profile you create.
+
+For more information, see [Named Profiles]({{< ref "terraform-enable-integration#named-profiles" >}}).
 
 ### Pipelines as code
 
