@@ -504,6 +504,10 @@ profiles:
 ```
 In the example, only users who belong to the `dev` or `ops` groups can use the credentials that correspond to this profile.
 
+Don't forget to run `hal deploy apply` once you finish making changes!
+
+
+
 
 
 ## Submit feedback
