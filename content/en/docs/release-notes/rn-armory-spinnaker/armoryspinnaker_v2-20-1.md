@@ -65,11 +65,11 @@ Here's the bom for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
 <code>version: 2.20.1
-timestamp: "2020-06-26 08:33:42"
+timestamp: "2020-06-26 11:36:16"
 services:
     clouddriver:
-        commit: c6a62bef
-        version: 2.20.3
+        commit: 172c32ee
+        version: 2.20.4
     deck:
         commit: 583083ff
         version: 2.20.4
@@ -86,8 +86,8 @@ services:
         commit: 4ab036ea
         version: 2.20.5
     gate:
-        commit: 69ba2895
-        version: 2.20.2
+        commit: cfd0be04
+        version: 2.20.3
     igor:
         commit: 44ae1b05
         version: 2.20.7
@@ -143,7 +143,7 @@ artifactSources:
 #### Terraformer™ - 2.20.3...2.20.3
 
 
-#### Armory Gate - 2.20.2...2.20.2
+#### Armory Gate - 2.20.2...2.20.3
 
 
 #### Armory Echo - 2.20.1...2.20.4
@@ -157,7 +157,7 @@ artifactSources:
 #### Armory Orca - 2.20.1...2.20.1
 
 
-#### Armory Clouddriver - 2.20.1...2.20.3
+#### Armory Clouddriver - 2.20.1...2.20.4
 
 
 #### Armory Deck - 2.20.3...2.20.4
