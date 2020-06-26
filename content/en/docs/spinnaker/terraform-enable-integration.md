@@ -461,7 +461,7 @@ Configure profiles that users can select when creating a Terraform Integration s
 
 ### Adding authz to Named Profiles
 
-Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the role(s) you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in Deck.
+Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the role(s) you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in Deck. And any stage with that uses a Named Profile that a user is not authorized for fails.
 
 You can see a demo here: [Named Profiles for Armory Spinnaker Terraform Integration](https://www.youtube.com/watch?v=RYO-b1kyEU0).
 
@@ -505,8 +505,6 @@ profiles:
 In the example, only users who belong to the `dev` or `ops` groups can use the credentials that correspond to this profile.
 
 Don't forget to run `hal deploy apply` once you finish making changes!
-
-
 
 
 
