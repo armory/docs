@@ -355,13 +355,13 @@ Since the Terraform Integration executes all Terraform commands against the `ter
 
 You can also configure a profile that grants access to resources, like AWS. 
 
-## Profiles
+## Named Profiles
 
-A profile gives users the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. The supported credentials are described in [Types of credentials](#types-of-credentials).
+A Named Profile gives users the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. The supported credentials are described in [Types of credentials](#types-of-credentials).
 
 ### Types of credentials
 
-The Terraform integration supports multiple types of credentials for Profiles to handle the various use cases that you can use the Terraform integration for:
+The Terraform integration supports multiple types of credentials for Named Profiles to handle the various use cases that you can use the Terraform integration for:
 
 * AWS
 * SSH
@@ -369,7 +369,7 @@ The Terraform integration supports multiple types of credentials for Profiles to
 
 If you don't see a credential that suits your use case, [let us know](https://feedback.armory.io/feature-requests)!
 
-For information about how to configure a Profile, see [Configuring a profile](#configuring-a-profile).
+For information about how to configure a Profile, see [Configuring a profile](#configuring-a-named-profile).
 
 **AWS**
 
@@ -423,7 +423,7 @@ Use the `static` credential kind to provide any arbitrary key/value pair that is
       value: us-west-2
 ```
 
-### Configuring a Profile
+### Configuring a Named Profile
 
 Configure profiles that users can select when creating a Terraform Integration stage:
 
@@ -458,6 +458,52 @@ Configure profiles that users can select when creating a Terraform Integration s
    ```
    hal deploy apply
    ```
+
+### Adding authz to Named Profiles
+
+Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the role(s) you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in Deck.
+
+You can see a demo here: [Named Profiles for Armory Spinnaker Terraform Integration](https://www.youtube.com/watch?v=RYO-b1kyEU0).
+
+{{% alert color=note title="Note" %}}Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/){{% /alert %}}
+
+#### Halyard
+To start, edit `~/.hal/default/profiles/terraformer-local.yml` and add the following config:
+
+```yaml
+fiat:
+  enabled: true
+  baseUrL: ${services.fiat.baseUrl} # If you are using a custom URL for Fiat, replace with your Fiat URL.
+```
+
+Now, you can specify permissions for any profiles you have:
+
+```yaml
+profiles:
+  ...
+  ...
+  ...
+  permissions:
+    - <role that should have access>
+    - <role that should have access>
+    - ...
+```
+
+This is what a Named Profile for a team named `dev-team` looks like for AWS credentials:
+
+```yaml
+profiles:
+  - name: dev-team
+    variables:
+      - kind: aws
+        options:
+          assumeRole: my-role
+    permissions:
+      - dev
+      - ops
+```
+In the example, only users who belong to the `dev` or `ops` groups can use the credentials that correspond to this profile.
+
 
 
 ## Submit feedback
