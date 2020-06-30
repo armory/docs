@@ -186,7 +186,7 @@ spec:
             cachingPolicies: []
             oAuthScopes: []
             onlySpinnakerManaged: false
-            kubeconfig: kubeconfig-spinnaker-dev
+            kubeconfigFile: kubeconfig-spinnaker-dev
           primaryAccount: spinnaker-dev  # Change to a desired account from the accounts array
       features:
         artifacts: true # Not strictly necessary for Kubernetes but will be useful in general
