@@ -197,4 +197,4 @@ enable = false
 [[params.versions]]
   version = "v2.0-2.19"
   githubbranch = "archive"
-  url = "https://archive.docs.armory.io/"
+  url = "https://archive.docs.armory.io/docs"
