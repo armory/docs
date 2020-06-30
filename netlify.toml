@@ -60,10 +60,3 @@
   to = "/docs/overview/glossary/"
   status = 301
   force = false
-
-
-[[plugins]]
-package = "@netlify/plugin-sitemap"
-
-  [plugins.inputs]
-  buildDir = "public"
