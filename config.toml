@@ -101,7 +101,7 @@ terms_and_conditions = "https://www.armory.io/terms-and-conditions"
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
-version_menu = "vArchive"
+version_menu = "v2.0-2.19"
 
 # Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
@@ -111,7 +111,7 @@ archived_version = true
 # The version number for the version of the docs represented in this doc set.
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
-version = "vArchive"
+version = "v2.0-2.19"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
@@ -193,8 +193,8 @@ enable = false
   version = "latest"
   githubbranch = "master"
   url = "https://docs.armory.io"
-  
+
 [[params.versions]]
-  version = "vArchive"
+  version = "v2.0-2.19"
   githubbranch = "archive"
   url = "https://archive.docs.armory.io/docs"
