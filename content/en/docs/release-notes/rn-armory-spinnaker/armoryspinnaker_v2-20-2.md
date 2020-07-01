@@ -3,12 +3,13 @@ title: v2.20.2 Armory Release (OSS Spinnaker v1.20.6)
 toc_hide: true
 ---
 
-## 2020/07/80 Release Notes
+## 2020/07/1 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+
 ## Required Halyard version
 
-Armory Spinnaker 2.20.2 requires Armory Halyard <PUT IN A VERSION NUMBER> or later.
+Armory Spinnaker 2.20.2 requires Armory Halyard 1.9.4 or later.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
@@ -16,6 +17,37 @@ Armory Spinnaker 2.20.2 requires Armory Halyard <PUT IN A VERSION NUMBER> or lat
 ## Known Issues
 <!-- Copy/paste known issues from the previous version if they're not fixed -->
 There are currently no known issues with this release.
+
+
+### Security update
+
+We continue to make Spinnaker's security a top priority. Although several CVEs are resolved, the following still exist:
+
+#### Orca
+
+- CVE-2020-13790
+
+This is an embedded dependency in OpenJDK11. A version of OpenJDK11 that addresses
+this CVE has only recently been released, and will be fixed in the next release. The risk to services users is low: the CVE deals with processing jpeg images in the Java Runtime Environment, a task our services do not utilize.
+
+The following CVEs have been recently identified and will be addressed in the next released:
+
+- CVE-2020-14155
+
+#### Clouddriver
+
+The following three CVEs still exist in Clouddriver:
+
+- CVE-2020-1747
+- CVE-2017-18342
+- CVE-2020-13757
+- CVE-2016-10745
+
+All of them are embedded dependencies in the Google Cloud SDK. A version of the Google Cloud SDK addressing these CVEs has not been released. The risk to Clouddriver users is low: all three CVEs deal with untrusted input, which Clouddriver does not provide to the Google Cloud SDK. Additionally, users deploying to other cloud providers are not at risk for this vulernability.
+
+The following CVEs also exist for the service:
+
+- CVE-2020-7014 - deals with an Elasticsearch exploit. Clouddriver only makes use of entity tags and does not allow for token generation or authentication.
 
 ## Highlighted Updates
 
@@ -93,16 +125,12 @@ artifactSources:
 
 #### Armory Orca - 2.20.1...2.20.2
 
-  - fix(build): explicitly set armory commons version (#116) (#118)
-  - fix(build): force nebula version (#120) (#122)
-
 #### Armory Rosco - 2.20.3...2.20.3
 
 
 #### Armory Echo - 2.20.4...2.20.7
 
   - fix(dinghy): fix webhook validations headers to lowercase (#181) (#182)
-  - fix(build): explicitly set armory commons version (#190) (#192)
   - fix(bitbucket): fix bitbucket integration with dinghy (#185) (#187)
 
 #### Armory Deck - 2.20.4...2.20.4
@@ -116,7 +144,6 @@ artifactSources:
 
 #### Armory Clouddriver - 2.20.4...2.20.5
 
-  - fix(build): explicitly set armory commons version (#150) (#152)
 
 #### Dinghy™ - 2.20.3...2.20.3
 
@@ -126,7 +153,6 @@ artifactSources:
 
 #### Armory Igor - 2.20.7...2.20.8
 
-  - fix(build): explicitly set armory commons version (#92) (#94)
 
 #### Terraformer™ - 2.20.3...2.20.3
 
