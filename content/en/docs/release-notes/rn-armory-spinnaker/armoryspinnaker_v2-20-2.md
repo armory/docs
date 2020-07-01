@@ -1,14 +1,15 @@
 ---
-title: v2.20.1 Armory Release (OSS Spinnaker v1.20.6)
+title: v2.20.2 Armory Release (OSS Spinnaker v1.20.6)
 toc_hide: true
 ---
 
-## 2020/06/26 Release Notes
+## 2020/07/1 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+
 ## Required Halyard version
 
-Armory Spinnaker 2.20.1 requires Armory Halyard 1.9.4 or later.
+Armory Spinnaker 2.20.2 requires Armory Halyard 1.9.4 or later.
 
 ## Breaking changes
 
@@ -21,10 +22,6 @@ The Kubernetes V1 provider will be removed in Spinnaker 1.21 (Armory Spinnaker 2
 Breaking change: Kubernetes accounts with an unspecified providerVersion will now default to V2. Update your Halconfig to specify `providerVersion: v1` for any Kubernetes accounts you are currently using with the V1 provider.
 
 ## Known Issues
-
-### Vault secrets
-
-If you use Vault secrets, you should not use this version and instead update to v2.20.2.
 
 ### Upgrading from 2.18.x with MySQL used for Front50 renames the plugin_artifacts table
 As a part of the upgrade from 2.18.x to 2.19.x, the table **plugin_artifacts** gets renamed to `plugin_info`. Downgrades from 2.19.x to 2.18.x do not revert the table name. The table remains named `plugin_info`, preventing access to the table.  
@@ -45,6 +42,8 @@ This issue only occurs if you upgrade to 2.19.x and then downgrade.
 **Workaround**
 
 You can resolve this issue by rolling back changes to the MySQL database. For more information, see [MySQL Table Name Change Error When Rolling Back Spinnaker (Undo Renamed Values)](https://kb.armory.io/s/article/SQL-Migration-Rollback-Undo-Renamed-Tables).
+
+
 
 ### Security update
 
@@ -80,16 +79,12 @@ The following CVEs also exist for the service:
 
 ### Armory
 
-See the [highlights]({{< ref "armoryspinnaker_v2-20-0#knownissues" >}}) from the 2.20.0 release.
-
-#### Fixed known issues
-
-* [Pipelines as code behavior change for application spec]({{< ref "armoryspinnaker_v2-20-0#pipelinesascodebehaviorchangeforapplicationspec" >}}).
+Summary of changes in the latest release.
 
 ###  Spinnaker Community Contributions
 
 There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
-[Spinnaker v1.20.6](https://www.spinnaker.io/community/releases/versions/1-20-6-changelog).
+[Spinnaker v1.20.6](https://www.spinnaker.io/community/releases/versions/1-20-6-changelog)
 
 ## Detailed Updates
 
@@ -97,12 +92,12 @@ There have also been numerous enhancements, fixes and features across all of Spi
 Here's the bom for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
-<code>version: 2.20.1
-timestamp: "2020-06-26 11:36:16"
+<code>version: 2.20.2
+timestamp: "2020-07-01 08:17:14"
 services:
     clouddriver:
-        commit: 172c32ee
-        version: 2.20.4
+        commit: ac73b373
+        version: 2.20.5
     deck:
         commit: 583083ff
         version: 2.20.4
@@ -110,8 +105,8 @@ services:
         commit: f710446c
         version: 2.20.3
     echo:
-        commit: e118a5ac
-        version: 2.20.4
+        commit: 1f1310e0
+        version: 2.20.7
     fiat:
         commit: 8d4db29b
         version: 2.20.3
@@ -122,8 +117,8 @@ services:
         commit: cfd0be04
         version: 2.20.3
     igor:
-        commit: 44ae1b05
-        version: 2.20.7
+        commit: 5bd7a32c
+        version: 2.20.8
     kayenta:
         commit: 9d6743d9
         version: 2.20.3
@@ -132,8 +127,8 @@ services:
     monitoring-third-party:
         version: 2.20.0
     orca:
-        commit: 3d2cf0a1
-        version: 2.20.1
+        commit: eb40808c
+        version: 2.20.2
     rosco:
         commit: 9e974c48
         version: 2.20.3
@@ -152,47 +147,38 @@ artifactSources:
 ### Armory
 
 
-#### Armory Kayenta - 2.20.2...2.20.3
+#### Armory Orca - 2.20.1...2.20.2
 
-  - fix(release): set nebula release version (#92) (#93)
+#### Armory Rosco - 2.20.3...2.20.3
 
-#### Armory Rosco - 2.20.2...2.20.3
 
-  - fix(release): set nebula release version (#71) (#72)
+#### Armory Echo - 2.20.4...2.20.7
 
-#### Dinghy™ - 2.20.1...2.20.3
+  - fix(dinghy): fix webhook validations headers to lowercase (#181) (#182)
+  - fix(bitbucket): fix bitbucket integration with dinghy (#185) (#187)
 
-  - Fix for app update on every change (#231) (#232)
+#### Armory Deck - 2.20.4...2.20.4
 
-#### Armory Fiat - 2.20.2...2.20.3
 
-  - fix(release): set nebula release version (#73) (#74)
+#### Armory Gate - 2.20.3...2.20.3
 
-#### Armory Igor - 2.20.3...2.20.7
 
-  - fix(plugins): manual port of spinnaker/igor#715 for 2.20.x (#82)
-  - chore(deps): change armory-commons import to -all (#86) (#88)
+#### Armory Kayenta - 2.20.3...2.20.3
+
+
+#### Armory Clouddriver - 2.20.4...2.20.5
+
+
+#### Dinghy™ - 2.20.3...2.20.3
+
+
+#### Armory Front50 - 2.20.5...2.20.5
+
+
+#### Armory Igor - 2.20.7...2.20.8
+
 
 #### Terraformer™ - 2.20.3...2.20.3
 
 
-#### Armory Gate - 2.20.2...2.20.3
-
-
-#### Armory Echo - 2.20.1...2.20.4
-
-  - chore(build): update nebula plugin to fix release task (#173) (#175)
-  - chore(deps): change armory-commons import to -all (#176) (#178)
-
-#### Armory Front50 - 2.20.3...2.20.5
-
-
-#### Armory Orca - 2.20.1...2.20.1
-
-
-#### Armory Clouddriver - 2.20.1...2.20.4
-
-
-#### Armory Deck - 2.20.3...2.20.4
-
-  - chore(deps): update to latest 1.20.x release (#618)
+#### Armory Fiat - 2.20.3...2.20.3

@@ -24,11 +24,15 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 ## Known Issues
 
+### Vault secrets
+
+If you use Vault secrets, you should not use this version and instead update to v2.20.2. 
+
 ### Pipelines as code behavior change for application spec
 
 If you use Pipelines as code, skip Armory Spinnaker 2.20.0 and wait for 2.20.1.
 
-Dinghy, the Pipelines as code service, creates an application for a pipeline in a dinghyfile if the application doesn't exist. You can specify an initial permission specification for the application as [documented here]({{< ref "using-dinghy#application-permissions" >}}). 
+Dinghy, the Pipelines as code service, creates an application for a pipeline in a dinghyfile if the application doesn't exist. You can specify an initial permission specification for the application as [documented here]({{< ref "using-dinghy#application-permissions" >}}).
 
 Previously, the application specification is not updated if the application already exists. This means that after the initial application creation, no further changes to it get made by Dinghy even if you change the application spec in the `dinghyfile`.
 
@@ -60,7 +64,7 @@ You can resolve this issue by rolling back changes to the MySQL database. For mo
 
 ### Terraform integration Named Profiles
 
-The Terraform integration now supports Profiles that allow you control which users have the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. 
+The Terraform integration now supports Profiles that allow you control which users have the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines.
 
 Supported credentials:
 * AWS
@@ -142,7 +146,7 @@ Spinnaker’s Docker containers are now hosted on `us-docker.pkg.dev/spinnaker-c
 
 #### ECS Support for Load Balancer Views and Task Health Status in Deployments
 
-In this release, users can now view the load balancers, listeners and target groups associated with their ECS services within the Load Balancers Infrastructure tab. 
+In this release, users can now view the load balancers, listeners and target groups associated with their ECS services within the Load Balancers Infrastructure tab.
 
 Also in this release, pipeline deployments now take into account container health checks and the overall task health status before determining a service to be up. If using a prior version, pipeline deployments would consider the service healthy once the tasks were started, but potentially prior to the container health checks running. This could lead to prematurely marking a deployment as successful.
 
