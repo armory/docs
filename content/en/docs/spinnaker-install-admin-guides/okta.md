@@ -1,5 +1,5 @@
 ---
-title: Okta Integration
+title: Okta SAML Integration
 weight: 160
 ---
 
