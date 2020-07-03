@@ -1097,3 +1097,235 @@ Delete all Webhook validations with the `--all` parameter.
 ```bash
 hal armory dinghy webhooksecrets <version control provider> delete --all
 ```
+
+
+# Application Updates
+Dinghy behavior for application and pipelines is different.
+- Applications: It created the application with the configuration send and app never gets updated after that.
+- Pipelines: Updates on every push.
+
+However you can change this behavior adding a global variable `save_app_on_update`. This behavior is good if you want to have your application also always adhering to the code implemented, since it will overwrite notifications every single time.
+
+An example of this can be:
+
+``` json
+{
+    "application": "testingappupdate",
+    "globals": {
+        "save_app_on_update" : true
+    },
+    "spec": {
+        "permissions": {
+            "READ": [ "role"],
+            "EXECUTE": [ "role" ],
+            "WRITE": [ "role" ]
+        },
+        "notifications": {
+            "slack": [
+                {
+                    "when": [
+                        "pipeline.complete", "pipeline.failed"
+                    ],
+                    "address": "slack-channel"
+                }
+            ],
+            "email": [
+                {
+                    "when": [
+                        "pipeline.starting"
+                    ],
+                    "address": "email1@email.com",
+                    "cc": "email2@email.com"
+                }
+            ]
+        }
+    }
+}
+```
+
+
+
+# Application Notifications
+Application notifications can be declared as:
+
+``` json
+{
+    "application": "testingappupdate",
+    "globals": {
+        "save_app_on_update" : true
+    },
+    "spec": {
+        "notifications": {
+            "slack": [
+                {
+                    "when": [
+                        "pipeline.complete", "pipeline.failed", "pipeline.starting"
+                    ],
+                    "message": {
+                      "pipeline.starting": {
+                        "text": "custom message"
+                      }   
+                    },
+                    "address": "slack-channel"
+                }
+            ],
+            "email": [
+                {
+                    "when": [
+                        "pipeline.starting"
+                    ],
+                    "address": "email1@email.com",
+                    "cc": "email2@email.com"
+                }
+            ]
+        }
+    }
+}
+```
+
+Here you can see that `notifications` is under `spec` and then configurations can be inserted. 
+They key for the key-value relationship should be the notification type which can be: `googlechat`, `slack`, `bearychat`, `email`, and `pubsub`.
+Under pipelines there's always a field `when` and the possible values can be `pipeline.complete`, `pipeline.failed` and `pipeline.starting`.
+Here's a table with the mapping for the possible values for notifications.
+
+
+|            | `address` field |
+|------------|-----------------|
+| googlechat | Chat Webhook    |
+| slack      | Slack Channel   |
+| bearychat  | Email Address   |
+| email      | Email Address   |
+| pubsub     | Publisher Name  |
+
+
+
+# Slack Application Notifications
+When application notiications was introduced we added an integration in which if there's an application notification configured it will notify for those channels depending on the when configuration, so given this configuration:
+
+``` json
+{
+    "application": "testingslack",
+    "globals": {
+        "save_app_on_update" : true
+    },
+    "spec": {
+        "notifications": {
+            "slack": [
+                {
+                    "when": [ "pipeline.complete" ],
+                    "address": "slack-channel-good"
+                },
+                {
+                    "when": [ "pipeline.failed"],
+                    "address": "slack-channel-bad"
+                },
+                {
+                    "when": ["pipeline.complete", "pipeline.failed"],
+                    "address": "slack-channel-both"
+                }
+            ]
+        }
+    }
+}
+```
+
+If this configutation exists dinghy will send a notification to channel `slack-channel-good` and ``slack-channel-both` if pipeline was rendered fine and a notifcation to `slack-channel-bad` and `slack-channel-both` if pipeline failed to be rendered additionaly to the one being send as default for all the notifications.
+
+
+# Local module functionality
+Local modules were added in version `some_version`. And this behavior is exactly the same as `module` but with one difference, `module` should exists in the configured template repository but `local_module` not. The difference is that `local_module` file should be inside the repository that you used to make the push, so given the next scenario:
+
+my_repository
+```
+.
+├── dinghyfile
+└── local_modules
+    └── stage.minimal.wait.localmodule
+
+```
+
+template_repository
+
+```
+.
+└── stage.minimal.wait.module
+```
+
+And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` you can see this. 
+
+`dinghyfile`
+``` json
+{
+  "application": "localmodules",
+  "globals": {
+      "waitTime": "42",
+      "waitname": "localmodule default-name"
+  },
+  "pipelines": [
+    {
+      "application": "localmodules",
+      "name": "Made By Armory Pipeline Templates",
+      "stages": [
+        {{ local_module "/local_modules/stage.minimal.wait.localmodule" }},
+        {{ local_module "/local_modules/stage.minimal.wait.localmodule" "waitname" "localmodule overwrite-name" "waitTime" "100" }},
+        {{ module "stage.minimal.wait.module" "waitname" "global module overwrite-name" "waitTime" "100" }}
+      ]
+    }
+  ]
+}
+```
+`stage.minimal.wait.localmodule` and `stage.minimal.wait.module` have the same content that is:
+``` json
+{
+  "name": "{{ var "waitname" ?: "Local Module Wait" }}",
+  "waitTime":  "{{ var "waitTime" ?: 10 }}",
+  "type": "wait"
+}
+```
+
+The file rendered will be:
+``` json
+{
+  "application": "localmodules",
+  "globals": {
+    "waitTime": "42",
+    "waitname": "localmodule default-name"
+  },
+  "pipelines": [
+    {
+      "application": "localmodules",
+      "name": "Made By Armory Pipeline Templates",
+      "stages": [
+        {
+          "name": "localmodule default-name",
+          "waitTime": "42",
+          "type": "wait"
+        },
+        {
+          "name": "localmodule overwrite-name",
+          "waitTime": "100",
+          "type": "wait"
+        },
+        {
+          "name": "global module overwrite-name",
+          "waitTime": "100",
+          "type": "wait"
+        }
+      ]
+    }
+  ]
+}
+```
+
+
+
+## Using local modules and modules
+As you cuold see in the previous example you can use `local_module` and `module` without any issues from any dinghyfile. This rendering functionality is actually implemented in the Armory CLI tool so you can validate your dinghyfiles with `local_module`
+
+
+## Local modules limitations
+You can reference `module` and `local_module` from any `local_module`. However you cannot call a `local_module` from a `module`. Given this scenario: 
+
+
+
+You will receive an error message: `intert_error_here`.
