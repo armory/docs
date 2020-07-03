@@ -1143,8 +1143,6 @@ An example of this can be:
 }
 ```
 
-
-
 # Application Notifications
 Application notifications can be declared as:
 
@@ -1229,7 +1227,7 @@ When application notiications was introduced we added an integration in which if
 }
 ```
 
-If this configutation exists dinghy will send a notification to channel `slack-channel-good` and ``slack-channel-both` if pipeline was rendered fine and a notifcation to `slack-channel-bad` and `slack-channel-both` if pipeline failed to be rendered additionaly to the one being send as default for all the notifications.
+If this configutation exists dinghy will send a notification to channel `slack-channel-good` and `slack-channel-both` if pipeline was rendered fine and a notifcation to `slack-channel-bad` and `slack-channel-both` if pipeline failed to be rendered additionaly to the one being send as default for all the notifications.
 
 
 # Local module functionality
@@ -1274,6 +1272,7 @@ And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal
   ]
 }
 ```
+
 `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` have the same content that is:
 ``` json
 {
@@ -1317,6 +1316,7 @@ The file rendered will be:
 }
 ```
 
+As you can see `local_module` and `module` can be combined in one dinghyfile.
 
 
 ## Using local modules and modules
