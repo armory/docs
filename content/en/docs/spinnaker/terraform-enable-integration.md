@@ -351,12 +351,6 @@ After you finish your Terraform integration configuration, perform the following
 
 ## Configure Terraform for your cloud provider
 
-Since the Terraform Integration executes all Terraform commands against the `terraform` binary, all methods of configuring authentication are supported for your desired cloud provider. This section describes how to accomplish this for various cloud providers. 
-
-You can also configure a profile that grants access to resources, like AWS. 
-
-## Configure Terraform for your cloud provider
-
 Since the Terraform Integration executes all Terraform commands against the `terraform` binary, all methods of configuring authentication are supported for your desired cloud provider. This section describes how to accomplish this for various cloud providers.
 
 ### Configuring for AWS and Git private repositories
