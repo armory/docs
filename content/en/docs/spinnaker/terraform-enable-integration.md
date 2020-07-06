@@ -17,17 +17,17 @@ Armory Spinnaker's Terraform Integration integrates your infrastructure-as-code 
 
 Armory ships several versions of Terraform as part of the Terraform Integration feature. The Terraform binaries are verified by checksum and with Hashicorp's GPG key before being installed into an Armory release.
 
-When creating a Terraform Integration stage, pipeline creators select a specific available version from a list of available versions: 
+When creating a Terraform Integration stage, pipeline creators select a specific available version from a list of available versions:
 
 ![Terraform version to use](/images/terraform_version.png)
 
 Note that all Terraform stages within a Pipeline that affect state must use the same Terraform version.
 
-## Redis
+## Terraform logs
 
-Terraformer uses Redis to store Terraform logs and plans. An external Redis instance is highly recommended for production use.
+The Terraform integration uses Redis to store Terraform logs and plans. An external Redis instance is highly recommended for production use.
 
-**Note:** Terraformer can only be configured to use a password with the default Redis user.
+**Note:** The Terraform integration can only be configured to use a password with the default Redis user.
 
 To set/override the Spinnaker Redis settings do the following:
 
@@ -68,7 +68,7 @@ Then run `hal deploy apply` to deploy the changes.
 ## Requirements
 
 * Credentials (in the form of basic auth) for your Terraform Git repository. The Terraform Integration needs access to credentials to download directories that house your Terraform templates. The credentials can take one of two forms:
-   * If your Terraform repo is in GitHub, use a Personal Access Token (potentially associated with a service account) as the 'token'.  Generate this token in your GitHub settings. For more information, see [Generating a Github Personal Access Token (PAT)](#generating-a-github-personal-access-token-pat).
+   * If your Terraform repo is in GitHub, use a Personal Acccess Token (potentially associated with a service account) as the 'token'.  Generate this token in your GitHub settings. For more information, see [Generating a Github Personal Access Token (PAT)](#generating-a-github-personal-access-token-pat).
    * If your Terraform repo is in BitBucket, use a username/password that has access to your BitBucket repo.
 * To use Terraform Input Variable Files (`tfvar`), you must have a separate artifact provider (such as the GitHub, BitBucket, or HTTP artifact provider) that can pull your `tfvar` file(s). Additionally, the credentials must be configured in both places: the Terraform Integration and the artifact provider.
 
@@ -140,8 +140,7 @@ files.
 If you already have a GitHub artifact account configured in Spinnaker,
 skip this section.
 
-{{% alert title="Note" %}}The following examples use `github-for-terraform` as a unique identifier for the artifact account. Replace it with your own identifier.
-{{% /alert %}}
+**Note**: The following examples use `github-for-terraform` as a unique identifier for the artifact account. Replace it with your own identifier.
 
 **Operator**
 
@@ -237,7 +236,7 @@ spec:
   spinnakerConfig:
     config:
       artifacts:
-        bitbucket: 
+        bitbucket:
           enabled: true
           accounts:
           - name: bitbucket-for-terraform
@@ -329,7 +328,7 @@ window.spinnakerSettings.feature.terraform = true;
 
 After you finish your Terraform integration configuration, perform the following steps:
 
-1. Apply the changes: 
+1. Apply the changes:
 
    **Operator**
 
@@ -359,115 +358,188 @@ After you finish your Terraform integration configuration, perform the following
 
 ## Configure Terraform for your cloud provider
 
-Since the Terraform Integration executes all Terraform commands against the `terraform` binary, all methods of configuring authentication are supported for your desired cloud provider. This section describes how to accomplish this for various cloud providers. 
+Since the Terraform Integration executes all Terraform commands against the `terraform` binary, all methods of configuring authentication are supported for your desired cloud provider. This section describes how to accomplish this for various cloud providers.
 
-You can also configure a profile that grants access to resources, like AWS. 
+### Configuring for AWS and Git private repositories
 
-## Profiles
+There are several ways to enable Terraform to authenticate with AWS. You can find the full list [here](https://www.terraform.io/docs/providers/aws/#authentication). Each of these methods is supported; however, you may need to do additional configuration to enable them.
 
-A profile gives users the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. The supported credentials are described in [Types of credentials](#types-of-credentials).
+The following example describes how to provide access to AWS and a remote private repo using an init container that holds secrets. AWS access gives Spinnaker the ability to stand up infrastructure for you in AWS. If your Terraform scripts rely on modules stored in a private remote repository, Spinnaker also needs access to those. The workflow below assumes you are using `SSH` in order to clone a remote repository.  A similar workflow exists for relying on `HTTP/HTTPS`.
 
-### Types of credentials
+Before you start though, make sure you have access to the following for your AWS account:
+* AWS access key
+* AWS secret key
+* SSH private key for the Git private repository
 
-The Terraform integration supports multiple types of credentials for Profiles to handle the various use cases that you can use the Terraform integration for:
+Additionally, you need `kubectl` installed. Perform the following steps:
 
-* AWS
-* SSH
-* Static
+1. Create a file named `aws-credentials` with the following contents:
 
-If you don't see a credential that suits your use case, [let us know](https://feedback.armory.io/feature-requests)!
-
-For information about how to configure a Profile, see [Configuring a profile](#configuring-a-profile).
-
-**AWS**
-
-Use the `aws` credential type to provide authentication to AWS. There are two methods you can use to provide authentication - by defining a static key pair or a role that should be assumed before a Terraform action is executed. 
-
-For defining a static key pair, supply an `accessKeyId` and a `secretAccessKey`:
-
-```yaml
-- name: devops # Unique name for the profile. Shows up in Deck.
-  variables:
-  - kind: aws # Type of credential 
-    options:
-      accessKeyId: AKIAIOWQXTLW36DV7IEA
-      secretAccessKey: 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
-```
-
-For assuming a role instead of defining a static set of credentials, supply the ARN of the role to assume:
-
-```yaml 
-- name: devops # Unique name for the profile. Shows up in Deck.
-  variables:
-  - kind: aws # Type of credential 
-    options:
-      assumeRole: arn:aws:iam::012345567:role/roleAssume
-```
-
-*When assuming a role, if `accessKeyId` and `secretAccessKey` are supplied, the Terraform integration uses these credentials to assume the role. Otherwise, the environment gets used for authentication, such as a machine role or a shared credentials file.*
-
-**SSH Key**
-
-Use the `git-ssh` credential kind to provide authentication to private Git repositories used as modules within your Terraform actions. The supplied SSH key will be available to Terraform for the duration of your execution, allowing it to fetch any modules it needs:
-
-```yaml
-- name: pixel-git # Unique name for the profile. Shows up in Deck.
-  variables:
-  - kind: git-ssh  # Type of credential 
-    options:
-    sshPrivateKey: encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?> 
-```
-
-**Static**
-
-Use the `static` credential kind to provide any arbitrary key/value pair that isn't supported by any of the other credential kinds. For example, if you want all users of the `devops` profile to execute against the `AWS_REGION=us-west-2`, use the following `static` credential configuration.
-
-```yaml
-- name: devops # Unique name for the profile. Shows up in Deck.
-  variables:
-  - kind: static # Type of credential 
-    options:
-      name: AWS_REGION
-      value: us-west-2
-```
-
-### Configuring a Profile
-
-Configure profiles that users can select when creating a Terraform Integration stage:
-
-1. In the `.hal/default/profiles` directory, create or edit `terraformer-local.yml`.
-2. Add the values for the profile(s) you want to add under the `profiles` section. The following example adds a profile named `pixel-git` for an SSH key secured in Vault.
-    
-   ```yaml
-   - name: pixel-git # Unique profile name displayed in Deck
-       variables:
-       - kind: git-ssh 
-         options:
-         sshPrivateKey: encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?> 
    ```
-    
-   When a user creates or edits a Terraform Integration stage in Deck, they can select the profile `pixel-git` from a dropdown.
+   [default]
+   aws_access_key_id = <Your AWS access key id>
+   aws_secret_access_key = <Your AWS secret key>
+   ```
 
-   Keep the following in mind when adding profiles:
+2. Create a directory named `ssh`.
+3. In the `ssh` directory, create a file named `id_rsa` with your SSH private key:
 
-   * You can add multiple profiles under the `profiles` section.
-   * Do not commit plain text secrets to `terraformer-local.yml`. Instead, use a secret store: [Vault](/spinnaker-install-admin-guides/secrets-vault), an [encrypted S3 bucket](/spinnaker-install-admin-guides/secrets-s3), or an [encrypted GCS bucket](/spinnaker-install-admin-guides/secrets-gcs). 
-   * For SSH keys, one option parameter at a time is supported for each Profile. This means that you can use a private key file (`sshPrivateKeyFilePath`) or the key (`sshPrivateKey`) as the option. To use the key file path, use `sshPrivateKeyFilePath` for the option and provide the path to the key file. The path can also be encrypted using a secret store such as Vault. The following `option` example uses `sshPrivateKeyFilePath`:
-        
-     ```yaml
-     options:
-     sshPrivateKeyFilePath: encryptedFile:<secret_store>!e:...
-     ```
-        
-     For more information, see the documentation for your secret store.
-3. Save the file. 
-4. Apply your changes:
-   
+   ```
+   <Add your SSHA private key>
+   ```
+
+4. In the `ssh` directory, create a file named `config` with the following contents:
+
+   ```
+   StrictHostKeyChecking no
+   ```
+
+5. Run the following command to create a generic Kubernetes secret named `spin-terraformer-secrets`:
+
+   ```
+   kubectl create secret generic spin-terraformer-secrets -n <Spinnaker namespace> --from-file=credentials=aws-credentials --from-file=id_rsa=ssh/id_rsa --from-file=config=ssh/config
+   ```
+
+   Replace `<Spinnaker namespace>` with the namespace where Spinnaker is deployed. The command returns the following:
+
+   ```
+   secret/spin-terraformer-secrets created
+   ```
+
+6. Edit Terraformer service settings:
+
+   **Operator**
+
+   ```yaml
+   apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+   kind: SpinnakerService
+   metadata:
+     name: spinnaker
+   spec:
+     spinnakerConfig:
+       service-settings:
+         terraformer:
+           kubernetes:
+             securityContext:
+               runAsUser: 1000
+               runAsGroup: 1000
+               fsGroup: 1000
+             volumes:
+             - id: spin-terraformer-secrets
+               type: secret
+               defaultMode: 420
+               mountPath: /secrets
+             - id: ssh-key-temp
+               type: emptyDir
+               mountPath: /home/spinnaker/.ssh
+             - id: aws-creds-temp
+               type: emptyDir
+               mountPath: /home/spinnaker/.aws
+   ```
+
+   **Halyard**
+
+   In the `~/.hal/default/service-settings/terraformer.yml` file, add the following:
+
+   ```yaml
+   kubernetes:
+     securityContext:
+       runAsUser: 1000 # Spinnaker uses UID and GID 1000
+       runAsGroup: 1000
+       fsGroup: 1000
+     volumes:
+     - id: spin-terraformer-secrets # The secret name should match the name used to create the Kubernetes secret
+       type: secret
+       defaultMode: 420
+       mountPath: /secrets
+     - id: ssh-key-temp
+       type: emptyDir
+       mountPath: /home/spinnaker/.ssh
+     - id: aws-creds-temp
+       type: emptyDir
+       mountPath: /home/spinnaker/.aws
+   ```
+7. Edit `initContainer` in the config:
+
+   **Operator**
+
+   ```yaml
+   apiVersion: spinnaker.armory.io/{{ site.data.versions.operator-extended-crd-version }}
+   kind: SpinnakerService
+   metadata:
+     name: spinnaker
+   spec:
+     spinnakerConfig:
+       config:
+         deploymentEnvironment:
+           initContainers:
+             spin-terraformer:
+             - name: init-terraformer
+               image: busybox:latest
+               command:
+               - sh
+               - -c
+               - cp /secrets/* /ssh-spin && chown -R 1000:1000 /ssh-spin/* && chmod 600 /ssh-spin/* && mv /ssh-spin/credentials /aws-spin/
+               volumeMounts:
+               - mountPath: /ssh-spin
+                 name: ssh-key-temp
+               - mountPath: /aws-spin
+                 name: aws-creds-temp
+               - mountPath: /secrets
+                 name: spin-terraformer-secrets
+   ```
+
+   **Halyard**
+
+   In the file `~/.hal/config` and add the following to the `initContainer` section:
+
+   ```yaml
+   ...
+   initContainers:
+     spin-terraformer:
+     - name: init-terraformer
+       image: busybox:latest
+       command: ["sh", "-c", "cp /secrets/* /ssh-spin && chown -R 1000:1000 /ssh-spin/* && chmod 600 /ssh-spin/* && mv /ssh-spin/credentials /aws-spin"]
+       volumeMounts:
+       - mountPath: /ssh-spin
+         name: ssh-key-temp
+       - mountPath: /aws-spin
+         name: aws-creds-temp
+       - mountPath: /secrets
+         name: spin-terraformer-secrets # The secret name should match the name used to create the Kubernetes secret
+   ...
+   ```
+
+   This section creates an init container for Terraformer to use that contains the necessary secrets for AWS, sets the UID and GID to 1000 (which Spinnaker uses), and moves the files to directories that are accessible to Spinnaker.
+
+8. Apply your changes to your Spinnaker deployment:
+
    ```
    hal deploy apply
    ```
 
+9. Verify the following before you start using the Terraform integration:
+
+   **Verify that the Terraformer pod is running**:
+
+   ```bash
+   kubectl -n <Your Spinnaker namespace> get pods
+   ```
+
+   **Verify the credentials are available**:
+
+   ```bash
+   # Enter the Terraformer pod
+   kubectl -n <Your Spinnaker namespace> exec -it <Terraformer pod name> bash
+
+   # Verify the .ssh directory contains your SSH private key file
+   ls -l /home/spinnaker/.ssh
+   # Verify the .aws directory contains your AWS credential file
+   ls -l /home/spinnaker/.aws
+   ```
+
+The Terraform Integration now has access to clone private remote Git repositories via SSH and create AWS objects after you make these changes and the Terraform Integration redeploys.
 
 ## Submit feedback
 
-Let us know what you think at [go.armory.io/ideas](go.armory.io/ideas) or [feedback.armory.io](https://feedback.armory.io). We're constantly iterating on customer feedback to ensure that the features we build make your life easier!
+Let us know what you think at [go.armory.io/ideas](https://go.armory.io/ideas) or [feedback.armory.io](https://feedback.armory.io). We're constantly iterating on customer feedback to ensure that the features we build make your life easier!
