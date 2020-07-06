@@ -357,6 +357,8 @@ You can also configure a profile that grants access to resources, like AWS.
 
 ## Named Profiles
 
+{{% alert title="New feature" %}}Named Profiles is a new feature in Armory Spinnaker 2.20. Previously, you needed to mount a sidecar that contained your credentials. If you are on an earlier version, see the v.20-2.19 version of this [page](https://archive.docs.armory.io/docs/spinnaker/terraform-enable-integration/#configure-terraform-for-your-cloud-provider) to learn more about mounting a sidecar. {{% /alert %}}
+
 A Named Profile gives users the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. The supported credentials are described in [Types of credentials](#types-of-credentials).
 
 ### Types of credentials
