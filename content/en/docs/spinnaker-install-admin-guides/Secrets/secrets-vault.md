@@ -211,7 +211,11 @@ Armory Spinnaker's Vault integration supports Vault namespaces. You can auth to 
 Do not use the namespace parameter. Instead. refer to secrets in a specific namespace with the following:
 
 ```yaml
+# Key/Value version2
 encrypted:vault!e:<secretEngine>/<path>!p:<path/to/secret>
+
+# Key/Value version1
+encrypted:vault!e:<secretEngine>/data/<path>!p:<path/to/secret>
 ```
 
 For example, the following snippet references a secret stored in a secret engine named `AppSecrets` on the `/secret` path:
