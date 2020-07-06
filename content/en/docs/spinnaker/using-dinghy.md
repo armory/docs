@@ -932,13 +932,13 @@ Logging:
 ```
 
 
-# Webhook Secret Validation
+## Webhook Secret Validation
 
 You can add a layer of security or restrict which repositories dinghy will process by using webhook secret validation. Enabling webhook secret validation ensures that your service provider is the only one that can trigger your pipelines, not an imposter.
 
 This feature supports **GitHub** webhooks.
 
-## Enable or Disable Webhook Secret Validation
+### Enable or Disable Webhook Secret Validation
 
 When you enable webhook secret validation, **ALL** webhooks for that provider are validated for a secret.
 
@@ -982,7 +982,7 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
   ```
 
 
-## Webhook Validation Fields
+### Webhook Validation Fields
 
 When you enable `webhook secret validation`, Dinghy validates all the webhooks it receives from the specified provider.
 
@@ -995,7 +995,7 @@ A webhook validation has the following fields:
   * **false**: Validation for this repo will be considered as disabled, so no validation and direct dinghy execution will be done regardless secret is not good.
 * **secret**: Secret configured.
 
-## Webhook Validation Default Secret
+### Webhook Validation Default Secret
 
 You can specify a default secret to use when your GitHub organization has multiple repositories with the same secret. The repository name is `default-webhook-secret` and must be enabled.
 
@@ -1061,7 +1061,7 @@ hal armory dinghy webhooksecrets <version control provider> edit \
 ```
 
 
-## List Webhook Validations
+### List Webhook Validations
 
 **Halyard**
 
@@ -1077,7 +1077,7 @@ hal armory dinghy webhooksecrets <version control provider> list \
   --enabled false
 ```
 
-## Delete Webhook Validations
+### Delete Webhook Validations
 
 **Operator**
 
@@ -1099,7 +1099,8 @@ hal armory dinghy webhooksecrets <version control provider> delete --all
 ```
 
 
-# Application Updates
+## Application Updates
+
 Dinghy behavior for application and pipelines is different.
 - Applications: It created the application with the configuration send and app never gets updated after that.
 - Pipelines: Updates on every push.
@@ -1143,7 +1144,8 @@ An example of this can be:
 }
 ```
 
-# Application Notifications
+## Application Notifications
+
 Application notifications can be declared as:
 
 ``` json
@@ -1181,7 +1183,7 @@ Application notifications can be declared as:
 }
 ```
 
-Here you can see that `notifications` is under `spec` and then configurations can be inserted. 
+Here you can see that `notifications` is under `spec` and then configurations can be inserted.
 They key for the key-value relationship should be the notification type which can be: `googlechat`, `slack`, `bearychat`, `email`, and `pubsub`.
 Under pipelines there's always a field `when` and the possible values can be `pipeline.complete`, `pipeline.failed` and `pipeline.starting`.
 Here's a table with the mapping for the possible values for notifications.
@@ -1197,8 +1199,9 @@ Here's a table with the mapping for the possible values for notifications.
 
 
 
-# Slack Application Notifications
-When application notiications was introduced we added an integration in which if there's an application notification configured it will notify for those channels depending on the when configuration, so given this configuration:
+## Slack Application Notifications
+
+When application notifications was introduced we added an integration in which if there's an application notification configured it will notify for those channels depending on the when configuration, so given this configuration:
 
 ``` json
 {
@@ -1227,10 +1230,11 @@ When application notiications was introduced we added an integration in which if
 }
 ```
 
-If this configutation exists dinghy will send a notification to channel `slack-channel-good` and `slack-channel-both` if pipeline was rendered fine and a notifcation to `slack-channel-bad` and `slack-channel-both` if pipeline failed to be rendered additionaly to the one being send as default for all the notifications.
+If this configuration exists dinghy will send a notification to channel `slack-channel-good` and `slack-channel-both` if pipeline was rendered fine and a notifcation to `slack-channel-bad` and `slack-channel-both` if pipeline failed to be rendered additionaly to the one being send as default for all the notifications.
 
 
-# Local module functionality
+## Local module functionality
+
 Local modules were added in version `some_version`. And this behavior is exactly the same as `module` but with one difference, `module` should exists in the configured template repository but `local_module` not. The difference is that `local_module` file should be inside the repository that you used to make the push, so given the next scenario:
 
 my_repository
@@ -1249,9 +1253,10 @@ template_repository
 └── stage.minimal.wait.module
 ```
 
-And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` you can see this. 
+And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` you can see this.
 
 `dinghyfile`
+
 ``` json
 {
   "application": "localmodules",
@@ -1283,6 +1288,7 @@ And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal
 ```
 
 The file rendered will be:
+
 ``` json
 {
   "application": "localmodules",
@@ -1319,12 +1325,14 @@ The file rendered will be:
 As you can see `local_module` and `module` can be combined in one dinghyfile.
 
 
-## Using local modules and modules
+### Using local modules and modules
+
 As you cuold see in the previous example you can use `local_module` and `module` without any issues from any dinghyfile. This rendering functionality is actually implemented in the Armory CLI tool so you can validate your dinghyfiles with `local_module`
 
 
-## Local modules limitations
-You can reference `module` and `local_module` from any `local_module`. However you cannot call a `local_module` from a `module`. Given this scenario: 
+### Local modules limitations
+
+You can reference `module` and `local_module` from any `local_module`. However you cannot call a `local_module` from a `module`. Given this scenario:
 
 
 
