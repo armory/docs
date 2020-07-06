@@ -366,7 +366,7 @@ There are several ways to enable Terraform to authenticate with AWS. You can fin
 
 The following example describes how to provide access to AWS and a remote private repo using an init container that holds secrets. AWS access gives Spinnaker the ability to stand up infrastructure for you in AWS. If your Terraform scripts rely on modules stored in a private remote repository, Spinnaker also needs access to those. The workflow below assumes you are using `SSH` in order to clone a remote repository.  A similar workflow exists for relying on `HTTP/HTTPS`.
 
-Before you start though, make sure you have access to the following for your AWS account:
+Before you start though, make sure you have access to the following for your accounts:
 * AWS access key
 * AWS secret key
 * SSH private key for the Git private repository
