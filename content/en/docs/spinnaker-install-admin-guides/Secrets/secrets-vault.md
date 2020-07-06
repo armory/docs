@@ -206,9 +206,9 @@ gate:
 
 {{% alert title=Note %}}Vault Enterprise Namespaces is a Vault Enterprise feature. Want to see support for more Vault Enterprise features? Let us know at <https://feedback.armory.io>. {{% /alert %}}
 
-Armory Spinnaker's Vault integration supports Vault namespaces. You can auth to the root namespace, but query secrets from a different namespace. Do not use the namespace parameter.  Spinnaker calls Vault APIs using either `<secretEngine>/<path>` (Key/Value version2 secrets engine) or `<secretEngine>/data/path` (Key/Value version1 secrets engine).
+Armory Spinnaker's Vault integration supports Vault namespaces. You can auth to the root namespace, but query secrets from a different namespace. Spinnaker calls Vault APIs using either `<secretEngine>/<path>` (Key/Value version2 secrets engine) or `<secretEngine>/data/path` (Key/Value version1 secrets engine).
 
-Refer to secrets in a specific namespace with the following:
+Do not use the namespace parameter. Instead. refer to secrets in a specific namespace with the following:
 
 ```yaml
 encrypted:vault!e:<secretEngine>/<path>!p:<path/to/secret>
