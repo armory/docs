@@ -26,7 +26,7 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 ### Vault secrets
 
-If you use Vault secrets, you should not use this version and instead update to v2.20.2. 
+If you use Vault secrets, you should not use this version and instead update to v2.20.3. 
 
 ### Pipelines as code behavior change for application spec
 
