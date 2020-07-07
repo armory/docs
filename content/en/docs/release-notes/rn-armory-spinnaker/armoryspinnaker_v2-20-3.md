@@ -7,9 +7,12 @@ toc_hide: true
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-## Required Halyard version
+## Required Operator and Halyard version
 
-Armory Spinnaker 2.20.3 requires Armory Halyard 1.9.4 or later.
+Armory Spinnaker 2.20.3 requires one of the following:
+
+* Armory Halyard 1.9.4 or later.
+* Armory Spinnaker Operator 1.0.2 or later.
 
 ## Breaking changes
 
@@ -37,7 +40,7 @@ org.springframework.jdbc.BadSqlGrammarException: jOOQ; bad SQL grammar [select m
 	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:93) ~[spring-jdbc-5.1.14.RELEASE.jar:5.1.14.RELEASE]
 ```  
 
-This issue only occurs if you upgrade to 2.19.x and then downgrade.
+This issue only occurs if you upgrade to 2.19.x or later and then downgrade to a version earlier than 2.19.x.
 
 **Workaround**
 
@@ -47,16 +50,18 @@ You can resolve this issue by rolling back changes to the MySQL database. For mo
 
 We continue to make Spinnaker's security a top priority. Although several CVEs are resolved, the following still exist:
 
-`CVE-2020-5410` was resolved in a previous version of Armory Spinnaker, however this CVE introduced a regression for users of Spring Cloud and has been rolled back. We will continue to monitor releases for a fix in this regression of behavior.
+#### Multiple services
+
+`CVE-2020-5410` was resolved in a previous version of Armory Spinnaker; however, this CVE introduced a regression for users of Spring Cloud and has been rolled back. We will continue to monitor releases for a fix.
 
 #### Orca
 
 - CVE-2020-13790
 
 This is an embedded dependency in OpenJDK11. A version of OpenJDK11 that addresses
-this CVE has only recently been released, and will be fixed in the next release. The risk to services users is low: the CVE deals with processing jpeg images in the Java Runtime Environment, a task our services do not utilize.
+this CVE has only recently been released. The CVE will be fixed in an upcoming release. The risk to services users is low. The CVE deals with processing `jpeg` images in the Java Runtime Environment, a task Armory Spinnaker services do not perform.
 
-The following CVEs have been recently identified and will be addressed in the next released:
+The following CVEs have been recently identified and will be addressed in an upcoming release:
 
 - CVE-2020-14155
 
@@ -69,15 +74,15 @@ The following CVEs still exist in Clouddriver:
 - CVE-2020-13757
 - CVE-2016-10745
 
-All of them are embedded dependencies in the Google Cloud SDK. A version of the Google Cloud SDK addressing these CVEs has not been released. The risk to Clouddriver users is low: all four CVEs deal with untrusted input, which Clouddriver does not provide to the Google Cloud SDK. Additionally, users deploying to other cloud providers are not at risk for this vulernability.
+All of them are embedded dependencies in the Google Cloud SDK. A version of the Google Cloud SDK addressing these CVEs has not been released. The risk to Clouddriver users is low. All four CVEs deal with untrusted input, which Clouddriver does not provide to the Google Cloud SDK. Additionally, users deploying to other cloud providers are not at risk for this vulnerability.
 
-The following CVEs also exist for the service:
+The following CVE also exist for Clouddriver:
 
-- CVE-2020-7014 - deals with an Elasticsearch exploit. Clouddriver only makes use of entity tags and does not allow for token generation or authentication.
+- CVE-2020-7014 deals with an Elasticsearch exploit related to token generation. Clouddriver only makes use of entity tags and does not allow for token generation or authentication.
 
 #### Terraformer
 
-The following CVEs have been identified and will be triaged before the next release:
+Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration: 
 
 - CVE-2020-14422
 - CVE-2020-13757
@@ -86,11 +91,9 @@ The following CVEs have been identified and will be triaged before the next rele
 
 ### Armory
 
-Summary of changes in the latest release.
+2.20.3 is a security focused release. For details about new features and functionality added to Armory Spinnaker 2.20.x, see the release notes for [Armory Spinnaker 2.20.0]({{< ref armoryspinnaker_v2-20-0 >}}).
 
 ###  Spinnaker Community Contributions
-
-<! -- Copy/paste highlights from the corresponding OSS version. -->
 
 There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
 [Spinnaker v1.20.6](https://www.spinnaker.io/community/releases/versions/1-20-6-changelog)
