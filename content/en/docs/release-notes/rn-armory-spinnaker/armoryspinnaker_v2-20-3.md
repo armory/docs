@@ -52,7 +52,7 @@ We continue to make Spinnaker's security a top priority. Although several CVEs a
 
 #### Multiple services
 
-`CVE-2020-5410` was resolved in a previous version of Armory Spinnaker; however, this CVE introduced a regression for users of Spring Cloud and has been rolled back. We will continue to monitor releases for a fix.
+`CVE-2020-5410` was resolved in a previous version of Armory Spinnaker; however, this CVE introduced a regression for users of Spring Cloud and has been rolled back. Armory will continue to monitor releases for a fix.
 
 #### Orca
 
