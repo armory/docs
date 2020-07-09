@@ -7,11 +7,13 @@ aliases:
   - /operator_reference/plugins/
 ---
 
+{{% alert title="Warning" color="warning" %}}
+Plugins are an experimental feature in Armory Spinnaker 2.20.3 (Spinnaker 1.20.6). Please see the [Plugins User Guide]<https://www.spinnaker.io/guides/user/plugin-users/> for a detailed explanation of how to add and configure plugins.
+{{% /alert %}}
+
 ## Parameters
 
 **spec.spinnakerConfig.config.spinnaker.extensibility.plugins**
-
-Please see the [Plugins User Guide]<https://www.spinnaker.io/guides/user/plugin-users/> for a detailed explanation of how to add and configure plugins.
 
 ```yaml
 spinnaker:
@@ -20,22 +22,11 @@ spinnaker:
         <plugin-name>:
           id:
           enabled:
-          uiResourceLocation:
           version:
           extensions:
             <extension-name>:
               id:
               enabled:
-              config: {}
-        Armory.EventListenerPlugin:
-          id: Armory.EventListenerPlugin
-          enabled: true
-          uiResourceLocation: /some/echo/directory
-          version: '1.0'
-          extensions:
-            armory.dataDogListener:
-              id: armory.dataDogListener
-              enabled: true
               config: {}
       repositories:
         <repository-name>:
@@ -47,7 +38,6 @@ spinnaker:
   - `<plugin-name>`: suggested format is creator.plugin
     - `id`: plugin ID as defined in plugins.json
     - `enabled`: true or false
-    - `uiResourceLocation`: path to the Javascript file of the UI component
     - `version`:  version of the plugin to use
     - `extensions`:
       - `<extension-name>`:
@@ -62,6 +52,8 @@ spinnaker:
 
 ### Example
 
+The example below configures the [`pf4jStagePlugin`](https://github.com/spinnaker-plugin-examples/pf4jStagePlugin).
+
 ```yaml
 spinnaker:
     extensibility:
@@ -69,25 +61,48 @@ spinnaker:
         Armory.RandomWeightPlugin:
           id: Armory.RandomWeightPlugin
           enabled: true
-          uiResourceLocation: /some/orca/directory/file.js
-          version: 1.0.16
+          version: 1.1.14
           extensions:
             armory.randomWaitStage:
               id: armory.randomWaitStage
               enabled: true
-              config: {}
-        Armory.EventListenerPlugin:
-          id: Armory.EventListenerPlugin
-          enabled: true
-          uiResourceLocation: /some/echo/directory/file.js
-          version: '1.0'
-          extensions:
-            armory.dataDogListener:
-              id: armory.dataDogListener
-              enabled: true
-              config: {}
+              config:
+                defaultMaxWaitTime: 25
       repositories:
-        armoryPlugins:
-          id: armoryPlugins
-          url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/repositories.json
+        examplePluginsRepo:
+          id: examplePluginsRepo
+          url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
+```
+
+You need to configure a `deck-proxy` in Gate if your plugin has a Deck component. Locate the `profiles` section in `SpinnakerService.yml` and add the proxy information to the `gate` section.
+
+```yaml
+# spec.spinnakerConfig.profiles - This section contains the YAML of each service's profile
+    profiles:
+      clouddriver: {} # is the contents of ~/.hal/default/profiles/clouddriver.yml
+      # deck has a special key "settings-local.js" for the contents of settings-local.js
+      deck:
+        # settings-local.js - contents of ~/.hal/default/profiles/settings-local.js
+        # Use the | YAML symbol to indicate a block-style multiline string
+        settings-local.js: |
+          window.spinnakerSettings.feature.kustomizeEnabled = true;
+          window.spinnakerSettings.feature.artifactsRewrite = true;
+      echo: {}    # is the contents of ~/.hal/default/profiles/echo.yml
+      fiat: {}    # is the contents of ~/.hal/default/profiles/fiat.yml
+      front50: {} # is the contents of ~/.hal/default/profiles/front50.yml
+      gate:
+        spinnaker:
+          extensibility:
+            deck-proxy:
+              enabled: true
+              plugins:
+                Armory.RandomWaitPlugin
+                  enabled: true
+                  version: 1.1.14
+              repositories:
+                examplePluginsRepo:
+                  url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
+      igor: {}    # is the contents of ~/.hal/default/profiles/igor.yml
+      kayenta: {} # is the contents of ~/.hal/default/profiles/kayenta.yml
+      orca: {}    # is the contents of ~/.hal/default/profiles/orca.yml
 ```
