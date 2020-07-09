@@ -65,11 +65,11 @@ Open Source Spinnaker 1.22 (Armory Spinnaker 2.22)
 
 ### Spinnaker Operator
 
-#### What the change is
+#### Change
 
 Currently, Halyard manages Spinnaker's configs and lifecycle. Spinnaker users are accustomed to running `hal deploy apply` after making a change. If you have looked at Armory's documentation recently, you might have noticed that alongside the Halyard commands you are used to, Operator sections containing equivalent `yaml` configs for the Spinnaker Operator have started showing up.   
 
-#### What this means for you
+#### Impact
 
 Nothing if you are happy with Halyard and want to continue to use it. 
 
