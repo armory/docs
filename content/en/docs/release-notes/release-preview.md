@@ -11,34 +11,31 @@ This page is divided between a preview of Open Source Spinnaker and Armory's ext
 
 ## Open Source
 
-### Changes to Spinnaker services
+### Spinnaker services in version X.Y.
+
+This section describes the notable upcoming changes to Spinnaker services:
 
 #### Gate
 
 **Change**: Lore te gatesum
-
 * **Impact**: Make sure you hit 88 MPH before Biff shows up.
-* **Version**: x.y.z
 
-**Change**: Lore te gatesum
-* **Impact**: Make sure you hit 88 MPH before Biff shows up.
-* **Version**: x.y.z
 
 **Change**: Lore te gatesum
 * **Impact**: Make sure you hit 88 MPH before Biff shows up.
-* **Version**: 
+
+**Change**: Lore te gatesum
+* **Impact**: Make sure you hit 88 MPH before Biff shows up.
 
 #### Fiat
 
 **Change**: Lore te fiatsum
 * **Impact**: Don't let Gizmo get wet.
-* **Version**: 
 
 #### Igor
 
 **Change**: Lore te igor
 * **Impact**: Don't cross the streams.
-* **Version**:
 
 ### Breaking Change for Kubernetes Run Job stage
 
