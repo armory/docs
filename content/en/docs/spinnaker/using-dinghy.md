@@ -1201,7 +1201,7 @@ Here's a table with the mapping for the possible values for notifications.
 
 ## Slack Application Notifications
 
-When application notifications was introduced we added an integration in which if there's an application notification configured it will notify for those channels depending on the when configuration, so given this configuration:
+When application notifications was introduced we added a slack integration. If slack is configured and there is a when for `pipeline.complete` or `pipeline.faile` a notification will be send for those channels, so given this configuration:
 
 ``` json
 {
@@ -1235,7 +1235,7 @@ If this configuration exists dinghy will send a notification to channel `slack-c
 
 ## Local module functionality
 
-Local modules were added in version `some_version`. And this behavior is exactly the same as `module` but with one difference, `module` should exists in the configured template repository but `local_module` not. The difference is that `local_module` file should be inside the repository that you used to make the push, so given the next scenario:
+Local modules behaves exactly as `module` but with one difference, `module` should exists in the configured template repository but `local_module` not. The difference is that `local_module` file should be inside the repository that you used to make the push, so given the next scenario:
 
 my_repository
 ```
@@ -1327,7 +1327,7 @@ As you can see `local_module` and `module` can be combined in one dinghyfile.
 
 ### Using local modules and modules
 
-As you cuold see in the previous example you can use `local_module` and `module` without any issues from any dinghyfile. This rendering functionality is actually implemented in the Armory CLI tool so you can validate your dinghyfiles with `local_module`
+As you can see in the previous example you can use `local_module` and `module` without any issues from any dinghyfile. This rendering functionality is actually implemented in the Armory CLI tool so you can validate your dinghyfiles with `local_module`.
 
 
 ### Local modules limitations
@@ -1335,5 +1335,53 @@ As you cuold see in the previous example you can use `local_module` and `module`
 You can reference `module` and `local_module` from any `local_module`. However you cannot call a `local_module` from a `module`. Given this scenario:
 
 
+my_repository
+```
+.
+├── dinghyfile
+└── local_modules
+    └── stage.minimal.wait.localmodule
 
-You will receive an error message: `intert_error_here`.
+```
+
+template_repository
+
+```
+.
+└── stage.minimal.wait.module
+```
+
+And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` you can see this.
+
+`dinghyfile`
+
+``` json
+{
+  "application": "localmodules",
+  "globals": {
+      "waitTime": "42",
+      "waitname": "localmodule default-name"
+  },
+  "pipelines": [
+    {
+      "application": "localmodules",
+      "name": "Made By Armory Pipeline Templates",
+      "stages": [
+        {{ module "stage.minimal.wait.module" }}
+      ]
+    }
+  ]
+}
+```
+
+`stage.minimal.wait.module`:
+``` json
+{
+  "name": "{{ var "waitname" ?: "Local Module Wait" }}",
+  "waitTime":  "{{ var "waitTime" ?: 10 }}",
+  "type": "wait"
+},
+{{ local_module "/local_modules/stage.minimal.wait.localmodule" }}
+```
+
+When Dinghy see that there's a `local_module` being send inside a module it will throw an error message since this action is not possible, on this scenario the error message will be:
