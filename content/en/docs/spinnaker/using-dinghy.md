@@ -451,6 +451,162 @@ Note how the `requisiteStageRefIds` is overwritten while calling the module so t
 
 ![](/images/Screen_Shot_2018-03-26_at_5_06_25_PM.png)
 
+## Local module functionality
+
+Local modules behaves exactly as `module` but with one difference, `module` should exists in the configured template repository but `local_module` not. The difference is that `local_module` file should be inside the repository that you used to make the push, so given the next scenario:
+
+my_repository
+```
+.
+├── dinghyfile
+└── local_modules
+    └── stage.minimal.wait.localmodule
+
+```
+
+template_repository
+
+```
+.
+└── stage.minimal.wait.module
+```
+
+And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` you can see this.
+
+`dinghyfile`
+
+``` json
+{
+  "application": "localmodules",
+  "globals": {
+      "waitTime": "42",
+      "waitname": "localmodule default-name"
+  },
+  "pipelines": [
+    {
+      "application": "localmodules",
+      "name": "Made By Armory Pipeline Templates",
+      "stages": [
+        {{ local_module "/local_modules/stage.minimal.wait.localmodule" }},
+        {{ local_module "/local_modules/stage.minimal.wait.localmodule" "waitname" "localmodule overwrite-name" "waitTime" "100" }},
+        {{ module "stage.minimal.wait.module" "waitname" "global module overwrite-name" "waitTime" "100" }}
+      ]
+    }
+  ]
+}
+```
+
+`stage.minimal.wait.localmodule` and `stage.minimal.wait.module` have the same content that is:
+``` json
+{
+  "name": "{{ var "waitname" ?: "Local Module Wait" }}",
+  "waitTime":  "{{ var "waitTime" ?: 10 }}",
+  "type": "wait"
+}
+```
+
+The file rendered will be:
+
+``` json
+{
+  "application": "localmodules",
+  "globals": {
+    "waitTime": "42",
+    "waitname": "localmodule default-name"
+  },
+  "pipelines": [
+    {
+      "application": "localmodules",
+      "name": "Made By Armory Pipeline Templates",
+      "stages": [
+        {
+          "name": "localmodule default-name",
+          "waitTime": "42",
+          "type": "wait"
+        },
+        {
+          "name": "localmodule overwrite-name",
+          "waitTime": "100",
+          "type": "wait"
+        },
+        {
+          "name": "global module overwrite-name",
+          "waitTime": "100",
+          "type": "wait"
+        }
+      ]
+    }
+  ]
+}
+```
+
+As you can see `local_module` and `module` can be combined in one dinghyfile.
+
+
+### Using local modules and modules
+
+As you can see in the previous example you can use `local_module` and `module` without any issues from any dinghyfile. This rendering functionality is actually implemented in the Armory CLI tool so you can validate your dinghyfiles with `local_module`.
+
+
+### Local modules limitations
+
+You can reference `module` and `local_module` from any `local_module`. However you cannot call a `local_module` from a `module`. Given this scenario:
+
+
+my_repository
+```
+.
+├── dinghyfile
+└── local_modules
+    └── stage.minimal.wait.localmodule
+
+```
+
+template_repository
+
+```
+.
+└── stage.minimal.wait.module
+```
+
+And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` you can see this.
+
+`dinghyfile`
+
+``` json
+{
+  "application": "localmodules",
+  "globals": {
+      "waitTime": "42",
+      "waitname": "localmodule default-name"
+  },
+  "pipelines": [
+    {
+      "application": "localmodules",
+      "name": "Made By Armory Pipeline Templates",
+      "stages": [
+        {{ module "stage.minimal.wait.module" }}
+      ]
+    }
+  ]
+}
+```
+
+`stage.minimal.wait.module`:
+``` json
+{
+  "name": "{{ var "waitname" ?: "Local Module Wait" }}",
+  "waitTime":  "{{ var "waitTime" ?: 10 }}",
+  "type": "wait"
+},
+{{ local_module "/local_modules/stage.minimal.wait.localmodule" }}
+```
+
+When Dinghy see that there's a `local_module` being send inside a module it will throw an error message with the message `calling local_module from a module is not allowed` since this action is not possible. On this scenario the error message will be:
+
+```Parsing dinghyfile failed: template: dinghy-render:12:11: executing "dinghy-render" at <module "stage.minimal.wait.module">: error calling module: error rendering imported module 'stage.minimal.wait.module': template: dinghy-render:6:3: executing "dinghy-render" at <local_module "/local_modules/stage.minimal.wait.localmodule">: error calling local_module: /local_modules/stage.minimal.wait.localmodule is a local_module, calling local_module from a module is not allowed```
+
+
 ## Deleting Stale Pipelines
 
 If you want any pipelines in the spinnaker application that are not part of the `dinghyfile` to be deleted automatically when the `dinghyfile` is updated, then you can set `deleteStalePipelines` to `true` in the JSON like so:
@@ -1232,156 +1388,47 @@ When application notifications was introduced we added a slack integration. If s
 
 If this configuration exists dinghy will send a notification to channel `slack-channel-good` and `slack-channel-both` if pipeline was rendered fine and a notifcation to `slack-channel-bad` and `slack-channel-both` if pipeline failed to be rendered additionaly to the one being send as default for all the notifications.
 
+## Repository Template processing
 
-## Local module functionality
+Imagine you have a template and a couple of modules and dinghyfiles pointing at them, then you modify a module and this module is using Rawdata, at this moment the commited Rawdata is from the template repository, so there can be two possible scenarios:
 
-Local modules behaves exactly as `module` but with one difference, `module` should exists in the configured template repository but `local_module` not. The difference is that `local_module` file should be inside the repository that you used to make the push, so given the next scenario:
+  - The Rawdata from the template repository is taken in order to render again all the dependent dinghyfiles. `repositoryRawdataProcessing = false`
+  - The Rawdata from the specific dinghyfile re-rendered is taken to render the dinghyfile. `repositoryRawdataProcessing = true`
 
-my_repository
-```
-.
-├── dinghyfile
-└── local_modules
-    └── stage.minimal.wait.localmodule
+By default dinghy will use the Rawdata from the template repository, however you can enable the second behavior in which the Rawdata will be from the latest push done for that dinghyfile on the specific repository.
 
-```
+**Operator**
 
-template_repository
-
-```
-.
-└── stage.minimal.wait.module
-```
-
-And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` you can see this.
-
-`dinghyfile`
-
-``` json
-{
-  "application": "localmodules",
-  "globals": {
-      "waitTime": "42",
-      "waitname": "localmodule default-name"
-  },
-  "pipelines": [
-    {
-      "application": "localmodules",
-      "name": "Made By Armory Pipeline Templates",
-      "stages": [
-        {{ local_module "/local_modules/stage.minimal.wait.localmodule" }},
-        {{ local_module "/local_modules/stage.minimal.wait.localmodule" "waitname" "localmodule overwrite-name" "waitTime" "100" }},
-        {{ module "stage.minimal.wait.module" "waitname" "global module overwrite-name" "waitTime" "100" }}
-      ]
-    }
-  ]
-}
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          repositoryRawdataProcessing: true
+          ... # Rest of config omitted for brevity
 ```
 
-`stage.minimal.wait.localmodule` and `stage.minimal.wait.module` have the same content that is:
-``` json
-{
-  "name": "{{ var "waitname" ?: "Local Module Wait" }}",
-  "waitTime":  "{{ var "waitTime" ?: 10 }}",
-  "type": "wait"
-}
+Then update the SpinnakerService with your updated manifest:
+
+```bash
+kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-The file rendered will be:
+**Halyard**
 
-``` json
-{
-  "application": "localmodules",
-  "globals": {
-    "waitTime": "42",
-    "waitname": "localmodule default-name"
-  },
-  "pipelines": [
-    {
-      "application": "localmodules",
-      "name": "Made By Armory Pipeline Templates",
-      "stages": [
-        {
-          "name": "localmodule default-name",
-          "waitTime": "42",
-          "type": "wait"
-        },
-        {
-          "name": "localmodule overwrite-name",
-          "waitTime": "100",
-          "type": "wait"
-        },
-        {
-          "name": "global module overwrite-name",
-          "waitTime": "100",
-          "type": "wait"
-        }
-      ]
-    }
-  ]
-}
-```
+* **Enable**
 
-As you can see `local_module` and `module` can be combined in one dinghyfile.
+  ```bash
+  hal armory dinghy repository_only_rawdata_processing enable
+  ```
 
+* **Disable**
 
-### Using local modules and modules
-
-As you can see in the previous example you can use `local_module` and `module` without any issues from any dinghyfile. This rendering functionality is actually implemented in the Armory CLI tool so you can validate your dinghyfiles with `local_module`.
-
-
-### Local modules limitations
-
-You can reference `module` and `local_module` from any `local_module`. However you cannot call a `local_module` from a `module`. Given this scenario:
-
-
-my_repository
-```
-.
-├── dinghyfile
-└── local_modules
-    └── stage.minimal.wait.localmodule
-
-```
-
-template_repository
-
-```
-.
-└── stage.minimal.wait.module
-```
-
-And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` you can see this.
-
-`dinghyfile`
-
-``` json
-{
-  "application": "localmodules",
-  "globals": {
-      "waitTime": "42",
-      "waitname": "localmodule default-name"
-  },
-  "pipelines": [
-    {
-      "application": "localmodules",
-      "name": "Made By Armory Pipeline Templates",
-      "stages": [
-        {{ module "stage.minimal.wait.module" }}
-      ]
-    }
-  ]
-}
-```
-
-`stage.minimal.wait.module`:
-``` json
-{
-  "name": "{{ var "waitname" ?: "Local Module Wait" }}",
-  "waitTime":  "{{ var "waitTime" ?: 10 }}",
-  "type": "wait"
-},
-{{ local_module "/local_modules/stage.minimal.wait.localmodule" }}
-```
-
-When Dinghy see that there's a `local_module` being send inside a module it will throw an error message since this action is not possible, on this scenario the error message will be:
+  ```bash
+  hal armory dinghy repository_only_rawdata_processing disable
+  ```
