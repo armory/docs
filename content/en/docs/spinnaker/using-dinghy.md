@@ -1432,3 +1432,42 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
   ```bash
   hal armory dinghy repository_only_rawdata_processing disable
   ```
+
+### Repository Template processing example
+
+Given the next scenario:
+
+`dinghyfile` in armory/my-repository
+``` json
+  {
+    "application": "processtemplate",
+    "pipelines": [
+      {
+        "application": "processtemplate",
+        "name": "my-pipeline-name",
+        "stages": [
+          {
+            "name": "{{ .RawData.repository.full_name }}",
+            "type": "wait",
+            "waitTime": 10
+          },
+          {{ module "stage.minimal.wait.module" }}
+        ]
+      }
+    ]
+}
+```
+
+`stage.minimal.wait.module` in armory/template-repo
+``` json
+{
+  "name": "{{ var "waitname" ?: "Wait module" }}",
+  "waitTime":  "{{ var "waitTime" ?: 10 }}",
+  "type": "wait"
+}
+```
+
+When you make a commit to change `stage.minimal.wait.module` in armory/template-repo all the dependend pipelines will be rendered again (in this case the dinghyfile from armory/my-repository). For that the string `{{ .RawData.repository.full_name }}` will be:
+
+- With `repositoryRawdataProcessing disabled` the result will be `armory/template-repo`
+- With `repositoryRawdataProcessing enabled` the result will be `armory/my-repository`
