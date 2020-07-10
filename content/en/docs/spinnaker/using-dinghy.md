@@ -453,9 +453,10 @@ Note how the `requisiteStageRefIds` is overwritten while calling the module so t
 
 ## Local module functionality
 
-Local modules behaves exactly as `module` but with one difference, `module` should exists in the configured template repository but `local_module` not. The difference is that `local_module` file should be inside the repository that you used to make the push, so given the next scenario:
+Local modules behave exactly as `module` but with one difference: the location of the file. `module` needs to exist in the configured template repository. `local_module` does not. Instead, the `local_module` file needs to be inside the repository that you used to make the push. Given the following scenario:
 
-my_repository
+`my_repository`:
+
 ```
 .
 ├── dinghyfile
@@ -464,16 +465,16 @@ my_repository
 
 ```
 
-template_repository
+`template_repository`:
 
 ```
 .
 └── stage.minimal.wait.module
 ```
 
-And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` you can see this.
+Inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` you can see this.
 
-`dinghyfile`
+`dinghyfile`:
 
 ``` json
 {
@@ -496,7 +497,7 @@ And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal
 }
 ```
 
-`stage.minimal.wait.localmodule` and `stage.minimal.wait.module` have the same content that is:
+`stage.minimal.wait.localmodule` and `stage.minimal.wait.module` have the same content:
 ``` json
 {
   "name": "{{ var "waitname" ?: "Local Module Wait" }}",
@@ -505,7 +506,7 @@ And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal
 }
 ```
 
-The file rendered will be:
+The rendered file looks like this:
 
 ``` json
 {
@@ -540,20 +541,20 @@ The file rendered will be:
 }
 ```
 
-As you can see `local_module` and `module` can be combined in one dinghyfile.
+Note that `local_module` and `module` can be combined in one dinghyfile.
 
 
 ### Using local modules and modules
 
-As you can see in the previous example you can use `local_module` and `module` without any issues from any dinghyfile. This rendering functionality is actually implemented in the Armory CLI tool so you can validate your dinghyfiles with `local_module`.
+As shown in the previous example, you can use `local_module` and `module` without any issues from any `dinghyfile`. The rendering functionality is implemented in the Armory CLI tool, so you can validate your dinghyfiles with `local_module`.
 
 
 ### Local modules limitations
 
-You can reference `module` and `local_module` from any `local_module`. However you cannot call a `local_module` from a `module`. Given this scenario:
+You can reference `module` and `local_module` from any `local_module`. However, you cannot call a `local_module` from a `module`. Given this scenario:
 
 
-my_repository
+`my_repository`:
 ```
 .
 ├── dinghyfile
@@ -562,7 +563,7 @@ my_repository
 
 ```
 
-template_repository
+`template_repository`:
 
 ```
 .
@@ -602,9 +603,11 @@ And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal
 {{ local_module "/local_modules/stage.minimal.wait.localmodule" }}
 ```
 
-When Dinghy see that there's a `local_module` being send inside a module it will throw an error message with the message `calling local_module from a module is not allowed` since this action is not possible. On this scenario the error message will be:
+When Dinghy sees that there's a `local_module` being sent inside a `module`, it throws the following error message: `calling local_module from a module is not allowed`. For the given example scenario, the following error occurs:
 
-```Parsing dinghyfile failed: template: dinghy-render:12:11: executing "dinghy-render" at <module "stage.minimal.wait.module">: error calling module: error rendering imported module 'stage.minimal.wait.module': template: dinghy-render:6:3: executing "dinghy-render" at <local_module "/local_modules/stage.minimal.wait.localmodule">: error calling local_module: /local_modules/stage.minimal.wait.localmodule is a local_module, calling local_module from a module is not allowed```
+```
+Parsing dinghyfile failed: template: dinghy-render:12:11: executing "dinghy-render" at <module "stage.minimal.wait.module">: error calling module: error rendering imported module 'stage.minimal.wait.module': template: dinghy-render:6:3: executing "dinghy-render" at <local_module "/local_modules/stage.minimal.wait.localmodule">: error calling local_module: /local_modules/stage.minimal.wait.localmodule is a local_module, calling local_module from a module is not allowed
+```
 
 
 ## Deleting Stale Pipelines
@@ -1255,13 +1258,13 @@ hal armory dinghy webhooksecrets <version control provider> delete --all
 ```
 
 
-## Application Updates
+## Application updates
 
-Dinghy behavior for application and pipelines is different.
-- Applications: It created the application with the configuration send and app never gets updated after that.
+The Dinghy service behavior for applications and pipelines are different:
+- Applications: Dinghy creates the application with the configuration initially sent. The application does not get updated after that.
 - Pipelines: Updates on every push.
 
-However you can change this behavior adding a global variable `save_app_on_update`. This behavior is good if you want to have your application also always adhering to the code implemented, since it will overwrite notifications every single time.
+However, you can change this behavior by adding a global variable: `save_app_on_update`. This behavior is good if you want to have your application to always adhere to the code implemented since it overwrites notifications every single time.
 
 An example of this can be:
 
@@ -1339,13 +1342,15 @@ Application notifications can be declared as:
 }
 ```
 
-Here you can see that `notifications` is under `spec` and then configurations can be inserted.
-They key for the key-value relationship should be the notification type which can be: `googlechat`, `slack`, `bearychat`, `email`, and `pubsub`.
-Under pipelines there's always a field `when` and the possible values can be `pipeline.complete`, `pipeline.failed` and `pipeline.starting`.
+Here, you can see that `notifications` is under `spec` and then configurations can be inserted.
+They key for the key-value relationship should be the notification type: `googlechat`, `slack`, `bearychat`, `email`, and `pubsub`.
+
+Under pipelines there's always a field `when` that supports the following values: `pipeline.complete`, `pipeline.failed` and `pipeline.starting`.
+
 Here's a table with the mapping for the possible values for notifications.
 
 
-|            | `address` field |
+|Type        | `address` field |
 |------------|-----------------|
 | googlechat | Chat Webhook    |
 | slack      | Slack Channel   |
@@ -1355,9 +1360,9 @@ Here's a table with the mapping for the possible values for notifications.
 
 
 
-## Slack Application Notifications
+## Slack application notifications
 
-When application notifications was introduced we added a slack integration. If slack is configured and there is a when for `pipeline.complete` or `pipeline.faile` a notification will be send for those channels, so given this configuration:
+If Slack is configured for `pipeline.complete` or `pipeline.failed`, a notification gets sent for those channels. Given this configuration:
 
 ``` json
 {
@@ -1386,16 +1391,16 @@ When application notifications was introduced we added a slack integration. If s
 }
 ```
 
-If this configuration exists dinghy will send a notification to channel `slack-channel-good` and `slack-channel-both` if pipeline was rendered fine and a notifcation to `slack-channel-bad` and `slack-channel-both` if pipeline failed to be rendered additionaly to the one being send as default for all the notifications.
+Dinghy sends a notification to channel `slack-channel-good` and `slack-channel-both` if a pipeline renders correctly and a notification to `slack-channel-bad` and `slack-channel-both` if a pipeline fails to render.
 
 ## Repository Template processing
 
-Imagine you have a template and a couple of modules and dinghyfiles pointing at them, then you modify a module and this module is using Rawdata, at this moment the commited Rawdata is from the template repository, so there can be two possible scenarios:
+Imagine you have a template and a couple of modules and `dinghyfiles` pointing at them. You modify a module and this module is using Rawdata. At this moment the commited Rawdata is from the template repository, so there can be two possible scenarios:
 
-  - The Rawdata from the template repository is taken in order to render again all the dependent dinghyfiles. `repositoryRawdataProcessing = false`
-  - The Rawdata from the specific dinghyfile re-rendered is taken to render the dinghyfile. `repositoryRawdataProcessing = true`
+  - The Rawdata from the template repository is taken in order to render all the dependent `dinghyfiles` again. Use the `repositoryRawdataProcessing = false` config for this behavior.
+  - The Rawdata from the specific `dinghyfile` re-rendered is taken to render the `dinghyfile`. Use the `repositoryRawdataProcessing = true` config for this behavior.
 
-By default dinghy will use the Rawdata from the template repository, however you can enable the second behavior in which the Rawdata will be from the latest push done for that dinghyfile on the specific repository.
+By default Dinghy uses the Rawdata from the template repository. However, you can enable the second behavior in which the Rawdata from the latest push gets used for that `dinghyfile` in the specific repository.
 
 **Operator**
 
@@ -1413,7 +1418,7 @@ spec:
           ... # Rest of config omitted for brevity
 ```
 
-Then update the SpinnakerService with your updated manifest:
+Then, update the SpinnakerService with your updated manifest:
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
@@ -1421,23 +1426,23 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 
 **Halyard**
 
-* **Enable**
+**Enable**
 
-  ```bash
-  hal armory dinghy repository_only_rawdata_processing enable
-  ```
+```bash
+hal armory dinghy repository_only_rawdata_processing enable
+```
 
-* **Disable**
+**Disable**
 
-  ```bash
-  hal armory dinghy repository_only_rawdata_processing disable
-  ```
+```bash
+hal armory dinghy repository_only_rawdata_processing disable
+```
 
 ### Repository Template processing example
 
-Given the next scenario:
+Given the following scenario:
 
-`dinghyfile` in armory/my-repository
+`dinghyfile` in `armory/my-repository`:
 ``` json
   {
     "application": "processtemplate",
@@ -1458,7 +1463,7 @@ Given the next scenario:
 }
 ```
 
-`stage.minimal.wait.module` in armory/template-repo
+`stage.minimal.wait.module` in `armory/template-repo`:
 ``` json
 {
   "name": "{{ var "waitname" ?: "Wait module" }}",
@@ -1467,7 +1472,7 @@ Given the next scenario:
 }
 ```
 
-When you make a commit to change `stage.minimal.wait.module` in armory/template-repo all the dependend pipelines will be rendered again (in this case the dinghyfile from armory/my-repository). For that the string `{{ .RawData.repository.full_name }}` will be:
+When you make a commit to change `stage.minimal.wait.module` in `armory/template-repo`, all the dependent pipelines get rendered again (in this case the dinghyfile from armory/my-repository). For that the string `{{ .RawData.repository.full_name }}` will be:
 
 - With `repositoryRawdataProcessing disabled` the result will be `armory/template-repo`
 - With `repositoryRawdataProcessing enabled` the result will be `armory/my-repository`
