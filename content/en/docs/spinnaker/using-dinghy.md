@@ -1474,5 +1474,5 @@ Given the following scenario:
 
 When you make a commit to change `stage.minimal.wait.module` in `armory/template-repo`, all the dependent pipelines get rendered again (in this case the dinghyfile from armory/my-repository). For that the string `{{ .RawData.repository.full_name }}` will be:
 
-- With `repositoryRawdataProcessing disabled` the result will be `armory/template-repo`
-- With `repositoryRawdataProcessing enabled` the result will be `armory/my-repository`
+- With `repositoryRawdataProcessing=false` the result is `armory/template-repo`
+- With `repositoryRawdataProcessing=true` the result is `armory/my-repository`
