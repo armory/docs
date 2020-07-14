@@ -9,7 +9,7 @@ Learn about some of the upcoming major changes to Spinnaker by the open source c
 
 This page is updated on a regular basis.
 
-## Summary of services
+## Summary of services in Armory Spinnaker 2.21 (OSS 1.21)
 
 This section describes the notable upcoming changes to Spinnaker services in Armory Spinnaker 2.21.x (Open Source 1.21). These changes can be from the Open Source Community or Armory.
 
@@ -24,7 +24,7 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
 * **Impact**: Make sure you hit 88 MPH before Biff shows up.
 -->
 
-### Clouddriver
+### Clouddriver 
 
 **Change**: Legacy Kubernetes (V1) provider removed from Spinnaker. Armory Spinnaker 2.20 (OSS 1.20) was the final release that included support for the V1 provider.
 * **Impact**: Migrate all Kubernetes accounts to the standard V2 provider before upgrading.
@@ -75,7 +75,7 @@ This section describes upcoming changes that affect more than one service or a c
 
 ### Kubernetes Run Job stage names
 
-Spinnaker no longer automatically appends a unique suffix to the name of jobs created by the Kubernetes Run Job stage. Prior to this release, if you specified `metadata.name: my-job`, Spinnaker would update the name to `my-job-[random-string]` before deploying the job to Kubernetes. As of 1.22, the job’s name will be passed through to Kubernetes exactly as supplied.
+Spinnaker no longer automatically appends a unique suffix to the name of jobs created by the Kubernetes Run Job stage. Prior to this release, if you specified `metadata.name: my-job`, Spinnaker would update the name to `my-job-[random-string]` before deploying the job to Kubernetes. As of 2.22, the job’s name will be passed through to Kubernetes exactly as supplied.
 
 To continue having a random suffix added to the job name, set the `metadata.generateName` field instead of `metadata.name`, which causes the Kubernetes API to append a random suffix to the name.
 
@@ -83,14 +83,14 @@ This change is particularly important for users who are using the preconfigured 
 
 #### Impact
 
-Users of Spinnaker >= 1.20.3 can opt in to this new no-suffix behavior by setting `kubernetes.jobs.append-suffix: false` in their `clouddriver-local.yml`.
+Users of Armory Spinnaker >= 2.20.x can opt in to this new behavior by setting `kubernetes.jobs.append-suffix: false` in their `clouddriver-local.yml`.
 
 As of Spinnaker 1.22, this new behavior is the default. Users can still opt out of the new behavior by setting `kubernetes.jobs.append-suffix: true` in their `clouddriver-local.yml`. This will cause Spinnaker to continue to append a suffix to the name of jobs as in prior releases.
 
-The ability to opt out of the new behavior will be removed in OSS Spinnaker 1.23. The above setting will have no effect, and Spinnaker will no longer append a suffix to job names. It is strongly recommended that 1.22 users who opt out update any necessary jobs and remove the setting before upgrading to Spinnaker 1.23.
+The ability to opt out of the new behavior will be removed in Armory Spinnaker 2.23 (OSS Spinnaker 1.23). The `kubernetes.jobs.append-suffix: true` setting will have no effect, and Spinnaker no longer appends a suffix to job names. Armory recommendeds that 2.22 users who opt out of the new behavior update any necessary jobs and remove the `kubernetes.jobs.append-suffix: true` setting before upgrading to Armory Spinnaker 2.23.
 
 #### Version
-Armory Spinnaker 2.22 (Open Source Spinnaker 1.22)
+Armory Spinnaker 2.22 and 2.23 (Open Source Spinnaker 1.22 and 1.23)
 
 ### Spinnaker Operator
 
