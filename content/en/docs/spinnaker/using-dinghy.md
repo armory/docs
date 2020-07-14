@@ -13,11 +13,11 @@ The Armory Spinnaker installation provides a service called _Dinghy_, which keep
 Before you can use this feature, please ensure you have [configured]({{< ref "install-dinghy" >}}) it correctly.
 {{< /alert >}}
 
-## How It Works in a Nutshell
+## How it works in a nutshell
 
 GitHub (or BitBucket) webhooks are sent off when you modify either the Templates or the Module definitions. The Dinghy service looks for and fetches all dependent modules and parses the template and updates the pipelines in Spinnaker. The pipelines get automatically updated whenever a module that is used by a pipeline is updated in VCS. This is done by maintaining a dependency graph.  Dinghy will look for a `dinghyfile` in all directories, not just the root path.  Unless otherwise configured, Dinghy will process changes found in the master branch. For more information on how to configure branches, see [Custom branch configuration]({{< ref "install-dinghy#custom-branch-configuration" >}})
 
-### Intended Workflow
+### Intended workflow
 
 The Pipelines as Code feature is intended to make it much faster and easier
 for developers to get a brand new application up and running.  The general
@@ -40,7 +40,7 @@ control, along with the rest of the project's files.  If changes are made
 to the Dinghyfile, when committed/merged into the "master" branch, the
 pipelines are automatically re-rendered and updated.
 
-## Basic Format
+## Basic format
 
 A `Dinghyfile` is a JSON (or HCL or YAML, [see
 below](#alternate-template-formats)) dictionary that wraps a
@@ -81,7 +81,7 @@ Make sure you specify the following fields so that the Dinghyfile can create a p
 * `.pipelines[*].name`: The name of the pipeline.
 * `.pipelines[*].stages`: An array of stages that make up the pipeline.
 
-### Stage Fields
+### Stage fields
 
 Each pipeline should have a field called `stages`, which is an array of the definitions of the stages that make up the pipeline.  Each stage definition should have these fields:
 
@@ -107,7 +107,7 @@ Additionally, each stage type supports one or more stage-specific fields.  For e
 
 Additional stage fields can be identified by configuring the stage through the UI and examining the Stage JSON that gets generated.
 
-### Stage dependency Graph
+### Stage dependency graph
 
 While a JSON array is an ordered list, the order of the stages in your pipeline's `stages` array isn't used for stage order.  Instead, Spinnaker stages each have a `refId`, a unique string within the pipeline that identifies the stage and an array of stages that the stage depends on. Note that `refId` is often a numerical value but does not need to be one. For example, this is a four-stage pipeline:
 
@@ -168,7 +168,7 @@ The above Dinghyfile defines a single pipeline with four stages.  Here is how th
 * Stage `two-b`, which started at the same, will complete in thirty seconds (fifteen seconds after stage "two-a" completes).
 * Stage `last`, which depends on both `two-a` and `two-b` (identified by their `refIds` of `my-second-stage` and `my-other-second-stage`), starts once both stage `two-a` and `two-b` are complete.
 
-#### Application Permissions
+#### Application permissions
 
 You can define in the `spec` block the permissions to set on the application.
 The items in the `spec` field only apply if they are defined for a new
@@ -243,7 +243,7 @@ You can compose stage/task templates to make a full definition. e.g., a Pipeline
 }
 ```
 
-## Template Variables and Substitution
+## Template variables and substitution
 
 Pipeline definitions can include Modules defined in another GitHub Repo. e.g.:
 
@@ -403,7 +403,7 @@ The file `deploy.stage.module` would look like this:
 }
 ```
 
-## Multiple Level Inheritance
+## Multiple level inheritance
 
 In the below example, we show a pipeline that is created with multiple levels of module inheritance. The application's dinghyfile looks like this:
 
@@ -453,7 +453,9 @@ Note how the `requisiteStageRefIds` is overwritten while calling the module so t
 
 ## Local module functionality
 
-Local modules behave exactly as `module` but with one difference: the location of the file. `module` needs to exist in the configured template repository. `local_module` does not. Instead, the `local_module` file needs to be inside the repository that you used to make the push. Given the following scenario:
+Depending on how long your `dinghyfiles` are, consider using a local module instead of a module.
+
+Local modules behave exactly the same as modules but with one difference: the location of the file. A module needs to exist in the configured template repository. A local module does not. Instead, the local module file needs to be inside the repository that you used to make the push. Given the following scenario:
 
 `my_repository`:
 
@@ -541,17 +543,17 @@ The rendered file looks like this:
 }
 ```
 
-Note that `local_module` and `module` can be combined in one dinghyfile.
+Note that you can use both local modules and modules in one `dinghyfile`.
 
 
 ### Using local modules and modules
 
-As shown in the previous example, you can use `local_module` and `module` without any issues from any `dinghyfile`. The rendering functionality is implemented in the Armory CLI tool, so you can validate your dinghyfiles with `local_module`.
+As shown in the previous example, you can use a local module and module without any issues from any `dinghyfile`. The rendering functionality is implemented in the Armory CLI tool, so you can validate your `dinghyfiles` with local module.
 
 
 ### Local modules limitations
 
-You can reference `module` and `local_module` from any `local_module`. However, you cannot call a `local_module` from a `module`. Given this scenario:
+You can reference module and local_module from any local module. However, you cannot call a local_module from a module. Given this scenario:
 
 
 `my_repository`:
@@ -603,14 +605,14 @@ And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal
 {{ local_module "/local_modules/stage.minimal.wait.localmodule" }}
 ```
 
-When Dinghy sees that there's a `local_module` being sent inside a `module`, it throws the following error message: `calling local_module from a module is not allowed`. For the given example scenario, the following error occurs:
+When the Pipelines as Code service (Dinghy) sees that there's a local module being sent inside a module, it throws the following error message: `calling local_module from a module is not allowed`. For the given example scenario, the following error occurs:
 
 ```
 Parsing dinghyfile failed: template: dinghy-render:12:11: executing "dinghy-render" at <module "stage.minimal.wait.module">: error calling module: error rendering imported module 'stage.minimal.wait.module': template: dinghy-render:6:3: executing "dinghy-render" at <local_module "/local_modules/stage.minimal.wait.localmodule">: error calling local_module: /local_modules/stage.minimal.wait.localmodule is a local_module, calling local_module from a module is not allowed
 ```
 
 
-## Deleting Stale Pipelines
+## Deleting stale pipelines
 
 If you want any pipelines in the spinnaker application that are not part of the `dinghyfile` to be deleted automatically when the `dinghyfile` is updated, then you can set `deleteStalePipelines` to `true` in the JSON like so:
 
@@ -623,7 +625,7 @@ If you want any pipelines in the spinnaker application that are not part of the 
 }
 ```
 
-## Triggering Other Pipelines With a Stage
+## Triggering other pipelines with a stage
 
 The spinnaker `pipeline` stage allows you to trigger other pipelines. However, typically you need the UUID of the pipeline to be triggered. To make it easier to write dinghy templates, we have a `pipelineID` function which can be used in dinghyfiles to trigger pipelines. Consider the below example (`pipeline.stage.module`):
 
@@ -643,7 +645,7 @@ The spinnaker `pipeline` stage allows you to trigger other pipelines. However, t
 In the above example, we are triggering a pipeline by the name `default-pipeline` under `default-app` spinnaker application. The app name and the pipeline name can be overwritten when calling this module. At any higher level, simply pass in `"triggerApp"` and `"triggerPipeline"` like so: `{{ module "pipeline.stage.module" "triggerApp" "pipelineidtest" "triggerPipeline" "testpipelinename" }}`
 
 
-## Advanced Features
+## Advanced features
 
 ### Monorepo
 Dinghy supports multiple spinnaker applications under the same git repo. eg:
@@ -668,7 +670,7 @@ monorepo/
 
 Notice both `app1` and `app2` are under the same repo, each app has its own `dinghyfile` and its own spinnaker application that can be referenced in the `dinghyfile`.
 
-### Template Validation
+### Template validation
 If, while rendering a `dinghyfile`, a malformed JSON file is encountered, the logs should indicate the line number and the column number of the error. The `arm cli` can be used to validate `dinghyfile`s and `module`s locally without having to put them in source control.
 
 Armory CLI: <https://github.com/armory-io/arm>
@@ -710,7 +712,7 @@ For ease of readablilty, you can split a single call to `module` across multiple
 }
 ```
 
-### Top-level Variables
+### Top-level variables
 When passing in variables to modules, you have the option of defining variables at the top-level `dinghyfile` like so:
 
 ```json
@@ -755,7 +757,7 @@ Note that top-level variables are overwritten by variables in the call to module
 }
 ```
 
-### Nested Variables
+### Nested variables
 Another neat little trick with variables is support for nested variables. Consider the following variable usage in a module:
 
 ```json
@@ -773,7 +775,7 @@ With nested variables, instead of using a hardcoded default value, the default c
 Here, if the variable `"name"` was not passed into the module call and is not a top-level variable in the `dinghyfile`, its value will come from a variable called `"different_var"` that is either a top-level variable or another variable passed in when the module is called. Note the `@` syntax for the nested variable. The `@` symbol is only used where the variable is used, not when it is passed in.
 le
 
-### Create a Dinghyfile from an Existing Pipeline
+### Create a dinghyfile from an existing pipeline
 
 If you have already created a pipeline in the Spinnaker UI, you can create a dinghy file with some simple steps.
 
@@ -856,11 +858,11 @@ If you have already created a pipeline in the Spinnaker UI, you can create a din
    Save this file as `dinghyfile` in the root of your project and push it to your repository.
    You may want to follow the [deleting stale pipelines](#deleting-stale-pipelines) instructions.
 
-## Alternate Template Formats
+## Alternate template formats
 
 When using an alternate template format all of your modules must also be in that same format.
 
-### YAML Template Format
+### YAML template format
 
 YAML formatting works just like the JSON formatting does.  However, all of your templates will need to be YAML if you've configured dinghy to use YAML as its template format.
 
@@ -890,7 +892,7 @@ pipelines:
 
 *Note: YAML has strict spacing requirements.  Your modules must indent properly for the template to be rendered correctly.*
 
-### HCL Template Format
+### HCL template format
 
 ```
 "application" = "Some App"
@@ -1058,46 +1060,15 @@ In the template, the access path for that variable is: `.RawData.pusher.name`.
 
 Armory provides example dinghy templates you can copy and extend. You can find the examples in the [Armory GitHub repo](https://github.com/armory/dinghyTemplates).
 
-## Known Issue
-
-If Dinghy crashes on start up and you encounter an error in Dinghy similar to:
-`time="2020-03-06T22:35:54Z" level=fatal msg="failed to load configuration: 1 error(s) decoding:\n\n* 'Logging.Level' expected type 'string', got unconvertible type 'map[string]interface {}'"`
-
-You have probably configured global logging levels with `spinnaker-local.yml`. The work around is to override Dinghy's logging levels:
-
-**Operator**
-
-```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      dinghy: |
-        Logging:
-          Level: INFO
-          ... # Rest of config omitted for brevity
-```
-
-**Halyard**
-
-Create `.hal/default/profiles/dinghy-local.yml` and add the following snippet:
-
-```
-Logging:
-  Level: INFO
-```
 
 
-## Webhook Secret Validation
+## Webhook secret validation
 
 You can add a layer of security or restrict which repositories dinghy will process by using webhook secret validation. Enabling webhook secret validation ensures that your service provider is the only one that can trigger your pipelines, not an imposter.
 
 This feature supports **GitHub** webhooks.
 
-### Enable or Disable Webhook Secret Validation
+### Enable or disable webhook secret validation
 
 When you enable webhook secret validation, **ALL** webhooks for that provider are validated for a secret.
 
@@ -1141,7 +1112,7 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
   ```
 
 
-### Webhook Validation Fields
+### Webhook validation fields
 
 When you enable `webhook secret validation`, Dinghy validates all the webhooks it receives from the specified provider.
 
@@ -1154,7 +1125,7 @@ A webhook validation has the following fields:
   * **false**: Validation for this repo will be considered as disabled, so no validation and direct dinghy execution will be done regardless secret is not good.
 * **secret**: Secret configured.
 
-### Webhook Validation Default Secret
+### Webhook validation default secret
 
 You can specify a default secret to use when your GitHub organization has multiple repositories with the same secret. The repository name is `default-webhook-secret` and must be enabled.
 
@@ -1303,7 +1274,7 @@ An example of this can be:
 }
 ```
 
-## Application Notifications
+## Application notifications
 
 Application notifications can be declared as:
 
@@ -1476,3 +1447,35 @@ When you make a commit to change `stage.minimal.wait.module` in `armory/template
 
 - With `repositoryRawdataProcessing=false` the result is `armory/template-repo`
 - With `repositoryRawdataProcessing=true` the result is `armory/my-repository`
+
+## Known issues
+
+If the Pipelines as Code service (Dinghy) crashes on start up and you encounter an error in Dinghy similar to:
+`time="2020-03-06T22:35:54Z" level=fatal msg="failed to load configuration: 1 error(s) decoding:\n\n* 'Logging.Level' expected type 'string', got unconvertible type 'map[string]interface {}'"`
+
+You have probably configured global logging levels with `spinnaker-local.yml`. The work around is to override Dinghy's logging levels:
+
+**Operator**
+
+```yaml
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy: |
+        Logging:
+          Level: INFO
+          ... # Rest of config omitted for brevity
+```
+
+**Halyard**
+
+Create `.hal/default/profiles/dinghy-local.yml` and add the following snippet:
+
+```
+Logging:
+  Level: INFO
+```
