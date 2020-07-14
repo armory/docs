@@ -12,6 +12,14 @@ Armory Spinnaker 2.20.1 requires Armory Halyard 1.9.4 or later.
 
 ## Breaking changes
 
+### Spinnaker metrics
+
+Metrics data for Spinnaker has changed. These changes are not backwards compatible and may result in broken third-party dashboards, such as Grafana dashboards.
+
+Armory is working on updates to the [Observability plugin](https://github.com/armory-plugins/armory-observability-plugin) to remedy this issue. This release note will be updated once the updated plugin is available.
+
+For information about how to install a plugin, see [Plugin Users Guide](https://spinnaker.io/guides/user/plugins/).
+
 ### HTTP sessions for Gate
 Armory Spinnaker 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
 
