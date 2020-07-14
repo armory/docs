@@ -25,10 +25,10 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 
 ## Known Issues
-There are currently no known issues with this release.
 
+### Pipelines as code
 
-
+Webhook secret validation is broken in this version. Please skip this version if you use this feature.
 
 ## Highlighted Updates
 ### Armory

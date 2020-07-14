@@ -54,6 +54,11 @@ This issue only occurs if you upgrade to 2.19.x and then downgrade.
 
 You can resolve this issue by rolling back changes to the MySQL database. For more information, see [MySQL Table Name Change Error When Rolling Back Spinnaker (Undo Renamed Values)](https://kb.armory.io/s/article/SQL-Migration-Rollback-Undo-Renamed-Tables).
 
+### Pipelines as code
+
+- Webhook secret validation is broken in this version. Please skip this version if you use this feature.
+- Slack notification when pipelines are updated is broken. Please skip this version if you use this feature.
+
 ### Security update
 
 We continue to make Spinnaker's security a top priority. Although several CVEs are resolved, the following still exist:
