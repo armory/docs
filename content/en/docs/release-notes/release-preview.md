@@ -1,5 +1,5 @@
 ---
-title: Release Preview
+title: Release Preview for Armory Spinnaker 2.21
 description: "Learn about some of the upcoming changes to Spinnaker and their impact."
 ---
 
@@ -67,7 +67,7 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
 ### Rosco
 
 **Change**: Updated Packer to version 1.4.5.
-* **Impact**: You can now run more than one instance of Packer's Docker Builder at a time. Resolves [this issue](https://github.com/hashicorp/packer/issues/7904)
+* **Impact**: You can now run more than one instance of Packer's Docker Builder at a time. Resolves [this issue](https://github.com/hashicorp/packer/issues/7904).
 
 ## Upcoming major changes 
 
