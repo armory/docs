@@ -83,7 +83,7 @@ This change is particularly important for users who are using the preconfigured 
 
 #### Impact
 
-Users of Spinnaker >= 1.20.3 can opt in to this new behavior by setting `kubernetes.jobs.append-suffix: false` in their `clouddriver-local.yml`.
+Users of Spinnaker >= 1.20.3 can opt in to this new no-suffix behavior by setting `kubernetes.jobs.append-suffix: false` in their `clouddriver-local.yml`.
 
 As of Spinnaker 1.22, this new behavior is the default. Users can still opt out of the new behavior by setting `kubernetes.jobs.append-suffix: true` in their `clouddriver-local.yml`. This will cause Spinnaker to continue to append a suffix to the name of jobs as in prior releases.
 
