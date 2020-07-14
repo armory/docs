@@ -7,45 +7,51 @@ description: "Learn about some of the upcoming changes to Spinnaker and their im
 
 Learn about some of the upcoming major changes to Spinnaker by the open source community and Armory. Included in this page are the implications of upcoming changes. Armory will incorporate this information into the release notes when appropriate, but this page is meant to be a preview and advance notice.
 
-This page is divided between a preview of Open Source Spinnaker and Armory's extensions of it.
+This page is updated on a regular basis.
 
-## Open Source
+## Summary of services
 
-### Spinnaker services in version X.Y.
+This section describes the notable upcoming changes to Spinnaker services in Armory Spinnaker 2.21.x (Open Source 1.21). These changes can be from the Open Source Community or Armory.
 
-This section describes the notable upcoming changes to Spinnaker services:
+<!-- Summaries for the services go here in alphabetical order. Copy the Gate example. Have a bigger change that touches multilple services or one that requires a bit more detail? Add it to Upcoming major changes. -->
 
-#### Gate
-
-**Change**: Lore te gatesum
-* **Impact**: Make sure you hit 88 MPH before Biff shows up.
-
+<!-- ### Gate
 
 **Change**: Lore te gatesum
 * **Impact**: Make sure you hit 88 MPH before Biff shows up.
 
 **Change**: Lore te gatesum
 * **Impact**: Make sure you hit 88 MPH before Biff shows up.
+-->
 
-#### Fiat
+### Clouddriver
 
-**Change**: Lore te fiatsum
-* **Impact**: Don't let Gizmo get wet.
+**Change**: Legacy Kubernetes (V1) provider removed from Spinnaker. Armory Spinnaker 2.20 (OSS 1.20) was the final release that included support for the V1 provider.
+* **Impact**: Migrate all Kubernetes accounts to the standard V2 provider before upgrading.
 
-#### Igor
+**Change**: The Alicloud, DC/OS, and Oracle cloud providers are excluded from OSS Spinnaker 1.21 because they no longer meet Spinnaker's cloud provider requirements. For more information about these requirements, see [Cloud Provider Requirements](https://github.com/spinnaker/governance/blob/master/cloud-provider-requirements.md)
+* **Impact**: If you use one of these cloud providers and cannot migrate to a supported provider, do not upgrade to Armory Spinnaker 2.21 (OSS 1.21). Clouddriver providers are created and maintained by each cloud provider. Contact your cloud provider to review the requirements for inclusion in the Spinnaker project.
 
-**Change**: Lore te igor
-* **Impact**: Don't cross the streams.
+### Deck
 
-### Breaking Change for Kubernetes Run Job stage
+**Change**: Improved UI for child pipeline failures. Previously, failures in pipelines that run as stages of other pipelines were difficult to debug. There is now a modal to surface failed child pipeline execution details.
+* **Impact**: You can enable this feature by adding the following config to `settings-local.js`:
+   ```
+   window.spinnakerSettings.feature.executionMarkerInformationModal = true;
+   ```
+   This feature will be on by default in Open Source Spinnaker 1.22.
 
-#### Change
+## Upcoming major changes 
+
+This section describes upcoming changes that affect more than one service or a change in recommendations.
+
+### Kubernetes Run Job stage names
 
 Spinnaker no longer automatically appends a unique suffix to the name of jobs created by the Kubernetes Run Job stage. Prior to this release, if you specified `metadata.name: my-job`, Spinnaker would update the name to `my-job-[random-string]` before deploying the job to Kubernetes. As of 1.22, the job’s name will be passed through to Kubernetes exactly as supplied.
 
 To continue having a random suffix added to the job name, set the `metadata.generateName` field instead of `metadata.name`, which causes the Kubernetes API to append a random suffix to the name.
 
-This change is particularly important for users who are using the preconfigured job stage for Kubernetes, or who are otherwise sharing job stages among different pipelines. In these cases, jobs are often running concurrently, and it is important that each job have a unique name. In order to retain the previous behavior, these users will need to manually update their Kubernetes job manifests to use the generateName field.
+This change is particularly important for users who are using the preconfigured job stage for Kubernetes, or who are otherwise sharing job stages among different pipelines. In these cases, jobs are often running concurrently, and it is important that each job have a unique name. In order to retain the previous behavior, these users will need to manually update their Kubernetes job manifests to use the `generateName` field.
 
 #### Impact
 
@@ -53,18 +59,16 @@ Users of Spinnaker >= 1.20.3 can opt in to this new behavior by setting `kuberne
 
 As of Spinnaker 1.22, this new behavior is the default. Users can still opt out of the new behavior by setting `kubernetes.jobs.append-suffix: true` in their `clouddriver-local.yml`. This will cause Spinnaker to continue to append a suffix to the name of jobs as in prior releases.
 
-The ability to opt out of the new behavior will be removed in OSS Spinnaker 1.23. The above setting will have no effect, and Spinnaker will no longer append a suffix to job names. It is thus strongly recommended that 1.22 users who opt out update any necessary jobs and remove the setting before upgrading to Spinnaker 1.23.
+The ability to opt out of the new behavior will be removed in OSS Spinnaker 1.23. The above setting will have no effect, and Spinnaker will no longer append a suffix to job names. It is strongly recommended that 1.22 users who opt out update any necessary jobs and remove the setting before upgrading to Spinnaker 1.23.
 
 #### Version
-Open Source Spinnaker 1.22 (Armory Spinnaker 2.22)
-
-## Armory 
+Armory Spinnaker 2.22 (Open Source Spinnaker 1.22)
 
 ### Spinnaker Operator
 
 #### Change
 
-Currently, Halyard manages Spinnaker's configs and lifecycle. Spinnaker users are accustomed to running `hal deploy apply` after making a change. If you have looked at Armory's documentation recently, you might have noticed that alongside the Halyard commands you are used to, Operator sections containing equivalent `yaml` configs for the Spinnaker Operator have started showing up.   
+Currently, Halyard manages Spinnaker's configs and lifecycle. Spinnaker users are accustomed to running `hal deploy apply` after making a change. If you have looked at Armory's documentation recently, you may have noticed that alongside the Halyard configs you are used to, Operator sections containing equivalent configs for the Spinnaker Operator have started showing up.   
 
 #### Impact
 
