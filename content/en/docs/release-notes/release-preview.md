@@ -41,6 +41,34 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
    ```
    This feature will be on by default in Open Source Spinnaker 1.22.
 
+### Front50
+
+**Change**: Ability to overwrite an application config entirely through the API.
+* **Impact**: New API functionality!
+  
+**Change**: Ability to configure application name validation.
+* **Impact**: When you submit an application name through the API instead of Deck, Spinnaker can now validate the name to ensure that the name only contains allowed characters. This behavior is off by default. To enable this validation, add the following config to `front50-local.yml`:
+  
+   ```yaml
+   validation:
+    applicationNameValidator:
+        validationRegex: "^.*$"
+        validationMessage: "<Optional. Message to display to user if the application name contains disallowed characters.">
+   ```
+
+**Change**: Front50 now only attempts to sync authorization permissions if Fiat is enabled.
+* **Impact**: Fewer unncessary log messages.
+
+### Igor
+
+**Change**: Resolved [5803](https://github.com/spinnaker/spinnaker/issues/5803) where Jenkins stages fail because Igor could not find a property file.
+* **Impact**: Igor now automatically retries fetching the property file from Jenkins when encountering a 404.  Igor will retry up to 5 times with 2 seconds non-exponential backoff.
+
+### Rosco
+
+**Change**: Updated Packer to version 1.4.5.
+* **Impact**: You can now run more than one instance of Packer's Docker Builder at a time. Resolves [this issue](https://github.com/hashicorp/packer/issues/7904)
+
 ## Upcoming major changes 
 
 This section describes upcoming changes that affect more than one service or a change in recommendations.
