@@ -10,7 +10,7 @@ Learn about some of the upcoming major changes to Spinnaker by the open source c
 
 This page is updated on a regular basis.
 
-## Services in 2.21 
+## Changes in 2.21 
 
 This section describes the notable upcoming changes to Spinnaker services in Armory Spinnaker 2.21.x (Open Source 1.21). These changes can be from the Open Source Community or Armory.
 
@@ -25,7 +25,31 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
 * **Impact**: Make sure you hit 88 MPH before Biff shows up.
 -->
 
-### Clouddriver 
+### Authorization
+
+This section describes changes to Fiat, Spinnaker's authorization service:
+
+**Change**: Add support for extension resources. [daf58f5f](https://github.com/spinnaker/fiat/commit/daf58f5fd1fdc9f02f1920e13ca1d0e483b42680)
+* **Impact**: This change allows Fiat to serve / evaluate permissions for arbitrary resources. This adds additional functionality to the Plugins framework for Spinnaker. For an example, see [File Resource Provider Plugin](https://github.com/spinnaker-plugin-examples/fileResourceProvider).
+
+
+### Baking
+
+This section describes changes to Rosco, Spinnaker's image bakery:
+
+**Change**: Updated Packer to version 1.4.5. [0091cc1d](https://github.com/spinnaker/rosco/commit/0091cc1dc30eee002115b684806393e9c7dc437d)
+* **Impact**: You can now run more than one instance of Packer's Docker Builder at a time. Resolves [this issue](https://github.com/hashicorp/packer/issues/7904).
+
+### CI integration
+
+This section describes changes to Igor, Spinnaker's service that integrates with CI systems:
+
+**Change**: Resolved [5803](https://github.com/spinnaker/spinnaker/issues/5803) where Jenkins stages fail because Igor could not find a property file. [7c47ce3f](https://github.com/spinnaker/igor/commit/7c47ce3fece8120fc53c615a9683f4ce0070ea4b)
+* **Impact**: Igor now automatically retries fetching the property file from Jenkins when encountering a 404.  Igor will retry up to 5 times with 2 seconds non-exponential backoff.
+
+### Cloud providers 
+
+This section describes changes to Clouddriver, Spinnaker's cloud connector service:
 
 **Change**: Legacy Kubernetes (V1) provider removed from Spinnaker. Armory Spinnaker 2.20 (OSS 1.20) was the final release that included support for the V1 provider.
 * **Impact**: Migrate all Kubernetes accounts to the standard V2 provider before upgrading.
@@ -33,16 +57,9 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
 **Change**: The Alicloud, DC/OS, and Oracle cloud providers are excluded from OSS Spinnaker 1.21 because they no longer meet Spinnaker's cloud provider requirements. For more information about these requirements, see [Cloud Provider Requirements](https://github.com/spinnaker/governance/blob/master/cloud-provider-requirements.md).
 * **Impact**: If you use one of these cloud providers and cannot migrate to a supported provider, do not upgrade to Armory Spinnaker 2.21 (OSS 1.21). Clouddriver providers are created and maintained by each cloud provider. Contact your cloud provider to review the requirements for inclusion in the Spinnaker project.
 
-### Deck
+### Eventing
 
-**Change**: Improved UI for child pipeline failures. Previously, failures in pipelines that run as stages of other pipelines were difficult to debug.  [a2af93f](https://github.com/spinnaker/deck/commit/a2af93fd961323fbea611a97bf7c0bbbb82c9828)
-* **Impact**: There is now a modal to surface failed child pipeline execution details. You can enable this feature by adding the following config to `settings-local.js`:
-   ```
-   window.spinnakerSettings.feature.executionMarkerInformationModal = true;
-   ```
-   This feature will be on by default in Open Source Spinnaker 1.22.
-
-### Echo
+This section describes changes to Echo, Spinnaker's event service:
 
 **Change**: Add action conditions for Git triggers. [715693a](https://github.com/spinnaker/echo/commit/715693a02869edcbc37d0159e4c5f518eab6e7c8)
 * **Impact**: You can now filter triggers on Git webhooks. Add an actions section to the pipeline JSON to filter what type of actions can trigger the pipeline. The following example configures a pipeline to only trigger when a pull request is closed:
@@ -74,12 +91,9 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
 
    These properties are backed by the DynamicConfigService and can be modified at runtime.
 
-### Fiat
+### Metadata
 
-**Change**: Add support for extension resources. [daf58f5f](https://github.com/spinnaker/fiat/commit/daf58f5fd1fdc9f02f1920e13ca1d0e483b42680)
-* **Impact**: This change allows Fiat to serve / evaluate permissions for arbitrary resources. This adds additional functionality to the Plugins framework for Spinnaker. For an example, see [File Resource Provider Plugin](https://github.com/spinnaker-plugin-examples/fileResourceProvider).
-
-### Front50
+This section describes changes to Front50, Spinnaker's metadata repository:
 
 **Change**: Ability to overwrite an application config entirely through the API. [2cf86b34](https://github.com/spinnaker/front50/commit/2cf86b34d40f847208a1a55bee352bc731fd1b6b)
 * **Impact**: New API functionality!
@@ -97,12 +111,10 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
 **Change**: Front50 now only attempts to sync authorization permissions if Fiat is enabled.
 * **Impact**: Fewer unncessary log messages.
 
-### Igor
 
-**Change**: Resolved [5803](https://github.com/spinnaker/spinnaker/issues/5803) where Jenkins stages fail because Igor could not find a property file. [7c47ce3f](https://github.com/spinnaker/igor/commit/7c47ce3fece8120fc53c615a9683f4ce0070ea4b)
-* **Impact**: Igor now automatically retries fetching the property file from Jenkins when encountering a 404.  Igor will retry up to 5 times with 2 seconds non-exponential backoff.
+### Task orchestration
 
-### Orca
+This section describes changes to Orca, Spinnaker's task orchestration service:
 
 **Change**: Add function `pipelineIdInApplication` to Pipeline Expressions, which allows you to fetch the ID of a pipeline given its name and its application name. [febb6f68](https://github.com/spinnaker/orca/commit/febb6f68c4c9dcfd5aba82eab587add2fae2b11d)
 * **Impact**: This function is useful when running a dependent pipeline that fails in a different application.
@@ -129,10 +141,18 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
       ...
    ```
 
-### Rosco
 
-**Change**: Updated Packer to version 1.4.5. [0091cc1d](https://github.com/spinnaker/rosco/commit/0091cc1dc30eee002115b684806393e9c7dc437d)
-* **Impact**: You can now run more than one instance of Packer's Docker Builder at a time. Resolves [this issue](https://github.com/hashicorp/packer/issues/7904).
+### UI
+
+This section describes changes to Deck, Spinnaker's UI.
+
+**Change**: Improved UI for child pipeline failures. Previously, failures in pipelines that run as stages of other pipelines were difficult to debug.  [a2af93f](https://github.com/spinnaker/deck/commit/a2af93fd961323fbea611a97bf7c0bbbb82c9828)
+* **Impact**: There is now a modal to surface failed child pipeline execution details. You can enable this feature by adding the following config to `settings-local.js`:
+   ```
+   window.spinnakerSettings.feature.executionMarkerInformationModal = true;
+   ```
+   This feature will be on by default in Open Source Spinnaker 1.22.
+
 
 ## Upcoming major changes 
 
