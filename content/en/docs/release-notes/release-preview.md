@@ -1,5 +1,6 @@
 ---
-title: Release Preview for Armory Spinnaker 2.21
+title: Release Preview for Armory Spinnaker 2.21 (OSS 1.21)
+linkTitle: "Next Release"
 description: "Learn about some of the upcoming changes to Spinnaker and their impact."
 ---
 
@@ -9,7 +10,7 @@ Learn about some of the upcoming major changes to Spinnaker by the open source c
 
 This page is updated on a regular basis.
 
-## Summary of services in Armory Spinnaker 2.21 (OSS 1.21)
+## Services in 2.21 
 
 This section describes the notable upcoming changes to Spinnaker services in Armory Spinnaker 2.21.x (Open Source 1.21). These changes can be from the Open Source Community or Armory.
 
@@ -17,10 +18,10 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
 
 <!-- ### Gate
 
-**Change**: Lore te gatesum
+**Change**: Lore te gatesum. [commit hash](link)
 * **Impact**: Make sure you hit 88 MPH before Biff shows up.
 
-**Change**: Lore te gatesum
+**Change**: Lore te gatesum. [commit hash](link)
 * **Impact**: Make sure you hit 88 MPH before Biff shows up.
 -->
 
