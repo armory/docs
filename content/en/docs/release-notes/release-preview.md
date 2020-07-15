@@ -41,6 +41,27 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
    ```
    This feature will be on by default in Open Source Spinnaker 1.22.
 
+### Echo
+
+**Change**: Add action conditions for Git triggers.
+* **Impact**: Filter git triggers by action.
+
+**Change**: Enable oss stat collection by default.
+* **Impact**: As part of its rollout, stats collection is now opt-out by default.
+
+**Change**: Add ability to suppress triggers at runtime
+* **Impact**: When there are two echo clusters (for redundancy) to process events, but only one of them should actually trigger, set the following properties to false:
+
+   ```yaml
+   scheduler.suppressTriggers, and
+   scheduler.compensationJob.suppressTriggers
+   ```
+
+### Fiat
+
+**Change**: Add support for extension resources.
+* **Impact**: This change allows Fiat to serve / evaluate permissions for arbitrary resources. An example of this can be found here: https://github.com/spinnaker-plugin-examples/fileResourceProvider.
+
 ### Front50
 
 **Change**: Ability to overwrite an application config entirely through the API.
@@ -63,6 +84,26 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
 
 **Change**: Resolved [5803](https://github.com/spinnaker/spinnaker/issues/5803) where Jenkins stages fail because Igor could not find a property file.
 * **Impact**: Igor now automatically retries fetching the property file from Jenkins when encountering a 404.  Igor will retry up to 5 times with 2 seconds non-exponential backoff.
+
+### Orca
+
+**Change**: Add function pipelineIdInApplication, which allows to fetch the ID of a pipeline given its name and its application name.
+* **Impact**: This function is useful when running a dependent pipeline that falls in a different application.
+
+**Change**: pass account to clouddriver when retrieving images
+* **Impact**: Able to configure a “Find Image From Tags” stage to look in a specific AWS account
+
+**Change**: Expose amiName in bake stage output (if present).
+* **Impact**: Able to access amiName in downstream stages.
+
+**Change**: Add exported environment variables in the stage context.
+* **Impact**:  Allows end users to consume the environment variables exported from CodeBuild build stage by specifying a pipeline expression like ${#stage('AWS CodeBuild')['context']['buildInfo']['exportedEnvironmentVariables']}.
+
+**Change**: Merge collections when merging stage outputs.
+* **Impact**: More data may be available in pipeline execution history.
+
+**Change**: Add a dynamic toggle for sending full pipeline executions between Spinnaker services.
+* **Impact**: Large pipeline executions can generate a lot of tasks, generating a lot of echo traffic that all include the full execution payload. This option allows for a reduced payload size.
 
 ### Rosco
 
