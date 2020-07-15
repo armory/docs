@@ -42,5 +42,5 @@ hal config security authn oauth2 enable
 ## Related Links:
 * [Spinnaker: OAuth](https://www.spinnaker.io/setup/security/authentication/oauth/)
 * [Github: OAuth](https://help.github.com/en/articles/authorizing-oauth-apps)
-* [Armory: DNS and SSL]({{< ref "dns-and-ssl" >}})) 
+* [Armory: DNS and SSL]({{< ref "dns-and-ssl" >}})
 * [Spinnaker: SSL](https://www.spinnaker.io/setup/security/ssl/)
