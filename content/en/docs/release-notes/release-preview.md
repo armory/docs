@@ -29,7 +29,7 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
 **Change**: Legacy Kubernetes (V1) provider removed from Spinnaker. Armory Spinnaker 2.20 (OSS 1.20) was the final release that included support for the V1 provider.
 * **Impact**: Migrate all Kubernetes accounts to the standard V2 provider before upgrading.
 
-**Change**: The Alicloud, DC/OS, and Oracle cloud providers are excluded from OSS Spinnaker 1.21 because they no longer meet Spinnaker's cloud provider requirements. For more information about these requirements, see [Cloud Provider Requirements](https://github.com/spinnaker/governance/blob/master/cloud-provider-requirements.md)
+**Change**: The Alicloud, DC/OS, and Oracle cloud providers are excluded from OSS Spinnaker 1.21 because they no longer meet Spinnaker's cloud provider requirements. For more information about these requirements, see [Cloud Provider Requirements](https://github.com/spinnaker/governance/blob/master/cloud-provider-requirements.md).
 * **Impact**: If you use one of these cloud providers and cannot migrate to a supported provider, do not upgrade to Armory Spinnaker 2.21 (OSS 1.21). Clouddriver providers are created and maintained by each cloud provider. Contact your cloud provider to review the requirements for inclusion in the Spinnaker project.
 
 ### Deck
@@ -113,10 +113,10 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
 * **Impact**: You can access `amiName` in downstream stages.
 
 **Change**: **AWS** -- Add exported environment variables in the CodeBuild stage context. [2ab7032e](https://github.com/spinnaker/orca/commit/2ab7032e28303d4b23ecde8ba6286ded0147d52c)
-* **Impact**:  Allows end users to consume the environment variables exported from CodeBuild build stage by specifying a pipeline expression like ${#stage('AWS CodeBuild')['context']['buildInfo']['exportedEnvironmentVariables']}.
+* **Impact**:  Allows end users to consume the environment variables exported from CodeBuild build stage by specifying a pipeline expression like `${#stage('AWS CodeBuild')['context']['buildInfo']['exportedEnvironmentVariables']}`.
 
 **Change**: Merge collections when merging stage outputs. [f44ba60f](https://github.com/spinnaker/orca/commit/f44ba60fd8eaa89f3d5b10a1f335df07e4dd0b35)
-* **Impact**: More data may be available in pipeline execution history. This changes the behavior of stage outputs. Previously, stage outputs overwrote each other if duplicates were present. Now, stage outputs concatenate collections from duplicate keys.
+* **Impact**: More data may be available in the pipeline execution history. This changes the behavior of stage outputs. Previously, stage outputs overwrote each other if duplicates were present. Now, stage outputs concatenate collections from duplicate keys.
 
 **Change**: Add a dynamic toggle for sending full pipeline executions between Spinnaker services. [54a0ff85](https://github.com/spinnaker/orca/commit/54a0ff8586433905e9d1d4a93023ff9ecd33cef2)
 * **Impact**: Large pipeline executions can generate a lot of tasks, which generates Echo traffic that includes the full execution payload. This option allows for a reduced payload size. To turn this feature on, add the following config to Echo:
