@@ -136,3 +136,7 @@ You can commit and push many times before you create your PR.
 ## Create your pull request
 
 See the GitHub [docs](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork) for how to create a pull request from a fork.
+
+## Monitoring
+
+The Armory documentation uses New Relic to monitor the website status and other metrics.
