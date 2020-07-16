@@ -16,7 +16,9 @@ This section describes the notable upcoming changes to Spinnaker services in Arm
 
 <!-- Summaries for the services go here in alphabetical order. Copy the Gate example. Have a bigger change that touches multilple services or one that requires a bit more detail? Add it to Upcoming major changes. -->
 
-<!-- ### Gate
+<!-- ### Some descriptive title
+
+This section describes changes to <service>, Spinnaker's <descriptive description> service:
 
 **Change**: Lore te gatesum. [commit hash](link)
 * **Impact**: Make sure you hit 88 MPH before Biff shows up.
@@ -91,7 +93,7 @@ This section describes changes to Echo, Spinnaker's event service:
 
    These properties are backed by the DynamicConfigService and can be modified at runtime.
 
-### Metadata
+### Metadata persistence
 
 This section describes changes to Front50, Spinnaker's metadata repository:
 
