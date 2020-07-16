@@ -24,16 +24,16 @@ deploymentEnvironment:
     address:
   location:
   customSizing:
-    spin-clouddriver:
+    clouddriver:
       replicas:
       requests:
-    memory:
-    cpu:
-    limits:
-      memory:
-      cpu:
+        memory:
+        cpu:
+      limits:
+        memory:
+        cpu:
   sidecars:
-    spin-clouddriver:
+    clouddriver:
     - name:
       dockerImage:
       port:
