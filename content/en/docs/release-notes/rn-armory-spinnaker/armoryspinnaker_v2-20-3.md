@@ -1,6 +1,7 @@
 ---
 title: v2.20.3 Armory Release (OSS Spinnaker v1.20.6)
 toc_hide: true
+description: Changes, fixes, and new features
 ---
 
 ## 2020/07/07 Release Notes
@@ -18,11 +19,19 @@ Armory Spinnaker 2.20.3 requires one of the following:
 
 ### Spinnaker metrics
 
-Metrics data for Spinnaker has changed. These changes are not backwards compatible and may result in broken third-party dashboards, such as Grafana dashboards.
+Metrics data, specifically the metric names, for Spinnaker changed. These changes are not backwards compatible and may result in broken third-party dashboards, such as Grafana dashboards.
 
-Armory is working on updates to the [Observability plugin](https://github.com/armory-plugins/armory-observability-plugin) to remedy this issue. This release note will be updated once the updated plugin is available.
+**Workarounds**:
 
-For information about how to install a plugin, see [Plugin Users Guide](https://spinnaker.io/guides/user/plugins/).
+* **Observability plugin**: Armory is working on updates to the [Observability plugin](https://github.com/armory-plugins/armory-observability-plugin) to remedy this issue. The plugin currently supports New Relic & Prometheus. Note that this resolution requires you to make updates to use the new metric names.
+
+   For information about how to install a plugin, see [Plugin Users Guide](https://spinnaker.io/guides/user/plugins/).
+
+* **Update existing dashboards**: Change your dashboards and alerts to use the new metric names.
+
+Although both workarounds involve updating your dashboards to use the new metric names, Armory recommends switching to the Observability plugin. Due to changes the Spinnaker project is making, the Observability plugin provides a long-term solution. 
+
+This release note will be updated once the updated plugin is available.
 
 ### HTTP sessions for Gate
 Armory Spinnaker 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
