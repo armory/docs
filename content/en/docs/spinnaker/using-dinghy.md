@@ -1232,8 +1232,8 @@ hal armory dinghy webhooksecrets <version control provider> delete --all
 ## Application updates
 
 The Dinghy service behavior for applications and pipelines are different:
-- Applications: Dinghy creates the application with the configuration initially sent. The application does not get updated after that.
-- Pipelines: Updates on every push.
+- Applications: Dinghy creates the application with the configuration initially sent. The application does not get updated after that even if the Dinghy file changes after the initial read.
+- Pipelines: Any `dinghyfiles` are reread on every push and update.
 
 However, you can change this behavior by adding a global variable: `save_app_on_update`. This behavior is good if you want to have your application to always adhere to the code implemented since it overwrites notifications every single time.
 
