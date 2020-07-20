@@ -10,9 +10,9 @@ This page describes the Armory Enterprise and OSS features and their state.
 
 ## Observability Plugin
 
-## Pipelines as code
+## Pipelines as Code
 
-Pipelines as code gives you the ability to manage your pipelines and their templates in source control.
+Pipelines as Code gives you the ability to manage your pipelines and their templates in source control.
 
 **State**
 
@@ -30,9 +30,9 @@ Pipelines as code gives you the ability to manage your pipelines and their templ
 | XYZ     	| All supported Armory versions 	|       	|
 | ABC     	| 2.20 and later                	|       	|
 
-## Terraform integration (ARM)
+## Terraform Integration (ARM)
 
-Armory Enterprise's Terraform integration gives you the ability to use Terraform within your Spinnaker pipelines.
+Armory Enterprise's Terraform Integration gives you the ability to use Terraform within your Spinnaker pipelines.
 
 **State**
 * GA
@@ -46,5 +46,5 @@ Read more about what GA means [here]({{< ref "release-definitions" >}}).
 
 | Feature                           	| Armory Enterprise version     	| Notes 	|
 |-----------------------------------	|-------------------------------	|-------	|
-| Base Terraform integration        	| All supported Armory versions 	|       	|
+| Base Terraform Integration        	| All supported Armory versions 	|       	|
 | Named Profiles with authorization 	| 2.20 and later                	|       	|
