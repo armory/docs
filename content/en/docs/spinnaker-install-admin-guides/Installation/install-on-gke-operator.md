@@ -131,8 +131,10 @@ CONTEXT=$(kubectl config current-context)
 
 # This service account uses the ClusterAdmin role -- this is not necessary,
 # more restrictive roles can by applied.
-kubectl apply --context $CONTEXT \
-    -f https://spinnaker.io/downloads/kubernetes/service-account.yml
+curl -s https://spinnaker.io/downloads/kubernetes/service-account.yml | \
+  sed "s/spinnaker-service-account/${SERVICE_ACCOUNT_NAME}/g" | \
+  kubectl apply --context $CONTEXT -f -
+
 
 TOKEN=$(kubectl get secret --context $CONTEXT \
    $(kubectl get serviceaccount ${SERVICE_ACCOUNT_NAME} \
