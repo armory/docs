@@ -5,6 +5,8 @@ description: "Information about what Armory Enterprise supports."
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables# -->
 
+This page describes the tools that Spinnaker integrates with.
+
 ## Authentication
 
 The following table lists the authentication protocols that Spinnaker supports:
