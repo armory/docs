@@ -52,7 +52,12 @@ Depending on the service, Spinnaker can use either Redis or MySQL as the backing
 
 ## Deployment targets
 
-
+| Vendor        	| Deployment target               	| Spinnaker version 	|
+|---------------	|---------------------------------	|-------------------	|
+| Amazon AWS    	| EC2, ECS, EKS                   	| All versions      	|
+| Cloud Foundry 	| PKS                             	| All versions                 	|
+| Google Cloud  	| App Engine, Compute Engine, GKE 	| All versions      	|
+| Kubernetes    	| Manifest-based deployments      	| All versions      	|
 
 ## Metrics
 
