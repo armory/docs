@@ -1,5 +1,5 @@
 ---
-title: Configure the Armory Splunk App for Spinnaker
+title: Configure the Armory Splunk App for Spinnaker™
 description: "The Armory Splunk App for Spinnaker brings all the SDLC information your organization has into a digestible and familiar format, Splunk dashboards."
 ---
 
@@ -61,7 +61,7 @@ This section describes how to forward data to Splunk so that you can see data fr
 5. Save the file.
 6. Run `hal deploy apply` within the Halyard container to apply the new Echo configuration.  
  
-Once the Spinnaker services that need the configuration change restart, you'll see Spinnaker data starting to flow to the HTTP Event Collector and indexed in the "armory" index.  You can verify this by running a search such as "index=armory" in the Splunk search bar.
+Once the Spinnaker services that need the configuration change restart, Spinnaker data starts to flow to the HTTP Event Collector and indexed in the "armory" index. 
 
 ### Operator configuration 
 
@@ -90,7 +90,11 @@ Make the following changes:
 * **`url`**: Replace `<Your-HTTP-Event-Collector-Hostname>` with the IP or Hostname of your configured HTTP Event Collector.  
 * **`Authorization`**: Replace `<Your-HTTP-Event-Collector-Token>` with the token generated from the Splunk HTTP Event Collector 
 
-## Validate in Splunk by searching index for Spinnaker Events
+Once the Spinnaker services that need the configuration change restart, Spinnaker data starts to flow to the HTTP Event Collector and indexed in the "armory" index. 
+
+## Verify the connection
+
+You can verify that events are flowing from Spinnaker to Splunk by performing a search for `index=armory` in the Spunk UI.
 
 {{< figure src="/images/splunk-validate-search.png" >}}
 
