@@ -3,7 +3,7 @@ title: Configure the Armory Splunk App for Spinnaker
 description: "The Armory Splunk App for Spinnaker brings all the SDLC information your organization has into a digestible and familiar format, Splunk dashboards."
 ---
 
-Connect Splunk to Armory Enterprise for Spinnaker with the Armory Splunk App for Spinnaker. See information like your top deployment artifacts and user information in Splunk. If you would like more information about the data exposed by this application you can see the [video walkthrough](#armory-splunk-app-for-spinnaker---video-walkthrough) at the bottom of this page.
+Connect Splunk to Armory Enterprise for Spinnaker with the Armory Splunk App for Spinnaker. See information like your top deployment artifacts and user information in Splunk. If you would like more information about the data exposed by this application you can see the [video walkthrough](#video-walkthrough) at the bottom of this page.
 
 ## Install the Armory Splunk App for Spinnaker
 
@@ -21,30 +21,53 @@ Perform the following steps:
 1. Configure Splunk to have a new Data Input. In the top right of the Splunk UI, select **Settings > Data Inputs**.
 {{< figure src="/images/splunk-data-inputs.png" alt="New Data Input" >}}
 1. Locate the **HTTP Event Collector** and click the **+ Add New**.
-{{< figure src="/images/splunk-http-event-collector.png" alt="Add new" >}}
+{{< figure src="/images/splunk-http-event-collector.png" alt="Add new HTTP Event Collector." >}}
 3. Under the **Name** field, give the input a name, such as "Spinnaker" and click **Next**.
-{{< figure src="/images/splunk-select-source.png" >}}
+{{< figure src="/images/splunk-select-source.png" alt="Name it Spinnaker.">}}
 4. Select the following configurations:
    * **Source type**: Select **Automatic** since given the data source is JSON and parsed by default.  
    * **App context**: Select **Armory (TA-armory)**.  
    * **Index**: Select "armory" as the index for storing the data in Splunk.  Click the "Review" button at the top.
-{{< figure src="/images/splunk-input-settings.png" >}}
+{{< figure src="/images/splunk-input-settings.png" alt="Configure the event collector." >}}
 1. Configure the HTTP Event Collector Data Input for Spinnaker and click **Submit**.
-{{< figure src="/images/splunk-token.png" >}}
+{{< figure src="/images/splunk-token.png" alt="Save a copy of the generated token." >}}
 
 You will see that Splunk  successfully created the new data input, and the authentication token for the HTTP event collector is generated.  Keep this token and store it for the Spinnaker configuration.  You can always view the HTTP Event Collector Data Inputs and find the authentication token there..
 
-## Configure Spinnaker to forward data to Splunk HTTP Event Collector - Halyard Configuration 
+## Forward data to the Splunk HTTP Event Collector 
+
+This section describes how to forward data to Splunk so that you can see data from Spinnaker in your Splunk dashboard. Based on how you deployed Spinnaker, see [Halyard](#halyard-configuration) or [Operator](#operator-configuration).
+
+### Halyard configuration
 
 1. Login to your Halyard pod.  This can be running standalone, in your Kubernetes cluster, or as a part of Minnaker (Spinnaker in a VM).
 2. Navigate to the `~/.hal/default/profiles` directory inside of Halyard file system.
 3. If one does not already exist, create a `echo-local.yml` file to apply configuration to the Spinnaker's Echo service.  This can be done with any plain text editor, such as VI.
-4. Insert this JSON block replacing the endpoint hostname with the IP or Hostname of your configured HTTP Event Collector.  Also, replace the TOKEN section with the token generated from the Splunk HTTP Event Collector configuration in Step 2.  Save file.
-5. Run a "hal deploy apply" within the Halyard container to apply the new Echo configuration.  Once the Spinnaker services that need the configuration change restart you'll see Spinnaker data starting to flow to the HTTP Event Collector and indexed in the "armory" index.  Validate by running a search "index=armory" in the Splunk search bar.
+4. Insert the following config into `echo-local.yml`:
+   ```yaml
+   rest:
+     enabled: true
+     endpoints:
+       - wrap: true
+         url: "https://<Your-HTTP-Event-Collector-Hostname>:8088/services/collector/event?"
+         headers:
+           Authorization: "Splunk <Your-HTTP-Event-Collector-Token>"
+         template: '{"event":{{event}} }'
+         insecure: true
+   ```
+   Make the following changes:
+   * **`url`**: Replace `<Your-HTTP-Event-Collector-Hostname>` with the IP or Hostname of your configured HTTP Event Collector.  
+   * **`Authorization`**: Replace `<Your-HTTP-Event-Collector-Token>` with the token generated from the Splunk HTTP Event Collector configuration.  
+5. Save the file.
+6. Run `hal deploy apply` within the Halyard container to apply the new Echo configuration.  
+ 
+Once the Spinnaker services that need the configuration change restart, you'll see Spinnaker data starting to flow to the HTTP Event Collector and indexed in the "armory" index.  You can verify this by running a search such as "index=armory" in the Splunk search bar.
 
-## Operator Configuration. Insert this yaml into your SpinnakerService.yml file or used as a Patch file if using kustomize to build SpinnakerService.yml
- ---
- ```bash
+### Operator configuration 
+
+Insert this YAML into your `SpinnakerService.yml` file, or use it as a patch file if you use Kustomize to build `SpinnakerService.yml`:
+
+ ```yaml
 apiVersion: spinnaker.armory.io/v1alpha2
 kind: SpinnakerService
 metadata:
@@ -57,45 +80,37 @@ spec:
           enabled: true
           endpoints:
             - wrap: true
-            url: "https://[HTTP-Event-Collector-Endpoint]:8088/services/collector/event?"
+            url: "https://<Your-HTTP-Event-Collector-Hostname>:8088/services/collector/event?"
           headers:
-            Authorization: "Splunk [Your-HTTP-Event-Collector-Token]"
+            Authorization: "Splunk <Your-HTTP-Event-Collector-Token>"
           template: '{"event":{{event}} }'
           insecure: true
   ```
----
-## Halyard Configuration.  Place this yaml into the ~/.hal/default/profile/echo-local.yml
-
-```bash
-rest:
-  enabled: true
-  endpoints:
-    - wrap: true
-      url: "https://[HTTP-Event-Collector-Endpoint]:8088/services/collector/event?"
-      headers:
-        Authorization: "Splunk [Your-HTTP-Event-Collector-Token]"
-      template: '{"event":{{event}} }'
-      insecure: true
-  ```
-
-For Halyard install, once you have created the echo-local.yml file with the above contents runs "hal deploy apply" to apply changes.
+Make the following changes: 
+* **`url`**: Replace `<Your-HTTP-Event-Collector-Hostname>` with the IP or Hostname of your configured HTTP Event Collector.  
+* **`Authorization`**: Replace `<Your-HTTP-Event-Collector-Token>` with the token generated from the Splunk HTTP Event Collector 
 
 ## Validate in Splunk by searching index for Spinnaker Events
 
-![No CREATE Permission](validate-splunk-search.png)
+{{< figure src="/images/splunk-validate-search.png" >}}
 
 ## Configure Automated Rollback with Splunk and Spinnaker
 
 The Armory Splunk App for Spinnaker includes a Splunk webhook for data driven automated rollback.  You can configure this webhook to the Spinnaker API.
 
-1. In Splunk while in the Spinnaker App, Click on "Settings > Searches Reports & Alerts" and locate the "Rollback" Alert.
-![No CREATE Permission](settings-alert.png)
-2. Under "Action" click "Edit" then "Edit Alert"
-![No CREATE Permission](edit-rollback.png)
-3. Scroll down to "Trigger Actions" and replace the "[YOUR-GATE-HOSTNAME]" with the FQDN or IP of your Spinnaker Gate service.
-![No CREATE Permission](gate-rollback.png)
-4. Next on the same URL replace the "[YOUR-SPINNAKER-APP]" with the Spinnaker Application you'd like to Rollback based on Errors, Exceptions, or KPI's from Splunk.
-![No CREATE Permission](gate-spinnaker-app.png)
+1. Select the Spinnaker App in the Splunk UI.
+2. Click on **Settings > Searches, reports and alerts** and locate the **Rollback** Alert.
+{{< figure src="/images/splunk-settings-alert.png" alt="Go to the Searches, reports, and alerts page." >}}
+2. Select **Action > Edit > Edit Alert**.
+{{< figure src="/images/splunk-edit-rollback.png" >}}
+3. Find the **Trigger Actions** section. 
+4. Under **Webhook** > **URL**, insert the following URL:
+   
+   `https://<YOUR-GATE-HOSTNAME>/api/v1/webhook/<YOUR-SPINNAKER-APP>`
+   * Replace the `<YOUR-GATE-HOSTNAME>` with the fully qualified domain name or IP of your Spinnaker Gate service.
+   {{< figure src="/images/splunk-gate-rollback.png" >}}
+   * Replace the "[YOUR-SPINNAKER-APP]" with the Spinnaker Application you'd like to Rollback based on Errors, Exceptions, or KPI's from Splunk.
+   {{< figure src="/images/splunk-gate-spinnaker-app.png" >}}
 
-## Armory Splunk App for Spinnaker - Video Walkthrough
+## Video Walkthrough
 {{< youtube y8Dm6k7c94Q >}}
