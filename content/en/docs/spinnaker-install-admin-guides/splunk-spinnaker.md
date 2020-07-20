@@ -3,7 +3,7 @@ title: Configure the Armory Splunk App for Spinnaker™
 description: "The Armory Splunk App for Spinnaker brings all the SDLC information your organization has into a digestible and familiar format, Splunk dashboards."
 ---
 
-Connect Splunk to Armory Enterprise for Spinnaker with the Armory Splunk App for Spinnaker. See information like your top deployment artifacts and user information in Splunk. If you would like more information about the data exposed by this application you can see the [video walkthrough](#video-walkthrough) at the bottom of this page.
+Connect Splunk to Armory Enterprise for Spinnaker with the Armory Splunk App for Spinnaker. See information like your top deployment artifacts and user information in Splunk. If you would like more information about the data that Spinnaker feeds into Splunk, watch the [video walkthrough](#video-walkthrough) at the bottom of this page.
 
 ## Install the Armory Splunk App for Spinnaker
 
