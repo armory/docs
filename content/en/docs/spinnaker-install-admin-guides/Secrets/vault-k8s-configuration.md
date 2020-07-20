@@ -132,7 +132,7 @@ It is time verify that the Kubernetes auth method has been properly configured.
 **Note: This should be deployed into the same namespace as your Spinnaker install**
 
 ```bash
-kubectl apply -f  https://raw.githubusercontent.com/armory/docker-debugging-tools/master/deployment.yml
+kubectl apply -f  https://raw.githubusercontent.com/armory/troubleshooting-toolbox/master/docker-debugging-tools/deployment.yml
 ```
 
 **6. `exec` into the pod**
