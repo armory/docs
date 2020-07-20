@@ -16,6 +16,13 @@ Pipelines as code gives you the ability to manage your pipelines and their templ
 
 **State**
 
+**Supported version control systems**
+
+| Feature   	| Armory Enterprise version 	| Notes                  	|
+|-----------	|---------------------------	|------------------------	|
+| BitBucket 	|                           	|                        	|
+| GitHub    	|                           	| Enterprise and vanilla 	|
+
 **Features**
 
 | Feature 	| Armory Enterprise version     	| Notes 	|
