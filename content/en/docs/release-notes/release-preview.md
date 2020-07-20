@@ -146,7 +146,7 @@ This section describes changes to Orca, Spinnaker's task orchestration service:
 
 ### UI
 
-This section describes changes to Deck, Spinnaker's UI.
+This section describes changes to Deck, Spinnaker's UI:
 
 **Change**: Improved UI for child pipeline failures. Previously, failures in pipelines that run as stages of other pipelines were difficult to debug.  [a2af93f](https://github.com/spinnaker/deck/commit/a2af93fd961323fbea611a97bf7c0bbbb82c9828)
 * **Impact**: There is now a modal to surface failed child pipeline execution details. You can enable this feature by adding the following config to `settings-local.js`:
