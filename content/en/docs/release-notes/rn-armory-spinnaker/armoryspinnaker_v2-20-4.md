@@ -118,9 +118,9 @@ Fixed an issue where Slack notifications did not get sent.
 
 The Terraform Integration now supports using Base64 artifacts as a backend config artifact. 
 
-###  Spinnaker Community Contributions
+##  Spinnaker Community Contributions
 
-<! -- Copy/paste highlights from the corresponding OSS version. -->
+<!-- Copy/paste highlights from the corresponding OSS version. -->
 
 There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
 [Spinnaker v1.20.6](https://www.spinnaker.io/community/releases/versions/1-20-6-changelog)
