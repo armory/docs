@@ -104,10 +104,6 @@ Armory has identified and is triaging the following CVEs in Terraformer, the ser
 - CVE-2020-14422
 - CVE-2020-13757
 
-## Known Issues
-
-There are currently no known issues with this release.
-
 ## Highlighted Updates
 
 ### Armory
