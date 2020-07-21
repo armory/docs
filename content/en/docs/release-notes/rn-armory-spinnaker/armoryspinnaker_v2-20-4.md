@@ -43,7 +43,7 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 ## Known Issues
 
 ### Upgrading from 2.18.x with MySQL used for Front50 renames the plugin_artifacts table
-As a part of the upgrade from 2.18.x to 2.19.x, the table **plugin_artifacts** gets renamed to `plugin_info`. Downgrades from 2.19.x to 2.18.x do not revert the table name. The table remains named `plugin_info`, preventing access to the table.  
+As a part of the upgrade from 2.18.x to 2.19.x or later, the table **plugin_artifacts** gets renamed to `plugin_info`. Downgrades from 2.19.x to 2.18.x do not revert the table name. The table remains named `plugin_info`, preventing access to the table.  
 
 You will see errors similar to the following:
 
@@ -113,6 +113,14 @@ There are currently no known issues with this release.
 ### Armory
 
 Summary of changes in the latest release.
+
+### Pipelines as Code
+
+Fixed an issue where Slack notifications did not get sent.
+
+### Terraform Integration
+
+The Terraform Integration now supports using Base64 artifacts as a backend config artifact. 
 
 ###  Spinnaker Community Contributions
 
@@ -219,5 +227,3 @@ artifactSources:
   - fix(artifacts): retrieve artifacts by name || reference (#199) (#200)
 
 #### Armory Rosco - 2.20.4...2.20.5
-
-
