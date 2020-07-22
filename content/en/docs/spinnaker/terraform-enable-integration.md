@@ -11,7 +11,7 @@ aliases:
 
 The examples on this page describe how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket. Note that the Terraform Integration also requires a `git/repo` artifact account. For information about how to use the stage, see [Using the Terraform Integration]({{< ref "terraform-use-integration" >}}).
 
-Armory Spinnaker's Terraform Integration integrates your infrastructure-as-code Terraform workflow into your SDLC. Armory's Terraform Integration interacts with a source repository you specify to deploy your infrastructure as part of a Spinnaker pipeline.
+Armory Spinnaker's Terraform Integration integrates your infrastructure-as-code Terraform workflow into your SDLC. The integration interacts with a source repository you specify to deploy your infrastructure as part of a Spinnaker pipeline.
 
 ## Supported Terraform versions
 
@@ -23,11 +23,26 @@ When creating a Terraform Integration stage, pipeline creators select a specific
 
 Note that all Terraform stages within a Pipeline that affect state must use the same Terraform version.
 
-## Redis
 
-Terraformer uses Redis to store Terraform logs and plans. An external Redis instance is highly recommended for production use.
+## Requirements
 
-**Note:** Terraformer can only be configured to use a password with the default Redis user.
+* Credentials (in the form of basic auth) for the Git repository where your Terraform scripts are stored. The Terraform Integration needs access to credentials to download directories that house your Terraform templates.
+  * Git Repo can be configured with any of the following:
+    * a Personal Access Token (potentially associated with a service account). For more information, see [Generating a Github Personal Access Token (PAT)](#generating-a-github-personal-access-token-pat).
+    * SSH protocol in the form of an SSH key or an SSH key file
+    * basic auth in the form of a user and password, or a user-password file
+* A source for Terraform Input Variable Files (`tfvar`) or a backend config. you must have a separate artifact provider that can pull your `tfvar` file(s). The Terraform Integration supports the following artifact providers for `tfvar` files and backend configs:
+  * GitHub
+  * BitBucket
+  * HTTP artifact
+
+Although not required, Armory recommends an external Redis instance for the Terraform Integration. For more information, see [Redis](#redis).
+
+### Redis
+
+The Terraform Integration uses Redis to store Terraform logs and plans. An external Redis instance is highly recommended for production use.
+
+**Note:** The Terraform Integration can only be configured to use a password with the default Redis user.
 
 To set/override the Spinnaker Redis settings do the following:
 
@@ -65,17 +80,6 @@ redis:
 
 Then run `hal deploy apply` to deploy the changes.
 
-## Requirements
-
-* Credentials (in the form of basic auth) for your Terraform Git repository. The Terraform Integration needs access to credentials to download directories that house your Terraform templates.
-  * Git Repo can be configured with any of the following:
-    * a Personal Access Token (potentially associated with a service account). For more information, see [Generating a Github Personal Access Token (PAT)](#generating-a-github-personal-access-token-pat).
-    * SSH protocol in the form of an SSH key or an SSH key file
-    * basic auth in the form of a user and password, or a user-password file
-* To use Terraform Input Variable Files (`tfvar`) or a backend config, you must have a separate artifact provider (such as the GitHub, BitBucket, or HTTP artifact provider) that can pull your `tfvar` file(s).
-
-
-
 ### Generating a GitHub Personal Access Token (PAT)
 
 Skip this section if you are using BitBucket, which requires your username and password.
@@ -93,13 +97,13 @@ For more information about how to generate a GitHub PAT, see [Creating a Persona
 ## Configure your artifact accounts
 
 The Terraform Integration uses the following artifact accounts:
-  * **Git Repo** - to fetch the repo housing your main Terraform files. 
-  * **GitHub, BitBucket or HTTP** - to fetch single files such as var-files or backend config files. *(optional)*
+  * **Git Repo** - To fetch the repo housing your main Terraform files. 
+  * **GitHub, BitBucket or HTTP** - *Optional*. To fetch single files such as var-files or backend config files. 
 
 
 ### Configure the Git Repo artifact
 
-Spinnaker uses the Github Artifact Provider to download the repo containing your main Terraform templates
+Spinnaker uses the GitHub Artifact Provider to download the repo containing your main Terraform templates.
 
 If you already have a GitHub artifact account configured in Spinnaker,
 skip this section.
@@ -124,8 +128,6 @@ spec:
             - name: gitrepo
               token: <Your GitHub PAT> # GitHub personal access token
 ```
-
-**Halyard**
 
 **Halyard**
 
@@ -238,7 +240,7 @@ hal config artifact bitbucket account add bitbucket-for-terraform \
 ## Enabling the Terraform Integration
 
 
-Enable the Terraform Integration
+Enable the Terraform Integration:
 
 **Operator**
 
