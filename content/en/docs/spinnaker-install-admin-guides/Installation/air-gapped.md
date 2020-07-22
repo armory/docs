@@ -115,9 +115,12 @@ It may be necessary to include your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY 
 
 You can download version `x.y.z` of Armory Spinnaker with this script:
 
+<details><summary>Show the script</summary>
+
 {{< gist armory-gists 1d14179659bd0f2c5026443efc136253 >}}
 
 Set the value for `NEW_DOCKER_REGISTRY` to point to your docker repository if needed.
+</details><br>
 
 For example, run the following command to download version {{< param armory-version >}}:
 
