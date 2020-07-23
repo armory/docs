@@ -11,7 +11,7 @@ aliases:
 
 The examples on this page describe how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket. Note that the Terraform Integration also requires a `git/repo` artifact account. For information about how to use the stage, see [Using the Terraform Integration]({{< ref "terraform-use-integration" >}}).
 
-Armory Spinnaker's Terraform Integration integrates your infrastructure-as-code Terraform workflow into your SDLC. Armory's Terraform Integration interacts with a source repository you specify to deploy your infrastructure as part of a Spinnaker pipeline.
+Armory Spinnaker's Terraform Integration integrates your infrastructure-as-code Terraform workflow into your SDLC. The integration interacts with a source repository you specify to deploy your infrastructure as part of a Spinnaker pipeline.
 
 ## Supported Terraform versions
 
@@ -23,11 +23,26 @@ When creating a Terraform Integration stage, pipeline creators select a specific
 
 Note that all Terraform stages within a Pipeline that affect state must use the same Terraform version.
 
-## Redis
 
-Terraformer uses Redis to store Terraform logs and plans. An external Redis instance is highly recommended for production use.
+## Requirements
 
-**Note:** Terraformer can only be configured to use a password with the default Redis user.
+* Credentials (in the form of basic auth) for the Git repository where your Terraform scripts are stored. The Terraform Integration needs access to credentials to download directories that house your Terraform templates.
+  * Git Repo can be configured with any of the following:
+    * a Personal Access Token (potentially associated with a service account). For more information, see [Generating a Github Personal Access Token (PAT)](#generating-a-github-personal-access-token-pat).
+    * SSH protocol in the form of an SSH key or an SSH key file
+    * basic auth in the form of a user and password, or a user-password file
+* A source for Terraform Input Variable Files (`tfvar`) or a backend config. You must have a separate artifact provider that can pull your `tfvar` file(s). The Terraform Integration supports the following artifact providers for `tfvar` files and backend configs:
+  * GitHub
+  * BitBucket
+  * HTTP artifact
+
+Although not required, Armory recommends an external Redis instance for the Terraform Integration. For more information, see [Redis](#redis).
+
+### Redis
+
+The Terraform Integration uses Redis to store Terraform logs and plans. An external Redis instance is highly recommended for production use.
+
+**Note:** The Terraform Integration can only be configured to use a password with the default Redis user.
 
 To set/override the Spinnaker Redis settings do the following:
 
@@ -65,14 +80,6 @@ redis:
 
 Then run `hal deploy apply` to deploy the changes.
 
-## Requirements
-
-* Credentials (in the form of basic auth) for your Terraform Git repository. The Terraform Integration needs access to credentials to download directories that house your Terraform templates. The credentials can take one of two forms:
-   * If your Terraform repo is in GitHub, use a Personal Access Token (potentially associated with a service account) as the 'token'.  Generate this token in your GitHub settings. For more information, see [Generating a Github Personal Access Token (PAT)](#generating-a-github-personal-access-token-pat).
-   * If your Terraform repo is in BitBucket, use a username/password that has access to your BitBucket repo.
-* To use Terraform Input Variable Files (`tfvar`), you must have a separate artifact provider (such as the GitHub, BitBucket, or HTTP artifact provider) that can pull your `tfvar` file(s). Additionally, the credentials must be configured in both places: the Terraform Integration and the artifact provider.
-
-
 ### Generating a GitHub Personal Access Token (PAT)
 
 Skip this section if you are using BitBucket, which requires your username and password.
@@ -87,9 +94,19 @@ the SSO option for the organizations that host the Terraform template(s) and Ter
 
 For more information about how to generate a GitHub PAT, see [Creating a Personal Access Token for the Command Line](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
 
-## Configure the Git Repo artifact
+## Configure your artifact accounts
 
-If you do not already have a `git/repo` artifact account configured, you must do so to use the Terraform Integration stage.
+The Terraform Integration uses the following artifact accounts:
+  * **Git Repo** - To fetch the repo housing your main Terraform files. 
+  * **GitHub, BitBucket or HTTP** - *Optional*. To fetch single files such as var-files or backend config files. 
+
+
+### Configure the Git Repo artifact
+
+Spinnaker uses the Git Repo Artifact Provider to download the repo containing your main Terraform templates
+
+If you already have a Git Repo artifact account configured in Spinnaker,
+skip this section.
 
 **Operator**
 
@@ -114,25 +131,24 @@ spec:
 
 **Halyard**
 
-Edit the `~/.hal/default/profiles/clouddriver-local.yml` file and add the following:
+1. Enable Git Repo as an artifact provider:
+   ```
+   hal config artifact gitrepo enable
+   ```
+2. Add the Git Repo account:
+   ```
+   hal config artifact gitrepo account add gitrepo-for-terraform --token
+   ```
+   The command prompts you for your Git Repo PAT.
 
-```
-artifacts:
-  gitRepo:
-    enabled: true
-    accounts:
-    - name: gitrepo
-      token: <Your GitHub PAT> # GitHub personal access token
-```
+For more configuration options, see [Git Repo](https://spinnaker.io/setup/artifacts/gitrepo/).
 
-For more information, see [Git Repo](https://www.spinnaker.io/reference/artifacts/types/git-repo/).
-
-## Configure the Terraform Integration for GitHub
+## Configure the Terraform Integration for GitHub *(optional)*
 
 These steps describe how to configure GitHub as an artifact provider for the Terraform Integration. For information about BitBucket, see [Configuring the Terraform Integration with BitBucket](#configuring-the-terraform-integration-with-bitbucket).
 
 
-#### 1. Enabling and configuring the GitHub Artifact Provider
+#### Enabling and configuring the GitHub Artifact Provider
 
 Spinnaker uses the Github Artifact Provider to download any referenced `tfvar`
 files.
@@ -176,39 +192,10 @@ spec:
    ```
    The command prompts you for your GitHub PAT.
 
-#### 2. Enabling and configuring the Terraform Integration
 
+## Configure the Terraform Integration for BitBucket *(optional)*
 
-Enable the Terraform Integration
-
-**Operator**
-
-In `SpinnakerService` manifest:
-
-```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    config:
-      armory:
-        terraform:
-          enabled: true
-```
-
-**Halyard**
-
-```
-hal armory terraform enable
-```
-
-Next, go to [Enabling the Terraform UI](#enabling-the-terraform-integration-ui) if you are using an Armory Spinnaker version before 2.17.3. Otherwise, go to [Completing the installation](#completing-the-installation).
-
-## Configure the Terraform Integration for BitBucket
-
-### 1. Enabling and configuring the BitBucket Artifact Provider
+### Enabling and configuring the BitBucket Artifact Provider
 
 Spinnaker uses the BitBucket Artifact Provider to download any referenced `tfvar`
 files, so it must be configured with the BitBucket token to pull these files.
@@ -248,10 +235,11 @@ hal config artifact bitbucket account add bitbucket-for-terraform \
   --password
 ```
 
-### 2. Enabling and configuring the Terraform integration with a BitBucket token
 
-The Terraform Integration also needs access to the BitBucket token to download full
-Github directories hosting your Terraform templates.
+## Enabling the Terraform Integration
+
+
+Enable the Terraform Integration:
 
 **Operator**
 
@@ -268,29 +256,20 @@ spec:
       armory:
         terraform:
           enabled: true
-          git:
-            enabled: true
-            username: my-user # BitBucket user name.
-            accessToken: abc  # BitBucket password. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
 ```
 
 **Halyard**
 
 ```
-# This will prompt for the token, which is your BitBucket password
-hal armory terraform edit \
-  --git-enabled \
-  --git-username <USERNAME> \
-  --git-access-token
+hal armory terraform enable
 ```
 
-Next, go to [Enabling the Terraform UI](#enabling-the-terraform-integration-ui) if you are using an Armory Spinnaker version before 2.17.3. Otherwise, go to [Completing the installation](#completing-the-installation).
 
 ## Enabling the Terraform Integration UI
 
 If you previously used the Terraform Integration stage by editing the JSON representation of the stage, those stages are automatically converted to use the UI.
 
-For Armory Spinnaker 2.17.3 and later, the UI is on by default. If you are using an earlier version, manually enable the stage UI for Deck:
+Manually enable the stage UI for Deck:
 
 **Operator**
 
@@ -357,7 +336,7 @@ You can also configure a profile that grants access to resources, like AWS.
 
 ## Named Profiles
 
-{{% alert title="New feature" %}}Named Profiles is a new feature in Armory Spinnaker 2.20. Previously, you needed to mount a sidecar that contained your credentials. If you are on an earlier version, see the v.20-2.19 version of this [page](https://archive.docs.armory.io/docs/spinnaker/terraform-enable-integration/#configure-terraform-for-your-cloud-provider) to learn more about mounting a sidecar. {{% /alert %}}
+{{% alert title="New feature" %}}Named Profiles is a new feature in Armory Spinnaker 2.20. Previously, you needed to mount a sidecar that contained your credentials. If you are on an earlier version, see the v.2.0-2.19 version of this [page](https://archive.docs.armory.io/docs/spinnaker/terraform-enable-integration/#configure-terraform-for-your-cloud-provider) to learn more about mounting a sidecar. {{% /alert %}}
 
 A Named Profile gives users the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. The supported credentials are described in [Types of credentials](#types-of-credentials).
 
