@@ -1,6 +1,6 @@
 ---
 title: Product Compatibility Matrix (combined)
-description: "Information about what Armory Enterprise supports."
+description: "Information about what Armory Enterprise for Spinnaker™ supports."
 ---
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables# 
@@ -11,9 +11,11 @@ Or a mixture of html + markdown
 Legend:
 
 {{< ea-badge >}} - The feature is in Early Access.
+
 (Beta badge) - The feature is in Beta
 {{< ga-badge >}} - The feature is Generally Available.
 {{< armory-badge >}} - Indicates an Armory Enterprise only feature
+
 (OSS badge) - Open Source Spinnaker feature
 
 ## Application metrics 
@@ -29,7 +31,7 @@ Application metrics can be ingested by Kayenta to perform Automated Canary Analy
 | SomeProvider | A.B - C.D | Y   | All supported versions |                        |
 | Dynatrace    | A.B - C.D | Y   | All supported versions | Armory Enterprise only |
 
-## As code solutions
+## * as code solutions
 
 ### Pipelines as Code
 
@@ -139,7 +141,7 @@ Armory recommends using MySQL as the backing store when possible for production 
 
 ## Observability
 
-{{% alert %}}Armory Enterprise for Armory Enterprises 2.20 and later require the Observability plugin for monitoring Spinnaker. Versions earlier than 2.20 use the Spinnaker monitoring daemon, which is deprecated. {{% /alert %}}
+{{% alert %}}Armory Enterprise 2.20 and later require the Observability plugin for monitoring Spinnaker. Versions earlier than 2.20 use the Spinnaker monitoring daemon, which is deprecated. {{% /alert %}}
 
 | Provider   | Armory Enterprise      | Note |
 |------------|------------------------|------|
