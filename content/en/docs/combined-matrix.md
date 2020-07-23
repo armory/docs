@@ -3,16 +3,22 @@ title: Product Compatibility Matrix (combined)
 description: "Information about what Armory Enterprise supports."
 ---
 
-<!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables# -->
+<!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables# 
+Or you can write raw HTML :shrug: You might want to do that if you need to do bulleted lists etc inside of the table
+Or a mixture of html + markdown
+-->
 
+Legend:
+{{< ea-badge >}} - The feature is in Early Access.
+{{< ga-badge >}} - The feature is Generally Available.
+{{< armory-badge >}} - Indicates an Armory Enterprise only feature
+(OSS badge) - Open Source Spinnaker feature
 
 ## Application metrics 
 
 Application metrics can be ingested by Kayenta to perform Automated Canary Analysis (ACA). The following table lists application metrics providers that Armory Enterprise supports for application metrics
 
 (Note section should list whether Kayenta supports it for Automated Canary Analysis)
-
-{{< ea-badge >}}
 
 | Provider     | Version   | ACA | Armory Enterprise      | Note |
 |--------------|-----------|-----|------------------------|------|
@@ -22,7 +28,9 @@ Application metrics can be ingested by Kayenta to perform Automated Canary Analy
 
 ### Pipelines as Code
 
-{{< ea-badge >}}
+> Need to modify these so that they are in a single row. Also need someone with that thing we call talent to make nice badges.
+
+{{< ga-badge >}}
 {{< armory-badge >}}
 
 Pipelines as Code gives you the ability to manage your pipelines and their templates in source control.
@@ -44,15 +52,12 @@ Pipelines as Code gives you the ability to manage your pipelines and their templ
 
 ### Pipelines as CRD
 
-{{< figure src="/images/ea-badge.png" height=30 width=30 link="/docs/release-notes/release-definitions/" alt="Early access" >}}
-
 ### Terraform Integration 
 
-{{< figure src="/images/ga-badge.png" height=30 width=30 link="/docs/release-notes/release-definitions/" >}}
+{{< armory-badge >}}
+{{< ga-badge >}}
 
 The Terraform Integration gives you the ability to use Terraform within your Spinnaker pipelines to create your infrastructure as part of your software delivery pipeline.
-
-This feature is [GA]({{< ref "release-definitions" >}}).
 
 **Supported Terraform versions**
 * Versions ABC to XYZ
@@ -90,22 +95,23 @@ The following table lists the authorization methods that Armory Enterprise suppo
 ## Browsers
 
 Spinnaker's UI (Deck) works with most modern browsers.
-
-> COMMENT. REMOVE ME BEFORE PUB. The above seems like the most maintainable/most non-controversial statement
+>  COMMENT. REMOVE ME BEFORE PUB.
+>  The above seems like the most maintainable/most non-controversial statement
 
 ## Build systems
 
 The following table lists the CI systems that Armory Enterprise supports:
 
-| Provider           | Version | Armory Enterprise      | Note |
-|--------------------|---------|--------------|------|
-| AWS CodeBuild      |         | 2.19.x or later        |      |
-| Google Cloud Build |         |                        |      |
-| Jenkins            |         | All supported versions |      |
-| Travis             |         | All supported versions |      |
-| Wercker            |         |                        |       |
+| Provider           | Version | Armory Enterprise      | Note                |
+|--------------------|---------|------------------------|---------------------|
+| AWS CodeBuild      | n/a     | 2.19.x or later        |                     |
+| GitHub Actions     | n/a     | All supported versions | Webhook integration |
+| Google Cloud Build |         |                        |                     |
+| Jenkins            |         | All supported versions |                     |
+| Travis             |         | All supported versions |                     |
+| Wercker            |         |                        |                     |
 
-## Databases
+## Persistent storage
 
 Depending on the service, Spinnaker can use either Redis or MySQL as the backing store. The following table lists the supported database and the Spinnaker service:
 
@@ -128,7 +134,7 @@ Armory recommends using MySQL as the backing store when possible for production 
 
 ## Observability
 
-{{% alert %}}Armory Enterprise for Armory Enterprises 2.20 and later require the Observability plugin for monitoring and analytics. Versions earlier than 2.20 use the Spinnaker monitoring daemon, which is deprecated. {{% /alert %}}
+{{% alert %}}Armory Enterprise for Armory Enterprises 2.20 and later require the Observability plugin for monitoring Spinnaker. Versions earlier than 2.20 use the Spinnaker monitoring daemon, which is deprecated. {{% /alert %}}
 
 | Provider   | Armory Enterprise      | Note |
 |------------|------------------------|------|
@@ -167,4 +173,4 @@ The following table lists the secret stores that Armory Enterprise supports for 
 | Encrypted GCS Bucket | All supported versions |                                      |
 | Encrypted S3 Bucket  | All supported versions |                                      |
 | Kubernetes secrets   | All supported versions | Spinnaker Operator based deployments |
-| Vault                | All supported versions |                   |
+| Vault                | All supported versions |  Armory Enterprise                 |
