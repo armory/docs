@@ -12,6 +12,8 @@ Application metrics can be ingested by Kayenta to perform Automated Canary Analy
 
 (Note section should list whether Kayenta supports it for Automated Canary Analysis)
 
+{{< ea-badge >}}
+
 | Provider     | Version   | ACA | Armory Enterprise      | Note |
 |--------------|-----------|-----|------------------------|------|
 | SomeProvider | A.B - C.D | Y   | All supported versions |      |
@@ -20,16 +22,18 @@ Application metrics can be ingested by Kayenta to perform Automated Canary Analy
 
 ### Pipelines as Code
 
+{{< ea-badge >}}
+{{< armory-badge >}}
+
 Pipelines as Code gives you the ability to manage your pipelines and their templates in source control.
 
-This feature is [GA]({{< ref "release-definitions" >}}).
 
 **Supported version control systems**
 
-| Feature   | Version                                                   | Armory Enterprise version | Notes                  |
-|-----------|-----------------------------------------------------------|---------------------------|------------------------|
-| BitBucket | (We were having issues w/ BitBucket server versions IIRC) | All supported versions    |                        |
-| GitHub    |                                                           | All supported versions    | Enterprise and vanilla |
+| Feature   | Version | Armory Enterprise version | Notes                  |
+|-----------|---------|---------------------------|------------------------|
+| BitBucket |         | All supported versions    |                        |
+| GitHub    |         | All supported versions    | Enterprise and vanilla |
 
 **Features**
 
@@ -40,9 +44,11 @@ This feature is [GA]({{< ref "release-definitions" >}}).
 
 ### Pipelines as CRD
 
-This feature is [early release]({{< ref "release-definitions" >}}).
+{{< figure src="/images/ea-badge.png" height=30 width=30 link="/docs/release-notes/release-definitions/" alt="Early access" >}}
 
 ### Terraform Integration 
+
+{{< figure src="/images/ga-badge.png" height=30 width=30 link="/docs/release-notes/release-definitions/" >}}
 
 The Terraform Integration gives you the ability to use Terraform within your Spinnaker pipelines to create your infrastructure as part of your software delivery pipeline.
 
@@ -83,7 +89,7 @@ The following table lists the authorization methods that Armory Enterprise suppo
 
 ## Browsers
 
-Spinnaker's UI (Deck) works best with a recent Chrome version.
+Spinnaker's UI (Deck) works with most modern browsers.
 
 > COMMENT. REMOVE ME BEFORE PUB. The above seems like the most maintainable/most non-controversial statement
 
@@ -120,7 +126,7 @@ Armory recommends using MySQL as the backing store when possible for production 
 | Kubernetes    | Manifest-based deployments      |                       | All supported versions | |
 
 
-## Monitoring and logging of Spinnaker
+## Observability
 
 {{% alert %}}Armory Enterprise for Armory Enterprises 2.20 and later require the Observability plugin for monitoring and analytics. Versions earlier than 2.20 use the Spinnaker monitoring daemon, which is deprecated. {{% /alert %}}
 
@@ -136,16 +142,16 @@ Armory recommends using MySQL as the backing store when possible for production 
 
 The following table lists the notification systems that Armory Enterprise supports:
 
-| Provider             | Armory Enterprise      | Notes                                |
-|----------------------|------------------------|--------------------------------------|
-| Slack  | All supported versions |                                      |
-| PagerDuty  | All supported versions |                                      |
-| GitHub  | All supported versions |                                      |
-| Jira  | All supported versions |                                      |
-| BearyChat  | All supported versions |                                      |
-| Email  | All supported versions |                                      |
-| GoogleChat  | All supported versions |                                      |
-| Twilio  | All supported versions |                                      |
+| Provider   | Armory Enterprise      | Notes |
+|------------|------------------------|-------|
+| Slack      | All supported versions |       |
+| PagerDuty  | All supported versions |       |
+| GitHub     | All supported versions |       |
+| Jira       | All supported versions |       |
+| BearyChat  | All supported versions |       |
+| Email      | All supported versions |       |
+| GoogleChat | All supported versions |       |
+| Twilio     | All supported versions |       |
 
 
 
@@ -161,4 +167,4 @@ The following table lists the secret stores that Armory Enterprise supports for 
 | Encrypted GCS Bucket | All supported versions |                                      |
 | Encrypted S3 Bucket  | All supported versions |                                      |
 | Kubernetes secrets   | All supported versions | Spinnaker Operator based deployments |
-| Vault                | All supported versions | Armory Enterprise                    |
+| Vault                | All supported versions |                   |
