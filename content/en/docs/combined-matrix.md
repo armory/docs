@@ -18,13 +18,16 @@ Legend:
 
 ## Application metrics 
 
+(OSS badge)(Armory badge)(GA badge)
+
 Application metrics can be ingested by Kayenta to perform Automated Canary Analysis (ACA). The following table lists application metrics providers that Armory Enterprise supports for application metrics
 
 (Note section should list whether Kayenta supports it for Automated Canary Analysis)
 
-| Provider     | Version   | ACA | Armory Enterprise      | Note |
-|--------------|-----------|-----|------------------------|------|
-| SomeProvider | A.B - C.D | Y   | All supported versions |      |
+| Provider     | Version   | ACA | Armory Enterprise      | Note                   |
+|--------------|-----------|-----|------------------------|------------------------|
+| SomeProvider | A.B - C.D | Y   | All supported versions |                        |
+| Dynatrace    | A.B - C.D | Y   | All supported versions | Armory Enterprise only |
 
 ## As code solutions
 
@@ -175,4 +178,4 @@ The following table lists the secret stores that Armory Enterprise supports for 
 | Encrypted GCS Bucket | All supported versions |                                      |
 | Encrypted S3 Bucket  | All supported versions |                                      |
 | Kubernetes secrets   | All supported versions | Spinnaker Operator based deployments |
-| Vault                | All supported versions | Armory Enterprise                 |
+| Vault                | All supported versions | Armory Enterprise only                 |
