@@ -113,12 +113,20 @@ It may be necessary to include your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY 
 
 ### Enabling a new version of Armory Spinnaker
 
-You can download version `x.y.z` of Armory Spinnaker with this [script](https://gist.github.com/ncknt/37b1743111eb727bcd81e21dffda90d6). Set the value for `NEW_DOCKER_REGISTRY` to point to your docker repository if needed.
+You can download version `x.y.z` of Armory Spinnaker with this script:
 
-For example:
+<details><summary>Show the script</summary>
+
+{{< gist armory-gists 1d14179659bd0f2c5026443efc136253 >}}
+
+Set the value for `NEW_DOCKER_REGISTRY` to point to your docker repository if needed.
+</details><br>
+
+For example, run the following command to download version {{< param armory-version >}}:
 
 ```bash
-$ download-bom.sh 2.20.0 versions/
+# Replace `x` with the edge release you want to use.
+$ download-bom.sh {{< param armory-version >}} versions/
 ```
 
 You can then upload the files you just downloaded to your storage. Make sure they are readable from wherever Halyard (not necessarily Spinnaker services) will run. For example:
