@@ -103,9 +103,9 @@ The Terraform Integration uses the following artifact accounts:
 
 ### Configure the Git Repo artifact
 
-Spinnaker uses the GitHub Artifact Provider to download the repo containing your main Terraform templates.
+Spinnaker uses the Git Repo Artifact Provider to download the repo containing your main Terraform templates
 
-If you already have a GitHub artifact account configured in Spinnaker,
+If you already have a Git Repo artifact account configured in Spinnaker,
 skip this section.
 
 **Operator**
@@ -131,16 +131,15 @@ spec:
 
 **Halyard**
 
-1. Enable GitHub as an artifact provider:
-
+1. Enable Git Repo as an artifact provider:
    ```
-   hal config artifact github enable
+   hal config artifact gitrepo enable
    ```
-2. Add the GitHub account:
+2. Add the Git Repo account:
    ```
-   hal config artifact github account add github-for-terraform --token
+   hal config artifact gitrepo account add gitrepo-for-terraform --token
    ```
-   The command prompts you for your GitHub PAT.
+   The command prompts you for your Git Repo PAT.
 
 For more configuration options, see [Git Repo](https://spinnaker.io/setup/artifacts/gitrepo/).
 
@@ -263,6 +262,38 @@ spec:
 
 ```
 hal armory terraform enable
+```
+
+
+## Enabling the Terraform Integration UI
+
+If you previously used the Terraform Integration stage by editing the JSON representation of the stage, those stages are automatically converted to use the UI.
+
+Manually enable the stage UI for Deck:
+
+**Operator**
+
+Edit the `SpinnakerService` manifest to add the following:
+
+```yaml
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      deck:
+        settings-local.js: |
+          window.spinnakerSettings.feature.terraform = true;
+```
+
+**Halyard**
+
+Edit `~/.hal/default/profiles/settings-local.js` and add the following:
+
+```
+window.spinnakerSettings.feature.terraform = true;
 ```
 
 ## Completing the installation
