@@ -9,7 +9,9 @@ Or a mixture of html + markdown
 -->
 
 Legend:
+
 {{< ea-badge >}} - The feature is in Early Access.
+(Beta badge) - The feature is in Beta
 {{< ga-badge >}} - The feature is Generally Available.
 {{< armory-badge >}} - Indicates an Armory Enterprise only feature
 (OSS badge) - Open Source Spinnaker feature
@@ -173,4 +175,4 @@ The following table lists the secret stores that Armory Enterprise supports for 
 | Encrypted GCS Bucket | All supported versions |                                      |
 | Encrypted S3 Bucket  | All supported versions |                                      |
 | Kubernetes secrets   | All supported versions | Spinnaker Operator based deployments |
-| Vault                | All supported versions |  Armory Enterprise                 |
+| Vault                | All supported versions | Armory Enterprise                 |
