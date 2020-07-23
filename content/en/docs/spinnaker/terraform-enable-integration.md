@@ -31,7 +31,7 @@ Note that all Terraform stages within a Pipeline that affect state must use the 
     * a Personal Access Token (potentially associated with a service account). For more information, see [Generating a Github Personal Access Token (PAT)](#generating-a-github-personal-access-token-pat).
     * SSH protocol in the form of an SSH key or an SSH key file
     * basic auth in the form of a user and password, or a user-password file
-* A source for Terraform Input Variable Files (`tfvar`) or a backend config. you must have a separate artifact provider that can pull your `tfvar` file(s). The Terraform Integration supports the following artifact providers for `tfvar` files and backend configs:
+* A source for Terraform Input Variable Files (`tfvar`) or a backend config. You must have a separate artifact provider that can pull your `tfvar` file(s). The Terraform Integration supports the following artifact providers for `tfvar` files and backend configs:
   * GitHub
   * BitBucket
   * HTTP artifact
