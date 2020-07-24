@@ -120,13 +120,12 @@ The following table lists the CI systems that Armory Enterprise supports:
 
 ## Deployment targets
 
-| Provider      | Deployment target               | Deployment strategies | Armory Enterprise      | Notes |
-|---------------|---------------------------------|-----------------------|------------------------|--|
-| Amazon AWS    | EC2, ECS, EKS                   |                       | All supported versions | |
-| Cloud Foundry | PKS <ul><li>Versions A.B - X.Y</li></ul>                             |                       | All supported versions | |
-| Google Cloud  | App Engine, Compute Engine, GKE |                       | All supported versions | |
-| Kubernetes    | Manifest-based deployments <ul><li>Versions A.B - X.Y</li></ul>     |                       | All supported versions | |
-
+| Provider      | Deployment target                                               | Deployment strategies | Armory Enterprise      | Notes |
+|---------------|-----------------------------------------------------------------|-----------------------|------------------------|-------|
+| Amazon AWS    | EC2, ECS, EKS                                                   |                       | All supported versions |       |
+| Cloud Foundry | PKS <ul><li>Versions A.B - X.Y</li></ul>                        |                       | All supported versions |       |
+| Google Cloud  | App Engine, Compute Engine, GKE                                 |                       | All supported versions |       |
+| Kubernetes    | Manifest-based deployments <ul><li>Versions A.B - X.Y</li></ul> |                       | All supported versions |       |
 ## Dynamic accounts
 
 Dynamic accounts (external account configurations) for Spinnaker allow you to manage account configuration outside of Spinnaker, including secrets. Armory Enterprise supports the following backend providers:
