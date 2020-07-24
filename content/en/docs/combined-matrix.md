@@ -82,7 +82,7 @@ The following table lists the authentication protocols that Armory Enterprise su
 | Identity provider     | Armory Enterprise | Note                                        |
 |-----------------------|-------------------|---------------------------------------------|
 | SAML                  | All supported versions      |                                             |
-| OAuth 2.0             | All supported versions      | Can use Azure, GitHub, Google, Oracle Cloud |
+| OAuth 2.0/OIDC             | All supported versions      | Can use Auth0, Azure, GitHub, Google, Okta, OneLogin, or Oracle Cloud |
 | LDAP/Active Directory | All supported versions      |                                             |
 | x509                  |                   |                                             |
 
@@ -90,12 +90,13 @@ The following table lists the authentication protocols that Armory Enterprise su
 
 The following table lists the authorization methods that Armory Enterprise supports: 
 
-| Provider              | Armory Enterprise | Note                                                                            |
-|-----------------------|-------------------|---------------------------------------------------------------------------------|
-| SAML                  | All supported versions      |                                                                                 |
-| LDAP/Active Directory | All supported versions      |                                                                                 |
-| GitHub Teams          | All supported versions      | Roles from GitHub are mapped to the Teams under a specific GitHub organization. |
-| Google Groups         |                   |                                                                                 |
+| Provider              | Armory Enterprise      | Note                                                                            |
+|-----------------------|------------------------|---------------------------------------------------------------------------------|
+| GitHub Teams          | All supported versions | Roles from GitHub are mapped to the Teams under a specific GitHub organization. |
+| Google Groups         |                        |                                                                                 |
+| LDAP/Active Directory | All supported versions |                                                                                 |
+| OAuth 2.0/OIDC        | All supported versions |                                                                                 |
+| SAML                  | All supported versions |                                                                                 |
 
 ## Browsers
 
@@ -122,9 +123,9 @@ The following table lists the CI systems that Armory Enterprise supports:
 | Provider      | Deployment target               | Deployment strategies | Armory Enterprise      | Notes |
 |---------------|---------------------------------|-----------------------|------------------------|--|
 | Amazon AWS    | EC2, ECS, EKS                   |                       | All supported versions | |
-| Cloud Foundry | PKS                             |                       | All supported versions | |
+| Cloud Foundry | PKS <ul><li>Versions A.B - X.Y</li></ul>                             |                       | All supported versions | |
 | Google Cloud  | App Engine, Compute Engine, GKE |                       | All supported versions | |
-| Kubernetes    | Manifest-based deployments      |                       | All supported versions | |
+| Kubernetes    | Manifest-based deployments <ul><li>Versions A.B - X.Y</li></ul>     |                       | All supported versions | |
 
 ## Dynamic accounts
 
@@ -195,8 +196,8 @@ The following table lists the secret stores that Armory Enterprise supports for 
 
 | Provider             | Armory Enterprise      | Notes                                |
 |----------------------|------------------------|--------------------------------------|
-| AWS Secrets Manager  | All supported versions |                                      |
-| Encrypted GCS Bucket | All supported versions |                                      |
-| Encrypted S3 Bucket  | All supported versions |                                      |
-| Kubernetes secrets   | All supported versions | Spinnaker Operator based deployments |
-| Vault                | All supported versions | Armory Enterprise only                 |
+| [AWS Secrets Manager]({{< ref "secrets-aws-sm" >}})  | All supported versions |                                      |
+| [Encrypted GCS Bucket]({{< ref "secrets-gcs" >}}) | All supported versions |                                      |
+| [Encrypted S3 Bucket]({{< ref "secrets-s3" >}})  | All supported versions |                                      |
+| [Kubernetes secrets]({{< ref "secrets-kubernetes" >}})   | All supported versions | Spinnaker Operator based deployments |
+| [Vault]({{< ref "secrets-vault" >}})                | All supported versions | Armory Enterprise only                 |
