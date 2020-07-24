@@ -18,9 +18,13 @@ Legend:
 
 (OSS badge) - Open Source Spinnaker feature
 
-## Application metrics 
+## Application metrics for Canary
 
 (OSS badge)(Armory badge)(GA badge)
+
+> Need to modify these so that they are in a single row. Also need someone with that thing we call talent to make nice badges.
+
+{{< ga-badge >}}{{< armory-badge >}}
 
 Application metrics can be ingested by Kayenta to perform Automated Canary Analysis (ACA). The following table lists application metrics providers that Armory Enterprise supports for application metrics
 
@@ -35,13 +39,7 @@ Application metrics can be ingested by Kayenta to perform Automated Canary Analy
 
 ### Pipelines as Code
 
-> Need to modify these so that they are in a single row. Also need someone with that thing we call talent to make nice badges.
-
-{{< ga-badge >}}
-{{< armory-badge >}}
-
-Pipelines as Code gives you the ability to manage your pipelines and their templates in source control.
-
+(Pipelines as Code){{< ref "install-dinghy" >}} gives you the ability to manage your pipelines and their templates in source control.
 
 **Supported version control systems**
 
@@ -73,8 +71,8 @@ The Terraform Integration gives you the ability to use Terraform within your Spi
 
 | Feature                           | Armory Enterprise | Notes |
 |-----------------------------------|---------------------------|-------|
-| Base Terraform Integration        | All supported versions    |       |
-| Named Profiles with authorization | 2.20 or later            |       |
+| [Base Terraform Integration]({{< ref "terraform-enable-integration" >}})        | All supported versions    |       |
+| [Named Profiles with authorization]({{< ref "terraform-enable-integration#named-profiles" >}}) | 2.20 or later            |       |
 
 
 ## Authentication
@@ -102,7 +100,7 @@ The following table lists the authorization methods that Armory Enterprise suppo
 ## Browsers
 
 Spinnaker's UI (Deck) works with most modern browsers.
->  COMMENT. REMOVE ME BEFORE PUB.
+>  COMMENT. REMOVE ME BEFORE PUBLISHING.
 >  The above seems like the most maintainable/most non-controversial statement
 
 ## Build systems
@@ -118,16 +116,6 @@ The following table lists the CI systems that Armory Enterprise supports:
 | Travis             |         | All supported versions |                     |
 | Wercker            |         |                        |                     |
 
-## Persistent storage
-
-Depending on the service, Spinnaker can use either Redis or MySQL as the backing store. The following table lists the supported database and the Spinnaker service:
-
-| Database | DB version            | Armory Enterprise      | Spinnaker services                                  | Note                                                                                                                       |
-|----------|-----------------------|------------------------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| Redis    | X.Y.Z                 | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. By default, Spinnaker deploys Redis internally to support its services. |
-| MySQL    | MySQL 5.7 (or Aurora) | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
-
-Armory recommends using MySQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
 
 ## Deployment targets
 
@@ -137,6 +125,26 @@ Armory recommends using MySQL as the backing store when possible for production 
 | Cloud Foundry | PKS                             |                       | All supported versions | |
 | Google Cloud  | App Engine, Compute Engine, GKE |                       | All supported versions | |
 | Kubernetes    | Manifest-based deployments      |                       | All supported versions | |
+
+## Dynamic accounts
+
+Dynamic accounts (external account configurations) for Spinnaker allow you to manage account configuration outside of Spinnaker, including secrets. Armory Enterprise supports the following backend providers:
+
+#### Backend provider
+
+| Provider | Version | Armory Enterprise | Notes |
+|---------|---------|---------|---------|
+| Git  | x.y.z | All supported versions |
+| S3  | n/a | All supported versions |
+| Vault  | x.y.z | All supported versions |
+
+#### Supported Spinnaker services
+
+| Service     | Account types               | Note                                                                                                           |
+|-------------|-----------------------------|----------------------------------------------------------------------------------------------------------------|
+| Clouddriver | CLoud provider, artifact    | Automatic configuration refreshing is supported for Cloud Foundry and Kubernetes cloud provider accounts only. |
+| Echo        | Pub/Sub                     |                                                                                                                |
+| Igor        | CI systems, version control |                                                                                                                |
 
 
 ## Observability
@@ -148,6 +156,17 @@ Armory recommends using MySQL as the backing store when possible for production 
 | Datadog    | All supported versions |      |
 | ELK        | All supported versions |      |
 | Splunk     | All supported versions |      |
+
+## Persistent storage
+
+Depending on the service, Spinnaker can use either Redis or MySQL as the backing store. The following table lists the supported database and the Spinnaker service:
+
+| Database | DB version            | Armory Enterprise      | Spinnaker services                                  | Note                                                                                                                       |
+|----------|-----------------------|------------------------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| Redis    | X.Y.Z                 | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. By default, Spinnaker deploys Redis internally to support its services. |
+| MySQL    | MySQL 5.7 (or Aurora) | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
+
+Armory recommends using MySQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
 
 
 
