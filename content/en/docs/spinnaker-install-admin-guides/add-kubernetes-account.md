@@ -1,7 +1,7 @@
 ---
 
 title: Creating and Adding a Kubernetes Account to Spinnaker as a Deployment Target
-linkTitle: Add a Kubernetes Account as a Deployment Target
+linkTitle: Add Kubernetes Account as Deployment Target
 weight: 10
 ---
 
@@ -43,7 +43,7 @@ At a high level, Spinnaker operates in the following way when deploying to Kuber
   * Metadata such as which context to use by default
 * Each Kubernetes account is configured in the `SpinnakerService` manifest under `spec.spinnakerConfig.config.providers.kubernetes.accounts` key if using the Operator, or under the master `.hal/config` YAML file (also known as a "Halconfig"), as an entry in the deploymentConfiguration's `providers.kubernetes.accounts` array if using Halyard.  Each entity has these (and other) fields:
   * `name`: A Spinnaker-internal name used to refer to the Kubernetes account.  This is the item you will select in various Kubernetes stages to indicate that you would like to deploy to this particular Kubernetes account (which again, consists of a Kubernetes cluster/credential/context set)
-  * `kubeconfigFile`: A file path referencing the contents of the kubeconfig file for connecting to the target cluster. When using the Operator, this can be any name that should match an entry in `spec.spinnakerConfig.files` where the file contents is copied. If using Halyard, this is a physical file path. This field supports referencing files stored in external [secret engines](/spinnaker-install-admin-guides/secrets/)
+  * `kubeconfigFile`: A file path referencing the contents of the kubeconfig file for connecting to the target cluster. When using the Operator, this can be any name that should match an entry in `spec.spinnakerConfig.files` where the file contents is copied. If using Halyard, this is a physical file path. This field supports referencing files stored in external [secret engines]({{< ref "secrets" >}})
   * `onlySpinnakerManaged`: A boolean that indicates whether Spinnaker should only manage / display entities that were created by Spinnaker (i.e., those that have the Spinnaker labels and annotations that indicate that they were created by Spinnaker)
   * `namespaces`: An array of namespaces that Spinnaker will be allowed to deploy to.  If this is left blank, Spinnaker will be allowed to deploy to all namespaces
   * `omitNamespaces`: If namespaces is left blank, you can blacklist specific namespaces to indicate to Spinnaker that it should not deploy to those namespaces
