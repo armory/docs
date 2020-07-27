@@ -92,7 +92,7 @@ The following CVEs still exist in Clouddriver:
 
 All of them are embedded dependencies in the Google Cloud SDK. A version of the Google Cloud SDK addressing these CVEs has not been released. The risk to Clouddriver users is low. All four CVEs deal with untrusted input, which Clouddriver does not provide to the Google Cloud SDK. Additionally, users deploying to other cloud providers are not at risk for this vulnerability.
 
-The following CVE also exist for Clouddriver:
+The following CVE also exists for Clouddriver:
 
 - CVE-2020-7014 deals with an Elasticsearch exploit related to token generation. Clouddriver only makes use of entity tags and does not allow for token generation or authentication.
 
