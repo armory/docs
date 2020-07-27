@@ -5,15 +5,20 @@ description: "Information about what Armory Enterprise for Spinnaker™ supports
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables# 
 Or you can write raw HTML :shrug: You might want to do that if you need to do bulleted lists etc inside of the table
-Or a mixture of html + markdown
+Or a mixture of html + markdown. ## Deployment targets has an example of what this might look like
 -->
 
 Legend:
 
+<!-- Adds early access badge -->
 {{< ea-badge >}} - The feature is in Early Access.
 
 (Beta badge) - The feature is in Beta
+
+<!-- Adds GA badge -->
 {{< ga-badge >}} - The feature is Generally Available.
+
+<!-- Adds Armory badge -->
 {{< armory-badge >}} - Indicates an Armory Enterprise only feature
 
 (OSS badge) - Open Source Spinnaker feature
@@ -35,7 +40,7 @@ Application metrics can be ingested by Kayenta to perform Automated Canary Analy
 | SomeProvider | A.B - C.D | Y   | All supported versions |                        |
 | Dynatrace    | A.B - C.D | Y   | All supported versions | Armory Enterprise only |
 
-## * as code solutions
+## As code solutions
 
 ### Pipelines as Code
 
@@ -50,10 +55,10 @@ Application metrics can be ingested by Kayenta to perform Automated Canary Analy
 
 **Features**
 
-| Feature                           | Armory Enterprise | Notes |
-|-----------------------------------|---------------------------|-------|
-| Slack notifications        | All supported versions    |       |
-| Local modules for development | 2.20 or later            |       |
+| Feature                       | Armory Enterprise      | Notes |
+|-------------------------------|------------------------|-------|
+| Slack notifications           | All supported versions |       |
+| Local modules for development | 2.20 or later          |       |
 
 ### Pipelines as CRD
 
@@ -69,22 +74,22 @@ The Terraform Integration gives you the ability to use Terraform within your Spi
   
 **Features**
 
-| Feature                           | Armory Enterprise | Notes |
-|-----------------------------------|---------------------------|-------|
-| [Base Terraform Integration]({{< ref "terraform-enable-integration" >}})        | All supported versions    |       |
-| [Named Profiles with authorization]({{< ref "terraform-enable-integration#named-profiles" >}}) | 2.20 or later            |       |
+| Feature                                                                                        | Armory Enterprise      | Notes |
+|------------------------------------------------------------------------------------------------|------------------------|-------|
+| [Base Terraform Integration]({{< ref "terraform-enable-integration" >}})                       | All supported versions |       |
+| [Named Profiles with authorization]({{< ref "terraform-enable-integration#named-profiles" >}}) | 2.20 or later          |       |
 
 
 ## Authentication
 
 The following table lists the authentication protocols that Armory Enterprise supports:
 
-| Identity provider     | Armory Enterprise | Note                                        |
-|-----------------------|-------------------|---------------------------------------------|
-| SAML                  | All supported versions      |                                             |
-| OAuth 2.0/OIDC             | All supported versions      | Can use Auth0, Azure, GitHub, Google, Okta, OneLogin, or Oracle Cloud |
-| LDAP/Active Directory | All supported versions      |                                             |
-| x509                  |                   |                                             |
+| Identity provider     | Armory Enterprise      | Note                                                                  |
+|-----------------------|------------------------|-----------------------------------------------------------------------|
+| SAML                  | All supported versions |                                                                       |
+| OAuth 2.0/OIDC        | All supported versions | Can use Auth0, Azure, GitHub, Google, Okta, OneLogin, or Oracle Cloud |
+| LDAP/Active Directory | All supported versions |                                                                       |
+| x509                  |                        |                                                                       |
 
 ## Authorization
 
@@ -142,7 +147,7 @@ Dynamic accounts (external account configurations) for Spinnaker allow you to ma
 
 | Service     | Account types               | Note                                                                                                           |
 |-------------|-----------------------------|----------------------------------------------------------------------------------------------------------------|
-| Clouddriver | CLoud provider, artifact    | Automatic configuration refreshing is supported for Cloud Foundry and Kubernetes cloud provider accounts only. |
+| Clouddriver | Cloud provider, artifact    | Automatic configuration refreshing is supported for Cloud Foundry and Kubernetes cloud provider accounts only. |
 | Echo        | Pub/Sub                     |                                                                                                                |
 | Igor        | CI systems, version control |                                                                                                                |
 
