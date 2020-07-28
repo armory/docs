@@ -43,6 +43,16 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 ## Known Issues
 
+### Dynamic Accounts for Kubernetes
+
+There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
+
+* Agents get be removed but still run on schedule. 
+* Force cache refresh times out.
+* If you have the clean up agent setup, your data randomly disappears and reappears.  
+
+These issues do not occur immediately, and you may even see modified accounts appear.
+
 ### Upgrading from 2.18.x with MySQL used for Front50 renames the plugin_artifacts table
 As a part of the upgrade from 2.18.x to 2.19.x, the table **plugin_artifacts** gets renamed to `plugin_info`. Downgrades from 2.19.x to 2.18.x do not revert the table name. The table remains named `plugin_info`, preventing access to the table.  
 

@@ -23,6 +23,16 @@ This version includes an upgrade to the Spring Boot dependency. This requires yo
 
 ## Known Issues
 
+### Dynamic Accounts for Kubernetes
+
+There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
+
+* Agents get be removed but still run on schedule. 
+* Force cache refresh times out.
+* If you have the clean up agent setup, your data randomly disappears and reappears.  
+
+These issues do not occur immediately, and you may even see modified accounts appear.
+
 ### Service Accounts using Fiat
 
 There is an issue creating or updating service accounts. This causes the pipeline permissions feature to not work.  

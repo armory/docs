@@ -25,6 +25,16 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 ## Known Issues
 
+### Dynamic Accounts for Kubernetes
+
+There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
+
+* Agents get be removed but still run on schedule. 
+* Force cache refresh times out.
+* If you have the clean up agent setup, your data randomly disappears and reappears.  
+
+These issues do not occur immediately, and you may even see modified accounts appear.
+
 ### Plugins
 
 There is a known issue with the Plugins framework in Armory Spinnaker 2.17.7. If you want to build or use plugins, do not use this version. Use Armory Spinnaker 2.17.8 or later.
