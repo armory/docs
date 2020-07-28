@@ -40,6 +40,22 @@ Application metrics can be ingested by Kayenta to perform Automated Canary Analy
 | SomeProvider | A.B - C.D | Y   | All supported versions |                        |
 | Dynatrace    | A.B - C.D | Y   | All supported versions | Armory Enterprise only |
 
+## Artifact stores
+
+Artifacts are remote, deployable resources in Spinnaker. Armory supports the following artifact stores:
+
+| Provider                                                          | Armory Enterprise version | Notes                                          |
+|-------------------------------------------------------------------|---------------------------|------------------------------------------------|
+| [Bitbucket](https://spinnaker.io/setup/artifacts/bitbucket/)      | All supported versions    |                                                |
+| [GitHub](https://spinnaker.io/setup/artifacts/github/)            | All supported versions    |                                                |
+| [GitLab](https://spinnaker.io/setup/artifacts/gitlab/)            | All supported versions    |                                                |
+| [Git Repo](https://spinnaker.io/setup/artifacts/gitrepo/)         | All supported versions    | Supports using the entire repo as an artifact. |
+| [Google Cloud Storage](https://spinnaker.io/setup/artifacts/gcs/) | All supported versions    |                                                |
+| [HTTP](https://spinnaker.io/setup/artifacts/http)                 | All supported versions    |                                                |
+| [Maven](https://spinnaker.io/setup/artifacts/maven/)              | All supported versions    |                                                |
+| [Oracle Object](https://spinnaker.io/setup/artifacts/oracle)      | All supported versions    |                                                |
+| [S3](https://spinnaker.io/setup/artifacts/s3/)                    | All supported versions    |                                                |
+
 ## As code solutions
 
 ### Pipelines as Code
