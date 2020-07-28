@@ -44,7 +44,7 @@ Highlighted Updates describe some of the major changes in this release. Highligh
 
 **Policy Engine**
 
-Armory's Policy Engine for the SDLC now also performs Runtime validation on Spinnaker pipelines. This means that when a pipeline runs, the Policy Engine evaluates the pipeline. This validation only operates on tasks that you have explicitly created policies for. For more information, see [Policy Engine](/spinnaker/policy-engine).
+Armory's Policy Engine for the SDLC now also performs Runtime validation on Spinnaker pipelines. This means that when a pipeline runs, the Policy Engine evaluates the pipeline. This validation only operates on tasks that you have explicitly created policies for. For more information, see [Policy Engine]({{< ref "policy-engine" >}}).
 
 **CVEs**
 
@@ -52,7 +52,7 @@ Addressed a number of CVEs found within the Spinnaker services.
 
 **Plugins**
 
-This release supports Plugin deployment using Armory Halyard or the [Spinnaker Operator]({{< ref "operator" >}}). Consult the open source [Plugin](https://www.spinnaker.io/guides/user/plugins/user-guide/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins" >}}) for a manifest example.
+This release supports Plugin deployment using Armory Halyard or the [Spinnaker Operator]({{< ref "operator" >}}). Consult the open source [Plugin](https://spinnaker.io/guides/user/plugins/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins" >}}) for a manifest example.
 
 Additionally, this version of Spinnaker includes updates to how Deck is built. Previously, Deck's builds were non-deterministic, causing issues with loading plugins into the UI. Deck's builds are now deterministic and support UI plugins.
 
@@ -80,7 +80,7 @@ The following highlights describe some of the major changes from the Spinnaker c
 **Java 11**
 > The migration to Java 11 continues. This should not affect Spinnaker users. If you extend Spinnaker, this change may affect you.
 
-The Java 11 JRE runs Spinnaker when deployed to a Kubernetes cluster using Halyard (or if you consume the official containers in some other way). If this causes problems, or your organization isn't ready to run Java 11 in production, you can specify deploymentEnvironment.imageVariant: JAVA8 (or UBUNTU_JAVA8) in your Halyard config. Please notify [sig-platform@spinnaker.io](sig-platform@spinnaker.io) if you run into issues and decide to downgrade.
+The Java 11 JRE runs Spinnaker when deployed to a Kubernetes cluster using Halyard (or if you consume the official containers in some other way). If this causes problems, or your organization isn't ready to run Java 11 in production, you can specify deploymentEnvironment.imageVariant: JAVA8 (or UBUNTU_JAVA8) in your Halyard config. Please notify [sig-platform@spinnaker.io](mailto:sig-platform@spinnaker.io) if you run into issues and decide to downgrade.
 
 All users need to switch to a Java 11 JRE by Spinnaker 1.21, which is scheduled to be released in early July. Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/java11.md) for the full schedule and more details. We encourage everyone to start testing Spinnaker under a Java 11 JRE now in preparation for the cutover. If you have any concerns about the migration timeline, please reach out to sig-platform@spinnaker.io.
 
