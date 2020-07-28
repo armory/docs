@@ -424,7 +424,7 @@ Configure profiles that users can select when creating a Terraform Integration s
    Keep the following in mind when adding profiles:
 
    * You can add multiple profiles under the `profiles` section.
-   * Do not commit plain text secrets to `terraformer-local.yml`. Instead, use a secret store: [Vault](/spinnaker-install-admin-guides/secrets-vault), an [encrypted S3 bucket](/spinnaker-install-admin-guides/secrets-s3), or an [encrypted GCS bucket](/spinnaker-install-admin-guides/secrets-gcs). 
+   * Do not commit plain text secrets to `terraformer-local.yml`. Instead, use a secret store: [Vault]({{< ref "secrets-vault" >}}), an [encrypted S3 bucket]({{< ref "secrets-s3" >}}), or an [encrypted GCS bucket]({{< ref "secrets-gcs" >}}). 
    * For SSH keys, one option parameter at a time is supported for each Profile. This means that you can use a private key file (`sshPrivateKeyFilePath`) or the key (`sshPrivateKey`) as the option. To use the key file path, use `sshPrivateKeyFilePath` for the option and provide the path to the key file. The path can also be encrypted using a secret store such as Vault. The following `option` example uses `sshPrivateKeyFilePath`:
         
      ```yaml

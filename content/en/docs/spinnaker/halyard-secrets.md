@@ -10,7 +10,7 @@ aliases:
 
 Halyard stores secrets prompted by **hal commands** in your Halyard configuration directory, typically `~/.hal/config.yml` and other `~/.hal/` folders/files.
 
-For both Halyard and the Spinnaker Operator to deploy and manage Spinnaker, you need to separate secrets from the rest of the config. This is done by replacing secret values and secret files by `encrypted...` or `encryptedFile...` references as described in [Spinnaker Secrets](/spinnaker-install-admin-guides/secrets). This allows you to store secret-free configuration files under source control. When you need to make any changes, you can download the files, change them, deploy the changes, and then upload the files again.
+For both Halyard and the Spinnaker Operator to deploy and manage Spinnaker, you need to separate secrets from the rest of the config. This is done by replacing secret values and secret files by `encrypted...` or `encryptedFile...` references as described in [Spinnaker Secrets](/spinnaker-install-admin-guides/secrets/secrets.md). This allows you to store secret-free configuration files under source control. When you need to make any changes, you can download the files, change them, deploy the changes, and then upload the files again.
 
 ## Deploying config changes using Spinnaker Operator
 

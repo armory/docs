@@ -164,7 +164,7 @@ Need help setting this up? -  For a guided tutorial, watch the **Video Walkthrou
    }
    ```
 ## Congratulations!
-You have completed the 1st step in setting up the Spinnaker AWS Provider.  For Step 2, see [AWS Quick Start Step 2](/spinnaker/Armory-Spinnaker-Quickstart-2).
+You have completed the 1st step in setting up the Spinnaker AWS Provider.  For Step 2, see [AWS Quick Start Step 2]({{< ref "Armory-Spinnaker-Quickstart-2" >}}).
 
 ## AWS QuickStart Step 1 Video
 
