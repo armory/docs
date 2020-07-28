@@ -167,6 +167,17 @@ Dynamic accounts (external account configurations) for Spinnaker allow you to ma
 | Echo        | Pub/Sub                     |                                                                                                                |
 | Igor        | CI systems, version control |                                                                                                                |
 
+## External storage
+
+Spinnaker requires an external storage provider for persisting application settings and pipelines. Armory supports the following storage solutions:
+
+| Provider              | Armory Enterprise      | Notes |
+|-----------------------|------------------------|-------|
+| Azure Storage         | All supported versions |       |
+| Google Cloud Storage  | All supported versions |       |
+| Minio                 | All supported versions |       |
+| S3                    | All supported versions |       |
+| Oracle Object Storage | All supported versions |       |
 
 ## Observability
 
@@ -177,18 +188,6 @@ Dynamic accounts (external account configurations) for Spinnaker allow you to ma
 | Datadog    | All supported versions |      |
 | ELK        | All supported versions |      |
 | Splunk     | All supported versions |      |
-
-## Persistent storage
-
-Depending on the service, Spinnaker can use either Redis or MySQL as the backing store. The following table lists the supported database and the Spinnaker service:
-
-| Database | DB version            | Armory Enterprise      | Spinnaker services                                  | Note                                                                                                                       |
-|----------|-----------------------|------------------------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| Redis    | X.Y.Z                 | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. By default, Spinnaker deploys Redis internally to support its services. |
-| MySQL    | MySQL 5.7 (or Aurora) | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
-
-Armory recommends using MySQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
-
 
 
 ## Notifications
@@ -205,6 +204,27 @@ The following table lists the notification systems that Armory Enterprise suppor
 | Email      | All supported versions |       |
 | GoogleChat | All supported versions |       |
 | Twilio     | All supported versions |       |
+
+## Persistent storage
+
+Depending on the service, Spinnaker can use either Redis or MySQL as the backing store. The following table lists the supported database and the Spinnaker service:
+
+| Database | DB version            | Armory Enterprise      | Spinnaker services                                  | Note                                                                                                                       |
+|----------|-----------------------|------------------------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| Redis    | X.Y.Z                 | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. By default, Spinnaker deploys Redis internally to support its services. |
+| MySQL    | MySQL 5.7 (or Aurora) | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
+
+Armory recommends using MySQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
+
+## Pipeline triggers
+
+Armory supports using the following as trigger Spinnaker pipelines:
+
+| Provider   | Armory Enterprise      | Notes |
+|------------|------------------------|-------|
+| AWS Pub/Sub      | All supported versions |       |
+| GitHub Webhook  | All supported versions |       |
+| Google Pub/Sub     | All supported versions |       |
 
 
 
