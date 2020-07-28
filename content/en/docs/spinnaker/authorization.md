@@ -42,4 +42,4 @@ to the environment can then continue the pipeline successfully after approval.
 Here are some other resources that may help you properly configure security in
 Spinnaker:
 
-* [Armory Webinar on Authorization](https://blog.armory.io/webinar-configuring-auth-n-z-in-spinnaker-with-isaac-mosquera/)
+* [Armory Webinar on Authorization](https://www.armory.io/blog/webinar-configuring-auth-n-z-in-spinnaker-with-isaac-mosquera/)

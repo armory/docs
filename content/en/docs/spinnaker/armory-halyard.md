@@ -433,7 +433,7 @@ hal armory secrets vault edit [parameters]
 ```
 
 #### Parameters
- * `--auth-method`: (*Required*) Method used to authenticate with the Vault endpoint. Must be either `KUBERNETES` for [Kubernetes service account auth](https://www.vaultproject.io/docs/auth/kubernetes.html) or `TOKEN` for [Vault token auth](https://www.vaultproject.io/docs/auth/token.html). The `TOKEN` method will require a `VAULT_TOKEN` environment variable set [for Halyard and the services](https://docs.armory.io/spinnaker-install-admin-guides/secrets-vault/#2-token-authentication).
+ * `--auth-method`: (*Required*) Method used to authenticate with the Vault endpoint. Must be either `KUBERNETES` for [Kubernetes service account auth](https://www.vaultproject.io/docs/auth/kubernetes.html) or `TOKEN` for [Vault token auth](https://www.vaultproject.io/docs/auth/token.html). The `TOKEN` method will require a `VAULT_TOKEN` environment variable set [for Halyard and the services]({{< ref "secrets-vault.md#2-token-authentication" >}}).
  * `--deployment`: If supplied, use this Halyard deployment. This will _not_ create a new deployment.
  * `--no-validate`: (*Default*: `false`) Skip validation.
  * `--path`: (*Default*: `kubernetes`) (Applies to `KUBERNETES` [authentication method](https://www.vaultproject.io/docs/auth/kubernetes.html)) Path of the kubernetes authentication backend mount.

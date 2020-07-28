@@ -344,7 +344,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
          echo:
            <CONTENT>
    ```
-   More details on [SpinnakerService Options](/operator_reference/operator-config/#specspinnakerconfigservice-settings) on `.spec.spinnakerConfig.service-settings` section
+   More details on [SpinnakerService Options]({{< ref "operator-config#specspinnakerconfigservice-settings" >}}) on `.spec.spinnakerConfig.service-settings` section
 
 5. Export local file references.
 

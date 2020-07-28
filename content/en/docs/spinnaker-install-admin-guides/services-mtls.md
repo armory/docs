@@ -6,7 +6,7 @@ aliases:
   - /spinnaker_install_admin_guides/services_mtls/
 ---
 
-This guide describes how to enable mutual TLS (mTLS) between Spinnaker services and is building on top of [how to enable TLS](../services-tls). Adding mTLS provides additional security for your Spinnaker services as only validated clients can interact with services when mTLS is enabled.
+This guide describes how to enable mutual TLS (mTLS) between Spinnaker services and is building on top of [how to enable TLS]({{< ref "services-tls" >}}). Adding mTLS provides additional security for your Spinnaker services as only validated clients can interact with services when mTLS is enabled.
 
 
 ## Introduction
@@ -28,7 +28,7 @@ To set up TLS, provide the following:
 
 ## What you need
 
-In the following sections, you need the same information that you needed for [TLS setup](../services-tls#what-you-need):
+In the following sections, you need the same information that you needed for [TLS setup]({{< ref "services-tls#what-you-need" >}}):
 
 - `ca.pem` (all Golang servers): the CA certificate in PEM format
 - `[service].crt` (each Golang server): the certificate and optionally the private key of the Golang server in PEM format
@@ -41,7 +41,7 @@ In the following sections, you need the same information that you needed for [TL
 
 The server certificate will serve as its client certificate to other services. You can generate different certificates and use them in `ok-http-client.key-store*` (Java) and `http.key*` (Golang).
 
-To learn how to generate these files, refer to [generating certificates](../generating-certificates/#putting-it-together-tls).
+To learn how to generate these files, refer to [generating certificates]({{< ref "generating-certificates#putting-it-together-tls" >}}).
 
 ## Configuration (Java services)
 

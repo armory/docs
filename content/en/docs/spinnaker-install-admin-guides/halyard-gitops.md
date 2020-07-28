@@ -14,9 +14,9 @@ This approach enables the following workflow:
     * Clone the repo, run halyard container locally to update configurations using `hal` commands, and commit the changes.
 3. A job in your existing CI tool automatically runs `hal deploy apply` to deploy Spinnaker changes.
 
-## Step 1: Remove secrets from your halyard configuration
+## Step 1: Remove secrets from your Halyard configuration
 
-Since we'll be storing halyard configuration under source control, you need first to remove any secrets from it. Make sure to follow [these instructions](../secrets).
+Since we'll be storing Halyard configuration under source control, you need first to remove any secrets from it. Make sure to follow [these instructions]({{< ref "secrets" >}}).
 
 ## Step 2: Store your current configuration in source control
 
