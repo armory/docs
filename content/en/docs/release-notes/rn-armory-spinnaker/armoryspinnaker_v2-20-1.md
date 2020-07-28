@@ -39,6 +39,16 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 ## Known Issues
 
+### Dynamic Accounts for Kubernetes
+
+There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
+
+* Agents get be removed but still run on schedule. 
+* Force cache refresh times out.
+* If you have the clean up agent setup, your data randomly disappears and reappears.  
+
+These issues do not occur immediately, and you may even see modified accounts appear.
+
 ### Vault secrets
 
 If you use Vault secrets, you should not use this version and instead update to v2.20.3.

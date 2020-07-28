@@ -12,6 +12,7 @@ aliases:
 
 
 ## Known Issues
+
 ### Halyard version
 
 There is a known issue where Armory Halyard 1.9.0 fails to install Armory Spinnaker 2.18.1. The Pod for Echo enters a crash loop.
@@ -20,6 +21,15 @@ There is a known issue where Armory Halyard 1.9.0 fails to install Armory Spinna
 
 Use Armory Halyard 1.8.3 if you want to install Armory Spinnaker 2.18.1.
 
+### Dynamic Accounts for Kubernetes
+
+There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
+
+* Agents get be removed but still run on schedule. 
+* Force cache refresh times out.
+* If you have the clean up agent setup, your data randomly disappears and reappears.  
+
+These issues do not occur immediately, and you may even see modified accounts appear.
 
 ## Highlighted Updates
 ### Armory
