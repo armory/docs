@@ -5,6 +5,8 @@ description: >
   Monitoring Spinnaker using Prometheus and Grafana
 ---
 
+{{% alert title="Warning" color="warning" %}}There is a known issue with metric names in version 2.20.x. Until this issue is resolved, any dashboards created from the instructions on this page will not work. For more information, see the release notes for your version, such as [2.20.5]({{< ref "armoryspinnaker_v2-20-5#spinnaker-metrics" >}}). {{% /alert %}}
+
 ## Overview
 
 Armory recommends using a monitoring solution to confirm the health of Spinnaker for every production instance. This document describes how to set up a basic [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) stack along with enabling monitoring sidecars for the Spinnaker microservices. These sidecar pods provide a metrics endpoint that Prometheus reads and Grafana graphs. Additional Prometheus and Grafana configuration is necessary to make them production-grade, and this configuration is not a part of this document.
