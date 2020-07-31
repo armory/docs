@@ -61,21 +61,17 @@ We continue to make Spinnaker's security a top priority. Although several CVEs a
 
 ##### Orca
 
-- CVE-2020-13790
-
-This is an embedded dependency in OpenJDK11. A version of OpenJDK11 that addresses
-this CVE has only recently been released. The CVE will be fixed in an upcoming release. The risk to services users is low. The CVE deals with processing `jpeg` images in the Java Runtime Environment, a task Armory Spinnaker services do not perform.
-
 The following CVEs have been recently identified and will be addressed in an upcoming release:
 
-- CVE-2020-14155
+- CVE-2020-7692
 
 ##### Clouddriver
 
 The following CVEs still exist in Clouddriver:
 
-- CVE-2020-1747
 - CVE-2017-18342
+- CVE-2020-1747
+- CVE-2019-17638 
 - CVE-2020-13757
 - CVE-2016-10745
 
@@ -85,12 +81,14 @@ The following CVE also exists for Clouddriver:
 
 - CVE-2020-7014 deals with an Elasticsearch exploit related to token generation. Clouddriver only makes use of entity tags and does not allow for token generation or authentication.
 
+The following CVEs will be triaged as part of a future release:
+- CVE-2020-7692
+
 ##### Terraformer
 
 Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration: 
 
-- CVE-2020-14422
-- CVE-2020-13757
+- CVE-2020-15778
 
 ## Highlighted Updates
 
