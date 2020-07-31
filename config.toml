@@ -88,7 +88,7 @@ weight = 1
 # Everything below this are Site Params
 
 [params]
-armory-version = "2.20.x"
+armory-version = "2.21.x"
 halyard-armory-version = "1.9.3"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
@@ -102,7 +102,7 @@ terms_and_conditions = "https://www.armory.io/terms-and-conditions"
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
-version_menu = "v2.20"
+version_menu = "v2.21"
 
 # Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
@@ -112,7 +112,7 @@ archived_version = false
 # The version number for the version of the docs represented in this doc set.
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
-version = "2.20"
+version = "2.21"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
@@ -191,9 +191,14 @@ enable = false
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
 [[params.versions]]
-  version = "v2.20"
+  version = "v2.21"
   githubbranch = "master"
   url = "https://docs.armory.io"
+
+[[params.versions]]
+  version = "v2.20"
+  githubbranch = "v2.20"
+  url = "https://v2-20.docs.armory.io"
 
 [[params.versions]]
   version = "v2.0-2.19"
