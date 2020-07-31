@@ -14,7 +14,6 @@ This page is updated on a regular basis.
 
 The release preview for 2.21 has been moved to the [2.21.0 Release Notes]({{< ref "armoryspinnaker_v2-21-0" >}}). Check back for the 2.22 release preview!
 
-
 ## Upcoming major changes 
 
 This section describes upcoming changes that affect more than one service or a change in recommendations.
