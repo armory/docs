@@ -37,7 +37,7 @@ Armory Spinnaker 2.19.x and higher include an upgrade to the Spring Boot depende
 #### Scheduled removal of Kubernetes V1 provider
 The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
 
-Breaking change: Kubernetes accounts with an unspecified providerVersion will now default to V2. Update your Halconfig to specify `providerVersion: v1` for any Kubernetes accounts you are currently using with the V1 provider.
+If you still have any jobs that use the V1 provider, you will encounter an error. For more information, see [Cloud providers](#cloud-providers).
 
 ## Known Issues
 
@@ -125,7 +125,42 @@ This section describes changes to Igor, Spinnaker's service that integrates with
 This section describes changes to Clouddriver, Spinnaker's cloud connector service:
 
 **Change**: Legacy Kubernetes (V1) provider removed from Spinnaker. Armory Spinnaker 2.20 (OSS 1.20) was the final release that included support for the V1 provider.
-* **Impact**: Migrate all Kubernetes accounts to the standard V2 provider before upgrading.
+* **Impact**: Migrate all Kubernetes accounts to the standard V2 provider before upgrading. If you have any jobs still using the v1 provider, you will encounter error messages:
+   
+   ```
+   2020-07-31 22:11:55.146  WARN 1 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'configurationRefreshListener' defined in URL [jar:file:/opt/clouddriver/lib/clouddriver-web-6.10.0-20200625140019.jar!/com/netflix/spinnaker/clouddriver/listeners/ConfigurationRefreshListener.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'kubernetesV2ProviderSynchronizable': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: The legacy Kubernetes provider (V1) is no longer supported. Please migrate all Kubernetes accounts to the standard provider (V2).
+   ```
+
+   The above message will be followed by the following error that occurs repeatedly:
+   <details><summary>Show the error message</summary>
+   
+   ```
+   q2020-07-31 22:12:31.005 ERROR 1 --- [gentScheduler-0] c.n.s.c.r.c.ClusteredAgentScheduler      : Unable to run agents
+    redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
+        at redis.clients.jedis.util.Pool.getResource(Pool.java:59) ~[jedis-3.1.0.jar:na]
+        at redis.clients.jedis.JedisPool.getResource(JedisPool.java:234) ~[jedis-3.1.0.jar:na]
+        at com.netflix.spinnaker.kork.jedis.telemetry.InstrumentedJedisPool.getResource(InstrumentedJedisPool.java:60) ~[kork-jedis-7.45.9.jar:7.45.9]
+        at com.netflix.spinnaker.kork.jedis.telemetry.InstrumentedJedisPool.getResource(InstrumentedJedisPool.java:26) ~[kork-jedis-7.45.9.jar:7.45.9]
+        at com.netflix.spinnaker.kork.jedis.JedisClientDelegate.withCommandsClient(JedisClientDelegate.java:54) ~[kork-jedis-7.45.9.jar:7.45.9]
+        at com.netflix.spinnaker.cats.redis.cluster.ClusteredAgentScheduler.acquireRunKey(ClusteredAgentScheduler.java:183) ~[cats-redis-6.10.0-20200625140019.jar:6.10.0-20200625140019]
+        at com.netflix.spinnaker.cats.redis.cluster.ClusteredAgentScheduler.acquire(ClusteredAgentScheduler.java:136) ~[cats-redis-6.10.0-20200625140019.jar:6.10.0-20200625140019]
+        at com.netflix.spinnaker.cats.redis.cluster.ClusteredAgentScheduler.runAgents(ClusteredAgentScheduler.java:163) ~[cats-redis-6.10.0-20200625140019.jar:6.10.0-20200625140019]
+        at com.netflix.spinnaker.cats.redis.cluster.ClusteredAgentScheduler.run(ClusteredAgentScheduler.java:156) ~[cats-redis-6.10.0-20200625140019.jar:6.10.0-20200625140019]
+        at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515) ~[na:na]
+        at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) ~[na:na]
+        at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+        at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+   Caused by: java.lang.IllegalStateException: Pool not open
+        at org.apache.commons.pool2.impl.BaseGenericObjectPool.assertOpen(BaseGenericObjectPool.java:759) ~[commons-pool2-2.7.0.jar:2.7.0]
+        at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:402) ~[commons-pool2-2.7.0.jar:2.7.0]
+        at org.apache.commons.pool2.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:349) ~[commons-pool2-2.7.0.jar:2.7.0]
+        at redis.clients.jedis.util.Pool.getResource(Pool.java:50) ~[jedis-3.1.0.jar:na]
+        ... 14 common frames omitted
+   ```
+   </details>
+
 
 **Change**: The Alicloud, DC/OS, and Oracle cloud providers are excluded from OSS Spinnaker 1.21 because they no longer meet Spinnaker's cloud provider requirements. For more information about these requirements, see [Cloud Provider Requirements](https://github.com/spinnaker/governance/blob/master/cloud-provider-requirements.md).
 * **Impact**: If you use one of these cloud providers and cannot migrate to a supported provider, do not upgrade to Armory Spinnaker 2.21 (OSS 1.21). Clouddriver providers are created and maintained by each cloud provider. Contact your cloud provider to review the requirements for inclusion in the Spinnaker project.
