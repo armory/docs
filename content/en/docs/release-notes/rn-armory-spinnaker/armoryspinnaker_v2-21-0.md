@@ -1,14 +1,17 @@
 ---
-title: v2.21.0-rc.8 Armory Release (OSS Spinnaker v1.21.2)
+title: v2.21.0 Armory Release (OSS Spinnaker v1.21.2)
 toc_hide: true
 ---
 
 ## 2020/07/10 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+
 ## Required Halyard version
 
-Armory Spinnaker 2.21.0-rc.8 requires Armory Halyard <PUT IN A VERSION NUMBER> or later.
+Armory Spinnaker 2.20.5 requires one of the following:
+* Armory Halyard 1.9.4 or later.
+* Armory Spinnaker Operator 1.0.2 or later.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
@@ -36,7 +39,7 @@ There have also been numerous enhancements, fixes and features across all of Spi
 Here's the bom for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
-<code>version: 2.21.0-rc.8
+<code>version: 2.21.0
 timestamp: "2020-07-31 20:23:22"
 services:
     clouddriver:
@@ -99,12 +102,10 @@ artifactSources:
 
 #### Armory Deck - 2.20.4...2.21.3
 
-  - chore(release): update to oss 1.20.5 (#612)
-  - chore(release): update to oss 1.20.5-rc2 (#614)
   - fix(commons): rollback version of commons (#616)
   - chore(release): update to oss 1.21.2-rc1 (#633) (#634)
   - chore(build): push images to dockerhub (#631) (#635)
-  - fix(header): remove custom angualr header shim (#636) (#637)
+  - fix(header): remove custom angular header shim (#636) (#637)
 
 #### Armory Fiat - 2.20.6...2.21.1
 
@@ -129,7 +130,7 @@ artifactSources:
   - fix(build): explicitly set armory commons version (#92)
   - chore(core): update igor.yml config (#113) (#114)
 
-#### Terraformer™ - 2.20.8...2.21.3
+#### Terraformer - 2.20.8...2.21.3
 
   - fix(profiles): dont evaluate permissions on a nil Profile (#183)
   - fix(profiles): test verifying no error thrown when profile is nil (#185)
@@ -151,7 +152,7 @@ artifactSources:
   - chore(environment): add image pull secret (#222)
   - chore(security): upgrade to alpine:3.12 (#226) (#227)
 
-#### Dinghy™ - 2.20.6...2.21.1
+#### Dinghy - 2.20.6...2.21.1
 
   - feat(slacknotifications): Send slack applications notifications (#228)
   - Fix for app update on every change (#231)
@@ -168,7 +169,6 @@ artifactSources:
 #### Armory Echo - 2.20.12...2.21.1
 
   - chore(version): upgrade armory commons, armory settings and JDK on guthub actions (#158)
-  - Update gradle.properties (#167)
   - chore(build): update nebula plugin to fix release task (#173)
   - chore(deps): change armory-commons import to -all (#176)
   - fix(dinghy): fix webhook validations headers to lowercase (#181)
