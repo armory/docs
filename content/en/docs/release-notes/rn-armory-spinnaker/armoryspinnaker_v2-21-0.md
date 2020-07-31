@@ -7,7 +7,7 @@ toc_hide: true
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-## Required Halyard version
+## Required Halyard or Operator version
 
 Armory Spinnaker 2.21.0 requires one of the following:
 * Armory Halyard 1.9.4 or later.
@@ -15,7 +15,7 @@ Armory Spinnaker 2.21.0 requires one of the following:
 
 ## Breaking changes
 
-### Spinnaker metrics
+#### Spinnaker metrics
 
 Metrics data, specifically the metric names, for Spinnaker changed in 2.20. These changes are not backwards compatible and may result in broken third-party dashboards, such as Grafana dashboards.
 
@@ -31,17 +31,17 @@ Although both workarounds involve updating your dashboards to use the new metric
 
 This release note will be updated once the updated plugin is available.
 
-### HTTP sessions for Gate
+#### HTTP sessions for Gate
 Armory Spinnaker 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
 
-### Scheduled removal of Kubernetes V1 provider
+#### Scheduled removal of Kubernetes V1 provider
 The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
 
 Breaking change: Kubernetes accounts with an unspecified providerVersion will now default to V2. Update your Halconfig to specify `providerVersion: v1` for any Kubernetes accounts you are currently using with the V1 provider.
 
 ## Known Issues
 
-### Dynamic Accounts for Kubernetes
+#### Dynamic Accounts for Kubernetes
 
 There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
 
@@ -51,15 +51,15 @@ There is an issue with Dynamic Accounts for Kubernetes where the following issue
 
 These issues do not occur immediately, and you may even see modified accounts appear.
 
-### Security update
+#### Security update
 
 We continue to make Spinnaker's security a top priority. Although several CVEs are resolved, the following still exist:
 
-#### Multiple services
+##### Multiple services
 
 `CVE-2020-5410` was resolved in a previous version of Armory Spinnaker; however, this CVE introduced a regression for users of Spring Cloud and has been rolled back. Armory will continue to monitor releases for a fix.
 
-#### Orca
+##### Orca
 
 - CVE-2020-13790
 
@@ -70,7 +70,7 @@ The following CVEs have been recently identified and will be addressed in an upc
 
 - CVE-2020-14155
 
-#### Clouddriver
+##### Clouddriver
 
 The following CVEs still exist in Clouddriver:
 
@@ -85,7 +85,7 @@ The following CVE also exists for Clouddriver:
 
 - CVE-2020-7014 deals with an Elasticsearch exploit related to token generation. Clouddriver only makes use of entity tags and does not allow for token generation or authentication.
 
-#### Terraformer
+##### Terraformer
 
 Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration: 
 
@@ -94,16 +94,137 @@ Armory has identified and is triaging the following CVEs in Terraformer, the ser
 
 ## Highlighted Updates
 
-### Armory
+There have also been numerous enhancements, fixes and features across all of Spinnaker's services. The following summaries describe changes and Armory's assessment of how they might impact your use of Spinnaker. 
 
-Summary of changes in the latest release.
+For more information about the changes from the Open Source Community, see [Spinnaker v1.21.2](https://www.spinnaker.io/community/releases/versions/1-21-2-changelog).
 
-###  Spinnaker Community Contributions
+### Authorization
 
-<! -- Copy/paste highlights from the corresponding OSS version. -->
+This section describes changes to Fiat, Spinnaker's authorization service:
 
-There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
-[Spinnaker v1.21.2](https://www.spinnaker.io/community/releases/versions/1-21-2-changelog)
+**Change**: Add support for extension resources. [daf58f5f](https://github.com/spinnaker/fiat/commit/daf58f5fd1fdc9f02f1920e13ca1d0e483b42680)
+* **Impact**: This change allows Fiat to serve / evaluate permissions for arbitrary resources. This adds additional functionality to the Plugins framework for Spinnaker. For an example, see [File Resource Provider Plugin](https://github.com/spinnaker-plugin-examples/fileResourceProvider).
+
+
+### Baking
+
+This section describes changes to Rosco, Spinnaker's image bakery:
+
+**Change**: Updated Packer to version 1.4.5. [0091cc1d](https://github.com/spinnaker/rosco/commit/0091cc1dc30eee002115b684806393e9c7dc437d)
+* **Impact**: You can now run more than one instance of Packer's Docker Builder at a time. Resolves [this issue](https://github.com/hashicorp/packer/issues/7904).
+
+### CI integration
+
+This section describes changes to Igor, Spinnaker's service that integrates with CI systems:
+
+**Change**: Resolved [5803](https://github.com/spinnaker/spinnaker/issues/5803) where Jenkins stages fail because Igor could not find a property file. [7c47ce3f](https://github.com/spinnaker/igor/commit/7c47ce3fece8120fc53c615a9683f4ce0070ea4b)
+* **Impact**: Igor now automatically retries fetching the property file from Jenkins when encountering a 404.  Igor will retry up to 5 times with 2 seconds non-exponential backoff.
+
+### Cloud providers 
+
+This section describes changes to Clouddriver, Spinnaker's cloud connector service:
+
+**Change**: Legacy Kubernetes (V1) provider removed from Spinnaker. Armory Spinnaker 2.20 (OSS 1.20) was the final release that included support for the V1 provider.
+* **Impact**: Migrate all Kubernetes accounts to the standard V2 provider before upgrading.
+
+**Change**: The Alicloud, DC/OS, and Oracle cloud providers are excluded from OSS Spinnaker 1.21 because they no longer meet Spinnaker's cloud provider requirements. For more information about these requirements, see [Cloud Provider Requirements](https://github.com/spinnaker/governance/blob/master/cloud-provider-requirements.md).
+* **Impact**: If you use one of these cloud providers and cannot migrate to a supported provider, do not upgrade to Armory Spinnaker 2.21 (OSS 1.21). Clouddriver providers are created and maintained by each cloud provider. Contact your cloud provider to review the requirements for inclusion in the Spinnaker project.
+
+### Eventing
+
+This section describes changes to Echo, Spinnaker's event service:
+
+**Change**: Add action conditions for Git triggers. [715693a](https://github.com/spinnaker/echo/commit/715693a02869edcbc37d0159e4c5f518eab6e7c8)
+* **Impact**: You can now filter triggers on Git webhooks. Add an actions section to the pipeline JSON to filter what type of actions can trigger the pipeline. The following example configures a pipeline to only trigger when a pull request is closed:
+   ```json
+   "triggers: [
+      {
+         "actions": [
+            "pull_request:closed"
+         ],
+         "branch": "",
+         "enabled": true,
+         "project": "MyProject",
+         "slug": "MyRepository",
+         "source": "github",
+         "type": "git"
+      }
+   ],
+   ```
+   
+**Change**: Usage statistics for Spinnaker are now collected by default. The Open Source Spinnaker project collects this information to inform the development of Spinnaker. It is anonymized before it gets sent and then aggregated. For more information about these metrics or to view them, see [Usage Statistics](https://spinnaker.io/community/stats/#usage-statistics).
+* **Impact**:  If you want to turn the usage statistics off, see [How is the data collected](https://spinnaker.io/community/stats/#how-is-the-data-collected).
+
+**Change**: Add ability to suppress triggers at runtime. [7aebc7a3](https://github.com/spinnaker/echo/commit/7aebc7a319706ec3ec2d94d2102ea4b219a63707)
+* **Impact**: This change adds the following properties that can be used in `echo.yml`:
+   * `scheduler.suppressTriggers`: (Default: `false`) Allows suppressing event triggers from the CRON scheduler.
+   * `scheduler.compensationJob.suppressTriggers`: (Default: `false`) Allows suppressing event triggers from the compensation job (missed CRON scheduler).
+   
+   You might use these properties when you are running two instances of Echo that are both running the scheduler for redundancy. Both Echos need to be current in situations where you need to switch the Echo service being used, but only one of them need to trigger events at any given time.
+
+   These properties are backed by the DynamicConfigService and can be modified at runtime.
+
+### Metadata persistence
+
+This section describes changes to Front50, Spinnaker's metadata repository:
+
+**Change**: Ability to overwrite an application config entirely through the API. [2cf86b34](https://github.com/spinnaker/front50/commit/2cf86b34d40f847208a1a55bee352bc731fd1b6b)
+* **Impact**: New API functionality!
+  
+**Change**: Ability to validate application names when applications are created or modified through the API. [2cf86b34](https://github.com/spinnaker/front50/commit/2cf86b34d40f847208a1a55bee352bc731fd1b6b)
+* **Impact**: When you submit an application name through the API instead of Deck, Spinnaker can now validate the name to ensure that the name only contains allowed characters. This behavior is off by default. To enable this validation, add the following config to `front50-local.yml`:
+  
+   ```yaml
+   validation:
+    applicationNameValidator:
+        validationRegex: "^.*$"
+        validationMessage: "<Optional. Message to display to user if the application name contains disallowed characters.">
+   ```
+
+**Change**: Front50 now only attempts to sync authorization permissions if Fiat is enabled.
+* **Impact**: Fewer unncessary log messages.
+
+
+### Task orchestration
+
+This section describes changes to Orca, Spinnaker's task orchestration service:
+
+**Change**: Add function `pipelineIdInApplication` to Pipeline Expressions, which allows you to fetch the ID of a pipeline given its name and its application name. [febb6f68](https://github.com/spinnaker/orca/commit/febb6f68c4c9dcfd5aba82eab587add2fae2b11d)
+* **Impact**: This function is useful when running a dependent pipeline that fails in a different application.
+
+**Change**: **AWS** -- Pass the AWS account to Clouddriver when retrieving images. [9eadf5e6](https://github.com/spinnaker/orca/commit/9eadf5e68ca1b535f8fe562b5f870ce962c6e242)
+* **Impact**: This modifies the behavior of the Find Image from Tags stage. You can configure the stage to look for images in a specific AWS account if the following config is set in the stage JSON: `imageOwnerAccount`.
+
+**Change**: Expose the `amiName` property in bake stage output (if present). [ee99ba11](https://github.com/spinnaker/orca/commit/ee99ba114aff96ab37654336922a2ac75da7ad6c)
+* **Impact**: You can access `amiName` in downstream stages.
+
+**Change**: **AWS** -- Add exported environment variables in the CodeBuild stage context. [2ab7032e](https://github.com/spinnaker/orca/commit/2ab7032e28303d4b23ecde8ba6286ded0147d52c)
+* **Impact**:  Allows end users to consume the environment variables exported from CodeBuild build stage by specifying a pipeline expression like `${#stage('AWS CodeBuild')['context']['buildInfo']['exportedEnvironmentVariables']}`.
+
+**Change**: Merge collections when merging stage outputs. [f44ba60f](https://github.com/spinnaker/orca/commit/f44ba60fd8eaa89f3d5b10a1f335df07e4dd0b35)
+* **Impact**: More data may be available in the pipeline execution history. This changes the behavior of stage outputs. Previously, stage outputs overwrote each other if duplicates were present. Now, stage outputs concatenate collections from duplicate keys.
+
+**Change**: Add a dynamic toggle for sending full pipeline executions between Spinnaker services. [54a0ff85](https://github.com/spinnaker/orca/commit/54a0ff8586433905e9d1d4a93023ff9ecd33cef2)
+* **Impact**: Large pipeline executions can generate a lot of tasks, which generates Echo traffic that includes the full execution payload. This option allows for a reduced payload size. To turn this feature on, add the following config to Echo:
+   ```yaml
+   echo:
+      ...
+      events:
+         includeFullExecution: true
+      ...
+   ```
+
+
+### UI
+
+This section describes changes to Deck, Spinnaker's UI:
+
+**Change**: Improved UI for child pipeline failures. Previously, failures in pipelines that run as stages of other pipelines were difficult to debug.  [a2af93f](https://github.com/spinnaker/deck/commit/a2af93fd961323fbea611a97bf7c0bbbb82c9828)
+* **Impact**: There is now a modal to surface failed child pipeline execution details. You can enable this feature by adding the following config to `settings-local.js`:
+   ```
+   window.spinnakerSettings.feature.executionMarkerInformationModal = true;
+   ```
+   This feature will be on by default in Armory Spinnaker 2.21 (Open Source Spinnaker 1.22).
 
 ## Detailed Updates
 
