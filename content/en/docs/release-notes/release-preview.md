@@ -142,6 +142,8 @@ This section describes changes to Orca, Spinnaker's task orchestration service:
          includeFullExecution: true
       ...
    ```
+**Change**: Prevent leak of information through template resolution endpoint. [ef080b1](https://github.com/spinnaker/orca/commit/ef080b136eb955866f31004ad8f2e7b6a8e8a900)
+* **Impact**: You were able use Orca to search the internet! Or read its EC2 metadata or whatever. This change fixes that by removing an SSRF vulnerability. 
 
 
 ### UI
