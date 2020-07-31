@@ -159,6 +159,41 @@ This section describes changes to Clouddriver, Spinnaker's cloud connector servi
    ```
    </details>
 
+   Here is the YAML for an example V1 provider:
+
+   <details><summary>Show the config</summary>
+   <pre><code>
+   - name: kubernetes
+     requiredGroupMembership: []
+     providerVersion: V1
+     permissions: {}
+     dockerRegistries:
+       - accountName: gcr
+         namespaces: []
+       - accountName: dockerhub
+         namespaces: []
+     context: gke_cloud-hooli_us-central1-c_armory-kube
+     configureImagePullSecrets: true
+     cacheThreads: 1
+     namespaces:
+       - staging
+       - default
+       - demo
+       - dev
+       - platform
+     omitNamespaces: []
+     kinds: []
+     omitKinds:
+       - podPreset
+     customResources: []
+     cachingPolicies: []
+     kubeconfigFile: encrypted:s3!r:us-west-2!b:hooli-halyard-secrets!f:eng-prod/kubeconfig.gke.armorykube
+     checkPermissionsOnStartup: false
+     liveManifestCalls: true
+     oauthScopes: []
+     oAuthScopes: []
+   </code></pre>
+   </details>
 
 **Change**: The Alicloud, DC/OS, and Oracle cloud providers are excluded from OSS Spinnaker 1.21 because they no longer meet Spinnaker's cloud provider requirements. For more information about these requirements, see [Cloud Provider Requirements](https://github.com/spinnaker/governance/blob/master/cloud-provider-requirements.md).
 * **Impact**: If you use one of these cloud providers and cannot migrate to a supported provider, do not upgrade to Armory Spinnaker 2.21 (OSS 1.21). Clouddriver providers are created and maintained by each cloud provider. Contact your cloud provider to review the requirements for inclusion in the Spinnaker project.
