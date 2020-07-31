@@ -3,13 +3,13 @@ title: v2.21.0 Armory Release (OSS Spinnaker v1.21.2)
 toc_hide: true
 ---
 
-## 2020/07/10 Release Notes
+## 2020/07/31 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Halyard version
 
-Armory Spinnaker 2.20.5 requires one of the following:
+Armory Spinnaker 2.21.0 requires one of the following:
 * Armory Halyard 1.9.4 or later.
 * Armory Spinnaker Operator 1.0.2 or later.
 
