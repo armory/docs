@@ -190,7 +190,7 @@ enable = false
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
 [[params.versions]]
-  version = "latest"
+  version = "Latest"
   githubbranch = "master"
   url = "https://docs.armory.io"
 
