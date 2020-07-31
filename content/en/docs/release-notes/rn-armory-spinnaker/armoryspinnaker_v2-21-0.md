@@ -407,7 +407,6 @@ artifactSources:
   - chore(versions): fix image name (#210)
   - chore(docker): use cache image for tf versions (#204)
   - chore(integration): trigger integration tests (#214)
-  - Revert "chore(integration): trigger integration tests (#214)" (#215)
   - chore(test): trigger integration tests (#219)
   - fix(artifacts): use one method for consistent download/reading (#217)
   - chore(environment): add image pull secret (#222)
@@ -416,7 +415,6 @@ artifactSources:
 #### Dinghy - 2.20.6...2.21.1
 
   - feat(slacknotifications): Send slack applications notifications (#228)
-  - Fix for app update on every change (#231)
   - fix(notifications): Fixed slack notification (#242)
   - feat(prvalidation): repository processing and PR validations (#241)
   - fix(prval): bugfix for PR validation (#249)
@@ -451,7 +449,6 @@ artifactSources:
   - chore(dependencies): bump spinnaker release
   - fix(release): set nebula release version (#71)
   - fix(release): use armorycommons to set nebula version (#73)
-  - Revert "fix(release): use armorycommons to set nebula version (#73)" (#74)
   - fix(rosco): updated config from  1.20.x..1.21.x (#89) (#90)
 
 #### Armory Gate - 2.20.4...2.21.2
