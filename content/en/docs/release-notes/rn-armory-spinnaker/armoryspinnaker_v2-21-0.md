@@ -14,11 +14,83 @@ Armory Spinnaker 2.21.0 requires one of the following:
 * Armory Spinnaker Operator 1.0.2 or later.
 
 ## Breaking changes
-<!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
+
+### Spinnaker metrics
+
+Metrics data, specifically the metric names, for Spinnaker changed in 2.20. These changes are not backwards compatible and may result in broken third-party dashboards, such as Grafana dashboards.
+
+**Workarounds**:
+
+* **Observability plugin**: Armory is working on updates to the [Observability plugin](https://github.com/armory-plugins/armory-observability-plugin) to remedy this issue. The plugin currently supports New Relic & Prometheus. Note that this resolution requires you to make updates to use the new metric names.
+
+   For information about how to install a plugin, see [Plugin Users Guide](https://spinnaker.io/guides/user/plugins/).
+
+* **Update existing dashboards**: Change your dashboards and alerts to use the new metric names.
+
+Although both workarounds involve updating your dashboards to use the new metric names, Armory recommends switching to the Observability plugin. Due to changes the Spinnaker project is making, the Observability plugin provides a long-term solution. 
+
+This release note will be updated once the updated plugin is available.
+
+### HTTP sessions for Gate
+Armory Spinnaker 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
+
+### Scheduled removal of Kubernetes V1 provider
+The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
+
+Breaking change: Kubernetes accounts with an unspecified providerVersion will now default to V2. Update your Halconfig to specify `providerVersion: v1` for any Kubernetes accounts you are currently using with the V1 provider.
 
 ## Known Issues
-<!-- Copy/paste known issues from the previous version if they're not fixed -->
-There are currently no known issues with this release.
+
+### Dynamic Accounts for Kubernetes
+
+There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
+
+* Agents can be removed but still run on schedule. 
+* Force cache refresh times out.
+* If you have the clean up agent setup, your data randomly disappears and reappears.  
+
+These issues do not occur immediately, and you may even see modified accounts appear.
+
+### Security update
+
+We continue to make Spinnaker's security a top priority. Although several CVEs are resolved, the following still exist:
+
+#### Multiple services
+
+`CVE-2020-5410` was resolved in a previous version of Armory Spinnaker; however, this CVE introduced a regression for users of Spring Cloud and has been rolled back. Armory will continue to monitor releases for a fix.
+
+#### Orca
+
+- CVE-2020-13790
+
+This is an embedded dependency in OpenJDK11. A version of OpenJDK11 that addresses
+this CVE has only recently been released. The CVE will be fixed in an upcoming release. The risk to services users is low. The CVE deals with processing `jpeg` images in the Java Runtime Environment, a task Armory Spinnaker services do not perform.
+
+The following CVEs have been recently identified and will be addressed in an upcoming release:
+
+- CVE-2020-14155
+
+#### Clouddriver
+
+The following CVEs still exist in Clouddriver:
+
+- CVE-2020-1747
+- CVE-2017-18342
+- CVE-2020-13757
+- CVE-2016-10745
+
+All of them are embedded dependencies in the Google Cloud SDK. A version of the Google Cloud SDK addressing these CVEs has not been released. The risk to Clouddriver users is low. All four CVEs deal with untrusted input, which Clouddriver does not provide to the Google Cloud SDK. Additionally, users deploying to other cloud providers are not at risk for this vulnerability.
+
+The following CVE also exists for Clouddriver:
+
+- CVE-2020-7014 deals with an Elasticsearch exploit related to token generation. Clouddriver only makes use of entity tags and does not allow for token generation or authentication.
+
+#### Terraformer
+
+Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration: 
+
+- CVE-2020-14422
+- CVE-2020-13757
 
 ## Highlighted Updates
 
