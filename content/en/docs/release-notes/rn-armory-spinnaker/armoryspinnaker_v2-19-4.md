@@ -25,9 +25,11 @@ This version includes an upgrade to the Spring Boot dependency. This requires yo
 
 ### Dynamic Accounts for Kubernetes
 
+**Fixed in**: 2.21
+
 There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
 
-* Agents get be removed but still run on schedule. 
+* Agents get removed but still run on schedule. 
 * Force cache refresh times out.
 * If you have the clean up agent setup, your data randomly disappears and reappears.  
 
