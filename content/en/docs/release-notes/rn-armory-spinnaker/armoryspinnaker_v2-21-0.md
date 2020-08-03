@@ -188,6 +188,14 @@ This section describes changes to Clouddriver, Spinnaker's cloud connector servi
 **Change**: The Alicloud, DC/OS, and Oracle cloud providers are excluded from OSS Spinnaker 1.21 because they no longer meet Spinnaker's cloud provider requirements. For more information about these requirements, see [Cloud Provider Requirements](https://github.com/spinnaker/governance/blob/master/cloud-provider-requirements.md).
 * **Impact**: If you use one of these cloud providers and cannot migrate to a supported provider, do not upgrade to Armory Spinnaker 2.21 (OSS 1.21). Clouddriver providers are created and maintained by each cloud provider. Contact your cloud provider to review the requirements for inclusion in the Spinnaker project.
 
+### Dynamic accounts
+
+2.21 resolves a previous known issue with Dynamic accounts for Kubernetes where the following occurs:
+
+* Agents that get removed but still run on schedule. 
+* Force cache refresh times out.
+* If you have the clean up agent setup, your data randomly disappears and reappears.  
+
 ### Eventing
 
 This section describes changes to Echo, Spinnaker's event service:
