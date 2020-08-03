@@ -451,7 +451,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
 6. Validate your Spinnaker configuration if you plan to run the Operator in cluster mode.
 
    ```bash
-   kubectl -n <namespace> apply -f <spinnaker service manifest> --server-dry-run
+   kubectl -n <namespace> apply -f <spinnaker service manifest> --dry-run=server
    ```
 
    The validation service throws an error when something is wrong with your manifest.
