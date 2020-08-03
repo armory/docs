@@ -6,9 +6,6 @@ aliases:
   - /spinnaker-install-admin-guides/dynamic_accounts/
 ---
 
-{{% alert type=warning color="warning" %}}There is currently a known issue with Dynamic Accounts for Kubernetes. Armory recommends that you do not use this feature until it is resolved. For more information, see the release notes for your version. For example, [2.20.5]({{< ref "armoryspinnaker_v2-20-5#dynamic-accounts-for-kubernetes" >}}).
-{{% /alert %}}
-
 ## Overview
 
 If you add, delete, or modify Kubernetes deployment targets on a regular basis, you may find that redeploying Clouddriver to pull in new
