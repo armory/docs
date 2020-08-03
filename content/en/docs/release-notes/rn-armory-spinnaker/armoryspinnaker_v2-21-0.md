@@ -41,16 +41,6 @@ If you still have any jobs that use the V1 provider, you will encounter an error
 
 ## Known Issues
 
-#### Dynamic Accounts for Kubernetes
-
-There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
-
-* Agents can be removed but still run on schedule. 
-* Force cache refresh times out.
-* If you have the clean up agent setup, your data randomly disappears and reappears.  
-
-These issues do not occur immediately, and you may even see modified accounts appear.
-
 #### Security update
 
 We continue to make Spinnaker's security a top priority. Although several CVEs are resolved, the following still exist:
