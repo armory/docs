@@ -15,4 +15,4 @@ No known issues.
 * Validation webhooks now patch the status. Operator cannot return the patches directly because we're changing the status. This resolves some validation errors when trying to apply a new `SpinnakerService`.
 * Validation service has ports named for Istio support
 * Fixed an issue that caused crashes when using `SpinnakerAccount` with sharded services ("HA mode").
-* Make `kustomization.yml` more compatible.
+* Made `kustomization.yml` more compatible.
