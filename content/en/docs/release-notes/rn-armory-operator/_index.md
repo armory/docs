@@ -1,12 +1,5 @@
 ---
 title: "Armory Operator Release Notes"
-aliases:
-  - /operator-release-notes/
-  - /operator-releases/
-  - /operator-release/
-  - /operator-versions/
-  - /operator-version/
-  - /operator-release-notes/
 simple_list_reverse: true
 ---
 
