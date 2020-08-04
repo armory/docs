@@ -137,7 +137,7 @@ hal armory dinghy edit \
 hal deploy apply
 ```
 
-**Configure GitHub webhooks**
+#### Configure GitHub webhooks
 
 Set up webhooks at the organization level for Push events. You can do this by going to: https://github.com/organizations/your_org_here/settings/hooks:
 1. Set `content-type` to `application/json`.
@@ -149,30 +149,29 @@ Set up webhooks at the organization level for Push events. You can do this by go
 If your gate endpoint is protected by a firewall, you’ll need to configure your firewall to allow inbound webhooks from Github's IP addresses. You can find their IPs here: [](https://api.github.com/meta), you can read [Github's docs here](https://help.github.com/articles/about-github-s-ip-addresses/).
 
 
-**PR Validations**
+#### Pull Request Validations
 
-When you are making a Github PR and there's a change in a dinghyfile, Dinghy will automatically perform a validation for that dinghyfile and update the Github status accordingly, letting you know that you need to fix it.
+When you make a Github Pull Request (PR) and there is a change in a `dinghyfile`, Pipelines as Code automatically performs a validation for that `dinghyfile`. It also updates the Github status accordingly. If the validation fails, it displays an error:
 
+The following image shows what a user sees if their PR fails the validation:
+{{< figure src="/images/dinghy/pr_validation/pr_validation.png" alt="PR that fails validation." >}}
 
-![](/images/dinghy/pr_validation/pr_validation.png)
-
+Make PR Validations mandatory to ensure users only merge working `dinghyfiles`.
 
 **Mandatory PR validation**
 
-Since you want people to submit correct dinghyfiles you can setup PR validations as a mandatory validation, in order to do it:
+Perform the following steps:
 
-1. Go to your repository
-2. Click on Settings
-3. Go to Branches
-4. In "Branch protection rules" click "Add rule"
-5. Add "master" in "Branch name pattern" so it will not let merge in master.
-6. Mark "Require status checks to pass before merging". After clicking there you should be able to see "dinghy".
-7. Mark "dinghy" as required
-8. We recommend selecting "Include administrators" as well, since build will not work regarding who pushes the changes.
+1. Go to your GitHub repository.
+2. Click on **Settings > Branches**. 
+3. In **Branch protection rules**, select **Add rule**.
+4. Add `master` in **Branch name pattern** so that the rule gets enforced on the `master` branch.
+   Note that if this is a brand new repository with no commits, the "dinghy" option does not appear. You must first create a `dinghyfile` in any branch.
+5. Select **Require status checks to pass before merging** and make **dinghy** required.
+   Armory recommends selecting **Include administrators** as well so that all PRs get validated, regardless of user. 
 
-**Note:** If this is a brand new repository with no commits the "dinghy" option will not appear. After you create a dinghyfile in any branch the validation will appear.
-
-![](/images/dinghy/pr_validation/branch_mandatory.png)
+The following screenshot shows what your GitHub settings should resemble:
+{{< figure src="/images/dinghy/pr_validation/branch_mandatory.png" alt="Configured dinghy PR validation." >}}
 
 
 ### Bitbucket / Stash Example
