@@ -148,6 +148,33 @@ Set up webhooks at the organization level for Push events. You can do this by go
 
 If your gate endpoint is protected by a firewall, you’ll need to configure your firewall to allow inbound webhooks from Github's IP addresses. You can find their IPs here: [](https://api.github.com/meta), you can read [Github's docs here](https://help.github.com/articles/about-github-s-ip-addresses/).
 
+
+**PR Validations**
+
+When you are making a Github PR and there's a change in a dinghyfile, Dinghy will automatically perform a validation for that dinghyfile and update the Github status accordingly, letting you know that you need to fix it.
+
+
+![](/images/dinghy/pr_validation/pr_validation.png)
+
+
+**Mandatory PR validation**
+
+Since you want people to submit correct dinghyfiles you can setup PR validations as a mandatory validation, in order to do it:
+
+1. Go to your repository
+2. Click on Settings
+3. Go to Branches
+4. In "Branch protection rules" click "Add rule"
+5. Add "master" in "Branch name pattern" so it will not let merge in master.
+6. Mark "Require status checks to pass before merging". After clicking there you should be able to see "dinghy".
+7. Mark "dinghy" as required
+8. We recommend selecting "Include administrators" as well, since build will not work regarding who pushes the changes.
+
+**Note:** If this is a brand new repository with no commits the "dinghy" option will not appear. After you create a dinghyfile in any branch the validation will appear.
+
+![](/images/dinghy/pr_validation/branch_mandatory.png)
+
+
 ### Bitbucket / Stash Example
 
 **Operator**
