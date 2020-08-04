@@ -86,7 +86,7 @@ Content is in `content/en/docs`. Make your changes to the desired file.
 
 Use the `git status` command at any time to see what files you've changed.
 
-If you have installed Hugo and want to preview your changes locally, run from the repo root:
+If you have installed [Hugo](https://gohugo.io/getting-started/installing/) and want to preview your changes locally, run from the repo root:
 
 ```
 hugo server

@@ -26,6 +26,12 @@
   force = false
 
 [[redirects]]
+  from = "/operator-release-notes/*"
+  to = "/docs/release-notes/rn-armory-operator/"
+  status = 301
+  force = false
+
+[[redirects]]
   from = "/release-notes/*"
   to = "/docs/release-notes/rn-armory-spinnaker/"
   status = 301
