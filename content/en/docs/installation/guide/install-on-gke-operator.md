@@ -1,7 +1,7 @@
 ---
 title: Installing Spinnaker in GKE using Operator
 linkTitle: "Install in GKE using Operator"
-weight: 4
+weight: 7
 aliases:
   - /spinnaker-install-admin-guides/install-on-gke-operator/
 ---

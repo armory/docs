@@ -1,7 +1,7 @@
 ---
 title: Installing Spinnaker in GKE
 linkTitle: "Install in GKE"
-weight: 4
+weight: 6
 aliases:
   - /spinnaker_install_admin_guides/install_on_gke/
   - /spinnaker_install_admin_guides/install-on-gke/

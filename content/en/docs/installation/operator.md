@@ -1,59 +1,22 @@
 ---
 title: Spinnaker Operator
-weight: 11
+weight: 1
 ---
 
-## Overview
+Spinnaker Operator is a Kubernetes operator for Spinnaker that makes it easy to install, deploy, and upgrade any version of Spinnaker.
 
-Spinnaker Operator is a Kubernetes operator for Spinnaker that makes it easier to install, deploy, and upgrade any version of Spinnaker through a workflow that you are already familiar with.  There are two flavors of the Spinnaker Operator:
-
-* The open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) that installs open source Spinnaker.
-* The proprietary Armory Spinnaker Operator that installs Armory Spinnaker. This version comes with additional enterprise features.
-
-After you install Spinnaker Operator, you can use `kubectl` to manage the lifecycle of your deployment.
-
-Operator has two distinct modes you can install and use:
-
-- **Basic**: Operator in basic mode installs Spinnaker into a single namespace without `ValidatingAdmissionWebhook` for doing preflight checks.
-- **Cluster**: Operator in cluster mode installs Spinnaker across namespaces with `ValidatingAdmissionWebhook` for doing preflight checks. This mode requires a `ClusterRole`.
-
-If you want to get started quickly, install Operator and Spinnaker by running the following commands:
-
-```
-# Pick a release from https://github.com/armory-io/spinnaker-operator/releases
-mkdir -p spinnaker-operator && cd spinnaker-operator
-bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
-
-# Install or update CRDs cluster wide
-kubectl apply -f deploy/crds/
-
-# Install Operator in namespace spinnaker-operator. If you want a different namespace, see the below documentaiton.
-kubectl create ns spinnaker-operator
-kubectl -n spinnaker-operator apply -f deploy/operator/cluster
-
-# Install Spinnaker in the "spinnaker" namespace
-kubectl create ns spinnaker
-kubectl -n spinnaker apply -f deploy/spinnaker/basic
-
-# Watch the install progress and check out the pods being created too!
-kubectl -n spinnaker get spinsvc spinnaker -w
-```
-
-The rest of this page describes how to modify some of the default configurations within Operator to suit your needs.
-
-## Benefits of Operator
-
-- Stop using Halyard commands: just `kubectl apply` your Spinnaker configuration. This includes support for local files.
-- Expose Spinnaker to the outside world (with `LoadBalancer`). You can still disable that behavior if you prefer to manage ingresses and load balancers yourself.
-- Deploy any version of Spinnaker. Operator is not tied to a particular version of Spinnaker.
+- Manage Spinnaker with `kubectl` like other Kubernetes applications.
+- Expose Spinnaker via `LoadBalancer` or `Ingress` (optional)
 - Keep secrets separate from your config. Store your config in `git` and have an easy Gitops workflow.
 - Validate your configuration before applying it (with webhook validation).
-- Store Spinnaker secrets in [Kubernetes secrets](https://github.com/armory/spinnaker-operator/blob/release-0.3.x/doc/managing-spinnaker.md#secrets-in-kubernetes-secrets).
-- Patch versions, accounts or any setting with `kustomize`.
-- Monitor the health of Spinnaker via `kubectl`.
+- Store Spinnaker secrets in [Kubernetes secrets](https://github.com/armory/spinnaker-operator/blob/master/doc/managing-spinnaker.md#secrets-in-kubernetes-secrets).
+- Gain total control over Spinnaker manifests with `kustomize` style patching
 - Define Kubernetes accounts in `SpinnakerAccount` objects and store kubeconfig inline, in Kubernetes secrets, in s3, or GCS **(Experimental)**.
+- Istio support **(early)**
 
-## Operator Requirements
+> We refer here to the Armory Operator which installs Armory Spinnaker. The open source operator installs open source Spinnaker and can be found [here](https://github.com/armory/spinnaker-operator).
+
+## Requirements
 
 Before you start, ensure the following requirements are met:
 
@@ -62,51 +25,36 @@ Before you start, ensure the following requirements are met:
 - You have `ValidatingAdmissionWebhook` enabled in the kube-apiserver. Alternatively, you can pass the `--disable-admission-controller` parameter to the to the `deployment.yaml` file that deploys the operator.
 - You have admin rights to install the Custom Resource Definition (CRD) for Operator.
 
-## Accounts CRD (Experimental)
 
-Operator introduces a new CRD for Spinnaker accounts. `SpinnakerAccount` is defined in an object - separate from the main Spinnaker config - so its creation and maintenance can easily be automated.
+## Operator Install
 
-To read more about this CRD, see [SpinnakerAccount](https://github.com/armory/spinnaker-operator/blob/master/doc/spinnaker-accounts.md).
+Operator has two distinct modes:
+- **Basic**: Operator in basic mode installs Spinnaker into a single namespace without `ValidatingAdmissionWebhook` for doing preflight checks.
+- **Cluster**: Operator in cluster mode installs Spinnaker across namespaces with `ValidatingAdmissionWebhook` for doing preflight checks. This mode requires a `ClusterRole`.
 
-## Install Operator
+Pick a release from [https://github.com/armory-io/spinnaker-operator/releases](https://github.com/armory-io/spinnaker-operator/releases):
 
-### Download the Operator Manifests
-
-Download CRDs and example manifests from the [latest stable release](https://github.com/armory-io/spinnaker-operator/releases).
-
-```bash
-# For a stable release (https://github.com/armory-io/spinnaker-operator/releases)
+```
 mkdir -p spinnaker-operator && cd spinnaker-operator
 bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
-```
 
-For both Basic and Cluster modes, you must download and apply the SpinnakerService CRD.
-Note that you must have admin rights to install the CRD.
-
-```bash
+# Install or update CRDs cluster wide
 kubectl apply -f deploy/crds/
-```
 
-**Note**: To install OSS Spinnaker, use [https://github.com/armory/spinnaker-operator](https://github.com/armory/spinnaker-operator) instead.
+# We'll install in the spinnaker-operator namespace
+kubectl create ns spinnaker-operator
 
+# Install operator cluster mode
+kubectl -n spinnaker-operator apply -f deploy/operator/cluster
 
-### Installing Operator in Basic Mode
-To install Operator in basic mode, run:
+# If instead you want to install the operator in basic mode
+# kubectl -n spinnaker-operator apply -f deploy/operator/basic
 
-```bash
-kubectl apply -n <op_namespace> -f deploy/operator/basic
-```
-
-`<op_namespace>` is the namespace where you want the operator to live. To monitor installation, run the following command:
-
-```
-# Watch the install progress. Check out the pods being created too!
-kubectl -n spinnaker get spinsvc spinnaker -w
 ```
 
 After installation, you can verify that the Operator is running with the following command:
 ```bash
-kubectl -n <op_namespace> get pods
+kubectl -n spinnaker-operator get pods
 ```
 
 The command returns output similar to the following if the pod for the Operator is running:
@@ -116,125 +64,57 @@ NAMESPACE                             READY         STATUS       RESTARTS      A
 spinnaker-operator-7cd659654b-4vktl   2/2           Running      0             6s
 ```
 
-## Installing Operator in Cluster Mode
-To install Operator for cluster mode, perform the following steps:
+> If you want to use a namespace other than `spinnaker-operator` in cluster mode, you'll also need to edit the namespace in `deploy/operator/cluster/role_binding.yaml`.
 
-1. Decide which namespace you want Operator to live in and then create the namespace. Armory recommends `spinnaker-operator`.
-2. If you want to use a namespace other than `spinnaker-operator`, edit `deploy/operator/cluster/role_binding.yaml`:
 
-   ```yaml
-   kind: ClusterRoleBinding
-   apiVersion: rbac.authorization.k8s.io/v1
-   metadata:
-     name: spinnaker-operator-binding
-   subjects:
-   - kind: ServiceAccount
-     name: spinnaker-operator
-     namespace: spinnaker-operator # Edit this value if you want Operator to live in a different namespace.
-   roleRef:
-     kind: ClusterRole
-     name: spinnaker-operator-role
-     apiGroup: rbac.authorization.k8s.io
-   ```
+## Spinnaker Install
 
-    Then, save the changes to `role_binding.yaml`.
-
-3. Run the following command:
-
-   ```bash
-   $ kubectl apply -n <op_namespace> -f deploy/operator/cluster
-   ```
-
-   `<op_namespace>` is the namespace where you want the operator to live. By default, this namespace is `spinnaker-operator`, so you would run the following command:
-
-   ```bash
-   $ kubectl apply -n spinnaker-operator -f deploy/operator/cluster
-   ```
-
-After installation, you can verify that the Operator is running with the following command:
+To use the examples, change the parameters you need (especially the `persistentStorage` section). To install a basic version of Spinnaker in the "spinnaker" namespace, run the following command:
 
 ```bash
-kubectl -n <op_namespace> get pods
-```
-The command returns output similar to the following if the pod for the Operator is running:
+kubectl create ns spinnaker
+kubectl -n spinnaker apply -f deploy/spinnaker/basic
 
-```
-NAMESPACE                                READY         STATUS       RESTARTS      AGE
-spinnaker-operator-7cd659654b-4vktl      2/2           Running      0             6s
+# Watch the install progress and check out the pods being created too!
+kubectl -n spinnaker get spinsvc spinnaker -w
 ```
 
-## Installing Spinnaker Using Operator
 
-Once you install the CRDs and Operator, check out the examples in `deploy/spinnaker/`. To use the examples, change the parameters you need (especially the `persistentStorage` section). To install a basic version of Spinnaker with Operator, run the following command:
+### Upgrading Spinnaker
 
-```bash
-$ kubectl create ns <spinnaker-namespace>
-$ kubectl -n <spinnaker-namespace> apply -f deploy/spinnaker/basic/SpinnakerService.yml
-```
-In the examples, the `spinnaker-namespace` parameter refers to the namespace where you want to install Spinnaker. It is likely different from Operator's namespace.
+To upgrade an existing Spinnaker deployment, perform the following steps:
 
-**Important**: You must edit `deploy/spinnaker/basic/SpinnakerService.yml` to point to persistent storage, such as an S3 bucket. Other attributes can also be changed. For example, if you change the value of the `version` field to `2.16.0`, Operator installs version 2.16.0.
-
-You can read a detailed description of the SpinnakerService CRD in the [Spinnaker Operator Config]({{< ref "operator-config" >}}).
-
-
-## Install Spinnaker with Operator and Kustomize
-
-Operator supports Kustomize, a templating engine for Kubernetes. Using Kustomize along with Operator helps you create consistent, repeatable deployments of Spinnaker.
-
-1. Edit `deploy/spinnaker/kustomize/kustomization.yml`.
-2. Run the following commands:
-
-   ```bash
-   kubectl create ns <spinnaker-namespace>
-   kustomize build deploy/spinnaker/kustomize | kubectl -n <spinnaker-namespace> apply -f -
-   ```
-   `<spinnaker-namespace>` is the `namespace` where you want to deploy Spinnaker.
-
-## Upgrading Spinnaker Using Operator
-
-To upgrade an existing Spinnaker deployment using the Operator, perform the following steps:
-
-1. Change the `version` field in `/deploy/spinnaker/basic/SpinnakerService.yml`  file to the target version for the upgrade.
+1. Change the `version` field in `deploy/spinnaker/basic/SpinnakerService.yml`  file to the target version for the upgrade.
 2. Apply the updated manifest:
 
    ```bash
-   kubectl -n <spinnaker-namespace> apply -f deploy/spinnaker/basic/SpinnakerService.yml
+   kubectl -n spinnaker apply -f deploy/spinnaker/basic/SpinnakerService.yml
    ```
-
-   Replace `<spinnaker-namespace>` with the namespace for the existing Spinnaker deployment.
 
    You can view the upgraded services starting up with the following command:
 
    ```bash
-   kubectl -n <spinnaker-namespace> describe spinsvc spinnaker
+   kubectl -n spinnaker describe spinsvc spinnaker
    ```
 
 3. Verify the upgraded version of Spinnaker:
 
    ```bash
-   kubectl -n <spinnaker-namespace> get spinsvc
+   kubectl -n spinnaker get spinsvc
    ```
 
    The command returns information similar to the following:
 
    ```
    NAME         VERSION
-   spinnaker    2.15.3
+   spinnaker    2.20.2
    ```
 
    `VERSION` should reflect the target version for your upgrade.
 
-   Once the upgrade is complete, you can view information related to your Spinnaker deployment with the following command:
-
-   ```bash
-   kubectl -n <spinnaker-namespace> get svc
-   ```
-
-   The command returns information about the running Spinnaker services.
 
 
-## Managing Spinnaker Using Operator
+### Managing Spinnaker Instances
 
 Operator allows you to use `kubectl` to manager you Spinnaker deployment.
 
@@ -259,7 +139,124 @@ kubectl -n <namespace> describe spinnakerservice spinnaker
 kubectl -n <namespace> delete spinnakerservice spinnaker
 ```
 
-## Migrating from Halyard to Operator
+### How it works
+Spinnaker's configuration can be found in a `spinnakerservices.spinnaker.armory.io` Custom Resource Definition (CRD) that can be stored in version control. After you install Spinnaker Operator, you can use `kubectl` to manage the lifecycle of your deployment.
+
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      version: 2.21.0
+```
+
+See [the full format](../operator-reference)
+
+
+## Managing Configuration
+
+- Store the manifest (or the kustomize artifact) in source control with secrets as references
+- GitOps workflow: redeploy Spinnaker when changes to the configuration are detected using Spinnaker
+
+### Kustomize
+Because Spinnaker's configuration is now a Kubernetes manifests, we can manage `SpinnakerService` and related manifests in a consistent and repeatable way with [kustomize](https://kustomize.io/).
+
+An example can be found [here](https://github.com/armory-io/spinnaker-operator/tree/master/deploy/spinnaker/kustomize).
+
+```bash
+kubectl create ns spinnaker
+kustomize build deploy/spinnaker/kustomize | kubectl -n spinnaker apply -f -
+```
+
+There are many more possibilities such as:
+- managing manifests of MySQL instances
+- ensuring the same configuration is used between Staging and Production Spinnaker
+- splitting accounts in their own kustomization for an easy to maintain configuration 
+
+### Secret Management
+
+You can store secrets in one of the [support secret engine](../../spinnaker-install-admin-guides/secrets/secrets/#supported-secret-engines). 
+
+#### Kubernetes Secret
+With the operator, you can also reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker.
+
+The format is:
+- `encrypted:k8s!n:<secret name>!k:<secret key>` for string values. These will be added as environment variable to the Spinnaker deployment.
+- `encryptedFile:k8s!n:<secret name>!k:<secret key>` for file references. Files will come from a volume mount in the Spinnaker deployment.
+
+
+#### Custom Halyard Configuration
+
+To override Halyard's configuration, create a `ConfigMap` with the configuration changes you need. For example, if using [secrets management with Vault]({{< ref "secrets-vault" >}}), Halyard and Operator containers will need your Vault configuration:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: halyard-custom-config
+data:
+  halyard-local.yml: |
+    secrets:
+      vault:
+        enabled: true
+        url: <URL of vault server>
+        path: <cluster path>
+        role: <k8s role>
+        authMethod: KUBERNETES
+```
+
+You can then mount it in the operator deployment and make it available to the Halyard and Operator containers:
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: spinnaker-operator
+  ...
+spec:
+  template:
+    spec:
+      containers:
+      - name: spinnaker-operator
+        ...
+        volumeMounts:
+        - mountPath: /opt/spinnaker/config/halyard.yml
+          name: halconfig-volume
+          subPath: halyard-local.yml
+      - name: halyard
+        ...
+        volumeMounts:
+        - mountPath: /opt/spinnaker/config/halyard-local.yml
+          name: halconfig-volume
+          subPath: halyard-local.yml
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: halyard-custom-config
+        name: halconfig-volume
+```
+
+
+### GitOps
+Spinnaker can deploy manifests or kustomize packages. You can configure Spinnaker to redeploy itself (or use a separate Spinnaker) with a trigger on the git repository containing its configuration.
+
+A change to Spinnaker's configuration follows:
+
+> Pull Request --> Approval --> Merge --> Trigger --> Deploy
+
+It becomes easily auditable and reversible.
+
+# Accounts CRD (Experimental)
+
+Operator introduces a new CRD for Spinnaker accounts. `SpinnakerAccount` is defined in an object - separate from the main Spinnaker config - so its creation and maintenance can easily be automated.
+
+To read more about this CRD, see [SpinnakerAccount](https://github.com/armory/spinnaker-operator/blob/master/doc/spinnaker-accounts.md).
+
+
+# Migrating from Halyard to Operator
 
 If you have a current Spinnaker instance installed with Halyard, use this guide
 to migrate existing configuration to Operator.
@@ -462,56 +459,6 @@ The migration process from Halyard to Operator can be completed in 7 steps:
    kubectl -n <namespace> apply -f <spinnaker service>
    ```
 
-## Custom Halyard Configuration
-
-To override Halyard's configuration, create a `ConfigMap` with the configuration changes you need. For example, if using [secrets management with Vault]({{< ref "secrets-vault" >}}), Halyard and Operator containers will need your Vault configuration:
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: halyard-custom-config
-data:
-  halyard-local.yml: |
-    secrets:
-      vault:
-        enabled: true
-        url: <URL of vault server>
-        path: <cluster path>
-        role: <k8s role>
-        authMethod: KUBERNETES
-```
-
-You can then mount it in the operator deployment and make it available to the Halyard and Operator containers:
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: spinnaker-operator
-  ...
-spec:
-  template:
-    spec:
-      containers:
-      - name: spinnaker-operator
-        ...
-        volumeMounts:
-        - mountPath: /opt/spinnaker/config/halyard.yml
-          name: halconfig-volume
-          subPath: halyard-local.yml
-      - name: halyard
-        ...
-        volumeMounts:
-        - mountPath: /opt/spinnaker/config/halyard-local.yml
-          name: halconfig-volume
-          subPath: halyard-local.yml
-      volumes:
-      - configMap:
-          defaultMode: 420
-          name: halyard-custom-config
-        name: halconfig-volume
-```
 
 ## Uninstalling Operator
 

@@ -1,6 +1,6 @@
 ---
 title: Air-Gapped Environments
-weight: 60
+weight: 1
 aliases:
   - /spinnaker-install-admin-guides/air-gapped/
 ---

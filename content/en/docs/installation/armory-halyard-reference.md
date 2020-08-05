@@ -1,6 +1,6 @@
 ---
-title: Armory Halyard
-weight: 20
+title: Armory Halyard Reference
+weight: 4
 aliases:
   - /spinnaker/armory_halyard
 ---
@@ -12,7 +12,7 @@ A tool for configuring, installing, and updating Spinnaker.
 If this is your first time using Halyard to install Spinnaker we recommend that you skim the documentation on www.spinnaker.io/docs for some familiarity with the product. If at any point you get stuck using 'hal', every command can be suffixed with '--help' for usage information.
 
 
-### Usage
+#### Usage
 ```
 hal [parameters] [subcommands]
 ```
@@ -41,7 +41,7 @@ hal [parameters] [subcommands]
 
 Armory-specific commands are described here.
 
-### Usage
+#### Usage
 ```
 hal armory [subcommands]
 ```
@@ -57,7 +57,7 @@ hal armory [subcommands]
 
 Configure diagnostics reporting
 
-### Usage
+#### Usage
 ```
 hal armory diagnostics [parameters] [subcommands]
 ```
@@ -76,7 +76,7 @@ hal armory diagnostics [parameters] [subcommands]
 
 Disable diagnostics
 
-### Usage
+#### Usage
 ```
 hal armory diagnostics disable [parameters]
 ```
@@ -125,7 +125,7 @@ spec:
 
 Enable diagnostics
 
-### Usage
+#### Usage
 ```
 hal armory diagnostics enable [parameters]
 ```
@@ -140,7 +140,7 @@ hal armory diagnostics enable [parameters]
 
 Configure Dinghy pipelines as code
 
-### Usage
+#### Usage
 ```
 hal armory dinghy [parameters] [subcommands]
 ```
@@ -160,7 +160,7 @@ hal armory dinghy [parameters] [subcommands]
 
 Disable Dinghy
 
-### Usage
+#### Usage
 ```
 hal armory dinghy disable [parameters]
 ```
@@ -175,7 +175,7 @@ hal armory dinghy disable [parameters]
 
 Edit Dinghy settings
 
-### Usage
+#### Usage
 ```
 hal armory dinghy edit [parameters]
 ```
@@ -239,7 +239,7 @@ spec:
 
 Enable Dinghy
 
-### Usage
+#### Usage
 ```
 hal armory dinghy enable [parameters]
 ```
@@ -253,7 +253,7 @@ hal armory dinghy enable [parameters]
 
 Configure Dinghy to send processing results to a Slack channel  (Halyard >= 1.6.3)
 
-### Usage
+#### Usage
 ```
 hal armory dinghy slack [enable|disable]
 ```
@@ -271,7 +271,7 @@ hal armory dinghy slack [enable|disable]
 
 Enable Slack notifications from Dinghy (Halyard >= 1.6.3)
 
-### Usage
+#### Usage
 ```
 hal armory dinghy slack enable [parameters]
 ```
@@ -286,7 +286,7 @@ hal armory dinghy slack enable [parameters]
 
 Disable Slack notifications from Dinghy (Halyard >= 1.6.3)
 
-### Usage
+#### Usage
 ```
 hal armory dinghy slack disable [parameters]
 ```
@@ -300,7 +300,7 @@ hal armory dinghy slack disable [parameters]
 
 Enable or disable webhook secrets validation in GitHub. This does not support other providers. If this option is enabled, all GitHub webhooks will be validated.  (Halyard >= 1.8.4)
 
-### Usage
+#### Usage
 ```
 hal armory dinghy webhooksecrets <provider> [ enable | disable]
 ```
@@ -310,7 +310,7 @@ hal armory dinghy webhooksecrets <provider> [ enable | disable]
 
 Add or edit webhook secrets validation in GitHub. This does not support other providers.  (Halyard >= 1.8.4)
 
-### Usage
+#### Usage
 ```
 hal armory dinghy webhooksecrets <provider> edit [parameters]
 ```
@@ -326,7 +326,7 @@ hal armory dinghy webhooksecrets <provider> edit [parameters]
 
 List webhook secrets validations for GitHub. This does not support other providers. (Halyard >= 1.8.4)
 
-### Usage
+#### Usage
 ```
 hal armory dinghy webhooksecrets <provider> list [parameters]
 ```
@@ -342,7 +342,7 @@ hal armory dinghy webhooksecrets <provider> list [parameters]
 
 Delete webhook secrets validations for GitHub. This does not support other providers. Provide at least one parameter for the command to delete the webhook secrets.  (Halyard >= 1.8.4)
 
-### Usage
+#### Usage
 ```
 hal armory dinghy webhooksecrets <provider> delete [parameters]
 ```
@@ -359,7 +359,7 @@ hal armory dinghy webhooksecrets <provider> delete [parameters]
 
 Runs Armory installer
 
-### Usage
+#### Usage
 ```
 hal armory init [parameters]
 ```
@@ -377,7 +377,7 @@ hal armory init [parameters]
 
 Configure secrets management
 
-### Usage
+#### Usage
 ```
 hal armory secrets [subcommands] [parameters]
 ```
@@ -394,7 +394,7 @@ hal armory secrets [subcommands] [parameters]
 
 Configure settings for secrets management with Vault in the Spinnaker services. [See our documentation for configuring Halyard itself to use Vault]({{< ref "secrets-vault#configuring-halyard-to-use-vault-secrets" >}}).
 
-### Usage
+#### Usage
 ```
 hal armory secrets vault [subcommands] [parameters]
 ```
@@ -413,7 +413,7 @@ hal armory secrets vault [subcommands] [parameters]
 
 Disable Vault secret engine
 
-### Usage
+#### Usage
 ```
 hal armory secrets vault disable [parameters]
 ```
@@ -427,7 +427,7 @@ hal armory secrets vault disable [parameters]
 
 Edit Vault secret engine settings
 
-### Usage
+#### Usage
 ```
 hal armory secrets vault edit [parameters]
 ```
@@ -465,7 +465,7 @@ spec:
 
 Enable Vault secret engine
 
-### Usage
+#### Usage
 ```
 hal armory secrets vault enable [parameters]
 ```

@@ -1,8 +1,8 @@
 ---
-title: "Install Spinnaker"
+title: "Guides"
 description: >
    This sections details installing Spinnaker in Kubernetes, Azure, GKE, and AWS (including from the AWS Marketplace). Instructions cover Halyard, Spinnaker Operator, and air-gapped environments. 
-weight: 1
+weight: 5
 ---
 
 Once installed, Spinnaker can deploy to supported providers through Clouddriver regardless of where it is installed.

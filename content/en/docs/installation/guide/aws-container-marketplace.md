@@ -1,7 +1,7 @@
 ---
 title: Installing Spinnaker in AWS from the AWS Container Marketplace
 linkTitle: Install from AWS Marketplace
-weight: 3
+weight: 2
 aliases:
   - /spinnaker/aws_container_marketplace/
   - /spinnaker/aws-container-marketplace/
