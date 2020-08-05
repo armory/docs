@@ -76,7 +76,7 @@ Artifacts are remote, deployable resources in Spinnaker. Armory supports the fol
 |-----------------------------------------------------------------------------------|------------------------|-------|
 | Slack notifications                                                               | All supported versions |       |
 | Local modules for development                                                     | 2.20 or later          |       |
-| [Pull Request Validation]({{< ref "install-dinghy/#pull-request-validations" >}}) | 2.21 or later          |       |
+| [Pull Request Validation]({{< ref "install-dinghy#pull-request-validations" >}}) | 2.21 or later          |       |
 
 ### Pipelines as CRD
 
