@@ -9,7 +9,7 @@ aliases:
   - /install-guide/gettings_started/
 ---
 
-Most installations of Spinnaker are on Kubernetes. Below is a summary of the different installation methods:
+Below is a summary of the different installation methods:
 
 | Method  | Environment | Description  | Pros |
 |---|---|--|--|

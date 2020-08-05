@@ -5,14 +5,14 @@ weight: 1
 
 Spinnaker Operator is a Kubernetes operator for Spinnaker that makes it easy to install, deploy, and upgrade any version of Spinnaker.
 
-- Manage Spinnaker with `kubectl` like other Kubernetes applications.
+- Manage Spinnaker with `kubectl` like other applications.
 - Expose Spinnaker via `LoadBalancer` or `Ingress` (optional)
 - Keep secrets separate from your config. Store your config in `git` and have an easy Gitops workflow.
 - Validate your configuration before applying it (with webhook validation).
 - Store Spinnaker secrets in [Kubernetes secrets](https://github.com/armory/spinnaker-operator/blob/master/doc/managing-spinnaker.md#secrets-in-kubernetes-secrets).
-- Gain total control over Spinnaker manifests with `kustomize` style patching
+- Gain total control over Spinnaker manifests with [`kustomize` style patching](https://github.com/armory/spinnaker-operator/blob/master/doc/options.md#speckustomize)
 - Define Kubernetes accounts in `SpinnakerAccount` objects and store kubeconfig inline, in Kubernetes secrets, in s3, or GCS **(Experimental)**.
-- Istio support **(early)**
+- Deploy Spinnaker in an Istio controlled cluster **(Experimental)**
 
 > We refer here to the Armory Operator which installs Armory Spinnaker. The open source operator installs open source Spinnaker and can be found [here](https://github.com/armory/spinnaker-operator).
 
@@ -79,6 +79,22 @@ kubectl -n spinnaker apply -f deploy/spinnaker/basic
 kubectl -n spinnaker get spinsvc spinnaker -w
 ```
 
+### How it works
+Spinnaker's configuration can be found in a `spinnakerservices.spinnaker.armory.io` Custom Resource Definition (CRD) that can be stored in version control. After you install Spinnaker Operator, you can use `kubectl` to manage the lifecycle of your deployment.
+
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      version: 2.21.0
+```
+
+See [the full format](../operator-reference)
+
 
 ### Upgrading Spinnaker
 
@@ -139,27 +155,8 @@ kubectl -n <namespace> describe spinnakerservice spinnaker
 kubectl -n <namespace> delete spinnakerservice spinnaker
 ```
 
-### How it works
-Spinnaker's configuration can be found in a `spinnakerservices.spinnaker.armory.io` Custom Resource Definition (CRD) that can be stored in version control. After you install Spinnaker Operator, you can use `kubectl` to manage the lifecycle of your deployment.
-
-```yaml
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    config:
-      version: 2.21.0
-```
-
-See [the full format](../operator-reference)
-
 
 ## Managing Configuration
-
-- Store the manifest (or the kustomize artifact) in source control with secrets as references
-- GitOps workflow: redeploy Spinnaker when changes to the configuration are detected using Spinnaker
 
 ### Kustomize
 Because Spinnaker's configuration is now a Kubernetes manifests, we can manage `SpinnakerService` and related manifests in a consistent and repeatable way with [kustomize](https://kustomize.io/).
@@ -245,7 +242,7 @@ Spinnaker can deploy manifests or kustomize packages. You can configure Spinnake
 
 A change to Spinnaker's configuration follows:
 
-> Pull Request --> Approval --> Merge --> Trigger --> Deploy
+> Pull Request --> Approval --> Configuration Merged --> Pipeline Trigger in Spinnaker --> Deploy Updated SpinnakerService
 
 It becomes easily auditable and reversible.
 
