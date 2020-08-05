@@ -61,7 +61,7 @@ Artifacts are remote, deployable resources in Spinnaker. Armory supports the fol
 
 ![Generally available](/images/ga.svg) ![Armory](/images/armory.svg)
 
-(Pipelines as Code){{< ref "install-dinghy" >}} gives you the ability to manage your pipelines and their templates in source control.
+[Pipelines as Code]({{< ref "install-dinghy" >}}) gives you the ability to manage your pipelines and their templates in source control.
 
 **Supported version control systems**
 
