@@ -2,7 +2,7 @@
 title: Deployment Environment Config
 weight: 2
 description: >
-  This page describes `deploymentEnvironment`.
+  This page describes `spec.spinnakerConfig.config.deploymentEnvironment`.
 aliases:
   - /operator_reference/deploy/
 ---
@@ -95,7 +95,7 @@ deploymentEnvironment:
   - `address`: The address of a running [Vault](https://www.vaultproject.io/) datastore. This is only required when Spinnaker is being deployed in non-Kubernetes clustered configuration.
 - `location`: This is the location spinnaker will be deployed to. When deploying to Kubernetes, use this flag to specify the namespace to deploy to (defaults to `spinnaker`)
 - `customSizing`: Configure, validate, and view the component sizings for the Spinnaker services.
-  - `spin-clouddriver`:
+  - `clouddriver`:
     - `replicas`: Set the number of replicas (pods) to be created for this service.
     - `requests`:
       - `memory`: Sets the memory request for the container running the spinnaker service. Examples: 512Mi, 8Gi
