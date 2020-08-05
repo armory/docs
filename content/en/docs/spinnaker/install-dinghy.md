@@ -151,6 +151,8 @@ If your gate endpoint is protected by a firewall, you’ll need to configure you
 
 #### Pull Request Validations
 
+{{% alert title="New feature" %}}Pull Request Validation is a new feature in Armory Spinnaker 2.21.{{% /alert %}}
+
 When you make a Github Pull Request (PR) and there is a change in a `dinghyfile`, Pipelines as Code automatically performs a validation for that `dinghyfile`. It also updates the Github status accordingly. If the validation fails, it displays an error:
 
 The following image shows what a user sees if their PR fails the validation:

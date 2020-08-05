@@ -250,6 +250,11 @@ This section describes changes to Front50, Spinnaker's metadata repository:
 **Change**: Front50 now only attempts to sync authorization permissions if Fiat is enabled.
 * **Impact**: Fewer unncessary log messages.
 
+### Pipelines as Code
+
+Pipelines as Code now supports Pull Request (PR) Validation. When a PR is submitted, you can ensure that the `dinghyfile` is valid by enabling this feature.
+
+For more information, see [Pull Request Validation]({{< ref "install-dinghy#pull-request-validations" >}}).
 
 ### Task orchestration
 
