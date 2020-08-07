@@ -58,7 +58,7 @@ deploymentEnvironment:
     abc:
   affinity: {}
   tolerations:
-    spin-clouddriver:
+    clouddriver:
     - key:
       operator:
       value:
@@ -104,7 +104,7 @@ deploymentEnvironment:
       - `memory`: example: 8Gi
       - `cpu`: example: 250m
 - `sidecars`:
-  - `spin-clouddriver`:
+  - `clouddriver`:
     - `name`:
     - `dockerImage`:
     - `port`:
@@ -129,7 +129,7 @@ deploymentEnvironment:
   - key: definition
 - `affinity`: {}
 - `tolerations`:
-  - `spin-clouddriver`:`
+  - `clouddriver`:`
     - `key`:
     - `operator`: Exists, Equal, or DoesNotExist
     - `value`:
