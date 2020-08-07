@@ -48,7 +48,7 @@ From there, you can issue all your [halyard commands](https://www.spinnaker.io/r
 
 ## Run in Kubernetes
 
-Armory Halyard can also be installed as a Kubernetes `StatefulSet`. The advantage of running Halyard in the same cluster as Spinnaker is to get the same network access as Spinnaker itself in locked down some environments.
+Armory Halyard can also be installed as a Kubernetes `StatefulSet`. The advantage of running Halyard in the same cluster as Spinnaker is to get the same network access as Spinnaker itself in some locked down environments.
 
 ### Installing Daemon
 
