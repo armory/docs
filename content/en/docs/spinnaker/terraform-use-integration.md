@@ -30,14 +30,15 @@ To use the stage, perform the following steps:
 5. Configure the Terraform Integration stage.
     The available fields may vary slightly depending on what you configure for the stage:
     * **Basic Settings**
-      * **Terraform Version**:  Terraform version to use. All Terraform stages within a pipeline that modify state (apply, output, destroy) must use the same version.
+      * **Terraform Version**:  Terraform version to use. All Terraform stages within a pipeline that modify state (apply, output, destroy) must use the same version. If you use a remote backend, the minimum supported version is 0.12.0 and you must select the same Terraform version that your Terraform Cloud/Enterprise runs.
       * **Action**: Terraform action to perform. You can select any of the following actions:
-        * **Plan**: The output of the plan command is saved to a base64-encoded Spinnaker artifact and is injected into context.  You can use this artifact with a webhook to send the plan data to an external system or to use it in an `apply` stage. Optionally, you can select **Plan for Destroy** to view what Terraform destroys if you run the Destroy action.
+        * **Plan**: The output of the plan command is saved to a base64-encoded Spinnaker artifact and is injected into context.  You can use this artifact with a webhook to send the plan data to an external system or to use it in an `apply` stage. Optionally, you can select **Plan for Destroy** to view what Terraform destroys if you run the Destroy action. 
+          * For remote backends, if you view a `plan` action in the Terraform Cloud/Enterprise UI, the type of `plan` action that the Terraform Integration performs is a "speculative plan." For more information, see [Speculative Plans](https://www.terraform.io/docs/cloud/run/index.html#speculative-plans).
         * **Apply**: Run `terraform apply`. Optionally, you can ignore state locking. Armory recommends you do not ignore state locking because it can lead to state corruption. Only ignore state locking if you understand the consequences.
         * **Destroy**: Run `terraform destroy`. Optionally, you can ignore state locking. Armory recommends you do not ignore state locking because it can lead to state corruption.  Only ignore state locking if you understand the consequences.
         * **Output**: Run `terraform output`.
       * **Targets**: Scope execution to a certain subset of resources.
-      * **Workspace**: [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html) to use. The workspace gets created if it does not already exist.
+      * **Workspace**: [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html) to use. The workspace gets created if it does not already exist. Fore remote backends, the workspace must be explicit or prefixed. For more information about what that means, see the Terraform documentation about [remote backends](https://www.terraform.io/docs/backends/types/remote.html)
     * **Main Terraform Artifact**
       * **Expected Artifact**: Required. Select or define only one `git/repo` type artifact.
         ![Terraform git repo artifact](/images/terraform-git-repo.png)
@@ -65,6 +66,8 @@ To use the stage, perform the following steps:
     * **Backend Artifact**: Optional. Configuration stored outside of the primary repo that gets used for authenticating to a state backend. For example, if you want to use an S3 artifact for your backend state, specify it in this section.
 
       For the `backendArtifact` and other artifacts, you can replace `github/file` with some other artifact type. For example, if you're using the BitBucket artifact provider, specify `bitbucket/file` and the corresponding artifact account.
+
+      The Terraform Integration supports remote backends [Early Access]({{< ref "release-definitions" >}}). Select a Terraform version that is 0.12.0 or higher when configuring the stage and specify a remote backend in this configuration.
 
 ## Custom Plugins
 

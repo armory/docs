@@ -256,13 +256,58 @@ spec:
       armory:
         terraform:
           enabled: true
+          # Remote backends is an Early Access feature. Do not use it in production. Omit this field if you do not want to use remote backends.
+          remoteBackendSupport: true
+    profiles:
+      deck:
+        # Enables the UI for the Terraform Integration stage
+        settings-local.js: |
+          window.spinnakerSettings.feature.terraform = true;
 ```
+
+This example manifest also enables the Terraform Integration UI and support for remote backends.
 
 **Halyard**
 
 ```
 hal armory terraform enable
 ```
+
+### Remote backends
+
+{{< include "experimental-feature.html" >}}
+
+This Early Access feature is available in Armory 2.AB.XY and later.
+
+The Terraform Integration supports using remote backends provided by Terraform Cloud and Terraform Enterprise.
+
+When using remote backends, keep the following in mind:
+
+* The Terraform stage must use the same Terraform version that your Terraform Cloud/Enterprise workspace runs.
+* The minimum supported Terraform version is 0.12.0.
+* If you view a `plan` action in the Terraform Cloud/Enterprise UI, the type of `plan` action that the Terraform Integration performs is a "speculative plan." For more information, see [Speculative Plans](https://www.terraform.io/docs/cloud/run/index.html#speculative-plans).
+* You cannot save and apply a plan file.
+* You cannot use Named Profiles for authentication for remote backends.
+  
+#### Enable remote backend support
+
+See either the **Halyard** or **Operator** for how to enable remote backend support. Once enabled, end users can use remote backends by configuring the Terraform Integration stage with the following:
+
+* Select a version that is 0.12.0 or later and matches the version that your Terraform Cloud/Enterprise runs.
+* Specify a remote backend.
+
+**Halyard**
+To enable support, add the following config to your `terraformer-local.yml` file in the `.hal/default/profiles` directory:
+
+```
+terraform:
+  remoteBackendSupport: true
+```
+
+**Operator**
+
+See the example manifest in [Enabling the Terraform Integration](#enabling-the-terraform-integration).
+
 
 
 ## Enabling the Terraform Integration UI
@@ -273,20 +318,7 @@ Manually enable the stage UI for Deck:
 
 **Operator**
 
-Edit the `SpinnakerService` manifest to add the following:
-
-```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      deck:
-        settings-local.js: |
-          window.spinnakerSettings.feature.terraform = true;
-```
+See the example manifest in [Enabling the Terraform Integration](#enabling-the-terraform-integration).
 
 **Halyard**
 
@@ -446,7 +478,7 @@ Armory recommends that you enable authorization for your Named Profiles to provi
 
 You can see a demo here: [Named Profiles for Armory Spinnaker Terraform Integration](https://www.youtube.com/watch?v=RYO-b1kyEU0).
 
-{{% alert color=note title="Note" %}}Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/){{% /alert %}}
+{{% alert color=note title="Note" %}}Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/).{{% /alert %}}
 
 #### Halyard
 To start, edit `~/.hal/default/profiles/terraformer-local.yml` and add the following config:
