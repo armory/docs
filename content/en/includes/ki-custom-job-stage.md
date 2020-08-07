@@ -10,4 +10,5 @@ java.lang.IllegalArgumentException: no property containers[0]
 
 No workaround exists.
 
-**Affected versions**: 2.21
+**Affected versions**: 2.21.0
+**Fixed versions**: 2.21.1
