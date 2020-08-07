@@ -82,6 +82,13 @@ Armory has identified and is triaging the following CVEs in Terraformer, the ser
 
 - CVE-2020-15778
 
+## Highlights
+
+This release makes the following improvements:
+
+* Fixes an issue in 2.20.0 where Custom Job Stages fail. For more information, see the [Known Issue]({{< ref "armoryspinnaker_v2-21-0#custom-job-stages" >}}).
+* Improves how the GitHub PR Validation for Pipelines as Code works. If there are no changes to a `dinghyfile`, PR Validation passes.
+
 ## Detailed Updates
 
 ### Bill of Materials
