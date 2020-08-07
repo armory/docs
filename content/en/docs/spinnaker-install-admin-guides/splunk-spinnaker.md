@@ -48,12 +48,12 @@ This section describes how to forward data to Splunk so that you can see data fr
    rest:
      enabled: true
      endpoints:
-       - wrap: true
-         url: "https://<Your-HTTP-Event-Collector-Hostname>:8088/services/collector/event?"
-         headers:
-           Authorization: "Splunk <Your-HTTP-Event-Collector-Token>"
-         template: '{"event":{{event}} }'
-         insecure: true
+     - wrap: true
+       url: "https://<Your-HTTP-Event-Collector-Hostname>:8088/services/collector/event?"
+       headers:
+         Authorization: "Splunk <Your-HTTP-Event-Collector-Token>"
+       template: '{"event":{{event}} }'
+       insecure: true
    ```
    Make the following changes:
    * **`url`**: Replace `<Your-HTTP-Event-Collector-Hostname>` with the IP or Hostname of your configured HTTP Event Collector.  
@@ -79,8 +79,8 @@ spec:
         rest:
           enabled: true
           endpoints:
-            - wrap: true
-            url: "https://<Your-HTTP-Event-Collector-Hostname>:8088/services/collector/event?"
+          - wrap: true
+          url: "https://<Your-HTTP-Event-Collector-Hostname>:8088/services/collector/event?"
           headers:
             Authorization: "Splunk <Your-HTTP-Event-Collector-Token>"
           template: '{"event":{{event}} }'
