@@ -5,19 +5,39 @@ toc_hide: true
 
 ## 08/11/2020 Release Notes
 
+## Known Issues
+
+This release does not include updated permissions for the Operator to manage
+Ingress objects. You can add the following to the role that is created for the
+operator in your cluster:
+
+```yaml
+- apiGroups:
+    - networking.k8s.io
+    - extensions
+  resources:
+    - ingresses
+  verbs:
+    - get
+    - list
+    - watch
+```
+
+This will be addressed in a patch release for the `1.1.x` release line.
+
 ## Highlights
 
 ### Ingress Support
 
-`spec.expose.type: ingress`. When `ingress` is selected, the operator will try find an ingress rule 
-in the same namespace as Spinnaker that point to Gate or Deck. It will then compute these services' hostnames
-using (`spec.rules[].host` or `status.loadBalancer.ingress[0].hostname`).
+`spec.expose.type: ingress`. When `ingress` is selected, the Operator tries to find an ingress rule 
+in the same namespace as Spinnaker that points to Gate or Deck. It will then compute these services' hostnames using either `spec.rules[].host` or `status.loadBalancer.ingress[0].hostname`.
 
 Both `extensions` and `networking.k8s.io` ingresses are supported and queried.
 
-For Gate, the operator also checks for the path and sets up Spinnaker to support relative path.
+For Gate, the Operator also checks for the path and sets up Spinnaker to support relative paths.
+ 
+The following example sets up Spinnaker's UI (Deck) at `http://acme.com` and API (Gate) at `http://acme.com/api`:
 
-e.g. the following will setup Spinnaker's UI (Deck) at http://acme.com and API (Gate) at http://acme.com/api
 ```yaml
 kind: Ingress
 apiVersion: extensions/v1beta1
@@ -42,7 +62,7 @@ status:
       - hostname: acme.com
 ```
 
-Another example with UI (Deck) at https://acme.com and API (Gate) at https://acme.com/api/v1
+This example sets up the UI (Deck) at `https://acme.com` and API (Gate) at `https://acme.com/api/v1`:
 
 ```yaml
 kind: Ingress
@@ -67,34 +87,16 @@ spec:
               servicePort: 9000
 ```
 
-## Known Issues
+## Detailed updates
 
-This release does not include updated permissions for the operator to manage
-Ingress objects. You can add the following to the role that is created for the
-operator in your cluster:
-
-```yaml
-- apiGroups:
-    - networking.k8s.io
-    - extensions
-  resources:
-    - ingresses
-  verbs:
-    - get
-    - list
-    - watch
-```
-
-This will be addressed in a patch release for the `1.1.x` release line.
-
-## Armory Operator
+### Armory Operator
 
 * chore(release): upgrade to oss operator 1.1.0
 * chore(vault): Error messages not capitalized
 * fix(kustomize): Make kustomization.yml more compatible so that it works with `kubectl` and `kustomize`
 * feat(vault): Mount vault's self-signed CA into services
 
-## Spinnaker Operator
+### Spinnaker Operator
 
 * fix(validation): name ports in generated service, declare container ports in manifest
 * fix(accounts): Add Spring profile on specialized services
