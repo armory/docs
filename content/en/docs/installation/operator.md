@@ -175,7 +175,7 @@ There are many more possibilities such as:
 
 ### Secret Management
 
-You can store secrets in one of the [support secret engine](../../spinnaker-install-admin-guides/secrets/secrets/#supported-secret-engines). 
+You can store secrets in one of the [supported secrets engines](../../spinnaker-install-admin-guides/secrets/secrets/#supported-secret-engines). 
 
 #### Kubernetes Secrets
 With the operator, you can also reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker.
