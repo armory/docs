@@ -181,7 +181,7 @@ You can store secrets in one of the [support secret engine](../../spinnaker-inst
 With the operator, you can also reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker.
 
 The format is:
-- `encrypted:k8s!n:<secret name>!k:<secret key>` for string values. These will be added as environment variable to the Spinnaker deployment.
+- `encrypted:k8s!n:<secret name>!k:<secret key>` for string values. This will be added as an environment variable to the Spinnaker deployment.
 - `encryptedFile:k8s!n:<secret name>!k:<secret key>` for file references. Files will come from a volume mount in the Spinnaker deployment.
 
 
