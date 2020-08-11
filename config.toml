@@ -192,12 +192,12 @@ enable = false
 [[params.versions]]
   version = "Latest"
   githubbranch = "master"
-  url = "https://docs.armory.io"
+  url = "https://docs.armory.io/docs"
 
   [[params.versions]]
     version = "v2.20"
     githubbranch = "v2.20"
-    url = "https://v2-20.docs.armory.io/"
+    url = "https://v2-20.docs.armory.io/docs"
 
 [[params.versions]]
   version = "v2.0-2.19"
