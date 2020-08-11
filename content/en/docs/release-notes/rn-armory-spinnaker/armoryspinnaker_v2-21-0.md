@@ -299,8 +299,8 @@ This section describes changes to Deck, Spinnaker's UI:
    ```
    This feature will be on by default in Armory Spinnaker 2.21 (Open Source Spinnaker 1.22).
 
-**Single Artifacts UI**: The standard artifacts UI is now the only available artifacts UI.
-* **Impact**: The flag `legacyArtifactsEnabled` to revert to the legacy artifacts UI is no longer supported and should be removed.
+**Change**: There is now only a single Artifacts UI. The legacy Artifacts UI is no longer available.
+* **Impact**: The flag `legacyArtifactsEnabled` to revert to the legacy Artifacts UI is no longer supported and should be removed from your configs.
 
 
 ## Detailed Updates
