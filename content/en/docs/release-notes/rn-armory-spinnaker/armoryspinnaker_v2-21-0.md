@@ -41,6 +41,8 @@ If you still have any jobs that use the V1 provider, you will encounter an error
 
 ## Known Issues
 
+{{< include "ki-custom-job-stage.md" >}}
+
 #### Security update
 
 We continue to make Spinnaker's security a top priority. Although several CVEs are resolved, the following still exist:
@@ -250,6 +252,11 @@ This section describes changes to Front50, Spinnaker's metadata repository:
 **Change**: Front50 now only attempts to sync authorization permissions if Fiat is enabled.
 * **Impact**: Fewer unncessary log messages.
 
+### Pipelines as Code
+
+Pipelines as Code now supports Pull Request (PR) Validation for GitHub. When a PR is submitted, you can ensure that the `dinghyfile` is valid by enabling this feature.
+
+For more information, see [Pull Request Validation]({{< ref "install-dinghy#pull-request-validations" >}}).
 
 ### Task orchestration
 
@@ -291,6 +298,10 @@ This section describes changes to Deck, Spinnaker's UI:
    window.spinnakerSettings.feature.executionMarkerInformationModal = true;
    ```
    This feature will be on by default in Armory Spinnaker 2.21 (Open Source Spinnaker 1.22).
+
+**Change**: There is now only a single Artifacts UI. The legacy Artifacts UI is no longer available.
+* **Impact**: The flag `legacyArtifactsEnabled` to revert to the legacy Artifacts UI is no longer supported and should be removed from your configs.
+
 
 ## Detailed Updates
 
