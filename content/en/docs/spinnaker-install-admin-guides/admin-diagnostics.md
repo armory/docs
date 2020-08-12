@@ -30,20 +30,20 @@ Generate a unique UUID before adding the information.  You can do this at a numb
 
 Add to your `SpinnakerService.yml` file:
 
-```
+```yaml
 spec:
-    spinnakerConfig:
-        config:
-            armory:
-                  diagnostics:
-                    enabled:    true
-                    uuid:       # Enter uniquely Generated UUID
-                    logging:
-                        enabled:    # true/false to enable
-                        endpoint:   # Enter Endpoint, e.g. https://debug.armory.io/v1/logs
+  spinnakerConfig:
+    config:
+      armory:
+        diagnostics:
+          enabled:    true
+          uuid:       # Enter uniquely Generated UUID
+          logging:
+            enabled:    # true/false to enable
+            endpoint:   # Enter Endpoint, e.g. https://debug.armory.io/v1/logs
 ```
 
-```
+```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
