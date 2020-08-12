@@ -3,10 +3,9 @@ title: Armory Diagnostics
 weight: 999
 ---
 
-When working with our support teams, you might be asked about enabling Armory Diagnostics.  This sends the log and event data from your system to Armory so that we can remotely investigate what might be going on with
-your system, resulting in a faster turnaround on solutions.
+When you engage Armory Support, the support team might ask you about enabling Armory Diagnostics.  This sends the log and event data from the your system to Armory so that the support team can remotely investigate what might be going on with your system, resulting in a faster turnaround on solutions.
 
-**Please note:** UUIDs are not checked for uniqueness.  As a result, if you have two environments and you provide both with the same UUID, the logs sent to Armory will conflict.  Please ensure each environment you have UUIDs created for are unique.  
+**Please note:** UUIDs are not checked for uniqueness.  As a result, if you have two environments and you provide both with the same UUID, the logs sent to Armory will conflict with each other.  Please ensure unique UUIDs for each environment.  
 
 ## Turning on Armory Diagnostics (Halyard)
 
@@ -27,9 +26,9 @@ hal armory diagnostics edit --logging-enabled=false
 You need to  to run `hal deploy apply` after enabling or disabling the diagnostics.
 
 ## Turning on Armory Diagnostics (Operator)
-Before adding the information, please generate a unique UUID.  This can be done at an number of 3rd party websites via a Google Search
+Generate a unique UUID before adding the information.  You can do this at a number of 3rd party websites that you can find via a Google search.
 
-In your SpinnakerService.yml file please add:
+Add to your `SpinnakerService.yml` file:
 
 ```
 spec:
@@ -48,10 +47,11 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-[A discription of diagnostic parameters can be found here] (https://docs.armory.io/docs/operator-reference/armory/#diagnostics-parameters) 
+You can find a description of diagnostic parameters in the "Diagnostics Parameters" section of the Operator [`armory` reference] ({{< ref "armory#diagnostics-parameters" >}}).
 
 ## Migrating Diagnostics to Operator from Halyard
-Follow the same steps as above, but there will be no need to generate a UUID, as you already have one in your Halyard Config.  Please use the same UUID to ensure diagnostics continue.
+
+Follow the same steps as above, but you do not have to generate a UUID, as you already have one in your Halyard config.  Please use the same UUID to ensure diagnostics continue.
 
 ## What gets sent
 
@@ -76,7 +76,7 @@ The Details key maps some very common elements for the event:
 * created -- Timestamp of when the event was created
 * requestHeaders -- HTTP request headers for the internal request
 * source -- The microservice that generated the event (ex. 'clouddriver')
-* type -- An identifier as to what kind of event this was (ex. `orca:pipeline:starting')
+* type -- An identifier as to what kind of event this was (ex. `orca:pipeline:starting`)
 
 The Content section is variable, and depends on what kind of event is being
 tracked.  Here are some of the more common events:
