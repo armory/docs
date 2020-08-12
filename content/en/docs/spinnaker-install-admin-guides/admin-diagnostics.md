@@ -3,12 +3,12 @@ title: Armory Diagnostics
 weight: 999
 ---
 
-## Turning on Armory Diagnostics
-
-When working with our support teams, you might be asked about enabling
-Armory Diagnostics.  This sends the log and event data from your system to
-Armory so that we can remotely investigate what might be going on with
+When working with our support teams, you might be asked about enabling Armory Diagnostics.  This sends the log and event data from your system to Armory so that we can remotely investigate what might be going on with
 your system, resulting in a faster turnaround on solutions.
+
+**Please note:** UUIDs are not checked for uniqueness.  As a result, if you have two environments and you provide both with the same UUID, the logs sent to Armory will conflict.  Please ensure each environment you have UUIDs created for are unique.  
+
+## Turning on Armory Diagnostics (Halyard)
 
 Here's the Halyard command to enable this feature:
 
@@ -26,6 +26,32 @@ hal armory diagnostics edit --logging-enabled=false
 
 You need to  to run `hal deploy apply` after enabling or disabling the diagnostics.
 
+## Turning on Armory Diagnostics (Operator)
+Before adding the information, please generate a unique UUID.  This can be done at an number of 3rd party websites via a Google Search
+
+In your SpinnakerService.yml file please add:
+
+```
+spec:
+    spinnakerConfig:
+        config:
+            armory:
+                  diagnostics:
+                    enabled:    true
+                    uuid:       # Enter uniquely Generated UUID
+                    logging:
+                        enabled:    # true/false to enable
+                        endpoint:   # Enter Endpoint, e.g. https://debug.armory.io/v1/logs
+```
+
+```
+kubectl -n spinnaker apply -f spinnakerservice.yml
+```
+
+[A discription of diagnostic parameters can be found here] (https://docs.armory.io/docs/operator-reference/armory/#diagnostics-parameters) 
+
+## Migrating Diagnostics to Operator from Halyard
+Follow the same steps as above, but there will be no need to generate a UUID, as you already have one in your Halyard Config.  Please use the same UUID to ensure diagnostics continue.
 
 ## What gets sent
 
