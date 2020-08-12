@@ -1,12 +1,10 @@
 ---
 title: Air-Gapped Environments
 weight: 1
-aliases:
-  - /spinnaker-install-admin-guides/air-gapped/
 ---
 If your environment is air-gapped, you have several options for deploying Spinnaker.
 
-An Air-gapped environment is one where any combination of the following conditions are true:
+An air-gapped environment is one where any combination of the following conditions are true:
 - No access to Armory Bill Of Materials (BOM), which are published on S3
 - No ability to pull images from docker.io/armory
 - No ability for engineers to deploy with Halyard from their machines
@@ -103,7 +101,7 @@ spec:
       - name: halconfig
         persistentVolumeClaim:
           claimName: halconfig-pvc
-      ### use configMap/halyard-custom-config 
+      ### use configMap/halyard-custom-config
       - name: halyard-custom-config
         configMap:
           name: halyard-custom-config

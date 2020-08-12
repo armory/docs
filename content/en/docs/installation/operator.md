@@ -1,6 +1,8 @@
 ---
 title: Spinnaker Operator
 weight: 1
+aliases:
+  - /docs/spinnaker/operator/
 ---
 
 Spinnaker Operator is a Kubernetes operator for Spinnaker that makes it easy to install, deploy, and upgrade any version of Spinnaker.
@@ -93,7 +95,7 @@ spec:
       version: 2.21.0
 ```
 
-See [the full format]({{< ref "operator-reference" >}}). 
+See [the full format]({{< ref "operator-reference" >}}).
 
 
 ### Upgrading Spinnaker
@@ -172,7 +174,7 @@ kustomize build deploy/spinnaker/kustomize | kubectl -n spinnaker apply -f -
 There are many more possibilities:
 - managing manifests of MySQL instances
 - ensuring the same configuration is used between Staging and Production Spinnaker
-- splitting accounts in their own kustomization for an easy to maintain configuration 
+- splitting accounts in their own kustomization for an easy to maintain configuration
 
 See this [repo](https://github.com/armory/spinnaker-kustomize-patches) for examples of common setups that you can adapt to your needs.
 

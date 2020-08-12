@@ -7,6 +7,7 @@ description: |
 aliases:
   - /install_guide/install/
   - /install-guide/getting_started/
+  - /docs/spinnaker/install/
 ---
 
 Armory supports several methods to install Spinnaker:

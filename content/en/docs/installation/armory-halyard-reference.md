@@ -2,7 +2,7 @@
 title: Armory Halyard Reference
 weight: 4
 aliases:
-  - /spinnaker/armory_halyard
+  - /spinnaker/armory_halyard/
 ---
 
 ## hal
