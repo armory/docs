@@ -47,7 +47,7 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-You can find a description of diagnostic parameters in the "Diagnostics Parameters" section of the Operator [`armory` reference] ({{< ref "armory#diagnostics-parameters" >}}).
+You can find a description of diagnostic parameters in the "Diagnostics Parameters" section of the Operator [`armory` reference]({{< ref "armory#diagnostics-parameters" >}}).
 
 ## Migrating Diagnostics to Operator from Halyard
 
