@@ -9,7 +9,7 @@ Armory Halyard is a versatile command line interface (CLI) to configure and depl
 
 Running Armory Halyard in Docker is convenient and portable. The daemon will need access to files and environment variables, such as:
 - Halyard's main configuration directory - make sure the daemon has write access to that directory
-- kubeconfig file for Spinnaker's installation cluster (usually `~/.kube/config`)
+- `kubeconfig` file for Spinnaker's installation cluster (usually `~/.kube/config`)
 - AWS profiles (usually `~/.aws`) if access to AWS is needed
 - Any other configuration files that reside on the Docker host
 

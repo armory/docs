@@ -29,8 +29,8 @@ Before you start, ensure the following requirements are met:
 ## Operator Install
 
 Operator has two distinct modes:
-- **Basic**: Operator in basic mode installs Spinnaker into a single namespace without `ValidatingAdmissionWebhook` for doing preflight checks.
-- **Cluster**: Operator in cluster mode installs Spinnaker across namespaces with `ValidatingAdmissionWebhook` for doing preflight checks. This mode requires a `ClusterRole`.
+- **Basic**: Installs Spinnaker into a single namespace. This mode does not perform pre-flight checks before applying a manifest.
+- **Cluster**: Installs Spinnaker across namespaces with pre-flight checks to prevent common misconfigurations. This mode requires a `ClusterRole`.
 
 Pick a release from [https://github.com/armory-io/spinnaker-operator/releases](https://github.com/armory-io/spinnaker-operator/releases):
 
@@ -93,7 +93,7 @@ spec:
       version: 2.21.0
 ```
 
-See [the full format](../operator-reference)
+See [the full format]({{< ref "operator-reference" >}}). 
 
 
 ### Upgrading Spinnaker
@@ -159,35 +159,38 @@ kubectl -n <namespace> delete spinnakerservice spinnaker
 ## Managing Configuration
 
 ### Kustomize
-Because Spinnaker's configuration is now a Kubernetes manifests, we can manage `SpinnakerService` and related manifests in a consistent and repeatable way with [kustomize](https://kustomize.io/).
 
-An example can be found [here](https://github.com/armory-io/spinnaker-operator/tree/master/deploy/spinnaker/kustomize).
+Because Spinnaker's configuration is now a Kubernetes manifests, you can manage `SpinnakerService` and related manifests in a consistent and repeatable way with [kustomize](https://kustomize.io/).
+
+See the example [here](https://github.com/armory-io/spinnaker-operator/tree/master/deploy/spinnaker/kustomize).
 
 ```bash
 kubectl create ns spinnaker
 kustomize build deploy/spinnaker/kustomize | kubectl -n spinnaker apply -f -
 ```
 
-There are many more possibilities such as:
+There are many more possibilities:
 - managing manifests of MySQL instances
 - ensuring the same configuration is used between Staging and Production Spinnaker
 - splitting accounts in their own kustomization for an easy to maintain configuration 
 
+See this [repo](https://github.com/armory/spinnaker-kustomize-patches) for examples of common setups that you can adapt to your needs.
+
 ### Secret Management
 
-You can store secrets in one of the [supported secrets engines](../../spinnaker-install-admin-guides/secrets/secrets/#supported-secret-engines). 
+You can store secrets in one of the [supported secret engine](/docs/spinnaker-install-admin-guides/secrets/secrets/#supported-secret-engines).
 
-#### Kubernetes Secrets
-With the operator, you can also reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker.
+#### Kubernetes Secret
+With the Operator, you can also reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker.
 
 The format is:
-- `encrypted:k8s!n:<secret name>!k:<secret key>` for string values. This will be added as an environment variable to the Spinnaker deployment.
-- `encryptedFile:k8s!n:<secret name>!k:<secret key>` for file references. Files will come from a volume mount in the Spinnaker deployment.
+- `encrypted:k8s!n:<secret name>!k:<secret key>` for string values. These are added as environment variable to the Spinnaker deployment.
+- `encryptedFile:k8s!n:<secret name>!k:<secret key>` for file references. Files come from a volume mount in the Spinnaker deployment.
 
 
 #### Custom Halyard Configuration
 
-To override Halyard's configuration, create a `ConfigMap` with the configuration changes you need. For example, if using [secrets management with Vault]({{< ref "secrets-vault" >}}), Halyard and Operator containers will need your Vault configuration:
+To override Halyard's configuration, create a `ConfigMap` with the configuration changes you need. For example, if using [secrets management with Vault]({{< ref "secrets-vault" >}}), Halyard and Operator containers need your Vault configuration:
 
 ```yaml
 apiVersion: v1
@@ -205,7 +208,7 @@ data:
         authMethod: KUBERNETES
 ```
 
-You can then mount it in the operator deployment and make it available to the Halyard and Operator containers:
+Then, you can mount it in the Operator deployment and make it available to the Halyard and Operator containers:
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -244,16 +247,16 @@ A change to Spinnaker's configuration follows:
 
 > Pull Request --> Approval --> Configuration Merged --> Pipeline Trigger in Spinnaker --> Deploy Updated SpinnakerService
 
-It becomes easily auditable and reversible.
+This process is auditable and reversible.
 
-# Accounts CRD (Experimental)
+## Accounts CRD (Experimental)
 
-Operator introduces a new CRD for Spinnaker accounts. `SpinnakerAccount` is defined in an object - separate from the main Spinnaker config - so its creation and maintenance can easily be automated.
+Operator has a  CRD for Spinnaker accounts. `SpinnakerAccount` is defined in an object - separate from the main Spinnaker config - so its creation and maintenance can be automated.
 
 To read more about this CRD, see [SpinnakerAccount](https://github.com/armory/spinnaker-operator/blob/master/doc/spinnaker-accounts.md).
 
 
-# Migrating from Halyard to Operator
+## Migrating from Halyard to Operator
 
 If you have a current Spinnaker instance installed with Halyard, use this guide
 to migrate existing configuration to Operator.
