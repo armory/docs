@@ -1,6 +1,8 @@
 ---
 title: Armory Halyard
 weight: 3
+description: >
+  CLI tool for configuring, deploying, and managing Spinnaker
 ---
 
 Armory Halyard is a versatile command line interface (CLI) to configure and deploy Spinnaker. It is made of a CLI that connects to a daemon.

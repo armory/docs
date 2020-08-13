@@ -1,11 +1,13 @@
 ---
 title: Spinnaker Operator
 weight: 1
+description: >
+  Spinnaker Operator is a Kubernetes operator for Spinnaker that makes it easy to install, deploy, and upgrade any version of Spinnaker.
 aliases:
   - /docs/spinnaker/operator/
 ---
 
-Spinnaker Operator is a Kubernetes operator for Spinnaker that makes it easy to install, deploy, and upgrade any version of Spinnaker.
+Using Armory Operator, you can: 
 
 - Manage Spinnaker with `kubectl` like other applications.
 - Expose Spinnaker via `LoadBalancer` or `Ingress` (optional)
@@ -16,7 +18,7 @@ Spinnaker Operator is a Kubernetes operator for Spinnaker that makes it easy to 
 - Define Kubernetes accounts in `SpinnakerAccount` objects and store kubeconfig inline, in Kubernetes secrets, in s3, or GCS **(Experimental)**.
 - Deploy Spinnaker in an Istio controlled cluster **(Experimental)**
 
-> We refer here to the Armory Operator which installs Armory Spinnaker. The open source operator installs open source Spinnaker and can be found [here](https://github.com/armory/spinnaker-operator).
+> We refer here to the Armory Operator, which installs Armory Spinnaker. The open source operator installs open source Spinnaker and can be found [here](https://github.com/armory/spinnaker-operator).
 
 ## Requirements
 

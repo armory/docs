@@ -1,6 +1,8 @@
 ---
 title: Armory Halyard Reference
 weight: 4
+description: >
+  Command reference with examples and Operator equivalents
 aliases:
   - /docs/spinnaker/armory_halyard/
 ---

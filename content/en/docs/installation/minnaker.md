@@ -1,6 +1,8 @@
 ---
 title: Minnaker
 weight: 4
+description: >
+  Minnaker is an all-in-one, lightweight Spinnaker environment.
 ---
 
 Armory Minnaker is an easy to use installation script that leverages the power of **Kubernetes** with the simplicity of a _Virtual Machine_.  The Kubernetes environmnent that gets installed on your behalf is based on [Rancher's K3s](https://k3s.io/).  You do not need to know how to setup Kubernetes! Minnaker takes care of the hard parts for you, allowing you to get up and running with Spinnaker in under 10 minutes.  Check out [our video](https://youtu.be/jg8vJEzcuAA) on running Spinnaker across all of the public clouds including VMWare Fusion locally.  
