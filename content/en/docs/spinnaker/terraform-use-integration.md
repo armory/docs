@@ -30,7 +30,7 @@ To use the stage, perform the following steps:
 5. Configure the Terraform Integration stage.
     The available fields may vary slightly depending on what you configure for the stage:
     * **Basic Settings**
-      * **Terraform Version**:  Terraform version to use. All Terraform stages within a pipeline that modify state (apply, output, destroy) must use the same version. If you use a remote backend, the minimum supported version is 0.12.0 and you must select the same Terraform version that your Terraform Cloud/Enterprise runs.
+      * **Terraform Version**:  Terraform version to use. All Terraform stages within a pipeline that modify state (apply, output, destroy) must use the same version. If you use the remote backend, the minimum supported version is 0.12.0 and you must select the same Terraform version that your Terraform Cloud/Enterprise is configured to use.
       * **Action**: Terraform action to perform. You can select any of the following actions:
         * **Plan**: The output of the plan command is saved to a base64-encoded Spinnaker artifact and is injected into context.  You can use this artifact with a webhook to send the plan data to an external system or to use it in an `apply` stage. Optionally, you can select **Plan for Destroy** to view what Terraform destroys if you run the Destroy action. 
           * For remote backends, if you view a `plan` action in the Terraform Cloud/Enterprise UI, the type of `plan` action that the Terraform Integration performs is a "speculative plan." For more information, see [Speculative Plans](https://www.terraform.io/docs/cloud/run/index.html#speculative-plans).
@@ -38,7 +38,7 @@ To use the stage, perform the following steps:
         * **Destroy**: Run `terraform destroy`. Optionally, you can ignore state locking. Armory recommends you do not ignore state locking because it can lead to state corruption.  Only ignore state locking if you understand the consequences.
         * **Output**: Run `terraform output`.
       * **Targets**: Scope execution to a certain subset of resources.
-      * **Workspace**: [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html) to use. The workspace gets created if it does not already exist. Fore remote backends, the workspace must be explicit or prefixed. For more information about what that means, see the Terraform documentation about [remote backends](https://www.terraform.io/docs/backends/types/remote.html)
+      * **Workspace**: [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html) to use. The workspace gets created if it does not already exist. For remote backends, the workspace must be explicit or prefixed. For more information about what that means, see the Terraform documentation about [remote backends](https://www.terraform.io/docs/backends/types/remote.html)
     * **Main Terraform Artifact**
       * **Expected Artifact**: Required. Select or define only one `git/repo` type artifact.
         ![Terraform git repo artifact](/images/terraform-git-repo.png)

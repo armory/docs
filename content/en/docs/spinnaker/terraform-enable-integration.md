@@ -297,7 +297,8 @@ See either the **Halyard** or **Operator** for how to enable remote backend supp
 * Specify a remote backend.
 
 **Halyard**
-To enable support, add the following config to your `terraformer-local.yml` file in the `.hal/default/profiles` directory:
+
+To enable support, manually add the following config to your `terraformer-local.yml` file in the `.hal/default/profiles` directory:
 
 ```
 terraform:
