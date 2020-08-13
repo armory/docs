@@ -241,14 +241,49 @@ Armory recommends using MySQL as the backing store when possible for production 
 
 ![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-Armory supports using the following as trigger Spinnaker pipelines:
+Armory supports using the following methods to trigger Spinnaker pipelines:
 
 | Provider   | Armory Enterprise      | Notes |
 |------------|------------------------|-------|
-| AWS Pub/Sub      | All supported versions |       |
-| GitHub Webhook  | All supported versions |       |
+| Artifactory        | All supported versions |       |
+| AWS CodeBuild      | All supported versions |       |
+| AWS Pub/Sub        | All supported versions |       |
+| Cron               | All supported versions |       |
+| Docker             | All supported versions |       |
+| Git                | All supported versions |       |
+| GitHub Webhook     | All supported versions |       |
+| Google Cloud Build | All supported versions |       |
 | Google Pub/Sub     | All supported versions |       |
+| Jenkins Job        | All supported versions |       |
+| Webhook            | All supported versions |       |
+| Manual             | All supported versions |       |
+| TravisCI Job       | All supported versions |       |
+| Wercker            | All supported versions |       |
+| Quay               | All supported versions |       |
+| Nexus              | All supported versions |       |
+| GitLab             | All supported versions |       |
 
+## Baking Images
+
+![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+
+Armory supports baking images in multiple providers
+
+| Provider   | Armory Enterprise      | Notes |
+|------------|------------------------|-------|
+| AWS | All supported versions |      |
+| GCE | All supported versions |      |
+| OCI | All supported versions |      |
+
+## Templating Manifests
+
+![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+
+Armory supporting Templating Manifests
+| Provider   | Armory Enterprise      | Notes |
+|------------|------------------------|-------|
+| Helm 2 | All supported versions |      |
+| Helm 3 | 2.19.x or later |      |
 
 
 ## Secret stores
