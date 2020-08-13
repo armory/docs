@@ -1,0 +1,20 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Check links in modified files
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on: pull_request
+jobs:
+  markdown-link-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        fetch-depth: 1
+    - uses: gaurav-nelson/github-action-markdown-link-check@v1
+      with:
+        use-quiet-mode: 'yes' # Specify yes to only show errors in output.#
+        use-verbose-mode: 'yes' # Specify yes to show detailed HTTP status for checked links.#
+        check-modified-files-only: 'yes' # Use this variable to only check modified markdown files instead of checking all markdown files. #
+        max-depth: 1
