@@ -1,7 +1,7 @@
 ---
 title: Installing Spinnaker in Kubernetes
 linkTitle: Install in Kubernetes
-weight: 5
+weight: 3
 aliases:
   - /spinnaker-install-admin-guides/install-on-k8s/
 ---

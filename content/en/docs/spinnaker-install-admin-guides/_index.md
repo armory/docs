@@ -1,7 +1,7 @@
 ---
-title: "Installation and Administration Guides"
-linkTitle: "Install and Admin"
-weight: 3
+title: "Administration Guides"
+linkTitle: "Administration"
+weight: 4
 description: >
-  Installation and Administration Guides
+  Administration Guides
 ---

@@ -1,7 +1,7 @@
 ---
 title: Installing Spinnaker in AWS
 linkTitle: "Install in AWS"
-weight: 3
+weight: 4
 aliases:
   - /spinnaker_install_admin_guides/install_on_eks/
   - /spinnaker_install_admin_guides/install-on-eks/

@@ -61,6 +61,17 @@
   status = 301
   force = false
 
+[[redirects]]
+  from =  "/docs/spinnaker-install-admin-guides/installation/*"
+  to = "/docs/installation/guide/:splat"
+  status = 301
+  force = false
+
+[[redirects]]
+  from =  "/docs/operator-reference/*"
+  to = "/docs/installation/operator-reference/:splat"
+  status = 301
+  force = false
 
 [[plugins]]
 package = "@netlify/plugin-sitemap"

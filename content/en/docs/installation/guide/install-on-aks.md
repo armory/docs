@@ -1,7 +1,7 @@
 ---
 title: Installing Spinnaker in AKS
 linkTitle: "Install in AKS"
-weight: 2
+weight: 5
 aliases:
   - /spinnaker_install_admin_guides/install_on_aks/
   - /spinnaker_install_admin_guides/install-on-aks/
