@@ -466,9 +466,9 @@ The migration process from Halyard to Operator can be completed in 7 steps:
 
 ## Uninstalling Operator
 
-Uninstalling the operator involves deleting its deployment and `SpinnakerService` CRD. When you delete the CRD, any Spinnaker installation created by Operator will also be deleted. This occurs because the CRD is set as the owner of the Spinnaker resources, so they get garbage collected.
+Uninstalling the Operator involves deleting its deployment and `SpinnakerService` CRD. When you delete the CRD, any Spinnaker installation created by Operator gets deleted. This occurs because the CRD is set as the owner of the Spinnaker resources, so they get garbage collected.
 
-There are two ways in which you can remove this ownership relationship. so that Spinnaker is not deleted when deleting the operator: [replacing Operator with Halyard](#replacing-operator-with-halyard) or [removing Operator ownership of Spinnaker resources](#removing-operator-ownership-from-spinnaker-resources).
+There are two ways in which you can remove this ownership relationship so that Spinnaker is not deleted when deleting the Operator: [replacing Operator with Halyard](#replacing-operator-with-halyard) or [removing Operator ownership of Spinnaker resources](#removing-operator-ownership-from-spinnaker-resources).
 
 ### Replacing Operator with Halyard
 
