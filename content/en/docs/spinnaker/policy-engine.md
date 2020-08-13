@@ -308,7 +308,7 @@ kubectl create configmap manual-judgment --from-file=manual-judgment.rego
 After you create the policy ConfigMap, apply a label to it:
 
 ```
-kubectl label configmap manual-judgment openpolicyagent.org/policy=rego
+kubectl label configmap manual-judgment openpolicyagent.org/policy=rego -n opa
 ```
 
 This label corresponds to the label you add in the [example ConfigMap](#using-configmaps-for-opa-policies). The label in the ConfigMap for creating an OPA server configures the OPA server and, by extension, the Policy Engine to only check ConfigMaps that have the corresponding label. This improves performance.
