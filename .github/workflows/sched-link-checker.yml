@@ -1,6 +1,6 @@
 name: Check Site links
 
-on: 
+on:
   push:
     branches:
     - master
@@ -17,3 +17,4 @@ jobs:
       with:
         use-quiet-mode: 'yes'
         use-verbose-mode: 'yes'
+        config-file: 'sched-link-config.json'
