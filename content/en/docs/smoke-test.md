@@ -338,3 +338,8 @@ Permissions
 
 ## Bad links
 see [bad](https://www.aimee-sucks.com)
+
+```yaml
+key: https://<company-url>/spinnaker/login
+```
+
