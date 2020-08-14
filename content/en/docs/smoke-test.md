@@ -337,7 +337,8 @@ Permissions
 </table>
 
 ## Bad links
-see [bad](https://www.aimee-sucks.com)
+see [good](https://www.google.com)
+
 
 ```yaml
 key: https://<company-url>/spinnaker/login
