@@ -24,21 +24,6 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 ![Armory](/images/armory.svg) The feature or parts of it are available in Armory Enterprise.
 
-## Spinnaker Operator
-
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
-
-[Spinnaker Operator](https://github.com/armory/spinnaker-operator) and
-[Armory Operator]({{< ref "operator" >}}) provide Spinnaker users with the ability
-to install, update, and maintain their clusters via a Kubernetes operator.
-
-| Feature   | Version | Armory Version | Notes                  |
-|-----------|---------|---------------------------|------------------------|
-| Install, update, and maintain Spinnaker clusters | All supported versions | All supported versions    | |
-| Automatically determine Deck/Gate URL configuration if Ingress objects are defined | 1.1.0 or later | 1.1.1 or later | Ingress objects must be defined in the same namespace where Spinnaker lives. |
-| Support definition of all Halyard configuration options    | All supported versions    | All supported versions | |
-| In cluster mode, validate configuration before apply | All supported versions    | All supported versions | Does not work when installed in "basic" mode. Does not guarantee a valid configuration, but does check for most common misconfigurations. |
-
 ## Application metrics for Canary
 
 ![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
@@ -330,3 +315,18 @@ The following table lists the secret stores that Armory Enterprise supports for 
 | [Encrypted S3 Bucket]({{< ref "secrets-s3" >}})  | All supported versions |                                      |
 | [Kubernetes secrets]({{< ref "secrets-kubernetes" >}})   | All supported versions | Spinnaker Operator based deployments |
 | [Vault]({{< ref "secrets-vault" >}})                | All supported versions | Armory Enterprise only                 |
+
+## Spinnaker Operator
+
+![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+
+[Spinnaker Operator](https://github.com/armory/spinnaker-operator) and
+[Armory Operator]({{< ref "operator" >}}) provide Spinnaker users with the ability
+to install, update, and maintain their clusters via a Kubernetes operator.
+
+| Feature   | Version | Armory Version | Notes                  |
+|-----------|---------|---------------------------|------------------------|
+| Install, update, and maintain Spinnaker clusters | All supported versions | All supported versions    | |
+| Automatically determine Deck/Gate URL configuration if Ingress objects are defined | 1.1.0 or later | 1.1.1 or later | Ingress objects must be defined in the same namespace where Spinnaker lives. |
+| Support definition of all Halyard configuration options    | All supported versions    | All supported versions | |
+| In cluster mode, validate configuration before apply | All supported versions    | All supported versions | Does not work when installed in "basic" mode. Does not guarantee a valid configuration, but does check for most common misconfigurations. |
