@@ -8,7 +8,7 @@ aliases:
 ---
 
 {{% alert title="Warning" color="warning" %}}
-Plugins are an experimental feature in Armory Spinnaker 2.20.3 (Spinnaker 1.20.6). Please see the [Plugins User Guide]<https://spinnaker.io/guides/user/plugins> for a detailed explanation of how to add and configure plugins. The examples in the _Plugins User Guide_ use Halyard, but the concepts apply to plugins added using Operator.
+Plugins are an experimental feature in Armory Spinnaker 2.20.3 (Spinnaker 1.20.6). Please see the [Plugins User Guide](https://spinnaker.io/guides/user/plugins) for a detailed explanation of how to add and configure plugins. The examples in the _Plugins User Guide_ use Halyard, but the concepts apply to plugins added using Operator.
 {{% /alert %}}
 
 ## Parameters
