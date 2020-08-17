@@ -12,6 +12,7 @@ Images links to test link checker
 ![Architecture Diagram](/images/install_admin_guides_SpinnakerArchitecture.png)
 
 
+
 {{% pageinfo %}}
 This is a placeholder page. Replace it with your own content.
 {{% /pageinfo %}}
