@@ -67,7 +67,7 @@ To use the stage, perform the following steps:
 
       For the `backendArtifact` and other artifacts, you can replace `github/file` with some other artifact type. For example, if you're using the BitBucket artifact provider, specify `bitbucket/file` and the corresponding artifact account.
 
-      The Terraform Integration supports remote backends [Early Access]({{< ref "release-definitions" >}}). Select a Terraform version that is 0.12.0 or higher when configuring the stage and specify a remote backend in this configuration.
+      The Terraform Integration supports remote backends as an [Early Access]({{< ref "release-definitions" >}}) feature. Select a Terraform version that is 0.12.0 or higher when configuring the stage. Then, you can use Terraform code that references a remote backend.
 
 ## Custom Plugins
 

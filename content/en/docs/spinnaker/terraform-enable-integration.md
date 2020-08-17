@@ -275,7 +275,7 @@ hal armory terraform enable
 
 ### Remote backends
 
-{{< include "experimental-feature.html" >}}
+{{< include "early-access-feature.html" >}}
 
 This Early Access feature is available in Armory 2.AB.XY and later.
 
@@ -380,6 +380,7 @@ The Terraform integration supports multiple types of credentials for Named Profi
 * AWS
 * SSH
 * Static
+* Terraform remote backend
 
 If you don't see a credential that suits your use case, [let us know](https://feedback.armory.io/feature-requests)!
 
@@ -436,6 +437,19 @@ Use the `static` credential kind to provide any arbitrary key/value pair that is
       name: AWS_REGION
       value: us-west-2
 ```
+
+**Terraform remote backend**
+
+Use the `tfc` credential kind to provide authentication to remote Terraform backends.
+
+```yaml
+- name: milton-tfc # Unique name for the profile. Shows up in Deck.
+  variables:
+  - kind: tfc
+    options: 
+
+
+
 
 ### Configuring a Named Profile
 
