@@ -94,7 +94,48 @@ Create a secret in Vault of type JSON with contents specific for your accounts:
 }
 ```
 
-## Update spinnakerconfig.yml
+## Update spinnakerconfig.yml and redeploy Spinnaker
+
+If your secret is at `spinnaker/clouddriver`, then your backend will be `spinnaker` and your `default-key` will be `clouddriver`.
+
+Methods for accessing Vault other than by token are available. See the [Spring Cloud Config Server documentation](https://cloud.spring.io/spring-cloud-static/spring-cloud-config/2.2.1.RELEASE/reference/html/#vault-backend) for more information.
+
+**Operator**
+
+In `SpinnakerService` manifest:
+
+```yaml
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    files:
+      profiles__spinnakerconfig.yml: |
+        spring:
+          profiles:
+            include: vault
+          cloud:
+            config:
+              server:
+                vault:
+                  host: <YOUR VAULT IP OR HOSNAME>
+                  port: 8200
+                  backend: <YOUR VAULT SECRET ENGINE>
+                  kvVersion: 2
+                  scheme: http
+                  default-key: <YOUR VAULT SECRET NAME>
+                  token: <YOUR VAULT ACCESS TOKEN>
+```
+
+Then run the following to deploy the changes:
+
+```bash
+kubectl -n spinnaker apply -f spinnakerservice.yml
+```
+
+**Halyard**
 
 Create or update the `spinnakerconfig.yml` file, which is normally in `.hal/default/profiles`, with the following content:
 
@@ -115,13 +156,7 @@ spring:
           token: <YOUR VAULT ACCESS TOKEN>
 ```
 
-If your secret is at `spinnaker/clouddriver`, then your backend will be `spinnaker` and your `default-key` will be `clouddriver`.
-
-Methods for accessing Vault other than by token are available. See the [Spring Cloud Config Server documentation](https://cloud.spring.io/spring-cloud-static/spring-cloud-config/2.2.1.RELEASE/reference/html/#vault-backend) for more information.
-
-## Redeploy Spinnaker
-
-You need to redeploy Spinnaker after making the changes to `spinnakerconfig.yml`. Do a `hal deploy apply` and wait for all pods to be running and ready.
+Then run `hal deploy apply` to deploy the changes.
 
 ## Check Spinnaker for new accounts
 
