@@ -68,34 +68,34 @@ You need to configure a `deck-proxy` in Gate if your plugin has a Deck component
 
  ```yaml
  # spec.spinnakerConfig.profiles - This section contains the YAML of each service's profile
-     profiles:
-       clouddriver: {} # is the contents of ~/.hal/default/profiles/clouddriver.yml
-       # deck has a special key "settings-local.js" for the contents of settings-local.js
-       deck:
-         # settings-local.js - contents of ~/.hal/default/profiles/settings-local.js
-         # Use the | YAML symbol to indicate a block-style multiline string
-         settings-local.js: |
-           window.spinnakerSettings.feature.kustomizeEnabled = true;
-           window.spinnakerSettings.feature.artifactsRewrite = true;
-       echo: {}    # is the contents of ~/.hal/default/profiles/echo.yml
-       fiat: {}    # is the contents of ~/.hal/default/profiles/fiat.yml
-       front50: {} # is the contents of ~/.hal/default/profiles/front50.yml
-       gate:
-         spinnaker:
-           extensibility:
-             deck-proxy:
-               enabled: true
-               plugins:
-                 <plugin-name>
-                   enabled: true
-                   version: <version>
-               repositories:
-                 <repository-name>:
-                   url: <url-to-repositories.json-or-plugins.json>
-       igor: {}    # is the contents of ~/.hal/default/profiles/igor.yml
-       kayenta: {} # is the contents of ~/.hal/default/profiles/kayenta.yml
-       orca: {}    # is the contents of ~/.hal/default/profiles/orca.yml
-	 ```
+profiles:
+ clouddriver: {} # is the contents of ~/.hal/default/profiles/clouddriver.yml
+ # deck has a special key "settings-local.js" for the contents of settings-local.js
+ deck:
+   # settings-local.js - contents of ~/.hal/default/profiles/settings-local.js
+   # Use the | YAML symbol to indicate a block-style multiline string
+   settings-local.js: |
+     window.spinnakerSettings.feature.kustomizeEnabled = true;
+     window.spinnakerSettings.feature.artifactsRewrite = true;
+ echo: {}    # is the contents of ~/.hal/default/profiles/echo.yml
+ fiat: {}    # is the contents of ~/.hal/default/profiles/fiat.yml
+ front50: {} # is the contents of ~/.hal/default/profiles/front50.yml
+ gate:
+   spinnaker:
+     extensibility:
+       deck-proxy:
+         enabled: true
+         plugins:
+           <plugin-name>
+             enabled: true
+             version: <version>
+         repositories:
+           <repository-name>:
+             url: <url-to-repositories.json-or-plugins.json>
+ igor: {}    # is the contents of ~/.hal/default/profiles/igor.yml
+ kayenta: {} # is the contents of ~/.hal/default/profiles/kayenta.yml
+ orca: {}    # is the contents of ~/.hal/default/profiles/orca.yml
+```
 
 ### Example
 
@@ -139,8 +139,4 @@ spec:
               examplePluginsRepo:
                 url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
 ```
-
-
-
-
 
