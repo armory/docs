@@ -15,23 +15,32 @@ Plugins are an experimental feature in Armory Spinnaker 2.20.3 (Spinnaker 1.20.6
 
 **spec.spinnakerConfig.config.spinnaker.extensibility.plugins**
 
+Put plugin declaration and configuration at the same level as `version` in your `SpinnakerService.yml` file.
+
 ```yaml
-spinnaker:
-    extensibility:
-      plugins:
-        <plugin-name>:
-          id:
-          enabled:
-          version:
-          extensions:
-            <extension-name>:
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      version:
+      spinnaker:
+        extensibility:
+          plugins:
+            <plugin-name>:
               id:
               enabled:
-              config: {}
-      repositories:
-        <repository-name>:
-          id: <same-as-repository-name>
-          url: <url-to-repositories.json-or-plugins.json>
+              version:
+              extensions:
+                <extension-name>:
+                  id:
+                  enabled:
+                  config: {}
+          repositories:
+            <repository-name>:
+              id:
+              url:
 ```
 
 - `plugins`:
@@ -50,6 +59,10 @@ spinnaker:
     - `url`: URL to `repositories.json` or `plugins.json`
 
 See the Plugin Users Guide _Add a plugin repository using Halyard_ [section](https://spinnaker.io/guides/user/plugins/#add-a-plugin-repository-using-halyard) for when you can use `plugins.json` instead of `repositories.json`.
+
+Note: If the plugin extends a single Spinnaker service, you can put the plugin configuration in the `profiles: <service>` section. This approach is primarily for plugin development rather than production deployment.
+
+### Deck proxy
 
 You need to configure a `deck-proxy` in Gate if your plugin has a Deck component. Locate the `profiles` section in your `SpinnakerService.yml` and add the proxy information to the `gate` section.
 
