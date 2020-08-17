@@ -17,4 +17,5 @@ jobs:
         use-quiet-mode: 'yes' # Specify yes to only show errors in output.#
         use-verbose-mode: 'yes' # Specify yes to show detailed HTTP status for checked links.#
         check-modified-files-only: 'yes' # Use this variable to only check modified markdown files instead of checking all markdown files. #
+        config-file: 'sched-link-config.json'
         max-depth: 1
