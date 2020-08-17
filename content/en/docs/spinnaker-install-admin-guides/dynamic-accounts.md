@@ -96,7 +96,7 @@ Create a secret in Vault of type JSON with contents specific for your accounts:
 
 ## Update spinnakerconfig.yml and redeploy Spinnaker
 
-If your secret is at `spinnaker/clouddriver`, then your backend will be `spinnaker` and your `default-key` will be `clouddriver`.
+If your secret is at `spinnaker/clouddriver`, then your backend is `spinnaker` and your `default-key` is `clouddriver`.
 
 Methods for accessing Vault other than by token are available. See the [Spring Cloud Config Server documentation](https://cloud.spring.io/spring-cloud-static/spring-cloud-config/2.2.1.RELEASE/reference/html/#vault-backend) for more information.
 
@@ -129,7 +129,7 @@ spec:
                   token: <YOUR VAULT ACCESS TOKEN>
 ```
 
-Then run the following to deploy the changes:
+Then, run the following command to deploy the changes:
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
@@ -137,7 +137,7 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 
 **Halyard**
 
-Create or update the `spinnakerconfig.yml` file, which is normally in `.hal/default/profiles`, with the following content:
+Create or update the `spinnakerconfig.yml` file (located in `.hal/default/profiles` by default), with the following content:
 
 ```yaml
 spring:
@@ -156,7 +156,7 @@ spring:
           token: <YOUR VAULT ACCESS TOKEN>
 ```
 
-Then run `hal deploy apply` to deploy the changes.
+Then, run `hal deploy apply` to deploy the changes.
 
 ## Check Spinnaker for new accounts
 
