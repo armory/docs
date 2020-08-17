@@ -67,20 +67,34 @@ Artifacts are remote, deployable resources in Spinnaker. Armory supports the fol
 
 | Feature   | Version | Armory Enterprise version | Notes                  |
 |-----------|---------|---------------------------|------------------------|
-| BitBucket |         | All supported versions    |                        |
+| BitBucket Cloud |         | All supported versions    |                        |
+| BitBucket Server |         | Previous two major versions    |                        |
 | GitHub    |         | All supported versions    | Enterprise and vanilla |
+| GitLab    |         | All supported versions    | |
 
 **Features**
 
 | Feature                                                                           | Armory Enterprise      | Notes |
 |-----------------------------------------------------------------------------------|------------------------|-------|
+| Modules                                                               | All supported versions | Templatize and re-use pipeline snippets across applications and teams |
 | Slack notifications                                                               | All supported versions |       |
+| Fiat service account integration                                                               | All supported versions |       |
+| Webhook secret validation                                                               | 2.20 or later |       |
 | Local modules for development                                                     | 2.20 or later          |       |
 | [Pull Request Validation]({{< ref "install-dinghy#pull-request-validations" >}}) | 2.21 or later          |       |
 
 ### Pipelines as CRD
 
 ![Experiment](/images/exp.svg) ![Armory](/images/armory.svg)
+
+[PaCRD]({{< ref "pacrd" >}}) gives you the ability to manage your pipelines as
+Kubernetes custom resources.
+
+| Feature | Armory Enterprise | Notes |
+|---|---|---|
+| Create, modify, and delete pipeline manifests | All supported versions | Working within the same cluster Spinnaker is installed in. |
+| Create, modify, and delete application manifests | All supported versions | Working within the same cluster Spinnaker is installed in. |
+| Define all stages supported by Spinnaker and Armory Enterprise | 0.10.x and later | Validation support does not exist for all stages. |
 
 ### Terraform Integration 
 
@@ -301,3 +315,18 @@ The following table lists the secret stores that Armory Enterprise supports for 
 | [Encrypted S3 Bucket]({{< ref "secrets-s3" >}})  | All supported versions |                                      |
 | [Kubernetes secrets]({{< ref "secrets-kubernetes" >}})   | All supported versions | Spinnaker Operator based deployments |
 | [Vault]({{< ref "secrets-vault" >}})                | All supported versions | Armory Enterprise only                 |
+
+## Spinnaker Operator
+
+![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+
+[Spinnaker Operator](https://github.com/armory/spinnaker-operator) and
+[Armory Operator]({{< ref "operator" >}}) provide Spinnaker users with the ability
+to install, update, and maintain their clusters via a Kubernetes operator.
+
+| Feature   | Version | Armory Version | Notes                  |
+|-----------|---------|---------------------------|------------------------|
+| Install, update, and maintain Spinnaker clusters | All supported versions | All supported versions    | |
+| Automatically determine Deck/Gate URL configuration if Ingress objects are defined | 1.1.0 or later | 1.1.1 or later | Ingress objects must be defined in the same namespace where Spinnaker lives. |
+| Support definition of all Halyard configuration options    | All supported versions    | All supported versions | |
+| In cluster mode, validate configuration before apply | All supported versions    | All supported versions | Does not work when installed in "basic" mode. Does not guarantee a valid configuration, but does check for most common misconfigurations. |
