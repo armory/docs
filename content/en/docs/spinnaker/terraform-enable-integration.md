@@ -283,11 +283,10 @@ The Terraform Integration supports using remote backends provided by Terraform C
 
 When using remote backends, keep the following in mind:
 
-* The Terraform stage must use the same Terraform version that your Terraform Cloud/Enterprise workspace runs.
+* The Terraform stage must use the same Terraform version that your Terraform Cloud/Enterprise workspace is configured to run.
 * The minimum supported Terraform version is 0.12.0.
-* If you view a `plan` action in the Terraform Cloud/Enterprise UI, the type of `plan` action that the Terraform Integration performs is a "speculative plan." For more information, see [Speculative Plans](https://www.terraform.io/docs/cloud/run/index.html#speculative-plans).
+* In the Terraform Cloud/Enterprise UI, the type of `plan` action that the Terraform Integration performs is a "speculative plan." For more information, see [Speculative Plans](https://www.terraform.io/docs/cloud/run/index.html#speculative-plans).
 * You cannot save and apply a plan file.
-* You cannot use Named Profiles for authentication for remote backends.
   
 #### Enable remote backend support
 
@@ -308,8 +307,6 @@ terraform:
 **Operator**
 
 See the example manifest in [Enabling the Terraform Integration](#enabling-the-terraform-integration).
-
-
 
 ## Enabling the Terraform Integration UI
 
