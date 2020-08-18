@@ -256,8 +256,6 @@ spec:
       armory:
         terraform:
           enabled: true
-          # Remote backends is an Early Access feature. Do not use it in production. Omit this field if you do not want to use remote backends.
-          remoteBackendSupport: true
     profiles:
       deck:
         # Enables the UI for the Terraform Integration stage
@@ -277,8 +275,6 @@ hal armory terraform enable
 
 {{< include "early-access-feature.html" >}}
 
-This Early Access feature is available in Armory 2.AB.XY and later.
-
 The Terraform Integration supports using remote backends provided by Terraform Cloud and Terraform Enterprise.
 
 When using remote backends, keep the following in mind:
@@ -290,23 +286,17 @@ When using remote backends, keep the following in mind:
   
 #### Enable remote backend support
 
-See either the **Halyard** or **Operator** for how to enable remote backend support. Once enabled, end users can use remote backends by configuring the Terraform Integration stage with the following:
+End users can use remote backends by configuring the Terraform Integration stage with the following parameters:
 
-* Select a version that is 0.12.0 or later and matches the version that your Terraform Cloud/Enterprise runs.
-* Specify a remote backend.
+* A Terraform version that is 0.12.0 or later and matches the version that your Terraform Cloud/Enterprise runs.
+* Reference a remote backend in your Terraform code.
 
-**Halyard**
-
-To enable support, manually add the following config to your `terraformer-local.yml` file in the `.hal/default/profiles` directory:
+To enable support, add the following config to your `terraformer-local.yml` file in the `.hal/default/profiles` directory:
 
 ```
 terraform:
   remoteBackendSupport: true
 ```
-
-**Operator**
-
-See the example manifest in [Enabling the Terraform Integration](#enabling-the-terraform-integration).
 
 ## Enabling the Terraform Integration UI
 
@@ -348,13 +338,13 @@ After you finish your Terraform integration configuration, perform the following
 
 2. Confirm that the Terraform Integration service (Terraformer) is deployed with your Spinnaker deployment:
 
-   ```
+   ```bash
    kubectl get pods -n <your-spinnaker-namespace>
    ```
 
    In the command output, look for a line similar to the following:
 
-   ```
+   ```bash
    spin-terraformer-d4334g795-sv4vz    2/2     Running            0          0d
    ```
 
@@ -443,7 +433,9 @@ Use the `tfc` credential kind to provide authentication to remote Terraform back
 - name: milton-tfc # Unique name for the profile. Shows up in Deck.
   variables:
   - kind: tfc
-    options: 
+    options:
+       domain: app.terraform.io # or Terraform Enterprise URL
+       token: <authentication-token> # Replace with your token
 
 
 
