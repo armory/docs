@@ -1,6 +1,6 @@
 ---
 title: Installing Spinnaker in Lightweight Kubernetes (K3s) using Spinnaker Operator
-linkTitle: Operator and K3s
+linkTitle: Install in AWS EC2 with Operator
 weight: 50
 description: >
   For POCs: Use Operator to install Spinnaker in a K3s instance running on an AWS EC2 VM
@@ -56,9 +56,9 @@ Created symlink /etc/systemd/system/multi-user.target.wants/k3s.service → /etc
 [INFO]  systemd: Starting k3
 ```
 
-## Create an S3 bucket and IAM credentials
+## Create an S3 bucket
 
-Create an S3 bucket with a globally unique name. See the [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) page in the _Amazon Simple Storage Service_ docs for how to create a bucket and naming constraints.
+Spinnaker's Front50 service needs access to an S3 bucket, so create an S3 bucket with a globally unique name. See the [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) page in the _Amazon Simple Storage Service_ docs for how to create a bucket and naming constraints.
 
 On the *Configure options* screen, select *Versioning* and *Default encryption*.
 
@@ -68,20 +68,42 @@ On the *Set permissions* screen, select *Block all public access*.
 
 Create your bucket.
 
-### Create an IAM user
+## Create an IAM Role
 
-Spinnaker's Front50 service will need access to your bucket, so you need to create an IAM user and then add an inline policy for that user to your bucket. See AWS' [Creating IAM Users (Console)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console) guide for details on creating IAM users.
+Create an IAM Role that you will attach to your EC2 instance. Calls to s3 will use this role to get credentials for the requests. You can read more about IAM Roles in AWS' [AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html) guide.
 
-For this guide, your IAM user needs only programmatic access:
+From the *Services* menu, select *IAM*, which is in the *Security, Identity, & Compliance* section.
 
-![ Create IAM user](/images/installation/guide/iam-user-01.jpg)
+![ Select IAM](/images/installation/guide/selectIAM.png)
 
-Do not add your IAM user to a group on the *Set permissions* screen. Go to the next screen.
+Select the *Roles* section.
 
-![ IAM user second screen](/images/installation/guide/iam-user-02.jpg)
+![ Select Roles section](/images/installation/guide/selectRolesSection.png)
 
-You do not need to add any tags, so go to the next screen to review your IAM user.
+Press the *Create role* button.
 
-![ IAM user review screen](/images/installation/guide/iam-user-03.jpg)
+![ Press Create role](/images/installation/guide/createRoleButton.png)
 
-You can ignore the *This user has no permissions* warning because you will use an inline policy to add the IAM user to your s3 bucket.
+*AWS Service* is highlighted. Select *EC2*. Then press the *Next: Permissions* button.
+
+![ Select EC2](/images/installation/guide/createIAMRoleForEc2-01.png)
+
+
+In the *Filter policies* field, type "s3" and press enter. This action displays polices for S3. Select *AmazonS3FullAccess*. Then press the *Next: Tags* button.
+
+![ Select AmazonS3FullAccess](/images/installation/guide/roleSelectS3Policy-02.png)
+
+You can optionally add tags to your Role. Press the *Next: Review* button to move to the *Review* screen. Type in a name for your role in the *Role name* field and then press the *Create role* button.
+
+![ Role review](/images/installation/guide/roleReview-03.png)
+
+## Attach your IAM Role to your EC2 instance
+
+Navigate to the EC2 services screen and then access your running instance. Select your instance. From the *Actions* menu, select *Instance Settings* and then *Attach/Replace IAM Role*.
+
+![ Attach Replace IAM Role](/images/installation/guide/assignRoleToVM01.jpg)
+
+Select the *IAM role* you created in the previous section. The press *Apply*.
+
+![ Select IAM Role](/images/installation/guide/assignRoleToVM02.jpg)
+
