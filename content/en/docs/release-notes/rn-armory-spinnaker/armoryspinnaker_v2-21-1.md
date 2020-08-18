@@ -1,5 +1,5 @@
 ---
-title: v2.21.1 Armory Release (OSS Spinnaker v1.21.0)
+title: v2.21.1 Armory Release (OSS Spinnaker v1.21.2)
 toc_hide: true
 description: Release Notes for Armory 2.21.1
 ---
