@@ -19,7 +19,7 @@ By implementing Orca's SimpleStage PF4J extension point, the `pf4jStagePlugin` c
 * You have a basic understanding of how the [Spinnaker Operator]({{< ref "operator" >}}) deploys Spinnaker to [Kubernetes](https://kubernetes.io/)
 * You have `kubectl` access to an instance of Spinnaker installed using the Spinnaker Operator and have permissions to modify and apply the manifest that deploys Spinnaker
   * See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to install Spinnaker using the Spinnaker Operator
-  * See the guide if you want a lightweight POC environment
+  * See the [Installing Spinnaker in Lightweight Kubernetes (K3s) using Spinnaker Operator]({{< ref "operator-k3s" >}}) guide if you want a lightweight POC environment
 * You have read the [Plugin Users Guide](https://spinnaker.io/guides/user/plugins); you are familiar with plugin concepts and the files used when deploying plugins (`repositories.json`, `plugins.json`)
 
 ## Add the plugin repository
