@@ -103,7 +103,11 @@ Kubernetes custom resources.
 The Terraform Integration gives you the ability to use Terraform within your Spinnaker pipelines to create your infrastructure as part of your software delivery pipeline.
 
 **Supported Terraform versions**
-* Versions ABC to XYZ
+
+| Terraform Versions    | Armory Enterprise      | Note                                                                  |
+|-----------------------|------------------------|-----------------------------------------------------------------------|
+| 0.11.10 - 0.11.14     | All supported versions |                                                                       |
+| 0.12.0 - 0.12.24      | All supported versions |                                                                       |
   
 **Features**
 
@@ -294,10 +298,12 @@ Armory supports baking images in multiple providers
 ![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
 Armory supporting Templating Manifests
+
 | Provider   | Armory Enterprise      | Notes |
 |------------|------------------------|-------|
-| Helm 2 | All supported versions |      |
-| Helm 3 | 2.19.x or later |      |
+| Helm 2     | All supported versions |       |
+| Helm 3     | 2.19.x or later        |       |
+| Kustomize  | All supported versions |  Kustomize version installed is 3.3.0     |
 
 
 ## Secret stores
