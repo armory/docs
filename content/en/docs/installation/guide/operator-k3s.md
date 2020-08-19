@@ -244,16 +244,10 @@ Spacking is very important in YAML files. Make sure the spacing is correct in th
 
 ## Install Spinnaker
 
-Create a namespace for Spinnaker:
+Because you installed Operator in `basic` mode, you must install Spinnaker into the same `spinnaker-operator` namespace. Use [`kubectl apply`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply) to deploy the Spinnaker manifest:
 
 ```bash
-kubectl create ns spinnaker
-```
-
-Use [`kubectl apply`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply) to deploy the Spinnaker manifest:
-
-```bash
-kubectl -n spinnaker apply -f deploy/spinnaker/basic/SpinnakerService.yml
+kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/SpinnakerService.yml
 ```
 
 You can watch the installation progress by executing:
