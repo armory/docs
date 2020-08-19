@@ -263,7 +263,7 @@ spec:
           window.spinnakerSettings.feature.terraform = true;
 ```
 
-This example manifest also enables the Terraform Integration UI and support for remote backends.
+This example manifest also enables the Terraform Integration UI.
 
 **Halyard**
 
@@ -436,9 +436,7 @@ Use the `tfc` credential kind to provide authentication to remote Terraform back
     options:
        domain: app.terraform.io # or Terraform Enterprise URL
        token: <authentication-token> # Replace with your token
-
-
-
+```
 
 ### Configuring a Named Profile
 
