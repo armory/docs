@@ -256,7 +256,14 @@ spec:
       armory:
         terraform:
           enabled: true
+    profiles:
+      deck:
+        # Enables the UI for the Terraform Integration stage
+        settings-local.js: |
+          window.spinnakerSettings.feature.terraform = true;
 ```
+
+This example manifest also enables the Terraform Integration UI.
 
 **Halyard**
 
@@ -264,6 +271,32 @@ spec:
 hal armory terraform enable
 ```
 
+### Remote backends
+
+{{< include "early-access-feature.html" >}}
+
+The Terraform Integration supports using remote backends provided by Terraform Cloud and Terraform Enterprise.
+
+When using remote backends, keep the following in mind:
+
+* The Terraform stage must use the same Terraform version that your Terraform Cloud/Enterprise workspace is configured to run.
+* The minimum supported Terraform version is 0.12.0.
+* In the Terraform Cloud/Enterprise UI, the type of `plan` action that the Terraform Integration performs is a "speculative plan." For more information, see [Speculative Plans](https://www.terraform.io/docs/cloud/run/index.html#speculative-plans).
+* You cannot save and apply a plan file.
+  
+#### Enable remote backend support
+
+End users can use remote backends by configuring the Terraform Integration stage with the following parameters:
+
+* A Terraform version that is 0.12.0 or later and matches the version that your Terraform Cloud/Enterprise runs.
+* Reference a remote backend in your Terraform code.
+
+To enable support, add the following config to your `terraformer-local.yml` file in the `.hal/default/profiles` directory:
+
+```
+terraform:
+  remoteBackendSupport: true
+```
 
 ## Enabling the Terraform Integration UI
 
@@ -273,20 +306,7 @@ Manually enable the stage UI for Deck:
 
 **Operator**
 
-Edit the `SpinnakerService` manifest to add the following:
-
-```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      deck:
-        settings-local.js: |
-          window.spinnakerSettings.feature.terraform = true;
-```
+See the example manifest in [Enabling the Terraform Integration](#enabling-the-terraform-integration).
 
 **Halyard**
 
@@ -318,13 +338,13 @@ After you finish your Terraform integration configuration, perform the following
 
 2. Confirm that the Terraform Integration service (Terraformer) is deployed with your Spinnaker deployment:
 
-   ```
+   ```bash
    kubectl get pods -n <your-spinnaker-namespace>
    ```
 
    In the command output, look for a line similar to the following:
 
-   ```
+   ```bash
    spin-terraformer-d4334g795-sv4vz    2/2     Running            0          0d
    ```
 
@@ -347,6 +367,7 @@ The Terraform integration supports multiple types of credentials for Named Profi
 * AWS
 * SSH
 * Static
+* Terraform remote backend
 
 If you don't see a credential that suits your use case, [let us know](https://feedback.armory.io/feature-requests)!
 
@@ -404,6 +425,19 @@ Use the `static` credential kind to provide any arbitrary key/value pair that is
       value: us-west-2
 ```
 
+**Terraform remote backend**
+
+Use the `tfc` credential kind to provide authentication to remote Terraform backends.
+
+```yaml
+- name: milton-tfc # Unique name for the profile. Shows up in Deck.
+  variables:
+  - kind: tfc
+    options:
+       domain: app.terraform.io # or Terraform Enterprise URL
+       token: <authentication-token> # Replace with your token
+```
+
 ### Configuring a Named Profile
 
 Configure profiles that users can select when creating a Terraform Integration stage:
@@ -446,7 +480,7 @@ Armory recommends that you enable authorization for your Named Profiles to provi
 
 You can see a demo here: [Named Profiles for Armory Spinnaker Terraform Integration](https://www.youtube.com/watch?v=RYO-b1kyEU0).
 
-{{% alert color=note title="Note" %}}Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/){{% /alert %}}
+{{% alert color=note title="Note" %}}Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/).{{% /alert %}}
 
 #### Halyard
 To start, edit `~/.hal/default/profiles/terraformer-local.yml` and add the following config:
