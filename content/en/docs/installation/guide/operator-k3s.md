@@ -1,14 +1,14 @@
 ---
-title: Installing Spinnaker in Lightweight Kubernetes (K3s) using Spinnaker Operator
-linkTitle: Install in AWS EC2 with Operator
+title: Install Armory Spinnaker in Lightweight Kubernetes (K3s) using Spinnaker Operator
+linkTitle: Install in AWS EC2 using Operator
 weight: 50
 description: >
-  For POCs: Use Operator to install Spinnaker in a K3s instance running on an AWS EC2 VM
+  For POCs: Use Operator to install Armory Spinnaker in a K3s instance running on an AWS EC2 VM
 ---
 
 ## Overview
 
-This guide walks you through using the [Spinnaker Operator]({{< ref "operator" >}}) to install Armory Spinnaker in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
+This guide walks you through using the [Spinnaker Operator]({{< ref "operator" >}}) to install **Armory Spinnaker** in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
 
 See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to install Spinnaker using the Spinnaker Operator in a regular Kubernetes installation.
 
@@ -106,4 +106,159 @@ Navigate to the EC2 services screen and then access your running instance. Selec
 Select the **IAM role** you created in the previous section. The press **Apply**.
 
 ![ Select IAM Role](/images/installation/guide/attachRoleToVM02.jpg)
+
+## Install Operator
+
+This installs Operator in _basic_ mode, which installs Spinnaker into a single namespace. This mode does not perform pre-flight checks before applying a manifest.
+
+SSH into your EC2 VM and download the Operator files:
+
+```bash
+mkdir -p spinnaker-operator && cd spinnaker-operator
+bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
+```
+
+Install the Custom Resource Definitions (CRDs):
+
+```bash
+kubectl apply -f deploy/crds/
+```
+
+Create the `spinnaker-operator` namespace:
+
+```bash
+kubectl create ns spinnaker-operator
+```
+
+Install Operator:
+
+```bash
+kubectl -n spinnaker-operator apply -f deploy/operator/basic
+```
+
+You can verify successfull installation by executing:
+
+```bash
+kubectl -n spinnaker-operator get pods
+```
+
+Terminal output is similar to:
+
+```bash
+NAME                                  READY   STATUS    RESTARTS   AGE
+spinnaker-operator-589ccc6fd4-56wlc   2/2     Running   0          4m28s
+```
+
+## Modify the Spinnaker manifest
+
+Edit the `SpinnakerService.yml` manifest file located in the `~/spinnaker-operator/deploy/spinnaker/basic` directory.
+
+### Update Armory Spinnaker version and S3 bucket name
+
+Update the `spec.spinnakerConfig.config.version` value to the version of Armory Spinnaker you want to deploy. Check the [Release Notes]({{< ref "rn-armory-spinnaker" >}}) if you are unsure which version to install. Choose v2.20.4, v2.20.5 or v2.21+ if you want to deploy plugins.
+
+Additionally, replace **myBucket** (`spec.spinnakerConfig.config.persistentStorage.s3.bucket`) with the name of the s3 bucket you created in [Create an S3 Bucket](#create-an-s3-bucket).
+
+Before editing:
+
+```yaml
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
+  spinnakerConfig:
+    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
+    config:
+      version: 2.15.1   # the version of Spinnaker to be deployed
+      persistentStorage:
+        persistentStoreType: s3
+        s3:
+          bucket: mybucket
+          rootFolder: front50
+```
+
+For example, after editing:
+
+```yaml
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
+  spinnakerConfig:
+    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
+    config:
+      version: 2.21.1   # the version of Spinnaker to be deployed
+      persistentStorage:
+        persistentStoreType: s3
+        s3:
+          bucket: my-s3-bucket
+          rootFolder: front50
+```
+
+### Modifications for running on K3s
+
+Create a `spec.spinnakerConfig.config.security` section like the example below, replacing `<your-vm-ip` with the public IP address of your EC2 instance. The `security` section is at the same level as the `persistentStorage` section.
+
+```yaml
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
+  spinnakerConfig:
+    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
+    config:
+      version: 2.21.1   # the version of Spinnaker to be deployed
+      persistentStorage:
+        persistentStoreType: s3
+        s3:
+          bucket: my-s3-bucket
+          rootFolder: front50
+      security:
+        apiSecurity: # Gate
+          overrideBaseUrl: <your-vm-ip>:8084
+        uiSecurity: # Deck
+          overrideBaseUrl: <your-vm-ip>:9000
+```
+
+Find the `expose.service.overrides` section at the bottom of the file. Add configuration for Deck and Gate.
+
+```yaml
+expose:
+  type: service  # Kubernetes LoadBalancer type (service/ingress), note: only "service" is supported for now
+  service:
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    # provide an override to the exposing KubernetesService
+  overrides:
+    deck:
+      publicPort: 9000
+    gate:
+      publicPort: 8084
+```
+
+Spacking is very important in YAML files. Make sure the spacing is correct in the `SpinnakerService.yml` file . Also, ensure there are no tabs instead of spaces in the file. Incorrect spacing or tabs will cause errors when you install Spinnaker.
+
+## Install Spinnaker
+
+Create a namespace for Spinnaker:
+
+```bash
+kubectl create ns spinnaker
+```
+
+Use [`kubectl apply`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply) to deploy the Spinnaker manifest:
+
+```bash
+kubectl -n spinnaker apply -f deploy/spinnaker/basic/SpinnakerService.yml
+```
+
+You can watch the installation progress by executing:
+
+```bash
+kubectl -n spinnaker get spinsvc spinnaker -w
+```
 
