@@ -136,7 +136,7 @@ Install Operator:
 kubectl -n spinnaker-operator apply -f deploy/operator/basic
 ```
 
-You can verify successfull installation by executing:
+You can verify successful installation by executing:
 
 ```bash
 kubectl -n spinnaker-operator get pods
