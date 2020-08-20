@@ -72,8 +72,8 @@ Artifacts are remote, deployable resources in Spinnaker. Armory supports the fol
 | Feature   | Version | Armory Enterprise version | Notes                  |
 |-----------|---------|---------------------------|------------------------|
 | BitBucket Cloud |         | All supported versions    |                        |
-| BitBucket Server |         | Previous two major versions    |                        |
-| GitHub    |         | All supported versions    | Enterprise and vanilla |
+| BitBucket Server | Previous two major versions |  All supported versions   |                        |
+| GitHub    |         | All supported versions    | Enterprise and GitHub.com |
 | GitLab    |         | All supported versions    | |
 
 **Features**
@@ -132,7 +132,7 @@ The following table lists the authentication protocols that Armory Enterprise su
 | SAML                  | All supported versions |                                                                       |
 | OAuth 2.0/OIDC        | All supported versions | Can use Auth0, Azure, GitHub, Google, Okta, OneLogin, or Oracle Cloud |
 | LDAP/Active Directory | All supported versions |                                                                       |
-| x509                  |                        |                                                                       |
+| x509                  | All supported versions                       |                                                                       |
 
 ## Authorization
 
@@ -167,7 +167,7 @@ The following table lists the CI systems that Armory Enterprise supports:
 | Google Cloud Build |         |                        |                     |
 | Jenkins            |         | All supported versions |                     |
 | Travis             |         | All supported versions |                     |
-| Wercker            |         |                        |                     |
+| Wercker            |         | All supported versions                     |                     |
 
 
 ## Deployment targets
