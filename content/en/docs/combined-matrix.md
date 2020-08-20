@@ -24,6 +24,10 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 ![Armory](/images/armory.svg) The feature or parts of it are available in Armory Enterprise.
 
+**Versions**
+
+**All supported versions** refers to the current minor release and the two previous minor releases. For example, if the current version is 2.21.x, all supported versions include 2.19.x, 2.20.x, and 2.21.x. 
+
 ## Application metrics for Canary
 
 ![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
