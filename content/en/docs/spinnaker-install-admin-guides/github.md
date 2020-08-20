@@ -92,9 +92,9 @@ spec:
           - name: github_user
             token: abc  # Github's personal access token. This fields supports `encrypted` references to secrets.
             # username: abc # GitHub username
-            # password: abc # GitHub password. This fields supports `encryptedreferences to secrets.
-            # usernamePasswordFile: creds.txt # File containing "username:passwordto use for GitHub authentication. This fields supports `encryptedFilereferences to secrets.
-            # tokenFile: token.txt # File containing a GitHub authentication tokenThis fields supports `encryptedFile` references to secrets.
+            # password: abc # GitHub password. This fields supports `encryptedreferences` to secrets.
+            # usernamePasswordFile: creds.txt # File containing "username:password" to use for GitHub authentication. This fields supports `encryptedFilereferences` to secrets.
+            # tokenFile: token.txt # File containing a GitHub authentication token. This fields supports `encryptedFile` references to secrets.
 ```
 
 If you have a Github personal access token, you only need that to authenticate against Github, but there are other authentication options like username/password, or specifying credentials in a `file` entry.
