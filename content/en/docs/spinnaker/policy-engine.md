@@ -52,7 +52,7 @@ spec:
 
 *Note: There must be a trailing /v1 on the URL. This extension is only compatible with OPA's v1 API.*
 
-If you are using an in-cluster OPA instance (such as one set up with the instructions below), Spinnaker can access OPA via the Kubernetes service DNS name. The following example configures Spinnaker to connect with an OPA server at http://opa.opaserver:8181:
+If you are using an in-cluster OPA instance (such as one set up with the instructions below), Spinnaker can access OPA via the Kubernetes service DNS name. The following example configures Spinnaker to connect with an OPA server at http://opa.opa:8181:
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -66,12 +66,12 @@ spec:
         armory:
           opa:
             enabled: true
-            url: http://opa.opaserver:8181/v1
+            url: http://opa.opa:8181/v1
       clouddriver: #Enables Runtime validation of policies
         armory:
           opa:
             enabled: true
-            url: http://opa.opaserver:8181/v1
+            url: http://opa.opa:8181/v1
 ```
 
 Deploy the changes (assuming that Spinnaker lives in the: `spinnaker` namespace and the manifest file is named `spinnakerservice.yml`:
@@ -100,13 +100,13 @@ If you only want to perform a certain type of validation, you can add the corres
 | Save time Validation     | `.hal/default/profiles/front50-local.yml`     |
 | Runtime Validation      | `.hal/default/profiles/clouddriver-local.yml` |
 
-You must also connect Spinnaker to an OPA server. This can be in a separate Kubernetes cluster or an in-cluster OPA server (such as one set up with the instructions below). For in-cluster OPA servers, Spinnaker can access OPA via the Kubernetes service DNS name. For example, add the following configuration to `spinnaker-local.yml` to allow Spinnaker to connect to an OPA server at `http://opa.opaserver:8181`:
+You must also connect Spinnaker to an OPA server. This can be in a separate Kubernetes cluster or an in-cluster OPA server (such as one set up with the instructions below). For in-cluster OPA servers, Spinnaker can access OPA via the Kubernetes service DNS name. For example, add the following configuration to `spinnaker-local.yml` to allow Spinnaker to connect to an OPA server at `http://opa.opa:8181`:
 
 ```yaml
 armory:
   opa:
     enabled: true
-    url: http://opa.opaserver:8181/v1
+    url: http://opa.opa:8181/v1
 ```
 
 After you enable the Policy Engine, deploy your changes:
@@ -130,7 +130,7 @@ If you want to use ConfigMaps for OPA policies, you can use the below manifest a
 
 When using the below example, keep the following guidelines in mind:
 * The manifest does not configure any authorization requirements for the OPA server it deploys. This means that anyone can add a policy.
-* Make sure you replace `<namespace>` with the appropriate namespace.
+* Optionally, replace the `opa` namespace with a different namespace.
 
 ```yaml
 ---
@@ -302,13 +302,13 @@ Armory recommends using ConfigMaps to add OPA policies instead of the API for OP
 If you have configured OPA to look for a ConfigMap, you can create the ConfigMap for `manual-judgement.rego` with this command:
 
 ```
-kubectl create configmap manual-judgment --from-file=manual-judgment.rego
+kubectl -n <opaServerNameSpace> create configmap manual-judgment --from-file=manual-judgment.rego
 ```
 
 After you create the policy ConfigMap, apply a label to it:
 
 ```
-kubectl label configmap manual-judgment openpolicyagent.org/policy=rego -n opa
+kubectl -n <opaServerNameSpace> label configmap manual-judgment openpolicyagent.org/policy=rego 
 ```
 
 This label corresponds to the label you add in the [example ConfigMap](#using-configmaps-for-opa-policies). The label in the ConfigMap for creating an OPA server configures the OPA server and, by extension, the Policy Engine to only check ConfigMaps that have the corresponding label. This improves performance.
