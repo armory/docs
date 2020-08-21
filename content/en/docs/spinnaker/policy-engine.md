@@ -302,13 +302,13 @@ Armory recommends using ConfigMaps to add OPA policies instead of the API for OP
 If you have configured OPA to look for a ConfigMap, you can create the ConfigMap for `manual-judgement.rego` with this command:
 
 ```
-kubectl -n <opaServerNameSpace> create configmap manual-judgment --from-file=manual-judgment.rego
+kubectl -n <opaServerNamespace> create configmap manual-judgment --from-file=manual-judgment.rego
 ```
 
 After you create the policy ConfigMap, apply a label to it:
 
 ```
-kubectl -n <opaServerNameSpace> label configmap manual-judgment openpolicyagent.org/policy=rego 
+kubectl -n <opaServerNamespace> label configmap manual-judgment openpolicyagent.org/policy=rego 
 ```
 
 This label corresponds to the label you add in the [example ConfigMap](#using-configmaps-for-opa-policies). The label in the ConfigMap for creating an OPA server configures the OPA server and, by extension, the Policy Engine to only check ConfigMaps that have the corresponding label. This improves performance.
