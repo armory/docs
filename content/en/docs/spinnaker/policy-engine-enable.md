@@ -188,12 +188,12 @@ spec:
         armory:
           opa:
             enabled: true
-            url: <OPA Server URL>:<port>/v1     
+            url: <OPA Server URL>:<port>/v1
 ```
 
 *Note: There must be a trailing /v1 on the URL. This extension is only compatible with OPA's v1 API.*
 
-If you are using an in-cluster OPA instance (such as one set up with the instructions below), Spinnaker can access OPA via the Kubernetes service DNS name. The following example configures Spinnaker to connect with an OPA server at http://opa.opaserver:8181:
+If you are using an in-cluster OPA instance (such as one set up with the instructions below), Spinnaker can access OPA via the Kubernetes service DNS name. The following example configures Spinnaker to connect with an OPA server at `http://opa.opa:8181`:
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -207,12 +207,12 @@ spec:
         armory:
           opa:
             enabled: true
-            url: http://opa.opaserver:8181/v1
+            url: http://opa.opa:8181/v1
       clouddriver: #Enables Runtime validation of policies
         armory:
           opa:
             enabled: true
-            url: http://opa.opaserver:8181/v1
+            url: http://opa.opa:8181/v1
 ```
 
 Deploy the changes (assuming that Spinnaker lives in the: `spinnaker` namespace and the manifest file is named `spinnakerservice.yml`:
@@ -241,13 +241,13 @@ If you only want to perform a certain type of validation, you can add the corres
 | Save time Validation     | `.hal/default/profiles/front50-local.yml`     |
 | Runtime Validation      | `.hal/default/profiles/clouddriver-local.yml` |
 
-You must also connect Spinnaker to an OPA server. This can be in a separate Kubernetes cluster or an in-cluster OPA server (such as one set up with the instructions below). For in-cluster OPA servers, Spinnaker can access OPA via the Kubernetes service DNS name. For example, add the following configuration to `spinnaker-local.yml` to allow Spinnaker to connect to an OPA server at `http://opa.opaserver:8181`:
+You must also connect Spinnaker to an OPA server. This can be in a separate Kubernetes cluster or an in-cluster OPA server (such as one set up with the instructions below). For in-cluster OPA servers, Spinnaker can access OPA via the Kubernetes service DNS name. For example, add the following configuration to `spinnaker-local.yml` to allow Spinnaker to connect to an OPA server at `http://opa.opa:8181`:
 
 ```yaml
 armory:
   opa:
     enabled: true
-    url: http://opa.opaserver:8181/v1
+    url: http://opa.opa:8181/v1
 ```
 
 After you enable the Policy Engine, deploy your changes:

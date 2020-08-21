@@ -38,13 +38,15 @@ At a high level, adding policies for the Policy Engine to use is a two-step proc
 
 ### Sample OPA Policy
 
-**Step 1. Create Policies**
+#### Step 1. Create Policies
+
 
 The following OPA policy enforces one requirement on all pipelines:
+
 * Any pipeline with more than one stage must have a manual judgement stage.
 
 
-```
+```rego
 # manual-judgment.rego. Notice the package. The opa.pipelines package is used for policies that get checked when a pipeline is saved.
 package opa.pipelines
 
@@ -55,9 +57,10 @@ deny["Every pipeline must have a Manual Judgment stage"] {
 }
 
 ```
+
 Add the the policy to a file named `manual-judgment.rego`
 
-**Step 2. Add Policies to OPA**
+#### Step 2. Add Policies to OPA
 
 After you create a policy, you can add it to OPA with an API request or with a ConfigMap. The following examples use  a `.rego` file named `manual-judgment.rego`.
 
@@ -68,16 +71,16 @@ Armory recommends using ConfigMaps to add OPA policies instead of the API for OP
 If you have configured OPA to look for a ConfigMap, you can create the ConfigMap for `manual-judgement.rego` with this command:
 
 ```
-kubectl create configmap manual-judgment --from-file=manual-judgment.rego
+kubectl -n <opaServerNamespace> create configmap manual-judgment --from-file=manual-judgment.rego
 ```
 
 After you create the policy ConfigMap, apply a label to it:
 
 ```
-kubectl label configmap manual-judgment openpolicyagent.org/policy=rego -n opa
+kubectl -n <opaServerNamespace> label configmap manual-judgment openpolicyagent.org/policy=rego -n opa
 ```
 
-This label corresponds to the label you add in the [example manifest]({{< ref "policy-engine-enable#using-configmaps-for-opa-policies" >}}. The label in the ConfigMap for creating an OPA server configures the OPA server and, by extension, the Policy Engine to only check ConfigMaps with the label. This improves performance.
+This label corresponds to the label you add in the [example manifest]({{< ref "policy-engine-enable#using-configmaps-for-opa-policies" >}}. The example ConfigMap creates an OPA server and, by extension, the Policy Engine that only checks ConfigMaps with the correct label. This improves performance.
 
 **API Example**
 
@@ -120,20 +123,21 @@ deny[msg] {
 }
 ```
 
-Using the above policy, Policy Engine tests for a few things when a pipeline runs:
-* Any manifest where the `kind` is `Service` and `type` is `LoadBalancer`. Manifests that don't meet these criteria will not be evaluated by subsequent rules.
+Using the example policy, Policy Engine tests for the following criteria when a pipeline runs:
 
-* Check all of the ports to ensure that port `22` isn't open. If the Policy Engine finds port `22`, the `deny` rule evaluates to true. This results in the deployment failing and the `msg` is shown to the user.
+* Check any manifest where the `kind` is `Service` and `type` is `LoadBalancer`. Manifests that don't meet these criteria are not be evaluated by subsequent rules in the policy.
+
+* Check all of the ports to ensure that port `22` isn't open. If the Policy Engine finds port `22`, the `deny` rule evaluates to true. This results in the deployment failing and the message from the `msg` parameter is shown to the user.
 
 You'll notice a few things about this policy:
 
-* The package name is explicit, which means that this policy only applies to the `deployManifest` task. You can write policies for other tasks by replacing `deployManifest` with your task name. Generally, the task name maps to a stage name.
+* The package name is explicit, which means that this policy only applies to the `deployManifest` stage. You can write policies for other tasks by replacing `deployManifest` with your task name. Generally, the task name maps to a stage name.
 
-* The policy tests a set of manifests which `deployManifest` will deploy to Kubernetes. This is part of the tasks configuration, which is passed into the policy in it's entirety under `input.deploy`.
+* The policy tests a set of manifests which the `deployManifest` stage will deploy to Kubernetes. This is part of the tasks configuration, which is passed into the policy in it's entirety under `input.deploy`.
 
 * The policy isn't limited to any particular Kubernetes account. If you'd like to only apply policies to, say, your Production account, use `input.deploy.account` to narrow down policies to specific accounts. This is useful when you want more or less restrictive policies across your infrastructure.
 
-Once you've written your policy, you can push it to your OPA server via a ConfigMap or the API. Once it's pushed, the Policy Engine can begin enforcing the policy.
+Once you've written your policy, push it to your OPA server using a ConfigMap or the API. The Policy Engine begins enforcing the policy immediately.
 
 
 ### Validating a deployment
