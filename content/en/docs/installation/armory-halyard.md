@@ -5,11 +5,11 @@ description: >
   CLI tool for configuring, deploying, and managing Spinnaker
 ---
 
-Armory Halyard is a versatile command line interface (CLI) to configure and deploy Spinnaker. It is made of a CLI that connects to a daemon.
+Armory extended Halyard is a versatile command line interface (CLI) to configure and deploy Spinnaker. It is made of a CLI that connects to a daemon.
 
 ## Running in Docker
 
-Running Armory Halyard in Docker is convenient and portable. The daemon will need access to files and environment variables, such as:
+Running Armory extended Halyard in Docker is convenient and portable. The daemon will need access to files and environment variables, such as:
 - Halyard's main configuration directory - make sure the daemon has write access to that directory
 - `kubeconfig` file for Spinnaker's installation cluster (usually `~/.kube/config`)
 - AWS profiles (usually `~/.aws`) if access to AWS is needed
@@ -19,7 +19,7 @@ Running Armory Halyard in Docker is convenient and portable. The daemon will nee
 
 ### Starting Daemon
 
-You can start Armory Halyard in a Docker container with the following command:
+You can start Armory extended Halyard in a Docker container with the following command:
 
 ```
 docker run --name armory-halyard --rm \
@@ -39,7 +39,7 @@ the `.kube` directory you map below.  If you've named your config something
 else, you'll need to rename or symlink the file accordingly.
 
 ### Running Halyard Commands
-Once Armory Halyard is running, you can interact with it by opening a separate
+Once Armory extended Halyard is running, you can interact with it by opening a separate
 Terminal and running:
 
 ```
@@ -50,11 +50,11 @@ From there, you can issue all your [halyard commands](https://www.spinnaker.io/r
 
 ## Run in Kubernetes
 
-Armory Halyard can also be installed as a Kubernetes `StatefulSet`. The advantage of running Halyard in the same cluster as Spinnaker is to get the same network access as Spinnaker itself in some locked down environments.
+Armory extended Halyard can also be installed as a Kubernetes `StatefulSet`. The advantage of running Halyard in the same cluster as Spinnaker is to get the same network access as Spinnaker itself in some locked down environments.
 
 ### Installing Daemon
 
-You can install Armory Halyard with the following manifest:
+You can install Armory extended Halyard with the following manifest:
 ```
 ---
 apiVersion: v1

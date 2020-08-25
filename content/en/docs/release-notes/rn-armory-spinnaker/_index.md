@@ -1,7 +1,7 @@
 ---
-title: Armory Spinnaker Release Notes
+title: Armory Release Notes
 Summary: >
-  Release Notes For Armory Spinnaker
+  Release Notes For Armory
 aliases:
   - /releases/
   - /release/
@@ -11,7 +11,7 @@ aliases:
 simple_list_reverse: true
 ---
 
-> You can find [Armory's Halyard releases notes here]({{< ref rn-armory-halyard >}}).
+> You can find [Armory's extended Halyard releases notes here]({{< ref rn-armory-halyard >}}).
 
 ## Different Armory Release Types
 

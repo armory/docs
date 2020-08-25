@@ -1,7 +1,7 @@
 ---
-title: Release Preview for Armory Spinnaker 2.22 (OSS 1.22)
+title: Release Preview for Armory 2.22 (OSS 1.22)
 linkTitle: "Next Release"
-description: "Learn about some of the upcoming changes to Spinnaker and their impact."
+description: "Learn about some of the upcoming changes to Armory and Spinnaker and their impact."
 ---
 
 ## Overview
@@ -28,14 +28,14 @@ This change is particularly important for users who are using the preconfigured 
 
 #### Impact
 
-Users of Armory Spinnaker >= 2.20.x can opt in to this new behavior by setting `kubernetes.jobs.append-suffix: false` in their `clouddriver-local.yml`.
+Users of Armory >= 2.20.x can opt in to this new behavior by setting `kubernetes.jobs.append-suffix: false` in their `clouddriver-local.yml`.
 
 As of Spinnaker 1.22, this new behavior is the default. Users can still opt out of the new behavior by setting `kubernetes.jobs.append-suffix: true` in their `clouddriver-local.yml`. This will cause Spinnaker to continue to append a suffix to the name of jobs as in prior releases.
 
-The ability to opt out of the new behavior will be removed in Armory Spinnaker 2.23 (OSS Spinnaker 1.23). The `kubernetes.jobs.append-suffix: true` setting will have no effect, and Spinnaker no longer appends a suffix to job names. Armory recommendeds that 2.22 users who opt out of the new behavior update any necessary jobs and remove the `kubernetes.jobs.append-suffix: true` setting before upgrading to Armory Spinnaker 2.23.
+The ability to opt out of the new behavior will be removed in Armory 2.23 (OSS Spinnaker 1.23). The `kubernetes.jobs.append-suffix: true` setting will have no effect, and Spinnaker no longer appends a suffix to job names. Armory recommendeds that 2.22 users who opt out of the new behavior update any necessary jobs and remove the `kubernetes.jobs.append-suffix: true` setting before upgrading to Armory 2.23.
 
 #### Version
-Armory Spinnaker 2.22 and 2.23 (Open Source Spinnaker 1.22 and 1.23)
+Armory 2.22 and 2.23 (Open Source Spinnaker 1.22 and 1.23)
 
 ### Spinnaker Operator
 

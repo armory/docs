@@ -26,7 +26,7 @@ This document does not cover the following:
 
 See [Next Steps](#next-steps) for resources related to these topics.
 
-**Note**: This document focuses on Armory Spinnaker. You can install Open Source Spinnaker by using a different Halyard container and a corresponding Open Source Spinnaker version.
+**Note**: This document focuses on Armory's extended Spinnaker for enterprises. You can install Open Source Spinnaker by using a different Halyard container and a corresponding Open Source Spinnaker version.
 
 ## Requirements
 
@@ -236,7 +236,7 @@ cp kubeconfig-spinnaker-system-sa ${WORKING_DIRECTORY}/.secret
 
 ## Start the Halyard container
 
-On the `Halyard machine`, start the Halyard container (see the `armory/halyard-armory` [tag list](https://hub.docker.com/r/armory/halyard-armory/tags)) for the latest Armory Halyard Docker image tag.
+On the `Halyard machine`, start the Halyard container (see the `armory/halyard-armory` [tag list](https://hub.docker.com/r/armory/halyard-armory/tags)) for the latest Armory extended Halyard Docker image tag.
 
 *If you want to install OSS Spinnaker instead, use `gcr.io/spinnaker-marketplace/halyard:stable` for the Docker image.*
 
@@ -353,7 +353,7 @@ Get a list of available versions of spinnaker with this command:
 ```bash
 hal version list
 ```
-Note that Armory Spinnaker uses a major version numbering scheme that is one version higher than Open Source Spinnaker. For example, Armory Spinnaker  `2.x.x` correlates to Open Source Spinnaker `1.x.x`.
+Note that Armory uses a major version numbering scheme that is one version higher than Open Source Spinnaker. For example, Armory  `2.x.x` correlates to Open Source Spinnaker `1.x.x`.
 
 After you decide on a version, run the following commands to specify the version:
 

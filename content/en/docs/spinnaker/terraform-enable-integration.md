@@ -11,7 +11,7 @@ aliases:
 
 The examples on this page describe how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket. Note that the Terraform Integration also requires a `git/repo` artifact account. For information about how to use the stage, see [Using the Terraform Integration]({{< ref "terraform-use-integration" >}}).
 
-Armory Spinnaker's Terraform Integration integrates your infrastructure-as-code Terraform workflow into your SDLC. The integration interacts with a source repository you specify to deploy your infrastructure as part of a Spinnaker pipeline.
+Armory's Terraform Integration integrates your infrastructure-as-code Terraform workflow into your SDLC. The integration interacts with a source repository you specify to deploy your infrastructure as part of a Spinnaker pipeline.
 
 ## Supported Terraform versions
 
@@ -356,7 +356,7 @@ You can also configure a profile that grants access to resources, like AWS.
 
 ## Named Profiles
 
-{{% alert title="New feature" %}}Named Profiles is a new feature in Armory Spinnaker 2.20. Previously, you needed to mount a sidecar that contained your credentials. If you are on an earlier version, see the v.2.0-2.19 version of this [page](https://archive.docs.armory.io/docs/spinnaker/terraform-enable-integration/#configure-terraform-for-your-cloud-provider) to learn more about mounting a sidecar. {{% /alert %}}
+{{% alert title="New feature" %}}Named Profiles is a new feature in Armory 2.20. Previously, you needed to mount a sidecar that contained your credentials. If you are on an earlier version, see the v.2.0-2.19 version of this [page](https://archive.docs.armory.io/docs/spinnaker/terraform-enable-integration/#configure-terraform-for-your-cloud-provider) to learn more about mounting a sidecar. {{% /alert %}}
 
 A Named Profile gives users the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. The supported credentials are described in [Types of credentials](#types-of-credentials).
 
@@ -478,7 +478,7 @@ Configure profiles that users can select when creating a Terraform Integration s
 
 Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the role(s) you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in Deck. And any stage with that uses a Named Profile that a user is not authorized for fails.
 
-You can see a demo here: [Named Profiles for Armory Spinnaker Terraform Integration](https://www.youtube.com/watch?v=RYO-b1kyEU0).
+You can see a demo here: [Named Profiles for the Terraform Integration](https://www.youtube.com/watch?v=RYO-b1kyEU0).
 
 {{% alert color=note title="Note" %}}Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/).{{% /alert %}}
 

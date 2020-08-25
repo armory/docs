@@ -14,7 +14,7 @@ aliases:
 ## Known Issues
 No known issues
 
-## Halyard Armory Enterprise Spinnaker
+## Armory extended Halyard 
  No Changes
 
 ## Halyard Community Contributions

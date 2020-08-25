@@ -9,7 +9,7 @@ aliases:
 
 ## Overview
 
-Kayenta is an automated canarying analysis (ACA) service that is provided through Armory Spinnaker. The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence.
+Kayenta is an automated canarying analysis (ACA) service that is provided through Spinnaker. The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence.
 
 Kayenta uses real-time data sources to validate that a canary is good or bad. Today, Kayenta supports the following real-time data sources:
 

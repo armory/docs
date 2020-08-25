@@ -13,11 +13,11 @@ Please contact [Armory](mailto:hello@armory.io) if you're interested in an AWS M
 
 ## Overview
 
-Spinnaker Operator is a Kubernetes Operator that makes it easier to install, deploy, and upgrade Armory Spinnaker. The AWS Container Marketplace offering for Spinnaker Operator installs the Armory Spinnaker Operator in an EKS cluster. After that, Spinnaker can be installed in any namespace in your EKS cluster; this document assumes that Spinnaker will be installed in the `spinnaker` namespace.
+The Spinnaker Operator is a Kubernetes Operator for Spinnaker that makes it easier to install, deploy, and upgrade Spinnaker. The AWS Container Marketplace offering for Spinnaker Operator installs a version of the Spinnaker Operator extended by Armory in an EKS cluster. After that, Spinnaker can be installed in any namespace in your EKS cluster; this document assumes that Spinnaker will be installed in the `spinnaker` namespace.
 
 ## Prerequisites
 
-To use the Armory Spinnaker Marketplace offering, make sure you meet the following requirements:
+To use the Armory Marketplace offering, make sure you meet the following requirements:
 
 * An EKS cluster (Kubernetes 1.16 or above) configured with [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 * An ingress controller for your EKS cluster. This document assumes the EKS cluster is using the NGINX Ingress Controller.
@@ -30,8 +30,8 @@ To use the Armory Spinnaker Marketplace offering, make sure you meet the followi
 This document covers the following high-level steps:
 
 1. Creating and configuring the necessary AWS IAM roles for your Kubernetes cluster
-2. Installing the Armory Spinnaker Custom Resource Definitions (CRDs) into your Kubernetes cluster
-3. Installing the Armory Spinnaker Operator
+2. Installing Custom Resource Definitions (CRDs) for Spinnaker into your Kubernetes cluster
+3. Installing the Operator
 4. Creating a SpinnakerService Custom Resource
 5. Exposing your Spinnaker instance
 
@@ -290,7 +290,7 @@ For example:
 }
 ```
 
-## Installing Armory Spinnaker Custom Resource Definitions (CRDs)
+## Installing Spinnaker Custom Resource Definitions (CRDs)
 
 Download the Kubernetes manifest for Operator, and install it into your Kubernetes cluster:
 
@@ -302,9 +302,9 @@ bash -c 'curl -L https://github.com/armory/marketplace/releases/latest/download/
 kubectl apply -f manifests/crds/
 ```
 
-## Installing the Armory Spinnaker Operator
+## Installing the Spinnaker Operator
 
-Update the manifest for the Armory Spinnaker Operator with your AWS Account ID:
+Update the manifest for the Spinnaker Operator with your AWS Account ID:
 
 * `AWS_ACCOUNT_ID` (in the ServiceAccount annotation) has to be updated with your account ID, so the ServiceAccount can accesss your AWS IAM roles
 

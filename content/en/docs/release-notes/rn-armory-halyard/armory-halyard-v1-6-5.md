@@ -19,7 +19,7 @@ This release addresses a problem where the Secrets config block was not generate
 ## Known Issues
 - This release has no known issues
 
-## Halyard Armory Enterprise Spinnaker
+## Armory extended Halyard 
  - fix(secrets): fix secrets config block in service yamls (#252)
  - feat(artifactory): Move to artifactory for plugins and updated gradle work (#248)
  - chore(terraformer): Remove 'alpha' flag (#250)

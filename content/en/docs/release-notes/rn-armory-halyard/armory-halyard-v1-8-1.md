@@ -14,7 +14,7 @@ aliases:
 ## Known Issues
 No known issues
 
-## Halyard Armory Enterprise Spinnaker
+## Armory extended Halyard 
  - feat(plugin): Send plugin configs to deck (#273)
 
 ##  Halyard Community Contributions

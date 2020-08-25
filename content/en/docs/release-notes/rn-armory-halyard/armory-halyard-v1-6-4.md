@@ -22,9 +22,9 @@ This release:
 
 Halyard fails to generate the Secrets config block for some service profiles.
 
-Please upgrade to `Armory Halyard 1.6.5`.
+Please upgrade to `Armory extended Halyard 1.6.5`.
 
-## Halyard Armory Enterprise Spinnaker
+## Armory extended Halyard 
  - fix(logging): add logback to all clouddriver HA profiles (#246) 
  - chore(release): pin 1_6_x to a later commit (#243)
  - fix(installer): Avoid changing existing customer UUID on hal armory init (#241)

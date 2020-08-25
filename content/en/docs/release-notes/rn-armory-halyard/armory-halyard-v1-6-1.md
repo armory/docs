@@ -19,7 +19,7 @@ This release updates `kubectl` to `1.12.9` and fixes the version displayed from 
 
 - `hal shutdown` returns an `Error 400` message. A PR has been submitted to OSS Spinnaker to resolve this. 
 
-## Halyard Armory Enterprise Spinnaker
+## Armory extended Halyard 
  - chore(build): Upgrade kubectl to 1.12.9 (#227)
  - fix(build): Fix version returned in hal --version (#226)
 

@@ -168,9 +168,9 @@ In a bake stage configuration, you can specify other packer templates to use.
 
 If your app is using zip, tarballs or you'll need some customization, you'll need to create a new packer script (see below).
 
-## Adding custom Packer scripts to Armory Spinnaker
+## Adding custom Packer scripts to Spinnaker
 
-Out of the box, Armory Spinnaker comes with these built-in packer templates and scripts: https://github.com/spinnaker/rosco/tree/master/rosco-web/config/packer
+Out of the box, Spinnaker comes with these built-in packer templates and scripts: https://github.com/spinnaker/rosco/tree/master/rosco-web/config/packer
 
 If you'd like to add additional packer template or script files, you can add them via Halyard:
 

@@ -21,7 +21,7 @@ This release:
 
 - None
 
-## Halyard Armory Enterprise Spinnaker
+## Armory extended Halyard 
  - feat(secrets/go): Enable secrets to pass through to Go services that support it (#237)
  - feat(web): add ability to generate json for providers (#236)
  - feat(dinghy): Enable Slack notifications from Dinghy (#235)

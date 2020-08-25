@@ -17,7 +17,7 @@ This guide describes the initial installation of Spinnaker in Kubernetes. You ca
 
 See [Next Steps](#next-steps) for information related to these topics.
 
-Note: This document focuses on Armory Spinnaker but can be adapted to install Open Source Spinnaker by using Open Source Operator or a different Halyard container, and a corresponding different Spinnaker version.
+Note: This document focuses on Armory but can be adapted to install Open Source Spinnaker by using Open Source Operator or a different Halyard container, and a corresponding different Spinnaker version.
 
 ## Choosing an installation method
 
@@ -726,7 +726,7 @@ You can get a list of available versions of Spinnaker with this command:
 hal version list
 ```
 
-* If you are installing Armory Spinnaker using Armory's Halyard, the command returns a version that starts with `2.x.x`
+* If you are installing Armory using Armory's Halyard, the command returns a version that starts with `2.x.x`
 
 * If you are installing OSS Spinnaker and using `gcr.io/spinnaker-marketplace/halyard:stable`, the command returns a version that starts with `1.x.x`
 

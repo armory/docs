@@ -16,7 +16,7 @@ aliases:
 
 The correct `aws-sdk` version is not always used in this release and -- depending on your configuration -- may prevent `Clouddriver` and other services from starting.
 
-This has been fixed in `Armory Spinnaker 2.17.4`.
+This has been fixed in `Armory 2.17.4`.
 
 ## Highlighted Updates
 ### Armory

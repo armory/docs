@@ -160,7 +160,7 @@ hal deploy apply
 
 ### Enabling sticky sessions
 
-If your Armory Spinnaker installation will be using authentication and you expect to scale the API server (Gate) beyond more than one instance you'll want to enable sticky sessions. This will ensure that clients will connect and authenticate with the same server each time. Otherwise, you may be forced to reauthenticate if you get directed to a new server. To enable sticky sessions, you'll want to enable session affinity on the Gate service created above.
+If your Armory installation will be using authentication and you expect to scale the API server (Gate) beyond more than one instance you'll want to enable sticky sessions. This will ensure that clients will connect and authenticate with the same server each time. Otherwise, you may be forced to reauthenticate if you get directed to a new server. To enable sticky sessions, you'll want to enable session affinity on the Gate service created above.
 
 ```
 GATE_SVC=<spin-gate/spin-gate-public>  # spin-gate if using Spinnaker Operator, spin-gate-public if using Halyard

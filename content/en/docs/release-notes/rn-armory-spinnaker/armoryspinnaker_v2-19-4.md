@@ -7,7 +7,7 @@ aliases:
 
 ## 04/15/20 Release Notes
 
-> Note: Do not upgrade to Armory Spinnaker 2.19.4 (this version). Instead, upgrade to Armory Spinnaker [2.19.7]({{< ref "armoryspinnaker_v2-19-7" >}}) or later.
+> Note: Do not upgrade to Armory 2.19.4 (this version). Instead, upgrade to Armory [2.19.7]({{< ref "armoryspinnaker_v2-19-7" >}}) or later.
 
 ## Breaking Changes
 <!--
@@ -15,7 +15,7 @@ most of the time this will be empty, however we're leaving this section for a co
 -->
 
 ### Halyard
-Armory Spinnaker 2.19.x requires Armory Halyard 1.8.3 or later.
+Armory 2.19.x requires Armory extended Halyard  1.8.3 or later.
 
 ### HTTP sessions for Gate
 This version includes an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
@@ -39,14 +39,14 @@ These issues do not occur immediately, and you may even see modified accounts ap
 
 There is an issue creating or updating service accounts. This causes the pipeline permissions feature to not work.  
 
-**Affected versions**: Armory Spinnaker 2.19.6, 2.19.5, and 2.19.4.
+**Affected versions**: Armory 2.19.6, 2.19.5, and 2.19.4.
 
-**Fixed versions**: Armory Spinnaker 2.19.7 and later
+**Fixed versions**: Armory 2.19.7 and later
 
 
 ## Highlighted Updates
 ### Armory
-Highlighted Updates describe some of the major changes in this release. Highlights specific to Armory Spinnaker for this release include:
+Highlighted Updates describe some of the major changes in this release. Highlights specific to Armory for this release include:
 
 **Policy Engine**
 
@@ -59,7 +59,7 @@ Addressed a number of CVEs found within the Spinnaker services.
 
 ###  Spinnaker Community Contributions
 
-The following highlights describe some of the major changes from the Spinnaker community for version 1.19.x, which is included in this release of Armory Spinnaker 2.19:
+The following highlights describe some of the major changes from the Spinnaker community for version 1.19.x, which is included in this release of Armory 2.19:
 
 **Scheduled Removal of Kubernetes V1 Provider**
 The Kubernetes V1 provider will be removed in Spinnaker 1.21. Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.

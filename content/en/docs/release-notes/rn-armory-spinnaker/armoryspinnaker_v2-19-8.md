@@ -13,10 +13,10 @@ aliases:
 
 ### Required Halyard version
 
-Armory Spinnaker 2.19.x requires Armory Halyard 1.8.3 or later.
+Armory 2.19.x requires Armory extended Halyard 1.8.3 or later.
 
 ### HTTP sessions for Gate
-Armory Spinnaker 2.19.x includes an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
+Armory 2.19.x includes an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
 
 ### Scheduled Removal of Kubernetes V1 Provider
 The Kubernetes V1 provider will be removed in Spinnaker 1.21. Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
@@ -44,17 +44,17 @@ Webhook secret validation is broken in this version. Please skip this version if
 
 ## Highlighted Updates
 ### Armory
-Highlighted Updates describe some of the major changes in this release. Highlights specific to Armory Spinnaker for this release include:
+Highlighted Updates describe some of the major changes in this release. Highlights specific to Armory for this release include:
 
 **Plugins**
 
 This update contians improvements and fixes to the Plugins framework:
 
-* Support for Plugin deployment using Armory Halyard or the [Spinnaker Operator]({{< ref "operator" >}}). Consult the open source [Plugin](https://www.spinnaker.io/guides/user/plugins/user-guide/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins" >}}) for a manifest example.
+* Support for Plugin deployment using Armory extended Halyard or the [Spinnaker Operator]({{< ref "operator" >}}). Consult the open source [Plugin](https://www.spinnaker.io/guides/user/plugins/user-guide/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins" >}}) for a manifest example.
 * Updates to how Deck is built. Previously, Deck's builds were non-deterministic, causing issues with loading plugins into the UI. Deck's builds are now deterministic and support UI plugins.
 
 ###  Spinnaker Community Contributions
-See the Armory Spinnaker [2.19.7 release notes]({{< ref "armoryspinnaker_v2-19-7" >}}) for detailed list of community contributions.
+See the Armory [2.19.7 release notes]({{< ref "armoryspinnaker_v2-19-7" >}}) for detailed list of community contributions.
 
 
 <br><br><br>

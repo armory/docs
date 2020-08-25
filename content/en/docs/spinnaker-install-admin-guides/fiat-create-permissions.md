@@ -9,7 +9,7 @@ Configure Fiat, the Spinnaker microservice responsible for authorization (authz)
 
 ## Requirements
 
-* Armory Spinnaker 2.17 (OSS 1.17) or later
+* Armory 2.17 (OSS 1.17) or later
 * Fiat must be enabled and configured to work with an identity provider. For more information, see [Authorization (RBAC)](https://www.spinnaker.io/setup/security/authorization/). 
 
 ## Guidelines

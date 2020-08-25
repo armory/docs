@@ -149,7 +149,7 @@ spec:
 
 ## Congratulations!
 
-You completed the Armory Spinnaker QuickStart exercise! You can now deploy to AWS using Spinnaker. What's Next?
+You completed the QuickStart exercise! You can now deploy to AWS using Spinnaker. What's Next?
 
 - Connect your Spinnaker instance to your repositories / artifacts (Github, Sonatype, Artifactory, DockerHub, ECR, GCR, etc).
 - Build in a automated trigger from your CI systems (Jenkins, Bamboo, CircleCI, TravisCI, Nexus, Git, Generic Webhook, etc).

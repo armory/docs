@@ -109,9 +109,9 @@ spec:
 
 It may be necessary to include your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY for your custom/private s3 bucket.
 
-### Enabling a new version of Armory Spinnaker
+### Enabling a new version of Spinnaker
 
-You can download version `x.y.z` of Armory Spinnaker with this script:
+You can download version `x.y.z` of Spinnaker with this script:
 
 <details><summary>Show the script</summary>
 

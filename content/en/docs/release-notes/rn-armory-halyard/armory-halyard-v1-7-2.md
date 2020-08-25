@@ -48,7 +48,7 @@ hal deploy apply
 ## Known Issues
 No known issues
 
-## Halyard Armory Enterprise Spinnaker
+## Armory extended Halyard 
  - feat(deploy): Allow BOMs in GCS via spinnaker.config.input.gcs.enabled (#268)
  - fix(bom): Expire BOM cache after 1m (#267)
  - feat(gitlab): Add Dinghy config for Gitlab (#266)

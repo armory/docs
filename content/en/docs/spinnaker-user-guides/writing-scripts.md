@@ -1,5 +1,5 @@
 ---
-title: Automating Spinnaker
+title: Automating Spinnaker™
 weight: 180
 aliases:
   - /user-guides/writing-scripts/
@@ -29,4 +29,4 @@ You can click on the controller you are interested in to see endpoints related t
 
 ## Auth
 
-Being able to access the API when auth is enabled requires a certain configuration by your Armory Spinnaker Administrator. They will need to enable programmatic access via mutual tls (x509 certs). Then you will need to use a cert when communicating with the API.
+Being able to access the API when auth is enabled requires a certain configuration by your Spinnaker Administrator. They will need to enable programmatic access via mutual tls (x509 certs). Then you will need to use a cert when communicating with the API.

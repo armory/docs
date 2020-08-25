@@ -8,7 +8,7 @@ aliases:
 
 _Note: This guide is a work in progress._
 
-This guide contains instructions for installing Armory Spinnaker on a GKE Cluster using the [Spinnaker Operator]({{< ref "operator" >}}). Refer to the [Spinnaker Operator Reference]({{< ref "operator-config" >}}) for manifest entry details.
+This guide contains instructions for installing Armory on a GKE Cluster using the [Spinnaker Operator]({{< ref "operator" >}}). Refer to the [Spinnaker Operator Reference]({{< ref "operator-config" >}}) for manifest entry details.
 
 ## Prerequisites
 

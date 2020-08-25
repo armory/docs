@@ -28,14 +28,14 @@ Then, you'd add additional cloud providers (again, via `hal config`), and apply 
 
 ## An extension of the OSS Halyard   
 
-Armory Halyard is an extension of OSS Halyard. We make the initial deployment of Spinnaker much simpler if you're working with a Kubernetes cluster and AWS S3, by adding a command that triggers a series of prompts (sort of a mini tutorial) that handles a lot of the initial configuration.  This occurs when you run `hal armory init` - it will prompt you for the following information:
+Armory provides an extension of OSS Halyard. We make the initial deployment of Spinnaker much simpler if you're working with a Kubernetes cluster and AWS S3, by adding a command that triggers a series of prompts (sort of a mini tutorial) that handles a lot of the initial configuration.  This occurs when you run `hal armory init` - it will prompt you for the following information:
 * Which kubeconfig to use, and which Kubernetes cluster within that kubeconfig to deploy to
 * Which AWS credential profile to use to connect to S3
 * Which S3 bucket to store state in
 
-So with the Armory Halyard installer, we make it much easier to get your initial Spinnaker up and running by automating a lot of the initial configuration.
+So with the Armory extended Halyard , Armory makes it much easier to get your initial Spinnaker up and running by automating a lot of the initial configuration.
 
-Therefore - the Armory Spinnaker distribution does not currently *use* Terraform to get up and running; it basically relies on a bunch of user provided configuration to deploy a number of Kubernetes manifests to create the mulitple microservices that comprise Spinnaker.
+Armory uses user provided configuration to deploy a number of Kubernetes manifests to create the mulitple microservices that comprise Spinnaker.
 
 It's not a single Docker container, and it's not a set of static VMs - it's a highly-resilient distributed microservices architecture that runs on top of Kubernetes.
 

@@ -74,7 +74,7 @@ The above configuration grants authorization from any host. You can restrict it 
 The above configuration will point Orca to your database. 
 You have the option to run a dual repository by adding `dual` in `profiles/orca-local.yml`.
 
-Armory Spinnaker v2.18+:
+Armory v2.18+:
 
 ```yaml
 executionRepository:
@@ -88,7 +88,7 @@ executionRepository:
     enabled: true
 ```
 
-Armory Spinnaker versions prior to v2.18:
+Armory versions prior to v2.18:
 
 ```yaml
 executionRepository:

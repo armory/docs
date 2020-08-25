@@ -19,7 +19,7 @@ In addition to support for configuring `git/repo` artifact types, this release i
 ## Known Issues
 No known issues
 
-## Halyard Armory Enterprise Spinnaker
+## Armory extended Halyard 
  - fix(halconfigParser): access halconfigPath via new method (#278)
  - chore(testing): add additional integration tests (#275)
  - feat(docker): add gcloud to container (#274)

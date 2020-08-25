@@ -7,13 +7,13 @@ aliases:
 
 ## 04/20/20 Release Notes
 
-> Note: Do not upgrade to Armory Spinnaker 2.19.4 (this version). Instead, upgrade to Armory Spinnaker [2.19.7]({{< ref "armoryspinnaker_v2-19-7" >}}) or later.
+> Note: Do not upgrade to Armory 2.19.4 (this version). Instead, upgrade to Armory [2.19.7]({{< ref "armoryspinnaker_v2-19-7" >}}) or later.
 
 ## Breaking Changes
 
 ### Required Halyard version
 
-Armory Spinnaker 2.19.x requires Armory Halyard 1.8.3 or later.
+Armory 2.19.x requires Armory extended Halyard 1.8.3 or later.
 
 ### HTTP sessions for Gate
 This version includes an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
@@ -29,18 +29,18 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 There is an issue creating or updating service accounts. This causes the pipeline permissions feature to not work.  
 
-**Affected versions**: Armory Spinnaker 2.19.6 and earlier.
+**Affected versions**: Armory 2.19.6 and earlier.
 
-**Fixed versions**: Armory Spinnaker 2.19.7 and later
+**Fixed versions**: Armory 2.19.7 and later
 
 ### Plugins Framework
 
-There is a known issue with the Plugins framework in Armory Spinnaker 2.17.6. If you want to build or use custom plugins, do not use this version. Use Armory Spinnaker 2.17.8 or later.
+There is a known issue with the Plugins framework in Armory 2.17.6. If you want to build or use custom plugins, do not use this version. Use Armory 2.17.8 or later.
 
 ## Highlighted Updates
 
 ### Armory
-Highlighted Updates describe some of the major changes in this release. Highlights specific to Armory Spinnaker for this release include:
+Highlighted Updates describe some of the major changes in this release. Highlights specific to Armory for this release include:
 
 **Policy Engine**
 
@@ -52,13 +52,13 @@ Addressed a number of CVEs found within the Spinnaker services.
 
 **Plugins**
 
-This release supports Plugin deployment using Armory Halyard or the [Spinnaker Operator]({{< ref "operator" >}}). Consult the open source [Plugin](https://spinnaker.io/guides/user/plugins/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins" >}}) for a manifest example.
+This release supports Plugin deployment using Armory extended Halyard or the [Spinnaker Operator]({{< ref "operator" >}}). Consult the open source [Plugin](https://spinnaker.io/guides/user/plugins/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins" >}}) for a manifest example.
 
 Additionally, this version of Spinnaker includes updates to how Deck is built. Previously, Deck's builds were non-deterministic, causing issues with loading plugins into the UI. Deck's builds are now deterministic and support UI plugins.
 
 **Managed Pipeline Templates v2 UI**
 
-Armory Spinnaker 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in OSS Spinnaker.
+Armory 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in OSS Spinnaker.
 
 Armory recommends using Armory's Pipeline as Code feature instead of MPTv2 because it offers the following benefits:
 
@@ -68,14 +68,14 @@ Armory recommends using Armory's Pipeline as Code feature instead of MPTv2 becau
 
 Note that Armory's Pipeline as Code and the open source Managed Pipeline Templates are not integrated and do not work together.
 
-By default, the MPTv2 UI is disabled in Armory Spinnaker 2.19.6. Leaving the UI disabled maintains the same experience you had with Armory Spinnaker 2.18.x (OSS 1.18.x).
+By default, the MPTv2 UI is disabled in Armory 2.19.6. Leaving the UI disabled maintains the same experience you had with Armory 2.18.x (OSS 1.18.x).
 
 If you want to enable the MPTv2 UI, see [Enabling the Managed Pipeline Templates UI](https://kb.armory.io/admin/enable-mptv2/).
 
 
 
 ###  Spinnaker Community Contributions
-The following highlights describe some of the major changes from the Spinnaker community for OSS Release 1.19.5, which is included in this release of Armory Spinnaker 2.19:
+The following highlights describe some of the major changes from the Spinnaker community for OSS Release 1.19.5, which is included in this release of Armory 2.19:
 
 **Java 11**
 > The migration to Java 11 continues. This should not affect Spinnaker users. If you extend Spinnaker, this change may affect you.

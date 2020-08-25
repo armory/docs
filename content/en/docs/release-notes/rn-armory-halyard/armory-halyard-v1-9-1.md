@@ -13,11 +13,11 @@ No known issues
 
 ## Highlights
 
-Armory Halyard 1.9.1 resolves an issue where the Echo Pod in Armory Spinnaker 2.18 remained in a crash loop state.
+Armory extended Halyard 1.9.1 resolves an issue where the Echo Pod in Armory 2.18 remained in a crash loop state.
 
 
-## Halyard Armory Enterprise Spinnaker
-- fix(plugins): Use Armory Spinnaker version to detect if plugins are supported
+## Armory extended Halyard 
+- fix(plugins): Use Armory version to detect if plugins are supported
 - chore(cve): CVE fixes
 
 

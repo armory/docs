@@ -7,23 +7,23 @@ aliases:
 
 ## 04/17/20 Release Notes
 
-> Note: Do not upgrade to Armory Spinnaker 2.19.4 (this version). Instead, upgrade to Armory Spinnaker [2.19.7]({{< ref "armoryspinnaker_v2-19-7" >}}) or later.
+> Note: Do not upgrade to Armory 2.19.4 (this version). Instead, upgrade to Armory [2.19.7]({{< ref "armoryspinnaker_v2-19-7" >}}) or later.
 
 
 ## Breaking Changes
 
 ### Required Halyard version
 
-Armory Spinnaker 2.19.x requires Armory Halyard 1.8.3 or later.
+Armory 2.19.x requires Armory extended Halyard 1.8.3 or later.
 
 
 ### HTTP sessions for Gate
 
-Armory Spinnaker 2.19.x and later include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment if you are upgrading from a version before 2.19.4. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
+Armory 2.19.x and later include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment if you are upgrading from a version before 2.19.4. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
 
 ### Plugins framework
 
-If you are using a custom plugin for Deck built using the Plugins framework or intend to build one, do not upgrade to Armory Spinnaker 2.19.5.
+If you are using a custom plugin for Deck built using the Plugins framework or intend to build one, do not upgrade to Armory 2.19.5.
 
 
 ### Scheduled Removal of Kubernetes V1 Provider
@@ -50,13 +50,13 @@ These issues do not occur immediately, and you may even see modified accounts ap
 
 There is an issue creating or updating service accounts. This causes the pipeline permissions feature to not work.  
 
-**Affected versions**: Armory Spinnaker 2.19.6, 2.19.5, and 2.19.4.
+**Affected versions**: Armory 2.19.6, 2.19.5, and 2.19.4.
 
-**Fixed versions**: Armory Spinnaker 2.19.7 and later
+**Fixed versions**: Armory 2.19.7 and later
 
 ## Highlighted Updates
 ### Armory
-Highlighted Updates describe some of the major changes in this release. Highlights specific to Armory Spinnaker for this release include:
+Highlighted Updates describe some of the major changes in this release. Highlights specific to Armory for this release include:
 
 **CVE**
 
@@ -64,7 +64,7 @@ Fixed a recently discovered CVE that affects Igor: [`CVE-2020-11612`](https://nv
 
 **Managed Pipeline Templates v2 UI**
 
-Armory Spinnaker 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in OSS Spinnaker.
+Armory 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in OSS Spinnaker.
 
 Armory recommends using Armory's Pipeline as Code feature instead of MPTv2 because it offers the following benefits:
 
@@ -74,13 +74,13 @@ Armory recommends using Armory's Pipeline as Code feature instead of MPTv2 becau
 
 Note that Armory's Pipeline as Code and the open source Managed Pipeline Templates are not integrated and do not work together.
 
-By default, the MPTv2 UI is disabled in Armory Spinnaker 2.19.5. Leaving the UI disabled maintains the same experience you had with Armory Spinnaker 2.18.x (OSS 1.18.x).
+By default, the MPTv2 UI is disabled in Armory 2.19.5. Leaving the UI disabled maintains the same experience you had with Armory 2.18.x (OSS 1.18.x).
 
 If you want to enable the MPTv2 UI, see [Enabling the Managed Pipeline Templates UI](https://kb.armory.io/admin/enable-mptv2/).
 
 ###  Spinnaker Community Contributions
 
-The following highlights describe some of the major changes from the Spinnaker community for version 1.19.x, which is included in this release of Armory Spinnaker 2.19:
+The following highlights describe some of the major changes from the Spinnaker community for version 1.19.x, which is included in this release of Armory 2.19:
 
 **Scheduled Removal of Kubernetes V1 Provider**
 The Kubernetes V1 provider will be removed in Spinnaker 1.21. Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.

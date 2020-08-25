@@ -21,7 +21,7 @@ spec:
   spinnakerConfig:
     # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
     config:
-      version: 2.17.1   # the Armory Spinnaker version to be deployed
+      version: 2.17.1   # the Armory version to be deployed
       persistentStorage:
         persistentStoreType: s3
         s3:
@@ -294,17 +294,19 @@ Support for `SpinnakerAccount` CRD (**Experimental**):
 ## Example Manifests for Exposing Spinnaker
 The following example manifests deploy Spinnaker with different configurations:
 - [SpinnakerService CRD](#spinnakerservice-crd)
-    - [metadata.name](#metadataname)
-    - [.spec.spinnakerConfig](#specspinnakerconfig)
-    - [.spec.spinnakerConfig.profiles](#specspinnakerconfigprofiles)
-    - [spec.expose](#specexpose)
-    - [spec.validation](#specvalidation)
-    - [spec.accounts](#specaccounts)
+  - [metadata.name](#metadataname)
+  - [.spec.spinnakerConfig](#specspinnakerconfig)
+  - [.spec.spinnakerConfig.profiles](#specspinnakerconfigprofiles)
+  - [.spec.spinnakerConfig.service-settings](#specspinnakerconfigservice-settings)
+  - [.spec.spinnakerConfig.files](#specspinnakerconfigfiles)
+  - [spec.expose](#specexpose)
+  - [spec.validation](#specvalidation)
+  - [spec.accounts](#specaccounts)
 - [Example Manifests for Exposing Spinnaker](#example-manifests-for-exposing-spinnaker)
   - [Load balancer Services](#load-balancer-services)
   - [Different Service Types for Deck (UI) and Gate (API)](#different-service-types-for-deck-ui-and-gate-api)
   - [Different Annotations for Deck (UI) and Gate (API)](#different-annotations-for-deck-ui-and-gate-api)
-  - [X509](#x509)
+- [X509](#x509)
 
 ### Load balancer Services
 
