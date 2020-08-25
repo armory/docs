@@ -84,6 +84,9 @@ We recommend that you monitor your systems by using the [Armory Observabililty P
  * Adding Prometheus (OpenMetrics) endpoints to spinnaker pods (explained below)
  * Sending data to NewRelic (documented on the plugin page). 
 
+> though we recommend this plugin, the plugin removes the service name from the metric vs. the OSS daemon system.  The standard dashboards have not translated at this time in any public repo.  It's in constant development
+> so continue to check back!
+
 #### Install the plugin
 
 To install the observability plugin you'll need to add a plugin configuration to the profiles
