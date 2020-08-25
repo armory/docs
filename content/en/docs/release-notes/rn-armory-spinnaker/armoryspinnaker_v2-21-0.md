@@ -43,6 +43,8 @@ If you still have any jobs that use the V1 provider, you will encounter an error
 
 {{< include "ki-custom-job-stage.md" >}}
 
+{{< include "ki-saml-authn.md" >}}
+
 #### Security update
 
 We continue to make Spinnaker's security a top priority. Although several CVEs are resolved, the following still exist:

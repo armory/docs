@@ -42,7 +42,7 @@ If you still have any jobs that use the V1 provider, you will encounter an error
 
 ## Known Issues
 
-There are no known issues with this release.
+{{< include "ki-saml-authn.md" >}}
 
 #### Security update
 
