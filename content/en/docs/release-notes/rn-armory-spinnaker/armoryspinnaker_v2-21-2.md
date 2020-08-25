@@ -1,16 +1,15 @@
 ---
-title: v2.21.1 Armory Release (OSS Spinnaker v1.21.2)
+title: v2.21.2 Armory Release (OSS Spinnaker™ v1.21.4)
 toc_hide: true
-description: Release Notes for Armory 2.21.1
 ---
 
-## 2020/08/06 Release Notes
+## 2020/08/70 Release Notes
 
-> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+> Note: If you're experiencing production issues after upgrading, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-## Required Halyard version
+## Required Halyard and Operator version
 
-Armory Spinnaker 2.21.1 requires one of the following:
+Armory Spinnaker 2.21.2 requires one of the following:
 * Armory Halyard 1.9.4 or later.
 * Armory Spinnaker Operator 1.0.3 or later.
 
@@ -32,17 +31,11 @@ Although both workarounds involve updating your dashboards to use the new metric
 
 This release note will be updated once the updated plugin is available.
 
-#### HTTP sessions for Gate
-Armory Spinnaker 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
-
 #### Scheduled removal of Kubernetes V1 provider
 The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
 
-If you still have any jobs that use the V1 provider, you will encounter an error. For more information, see [Cloud providers](#cloud-providers).
 
 ## Known Issues
-
-{{< include "ki-saml-authn.md" >}}
 
 #### Security update
 
@@ -79,16 +72,29 @@ The following CVEs will be triaged as part of a future release:
 
 ##### Terraformer
 
-Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration: 
+Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration:
 
 - CVE-2020-15778
 
-## Highlights
+## Highlighted Updates
 
-This release makes the following improvements:
 
-* Fixes an issue in 2.20.0 where Custom Job Stages fail. For more information, see the [Known Issue]({{< ref "armoryspinnaker_v2-21-0#custom-job-stages" >}}).
-* Improves how the GitHub PR Validation for Pipelines as Code works. If there are no changes to a `dinghyfile`, PR Validation passes.
+### Authentication
+
+Fixed an issue where SAML login did not work.
+
+### Pipelines as Code
+
+Fixed an issue with `dinghyfile` validation when no changes are made to the file.
+
+### Security
+
+Resolved [CVE-2020-11984](https://nvd.nist.gov/vuln/detail/CVE-2020-11984).
+
+###  Spinnaker Community Contributions
+
+There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
+[Spinnaker v1.21.4](https://www.spinnaker.io/community/releases/versions/1-21-4-changelog)
 
 ## Detailed Updates
 
@@ -96,49 +102,49 @@ This release makes the following improvements:
 Here's the bom for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
-<code>version: 2.21.1
-timestamp: "2020-08-07 00:26:36"
+<code>version: 2.21.2
+timestamp: "2020-08-24 19:44:03"
 services:
     clouddriver:
-        commit: f97b7cc2
-        version: 2.21.1
+        commit: bad246c6
+        version: 2.21.4
     deck:
-        commit: 8c42b95f
-        version: 2.21.3
+        commit: 53d7adc3
+        version: 2.21.6
     dinghy:
-        commit: 0a23b203
-        version: 2.21.2
+        commit: 8fa8c0ae
+        version: 2.21.3
     echo:
-        commit: 880b43b4
-        version: 2.21.1
+        commit: 17a274cf
+        version: 2.21.2
     fiat:
-        commit: 4e293ee1
-        version: 2.21.1
+        commit: a7b64e03
+        version: 2.21.2
     front50:
         commit: 9b3d3bac
         version: 2.21.0
     gate:
-        commit: 71d53af6
-        version: 2.21.3
+        commit: "844223e9"
+        version: 2.21.6
     igor:
-        commit: b5662632
-        version: 2.21.1
+        commit: b3a7e1fc
+        version: 2.21.2
     kayenta:
-        commit: 339d2b68
-        version: 2.21.1
+        commit: 7caca133
+        version: 2.21.2
     monitoring-daemon:
         version: 2.21.0
     monitoring-third-party:
         version: 2.21.0
     orca:
-        commit: "69235005"
-        version: 2.21.2
-    rosco:
-        commit: 1c0b7e7c
-        version: 2.21.1
-    terraformer:
-        commit: be026f2c
+        commit: e969ea99
         version: 2.21.3
+    rosco:
+        commit: f9f89e5a
+        version: 2.21.2
+    terraformer:
+        commit: 516ca41a
+        version: 2.21.5
 dependencies:
     redis:
         version: 2:2.8.4-2
@@ -151,43 +157,44 @@ artifactSources:
 ### Armory
 
 
+#### Armory Kayenta - 2.21.1...2.21.2
+
+
+#### Armory Fiat - 2.21.1...2.21.2
+
+
+#### Armory Gate - 2.21.3...2.21.6
+
+  - fix(saml): Esapi dependency exact version (downgrade) (#160) (#161)
+
+#### Terraformer™ - 2.21.3...2.21.5
+
+  - fix(docker): re-add cache dir to container (#239) (#240)
+
+#### Armory Clouddriver - 2.21.1...2.21.4
+
+  - fix(cve): Security fixes (#180)
+
+#### Dinghy™ - 2.21.2...2.21.3
+
+  - fix(prvalidation): fixed pr validation bug related with no dinghyfiles changed (#265) (#266)
+
+#### Armory Rosco - 2.21.1...2.21.2
+
+
+#### Armory Deck - 2.21.3...2.21.6
+
+  - chore(cve): fix CVE-2020-11984 (#640) (#643)
+
+#### Armory Igor - 2.21.1...2.21.2
+
+
+#### Armory Echo - 2.21.1...2.21.2
+
+
 #### Armory Front50 - 2.21.0...2.21.0
 
 
-#### Terraformer - 2.21.3...2.21.3
+#### Armory Orca - 2.21.2...2.21.3
 
-
-#### Armory Fiat - 2.21.1...2.21.1
-
-
-#### Armory Igor - 2.21.1...2.21.1
-
-
-#### Dinghy - 2.21.1...2.21.2
-
-  - fix(status): change github when dinghyfiles are not changed (#261) (#262)
-
-#### Armory Kayenta - 2.21.1...2.21.1
-
-
-#### Armory Deck - 2.21.3...2.21.3
-
-
-#### Armory Clouddriver - 2.21.1...2.21.1
-
-
-#### Armory Echo - 2.21.1...2.21.1
-
-
-#### Armory Rosco - 2.21.1...2.21.1
-
-
-#### Armory Gate - 2.21.2...2.21.3
-
-  - fix(cve): CVE fixes (#155) (#156)
-
-#### Armory Orca - 2.21.0...2.21.2
-
-  - fix(clouddriver): manual impl of oss fix for custom jobs (#139)
-  - chore(build): push images to dockerhub (#135) (#140)
 
