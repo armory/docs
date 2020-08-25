@@ -200,6 +200,7 @@ spec:
       - spin-deck-custom
       - spin-redis
       - spin-terraformer
+      - spin-dinghy
     matchLabels:
       app: spin
     namespaceSelector:
