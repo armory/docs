@@ -13,9 +13,9 @@ This guide walks you through using the [Spinnaker Operator]({{< ref "operator" >
 See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to install Spinnaker using the Spinnaker Operator in a regular Kubernetes installation.
 
 ## Prerequisites
-
-* Know how to create a VM in AWS EC2
-* Be familiar with AWS IAM roles and S3 buckets
+[
+* Know how to create a VM in AWS [EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
+* Be familiar with [AWS IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) and [S3 buckets](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html)
 
 ## Create an AWS EC2 instance
 
@@ -153,6 +153,8 @@ spinnaker-operator-589ccc6fd4-56wlc   2/2     Running   0          4m28s
 
 Edit the `SpinnakerService.yml` manifest file located in the `~/spinnaker-operator/deploy/spinnaker/basic` directory.
 
+You can find detailed configuration information in the [Spinnaker Operator Configuration]({{< ref "operator-config" >}}) guide.
+
 ### Update Armory Spinnaker version and S3 bucket name
 
 Update the `spec.spinnakerConfig.config.version` value to the version of Armory Spinnaker you want to deploy. Check the [Release Notes]({{< ref "rn-armory-spinnaker" >}}) if you are unsure which version to install. Choose v2.20.4, v2.20.5 or v2.21+ if you want to deploy plugins.
@@ -256,3 +258,30 @@ You can watch the installation progress by executing:
 kubectl -n spinnaker get spinsvc spinnaker -w
 ```
 
+## Upgrade Spinnaker
+
+[Upgrade Spinnaker] by changing the `version` value in `SpinnakerService.yml` and using `kubectl` to apply the manifest.
+
+## Delete Spinnaker
+
+Since you installed Spinnaker in the same namespace as Operator, do not delete the `spinnaker-operator` namespace unless you want to delete Operator as well.
+
+You can use the [`kubectl delete`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#delete) command to delete Spinnaker.
+
+```bash
+kubectl -n spinnaker-operator delete spinnakerservice spinnaker
+```
+
+## Troubleshooting
+
+You can access Operator logs by executing:
+
+```bash
+kubectl -n spinnaker-operator logs deploy/spinnaker-operator -c spinnaker-operator
+```
+
+Operator uses Halyard, so you can access the Halyard logs by executing:
+
+```bash
+kubectl -n spinnaker-operator logs deploy/spinnaker-operator -c halyard
+```
