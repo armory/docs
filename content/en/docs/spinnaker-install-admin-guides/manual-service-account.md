@@ -68,7 +68,7 @@ subjects:
 Then, create the binding:
 
 ```bash
-kubectl apply -f spinnaker-service-account.yml
+kubectl apply -f spinnaker-clusterrolebinding.yml
 ```
 
 ## Grant namespace specific permissions
