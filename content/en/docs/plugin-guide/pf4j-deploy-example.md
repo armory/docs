@@ -240,13 +240,10 @@ If the plugin doesn't appear in the **Type** select list, check the following lo
   You should see output similar to this when the plugin has been successfully loaded:
 
   ```bash
-  2020-07-02 16:12:51.994  INFO 1 --- [           main] .k.p.u.r.s.LatestPluginInfoReleaseSource : Latest release version not found for plugin 'Armory.RandomWaitPlugin'
-  2020-07-02 16:12:51.997  INFO 1 --- [           main] .k.p.u.r.s.SpringPluginInfoReleaseSource : Spring configured release version '1.1.14' for plugin 'Armory.RandomWaitPlugin'
-  2020-07-02 16:12:52.002  INFO 1 --- [           main] p.u.r.s.PreferredPluginInfoReleaseSource : No preferred release version found for 'Armory.RandomWaitPlugin'
-  2020-07-02 16:12:52.644  INFO 1 --- [           main] org.pf4j.util.FileUtils                  : Expanded plugin zip 'Armory.RandomWaitPlugin-pf4jStagePlugin-v1.1.14.zip' in 'Armory.RandomWaitPlugin-pf4jStagePlugin-v1.1.14'
-  2020-07-02 16:12:52.645  WARN 1 --- [           main] c.n.s.k.p.bundle.PluginBundleExtractor   : Downloaded plugin bundle 'Armory.RandomWaitPlugin-pf4jStagePlugin-v1.1.14.zip' does not have plugin for service: gate
+  2020-08-26 18:42:49.154  INFO 1 --- [TaskScheduler-8] c.n.s.gate.plugins.deck.DeckPluginCache  : Refreshing plugin cache
+  2020-08-26 18:42:49.229  INFO 1 --- [TaskScheduler-8] .k.p.u.r.s.LatestPluginInfoReleaseSource : Latest release version '1.1.14' for plugin 'Armory.RandomWaitPlugin'
+  2020-08-26 18:42:49.229  INFO 1 --- [TaskScheduler-8] .k.p.u.r.s.SpringPluginInfoReleaseSource : Spring configured release version '1.1.14' for plugin 'Armory.RandomWaitPlugin'
+  2020-08-26 18:42:49.229  INFO 1 --- [TaskScheduler-8] c.n.s.gate.plugins.deck.DeckPluginCache  : Cached 1 deck plugins
   ```
 
-  Also look for "Refreshing plugin cache" and "Cached" ( as in "Cached 0 deck plugins") log statements.
-
-  If Gate can't find your frontend plugin, make sure you configured the Deck proxy correctly.
+  If Gate can't find your frontend plugin, make sure you configured `deck-proxy` correctly.
