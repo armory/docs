@@ -172,6 +172,8 @@ spec:
     			    url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
 ```
 
+Note: `repositories`, `plugins`, and `deck-proxy` are all at the same level, which is directly below `extensibility`.
+
 ## Redeploy Armory
 
 From the `spinnaker-operator` directory:
@@ -190,9 +192,9 @@ kubectl -n <namespace> get pods
 
 The RandomWait stage appears in the **Type** select list when you create a new Pipeline stage.
 
-{% include image-caption.html url="/images/plugins/randomWaitTypeUI.png" caption="Random Wait stage in Type select list" %}
+{{< figure src="/images/plugins/randomWaitTypeUI.png" caption="Random Wait stage in Type select list" %>}}
 
-{% include image-caption.html url="/images/plugins/randomWaitStageUI.png" caption="Random Wait stage after it has been selected and the configuration panel is visible." %}
+{{< figure src="/images/plugins/randomWaitStageUI.png" caption="Random Wait stage after it has been selected and the configuration panel is visible." >}}
 
 
 ## Troubleshooting
