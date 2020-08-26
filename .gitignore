@@ -1,7 +1,0 @@
-.idea
-public/
-resources/
-node_modules/
-tech-doc-hugo
-.DS_Store
-utils/vendor/
