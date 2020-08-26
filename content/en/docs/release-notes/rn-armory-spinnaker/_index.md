@@ -130,4 +130,6 @@ See [halyard reference](https://www.spinnaker.io/reference/halyard/commands/#hal
 
 
 ## List of Stable Armory Releases
-<!-- Hugo/docsy auto generates a list of the child pages here. The front matter configures it to go from newest to oldest --!> 
+<!-- Hugo/docsy auto generates a list of the child pages here. The front matter configures it to go from newest to oldest --!>
+
+Armory supports the three most recent minor versions:

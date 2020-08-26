@@ -1,30 +1,28 @@
 ---
-
-title: v2.15.3 Armory Release (OSS Release 1.15.3)
+title: v2.15.2 Armory Release (OSS Release 1.15.3)
 toc_hide: true
-draft: true
+
 aliases:
-  - armoryspinnaker_v2.15.3
+  - armoryspinnaker_v2.15.2
 ---
 
-## 08/30/19 Release Notes
-
+## 08/27/19 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-
 
 
 ## Known Issues
 > Note: Updating to OSS 1.15.x created an issue with the secrets config in Clouddriver and Echo. Armory Halyard 1.6.5 fixes this issue. Please update your Halyard to 1.6.5 or later:
 `sudo update-halyard --version 1.6.5`
-## Highlighted Updates
-### Armory
-This release addresses a number of security vulnerabilities within the Deck service container
 
+## Highlighted Updates
+
+This release addresses the slow cache warm up time of `Clouddriver` when configured with a `Docker Registry` containing a large number of images and tags.
+
+### Armory
 
 ###  Spinnaker Community Contributions
 [Spinnaker 1.15.3 Release Notes](https://www.spinnaker.io/community/releases/versions/1-15-3-changelog)  
-
 
 <br>
 ## Detailed Updates
@@ -33,15 +31,15 @@ This release addresses a number of security vulnerabilities within the Deck serv
 Here's the bom for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
-<code>version: 2.15.3-rc953
-timestamp: "2019-08-30 15:13:48"
+<code>version: 2.15.2-rc887
+timestamp: "2019-08-27 23:13:58"
 services:
   clouddriver:
     version: 6.2.0-9db8e9d-7a485ae-rc27
   deck:
-    version: 2.10.2-155f05a-09e4382-rc21
+    version: 2.10.2-8850beb-09e4382-rc20
   dinghy:
-    version: 0.0.4-cd9d1cc-rc911
+    version: 0.0.4-cd9d1cc-rc847
   echo:
     version: 2.6.0-16a503d-6160b79-rc15
   fiat:
@@ -63,7 +61,7 @@ services:
   rosco:
     version: 0.13.0-7b4de48-f01311c-rc20
   terraformer:
-    version: 0.0.2-c0605a2-rc5
+    version: 0.0.2-5bf57b6-rc4
 dependencies:
   redis:
     version: 2:2.8.4-2
@@ -75,17 +73,17 @@ artifactSources:
 
 
 ### Armory
-#### Dinghy&trade; - cd9d1cc
-No Changes
+#### Dinghy&trade; - 5cb920e...cd9d1cc
+ - fix(tests): update tests to account for refactored code (#185)
 
-#### Terraformer&trade; - 5bf57b6...c0605a2
-No Changes
+#### Terraformer&trade; - 63b5d5c...5bf57b6
+ - chore(yaml): update go-yaml-tools (#89)
 
 #### Armory Clouddriver  - 9db8e9d
 No Changes
 
-#### Armory Deck  - 8850beb...155f05a
- - chore(build): Update Alpine + update (#522)
+#### Armory Deck  - 8850beb
+No Changes
 
 #### Armory Echo  - 16a503d
 No Changes
@@ -93,14 +91,14 @@ No Changes
 #### Armory Fiat  - 84d2119
 No Changes
 
-#### Armory Front50  - 195043d
-No Changes
+#### Armory Front50  - 318214b...195043d
+ - chore(build): Artifactory support (#20)
 
-#### Armory Gate  - 5b9fb1b
-No Changes
+#### Armory Gate  - 83b6e52...5b9fb1b
+ - refactor(gradle): Artifactory (#71)
 
-#### Armory Igor  - a3f5664
-No Changes
+#### Armory Igor  - 0dbfd5e...a3f5664
+ - chore(build): support artifactory (#30)
 
 #### Armory Kayenta  - 1a6b0ea
 No Changes
@@ -111,17 +109,16 @@ No Changes
 #### Armory Rosco  - 7b4de48
 No Changes
 
-
 ### Armory Open Core
 
-#### Dinghy (Open Core) d62dc4a
-No Changes
-
+#### Dinghy (Open Core) 1214a73...d62dc4a
+ - fix(security): Redact logging of secrets on start (#68)
+ - fix(module): Template repo always uses master (#67)
 
 ###  Spinnaker Community Contributions
 
-#### Clouddriver  - 7a485ae
-No Changes
+#### Clouddriver  - ad713a7...7a485ae
+ - perf(docker): Use parallel streams for caching docker images
 
 #### Deck  - 09e4382
 No Changes

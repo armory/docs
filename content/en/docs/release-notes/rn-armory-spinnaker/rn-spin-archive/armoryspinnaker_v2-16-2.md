@@ -1,13 +1,13 @@
 ---
 
-title: v2.16.3 Armory Release (OSS Release 1.16.4)
+title: v2.16.2 Armory Release (OSS Release 1.16.4)
 toc_hide: true
-draft: true
+
 aliases:
-  - armoryspinnaker_v2.16.3
+  - armoryspinnaker_v2.16.2
 ---
 
-## 11/08/19 Release Notes
+## 10/28/19 Release Notes
 
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
@@ -32,15 +32,15 @@ There have also been numerous enhancements, fixes and features across all of Spi
 Here's the bom for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
-<code>version: 2.16.3-rc1395
-timestamp: "2019-11-08 22:54:13"
+<code>version: 2.16.2-rc1118
+timestamp: "2019-10-28 19:54:55"
 services:
   clouddriver:
     version: 6.3.2-9db8e9d-bd1a453-rc12
   deck:
-    version: 2.12.3-cbab764-96332ba-rc30
+    version: 2.12.2-f0fdf1e-a546982-rc23
   dinghy:
-    version: 0.0.4-defad9b-rc1547
+    version: 0.0.4-defad9b-rc1280
   echo:
     version: 2.8.1-b8d5392-55a1580-rc10
   fiat:
@@ -48,11 +48,11 @@ services:
   front50:
     version: 0.19.0-195043d-abc5c16-rc4
   gate:
-    version: 1.12.1-6ce586c-2cdf6f9-rc9
+    version: 1.12.1-83b97ab-2cdf6f9-rc8
   igor:
     version: 1.6.0-3a56ef6-5e6c31e-rc8
   kayenta:
-    version: 0.11.0-f295c50-8aa41e6-rc6
+    version: 0.11.0-b2d0be0-8aa41e6-rc5
   monitoring-daemon:
     version: 0.15.0-f626bb6-rc128
   monitoring-third-party:
@@ -60,9 +60,9 @@ services:
   orca:
     version: 2.10.1-4517040-8855208-rc16
   rosco:
-    version: 0.14.0-5936b02-338a41d-rc9
+    version: 0.14.0-368e336-338a41d-rc8
   terraformer:
-    version: 0.0.2-e2d3b75-rc5
+    version: 0.0.2-18211b0-rc4
 dependencies:
   redis:
     version: 2:2.8.4-2
@@ -76,17 +76,14 @@ artifactSources:
 #### Dinghy&trade; - defad9b
 No Changes
 
-#### Terraformer&trade; - 6703356...e2d3b75
- - chore(metrics): impl basic monitoring interfaces (#94)
- - chore(build): add openssh and new terraform versions (#92)
- - chore(terraform): add 0.12.7 to available versions (#91)
+#### Terraformer&trade; - 6703356...18211b0
+ - chore(build): add openssh, add 0.12.7 to available versions (#92)
 
 #### Armory Clouddriver  - 9db8e9d
 No Changes
 
-#### Armory Deck  - f0fdf1e...cbab764
- - refactor(stepbystep): removed stepbystep (#531)
- - refactor(configurator): removed configurator (#530)
+#### Armory Deck  - f0fdf1e
+No Changes
 
 #### Armory Echo  - 16a503d...b8d5392
  - fix(dinghy): Added GitLab dinghy support (#109)
@@ -97,24 +94,25 @@ No Changes
 #### Armory Front50  - 195043d
 No Changes
 
-#### Armory Gate  - 83b97ab...6ce586c
- - feat(x509): support for x509 behind a trusted proxy (#74)
+#### Armory Gate  - 83b97ab
+No Changes
 
 #### Armory Igor  - 3a56ef6
 No Changes
 
-#### Armory Kayenta  - b2d0be0...f295c50
- - feature(armoryJudge): create armory judge for static baseline (#31)
+#### Armory Kayenta  - b2d0be0
+No Changes
 
 #### Armory Orca  - 4517040
 No Changes
 
-#### Armory Rosco  - 368e336...5936b02
- - feat(kustomize): upgrade binary v3.1.0 -> v3.3.0 (#20)
+#### Armory Rosco  - 368e336
+No Changes
+
 
 ### Armory Open Core
-#### Dinghy (Open Core) - 8f0abe1...960a6240
- - fix(custom_branch): branch configuration comparison (#74)
+#### Dinghy (Open Core) - 8f0abe1
+No Changes
 
 
 ###  Spinnaker Community Contributions
@@ -125,8 +123,8 @@ See Spinnaker's release notes that are included in this release:
 #### Clouddriver  - 9dae9f4...bd1a453
  - fix(runJob): fix output on multi container (#4102) (#4105)
 
-#### Deck  - a546982...96332ba
- - fix(runJob): fix artifact output creation (#7579) (#7580)
+#### Deck  - a546982
+No Changes
 
 #### Echo  - 55a1580
 No Changes

@@ -1,7 +1,7 @@
 ---
 title: v2.18.0 Armory Release (OSS Release 1.18.2)
 toc_hide: true
-draft: true
+
 aliases:
   - armoryspinnaker_v2.18.0
 ---
