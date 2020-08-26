@@ -1,7 +1,6 @@
 ---
-title: Armory Spinnaker Release Notes
-Summary: >
-  Release Notes For Armory Spinnaker
+title: Armory Release Notes
+description: Release notes for Armory releases.
 aliases:
   - /releases/
   - /release/
