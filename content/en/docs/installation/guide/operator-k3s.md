@@ -246,7 +246,7 @@ expose:
       publicPort: 8084
 ```
 
-Spacking is very important in YAML files. Make sure the spacing is correct in the `SpinnakerService.yml` file . Also, ensure there are no tabs instead of spaces in the file. Incorrect spacing or tabs will cause errors when you install Spinnaker.
+Spacing is very important in YAML files. Make sure the spacing is correct in the `SpinnakerService.yml` file . Also, ensure there are no tabs instead of spaces in the file. Incorrect spacing or tabs will cause errors when you install Spinnaker.
 
 ## Install Armory
 
