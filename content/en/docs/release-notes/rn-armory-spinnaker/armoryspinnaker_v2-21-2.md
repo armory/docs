@@ -39,7 +39,7 @@ The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 
 
 #### Dynamic Account Configurations with Vault
 
-Clouddriver fails to start when you use Vault for the backend for Dynamic Account Configurations. 
+Clouddriver fails to start when you use Vault as the backend for Dynamic Account Configurations. 
 
 **Affected version:** 2.21.2
 
