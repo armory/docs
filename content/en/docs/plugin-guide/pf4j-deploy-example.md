@@ -192,7 +192,7 @@ kubectl -n <namespace> get pods
 
 The RandomWait stage appears in the **Type** select list when you create a new Pipeline stage.
 
-{{< figure src="/images/plugins/randomWaitTypeUI.png" caption="Random Wait stage in Type select list" %>}}
+{{< figure src="/images/plugins/randomWaitTypeUI.png" caption="Random Wait stage in Type select list" >}}
 
 {{< figure src="/images/plugins/randomWaitStageUI.png" caption="Random Wait stage after it has been selected and the configuration panel is visible." >}}
 
