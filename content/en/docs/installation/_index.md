@@ -32,6 +32,7 @@ Based on your environment, use one of the following guides to help you install S
 | [AWS Marketplace]({{< ref "aws-container-marketplace" >}})            | AWS                            | One-click install on the AWS marketplace.      |
 | [Install on Kubernetes]({{< ref "install-on-k8s" >}})                 | Halyard, Operator              | General workflow for installing Spinnaker on Kubernetes                    |
 | [Install on AWS]({{< ref "install-on-aws" >}})                        | AWS, Halyard                   | Installation steps for AWS, including IAM configuration |
+| [Install on AWS EC2 with Operator]({{< ref "operator-k3s" >}})        | AWS EC2, Operator              | Installation steps for using Armory Operator to install Armory in a Lightweight Kubernetes (K3s) instance for POCs
 | [Install on AKS]({{< ref "install-on-aks" >}})                        | AKS, Halyard                   | Installation steps for Azure Kubernetes Service                   |
 | [Install on GKE]({{< ref "install-on-gke" >}})                        | GKE, Halyard                   | Installation steps for GoogLe Kubernetes Engine                    |
 | [Install on GKE with Operator]({{< ref "install-on-gke-operator" >}}) | GKE, Operator                  | Installation steps for Google Kubernetes Engine using Operator                    |

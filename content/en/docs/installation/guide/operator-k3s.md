@@ -99,7 +99,7 @@ In the **Filter policies** field, type "s3" and press enter. This action display
 
 You can optionally add tags to your Role. Press the **Next: Review** button to move to the **Review** screen. Type in a name for your role in the **Role name** field and then press the **Create role** button.
 
-![ Role review](/images/installation/guide/roleReview-03.png)
+![ Role review](/images/installation/guide/roleReview03.png)
 
 ## Attach your IAM Role to your EC2 instance
 
