@@ -1,21 +1,25 @@
 ---
-title: Install Armory Spinnaker in Lightweight Kubernetes (K3s) using Spinnaker Operator
+title: Install Armory in Lightweight Kubernetes (K3s) using the Armory Operator
 linkTitle: Install in AWS EC2 using Operator
 weight: 50
 description: >
-  For POCs: Use Operator to install Armory Spinnaker in a K3s instance running on an AWS EC2 VM
+  For POCs: Use Armory Operator to install Armory in a K3s instance running on an AWS EC2 VM
 ---
 
 ## Overview
 
-This guide walks you through using the [Spinnaker Operator]({{< ref "operator" >}}) to install **Armory Spinnaker** in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
+This guide walks you through using the [Armory Operator]({{< ref "operator" >}}) to install Armory in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
 
-See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to install Spinnaker using the Spinnaker Operator in a regular Kubernetes installation.
+See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to install Spinnaker using the Armory Operator in a regular Kubernetes installation.
+
+If you want to install open source Spinnaker, use the open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) instead of the Armory Operator.
 
 ## Prerequisites
-[
+
 * Know how to create a VM in AWS [EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 * Be familiar with [AWS IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) and [S3 buckets](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html)
+* You are familiar with [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which use custom resources to manage applications and their components
+* You understand the concept of [managing Kubernetes resources using manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/)
 
 ## Create an AWS EC2 instance
 
@@ -107,11 +111,11 @@ Select the **IAM role** you created in the previous section. The press **Apply**
 
 ![ Select IAM Role](/images/installation/guide/attachRoleToVM02.jpg)
 
-## Install Operator
+## Install the Armory Operator
 
-This installs Operator in _basic_ mode, which installs Spinnaker into a single namespace. This mode does not perform pre-flight checks before applying a manifest.
+Install the Armory Operator in _basic_ mode, which installs Armory into a single namespace. This mode does not perform pre-flight checks before applying a manifest.
 
-SSH into your EC2 VM and download the Operator files:
+SSH into your EC2 VM and download the Armory Operator files:
 
 ```bash
 mkdir -p spinnaker-operator && cd spinnaker-operator
@@ -130,7 +134,7 @@ Create the `spinnaker-operator` namespace:
 kubectl create ns spinnaker-operator
 ```
 
-Install Operator:
+Install the Armory Operator on K3s:
 
 ```bash
 kubectl -n spinnaker-operator apply -f deploy/operator/basic
@@ -153,11 +157,11 @@ spinnaker-operator-589ccc6fd4-56wlc   2/2     Running   0          4m28s
 
 Edit the `SpinnakerService.yml` manifest file located in the `~/spinnaker-operator/deploy/spinnaker/basic` directory.
 
-You can find detailed configuration information in the [Spinnaker Operator Configuration]({{< ref "operator-config" >}}) guide.
+You can find detailed configuration information in the [Armory Operator Configuration]({{< ref "operator-config" >}}) guide.
 
-### Update Armory Spinnaker version and S3 bucket name
+### Update Armory version and S3 bucket name
 
-Update the `spec.spinnakerConfig.config.version` value to the version of Armory Spinnaker you want to deploy. Check the [Release Notes]({{< ref "rn-armory-spinnaker" >}}) if you are unsure which version to install. Choose v2.20.4, v2.20.5 or v2.21+ if you want to deploy plugins.
+Update the `spec.spinnakerConfig.config.version` value to the version of Armory you want to deploy. Check the [Release Notes]({{< ref "rn-armory-spinnaker" >}}) if you are unsure which version to install. Choose v2.20.4, v2.20.5 or v2.21+ if you want to deploy plugins.
 
 Additionally, replace **myBucket** (`spec.spinnakerConfig.config.persistentStorage.s3.bucket`) with the name of the s3 bucket you created in [Create an S3 Bucket](#create-an-s3-bucket).
 
@@ -180,7 +184,7 @@ spec:
           rootFolder: front50
 ```
 
-For example, after editing:
+For example, after editing if you named your bucket `my-s3-bucket` and want to install Armory 2.21.1:
 
 ```yaml
 kind: SpinnakerService
@@ -201,7 +205,7 @@ spec:
 
 ### Modifications for running on K3s
 
-Create a `spec.spinnakerConfig.config.security` section like the example below, replacing `<your-vm-ip` with the public IP address of your EC2 instance. The `security` section is at the same level as the `persistentStorage` section.
+Create a `spec.spinnakerConfig.config.security` section like the example below, replacing `<your-vm-ip>` with the public IP address of your EC2 instance. The `security` section is at the same level as the `persistentStorage` section.
 
 ```yaml
 kind: SpinnakerService
@@ -244,9 +248,9 @@ expose:
 
 Spacking is very important in YAML files. Make sure the spacing is correct in the `SpinnakerService.yml` file . Also, ensure there are no tabs instead of spaces in the file. Incorrect spacing or tabs will cause errors when you install Spinnaker.
 
-## Install Spinnaker
+## Install Armory
 
-Because you installed Operator in `basic` mode, you must install Spinnaker into the same `spinnaker-operator` namespace. Use [`kubectl apply`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply) to deploy the Spinnaker manifest:
+Because you installed the Armory Operator in `basic` mode, you must install Armory into the same `spinnaker-operator` namespace. Use [`kubectl apply`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply) to deploy the Armory manifest:
 
 ```bash
 kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/SpinnakerService.yml
@@ -255,18 +259,24 @@ kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/SpinnakerService.y
 You can watch the installation progress by executing:
 
 ```bash
-kubectl -n spinnaker get spinsvc spinnaker -w
+kubectl -n spinnaker-operator get spinsvc spinnaker -w
 ```
 
-## Upgrade Spinnaker
+You can verify pod status by executing:
 
-[Upgrade Spinnaker] by changing the `version` value in `SpinnakerService.yml` and using `kubectl` to apply the manifest.
+```bash
+ kubectl -n spinnaker-operator get pods
+ ```
 
-## Delete Spinnaker
+## Upgrade Armory
 
-Since you installed Spinnaker in the same namespace as Operator, do not delete the `spinnaker-operator` namespace unless you want to delete Operator as well.
+[Upgrade Armory]({{< ref "operator#upgrading-spinnaker" >}}) by changing the `version` value in `SpinnakerService.yml` and using `kubectl` to apply the manifest.
 
-You can use the [`kubectl delete`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#delete) command to delete Spinnaker.
+## Delete Armory
+
+Since you installed Armory in the same namespace as the Armory Operator, do not delete the `spinnaker-operator` namespace unless you want to delete the Armory Operator as well.
+
+You can use the [`kubectl delete`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#delete) command to delete Armory.
 
 ```bash
 kubectl -n spinnaker-operator delete spinnakerservice spinnaker
@@ -274,7 +284,7 @@ kubectl -n spinnaker-operator delete spinnakerservice spinnaker
 
 ## Troubleshooting
 
-You can access Operator logs by executing:
+You can access the Armory Operator logs by executing:
 
 ```bash
 kubectl -n spinnaker-operator logs deploy/spinnaker-operator -c spinnaker-operator
