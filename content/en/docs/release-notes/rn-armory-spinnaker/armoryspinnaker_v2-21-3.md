@@ -87,7 +87,7 @@ Fixed an issue where Clouddriver fails to start when you use Vault as the backen
 
 ###  Spinnaker Community Contributions
 
-<! -- Copy/paste highlights from the corresponding OSS version. -->
+<!-- Copy/paste highlights from the corresponding OSS version. -->
 
 There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
 [Spinnaker v1.21.4](https://www.spinnaker.io/community/releases/versions/1-21-4-changelog)
