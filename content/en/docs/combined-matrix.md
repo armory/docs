@@ -10,13 +10,13 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 ## Legend
 <!-- Copy and paste the below badges that apply to your area -->
-**Feature status** describes what state the feature is in and where you should install it. For more information, see [Release Definitions]({{< ref "release-definitions" >}}).
+**Feature status** describes what state the feature is in and where you should install it. For more information, see [Release Definitions]({{< ref "release-definitions" >}}). You can also click on the feature status badge directly.
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) The feature as a whole is generally available. There may be newer extended functionality that is in a different state.
 
 [![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) The feature is in Early Access. 
 
-[![Experiment](/images/experiment.svg)]({{< ref "release-definitions#experiment">}}) The feature is an Experiment. 
+[![Experiment](/images/exp.svg)]({{< ref "release-definitions#experiment">}}) The feature is an Experiment. 
 
 **Enterprise availablility**
 
@@ -89,7 +89,7 @@ Artifacts are remote, deployable resources in Spinnaker. Armory supports the fol
 
 ### Pipelines as CRD
 
-[![Experiment](/images/experiment.svg)]({{< ref "release-definitions#experiment">}}) ![Armory](/images/armory.svg)
+[![Experiment](/images/exp.svg)]({{< ref "release-definitions#experiment">}}) ![Armory](/images/armory.svg)
 
 [PaCRD]({{< ref "pacrd" >}}) gives you the ability to manage your pipelines as
 Kubernetes custom resources.
