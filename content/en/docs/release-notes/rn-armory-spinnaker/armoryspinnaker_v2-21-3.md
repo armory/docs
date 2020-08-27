@@ -81,7 +81,9 @@ Armory has identified and is triaging the following CVEs in Terraformer, the ser
 
 ### Armory
 
-Summary of changes in the latest release.
+#### Dynamic Account Configurations with Vault
+
+Fixed an issue where Clouddriver fails to start when you use Vault as the backend for Dynamic Account Configurations.
 
 ###  Spinnaker Community Contributions
 
