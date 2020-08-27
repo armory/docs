@@ -17,24 +17,27 @@ By implementing Orca's SimpleStage PF4J extension point, the `pf4jStagePlugin` c
 * You are familiar with [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which use custom resources to manage applications and their components
 * You understand the concept of [managing Kubernetes resources using manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/)
 * You have a basic understanding of how the [Armory Operator]({{< ref "operator" >}}) deploys Armory to [Kubernetes](https://kubernetes.io/)
-* You have `kubectl` access to an instance of Armory installed using the Armory Operator and have permissions to modify and apply the manifest that deploys Armory
-  * See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to install Armory using the Armory Operator
-  * See the [Installing Armory in Lightweight Kubernetes (K3s) using the Armory Operator]({{< ref "operator-k3s" >}}) guide if you want a lightweight POC environment
+* You have `kubectl` access to an instance of Armory installed using the Armory Operator in `basic` and have permissions to modify and apply the manifest that deploys Armory
 * You have read the [Plugin Users Guide](https://spinnaker.io/guides/user/plugins); you are familiar with plugin concepts and the files used when deploying plugins (`repositories.json`, `plugins.json`)
 
+### Armory environment
+
+**This guide assumes you have access to an Armory instance installed using the Armory Operator in `basic` mode. See the [Installing Armory in Lightweight Kubernetes (K3s) using the Armory Operator]({{< ref "operator-k3s" >}}) guide for how to set up a lightweight POC environment.**
+
+The Armory Operator in `basic` mode requires that Armory be installed in the Armory Operator's namespace, which is `spinnaker-operator`. All the examples in this guide use that namespace. If you are using an Armory instance installed by the Armory Operator in `cluster` mode, use the namespace in which Armory was installed rather than `spinnaker-operator`.
 
 ## Configure the plugin
 
 Each plugin should provide configuration information. The `pf4jStagePlugin` has details in its repository [README](https://github.com/spinnaker-plugin-examples/pf4jStagePlugin) file.
 
-Add plugin configuration in the Armory manifest file, `SpinnakerService.yml`. You can find complete configuration information in the _Operator Reference_ Plugins [section]({{< ref "plugins" >}}).
+**This guide assumes you are using Armory installed by the Armory Operator in `basic` mode.** Add plugin configuration in the `/spinnaker-operator/deploy/spinnaker/basic/SpinnakerService.yml` manifest file. Complete configuration information is in the _Operator Reference_ Plugins [section]({{< ref "plugins" >}}).
 
 You can configure the plugin in either the `spec.spinnakerConfig.config.spinnaker.extensibility.plugins` or the `spec.spinnakerConfig.profiles.<service>` sections of the manifest.
 
 ### `spec.spinnakerConfig.config.spinnaker.extensibility.plugins`
 
-* put configuration in this section when the plugin extends multiple services
-* all Spinnaker services restart when you apply the manifest
+* You can put configuration in this section when the plugin extends multiple services.
+* All Spinnaker services restart when you apply the manifest.
 
 For example:
 
@@ -63,7 +66,7 @@ spec:
 
 ### `spec.spinnakerConfig.profiles.<service>`
 
-* put configuration in the `service` that the plugin extends when you do not want all Spinnaker services to restart when you apply the manifest
+Put configuration in the `service` that the plugin extends when you do not want all Spinnaker services to restart when you apply the manifest.
 
 Example:
 
@@ -179,13 +182,13 @@ Note: `repositories`, `plugins`, and `deck-proxy` are all at the same level, whi
 From the `spinnaker-operator` directory:
 
 ```bash
-kubectl -n <namespace> apply -f deploy/spinnaker/basic/SpinnakerService.yml
+kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/SpinnakerService.yml
 ```
 
 You can check pod status by executing:
 
 ```bash
-kubectl -n <namespace> get pods
+kubectl -n spinnaker-operator get pods
 ```
 
 ## Access the RandomWait plugin in the UI
@@ -247,3 +250,11 @@ If the plugin doesn't appear in the **Type** select list, check the following lo
   ```
 
   If Gate can't find your frontend plugin, make sure you configured `deck-proxy` correctly.
+
+## Upgrade a plugin
+
+Edit the plugin's entry in the `SpinnakerService.yml` file and [redeploy Armory](#redeploy-armory).
+
+## Delete a plugin
+
+Delete the plugin's entry in the `SpinnakerService.yml` file and [redeploy Armory](#redeploy-armory).
