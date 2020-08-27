@@ -1,6 +1,6 @@
 ---
-title: Product Compatibility Matrix (combined)
-description: "Information about what Armory Enterprise for Spinnaker™ supports."
+title: Product Compatibility Matrix
+description: "Information about what Armory supports."
 ---
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables# 
@@ -12,17 +12,17 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 <!-- Copy and paste the below badges that apply to your area -->
 **Feature status** describes what state the feature is in and where you should install it. For more information, see [Release Definitions]({{< ref "release-definitions" >}}).
 
-![Generally available](/images/ga.svg) The feature as a whole is generally available. There may be newer extended functionality that is in a different state.
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) The feature as a whole is generally available. There may be newer extended functionality that is in a different state.
 
-![Early Access](/images/ea.svg) The feature is in Early Access. 
+[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) The feature is in Early Access. 
 
-![Experiment](/images/exp.svg) The feature is an Experiment. 
+[![Experiment](/images/experiment.svg)]({{< ref "release-definitions#experiment">}}) The feature is an Experiment. 
 
 **Enterprise availablility**
 
 ![OSS](/images/oss.svg) The feature or parts of it are also available in Open Source Spinnaker.
 
-![Armory](/images/armory.svg) The feature or parts of it are available in Armory Enterprise.
+![Armory](/images/armory.svg) The feature or parts of it are available in Armory.
 
 **Versions**
 
@@ -30,24 +30,24 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 ## Application metrics for Canary
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-Application metrics can be ingested by Kayenta to perform Automated Canary Analysis (ACA). The following table lists application metrics providers that Armory Enterprise supports for application metrics
+Application metrics can be ingested by Kayenta to perform Automated Canary Analysis (ACA). The following table lists application metrics providers that Armory supports for application metrics
 
 
 
-| Provider     | Version   | ACA | Armory Enterprise      | Note                   |
+| Provider     | Version   | ACA | Armory      | Note                   |
 |--------------|-----------|-----|------------------------|------------------------|
 | SomeProvider | A.B - C.D | Yes/No   | All supported versions |                        |
-| Dynatrace    | A.B - C.D |    | All supported versions | Armory Enterprise only |
+| Dynatrace    | A.B - C.D |    | All supported versions | Armory only |
 
 ## Artifact stores
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
 Artifacts are remote, deployable resources in Spinnaker. Armory supports the following artifact stores:
 
-| Provider                                                          | Armory Enterprise version | Notes                                          |
+| Provider                                                          | Armory version | Notes                                          |
 |-------------------------------------------------------------------|---------------------------|------------------------------------------------|
 | [Bitbucket](https://spinnaker.io/setup/artifacts/bitbucket/)      | All supported versions    |                                                |
 | [GitHub](https://spinnaker.io/setup/artifacts/github/)            | All supported versions    |                                                |
@@ -63,13 +63,13 @@ Artifacts are remote, deployable resources in Spinnaker. Armory supports the fol
 
 ### Pipelines as Code
 
-![Generally available](/images/ga.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
 
 [Pipelines as Code]({{< ref "install-dinghy" >}}) gives you the ability to manage your pipelines and their templates in source control.
 
 **Supported version control systems**
 
-| Feature   | Version | Armory Enterprise version | Notes                  |
+| Feature   | Version | Armory version | Notes                  |
 |-----------|---------|---------------------------|------------------------|
 | BitBucket Cloud |         | All supported versions    |                        |
 | BitBucket Server | Previous two major versions |  All supported versions   |                        |
@@ -78,7 +78,7 @@ Artifacts are remote, deployable resources in Spinnaker. Armory supports the fol
 
 **Features**
 
-| Feature                                                                           | Armory Enterprise      | Notes |
+| Feature                                                                           | Armory      | Notes |
 |-----------------------------------------------------------------------------------|------------------------|-------|
 | Modules                                                               | All supported versions | Templatize and re-use pipeline snippets across applications and teams |
 | Slack notifications                                                               | All supported versions |       |
@@ -89,33 +89,33 @@ Artifacts are remote, deployable resources in Spinnaker. Armory supports the fol
 
 ### Pipelines as CRD
 
-![Experiment](/images/exp.svg) ![Armory](/images/armory.svg)
+[![Experiment](/images/experiment.svg)]({{< ref "release-definitions#experiment">}}) ![Armory](/images/armory.svg)
 
 [PaCRD]({{< ref "pacrd" >}}) gives you the ability to manage your pipelines as
 Kubernetes custom resources.
 
-| Feature | Armory Enterprise | Notes |
+| Feature | Armory | Notes |
 |---|---|---|
 | Create, modify, and delete pipeline manifests | All supported versions | Working within the same cluster Spinnaker is installed in. |
 | Create, modify, and delete application manifests | All supported versions | Working within the same cluster Spinnaker is installed in. |
-| Define all stages supported by Spinnaker and Armory Enterprise | 0.10.x and later | Validation support does not exist for all stages. |
+| Define all stages supported by Spinnaker and Armory | 0.10.x and later | Validation support does not exist for all stages. |
 
 ### Terraform Integration 
 
-![Generally available](/images/ga.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
 
 The Terraform Integration gives you the ability to use Terraform within your Spinnaker pipelines to create your infrastructure as part of your software delivery pipeline.
 
 **Supported Terraform versions**
 
-| Terraform Versions    | Armory Enterprise      | Note                                                                  |
+| Terraform Versions    | Armory      | Note                                                                  |
 |-----------------------|------------------------|-----------------------------------------------------------------------|
 | 0.11.10 - 0.11.14     | All supported versions |                                                                       |
 | 0.12.0 - 0.12.24      | All supported versions |                                                                       |
   
 **Features**
 
-| Feature                                                                                        | Armory Enterprise      | Notes |
+| Feature                                                                                        | Armory      | Notes |
 |------------------------------------------------------------------------------------------------|------------------------|-------|
 | [Base Terraform Integration]({{< ref "terraform-enable-integration" >}})                       | All supported versions |       |
 | [Named Profiles with authorization]({{< ref "terraform-enable-integration#named-profiles" >}}) | 2.20 or later          |       |
@@ -123,11 +123,11 @@ The Terraform Integration gives you the ability to use Terraform within your Spi
 
 ## Authentication
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-The following table lists the authentication protocols that Armory Enterprise supports:
+The following table lists the authentication protocols that Armory supports:
 
-| Identity provider     | Armory Enterprise      | Note                                                                  |
+| Identity provider     | Armory      | Note                                                                  |
 |-----------------------|------------------------|-----------------------------------------------------------------------|
 | SAML                  | All supported versions |                                                                       |
 | OAuth 2.0/OIDC        | All supported versions | Can use Auth0, Azure, GitHub, Google, Okta, OneLogin, or Oracle Cloud |
@@ -136,11 +136,11 @@ The following table lists the authentication protocols that Armory Enterprise su
 
 ## Authorization
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-The following table lists the authorization methods that Armory Enterprise supports: 
+The following table lists the authorization methods that Armory supports: 
 
-| Provider              | Armory Enterprise      | Note                                                                            |
+| Provider              | Armory      | Note                                                                            |
 |-----------------------|------------------------|---------------------------------------------------------------------------------|
 | GitHub Teams          | All supported versions | Roles from GitHub are mapped to the Teams under a specific GitHub organization. |
 | Google Groups         |                        |                                                                                 |
@@ -156,11 +156,11 @@ Spinnaker's UI (Deck) works with most modern browsers.
 
 ## Build systems
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-The following table lists the CI systems that Armory Enterprise supports:
+The following table lists the CI systems that Armory supports:
 
-| Provider           | Version | Armory Enterprise      | Note                |
+| Provider           | Version | Armory      | Note                |
 |--------------------|---------|------------------------|---------------------|
 | AWS CodeBuild      | n/a     | 2.19.x or later        |                     |
 | GitHub Actions     | n/a     | All supported versions | Webhook integration |
@@ -172,9 +172,9 @@ The following table lists the CI systems that Armory Enterprise supports:
 
 ## Deployment targets
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-| Provider      | Deployment target                                               | Deployment strategies | Armory Enterprise      | Notes |
+| Provider      | Deployment target                                               | Deployment strategies | Armory      | Notes |
 |---------------|-----------------------------------------------------------------|-----------------------|------------------------|-------|
 | Amazon AWS    | EC2, ECS, EKS                                                   |                       | All supported versions |       |
 | Cloud Foundry | PKS <ul><li>Versions A.B - X.Y</li></ul>                        |                       | All supported versions |       |
@@ -182,13 +182,13 @@ The following table lists the CI systems that Armory Enterprise supports:
 | Kubernetes    | Manifest-based deployments <ul><li>Versions A.B - X.Y</li></ul> |                       | All supported versions |       |
 ## Dynamic accounts
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-Dynamic accounts (external account configurations) for Spinnaker allow you to manage account configuration outside of Spinnaker, including secrets. Armory Enterprise supports the following backend providers:
+Dynamic accounts (external account configurations) for Spinnaker allow you to manage account configuration outside of Spinnaker, including secrets. Armory supports the following backend providers:
 
 #### Backend provider
 
-| Provider | Version | Armory Enterprise | Notes |
+| Provider | Version | Armory | Notes |
 |---------|---------|---------|---------|
 | Git  | x.y.z | All supported versions |
 | S3  | n/a | All supported versions |
@@ -204,11 +204,11 @@ Dynamic accounts (external account configurations) for Spinnaker allow you to ma
 
 ## External storage
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
 Spinnaker requires an external storage provider for persisting application settings and pipelines. Armory supports the following storage solutions:
 
-| Provider              | Armory Enterprise      | Notes |
+| Provider              | Armory      | Notes |
 |-----------------------|------------------------|-------|
 | Azure Storage         | All supported versions |       |
 | Google Cloud Storage  | All supported versions |       |
@@ -218,11 +218,11 @@ Spinnaker requires an external storage provider for persisting application setti
 
 ## Observability
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-{{% alert %}}Armory Enterprise 2.20 and later require the Observability plugin for monitoring Spinnaker. Versions earlier than 2.20 use the Spinnaker monitoring daemon, which is deprecated. {{% /alert %}}
+{{% alert %}}Armory 2.20 and later require the Observability plugin for monitoring Spinnaker. Versions earlier than 2.20 use the Spinnaker monitoring daemon, which is deprecated. {{% /alert %}}
 
-| Provider   | Armory Enterprise      | Note |
+| Provider   | Armory      | Note |
 |------------|------------------------|------|
 | Datadog    | All supported versions |      |
 | ELK        | All supported versions |      |
@@ -231,11 +231,11 @@ Spinnaker requires an external storage provider for persisting application setti
 
 ## Notifications
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-The following table lists the notification systems that Armory Enterprise supports:
+The following table lists the notification systems that Armory supports:
 
-| Provider   | Armory Enterprise      | Notes |
+| Provider   | Armory      | Notes |
 |------------|------------------------|-------|
 | Slack      | All supported versions |       |
 | PagerDuty  | All supported versions |       |
@@ -248,11 +248,11 @@ The following table lists the notification systems that Armory Enterprise suppor
 
 ## Persistent storage
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
 Depending on the service, Spinnaker can use either Redis or MySQL as the backing store. The following table lists the supported database and the Spinnaker service:
 
-| Database | DB version            | Armory Enterprise      | Spinnaker services                                  | Note                                                                                                                       |
+| Database | DB version            | Armory      | Spinnaker services                                  | Note                                                                                                                       |
 |----------|-----------------------|------------------------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | Redis    | X.Y.Z                 | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. By default, Spinnaker deploys Redis internally to support its services. |
 | MySQL    | MySQL 5.7 (or Aurora) | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
@@ -261,11 +261,11 @@ Armory recommends using MySQL as the backing store when possible for production 
 
 ## Pipeline triggers
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
 Armory supports using the following methods to trigger Spinnaker pipelines:
 
-| Provider   | Armory Enterprise      | Notes |
+| Provider   | Armory      | Notes |
 |------------|------------------------|-------|
 | Artifactory        | All supported versions |       |
 | AWS CodeBuild      | All supported versions |       |
@@ -287,11 +287,11 @@ Armory supports using the following methods to trigger Spinnaker pipelines:
 
 ## Baking Images
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
 Armory supports baking images in multiple providers
 
-| Provider   | Armory Enterprise      | Notes |
+| Provider   | Armory      | Notes |
 |------------|------------------------|-------|
 | AWS | All supported versions |      |
 | GCE | All supported versions |      |
@@ -299,11 +299,11 @@ Armory supports baking images in multiple providers
 
 ## Templating Manifests
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
 Armory supporting Templating Manifests
 
-| Provider   | Armory Enterprise      | Notes |
+| Provider   | Armory      | Notes |
 |------------|------------------------|-------|
 | Helm 2     | All supported versions |       |
 | Helm 3     | 2.19.x or later        |       |
@@ -312,23 +312,23 @@ Armory supporting Templating Manifests
 
 ## Secret stores
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
 {{% alert title="Note" %}} This section applies to secrets in configuration files, not application secrets. {{% /alert %}}
 
-The following table lists the secret stores that Armory Enterprise supports for referencing secrets in config files securely:
+The following table lists the secret stores that Armory supports for referencing secrets in config files securely:
 
-| Provider             | Armory Enterprise      | Notes                                |
+| Provider             | Armory      | Notes                                |
 |----------------------|------------------------|--------------------------------------|
 | [AWS Secrets Manager]({{< ref "secrets-aws-sm" >}})  | All supported versions |                                      |
 | [Encrypted GCS Bucket]({{< ref "secrets-gcs" >}}) | All supported versions |                                      |
 | [Encrypted S3 Bucket]({{< ref "secrets-s3" >}})  | All supported versions |                                      |
 | [Kubernetes secrets]({{< ref "secrets-kubernetes" >}})   | All supported versions | Spinnaker Operator based deployments |
-| [Vault]({{< ref "secrets-vault" >}})                | All supported versions | Armory Enterprise only                 |
+| [Vault]({{< ref "secrets-vault" >}})                | All supported versions | Armory only                 |
 
 ## Spinnaker Operator
 
-![Generally available](/images/ga.svg) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
 [Spinnaker Operator](https://github.com/armory/spinnaker-operator) and
 [Armory Operator]({{< ref "operator" >}}) provide Spinnaker users with the ability
