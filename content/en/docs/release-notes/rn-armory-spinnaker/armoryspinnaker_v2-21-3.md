@@ -1,20 +1,19 @@
 ---
-title: v2.21.2 Armory Release (OSS Spinnaker™ v1.21.4)
+title: v2.21.3 Armory Release (OSS Spinnaker v1.21.4)
 toc_hide: true
 ---
 
-## 2020/08/07 Release Notes
+## 2020/08/05 Release Notes
 
-> Note: If you're experiencing production issues after upgrading, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Halyard and Operator version
 
 Armory Spinnaker 2.21.2 requires one of the following:
 * Armory Halyard 1.9.4 or later.
 * Armory Spinnaker Operator 1.0.3 or later.
-
 ## Breaking changes
-
+<!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
 #### Spinnaker metrics
 
 Metrics data, specifically the metric names, for Spinnaker changed in 2.20. These changes are not backwards compatible and may result in broken third-party dashboards, such as Grafana dashboards.
@@ -34,15 +33,9 @@ This release note will be updated once the updated plugin is available.
 #### Scheduled removal of Kubernetes V1 provider
 The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
 
-
 ## Known Issues
-
-#### Dynamic Account Configurations with Vault
-
-Clouddriver fails to start when you use Vault as the backend for Dynamic Account Configurations. 
-
-**Affected version:** 2.21.2
-**Fixed version:** 2.21.3
+<!-- Copy/paste known issues from the previous version if they're not fixed -->
+There are currently no known issues with this release.
 
 #### Security update
 
@@ -83,22 +76,18 @@ Armory has identified and is triaging the following CVEs in Terraformer, the ser
 
 - CVE-2020-15778
 
+
 ## Highlighted Updates
 
+### Armory
 
-### Authentication
+#### Dynamic Account Configurations with Vault
 
-Fixed an issue where SAML login did not work.
-
-### Pipelines as Code
-
-Fixed an issue with `dinghyfile` validation when no changes are made to the file.
-
-### Security
-
-Resolved [CVE-2020-11984](https://nvd.nist.gov/vuln/detail/CVE-2020-11984).
+Fixed an issue where Clouddriver fails to start when you use Vault as the backend for Dynamic Account Configurations.
 
 ###  Spinnaker Community Contributions
+
+<!-- Copy/paste highlights from the corresponding OSS version. -->
 
 There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
 [Spinnaker v1.21.4](https://www.spinnaker.io/community/releases/versions/1-21-4-changelog)
@@ -109,12 +98,12 @@ There have also been numerous enhancements, fixes and features across all of Spi
 Here's the bom for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
-<code>version: 2.21.2
-timestamp: "2020-08-24 19:44:03"
+<code>version: 2.21.3
+timestamp: "2020-08-26 16:59:10"
 services:
     clouddriver:
-        commit: bad246c6
-        version: 2.21.4
+        commit: 8af10d5b
+        version: 2.21.5
     deck:
         commit: 53d7adc3
         version: 2.21.6
@@ -144,8 +133,8 @@ services:
     monitoring-third-party:
         version: 2.21.0
     orca:
-        commit: e969ea99
-        version: 2.21.3
+        commit: 7da34395
+        version: 2.21.4
     rosco:
         commit: f9f89e5a
         version: 2.21.2
@@ -164,44 +153,41 @@ artifactSources:
 ### Armory
 
 
-#### Armory Kayenta - 2.21.1...2.21.2
+#### Terraformer™ - 2.21.5...2.21.5
 
 
-#### Armory Fiat - 2.21.1...2.21.2
+#### Dinghy™ - 2.21.3...2.21.3
 
 
-#### Armory Gate - 2.21.3...2.21.6
-
-  - fix(saml): Esapi dependency exact version (downgrade) (#160) (#161)
-
-#### Terraformer™ - 2.21.3...2.21.5
-
-  - fix(docker): re-add cache dir to container (#239) (#240)
-
-#### Armory Clouddriver - 2.21.1...2.21.4
-
-  - fix(cve): Security fixes (#180)
-
-#### Dinghy™ - 2.21.2...2.21.3
-
-  - fix(prvalidation): fixed pr validation bug related with no dinghyfiles changed (#265) (#266)
-
-#### Armory Rosco - 2.21.1...2.21.2
+#### Armory Echo - 2.21.2...2.21.2
 
 
-#### Armory Deck - 2.21.3...2.21.6
+#### Armory Clouddriver - 2.21.4...2.21.5
 
-  - chore(cve): fix CVE-2020-11984 (#640) (#643)
+  - fix(dynamicAccounts): Server unable to start with vault (#188) (#189)
 
-#### Armory Igor - 2.21.1...2.21.2
+#### Armory Orca - 2.21.3...2.21.4
 
+  - fix(terraformer): remove deprecated method call (#147) (#148)
 
-#### Armory Echo - 2.21.1...2.21.2
+#### Armory Fiat - 2.21.2...2.21.2
 
 
 #### Armory Front50 - 2.21.0...2.21.0
 
 
-#### Armory Orca - 2.21.2...2.21.3
+#### Armory Kayenta - 2.21.2...2.21.2
+
+
+#### Armory Rosco - 2.21.2...2.21.2
+
+
+#### Armory Deck - 2.21.6...2.21.6
+
+
+#### Armory Gate - 2.21.6...2.21.6
+
+
+#### Armory Igor - 2.21.2...2.21.2
 
 
