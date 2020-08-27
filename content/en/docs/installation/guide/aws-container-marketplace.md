@@ -1,5 +1,5 @@
 ---
-title: Installing Spinnaker in AWS from the AWS Container Marketplace
+title: Installing Spinnaker™ in AWS from the AWS Container Marketplace
 linkTitle: Install from AWS Marketplace
 weight: 2
 aliases:
@@ -30,7 +30,7 @@ To use the Armory Marketplace offering, make sure you meet the following require
 This document covers the following high-level steps:
 
 1. Creating and configuring the necessary AWS IAM roles for your Kubernetes cluster
-2. Installing Custom Resource Definitions (CRDs) for Spinnaker into your Kubernetes cluster
+2. Installing the Operator Custom Resource Definitions (CRDs) for Spinnaker into your Kubernetes cluster
 3. Installing the Operator
 4. Creating a SpinnakerService Custom Resource
 5. Exposing your Spinnaker instance
@@ -290,7 +290,7 @@ For example:
 }
 ```
 
-## Installing Spinnaker Custom Resource Definitions (CRDs)
+## Installing Operator Custom Resource Definitions (CRDs)
 
 Download the Kubernetes manifest for Operator, and install it into your Kubernetes cluster:
 
