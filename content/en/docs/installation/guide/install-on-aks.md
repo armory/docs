@@ -236,7 +236,7 @@ cp kubeconfig-spinnaker-system-sa ${WORKING_DIRECTORY}/.secret
 
 ## Start the Halyard container
 
-On the `Halyard machine`, start the Halyard container (see the `armory/halyard-armory` [tag list](https://hub.docker.com/r/armory/halyard-armory/tags)) for the latest Armory extended Halyard Docker image tag.
+On the `Halyard machine`, start the Halyard container (see the `armory/halyard-armory` [tag list](https://hub.docker.com/r/armory/halyard-armory/tags)) for the latest Armory-extended Halyard Docker image tag.
 
 *If you want to install OSS Spinnaker instead, use `gcr.io/spinnaker-marketplace/halyard:stable` for the Docker image.*
 

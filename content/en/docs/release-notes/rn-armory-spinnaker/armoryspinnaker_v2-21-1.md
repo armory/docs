@@ -12,7 +12,7 @@ description: Release Notes for Armory 2.21.1
 
 Armory 2.21.1 requires one of the following:
 
-* Armory extended Halyard 1.9.4 or later.
+* Armory-extended Halyard 1.9.4 or later.
 * Armory Operator 1.0.3 or later.
 
 ## Breaking changes

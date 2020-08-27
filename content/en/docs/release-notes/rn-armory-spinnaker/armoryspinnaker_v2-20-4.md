@@ -11,7 +11,7 @@ toc_hide: true
 
 Armory 2.20.4 requires one of the following:
 
-* Armory extended Halyard 1.9.4 or later.
+* Armory-extended Halyard 1.9.4 or later.
 * Armory Operator 1.0.2 or later.
 
 ## Breaking changes

@@ -15,17 +15,17 @@ This version is required to deploy Armory 2.19+.
 
 ### Halyard version
 
-There is a known issue where Armory extended Halyard 1.9.0 fails to install Armory 2.18.1. The Pod for Echo enters a crash loop.
+There is a known issue where Armory-extended Halyard 1.9.0 fails to install Armory 2.18.1. The Pod for Echo enters a crash loop.
 
 **Workaround** 
 
-Use Armory extended Halyard  1.8.3 if you want to install Armory 2.18.1. 
+Use Armory-extended Halyard  1.8.3 if you want to install Armory 2.18.1. 
 
 ## Highlights
 
 Armory's extended Halyard 1.9.0 resolves an issue where secrets are stored decrypted at rest in the Pods of the Spinnaker services.
 
-##  Armory extended Halyard 
+##  Armory-extended Halyard 
 - fix(secrets): have services decrypt their own secrets
 - chore(build): bump OSS Halyard to 1.34.0
 - Changes to add enabled/disabled to webhooks validation

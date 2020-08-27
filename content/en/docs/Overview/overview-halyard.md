@@ -33,7 +33,7 @@ Armory provides an extension of OSS Halyard. We make the initial deployment of S
 * Which AWS credential profile to use to connect to S3
 * Which S3 bucket to store state in
 
-So with the Armory extended Halyard , Armory makes it much easier to get your initial Spinnaker up and running by automating a lot of the initial configuration.
+So with the Armory-extended Halyard , Armory makes it much easier to get your initial Spinnaker up and running by automating a lot of the initial configuration.
 
 Armory uses user provided configuration to deploy a number of Kubernetes manifests to create the mulitple microservices that comprise Spinnaker.
 

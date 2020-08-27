@@ -1,5 +1,5 @@
 ---
-title: "Armory extended Halyard Release Notes"
+title: "Armory-extended Halyard Release Notes"
 aliases:
   - /halyard-release-notes/
   - /halyard-releases/
@@ -13,7 +13,7 @@ simple_list_reverse: true
 > You can find [Armory's releases notes here]({{< ref "rn-armory-spinnaker" >}}).
 
 ## Halyard
-Armory extended Halyard  is an extended version of Halyard that deploys Armory features. You can find the base OSS version:
+Armory-extended Halyard  is an extended version of Halyard that deploys Armory features. You can find the base OSS version:
 
 ```
 > hal --version

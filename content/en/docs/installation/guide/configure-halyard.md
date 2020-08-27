@@ -7,7 +7,7 @@ aliases:
 
 ## Overview
 
-Armory extended Halyard can be configured via `/opt/spinnaker/config/halyard.yml`. If you run the Docker image, you can provide your own configuration by mounting the file or directory to the container. If you're running the Operator, you can also configure the behavior of the internal Halyard by creating a Kubernetes ConfigMap and mounting it to the Halyard container.
+Armory-extended Halyard can be configured via `/opt/spinnaker/config/halyard.yml`. If you run the Docker image, you can provide your own configuration by mounting the file or directory to the container. If you're running the Operator, you can also configure the behavior of the internal Halyard by creating a Kubernetes ConfigMap and mounting it to the Halyard container.
 
 ```
 halyard:
@@ -30,7 +30,7 @@ You can choose a different location for your Spinnaker configuration by changing
 
 
 ## Versions
-Armory extended Halyard stores all the versions in a public s3 bucket (`halconfig`). Sometimes, clients prefer to store the versions in a storage under their control.
+Armory-extended Halyard stores all the versions in a public s3 bucket (`halconfig`). Sometimes, clients prefer to store the versions in a storage under their control.
 
 ### Using a different s3 bucket
 To use a different s3 bucket, you just need to change these two properties to point to your own bucket:
@@ -43,7 +43,7 @@ spinnaker:
 ```
 
 ### Using a private s3 bucket
-By default Armory extended Halyard will access version definitions and bills of materials without using the host's s3 credentials. You can force it to sign the s3 requests by adding:
+By default Armory-extended Halyard will access version definitions and bills of materials without using the host's s3 credentials. You can force it to sign the s3 requests by adding:
 
 ```
 spinnaker.config.input.anonymousAccess: false
@@ -59,11 +59,11 @@ docker run --name armory-halyard --rm \
     -it docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}
 ```
 
-Replace `<Armory extended Halyard version>` with the version of Halyard you want to run.
+Replace `<Armory-extended Halyard version>` with the version of Halyard you want to run.
 
 ### Using a private s3 bucket with assume role
 
-Armory extended Halyard can be configured to assume a specified role when accessing the bucket:
+Armory-extended Halyard can be configured to assume a specified role when accessing the bucket:
 ```
 spinnaker.config.input.assumeRoleArn: <role arn to assume>
 ```

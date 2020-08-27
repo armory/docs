@@ -1,5 +1,5 @@
 ---
-title: Armory extended Halyard Reference
+title: Armory-extended Halyard Reference
 linkTitle: Halyard Reference
 weight: 4
 description: >

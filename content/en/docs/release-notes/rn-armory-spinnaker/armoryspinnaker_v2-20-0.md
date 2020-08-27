@@ -10,7 +10,7 @@ description: Changes, fixes, and new features
 
 ## Required Halyard version
 
-Armory 2.20.x requires Armory extended Halyard 1.8.3 or later.
+Armory 2.20.x requires Armory-extended Halyard 1.8.3 or later.
 
 ## Breaking changes
 

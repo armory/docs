@@ -14,7 +14,7 @@ aliases:
 
 ### Required Halyard version
 
-Armory 2.19.x requires Armory extended Halyard 1.8.3 or later.
+Armory 2.19.x requires Armory-extended Halyard 1.8.3 or later.
 
 
 ### HTTP sessions for Gate

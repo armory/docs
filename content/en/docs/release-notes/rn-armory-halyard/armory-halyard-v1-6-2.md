@@ -19,7 +19,7 @@ This release fixes a regression introduced in `1.6.1` where `aws-iam-authenticat
 
 - None
 
-## Armory extended Halyard 
+## Armory-extended Halyard 
  - No Changes
 
 ##  Halyard Community Contributions

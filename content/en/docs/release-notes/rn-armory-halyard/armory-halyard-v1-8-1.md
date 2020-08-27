@@ -14,7 +14,7 @@ aliases:
 ## Known Issues
 No known issues
 
-## Armory extended Halyard 
+## Armory-extended Halyard 
  - feat(plugin): Send plugin configs to deck (#273)
 
 ##  Halyard Community Contributions

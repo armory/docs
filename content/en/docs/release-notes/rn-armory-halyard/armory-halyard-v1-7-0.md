@@ -20,7 +20,7 @@ This release has a bug which prevents `kubeconfig` files from being read from re
 
 Please upgrade to `halyard-armory` `1.7.1`
 
-## Armory extended Halyard 
+## Armory-extended Halyard 
 No Changes
 
 ##  Halyard Community Contributions

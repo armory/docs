@@ -9,7 +9,7 @@ description: Changes, fixes, and new features
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard version
 
-Armory 2.20.1 requires Armory extended Halyard 1.9.4 or later.
+Armory 2.20.1 requires Armory-extended Halyard 1.9.4 or later.
 
 ## Breaking changes
 

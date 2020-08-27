@@ -17,7 +17,7 @@ This release fixes an issue which prevented `halyard` from reading local `kubeco
 ## Known Issues
 No known issues
 
-## Armory extended Halyard 
+## Armory-extended Halyard 
 - fix(kubeconfig): Get contents of local kubeconfig files #1425
 
 ##  Halyard Community Contributions

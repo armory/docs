@@ -14,7 +14,7 @@ aliases:
 ## Known Issues
 No known issues
 
-## Armory extended Halyard 
+## Armory-extended Halyard 
  No Changes
 
 ## Halyard Community Contributions

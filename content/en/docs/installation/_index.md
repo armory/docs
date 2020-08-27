@@ -35,4 +35,4 @@ Based on your environment, use one of the following guides to help you install S
 | [Install on AKS]({{< ref "install-on-aks" >}})                        | AKS, Halyard                   | Installation steps for Azure Kubernetes Service                   |
 | [Install on GKE]({{< ref "install-on-gke" >}})                        | GKE, Halyard                   | Installation steps for GoogLe Kubernetes Engine                    |
 | [Install on GKE with Operator]({{< ref "install-on-gke-operator" >}}) | GKE, Operator                  | Installation steps for Google Kubernetes Engine using Operator                    |
-| [Configuring Halyard]({{< ref "configure-halyard" >}})                | Halyard                        | Description of Armory extended Halyard configurations              |
+| [Configuring Halyard]({{< ref "configure-halyard" >}})                | Halyard                        | Description of Armory-extended Halyard configurations              |

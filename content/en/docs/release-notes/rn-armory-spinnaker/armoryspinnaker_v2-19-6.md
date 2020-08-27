@@ -13,7 +13,7 @@ aliases:
 
 ### Required Halyard version
 
-Armory 2.19.x requires Armory extended Halyard 1.8.3 or later.
+Armory 2.19.x requires Armory-extended Halyard 1.8.3 or later.
 
 ### HTTP sessions for Gate
 This version includes an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
@@ -52,7 +52,7 @@ Addressed a number of CVEs found within the Spinnaker services.
 
 **Plugins**
 
-This release supports Plugin deployment using Armory extended Halyard or the [Spinnaker Operator]({{< ref "operator" >}}). Consult the open source [Plugin](https://spinnaker.io/guides/user/plugins/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins" >}}) for a manifest example.
+This release supports Plugin deployment using Armory-extended Halyard or the [Spinnaker Operator]({{< ref "operator" >}}). Consult the open source [Plugin](https://spinnaker.io/guides/user/plugins/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins" >}}) for a manifest example.
 
 Additionally, this version of Spinnaker includes updates to how Deck is built. Previously, Deck's builds were non-deterministic, causing issues with loading plugins into the UI. Deck's builds are now deterministic and support UI plugins.
 

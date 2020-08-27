@@ -11,7 +11,7 @@ toc_hide: true
 
 ### Required Halyard version
 
-Armory 2.19.x requires Armory extended Halyard 1.8.3 or later.
+Armory 2.19.x requires Armory-extended Halyard 1.8.3 or later.
 
 ### HTTP sessions for Gate
 Armory 2.19.x includes an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
