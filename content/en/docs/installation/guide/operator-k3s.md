@@ -10,20 +10,20 @@ description: >
 
 This guide walks you through using the [Armory Operator]({{< ref "operator" >}}) to install Armory in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
 
-See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to install Spinnaker using the Armory Operator in a regular Kubernetes installation.
+See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to install Armory using the Armory Operator in a regular Kubernetes installation.
 
-If you want to install open source Spinnaker, use the open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) instead of the Armory Operator.
+If you want to install open source Spinnaker<sup>TM</sup>, use the open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) instead of the Armory Operator.
 
 ## Prerequisites
 
 * Know how to create a VM in AWS [EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 * Be familiar with [AWS IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) and [S3 buckets](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html)
-* You are familiar with [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which use custom resources to manage applications and their components
-* You understand the concept of [managing Kubernetes resources using manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/)
+* Have knowledge of [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which use custom resources to manage applications and their components
+* Understand the concept of [managing Kubernetes resources using manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/)
 
 ## Create an AWS EC2 instance
 
-* Configuration:
+* Requirements:
 
   * Ubuntu Server 18.04 LTS (HVM), SSD Volume Type; 64-bit (x86)
   * Minimum 2 vCPUs
@@ -39,7 +39,7 @@ SSH into your VM and run the following command to install the latest version of 
 curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
 ```
 
-Terminal output is similar to:
+Output is similar to:
 
 ```bash
 [INFO]  Finding release for channel stable
@@ -74,86 +74,86 @@ Create your bucket.
 
 ## Create an IAM Role
 
-Create an IAM Role that you will attach to your EC2 instance. Calls to s3 will use this role to get credentials for the requests. You can read more about IAM Roles in AWS' [AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html) guide.
+Create an IAM Role that you will attach to your EC2 instance. Calls to S3 use this role to get credentials for the requests. You can read more about IAM Roles in AWS' [AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html) guide.
 
-From the **Services** menu, select **IAM**, which is in the **Security, Identity, & Compliance** section.
+1. From the **Services** menu, select **IAM** in the **Security, Identity, & Compliance** section.
 
-![ Select IAM](/images/installation/guide/selectIAM.png)
+   ![ Select IAM](/images/installation/guide/selectIAM.png)
 
-Select the **Roles** section.
+1. Select the **Roles** section.
 
-![ Select Roles section](/images/installation/guide/selectRolesSection.png)
+   ![ Select Roles section](/images/installation/guide/selectRolesSection.png)
 
-Press the **Create role** button.
+1. Press the **Create role** button.
 
-![ Press Create role](/images/installation/guide/createRoleButton.png)
+   ![ Press Create role](/images/installation/guide/createRoleButton.png)
 
-**AWS Service** is highlighted. Select **EC2**. Then press the **Next: Permissions** button.
+1. **AWS Service** is highlighted. Select **EC2**. Then press the **Next: Permissions** button.
 
-![ Select EC2](/images/installation/guide/createIAMRoleForEc2-01.png)
+   ![ Select EC2](/images/installation/guide/createIAMRoleForEc2-01.png)
 
 
-In the **Filter policies** field, type "s3" and press enter. This action displays polices for S3. Select **AmazonS3FullAccess**. Then press the **Next: Tags** button.
+1. In the **Filter policies** field, type "s3" and press enter. This action displays polices for S3. Select **AmazonS3FullAccess**. Then press the **Next: Tags** button.
 
-![ Select AmazonS3FullAccess](/images/installation/guide/roleSelectS3Policy-02.png)
+   ![ Select AmazonS3FullAccess](/images/installation/guide/roleSelectS3Policy-02.png)
 
-You can optionally add tags to your Role. Press the **Next: Review** button to move to the **Review** screen. Type in a name for your role in the **Role name** field and then press the **Create role** button.
+1. You can optionally add tags to your Role. Press the **Next: Review** button to move to the **Review** screen. Type in a name for your role in the **Role name** field and then press the **Create role** button.
 
-![ Role review](/images/installation/guide/roleReview03.png)
+   ![ Role review](/images/installation/guide/roleReview03.png)
 
 ## Attach your IAM Role to your EC2 instance
 
-Navigate to the EC2 services screen and then access your running instance. Select your instance. From the **Actions** menu, select **Instance Settings** and then **Attach/Replace IAM Role**.
+1. Navigate to the EC2 services screen and then access your running instance. Select your instance. From the **Actions** menu, select **Instance Settings** and then **Attach/Replace IAM Role**.
 
-![ Attach Replace IAM Role](/images/installation/guide/assignRoleToVM01.jpg)
+   ![ Attach Replace IAM Role](/images/installation/guide/assignRoleToVM01.jpg)
 
-Select the **IAM role** you created in the previous section. The press **Apply**.
+1. Select the **IAM role** you created in the previous section. The press **Apply**.
 
-![ Select IAM Role](/images/installation/guide/attachRoleToVM02.jpg)
+   ![ Select IAM Role](/images/installation/guide/attachRoleToVM02.jpg)
 
 ## Install the Armory Operator
 
 Install the Armory Operator in _basic_ mode, which installs Armory into a single namespace. This mode does not perform pre-flight checks before applying a manifest.
 
-SSH into your EC2 VM and download the Armory Operator files:
+1. SSH into your EC2 VM and download the Armory Operator files:
 
-```bash
-mkdir -p spinnaker-operator && cd spinnaker-operator
-bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
-```
+   ```bash
+   mkdir -p spinnaker-operator && cd spinnaker-operator
+   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
+   ```
 
-Install the Custom Resource Definitions (CRDs):
+1. Install the Custom Resource Definitions (CRDs):
 
-```bash
-kubectl apply -f deploy/crds/
-```
+   ```bash
+   kubectl apply -f deploy/crds/
+   ```
 
-Create the `spinnaker-operator` namespace:
+1. Create the `spinnaker-operator` namespace:
 
-```bash
-kubectl create ns spinnaker-operator
-```
+   ```bash
+   kubectl create ns spinnaker-operator
+   ```
 
-Install the Armory Operator on K3s:
+1. Install the Armory Operator on K3s:
 
-```bash
-kubectl -n spinnaker-operator apply -f deploy/operator/basic
-```
+   ```bash
+   kubectl -n spinnaker-operator apply -f deploy/operator/basic
+   ```
 
-You can verify successful installation by executing:
+   You can verify successful installation by executing:
 
-```bash
-kubectl -n spinnaker-operator get pods
-```
+   ```bash
+   kubectl -n spinnaker-operator get pods
+   ```
 
-Terminal output is similar to:
+   Terminal output is similar to:
 
-```bash
-NAME                                  READY   STATUS    RESTARTS   AGE
-spinnaker-operator-589ccc6fd4-56wlc   2/2     Running   0          4m28s
-```
+   ```bash
+   NAME                                  READY   STATUS    RESTARTS   AGE
+   spinnaker-operator-589ccc6fd4-56wlc   2/2     Running   0          4m28s
+   ```
 
-## Modify the Spinnaker manifest
+## Modify the Armory manifest
 
 Edit the `SpinnakerService.yml` manifest file located in the `~/spinnaker-operator/deploy/spinnaker/basic` directory.
 
@@ -184,7 +184,7 @@ spec:
           rootFolder: front50
 ```
 
-For example, after editing if you named your bucket `my-s3-bucket` and want to install Armory 2.21.1:
+This example shows the config if your bucket is named `my-s3-bucket` and you want to install Armory 2.21.1::
 
 ```yaml
 kind: SpinnakerService
@@ -246,7 +246,11 @@ expose:
       publicPort: 8084
 ```
 
-Spacing is very important in YAML files. Make sure the spacing is correct in the `SpinnakerService.yml` file . Also, ensure there are no tabs instead of spaces in the file. Incorrect spacing or tabs will cause errors when you install Spinnaker.
+Spacing is very important in YAML files. Make sure that the spacing is correct in the `SpinnakerService.yml` file and that there are no tabs instead of spaces. Incorrect spacing or tabs cause errors when you install Spinnaker.
+
+<details><summary>Show  complete SpinnakerService.yml file</summary>
+{{< gist armory-gists d3385d4dc964956435e16a090561b487 >}}
+</details><br/>
 
 ## Install Armory
 
@@ -276,7 +280,7 @@ You can verify pod status by executing:
 
 Since you installed Armory in the same namespace as the Armory Operator, do not delete the `spinnaker-operator` namespace unless you want to delete the Armory Operator as well.
 
-You can use the [`kubectl delete`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#delete) command to delete Armory.
+You can use the [`kubectl delete`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#delete) command to delete Armory:
 
 ```bash
 kubectl -n spinnaker-operator delete spinnakerservice spinnaker

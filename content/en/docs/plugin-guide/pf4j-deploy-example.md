@@ -177,6 +177,10 @@ spec:
 
 Note: `repositories`, `plugins`, and `deck-proxy` are all at the same level, which is directly below `extensibility`.
 
+<details><summary>Show  complete SpinnakerService.yml file</summary>
+{{< gist armory-gists 5c104bc6602861862eab13169b67fbb5 >}}
+</details><br/>
+
 ## Redeploy Armory
 
 From the `spinnaker-operator` directory:
