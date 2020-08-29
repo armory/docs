@@ -1,38 +1,75 @@
 <div class="section-index">
     {{ $pages := (where .Site.Pages "Section" .Section).ByWeight }}
-	 {{ $pagesReverse := (where .Site.Pages "Section" .Section).ByWeight.Reverse }}
+    {{ $pagesReverse := (where .Site.Pages "Section" .Section).ByWeight.Reverse }}
     {{ $parent := .Page }}
+
     {{ if $parent.Params.no_list }}
-    {{/* If no_list is true we don't show a list of subpages */}}
+      {{/* If no_list is true we don't show a list of subpages */}}
     {{ else if $parent.Params.simple_list }}
-    {{/* If simple_list is true we show a bulleted list of subpages */}}
-        <ul>
-            {{ range $pages }}
-                {{ if eq .Parent $parent }}
-                    <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
-                {{ end }}
-            {{ end }}
-        </ul>
-	 {{ else if $parent.Params.simple_list_reverse }}
-	     <ul>
-		      {{ range $pagesReverse }}
-				    {{ if eq .Parent $parent }}
-					     <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
-				    {{ end }}
-		      {{ end }}
-	     </ul>
-    {{ else }}
-    {{/* Otherwise we show a nice formatted list of subpages with page descriptions */}}
-    <hr class="panel-line">
+      {{/* If simple_list is true we show a bulleted list of subpages */}}
+      <ul>
         {{ range $pages }}
-            {{ if eq .Parent $parent }}
-                <div class="entry">
-                    <h5>
-                        <a href="{{ .RelPermalink }}">{{- .Title -}}</a>
-                    </h5>
-                    <p>{{ .Description | markdownify }}</p>
-                </div>
-            {{ end }}
+          {{ if eq .Parent $parent }}
+            <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+          {{ end }}
         {{ end }}
+      </ul>
+    {{ else if $parent.Params.simple_list_reverse }}
+      <ul>
+        {{ range $pagesReverse }}
+          {{ if eq .Parent $parent }}
+            <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    {{ else if $parent.Params.semver_list }}
+      <ul>
+        {{ $semverActiveMajor := 10000 }}
+        {{ $semverActiveMinor := 10000 }}
+        {{ $semverActivePatch := 10000 }}
+
+        {{$displayedTitles := slice }}
+
+        {{ range $pagesReverse }}
+          {{ if eq .Parent $parent }}
+            {{ $semverString := .Title | replaceRE "^v([0-9]+\\.[0-9]+\\.[0-9]+).*" "${1}"}}
+            {{ $semverMajor := $semverString | replaceRE "([0-9]+).*" "${1}" }}
+            {{ $semverMinor := $semverString | replaceRE "[0-9]+\\.([0-9]+).*" "${1}"}}
+            {{ $semverPatch := $semverString | replaceRE "[0-9]+\\.[0-9]+\\.([0-9]+).*" "${1}" }}
+
+            {{ if  eq ( len (findRE "[0-9]+" $semverString ) ) 3 }}
+              {{if lt $semverMinor $semverActiveMinor  }}
+                {{ $semverActiveMinor = $semverMinor }}
+                {{ $semverActivePatch = $semverPatch }}
+                {{ $displayedTitles = $displayedTitles | append .Title }}
+                <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+              {{end}}
+            {{end}}
+          {{end}}
+        {{ end }}
+      </ul>
+      <div>Versions listed below will soon to be unsupported and archived:</div>
+      <ul>
+        {{ range $pagesReverse }}
+          {{ if eq .Parent $parent }}
+            {{ if eq ( in $displayedTitles .Title ) false }}
+              <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+            {{end}}
+          {{end}}
+        {{end}}
+      </ul>
+    {{ else }}
+      {{/* Otherwise we show a nice formatted list of subpages with page descriptions */}}
+      <hr class="panel-line">
+      {{ range $pages }}
+        {{ if eq .Parent $parent }}
+          <div class="entry">
+            <h5>
+              <a href="{{ .RelPermalink }}">{{- .Title -}}</a>
+            </h5>
+            <p>{{ .Description | markdownify }}</p>
+          </div>
+        {{ end }}
+      {{ end }}
     {{ end }}
 </div>

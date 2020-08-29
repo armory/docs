@@ -7,7 +7,7 @@ aliases:
   - /version/
   - /versions/
   - /release-notes/
-simple_list_reverse: true
+semver_list: true
 ---
 
 > You can find [Armory's Halyard releases notes here]({{< ref rn-armory-halyard >}}).
