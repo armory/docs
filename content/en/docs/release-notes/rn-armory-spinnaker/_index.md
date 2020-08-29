@@ -7,6 +7,7 @@ aliases:
   - /version/
   - /versions/
   - /release-notes/
+layout: release-notes-recent
 semver_list: true
 ---
 
