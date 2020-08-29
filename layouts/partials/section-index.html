@@ -33,7 +33,7 @@
           {{ if eq .Parent $parent }}
             {{ $semverSlice := findRE "[0-9]+" .Title }}
 
-            {{ if  ge (len $semverSlice) 3 }}
+            {{ if and (le (len $displayedTitles) 3) (ge (len $semverSlice) 3) }}
               {{if lt ( index $semverSlice 1 ) $semverActiveMinor  }}
                 {{ $semverActiveMinor = index $semverSlice 1 }}
                 {{ $semverActivePatch = index $semverSlice 2 }}
