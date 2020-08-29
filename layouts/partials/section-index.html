@@ -24,7 +24,6 @@
       </ul>
     {{ else if $parent.Params.semver_list }}
       <ul>
-        {{ $semverActiveMajor := 10000 }}
         {{ $semverActiveMinor := 10000 }}
         {{ $semverActivePatch := 10000 }}
 
@@ -32,15 +31,12 @@
 
         {{ range $pagesReverse }}
           {{ if eq .Parent $parent }}
-            {{ $semverString := .Title | replaceRE "^v([0-9]+\\.[0-9]+\\.[0-9]+).*" "${1}"}}
-            {{ $semverMajor := $semverString | replaceRE "([0-9]+).*" "${1}" }}
-            {{ $semverMinor := $semverString | replaceRE "[0-9]+\\.([0-9]+).*" "${1}"}}
-            {{ $semverPatch := $semverString | replaceRE "[0-9]+\\.[0-9]+\\.([0-9]+).*" "${1}" }}
+            {{ $semverSlice := findRE "[0-9]+" .Title }}
 
-            {{ if  eq ( len (findRE "[0-9]+" $semverString ) ) 3 }}
-              {{if lt $semverMinor $semverActiveMinor  }}
-                {{ $semverActiveMinor = $semverMinor }}
-                {{ $semverActivePatch = $semverPatch }}
+            {{ if  ge (len $semverSlice) 3 }}
+              {{if lt ( index $semverSlice 1 ) $semverActiveMinor  }}
+                {{ $semverActiveMinor = index $semverSlice 1 }}
+                {{ $semverActivePatch = index $semverSlice 2 }}
                 {{ $displayedTitles = $displayedTitles | append .Title }}
                 <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
               {{end}}
