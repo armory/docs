@@ -1,8 +1,8 @@
 ---
 title: Permissions in Spinnaker
-summary: Learn about how Fiat manages permissions in Spinnaker.
 linkTitle: Permissions in Spinnaker
 weight: 80
+description: Learn about how Fiat manages permissions in Spinnaker.
 ---
 
 ## Overview
@@ -247,3 +247,53 @@ The command returns JSON that lists the following information:
 - Spinnaker applications the user/service account has access to
 - Clouddriver accounts the user/service account has access to
 - Build services the user/service account has access to
+
+## Pub Sub and Webhooks
+
+Fiat does not support Pub Sub triggers or authenticating webhooks with group permissions.
+
+## Permissions for Clouddriver accounts
+
+Check Clouddriver's current runtime context with a REST API call to Gate.
+
+**Headers**
+
+Header         | Information
+-------------- | --------------------------------
+Request URL    | `$GATE_URL/credentials`
+Request Method | `GET`
+content-type   | `application/json;charset=UTF-8`
+
+
+The API call returns JSON that lists the Clouddriver accounts.
+
+```json
+[
+  {
+    "name": <account-name>,
+    "type": <account-type>,
+    "providerVersion": <version>,
+    "requiredGroupMembership": [
+
+    ],
+    "skin": <version>,
+    "permissions": {
+
+    },
+    "authorized": <true-or-false>
+  },
+  {
+	 "name": "my-docker-registry",
+	 "type": "dockerRegistry",
+	 "providerVersion": "v1",
+	 "requiredGroupMembership": [
+
+	 ],
+	 "skin": "v1",
+	 "permissions": {
+
+	 },
+	 "authorized": "true"
+  }
+]
+```
