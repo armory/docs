@@ -7,7 +7,7 @@ aliases:
 
 ## Overview
 
-Armory-extended Halyard can be configured via `/opt/spinnaker/config/halyard.yml`. If you run the Docker image, you can provide your own configuration by mounting the file or directory to the container. If you're running the Operator, you can also configure the behavior of the internal Halyard by creating a Kubernetes ConfigMap and mounting it to the Halyard container.
+Armory-extended Halyard can be configured via `/opt/spinnaker/config/halyard.yml`. If you run the Docker image, you can provide your own configuration by mounting the file or directory to the container. If you're running the Armory Operator, you can also configure the behavior of the internal Halyard by creating a Kubernetes ConfigMap and mounting it to the Halyard container.
 
 ```
 halyard:
@@ -26,7 +26,7 @@ spinnaker:
 ```
 
 ## Profiles
-You can choose a different location for your Spinnaker configuration by changing `halyard.halconfig.directory`. The Halyard daemon needs to be able to read and write to that location.
+You can choose a different location for your Armory configuration by changing `halyard.halconfig.directory`. The Halyard daemon needs to be able to read and write to that location.
 
 
 ## Versions

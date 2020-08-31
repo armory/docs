@@ -1,5 +1,5 @@
 ---
-title: Installing Spinnaker in GKE using Operator
+title: Installing Armory in GKE using the Armory Operator
 linkTitle: "Install in GKE using Operator"
 weight: 7
 aliases:
@@ -8,7 +8,7 @@ aliases:
 
 _Note: This guide is a work in progress._
 
-This guide contains instructions for installing Armory on a GKE Cluster using the [Spinnaker Operator]({{< ref "operator" >}}). Refer to the [Spinnaker Operator Reference]({{< ref "operator-config" >}}) for manifest entry details.
+This guide contains instructions for installing Armory on a GKE Cluster using the [Armory Operator]({{< ref "operator" >}}). Refer to the [Armory Operator Reference]({{< ref "operator-config" >}}) for manifest entry details.
 
 ## Prerequisites
 
@@ -20,16 +20,16 @@ This document is written with the following workflow in mind:
 
 ## Installation summary
 
-Installing Spinnaker with the Operator consists of the following steps:
+Installing Armory using the Armory Operator consists of the following steps:
 
-* Create a cluster where Spinnaker and the Operator will reside
-* Setup the Operator CRDs (custom resource definitions)
-* Deploy Operator pods to the cluster
+* Create a cluster where Armory and the Armory Operator will reside
+* Setup the Armory Operator CRDs (custom resource definitions)
+* Deploy Armory Operator pods to the cluster
 * Create a GCS service account
 * Create a Kubernetes service account
 * Create a GCS storage bucket
-* Modify the Operator kustomize files for your installation
-* Deploy Spinnaker through the Operator
+* Modify the Armory Operator kustomize files for your installation
+* Deploy Armory through the Armory Operator
 
 ## Create GKE cluster
 
@@ -57,9 +57,9 @@ kube-public Active 2m26s
 kube-system Active 2m26s
 ```
 
-## Setup Operator CRDs
+## Set up Armory Operator CRDs
 
-Fetch the Spinnaker Operator manifests:
+Fetch the Armory Operator manifests:
 
 ```bash
 # RELEASE=v0.3.2 bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/download/${RELEASE}/manifests.tgz | tar -xz'
@@ -80,9 +80,9 @@ customresourcedefinition.apiextensions.k8s.io/spinnakerservices.spinnaker.armory
 customresourcedefinition.apiextensions.k8s.io/spinnakeraccounts.spinnaker.io created
 ```
 
-## Deploy Operator
+## Deploy Armory Operator
 
-These steps create the spinnaker-operator namespace and deploys the Operator pods.
+This step creates the spinnaker-operator namespace and deploys the Armory Operator pods.
 
 ```bash
 kubectl create ns spinnaker-operator
@@ -100,7 +100,7 @@ clusterrolebinding.rbac.authorization.k8s.io/spinnaker-operator-binding created
 serviceaccount/spinnaker-operator created
 ```
 
-## Create GCS service sccount
+## Create GCS service account
 
 ```bash
 export SERVICE_ACCOUNT_NAME=<name-for-your-service-account>
@@ -157,7 +157,7 @@ Use the Cloud Console to do create your bucket. If you're going to put secrets i
 
 **deploy/spinnaker/kustomize/config-patch.yml**
 
-- Update Spinnaker version to deploy
+- Update Armory version to deploy
 - Set the persistent storage type, bucket, rootFolder, project, jsonPath (pick something unique)
 - Add `gcs`` to the config patch
 
@@ -196,7 +196,7 @@ files:
 
 ## Add the Kubernetes provider account
 
-There are a few ways to do this with Operator. This uses the typical way of doing it with config. The Account CRD is probably the way this will be done in the future.
+There are a few ways to do this with the Armory Operator. This uses the typical way of doing it with config. The Account CRD is probably the way this will be done in the future.
 
 Update the `config-patch.yml` with the provider accounts:
 
@@ -249,7 +249,7 @@ kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 sudo mv kustomize /usr/local/bin/
 ```
 
-## Deploy Spinnaker using Kustomize
+## Deploy Armory using Kustomize
 
 ```bash
 kubectl create ns <spinnaker-namespace>
@@ -263,7 +263,7 @@ The `SpinnakerService.yml` file contains an `expose` section fthat defines how a
 
 ## Configure authentication
 
-To enable basic form authentication in Spinnaker as in this KB [article](https://kb.armory.io/installation/enabling-basic-auth/), you need to understand how your `kustomization.yml` file is [configured](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/fields.md). If you have the `profiles-patch.yml`, you are telling Kustomize to overwrite the profiles section of the config with entries for each of the components (clouddriver, deck, gate, etc). So you can put all of the entries for those profile files into `profiles-patch.yml`.
+To enable basic form authentication in Armory as in this KB [article](https://kb.armory.io/installation/enabling-basic-auth/), you need to understand how your `kustomization.yml` file is [configured](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/fields.md). If you have the `profiles-patch.yml`, you are telling Kustomize to overwrite the profiles section of the config with entries for each of the components (clouddriver, deck, gate, etc). So you can put all of the entries for those profile files into `profiles-patch.yml`.
 
 Here is an example `profiles-patch.yml` with Kustomize turned on and basic form authentication configured.
 
