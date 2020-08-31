@@ -284,17 +284,17 @@ The API call returns JSON that lists the Clouddriver accounts.
     "authorized": <true-or-false>
   },
   {
-	 "name": "my-docker-registry",
-	 "type": "dockerRegistry",
-	 "providerVersion": "v1",
-	 "requiredGroupMembership": [
+    "name": "my-docker-registry",
+    "type": "dockerRegistry",
+    "providerVersion": "v1",
+    "requiredGroupMembership": [
 
-	 ],
-	 "skin": "v1",
-	 "permissions": {
+    ],
+    "skin": "v1",
+    "permissions": {
 
-	 },
-	 "authorized": "true"
+    },
+    "authorized": "true"
   }
 ]
 ```
