@@ -526,7 +526,7 @@ From the `workstation machine` (where `kubectl` is installed):
 Install the NGINX ingress controller components:
 
 ```bash
-kubectl --kubeconfig kubeconfig-aws apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
+kubectl --kubeconfig kubeconfig-aws apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/aws/deploy.yaml
 ```
 
 Install the NGINX ingress controller AWS-specific service:

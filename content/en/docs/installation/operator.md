@@ -47,16 +47,22 @@ kubectl apply -f deploy/crds/
 
 # We'll install in the spinnaker-operator namespace
 kubectl create ns spinnaker-operator
+```
 
-# Install operator cluster mode
+Next, install Operator in either `cluster` or `basic` mode:
+
+```bash
+# Install Operator cluster mode
 kubectl -n spinnaker-operator apply -f deploy/operator/cluster
+```
 
-# If instead you want to install the operator in basic mode
+```bash
+# OR install Operator in basic mode
 # kubectl -n spinnaker-operator apply -f deploy/operator/basic
-
 ```
 
 After installation, you can verify that the Operator is running with the following command:
+
 ```bash
 kubectl -n spinnaker-operator get pods
 ```
@@ -73,13 +79,23 @@ spinnaker-operator-7cd659654b-4vktl   2/2           Running      0             6
 
 ## Install Armory
 
-To use the examples, change the parameters you need (especially the `persistentStorage` section). To install a basic version of Armory in the "spinnaker" namespace, run the following command:
+Update the values such as `version` and `persistentStorage` in `deploy/spinnaker/<operator-installation-mode>/SpinnakerService.yml` before you install Spinnaker.
+
+If you installed Operator in `basic` mode, you must use the `spinnaker-operator` namespace. The permissions in `basic` mode are scoped to a single namespace so it doesn't see anything in other namespaces. Run the following command:
 
 ```bash
-kubectl create ns spinnaker
-kubectl -n spinnaker apply -f deploy/spinnaker/basic
+kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/SpinnakerService.yml
+```
 
-# Watch the install progress and check out the pods being created too!
+If you installed Operator in `cluster` mode, run this command:
+
+```bash
+kubectl -n spinnaker-operator apply -f deploy/spinnaker/cluster/SpinnakerService.yml
+```
+
+Watch the install progress and check out the pods being created:
+
+```bash
 kubectl -n spinnaker get spinsvc spinnaker -w
 ```
 
