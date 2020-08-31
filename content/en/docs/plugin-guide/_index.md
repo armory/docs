@@ -5,7 +5,7 @@ weight: 100
 
 {{< include "experimental-feature.html" >}}
 
-## Open Source Spinnaker plugin guides:
+## Open Source Spinnaker<sup>TM</sup> plugin guides:
 
 * [Plugin Users Guide](https://spinnaker.io/guides/user/plugins)
   * Explains important concepts and files, such as `plugins.json` and `repositories.json`, that you need to deploy a plugin
