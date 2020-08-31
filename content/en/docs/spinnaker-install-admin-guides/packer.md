@@ -172,7 +172,43 @@ If your app is using zip, tarballs or you'll need some customization, you'll nee
 
 Out of the box, Armory Spinnaker comes with these built-in packer templates and scripts: https://github.com/spinnaker/rosco/tree/master/rosco-web/config/packer
 
-If you'd like to add additional packer template or script files, you can add them via Halyard:
+If you'd like to add additional packer template or script files, you can add them via Operator or Halyard.
+
+**Operator**
+
+Add any Packer template and supporting scripts as string-formatted entries under the `spec.spinnakerConfig.files` level of the `SpinnakerService` config.
+
+Assuming you have a template named example-packer-config.json containing the following:
+```
+{
+  "packerSetting" : "someValue"
+}
+```
+
+and a script file named my-custom-script.sh containing the following:
+```
+#!/bash/bash -e
+echo "Hello world!"
+```
+
+You would make the following entries into the `SpinnakerService` config:
+```
+files:
+  profiles__rosco__packer__example-packer-config.json: |
+    {
+      "packerSetting" : "someValue"
+    }
+  profiles__rosco__packer__my-custom-script.sh: |
+    #!/bash/bash -e
+    echo "Hello world!"
+```
+
+NOTE:  The double underscores in the above property names of the files are interpreted as slashes and indicate to Operator
+the directory path where the file should be saved. 
+
+
+
+**Halyard** 
 
 * If it does not already exist, create this directory: `~/.hal/<deployment-name>/profiles/rosco/packer/`
   * For example, if you're using the default Halyard deployment, then create this directory: `~/.hal/default/profiles/rosco/packer/`
