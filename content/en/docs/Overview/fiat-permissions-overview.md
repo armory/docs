@@ -2,7 +2,8 @@
 title: Permissions in Spinnaker
 linkTitle: Permissions in Spinnaker
 weight: 80
-description: Learn about how Fiat manages permissions in Spinnaker.
+description: >
+  Learn about how Fiat manages permissions in Spinnaker.
 ---
 
 ## Overview
