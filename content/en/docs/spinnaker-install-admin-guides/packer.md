@@ -172,7 +172,7 @@ If your app is using zip, tarballs or you need some customization, you need to c
 
 Out of the box, Armory comes with these built-in Packer templates and scripts: https://github.com/spinnaker/rosco/tree/master/rosco-web/config/packer
 
-If you'd like to add additional Packer template or script files, you can add them via the [Armory Operator]({<< ref "operator" >}}) or Halyard.
+If you'd like to add additional Packer template or script files, you can add them via the [Armory Operator]({{< ref "operator" >}}) or Halyard.
 
 ### Armory Operator
 
