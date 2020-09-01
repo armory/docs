@@ -1,7 +1,7 @@
 ---
 title: "Plugins"
 weight: 100
-aliases: >
+aliases:
   - /spinnaker-user-guides/plugin-creators/
   - /spinnaker-user-guides/plugin-users/
 ---
