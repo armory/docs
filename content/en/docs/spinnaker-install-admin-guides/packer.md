@@ -166,19 +166,19 @@ By default, Rosco performs the following actions in a "Bake" stage:
 
 In a bake stage configuration, you can specify other packer templates to use.
 
-If your app is using zip, tarballs or you'll need some customization, you'll need to create a new packer script (see below).
+If your app is using zip, tarballs or you need some customization, you need to create a new Packer script (see below).
 
-## Adding custom Packer scripts to Armory Spinnaker
+## Adding custom Packer scripts to Armory
 
-Out of the box, Armory Spinnaker comes with these built-in packer templates and scripts: https://github.com/spinnaker/rosco/tree/master/rosco-web/config/packer
+Out of the box, Armory comes with these built-in Packer templates and scripts: https://github.com/spinnaker/rosco/tree/master/rosco-web/config/packer
 
-If you'd like to add additional packer template or script files, you can add them via Operator or Halyard.
+If you'd like to add additional Packer template or script files, you can add them via the [Armory Operator]({<< ref "operator" >}}) or Halyard.
 
-**Operator**
+### Armory Operator
 
-Add any Packer template and supporting scripts as string-formatted entries under the `spec.spinnakerConfig.files` level of the `SpinnakerService` config.
+Add any Packer template and supporting scripts as string-formatted entries under the `spec.spinnakerConfig.files` section of the `SpinnakerService` config.
 
-Assuming you have a template named example-packer-config.json containing the following:
+If you have a template named example-packer-config.json containing the following:
 ```
 {
   "packerSetting" : "someValue"
@@ -186,12 +186,14 @@ Assuming you have a template named example-packer-config.json containing the fol
 ```
 
 and a script file named my-custom-script.sh containing the following:
+
 ```
 #!/bash/bash -e
 echo "Hello world!"
 ```
 
-You would make the following entries into the `SpinnakerService` config:
+make the following entries into the `SpinnakerService` config:
+
 ```
 files:
   profiles__rosco__packer__example-packer-config.json: |
@@ -203,12 +205,11 @@ files:
     echo "Hello world!"
 ```
 
-NOTE:  The double underscores in the above property names of the files are interpreted as slashes and indicate to Operator
-the directory path where the file should be saved. 
+NOTE:  The Armory Operator interprets the double underscores in the file names as slashes indicating the directory path where the Operator saves the file.  
 
+See the "Export Packer template files" step in the [Migrating from Halyard to Operator]({{< ref "operator#migrating-from-halyard-to-operator" >}}) section of the Armory Operator document for more examples.
 
-
-**Halyard** 
+### Halyard
 
 * If it does not already exist, create this directory: `~/.hal/<deployment-name>/profiles/rosco/packer/`
   * For example, if you're using the default Halyard deployment, then create this directory: `~/.hal/default/profiles/rosco/packer/`
