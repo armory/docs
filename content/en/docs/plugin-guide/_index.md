@@ -2,8 +2,8 @@
 title: "Plugins"
 weight: 100
 aliases:
-  - /spinnaker-user-guides/plugin-creators/
-  - /spinnaker-user-guides/plugin-users/
+  - /docs/spinnaker-user-guides/plugin-creators/
+  - /docs/spinnaker-user-guides/plugin-users/
 ---
 
 {{< include "experimental-feature.html" >}}
