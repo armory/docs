@@ -2,9 +2,11 @@
 title: "Smoke Test"
 linkTitle: "Smoke Test"
 weight: 999
-draft: true
+draft: false
 description: >
   Markdown stuff - change to draft before publication
+aliases:
+  - /bubba/boop/
 ---
 
 ## Links
