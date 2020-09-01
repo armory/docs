@@ -7,11 +7,17 @@ description: >
   Markdown stuff - change to draft before publication
 ---
 
+## Links
 
 Images links to test link checker
 
 ![Architecture Diagram](/images/install_admin_guides_SpinnakerArchitecture.png)
 
+
+
+[this is a valid url](https://www.google.com/)
+
+## alerts
 
 {{% pageinfo %}}
 This is a placeholder page. Replace it with your own content.
