@@ -6,7 +6,7 @@ draft: false
 description: >
   Markdown stuff - change to draft before publication
 aliases:
-  - /bubba/boop/
+  - /docs/bubba/boop/
 ---
 
 ## Links
