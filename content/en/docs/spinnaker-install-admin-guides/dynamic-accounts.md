@@ -21,7 +21,7 @@ This document assumes the following:
 
 - You have a running Spinnaker cluster.
 - You have a Vault instance accessible from your Spinnaker cluster.
-- You have a Vault token that will be used by Spinnaker to access your Vault instance.
+- You have a Vault token that Spinnaker uses to access your Vault instance.
 - You have a valid `kubeconfig` for the target Kubernetes cluster.
 
 
@@ -96,16 +96,16 @@ Create a secret in Vault of type JSON with contents specific for your accounts:
 ```
 
 Your secret in Vault should look similar to this:
-![](/images/vault_dyn_accounts_example.png)
+![](/images/install-admin/vault_dyn_accounts_example.png)
 
 ## Update spinnakerconfig.yml and redeploy Spinnaker
 
-In order to complete the configuration of Spinnaker to use dynamic accounts, you must know what to put into the backend and default-key fields. This is directly related to how you created your secret in Vault. If your secret is at `spinnaker/clouddriver`: 
+In order to complete the configuration of Spinnaker to use dynamic accounts, you must know what to put into the backend and default-key fields. This is directly related to how you created your secret in Vault. If your secret is at `spinnaker/clouddriver`:
 
-- `backend` is `spinnaker` 
+- `backend` is `spinnaker`
 - `default-key` is `clouddriver`.
 
-The Spring Cloud Config Server that is internal to clouddriver only supports the vault token authentication type. You must create an access token in order to configure clouddriver. 
+The Spring Cloud Config Server that is internal to Clouddriver only supports the Vault token authentication type. You must create an access token in order to configure Clouddriver.
 
 **Operator**
 
