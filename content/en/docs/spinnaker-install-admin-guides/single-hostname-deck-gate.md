@@ -113,7 +113,7 @@ directory.
    hal config security ui edit --override-base-url https://spinnaker.example.com
    ```
 
-   Step 4: Update Gate's URL using Halyard command
+1. Update Gate's URL using Halyard command
 
    ```
    hal config security api edit --override-base-url https://spinnaker.example.com/api/v1
