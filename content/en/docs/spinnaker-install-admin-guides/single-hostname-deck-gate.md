@@ -18,11 +18,9 @@ Kubernetes.
 
 To simplify both DNS management and Ingress management, Armory can be configured
 to serve the Gate microservice on the same hostname as the Deck UI but located
-at a sub-path. We recommend configuring the Gate microservice to be served from
-the `/api/v1` of the Deck UI hostname when using a single hostname for both Deck
-and Gate.
+at a sub-path. We recommend configuring the Gate microservice so that it is served from the `/api/v1` of the Deck UI hostname when using a single hostname for both Deck and Gate.
 
-For the purposes of this document, we make the following assumptions:
+## Assumptions
 
 1. Deck is accessible at `https://spinnaker.example.com`
 2. Gate is accessible at `https://spinnaker.example.com/api/v1`
@@ -30,7 +28,7 @@ For the purposes of this document, we make the following assumptions:
 
 >Note: Configuring a Kubernetes Ingress and Service is outside the scope of this document.
 
-## Operator Approach
+## Operator approach
 
 1. Set Gate's server servlet to be aware of its context path at `/api/v1` in your `SpinnakerService` config.
 
@@ -73,7 +71,7 @@ For the purposes of this document, we make the following assumptions:
 1. Deploy your `SpinnakerService` config using either `kubectl` or `kustomize` command syntax
 
 
-## Halyard Approach
+## Halyard approach
 
 1. Set Gate's server servlet to be aware of its context path at `/api/v1` by creating a file named `gate-local.yml`
 in the `profiles` directory.
