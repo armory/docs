@@ -418,7 +418,7 @@ If you are using Kubernetes version 1.14 or later, install the NGINX ingress con
 
 
 ```bash
-kubectl --kubeconfig kubeconfig-gke apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
+kubectl --kubeconfig kubeconfig-gke apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.35.0/deploy/static/provider/cloud/deploy.yaml
 ```
 
 If you are using a Kubernetes version earlier than 1.14, you need to apply the below `mandatory.yaml` file and change kubernetes.io/os to beta.kubernetes.io/os at line 217.
