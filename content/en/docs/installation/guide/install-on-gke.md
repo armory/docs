@@ -425,7 +425,7 @@ If you are using a Kubernetes version earlier than 1.14, you need to apply the b
 <!--- See the [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/) documentation for more details. --->
 
 ```bash
-kubectl apply -f https://github.com/kubernetes/ingress-nginx/blob/nginx-0.30.0/deploy/static/mandatory.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml
 ```
 
 ## Set up the Ingress for `spin-deck` and `spin-gate`
