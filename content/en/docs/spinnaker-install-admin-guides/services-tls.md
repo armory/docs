@@ -35,7 +35,7 @@ Golang services need a X509 certificate (PEM format) and a private key for #1 as
 
 ## What you need
 
-The following table lists the Armory Spinnaker services, their type (Java or Golang), and which certificates they need:
+The following table lists the Armory and Spinnaker services, their type (Java or Golang), and which certificates they need:
 
 | Service | Type | Server | Client |
 |------|---|--|--|

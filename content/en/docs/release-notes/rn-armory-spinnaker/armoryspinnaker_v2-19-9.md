@@ -11,10 +11,10 @@ toc_hide: true
 
 ### Required Halyard version
 
-Armory Spinnaker 2.19.x requires Armory Halyard 1.8.3 or later.
+Armory 2.19.x requires Armory-extended Halyard 1.8.3 or later.
 
 ### HTTP sessions for Gate
-Armory Spinnaker 2.19.x includes an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
+Armory 2.19.x includes an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
 
 ### Scheduled Removal of Kubernetes V1 Provider
 The Kubernetes V1 provider will be removed in Spinnaker 1.21. Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.

@@ -16,8 +16,8 @@ The Armory Policy Engine is designed to allow enterprises more complete control 
 Make sure you can meet the following version requirements for the Policy Engine:
 * OPA versions 0.12.x or 0.13.x
 * Halyard 1.7.2 or later if you are using Halyard to manage Spinnaker
-* Armory Spinnaker 2.16.0 or later for Pipeline save time validation
-* Armory Spinnaker 2.19.0 or later for Pipeline runtime validation
+* Armory 2.16.0 or later for Pipeline save time validation
+* Armory 2.19.0 or later for Pipeline runtime validation
 
 ## Before You Start
 Using the Policy Engine requires an understanding of OPA's [rego syntax](https://www.openpolicyagent.org/docs/latest/policy-language/) and how to [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/#running-opa).
@@ -121,8 +121,8 @@ Once Spinnaker finishes redeploying, Policy Engine can evaluate pipelines based 
 
 The Policy Engine supports the following OPA server deployments:
 
-* An OPA server deployed in the same Kubernetes cluster as an Armory Spinnaker deployment. The [Using ConfigMaps for OPA policies](#using-configmaps-for-opa-policies) section contains a ConfigMap you can use.
-* An OPA cluster that is **not** in the same Kubernetes cluster as an Armory Spinnaker deployment . See the [OPA documentation](https://www.openpolicyagent.org/docs/latest/) for more information about installing an OPA cluster.
+* An OPA server deployed in the same Kubernetes cluster as an Armory deployment. The [Using ConfigMaps for OPA policies](#using-configmaps-for-opa-policies) section contains a ConfigMap you can use.
+* An OPA cluster that is **not** in the same Kubernetes cluster as an Armory deployment . See the [OPA documentation](https://www.openpolicyagent.org/docs/latest/) for more information about installing an OPA cluster.
 
 ## Using ConfigMaps for OPA Policies
 

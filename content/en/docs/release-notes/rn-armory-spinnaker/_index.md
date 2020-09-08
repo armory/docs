@@ -1,6 +1,7 @@
 ---
 title: Armory Release Notes
-description: Release notes for Armory releases.
+Summary: >
+  Release Notes For Armory
 aliases:
   - /releases/
   - /release/
@@ -11,7 +12,7 @@ layout: release-notes-recent
 semver_list: true
 ---
 
-> You can find [Armory's Halyard releases notes here]({{< ref rn-armory-halyard >}}).
+> You can find [Armory's extended Halyard releases notes here]({{< ref rn-armory-halyard >}}).
 
 ## Different Armory Release Types
 

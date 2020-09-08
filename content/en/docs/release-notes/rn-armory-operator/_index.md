@@ -3,10 +3,12 @@ title: "Armory Operator Release Notes"
 simple_list_reverse: true
 ---
 
-> You can find [Armory Spinnaker's releases notes here]({{< ref "rn-armory-spinnaker" >}}).
+> You can find [Armory's releases notes here]({{< ref "rn-armory-spinnaker" >}}).
 
 ## Armory Operator
-The [Spinnaker Operator](https://www.armory.io/blog/spinnaker-operator/) is a Kubernetes operator to deploy and manage Spinnaker using familiar tools. 
+
+The Armory Operator is an extended version of the Open Source [Spinnaker Operator](https://www.armory.io/blog/spinnaker-operator/), a Kubernetes operator that deploys and manages Spinnaker using familiar tools.
 
 ## List of Armory Operator Releases
-<!-- Hugo/docsy auto generates a list of the child pages here. The front matter configures it to go from newest to oldest --!> 
+
+<!-- Hugo/docsy auto generates a list of the child pages here. The front matter configures it to go from newest to oldest --!>

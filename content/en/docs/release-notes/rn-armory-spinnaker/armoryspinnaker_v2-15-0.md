@@ -14,9 +14,9 @@ aliases:
 
 
 ## A Note on the `2.15.x` release name
-We have made the decision to bump the minor version of our releases to match the minor version of the OSS release. This is done with the intent of making it easier to track which version of OSS Spinnaker is included in a particular version of Armory Spinnaker.  
+We have made the decision to bump the minor version of our releases to match the minor version of the OSS release. This is done with the intent of making it easier to track which version of OSS Spinnaker is included in a particular version of Armory.  
 
-As such, `Armory Spinnaker 2.15.x` tracks `OSS Release 1.15.x`.
+As such, `Armory 2.15.x` tracks `OSS Release 1.15.x`.
 
 This decision has no effect on previous release names.
 
@@ -25,7 +25,7 @@ This decision has no effect on previous release names.
 * `Clouddriver` caching of `Docker Registry` tags is slow in this release. Registries containing a large number of tags **(> 1000)** will result in `docker triggers` not properly triggering until caching is complete -- which might take 10 minutes or more.
 * The `clouddriver-ro` pod fails to start when using Vault secrets with HA Clouddriver enabled.
 
-> Note: Updating to OSS 1.15.x created an issue with the secrets config in Clouddriver and Echo. Armory Halyard 1.6.5 fixes this issue. Please update your Halyard to 1.6.5 or later:
+> Note: Updating to OSS 1.15.x created an issue with the secrets config in Clouddriver and Echo. Armory-extended Halyard 1.6.5 fixes this issue. Please update your Halyard to 1.6.5 or later:
 `sudo update-halyard --version 1.6.5`
 
 

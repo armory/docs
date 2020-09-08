@@ -14,7 +14,7 @@ aliases:
 
 
 ## Known Issues
-This release has a problem where Kayenta does not start properly. This issue is fixed with Armory Spinnaker `2.17.1`
+This release has a problem where Kayenta does not start properly. This issue is fixed with Armory `2.17.1`
 
 ## Highlighted Updates
 ### Armory

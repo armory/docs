@@ -12,7 +12,7 @@ aliases:
 
 
 ## Known Issues
-> Note: Updating to OSS 1.15.x created an issue with the secrets config in Clouddriver and Echo. Armory Halyard 1.6.5 fixes this issue. Please update your Halyard to 1.6.5 or later:
+> Note: Updating to OSS 1.15.x created an issue with the secrets config in Clouddriver and Echo. Armory-extended Halyard 1.6.5 fixes this issue. Please update your Halyard to 1.6.5 or later:
 `sudo update-halyard --version 1.6.5`
 
 ## Highlighted Updates

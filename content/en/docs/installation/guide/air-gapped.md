@@ -2,7 +2,7 @@
 title: Air-Gapped Environments
 weight: 1
 ---
-If your environment is air-gapped, you have several options for deploying Spinnaker.
+If your environment is air-gapped, you have several options for deploying Armory.
 
 An air-gapped environment is one where any combination of the following conditions are true:
 - No access to Armory Bill Of Materials (BOM), which are published on S3
@@ -30,7 +30,7 @@ versions:
   lastUpdate: "1568853000000"
 ```
 
-`latestHalyard` and `latestSpinnaker` are used to notify users of new version of Halyard and Spinnaker. You can optionally update them with newer versions. `versions` is a list of available versions. It is optional if you don't intend to show new versions when `hal version list` is run.
+`latestHalyard` and `latestSpinnaker` are used to notify users of new version of Halyard and Armory. You can optionally update them with newer versions. `versions` is a list of available versions. It is optional if you don't intend to show new versions when `hal version list` is run.
 
 ### Enabling a custom bucket From Halyard
 
@@ -55,7 +55,7 @@ spinnaker:
       # anonymousAccess: false
 ```
 
-If you're running Halyard in Kubernetes or Spinnaker Operator, you need to create `halyard-local.yml` in your local directory. Then, create a `configmap` in the same namespace as Halyard or Operator with the `halyard-local.yml` file:
+If you're running Halyard in Kubernetes or Armory Operator, you need to create `halyard-local.yml` in your local directory. Then, create a `configmap` in the same namespace as Halyard or Operator with the `halyard-local.yml` file:
 
 ```bash
 kubectl create configmap halyard-custom-config --from-file=halyard-local.yml=path/to/halyard-local.yml -n halyard
@@ -109,9 +109,9 @@ spec:
 
 It may be necessary to include your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY for your custom/private s3 bucket.
 
-### Enabling a new version of Armory Spinnaker
+### Enabling a new version of Armory
 
-You can download version `x.y.z` of Armory Spinnaker with this script:
+You can download version `x.y.z` of Armory with this script:
 
 <details><summary>Show the script</summary>
 
@@ -127,7 +127,7 @@ For example, run the following command to download version {{< param armory-vers
 $ download-bom.sh {{< param armory-version >}} versions/
 ```
 
-You can then upload the files you just downloaded to your storage. Make sure they are readable from wherever Halyard (not necessarily Spinnaker services) will run. For example:
+You can then upload the files you just downloaded to your storage. Make sure they are readable from wherever Halyard (not necessarily Armory services) will run. For example:
 
 **AWS**
 
@@ -168,11 +168,11 @@ You need to copy `docker.io/armory/deck/2.11.0-896d15d-b0aac47-rc8` and `docker.
 
 ## Halyard cannot run on the local machine
 
-The following solutions assume the that you can use `kubectl` to access the cluster where Spinnaker is installed.
+The following solutions assume the that you can use `kubectl` to access the cluster where Armory is installed.
 
 ### Option 1: Halyard as a deployment
 
-You can run Halyard as a `Deployment` within the cluster that runs Spinnaker if the following conditions are true:
+You can run Halyard as a `Deployment` within the cluster that runs Armory if the following conditions are true:
 
 * You cannot run Halyard directly on your machine. This might be because the local machine cannot run Docker.
 * You have `kubectl` access to the cluster you are deploying to
@@ -196,8 +196,8 @@ Finally, to access the deployed Halyard environment, perform the following steps
    kubectl exec -it {pod-name} /bin/bash
    ```
 
-### Option 2: Spinnaker Operator
+### Option 2: Armory Operator
 
-The [Spinnaker Operator]({{< ref "operator" >}}) lets you manage Spinnaker with `kubectl`.
+The [Armory Operator]({{< ref "operator" >}}) lets you manage Armory with `kubectl`.
 
 If you also need to use privately hosted bill of materials, configure the operator to point to your bucket. See [Custom Halyard Configuration]({{< ref "operator#custom-halyard-configuration" >}}).

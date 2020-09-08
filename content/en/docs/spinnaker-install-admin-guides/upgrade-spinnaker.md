@@ -5,7 +5,7 @@ weight: 2
 
 ## Determining the target version
 
-First, determine which version of Armory Spinnaker you want to use.  You can get this list by running `hal version list`.
+First, determine which version of Armory you want to use. You can get this list by running `hal version list`.
 
 The command returns information similar to the following:
 

@@ -7,7 +7,7 @@ aliases:
 
 Armory's _Pipelines as Code_ feature provides a way to specify pipeline definitions in source code repos such as GitHub and BitBucket.
 
-The Armory Spinnaker installation provides a service called _Dinghy_, which keeps the pipeline in Spinnaker in sync with what is defined in the GitHub repo. Also, users are able to make a pipeline by composing other pipelines, stages, or tasks and templating certain values.
+The Armory installation provides a service called _Dinghy_, which keeps the pipeline in Spinnaker in sync with what is defined in the GitHub repo. Also, users are able to make a pipeline by composing other pipelines, stages, or tasks and templating certain values.
 
 {{< alert title="Note" >}}
 Before you can use this feature, please ensure you have [configured]({{< ref "install-dinghy" >}}) it correctly.
@@ -20,14 +20,14 @@ GitHub (or BitBucket) webhooks are sent off when you modify either the Templates
 ### Intended workflow
 
 The Pipelines as Code feature is intended to make it much faster and easier
-for developers to get a brand new application up and running.  The general
+for developers to get a brand new application up and running. The general
 workflow for new projects is:
 
 1. Developer creates a new project in source control
 2. They create a Dinghyfile to build the application and pipelines in
    Spinnaker (even easier if there is a Module Repo set up with a
 templatized set of pipelines)
-3. When the code is committed to "master", Armory Spinnaker picks up the
+1. When the code is committed to "master", Armory picks up the
    Dinghyfile, renders it, and applies it to Spinnaker, creating the
 application and the pipelines.
 

@@ -1,19 +1,19 @@
 ---
-title: Upgrading Open Source Spinnaker to Armory Spinnaker
+title: Upgrading Open Source Spinnaker to Armory
 weight: 2
 ---
 
 ## Overview
 
-Armory Spinnaker is installed with Armory Halyard, very similarly to the way Open Source Spinnaker is installed with Open Source Halyard. These are the key differences:
+The Armory platform is installed with the Armory-extended Halyard, very similarly to the way Open Source Spinnaker is installed with Open Source Halyard. These are the key differences:
 
-* Armory Halyard installs Armory Spinnaker; Open Source Halyard installs Open Source Spinnaker.
-* Armory Spinnaker versions are one major version ahead of Open Source. For example, Armory Spinnaker 2.18.x maps to Open Source Spinnaker 1.18.x.
-* Armory Spinnaker has an extra subcommand block `hal armory` (mapping to an `armory` block in your `.hal/config`), which controls Armory-specific features.
+* Armory-extended Halyard installs Armory's Enterprise distribution of Spinnaker; Open Source Halyard installs Open Source Spinnaker.
+* Armory versions are one major version ahead of Open Source. For example, Armory 2.18.x maps to Open Source Spinnaker 1.18.x.
+* Armory has an extra subcommand block `hal armory` (mapping to an `armory` block in your `.hal/config`), which controls Armory-specific features.
 
-This guide differentiates between the two by referring to them as Armory Spinnaker and OSS Spinnaker, respectively.
+This guide differentiates between the two by referring to them as Armory and OSS Spinnaker, respectively.
 
-If you are currently on OSS Spinnaker and interested in upgrading to Armory Spinnaker, you can easily upgrade if you used Halyard to install your Spinnaker cluster.
+If you are currently on OSS Spinnaker and interested in upgrading to Armory, you can easily upgrade if you used Halyard to install your Spinnaker cluster.
 
 This guide assumes the following:
 * Spinnaker is currently running in Kubernetes
@@ -25,9 +25,9 @@ This guide assumes the following:
 
 Depending on where Halyard is currently running, the detailed installation instructions will be slightly different, but the high level process is the same:
 
-1. Start Armory Halyard in a Docker container with your OSS Halyard configuration directories available to Armory Halyard.
-2. Enter the Armory Halyard container.
-3. Update the Spinnaker version to use an Armory version. Recall that Armory Spinnaker versions are ahead of OSS Spinnaker by one major version.
+1. Start Armory-extended Halyard in a Docker container with your OSS Halyard configuration directories available to Armory Halyard.
+2. Enter the Armory-extended Halyard container.
+3. Update the Spinnaker version to use an Armory version. Recall that Armory  versions are ahead of OSS Spinnaker by one major version.
 4. Apply your changes.
 
 ## Halyard running locally on a workstation
@@ -90,7 +90,7 @@ If Halyard is already running in a Docker container in your Docker daemon, you c
 
 1. First, do a backup of your existing Halyard configuration. Exec into the Docker container, then run `hal backup create`.
 
-2. Stop the Halyard docker container, and re-start it with the Armory Halyard image (`index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}`) instead of the OSS Halyard image (`gcr.io/spinnaker-marketplace/halyard:stable`). Also, change the user id for Armory Halyard to be `1000`. For example, if you run the previous Docker image (OSS Halyard) like this:
+2. Stop the Halyard docker container, and re-start it with the Armory-extended Halyard image (`index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}`) instead of the OSS Halyard image (`gcr.io/spinnaker-marketplace/halyard:stable`). Also, change the user id for Armory-extended Halyard to be `1000`. For example, if you run the previous Docker image (OSS Halyard) like this:
 
    ```bash
    docker run --name halyard --rm \
@@ -100,7 +100,7 @@ If Halyard is already running in a Docker container in your Docker daemon, you c
      gcr.io/spinnaker-marketplace/halyard:stable
    ```
 
-   Then run Armory Halyard like this:
+   Then run Armory-extended Halyard like this:
 
    ```bash
    docker run --name armory-halyard --rm \
@@ -136,7 +136,7 @@ If Halyard is already running in a Docker container in your Docker daemon, you c
 
 If Halyard is running in your Kubernetes cluster, either as a Kubernetes Deployment or a Kubernetes StatefulSet, then you can do an in-place upgrade:
 
-1. First, update the image for your Halyard Deployment / StatefulSet from the OSS Halyard image (`gcr.io/spinnaker-marketplace/halyard:stable`) to the Armory Halyard image (`index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}`)
+1. First, update the image for your Halyard Deployment / StatefulSet from the OSS Halyard image (`gcr.io/spinnaker-marketplace/halyard:stable`) to the Armory-extended Halyard image (`index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}`)
 
 1. Wait for the pod to start up.
 
@@ -162,11 +162,11 @@ If Halyard is running in your Kubernetes cluster, either as a Kubernetes Deploym
 
 ## Revert
 
-If you want to go back to OSS Spinnaker, you can repeat the same process as above with OSS Halyard. Specifically, replace the Armory Halyard image with the OSS Halyard image, update Spinnaker version (from 2.x to 1.x), and run `hal deploy apply`
+If you want to go back to OSS Spinnaker, you can repeat the same process as above with OSS Halyard. Specifically, replace the Armory-extended Halyard image with the OSS Halyard image, update Spinnaker version (from 2.x to 1.x), and run `hal deploy apply`
 
 ## Troubleshooting
 
-Depending on what version of Halyard / Armory Halyard you're moving to/from, there may be some fields in your Halyard configuration that are present in one version but not the other. You'll see an `Unrecognized field` error like this:
+Depending on what version of Halyard / Armory-extended Halyard you're moving to/from, there may be some fields in your Halyard configuration that are present in one version but not the other. You'll see an `Unrecognized field` error like this:
 
 
 ```bash
