@@ -26,20 +26,21 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 **Versions**
 
-**All supported versions** refers to the current minor release and the two previous minor releases. For example, if the current version is 2.21.x, all supported versions include 2.19.x, 2.20.x, and 2.21.x. 
+**All supported versions** refers to the current minor release and the two previous minor releases. For example, if the current version is 2.21.x, all supported versions include 2.19.x, 2.20.x, and 2.21.x.
 
-## Application metrics for Canary
+## Application metrics for Canary Analysis
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-Application metrics can be ingested by Kayenta to perform Automated Canary Analysis (ACA). The following table lists application metrics providers that Armory supports for application metrics
+Application metrics can be ingested by Kayenta to perform Canary Analysis or Automated Canary Analysis (ACA). The following table lists application metrics providers that Armory supports for metrics.
 
-
-
-| Provider     | Version   | ACA | Armory      | Note                   |
-|--------------|-----------|-----|------------------------|------------------------|
-| SomeProvider | A.B - C.D | Yes/No   | All supported versions |                        |
-| Dynatrace    | A.B - C.D |    | All supported versions | Armory only |
+| Provider    | Version                | ACA | Armory version         | Note                       |
+|-------------|------------------------|-----|------------------------|----------------------------|
+| Graphite    | All supported versions | Yes | All supported versions |                            |
+| New Relic   | All supported versions | Yes | All supported versions |                            |
+| Prometheus  | All supported versions | Yes | All supported versions |  |
+| SignalFx    | All supported versions | Yes | All supported versions |                            |
+| Stackdriver | All supported versions | Yes | All supported versions |                            |
 
 ## Artifact stores
 
@@ -151,8 +152,6 @@ The following table lists the authorization methods that Armory supports:
 ## Browsers
 
 Spinnaker's UI (Deck) works with most modern browsers.
->  COMMENT. REMOVE ME BEFORE PUBLISHING.
->  The above seems like the most maintainable/most non-controversial statement
 
 ## Build systems
 
@@ -222,12 +221,10 @@ Spinnaker requires an external storage provider for persisting application setti
 
 {{% alert %}}Armory 2.20 and later require the Observability plugin for monitoring Spinnaker. Versions earlier than 2.20 use the Spinnaker monitoring daemon, which is deprecated. {{% /alert %}}
 
-| Provider   | Armory      | Note |
-|------------|------------------------|------|
-| Datadog    | All supported versions |      |
-| ELK        | All supported versions |      |
-| Splunk     | All supported versions |      |
-
+| Provider   | Version                | Armory                 | Note                        |
+|------------|------------------------|------------------------|-----------------------------|
+| New Relic  | All supported versions | All supported versions |                             |
+| Prometheus | All supported versions | All supported versions | Use Grafana for dashboards. |
 
 ## Notifications
 
