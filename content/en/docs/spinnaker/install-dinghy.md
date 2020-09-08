@@ -133,7 +133,7 @@ hal armory dinghy edit \
   --template-repo "dinghy-templates" \
   --github-token "your_token/password"
 # For Github enterprise, you may customize the endpoint:
-  --github-endpoint "https://your-endpoint-here.com/api/v3"
+  --github-endpoint "https://your-endpoint-here.com/api/v3" # (Default: https://api.github.com) Github API endpoint. Useful if you’re using Github Enterprise
 hal deploy apply
 ```
 
