@@ -34,7 +34,7 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 Application metrics can be ingested by Kayenta to perform Canary Analysis or Automated Canary Analysis (ACA). The following table lists application metrics providers that Armory supports for metrics.
 
-| Provider    | Version                | ACA | Armory version         | Note                       |
+| Provider    | Version                | ACA | Armory          | Note                       |
 |-------------|------------------------|-----|------------------------|----------------------------|
 | Graphite    | All supported versions | Yes | All supported versions |                            |
 | New Relic   | All supported versions | Yes | All supported versions |                            |
@@ -48,7 +48,7 @@ Application metrics can be ingested by Kayenta to perform Canary Analysis or Aut
 
 Artifacts are remote, deployable resources in Spinnaker. Armory supports the following artifact stores:
 
-| Provider                                                          | Armory version | Notes                                          |
+| Provider                                                          | Armory | Notes                                          |
 |-------------------------------------------------------------------|---------------------------|------------------------------------------------|
 | [Bitbucket](https://spinnaker.io/setup/artifacts/bitbucket/)      | All supported versions    |                                                |
 | [GitHub](https://spinnaker.io/setup/artifacts/github/)            | All supported versions    |                                                |
@@ -95,11 +95,11 @@ Artifacts are remote, deployable resources in Spinnaker. Armory supports the fol
 [PaCRD]({{< ref "pacrd" >}}) gives you the ability to manage your pipelines as
 Kubernetes custom resources.
 
-| Feature | Armory | Notes |
-|---|---|---|
-| Create, modify, and delete pipeline manifests | All supported versions | Working within the same cluster Spinnaker is installed in. |
-| Create, modify, and delete application manifests | All supported versions | Working within the same cluster Spinnaker is installed in. |
-| Define all stages supported by Spinnaker and Armory | 0.10.x and later | Validation support does not exist for all stages. |
+| Feature                                             | Armory                 | Notes                                                      |
+|-----------------------------------------------------|------------------------|------------------------------------------------------------|
+| Create, modify, and delete pipeline manifests       | All supported versions | Working within the same cluster Spinnaker is installed in. |
+| Create, modify, and delete application manifests    | All supported versions | Working within the same cluster Spinnaker is installed in. |
+| Define all stages supported by Spinnaker and Armory | 0.10.x and later       | Validation support does not exist for all stages.          |
 
 ### Terraform Integration 
 
@@ -144,7 +144,7 @@ The following table lists the authorization methods that Armory supports:
 | Provider              | Armory      | Note                                                                            |
 |-----------------------|------------------------|---------------------------------------------------------------------------------|
 | GitHub Teams          | All supported versions | Roles from GitHub are mapped to the Teams under a specific GitHub organization. |
-| Google Groups         |                        |                                                                                 |
+| Google Groups         | All supported versions |                                                                                 |
 | LDAP/Active Directory | All supported versions |                                                                                 |
 | OAuth 2.0/OIDC        | All supported versions |                                                                                 |
 | SAML                  | All supported versions |                                                                                 |
@@ -159,15 +159,14 @@ Spinnaker's UI (Deck) works with most modern browsers.
 
 The following table lists the CI systems that Armory supports:
 
-| Provider           | Version | Armory      | Note                |
-|--------------------|---------|------------------------|---------------------|
-| AWS CodeBuild      | n/a     | 2.19.x or later        |                     |
-| GitHub Actions     | n/a     | All supported versions | Webhook integration |
-| Google Cloud Build |         |                        |                     |
-| Jenkins            |         | All supported versions |                     |
-| Travis             |         | All supported versions |                     |
-| Wercker            |         | All supported versions                     |                     |
-
+| Provider           | Version                | Armory                 | Note                |
+|--------------------|------------------------|------------------------|---------------------|
+| AWS CodeBuild      | n/a                    | 2.19.x or later        |                     |
+| GitHub Actions     | n/a                    | All supported versions | Webhook integration |
+| Google Cloud Build | n/a                    |                        |                     |
+| Jenkins            | All supported versions | All supported versions |                     |
+| Travis             | All supported versions | All supported versions |                     |
+| Wercker            | All supported versions | All supported versions |                     |
 
 ## Deployment targets
 
@@ -179,6 +178,7 @@ The following table lists the CI systems that Armory supports:
 | Cloud Foundry | PKS <ul><li>Versions A.B - X.Y</li></ul>                        |                       | All supported versions |       |
 | Google Cloud  | App Engine, Compute Engine, GKE                                 |                       | All supported versions |       |
 | Kubernetes    | Manifest-based deployments <ul><li>Versions A.B - X.Y</li></ul> |                       | All supported versions |       |
+
 ## Dynamic accounts
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
