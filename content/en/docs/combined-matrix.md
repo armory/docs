@@ -189,9 +189,9 @@ Dynamic accounts (external account configurations) for Spinnaker allow you to ma
 
 | Provider | Version | Armory | Notes |
 |---------|---------|---------|---------|
-| Git  | x.y.z | All supported versions |
+| Git  | All supported versions | All supported versions |
 | S3  | n/a | All supported versions |
-| Vault  | x.y.z | All supported versions |
+| Vault  | All supported versions | All supported versions |
 
 #### Supported Spinnaker services
 
