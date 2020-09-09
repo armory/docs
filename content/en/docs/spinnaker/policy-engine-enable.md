@@ -1,10 +1,10 @@
 ---
-title: Policy Engine
+title: Enabling Policy Engine
 weight: 143
 aliases:
   - /spinnaker/policy_engine/
   - /spinnaker/policy-engine/
-summary: "Enable the Policy Engine and configure an OPA server." 
+summary: "Enable the Policy Engine and configure an OPA server. When enabled, the Policy Engine can perform save time or runtime validation on your Spinnaker pipelines." 
 ---
 
 ## Overview
@@ -13,6 +13,8 @@ The Armory Policy Engine is designed to allow enterprises more complete control 
 
 * **Save time validation** - Validate pipelines as they're created/modified. This validation operates on all pipelines using a fail closed model. This means that if you have the Policy Engine enabled but no policies configured, the Policy Engine prevents you from creating or updating any pipeline.
 * **Runtime validation** - Validate deployments as a pipeline is executing. This validation only operates on tasks that you have explicitly created policies for. Tasks with no policies are not validated.
+
+For information about how to use the Policy Engine, see [Using the Policy Engine]({{< ref "policy-engine-use" >}})
 
 ## Requirements
 

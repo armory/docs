@@ -1,7 +1,7 @@
 ---
-title: Use the Policy Engine
+title: Using the Policy Engine
 weight: 143
-summary: "Learn how to add policies to your OPA instance for Spinnaker to use."
+summary: "Add policies to your OPA instance for Spinnaker to use when it performs validation to make sure your pipelines meet your policy requirements.."
 ---
 
 ## Overview
