@@ -64,6 +64,7 @@ spec:
       providers:
         dockerRegistry:
           enabled: true
+          primaryAccount: my-docker-registry # Account with search priority. (Not optional when using Locally deployed registry)
           accounts:
           - name: my-docker-registry
             requiredGroupMembership: [] # A user must be a member of at least one specified group in order to make changes to this account's cloud resources.
