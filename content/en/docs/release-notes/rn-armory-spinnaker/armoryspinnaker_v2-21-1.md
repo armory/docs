@@ -1,5 +1,5 @@
 ---
-title: v2.21.1 Armory Release (OSS Spinnaker v1.21.0)
+title: v2.21.1 Armory Release (OSS Spinnaker v1.21.2)
 toc_hide: true
 description: Release Notes for Armory 2.21.1
 ---
@@ -10,11 +10,14 @@ description: Release Notes for Armory 2.21.1
 
 ## Required Halyard version
 
-Armory Spinnaker 2.21.1 requires one of the following:
-* Armory Halyard 1.9.4 or later.
-* Armory Spinnaker Operator 1.0.3 or later.
+Armory 2.21.1 requires one of the following:
+
+* Armory-extended Halyard 1.9.4 or later.
+* Armory Operator 1.0.3 or later.
 
 ## Breaking changes
+
+{{< include "bc-k8s-namespace.md" >}}
 
 #### Spinnaker metrics
 
@@ -33,16 +36,16 @@ Although both workarounds involve updating your dashboards to use the new metric
 This release note will be updated once the updated plugin is available.
 
 #### HTTP sessions for Gate
-Armory Spinnaker 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
+Armory 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
 
 #### Scheduled removal of Kubernetes V1 provider
-The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
+The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
 
 If you still have any jobs that use the V1 provider, you will encounter an error. For more information, see [Cloud providers](#cloud-providers).
 
 ## Known Issues
 
-There are no known issues with this release.
+{{< include "ki-saml-authn.md" >}}
 
 #### Security update
 
@@ -50,7 +53,7 @@ We continue to make Spinnaker's security a top priority. Although several CVEs a
 
 ##### Multiple services
 
-`CVE-2020-5410` was resolved in a previous version of Armory Spinnaker; however, this CVE introduced a regression for users of Spring Cloud and has been rolled back. Armory will continue to monitor releases for a fix.
+`CVE-2020-5410` was resolved in a previous version of Spinnaker; however, this CVE introduced a regression for users of Spring Cloud and has been rolled back. Armory will continue to monitor releases for a fix.
 
 ##### Orca
 

@@ -9,7 +9,7 @@ aliases:
 This document focuses on the manifest based (aka V2) Kubernetes provider.
 
 ## Kubernetes Deployments
-Armory Spinnaker delegates the deployment of containers to Kubernetes. Kubernetes then proceeds with a rolling update deployment which is effectively a rolling blue/green deployment.
+Spinnaker delegates the deployment of containers to Kubernetes. Kubernetes then proceeds with a rolling update deployment which is effectively a rolling blue/green deployment.
 Pods are created in batches and when a pod is deemed [healthy](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/) it starts receiving traffic.
 
 ### Example
@@ -22,7 +22,7 @@ You'd usually get the image from a trigger via container registry or a Jenkins j
 The second step defines the deployment of that image. It's a simple "*Deploy (Manifest)*" stage. Here we're adding the static deployment manifest via a text field but you'd usually retrieve it as an artifact directly
 or via a Helm bake stage.
 
-{{% alert title="Note" %}}For more information, watch this video about [Deploying Helm Charts with Armory Spinnaker](https://youtu.be/u7QF2X4WzE8?t=360) -- Example of artifact promotion through environments managed by a single pipeline.{{% /alert %}}
+{{% alert title="Note" %}}For more information, watch this video about [Deploying Helm Charts with Armory](https://youtu.be/u7QF2X4WzE8?t=360) -- Example of artifact promotion through environments managed by a single pipeline.{{% /alert %}}
 
 
 ![image](/images/kubernetes_deployments_2.png)

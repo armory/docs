@@ -56,9 +56,11 @@ Kayenta is Spinnaker's canary analysis service, integrating with 3rd party monit
 ## Armory specific microservices
 
 ### Dinghy
+
 Dinghy is the Armory-specific microservice used to manage Pipelines as Code.  It supports two main capabilities:
-* Automatically synchronizing pipeline definitions from an external Github or BitBucket repository to Armory Spinnaker.
+
+* Automatically synchronizing pipeline definitions from an external Github or BitBucket repository to Armory .
 * Creating a library of pipeline modules (components) that can be templatized and used in Dinghy-managed pipeline definitions.
 
 ### Terrafomer
-Terraformer is the Armory-specific microservice behind Armory's Terraform Integration. It allows Armory Spinnaker to natively use your infrastructure-as-code Terraform scripts as part of a deployment pipeline.
+Terraformer is the Armory-specific microservice behind Armory's Terraform Integration. It allows Armory to natively use your infrastructure-as-code Terraform scripts as part of a deployment pipeline.

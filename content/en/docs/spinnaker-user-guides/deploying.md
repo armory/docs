@@ -185,7 +185,7 @@ Make sure to base64 encode the content before putting it into the field in the o
 
 ### UserData issues
 
-If the default Armory Spinnaker UserData doesn't work with your instance launch sequence, there are two work-arounds you can use.
+If the default Armory UserData doesn't work with your instance launch sequence, there are two work-arounds you can use.
 
 * If the UserData you want to use is bash-compatible and will fit after that existing chunk of variables that Spinnaker puts in, you can just put your base64 encoded UserData into the cluster config.
 
@@ -193,7 +193,7 @@ If the default Armory Spinnaker UserData doesn't work with your instance launch 
 
 ## Passing environment data to your deployed instances
 
-The default configuration of Armory Spinnaker creates a file `/etc/default/server-env` on every instance with information about its environment. In the example above, `server-env` looks like:
+The default configuration of Spinnaker creates a file `/etc/default/server-env` on every instance with information about its environment. In the example above, `server-env` looks like:
 
 ```bash
 CLOUD_ACCOUNT="default-aws-account"

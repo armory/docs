@@ -125,5 +125,5 @@ promotion of artifacts through a series of environments:
 
 * [Spinnaker Codelab: Kubernetes Source To Prod (Manifest Based)](https://www.spinnaker.io/guides/tutorials/codelabs/kubernetes-v2-source-to-prod/) -- Steps 6 and 7 are of particular interest.
 
-* Watch this video about [Deploying Helm Charts with Armory Spinnaker](https://youtu.be/u7QF2X4WzE8?t=360) -- Example of artifact promotion through environments managed by a single pipeline.
+* Watch this video about [Deploying Helm Charts with Armory](https://youtu.be/u7QF2X4WzE8?t=360) -- Example of artifact promotion through environments managed by a single pipeline.
 * Github Repo example - <https://github.com/armory/spin-helm-demo>

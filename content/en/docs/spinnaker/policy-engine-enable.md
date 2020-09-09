@@ -14,15 +14,16 @@ The Armory Policy Engine is designed to allow enterprises more complete control 
 * **Save time validation** - Validate pipelines as they're created/modified. This validation operates on all pipelines using a fail closed model. This means that if you have the Policy Engine enabled but no policies configured, the Policy Engine prevents you from creating or updating any pipeline.
 * **Runtime validation** - Validate deployments as a pipeline is executing. This validation only operates on tasks that you have explicitly created policies for. Tasks with no policies are not validated.
 
-For information about how to use the Policy Engine, see [Using the Policy Engine]({{< ref "policy-engine-use" >}})
+For information about how to use the Policy Engine, see [Using the Policy Engine]({{< ref "policy-engine-use" >}}).
 
 ## Requirements
 
 Make sure you can meet the following version requirements for the Policy Engine:
+
 * OPA versions 0.12.x or 0.13.x
 * Halyard 1.7.2 or later if you are using Halyard to manage Spinnaker
-* Armory Spinnaker 2.16.0 or later for Pipeline save time validation
-* Armory Spinnaker 2.19.0 or later for Pipeline runtime validation
+* Armory 2.16.0 or later for Pipeline save time validation
+* Armory 2.19.0 or later for Pipeline runtime validation
 
 ## Before You Start
 
@@ -43,6 +44,7 @@ If you want to use ConfigMaps for OPA policies, you can use the below manifest a
 When using the below example, keep the following guidelines in mind:
 * The manifest does not configure any authorization requirements for the OPA server it deploys. This means that anyone can add a policy.
 * The manifest deploys the OPA server to a namespace called `opa`.
+* The OPA server uses the following config: `"--require-policy-label=true"`. This configures the OPA server to look for a specific label so that it does not check all configmaps for new policies. For information about how to apply the relevant label to your policy configmaps, see [Creating a policy]({{< ref "policy-engine-use#step-2-add-policies-to-opa" >}}).
 
 <details><summary>Show the manifest</summary>
 <code><pre>

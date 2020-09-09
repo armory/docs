@@ -9,9 +9,11 @@ description: Changes, fixes, and new features
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard version
 
-Armory Spinnaker 2.20.1 requires Armory Halyard 1.9.4 or later.
+Armory 2.20.1 requires Armory-extended Halyard 1.9.4 or later.
 
 ## Breaking changes
+
+{{< include "bc-k8s-namespace.md" >}}
 
 ### Spinnaker metrics
 
@@ -30,10 +32,10 @@ Although both workarounds involve updating your dashboards to use the new metric
 This release note will be updated once the updated plugin is available.
 
 ### HTTP sessions for Gate
-Armory Spinnaker 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
+Armory 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
 
 ### Scheduled removal of Kubernetes V1 provider
-The Kubernetes V1 provider will be removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
+The Kubernetes V1 provider will be removed in Spinnaker 1.21 (Armory 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
 
 Breaking change: Kubernetes accounts with an unspecified providerVersion will now default to V2. Update your Halconfig to specify `providerVersion: v1` for any Kubernetes accounts you are currently using with the V1 provider.
 

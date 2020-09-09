@@ -6,7 +6,7 @@ weight: 100
 
 ## Overview
 
-Armory Spinnaker provides the same functionality for authentication ("authn")
+Armory provides the same functionality for authentication ("authn")
 and authorization ("authz").  A full reference of how to set up both can be
 found in the [OSS Spinnaker documentation](https://www.spinnaker.io/setup/security/#security).
 

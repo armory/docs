@@ -10,7 +10,7 @@ description: Changes, fixes, and new features
 
 ## Required Halyard version
 
-Armory Spinnaker 2.20.x requires Armory Halyard 1.8.3 or later.
+Armory 2.20.x requires Armory-extended Halyard 1.8.3 or later.
 
 ## Breaking changes
 
@@ -30,10 +30,10 @@ Although both workarounds involve updating your dashboards to use the new metric
 
 This release note will be updated once the updated plugin is available.
 ### HTTP sessions for Gate
-Armory Spinnaker 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
+Armory 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
 
 ### Scheduled removal of Kubernetes V1 provider
-The Kubernetes V1 provider will be removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
+The Kubernetes V1 provider will be removed in Spinnaker 1.21 (Armory 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
 
 Breaking change: Kubernetes accounts with an unspecified providerVersion will now default to V2. Update your Halconfig to specify `providerVersion: v1` for any Kubernetes accounts you are currently using with the V1 provider.
 
@@ -55,7 +55,7 @@ If you use Vault secrets, you should not use this version and instead update to 
 
 ### Pipelines as code behavior change for application spec
 
-If you use Pipelines as code, skip Armory Spinnaker 2.20.0 and wait for 2.20.4.
+If you use Pipelines as code, skip Armory 2.20.0 and wait for 2.20.4.
 
 Dinghy, the Pipelines as code service, creates an application for a pipeline in a dinghyfile if the application doesn't exist. You can specify an initial permission specification for the application as [documented here]({{< ref "using-dinghy#application-permissions" >}}).
 
