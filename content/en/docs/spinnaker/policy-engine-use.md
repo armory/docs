@@ -11,10 +11,11 @@ The Armory Policy Engine is designed to allow enterprises more complete control 
 * **Save time validation** - Validate pipelines as they're created/modified. This validation operates on all pipelines using a fail closed model. This means that if you have the Policy Engine enabled but no policies configured, the Policy Engine prevents you from creating or updating any pipeline.
 * **Runtime validation** - Validate deployments as a pipeline is executing. This validation only operates on tasks that you have explicitly created policies for. Tasks with no policies are not validated.
 
+For information about how to set up the Policy Engine, see [Enabling the Policy Engine]({{< ref "policy-engine-enable" >}}).
 
 ## Before you start
 
-Using the Policy Engine requires an understanding of OPA's [rego syntax](https://www.openpolicyagent.org/docs/latest/policy-language/).
+Using the Policy Engine requires understanding OPA's [rego syntax](https://www.openpolicyagent.org/docs/latest/policy-language/). 
 
 ## Using the Policy Engine to validate pipeline configurations
 
