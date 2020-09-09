@@ -13,6 +13,8 @@ Armory 2.20.1 requires Armory-extended Halyard 1.9.4 or later.
 
 ## Breaking changes
 
+{{< include "bc-k8s-namespace.md" >}}
+
 ### Spinnaker metrics
 
 Metrics data, specifically the metric names, for Spinnaker changed. These changes are not backwards compatible and may result in broken third-party dashboards, such as Grafana dashboards.

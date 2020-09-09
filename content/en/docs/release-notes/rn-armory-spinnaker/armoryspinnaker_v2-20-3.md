@@ -17,6 +17,8 @@ Armory 2.20.3 requires one of the following:
 
 ## Breaking changes
 
+{{< include "bc-k8s-namespace.md" >}}
+
 ### Spinnaker metrics
 
 Metrics data, specifically the metric names, for Spinnaker changed. These changes are not backwards compatible and may result in broken third-party dashboards, such as Grafana dashboards.

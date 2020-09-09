@@ -14,6 +14,9 @@ Armory Spinnaker 2.21.2 requires one of the following:
 * Armory Spinnaker Operator 1.0.3 or later.
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
+
+{{< include "bc-k8s-namespace.md" >}}
+
 #### Spinnaker metrics
 
 Metrics data, specifically the metric names, for Spinnaker changed in 2.20. These changes are not backwards compatible and may result in broken third-party dashboards, such as Grafana dashboards.
