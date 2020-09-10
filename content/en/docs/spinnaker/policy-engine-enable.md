@@ -1,128 +1,41 @@
 ---
-title: Policy Engine
+title: Enabling Policy Engine
 weight: 143
 aliases:
   - /spinnaker/policy_engine/
+  - /spinnaker/policy-engine/
+summary: "Enable the Policy Engine and configure an OPA server. When enabled, the Policy Engine can perform save time or runtime validation on your Spinnaker pipelines." 
 ---
 
 ## Overview
+
 The Armory Policy Engine is designed to allow enterprises more complete control of their software delivery process by providing them with the hooks necessary to perform more extensive verification of their pipelines and processes in Spinnaker. This policy engine is backed by [Open Policy Agent](https://www.openpolicyagent.org/)(OPA) and uses input style documents to perform validation of pipelines during save time and runtime:
 
 * **Save time validation** - Validate pipelines as they're created/modified. This validation operates on all pipelines using a fail closed model. This means that if you have the Policy Engine enabled but no policies configured, the Policy Engine prevents you from creating or updating any pipeline.
 * **Runtime validation** - Validate deployments as a pipeline is executing. This validation only operates on tasks that you have explicitly created policies for. Tasks with no policies are not validated.
 
+For information about how to use the Policy Engine, see [Using the Policy Engine]({{< ref "policy-engine-use" >}}).
+
 ## Requirements
 
 Make sure you can meet the following version requirements for the Policy Engine:
+
 * OPA versions 0.12.x or 0.13.x
 * Halyard 1.7.2 or later if you are using Halyard to manage Spinnaker
 * Armory 2.16.0 or later for Pipeline save time validation
 * Armory 2.19.0 or later for Pipeline runtime validation
 
 ## Before You Start
-Using the Policy Engine requires an understanding of OPA's [rego syntax](https://www.openpolicyagent.org/docs/latest/policy-language/) and how to [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/#running-opa).
 
-## Enabling the Policy Engine
+The Policy Engine requires an OPA server. You can either [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/#running-opa) or use the example on this page to deploy a server in the same Kubernetes cluster as Spinnaker.
 
-The steps to enable the Policy Engine vary based on whether you use the [Operator](#enabling-policy-engine-using-operator) or [Halyard](#enabling-policy-engine-using-halyard).
 
-### Enabling Policy Engine using Operator
-
-Add the following section to `SpinnakerService` manifest:
-
-```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      front50: #Enables Save time validation of policies
-        armory:
-          opa:
-            enabled: true
-            url: <OPA Server URL>:<port>/v1
-      clouddriver: #Enables Runtime validation of policies
-        armory:
-          opa:
-            enabled: true
-            url: <OPA Server URL>:<port>/v1     
-```
-
-*Note: There must be a trailing /v1 on the URL. This extension is only compatible with OPA's v1 API.*
-
-If you are using an in-cluster OPA instance (such as one set up with the instructions below), Spinnaker can access OPA via the Kubernetes service DNS name. The following example configures Spinnaker to connect with an OPA server at `http://opa.opa:8181`:
-
-```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      front50: #Enables Save time validation of policies
-        armory:
-          opa:
-            enabled: true
-            url: http://opa.opa:8181/v1
-      clouddriver: #Enables Runtime validation of policies
-        armory:
-          opa:
-            enabled: true
-            url: http://opa.opa:8181/v1
-```
-
-Deploy the changes (assuming that Spinnaker lives in the: `spinnaker` namespace and the manifest file is named `spinnakerservice.yml`:
-
-```bash
-kubectl -n spinnaker apply -f spinnakerservice.yml
-```
-
-### Enabling Policy Engine using Halyard
-
-Add the following configuration to `.hal/default/profiles/spinnaker-local.yml`:
-
-```yaml
-armory:
-  opa:
-    enabled: true
-    url: <OPA Server URL>:<port>/v1
-```
-
-*Note: There must be a trailing `/v1` on the URL. The Policy Engine is only compatible with OPA's v1 API.*
-
-If you only want to perform a certain type of validation, you can add the corresponding configuration to the following files instead:
-
-| Feature                 | File                                          |
-|-------------------------|-----------------------------------------------|
-| Save time Validation     | `.hal/default/profiles/front50-local.yml`     |
-| Runtime Validation      | `.hal/default/profiles/clouddriver-local.yml` |
-
-You must also connect Spinnaker to an OPA server. This can be in a separate Kubernetes cluster or an in-cluster OPA server (such as one set up with the instructions below). For in-cluster OPA servers, Spinnaker can access OPA via the Kubernetes service DNS name. For example, add the following configuration to `spinnaker-local.yml` to allow Spinnaker to connect to an OPA server at `http://opa.opa:8181`:
-
-```yaml
-armory:
-  opa:
-    enabled: true
-    url: http://opa.opa:8181/v1
-```
-
-After you enable the Policy Engine, deploy your changes:
-
-```bash
-hal deploy apply
-```
-
-Once Spinnaker finishes redeploying, Policy Engine can evaluate pipelines based on your policies.
-
-## Deploying an OPA server for Policy Engine to use
+## Deploy an OPA server
 
 The Policy Engine supports the following OPA server deployments:
 
-* An OPA server deployed in the same Kubernetes cluster as an Armory deployment. The [Using ConfigMaps for OPA policies](#using-configmaps-for-opa-policies) section contains a ConfigMap you can use.
-* An OPA cluster that is **not** in the same Kubernetes cluster as an Armory deployment . See the [OPA documentation](https://www.openpolicyagent.org/docs/latest/) for more information about installing an OPA cluster.
+* An OPA server deployed in the same Kubernetes cluster as an Armory Spinnaker deployment. The [Using ConfigMaps for OPA policies](#using-configmaps-for-opa-policies) section contains a ConfigMap you can use.
+* An OPA cluster that is **not** in the same Kubernetes cluster as an Armory Spinnaker deployment . See the [OPA documentation](https://www.openpolicyagent.org/docs/latest/) for more information about installing an OPA cluster.
 
 ## Using ConfigMaps for OPA Policies
 
@@ -130,9 +43,11 @@ If you want to use ConfigMaps for OPA policies, you can use the below manifest a
 
 When using the below example, keep the following guidelines in mind:
 * The manifest does not configure any authorization requirements for the OPA server it deploys. This means that anyone can add a policy.
-* Optionally, replace the `opa` namespace with a different namespace.
+* The manifest deploys the OPA server to a namespace called `opa`.
+* The OPA server uses the following config: `"--require-policy-label=true"`. This configures the OPA server to look for a specific label so that it does not check all configmaps for new policies. For information about how to apply the relevant label to your policy configmaps, see [Creating a policy]({{< ref "policy-engine-use#step-2-add-policies-to-opa" >}}).
 
-```yaml
+<details><summary>Show the manifest</summary>
+<code><pre>
 ---
 apiVersion: v1
 kind: Namespace
@@ -248,151 +163,104 @@ spec:
   - protocol: TCP
     port: 8181
     targetPort: 8181
+</pre></code>
+</details>
+
+
+## Enabling the Policy Engine
+
+The steps to enable the Policy Engine vary based on whether you use the [Operator](#enabling-policy-engine-using-operator) or [Halyard](#enabling-policy-engine-using-halyard).
+
+### Enabling Policy Engine using Operator
+
+Add the following section to `SpinnakerService` manifest:
+
+```yaml
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      front50: #Enables Save time validation of policies
+        armory:
+          opa:
+            enabled: true
+            url: <OPA Server URL>:<port>/v1
+      clouddriver: #Enables Runtime validation of policies
+        armory:
+          opa:
+            enabled: true
+            url: <OPA Server URL>:<port>/v1
 ```
 
-## Using the Policy Engine to validate pipeline configurations
+*Note: There must be a trailing /v1 on the URL. This extension is only compatible with OPA's v1 API.*
 
-The Policy Engine uses [OPA's Data API](https://www.openpolicyagent.org/docs/latest/rest-api/#data-api) to check pipeline configurations against OPA policies that you set.
+If you are using an in-cluster OPA instance (such as one set up with the instructions below), Spinnaker can access OPA via the Kubernetes service DNS name. The following example configures Spinnaker to connect with an OPA server at `http://opa.opa:8181`:
 
-In general, the only requirement for the Policy Engine in Rego syntax is the following:
-
-```
-package opa.pipelines
-
-deny["some text"] {
-  condition
-}
-```
-
-Blocks of rules must be in a denial statement and the package must be `opa.pipelines`.
-
-At a high level, adding policies for the Policy Engine to use is a two-step process:
-1. Create the policies and save them to a `.rego` file.
-2. Add the policies to the OPA server with a ConfigMap or API request.
-
-### Sample OPA Policy
-
-**Step 1. Create Policies**
-
-The following OPA policy enforces one requirement on all pipelines:
-* Any pipeline with more than one stage must have a manual judgement stage.
-
-
-```
-# manual-judgment.rego. Notice the package. The opa.pipelines package is used for policies that get checked when a pipeline is saved.
-package opa.pipelines
-
-deny["Every pipeline must have a Manual Judgment stage"] {
-  manual_judgment_stages = [d | d = input.pipeline.stages[_].type; d == "manualJudgment"]
-  count(input.pipeline.stages[_]) > 0
-  count(manual_judgment_stages) == 0
-}
-
-```
-Add the the policy to a file named `manual-judgment.rego`
-
-**Step 2. Add Policies to OPA**
-
-After you create a policy, you can add it to OPA with an API request or with a ConfigMap. The following examples use  a `.rego` file named `manual-judgement.rego`.
-
-**ConfigMap Example**
-
-Armory recommends using ConfigMaps to add OPA policies instead of the API for OPA deployments in Kubernetes.
-
-If you have configured OPA to look for a ConfigMap, you can create the ConfigMap for `manual-judgement.rego` with this command:
-
-```
-kubectl -n <opaServerNamespace> create configmap manual-judgment --from-file=manual-judgment.rego
+```yaml
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      front50: #Enables Save time validation of policies
+        armory:
+          opa:
+            enabled: true
+            url: http://opa.opa:8181/v1
+      clouddriver: #Enables Runtime validation of policies
+        armory:
+          opa:
+            enabled: true
+            url: http://opa.opa:8181/v1
 ```
 
-After you create the policy ConfigMap, apply a label to it:
+Deploy the changes (assuming that Spinnaker lives in the: `spinnaker` namespace and the manifest file is named `spinnakerservice.yml`:
 
-```
-kubectl -n <opaServerNamespace> label configmap manual-judgment openpolicyagent.org/policy=rego 
-```
-
-This label corresponds to the label you add in the [example ConfigMap](#using-configmaps-for-opa-policies). The label in the ConfigMap for creating an OPA server configures the OPA server and, by extension, the Policy Engine to only check ConfigMaps that have the corresponding label. This improves performance.
-
-**API Example**
-
-Replace the endpoint with your OPA endpoint:
-
-```
-curl -X PUT \
--H 'content-type:text/plain' \
--v \
---data-binary @manual-judgment.rego \
-http://opa.spinnaker:8181/v1/policies/policy-01
+```bash
+kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-Note that you must use the `--data-binary` flag, not the `-d` flag.
+### Enabling Policy Engine using Halyard
 
-## Using the Policy Engine to validate deployments
+Add the following configuration to `.hal/default/profiles/spinnaker-local.yml`:
 
-While simple cases can be validated by the Policy Engine during a pipeline's configuration, there are a number of cases that can only be addressed at runtime. By nature, Spinnaker's pipelines can be dynamic, resolving things like SpEL and Artifacts just in time for them. This means there are external influences on a pipeline that are not known at save time. To solve for this issue, the Policy Engine can validate pipelines when they run to but before deployments make it to your cloud provider.
-
-As an example, let's use Policy Engine to prevent Kubernetes LoadBalancer Services being deployed with open SSH ports.
-
-### Writing a policy
-
-Deployment validation works by mapping an OPA policy package to a Spinnaker deployment task. For example, deploying a Kubernetes Service is done using the Deploy (Manifest) stage, so we'll write a policy that applies to that task.
-
-```
-# Notice the package. The package maps to the task you want to create a policy for.
-package spinnaker.deployment.tasks.deployManifest
-
-deny[msg] {
-    msg := "LoadBalancer Services must not have port 22 open."
-    manifests := input.deploy.manifests
-    manifest := manifests[_]
-
-    manifest.kind == "Service"
-    manifest.spec.type == "LoadBalancer"
-
-    port := manifest.spec.ports[_]
-    port.port == 22
-}
+```yaml
+armory:
+  opa:
+    enabled: true
+    url: <OPA Server URL>:<port>/v1
 ```
 
-Using the above policy, Policy Engine tests for a few things when a pipeline runs:
-* Any manifest where the `kind` is `Service` and `type` is `LoadBalancer`. Manifests that don't meet these criteria will not be evaluated by subsequent rules.
+*Note: There must be a trailing `/v1` on the URL. The Policy Engine is only compatible with OPA's v1 API.*
 
-* Check all of the ports to ensure that port `22` isn't open. If the Policy Engine finds port `22`, the `deny` rule evaluates to true. This results in the deployment failing and the `msg` is shown to the user.
+If you only want to perform a certain type of validation, you can add the corresponding configuration to the following files instead:
 
-You'll notice a few things about this policy:
+| Feature                 | File                                          |
+|-------------------------|-----------------------------------------------|
+| Save time Validation     | `.hal/default/profiles/front50-local.yml`     |
+| Runtime Validation      | `.hal/default/profiles/clouddriver-local.yml` |
 
-* The package name is explicit, which means that this policy only applies to the `deployManifest` task. You can write policies for other tasks by replacing `deployManifest` with your task name. Generally, the task name maps to a stage name.
+You must also connect Spinnaker to an OPA server. This can be in a separate Kubernetes cluster or an in-cluster OPA server (such as one set up with the instructions below). For in-cluster OPA servers, Spinnaker can access OPA via the Kubernetes service DNS name. For example, add the following configuration to `spinnaker-local.yml` to allow Spinnaker to connect to an OPA server at `http://opa.opa:8181`:
 
-* The policy tests a set of manifests which `deployManifest` will deploy to Kubernetes. This is part of the tasks configuration, which is passed into the policy in it's entirety under `input.deploy`.
-
-* The policy isn't limited to any particular Kubernetes account. If you'd like to only apply policies to, say, your Production account, use `input.deploy.account` to narrow down policies to specific accounts. This is useful when you want more or less restrictive policies across your infrastructure.
-
-Once you've written your policy, you can push it to your OPA server via a ConfigMap or the API. Once it's pushed, the Policy Engine can begin enforcing the policy.
-
-
-### Validating a deployment
-
-Now that the policy has been uploaded to the OPA server, the policy gets enforced on any deployment to Kubernetes without additional input from the end user. Error messages returned by the policy will be surfaced in the UI immediately following a halted deployment.
-
-
-![](/images/runtime-policy-validation.png)
-
-
-### Disabling an OPA policy
-
-You can disable a `deny` policy by adding a false statement to the policy body.  For example, you can add `0 == 1` as a false statement to the manual judgement policy we used previously:
-
-```
-package opa.pipelines
-
-deny["Every pipeline must have a Manual Judgment stage"] {
-  manual_judgment_stages = [d | d = input.pipeline.stages[_].type; d == "manualJudgment"]
-  count(input.pipeline.stages[_]) > 0
-  count(manual_judgment_stages) == 0
-  0 == 1
-}
+```yaml
+armory:
+  opa:
+    enabled: true
+    url: http://opa.opa:8181/v1
 ```
 
+After you enable the Policy Engine, deploy your changes:
+
+```bash
+hal deploy apply
+```
+
+Once Spinnaker finishes redeploying, Policy Engine can evaluate pipelines based on your policies.
 
 ## Troubleshooting
 
