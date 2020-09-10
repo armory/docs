@@ -4,6 +4,7 @@ weight: 143
 aliases:
   - /spinnaker/policy_engine/
   - /spinnaker/policy-engine/
+  - /docs/spinnaker/policy-engine/
 summary: "Enable the Policy Engine and configure an OPA server. When enabled, the Policy Engine can perform save time or runtime validation on your Spinnaker pipelines." 
 ---
 
