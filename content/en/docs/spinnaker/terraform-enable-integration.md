@@ -409,7 +409,7 @@ Use the `git-ssh` credential kind to provide authentication to private Git repos
   variables:
   - kind: git-ssh  # Type of credential 
     options:
-    sshPrivateKey: encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?> 
+      sshPrivateKey: encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?>
 ```
 
 **Static**
@@ -434,8 +434,8 @@ Use the `tfc` credential kind to provide authentication to remote Terraform back
   variables:
   - kind: tfc
     options:
-       domain: app.terraform.io # or Terraform Enterprise URL
-       token: <authentication-token> # Replace with your token
+      domain: app.terraform.io # or Terraform Enterprise URL
+      token: <authentication-token> # Replace with your token
 ```
 
 ### Configuring a Named Profile
@@ -447,9 +447,9 @@ Configure profiles that users can select when creating a Terraform Integration s
     
    ```yaml
    - name: pixel-git # Unique profile name displayed in Deck
-       variables:
-       - kind: git-ssh 
-         options:
+     variables:
+     - kind: git-ssh
+       options:
          sshPrivateKey: encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?> 
    ```
     
@@ -463,7 +463,7 @@ Configure profiles that users can select when creating a Terraform Integration s
         
      ```yaml
      options:
-     sshPrivateKeyFilePath: encryptedFile:<secret_store>!e:...
+       sshPrivateKeyFilePath: encryptedFile:<secret_store>!e:...
      ```
         
      For more information, see the documentation for your secret store.
