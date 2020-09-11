@@ -1,5 +1,5 @@
 ---
-title: v2.21.4 Armory Release (OSS Spinnaker v1.21.4)
+title: v2.21.4 Armory Release (OSS Spinnaker™ v1.21.4)
 toc_hide: true
 ---
 
@@ -90,7 +90,7 @@ Fixed an issue where an `InvalidClientTokenId` error occurs when using Named Pro
 
 ###  Spinnaker Community Contributions
 
-<! -- Copy/paste highlights from the corresponding OSS version. -->
+<!-- Copy/paste highlights from the corresponding OSS version. -->
 
 There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
 [Spinnaker v1.21.4](https://www.spinnaker.io/community/releases/versions/1-21-4-changelog)
