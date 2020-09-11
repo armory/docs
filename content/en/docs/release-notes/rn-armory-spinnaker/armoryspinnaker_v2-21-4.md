@@ -3,15 +3,40 @@ title: v2.21.4 Armory Release (OSS Spinnaker v1.21.4)
 toc_hide: true
 ---
 
-## 2020/09/30 Release Notes
+## 2020/09/11 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-## Required Halyard version
 
-Armory Spinnaker 2.21.4 requires Armory Halyard <PUT IN A VERSION NUMBER> or later.
+## Required Halyard and Operator version
+
+Armory Spinnaker 2.21.2 requires one of the following:
+
+* Armory Halyard 1.9.4 or later.
+* Armory Spinnaker Operator 1.0.3 or later.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
+
+{{< include "bc-k8s-namespace.md" >}}
+
+#### Spinnaker metrics
+
+Metrics data, specifically the metric names, for Spinnaker changed in 2.20. These changes are not backwards compatible and may result in broken third-party dashboards, such as Grafana dashboards.
+
+**Workarounds**:
+
+* **Observability plugin**: Armory is working on updates to the [Observability plugin](https://github.com/armory-plugins/armory-observability-plugin) to remedy this issue. The plugin currently supports New Relic & Prometheus. Note that this resolution requires you to make updates to use the new metric names.
+
+   For information about how to install a plugin, see [Plugin Users Guide](https://spinnaker.io/guides/user/plugins/).
+
+* **Update existing dashboards**: Change your dashboards and alerts to use the new metric names.
+
+Although both workarounds involve updating your dashboards to use the new metric names, Armory recommends switching to the Observability plugin. Due to changes the Spinnaker project is making, the Observability plugin provides a long-term solution. 
+
+This release note will be updated once the updated plugin is available.
+
+#### Scheduled removal of Kubernetes V1 provider
+The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
 
 ## Known Issues
 <!-- Copy/paste known issues from the previous version if they're not fixed -->
