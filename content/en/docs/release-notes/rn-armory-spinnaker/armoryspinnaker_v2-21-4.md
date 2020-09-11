@@ -86,7 +86,7 @@ Armory has identified and is triaging the following CVEs in Terraformer, the ser
 
 ### Terraform Integration
 
-Fixed an issue where an `InvalidClientTokenId` error occurs when using Named Profiles for AWS credentials.
+Fixed an issue where an `InvalidClientTokenId` error occurs when using Named Profiles for AWS credentials with assumeRole.
 
 ###  Spinnaker Community Contributions
 
