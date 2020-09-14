@@ -27,7 +27,7 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 **Versions**
 
-**All supported versions** refers to the current minor release and the two previous minor releases. For example, if the current version is 2.21.x, all supported versions include 2.19.x, 2.20.x, and 2.21.x.
+**All supported versions** for the Armory version refers to the current minor release and the two previous minor releases. For example, if the current version is 2.21.x, all supported versions include 2.19.x, 2.20.x, and 2.21.x. For third-party software, "all supported versions" refers to actively maintained versions by the provider.
 
 ## Application metrics for Canary Analysis
 
@@ -43,23 +43,46 @@ Application metrics can be ingested by Kayenta to perform Canary Analysis or Aut
 | SignalFx    | All supported versions | Yes | All supported versions |                            |
 | Stackdriver | All supported versions | Yes | All supported versions |                            |
 
-## Artifact stores
+## Artifacts
+
+Artifacts are  deployable resources.
+
+### Stores
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-Artifacts are remote, deployable resources in Spinnaker. Armory supports the following artifact stores:
+Armory supports the following artifact stores:
 
-| Provider                                                          | Armory | Notes                                          |
-|-------------------------------------------------------------------|---------------------------|------------------------------------------------|
-| [Bitbucket](https://spinnaker.io/setup/artifacts/bitbucket/)      | All supported versions    |                                                |
-| [GitHub](https://spinnaker.io/setup/artifacts/github/)            | All supported versions    |                                                |
-| [GitLab](https://spinnaker.io/setup/artifacts/gitlab/)            | All supported versions    |                                                |
-| [Git Repo](https://spinnaker.io/setup/artifacts/gitrepo/)         | All supported versions    | Supports using the entire repo as an artifact. |
-| [Google Cloud Storage](https://spinnaker.io/setup/artifacts/gcs/) | All supported versions    |                                                |
-| [HTTP](https://spinnaker.io/setup/artifacts/http)                 | All supported versions    |                                                |
-| [Maven](https://spinnaker.io/setup/artifacts/maven/)              | All supported versions    |                                                |
-| [Oracle Object](https://spinnaker.io/setup/artifacts/oracle)      | All supported versions    |                                                |
-| [S3](https://spinnaker.io/setup/artifacts/s3/)                    | All supported versions    |                                                |
+| Provider                                                          | Armory                 | Notes                                                               |
+|-------------------------------------------------------------------|------------------------|---------------------------------------------------------------------|
+| [Bitbucket](https://spinnaker.io/setup/artifacts/bitbucket/)      | All supported versions |                                                                     |
+| [GitHub](https://spinnaker.io/setup/artifacts/github/)            | All supported versions |                                                                     |
+| [GitLab](https://spinnaker.io/setup/artifacts/gitlab/)            | All supported versions |                                                                     |
+| [Git Repo](https://spinnaker.io/setup/artifacts/gitrepo/)         | All supported versions | GitHub or Bitbucket. Supports using the entire repo as an artifact. |
+| [Google Cloud Storage](https://spinnaker.io/setup/artifacts/gcs/) | All supported versions |                                                                     |
+| [HTTP](https://spinnaker.io/setup/artifacts/http)                 | All supported versions |                                                                     |
+| [Maven](https://spinnaker.io/setup/artifacts/maven/)              | All supported versions |                                                                     |
+| [Oracle Object](https://spinnaker.io/setup/artifacts/oracle)      | All supported versions |                                                                     |
+| [S3](https://spinnaker.io/setup/artifacts/s3/)                    | All supported versions |                                                                     |
+
+### Types
+
+Armory supports the following artifact types:
+
+| Type                                                                                                             | Armory                 | Notes                                     |
+|------------------------------------------------------------------------------------------------------------------|------------------------|-------------------------------------------|
+| [Bitbucket file](https://www.spinnaker.io/reference/artifacts-with-artifactsrewrite/types/bitbucket-file/)       | All supported versions |                                           |
+| [Docker Image](https://spinnaker.io/reference/artifacts-with-artifactsrewrite/types/docker-image/)               | All supported versions | Can be hosted on DockerHub, GCR, ECR, etc |
+| [Embedded Base64](https://spinnaker.io/reference/artifacts-with-artifactsrewrite/types/embedded-base64/)         | All supported versions |                                           |
+| [GCS Object](https://www.spinnaker.io/reference/artifacts-with-artifactsrewrite/types/gcs-object/)               | All supported versions |                                           |
+| [Git Repo](https://www.spinnaker.io/reference/artifacts-with-artifactsrewrite/types/git-repo/)                   | All supported versions |                                           |
+| [GitHub file](https://www.spinnaker.io/reference/artifacts-with-artifactsrewrite/types/github-file/)             | All supported versions |                                           |
+| [GitLab file](https://www.spinnaker.io/reference/artifacts-with-artifactsrewrite/types/gitlab-file/)             | All supported versions |                                           |
+| [HTTP file](https://www.spinnaker.io/reference/artifacts-with-artifactsrewrite/types/http-file/)                 | All supported versions |                                           |
+| [Kubernetes object](https://www.spinnaker.io/reference/artifacts-with-artifactsrewrite/types/kubernetes-object/) | All supported versions |                                           |
+| [Maven artifact](https://www.spinnaker.io/reference/artifacts-with-artifactsrewrite/types/maven-artifact/)       | All supported versions |                                           |
+| [Oracle Object](https://www.spinnaker.io/reference/artifacts-with-artifactsrewrite/types/oracle-object/)         | All supported versions |                                           |
+| [S3 object](https://www.spinnaker.io/reference/artifacts-with-artifactsrewrite/types/s3-object/)                 | All supported versions |                                           |
 
 ## As code solutions
 
