@@ -1,5 +1,6 @@
 ---
-title: Product Compatibility Matrix
+title: Armory Platform Compatibility Matrix
+linkTitle: Armory Platform Compatibility
 description: "Information about what Armory supports."
 ---
 
@@ -70,12 +71,12 @@ Artifacts are remote, deployable resources in Spinnaker. Armory supports the fol
 
 **Supported version control systems**
 
-| Feature   | Version | Armory version | Notes                  |
-|-----------|---------|---------------------------|------------------------|
-| BitBucket Cloud |         | All supported versions    |                        |
-| BitBucket Server | Previous two major versions |  All supported versions   |                        |
-| GitHub    |         | All supported versions    | Enterprise and GitHub.com |
-| GitLab    |         | All supported versions    | |
+| Feature          | Version                     | Armory version         | Notes                     |
+|------------------|-----------------------------|------------------------|---------------------------|
+| BitBucket Cloud  |                             | All supported versions |                           |
+| BitBucket Server | Previous two major versions | All supported versions |                           |
+| GitHub           |                             | All supported versions | Enterprise and GitHub.com |
+| GitLab           |                             | All supported versions |                           |
 
 **Features**
 
@@ -149,6 +150,18 @@ The following table lists the authorization methods that Armory supports:
 | OAuth 2.0/OIDC        | All supported versions |                                                                                 |
 | SAML                  | All supported versions |                                                                                 |
 
+## Baking Images
+
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+
+Armory supports baking images in multiple providers
+
+| Provider   | Armory      | Notes |
+|------------|------------------------|-------|
+| AWS | All supported versions |      |
+| GCE | All supported versions |      |
+| OCI | All supported versions |      |
+
 ## Browsers
 
 Spinnaker's UI (Deck) works with most modern browsers.
@@ -172,12 +185,13 @@ The following table lists the CI systems that Armory supports:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-| Provider      | Deployment target                                               | Deployment strategies | Armory      | Notes |
+| Provider      | Deployment target                                               | Deployment strategies | Armory                 | Notes |
 |---------------|-----------------------------------------------------------------|-----------------------|------------------------|-------|
 | Amazon AWS    | EC2, ECS, EKS                                                   |                       | All supported versions |       |
 | Cloud Foundry | PKS <ul><li>Versions A.B - X.Y</li></ul>                        |                       | All supported versions |       |
 | Google Cloud  | App Engine, Compute Engine, GKE                                 |                       | All supported versions |       |
 | Kubernetes    | Manifest-based deployments <ul><li>Versions A.B - X.Y</li></ul> |                       | All supported versions |       |
+| Docker        | Docker Registry                                                 |                       | All supported versions |       |
 
 ## Dynamic accounts
 
@@ -282,29 +296,6 @@ Armory supports using the following methods to trigger Spinnaker pipelines:
 | Nexus              | All supported versions |       |
 | GitLab             | All supported versions |       |
 
-## Baking Images
-
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
-
-Armory supports baking images in multiple providers
-
-| Provider   | Armory      | Notes |
-|------------|------------------------|-------|
-| AWS | All supported versions |      |
-| GCE | All supported versions |      |
-| OCI | All supported versions |      |
-
-## Templating Manifests
-
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
-
-Armory supporting Templating Manifests
-
-| Provider   | Armory      | Notes |
-|------------|------------------------|-------|
-| Helm 2     | All supported versions |       |
-| Helm 3     | 2.19.x or later        |       |
-| Kustomize  | All supported versions |  Kustomize version installed is 3.3.0     |
 
 
 ## Secret stores
@@ -331,9 +322,21 @@ The following table lists the secret stores that Armory supports for referencing
 [Armory Operator]({{< ref "operator" >}}) provide Spinnaker users with the ability
 to install, update, and maintain their clusters via a Kubernetes operator.
 
-| Feature   | Version | Armory Version | Notes                  |
-|-----------|---------|---------------------------|------------------------|
-| Install, update, and maintain Spinnaker clusters | All supported versions | All supported versions    | |
-| Automatically determine Deck/Gate URL configuration if Ingress objects are defined | 1.1.0 or later | 1.1.1 or later | Ingress objects must be defined in the same namespace where Spinnaker lives. |
-| Support definition of all Halyard configuration options    | All supported versions    | All supported versions | |
-| In cluster mode, validate configuration before apply | All supported versions    | All supported versions | Does not work when installed in "basic" mode. Does not guarantee a valid configuration, but does check for most common misconfigurations. |
+| Feature                                                                            | Version                | Armory Version         | Notes                                                                                                                                     |
+|------------------------------------------------------------------------------------|------------------------|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| Install, update, and maintain Spinnaker clusters                                   | All supported versions | All supported versions |                                                                                                                                           |
+| Automatically determine Deck/Gate URL configuration if Ingress objects are defined | 1.1.0 or later         | 1.1.1 or later         | Ingress objects must be defined in the same namespace where Spinnaker lives.                                                              |
+| Support definition of all Halyard configuration options                            | All supported versions | All supported versions |                                                                                                                                           |
+| In cluster mode, validate configuration before apply                               | All supported versions | All supported versions | Does not work when installed in "basic" mode. Does not guarantee a valid configuration, but does check for most common misconfigurations. |
+
+## Templating Manifests
+
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+
+Armory supporting Templating Manifests
+
+| Provider   | Armory      | Notes |
+|------------|------------------------|-------|
+| Helm 2     | All supported versions |       |
+| Helm 3     | 2.19.x or later        |       |
+| Kustomize  | All supported versions |  Kustomize version installed is 3.3.0     |
