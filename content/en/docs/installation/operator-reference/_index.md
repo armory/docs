@@ -1,5 +1,5 @@
 ---
-title: "Armroy Operator Reference"
+title: "Armory Operator Reference"
 linkTitle: "Operator Reference"
 weight: 2
 description: >
