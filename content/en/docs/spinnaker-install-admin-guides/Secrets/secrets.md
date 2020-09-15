@@ -4,6 +4,8 @@ title: Spinnaker Secrets Overview
 weight: 1
 aliases:
   - /spinnaker-install-admin-guides/secrets/
+  - /spinnaker/halyard_secrets/
+  - /spinnaker/halyard-secrets/
 ---
 
 ## Overview

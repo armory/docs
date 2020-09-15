@@ -1,8 +1,8 @@
 ---
 title: Artifact Progression through Environments
-weight: 70
 aliases:
   - /spinnaker/artifact_promotion/
+  - /spinnaker/artifact-promotion/
 ---
 
 

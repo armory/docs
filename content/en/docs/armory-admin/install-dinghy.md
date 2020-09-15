@@ -1,8 +1,8 @@
 ---
-title: Installing Pipelines as Code
-weight: 170
+title: Enabling Pipelines as Code
 aliases:
   - /spinnaker/install_dinghy/
+  - /spinnaker/install-dinghy/
 ---
 
 This guide includes:

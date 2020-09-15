@@ -1,8 +1,7 @@
 ---
-title: "Spinnaker Architecture"
+title: "Armory Architecture"
 summary: "Learn about the services that work together in Spinnaker."
 weight: 2
-linkTitle: "Architecture"
 aliases:
   - /spinnaker-install-admin-guides/architecture/
 ---

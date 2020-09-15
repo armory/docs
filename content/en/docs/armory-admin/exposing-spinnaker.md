@@ -1,9 +1,9 @@
 ---
 title: Exposing Spinnaker
-weight: 30
 aliases:
   - /spinnaker/configure_ingress/
   - /spinnaker/exposing_spinnaker/
+  - /spinnaker/exposing-spinnaker/
 ---
 
 ## DNS Preparation

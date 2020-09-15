@@ -1,6 +1,7 @@
 ---
 title: Authentication and Authorization
-weight: 100
+aliases: 
+  - /spinnaker/authorization/
 ---
 
 

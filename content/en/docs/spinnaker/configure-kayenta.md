@@ -3,6 +3,7 @@ title: Automated Canary Deployments
 weight: 50
 aliases:
   - /spinnaker/configure_kayenta/
+  - /spinnaker/configure-kayenta/
 ---
 
 

@@ -1,8 +1,8 @@
 ---
 title: Application Secrets Management
-weight: 60
 aliases:
   - /spinnaker/app_secrets/
+  - /spinnaker/app-secrets/
 ---
 
 ## Overview

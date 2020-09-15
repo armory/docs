@@ -5,6 +5,7 @@ weight: 141
 aliases:
   - /spinnaker/terraform_integration/
   - /spinnaker/terraform-configure-integration/
+  - /spinnaker/terraform-enable-integration/
 ---
 
 ## Overview
