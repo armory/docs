@@ -6,6 +6,7 @@ description: >
   Command reference with examples and Operator equivalents
 aliases:
   - /docs/spinnaker/armory_halyard/
+  - /installation/armory-halyard-reference/
 ---
 
 ## hal
