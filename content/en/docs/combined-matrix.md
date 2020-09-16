@@ -1,7 +1,7 @@
 ---
 title: Armory Platform Compatibility Matrix
 linkTitle: Armory Platform Compatibility
-description: "Information about what Armory supports."
+description: "Information about compatibility between the Armory platform and ."
 ---
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables# 
@@ -100,7 +100,7 @@ The following table lists the supported version control systems:
 |------------------|-----------------------------|------------------------|---------------------------|
 | BitBucket Cloud  |                             | All supported versions |                           |
 | BitBucket Server | Previous two major versions | All supported versions |                           |
-| GitHub           |                             | All supported versions | Enterprise and GitHub.com |
+| GitHub           |                             | All supported versions | Hosted or cloud |
 | GitLab           |                             | All supported versions |                           |
 
 **Features**
@@ -269,8 +269,6 @@ Spinnaker requires an external storage provider for persisting app settings and 
 | S3                    | All supported versions |       |
 | Oracle Object Storage | All supported versions |       |
 
-
-
 ## Manifest templating
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
@@ -352,7 +350,29 @@ The following table lists the supported pipeline triggers:
 | Nexus              | All supported versions |       |
 | GitLab             | All supported versions |       |
 
+## Policy Engine
 
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
+
+The [Policy Engine]({{< ref "policy-engine-enable" >}}) gives you the ability to ensure any Spinnaker pipeline meets certain requirements you specify.
+
+**OPA requirements**
+
+The Policy Engine requires an Open Policy Agent server. This can be deployed in the same cluster as Spinnaker or external cluster. 
+
+The following table lists the requirements
+
+| Requirement | Version         | Note                                                                                                                                                       |
+|-------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| OPA Server  | 0.12.x - 0.13.x |                                                                                                    |
+| OPA API     | v1              | Only compatible with OPA’s v1 API. When specifying the OPA server URL, include `v1` in the URL: `http://<your-opa-server>:<port>/v1`. |
+
+**Supported validations**
+
+| Validation           | Armory                 | Note                                                                                                             |
+|----------------------|------------------------|------------------------------------------------------------------------------------------------------------------|
+| Save time validation | All supported versions | If no policies are set, you cannot save any pipelines until you set any policy or turn off save time validation. |
+| Runtime validation   | All supported versions | If no policies are set, no policy enforcement occurs and pipelines run as they do normally.                      |
 
 ## Secret stores
 
