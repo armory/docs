@@ -354,7 +354,7 @@ The following table lists the supported pipeline triggers:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
 
-The [Policy Engine]({{< ref "policy-engine-enable" >}}) gives you the ability to ensure any Spinnaker pipeline meets certain requirements you specify.
+The [Policy Engine]({{< ref "policy-engine" >}}) gives you the ability to ensure any Spinnaker pipeline meets certain requirements you specify.
 
 **OPA requirements**
 
