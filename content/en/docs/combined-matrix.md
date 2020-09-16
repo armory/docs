@@ -1,7 +1,7 @@
 ---
 title: Armory Platform Compatibility Matrix
 linkTitle: Armory Platform Compatibility
-description: "Information about compatibility between the Armory platform and ."
+description: "Information about support and compatibility for the Armory Platform."
 ---
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables# 
@@ -404,5 +404,3 @@ to install, update, and maintain their clusters via a Kubernetes operator.
 | Automatically determine Deck/Gate URL configuration if Ingress objects are defined | 1.1.0 or later         | 1.1.1 or later         | Ingress objects must be defined in the same namespace where Spinnaker lives.                                                              |
 | Support definition of all Halyard configuration options                            | All supported versions | All supported versions |                                                                                                                                           |
 | In cluster mode, validate configuration before apply                               | All supported versions | All supported versions | Does not work when installed in "basic" mode. Does not guarantee a valid configuration, but does check for most common misconfigurations. |
-
-
