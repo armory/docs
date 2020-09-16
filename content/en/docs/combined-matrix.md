@@ -358,7 +358,7 @@ The [Policy Engine]({{< ref "policy-engine" >}}) gives you the ability to ensure
 
 **OPA requirements**
 
-The Policy Engine requires an Open Policy Agent server. This can be deployed in the same cluster as Spinnaker or external cluster. 
+The Policy Engine requires an Open Policy Agent server. This can be deployed in the same cluster as Spinnaker or in an external cluster. 
 
 The following table lists the requirements
 
