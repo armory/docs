@@ -125,7 +125,7 @@ accounts:
       - dev
       - qa
       - ops
-    WRITE
+    WRITE:
       - admin
       - dev
       - ops
