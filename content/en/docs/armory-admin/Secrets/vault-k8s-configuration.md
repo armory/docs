@@ -86,7 +86,7 @@ $ export SA_JWT_TOKEN=$(kubectl -n default get secret $VAULT_SA_NAME -o jsonpath
 $ export SA_CA_CRT=$(kubectl -n default get secret $VAULT_SA_NAME -o jsonpath="{.data['ca\.crt']}" | base64 --decode; echo)
 
 # Look in your cloud provider console for this value
-$ export K8S_HOST=<your_API_server_endpoint>
+$ export K8S_HOST=<https://your_API_server_endpoint>
 ```
 
 **4. Configure Vault's Kubernetes auth method**
@@ -112,7 +112,7 @@ $ vault auth enable kubernetes
 # Tell Vault how to communicate with the Kubernetes cluster
 $ vault write auth/kubernetes/config \
         token_reviewer_jwt="$SA_JWT_TOKEN" \
-        kubernetes_host="https://$K8S_HOST" \
+        kubernetes_host="$K8S_HOST" \
         kubernetes_ca_cert="$SA_CA_CRT"
 
 # Create a role named, 'spinnaker' to map Kubernetes Service Account to
