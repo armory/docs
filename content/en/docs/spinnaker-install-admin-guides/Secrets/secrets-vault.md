@@ -201,3 +201,25 @@ kubernetes:
 gate:
   javaKeyStoreBinary: encrypted:vault!e:secret!p:spinnaker/saml!k:base64keystore!b:true
 ```
+
+## Namespaces
+
+{{% alert title=Note %}}Vault Enterprise Namespaces is a Vault Enterprise feature. Want to see support for more Vault Enterprise features? Let us know at <https://feedback.armory.io>. {{% /alert %}}
+
+Armory Spinnaker's Vault integration supports Vault namespaces. You can auth to the root namespace, but query secrets from a different namespace. Spinnaker calls Vault APIs using either `<secretEngine>/<path>` (Key/Value version2 secrets engine) or `<secretEngine>/data/path` (Key/Value version1 secrets engine).
+
+Do not use the namespace parameter. Instead. refer to secrets in a specific namespace with the following:
+
+```yaml
+# Key/Value version2
+encrypted:vault!e:<secretEngine>/<path>!p:<path/to/secret>
+
+# Key/Value version1
+encrypted:vault!e:<secretEngine>/data/<path>!p:<path/to/secret>
+```
+
+For example, the following snippet references a secret stored in a secret engine named `AppSecrets` on the `/secret` path:
+
+```yaml
+encrypted:vault!e:AppSecrets/secret!p:spinnaker/prod/
+```
