@@ -1,11 +1,14 @@
 ---
-layout: post
-title: Spinnaker Secrets Overview
-weight: 1
+title: "Working with Secrets"
+linkTitle: "Working with Secrets"
+description: >
+  Armory supports several secret stores. Use them to keep your secrets secure and not commit plain text secrets to your configs.
 aliases:
+  - /spinnaker-install-admin-guides/secrets/
   - /spinnaker-install-admin-guides/secrets/
   - /spinnaker/halyard_secrets/
   - /spinnaker/halyard-secrets/
+  - /spinnaker-install-admin-guides/secrets/secrets/
 ---
 
 ## Overview
@@ -88,10 +91,4 @@ You can also provide secret references directly in `SpinnakerService` manifest u
 
 ### Supported secret engines
 
-* [Encrypted S3 buckets]({{< ref "secrets-s3" >}}) (Open Source Spinnaker)
-* [Google Storage (GCS)]({{< ref "secrets-gcs" >}}) (Open Source Spinnaker)
-* [Kubernetes Secrets]({{< ref "secrets-kubernetes" >}}) (Open Source Spinnaker, only available if using the Operator)
-* [AWS Secrets Manager]({{< ref "secrets-aws-sm">}})(Open Source Spinnaker)
-* [Hashicorp Vault]({{< ref "secrets-vault" >}}) (Armory)
-
-Is there a secret engine you'd like us to support? Submit a feature request [here](http://go.armory.io/support)!
+Is there a secret engine you'd like us to support? Submit a feature request [here](mailto:hello@armory.io)!

@@ -3,6 +3,7 @@ title: Secrets with S3
 weight: 50
 aliases:
   - /spinnaker-install-admin-guides/secrets-s3/
+  - /spinnaker-install-admin-guides/secrets/secrets-s3/
 ---
 
 This document describes how to set up Spinnaker secrets in an encrypted S3 bucket. This example uses a bucket (`mybucket`) in the `us-west-2` region to store GitHub credentials and a kubeconfig file. You reference the bucket by its URL `mybucket.us-west-2.amazonaws.com`.

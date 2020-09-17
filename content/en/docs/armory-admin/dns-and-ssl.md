@@ -1,12 +1,12 @@
 ---
 layout: post
 title: DNS and SSL
-weight: 43
 # This has different content than install-guide/dns-and-ssl
 aliases:
   - /spinnaker_install_admin_guides/dns_and_ssl/
   - /spinnaker_install_admin_guides/dns-and-ssl/
   - /spinnaker-install-admin-guides/dns_and_ssl/
+  - /spinnaker-install-admin-guides/dns-and-ssl/
 ---
 
 ## Overview 

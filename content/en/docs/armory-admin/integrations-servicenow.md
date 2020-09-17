@@ -1,6 +1,7 @@
 ---
 title: Integrating ServiceNow with Spinnaker
-weight: 175
+aliases:
+  - /spinnaker/integrations-servicenow/
 ---
 
 ## Overview

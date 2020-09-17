@@ -1,6 +1,7 @@
 ---
 title: Upgrading Open Source Spinnaker to Armory
-weight: 2
+aliases:
+  - /spinnaker-install-admin-guides/upgrade-oss-to-armory/
 ---
 
 ## Overview
