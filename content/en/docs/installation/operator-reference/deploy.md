@@ -2,7 +2,7 @@
 title: Deployment Environment Config
 weight: 2
 description: >
-  This page describes `deploymentEnvironment`.
+  This page describes `spec.spinnakerConfig.config.deploymentEnvironment`.
 aliases:
   - /operator_reference/deploy/
 ---
