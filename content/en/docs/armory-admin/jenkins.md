@@ -1,12 +1,12 @@
 ---
-title: Configure Jenkins
-weight: 50
+title: Connecting Spinnaker to Jenkins
+linkTitle: Connecting Jenkins
 aliases:
   - /spinnaker_install_admin_guides/jenkins/
+  - /spinnaker-install-admin-guides/jenkins/
+Description: To use Jenkins in Spinnaker, configure access to your Jenkins instance.
 ---
 
-Before you can make use of Jenkins in Spinnaker, you'll need to
-configure access to your Jenkins masters.
 
 > The Spinnaker project has more in-depth documentation on configuring Jenkins
 > in Spinnaker [here](https://www.spinnaker.io/setup/ci/jenkins/).

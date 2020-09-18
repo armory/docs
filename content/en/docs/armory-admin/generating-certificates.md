@@ -1,7 +1,9 @@
 ---
 
 title: Generating Certificates
-weight: 46
+description: If you do not have existing certificates to use for securing your Spinnaker environment, create them.
+aliases: 
+  - /spinnaker-install-admin-guides/generating-certificates/
 ---
 
 ## Requirements

@@ -1,6 +1,6 @@
 ---
-title: Configure Spinnaker to use Github as an Artifact Source
-linkTitle: Github as an Artifact Source
+title: Connecting Spinnaker to Github as an Artifact Source
+linkTitle: Connecting to GitHub
 weight: 49
 aliases:
   - /spinnaker_install_admin_guides/github/
