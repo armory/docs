@@ -1,7 +1,5 @@
 ---
-layout: post
 title: Using the Terraform Integration Stage
-weight: 142
 ---
 
 ## Overview
