@@ -1,8 +1,8 @@
 ---
 title: Clouddriver with RDBMS
-weight: 49
 aliases:
   - /spinnaker_install_admin_guides/clouddriver-sql/
+  - /spinnaker-install-admin-guides/clouddriver-sql/
 ---
 ## Overview
 

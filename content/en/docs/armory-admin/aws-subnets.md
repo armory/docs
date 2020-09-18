@@ -7,6 +7,7 @@ aliases:
   - /spinnaker_install_admin_guides/aws-subnets/
   - /spinnaker_install_admin_guides/aws_subnets/
   - /spinnaker-install-admin-guides/aws_subnets/
+  - /spinnaker-install-admin-guides/aws-subnets/
 ---
 ## Overview
 

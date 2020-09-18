@@ -1,6 +1,7 @@
 ---
-title: Configure Travis
-weight: 51
+title: Connecting to Travis
+aliases:
+  - /spinnaker-install-admin/guides/configure-travis/
 ---
 
 ## Overview
@@ -12,7 +13,7 @@ Configuring Travis in your Spinnaker instance with Halyard is pretty easy, but
 there are a few "gotchas" to watch out for.
 
 
-## Configure Travis
+## Add Travis to Spinnaker
 
 First, configure your Travis master:
 
@@ -25,7 +26,7 @@ hal config ci travis master add Travis --address https://api.travis-ci.org --bas
 For reference, you can look at the [Spinnaker docs](https://www.spinnaker.io/reference/halyard/commands/#hal-config-ci-travis-master-add)
 
 
-## Enable Travis
+## Enable Travis support
 
 Next, enable Travis with Halyard:
 

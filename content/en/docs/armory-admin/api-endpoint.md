@@ -1,10 +1,11 @@
 ---
-title: Exposing the API Endpoint
-weight: 47
+title: Exposing the Spinnaker API Endpoint
+linkTitle: Exposing the API
 aliases:
   - /spinnaker_install_admin_guides/api-endpoint/
   - /spinnaker_install_admin_guides/api_endpoint/
   - /spinnaker-install-admin-guides/api_endpoint/
+  - /spinnaker-install-admin-guides/api-endpoint/
 ---
 ## Overview
 

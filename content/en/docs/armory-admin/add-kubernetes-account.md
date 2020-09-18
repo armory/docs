@@ -2,7 +2,8 @@
 
 title: Creating and Adding a Kubernetes Account to Spinnaker as a Deployment Target
 linkTitle: Add Kubernetes Account as Deployment Target
-weight: 10
+aliases:
+  - /spinnaker-install-admin-guides/add-kubernetes-account/
 ---
 
 Once you have (OSS or Armory) Spinnaker up and running in Kubernetes, you'll want to start adding deployment targets.

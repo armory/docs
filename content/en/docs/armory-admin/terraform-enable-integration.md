@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Enabling the Terraform Integration Stage
-weight: 141
 aliases:
   - /spinnaker/terraform_integration/
   - /spinnaker/terraform-configure-integration/
