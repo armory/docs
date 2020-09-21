@@ -1,7 +1,7 @@
 ---
 
 title: Creating and Adding a Kubernetes Account to Spinnaker as a Deployment Target
-linkTitle: Add Kubernetes Account as Deployment Target
+linkTitle: Adding Kubernetes Account as Deployment Target
 aliases:
   - /spinnaker-install-admin-guides/add-kubernetes-account/
 ---

@@ -1,8 +1,9 @@
 ---
 title: Monitoring Spinnaker with Prometheus
-order: 920
 description: >
   Monitoring Spinnaker using Prometheus and Grafana
+aliases:
+  - /spinnaker-install-admin-guides/prometheus-monitoring/
 ---
 
 {{% alert title="Warning" color="warning" %}}There is a known issue with metric names in version 2.20.x. Until this issue is resolved, any dashboards created from the instructions on this page will not work. For more information, see the release notes for your version, such as [2.20.5]({{< ref "armoryspinnaker_v2-20-5#spinnaker-metrics" >}}). {{% /alert %}}

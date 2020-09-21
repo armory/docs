@@ -1,6 +1,6 @@
 ---
-title: "AWS: Deploying to AWS from Spinnaker (using IAM Instance roles)"
-linkTitle: Deploy to AWS using IAM Instance Roles
+title: "Configuring AWS for Spinnaker (using IAM Instance roles)"
+linkTitle: Configuring AWS (IAM Instance Roles)
 aliases:
   - /spinnaker_install_admin_guides/add-aws-account-iam/
   - /spinnaker_install_admin_guides/add_aws_account_iam/
@@ -72,111 +72,111 @@ Here's an example situation:
 
 ### Configuration
 
-* **Operator**
+**Operator**
 
-    Here's a sample `SpinnakerService` manifest block that supports the above:
+Here's a sample `SpinnakerService` manifest block that supports the above:
 
    ```yaml
-    apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-    kind: SpinnakerService
-    metadata:
-      name: spinnaker
-    spec:
-      spinnakerConfig:
-        config:
-          providers:
-            aws:
-              enabled: true
-              accounts:
-              - name: aws-1
-                requiredGroupMembership: []
-                providerVersion: V1
-                permissions: {}
-                accountId: '111111111111'
-                regions:
-                - name: us-east-1
-                - name: us-west-2
-                assumeRole: role/spinnakerManaged
-              - name: aws-2
-                requiredGroupMembership: []
-                providerVersion: V1
-                permissions: {}
-                accountId: '222222222222'
-                regions:
-                - name: us-east-1
-                - name: us-west-2
-                assumeRole: role/spinnakerManaged
-              - name: aws-3
-                requiredGroupMembership: []
-                providerVersion: V1
-                permissions: {}
-                accountId: '333333333333'
-                regions:
-                - name: us-east-1
-                - name: us-west-2
-                assumeRole: role/spinnakerManaged
-              # Because we're baking in 111111111111, this must match the accountName that is associated with 111111111111
-              primaryAccount: aws-1
-              bakeryDefaults:
-                templateFile: aws-ebs-shared.json
-                baseImages: []
-                awsAssociatePublicIpAddress: true
-                defaultVirtualizationType: hvm
-              defaultKeyPairTemplate: '{{name}}-keypair'
-              defaultRegions:
-              - name: us-west-2
-              defaults:
-                iamRole: BaseIAMRole
-    ```
+   apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+   kind: SpinnakerService
+   metadata:
+     name: spinnaker
+   spec:
+     spinnakerConfig:
+       config:
+         providers:
+           aws:
+             enabled: true
+             accounts:
+             - name: aws-1
+               requiredGroupMembership: []
+               providerVersion: V1
+               permissions: {}
+               accountId: '111111111111'
+               regions:
+               - name: us-east-1
+               - name: us-west-2
+               assumeRole: role/spinnakerManaged
+             - name: aws-2
+               requiredGroupMembership: []
+               providerVersion: V1
+               permissions: {}
+               accountId: '222222222222'
+               regions:
+               - name: us-east-1
+               - name: us-west-2
+               assumeRole: role/spinnakerManaged
+             - name: aws-3
+               requiredGroupMembership: []
+               providerVersion: V1
+               permissions: {}
+               accountId: '333333333333'
+               regions:
+               - name: us-east-1
+               - name: us-west-2
+               assumeRole: role/spinnakerManaged
+             # Because we're baking in 111111111111, this must match the accountName that is associated with 111111111111
+             primaryAccount: aws-1
+             bakeryDefaults:
+               templateFile: aws-ebs-shared.json
+               baseImages: []
+               awsAssociatePublicIpAddress: true
+               defaultVirtualizationType: hvm
+             defaultKeyPairTemplate: '{{name}}-keypair'
+             defaultRegions:
+             - name: us-west-2
+             defaults:
+               iamRole: BaseIAMRole
+   ```
 
-* **Halyard**
+**Halyard**
 
-    Here's a sample halconfig `aws` YAML block that supports the above:
+Here's a sample halconfig `aws` YAML block that supports the above:
 
-    ```yml
-        aws:
-          enabled: true
-          accounts:
-          - name: aws-1
-            requiredGroupMembership: []
-            providerVersion: V1
-            permissions: {}
-            accountId: '111111111111'
-            regions:
-            - name: us-east-1
-            - name: us-west-2
-            assumeRole: role/spinnakerManaged
-          - name: aws-2
-            requiredGroupMembership: []
-            providerVersion: V1
-            permissions: {}
-            accountId: '222222222222'
-            regions:
-            - name: us-east-1
-            - name: us-west-2
-            assumeRole: role/spinnakerManaged
-          - name: aws-3
-            requiredGroupMembership: []
-            providerVersion: V1
-            permissions: {}
-            accountId: '333333333333'
-            regions:
-            - name: us-east-1
-            - name: us-west-2
-            assumeRole: role/spinnakerManaged
-          # Because we're baking in 111111111111, this must match the accountName that is associated with 111111111111
-          primaryAccount: aws-1
-          bakeryDefaults:
-            templateFile: aws-ebs-shared.json
-            baseImages: []
-            awsAssociatePublicIpAddress: true
-            defaultVirtualizationType: hvm
-          defaultKeyPairTemplate: '{{name}}-keypair'
-          defaultRegions:
-          - name: us-west-2
-          defaults:
-            iamRole: BaseIAMRole
-    ```
+   ```yml
+       aws:
+         enabled: true
+         accounts:
+         - name: aws-1
+           requiredGroupMembership: []
+           providerVersion: V1
+           permissions: {}
+           accountId: '111111111111'
+           regions:
+           - name: us-east-1
+           - name: us-west-2
+           assumeRole: role/spinnakerManaged
+         - name: aws-2
+           requiredGroupMembership: []
+           providerVersion: V1
+           permissions: {}
+           accountId: '222222222222'
+           regions:
+           - name: us-east-1
+           - name: us-west-2
+           assumeRole: role/spinnakerManaged
+         - name: aws-3
+           requiredGroupMembership: []
+           providerVersion: V1
+           permissions: {}
+           accountId: '333333333333'
+           regions:
+           - name: us-east-1
+           - name: us-west-2
+           assumeRole: role/spinnakerManaged
+         # Because we're baking in 111111111111, this must match the accountName that is associated with 111111111111
+         primaryAccount: aws-1
+         bakeryDefaults:
+           templateFile: aws-ebs-shared.json
+           baseImages: []
+           awsAssociatePublicIpAddress: true
+           defaultVirtualizationType: hvm
+         defaultKeyPairTemplate: '{{name}}-keypair'
+         defaultRegions:
+         - name: us-west-2
+         defaults:
+           iamRole: BaseIAMRole
+   ```
 
 ## Prerequisites
 

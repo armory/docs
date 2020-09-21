@@ -1,15 +1,16 @@
 ---
-title: Baking Machine Images (AWS, GCE, etc.) Using Packer
-linkTitle: Baking Machine Images Using Packer
-weight: 35
+title: Baking Machine Images Using Packer
+linkTitle: Baking Machine Images
 # Substantially different from install_guide/packer
 aliases:
   - /spinnaker_install_admin_guides/packer/
+  - /spinnaker-install-admin-guides/packer/
+description: Spinnaker has a built-in capability to 'bake' (build) machine images for deployment to various cloud environments. 
 ---
 
 ## Overview
 
-Spinnaker has a built-in capability to 'bake' (build) machine images for deployment to various cloud environments. For example, if you are deploying to AWS, you can use Spinnaker to bake Amazon Machine Images (AMIs) from the artifacts that were produced by your CI tool.  This is achieved by using the open source Packer tool, which is included in the Spinnaker Rosco microservice.
+Spinnaker uses the open source Packer tool to bake images, which is included in the Spinnaker Rosco microservice. For example, if you are deploying to AWS, you can use Spinnaker to bake Amazon Machine Images (AMIs) from the artifacts that were produced by your CI tool.  
 
 **Note** This section focuses on configuring Packer scripts to build machine images (such as AMIs).  If you're only deploying to Kubernetes, you can skip this section.
 

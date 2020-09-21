@@ -1,19 +1,15 @@
 ---
-title: Rate Limiting Spinnaker API Calls
-weight: 140
+title: Rate Limiting the Spinnaker API
+linkTitle: Rate Limiting Spinnaker
 aliases:
-  - /admin-guides/rate-limit/
-  - /admin-guides/rate_limit/
-  - /admin_guides/rate-limit/
-  - /admin_guides/rate_limit/
-  - /spinnaker_install_admin_guides/rate_limit/
-  - /spinnaker_install_admin_guides/rate-limit/
   - /spinnaker-install-admin-guides/rate_limit/
+  - /spinnaker-install-admin-guides/rate-limit/
+description: By default Spinnaker, queries (polls) the entire state of cloud resources managed by Spinnaker every 30 seconds through the Clouddriver service.
 ---
 
 ## How Spinnaker monitors a deployment
 
-By default Spinnaker queries (e.g. polls) the entire state of the AWS resources managed by Spinnaker every 30 seconds through the Clouddriver sub-service. This can cause AWS to throttle the requests on your account. If you have a large number of Auto-Scaling Groups and Elastic Load Balancers in your account or other services commonly querying the same APIs then you can expect to see throttling exceptions in your Spinnaker logs.
+The polling can cause cloud providers, such as AWS, to throttle the requests on your account. If you have a large number of Auto-Scaling Groups and Elastic Load Balancers in your account or other services commonly querying the same APIs then you can expect to see throttling exceptions in your Spinnaker logs.
 
 ### How to alleviate AWS throttling exceptions
 
@@ -23,7 +19,7 @@ There are several things you can do to help reduce the effects of throttling:
 - Decrease the polling interval.
 
 
-## Fine grained rate limits
+## Fine-grained rate limits
 
 Spinnaker queries your Cloud Provider (AWS, GCP, Azure, Kubernetes, etc) frequently to understand the state of your existing infrastructure and current deployments.  However, this might cause you to run into rate limits imposed by the Cloud Provider. To help avoid this Spinnaker provides controls to limit the number of requests it generates. The unit used for these controls is "requests per second" (a double float value). Global defaults are `10.0` max requests per second.
 

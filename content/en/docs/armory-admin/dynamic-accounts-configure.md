@@ -1,9 +1,10 @@
 ---
-title: Dynamic Kubernetes Accounts With Vault
+title: Configuring Dynamic Kubernetes Accounts With Vault
+linkTitle: Configuring Dynamic Accounts
 aliases:
   - /spinnaker_install_admin_guides/dynamic_accounts/
   - /spinnaker-install-admin-guides/dynamic_accounts/
-  - - /spinnaker-install-admin-guides/dynamic-accounts/
+  - /spinnaker-install-admin-guides/dynamic-accounts/
 ---
 
 ## Overview

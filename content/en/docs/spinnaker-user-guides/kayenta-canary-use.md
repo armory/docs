@@ -1,15 +1,15 @@
 ---
-title: Automatic Canary Analysis (Kayenta)
-weight: 120
+title: Using Automatic Canary Analysis
 aliases:
-  - /user-guides/kayenta/
-  - /user_guides/kayenta/
   - /spinnaker_user_guides/kayenta/
+  - /spinnaker-user-guides/kayenta
 ---
+
+Before you can start using Canary deployments, ensure that Kayenta, the Spinnaker for canary deployments, is enabled. For more information, see [Configuring Kayenta]({{< ref "kayenta-configure" >}}).
 
 ## Overview
 
-Kayenta is an automated canarying analysis (ACA) service that is provided through Spinnaker. The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence.
+Kayenta is the Spinnaker service that performs Automated Canary Analysis (ACA). The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence.
 
 Kayenta uses real-time data sources to validate that a canary is good or bad. Today, Kayenta supports the following real-time data sources:
 
@@ -30,7 +30,7 @@ Make sure it's checked and saved.
 If you don't see this option in your application config, make sure you've
 [configured Kayenta](https://www.spinnaker.io/guides/user/canary/).
 
-You can also find more information about Kayenta on [Automated Canary Deployments]({{< ref "configure-kayenta" >}}).
+You can also find more information about Kayenta on [Automated Canary Deployments]({{< ref "kayenta-configure" >}}).
 
 In this document, we will quickly run through the process to simply get you
 going.

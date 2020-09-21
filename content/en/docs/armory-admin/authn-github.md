@@ -1,6 +1,6 @@
 ---
 title: Configuring GitHub OAuth for Spinnaker
-linkTitle: GitHub OAuth for Spinnaker
+linkTitle: Configuring GitHub OAuth
 aliases:
   - /spinnaker-install-admin-guides/authn-github/
 ---

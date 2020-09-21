@@ -1,7 +1,6 @@
 ---
-title: "Connecting AWS ECR as a Registry"
-linkTitle: "Connecting AWS ECR"
-weight: 52
+title: "Connecting to AWS ECR as a Registry"
+linkTitle: "Connecting to AWS ECR"
 aliases:
   - /spinnaker_install_admin_guides/ecr_registry/
   - /spinnaker_install_admin_guides/ecr-registry/

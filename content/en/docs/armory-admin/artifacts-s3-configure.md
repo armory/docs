@@ -1,15 +1,14 @@
 ---
-title: "AWS: Configure S3 Artifacts"
-weight: 61
+title: "Configuring S3 Artifacts"
 aliases:
   - /spinnaker_install_admin_guides/s3/
+  - /spinnaker-install-admin-guides/s3/
+description: To use a file stored in S3 in your pipeline, configure Spinnaker to use S3 as an artifact source.
 ---
 
 ## Overview
 
-If you want to use a file from S3 in your pipeline,
-you'll need to configure S3 as an artifact source.  This is how you would,
-for example, reference a Helm chart tarball for later use during
+The example on this page describes how to reference a Helm chart tarball for later use during
 deployment.
 
 This is just a quick walkthrough of how to configure your Spinnaker to access

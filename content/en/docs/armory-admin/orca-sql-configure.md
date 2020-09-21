@@ -1,10 +1,10 @@
 ---
-title: Enabling a Relational Database for ORCA
-linkTitle: Enabling a RDBMS for Orca
+title: Configuring Orca to use a Relational Database Management System
+linkTitle: Configuring Orca to use RDBMS
 description: 
 aliases:
   - /spinnaker_install_admin_guides/orca-sql/
-  - /spinnaker-install-admin-guides/orca-sql
+  - /spinnaker-install-admin-guides/orca-sql/
 ---
 
 ## Overview

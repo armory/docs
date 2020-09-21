@@ -84,7 +84,7 @@ The Account name is arbitrary and should be a name that is an identifiable.  The
 
 If subnets do not appear in Deck (the Spinnaker UI), perform AWS Subnet tagging.  "example-purpose" should be a descriptor of the subnet and will appear in the Spinnaker UI dropdown.
 
-For more information about AWS Subnet tagging, see [AWS: Configuring AWS Networking]({{< ref "aws-subnets" >}}).
+For more information about AWS Subnet tagging, see [AWS: Configuring AWS Networking]({{< ref "aws-subnets-configure" >}}).
 
 ```
 Key                 Value

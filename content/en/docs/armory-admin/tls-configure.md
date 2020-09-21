@@ -1,15 +1,14 @@
 ---
-title: Spinnaker Services TLS
-weight: 44
+title: Configuring TLS for Spinnaker Services
+linkTitle: Configuring TLS
 aliases:
   - /spinnaker_install_admin_guides/spinnaker-services-tls/
   - /spinnaker_install_admin_guides/services_tls/
   - /spinnaker-install-admin-guides/spinnaker-services-ssl/
+description: Spinnaker services communicate with each other and can exchange potentially sensitive data. Enabling TLS between services ensures that this data is encrypted and that a service will only communicate with another service that has a valid certificate.
 ---
 
-Spinnaker services communicate with each other and can exchange potentially sensitive data. Enabling TLS between services ensures that this data is encrypted and that a service will only communicate with another service that has a valid certificate.
-
-Switching from plain HTTP to HTTPS will cause some short disruption to the services as they become healthy at different times.
+> Switching from plain HTTP to HTTPS will cause some short disruption to the services as they become healthy at different times.
 
 
 ## Overview
@@ -225,4 +224,4 @@ server:
 
 Run `hal deploy apply` after you make your changes.
 
-**Note**: There is currently no way to pass passwords stored in Kubernetes secrets as environment variables using Halyard. You can remove passwords from the keys you're using or use the Spinnaker Operator to reference Kubernetes secrets directly.
+> There is currently no way to pass passwords stored in Kubernetes secrets as environment variables using Halyard. You can remove passwords from the keys you're using or use the Spinnaker Operator to reference Kubernetes secrets directly.

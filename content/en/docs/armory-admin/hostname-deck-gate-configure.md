@@ -1,8 +1,10 @@
 ---
-title: Serving Gate on the Same Hostname as Deck
-weight: 44
+title: Configuring Gate and Deck to Run on the Same Hostname
+linkTitle: Configuring Gate and Deck for the Same Hostname
 description: >
   Simplify DNS and Ingress management by deploying Gate and Deck to the same host.  
+aliases:
+  - /docs/spinnaker-install-admin-guides/single-hostname-deck-gate/
 ---
 
 ## Overview

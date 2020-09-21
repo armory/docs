@@ -1,5 +1,6 @@
 ---
-title: Clouddriver with RDBMS
+title: Configuring Orca to use a Relational Database Management System
+linkTitle: Configuring Orca to use a RDBMS
 aliases:
   - /spinnaker_install_admin_guides/clouddriver-sql/
   - /spinnaker-install-admin-guides/clouddriver-sql/
