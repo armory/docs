@@ -34,7 +34,7 @@ Next, enable Travis with Halyard:
 hal config ci travis enable
 ```
 
-
+<!-- This got carried over from the old KB article. Unlikely still needed but leaving here for posterity. 
 ## Update `igor-local.yml` (Temporary Fix)
 
 This is currently a bug with OSS halyard; doing the above will cause Igor to
@@ -47,7 +47,7 @@ artifact:
   decorator:
     enabled: true
 ```
-
+-->
 
 ### Enable Travis Stages
 

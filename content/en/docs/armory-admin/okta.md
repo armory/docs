@@ -1,9 +1,8 @@
 ---
-title: Okta SAML Integration
-weight: 160
+title: Configuring Auth for Spinnaker Using Okta SAML
+linkTitle: Integrating Okta for Auth
+description: Spinnaker supports using Okta for authentication and authorization.
 ---
-
-Okta is a authorization and authentication service provider using SAML.
 
 ## Configure a Spinnaker application in Okta
 

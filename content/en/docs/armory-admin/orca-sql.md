@@ -1,13 +1,15 @@
 ---
-title: Orca with RDBMS
-weight: 48
+title: Enabling a Relational Database for ORCA
+linkTitle: Enabling a RDBMS for Orca
+description: 
 aliases:
   - /spinnaker_install_admin_guides/orca-sql/
+  - /spinnaker-install-admin-guides/orca-sql
 ---
 
 ## Overview
 
-By default, Orca (the task orchestration service) uses Redis as its backing store. You can now configure Orca to use a relational database to store its pipeline execution. The main advantage of doing so is a gain in performance and the removal of Redis as a single point of failure.
+By default, Orca (the task orchestration service) uses Redis as its backing store. You can configure Orca to use a relational database to store its pipeline execution. The main advantage of doing so is a gain in performance and the removal of Redis as a single point of failure.
 
 Armory recommends MySQL 5.7. For AWS, you can use Aurora.
 

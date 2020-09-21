@@ -1,7 +1,8 @@
 ---
-
-title: "Kubernetes: Creating Service Accounts and Kubeconfigs"
-weight: 20
+title: "Creating Kubernetes Service Accounts and Kubeconfigs"
+linkTitle: Creating Kubernetes Service Accounts
+aliases:
+  - /spinnaker-install-admin-guides/manual-service-accounts/
 ---
 
 ## Overview
@@ -20,7 +21,7 @@ The [spinnaker-tools binary](https://github.com/armory/spinnaker-tools) was buil
 - **Kubernetes Roles and Rolebindings**
 - **(Optionally) Kubernetes ClusterRoles and Rolebindings**
 
-## Create the Service Account
+## Create the service account
 
 You can use the following manifest to create a service account. Replace `NAMESPACE` with the namespace you want to use and, optionally, rename the service account.
 
