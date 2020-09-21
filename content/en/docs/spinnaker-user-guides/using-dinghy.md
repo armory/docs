@@ -10,12 +10,12 @@ Armory's _Pipelines as Code_ feature provides a way to specify pipeline definiti
 The Armory installation provides a service called _Dinghy_, which keeps the pipeline in Spinnaker in sync with what is defined in the GitHub repo. Also, users are able to make a pipeline by composing other pipelines, stages, or tasks and templating certain values.
 
 {{< alert title="Note" >}}
-Before you can use this feature, please ensure you have [configured]({{< ref "install-dinghy" >}}) it correctly.
+Before you can use this feature, please ensure you have [configured]({{< ref "dinghy-enable" >}}) it correctly.
 {{< /alert >}}
 
 ## How it works in a nutshell
 
-GitHub (or BitBucket) webhooks are sent off when you modify either the Templates or the Module definitions. The Dinghy service looks for and fetches all dependent modules and parses the template and updates the pipelines in Spinnaker. The pipelines get automatically updated whenever a module that is used by a pipeline is updated in VCS. This is done by maintaining a dependency graph.  Dinghy will look for a `dinghyfile` in all directories, not just the root path.  Unless otherwise configured, Dinghy will process changes found in the master branch. For more information on how to configure branches, see [Custom branch configuration]({{< ref "install-dinghy#custom-branch-configuration" >}})
+GitHub (or BitBucket) webhooks are sent off when you modify either the Templates or the Module definitions. The Dinghy service looks for and fetches all dependent modules and parses the template and updates the pipelines in Spinnaker. The pipelines get automatically updated whenever a module that is used by a pipeline is updated in VCS. This is done by maintaining a dependency graph.  Dinghy will look for a `dinghyfile` in all directories, not just the root path.  Unless otherwise configured, Dinghy will process changes found in the master branch. For more information on how to configure branches, see [Custom branch configuration]({{< ref "dinghy-enable#custom-branch-configuration" >}})
 
 ### Intended workflow
 
