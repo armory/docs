@@ -1,7 +1,5 @@
 ---
-layout: post
 title: Using Kustomize for Manifests
-weight: 170
 ---
 
 ## Overview

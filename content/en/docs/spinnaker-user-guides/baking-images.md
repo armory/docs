@@ -1,7 +1,5 @@
 ---
-layout: post
 title: Baking Images (AWS EC2)
-weight: 70
 aliases:
   - /spinnaker_user_guides/baking/
   - /user-guides/baking-images/

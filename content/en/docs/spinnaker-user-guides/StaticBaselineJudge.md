@@ -1,6 +1,5 @@
 ---
 title: Static Judge Canary Analysis (Kayenta)
-weight: 130
 ---
 
 ## Overview

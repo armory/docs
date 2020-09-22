@@ -1,6 +1,5 @@
 ---
 title: Pipelines
-weight: 20
 aliases:
   - /user-guides/pipelines/
   - /user_guides/pipelines/

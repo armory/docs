@@ -1,6 +1,5 @@
 ---
 title: Deploying (AWS EC2)
-weight: 80
 aliases:
   - /user-guides/deploying/
   - /user_guides/deploying/

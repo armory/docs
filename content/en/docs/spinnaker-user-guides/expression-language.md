@@ -1,6 +1,5 @@
 ---
-title: Expression Language
-weight: 140
+title: Spring Expression Language
 aliases:
   - /user-guides/expression-language/
   - /user-guides/expression_language/

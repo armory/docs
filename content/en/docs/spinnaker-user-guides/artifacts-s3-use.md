@@ -1,8 +1,7 @@
 ---
-weight: 60
 title: Working with S3 Artifacts
 aliases:
-  - /spinnaker_user_guides/s3/
+  - /spinnaker-user-guides/s3/
 
 ---
 

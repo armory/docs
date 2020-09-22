@@ -1,6 +1,5 @@
 ---
 title: Video Tutorials
-weight: 1
 aliases:
   - /user-guides/video-tutorials/
   - /user-guides/video_tutorials/

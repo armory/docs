@@ -1,8 +1,8 @@
 ---
-weight: 20
 title: Working with Docker Images
 aliases:
   - /spinnaker_user_guides/docker/
+  - /spinnaker-user-guides/docker/
 ---
 
 

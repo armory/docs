@@ -1,6 +1,5 @@
 ---
 title: Kubernetes Deployments
-weight: 132
 aliases:
   - /spinnaker/kubernetes_deployments/
   - /spinnaker/kubernetes-deployments/

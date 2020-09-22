@@ -1,6 +1,5 @@
 ---
 title: Using Pipelines as Code
-weight: 170
 aliases:
   - /spinnaker/using_dinghy/
 ---

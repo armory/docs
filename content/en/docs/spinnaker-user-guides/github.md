@@ -1,5 +1,4 @@
 ---
-weight: 40
 title: Working with Github
 aliases:
   - /spinnaker_user_guides/github/

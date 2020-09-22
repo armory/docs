@@ -49,7 +49,3 @@ Armory's platform includes an enterprise-grade distribution of Spinnaker that fo
 - An Armory extended version of the Spinnaker Operator helps you configure, deploy, and update Spinnaker on Kubernetes clusters. If you cannot use a Kubernetes Operatork, you can use Armory-extended Halyard to accomplish the same tasks.
 - Policy Engine helps you meet compliance requirements based on custom policies you set.
 - Integrations with many of your existing tools, such as Terraform. For a full list, see [Integrations](https://www.armory.io/armory-spinnaker/integrations/).
-
-## Armory Cloud
-
-Armory Cloud offers the benefits of the Armory Platform without much of the lifecycle management overhead. Always get the latest without worrying about upgrades and uptime.

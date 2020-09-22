@@ -1,6 +1,5 @@
 ---
 title: Automated Kubernetes Rollbacks
-weight: 140
 aliases:
   - /spinnaker/automated_rollbacks/
   - /spinnaker/automated-rollbacks/
