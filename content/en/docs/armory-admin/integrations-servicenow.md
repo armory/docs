@@ -1,7 +1,7 @@
 ---
 title: Integrating ServiceNow with Spinnaker
 aliases:
-  - /spinnaker/integrations-servicenow/
+  - /docs/spinnaker/integrations-servicenow/
 ---
 
 ## Overview
@@ -10,16 +10,16 @@ ServiceNow provides several solutions (ITSM, PPM, Security Response, ITOM, etc).
 
 Consuming Webhooks in ServiceNow requires some conifiguration. You can read more about the process [here](https://community.servicenow.com/community?id=community_blog&sys_id=886d2a29dbd0dbc01dcaf3231f9619b0).
 
-## Using a custom webhook stage to create a Change Request in ServiceNow 
+## Using a custom webhook stage to create a Change Request in ServiceNow
 
-Potential uses for creating a change request in ServiceNow include: 
+Potential uses for creating a change request in ServiceNow include:
 * A deployment happens and a ticket needs to be filed in ServiceNow for record keeping
-* A canary deployment is successful, and you need a change ticket to be created and approved before full deployment into production. 
+* A canary deployment is successful, and you need a change ticket to be created and approved before full deployment into production.
 
 In ServiceNow, you need to create a Scripted Web Service. At a high level, this service performs the following actions:
 * Receives the webhook from Spinnaker
-* Processes the contents of the payload 
-* Creates a Change Request. 
+* Processes the contents of the payload
+* Creates a Change Request.
 
 A very similar approach could be taken to create a different type of ticket.
 
@@ -30,8 +30,8 @@ To create the Scripted Web Service, perform the following task:
    ![](/images/integrations-snow-scripted-rest-apis.png)
 
 
-2. Create a new Scripted Web Service and give it a descriptive name. For example, you can name it “SpinnakerWebhookListener”. 
-   
+2. Create a new Scripted Web Service and give it a descriptive name. For example, you can name it “SpinnakerWebhookListener”.
+
    ![](/images/integrations-snow-spinwebhooklistener.png)
 
 3. Submit the information to create the service.
@@ -47,22 +47,22 @@ To create the Scripted Web Service, perform the following task:
    ![](/images/integrations-snow-resource-changeticket.png)
 
 
-6. Set the **HTTP method** to **POST**. 
-   
+6. Set the **HTTP method** to **POST**.
+
    If you are planning on having only one resource in the REST API, you can leave the **Relative Path** as is.  
-   
+
    If you plan to create multiple Resources, set the relative path to be specific to this resource. This will be appended to the **API Path.** The resulting path is appended to your ServiceNow instance address, and that is the URL Spinnaker uses.
 
    > **Note**: For testing the integration, you can opt to not require authentication.
 
-7. Optionally, provide the script. You can also provide one at a later time. 
+7. Optionally, provide the script. You can also provide one at a later time.
 
-### Example script 
+### Example script
 
 The following is an example script you can use when configuring ServiceNow:
 
 ```
-(function process(/RESTAPIRequest/ request, /RESTAPIResponse/ response) { 
+(function process(/RESTAPIRequest/ request, /RESTAPIResponse/ response) {
 // implement resource here
 //gs.info(request.body.dataString);
 response = request.body.dataString;
@@ -72,7 +72,7 @@ var parser = new JSONParser();
 var parsedData = parser.parse(response);
 //gs.info(parsedData);
 gs.info(parsedData.application);
-       
+
 gr.short_description = parsedData.application;
 gr.description = parsedData.description;
 //gr.change_request = current.sys_id;
@@ -86,17 +86,17 @@ In the example script, the **response** object is the JSON payload from the webh
 
 ## ServiceNow REST API
 
-ServiceNow also has a REST API. You can use ServiceNow's REST API Explorer to view sample code for any REST API call, including creating a change request. 
+ServiceNow also has a REST API. You can use ServiceNow's REST API Explorer to view sample code for any REST API call, including creating a change request.
 
 ## ServiceNow Workflows
 
 While most people are familiar with ServiceNow as a ‘ticketing system’, it also has an automation engine. RunBooks for this engine are created as workflows. These workflows can automate internal ServiceNow operations (like handling approval routing) as well as calling other systems APIs (called Orchestrations), like provisioning VMs on-premise or in the cloud.
 
-These workflows can be called from a ServiceNow script in a Scripted REST API. 
+These workflows can be called from a ServiceNow script in a Scripted REST API.
 
 ## Setting Up the Webhook Stage in Spinnaker
 
-The next step is to either create a generic webhook stage or a custom stage. 
+The next step is to either create a generic webhook stage or a custom stage.
 
 To create a custom stage, perform the following steps:
 
@@ -134,20 +134,20 @@ To create a custom stage, perform the following steps:
          type: string
    ```
 
-   Note that the example payload contains the two key/pair values that ServiceNow is    expecting. 
-   
+   Note that the example payload contains the two key/pair values that ServiceNow is    expecting.
+
    The application is going to be the artifact that is triggering the pipeline. In the    example, the pipeline is triggered when a new version of a container for a given    organization or application is pushed to the configured Docker Registry. Artifactory    is configured as the Docker Registry, so the application is set to something that    follows a similar format: `<jfrog server-reponame-jfrog.io/<orgname>/   <application>:<tag>`.
-   
+
    The above is an example of using Pipeline Expressions to pass dynamic values. The    description is an example of passing values that the user can enter in the stage when    it is configured.
 
 3. Apply your changes to Spinnaker: `hal deploy apply`.
 
-4. Once you apply your changes, open Deck, Spinnaker's UI. 
+4. Once you apply your changes, open Deck, Spinnaker's UI.
 5. When you create or edit a pipeline, a new stage available is available:
 
    ![](/images/integrations-snow-stage.png)
 
-   If the new stage does not appear, perform a hard refresh or clear your browser cache and reopen Deck. 
+   If the new stage does not appear, perform a hard refresh or clear your browser cache and reopen Deck.
 
 
 Other Spinnaker users can use the ServiceNow stage you created.

@@ -4,11 +4,10 @@ linkTitle: "Working with Secrets"
 description: >
   Armory supports several secret stores. Use them to keep your secrets secure and not commit plain text secrets to your configs.
 aliases:
-  - /spinnaker-install-admin-guides/secrets/
-  - /spinnaker-install-admin-guides/secrets/
-  - /spinnaker/halyard_secrets/
-  - /spinnaker/halyard-secrets/
-  - /spinnaker-install-admin-guides/secrets/secrets/
+  - /docs/spinnaker-install-admin-guides/secrets/
+  - /docs/spinnaker/halyard_secrets/
+  - /docs/spinnaker/halyard-secrets/
+  - /docs/spinnaker-install-admin-guides/secrets/secrets/
 ---
 
 ## Overview

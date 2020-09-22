@@ -1,7 +1,7 @@
 ---
 title: Upgrade Spinnaker using Halyard
 aliases:
-  - /spinnaker-install-admin-guides/upgrade-spinnaker/
+  - /docs/spinnaker-install-admin-guides/upgrade-spinnaker/
 ---
 
 ## Determining the target version

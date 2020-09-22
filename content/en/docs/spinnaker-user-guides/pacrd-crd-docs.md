@@ -1,7 +1,7 @@
 ---
 title: PaCRD CRD Documentation
 aliases:
-  - /spinnaker/pacrd-crd-docs/
+  - /docs/spinnaker/pacrd-crd-docs/
 ---
 {{< include "experimental-feature.html" >}}
 

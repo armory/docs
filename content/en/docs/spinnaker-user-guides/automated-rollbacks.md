@@ -2,7 +2,7 @@
 title: Automated Kubernetes Rollbacks
 aliases:
   - /spinnaker/automated_rollbacks/
-  - /spinnaker/automated-rollbacks/
+  - /docs/spinnaker/automated-rollbacks/
 ---
 
 

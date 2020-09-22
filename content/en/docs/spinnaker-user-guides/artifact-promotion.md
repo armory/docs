@@ -2,7 +2,7 @@
 title: Artifact Progression through Environments
 aliases:
   - /spinnaker/artifact_promotion/
-  - /spinnaker/artifact-promotion/
+  - /docs/spinnaker/artifact-promotion/
 ---
 
 

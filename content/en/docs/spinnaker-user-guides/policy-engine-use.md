@@ -1,6 +1,9 @@
 ---
 title: Using  Policy Engine
-summary: "Add policies to your OPA instance for Spinnaker to use when it performs validation to make sure your pipelines meet your policy requirements."
+description: >
+  Add policies to your OPA instance for Spinnaker to use when it performs validation to make sure your pipelines meet your policy requirements.
+aliases:
+  - /docs/spinnaker/policy-engine-use/
 ---
 
 ## Overview
@@ -14,7 +17,7 @@ For information about how to set up the Policy Engine, see [Enabling the Policy 
 
 ## Before you start
 
-Using the Policy Engine requires understanding OPA's [rego syntax](https://www.openpolicyagent.org/docs/latest/policy-language/). 
+Using the Policy Engine requires understanding OPA's [rego syntax](https://www.openpolicyagent.org/docs/latest/policy-language/).
 
 ## Using the Policy Engine to validate pipeline configurations
 

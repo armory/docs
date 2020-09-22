@@ -4,8 +4,8 @@ linkTitle: Baking Machine Images
 # Substantially different from install_guide/packer
 aliases:
   - /spinnaker_install_admin_guides/packer/
-  - /spinnaker-install-admin-guides/packer/
-description: Spinnaker has a built-in capability to 'bake' (build) machine images for deployment to various cloud environments. 
+  - /docs/spinnaker-install-admin-guides/packer/
+description: Spinnaker has a built-in capability to 'bake' (build) machine images for deployment to various cloud environments.
 ---
 
 ## Overview

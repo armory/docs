@@ -5,7 +5,7 @@ aliases:
   - /spinnaker_install_admin_guides/api-endpoint/
   - /spinnaker_install_admin_guides/api_endpoint/
   - /spinnaker-install-admin-guides/api_endpoint/
-  - /spinnaker-install-admin-guides/api-endpoint/
+  - /docs/spinnaker-install-admin-guides/api-endpoint/
 ---
 ## Overview
 

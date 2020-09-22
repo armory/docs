@@ -2,7 +2,7 @@
 title: Configuring Support Diagnostics for the Armory Platform
 linkTitle: Configuring Support Diagnostics
 aliases:
-  - /spinnaker-install-admin-guides/admin-diagnostics/
+  - /docs/spinnaker-install-admin-guides/admin-diagnostics/
 ---
 
 When you engage Armory Support, the support team might ask you about enabling Armory Diagnostics.  This sends the log and event data from the your system to Armory so that the support team can remotely investigate what might be going on with your system, resulting in a faster turnaround on solutions.

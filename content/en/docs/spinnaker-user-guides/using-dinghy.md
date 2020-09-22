@@ -2,6 +2,7 @@
 title: Using Pipelines as Code
 aliases:
   - /spinnaker/using_dinghy/
+  - /docs/spinnaker/using-dinghy/
 ---
 
 Armory's _Pipelines as Code_ feature provides a way to specify pipeline definitions in source code repos such as GitHub and BitBucket.

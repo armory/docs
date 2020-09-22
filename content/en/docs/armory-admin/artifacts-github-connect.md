@@ -3,7 +3,7 @@ title: Connecting Spinnaker to GitHub as an Artifact Source
 linkTitle: Connecting to GitHub
 aliases:
   - /spinnaker_install_admin_guides/github/
-  - /spinnaker-install-admin-guides/github
+  - /docs/spinnaker-install-admin-guides/github
 ---
 
 ## Configuring a GitHub Trigger

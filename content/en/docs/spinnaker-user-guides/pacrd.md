@@ -1,7 +1,7 @@
 ---
 title: PaCRD
 aliases:
-  - /spinnaker/pacrd/
+  - /docs/spinnaker/pacrd/
 ---
 
 <!-- Note:

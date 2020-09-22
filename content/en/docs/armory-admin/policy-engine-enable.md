@@ -3,8 +3,8 @@ title: Enabling Policy Engine
 aliases:
   - /spinnaker/policy_engine/
   - /spinnaker/policy-engine/
-  - /spinnaker/policy-engine-enable/
-summary: "Enable the Policy Engine and configure an OPA server. When enabled, the Policy Engine can perform save time or runtime validation on your Spinnaker pipelines." 
+  - /docs/spinnaker/policy-engine-enable/
+summary: "Enable the Policy Engine and configure an OPA server. When enabled, the Policy Engine can perform save time or runtime validation on your Spinnaker pipelines."
 ---
 
 ## Overview

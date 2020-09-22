@@ -3,7 +3,7 @@ title: Rate Limiting the Spinnaker API
 linkTitle: Rate Limiting Spinnaker
 aliases:
   - /spinnaker-install-admin-guides/rate_limit/
-  - /spinnaker-install-admin-guides/rate-limit/
+  - /docs/spinnaker-install-admin-guides/rate-limit/
 description: By default Spinnaker, queries (polls) the entire state of cloud resources managed by Spinnaker every 30 seconds through the Clouddriver service.
 ---
 

@@ -2,7 +2,7 @@
 title: Kubernetes Deployments
 aliases:
   - /spinnaker/kubernetes_deployments/
-  - /spinnaker/kubernetes-deployments/
+  - /docs/spinnaker/kubernetes-deployments/
 ---
 
 

@@ -3,7 +3,7 @@ title: Configuring Orca to use a Relational Database Management System
 linkTitle: Configuring Orca to use a RDBMS
 aliases:
   - /spinnaker_install_admin_guides/clouddriver-sql/
-  - /spinnaker-install-admin-guides/clouddriver-sql/
+  - /docs/spinnaker-install-admin-guides/clouddriver-sql/
 ---
 ## Overview
 
@@ -13,7 +13,7 @@ Armory recommends MySQL 5.7. For AWS, you can use Aurora.
 
 ## Base configuration
 
-You can find a complete description of the options in the [open source documentation](https://www.spinnaker.io/setup/productionize/persistence/clouddriver-sql/). 
+You can find a complete description of the options in the [open source documentation](https://www.spinnaker.io/setup/productionize/persistence/clouddriver-sql/).
 
 
 ## Database setup

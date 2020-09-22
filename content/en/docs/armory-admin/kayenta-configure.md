@@ -3,7 +3,7 @@ title: Configuring Kayenta for Automated Canary Deployments
 linkTitle: Configuring Canary Deployments
 aliases:
   - /spinnaker/configure_kayenta/
-  - /spinnaker/configure-kayenta/
+  - /docs/spinnaker/configure-kayenta/
 ---
 
 ## Overview

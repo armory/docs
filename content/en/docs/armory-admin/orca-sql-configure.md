@@ -1,10 +1,10 @@
 ---
 title: Configuring Orca to use a Relational Database Management System
 linkTitle: Configuring Orca to use RDBMS
-description: 
+description:
 aliases:
   - /spinnaker_install_admin_guides/orca-sql/
-  - /spinnaker-install-admin-guides/orca-sql/
+  - /docs/spinnaker-install-admin-guides/orca-sql/
 ---
 
 ## Overview
@@ -73,7 +73,7 @@ The above configuration grants authorization from any host. You can restrict it 
 
 ## Keeping existing execution history
 
-The above configuration will point Orca to your database. 
+The above configuration will point Orca to your database.
 You have the option to run a dual repository by adding `dual` in `profiles/orca-local.yml`.
 
 Armory v2.18+:

@@ -2,16 +2,16 @@
 title: Configuring GitHub OAuth for Spinnaker
 linkTitle: Configuring GitHub OAuth
 aliases:
-  - /spinnaker-install-admin-guides/authn-github/
+  - /docs/spinnaker-install-admin-guides/authn-github/
 ---
 
-This post describes how to configure GitHub and Spinnaker to use GitHub as an OAuth2 authenticator. 
+This post describes how to configure GitHub and Spinnaker to use GitHub as an OAuth2 authenticator.
 
 
 ## Requirements:
 
 * Ability to modify developer settings for your GitHub organization
-* Access to Halyard 
+* Access to Halyard
 * A Spinnaker deployment with [DNS and SSL]({{< ref "dns-and-ssl" >}}) configured
 
 ## Configuring GitHub OAuth

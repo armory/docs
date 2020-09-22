@@ -1,7 +1,7 @@
 ---
 title: "Configuring AWS Networking"
 aliases:
-  - /spinnaker-install-admin-guides/aws-subnets/
+  - /docs/spinnaker-install-admin-guides/aws-subnets/
 ---
 ## Overview
 

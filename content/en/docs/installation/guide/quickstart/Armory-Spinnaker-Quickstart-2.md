@@ -3,7 +3,7 @@ title: AWS QuickStart Step 2
 weight: 2
 aliases:
   - /spinnaker/Armory-Spinnaker-Quickstart-2/
-  - /spinnaker/quickstart/Armory-Spinnaker-Quickstart-2/
+  - /docs/spinnaker/quickstart/Armory-Spinnaker-Quickstart-2/
 description: >
   Configure the AWS Provider for Spinnaker and connect to an EKS cluster.
 ---

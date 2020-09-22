@@ -2,8 +2,8 @@
 title: Secrets with GCS
 weight: 50
 aliases:
-  - /spinnaker-install-admin-guides/secrets-gcs/
-  - /spinnaker-install-admin-guides/secrets/secrets-gcs/
+  - /docs/spinnaker-install-admin-guides/secrets-gcs/
+  - /docs/spinnaker-install-admin-guides/secrets/secrets-gcs/
 ---
 
 This document describes how to set up Spinnaker secrets in an encrypted GCS bucket. This example uses a bucket (`mybucket`) to store GitHub credentials and a kubeconfig file.

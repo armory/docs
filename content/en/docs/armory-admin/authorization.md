@@ -1,7 +1,7 @@
 ---
 title: Authentication and Authorization
-aliases: 
-  - /spinnaker/authorization/
+aliases:
+  - /docs/spinnaker/authorization/
 ---
 
 

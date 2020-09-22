@@ -4,7 +4,7 @@ linkTitle: Configuring TLS
 aliases:
   - /spinnaker_install_admin_guides/spinnaker-services-tls/
   - /spinnaker_install_admin_guides/services_tls/
-  - /spinnaker-install-admin-guides/spinnaker-services-ssl/
+  - /docs/spinnaker-install-admin-guides/spinnaker-services-ssl/
 description: Spinnaker services communicate with each other and can exchange potentially sensitive data. Enabling TLS between services ensures that this data is encrypted and that a service will only communicate with another service that has a valid certificate.
 ---
 
@@ -25,7 +25,7 @@ Note that distributing a CA public key is only needed if you sign certificates w
 
 **Java**
 
-Java services can present #1 as a keystore and #2 as a trust store in PKCS12 (preferred) or JKS format. 
+Java services can present #1 as a keystore and #2 as a trust store in PKCS12 (preferred) or JKS format.
 
 **Golang**
 

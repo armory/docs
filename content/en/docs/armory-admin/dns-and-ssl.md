@@ -6,10 +6,10 @@ aliases:
   - /spinnaker_install_admin_guides/dns_and_ssl/
   - /spinnaker_install_admin_guides/dns-and-ssl/
   - /spinnaker-install-admin-guides/dns_and_ssl/
-  - /spinnaker-install-admin-guides/dns-and-ssl/
+  - /docs/spinnaker-install-admin-guides/dns-and-ssl/
 ---
 
-## Overview 
+## Overview
 
 In order to use Spinnaker in your organization, you're going to want to configure your infrastructure so that users can access Spinnaker.  This has several steps:
 

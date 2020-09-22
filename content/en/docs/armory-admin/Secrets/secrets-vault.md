@@ -2,8 +2,8 @@
 title: Secrets with Vault
 weight: 10
 aliases:
-  - /spinnaker-install-admin-guides/secrets-vault/
-  - /spinnaker-install-admin-guides/secrets/secrets-vault/
+  - /docs/spinnaker-install-admin-guides/secrets-vault/
+  - /docs/spinnaker-install-admin-guides/secrets/secrets-vault/
 ---
 
 This document describes how to set up Spinnaker secrets in Hashicorp's Vault. In this example, we'll be using the default KV secret engine called `secret` and will be storing GitHub credentials, a kubeconfig file and a Java keystore for SAML SSO.

@@ -5,7 +5,7 @@ description: |
   Deploy to EKS and EC2.
 aliases:
   - /spinnaker/Armory-Spinnaker-Quickstart-3/
-  - /spinnaker/quickstart/Armory-Spinnaker-Quickstart-3/
+  - /docs/spinnaker/quickstart/Armory-Spinnaker-Quickstart-3/
 ---
 
 Need help setting this up? - For a guided tutorial, see the [video walkthrough](#aws-quickstart-step-3-video) at the bottom of this page.

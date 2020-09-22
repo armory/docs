@@ -1,7 +1,7 @@
 ---
 title: Bake and Share AMIs Across Accounts
 aliases:
-  - /spinnaker/bake-and-share/
+  - /docs/spinnaker/bake-and-share/
 ---
 
 ## Overview

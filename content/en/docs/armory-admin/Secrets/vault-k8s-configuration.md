@@ -3,8 +3,8 @@ layout: post
 title: Configuring Vault for Kubernetes Auth
 weight: 10
 aliases:
-  - /spinnaker-install-admin-guides/vault-configuration/
-  - /spinnaker-install-admin-guides/secrets/vault-configuration/
+  - /docs/spinnaker-install-admin-guides/vault-configuration/
+  - /docs/spinnaker-install-admin-guides/secrets/vault-configuration/
 ---
 
 ## Overview

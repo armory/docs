@@ -2,7 +2,7 @@
 title: Application Secrets Management
 aliases:
   - /spinnaker/app_secrets/
-  - /spinnaker/app-secrets/
+  - /docs/spinnaker/app-secrets/
 ---
 
 ## Overview

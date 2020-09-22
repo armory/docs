@@ -1,8 +1,8 @@
 ---
-title: Integrating a Sumo Logic Dashboard 
-linkTitle: Integrating Sumo Logic 
+title: Integrating a Sumo Logic Dashboard
+linkTitle: Integrating Sumo Logic
 aliases:
-  - /spinnaker-install-admin-guides/sumologic-dashboard/
+  - /docs/spinnaker-install-admin-guides/sumologic-dashboard/
 ---
 
 *This application has been developed and is supported by Armory, Inc. In case of technical questions, please [contact Armory](https://armory.io/contact) for support.*
@@ -84,7 +84,7 @@ Run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if u
 Go to Sumo Logic App Catalog and search for "Spinnaker" by Armory
 
 ### Dashboard filters
- 
+
 The Spinnaker Pipelines dashboard has a set of filters that you can apply to the entire dashboard as shown in the following example. Click the funnel icon in the top dashboard menu bar to display a scrollable list of filters that are applied across the entire dashboard.
 
 NOTE: You can use filters to drill down and examine the data on a granular level by application and pipeline

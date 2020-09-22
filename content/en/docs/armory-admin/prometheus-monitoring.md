@@ -3,7 +3,7 @@ title: Monitoring Spinnaker with Prometheus
 description: >
   Monitoring Spinnaker using Prometheus and Grafana
 aliases:
-  - /spinnaker-install-admin-guides/prometheus-monitoring/
+  - /docs/spinnaker-install-admin-guides/prometheus-monitoring/
 ---
 
 {{% alert title="Warning" color="warning" %}}There is a known issue with metric names in version 2.20.x. Until this issue is resolved, any dashboards created from the instructions on this page will not work. For more information, see the release notes for your version, such as [2.20.5]({{< ref "armoryspinnaker_v2-20-5#spinnaker-metrics" >}}). {{% /alert %}}
@@ -177,10 +177,10 @@ Access the Grafana web interface via http://localhost:3000 and use the default g
 
 ## Add Armory dashboards to Grafana
 
-Armory provides some sample dashboards (in JSON format) that you can import into Grafana as a starting point for metrics to graph for monitoring. 
+Armory provides some sample dashboards (in JSON format) that you can import into Grafana as a starting point for metrics to graph for monitoring.
 Armory has additional dashboards that are availabe to Armory customers. You can skip this section if you are a Grafana expert.
 
-To import the sample dashboards, perform the following steps: 
+To import the sample dashboards, perform the following steps:
 
 1. Git clone this repo to your local workstation: (https://github.com/spinnaker/spinnaker-monitoring)
 2. Access the Grafana web interface (as shown above)

@@ -1,5 +1,7 @@
 ---
 title: Using the Terraform Integration Stage
+aliases:
+  - /docs/spinnaker/terraform-use-integration/
 ---
 
 ## Overview
@@ -30,7 +32,7 @@ To use the stage, perform the following steps:
     * **Basic Settings**
       * **Terraform Version**:  Terraform version to use. All Terraform stages within a pipeline that modify state (apply, output, destroy) must use the same version. If you want to use the remote backend, the minimum supported version is 0.12.0 and you must select the same Terraform version that your Terraform Cloud/Enterprise is configured to use.
       * **Action**: Terraform action to perform. You can select any of the following actions:
-        * **Plan**: The output of the plan command is saved to a base64-encoded Spinnaker artifact and is injected into context.  You can use this artifact with a webhook to send the plan data to an external system or to use it in an `apply` stage. Optionally, you can select **Plan for Destroy** to view what Terraform destroys if you run the Destroy action. 
+        * **Plan**: The output of the plan command is saved to a base64-encoded Spinnaker artifact and is injected into context.  You can use this artifact with a webhook to send the plan data to an external system or to use it in an `apply` stage. Optionally, you can select **Plan for Destroy** to view what Terraform destroys if you run the Destroy action.
           * For remote backends, if you view a `plan` action in the Terraform Cloud/Enterprise UI, the type of `plan` action that the Terraform Integration performs is a "speculative plan." For more information, see [Speculative Plans](https://www.terraform.io/docs/cloud/run/index.html#speculative-plans).
         * **Apply**: Run `terraform apply`. Optionally, you can ignore state locking. Armory recommends you do not ignore state locking because it can lead to state corruption. Only ignore state locking if you understand the consequences.
         * **Destroy**: Run `terraform destroy`. Optionally, you can ignore state locking. Armory recommends you do not ignore state locking because it can lead to state corruption.  Only ignore state locking if you understand the consequences.

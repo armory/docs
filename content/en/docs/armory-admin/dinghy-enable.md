@@ -2,7 +2,7 @@
 title: Enabling Pipelines as Code
 aliases:
   - /spinnaker/install_dinghy/
-  - /spinnaker/install-dinghy/
+  - /docs/spinnaker/install-dinghy/
 ---
 
 This guide includes:
@@ -165,12 +165,12 @@ Make PR Validations mandatory to ensure users only merge working `dinghyfiles`.
 Perform the following steps:
 
 1. Go to your GitHub repository.
-2. Click on **Settings > Branches**. 
+2. Click on **Settings > Branches**.
 3. In **Branch protection rules**, select **Add rule**.
 4. Add `master` in **Branch name pattern** so that the rule gets enforced on the `master` branch.
    Note that if this is a brand new repository with no commits, the "dinghy" option does not appear. You must first create a `dinghyfile` in any branch.
 5. Select **Require status checks to pass before merging** and make **dinghy** required.
-   Armory recommends selecting **Include administrators** as well so that all PRs get validated, regardless of user. 
+   Armory recommends selecting **Include administrators** as well so that all PRs get validated, regardless of user.
 
 The following screenshot shows what your GitHub settings should resemble:
 {{< figure src="/images/dinghy/pr_validation/branch_mandatory.png" alt="Configured dinghy PR validation." >}}

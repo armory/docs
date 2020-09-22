@@ -2,7 +2,7 @@
 title: Connecting Docker Registries
 aliases:
   - /spinnaker_install_admin_guides/docker/
-  - /spinnaker-install-admin-guides/docker/
+  - /docs/spinnaker-install-admin-guides/docker/
 ---
 
 ## Overview

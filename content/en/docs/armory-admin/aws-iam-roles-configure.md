@@ -5,7 +5,7 @@ aliases:
   - /spinnaker_install_admin_guides/add-aws-account-iam/
   - /spinnaker_install_admin_guides/add_aws_account_iam/
   - /spinnaker-install-admin-guides/add_aws_account_iam/
-  - /spinnaker-install-admin-guides/add-awes-account-iam/
+  - /docs/spinnaker-install-admin-guides/add-aws-account-iam/
 ---
 
 Once you have (OSS or Armory) Spinnaker up and running in Kubernetes, you'll want to start adding deployment targets.  *This document assumes Spinnaker was installed with Operator or Halyard, that you have access to the Spinnaker config files, a way to apply them (`kubectl` or `hal`), and that you have a way to create AWS permissions, users, and roles*

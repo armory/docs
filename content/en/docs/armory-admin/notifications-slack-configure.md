@@ -1,7 +1,7 @@
 ---
 title: Configuring Slack Notifications
 aliases:
-  - /spinnaker-install-admin-guides/slack-notifcations
+  - /docs/spinnaker-install-admin-guides/slack-notifcations
 ---
 This article describes how to configure Spinnaker to send Slack notifications.  
 

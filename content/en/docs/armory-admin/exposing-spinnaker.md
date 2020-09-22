@@ -3,7 +3,7 @@ title: Exposing Spinnaker
 aliases:
   - /spinnaker/configure_ingress/
   - /spinnaker/exposing_spinnaker/
-  - /spinnaker/exposing-spinnaker/
+  - /docs/spinnaker/exposing-spinnaker/
 ---
 
 ## DNS Preparation

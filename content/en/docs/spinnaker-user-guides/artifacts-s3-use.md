@@ -1,7 +1,7 @@
 ---
 title: Working with S3 Artifacts
 aliases:
-  - /spinnaker-user-guides/s3/
+  - /docs/spinnaker-user-guides/s3/
 
 ---
 

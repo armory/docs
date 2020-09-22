@@ -3,7 +3,7 @@ title: AWS QuickStart Step 1
 weight: 2
 aliases:
   - /spinnaker/Armory-Spinnaker-Quickstart-1/
-  - /spinnaker/quickstart/Armory-Spinnaker-Quickstart-1/
+  - /docs/spinnaker/quickstart/Armory-Spinnaker-Quickstart-1/
 description: >
   The AWS QuickStart walks you through configuring your Spinnaker instance hosted on AWS to deploy to AWS.
 ---
