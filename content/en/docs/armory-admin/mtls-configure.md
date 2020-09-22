@@ -92,7 +92,7 @@ http:
 
 ## Changing service endpoints
 
-This section is identical to [changing endpoints for TLS](../services-tls#changing-service-endpoints).
+This section is identical to [changing endpoints for TLS]({{< ref "tls-configure#changing-service-endpoints" >}}).
 
 ## Changing readiness probe
 

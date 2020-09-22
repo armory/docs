@@ -61,7 +61,7 @@ The following guidelines are meant for EKS workers:
 * The Kubernetes cluster should be able to support the Spinnaker load. Use the same instance type and configure the same number of worker nodes as the primary.
 * There needs to be at least 1 node in each availability zone the cluster is using.
 * The autoscaling group has to have a proper termination policy. Use one or all of the following policies: OldestLaunchConfiguration, OldestLaunchTemplate, OldestInstance. This allows the underlying worker AMIs to be rotated more easily.
-* Ideally, Spinnaker pods for each service that do not have a replica of 1 should be spread out among the various workers. This means that [pod affinity/anti-affinity](https://blog.verygoodsecurity.com/posts/kubernetes-multi-az-deployments-using-pod-anti-affinity/) should be configured. With this configuration Spinnaker will be able to handle availability zone failures better.
+* Ideally, Spinnaker pods for each service that do not have a replica of 1 should be spread out among the various workers. This means that pod affinity/anti-affinity should be configured. With this configuration Spinnaker will be able to handle availability zone failures better.
 
 ## DNS considerations
 
