@@ -4,7 +4,7 @@ title: Secrets in Kubernetes
 weight: 50
 aliases:
   - /spinnaker-install-admin-guides/secrets-kubernetes/
-  -   - /spinnaker-install-admin-guides/secrets/secrets-kubernetes/
+  - /spinnaker-install-admin-guides/secrets/secrets-kubernetes/
 ---
 
 >Note: Storing Spinnaker secrets in a Kubernetes secret is only supported if you're using the Operator to deploy and manage Spinnaker.
