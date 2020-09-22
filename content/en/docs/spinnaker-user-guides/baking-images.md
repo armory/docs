@@ -1,11 +1,6 @@
 ---
-layout: post
 title: Baking Images (AWS EC2)
-weight: 70
 aliases:
-  # I don't think the `baking` ones are necessary, but they also won't hurt
-  - /user-guides/baking/
-  - /user_guides/baking/
   - /spinnaker_user_guides/baking/
   - /user-guides/baking-images/
   - /user-guides/baking_images/

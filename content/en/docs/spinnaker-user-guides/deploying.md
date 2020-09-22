@@ -1,6 +1,5 @@
 ---
 title: Deploying (AWS EC2)
-weight: 80
 aliases:
   - /user-guides/deploying/
   - /user_guides/deploying/
@@ -38,7 +37,7 @@ Press the '+' on the right to create a new load balancer, you may need to select
 
 We'll enter 'prod' into the 'Stack' field because our environment contains dev, stage, and prod.
 
-Set the [VPC Subnet Type]({{< ref "aws-subnets" >}}), which maps to our pre-created security group, set the correct forwarding ports and most importantly set the healthcheck.
+Set the [VPC Subnet Type]({{< ref "aws-subnets-configure" >}}), which maps to our pre-created security group, set the correct forwarding ports and most importantly set the healthcheck.
 
 Now we can hit create.
 

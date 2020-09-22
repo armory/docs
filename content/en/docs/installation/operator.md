@@ -198,7 +198,7 @@ See this [repo](https://github.com/armory/spinnaker-kustomize-patches) for examp
 
 ### Secret Management
 
-You can store secrets in one of the [supported secret engine](/docs/spinnaker-install-admin-guides/secrets/secrets/#supported-secret-engines).
+You can store secrets in one of the [supported secret engine]({{< ref "secrets#supported-secret-engines" >}}).
 
 #### Kubernetes Secret
 With the Operator, you can also reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker.

@@ -1,7 +1,5 @@
 ---
-layout: post
 title: Best Practices
-weight: 110
 aliases:
   - /user-guides/best-practices/
   - /user-guides/best_practices/

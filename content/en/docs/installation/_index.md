@@ -3,7 +3,7 @@ title: "Installation"
 linkTitle: "Installation"
 weight: 2
 description: |
-  Installing Armory
+  Installing Armory in your environment
 aliases:
   - /install_guide/install/
   - /install-guide/getting_started/

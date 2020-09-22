@@ -1,6 +1,5 @@
 ---
 title: Automating Spinnaker™
-weight: 180
 aliases:
   - /user-guides/writing-scripts/
   - /user-guides/writing_scripts/
