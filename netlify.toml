@@ -33,13 +33,7 @@
 
 [[redirects]]
   from = "/spinnaker/*"
-  to = "/docs/armory-admin/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/docs/spinnaker/*"
-  to = "/docs/armory-admin/:splat"
+  to = "/docs/spinnaker/:splat"
   status = 301
   force = false
 
@@ -57,13 +51,7 @@
 
 [[redirects]]
   from = "/spinnaker-install-admin-guides/*"
-  to = "/docs/armory-admin/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/docs/spinnaker-install-admin-guides/*"
-  to = "/docs/armory-admin/:splat"
+  to = "/docs/spinnaker-install-admin-guides/:splat"
   status = 301
   force = false
 
@@ -84,8 +72,6 @@
   to = "/docs/installation/operator-reference/:splat"
   status = 301
   force = false
-
-
 
 [[plugins]]
 package = "@netlify/plugin-sitemap"
