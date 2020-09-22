@@ -5,7 +5,8 @@ aliases:
   - /spinnaker_install_admin_guides/spinnaker-services-tls/
   - /spinnaker_install_admin_guides/services_tls/
   - /docs/spinnaker-install-admin-guides/spinnaker-services-ssl/
-description: Spinnaker services communicate with each other and can exchange potentially sensitive data. Enabling TLS between services ensures that this data is encrypted and that a service will only communicate with another service that has a valid certificate.
+description: >
+  Spinnaker services communicate with each other and can exchange potentially sensitive data. Enabling TLS between services ensures that this data is encrypted and that a service will only communicate with another service that has a valid certificate.
 ---
 
 > Switching from plain HTTP to HTTPS will cause some short disruption to the services as they become healthy at different times.
@@ -54,7 +55,7 @@ The following table lists the Armory and Spinnaker services, their type (Java or
 * Dinghy is the service for Pipelines as Code.
 * Terraformer is the service for the Terraform Integration.
 
-**Note**: Gate may be handled differently if you already [terminating SSL at Gate](../dns-and-ssl). If not, make sure the load balancer and ingress you are using supports self-signed certificates.
+**Note**: Gate may be handled differently if you already [terminating SSL at Gate]({{< ref "dns-and-ssl" >}}). If not, make sure the load balancer and ingress you are using supports self-signed certificates.
 
 In the following sections, you need to have the following information available:
 
@@ -68,7 +69,7 @@ In the following sections, you need to have the following information available:
 - `[SERVICE]_KEY_PASS` (each Java server): the password to the keystore you're using
 
 
-To learn how to generate these files, refer to [generating certificates](../generating-certificates/#putting-it-together-tls).
+To learn how to generate these files, refer to [generating certificates]({{< ref "generating-certificates/#putting-it-together-tls" >}}).
 
 
 ## Configuration (Java services)

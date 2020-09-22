@@ -10,7 +10,7 @@ Spinnaker is composed of several microservices for resiliency
 and follows the single-responsibility principle.  It allows for faster iteration on each
 individual component and a more pluggable architecture for custom components.
 
-![Architecture Diagram](/images/install_admin_guides_SpinnakerArchitecture.png)
+![Architecture Diagram](/images/overview/SpinnakerArchitecture.png)
 
 ## Spinnaker microservices
 

@@ -40,7 +40,7 @@ It's recommended to encrypt the exposed Spinnaker endpoints.  There are three hi
 
 There are a number of ways to achieve all of these - you can work with your Kubernetes, security, and networking teams to determine which methods best meet your organization(s) needs.
 
-If you need to terminate TLS on the backend containers (the second or third options), review the Open Source Spinnaker documentation regarding configuring TLS certificates on the backend microservices: (Setup/Security/Authentication/SSL)[https://www.spinnaker.io/setup/security/authentication/ssl/].
+If you need to terminate TLS on the backend containers (the second or third options), review the Open Source Spinnaker documentation regarding configuring TLS certificates on the backend microservices: (Setup/Security/SSL)[https://spinnaker.io/setup/security/ssl/].
 
 ## Create a DNS Entry for your load balancer
 

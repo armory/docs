@@ -90,4 +90,4 @@ hal deploy apply --service-names clouddriver
 
 Success! Now you will be able to use ECR as a docker registry in the configuration stage.
 
-![](/images/Image-2018-12-18-at-2.02.02-PM.png)
+![](/images/armory-admin/artifacts/ecr-test.png)

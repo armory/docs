@@ -9,13 +9,13 @@ aliases:
 ## Configure a Spinnaker application in Okta
 
 Select Applications -> Applications from the top menu.
-![Applications Screen](/images/okta-applications.png)
+![Applications Screen](/images/armory-admin/artifacts/okta/okta-applications.png)
 
 Click the green "Add Application" button.
-![AddApplicationButton](/images/okta-addapplication.png)
+![AddApplicationButton](/images/armory-admin/artifacts/okta/okta-addapplication.png)
 
 Click the green "Create New App" button.
-![CreateNewApp](/images/okta-createnewapp.png)
+![CreateNewApp](/images/armory-admin/artifacts/okta/okta-createnewapp.png)
 
 In the dialog "Create a New Application Integration", select the following values:
 
@@ -24,11 +24,11 @@ In the dialog "Create a New Application Integration", select the following value
 
 Then hit the green "Create" button.
 
-![CreateNewIntegration](/images/okta-createnewintegration.png)
+![CreateNewIntegration](/images/armory-admin/artifacts/okta/okta-createnewintegration.png)
 
 
 On "Create SAML Integration" page, enter an app name and hit the green "Next" button.
-![CreateNewIntegration](/images/okta-appname.png)
+![CreateNewIntegration](/images/armory-admin/artifacts/okta/okta-appname.png)
 
 On the "Configure SAML page", configure the following settings:
 
@@ -47,10 +47,10 @@ In the GROUP ATTRIBUTE STATEMENTS section:
 * Name = memberOf, Name format = Unspecified, Filter = Regex: .*
 
 Then, hit the green "Next" button
-![SamlSettings](/images/okta-samlsettings.png)
+![SamlSettings](/images/armory-admin/artifacts/okta/okta-samlsettings.png)
 
 On the Create SAML Integration Feedback page, select the "I'm an Okta customer adding an internal app" button, then hit the green "Finish" button.
-![Feedback](/images/okta-feedback.png)
+![Feedback](/images/armory-admin/artifacts/okta/okta-feedback.png)
 
 
 This takes you to the "Sign On" tab of the application you just created.
@@ -58,10 +58,10 @@ This takes you to the "Sign On" tab of the application you just created.
 You can navigate back to this page by going to applications -> applicationName -> Sign On tab.
 Click the button "View Setup Instructions".  This will display the page with configuration information
 necessary to configure Spinnaker.
-![ViewSetupInstructions](/images/okta-viewsetupinstructions.png)
+![ViewSetupInstructions](/images/armory-admin/artifacts/okta/okta-viewsetupinstructions.png)
 
 Under the "Optional" section near the bottom, copy the contents of IDP metadata and save to file. For example, under `/Users/armory/.hal/saml/metadata.xml`.
-![IDPmetadata](/images/okta-idpmetadata.png)
+![IDPmetadata](/images/armory-admin/artifacts/okta/okta-idpmetadata.png)
 
 ## Configure Spinnaker to use Okta
 
@@ -80,7 +80,7 @@ keytool -genkey -v -keystore $KEYSTORE_PATH -alias saml -keyalg RSA -keysize 204
 
 **Operator**
 
-Add the following snippet to `SpinnakerService` manifest. This references secrets stored in a Kubernetes secrets in the same namespace as Spinnaker, but secrets can be stored in any of the supported [secret engines](/spinnaker-install-admin-guides/secrets):
+Add the following snippet to `SpinnakerService` manifest. This references secrets stored in a Kubernetes secrets in the same namespace as Spinnaker, but secrets can be stored in any of the supported [secret engines](/armory-admin/Secrets):
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
