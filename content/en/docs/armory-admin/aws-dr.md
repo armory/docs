@@ -28,7 +28,7 @@ A passive Spinnaker means that the deployment:
 
 {{% alert title="Note" %}}The storage you use should be replicated across regions since these contain all the application and pipeline definitions.{{% /alert %}}
 
-Armory recommends using a relational database for Orca and Clouddriver. For Orca, a relational database helps maintain integrity. For Clouddriver, it reduces the time to recovery. Even though any MySQL version 5.7+ database can be used, Armory recommends using AWS Aurora for the following reasons:
+Armory recommends using a relational database for Orca and Clouddriver. For Orca, a relational database helps maintain integrity. For Clouddriver, it reduces the time to recovery. Even though any MySQL version 5.7+ database can be used, Armory recommends using AWS Aurora MySQL for the following reasons:
 
 - More performant than RDS MySQL
 - Better high availability than RDS MySQL
@@ -37,9 +37,12 @@ Armory recommends using a relational database for Orca and Clouddriver. For Orca
 
 Note the following guidelines about Spinnaker storage and caching:
 
-* S3 buckets should be set up with cross-region replication turned on. See [Replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html).
-* The MySQL database should be set up with cross-region replication turned on. See the following page for AWS Aurora: [Replicating Amazon Aurora MySQL DB Clusters Across AWS Regions](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Replication.CrossRegion.html)
-* Redis - Each service should be configured to use it’s [own Redis](https://www.spinnaker.io/setup/productionize/caching/externalize-redis/#configure-per-service-redis). With Spinnaker services configured to use a relational database or S3 as a permanent backing store Redis is now used for caching. For disaster recovery purposes it is no longer required that Redis is recoverable. A couple things to note are:
+* S3 buckets should be set up with cross-region replication turned on. See [Replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html) in the AWS documentation.
+* Consider the following if you plan to use Aurora MySQL: 
+    - [Replicating Amazon Aurora MySQL DB Clusters Across AWS Regions](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Replication.CrossRegion.html)
+    - [Encrypting Aurora databases](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Encryption.html)
+    - [Backing up and Restoring Aurora clusters](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html)
+* Redis - Each service should be configured to use its [own Redis](https://www.spinnaker.io/setup/productionize/caching/externalize-redis/#configure-per-service-redis). With Spinnaker services configured to use a relational database or S3 as a permanent backing store Redis is now used for caching. For disaster recovery purposes it is no longer required that Redis is recoverable. A couple things to note are:
     - Gate - Users will need to login again
     - Fiat - Will need to sync user permissions and warmup
     - Orca - Will lose pending executions
