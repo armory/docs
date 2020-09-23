@@ -37,7 +37,7 @@ From an Amazon Web Service (AWS) point of view, a server group is represented by
 
 ![](/images/Image-2017-03-24-at-3.05.04-PM.png)
 
-###Stage
+### Stage
 Within a pipeline, the tasks that pipeline performs are called stages.
 
 ![](/images/Image-2017-03-24-at-3.06.29-PM.png)
