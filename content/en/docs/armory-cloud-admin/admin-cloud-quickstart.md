@@ -2,7 +2,7 @@
 title: Armory Cloud Admin Quickstart 
 ---
 
-If this is your first time using Armory Cloud, this guide walks you through the parts of Armory Cloud that you must configure before your users can start deploying your applications.
+If this is your first time using Armory Cloud, this guide walks you through the parts of Armory Cloud that you must configure before your users can start deploying applications.
 
 ## Logging in to the Armory Cloud Console 
 
@@ -42,5 +42,5 @@ Cloud providers are the deployment targets for any app that you deliver using Ar
 
 ## Accessing Spinnaker
 
-Once the environments are configured, your Application Developers can access the cloud deployment of the Armory Platform to start deploying their applications.
+Once the environments are configured, your Application Developers can access the cloud deployment of the Armory Platform to start deploying applications.
 
