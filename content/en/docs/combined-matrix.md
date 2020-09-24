@@ -298,7 +298,7 @@ The following table lists the supported notification systems:
 | GoogleChat | All supported versions |       |
 | Twilio     | All supported versions |       |
 
-## Observability
+<!--## Observability
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
@@ -310,7 +310,7 @@ The following table lists the supported observabilty providers:
 |:-----------|:-----------------------|:-----------------------|:----------------------------|
 | New Relic  | All supported versions | All supported versions |                             |
 | Prometheus | All supported versions | All supported versions | Use Grafana for dashboards. |
-
+-->
 ## Persistent storage
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
