@@ -67,6 +67,18 @@ The Spinnaker UI, Deck, has undergone extensive changes to provide better user e
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/e6nC7AtYv4s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+**New buttons**
+
+When you first log in to Spinnaker, you now see **Create Application** and **Create Project** buttons. Previously, these were under a menu named **Actions**. The buttons also appear on the corresponding page, either Application or Project.
+
+{{< figure src="/images/deck-post-2-22-buttons.png" alt="2.22 includes new buttons for creating an application and creating a project" >}}
+
+**Applications view**
+
+The changes look drastic, but there is no change in functionality. The top navigation for the **Applications** page is now on the left and has been expanded so that more capabilities are visible at the top level.
+
+{{< figure src="/images/deck-post-2-22-app-page.png" alt="The Applications page has a new left navigation." >}}
+
 ###  Spinnaker Community Contributions
 
 <!-- Copy/paste highlights from the corresponding OSS version. -->
