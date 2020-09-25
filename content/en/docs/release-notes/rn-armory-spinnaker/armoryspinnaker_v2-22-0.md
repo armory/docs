@@ -10,7 +10,7 @@ description: Release notes for Armory 2.22.0
 
 ## Required Halyard and Operator version
 
-Armory Spinnaker 2.21.2 requires one of the following:
+Armory Spinnaker 2.22.0 requires one of the following:
 
 * Armory Halyard 1.9.4 or later.
 * Armory Spinnaker Operator 1.0.3 or later.
