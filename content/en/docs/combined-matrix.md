@@ -219,15 +219,85 @@ The following table lists the supported CI systems:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-The following table lists the supported deployment targets:
 
-| Provider      | Deployment target                                               | Deployment strategies | Armory                 | Notes |
-|:--------------|:----------------------------------------------------------------|:----------------------|:-----------------------|:------|
-| Amazon AWS    | EC2, ECS, EKS                                                   |                       | All supported versions |       |
-| Cloud Foundry | PKS <ul><li>Versions A.B - X.Y</li></ul>                        |                       | All supported versions |       |
-| Google Cloud  | App Engine, Compute Engine, GKE                                 |                       | All supported versions |       |
-| Kubernetes    | Manifest-based deployments <ul><li>Versions A.B - X.Y</li></ul> |                       | All supported versions |       |
-| Docker        | Docker Registry                                                 |                       | All supported versions |       |
+
+### Compute as a Service
+
+<!-- 
+{{< caas-ec2-deploy-strategies.inline >}}
+<ul>
+    <li>None (always adds a new one)</li>
+    <li>Highlander</li>
+    <li>Red/Back aka Blue/Green</li>
+    <li>Custom (run a custom pipeline)</li>
+    <li>Rolling Red/Black</li>
+</ul>
+{{</ caas-ec2-deploy-strategies.inline >}} 
+-->
+
+<!-- 
+{{< caas-gce-deploy-strategies.inline >}}
+<ul>
+    <li>Red/Black aka Blue/Green</li>
+    <li>Custom</li>
+</ul>
+{{</ caas-gce-deploy-strategies.inline >}} 
+-->
+
+| Provider                    | Deployment strategies                      | Armory Versions        | Notes |
+|:----------------------------|:-------------------------------------------|:-----------------------|:------|
+| Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |       |
+| Google Cloud Compute Engine | {{< caas-gce-deploy-strategies.inline />}} | All supported versions |       |
+
+
+
+### Container as a Service Platforms
+
+These are providers that are manifest based. Most of these will apply the manifest and leave the rollout logic to the platform itself.
+
+| Provider          | Supported Versions | Armory Versions        | Notes |
+|:------------------|:-------------------|:-----------------------|:------|
+| Kubernetes        | All versions       | All supported versions |       |
+| Amazon AWS EKS    | All versions       | All supported versions |       |
+| Google GKE        | All versions       | All supported versions |       |
+| Cloud Foundry PKS | All versions       | All supported versions |       |
+
+
+| Provider       | Deployment strategies                      | Armory Versions        | Notes |
+|:---------------|:-------------------------------------------|:-----------------------|:------|
+| Amazon AWS ECS | <ul><li>Red/Black aka Blue/Green</li></ul> | All supported versions |       |
+
+
+
+### Platform as a Service
+| Provider                | Deployment strategies    | Armory Versions        | Notes |
+|:------------------------|:-------------------------|:-----------------------|:------|
+| Google Cloud App Engine | <ul><li>Custom</li></ul> | All supported versions |       |
+
+
+
+### Lambdas/Function
+
+You write the function and you’ll utilize Spinnaker to manage the rollout of iterative versions.
+These are usually hosted by Cloud Providers
+
+
+<!-- 
+{{< aws-lambda-deploy-strategies.inline >}}
+<ul>
+    <li>Red/Black aka Blue Green</li>
+    <li>Highlander</li>
+    <li>Custom (run a custom pipeline)</li>
+</ul>
+{{</ aws-lambda-deploy-strategies.inline >}} 
+-->
+
+
+| Provider          | Deployment strategies                        | Armory Versions        | Notes |
+|:------------------|:---------------------------------------------|:-----------------------|:------|
+| Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |       |
+
+
 
 ## Dynamic accounts
 
