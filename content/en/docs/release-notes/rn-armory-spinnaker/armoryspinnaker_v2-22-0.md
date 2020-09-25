@@ -43,7 +43,9 @@ This release note will be updated once the updated plugin is available.
 
 ## Known Issues
 <!-- Copy/paste known issues from the previous version if they're not fixed -->
-There are currently no known issues with this release.
+
+{{< include "ki-plugins-sdk.md" >}}
+
 
 ## Highlighted Updates
 
