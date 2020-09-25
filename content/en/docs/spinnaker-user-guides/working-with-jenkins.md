@@ -1,6 +1,5 @@
 ---
 title: Working with Jenkins
-weight: 50
 aliases:
   - /user-guides/working-with-jenkins/
   - /user-guides/working_with_jenkins/

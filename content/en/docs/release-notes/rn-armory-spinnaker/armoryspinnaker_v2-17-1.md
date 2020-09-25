@@ -2,6 +2,7 @@
 
 title: v2.17.1 Armory Release (OSS Release 1.17.2)
 toc_hide: true
+
 aliases:
   - armoryspinnaker_v2.17.1
 ---
@@ -18,7 +19,7 @@ There are currently no known issues with this release.
 ## Highlighted Updates
 ### Armory
 
-This release fixes an issue in Armory Spinnaker `2.17.0` with Kayenta not starting properly.
+This release fixes an issue in Armory `2.17.0` with Kayenta not starting properly.
 
 ###  Spinnaker Community Contributions
 <br>

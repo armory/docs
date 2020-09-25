@@ -1,7 +1,5 @@
 ---
-layout: post
 title: Using Kustomize for Manifests
-weight: 170
 ---
 
 ## Overview
@@ -80,7 +78,7 @@ Kustomize in 2.17+ requires the [git/repo](https://www.spinnaker.io/reference/ar
 ​
 ### Enable Kustomize
 ​
-Kustomize can be enabled by a feature flag in Armory Spinnaker 2.16 and later.
+Kustomize can be enabled by a feature flag in Armory 2.16 and later.
 
 **Operator**
 

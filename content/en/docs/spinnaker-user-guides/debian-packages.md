@@ -1,6 +1,5 @@
 ---
 title: Debian Packages
-weight: 150
 aliases:
   - /user-guides/debian-packages/
   - /user-guides/debian_packages/
