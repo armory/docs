@@ -3,15 +3,40 @@ title: v2.22.0 Armory Release (OSS Spinnaker v1.22.1)
 toc_hide: true
 ---
 
-## 2020/09/60 Release Notes
+## 2020/09/25 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-## Required Halyard version
 
-Armory Spinnaker 2.22.0 requires Armory Halyard <PUT IN A VERSION NUMBER> or later.
+## Required Halyard and Operator version
+
+Armory Spinnaker 2.21.2 requires one of the following:
+
+* Armory Halyard 1.9.4 or later.
+* Armory Spinnaker Operator 1.0.3 or later.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
+
+{{< include "bc-k8s-namespace.md" >}}
+{{< include "bc-docker-giduid.md" >}}
+{{< include "bc-k8s-job-suffix.md" >}}
+
+
+#### Spinnaker metrics
+
+Metrics data, specifically the metric names, for Spinnaker changed in 2.20. These changes are not backwards compatible and may result in broken third-party dashboards, such as Grafana dashboards.
+
+**Workarounds**:
+
+* **Observability plugin**: Armory is working on updates to the [Observability plugin](https://github.com/armory-plugins/armory-observability-plugin) to remedy this issue. The plugin currently supports New Relic & Prometheus. Note that this resolution requires you to make updates to use the new metric names.
+
+   For information about how to install a plugin, see [Plugin Users Guide](https://spinnaker.io/guides/user/plugins/).
+
+* **Update existing dashboards**: Change your dashboards and alerts to use the new metric names.
+
+Although both workarounds involve updating your dashboards to use the new metric names, Armory recommends switching to the Observability plugin. Due to changes the Spinnaker project is making, the Observability plugin provides a long-term solution. 
+
+This release note will be updated once the updated plugin is available.
 
 ## Known Issues
 <!-- Copy/paste known issues from the previous version if they're not fixed -->
@@ -22,6 +47,12 @@ There are currently no known issues with this release.
 ### Armory
 
 Summary of changes in the latest release.
+
+#### UI 
+
+The Spinnaker UI, Deck, has undergone extensive changes to provide better user experience around certain features. The changes may look drastic at first, but Fernando, an engineer at Armory, is here to walk you through them:
+
+{{< youtube e6nC7AtYv4s >}}
 
 ###  Spinnaker Community Contributions
 
