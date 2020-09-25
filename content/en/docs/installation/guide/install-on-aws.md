@@ -314,7 +314,9 @@ cp kubeconfig-spinnaker-system-sa ${WORKING_DIRECTORY}/.secret
 
 ## Start the Halyard container
 
-On the `Halyard machine`, start the Halyard container (for a list of halyard versions available and their release notes, please visit our [Armory-extended Halyard Release Notes page](https://docs.armory.io/docs/release-notes/rn-armory-halyard/)).
+{{< include "halyard-note.md" >}}
+
+On the `Halyard machine`, start the Halyard container .
 
 *If you want to install OSS Spinnaker instead, use `gcr.io/spinnaker-marketplace/halyard:stable` for the Docker Halyard image reference in substitution of `armory/halyard-armory:<image_version>` in the commands below*
 
