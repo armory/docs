@@ -54,9 +54,11 @@ Summary of changes in the latest release.
 
 This release includes fixes for the following CVEs:
 
-* CVE-2020-11984
-* CVE-2020-9484
-* CVE-2020-7692
+* [CVE-2020-11984](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11984)
+* [CVE-2020-9484](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-9484)
+* [CVE-2020-7692](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7692)
+
+Additionally, several CVEs are resolved in the Deck and Gate services.
 
 #### UI
 
