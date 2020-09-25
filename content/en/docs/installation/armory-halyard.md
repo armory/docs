@@ -38,6 +38,9 @@ Our installer currently expects to find your kubeconfig named `config` in
 the `.kube` directory you map below.  If you've named your config something
 else, you'll need to rename or symlink the file accordingly.
 
+For a list of halyard versions available and their release notes, including version differences, and matched versions with matched Armory releases, please visit our [Armory-extended Halyard Release Notes page](https://docs.armory.io/docs/release-notes/rn-armory-halyard/).
+
+
 ### Running Halyard Commands
 Once Armory-extended Halyard is running, you can interact with it by opening a separate
 Terminal and running:

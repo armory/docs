@@ -728,7 +728,7 @@ hal version list
 
 * If you are installing Armory using Armory's Halyard, the command returns a version that starts with `2.x.x`
 
-* If you are installing OSS Armory and using `gcr.io/spinnaker-marketplace/halyard:stable`, the command returns a version that starts with `1.x.x`
+* If you are installing OSS Armory and using OSS Halyard (installed from `gcr.io/spinnaker-marketplace/halyard:stable`), the command returns a version that starts with `1.x.x`
 
 Select the version with the following:
 
