@@ -10,4 +10,5 @@ com.fasterxml.jackson.databind.exc.InvalidTypeIdException: Could not resolve typ
 No workaround exists, the V2 Plugin framework will fix this issue in 2.23.
 
 **Affected versions**: 2.22.0
-**Fixed versions**:
+
+**Fixed versions**: 2.22.0
