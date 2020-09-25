@@ -219,7 +219,8 @@ The following table lists the supported CI systems:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-
+Spinnaker supports various deployment targets. 
+Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#service_comparisons) to help categorize the different targets.
 
 ### Compute as a Service
 
@@ -253,7 +254,7 @@ The following table lists the supported CI systems:
 
 ### Container as a Service Platforms
 
-These are providers that are manifest based. Most of these will apply the manifest and leave the rollout logic to the platform itself.
+These are providers that are manifest based so Spinnaker will apply the manifest and leave the rollout logic to the platform itself.
 
 | Provider          | Supported Versions | Armory Versions        | Notes |
 |:------------------|:-------------------|:-----------------------|:------|
