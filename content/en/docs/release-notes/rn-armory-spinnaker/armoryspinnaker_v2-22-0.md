@@ -50,15 +50,15 @@ There are currently no known issues with this release.
 
 Summary of changes in the latest release.
 
-#### UI 
+#### UI
 
 The Spinnaker UI, Deck, has undergone extensive changes to provide better user experience around certain features. The changes may look drastic at first, but Fernando, an engineer at Armory, is here to walk you through them:
 
-{{< youtube e6nC7AtYv4s >}}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/e6nC7AtYv4s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ###  Spinnaker Community Contributions
 
-<! -- Copy/paste highlights from the corresponding OSS version. -->
+<!-- Copy/paste highlights from the corresponding OSS version. -->
 
 There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
 [Spinnaker v1.22.1](https://www.spinnaker.io/community/releases/versions/1-22-1-changelog)
