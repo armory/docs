@@ -50,6 +50,14 @@ There are currently no known issues with this release.
 
 Summary of changes in the latest release.
 
+#### Security fixes
+
+This release includes fixes for the following CVEs:
+
+* CVE-2020-11984
+* CVE-2020-9484
+* CVE-2020-7692
+
 #### UI
 
 The Spinnaker UI, Deck, has undergone extensive changes to provide better user experience around certain features. The changes may look drastic at first, but Fernando, an engineer at Armory, is here to walk you through them:
@@ -61,7 +69,7 @@ The Spinnaker UI, Deck, has undergone extensive changes to provide better user e
 <!-- Copy/paste highlights from the corresponding OSS version. -->
 
 There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
-[Spinnaker v1.22.1](https://www.spinnaker.io/community/releases/versions/1-22-1-changelog)
+[Spinnaker v1.22.1](https://www.spinnaker.io/community/releases/versions/1-22-1-changelog).
 
 ## Detailed Updates
 
