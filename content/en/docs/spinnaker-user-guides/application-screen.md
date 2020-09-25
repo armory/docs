@@ -1,6 +1,5 @@
 ---
 title: Application Screen
-weight: 10
 aliases:
   - /user-guides/application-screen/
   - /user_guides/application-screen/

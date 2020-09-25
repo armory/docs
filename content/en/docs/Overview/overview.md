@@ -1,8 +1,8 @@
 ---
-title: What is Spinnaker?
+title: What is Spinnaker™?
 linkTitle: Spinnaker Overview
 weight: 1
-summary: Read about what Armory Spinnaker is and its benefits.
+summary: Read about what Armory and Spinnaker are and their benefits.
 ---
 
 Watch Ethan, an Armory engineer, explain [Spinnaker in three minutes](https://youtu.be/H_rFShgmJHY).
@@ -41,11 +41,11 @@ Spinnaker solves these problems by enabling safer and faster deployments with th
 
 A typical work flow with Spinnaker starts with baking a Linux-based machine image. This image along with your launch configurations define an immutable infrastructure that you can use to deploy to your cloud provider with Spinnaker. After the deployment, run your tests, which can be integrated with Spinnaker and automatically triggered. Based on your deployment strategy and any criteria you set, go live with the build.
 
-## What Armory Spinnaker is
+## Armory
 
-Armory Spinnaker is an enterprise-grade distribution of Spinnaker that forms the core of Armory's Platform. It is preconfigured and runs in your Kubernetes cluster. The platform is an extension of open source Spinnaker and includes all those benefits as well as the following:
+Armory's platform includes an enterprise-grade distribution of Spinnaker that forms the core of Armory's Platform. It is preconfigured and runs in your Kubernetes cluster. The platform is an extension of open source Spinnaker and includes all those benefits as well as the following:
 
 - Pipeline as Code (Dinghy) allows you to store Spinnaker pipelines in Github and manage them like you would manage code, including version control, templatization, and modularization. Spinnaker pipelines are flexible and customizable series of deployment stages. Combine all these to rapidly and repeatably scale pipelines in your Spinnaker deployment.
-- Armory Spinnaker Operator helps you configure, deploy, and update Spinnaker on Kubernetes clusters. If you cannot use a Kubernetes Operatork, you can use Armory Halyard to accomplish the same tasks.
+- An Armory extended version of the Spinnaker Operator helps you configure, deploy, and update Spinnaker on Kubernetes clusters. If you cannot use a Kubernetes Operatork, you can use Armory-extended Halyard to accomplish the same tasks.
 - Policy Engine helps you meet compliance requirements based on custom policies you set.
 - Integrations with many of your existing tools, such as Terraform. For a full list, see [Integrations](https://www.armory.io/armory-spinnaker/integrations/).

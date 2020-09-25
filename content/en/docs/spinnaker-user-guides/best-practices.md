@@ -1,7 +1,5 @@
 ---
-layout: post
 title: Best Practices
-weight: 110
 aliases:
   - /user-guides/best-practices/
   - /user-guides/best_practices/
@@ -18,7 +16,7 @@ aliases:
 
 It is common practice to bake the bulk of your application's configuration into your AMI. Secrets should not be included. Configurations that frequently change and service discovery is often managed by another system. Some common system choices include but are not limited to: [Consul](https://www.consul.io/), [Archaius](https://github.com/Netflix/archaius), [Zookeeper](https://zookeeper.apache.org/), and [etcd](https://github.com/coreos/etcd).
 
-If you are running the default installation of Armory Spinnaker, then every AWS instance will have details about its environment/stack stored in `/etc/default/server-env`. This can be used to load the correct configuration.
+If you are running the default installation of Spinnaker, then every AWS instance will have details about its environment/stack stored in `/etc/default/server-env`. This can be used to load the correct configuration.
 
 
 ### Service discovery
@@ -32,7 +30,7 @@ For applications and workloads that cannot utilize a load balancer, the tools li
 
 Managing Secrets is a major part of deploying software. Spinnaker does not directly do this for you. However, there are still some guiding principles to help you along the way.
 
-It would be best not to bake Secrets into your images. If you have the default installation of Armory Spinnaker then you can find `/etc/default/server-env` on your instance. This file will have information (in the format of key-value pairs) about the environment and stack you are running on. You can use this to load the correct Secrets.
+Do not to bake Secrets into your images. If you have the default installation of Armory, then you can find `/etc/default/server-env` on your instance. This file will have information (in the format of key-value pairs) about the environment and stack you are running on. You can use this to load the correct Secrets.
 
 Loading Secrets will have to be done at runtime since Secrets are not baked into images.
 

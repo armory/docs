@@ -1,6 +1,5 @@
 ---
 title: Kubernetes V2 Provider Guide
-weight: 160
 # This is different from user-guides/kubernetes - no redirect
 aliases:
   - /spinnaker_user_guides/kubernetes-v2/
