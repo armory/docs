@@ -90,7 +90,7 @@ The following table lists the supported artifact types:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
 
-[Pipelines as Code]({{< ref "install-dinghy" >}}) gives you the ability to manage your pipelines and their templates in source control.
+[Pipelines as Code]({{< ref "dinghy-enable" >}}) gives you the ability to manage your pipelines and their templates in source control.
 
 **Supported version control systems**
 
@@ -114,7 +114,7 @@ The following table lists specific features for Pipelines as Code and their supp
 | Fiat service account integration                                                 | All supported versions |                                                                       |
 | Webhook secret validation                                                        | 2.20 or later          |                                                                       |
 | Local modules for development                                                    | 2.20 or later          |                                                                       |
-| [Pull Request Validation]({{< ref "install-dinghy#pull-request-validations" >}}) | 2.21 or later          |                                                                       |
+| [Pull Request Validation]({{< ref "dinghy-enable#pull-request-validations" >}}) | 2.21 or later          |                                                                       |
 
 ### Pipelines as CRD
 
@@ -437,7 +437,7 @@ The following table lists the supported pipeline triggers:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
 
-The [Policy Engine]({{< ref "policy-engine" >}}) gives you the ability to ensure any Spinnaker pipeline meets certain requirements you specify.
+The [Policy Engine]({{< ref "policy-engine-enable" >}}) gives you the ability to ensure any Spinnaker pipeline meets certain requirements you specify.
 
 **OPA requirements**
 
