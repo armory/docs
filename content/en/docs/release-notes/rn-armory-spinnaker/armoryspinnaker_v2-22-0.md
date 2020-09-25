@@ -124,14 +124,9 @@ artifactSources:
 
 #### Armory Deck - 2.21.7...2.22.5
 
-  - chore(build): push images to dockerhub (#631)
   - fix(terraform): fix planForDestroy flag rendering in execution details (#632)
-  - chore(release): update to oss 1.21.2-rc1 (#633)
-  - fix(header): remove custom angualr header shim (#636)
   - chore(cve): fix CVE-2020-11984 (#640)
-  - chore(hash): updating hash to fix build
   - feat(mptv2): add feature flag for mptv2 && upgrade to oss 1.22.x (#649) (#650)
-  - feat(build): add details on how to build from a OSS forked release branch (#652) (#653)
   - fix(appengine): fix rendering of StageArtifactSelector when artifacts are created #8516 (#651)
   - fix(functions): change KMSKeyArn to match function cache data model #8566 (#661)
 
