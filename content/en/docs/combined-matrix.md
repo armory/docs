@@ -4,7 +4,7 @@ linkTitle: Armory Platform Compatibility
 description: "Information about support and compatibility for the Armory Platform."
 ---
 
-<!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables# 
+<!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables#
 Or you can write raw HTML :shrug: You might want to do that if you need to do bulleted lists etc inside of the table
 Or a mixture of html + markdown. ## Deployment targets has an example of what this might look like
 -->
@@ -15,9 +15,9 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) The feature as a whole is generally available. There may be newer extended functionality that is in a different state.
 
-[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) The feature is in Early Access. 
+[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) The feature is in Early Access.
 
-[![Experiment](/images/exp.svg)]({{< ref "release-definitions#experiment">}}) The feature is an Experiment. 
+[![Experiment](/images/exp.svg)]({{< ref "release-definitions#experiment">}}) The feature is an Experiment.
 
 **Enterprise availablility**
 
@@ -90,7 +90,7 @@ The following table lists the supported artifact types:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
 
-[Pipelines as Code]({{< ref "install-dinghy" >}}) gives you the ability to manage your pipelines and their templates in source control.
+[Pipelines as Code]({{< ref "dinghy-enable" >}}) gives you the ability to manage your pipelines and their templates in source control.
 
 **Supported version control systems**
 
@@ -114,7 +114,7 @@ The following table lists specific features for Pipelines as Code and their supp
 | Fiat service account integration                                                 | All supported versions |                                                                       |
 | Webhook secret validation                                                        | 2.20 or later          |                                                                       |
 | Local modules for development                                                    | 2.20 or later          |                                                                       |
-| [Pull Request Validation]({{< ref "install-dinghy#pull-request-validations" >}}) | 2.21 or later          |                                                                       |
+| [Pull Request Validation]({{< ref "dinghy-enable#pull-request-validations" >}}) | 2.21 or later          |                                                                       |
 
 ### Pipelines as CRD
 
@@ -131,7 +131,7 @@ The following table lists the PaCRD features and their supported versions:
 | Create, modify, and delete application manifests    | All supported versions         | Working within the same cluster Spinnaker is installed in. |
 | Define all stages supported by Spinnaker and Armory | PaCRD version 0.10.x and later | Validation support does not exist for all stages.          |
 
-### Terraform Integration 
+### Terraform Integration
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
 
@@ -145,7 +145,7 @@ The following table lists the supported Terraform versions:
 |:-------------------|:-----------------------|:-----|
 | 0.11.10 - 0.11.14  | All supported versions |      |
 | 0.12.0 - 0.12.24   | All supported versions |      |
-  
+
 **Features**
 
 The following table lists the Terraform Integration features and their supported versions:
@@ -173,7 +173,7 @@ The following table lists the supported authentication protocols:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-The following table lists the supported authorization methods: 
+The following table lists the supported authorization methods:
 
 | Provider              | Armory                 | Note                                                                            |
 |:----------------------|:-----------------------|:--------------------------------------------------------------------------------|
@@ -233,7 +233,7 @@ The following table lists the supported deployment targets:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-Dynamic accounts (external account configurations) for Spinnaker allow you to manage account configuration outside of Spinnaker, including secrets. 
+Dynamic accounts (external account configurations) for Spinnaker allow you to manage account configuration outside of Spinnaker, including secrets.
 
 **Backend provider**
 
@@ -354,11 +354,11 @@ The following table lists the supported pipeline triggers:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
 
-The [Policy Engine]({{< ref "policy-engine" >}}) gives you the ability to ensure any Spinnaker pipeline meets certain requirements you specify.
+The [Policy Engine]({{< ref "policy-engine-enable" >}}) gives you the ability to ensure any Spinnaker pipeline meets certain requirements you specify.
 
 **OPA requirements**
 
-The Policy Engine requires an Open Policy Agent server. This can be deployed in the same cluster as Spinnaker or in an external cluster. 
+The Policy Engine requires an Open Policy Agent server. This can be deployed in the same cluster as Spinnaker or in an external cluster.
 
 The following table lists the requirements
 
