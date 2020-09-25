@@ -18,7 +18,9 @@ Armory Spinnaker 2.21.2 requires one of the following:
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
 
 {{< include "bc-k8s-namespace.md" >}}
+
 {{< include "bc-docker-giduid.md" >}}
+
 {{< include "bc-k8s-job-suffix.md" >}}
 
 
