@@ -2,19 +2,20 @@
 title: Armory Cloud Admin Quickstart 
 ---
 
-If this is your first time using Armory Cloud, this guide walks you through the parts of Armory Cloud that you must configure before your users can start deploying applications.
+If this is your first time using Armory Cloud, use this guide to get started. It walks you through from first log in to granting your app developers access to Spinnaker.
 
 ## Logging in to the Armory Cloud Console 
 
-Armory provides a set of credentials to log in to the Cloud Console with. These are separate from the user accounts that Application Developers use to access the Spinnaker UI.
+Armory provides a set of credentials to log in to the Cloud Console. These are separate from the user accounts that app developers use to access the Armory Platform UI and API. The Cloud Console is where you go to make changes to the Armory Cloud environment and what it has access to. For example, you can add artifact stores or deployment targets in the Cloud Console.
 
 1. Go to the Armory Cloud Console: https://console.cloud.armory.io.
 2. Log in with the credentials that Armory provides.
-3. Select the environment you want to configure.
+   
+If this is your first time in the Cloud Console, select the environment you want to configure to get started. Or, configure one of your existing environments.
 
 ## Configuring the environment
 
-Setting up your Armory Cloud environment the first time requires the following:
+If you are setting up your Armory Cloud environment for the first time, you need requires the following:
 
 * Artifact providers that can be referenced in delivery pipelines
 * Cloud providers that serve as the deployment targets for your applications
