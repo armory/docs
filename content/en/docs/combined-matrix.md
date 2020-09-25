@@ -300,18 +300,6 @@ These are usually hosted by Cloud Providers
 | Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |       |
 
 
-=======
-The following table lists the supported deployment targets:
-
-| Provider      | Deployment target                                               | Deployment strategies | Armory                 | Notes |
-|:--------------|:----------------------------------------------------------------|:----------------------|:-----------------------|:------|
-| Amazon AWS    | EC2, ECS, EKS                                                   |                       | All supported versions |       |
-| Cloud Foundry | PKS <ul><li>Versions A.B - X.Y</li></ul>                        |                       | All supported versions |       |
-| Google Cloud  | App Engine, Compute Engine, GKE                                 |                       | All supported versions |       |
-| Kubernetes    | Manifest-based deployments <ul><li>Versions A.B - X.Y</li></ul> |                       | All supported versions |       |
-| Docker        | Docker Registry                                                 |                       | All supported versions |       |
-
-
 ## Dynamic accounts
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
