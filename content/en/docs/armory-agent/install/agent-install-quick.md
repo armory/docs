@@ -2,103 +2,128 @@
 title: Quick Start Installation
 weight: 3
 description: >
-  Quick start for experienced K8s and Spinnaker users
+  Quick start for experienced K8s and Spinnaker<sup>TM</sup> users
 ---
 
 ## Quick start installation
 
->These quick start options are for users with a good working knowledge of Kubernetes and Spinnaker.
+>These quick start options are for experienced Kubernetes and Spinnaker users.
 
 This guide covers how to quickly install the Armory Agent for Kubernetes and connect to an Armory platform.  You can have hundreds or thousands of Kubernetes agents connected to a single Armory platform, whether self-hosted or SaaS.  This deployment is Kubernetes native via YAML files and can be automated for onboarding of new or existing Kubernetes clusters.
 
+>The Agent source code is called `kubesvc` in the repository. The name of the Kubernetes service is `kubesvc`.
 
-## Agent Installation Options:
+## Compatibility matrix
 
+{{< include "agent/agent-compat-matrix.md" >}}
 
-1. **Native Kubernetes Installation** - Here is how you install Armory Agent with yaml files to the kubernetes API.
+## Install the Agent service
 
+You have three quick options for installing the Agent service: Kubernetes manifest, Kustomize template, or Helm chart.
 
-    kubectl -n <namespace> apply -f https://armory.jfrog.io/artifactory/manifests/kubesvc/kubesvc-<KUBESVC_VERSION>.yaml
+### Kubernetes manifest
 
-**Note** - You’ll want to download the manifests and edit the “kubesvc.yaml” to connect to your clouddriver plugin FQDN and to configure the Kubernetes Service Account for Agent access to the cluster.
+1. From the [artifactory](https://armory.jfrog.io/artifactory/manifests/kubesvc/), download the `kubesvc-<version>-kustomize.tar.gz` archive for the Armory Agent compatible with your Spinnaker version.
+2. Edit the `kubesvc-<version>.yaml`'s _config.yml_ section. Add the  Kubernetes Service Account for Agent access to the cluster. Ensure the `grpc` Clouddriver URL is correct so the Agent can connect to the Agent plugin.
+3. Install the Agent service by executing:
 
+   ```bash
+   kubectl -n <namespace> apply -f <path-to-our-kubesvc-manifest>.yaml
+   ```
 
+### Kustomize template
 
+With this option you can leverage a `kustomization.yaml` file to build a Kustomize deployment.
 
+1. From the [artifactory](https://armory.jfrog.io/artifactory/manifests/kubesvc/), download the `kubesvc-<version>-kustomize.tar.gz` archive for the Armory Agent compatible with your Spinnaker version.
+2. Edit `config.yaml`. Add the Kubernetes Service Account for Agent access to the cluster.
+3. Edit `kustomization.yaml`.
 
-2. **Kustomize templated install** - With this option you can leverage a Kustomization.yml file to “build” a kustomize deployment.
+   1. Add the namespace in which to install the service (should be the same as where Spinnaker is installed).
+   1. Add a `bases` section.
+	1. Add or update the `configMapGenerator` section.
+	1. Add a `secretGenerator` section if you are using secrets.
 
+	```yaml
+   namespace: spinnaker
+   bases:
+   - https://armory.jfrog.io/artifactory/manifests/kubesvc/kubesvc-<version>-kustomize.tar.gz
 
-    kustomization.yml
+   configMapGenerator:
+   - name: kubesvc-config
+     behavior: merge
+     files:
+     - patches/kubesvc.yaml
 
+   secretGenerator:
+   - name: kubeconfigs-secret
+     files:
+     # a list of all needed kubeconfigs
+     - kubecfgs/kubecfg-account01.yaml  
+     - ...
+     - kubeconfgs/kubecfg-account1000.yaml
+   ```
 
-    namespace: spinnaker
-    bases:
-      - https://armory.jfrog.io/artifactory/manifests/kubesvc/kubesvc-<KUBESVC_VERSION>-kustomize.tar.gz  
+### Helm chart
 
-    configMapGenerator:
-    - name: kubesvc-config
-      behavior: merge
-      files:
-      - patches/kubesvc.yaml
+Helm templating is also an option for deploying Armory Agent to Kubernetes. In your `kubescv.yml`:
 
-    secretGenerator:
-    - name: kubeconfigs-secret
-      files:
-      - patches/kubecfg-test.yml
-
-
-3. **HELM Chart installation** - HELM templating is also an option for deploying Armory Agent into a kubernetes.  
-
-
-    kubesvc.yml
-
-
-    kubernetes:
+   ```yaml
+   kubernetes:
       accounts:
       - kubeconfigFile: /kubeconfigfiles/kubecfg-test.yml
         permissions: {}
         name: account1
         ... # See options further down
+   ```
 
 This next section is to add the clouddriver plugin to Spinnaker.  This will create the gRPC endpoint for all Armory Agents to connect to.  
 
 
-## Clouddriver Plugin Installation:
+## Install the Agent plugin
 
+Armory Agent plugin is installed as a container. Installing the plugin creates the gPRC endpoint for communication with the Agent service.
 
-    namespace: spinnaker
+   ```yaml
+   namespace: spinnaker
 
-    resources:
-    - spinsvc.yaml
+   resources:
+   - spinsvc.yaml
 
-    patchesStrategicMerge:
+   patchesStrategicMerge:
       - https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/clouddriver-plugin-<KUBESVC_VERSION>.yaml
       - https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/kubesvc-plugin-config-<KUBESVC_VERSION>.yaml
-# Armory Agent Installation Validation
+   ```
 
-Overview
-Here we’ll cover some different commands and ways you can validate you have a properly running Kube Agent.  If needed for troubleshooting this will be a good reference.  
+## Validate the Agent service and plugin installation
+
+Below are commands and ways you can validate you have a properly running Armory Agent. This is a good reference for troubleshooting.
 
 Agent Validation Commands:
 
-
-    kubectl -n <namespace> get pods
-    kubectl -n <namespace> describe pod -l app.kubernetes.io/name=kubesvc
-    kubectl -n <namespace> logs -l app.kubernetes.io/name=kubesvc -n kubesvc | grep connect
-    kubectl -n <namespace> logs -f -l app.kubernetes.io/name=kubesvc -n kubesvc | grep connect
-    kubectl -n <namespace> get deployment spin-kubesvc -n kubesvc -o yaml
+   ```bash
+   kubectl -n <namespace> get pods
+   kubectl -n <namespace> describe pod -l app.kubernetes.io/name=kubesvc
+   kubectl -n <namespace> logs -l app.kubernetes.io/name=kubesvc -n kubesvc | grep connect
+   kubectl -n <namespace> logs -f -l app.kubernetes.io/name=kubesvc -n kubesvc | grep connect
+   kubectl -n <namespace> get deployment spin-kubesvc -n kubesvc -o yaml
+	```
 
 Clouddriver plugin validation commands
 
+   ```bash
+   kubectl -n <namespace> logs -l app.kubernetes.io/name=clouddriver
+   kubectl -n <namespace> describe pod -l app.kubernetes.io/name=clouddriver
+   kubectl -n <namespace> get svc spin-clouddriver
+   NAME               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
+   spin-clouddriver   ClusterIP   172.20.216.142   <none>        7002/TCP,9091/TCP   89d
+	```
 
-    kubectl -n <namespace> logs -l app.kubernetes.io/name=clouddriver
-    kubectl -n <namespace> describe pod -l app.kubernetes.io/name=clouddriver
-    kubectl -n <namespace> get svc spin-clouddriver
-    NAME               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
-    spin-clouddriver   ClusterIP   172.20.216.142   <none>        7002/TCP,9091/TCP   89d
+>The gRPC port 9091 is opened for Agent Connections as part of plugin installation.
 
-#Note - the gRPC port 9091 has been opened for Agent Connections once plug-in is installed
+Additional tools for troubleshooting:
 
-Additional Tools for troubleshooting:
-gRPCurl - Test Connection to clouddriver to ensure proper traffic routing and ports are open.  
+* [gRPCurl](https://github.com/fullstorydev/grpcurl) - Test connection to Clouddriver to ensure proper traffic routing and ports are open.  
+
+
+
