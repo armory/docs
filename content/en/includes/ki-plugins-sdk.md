@@ -1,4 +1,4 @@
-#### Orca Plugins Using Plugin-SDK
+#### Orca Plugins using Plugin SDK
 
 If you use a plugin that is deployed on Orca and utilizes the Plugins SDK, do not upgrade to 2.22. There is a known issue where Orca cannot process messages in its queue, and the following error occurs:
 
