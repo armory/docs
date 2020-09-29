@@ -164,10 +164,10 @@ The following table lists the supported authentication protocols:
 
 | Identity provider     | Armory                 | Note                                                                                                     |
 | --------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------- |
-| None                  | All supported versions | We highly recommend having Spinnaker on accessable through VPNs if this is turned on                     |
-| Basic                 | All supported versions | Only 1 username/password can be configured at a time                                                     |
+| None                  | All supported versions | We highly recommend having Spinnaker only accessible through a VPN if this is turned on.                     |
+| Basic                 | All supported versions | Only one username/password can be configured at a time.                                                     |
 | SAML                  | All supported versions |                                                                                                          |
-| OAuth 2.0/OIDC        | All supported versions | You can use any OAuth 2.0 provider such as Auth0, Azure, GitHub, Google, Okta, OneLogin, or Oracle Cloud |
+| OAuth 2.0/OIDC        | All supported versions | You can use any OAuth 2.0 provider such as Auth0, Azure, GitHub, Google, Okta, OneLogin, or Oracle Cloud. |
 | LDAP/Active Directory | All supported versions |                                                                                                          |
 | IAP                   | All supported versions |                                                                                                          |
 | x509                  | All supported versions |                                                                                                          |
@@ -180,7 +180,7 @@ The following table lists the supported authorization methods:
 
 | Provider              | Armory                 | Note                                                                                 |
 | --------------------- | ---------------------- | ------------------------------------------------------------------------------------ |
-| None                  | All supported versions | We highly recommend having Spinnaker on accessable through VPNs if this is turned on |
+| None                  | All supported versions | We highly recommend having Spinnaker only accessible through a VPN if this is turned on. |
 | GitHub Teams          | All supported versions | Roles from GitHub are mapped to the Teams under a specific GitHub organization.      |
 | Google Groups         | All supported versions |                                                                                      |
 | LDAP/Active Directory | All supported versions |                                                                                      |
@@ -223,7 +223,8 @@ The following table lists the supported CI systems:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-Spinnaker supports various deployment targets.
+Armory supports various deployment targets.
+
 Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#service_comparisons) to help categorize the different targets.
 
 ### Compute as a Service
@@ -258,7 +259,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 
 ### Container as a Service Platforms
 
-These are providers that are manifest based so Spinnaker will apply the manifest and leave the rollout logic to the platform itself.
+These are providers that are manifest based, so Armory applies the manifest and leaves the rollout logic to the platform itself.
 
 | Provider          | Supported Versions | Armory Versions        | Notes |
 | ----------------- | ------------------ | ---------------------- | ----- |
@@ -281,10 +282,9 @@ These are providers that are manifest based so Spinnaker will apply the manifest
 
 
 
-### Lambdas/Function
+### Serverless
 
-You write the function and you’ll utilize Spinnaker to manage the rollout of iterative versions.
-These are usually hosted by Cloud Providers
+You write the function and use Armory to manage the rollout of iterative versions. These are usually hosted by Cloud Providers.
 
 
 <!--
