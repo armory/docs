@@ -162,12 +162,15 @@ The following table lists the Terraform Integration features and their supported
 
 The following table lists the supported authentication protocols:
 
-| Identity provider     | Armory                 | Note                                                                  |
-| --------------------- | ---------------------- | --------------------------------------------------------------------- |
-| SAML                  | All supported versions |                                                                       |
-| OAuth 2.0/OIDC        | All supported versions | Can use Auth0, Azure, GitHub, Google, Okta, OneLogin, or Oracle Cloud |
-| LDAP/Active Directory | All supported versions |                                                                       |
-| x509                  | All supported versions |                                                                       |
+| Identity provider     | Armory                 | Note                                                                                                     |
+| --------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------- |
+| None                  | All supported versions | We highly recommend having Spinnaker only accessible through a VPN if this is turned on.                     |
+| Basic                 | All supported versions | Only one username/password can be configured at a time.                                                     |
+| SAML                  | All supported versions |                                                                                                          |
+| OAuth 2.0/OIDC        | All supported versions | You can use any OAuth 2.0 provider such as Auth0, Azure, GitHub, Google, Okta, OneLogin, or Oracle Cloud. |
+| LDAP/Active Directory | All supported versions |                                                                                                          |
+| IAP                   | All supported versions |                                                                                                          |
+| x509                  | All supported versions |                                                                                                          |
 
 ## Authorization
 
@@ -175,13 +178,14 @@ The following table lists the supported authentication protocols:
 
 The following table lists the supported authorization methods:
 
-| Provider              | Armory                 | Note                                                                            |
-| --------------------- | ---------------------- | ------------------------------------------------------------------------------- |
-| GitHub Teams          | All supported versions | Roles from GitHub are mapped to the Teams under a specific GitHub organization. |
-| Google Groups         | All supported versions |                                                                                 |
-| LDAP/Active Directory | All supported versions |                                                                                 |
-| OAuth 2.0/OIDC        | All supported versions |                                                                                 |
-| SAML                  | All supported versions |                                                                                 |
+| Provider              | Armory                 | Note                                                                                 |
+| --------------------- | ---------------------- | ------------------------------------------------------------------------------------ |
+| None                  | All supported versions | We highly recommend having Spinnaker only accessible through a VPN if this is turned on. |
+| GitHub Teams          | All supported versions | Roles from GitHub are mapped to the Teams under a specific GitHub organization.      |
+| Google Groups         | All supported versions |                                                                                      |
+| LDAP/Active Directory | All supported versions |                                                                                      |
+| OAuth 2.0/OIDC        | All supported versions |                                                                                      |
+| SAML                  | All supported versions |                                                                                      |
 
 ## Baking Images
 
@@ -219,15 +223,86 @@ The following table lists the supported CI systems:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-The following table lists the supported deployment targets:
+Armory supports various deployment targets.
 
-| Provider      | Deployment target                                               | Deployment strategies | Armory                 | Notes |
-| ------------- | --------------------------------------------------------------- | --------------------- | ---------------------- | ----- |
-| Amazon AWS    | EC2, ECS, EKS                                                   |                       | All supported versions |       |
-| Cloud Foundry | PKS <ul><li>Versions A.B - X.Y</li></ul>                        |                       | All supported versions |       |
-| Google Cloud  | App Engine, Compute Engine, GKE                                 |                       | All supported versions |       |
-| Kubernetes    | Manifest-based deployments <ul><li>Versions A.B - X.Y</li></ul> |                       | All supported versions |       |
-| Docker        | Docker Registry                                                 |                       | All supported versions |       |
+Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#service_comparisons) to help categorize the different targets.
+
+### Compute as a Service
+
+<!--
+{{< caas-ec2-deploy-strategies.inline >}}
+<ul>
+    <li>None (always adds a new one)</li>
+    <li>Highlander</li>
+    <li>Red/Back aka Blue/Green</li>
+    <li>Custom (run a custom pipeline)</li>
+    <li>Rolling Red/Black</li>
+</ul>
+{{</ caas-ec2-deploy-strategies.inline >}}
+-->
+
+<!--
+{{< caas-gce-deploy-strategies.inline >}}
+<ul>
+    <li>Red/Black aka Blue/Green</li>
+    <li>Custom</li>
+</ul>
+{{</ caas-gce-deploy-strategies.inline >}}
+-->
+
+| Provider                    | Deployment strategies                      | Armory Versions        | Notes |
+| --------------------------- | ------------------------------------------ | ---------------------- | ----- |
+| Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |       |
+| Google Cloud Compute Engine | {{< caas-gce-deploy-strategies.inline />}} | All supported versions |       |
+
+
+
+### Container as a Service Platforms
+
+These are providers that are manifest based, so Armory applies the manifest and leaves the rollout logic to the platform itself.
+
+| Provider          | Supported Versions | Armory Versions        | Notes |
+| ----------------- | ------------------ | ---------------------- | ----- |
+| Kubernetes        | All versions       | All supported versions |       |
+| Amazon AWS EKS    | All versions       | All supported versions |       |
+| Google GKE        | All versions       | All supported versions |       |
+| Cloud Foundry PKS | All versions       | All supported versions |       |
+
+
+| Provider       | Deployment strategies                      | Armory Versions        | Notes |
+| -------------- | ------------------------------------------ | ---------------------- | ----- |
+| Amazon AWS ECS | <ul><li>Red/Black aka Blue/Green</li></ul> | All supported versions |       |
+
+
+
+### Platform as a Service
+| Provider                | Deployment strategies    | Armory Versions        | Notes |
+| ----------------------- | ------------------------ | ---------------------- | ----- |
+| Google Cloud App Engine | <ul><li>Custom</li></ul> | All supported versions |       |
+
+
+
+### Serverless
+
+You write the function and use Armory to manage the rollout of iterative versions. These are usually hosted by Cloud Providers.
+
+
+<!--
+{{< aws-lambda-deploy-strategies.inline >}}
+<ul>
+    <li>Red/Black aka Blue Green</li>
+    <li>Highlander</li>
+    <li>Custom (run a custom pipeline)</li>
+</ul>
+{{</ aws-lambda-deploy-strategies.inline >}}
+-->
+
+
+| Provider          | Deployment strategies                        | Armory Versions        | Notes |
+| ----------------- | -------------------------------------------- | ---------------------- | ----- |
+| Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |       |
+
+
 
 ## Dynamic accounts
 
