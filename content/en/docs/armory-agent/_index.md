@@ -6,19 +6,11 @@ description: >
 weight: 20
 ---
 
-Armory Agent is a new, flexible way for Spinnaker to interact with your Kubernetes infrastructure that solves the scaling issues plaguing Spinnaker's Kubernetes V2 Provider.
-
-![Armory Agent Overview](/images/armory-agent/agent-overview.png)
-
-Kubernetes V2 Provider disadvantages:
-
-* Monitors your Kubernetes infrastructure every thirty seconds.
-* Contacts each cluster, retrieves all the Kubernetes objects it is configured to retrieve, computes relationships, and then stores the result in its cache - even if there have been no changes on the Kubernetes side.
-* Encounters performance and account management issues when monitoring hundreds or thousands of Kubernetes clusters.
+Armory Agent is a new, flexible way for Spinnaker to interact with your Kubernetes infrastructure at scale.
 
 Armory Agent for Kubernetes advantages:
 
-* Listens for changes at the cluster level and streams only those changes back to Spinnaker.
+* Listens for changes at the cluster level and only streams updates to Spinnaker.
 * Changes to your infrastructure, whether Spinnaker-initiated or not, show up in real time in Spinnaker's cache, all over a single TCP connection per cluster.
 * Caching and deployment scales to thousands of Kubernetes clusters for your largest applications.
 
