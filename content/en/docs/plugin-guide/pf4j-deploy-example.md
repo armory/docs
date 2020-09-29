@@ -31,41 +31,10 @@ Each plugin should provide configuration information. The `pf4jStagePlugin` has 
 
 **This guide assumes you are using Armory installed by the Armory Operator in `basic` mode.** Add plugin configuration in the `/spinnaker-operator/deploy/spinnaker/basic/SpinnakerService.yml` manifest file. Complete configuration information is in the _Operator Reference_ Plugins [section]({{< ref "plugins" >}}).
 
-You can configure the plugin in either the `spec.spinnakerConfig.config.spinnaker.extensibility.plugins` or the `spec.spinnakerConfig.profiles.<service>` sections of the manifest.
-
-### `spec.spinnakerConfig.config.spinnaker.extensibility.plugins`
-
-- You can put configuration in this section when the plugin extends multiple services.
-- All Spinnaker services restart when you apply the manifest.
-
-For example:
-
-```yaml
-spec:
-  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
-  spinnakerConfig:
-    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
-    config:
-      spinnaker:
-        extensibility:
-          plugins:
-            Armory.RandomWaitPlugin:
-              enabled: true
-              version: 1.1.14
-              extensions:
-                id: armory.randomWaitStage
-                enabled: true
-                config:
-                  defaultMaxWaitTime: 15
-          repositories:
-            examplePluginsRepo:
-              id: examplePluginsRepo
-              url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
-```
 
 ### `spec.spinnakerConfig.profiles.<service>`
 
-Put configuration in the `service` that the plugin extends when you do not want all Spinnaker services to restart when you apply the manifest.
+Put configuration in the `service` that the plugin extends.  Only the impacted service will restart when you apply the manifest.
 
 Example:
 
@@ -95,47 +64,7 @@ spec:
 
 ### Deck proxy
 
-You need to configure a `deck-proxy` in Gate if your plugin has a Deck component. Locate the `profiles` section in your `SpinnakerService.yml` and add the proxy information to the `gate` section. The example below shows the plugin configured in `spec.spinnakerConfig.config.spinnaker.extensibility.plugins` and the Deck proxy in the `spec.spinnakerConfig.profiles.gate` section.
-
-```yaml
-spec:
-  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
-  spinnakerConfig:
-    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
-    config:
-      spinnaker:
-        extensibility:
-          plugins:
-            Armory.RandomWaitPlugin:
-              enabled: true
-              version: 1.1.14
-              extensions:
-                id: armory.randomWaitStage
-                enabled: true
-                config:
-                  defaultMaxWaitTime: 15
-          repositories:
-            examplePluginsRepo:
-              id: examplePluginsRepo
-              url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
-
-    # spec.spinnakerConfig.profiles - This section contains the YAML of each service's profile
-    profiles:
-      gate: # is the contents of ~/.hal/default/profiles/gate.yml
-        spinnaker:
-          extensibility:
-            deck-proxy:
-              enabled: true
-              plugins:
-                Armory.RandomWaitPlugin:
-                  enabled: true
-                  version: 1.1.14
-            repositories:
-              examplePluginsRepo:
-                url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
-```
-
-This example shows plugin configuration in the `spec.spinnakerConfig.profiles` section and the Deck proxy in the `spec.spinnakerConfig.profiles.gate` section:
+You need to configure a `deck-proxy` in Gate if your plugin has a Deck component. Locate the `profiles` section in your `SpinnakerService.yml` and add the proxy information to the `gate` section. This example shows plugin configuration in the `spec.spinnakerConfig.profiles` section and the Deck proxy in the `spec.spinnakerConfig.profiles.gate` section:
 
 ```yaml
 spec:
