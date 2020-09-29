@@ -36,7 +36,7 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 Application metrics can be ingested by Kayenta to perform Canary Analysis or Automated Canary Analysis (ACA). The following table lists supported app metric providers:
 
 | Provider    | Version                | ACA | Armory                 | Note |
-|:------------|:-----------------------|:----|:-----------------------|:-----|
+| ----------- | ---------------------- | --- | ---------------------- | ---- |
 | Graphite    | All supported versions | Yes | All supported versions |      |
 | New Relic   | All supported versions | Yes | All supported versions |      |
 | Prometheus  | All supported versions | Yes | All supported versions |      |
@@ -54,7 +54,7 @@ Artifacts are  deployable resources.
 The following table lists the supported artifact stores:
 
 | Provider                                                          | Armory                 | Notes                                                               |
-|:------------------------------------------------------------------|:-----------------------|:--------------------------------------------------------------------|
+| ----------------------------------------------------------------- | ---------------------- | ------------------------------------------------------------------- |
 | [Bitbucket](https://spinnaker.io/setup/artifacts/bitbucket/)      | All supported versions |                                                                     |
 | [GitHub](https://spinnaker.io/setup/artifacts/github/)            | All supported versions |                                                                     |
 | [GitLab](https://spinnaker.io/setup/artifacts/gitlab/)            | All supported versions |                                                                     |
@@ -70,7 +70,7 @@ The following table lists the supported artifact stores:
 The following table lists the supported artifact types:
 
 | Type                                                                                                             | Armory                 | Notes                                     |
-|:-----------------------------------------------------------------------------------------------------------------|:-----------------------|:------------------------------------------|
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------- | ----------------------------------------- |
 | [Bitbucket file](https://www.spinnaker.io/reference/artifacts-with-artifactsrewrite/types/bitbucket-file/)       | All supported versions |                                           |
 | [Docker Image](https://spinnaker.io/reference/artifacts-with-artifactsrewrite/types/docker-image/)               | All supported versions | Can be hosted on DockerHub, GCR, ECR, etc |
 | [Embedded Base64](https://spinnaker.io/reference/artifacts-with-artifactsrewrite/types/embedded-base64/)         | All supported versions |                                           |
@@ -97,7 +97,7 @@ The following table lists the supported artifact types:
 The following table lists the supported version control systems:
 
 | Feature          | Version                     | Armory version         | Notes           |
-|:-----------------|:----------------------------|:-----------------------|:----------------|
+| ---------------- | --------------------------- | ---------------------- | --------------- |
 | BitBucket Cloud  |                             | All supported versions |                 |
 | BitBucket Server | Previous two major versions | All supported versions |                 |
 | GitHub           |                             | All supported versions | Hosted or cloud |
@@ -107,13 +107,13 @@ The following table lists the supported version control systems:
 
 The following table lists specific features for Pipelines as Code and their supported versions:
 
-| Feature                                                                          | Armory                 | Notes                                                                 |
-|:---------------------------------------------------------------------------------|:-----------------------|:----------------------------------------------------------------------|
-| Modules                                                                          | All supported versions | Templatize and re-use pipeline snippets across applications and teams |
-| Slack notifications                                                              | All supported versions |                                                                       |
-| Fiat service account integration                                                 | All supported versions |                                                                       |
-| Webhook secret validation                                                        | 2.20 or later          |                                                                       |
-| Local modules for development                                                    | 2.20 or later          |                                                                       |
+| Feature                                                                         | Armory                 | Notes                                                                 |
+| ------------------------------------------------------------------------------- | ---------------------- | --------------------------------------------------------------------- |
+| Modules                                                                         | All supported versions | Templatize and re-use pipeline snippets across applications and teams |
+| Slack notifications                                                             | All supported versions |                                                                       |
+| Fiat service account integration                                                | All supported versions |                                                                       |
+| Webhook secret validation                                                       | 2.20 or later          |                                                                       |
+| Local modules for development                                                   | 2.20 or later          |                                                                       |
 | [Pull Request Validation]({{< ref "dinghy-enable#pull-request-validations" >}}) | 2.21 or later          |                                                                       |
 
 ### Pipelines as CRD
@@ -126,7 +126,7 @@ Kubernetes custom resources.
 The following table lists the PaCRD features and their supported versions:
 
 | Feature                                             | Armory                         | Notes                                                      |
-|:----------------------------------------------------|:-------------------------------|:-----------------------------------------------------------|
+| --------------------------------------------------- | ------------------------------ | ---------------------------------------------------------- |
 | Create, modify, and delete pipeline manifests       | All supported versions         | Working within the same cluster Spinnaker is installed in. |
 | Create, modify, and delete application manifests    | All supported versions         | Working within the same cluster Spinnaker is installed in. |
 | Define all stages supported by Spinnaker and Armory | PaCRD version 0.10.x and later | Validation support does not exist for all stages.          |
@@ -142,7 +142,7 @@ The Terraform Integration gives you the ability to use Terraform within your Spi
 The following table lists the supported Terraform versions:
 
 | Terraform Versions | Armory                 | Note |
-|:-------------------|:-----------------------|:-----|
+| ------------------ | ---------------------- | ---- |
 | 0.11.10 - 0.11.14  | All supported versions |      |
 | 0.12.0 - 0.12.24   | All supported versions |      |
 
@@ -151,7 +151,7 @@ The following table lists the supported Terraform versions:
 The following table lists the Terraform Integration features and their supported versions:
 
 | Feature                                                                                        | Armory                 | Notes |
-|:-----------------------------------------------------------------------------------------------|:-----------------------|:------|
+| ---------------------------------------------------------------------------------------------- | ---------------------- | ----- |
 | [Base Terraform Integration]({{< ref "terraform-enable-integration" >}})                       | All supported versions |       |
 | [Named Profiles with authorization]({{< ref "terraform-enable-integration#named-profiles" >}}) | 2.20 or later          |       |
 
@@ -163,7 +163,7 @@ The following table lists the Terraform Integration features and their supported
 The following table lists the supported authentication protocols:
 
 | Identity provider     | Armory                 | Note                                                                  |
-|:----------------------|:-----------------------|:----------------------------------------------------------------------|
+| --------------------- | ---------------------- | --------------------------------------------------------------------- |
 | SAML                  | All supported versions |                                                                       |
 | OAuth 2.0/OIDC        | All supported versions | Can use Auth0, Azure, GitHub, Google, Okta, OneLogin, or Oracle Cloud |
 | LDAP/Active Directory | All supported versions |                                                                       |
@@ -176,7 +176,7 @@ The following table lists the supported authentication protocols:
 The following table lists the supported authorization methods:
 
 | Provider              | Armory                 | Note                                                                            |
-|:----------------------|:-----------------------|:--------------------------------------------------------------------------------|
+| --------------------- | ---------------------- | ------------------------------------------------------------------------------- |
 | GitHub Teams          | All supported versions | Roles from GitHub are mapped to the Teams under a specific GitHub organization. |
 | Google Groups         | All supported versions |                                                                                 |
 | LDAP/Active Directory | All supported versions |                                                                                 |
@@ -190,7 +190,7 @@ The following table lists the supported authorization methods:
 The following table lists the supported image bakeries:
 
 | Provider | Armory                 | Notes                      |
-|:---------|:-----------------------|:---------------------------|
+| -------- | ---------------------- | -------------------------- |
 | AWS      | All supported versions |                            |
 | GCE      | All supported versions |                            |
 | OCI      | All supported versions |                            |
@@ -207,7 +207,7 @@ Spinnaker's UI (Deck) works with most modern browsers.
 The following table lists the supported CI systems:
 
 | Provider           | Version                | Armory                 | Note                |
-|:-------------------|:-----------------------|:-----------------------|:--------------------|
+| ------------------ | ---------------------- | ---------------------- | ------------------- |
 | AWS CodeBuild      | n/a                    | 2.19.x or later        |                     |
 | GitHub Actions     | n/a                    | All supported versions | Webhook integration |
 | Google Cloud Build | n/a                    |                        |                     |
@@ -219,12 +219,12 @@ The following table lists the supported CI systems:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-Spinnaker supports various deployment targets. 
+Spinnaker supports various deployment targets.
 Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#service_comparisons) to help categorize the different targets.
 
 ### Compute as a Service
 
-<!-- 
+<!--
 {{< caas-ec2-deploy-strategies.inline >}}
 <ul>
     <li>None (always adds a new one)</li>
@@ -233,20 +233,20 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
     <li>Custom (run a custom pipeline)</li>
     <li>Rolling Red/Black</li>
 </ul>
-{{</ caas-ec2-deploy-strategies.inline >}} 
+{{</ caas-ec2-deploy-strategies.inline >}}
 -->
 
-<!-- 
+<!--
 {{< caas-gce-deploy-strategies.inline >}}
 <ul>
     <li>Red/Black aka Blue/Green</li>
     <li>Custom</li>
 </ul>
-{{</ caas-gce-deploy-strategies.inline >}} 
+{{</ caas-gce-deploy-strategies.inline >}}
 -->
 
 | Provider                    | Deployment strategies                      | Armory Versions        | Notes |
-|:----------------------------|:-------------------------------------------|:-----------------------|:------|
+| --------------------------- | ------------------------------------------ | ---------------------- | ----- |
 | Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |       |
 | Google Cloud Compute Engine | {{< caas-gce-deploy-strategies.inline />}} | All supported versions |       |
 
@@ -257,7 +257,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 These are providers that are manifest based so Spinnaker will apply the manifest and leave the rollout logic to the platform itself.
 
 | Provider          | Supported Versions | Armory Versions        | Notes |
-|:------------------|:-------------------|:-----------------------|:------|
+| ----------------- | ------------------ | ---------------------- | ----- |
 | Kubernetes        | All versions       | All supported versions |       |
 | Amazon AWS EKS    | All versions       | All supported versions |       |
 | Google GKE        | All versions       | All supported versions |       |
@@ -265,14 +265,14 @@ These are providers that are manifest based so Spinnaker will apply the manifest
 
 
 | Provider       | Deployment strategies                      | Armory Versions        | Notes |
-|:---------------|:-------------------------------------------|:-----------------------|:------|
+| -------------- | ------------------------------------------ | ---------------------- | ----- |
 | Amazon AWS ECS | <ul><li>Red/Black aka Blue/Green</li></ul> | All supported versions |       |
 
 
 
 ### Platform as a Service
 | Provider                | Deployment strategies    | Armory Versions        | Notes |
-|:------------------------|:-------------------------|:-----------------------|:------|
+| ----------------------- | ------------------------ | ---------------------- | ----- |
 | Google Cloud App Engine | <ul><li>Custom</li></ul> | All supported versions |       |
 
 
@@ -283,19 +283,19 @@ You write the function and you’ll utilize Spinnaker to manage the rollout of i
 These are usually hosted by Cloud Providers
 
 
-<!-- 
+<!--
 {{< aws-lambda-deploy-strategies.inline >}}
 <ul>
     <li>Red/Black aka Blue Green</li>
     <li>Highlander</li>
     <li>Custom (run a custom pipeline)</li>
 </ul>
-{{</ aws-lambda-deploy-strategies.inline >}} 
+{{</ aws-lambda-deploy-strategies.inline >}}
 -->
 
 
 | Provider          | Deployment strategies                        | Armory Versions        | Notes |
-|:------------------|:---------------------------------------------|:-----------------------|:------|
+| ----------------- | -------------------------------------------- | ---------------------- | ----- |
 | Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |       |
 
 
@@ -311,7 +311,7 @@ Dynamic accounts (external account configurations) for Spinnaker allow you to ma
 The following table lists the supported backends:
 
 | Provider | Version                | Armory                 | Notes |
-|:---------|:-----------------------|:-----------------------|:------|
+| -------- | ---------------------- | ---------------------- | ----- |
 | Git      | All supported versions | All supported versions |       |
 | S3       | n/a                    | All supported versions |       |
 | Vault    | All supported versions | All supported versions |       |
@@ -321,7 +321,7 @@ The following table lists the supported backends:
 The following table lists the services that support dynamic accounts:
 
 | Service     | Account types               | Note                                                                                                           |
-|:------------|:----------------------------|:---------------------------------------------------------------------------------------------------------------|
+| ----------- | --------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | Clouddriver | Cloud provider, artifact    | Automatic configuration refreshing is supported for Cloud Foundry and Kubernetes cloud provider accounts only. |
 | Echo        | Pub/Sub                     |                                                                                                                |
 | Igor        | CI systems, version control |                                                                                                                |
@@ -333,7 +333,7 @@ The following table lists the services that support dynamic accounts:
 Spinnaker requires an external storage provider for persisting app settings and pipelines. The following table lists the supported storage solutions:
 
 | Provider              | Armory                 | Notes |
-|:----------------------|:-----------------------|:------|
+| --------------------- | ---------------------- | ----- |
 | Azure Storage         | All supported versions |       |
 | Google Cloud Storage  | All supported versions |       |
 | Minio                 | All supported versions |       |
@@ -347,7 +347,7 @@ Spinnaker requires an external storage provider for persisting app settings and 
 The following table lists the supported manifest templating engines:
 
 | Provider  | Armory                 | Notes                                |
-|:----------|:-----------------------|:-------------------------------------|
+| --------- | ---------------------- | ------------------------------------ |
 | Helm 2    | All supported versions |                                      |
 | Helm 3    | 2.19.x or later        |                                      |
 | Kustomize | All supported versions | Kustomize version installed is 3.3.0 |
@@ -359,7 +359,7 @@ The following table lists the supported manifest templating engines:
 The following table lists the supported notification systems:
 
 | Provider   | Armory                 | Notes |
-|:-----------|:-----------------------|:------|
+| ---------- | ---------------------- | ----- |
 | Slack      | All supported versions |       |
 | PagerDuty  | All supported versions |       |
 | GitHub     | All supported versions |       |
@@ -378,7 +378,7 @@ The following table lists the supported notification systems:
 The following table lists the supported observabilty providers:
 
 | Provider   | Version                | Armory                 | Note                        |
-|:-----------|:-----------------------|:-----------------------|:----------------------------|
+| ---------- | ---------------------- | ---------------------- | --------------------------- |
 | New Relic  | All supported versions | All supported versions |                             |
 | Prometheus | All supported versions | All supported versions | Use Grafana for dashboards. |
 -->
@@ -389,7 +389,7 @@ The following table lists the supported observabilty providers:
 Depending on the service, Spinnaker can use either Redis or MySQL as the backing store. The following table lists the supported database and the Spinnaker service:
 
 | Database | DB version             | Armory                 | Spinnaker services                                  | Note                                                                                                                       |
-|:---------|:-----------------------|:-----------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------|
+| -------- | ---------------------- | ---------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | Redis    | All supported versions | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. By default, Spinnaker deploys Redis internally to support its services. |
 | MySQL    | MySQL 5.7 (or Aurora)  | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
 
@@ -402,7 +402,7 @@ Armory recommends using MySQL as the backing store when possible for production 
 The following table lists the supported pipeline triggers:
 
 | Provider           | Armory                 | Notes |
-|:-------------------|:-----------------------|:------|
+| ------------------ | ---------------------- | ----- |
 | Artifactory        | All supported versions |       |
 | AWS CodeBuild      | All supported versions |       |
 | AWS Pub/Sub        | All supported versions |       |
@@ -434,14 +434,14 @@ The Policy Engine requires an Open Policy Agent server. This can be deployed in 
 The following table lists the requirements
 
 | Requirement | Version         | Note                                                                                                                                  |
-|:------------|:----------------|:--------------------------------------------------------------------------------------------------------------------------------------|
+| ----------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | OPA Server  | 0.12.x - 0.13.x |                                                                                                                                       |
 | OPA API     | v1              | Only compatible with OPA’s v1 API. When specifying the OPA server URL, include `v1` in the URL: `http://<your-opa-server>:<port>/v1`. |
 
 **Supported validations**
 
 | Validation           | Armory                 | Note                                                                                                             |
-|:---------------------|:-----------------------|:-----------------------------------------------------------------------------------------------------------------|
+| -------------------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | Save time validation | All supported versions | If no policies are set, you cannot save any pipelines until you set any policy or turn off save time validation. |
 | Runtime validation   | All supported versions | If no policies are set, no policy enforcement occurs and pipelines run as they do normally.                      |
 
@@ -454,7 +454,7 @@ The following table lists the requirements
 The following table lists the supported secret stores for referencing secrets in config files securely:
 
 | Provider                                               | Armory                 | Notes                                |
-|:-------------------------------------------------------|:-----------------------|:-------------------------------------|
+| ------------------------------------------------------ | ---------------------- | ------------------------------------ |
 | [AWS Secrets Manager]({{< ref "secrets-aws-sm" >}})    | All supported versions |                                      |
 | [Encrypted GCS Bucket]({{< ref "secrets-gcs" >}})      | All supported versions |                                      |
 | [Encrypted S3 Bucket]({{< ref "secrets-s3" >}})        | All supported versions |                                      |
@@ -470,7 +470,7 @@ The following table lists the supported secret stores for referencing secrets in
 to install, update, and maintain their clusters via a Kubernetes operator.
 
 | Feature                                                                            | Version                | Armory Version         | Notes                                                                                                                                     |
-|:-----------------------------------------------------------------------------------|:-----------------------|:-----------------------|:------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------------------------------------------------------------------------------- | ---------------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | Install, update, and maintain Spinnaker clusters                                   | All supported versions | All supported versions |                                                                                                                                           |
 | Automatically determine Deck/Gate URL configuration if Ingress objects are defined | 1.1.0 or later         | 1.1.1 or later         | Ingress objects must be defined in the same namespace where Spinnaker lives.                                                              |
 | Support definition of all Halyard configuration options                            | All supported versions | All supported versions |                                                                                                                                           |
