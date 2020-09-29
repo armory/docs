@@ -5,9 +5,8 @@ description: Administer your Armory Cloud environment
 
 ## Overview
 
-Armory Cloud is a SaaS platform for continuous delivery that integrates with your existing tools:
+Armory Cloud is a Software as a Service (SaaS) platform for continuous delivery that integrates with your existing tools.
 
-- Artifact stores, such as GitHub, to fetch things like images
-- Cloud Providers, such as AWS, to deploy your apps to
+As a SaaS platform, Armory Cloud gives you the ability to deliver your software without the maintenance overhead of having to maintain your own continuous delivery tools and infrastructure.
 
-The two main components of Armory Cloud are Armory Cloud Console and a cloud instance of the Armory Platform. Armory Cloud Console is the administrator portal for Armory Cloud. You can perform administrative and operations related tasks, including configuring your Armory Cloud environments (such as sandbox and production environments) and the integrations mentioned above. The Armory Platform, which includes Armory's enterprise extensions and Spinnaker™, is where your app developers create and manage their delivery pipelines within the environments you defined.
+The two components of Armory Cloud are the Armory Cloud Console and a cloud instance of the Armory Platform. Armory Cloud Console is the administrator portal for Armory Cloud where you can perform administrative and operations related tasks. Use it to configure your Armory Cloud instance and integrations with your  The Armory Platform, which includes Armory's enterprise extensions and Spinnaker™, is where your app developers create and manage their delivery pipelines within the environments you defined.
