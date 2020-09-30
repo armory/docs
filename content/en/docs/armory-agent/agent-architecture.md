@@ -12,7 +12,7 @@ description: >
 Armory Agent communicates from the deployed Kubernetes cluster to clouddriver leveraging best security practices and optimizations to minimize chattiness on the wire.  On the Spinnaker side clouddriver leverages the newly created Spinnaker plug-in framework.  The other side of the communication is the Armory Agent itself running within any Kubernetes cluster.
 
 Security:
-The first security principle is that the Armory Agent does outbound calls to the clouddriver plug-in (gRPC outbound).  As long as the Armory Agent has outbound connectivity to the running Spinnaker clouddriver plug-in, it can register itself to become a deployment target.  This also means that you can have agents running on premise or in public clouds such as AWS, GCP, Azure, Oracle, or Alibaba.
+The first security principle is that the Armory Agent does outbound calls to the clouddriver plugin (gRPC outbound).  As long as the Armory Agent has outbound connectivity to the running Spinnaker clouddriver plug-in, it can register itself to become a deployment target.  This also means that you can have agents running on premise or in public clouds such as AWS, GCP, Azure, Oracle, or Alibaba.
 
 Secure Bi-Directional Communication:
 These outbound connections leverage gRPC for security as well as mTLS and JWT authentications.  Given that gRPC using HTTP/2 within the tunnel for bi-directional channels, each of those channels is authenticated with a randomized token per channel.  These measures ensure that Agent can safely register itself with clouddriver plug-ins which are configured in the Agents deployment yaml.

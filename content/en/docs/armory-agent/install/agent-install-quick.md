@@ -11,7 +11,10 @@ description: >
 
 This guide covers how to quickly install the Armory Agent for Kubernetes and connect to an Armory platform.  You can have hundreds or thousands of Kubernetes agents connected to a single Armory platform, whether self-hosted or SaaS.  This deployment is Kubernetes native via YAML files and can be automated for onboarding of new or existing Kubernetes clusters.
 
->The Agent source code is called `kubesvc` in the repository. The name of the Kubernetes service is `kubesvc`.
+## Terms
+
+- `kubesvc`: Armory Agent service source code is called `kubesvc` in the repository. The name of the running agent in Kubernetes is `kubesvc`.
+- `kubesvc-plugin`: Armory Agent for Clouddriver plugin is in a r "kubesvc-plugin" in the repository.
 
 ## Compatibility matrix
 
@@ -71,28 +74,28 @@ Helm templating is also an option for deploying Armory Agent to Kubernetes. In y
    ```yaml
    kubernetes:
       accounts:
-      - kubeconfigFile: /kubeconfigfiles/kubecfg-test.yml
+      - kubeconfigFile: /kubeconfigfiles/<your-kubeconfig>.yml
         permissions: {}
         name: account1
         ... # See options further down
    ```
 
-This next section is to add the clouddriver plugin to Spinnaker.  This will create the gRPC endpoint for all Armory Agents to connect to.  
+This next section is to add the Clouddriver plugin to Spinnaker.  This will create the gRPC endpoint for all Armory Agents to connect to.  
 
 
 ## Install the Agent plugin
 
-Armory Agent plugin is installed as a container. Installing the plugin creates the gPRC endpoint for communication with the Agent service.
+Armory Agent plugin is installed as a container. There is a file for the plugin itself and another for the plugin's configuration. If you don't need to modify those files, simply add the snippet below to your `kustomization.yaml` file, replacing `<version>` with the plugin version you are using. Installing the plugin creates the gPRC endpoint for communication with the Agent service.
 
    ```yaml
    namespace: spinnaker
 
    resources:
-   - spinsvc.yaml
+   - spinsvc.yaml # Spinnaker's configuration
 
    patchesStrategicMerge:
-      - https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/clouddriver-plugin-<KUBESVC_VERSION>.yaml
-      - https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/kubesvc-plugin-config-<KUBESVC_VERSION>.yaml
+      - https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/clouddriver-plugin-<version>.yaml
+      - https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/kubesvc-plugin-config-<version>.yaml
    ```
 
 ## Validate the Agent service and plugin installation
