@@ -13,7 +13,7 @@ Armory Agent is a new, flexible way for Spinnaker to interact with your Kubernet
 * Caching and deployment scales to thousands of Kubernetes clusters for your largest applications.
 * Agent uses optimized storage that results in nice performance improvements, made possible by adopting Kubernetes and RDBMS-specific storage.
 * You configure accounts in Agent instead of Clouddriver.
-* You can store your `kubeconfig` files in one of the supported [secret engines]({{< ref "secret#supported-secret-engines" >}}) engines or just provision them via the method of your choice as Kubernetes secrets.
+* You can store your `kubeconfig` files in one of the supported [secret engines]({{< ref "secrets#supported-secret-engines" >}}) engines or just provision them via the method of your choice as Kubernetes secrets.
 
 The Armory Agent consists of a lightweight service that runs in-cluster, like all other Spinnaker services, or as agent outside of the cluster. The service sends data to the Armory Agent plugin, which runs in the same namespace as Spinnaker and interacts with the Clouddriver service.
 
