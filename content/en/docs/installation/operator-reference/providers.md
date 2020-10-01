@@ -134,6 +134,7 @@ aws:
     regions:
       - name:
     requiredGroupMembership:
+    externalId:
   bakeryDefaults:
     awsAccessKey:
     awsAssociatePublicIpAddress:
@@ -199,7 +200,7 @@ The AWS provider requires a central "Managing Account" to authenticate on behalf
 - `providerVersion`:
 - `regions`: (*Default*: `[]`) The AWS regions this Spinnaker account will manage.
 - `requiredGroupMemberships`: (Deprecated): Configure permissions instead.
-
+- `externalId`: Optional parameter used to identify and control access to AWS resources. Set this to the same value as the ExternalID parameter in the trust policy for the role you want to assume.
 
 #### Bakery parameters
 
