@@ -10,17 +10,22 @@ Armory provides a set of credentials to log in to the Cloud Console. These are s
 
 1. Go to the Armory Cloud Console: https://console.cloud.armory.io.
 2. Log in with the credentials that Armory provides.
-   
-If this is your first time in the Cloud Console, select the environment you want to configure to get started. Or, configure one of your existing environments.
+
+The first time logging into the Cloud Console, there will not be any environments created. So select the sandbox environment to get started.
+
+## Managing secrets
+
+Add configuration secrets to Armory Cloud to grant your app developers access to resources such as deployment targets. Armory Cloud stores and transmits these secrets securely. Once configured, refer to them by a name you assign instead of entering them in plain text.
+
+1. On the Armory Cloud Console homepage, select **Manage Secrets** for the environment you want to configure secrets for.
+2. 
 
 ## Configuring the environment
 
-If you are setting up your Armory Cloud environment for the first time, you need requires the following:
+If you are setting up the Armory Cloud environment for the first time, you need require the following information:
 
-* Artifact providers that can be referenced in delivery pipelines
-* Cloud providers that serve as the deployment targets for your applications
-* (Optional)
-* (Optional)
+* Artifact Providers that can be referenced in delivery pipelines
+* **Cloud Providers**: These serve as the deployment targets for applications. Once configured, your app developers can refer to them in their deployment pipelines.
 
 ### Artifacts
 
