@@ -83,7 +83,7 @@ After you create the policy ConfigMap, apply a label to it:
 kubectl -n <opaServerNamespace> label configmap manual-judgment openpolicyagent.org/policy=rego
 ```
 
-This label corresponds to the label you add in the [example manifest]({{< ref "policy-engine-enable#using-configmaps-for-opa-policies" >}}. The example ConfigMap creates an OPA server and, by extension, the Policy Engine that only checks ConfigMaps with the correct label. This improves performance.
+This label corresponds to the label you add in the [example manifest]({{< ref "policy-engine-enable#using-configmaps-for-opa-policies" >}}). The example ConfigMap creates an OPA server and, by extension, the Policy Engine that only checks ConfigMaps with the correct label. This improves performance.
 
 **API Example**
 
