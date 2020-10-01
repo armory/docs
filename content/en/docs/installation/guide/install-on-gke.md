@@ -416,19 +416,25 @@ If you already have an NGINX ingress controller installed on your cluster, skip 
 
 From the `workstation machine` (where `kubectl` is installed):
 
-If you are using Kubernetes version 1.14 or later, install the NGINX ingress controller components.
+From the `workstation machine` where `kubectl` is installed:
 
+If you are using Kubernetes version 1.14 or later, install the NGINX ingress controller components:
 
 ```bash
 kubectl --kubeconfig kubeconfig-gke apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.35.0/deploy/static/provider/cloud/deploy.yaml
 ```
 
-If you are using a Kubernetes version earlier than 1.14, you need to apply the below `mandatory.yaml` file and change kubernetes.io/os to beta.kubernetes.io/os at line 217.
-<!--- See the [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/) documentation for more details. --->
+If you are using a Kubernetes version earlier than 1.14, perform the following steps:
 
-```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml
-```
+1. Download this NGINX file: [mandatory.yaml](https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml.)
+2. Change `kubernetes.io/os` to `beta.kubernetes.io/os` on line 217 of `mandatory.yaml`.
+   <!--- See the [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/) documentation for more details. --->
+3. Run `kubectl apply -f` using the file you modified:
+   
+   ```bash
+   kubectl apply -f <modified-mandatory-file>.yaml
+   ```
+
 
 ## Set up the Ingress for `spin-deck` and `spin-gate`
 
