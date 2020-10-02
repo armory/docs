@@ -2,14 +2,14 @@
 title: Armory Agent Networking
 linkTitle: Networking
 description: >
-  How Armory Agent services running in Kubernetes clusters communicate with the Armory Agent plugin running in Spinnaker<sup>TM</sup>'s Clouddriver service
+  How Armory Agent services running in Kubernetes clusters communicate with the Armory Agent plugin running in Spinnaker's Clouddriver service
 ---
 
 ![Armory Agent networking](/images/armory-agent/agent-networking.png)
 
 The Armory Agent service and plugin use [gPRC](https://grpc.io/) on HTTP/2 to communicate with each other. This approach enables bidirectional, authenticated streaming over a single TCP connection and scales to millions of RPCs per second.
 
-The Armory Agent service makes outbound calls to the plugin running in Clouddriver.  As long as the Armory Agent service has outbound connectivity to the Armory Agent plugin, it can register itself to become a deployment target.  This means that you can have agents running on-premise or in public clouds such as AWS, GCP, Azure, Oracle, or Alibaba.
+The Armory Agent service makes outbound calls to the plugin running in Spinnaker<sup>TM</sup>'s Clouddriver service.  As long as the Armory Agent service has outbound connectivity to the Armory Agent plugin, it can register itself to become a deployment target.  This means that you can have agents running on-premise or in public clouds such as AWS, GCP, Azure, Oracle, or Alibaba.
 
 Outbound connections from the Armory Agent service leverage gRPC for security, as well as mTLS and JWT authentications.  Bidirectional channels within the tunnel use gRPC over HTTP/2.  Each of those channels is authenticated with a randomized token per channel.  These measures ensure that Armory Agent services can safely register with the Armory Agent plugin running in Clouddriver.
 
