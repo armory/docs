@@ -1,5 +1,6 @@
 ---
-title: Monitoring Armory Agent
+title: Monitoring
+weight: 5
 description: >
   Guide for monitoring Armory Agent in a production environment
 ---

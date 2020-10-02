@@ -28,7 +28,7 @@ weight: 4
 
 {{< include "agent/agent-compat-matrix.md" >}}
 
-The Agent comes as a service deployed as a Kubernetes `Deployment` as well as a plugin to the Clouddriver service of Spinnaker. Be sure to check out the [architecture]().
+The Agent comes as a service deployed as a Kubernetes `Deployment` as well as a plugin to the Clouddriver service of Spinnaker. Be sure to check out the [architecture](../../armory-admin/armory-agent/).
 
 ## Step 1: Agent Plugin Installation
 
@@ -38,7 +38,7 @@ The easiest installation path is to modify an existing [`spinnakerservice.yaml`]
 
 ```
 # AGENT_PLUGIN_VERSION can be found in the compatibility matrix above
-curl https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-plugin-${AGENT_PLUGIN_VERSION}-tar.gz | tar -xJvf -
+curl https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-plugin-$AGENT_PLUGIN_VERSION.tar.gz | tar -xJvf -
 ```
 
 
@@ -104,10 +104,10 @@ Let's create the following directory structure:
 ├── kustomization.yaml
 ├── kubesvc.yaml
 ├── kubecfgs/
-│   ├── kubecfg-01.yaml
-│   ├── kubecfg-02.yaml
-│   ├── ...
-│   └── kubecfg-nn.yaml
+│   ├── kubecfg-01.yaml
+│   ├── kubecfg-02.yaml
+│   ├── ...
+│   └── kubecfg-nn.yaml
 ```
 
 - `kustomization.yaml` and `kubesvc.yaml` are described below. Find more [complete options](options/).
@@ -118,8 +118,8 @@ Let's create the following directory structure:
 
 # Namespace where you want to deploy the agent
 namespace: spinnaker 
-bases:
-  - https://armory.jfrog.io/artifactory/manifests/kubesvc/kubesvc-<AGENT_VERSION>-kustomize.tar.gz
+bases:  
+  - https://armory.jfrog.io/artifactory/manifests/kubesvc/kubesvc-{{<param kubesvc-version>}}-kustomize.tar.gz
 
 configMapGenerator:
   - name: kubesvc-config
@@ -161,21 +161,12 @@ kustomize build /path/to/directory | kubectl apply -f -
 If you prefer to manage manifests directly, you can get all the manifests:
 
 ```bash
-AGENT_VERSION = {{param kubesvc-version}} \
-curl https://armory.jfrog.io/artifactory/manifests/kubesvc/kubesvc-${AGENT_VERSION}-kustomize.tar.gz | tar -xJvf -
+AGENT_VERSION = {{<param kubesvc-version>}} && \
+curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/kubesvc-$AGENT_VERSION-kustomize.tar.gz | tar -xJvf -
 ```
 
 - Change the version of the Agent in `kustomization.yaml`
 - Modify [Agent options](agent-options/) in `kubesvc.yaml`
-
-### Managing manifests directly
-
-```bash
-curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/kubesvc-<AGENT_VERSION>.yaml > kubesvc.yaml
-```
-
-This next section is to add the Clouddriver plugin to Spinnaker.  This will create the gRPC endpoint for all Armory Agents to connect to.  
-
 
 
 ## Validate the Agent service and plugin installation
