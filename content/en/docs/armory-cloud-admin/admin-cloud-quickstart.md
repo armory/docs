@@ -17,6 +17,8 @@ The first time logging into the Cloud Console, there will not be any environment
 
 Add configuration secrets to Armory Cloud to grant your app developers access to resources such as deployment targets. Armory Cloud stores and transmits these secrets securely. Once configured, refer to them by a name you assign instead of entering them in plain text.
 
+Note that these secrets are separate from any kind of app secret your developers may be using within their deployment pipelines.
+
 1. On the Armory Cloud Console homepage, select **Manage Secrets** for the environment you want to configure secrets for.
 2. On this screen, you can perform several tasks:
    
