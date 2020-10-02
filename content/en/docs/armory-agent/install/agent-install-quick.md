@@ -2,21 +2,21 @@
 title: Quick Start Installation
 weight: 3
 description: >
-  Quick start for experienced K8s and Spinnaker<sup>TM</sup> users
+  Quick start for experienced K8s and Spinnaker users
 ---
 
 ## Quick start installation
 
 >These quick start options are for experienced Kubernetes and Spinnaker users.
 
-This guide covers how to quickly install the Armory Agent for Kubernetes and connect to an Armory platform.  You can have hundreds or thousands of Kubernetes agents connected to a single Armory platform, whether self-hosted or SaaS.  This deployment is Kubernetes native via YAML files and can be automated for onboarding of new or existing Kubernetes clusters.
+This guide covers how to quickly install the Armory Agent for Kubernetes and connect to open source Spinnaker<sup>TM</sup> or an Armory platform.  You can have hundreds or thousands of Kubernetes agents connected to a single Armory platform, whether self-hosted or SaaS.  This deployment is Kubernetes native via YAML files and can be automated for onboarding of new or existing Kubernetes clusters.
 
 >The Armory Agent only works with a Clouddriver service that uses MySQL
 
 ## Terms
 
 - `kubesvc`: Armory Agent service source code is called `kubesvc` in the repository. The name of the running agent in Kubernetes is `kubesvc`.
-- `kubesvc-plugin`: Armory Agent for Clouddriver plugin is in a r "kubesvc-plugin" in the repository.
+- `kubesvc-plugin`: This is the Armory Agent plugin for Clouddriver.
 
 ## Compatibility matrix
 
@@ -124,7 +124,7 @@ Clouddriver plugin validation commands
    spin-clouddriver   ClusterIP   172.20.216.142   <none>        7002/TCP,9091/TCP   89d
 	```
 
->The gRPC port 9091 is opened for Agent Connections as part of plugin installation.
+>The gRPC port 9091 is opened for agent connections as part of the plugin installation.
 
 Additional tools for troubleshooting:
 

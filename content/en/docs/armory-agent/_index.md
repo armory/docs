@@ -2,11 +2,11 @@
 title: "Armory Agent for Kubernetes"
 linkTitle: "Armory Agent for K8s"
 description: >
-  The Armory Agent is a new, flexible way for Spinnaker<sup>TM</sup> to interact with your Kubernetes infrastructure
+  The Armory Agent is a new, flexible way for Spinnaker to interact with your Kubernetes infrastructure
 weight: 20
 ---
 
-The Armory Agent service runs in-cluster, like all other Spinnaker services, or as an agent outside of the cluster. The service sends data to the Armory Agent plugin, which extends Clouddriver and runs in the same namespace as Spinnaker.
+The Armory Agent service runs in-cluster, like all other Spinnaker<sup>TM</sup> services, or as an agent outside of the cluster. The service sends data to the Armory Agent plugin, which extends Clouddriver and runs in the same namespace as Spinnaker.
 
 * Scalability for Kubernetes
 
@@ -29,7 +29,7 @@ The Armory Agent service runs in-cluster, like all other Spinnaker services, or 
     * Kubernetes Service Accounts control the Armory Agent's access to Kubernetes namespaces.
     * You can have one Armory Agent service for the entire Kubernetes cluster or multiple services, each with limited access to namespaces and events.
     * Permissions are inherited from the Kubernetes role binding used when installing the Armory Agent service.
-    * The Armory Agent can assume service accounts within the cluster for Spinnaker deployment pipelines. 
+    * The Armory Agent can assume service accounts within the cluster for Spinnaker deployment pipelines.
 
   * Secure network communication between the service and plugin via [gPRC](https://grpc.io/), Mutual TLS (mTLS) authentication, and [JSON Web Token (JWT)](https://jwt.io/) authentication.
 
