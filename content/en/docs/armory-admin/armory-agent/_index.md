@@ -68,37 +68,18 @@ The Agent will send the following information about the cluster it is watching b
 > The Agent always scrubs data from `Secret` in memory before they are sent and even make it on to the Agent's memory heap.
 
 
-### Permissions:
-
-The Armory Agent can run with your kubernetes cluster with many different levels of granularity.  Access to the kubernetes namespaces and event bus is fully configurable to meet even the most regulated cluster configurations.  The permissions are inherited by the kubernetes role binding used when installing the agent.  This means you can have 1 Armory Agent for the entire Kubernetes cluster or multiple with limited access to namespaces and events.
-Account Management:
-The Armory Agent can assume any service accounts within the cluster for Spinnaker deployment pipelines.  
-
-
 ## Scalability
 
-Kubernetes Deployments
+Each Agent can scale to 100s of Kubernetes clusters. The more types of Kubernetes objects the agent has to watch, the more memory it uses. Memory usage is bursty and you can control burst with `budget` (see [Agent options](agent-options/#options))
 
-Kube Agent is all about distributing work and high scale deployments.  This is to combat the growing number of kubernetes clusters, environments, and regions seen in the field.  By distributing the processing work for Spinnaker and optimizing the way Clouddriver collects information we can push Spinnaker to even further scales than what has been seen before.
+Scaling the Agent can mean:
+- scaling the Kubernetes `Deployment` it is part of.
+- sharding Kubernetes clusters into groups that can in turn be scaled (Infrastructure mode above).
 
-Armory Agent Multicloud Kubernetes Deployments.
-
-A single large Agent will perform just as well as many smaller Agents.  You can choose the deployment option that best fits your software deployment strategy.
-
-
-![Armory Agent scales as the number of Development teams and Environments grow](https://paper-attachments.dropbox.com/s_716E58F6E839B4F4555DEA68E72A2ED554567BFE6B633074E17BD71244EE29FA_1601009399172_image.png)
-
-
-## Resiliency
-
-Armory Engineering has ensured that Kube Agent is made for all production cloud use cases.  This includes failure.  We understand that things don’t always go smoothly and with that in mind have created a highly resilient kubernetes deployment system.
-
-## Armory Agent communication to Armory SaaS
-
-The Agent design works extremely well with Armory Spinnaker SaaS.  Kube Agent can reach out and register itself with your Armory SaaS instance.
+You can also mix deployment strategies:
+- run the Agent as a Spinnaker service
+- have Agents running in target clusters
+- and even next to traditional Spinnaker Kubernetes accounts.
 
 
-![Resilience above what Kubernetes provides by default by running redundant Armory Agents](https://paper-attachments.dropbox.com/s_716E58F6E839B4F4555DEA68E72A2ED554567BFE6B633074E17BD71244EE29FA_1600985407580_image.png)
 
-
-If the Primary Agent fails, the Secondary monitoring Kubernetes cluster 1 will pickup and start forwarding events and performing operations where the Primary Agent left off.  There can be any number of Agents monitoring a Kubernetes cluster at one time.

@@ -78,20 +78,13 @@ Note:
 - if you gave `SpinnakerService` a name other than `spinnaker`, you will need to change it in files under `agent-plugin`
 - if you are using the Agent on an OSS installation, use the following download URL `https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-oss-plugin-${AGENT_PLUGIN_VERSION}-tar.gz` or replace the `apiVersion` to `spinnaker.io/v1alpha2`.
 
-### Verifying the plugin installation
-
-After a successful installation:
-- clouddriver service should be up
-```bash
-$ kubectl get service spin-clouddriver-grpc
-```
-
-### Alternate method
+### Alternate methods
 
 If you are not using kustomize, you can still use the same manifests above:
 
 - Deploy `agent-service/clouddriver-grpc-service.yaml` or `agent-service/clouddriver-ha-grpc-service.yaml` if using Clouddriver "HA" (caching, rw, ro).
 - Merge `agent-plugin/config.yaml` and `agent-plugin/clouddriver-plugin.yaml` into your existing `SpinnakerService`.
+
 
 ## Step 2: Agent Installation
 
@@ -119,7 +112,7 @@ Let's create the following directory structure:
 # Namespace where you want to deploy the agent
 namespace: spinnaker 
 bases:  
-  - https://armory.jfrog.io/artifactory/manifests/kubesvc/kubesvc-{{<param kubesvc-version>}}-kustomize.tar.gz
+  - https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-{{<param kubesvc-version>}}-kustomize.tar.gz
 
 configMapGenerator:
   - name: kubesvc-config
@@ -162,12 +155,13 @@ If you prefer to manage manifests directly, you can get all the manifests:
 
 ```bash
 AGENT_VERSION = {{<param kubesvc-version>}} && \
-curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/kubesvc-$AGENT_VERSION-kustomize.tar.gz | tar -xJvf -
+curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-$AGENT_VERSION-kustomize.tar.gz | tar -xJvf -
 ```
 
 - Change the version of the Agent in `kustomization.yaml`
 - Modify [Agent options](agent-options/) in `kubesvc.yaml`
 
+### Validating the installation
 
 ## Validate the Agent service and plugin installation
 
