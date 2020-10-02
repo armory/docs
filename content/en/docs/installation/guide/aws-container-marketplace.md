@@ -15,6 +15,10 @@ Please contact [Armory](mailto:hello@armory.io) if you're interested in an AWS M
 
 The Armory Operator is a Kubernetes Operator for Spinnaker<sup>TM</sup> that makes it easier to install, deploy, and upgrade Spinnaker. The AWS Container Marketplace offering for Armory installs a version of the Armory Operator in an EKS cluster. After that, Armory can be installed in any namespace in your EKS cluster; this document assumes that Armory will be installed in the `spinnaker` namespace.
 
+## AWS Resources
+
+Before you install Armory on AWS, it is essential that you familiarize yourself with [relevant AWS services]({{< ref "resources-aws" >}}).
+
 ## Prerequisites
 
 To use the Armory Marketplace offering, make sure you meet the following requirements:
@@ -23,7 +27,6 @@ To use the Armory Marketplace offering, make sure you meet the following require
 * You have an ingress controller for your EKS cluster. This document assumes the EKS cluster is using the NGINX Ingress Controller.
 * You have `cluster-admin` access on the EKS cluster.
 * You have An AWS S3 bucket to store Armory application and pipeline configuration.
-
 
 ## Installation
 

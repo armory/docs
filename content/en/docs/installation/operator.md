@@ -22,13 +22,12 @@ Using the Armory Operator, you can:
 
 ## Requirements
 
-Before you start, ensure the following requirements are met:
+Before you start, ensure you meet the following requirements:
 
 - Your Kubernetes cluster runs version 1.13 or later.
 - You have admission controllers enabled in Kubernetes (`-enable-admission-plugins`).
 - You have `ValidatingAdmissionWebhook` enabled in the kube-apiserver. Alternatively, you can pass the `--disable-admission-controller` parameter to the to the `deployment.yaml` file that deploys the operator.
 - You have admin rights to install the Custom Resource Definition (CRD) for Operator.
-
 
 ## Install Armory Operator
 
