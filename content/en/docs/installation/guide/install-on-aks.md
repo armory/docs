@@ -413,7 +413,7 @@ In order to expose Spinnaker to end users, you have perform the following action
 * Expose the spin-gate (API) Kubernetes service on some URL endpoint
 * Update Armory (via Halyard) to be aware of the new endpoints
 
-We're going to install the NGINX ingress controller on aks because of these limitations of the built-in aks Ingress controller:
+We're going to install the NGINX ingress controller on AKS because of these limitations of the built-in aks Ingress controller:
 
 * It only exposes NodePort services
 * It only exposes services that respond with an `HTTP 200` to a `GET` on `/` or have a `readinessProbe` configured
@@ -422,17 +422,9 @@ If you already have an NGINX ingress controller installed on your cluster, skip 
 
 Both of these are configurable with Spinnaker, but the NGINX ingress controller is also generally much more configurable.
 
-From the `workstation machine` where `kubectl` is installed:
+{{< include "install/nginx-common.md" >}}
 
-Install the NGINX ingress controller components:
-
-```bash
-kubectl --kubeconfig kubeconfig-aks apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
-```
-
-If you are using a Kubernetes version earlier than 1.14, you need to change kubernetes.io/os to beta.kubernetes.io/os at line 217 of `mandatory.yaml`. See the [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/) documentation for more details.
-
-Install the NGINX ingress controller aks-specific service:
+Then, install the NGINX ingress controller AKS-specific service:
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml

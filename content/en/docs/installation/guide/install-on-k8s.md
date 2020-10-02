@@ -807,13 +807,9 @@ In order to expose Armory to end users, perform the following actions:
 
 The following instructions walk you through how to install the NGINX ingress controller on AWS. This uses the Layer 4 ELB, as indicated in the NGINX ingress controller [documentation](https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md#aws). You can use other NGINX ingress controller configurations, such as the Layer 7 load balancer, based on your organization's ingress policy.)
 
-(Both of these are configurable with Armory, but the NGINX ingress controller is also generally much more configurable.)
+Both of these are configurable with Armory, but the NGINX ingress controller is also generally much more configurable.
 
-From the `workstation machine` where `kubectl` is installed, install the NGINX ingress controller components:
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
-```
+{{< include "install/nginx-common.md" >}}
 
 Then, install the NGINX ingress controller AWS-specific service:
 
