@@ -807,26 +807,9 @@ In order to expose Armory to end users, perform the following actions:
 
 The following instructions walk you through how to install the NGINX ingress controller on AWS. This uses the Layer 4 ELB, as indicated in the NGINX ingress controller [documentation](https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md#aws). You can use other NGINX ingress controller configurations, such as the Layer 7 load balancer, based on your organization's ingress policy.)
 
-(Both of these are configurable with Armory, but the NGINX ingress controller is also generally much more configurable.)
+Both of these are configurable with Armory, but the NGINX ingress controller is also generally much more configurable.
 
-From the `workstation machine` where `kubectl` is installed, install the NGINX ingress controller components.
-
-If you are using Kubernetes 1.14 or later, run the following command:
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
-```
-
-If you are running a version earlier than Kubernetes 1.14, perform the following steps:
-
-1. Download this NGINX file: [mandatory.yaml](https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml).
-2. Change `kubernetes.io/os` to `beta.kubernetes.io/os` on line 217 of `mandatory.yaml`.
-   <!--- See the [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/) documentation for more details. --->
-3. Run `kubectl apply -f` using the file you modified:
-
-   ```bash
-   kubectl apply -f <modified-mandatory-file>.yaml
-   ```
+{{< include "install/nginx-common.md" >}}
 
 Then, install the NGINX ingress controller AWS-specific service:
 
