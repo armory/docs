@@ -7,18 +7,17 @@ description: >
 
 {{< include "experimental-feature.html" >}}
 
-
 In this guide, you deploy the `pf4jStagePlugin` plugin from the [spinnaker-plugin-examples](https://github.com/spinnaker-plugin-examples/examplePluginRepository) repository.
 
 By implementing Orca's SimpleStage PF4J extension point, the `pf4jStagePlugin` creates a custom pipeline stage that waits a random number of seconds before signaling success. This plugin consists of a `random-wait-orca` Kotlin server component and a `random-wait-deck` React UI component that uses the rollup.js plugin library.
 
 ## Prerequisites
 
-* You are familiar with [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which use custom resources to manage applications and their components
-* You understand the concept of [managing Kubernetes resources using manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/)
-* You have a basic understanding of how the [Armory Operator]({{< ref "operator" >}}) deploys Armory to [Kubernetes](https://kubernetes.io/)
-* You have `kubectl` access to an instance of Armory installed using the Armory Operator in `basic` and have permissions to modify and apply the manifest that deploys Armory
-* You have read the [Plugin Users Guide](https://spinnaker.io/guides/user/plugins); you are familiar with plugin concepts and the files used when deploying plugins (`repositories.json`, `plugins.json`)
+- You are familiar with [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which use custom resources to manage applications and their components
+- You understand the concept of [managing Kubernetes resources using manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/)
+- You have a basic understanding of how the [Armory Operator]({{< ref "operator" >}}) deploys Armory to [Kubernetes](https://kubernetes.io/)
+- You have `kubectl` access to an instance of Armory installed using the Armory Operator in `basic` and have permissions to modify and apply the manifest that deploys Armory
+- You have read the [Plugin Users Guide](https://spinnaker.io/guides/user/plugins); you are familiar with plugin concepts and the files used when deploying plugins (`repositories.json`, `plugins.json`)
 
 ### Armory environment
 
@@ -32,41 +31,10 @@ Each plugin should provide configuration information. The `pf4jStagePlugin` has 
 
 **This guide assumes you are using Armory installed by the Armory Operator in `basic` mode.** Add plugin configuration in the `/spinnaker-operator/deploy/spinnaker/basic/SpinnakerService.yml` manifest file. Complete configuration information is in the _Operator Reference_ Plugins [section]({{< ref "plugins" >}}).
 
-You can configure the plugin in either the `spec.spinnakerConfig.config.spinnaker.extensibility.plugins` or the `spec.spinnakerConfig.profiles.<service>` sections of the manifest.
-
-### `spec.spinnakerConfig.config.spinnaker.extensibility.plugins`
-
-* You can put configuration in this section when the plugin extends multiple services.
-* All Spinnaker services restart when you apply the manifest.
-
-For example:
-
-```yaml
-spec:
-  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
-  spinnakerConfig:
-    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
-    config:
-      spinnaker:
-        extensibility:
-          plugins:
-            Armory.RandomWaitPlugin:
-              enabled: true
-              version: 1.1.14
-              extensions:
-                id: armory.randomWaitStage
-                enabled: true
-                config:
-                  defaultMaxWaitTime: 15
-          repositories:
-            examplePluginsRepo:
-              id: examplePluginsRepo
-              url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
-```
 
 ### `spec.spinnakerConfig.profiles.<service>`
 
-Put configuration in the `service` that the plugin extends when you do not want all Spinnaker services to restart when you apply the manifest.
+Put configuration in the `service` that the plugin extends.  Only the impacted service will restart when you apply the manifest.
 
 Example:
 
@@ -96,56 +64,14 @@ spec:
 
 ### Deck proxy
 
-You need to configure a `deck-proxy` in Gate if your plugin has a Deck component. Locate the `profiles` section in your `SpinnakerService.yml` and add the proxy information to the `gate` section. The example below shows the plugin configured in `spec.spinnakerConfig.config.spinnaker.extensibility.plugins` and the Deck proxy in the `spec.spinnakerConfig.profiles.gate` section.
-
-```yaml
-spec:
-  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
-  spinnakerConfig:
-    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
-    config:
-      spinnaker:
-        extensibility:
-          plugins:
-            Armory.RandomWaitPlugin:
-              enabled: true
-              version: 1.1.14
-              extensions:
-                id: armory.randomWaitStage
-                enabled: true
-                config:
-                  defaultMaxWaitTime: 15
-          repositories:
-            examplePluginsRepo:
-              id: examplePluginsRepo
-              url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
-
-
-    # spec.spinnakerConfig.profiles - This section contains the YAML of each service's profile
-    profiles:
-      gate:    # is the contents of ~/.hal/default/profiles/gate.yml
-        spinnaker:
-          extensibility:
-            deck-proxy:
-              enabled: true
-              plugins:
-                Armory.RandomWaitPlugin:
-                  enabled: true
-                  version: 1.1.14
-            repositories:
-              examplePluginsRepo:
-                url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
-```
-
-This example shows plugin configuration in the `spec.spinnakerConfig.profiles` section and the Deck proxy in the `spec.spinnakerConfig.profiles.gate` section:
-
+You need to configure a `deck-proxy` in Gate if your plugin has a Deck component. Locate the `profiles` section in your `SpinnakerService.yml` and add the proxy information to the `gate` section. This example shows plugin configuration in the `spec.spinnakerConfig.profiles` section and the Deck proxy in the `spec.spinnakerConfig.profiles.gate` section:
 
 ```yaml
 spec:
   spinnakerConfig:
     # spec.spinnakerConfig.profiles - This section contains the YAML of each service's profile
     profiles:
-      gate:    
+      gate:
         spinnaker:
           extensibility:
             deck-proxy: # you need this for plugins with a Deck component
@@ -160,19 +86,19 @@ spec:
       orca:
         spinnaker:
           extensibility:
-    		   plugins:
-    		     Armory.RandomWaitPlugin:
-    			    enabled: true
-    			    version: 1.1.14
-    			    extensions:
-    				   id: armory.randomWaitStage
-    				   enabled: true
-    				   config:
-    				     defaultMaxWaitTime: 15
-    		   repositories:
-    		     examplePluginsRepo:
-    			    id: examplePluginsRepo
-    			    url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
+           plugins:
+             Armory.RandomWaitPlugin:
+              enabled: true
+              version: 1.1.14
+              extensions:
+               id: armory.randomWaitStage
+               enabled: true
+               config:
+                 defaultMaxWaitTime: 15
+           repositories:
+             examplePluginsRepo:
+              id: examplePluginsRepo
+              url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
 ```
 
 Note: `repositories`, `plugins`, and `deck-proxy` are all at the same level, which is directly below `extensibility`.
@@ -203,12 +129,11 @@ The RandomWait stage appears in the **Type** select list when you create a new P
 
 {{< figure src="/images/plugins/randomWaitStageUI.png" caption="Random Wait stage after it has been selected and the configuration panel is visible." >}}
 
-
 ## Troubleshooting
 
 If the plugin doesn't appear in the **Type** select list, check the following logs:
 
-* Orca, for the plugin backend
+- Orca, for the plugin backend
 
   ```bash
   kubectl -n spinnaker-operator logs -f <orca-pod-name>
@@ -238,7 +163,7 @@ If the plugin doesn't appear in the **Type** select list, check the following lo
 
   If you see `this.pluginId must not be null`, the plugin manifest file is missing values. Contact the plugin's developer.
 
-* Gate, for the plugin frontend
+- Gate, for the plugin frontend
 
   ```bash
   kubectl -n spinnaker-operator logs -f <gate-pod-name>

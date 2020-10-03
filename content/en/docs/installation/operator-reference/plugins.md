@@ -13,34 +13,33 @@ Plugins are an experimental feature in Armory Spinnaker 2.20.3 (Spinnaker 1.20.6
 
 ## Parameters
 
-**spec.spinnakerConfig.config.spinnaker.extensibility.plugins**
+***spec.spinnakerConfig.profiles***
 
-Put plugin declaration and configuration at the same level as `version` in your `SpinnakerService.yml` file.
+Put configuration in the `service` that the plugin extends.  Only the impacted service will restart when you apply the manifest.
+
+Example:
 
 ```yaml
-kind: SpinnakerService
-metadata:
-  name: spinnaker
 spec:
+  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
   spinnakerConfig:
-    config:
-      version:
-      spinnaker:
-        extensibility:
-          plugins:
-            <plugin-name>:
-              id:
-              enabled:
-              version:
-              extensions:
-                <extension-name>:
-                  id:
-                  enabled:
+    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
+    profiles:
+      orca:
+        spinnaker:
+          extensibility:
+            plugins:
+              <plugin-name>:
+                enabled: <true-or-false>
+                version: <version>
+                extensions:
+                  id: <extension-name>
+                  enabled: <true-or-false>
                   config: {}
-          repositories:
-            <repository-name>:
-              id:
-              url:
+            repositories:
+              <repository-name>:
+                id:
+                url:
 ```
 
 - `plugins`:
@@ -59,8 +58,6 @@ spec:
     - `url`: URL to `repositories.json` or `plugins.json`
 
 See the Plugin Users Guide _Add a plugin repository using Halyard_ [section](https://spinnaker.io/guides/user/plugins/#add-a-plugin-repository-using-halyard) for when you can use `plugins.json` instead of `repositories.json`.
-
-Alternately, you can put the plugin configuration in the `profiles: <service>` section. If you use this approach, only the service(s) relevant to the plugin will be restarted rather than all services.
 
 ### Deck proxy
 
@@ -103,33 +100,13 @@ The example below configures the [`pf4jStagePlugin`](https://github.com/spinnake
 
 ```yaml
 spec:
-  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
   spinnakerConfig:
-    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
-    config:
-      spinnaker:
-        extensibility:
-          plugins:
-            Armory.RandomWaitPlugin:
-              enabled: true
-              version: 1.1.14
-              extensions:
-                id: armory.randomWaitStage
-                enabled: true
-                config:
-                  defaultMaxWaitTime: 15
-          repositories:
-            examplePluginsRepo:
-              id: examplePluginsRepo
-              url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
-
-
     # spec.spinnakerConfig.profiles - This section contains the YAML of each service's profile
     profiles:
-      gate:    # is the contents of ~/.hal/default/profiles/gate.yml
+      gate:
         spinnaker:
           extensibility:
-            deck-proxy:
+            deck-proxy: # you need this for plugins with a Deck component
               enabled: true
               plugins:
                 Armory.RandomWaitPlugin:
@@ -138,4 +115,20 @@ spec:
             repositories:
               examplePluginsRepo:
                 url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
+      orca:
+        spinnaker:
+          extensibility:
+           plugins:
+             Armory.RandomWaitPlugin:
+              enabled: true
+              version: 1.1.14
+              extensions:
+               id: armory.randomWaitStage
+               enabled: true
+               config:
+                 defaultMaxWaitTime: 15
+           repositories:
+             examplePluginsRepo:
+              id: examplePluginsRepo
+              url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
 ```

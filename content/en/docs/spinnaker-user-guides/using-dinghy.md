@@ -1366,6 +1366,8 @@ Dinghy sends a notification to channel `slack-channel-good` and `slack-channel-b
 
 ## Repository Template processing
 
+*This feature requires __Armory Platform 2.22+__ and __Armory-extended Halyard 1.9.5+__*
+
 Imagine you have a template and a couple of modules and `dinghyfiles` pointing at them. You modify a module and this module is using Rawdata. At this moment the commited Rawdata is from the template repository, so there can be two possible scenarios:
 
   - The Rawdata from the template repository is taken in order to render all the dependent `dinghyfiles` again. Use the `repositoryRawdataProcessing = false` config for this behavior.

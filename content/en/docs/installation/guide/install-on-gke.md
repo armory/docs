@@ -414,21 +414,8 @@ If you already have an NGINX ingress controller installed on your cluster, skip 
 
 (Both of these are configurable with Armory, but the NGINX ingress controller is also generally much more configurable)
 
-From the `workstation machine` (where `kubectl` is installed):
+{{< include "install/nginx-common.md" >}}
 
-Install the NGINX ingress controller components:
-
-```bash
-kubectl --kubeconfig kubeconfig-gke apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
-```
-
-If you are using a Kubernetes version earlier than 1.14, you need to change kubernetes.io/os to beta.kubernetes.io/os at line 217 of `mandatory.yaml`. See the [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/) documentation for more details.
-
-Install the NGINX ingress controller GKE-specific service:
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
-```
 
 ## Set up the Ingress for `spin-deck` and `spin-gate`
 
