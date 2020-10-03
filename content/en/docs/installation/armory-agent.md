@@ -45,7 +45,7 @@ curl https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-plugin-$
 We'll then include the manifests to our current kustomization:
 ```yaml
 # Existing kustomization.yaml
-namespace: spinnaker  # could be different
+namespace: spinnaker  #   could be different
 resources:
   # Pre-existing SpinnakerService resource (may have a different name)
   - spinnakerservice.yaml
@@ -64,12 +64,7 @@ patchesStrategicMerge:
 
 ```
 
-After the installation, running the following should give you an updated manifest:
-```bash
-kustomize build . 
-```
-
-When you're ready, deploy with:
+You can then set the [plugin options](../../armory-admin/armory-agent/plugin-options/) in `agent-plugin/config.yaml`. When you're ready, deploy with:
 ```bash
 kustomize build . | kubectl apply -f - 
 ```
@@ -90,7 +85,7 @@ If you are not using kustomize, you can still use the same manifests above:
 
 ### Kustomize
 
-Let's create the following directory structure:
+Create the following directory structure with `kustomization.yaml` and `kubesvc.yaml` described below and `kubecfg/` containing the [kubeconfig files](../../armory-admin/manual-service-account/) required to access target deployment clusters:
 
 ```
 .
@@ -102,9 +97,6 @@ Let's create the following directory structure:
 │   ├── ...
 │   └── kubecfg-nn.yaml
 ```
-
-- `kustomization.yaml` and `kubesvc.yaml` are described below. Find more [complete options](options/).
-- `kubecfg/` contains [kubeconfig files](../../armory-admin/manual-service-account/) required to access target deployment clusters.
 
 ```yaml
 # ./kustomization.yaml  
@@ -129,6 +121,7 @@ secretGenerator:
     - kubecfgs/kubecfg-account1000.yaml
 ```
 
+`kubesvc.yaml`  contains the [Agent options](../../armory-admin/armory-agent/agent-options/):
 ```yaml
 # ./kubesvc.yaml
 
@@ -159,39 +152,5 @@ curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-$AGEN
 ```
 
 - Change the version of the Agent in `kustomization.yaml`
-- Modify [Agent options](agent-options/) in `kubesvc.yaml`
-
-### Validating the installation
-
-## Validate the Agent service and plugin installation
-
-Below are commands and ways you can validate you have a properly running Armory Agent. This is a good reference for troubleshooting.
-
-Agent Validation Commands:
-
-   ```bash
-   kubectl -n <namespace> get pods
-   kubectl -n <namespace> describe pod -l app.kubernetes.io/name=kubesvc
-   kubectl -n <namespace> logs -l app.kubernetes.io/name=kubesvc -n kubesvc | grep connect
-   kubectl -n <namespace> logs -f -l app.kubernetes.io/name=kubesvc -n kubesvc | grep connect
-   kubectl -n <namespace> get deployment spin-kubesvc -n kubesvc -o yaml
-    ```
-
-Clouddriver plugin validation commands
-
-   ```bash
-   kubectl -n <namespace> logs -l app.kubernetes.io/name=clouddriver
-   kubectl -n <namespace> describe pod -l app.kubernetes.io/name=clouddriver
-   kubectl -n <namespace> get svc spin-clouddriver
-   NAME               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
-   spin-clouddriver   ClusterIP   172.20.216.142   <none>        7002/TCP,9091/TCP   89d
-    ```
-
->The gRPC port 9091 is opened for Agent Connections as part of plugin installation.
-
-Additional tools for troubleshooting:
-
-* [gRPCurl](https://github.com/fullstorydev/grpcurl) - Test connection to Clouddriver to ensure proper traffic routing and ports are open.  
-
-
+- Modify [Agent options](../../armory-admin/armory-agent/agent-options/) in `kubesvc.yaml`
 
