@@ -3,9 +3,6 @@ title: Plugin Options
 weight: 4
 ---
 
-### Options
-
-
 | Setting  | Type  | Default  | Description |
 | -------- | ----- | -------- | ----------- |
 | `kubesvc.cluster` | string | none | Type of clustering.<br>`local`: don’t try to coordinate with other Clouddriver instances<br>`redis`: use Redis to coordinate via pubsub |
@@ -26,7 +23,7 @@ weight: 4
 | `kubesvc.grpc.server.security.enabled`| boolean | `false` | Enable transport level security |
 | `kubesvc.grpc.server.security.certificateChain`| string | none | Reference to the server's certificate chain. |
 | `kubesvc.grpc.server.security.privateKey`| string | none | Reference to the private key of the server. |
-| `kubesvc.grpc.server.security.privateKeyPassword`| string | none | Reference to private key password if password protected. You can use [secret management](../../secrets/) to store the password. |
+| `kubesvc.grpc.server.security.privateKeyPassword`| string | none | Reference to private key password if password protected. You can use [secret management]({{<  ref "secrets" >}}) to store the password. |
 | `kubesvc.grpc.server.security.clientAuth`| string | `NONE` | `NONE`: no client certificate verification, `OPTIONAL`: verify client certificates if presented, `REQUIRE`: require client to present certificates and verify it |
 | `kubesvc.grpc.server.security.ciphers`| list(string) | `[]` | By default, use the systems default ciphers. |
 | `kubesvc.grpc.server.security.trustCertCollection`| string | none | By default, use the systems default truststore (cacerts). Otherwise, reference to a truststore to validate clients. |

@@ -3,14 +3,15 @@ title: Agent Options
 weight: 3
 ---
 
-Set these options at the agent level in the `kubesvc.yaml` configuration file. If deploying as a non Spinnaker service, you will likely need to specify `clouddriver.grpc` endpoint (e.g. `grpc.spinnaker.example.com:443`).
+Set these options at the agent level in the `kubesvc.yaml` configuration file. If deploying as a non-Spinnaker<sup>TM</sup> service, you need to specify a `clouddriver.grpc` endpoint (e.g. `grpc.spinnaker.example.com:443`).
 
-## Kubernetes Account
-At a minimum you will need to add an account, give it a name and set its Spinnaker permissions.
+## Kubernetes account
 
-### Spinnaker Service/Infrastructure Mode
+At a minimum you will need to add an account, give it a name, and set its Spinnaker permissions.
 
-In this mode, you set up multiple accounts per agent, your configuration will look like:
+### Spinnaker Service and Infrastructure modes
+
+In these modes, you set up multiple accounts per agent. Your configuration should look like:
 
 ```yaml
 kubernetes:
@@ -23,8 +24,9 @@ kubernetes:
 > If you are migrating accounts from Clouddriver, you can just copy the same block of configuration here. Unused properties are ignored.
 
 
-### Agent Mode
-In agent mode, you configuration will probably look like:
+### Agent mode
+
+In agent mode, your configuration should look like:
 
 ```yaml
 kubernetes:
@@ -68,5 +70,5 @@ kubernetes:
 | `certFile`                                                                                                                                                                  | string            | None                    | Client certificate to use when connecting to Spinnaker. <br>Not required but encouraged.                                                                                                                                                                                                                                                                          |
 | `pprof.enabled`                                                                                                                                                             | boolean           | false                   | Enable pprof endpoint. Useful for troubleshooting, slowness, memory leaks, and more!<br>https://github.com/google/pprof/blob/master/doc/README.md                                                                                                                                                                                                                                                                                                                                               |
 | `pprof.port`                                                                                                                                                                | integer           | 6060                    | Port on which to respond to pprof requests                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `secrets.vault.*`                                                                                                                                                           | object            | none                    | [Vault configuration](../../secrets/secrets-vault/#1-kubernetes-service-account-recommended)|
+| `secrets.vault.*`                                                                                                                                                           | object            | none                    | [Vault configuration]({{< ref "secrets-vault#1-kubernetes-service-account-recommended" >}}) |
 

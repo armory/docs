@@ -2,19 +2,19 @@
 title: "Armory Agent for Kubernetes"
 linkTitle: "Armory Agent"
 description: >
-  Armory Agent is a new, flexible way for Spinnaker to interact with your Kubernetes infrastructure.
+  Armory Agent is a new, flexible way for Spinnaker to interact with your Kubernetes infrastructure. Learn the benefits and install quickly using this guide.
 weight: 4
 ---
 
 * Massive scale for Kubernetes
-  * Agent only streams changes to Spinnaker in real time over a single TCP connection per cluster.
+  * The Agent only streams changes to Spinnaker<sup>TM</sup> in real time over a single TCP connection per cluster.
   * Caching and deployment scales to thousands of Kubernetes clusters for your largest applications.
-  * Agent optimizes how infrastructure information is cached resulting in optimal performance for your end users or your pipelines.
+  * The Agent optimizes how infrastructure information is cached resulting in optimal performance for your end users or your pipelines.
 
 * Flexible deployment model
-  * Use the agent alongside Spinnaker and benefit from performance improvements.
-  * Use the agent in the target cluster and get Kubernetes account automatically registered.
-  
+  * Use the Agent alongside Spinnaker and benefit from performance improvements.
+  * Use the Agent in the target cluster and get Kubernetes account automatically registered.
+
 * Enhanced security
   * Keep your Kubernetes API servers private from Spinnaker.
   * Control what Spinnaker can do directly in a service account. No need to change Spinnaker.
@@ -24,25 +24,26 @@ weight: 4
 
 ## Compatibility matrix
 
-> [MySQL storage for Clouddriver](../../armory-admin/clouddriver-sql-configure/) is required for the Agent.
+> [MySQL storage for Clouddriver]({{< ref "clouddriver-sql-configure" >}}) is required for the Agent.
 
 {{< include "agent/agent-compat-matrix.md" >}}
 
-The Agent comes as a service deployed as a Kubernetes `Deployment` as well as a plugin to the Clouddriver service of Spinnaker. Be sure to check out the [architecture](../../armory-admin/armory-agent/).
+The Agent comes as a service deployed as a Kubernetes `Deployment` as well as a plugin to Spinnaker's Clouddriver service. Be sure to check out the [architecture]({{< ref "armory-agent" >}}).
 
-## Step 1: Agent Plugin Installation
+## Step 1: Agent plugin installation
 
-The installation consists in modifying the current clouddriver deployment as well as adding a new Kubernetes `Service`.
+You modify the current Clouddriver deployment as well as add a new Kubernetes `Service`.
 
-The easiest installation path is to modify an existing [`spinnakerservice.yaml`](../operator-reference/operator-config/) with [kustomize](https://kustomize.io/). Let's download additional manifests into the directory with your `SpinnakerService`:
+The easiest installation path is to modify an existing [`spinnakerservice.yaml`]({{< ref "operator-config" >}}) with [kustomize](https://kustomize.io/). To start, download additional manifests into the directory with your `SpinnakerService`:
 
 ```
-# AGENT_PLUGIN_VERSION can be found in the compatibility matrix above
+# AGENT_PLUGIN_VERSION is found in the compatibility matrix above
 curl https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-plugin-$AGENT_PLUGIN_VERSION.tar.gz | tar -xJvf -
 ```
 
 
-We'll then include the manifests to our current kustomization:
+Then include the manifests in your current kustomization:
+
 ```yaml
 # Existing kustomization.yaml
 namespace: spinnaker  #   could be different
@@ -64,28 +65,30 @@ patchesStrategicMerge:
 
 ```
 
-You can then set the [plugin options](../../armory-admin/armory-agent/plugin-options/) in `agent-plugin/config.yaml`. When you're ready, deploy with:
+You can then set the [plugin options]({{< ref "agent-plugin-options" >}}) in `agent-plugin/config.yaml`. When you're ready, deploy with:
+
 ```bash
-kustomize build . | kubectl apply -f - 
+kustomize build . | kubectl apply -f -
 ```
 
-Note: 
-- if you gave `SpinnakerService` a name other than `spinnaker`, you will need to change it in files under `agent-plugin`
-- if you are using the Agent on an OSS installation, use the following download URL `https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-oss-plugin-${AGENT_PLUGIN_VERSION}-tar.gz` or replace the `apiVersion` to `spinnaker.io/v1alpha2`.
+Note:
+
+- If you gave `SpinnakerService` a name other than `spinnaker`, you will need to change it in files under `agent-plugin`.
+- If you are using the Agent on an OSS installation, use the following download URL `https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-oss-plugin-${AGENT_PLUGIN_VERSION}-tar.gz` or replace the `apiVersion` with `spinnaker.io/v1alpha2`.
 
 ### Alternate methods
 
-If you are not using kustomize, you can still use the same manifests above:
+If you are not using kustomize, you can still use the same manifests.
 
 - Deploy `agent-service/clouddriver-grpc-service.yaml` or `agent-service/clouddriver-ha-grpc-service.yaml` if using Clouddriver "HA" (caching, rw, ro).
 - Merge `agent-plugin/config.yaml` and `agent-plugin/clouddriver-plugin.yaml` into your existing `SpinnakerService`.
 
 
-## Step 2: Agent Installation
+## Step 2: Agent installation
 
 ### Kustomize
 
-Create the following directory structure with `kustomization.yaml` and `kubesvc.yaml` described below and `kubecfg/` containing the [kubeconfig files](../../armory-admin/manual-service-account/) required to access target deployment clusters:
+Create the directory structure described below with `kustomization.yaml`, `kubesvc.yaml`, and `kubecfg/` containing the [kubeconfig files]({{< ref "manual-service-account" >}}) required to access target deployment clusters:
 
 ```
 .
@@ -102,7 +105,7 @@ Create the following directory structure with `kustomization.yaml` and `kubesvc.
 # ./kustomization.yaml  
 
 # Namespace where you want to deploy the agent
-namespace: spinnaker 
+namespace: spinnaker
 bases:  
   - https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-{{<param kubesvc-version>}}-kustomize.tar.gz
 
@@ -121,7 +124,7 @@ secretGenerator:
     - kubecfgs/kubecfg-account1000.yaml
 ```
 
-`kubesvc.yaml`  contains the [Agent options](../../armory-admin/armory-agent/agent-options/):
+`kubesvc.yaml`  contains the [Agent options]({{< ref "agent-options" >}}):
 ```yaml
 # ./kubesvc.yaml
 
@@ -136,15 +139,15 @@ kubernetes:
 ...
 ```
 
-With the structure above in place deploying the agent is as simple as:
+With the directory structure in place, deploy the Agent:
 
 ```bash
-kustomize build /path/to/directory | kubectl apply -f - 
+kustomize build </path/to/directory> | kubectl apply -f -
 ```
 
 ### Managing kustomization locally
 
-If you prefer to manage manifests directly, you can get all the manifests:
+If you prefer to manage manifests directly, download all the manifests:
 
 ```bash
 AGENT_VERSION = {{<param kubesvc-version>}} && \
@@ -152,5 +155,5 @@ curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-$AGEN
 ```
 
 - Change the version of the Agent in `kustomization.yaml`
-- Modify [Agent options](../../armory-admin/armory-agent/agent-options/) in `kubesvc.yaml`
+- Modify [Agent options]({{< ref "agent-options" >}}) in `kubesvc.yaml`
 

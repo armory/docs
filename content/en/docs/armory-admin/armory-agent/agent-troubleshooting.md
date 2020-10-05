@@ -3,9 +3,9 @@ title: Troubleshooting
 weight: 6
 ---
 
-## Agent Plugin
+## Agent plugin
 
-After a successful installation of the plugin, `spin-clouddriver-grpc` (or `spin-clouddriver-ha-grpc`) service should be up:
+After a successful plugin installation, `spin-clouddriver-grpc` (or `spin-clouddriver-ha-grpc`) service should be up:
 
 ```bash
 $ kubectl get service spin-clouddriver-grpc
@@ -38,9 +38,9 @@ ops.Operations
 > Use `-plaintext` if your gRPC endpoint is not configured for TLS, `-insecure` if you are using TLS with custom certificates.
 
 
-## Agent
+## Agent service
 
-On a normal startup, the agent will show the following messages:
+On a normal startup, the Agent will show the following messages:
 
 ```
 # This shows where the configuration is read. "no such file" is expected.
@@ -66,11 +66,12 @@ time="2020-10-02T22:22:27Z" level=info msg="starting agentCreator account-01"
 ```
 
 Common errors:
-- When connecting to Spinnaker as a service, make sure to set `clouddriver.insecure: true` or provide certificates so the plugin can terminate TLS.
+
+- When connecting to Spinnaker<sup>TM</sup> as a service, make sure to set `clouddriver.insecure: true` or provide certificates so the plugin can terminate TLS.
 
 ## Tips
 
-- It is a good idea to have each Kubernetes cluster accessible by at least 2 instances of the Agent. Only one instance will actively stream Kubernetes changes. The second one will be on stand-by and can be used for other operations (deploying manifests, getting logs, ...)
+- It is a good idea to have each Kubernetes cluster accessible by at least two instances of the Agent. Only one instance will actively stream Kubernetes changes. The second one will be on standby and can be used for other operations such as deploying manifests and getting logs.
 
 - For better availability, you can run Agent deployments in [different availability zones](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity).
 
