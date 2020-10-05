@@ -40,7 +40,7 @@ Armory uses user provided configuration to deploy a number of Kubernetes manifes
 It's not a single Docker container, and it's not a set of static VMs - it's a highly-resilient distributed microservices architecture that runs on top of Kubernetes.
 
 Here are a couple key points:
-* Armory makes getitng started with Spinnaker very easy
+* Armory makes getting started with Spinnaker very easy
 * We extend Halyard and other Spinnaker services to add capabilitles; we never fork
 * We handle a lot of the manual configuration of Spinnaker for you
 * We make it much easier to upgrade Spinnaker, as well.
