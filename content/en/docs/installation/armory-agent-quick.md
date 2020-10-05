@@ -157,7 +157,6 @@ curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-$AGEN
 - Change the version of the Agent in `kustomization.yaml`
 - Modify [Agent options]({{< ref "agent-options" >}}) in `kubesvc.yaml`
 
-
 ## Troubleshooting
 
 Check out the [troubleshooting]({{< ref "agent-troubleshooting" >}}) page if you run into issues.
