@@ -157,3 +157,11 @@ curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-$AGEN
 - Change the version of the Agent in `kustomization.yaml`
 - Modify [Agent options]({{< ref "agent-options" >}}) in `kubesvc.yaml`
 
+
+## Troubleshooting
+
+Check out the [troubleshooting]({{< ref "agent-troubleshooting" >}}) page if you run into issues.
+
+## Monitoring
+
+The Agent should only consume about 4 MB of memory and a small amount of CPU. See the [Monitoring]({{< ref "agent-monitoring" >}}) page for how to monitor agents running on an Armory platform.
