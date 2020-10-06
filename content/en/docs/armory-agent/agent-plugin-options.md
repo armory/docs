@@ -1,6 +1,9 @@
 ---
-title: Plugin Options
+title: Plugin Configuration Options
+linkTitle: Plugin Options
 weight: 4
+description: >
+  How to configure the Agent plugin for Clouddriver
 ---
 
 | Setting  | Type  | Default  | Description |

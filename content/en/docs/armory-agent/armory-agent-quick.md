@@ -1,26 +1,12 @@
 ---
-title: "Armory Agent for Kubernetes"
-linkTitle: "Armory Agent"
+title: "Armory Agent for Kubernetes Quick Start Installation"
+linkTitle: "Quick Start"
 description: >
-  Armory Agent is a new, flexible way for Spinnaker to interact with your Kubernetes infrastructure. Learn the benefits and install quickly using this guide.
-weight: 4
+  Install quickly using this guide.
+weight: 2
 ---
 
-* Massive scale for Kubernetes
-  * The Agent only streams changes to Spinnaker<sup>TM</sup> in real time over a single TCP connection per cluster.
-  * Caching and deployment scales to thousands of Kubernetes clusters for your largest applications.
-  * The Agent optimizes how infrastructure information is cached resulting in optimal performance for your end users or your pipelines.
-
-* Flexible deployment model
-  * Use the Agent alongside Spinnaker and benefit from performance improvements.
-  * Use the Agent in the target cluster and get Kubernetes account automatically registered.
-
-* Enhanced security
-  * Keep your Kubernetes API servers private from Spinnaker.
-  * Control what Spinnaker can do directly in a service account. No need to change Spinnaker.
-  * Use a service account or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "secrets#supported-secret-engines" >}}) engines or provision them via the method of your choice as Kubernetes secrets.
-  * Only what Spinnaker needs leaves the cluster.
-
+> This guide is for experienced Kubernetes and Spinnaker users.
 
 ## Compatibility matrix
 

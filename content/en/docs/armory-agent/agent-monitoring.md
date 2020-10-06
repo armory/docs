@@ -1,11 +1,13 @@
 ---
 title: Monitoring
 weight: 5
+description: >
+  Monitor using Prometheus
 ---
 
 ## Prometheus
 
-If `prometheus.enabled` is true, the Agent exposes metrics on port 8008 (`prometheus.port`) on path `/metrics` or `/prometheus_metrics` like other Spinnaker services. Both paths serve the same data.
+If `prometheus.enabled` is true in the Agent [configuration]({{< ref "agent-options" >}}), the Agent exposes metrics on port 8008 (`prometheus.port`) on path `/metrics` or `/prometheus_metrics` like other Spinnaker services. Both paths serve the same data.
 
 If you are using the Prometheus operator, you can scrape metrics with:
 
