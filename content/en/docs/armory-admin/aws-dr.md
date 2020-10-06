@@ -11,8 +11,9 @@ The following guide describes how to configure your Spinnaker on AWS deployment 
 
 
 ## Requirements
+
 - The passive Spinnaker will have the same permissions as the active Spinnaker
-- The active Spinnaker is configured to use AWS Aurora and S3 for persistent storage
+- The active Spinnaker is configured to use AWS [Aurora](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html) and [S3](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html) for persistent storage
 - Your Secret engine/store has been configured for Disaster Recovery (DR)
 - All other services integrated with Spinnaker, such as your Continuous Integration (CI) system, is configured for DR
 
@@ -38,7 +39,7 @@ Armory recommends using a relational database for Orca and Clouddriver. For Orca
 Note the following guidelines about Spinnaker storage and caching:
 
 * S3 buckets should be set up with cross-region replication turned on. See [Replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html) in the AWS documentation.
-* Consider the following if you plan to use Aurora MySQL: 
+* Consider the following if you plan to use Aurora MySQL:
     - [Replicating Amazon Aurora MySQL DB Clusters Across AWS Regions](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Replication.CrossRegion.html)
     - [Encrypting Aurora databases](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Encryption.html)
     - [Backing up and Restoring Aurora clusters](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html)

@@ -30,6 +30,10 @@ This document currently does not fully cover the following (see [Next Steps](#ne
 
 Note: This document is focused on Armory, but can be adapted to install Open Source Armory by using a different Halyard container and a corresponding different Armory version
 
+## AWS Resources
+
+Before you install Armory on AWS, it is essential that you familiarize yourself with [relevant AWS services]({{< ref "resources-aws" >}}).
+
 ## Requirements
 
 This document assumes the following:

@@ -4,7 +4,7 @@ aliases:
   - /docs/spinnaker-install-admin-guides/secrets/secrets-aws-sm/
 ---
 
-You can configure AWS Secrets Manager as a secrets engine for Spinnaker. For information about how to set up AWS Secrets Manager, see the [AWS documentation](https://docs.aws.amazon.com/secretsmanager/index.html).
+You can configure AWS Secrets Manager as a secrets engine for Spinnaker.  See the AWS Secrets Manager [User Guide](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) for how to set up AWS Secrets Manager,
 
 
 ## Referencing secrets stored in AWS Secrets Manager
