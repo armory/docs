@@ -38,7 +38,7 @@ The Armory Operator has two distinct modes:
 
 Pick a release from [https://github.com/armory-io/spinnaker-operator/releases](https://github.com/armory-io/spinnaker-operator/releases):
 
-```
+```bash
 mkdir -p spinnaker-operator && cd spinnaker-operator
 bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
 
