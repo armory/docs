@@ -3,14 +3,10 @@ title: "Smoke Test"
 linkTitle: "Smoke Test"
 weight: 999
 draft: true
-description: >
-  Markdown stuff - change to draft before publication
 ---
 
 
-Images links to test link checker
-
-![Architecture Diagram](/images/install_admin_guides_SpinnakerArchitecture.png)
+>THIS IS A DRAFT AND SHOULD ONLY APPEAR IN LOCAL BUILDS AND DEPLOY PREVIEWS
 
 
 {{% pageinfo %}}

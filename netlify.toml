@@ -1,16 +1,38 @@
 # Hugo build configuration for Netlify
 # (https://gohugo.io/hosting-and-deployment/hosting-on-netlify/#configure-hugo-version-in-netlify)
 # Default build settings
+
 [build]
-  publish = "public"
-  command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
+# This default build command adds the robots noindex directive to the site headers.
+# It is turned off for only for the production site by using [context.master] below
+# DO NOT REMOVE THIS
+publish = "public"
+functions = "functions"
+command = "git submodule update --init --recursive --depth 1 && make non-production-build"
 
-
-# "production" environment specific build settings
 [build.environment]
-  HUGO_VERSION = "0.71.1"
-  HUGO_THEME = "docsy"
-  HUGO_ENV = "production"
+HUGO_VERSION = "0.74.3"
+NODE_VERSION= "10.20.0"
+RUBY_VERSION = "2.7.1"
+HUGO_THEME = "docsy"
+
+[context.production.environment]
+HUGO_BASEURL = "https://docs.armory.io/"
+HUGO_ENV = "production"
+HUGO_ENABLEGITINFO = "true"
+
+[context.deploy-preview]
+command = "git submodule update --init --recursive --depth 1 && make deploy-preview"
+
+[context.branch-deploy]
+command = "git submodule update --init --recursive --depth 1 && make deploy-preview"
+
+[context.master]
+# This context is triggered by the `master` branch and allows search indexing
+# DO NOT REMOVE THIS (contact @kubernetes/sig-docs-leads)
+publish = "public"
+command = "git submodule update --init --recursive --depth 1 && make production-build"
+
 
 # section redirects
 [[redirects]]
