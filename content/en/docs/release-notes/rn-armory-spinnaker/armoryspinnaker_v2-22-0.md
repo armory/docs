@@ -46,6 +46,17 @@ This release note will be updated once the updated plugin is available.
 
 {{< include "ki-plugins-sdk.md" >}}
 
+### GCE predictive autoscaling exception
+
+An exception occurs in the Spinnaker UI (Deck) if the GCE provider is enabled but predictive autoscaling is not enabled.
+
+**Workaround**
+
+Add the following property to your `settings.js`:
+
+```js
+window.spinnakerSettings.providers.gce.feature = {};
+```
 
 ## Highlighted Updates
 
