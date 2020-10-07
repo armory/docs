@@ -1,10 +1,24 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d0be032e-c23d-48e5-8fbc-f7d5f2388fce/deploy-status)](https://app.netlify.com/sites/armory-docs/deploys)
+
 # Overview
 
 This is the repo for Armory documentation (https://docs.armory.io). We welcome contributions from people outside of Armory.
 
-The site is hosted by [Netlify](https://www.netlify.com/), which generates a preview build for every pull request. Install [Hugo](https://gohugo.io/) if you want to compile and run the project locally. The Hugo extended version is specified in `netlify.toml` (currently 0.71.1).
+The site is hosted by [Netlify](https://www.netlify.com/), which generates a preview build for every pull request. Install [Hugo](https://gohugo.io/) if you want to compile and run the project locally. The Hugo extended version is specified in `netlify.toml`.
 
 The latest version of the docs website is the `master` branch. Previous releases point to branches that start with `release-`.
+
+## Prerequisites
+
+To compile and run locally, install the following:
+
+- [yarn](https://yarnpkg.com/)
+- [npm](https://www.npmjs.com/)
+- [Go](https://golang.org/)
+- [Hugo](https://gohugo.io/)
+- A container runtime, like [Docker](https://www.docker.com/).
+
+GitHub is configured to generate a deploy preview when you create a pull request, so you do not have to build the site locally.
 
 ## Cloning the project
 
@@ -86,11 +100,66 @@ Content is in `content/en/docs`. Make your changes to the desired file.
 
 Use the `git status` command at any time to see what files you've changed.
 
-If you have installed [Hugo](https://gohugo.io/getting-started/installing/) and want to preview your changes locally, run from the repo root:
+## Running the website locally
+### Using a container
+
+To build the site in a container, run the following to build the container image and run it:
 
 ```
-hugo server
+make container-image
+make container-serve
 ```
+
+Open up your browser to http://localhost:1313 to view the website. As you make changes to the source files, Hugo updates the website and forces a browser refresh.
+
+### Using Hugo
+
+Make sure to install the Hugo extended version specified by the `HUGO_VERSION` environment variable in the [`netlify.toml`](netlify.toml#L10) file.
+
+To build and test the site locally, run:
+
+```bash
+make serve
+```
+
+This will start the local Hugo server on port 1313. Open up your browser to http://localhost:1313 to view the website. As you make changes to the source files, Hugo updates the website and forces a browser refresh.
+
+### Troubleshooting macOS for too many open files
+
+If you run `make serve` on macOS and receive the following error:
+
+```
+ERROR 2020/08/01 19:09:18 Error: listen tcp 127.0.0.1:1313: socket: too many open files
+make: *** [serve] Error 1
+```
+
+Try checking the current limit for open files:
+
+`launchctl limit maxfiles`
+
+Then run the following commands (adapted from https://gist.github.com/tombigel/d503800a282fcadbee14b537735d202c):
+
+```
+#!/bin/sh
+
+# These are the original gist links, linking to my gists now.
+# curl -O https://gist.githubusercontent.com/a2ikm/761c2ab02b7b3935679e55af5d81786a/raw/ab644cb92f216c019a2f032bbf25e258b01d87f9/limit.maxfiles.plist
+# curl -O https://gist.githubusercontent.com/a2ikm/761c2ab02b7b3935679e55af5d81786a/raw/ab644cb92f216c019a2f032bbf25e258b01d87f9/limit.maxproc.plist
+
+curl -O https://gist.githubusercontent.com/tombigel/d503800a282fcadbee14b537735d202c/raw/ed73cacf82906fdde59976a0c8248cce8b44f906/limit.maxfiles.plist
+curl -O https://gist.githubusercontent.com/tombigel/d503800a282fcadbee14b537735d202c/raw/ed73cacf82906fdde59976a0c8248cce8b44f906/limit.maxproc.plist
+
+sudo mv limit.maxfiles.plist /Library/LaunchDaemons
+sudo mv limit.maxproc.plist /Library/LaunchDaemons
+
+sudo chown root:wheel /Library/LaunchDaemons/limit.maxfiles.plist
+sudo chown root:wheel /Library/LaunchDaemons/limit.maxproc.plist
+
+sudo launchctl load -w /Library/LaunchDaemons/limit.maxfiles.plist
+```
+
+This works for Catalina as well as Mojave macOS.
+
 
 ## Commit your changes
 
