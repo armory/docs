@@ -41,7 +41,7 @@ Although both workarounds involve updating your dashboards to use the new metric
 
 This release note will be updated once the updated plugin is available.
 
-## Known Issues
+## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed -->
 
 {{< include "ki-plugins-sdk.md" >}}
@@ -58,7 +58,9 @@ Add the following property to your `settings.js`:
 window.spinnakerSettings.providers.gce.feature = {};
 ```
 
-## Highlighted Updates
+For more information, see this OSS Pull Request: [8585](https://github.com/spinnaker/deck/pull/8585).
+
+## Highlighted updates
 
 ### Armory
 
@@ -92,17 +94,17 @@ The changes look drastic, but there is no change in functionality. The top navig
 
 {{< figure src="/images/deck-post-2-22-app-page.png" alt="The Applications page has a new left navigation." >}}
 
-###  Spinnaker Community Contributions
+###  Spinnaker Community contributions
 
 <!-- Copy/paste highlights from the corresponding OSS version. -->
 
 There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
 [Spinnaker v1.22.1](https://www.spinnaker.io/community/releases/versions/1-22-1-changelog).
 
-## Detailed Updates
+## Detailed updates
 
 ### Bill of Materials
-Here's the bom for this version.
+Here's the BOM for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
 <code>version: 2.22.0
