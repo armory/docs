@@ -4,13 +4,11 @@
 
 This is the repo for Armory documentation (https://docs.armory.io). We welcome contributions from people outside of Armory.
 
-The site is hosted by [Netlify](https://www.netlify.com/), which generates a preview build for every pull request. Install [Hugo](https://gohugo.io/) if you want to compile and run the project locally. The Hugo extended version is specified in `netlify.toml`.
-
 The latest version of the docs website is the `master` branch. Previous releases point to branches that start with `release-`.
 
 ## Prerequisites
 
-To compile and run locally, install the following:
+The site is hosted by [Netlify](https://www.netlify.com/), which generates a preview build for every pull request. Install the following if you want to compile and run the project locally. Make sure to install the Hugo extended version specified by the `HUGO_VERSION` environment variable in the [`netlify.toml`](netlify.toml#L14) file.
 
 - [yarn](https://yarnpkg.com/)
 - [npm](https://www.npmjs.com/)
@@ -18,11 +16,8 @@ To compile and run locally, install the following:
 - [Hugo](https://gohugo.io/)
 - A container runtime, like [Docker](https://www.docker.com/).
 
-GitHub is configured to generate a deploy preview when you create a pull request, so you do not have to build the site locally.
 
 ## Cloning the project
-
-If you work for Armory, see the internal docs for how to contribute content.
 
 People who are not part of the Armory organization need to create a fork of this repo. See the GitHub.com help [docs](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-forks) for how to fork a repo.
 
@@ -32,10 +27,11 @@ Clone your forked repo:
 git clone git@github.com:<github-username>/docs.git
 ```
 
-Armory docs uses the [Docsy]() theme as a submodule. You have to update the submodule if you want to build locally.
+Armory docs uses the [Docsy Hugo theme](https://github.com/google/docsy#readme) theme as a submodule. You have to update the submodule if you want to build locally. Even if you plan to run the website in a container, we strongly recommend pulling in the submodule and other development dependencies by running the following:
 
 ```bash
 cd docs
+yarn # install Yarn depend
 git submodule update --init --recursive
 ```
 
@@ -101,6 +97,7 @@ Content is in `content/en/docs`. Make your changes to the desired file.
 Use the `git status` command at any time to see what files you've changed.
 
 ## Running the website locally
+
 ### Using a container
 
 To build the site in a container, run the following to build the container image and run it:
@@ -113,8 +110,6 @@ make container-serve
 Open up your browser to http://localhost:1313 to view the website. As you make changes to the source files, Hugo updates the website and forces a browser refresh.
 
 ### Using Hugo
-
-Make sure to install the Hugo extended version specified by the `HUGO_VERSION` environment variable in the [`netlify.toml`](netlify.toml#L10) file.
 
 To build and test the site locally, run:
 
