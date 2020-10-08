@@ -48,7 +48,7 @@ This release note will be updated once the updated plugin is available.
 
 {{< include "ki-gce-predictive-autoscaling.md" >}}
 
-{{< include "aws-iam-token.md" >}}
+{{< include "ki-aws-iam-token.md" >}}
 
 #### Security update
 
