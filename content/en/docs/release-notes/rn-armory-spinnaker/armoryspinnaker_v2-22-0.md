@@ -48,6 +48,37 @@ This release note will be updated once the updated plugin is available.
 
 {{< include "ki-gce-predictive-autoscaling.md" >}}
 
+#### Security update
+
+We continue to make Spinnaker's security a top priority. Although several CVEs are resolved, the following still exist:
+
+##### Multiple services
+
+`CVE-2020-5410` was resolved in a previous version of Armory Spinnaker; however, this CVE introduced a regression for users of Spring Cloud and has been rolled back. Armory will continue to monitor releases for a fix.
+
+
+##### Clouddriver
+
+The following CVEs still exist in Clouddriver:
+
+- CVE-2017-18342
+- CVE-2020-1747
+- CVE-2019-17638 
+- CVE-2020-13757
+- CVE-2016-10745
+
+All of them are embedded dependencies in the Google Cloud SDK. A version of the Google Cloud SDK addressing these CVEs has not been released. The risk to Clouddriver users is low. All four CVEs deal with untrusted input, which Clouddriver does not provide to the Google Cloud SDK. Additionally, users deploying to other cloud providers are not at risk for this vulnerability.
+
+The following CVE also exists for Clouddriver:
+
+- CVE-2020-7014 deals with an Elasticsearch exploit related to token generation. Clouddriver only makes use of entity tags and does not allow for token generation or authentication.
+
+##### Terraformer
+
+Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration:
+
+- CVE-2020-15778
+
 ## Highlighted updates
 
 ### Armory
