@@ -92,6 +92,7 @@ weight = 1
 [params]
 armory-version = "2.22.x"
 halyard-armory-version = "1.9.5"
+kubesvc-version="0.2.0"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 copyright = "Armory Inc."

@@ -1,6 +1,6 @@
 ---
 title: "Plugins"
-weight: 100
+weight: 95
 aliases:
   - /spinnaker-user-guides/plugin-creators/
   - /docs/spinnaker-user-guides/plugin-creators/
