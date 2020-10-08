@@ -48,6 +48,8 @@ This release note will be updated once the updated plugin is available.
 
 {{< include "ki-gce-predictive-autoscaling.md" >}}
 
+{{< include "aws-iam-token.md" >}}
+
 #### Security update
 
 We continue to make Spinnaker's security a top priority. Although several CVEs are resolved, the following still exist:
