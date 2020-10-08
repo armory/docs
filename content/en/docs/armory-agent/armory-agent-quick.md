@@ -14,7 +14,7 @@ weight: 2
 
 {{< include "agent/agent-compat-matrix.md" >}}
 
-The Agent comes as a service deployed as a Kubernetes `Deployment` as well as a plugin to Spinnaker's Clouddriver service. Be sure to check out the [architecture]({{< ref "armory-agent" >}}).
+The Agent consists of a service deployed as a Kubernetes `Deployment` and a plugin to Spinnaker's Clouddriver service. Be sure to check out the [architecture]({{< ref "armory-agent" >}}).
 
 ## Step 1: Agent plugin installation
 
@@ -125,7 +125,7 @@ kubernetes:
 ...
 ```
 
-With the directory structure in place, deploy the Agent:
+With the directory structure in place, deploy the Agent service:
 
 ```bash
 kustomize build </path/to/directory> | kubectl apply -f -

@@ -13,7 +13,7 @@ description: >
 
 * Flexible deployment model
   * Use the Agent alongside Spinnaker and benefit from performance improvements.
-  * Use the Agent in the target cluster and get Kubernetes account automatically registered.
+  * Use the Agent in the target cluster and get Kubernetes accounts automatically registered.
 
 * Enhanced security
   * Keep your Kubernetes API servers private from Spinnaker.
@@ -72,7 +72,7 @@ Since the Armory Agent does outbound calls only, you can have agents running on-
 
 What Spinnaker can do in the target cluster is limited by what it is running as:
 
-- a `serviceAccount` in agent mode
+- a `serviceAccount` in Agent mode
 - a `kubeconfig` setup for infrastructure or Spinnaker service mode
 
 Communications are secured with TLS and optionally mTLS.
