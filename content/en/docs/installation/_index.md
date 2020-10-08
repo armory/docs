@@ -1,7 +1,7 @@
 ---
 title: "Installation"
 linkTitle: "Installation"
-weight: 2
+weight: 5
 description: |
   Installing Armory in your environment
 aliases:

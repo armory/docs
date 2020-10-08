@@ -1,6 +1,8 @@
 ---
 title: "Plugins"
-weight: 6
+weight: 25
+description: >
+  Resources to extend Spinnaker<sup>TM</sup> functionality with plugins
 aliases:
   - /spinnaker-user-guides/plugin-creators/
   - /docs/spinnaker-user-guides/plugin-creators/

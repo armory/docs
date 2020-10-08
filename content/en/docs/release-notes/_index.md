@@ -1,7 +1,7 @@
 ---
 title: "Release Notes"
 linkTitle: "Release Notes"
-weight: 100
+weight: 999
 description: >
   Armory release notes.
 ---
