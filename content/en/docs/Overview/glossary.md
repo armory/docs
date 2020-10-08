@@ -1,5 +1,6 @@
 ---
 title: Glossary
+weight: 100
 ---
 
 Below is a list of words and phrases as they apply to Spinnaker and their definitions, including any additional information that may be helpful.
@@ -14,7 +15,7 @@ Amazon Machine Images (AMIs) are predetermined 'templates' for instances that ca
 
 ## Application
 
-An [application]({{< ref "application-screen" >}}) inside Spinnaker represents what you would typically find in a single [code repository](#Code-Repository) - and in many cases, an application maps directly to a microservice.
+An [application]({{< ref "application-screen" >}}) inside Spinnaker™ represents what you would typically find in a single [code repository](#Code-Repository) - and in many cases, an application maps directly to a microservice.
 
 ## Auto-Scaling Group
 
@@ -48,7 +49,7 @@ A source code repository is a private or public storage location for file archiv
 
 Continuous Delivery (CD) is an engineering approach for DevOps teams to produce software in short cycles: building, testing, and releasing software at a fast and frequent pace in order to iterate as quickly as possible.
 
-## Continuous Integration 
+## Continuous Integration
 
 Continuous Integration (CI) is a development practice where software developers merge their separate changes and updates to a main source code repository - usually multiple times a day.
 
