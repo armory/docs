@@ -9,6 +9,9 @@ aliases:
 
 The following guide describes how to configure your Spinnaker on AWS deployment to be more resilient and perform Disaster Recovery (DR). Spinnaker does not function in multi-master mode, which means that active-active is not supported at this time. Instead, this guide describes how to achieve an active-passive Spinnaker setup. This results in two instances of Spinnaker deployed into two regions that can fail independently.
 
+{{< figure src="/images/cloud-resources/aws/armory-active-passive.png"
+alt="Diagram of Armory deployment on AWS with disaster recovery"
+height="75%" width="75%" >}}
 
 ## Requirements
 
