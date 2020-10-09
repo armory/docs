@@ -57,7 +57,7 @@ $ kubectl -n default apply --filename vault-auth-service-account.yml
 
 **spinnaker-kv-ro.hcl**
 
-```
+```hcl
 # For K/V v1 secrets engine
 path "secret/spinnaker/*" {
     capabilities = ["read", "list"]

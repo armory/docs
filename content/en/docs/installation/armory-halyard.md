@@ -23,7 +23,7 @@ Running Armory-extended Halyard in Docker is convenient and portable. The daemon
 
 You can start Armory-extended Halyard in a Docker container with the following command:
 
-```
+```bash
 docker run --name armory-halyard --rm \
     -v ~/.hal:/home/spinnaker/.hal \
     -v ~/.kube:/home/spinnaker/.kube \
@@ -45,7 +45,7 @@ else, you'll need to rename or symlink the file accordingly.
 Once Armory-extended Halyard is running, you can interact with it by opening a separate
 Terminal and running:
 
-```
+```bash
 docker exec -it armory-halyard bash
 ```
 
@@ -58,7 +58,8 @@ Armory-extended Halyard can also be installed as a Kubernetes `StatefulSet`. The
 ### Installing Daemon
 
 You can install Armory-extended Halyard with the following manifest:
-```
+
+```yaml
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -106,7 +107,7 @@ spec:
 ```
 
 Copy and paste the manifest into a file named halyard.yml, then deploy the above manifest (halyard.yml) into Kubernetes with the following command:
-```
+```bash
 kubectl apply -f halyard.yml
 ```
 > Note: This installs Halyard into the namespace 'halyard'
@@ -115,6 +116,6 @@ kubectl apply -f halyard.yml
 ### Running Halyard Commands
 
 Once the `StatefulSet` is ready - you can interact with it by running:
-```
+```bash
 kubectl -n halyard exec -ti statefulset/halyard bash
 ```

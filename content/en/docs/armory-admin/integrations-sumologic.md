@@ -24,7 +24,8 @@ The Spinnaker Sumo Logic App uses echo logs that output event information from S
 ### Query sample
 
 The following sample query generates a dashboard to monitor pipelines starting:  
-```
+
+```json
 _sourceCategory="dev/sales-demo-cluster/echo" and _collector="Spinnaker Instance"  orca pipeline starting
 | json field=_raw "content.execution.status","content.execution.application","details.type","content.execution.name","content.execution.trigger.type","content.execution.authentication.user" as status,application,logType,pipeline, triggerType, user nodrop
 | where logType = "orca:pipeline:starting"

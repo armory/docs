@@ -478,7 +478,7 @@ Inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wai
 
 `dinghyfile`:
 
-``` json
+```json
 {
   "application": "localmodules",
   "globals": {
@@ -500,7 +500,7 @@ Inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wai
 ```
 
 `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` have the same content:
-``` json
+```json
 {
   "name": "{{ var "waitname" ?: "Local Module Wait" }}",
   "waitTime":  "{{ var "waitTime" ?: 10 }}",
@@ -510,7 +510,7 @@ Inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wai
 
 The rendered file looks like this:
 
-``` json
+```json
 {
   "application": "localmodules",
   "globals": {
@@ -576,7 +576,7 @@ And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal
 
 `dinghyfile`
 
-``` json
+```json
 {
   "application": "localmodules",
   "globals": {
@@ -596,7 +596,7 @@ And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal
 ```
 
 `stage.minimal.wait.module`:
-``` json
+```json
 {
   "name": "{{ var "waitname" ?: "Local Module Wait" }}",
   "waitTime":  "{{ var "waitTime" ?: 10 }}",
@@ -894,7 +894,7 @@ pipelines:
 
 ### HCL template format
 
-```
+```hcl
 "application" = "Some App"
 "globals" = {
     "waitTime" = 42
@@ -1477,7 +1477,7 @@ spec:
 
 Create `.hal/default/profiles/dinghy-local.yml` and add the following snippet:
 
-```
+```yaml
 Logging:
   Level: INFO
 ```

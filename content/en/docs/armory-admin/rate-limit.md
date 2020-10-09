@@ -25,7 +25,7 @@ Spinnaker queries your Cloud Provider (AWS, GCP, Azure, Kubernetes, etc) frequen
 
 Below is an example configuration for global rate limits for all services that you would place in your `SpinnakerService` manifest under section `spec.spinnakerConfig.profiles.clouddriver` if using the Operator, or in `~/.hal/<deployment-name>/profiles/clouddriver-local.yml` if using Halyard:
 
-```yml
+```yaml
 serviceLimits:
   defaults:
     rateLimit: 10.0   # default max req/second
@@ -33,7 +33,7 @@ serviceLimits:
 
 If you have multiple Cloud Providers, you can limit each one differently:
 
-```yml
+```yaml
 serviceLimits:
   cloudProviderOverrides:
     aws:
@@ -42,7 +42,7 @@ serviceLimits:
 
 You can provide account specific overrides as well in case you have significantly more resources in one account while others have less:
 
-```yml
+```yaml
 serviceLimits:
   accountOverrides:
     my-test:
@@ -54,6 +54,7 @@ serviceLimits:
 And finally, you can have more fine-grained control for particular AWS endpoints that might have a different rate limits.
 
 We've found that this formula works pretty well:
+
 ```
 max_req_second = num_of_x_resources / clouddriver_30s_poll_interval
 ```
@@ -62,7 +63,7 @@ For example, if we have 90 load balancers and clouddriver polls every 30 seconds
 
 Here's the list of rate limits you can adjust created from [AmazonClientProvider.java@v5.36.0](https://github.com/spinnaker/clouddriver/blob/v5.36.0/clouddriver-aws/src/main/groovy/com/netflix/spinnaker/clouddriver/aws/security/AmazonClientProvider.java) on 05/14/2019 by using the regex `\w+\.class`:
 
-```yml
+```yaml
 serviceLimits:
   implementationLimits:
     AWSApplicationAutoScaling:

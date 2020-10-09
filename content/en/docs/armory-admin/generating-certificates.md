@@ -15,7 +15,7 @@ You need a recent version of OpenSSL.
 
 Generate a key for our certificate authority:
 
-```
+```bash
 openssl genrsa -aes256 -passout pass:TRUSTSTORE_PASS -out ca.key 2048
 ```
 
@@ -25,7 +25,7 @@ Replace `TRUSTSTORE_PASS` with your own CA password.
 
 Next, generate the certificate of the CA:
 
-```
+```bash
 openssl req -x509 -new -nodes -key ca.key -sha256 -days 3650 -out ca.pem -passin pass:TRUSTSTORE_PASS -subj /C=US/ST=California/O=Acme Corp/OU=Devops/CN=mydomain.com"
 ```
 
@@ -35,7 +35,7 @@ Replace the values of the `subj` parameter with your own. Only the `CN` part is 
 
 Import the `ca.pem` file you generated into a Java truststore:
 
-```
+```bash
 keytool -importcert -storetype PKCS12 -keystore services/ca.p12 -storepass TRUSTSTORE_PASS -alias ca -file ca.pem -noprompt
 ```
 
@@ -45,7 +45,7 @@ The `CN` attribute must match the hostname of the service. It will generally be 
 
 Generate the keystore with the following commands:
 
-```
+```bash
 openssl genrsa -aes256 -passout pass:KEY_PASSWORD -out svc.key 2048
 openssl req -new -key svc.key -out svc.csr -subj /C=US/CN=spin-svc.spinnaker -passin pass:KEY_PASSWORD
 openssl x509 -req -in svc.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out svc.crt -days 3649 -sha256 -passin pass:TRUSTSTORE_PASS
@@ -61,6 +61,7 @@ openssl x509 -req -sha256 -in svc.csr -CA ca.pem -CAkey ca.key -CAcreateserial -
 ```
 
 The `svc-cert.ext` referenced in the command should contain the following (example for Clouddriver):
+
 ```
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
@@ -77,7 +78,7 @@ DNS.2 = spin-clouddriver
 
 ## Generating keys and certificates (Golang)
 
-```
+```bash
 openssl genrsa -aes256 -passout pass:KEY_PASSWORD -out svc.key 2048
 openssl req -new -key svc.key -out svc.csr -subj /C=US/CN=spin-svc.spinnaker -passin pass:KEY_PASSWORD
 openssl x509 -req -in svc.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out svc.crt -days 3650 -sha256 -passin pass:TRUSTSTORE_PASS
