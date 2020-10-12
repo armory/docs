@@ -27,7 +27,7 @@ This post describes how to configure GitHub and Spinnaker to use GitHub as an OA
 
 Add the following snippet to your `SpinnakerService` manifest under the `spec.spinnakerConfig.config.security.authn` level:
 
-```
+```yaml
 oauth2:
     enabled: true
     client:
@@ -44,7 +44,7 @@ For additional configuration options review the [Spinnaker Operator Reference]({
 
 Run the following commands in Halyard with your Client ID and Client Secret.
 
-```shell
+```bash
 CLIENT_ID=a08xxxxxxxxxxxxx93
 CLIENT_SECRET=6xxxaxxxxxxxxxxxxxxxxxxx59
 PROVIDER=github

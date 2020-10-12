@@ -47,13 +47,13 @@ To use the stage, perform the following steps:
 
           Regular GitHub:
 
-          ```
+          ```bash
           https://api.github.com/repos/{org}/{repo}/contents/{file path}
           ```
 
           Github Enterprise:
 
-          ```
+          ```bash
           https://{host}/api/v3/repos/{org}/{repo}/contents/{file path}
           ```
         * **Checkout subpath**: Enable this option to specify a **Subpath** within a Git repo. Useful if you have a large repo and the Terraform files are located in a specific directory.
@@ -84,7 +84,7 @@ Any plugin you want to use must meet the following requirements:
 
 **Configuring Terraform plugins**:
 
-```
+```yaml
 {
   "action": "plan",
   "artifacts": [
@@ -109,7 +109,7 @@ Any plugin you want to use must meet the following requirements:
 
 The Terraform Integration caches all the defined plugins by default and does not redownload them.  To configure the Terraform Integration to redownload a plugin, add the following JSON under the metadata key in the artifact object:
 
-```
+```yaml
 "metadata": {
     "sha256sum": "longString",
     "forceDownload": true,
@@ -136,7 +136,7 @@ If you have a Terraform template configured with [Output Values](https://www.ter
 
 For example, if you have a Terraform template that has this:
 
-```
+```hcl
 output "bucket_arn" {
     value = "${aws_s3_bucket.my_bucket.arn}"
 }
@@ -144,7 +144,7 @@ output "bucket_arn" {
 
 Then you can set up an `Output` stage that exposes this in the pipeline execution context.  If you have an `Output` stage with the stage name `My Output Stage`, then after running the `Output` stage, access the bucket ARN with this:
 
-```
+```hcl
 ${#stage('My Output Stage')["context"]["status"]["outputs"]["bucket_arn"]["value"]}
 ```
 

@@ -60,6 +60,6 @@ You can reference the Docker tag that triggered the pipeline with the
 expression `${trigger['tag']}`, which may be all you need, as in this
 image spec line from a Kubernetes manifest:
 
-```
+```bash
 - image: "docker.io/armory/demoapp:${trigger['tag']}"
 ```

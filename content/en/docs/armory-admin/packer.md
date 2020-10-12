@@ -180,7 +180,8 @@ If you'd like to add additional Packer template or script files, you can add the
 Add any Packer template and supporting scripts as string-formatted entries under the `spec.spinnakerConfig.files` section of the `SpinnakerService` config.
 
 If you have a template named example-packer-config.json containing the following:
-```
+
+```json
 {
   "packerSetting" : "someValue"
 }
@@ -188,14 +189,14 @@ If you have a template named example-packer-config.json containing the following
 
 and a script file named my-custom-script.sh containing the following:
 
-```
+```bash
 #!/bash/bash -e
 echo "Hello world!"
 ```
 
 make the following entries into the `SpinnakerService` config:
 
-```
+```yaml
 files:
   profiles__rosco__packer__example-packer-config.json: |
     {

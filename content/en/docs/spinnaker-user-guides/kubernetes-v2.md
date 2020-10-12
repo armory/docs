@@ -67,7 +67,7 @@ volumes:
 ```
 
 the name will be replaced with the properly versioned artifact:
-```
+```yaml
 volumes:
   - name: k8-config
     configMap:

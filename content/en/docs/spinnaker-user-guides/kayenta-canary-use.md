@@ -67,7 +67,7 @@ Note: If you see the following error `The was an error saving your config: 400` 
 
 In `.hal/default/profiles/gate-local.yml`, add the following snippet:
 
-```
+```yaml
 services:
   kayenta:
     canaryConfigStore: true

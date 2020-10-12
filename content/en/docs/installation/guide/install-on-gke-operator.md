@@ -235,7 +235,7 @@ gke-kubeconfig: |
 
 For the third option, the `gke-kubeconfig` file is copied to a bucket. Then the `config-patch.yml` references the location of that file for the `kubeconfig` file key like this:
 
-```
+```yaml
 kubeconfigFile: encryptedFile:gcs!b:bucketname!f:secrets/kubeconfig-gke
 ```
 

@@ -17,7 +17,7 @@ there are a few "gotchas" to watch out for.
 
 First, configure your Travis master:
 
-```
+```bash
 hal config ci travis master add Travis --address https://api.travis-ci.org --base-url https://travis-ci.org --github-token
 ```
 
@@ -30,7 +30,7 @@ For reference, you can look at the [Spinnaker docs](https://www.spinnaker.io/ref
 
 Next, enable Travis with Halyard:
 
-```
+```bash
 hal config ci travis enable
 ```
 
@@ -42,7 +42,7 @@ go into a CrashLoopBackoff state.  The fix for this is to go into your
 `<profile>/profiles/` directory and add (or update, if you already have one)
 `igor-local.yml`.  Add this section:
 
-```
+```bash
 artifact:
   decorator:
     enabled: true
@@ -54,7 +54,7 @@ artifact:
 If you want to be able to run Travis jobs as a stage in your pipeline, you'll
 need to enable the stage as well:
 
-```
+```bash
 hal config features edit --travis true
 ```
 

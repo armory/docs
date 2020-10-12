@@ -245,7 +245,7 @@ UI to add block devices.
 
 ### Block devices definition
 
-```
+```json
 "blockDevices": [
   {
     "deleteOnTermination": [true|false],
@@ -257,7 +257,7 @@ UI to add block devices.
 ]
 ```
 ### Example of additional block devices
-```
+```json
 "clusters": [
         {
           "account": "my-aws-account",

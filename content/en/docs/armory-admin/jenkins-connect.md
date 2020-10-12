@@ -92,7 +92,7 @@ hal config ci jenkins master add <jenkins-master-name> \
     --password # You will be prompted for your Jenkins API token interactively
 ```
 
-Apply your changes using ```hal deploy apply```.
+Apply your changes using `hal deploy apply`.
 
 ## Troubleshooting Authentication / Connectivity
 

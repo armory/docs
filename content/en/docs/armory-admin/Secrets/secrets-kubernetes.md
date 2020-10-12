@@ -46,22 +46,22 @@ For more information on how to create secrets in Kubernetes refer to the [offici
 
 You reference secret values in your config with the following format:
 
-```
+```yaml
 encrypted:k8s!n:<secret name>!k:<secret key>
 ```
 
 Similarly you can reference secret files:
 
-```
+```yaml
 encryptedFile:k8s!n:<secret name>!k:<secret key>
 ```
 
 For example, to reference the GitHub token:
-```
+```yaml
 encrypted:k8s!n:spin-secrets!k:github-token
 ```
 
 And to reference the content of our kubeconfig file:
-```
+```yaml
 encryptedFile:k8s!n:spin-secrets!k:kubeconfig-prod
 ```

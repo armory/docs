@@ -27,13 +27,13 @@ We can now store secrets (tokens, passwords, sensitive files) separately from th
 
 When referencing string secrets (passwords, tokens) in configs, use the following general format:
 
-```
+```yaml
 encrypted:<secret engine>!<key1>:<value1>!<key2>:<value2>!...
 ```
 
 When referencing files, the same parameters are used but with the `encryptedFile` prefix:
 
-```
+```yaml
 encryptedFile:<secret engine>!<key1>:<value1>!<key2>:<value2>!...
 ```
 

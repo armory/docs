@@ -86,7 +86,7 @@ hal deploy apply
 ```
 
 If you have a DNS in mind, set it up like the following example:
-```
+```bash
 spinnaker-gate.armory.io CNAME --> (spin-gate-public dns) aaaaa-1111.us-west-2.elb.amazonaws.com
 spinnaker.armory.io      CNAME --> (spin-deck-public dns) aaaaa-2222.us-west-2.elb.amazonaws.com
 ```
@@ -162,7 +162,7 @@ hal deploy apply
 
 If your Armory installation will be using authentication and you expect to scale the API server (Gate) beyond more than one instance you'll want to enable sticky sessions. This will ensure that clients will connect and authenticate with the same server each time. Otherwise, you may be forced to reauthenticate if you get directed to a new server. To enable sticky sessions, you'll want to enable session affinity on the Gate service created above.
 
-```
+```bash
 GATE_SVC=<spin-gate/spin-gate-public>  # spin-gate if using Spinnaker Operator, spin-gate-public if using Halyard
 kubectl -n ${NAMESPACE} patch service/$GATE_SVC --patch '{"spec": {"sessionAffinity": "ClientIP"}}'
 ```
@@ -201,7 +201,7 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 
 After a few seconds you can view which ports were opened in EKS worker nodes, you'll need them in the next step:
 
-```
+```bash
 DECK_PORT=$(kubectl get service spin-deck -o jsonpath='{.spec.ports[0].nodePort}')
 GATE_PORT=$(kubectl get service spin-gate -o jsonpath='{.spec.ports[0].nodePort}')
 ```
@@ -225,7 +225,7 @@ kubectl -n ${NAMESPACE} expose service spin-deck --type NodePort \
 
 After a few seconds you can view which ports were opened in EKS worker nodes, you'll need them in the next step:
 
-```
+```bash
 DECK_PORT=$(kubectl get service spin-deck-nodeport -o jsonpath='{.spec.ports[0].nodePort}')
 GATE_PORT=$(kubectl get service spin-gate-nodeport -o jsonpath='{.spec.ports[0].nodePort}')
 ```
