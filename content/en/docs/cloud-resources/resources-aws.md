@@ -29,6 +29,7 @@ alt="Diagram of Armory deployment on AWS with disaster recovery"
 height="75%" width="75%" >}}
 
 ## AWS Services
+
 ### Aurora database
 
 - [User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
@@ -81,12 +82,36 @@ height="75%" width="75%" >}}
 
 You can calculate AWS costs by using the [AWS Pricing Calculator](https://calculator.aws) or by consulting individual pricing pages.
 
-- [Aurora](https://aws.amazon.com/rds/aurora/pricing/)
+- [Aurora](https://aws.amazon.com/rds/aurora/pricing)
 - [EKS](https://aws.amazon.com/eks/pricing/)
 - [ElastiCache for Redis](https://aws.amazon.com/elasticache/pricing)
 - [Secrets Manager](https://aws.amazon.com/secrets-manager/pricing)
 - [S3](https://aws.amazon.com/s3/pricing/?nc=sn&loc=4)
 - [VPC](https://aws.amazon.com/vpc/pricing/)
+
+If you plan to use EC2 with your Armory installation, you can find related costs on the following pages:
+
+- [EC2](https://aws.amazon.com/ec2/pricing/)
+- [Elastic Block Store (EBS)](https://aws.amazon.com/ebs/pricing/)
+- [Elastic Load Balancing)](https://aws.amazon.com/elasticloadbalancing/pricing/) for Application Load Balancer (ALB), Network Load Balancer (NLB), or Classic Load Balancer (CLB)
+
+
+### Basic cost estimate
+
+The example below is based on a basic Armory instance without disaster recovery. Your infrastructure needs may very. AWS pricing can change without notice, so be sure to determine your costs using the [AWS Pricing Calculator](https://calculator.aws).
+
+Category|Type|QTY|Unit|Hour|Daily|Month|Year|  
+:--|:---|:---|:---|:---|:---|:---|:---|:---|
+EKS - management|Cluster|1|$0.20|$0.20|$4.80|$144.00|$1752.00|  
+ECS - instances|m5.xlarge|3|$0.19|$0.58|$13.82|$1414.72|$5045.76|  
+ECS EBS|100GB GP2|3|$0.01|$0.04|$1.01|$30.24|$367.92|
+ALB|ALB + 1 LCU Hour|1|$0.03|$0.03|$0.73|$21.96|$267.18|
+S3|1 GB|1|$0.02|$0.02|$0.55|$16.56|$201.48|
+ElastiCache|cache.r5.large|3|$0.22|$0.65|$15.55|$466.56|$5676.48|
+EC2 - data transfer|50GB/Month|1|$0.00|$0.00|$0.03|$1.01|$12.26|  
+|     |     |     |     |     |     |     |     |
+|     |     |     |     |     |     |$1110.00|$13323.08|
+
 
 
 
