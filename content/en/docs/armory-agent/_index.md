@@ -18,7 +18,7 @@ description: >
 * Enhanced security
   * Keep your Kubernetes API servers private from Spinnaker.
   * Control what Spinnaker can do directly in a service account. No need to change Spinnaker.
-  * Use a service account or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "secrets#supported-secret-engines" >}}) engines or provision them via the method of your choice as Kubernetes secrets.
+  * Use a service account or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "secrets#supported-secret-engines" >}}) or provision them via the method of your choice as Kubernetes secrets.
   * Only the information Spinnaker needs leaves the cluster.
 
 Check out the Quick Start [guide]({{< ref "armory-agent-quick" >}}) to deploy the Agent on your Kubernetes infrastructure.
