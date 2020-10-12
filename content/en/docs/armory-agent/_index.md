@@ -62,7 +62,7 @@ The Agent sends the following information about the cluster it is watching back 
 
 - Account properties as configured in `kubernetes.accounts[]`.
 - Kubernetes API server host, certificate fingerprint, version.
-- All the Kubernetes objects it is configured to watch and has permissions to access. You can ignore certain Kubernetes [kinds](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/). (`kubernetes.accounts[].omitKinds`) or configure specific kinds to watch (`kubernetes.accounts[].kinds`).
+- All the Kubernetes objects it is configured to watch and has permissions to access. You can ignore certain Kubernetes [kinds](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/) (`kubernetes.accounts[].omitKinds`) or configure specific kinds to watch (`kubernetes.accounts[].kinds`).
 
 > The Agent always scrubs data from `Secret` in memory before it is sent and even before that data makes it onto the Agent's memory heap.
 
@@ -93,5 +93,5 @@ You can also mix deployment strategies if you have complex Kubernetes infrastruc
 
 - Run as a Spinnaker service
 - Run in target clusters
-- Run next to traditional Spinnaker Kubernetes accounts.
+- Run next to traditional Spinnaker Kubernetes accounts
 
