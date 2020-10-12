@@ -208,7 +208,7 @@ gate:
 
 Armory Spinnaker's Vault integration supports Vault namespaces. You can auth to the root namespace, but query secrets from a different namespace. Spinnaker calls Vault APIs using either `<secretEngine>/<path>` (Key/Value version2 secrets engine) or `<secretEngine>/data/path` (Key/Value version1 secrets engine).
 
-Do not use the namespace parameter. Instead. refer to secrets in a specific namespace with the following:
+Do not use the namespace parameter. Instead, refer to secrets in a specific namespace with the following:
 
 ```yaml
 # Key/Value version2
