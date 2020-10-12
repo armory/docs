@@ -18,7 +18,7 @@ description: >
 * Enhanced security
   * Keep your Kubernetes API servers private from Spinnaker.
   * Control what Spinnaker can do directly in a service account. No need to change Spinnaker.
-  * Use a service account or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "secrets#supported-secret-engines" >}}) engines or provision them via the method of your choice as Kubernetes secrets.
+  * Use a service account or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "secrets#supported-secret-engines" >}}) or provision them via the method of your choice as Kubernetes secrets.
   * Only the information Spinnaker needs leaves the cluster.
 
 Check out the Quick Start [guide]({{< ref "armory-agent-quick" >}}) to deploy the Agent on your Kubernetes infrastructure.
@@ -62,7 +62,7 @@ The Agent sends the following information about the cluster it is watching back 
 
 - Account properties as configured in `kubernetes.accounts[]`.
 - Kubernetes API server host, certificate fingerprint, version.
-- All the Kubernetes objects it is configured to watch and has permissions to access. You can ignore certain Kubernetes [kinds](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/). (`kubernetes.accounts[].omitKinds`) or configure specific kinds to watch (`kubernetes.accounts[].kinds`).
+- All the Kubernetes objects it is configured to watch and has permissions to access. You can ignore certain Kubernetes [kinds](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/) (`kubernetes.accounts[].omitKinds`) or configure specific kinds to watch (`kubernetes.accounts[].kinds`).
 
 > The Agent always scrubs data from `Secret` in memory before it is sent and even before that data makes it onto the Agent's memory heap.
 
@@ -93,5 +93,5 @@ You can also mix deployment strategies if you have complex Kubernetes infrastruc
 
 - Run as a Spinnaker service
 - Run in target clusters
-- Run next to traditional Spinnaker Kubernetes accounts.
+- Run next to traditional Spinnaker Kubernetes accounts
 
