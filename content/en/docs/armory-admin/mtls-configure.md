@@ -119,7 +119,7 @@ spec:
 
 This can be done by adding the following to each service under `<deploy>/service-settings/<service>.yml`:
 
-```
+```yaml
 kubernetes:
   useTcpProbe: true
 ```

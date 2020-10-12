@@ -22,7 +22,7 @@ You modify the current Clouddriver deployment as well as add a new Kubernetes `S
 
 The easiest installation path is to modify an existing [`spinnakerservice.yaml`]({{< ref "operator-config" >}}) with [kustomize](https://kustomize.io/). To start, download additional manifests into the directory with your `SpinnakerService`:
 
-```
+```bash
 # AGENT_PLUGIN_VERSION is found in the compatibility matrix above
 curl https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-plugin-$AGENT_PLUGIN_VERSION.tar.gz | tar -xJvf -
 ```

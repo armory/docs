@@ -15,7 +15,7 @@ simple_list_reverse: true
 ## Halyard
 Armory-extended Halyard  is an extended version of Halyard that deploys Armory features. You can find the base OSS version:
 
-```
+```bash
 > hal --version
 1.4.1-rc8 (OSS 1.17.0-8a5b28e-stable3 build 8)
 ```

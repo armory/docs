@@ -111,18 +111,18 @@ directory.
 
 1. Update Deck's URL using Halyard command
 
-   ```
+   ```bash
    hal config security ui edit --override-base-url https://spinnaker.example.com
    ```
 
-1. Update Gate's URL using Halyard command
+2. Update Gate's URL using Halyard command
 
-   ```
+   ```bash
    hal config security api edit --override-base-url https://spinnaker.example.com/api/v1
    ```
 
-1. Apply the Spinnaker Configuration changes using Halyard command
+3. Apply the Spinnaker Configuration changes using Halyard command
 
-   ```
+   ```bash
    hal deploy apply
    ```

@@ -22,7 +22,7 @@ To input the metric value needed, edit the config as JSON.
 
 Set the following property:
 
-```
+```yaml
 
 "extendedProperties": {
    "staticBaseline": 300
@@ -39,7 +39,7 @@ That means you can have multiple metrics in your Canary Config: ones that make u
 
 As an example of this, the following Canary Config has two metrics defined, one is setting the staticBaseline parameter and the other is not:
 
-```
+```yaml
 {
   "applications": [
     "training"

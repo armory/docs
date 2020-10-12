@@ -25,7 +25,7 @@ The Policy Engine uses [OPA's Data API](https://www.openpolicyagent.org/docs/lat
 
 In general, the only requirement for the Policy Engine in Rego syntax is the following:
 
-```
+```json
 package opa.pipelines
 
 deny["some text"] {
@@ -49,7 +49,7 @@ The following OPA policy enforces one requirement on all pipelines:
 * Any pipeline with more than one stage must have a manual judgement stage.
 
 
-```rego
+```json
 # manual-judgment.rego. Notice the package. The opa.pipelines package is used for policies that get checked when a pipeline is saved.
 package opa.pipelines
 
@@ -73,13 +73,13 @@ Armory recommends using ConfigMaps to add OPA policies instead of the API for OP
 
 If you have configured OPA to look for a ConfigMap, you can create the ConfigMap for `manual-judgement.rego` with this command:
 
-```
+```bash
 kubectl -n <opaServerNamespace> create configmap manual-judgment --from-file=manual-judgment.rego
 ```
 
 After you create the policy ConfigMap, apply a label to it:
 
-```
+```bash
 kubectl -n <opaServerNamespace> label configmap manual-judgment openpolicyagent.org/policy=rego
 ```
 
@@ -89,7 +89,7 @@ This label corresponds to the label you add in the [example manifest]({{< ref "p
 
 Replace the endpoint with your OPA endpoint:
 
-```
+```bash
 curl -X PUT \
 -H 'content-type:text/plain' \
 -v \
@@ -109,7 +109,7 @@ As an example, let's use Policy Engine to prevent Kubernetes LoadBalancer Servic
 
 Deployment validation works by mapping an OPA policy package to a Spinnaker deployment task. For example, deploying a Kubernetes Service is done using the Deploy (Manifest) stage, so we'll write a policy that applies to that task.
 
-```
+```json
 # Notice the package. The package maps to the task you want to create a policy for.
 package spinnaker.deployment.tasks.deployManifest
 
@@ -155,7 +155,7 @@ Now that the policy has been uploaded to the OPA server, the policy gets enforce
 
 You can disable a `deny` policy by adding a false statement to the policy body.  For example, you can add `0 == 1` as a false statement to the manual judgement policy we used previously:
 
-```
+```json
 package opa.pipelines
 
 deny["Every pipeline must have a Manual Judgment stage"] {

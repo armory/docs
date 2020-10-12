@@ -50,7 +50,7 @@ accounts
 
 Download the current `pacrd` manifest to your local machine:
 
-```
+```bash
 curl -fsSL https://engineering.armory.io/manifests/pacrd-0.9.0.yaml > pacrd-0.9.0.yaml
 ```
 
@@ -94,7 +94,7 @@ data:
 
 When you are ready, apply the `pacrd` manifest to your cluster:
 
-```sh
+```bash
 # If using `kubectl` >= 1.14
 kubectl apply -k .
 
@@ -149,7 +149,7 @@ spec:
 
 Create the application in your cluster by running:
 
-```
+```bash
 kubectl apply -f application.yaml
 ```
 
@@ -157,7 +157,7 @@ Check on the status of your application by using either the `get` or `describe`
 commands. `kubectl` recognizes either `app` or `application` for the resource
 kind:
 
-```sh
+```bash
 kubectl get app myapplicationname
 
 # or kubectl get application myapplicationname
@@ -184,7 +184,7 @@ Spinnaker. If an error occurs during the update, your application may show an
 `ErrorFailedUpdate` state. You can see the details of that failure by describing
 the resource and looking in the "Events" section:
 
-```
+```bash
 kubectl describe app myapplicationname
 ```
 
@@ -202,7 +202,7 @@ Spinnaker. If an error occurs during deletion, your application may show an
 `ErrorFailedDelete` state. You can see the details of that failure by describing
 the resource and looking in the "Events section":
 
-```
+```bash
 kubectl describe app myapplicationname
 ```
 
@@ -254,7 +254,7 @@ spec:
 
 Create your pipeline in your cluster:
 
-```
+```bash
 kubectl apply -f pipeline.yaml
 ```
 
@@ -262,7 +262,7 @@ Check on the status of your pipeline by using either the `get` or `describe`
 commands. `kubectl` will recognize either `pipe` or `pipeline` for the resource
 kind:
 
-```sh
+```bash
 kubectl get pipe myapplicationpipeline
 
 # or ... kubectl get pipeline myapplicationpipeline
@@ -278,7 +278,7 @@ myapplicationpipeline   Updated   5s               http://spinnaker.company.com/
 A `describe` call can give you additional contextual information about the
 status of your pipeline:
 
-```
+```bash
 kubectl describe pipeline myapplicationpipeline
 ```
 
@@ -319,7 +319,7 @@ Spinnaker. If an error occurs during the update, your pipeline may show an
 `ErrorFailedUpdate` state. You can see the details of that failure by describing
 the resource and looking in the "Events" section:
 
-```
+```bash
 kubectl describe pipeline myapplicationpipeline
 ```
 
@@ -337,7 +337,7 @@ Spinnaker. If an error occurred during deletion, then your pipeline may show an
 `ErrorFailedDelete` state. You can see the details of that failure by describing
 the resource and looking in the "Events section":
 
-```
+```bash
 kubectl describe pipeline myapplicationpipeline
 ```
 
@@ -444,7 +444,7 @@ creation. If you use the above example but replace the `id` reference with
 
 Execute `kubectl describe`:
 
-```
+```bash
 kubectl describe pipeline my-pipeline
 ```
 
