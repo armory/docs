@@ -822,7 +822,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mast
 
 Get the external IP for the NGINX ingress controller:
 
-```
+```bash
 kubectl get svc -n ingress-nginx
 ```
 

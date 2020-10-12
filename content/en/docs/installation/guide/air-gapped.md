@@ -19,13 +19,13 @@ If you are unable to access this bucket from the machine running Halyard, host t
 
 Your GCS or S3 compatible bucket needs to contain a `versions.yml` at the root of the bucket with the following information:
 
-```
-latestHalyard: 1.7.1
-latestSpinnaker: 2.16.0
+```yaml
+latestHalyard: {{< param halyard-armory-version >}}
+latestSpinnaker: {{< param armory-version >}}
 versions:
-- version: 2.16.0
-  alias: OSS Release 1.16.1
-  changelog: https://docs.armory.io/release-notes/armoryspinnaker_v2.16.0/
+- version: {{< param armory-version >}}
+  alias: OSS Release <ossVersion> # The corresponding OSS version can be found in the Release Notes
+  changelog: <Link to Armory Release Notes for this version>
   minimumHalyardVersion: 1.2.0
   lastUpdate: "1568853000000"
 ```
@@ -131,12 +131,12 @@ You can then upload the files you just downloaded to your storage. Make sure the
 
 **AWS**
 
-```
+```bash
 $ aws cp --recursive versions/ s3://myownbucket
 ```           
 **GCS**
 
-```
+```bash
 $ gsutil cp -m -r ...
 ```
 
@@ -188,11 +188,11 @@ kubectl apply -f manifest.yml
 Finally, to access the deployed Halyard environment, perform the following steps:
 
 1. Get the name for the Halyard pod:
-   ```
+   ```bash
    kubectl get pods
    ```
 2. Exec into the pod:
-   ```
+   ```bash
    kubectl exec -it {pod-name} /bin/bash
    ```
 

@@ -30,24 +30,24 @@ Note: *You could choose to store the password under different keys than `github.
 ### Storing sensitive files
 Some Spinnaker configuration uses information stored as files. For example, upload the `kubeconfig` file of your Kubernetes account directly to `mybucket/mykubeconfig`:
 
-```
+```yaml
 aws s3 cp /path/to/mykubeconfig s3://mybucket/mykubeconfig
 ```
 
 ## Referencing secrets
 Now that secrets are safely stored in the bucket, you reference them from your config files with the following format. The S3 specific parameters (`r:<region>`, `b:<bucket>`, etc) can be in any order:
 
-```
+```yaml
 encrypted:s3!r:<region>!b:<bucket>!f:<path to file>!k:<optional yaml key>
 ```
 
 
 For example, to reference `github.password` from the file above, we'll use:
-```
+```yaml
 encrypted:s3!r:us-west-2!b:mybucket!f:spinnaker-secrets.yml!k:github.password
 ```
 
 And to reference the content of our kubeconfig file:
-```
+```yaml
 encryptedFile:s3!f:mykubeconfig!r:us-west-2!b:mybucket
 ```

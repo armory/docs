@@ -437,7 +437,7 @@ spec:
 
 Create `.hal/default/profiles/dinghy-local.yml` with the following config:
 
-```
+```bash
 Logging:
   Level: INFO
 ```

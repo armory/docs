@@ -81,7 +81,7 @@ spec:
 
 **Halyard**
 
-```
+```bash
 hal armory secrets vault enable
 hal armory secrets vault edit \
     --auth-method TOKEN \
@@ -111,7 +111,7 @@ Halyard will need access to the Vault server in order to decrypt secrets for val
 ### Halyard locally or in Docker
 If you're running Halyard locally, you can use Token auth method. Set your `VAULT_TOKEN` environment variable and add the secrets block to `halyard.yml` like so:
 
-```
+```yaml
 halyard:
   halconfig:
     ...
@@ -129,14 +129,14 @@ secrets:
 
 Then, restart the daemon if this is the first time you are configuring the Token auth method:
 
-```
+```bash
 hal shutdown
 ```
 Your next hal command automatically starts the daemon if you're running Halyard locally. If it's running within a Docker container, mount the volume containing the updated `halyard.yml` and restart the container.
 
 ### Halyard in Kubernetes
 Or if you're running Halyard in Kubernetes, you can have Halyard use Kubernetes auth:
-```
+```yaml
 halyard:
   halconfig:
     ...
@@ -158,17 +158,17 @@ Restart the pod so that Halyard restarts with your new config.
 ## Storing secrets
 To store a file, simply prepend the file path with `@`. It accepts relative paths but cannot resolve `~`:
 
-```
+```bash
 vault kv put secret/spinnaker/kubernetes config=@path/to/kube/config
 ```
 The command above stores a single key-value pair at the `secret/spinnaker/kubernetes` path. **Any updates to that path will replace the existing values even if using a different key!** In order to store multiple secrets at the same path, it must be done in a single command, like so:
-```
+```bash
 vault kv put secret/spinnaker/github password=<password> token=<token>
 ```
 Otherwise, just store different secrets at different paths, like we're doing in these examples.
 
 Make sure to base64 encode any binary files:
-```
+```bash
 base64 -i saml.jks -o saml.b64
 vault kv put secret/spinnaker/saml base64keystore=@saml.b64
 ```
@@ -178,7 +178,7 @@ vault kv put secret/spinnaker/saml base64keystore=@saml.b64
 
 Now that secrets are safely stored in Vault, reference them in config files with the following syntax:
 
-```
+```yaml
 encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?>
 ```
 

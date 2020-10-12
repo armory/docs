@@ -1,7 +1,7 @@
 ---
 title: Armory Platform Compatibility Matrix
 linkTitle: Armory Platform Compatibility
-weight: 99
+weight: 100
 description: "Information about support and compatibility for the Armory Platform."
 ---
 

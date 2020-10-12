@@ -491,7 +491,7 @@ There are two ways in which you can remove this ownership relationship so that A
 First, export Armory configuration settings to a format that Halyard understands:
 1. From the `SpinnakerService` manifest, copy the contents of `spec.spinnakerConfig.config` to its own file named `config`, and save it with the following structure:
 
-   ```
+   ```yaml
    currentDeployment: default
    deploymentConfigurations:
    - name: default
@@ -524,7 +524,7 @@ kubectl delete -f deploy/crds/
 
 Run the following script to remove ownership of Armory resources, where `NAMESPACE` is the namespace where Armory is installed:
 
-```
+```bash
 NAMESPACE=
 for rtype in deployment service
 do
@@ -536,7 +536,7 @@ done
 ```
 After the script completes, delete the Armory Operator and its CRDs from the Kubernetes cluster:
 
-```
+```bash
 kubectl delete -n <namespace> -f deploy/operator/<installation type>
 kubectl delete -f deploy/crds/
 ```

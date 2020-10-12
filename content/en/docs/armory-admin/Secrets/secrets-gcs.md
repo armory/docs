@@ -28,17 +28,19 @@ github:
 ## Referencing secrets
 Now that secrets are securely stored in the bucket, you reference them in your config files with the following format:
 
-```
+```yaml
 encrypted:gcs!b:<bucket>!f:<path to file>!k:<optional yaml key>
 ```
 
 
 For example, to reference `github.password` from the file above, use:
-```
+
+```yaml
 encrypted:gcs!b:mybucket!f:spinnaker-secrets.yml!k:github.password
 ```
 
 To reference the content of our kubeconfig file:
-```
+
+```yaml
 encrypted:gcs!f:mykubeconfig!b:mybucket
 ```
