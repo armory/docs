@@ -1,9 +1,11 @@
 ---
 title: "Your First Pipeline"
-weight: 60
+weight: 35
+description: >
+  Create a pipeline
 ---
 
-The pipeline is the key deployment management construct in Spinnaker. It consists of a sequence of actions, known as stages. You can pass parameters from stage to stage along the pipeline.
+The pipeline is the key deployment management construct in Spinnaker™. It consists of a sequence of actions, known as stages. You can pass parameters from stage to stage along the pipeline.
 
 You can start a pipeline manually, or you can configure it to be automatically triggered by an event, such as a Jenkins job completing, a new Docker image appearing in your registry, a CRON schedule, or a stage in another pipeline.
 
