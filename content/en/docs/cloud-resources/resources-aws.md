@@ -98,20 +98,11 @@ If you plan to use EC2 with your Armory installation, you can find related costs
 
 ### Basic cost estimate
 
-The example below is based on a basic Armory instance without disaster recovery. Your infrastructure needs may very. AWS pricing can change without notice, so be sure to determine your costs using the [AWS Pricing Calculator](https://calculator.aws).
+The example below is based on a basic Armory instance without disaster recovery. Your infrastructure needs may vary.
 
-Category|Type|QTY|Unit|Hour|Daily|Month|Year|  
-:--|:---|:---|:---|:---|:---|:---|:---|:---|
-EKS - management|Cluster|1|$0.20|$0.20|$4.80|$144.00|$1752.00|  
-ECS - instances|m5.xlarge|3|$0.19|$0.58|$13.82|$1414.72|$5045.76|  
-ECS EBS|100GB GP2|3|$0.01|$0.04|$1.01|$30.24|$367.92|
-ALB|ALB + 1 LCU Hour|1|$0.03|$0.03|$0.73|$21.96|$267.18|
-S3|1 GB|1|$0.02|$0.02|$0.55|$16.56|$201.48|
-ElastiCache|cache.r5.large|3|$0.22|$0.65|$15.55|$466.56|$5676.48|
-EC2 - data transfer|50GB/Month|1|$0.00|$0.00|$0.03|$1.01|$12.26|  
-|     |     |     |     |     |     |     |     |
-|     |     |     |     |     |     |$1110.00|$13323.08|
+AWS pricing can change without notice, so be sure to determine your costs using the [AWS Pricing Calculator](https://calculator.aws).
 
+{{< gsuite src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSlG-eNaziGxpi-d4NbiQfd6RREHZ-EdShx89nTl1gZGeZ5NECAm85BfOXp5-jWVOaPC9d6pzo6vfww/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"  width="960" height="400" >}}
 
 
 
