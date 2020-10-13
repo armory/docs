@@ -7,6 +7,7 @@ aliases:
   - /armory-admin/aws-dr/
 ---
 
+
 ## Overview
 
 The following guide describes how to configure your Armory on AWS deployment to be more resilient and perform Disaster Recovery (DR). Armory does not function in multi-master mode, which means that active-active is not supported at this time. Instead, this guide describes how to achieve an active-passive Armory setup. This results in two instances of Armory deployed into two regions that can fail independently.
@@ -132,15 +133,19 @@ Perform the following tasks when you make the passive Armory into the active Arm
 * Change the DNS CNAME if it is not already pointing to the passive Armory installation.
 * If the Armory that is not working is accessible, it should be deactivated
 
-## Restoration time
+##  Recovery Time Objective (RTO)
 
-Restoration time is dependent on the time it takes to restore the database, the Armory services, and the time it takes to update DNS. The following services will also take some time to restore since Redis needs time to warm up the cache:
+Restoration time is dependent on the time it takes to restore the database, the Armory services, and the time it takes to update DNS. Most Armory services that fails should recover within a 10 minute timeframe. Clouddriver may take longer especially when at scale because it needs to reconnect to all configured cloud accounts. Note that services are limited to local resources, which are configured to be redundant (databases, nodes, etc.) or highly available. In addition to Clouddriver, the following services may also take additional time to restore since Redis needs time to warm up the cache:
 
-- Clouddriver
 - Orca
 - Igor
 - Echo
 - Fiat
+
+## Recovery Point Objective (RPO)
+
+This is the state to which Armory will recover the affected systems in case of a failure, such as database corruption. The current Armory RPO target is 24 hours maximum, tied to the last snapshot of the database.
+
 
 ## Other resources
 - [Kubernetes Multi-AZ deployments Using Pod Anti-Affinity](https://blog.verygoodsecurity.com/posts/kubernetes-multi-az-deployments-using-pod-anti-affinity/)
