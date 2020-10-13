@@ -6,9 +6,11 @@ aliases:
   - /spinnaker_install_admin_guides/ecr-registry/
   - /spinnaker-install-admin-guides/ecr_registry/
   - /docs/spinnaker-install-admin-guides/ecr-registry/
+  - /docs/armory-admin/artifacts-ecr-connect/
+  - /armory-admin/artifacts-ecr-connect/
 ---
 
-This document reviews configuring ECR as a registry for a Spinnaker installation.
+This document reviews configuring ECR as a registry for an Armory installation.
 
 ## Adding ECR as a Docker registry
 
@@ -88,6 +90,6 @@ kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
 hal deploy apply --service-names clouddriver
 ```
 
-Success! Now you will be able to use ECR as a docker registry in the configuration stage.
+Success! Now you will be able to use ECR as a Docker registry in the configuration stage.
 
 ![](/images/armory-admin/artifacts/ecr-test.png)

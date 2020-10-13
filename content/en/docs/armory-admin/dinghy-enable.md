@@ -13,8 +13,8 @@ This guide includes:
 ## Overview
 To get an overview of Pipelines as code, check out the [user guide]({{< ref "using-dinghy" >}}).
 
-## Enabling Pipelines as code
-To configure Pipelines as code, start by enabling it:
+## Enabling Pipelines as Code
+To configure Pipelines as Code, start by enabling it:
 
 **Operator**
 

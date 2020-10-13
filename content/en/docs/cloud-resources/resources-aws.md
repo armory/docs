@@ -93,7 +93,7 @@ If you plan to use EC2 with your Armory installation, you can find related costs
 
 - [EC2](https://aws.amazon.com/ec2/pricing/)
 - [Elastic Block Store (EBS)](https://aws.amazon.com/ebs/pricing/)
-- [Elastic Load Balancing)](https://aws.amazon.com/elasticloadbalancing/pricing/) for Application Load Balancer (ALB), Network Load Balancer (NLB), or Classic Load Balancer (CLB)
+- [Elastic Load Balancing (ELB)](https://aws.amazon.com/elasticloadbalancing/pricing) for Application Load Balancer (ALB), Network Load Balancer (NLB), or Classic Load Balancer (CLB)
 
 
 ### Basic cost estimate
