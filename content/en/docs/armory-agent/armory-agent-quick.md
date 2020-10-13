@@ -88,11 +88,11 @@ Create the directory structure described below with `kustomization.yaml`, `kubes
 ```
 
 ```yaml
-# ./kustomization.yaml  
+# ./kustomization.yaml
 
 # Namespace where you want to deploy the agent
 namespace: spinnaker
-bases:  
+bases:
   - https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-{{<param kubesvc-version>}}-kustomize.tar.gz
 
 configMapGenerator:
@@ -105,7 +105,7 @@ secretGenerator:
   - name: kubeconfigs-secret
     files:
     # a list of all needed kubeconfigs
-    - kubecfgs/kubecfg-account01.yaml  
+    - kubecfgs/kubecfg-account01.yaml
     - ...
     - kubecfgs/kubecfg-account1000.yaml
 ```
@@ -121,7 +121,7 @@ kubernetes:
     # as mounted from the `kubeconfigs-secret` Kubernetes secret
     kubeconfigFile: /kubeconfigfiles/kubecfg-account01.yaml
     ...
-  - ...    
+  - ...
 ...
 ```
 
@@ -136,8 +136,7 @@ kustomize build </path/to/directory> | kubectl apply -f -
 If you prefer to manage manifests directly, download all the manifests:
 
 ```bash
-AGENT_VERSION = {{<param kubesvc-version>}} && \
-curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-$AGENT_VERSION-kustomize.tar.gz | tar -xJvf -
+AGENT_VERSION={{<param kubesvc-version>}} && curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-$AGENT_VERSION-kustomize.tar.gz | tar -xJvf -
 ```
 
 - Change the version of the Agent in `kustomization.yaml`

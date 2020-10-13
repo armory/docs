@@ -100,6 +100,12 @@ privacy_policy = "https://www.armory.io/privacy-policy"
 terms_of_service = "https://www.armory.io/terms-of-service"
 terms_and_conditions = "https://www.armory.io/terms-and-conditions"
 
+[params.kubesvc-plugin]
+latestVersion2="v0.2.3"
+latestVersion3="v0.3.13"
+latestVersion4="v0.4.8"
+latestVersion5="v0.5.0-rc.14"
+
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
 
