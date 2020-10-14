@@ -67,7 +67,33 @@ time="2020-10-02T22:22:27Z" level=info msg="starting agentCreator account-01"
 
 Common errors:
 
-- When connecting to Spinnaker<sup>TM</sup> as a service, make sure to set `clouddriver.insecure: true` or provide certificates so the plugin can terminate TLS.
+- `io.grpc.netty.shaded.io.netty.handler.codec.http2.Http2Exception: HTTP/2 client preface string missing or corrupt. Hex dump for received bytes: 160301011901000115030383b0f1d28d2a75383e4e1f98f4`
+  When connecting to Spinnaker<sup>TM</sup> as a service, make sure to set `clouddriver.insecure: true` or provide certificates so the plugin can terminate TLS.
+- `Parameter 1 of method getRedisClusterRecipient in io.armory.kubesvc.config.KubesvcClusterConfiguration required a bean of type 'com.netflix.spinnaker.kork.jedis.RedisClientDelegate' that could not be found.`
+  Make sure `redis.enabled: true` is set in clouddriver's profile. For a more limited solution, keep only one clouddriver instance and set `kubesvc.cluster: local` in clouddriver's profile
+- `Parameter 0 of method sqlTableMetricsAgent in com.netflix.spinnaker.config.SqlCacheConfiguration required a bean of type 'org.jooq.DSLContext' that could not be found.`
+  Make sure `sql.enabled: true` is set in clouddriver's profile
+- `Parameter 2 of constructor in io.armory.kubesvc.agent.KubesvcCachingAgentDispatcher required a bean of type 'com.netflix.spinnaker.clouddriver.kubernetes.security.KubernetesCredentials$Factory' that could not be found.`
+  Make sure `providers.kubernetes.enabled: true` is set.
+- `Assigning accounts to Kubesvc enabled Clouddrivers (caching)` multiple times in clouddriver & `[..] is unreachable [..] getting credentials: exec: fork/exec /usr/local/bin/aws: exec format error`
+  Currently only static tokens are available. Generate a kubeconfig that uses a token from a SA with permissions to the cluster instead.
+
+  ```bash
+  kubectl create sa kubesvc -n default # replace default with a relevant namespace
+  kubectl create clusterrolebinding kubesvc --serviceaccount default:kubesvc --clusterrole cluster-admin # or make a proper rbac role
+  TOKEN_SECRET="$(kubectl get sa kubesvc -n default -o jsonpath='{.secrets.*.name}')"
+  TOKEN="$(kubectl get secret "$TOKEN_SECRET" -n default -o jsonpath='{.data.token}' | base64 --decode)"
+  # Replace your kubeconfig from
+  # users:
+  # - user:
+  #     exec:
+  # to
+  # users:
+  # - user:
+  #     token: $TOKEN_SECRET
+  # Remember to replace $TOKEN_SECRET with the actual contents from the command above
+  ```
+
 
 ## Tips
 
