@@ -633,6 +633,7 @@ stages:
 # ...
 ```
 
+- Pipeline names do not support spaces and must follow the [Kubernetes naming convention](https://v1-16.docs.kubernetes.io/docs/concepts/overview/working-with-objects/names/#names).  "Kubernetes resources can have names up to 253 characters long. The characters allowed in names are: digits (0-9), lower case letters (a-z), -, and .."
 
 ## v0.1.x - v0.4.0
 
