@@ -1,9 +1,11 @@
 ---
-title: Exposing Spinnaker
+title: Exposing Armory on EKS
 aliases:
   - /spinnaker/configure_ingress/
   - /spinnaker/exposing_spinnaker/
   - /docs/spinnaker/exposing-spinnaker/
+  - /docs/armory-admin/exposing-spinnaker/
+  - /armory-admin/exposing-spinnaker/
 ---
 
 ## DNS Preparation
@@ -15,11 +17,11 @@ the LoadBalancer.  For this tutorial, we've selected `demo.armory.io` to be
 our Deck service (the UI), and `gate.demo.armory.io` to be our Gate service
 (the API).
 
-## Exposing Spinnaker on EKS with a public Load Balancer
+## Exposing Armory on EKS with a public Load Balancer
 
 ### Create a LoadBalancer service
 
-While there are many ways to expose Spinnaker, we find the method described in this post to be the easiest way to get started. If your organization has other requirements, this post may be helpful as you start working through the process.
+While there are many ways to expose Armory, we find the method described in this post to be the easiest way to get started. If your organization has other requirements, this post may be helpful as you start working through the process.
 
 **Operator**
 
@@ -50,7 +52,7 @@ UI_URL=$(kubectl -n $NAMESPACE get spinsvc spinnaker -o jsonpath='{.status.uiUrl
 
 First, we’ll start by creating LoadBalancer Services which will expose the API (Gate) and the UI (Deck) via a Load Balancer in your cloud provider. We’ll do this by running the commands below and creating the spin-gate-public and spin-deck-public Services.
 
-`NAMESPACE` is the Kubernetes namespace where your Spinnaker install is located. Halyard defaults to spinnaker unless explicitly overridden.
+`NAMESPACE` is the Kubernetes namespace where your Armory install is located. Halyard defaults Armory unless explicitly overridden.
 
 > Note: If you want to secure each endpoint with SSL, change it to `443` and continue through the guide.
 
@@ -67,7 +69,7 @@ kubectl -n ${NAMESPACE} expose service spin-deck --type LoadBalancer \
   --name spin-deck-public
 ```
 
-Once these Services have been created, we’ll need to update our Spinnaker deployment so that the UI understands where the API is located. To do this, we’ll use Halyard to override the base URL for both the API and the UI and then redeploy Spinnaker.
+Once these services have been created, we’ll need to update our Armory deployment so that the UI understands where the API is located. To do this, we’ll use Halyard to override the base URL for both the API and the UI and then redeploy Armory.
 
 ```bash
 # use the newly created LBs
@@ -93,7 +95,7 @@ spinnaker.armory.io      CNAME --> (spin-deck-public dns) aaaaa-2222.us-west-2.e
 
 ### Secure with SSL on EKS
 
-This tutorial presumes you've already created a certificate in the AWS Certificate Manager.
+This tutorial presumes you've already created a certificate in the [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/).
 
 **Operator**
 
@@ -123,7 +125,7 @@ spec:
         service.beta.kubernetes.io/aws-load-balancer-ssl-ports: 80,443
 ```
 
-Assuming that Spinnaker is installed in `spinnaker` namespace:
+Assuming that Armory is installed in `spinnaker` namespace:
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
@@ -163,19 +165,19 @@ hal deploy apply
 If your Armory installation will be using authentication and you expect to scale the API server (Gate) beyond more than one instance you'll want to enable sticky sessions. This will ensure that clients will connect and authenticate with the same server each time. Otherwise, you may be forced to reauthenticate if you get directed to a new server. To enable sticky sessions, you'll want to enable session affinity on the Gate service created above.
 
 ```bash
-GATE_SVC=<spin-gate/spin-gate-public>  # spin-gate if using Spinnaker Operator, spin-gate-public if using Halyard
+GATE_SVC=<spin-gate/spin-gate-public>  # spin-gate if using Armory Operator, spin-gate-public if using Halyard
 kubectl -n ${NAMESPACE} patch service/$GATE_SVC --patch '{"spec": {"sessionAffinity": "ClientIP"}}'
 ```
 
 For more details about session affinity, see the Kubernetes documentation on [Services](https://kubernetes.io/docs/concepts/services-networking/service/).
 
-## Exposing Spinnaker on EKS with an internal Load balancer
+## Exposing Armory on EKS with an internal Load balancer
 
-In this option the goal is to use AWS ALB's of type `internal` for exposing Spinnaker only within an organization's private VPC. This consists of 3 steps: configuring Kubernetes services of type `NodePort`, creating AWS internal ALB's and updating Spinnaker with final DNS names.
+In this option the goal is to use AWS ALB's of type `internal` for exposing Armory only within an organization's private VPC. This consists of 3 steps: configuring Kubernetes services of type `NodePort`, creating AWS internal ALB's and updating Armory with final DNS names.
 
 ### Step 1: Create Kubernetes NodePort services
 
-A `NodePort` Kubernetes service opens the same port (automatically chosen) on all EKS worker nodes, and forwards requests to internal pods. In this case we'll be creating two services: one for Deck (Spinnaker's UI) and one for Gate (Spinnaker's API).
+A `NodePort` Kubernetes service opens the same port (automatically chosen) on all EKS worker nodes, and forwards requests to internal pods. In this case we'll be creating two services: one for Deck (Armory's UI) and one for Gate (Armory's API).
 
 **Operator**
 
@@ -193,7 +195,7 @@ spec:
       ...  # rest of config omitted for brevity
 ```
 
-Assuming that Spinnaker is installed in `spinnaker` namespace:
+Assuming that Armory is installed in `spinnaker` namespace:
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
@@ -270,9 +272,9 @@ If for some reason you get `Unhealthy` status in the target group you created, m
 
 Finally repeat the same steps for creating Gate Load balancer.
 
-### Step 3: Update Spinnaker configuration
+### Step 3: Update Armory configuration
 
-Spinnaker needs to know which url's are used to access it. After you have updated your DNS with the Load Balancers CNAME's created in the previous step, the next step is to update Spinnaker configuration:
+Armory needs to know which url's are used to access it. After you have updated your DNS with the Load Balancers CNAME's created in the previous step, the next step is to update Armory configuration:
 
 **Operator**
 
@@ -294,7 +296,7 @@ spec:
           ...  # rest of config omitted for brevity
 ```
 
-Assuming that Spinnaker is installed in `spinnaker` namespace:
+Assuming that Armory is installed in `spinnaker` namespace:
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
@@ -310,7 +312,7 @@ hal deploy apply
 ```
 
 
-## Exposing Spinnaker on GKE with Ingress
+## Exposing Armory on GKE with Ingress
 ### Setting up HTTP Load Balancing with Ingress
 
 GKE has a “built-in” ingress controller and that's what we will use.
@@ -358,7 +360,7 @@ Note: It may take a few minutes for GKE to allocate an external IP address and s
 
 You need to update your DNS records to have the demo.armory.io host point to the IP address generated.
 
-Now tell Spinnaker about its external endpoints:
+Now tell Armory about its external endpoints:
 
 **Operator**
 
@@ -380,7 +382,7 @@ spec:
           ...  # rest of config omitted for brevity
 ```
 
-Assuming that Spinnaker is installed in `spinnaker` namespace:
+Assuming that Armory is installed in `spinnaker` namespace:
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
@@ -402,9 +404,9 @@ To enable SSL and configure your certificates you can follow this guide:
 
 ## HTTP/HTTPS Redirects
 
-You must enable HTTP/HTTPS redirects when your Spinnaker deployment fits the following description:
-* TLS encryption for Deck (UI) and Gate (API) for Spinnaker
-* A load balancer (service, ingress, etc.) in front of your Deck/Gate that terminates TLS and forwards communications to the Spinnaker microservices.
+You must enable HTTP/HTTPS redirects when your Armory deployment fits the following description:
+* TLS encryption for Deck (UI) and Gate (API) for Armory
+* A load balancer (service, ingress, etc.) in front of your Deck/Gate that terminates TLS and forwards communications to the Armory microservices.
 
 To enable redirects, complete the following steps:
 
@@ -430,7 +432,7 @@ spec:
             ...  # rest of config omitted for brevity
 ```
 
-Assuming that Spinnaker is installed in `spinnaker` namespace:
+Assuming that Armory is installed in `spinnaker` namespace:
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml

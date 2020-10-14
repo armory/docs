@@ -3,6 +3,8 @@ title: "Configuring S3 Artifacts"
 aliases:
   - /spinnaker_install_admin_guides/s3/
   - /docs/spinnaker-install-admin-guides/s3/
+  - /docs/armory-admin/artifacts-s3-configure/
+  - /armory-admin/artifacts-s3-configure/
 description: To use a file stored in S3 in your pipeline, configure Spinnaker to use S3 as an artifact source.
 ---
 

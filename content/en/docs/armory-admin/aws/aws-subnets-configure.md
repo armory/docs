@@ -2,6 +2,8 @@
 title: "Configuring AWS Networking"
 aliases:
   - /docs/spinnaker-install-admin-guides/aws-subnets/
+  - /docs/armory-admin/aws-subnets-configure/
+  - /armory-admin/aws-subnets-configure/
 ---
 ## Overview
 
