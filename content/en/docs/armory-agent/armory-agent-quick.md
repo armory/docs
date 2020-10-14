@@ -51,7 +51,18 @@ patchesStrategicMerge:
 
 ```
 
-You can then set the [plugin options]({{< ref "agent-plugin-options" >}}) in `agent-plugin/config.yaml`. When you're ready, deploy with:
+* In case you are running with HA configured, make sure to modify the following files:
+  * `agent-plugin/clouddriver-plugin.yaml` & `agent-plugin/config.yaml` to refer to the services `clouddriver-caching`,`clouddriver-rw`,`clouddriver-ro`, `clouddriver-ro-deck` (instead of the original `clouddriver` )
+  * `agent-service/kustomization.yaml` to include `clouddriver-ha-grpc-service.yaml`
+  * `kubesvc.yaml` to point to `clouddriver.grpc: clouddriver-ha-grpc-service.yaml:9091`
+
+You can then set the [plugin options]({{< ref "agent-plugin-options" >}}) in `agent-plugin/config.yaml`.
+
+* For topologies like [Infrastructure mode](({{< ref "armory-agent#infrastructure-mode" >}})) and [Agent mode](({{< ref "armory-agent#infrastructure-mode" >}})) which
+  keep the Agent separated from Spinnaker you might want to configure TLS through a load balancer.
+* For Spinnaker installations with one clouddriver instance and no redis, you can use `kubesvc.cluster`. However, a spinnaker installation with redis is recommended.
+
+When you're ready, deploy with:
 
 ```bash
 kustomize build . | kubectl apply -f -
@@ -124,6 +135,10 @@ kubernetes:
   - ...
 ...
 ```
+
+* For installations wihtout gRPC TLS connections, `clouddriver.insecure: true` should be included in the agent options.
+   For topologies like [Infrastructure mode](({{< ref "armory-agent#infrastructure-mode" >}})) and [Agent mode](({{< ref "armory-agent#infrastructure-mode" >}})) which
+   keep the Agent separated from Spinnaker you might want to configure TLS instead through a load balancer.
 
 With the directory structure in place, deploy the Agent service:
 
