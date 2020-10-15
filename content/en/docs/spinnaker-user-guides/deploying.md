@@ -37,7 +37,7 @@ Press the '+' on the right to create a new load balancer, you may need to select
 
 We'll enter 'prod' into the 'Stack' field because our environment contains dev, stage, and prod.
 
-Set the [VPC Subnet Type]({{< ref "aws-subnets-configure" >}}), which maps to our pre-created security group, set the correct forwarding ports and most importantly set the healthcheck.
+Set the [VPC Subnet Type]({{< ref "aws-subnets-configure" >}}) grouping by tagging VPCs so that they will appear in the VPC dropdown selection in Spinnaker (this change may take some time to cache and reflect in Spinnaker).  Set your Firewall which maps to the pre-created security group, set the correct forwarding ports and most importantly set the healthcheck. 
 
 Now we can hit create.
 
@@ -58,7 +58,9 @@ We'll be shown the option to copy a configuration from a currently running serve
 
 ![](/images/ezgif.com-gif-maker-(3).gif)
 
-Let's select the same **VPC Subnet** type as the ELB we just made. Remember to input 'prod' to the **Stack** field since that is what was used when creating the ELB.
+Let's select the same **VPC Subnet** type as the ELB we just made. Remember to input 'prod' to the **Stack** field since that is what was used when creating the ELB.  
+
+Note: If the ELB steps above were skipped and do not see the VPCs grouping available or a new VPC group needs to be made, please be advised to follow the instructions at [VPC Subnet Type]({{< ref "aws-subnets-configure" >}}) and tag your VPCs so that they will be available for selection in the dropdown.
 
 For this example, we'll use a Red/Black (also known as Blue/Green) **deployment strategy**. Leave 3 **maximum server groups** alive for normal services allows you to manually rollback in case of emergency easily.
 
