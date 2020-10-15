@@ -3,7 +3,7 @@ title: "Armory Agent for Kubernetes"
 linkTitle: "Armory Agent for K8s"
 weight: 20
 description: >
-  The Armory Agent is a lightweight, scaleable service that monitors your Kubernetes infrastructure and streams changes back to Clouddriver.
+  The Armory Agent is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Clouddriver.
 ---
 
 * Massive scale for Kubernetes
