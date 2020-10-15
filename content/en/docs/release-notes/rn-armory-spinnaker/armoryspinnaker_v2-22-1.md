@@ -23,13 +23,14 @@ Armory Spinnaker 2.22.1 requires one of the following:
 
 {{< include "bc-k8s-job-suffix.md" >}}
 
+{{< include "bc-spinnaker-metrics.md" >}}
+
 ## Known issues
 
 {{< include "ki-plugins-sdk.md" >}}
 
 {{< include "ki-gce-predictive-autoscaling.md" >}}
 
-{{< include "ki-spinnaker-metrics.md" >}}
 
 #### Security update
 
