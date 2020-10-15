@@ -355,7 +355,7 @@ The following table lists the supported manifest templating engines:
 | --------- | ---------------------- | ------------------------------------ |
 | Helm 2    | All supported versions |                                      |
 | Helm 3    | 2.19.x or later        |                                      |
-| Kustomize | All supported versions | Kustomize version installed is 3.3.0 |
+| Kustomize | All supported versions | Kustomize version installed is 3.8.1 |
 
 ## Notifications
 

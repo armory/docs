@@ -3,32 +3,100 @@ title: v2.22.1 Armory Release (OSS Spinnaker v1.22.2)
 toc_hide: true
 ---
 
-## 2020/10/30 Release Notes
+## 2020/10/15 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-## Required Halyard version
 
-Armory Spinnaker 2.22.1 requires Armory Halyard <PUT IN A VERSION NUMBER> or later.
+## Required Halyard or Operator version
+
+Armory Spinnaker 2.22.1 requires one of the following:
+
+* Armory Halyard 1.9.4 or later.
+* Armory Spinnaker Operator 1.0.3 or later.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
 
-## Known Issues
-<!-- Copy/paste known issues from the previous version if they're not fixed -->
-There are currently no known issues with this release.
+{{< include "bc-k8s-namespace.md" >}}
 
-## Highlighted Updates
+{{< include "bc-docker-giduid.md" >}}
 
-### Armory
+{{< include "bc-k8s-job-suffix.md" >}}
 
-Summary of changes in the latest release.
+## Known issues
+
+{{< include "ki-plugins-sdk.md" >}}
+
+{{< include "ki-gce-predictive-autoscaling.md" >}}
+
+{{< include "ki-spinnaker-metrics.md" >}}
+
+#### Security update
+
+We continue to make Spinnaker's security a top priority. Although several CVEs are resolved, the following still exist.
+
+##### Multiple services
+
+`CVE-2020-5410` was resolved in a previous version of Armory Spinnaker; however, this CVE introduced a regression for users of Spring Cloud and has been rolled back. Armory will continue to monitor releases for a fix.
+
+
+##### Clouddriver
+
+The following CVE exists for Clouddriver:
+
+- CVE-2020-7014 deals with an Elasticsearch exploit related to token generation. Clouddriver only makes use of entity tags and does not allow for token generation or authentication.
+
+##### Terraformer
+
+Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration:
+
+- CVE-2020-15778
+
+## Highlighted updates
+
+### Deployment targets
+
+#### AWS
+
+Fixed an issue where fetching an AWS token might take longer than expected.
+
+#### PCF
+
+Fixed an issue where clusterSummaries fully hydrated the servergroups.
+
+### Manifest templating
+
+Armory now includes version 3.8.1 of kustomize.
+
+### Security
+
+This release resolves several CVEs:
+
+* [CVE-2017-18342](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-18342)
+* [CVE-2019-17638](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17638)
+* [CVE-2020-1747](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-1747)
+* [CVE-2016-10745](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10745)
+* [CVE-2020-7009](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7009)
+* [CVE-2019-17359](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17359)
+* [CVE-2020-5421](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-5421)
+* [CVE-2020-13757](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-13757)
+* [CVE-2015-9251](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-9251)
+* [CVE-2020-11023](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11023)
+* [CVE-2020-8927](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-8927)
+* [CVE-2014-0012](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0012)
+* [CVE-2014-1402](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1402)
+* [CVE-2020-11022](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11022)
+* [CVE-2020-5408](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-5408)
+* [CVE-2011-4969](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-4969)
+* [CVE-2016-10516](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10516)
+* [CVE-2020-7656](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656)
+* [CVE-2020-7019](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7019)
 
 ###  Spinnaker Community Contributions
 
-<! -- Copy/paste highlights from the corresponding OSS version. -->
+<!-- Copy/paste highlights from the corresponding OSS version. -->
 
-There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
-[Spinnaker v1.22.2](https://www.spinnaker.io/community/releases/versions/1-22-2-changelog)
+There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here: [Spinnaker v1.22.2](https://www.spinnaker.io/community/releases/versions/1-22-2-changelog).
 
 ## Detailed Updates
 
