@@ -27,7 +27,7 @@ Authorization (Auth) is the level of access to APIs that a user, application or 
 
 ## Baking
 
-The term '[Baking]({{< ref "baking-images" >}})' is used within Spinnaker to refer to the process of creating machine images, usually with [AMIs](#Amazon_Machine_Images).
+The term '[Baking]({{< ref "aws-baking-images" >}})' is used within Spinnaker to refer to the process of creating machine images, usually with [AMIs](#Amazon_Machine_Images).
 
 ## Cloud
 

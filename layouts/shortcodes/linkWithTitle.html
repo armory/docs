@@ -1,0 +1,7 @@
+{{- $fileName := .Get "fileName" -}}
+
+{{ with .Site.GetPage $fileName }}
+<a href="{{ .Permalink }}"}>{{ .LinkTitle }}</a>
+
+
+{{ end }}

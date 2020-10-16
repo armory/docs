@@ -1,5 +1,5 @@
 ---
-title: "Your First Pipeline"
+title: "Your First Pipeline (AWS)"
 weight: 35
 description: >
   Create a pipeline
@@ -9,17 +9,19 @@ The pipeline is the key deployment management construct in Spinnaker™. It cons
 
 You can start a pipeline manually, or you can configure it to be automatically triggered by an event, such as a Jenkins job completing, a new Docker image appearing in your registry, a CRON schedule, or a stage in another pipeline.
 
-## How to Create a Pipeline
-
-In this example we will create a pipeline that takes the Debian package produced by a Jenkins job and uses it to create an Amazon Machine Image (AMI) before deploying that image to a server group.
-
-
-Things you should already have prepared beforehand for this example:
+## Prerequisites:
 
 - A Jenkins Master configured by your administrator
 - A Jenkins job that archives a Debian package
 - A security group within AWS with appropriate permissions
-- Create a Load Balancer
+- A Load Balancer
+
+## How to Create a Pipeline
+
+In this example we will create a pipeline that takes the Debian package produced by a Jenkins job and uses it to create an [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) before deploying that image to a server group.
+
+
+
 
 Step 1: After selecting your Application, click the Pipelines category.
 
@@ -114,6 +116,6 @@ Step 22: Press “Run”, and you should see a progress bar where blue represent
 
 ![](/images/Image-2017-03-24-at-4.45.33-PM.png)
 
-If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "pipelines#troubleshooting" >}}), [baking]({{< ref "baking-images#troubleshooting" >}}), or [deploying]({{< ref "deploying#common-errors-and-troubleshooting" >}}) guides.
+If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "pipelines#troubleshooting" >}}), [baking]({{< ref "aws-baking-images#troubleshooting" >}}), or [deploying]({{< ref "aws-deploy#common-errors-and-troubleshooting" >}}) guides.
 
 Note: Always remember to save your changes by clicking the button in the bottom right of the window.

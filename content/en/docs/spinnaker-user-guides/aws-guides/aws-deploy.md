@@ -1,33 +1,36 @@
 ---
-title: Deploying (AWS EC2)
+title: Deployment (AWS EC2)
 aliases:
   - /user-guides/deploying/
   - /user_guides/deploying/
   - /spinnaker_user_guides/deploying/
+  - /docs/spinnaker-user-guides/deploying/
+  - /spinnaker-user-guides/deploying/
 ---
 
 ## Prerequisites and assumptions:
 
-- You are deploying to Amazon Web Services (AWS)
-- You know how to create pipelines and utilize the [Bake stage]({{< ref "baking-images" >}})
-- You understand Spinnaker's [naming conventions]({{< ref "naming-conventions" >}})
-- You are familiar with ELB configuration
+- You are deploying to Amazon Web Services (AWS) EC2
+- You know how to create pipelines and utilize the [Bake stage]({{< ref "aws-baking-images" >}})
+- You understand Armory's [naming conventions]({{< ref "naming-conventions" >}})
+- You are familiar with [ELB](https://aws.amazon.com/elasticloadbalancing/) configuration
 - You have already created a security group to use in your application
 
 
-The primary objective of Spinnaker is to deploy your software. It would like you to [Bake an image]({{< ref "baking-images" >}}) and use that same image to deploy to all of your environments.
+The primary objective of Armory is to deploy your software. To do that, you need to [bake an image]({{< ref "aws-baking-images" >}}) and use that same image to deploy to all of your environments.
 
-The typical type of distributed application that Spinnaker deploys is one with a cluster of homogeneous instances behind a load balancer. The load balancer is responsible for detecting healthy and unhealthy instances.
+The typical type of distributed application that Armory deploys is one with a cluster of homogeneous instances behind a load balancer. The load balancer is responsible for detecting healthy and unhealthy instances.
 
-To start off, let's go through an example. This example continues from the example in the [Baking an image guide]({{< ref "baking-images" >}}).
+This guide continues from the example in the _Baking Images_ [guide]({{< ref "aws-baking-images" >}}).
 
 
 ## Example
 
-### Creating a load balancer
-In this example we are going to deploy a simple web server that serves a page with details about its environment.
+### Create a load balancer
 
-Go to the application screen to create a load balancer. Select the 'Load Balancers' tab:
+In this example, you deploy a simple web server that serves a page with details about its environment.
+
+Go to the application screen to create a load balancer. Select the **Load Balancers** tab:
 
 ![](/images/Image-2019-02-21-at-15.27.01.png)
 
@@ -46,7 +49,7 @@ Then press _Create_.
 
 ### Creating a deploy pipeline
 
-Navigate to the configuration screen of the previously created pipeline from the [Baking guide]({{< ref "baking-images" >}}).
+Navigate to the configuration screen of the previously created pipeline from the [Baking guide]({{< ref "aws-baking-images" >}}).
 
 Select **Add Stage** and select **Deploy** from the *Type* dropdown.
 

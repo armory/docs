@@ -2,7 +2,7 @@
 title: Working with S3 Artifacts
 aliases:
   - /docs/spinnaker-user-guides/s3/
-
+  - /docs/spinnaker-user-guides/artifacts-s3-use/
 ---
 
 > Before you start, you'll need to [configure an S3 artifact account]({{< ref "artifacts-s3-configure" >}}).  If

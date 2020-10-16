@@ -9,6 +9,7 @@ aliases:
   - /spinnaker_user_guides/baking_images/
   - /spinnaker_user_guides/baking-images/
   - /spinnaker-user-guides/baking_images/
+  - /docs/spinnaker-user-guides/baking-images/
 ---
 
 Definition: The term 'baking' is used within Spinnaker to refer to the process of creating machine images.
@@ -125,7 +126,7 @@ Often you will want to specify a base image for use in your bake. In that case y
 
 In this situation, the base OS selection (ubuntu/trusty/windows) will be ignored.
 
-You can also select a base AMI more dynamically by combing the 'Bake' stage type with the 'Find Image' stage type. For more details check out the [Find Images Guide]({{< ref "find-images" >}}).
+You can also select a base AMI more dynamically by combing the 'Bake' stage type with the 'Find Image' stage type. For more details check out the [Find Images Guide]({{< ref "aws-find-images" >}}).
 
 
 ### Adding Debian repositories

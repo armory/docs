@@ -396,3 +396,19 @@ Permissions
 
 {{< gsuite src="https://docs.google.com/presentation/d/e/2PACX-1vQ7b90rHF2gS-4FUJWwuc8sK5JCb-fO-UupXqEZi-7eIdUBIcqTn2IEn0X9WSf0xucHlIVwPgovTQT5/embed?start=false&loop=false&delayms=3000" width="960" height="569" >}}
 
+
+
+## Sandbox
+
+{{< linkWithTitle fileName="aws-baking-images.md" >}}
+
+
+
+
+
+[deploying]({{< ref "aws-deploy" >}})
+
+[working with Jenkins]({{< ref "working-with-jenkins" >}})
+
+
+[finding images]({{< ref "aws-find-images" >}}) guides.

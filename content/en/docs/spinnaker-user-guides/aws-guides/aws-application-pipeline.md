@@ -8,6 +8,7 @@ aliases:
   - /spinnaker_user_guides/application_pipeline/
   - /spinnaker_user_guides/application-pipeline/
   - /spinnaker-user-guides/application_pipeline/
+  - /docs/spinnaker-user-guides/application-pipeline/
 ---
 
 ## Creating a pipeline
@@ -127,4 +128,4 @@ You should see a progress bar where blue represents running and green represents
 
 ![](/images/Image-2017-03-24-at-4.45.33-PM.png)
 
-If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "pipelines#troubleshooting" >}}), [baking]({{< ref "baking-images#troubleshooting" >}}), or [deploying]({{< ref "deploying#common-errors-and-troubleshooting" >}}) guides.
+If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "pipelines#troubleshooting" >}}), [baking]({{< ref "aws-baking-images#troubleshooting" >}}), or [deploying]({{< ref "aws-deploy#common-errors-and-troubleshooting" >}}) guides.
