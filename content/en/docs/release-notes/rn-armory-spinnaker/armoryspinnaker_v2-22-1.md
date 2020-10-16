@@ -62,10 +62,6 @@ Armory has identified and is triaging the following CVEs in Terraformer, the ser
 
 Fixed an issue where fetching an AWS token might take longer than expected.
 
-#### PCF
-
-Fixed an issue where clusterSummaries fully hydrated the servergroups.
-
 ### Manifest templating
 
 Armory now includes version 3.8.1 of kustomize.
