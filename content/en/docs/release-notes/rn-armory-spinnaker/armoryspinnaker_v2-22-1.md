@@ -52,6 +52,7 @@ The following CVE exists for Clouddriver:
 Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration:
 
 - CVE-2020-15778
+- CVE-2020-13757
 
 ## Highlighted updates
 
