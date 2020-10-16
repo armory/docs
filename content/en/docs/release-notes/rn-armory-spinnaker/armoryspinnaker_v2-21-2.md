@@ -17,21 +17,7 @@ Armory Spinnaker 2.21.2 requires one of the following:
 
 {{< include "bc-k8s-namespace.md" >}}
 
-#### Spinnaker metrics
-
-Metrics data, specifically the metric names, for Spinnaker changed in 2.20. These changes are not backwards compatible and may result in broken third-party dashboards, such as Grafana dashboards.
-
-**Workarounds**:
-
-* **Observability plugin**: Armory is working on updates to the [Observability plugin](https://github.com/armory-plugins/armory-observability-plugin) to remedy this issue. The plugin currently supports New Relic & Prometheus. Note that this resolution requires you to make updates to use the new metric names.
-
-   For information about how to install a plugin, see [Plugin Users Guide](https://spinnaker.io/guides/user/plugins/).
-
-* **Update existing dashboards**: Change your dashboards and alerts to use the new metric names.
-
-Although both workarounds involve updating your dashboards to use the new metric names, Armory recommends switching to the Observability plugin. Due to changes the Spinnaker project is making, the Observability plugin provides a long-term solution. 
-
-This release note will be updated once the updated plugin is available.
+{{< include "bc-spinnaker-metrics.md" >}}
 
 #### Scheduled removal of Kubernetes V1 provider
 The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.
