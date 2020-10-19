@@ -275,7 +275,7 @@ connectivity works as well.
 
 ### Custom branch configuration
 
-> Configuring a custom branch is required if you are using a repo that does not use `master` as the base branch.
+> Configuring a custom branch is required if you are using a repo that does not use `master` as the base branch. Newly created GitHub repositories that use `main` as the default base branch must configure a custom branch using the `repoConfig` parameter.
 
 By default, Dinghy will use the `master` branch in your repository. If you wish to use a different base branch for your repository, this can be configured using the `repoConfig` tag in your yaml configuration.
 
