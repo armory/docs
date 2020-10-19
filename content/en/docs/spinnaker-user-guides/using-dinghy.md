@@ -21,7 +21,7 @@ GitHub (or BitBucket) webhooks are sent off when you modify either the Templates
 
 1. The Dinghy service looks for and fetches all dependent modules and parses the template and updates the pipelines in Spinnaker. 
 2. The pipelines get automatically updated whenever a module that is used by a pipeline is updated in VCS. This is done by maintaining a dependency graph Dinghy looks for a `dinghyfile` in all directories, not just the root path.  
-3. Dinghy processes changes found in a specific branch. By default, this branch is `master`. If you are using a repo that uses a different branch for the base branch, you must configure the Dinghy service to track that branch. For more information, see [Custom branch configuration]({{< ref "dinghy-enable#custom-branch-configuration" >}}).
+3. Dinghy processes changes found in a specific branch. By default, this branch is `master`. If you are using a repo that uses a different branch for the base branch, an administrator must configure the Dinghy service to track that branch. For more information, see [Custom branch configuration]({{< ref "dinghy-enable#custom-branch-configuration" >}}).
 
 ### Intended workflow
 
@@ -30,13 +30,9 @@ for developers to get a brand new application up and running. The general
 workflow for new projects is:
 
 1. Developer creates a new project in source control
-2. They create a Dinghyfile to build the application and pipelines in
-   Spinnaker (even easier if there is a Module Repo set up with a
-templatized set of pipelines)
-1. When the code is committed to the [base branch]({{< ref "dinghy-enable#custom-branch-configuration" >}}) that the Dinghy service tracks, Armory picks up the
-   Dinghyfile, renders it, and applies it to Spinnaker, creating the
-application and the pipelines.
-
+2. They create a Dinghyfile to build the application and pipelines in Spinnaker (even easier if there is a Module Repo set up with a templatized set of pipelines)
+3. When the code is committed to the branch that the Dinghy service tracks, Armory picks up the Dinghyfile, renders it, and applies it to Spinnaker, creating the application and the pipelines.
+   
 Job done!  If everything's been configured properly, your developers should
 be able to deploy their code using a previously-proven pipeline model
 without ever having had to go into Spinnaker to configure anything.
