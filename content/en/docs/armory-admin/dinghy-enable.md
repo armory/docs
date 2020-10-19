@@ -13,7 +13,7 @@ This guide includes:
 
 * Configurations for enabling Armory's Pipelines as code feature using Spinnaker Operator or Halyard
 * Settings for GitHub, GitLab, or Bitbucket/Stash webhooks to work with the Pipelines as code
-  * If you use GitHub, see [Custom branch configuration](#custom-branch-configuration) for information about how to explicitly set the branch that Pipelines as Code uses.
+  * If you use GitHub, see [Custom branch configuration]() for information about how to explicitly set the branch that Pipelines as Code uses.
 
 
 ## Overview
@@ -275,7 +275,7 @@ connectivity works as well.
 
 ### Custom branch configuration
 
-> Configuring a custom branch is required if you are using a repo that no longer uses `master` as its primary branch.
+> Configuring a custom branch is required if you are using a repo that no longer uses `master` as its main branch.
 
 By default, Dinghy will use the `master` branch in your repository. If you wish to use a different default branch for your repository, this can be configured using the `repoConfig` tag in your yaml configuration.
 
