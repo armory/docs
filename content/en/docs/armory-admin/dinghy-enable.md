@@ -13,7 +13,7 @@ This guide includes:
 
 * Configurations for enabling Armory's Pipelines as code feature using Spinnaker Operator or Halyard
 * Settings for GitHub, GitLab, or Bitbucket/Stash webhooks to work with the Pipelines as code
-If you use GitHub, see [Custom branch configuration](#custom-branch-configuration) for information about how to explicitly set the branch that Pipelines as Code uses.`
+* If you use GitHub, see [Custom branch configuration](#custom-branch-configuration) for information about how to explicitly set the branch that Pipelines as Code uses.
 
 
 ## Overview
