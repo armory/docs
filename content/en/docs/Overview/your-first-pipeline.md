@@ -1,8 +1,8 @@
 ---
-title: "Your First Pipeline (AWS)"
+title: "Your First Pipeline"
 weight: 35
 description: >
-  Create a pipeline
+  Create a pipeline that bakes an Amazon Machine Image (AMI)
 ---
 
 The pipeline is the key deployment management construct in Spinnaker™. It consists of a sequence of actions, known as stages. You can pass parameters from stage to stage along the pipeline.

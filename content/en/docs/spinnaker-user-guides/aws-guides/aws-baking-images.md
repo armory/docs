@@ -1,5 +1,8 @@
 ---
-title: Baking Images (AWS EC2)
+title: Bake an Amazon Machine Image
+linkTitle: Bake an AMI
+description: >
+  Create a pipeline that bakes an Amazon Machine Image (AMI)
 aliases:
   - /spinnaker_user_guides/baking/
   - /user-guides/baking-images/
@@ -12,32 +15,30 @@ aliases:
   - /docs/spinnaker-user-guides/baking-images/
 ---
 
-Definition: The term 'baking' is used within Spinnaker to refer to the process of creating machine images.
+Definition: The term 'baking' is used within Armory and Spinnaker<sup>TM</sup> to refer to the process of creating machine images.
 
-## Prerequisites and assumptions:
+## Prerequisites:
 
-- You are familiar with creating [applications]({{< ref "your-first-application" >}}) and [pipelines]({{< ref "your-first-pipeline" >}})
-- You are deploying to Amazon Web Services (AWS)
+- You are familiar with creating [applications]({{< ref "your-first-application" >}}) and [pipelines]({{< ref "your-first-pipeline" >}}).
+- You are deploying to Amazon Web Services (AWS).
+- You have configured Armory to work with Jenkins. See the {{< linkWithTitle working-with-jenkins.md >}} guide for more information.
+- You are familiar with Debian packages. See the {{< linkWithTitle debian-packages.md >}} guide for more information.
 
 
 ## Baking in a pipeline
 
-First let's go through an example of baking, then we can go into some details and information sharing.
+In this example, you bake an image containing a Debian package created by a Jenkins job.
 
-## Example
+First, look at the the Jenkins job that builds our package.
 
-In this example we will bake an image containing a Debian package created by a Jenkins' job. If you like, you can check out the [working with Jenkins guide]({{< ref "working-with-jenkins" >}}) for more information on how Jenkins and Spinnaker can work together. We also have a guide on [creating debian packages]({{< ref "debian-packages" >}}).
+![](/images/user-guides/aws/Image-2017-03-29-at-12.43.31-PM.png)
 
-
-First let's look at the the Jenkins job that builds our package.
-
-![](/images/Image-2017-03-29-at-12.43.31-PM.png)
-As you can see, the last run archived a package named `armory-hello-deploy_0.5.0-h5.c4baff4_all.deb`
+The last run archived a package named `armory-hello-deploy_0.5.0-h5.c4baff4_all.deb`
 
 
-Now let's go to Spinnaker and create a new pipeline. I named mine `bake-example`.
+In Armory, create a new pipeline named `bake-example`.
 
-On the configuration stage, I scroll down and add a new Jenkins automated trigger. Select my master, and then select the Jenkins job shown above (`armory/job/armory-hello-deploy/job/master`). For this example, there is no need to worry about setting a properties file.
+On the configuration stage, down and add a new Jenkins automated trigger. Select my master, and then select the Jenkins job shown above (`armory/job/armory-hello-deploy/job/master`). For this example, there is no need to worry about setting a properties file.
 
 Next I add a bake stage (add stage -> Type: Bake)
 
@@ -88,7 +89,7 @@ If I press 'Start Manual Execution' again, since the package version hasn't chan
 
 ![](/images/Image-2017-03-29-at-1.55.52-PM.png)
 
-Notice the whole pipeline only ran for '00:00' and in the lower right Spinnaker says 'No changes detected; reused existing bake'
+Notice the whole pipeline only ran for '00:00' and the UI says 'No changes detected; reused existing bake'
 
 ## Advanced options
 

@@ -1,5 +1,8 @@
 ---
-title: Finding Images (AWS EC2)
+title: Bake and Find Custom AMIs
+linkTitle: Custom AMIs
+description: >
+  Create a pipeline for baking and distributing custom AMIs
 aliases:
   - /user-guides/find-images/
   - /user-guides/find_images/
