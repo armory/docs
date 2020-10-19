@@ -29,7 +29,7 @@ workflow for new projects is:
 2. They create a Dinghyfile to build the application and pipelines in
    Spinnaker (even easier if there is a Module Repo set up with a
 templatized set of pipelines)
-1. When the code is committed to "master", Armory picks up the
+1. When the code is committed to the [primary branch]({{< ref "dinghy-enable#custom-branch-configuration" >}}), Armory picks up the
    Dinghyfile, renders it, and applies it to Spinnaker, creating the
 application and the pipelines.
 
@@ -39,7 +39,7 @@ without ever having had to go into Spinnaker to configure anything.
 
 As an added bonus, the pipeline definitions have now been saved in source
 control, along with the rest of the project's files.  If changes are made
-to the Dinghyfile, when committed/merged into the "master" branch, the
+to the Dinghyfile, when committed/merged into the primary branch, the
 pipelines are automatically re-rendered and updated.
 
 ## Basic format

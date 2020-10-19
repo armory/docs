@@ -3,6 +3,8 @@ title: Enabling Pipelines as Code
 aliases:
   - /spinnaker/install_dinghy/
   - /docs/spinnaker/install-dinghy/
+description: >
+  Pipelines as Code allows you to create and maintain pipeline templates in source control.
 ---
 
 {{< include "note-github-branch-name.md" >}}
