@@ -70,7 +70,7 @@ Armory now includes version 3.8.1 of kustomize.
 
 ### Security
 
-This release resolves several CVEs:
+This release resolves several CVEs in Clouddriver:
 
 * [CVE-2017-18342](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-18342)
 * [CVE-2019-17638](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17638)
