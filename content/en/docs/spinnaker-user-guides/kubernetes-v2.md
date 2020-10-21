@@ -1,6 +1,5 @@
 ---
 title: Kubernetes V2 Provider Guide
-weight: 160
 # This is different from user-guides/kubernetes - no redirect
 aliases:
   - /spinnaker_user_guides/kubernetes-v2/
@@ -68,7 +67,7 @@ volumes:
 ```
 
 the name will be replaced with the properly versioned artifact:
-```
+```yaml
 volumes:
   - name: k8-config
     configMap:

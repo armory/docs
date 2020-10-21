@@ -1,5 +1,5 @@
 ---
-title: Spinnaker Operator Configuration
+title: Armory Operator Configuration
 weight: 1
 description: >
   This page describes the fields in `SpinnakerService` CRD and example manifests.
@@ -21,7 +21,7 @@ spec:
   spinnakerConfig:
     # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
     config:
-      version: 2.17.1   # the Armory Spinnaker version to be deployed
+      version: 2.17.1   # the Armory version to be deployed
       persistentStorage:
         persistentStoreType: s3
         s3:
@@ -247,15 +247,15 @@ A double underscore (`__`) in the file name is translated to a path separator (`
 ```
 
 ### spec.expose
-Optional. Controls how Spinnaker gets exposed. If you omit it, no load balancer gets created. If this section gets removed, the Load Balancer does not get deleted.
+Optional. Controls how Armory gets exposed. If you omit it, no load balancer gets created. If this section gets removed, the Load Balancer does not get deleted.
 
 Use the following configurations:
 
-- `spec.expose.type`: How Spinnaker gets exposed. Currently, only `service` is supported, which uses Kubernetes services to expose Spinnaker.
+- `spec.expose.type`: How Armory gets exposed. Currently, only `service` is supported, which uses Kubernetes services to expose Armory.
 - `spec.expose.service`: Service configuration
 - `spec.expose.service.type`: Should match a valid Kubernetes service type (i.e. `LoadBalancer`, `NodePort`, or `ClusterIP`).
 - `spec.expose.service.annotations`: Map containing annotations to be added to Gate (API) and Deck (UI) services.
-- `spec.expose.service.overrides`: Map with key for overriding the service type and specifying extra annotations: Spinnaker service name (Gate or Deck) and value. By default, all services receive the same annotations. You can override annotations for a Deck (UI) or Gate (API) services.
+- `spec.expose.service.overrides`: Map with key for overriding the service type and specifying extra annotations: Armory service name (Gate or Deck) and value. By default, all services receive the same annotations. You can override annotations for a Deck (UI) or Gate (API) services.
 
 ### spec.validation
 
@@ -291,20 +291,22 @@ Support for `SpinnakerAccount` CRD (**Experimental**):
 - `spec.accounts.enabled`: Boolean. Defaults to false. If true, the `SpinnakerService` uses all `SpinnakerAccount` objects enabled.
 - `spec.accounts.dynamic` (experimental): Boolean. Defaults to false. If true, `SpinnakerAccount` objects are available to Spinnaker as the account is applied (without redeploying any service).
 
-## Example Manifests for Exposing Spinnaker
-The following example manifests deploy Spinnaker with different configurations:
+## Example Manifests for Exposing Armory
+The following example manifests deploy Armory with different configurations:
 - [SpinnakerService CRD](#spinnakerservice-crd)
-    - [metadata.name](#metadataname)
-    - [.spec.spinnakerConfig](#specspinnakerconfig)
-    - [.spec.spinnakerConfig.profiles](#specspinnakerconfigprofiles)
-    - [spec.expose](#specexpose)
-    - [spec.validation](#specvalidation)
-    - [spec.accounts](#specaccounts)
+  - [metadata.name](#metadataname)
+  - [.spec.spinnakerConfig](#specspinnakerconfig)
+  - [.spec.spinnakerConfig.profiles](#specspinnakerconfigprofiles)
+  - [.spec.spinnakerConfig.service-settings](#specspinnakerconfigservice-settings)
+  - [.spec.spinnakerConfig.files](#specspinnakerconfigfiles)
+  - [spec.expose](#specexpose)
+  - [spec.validation](#specvalidation)
+  - [spec.accounts](#specaccounts)
 - [Example Manifests for Exposing Spinnaker](#example-manifests-for-exposing-spinnaker)
   - [Load balancer Services](#load-balancer-services)
   - [Different Service Types for Deck (UI) and Gate (API)](#different-service-types-for-deck-ui-and-gate-api)
   - [Different Annotations for Deck (UI) and Gate (API)](#different-annotations-for-deck-ui-and-gate-api)
-  - [X509](#x509)
+- [X509](#x509)
 
 ### Load balancer Services
 

@@ -341,3 +341,58 @@ Permissions
 </tr>
 </tbody>
 </table>
+
+
+
+## Mermaid
+
+```mermaid
+ graph TB
+
+	 deck(Deck-Armory) --> gate;
+	 api(Custom Script/API Caller) --> gate(Gate);
+	 gate(Gate-Armory) --> kayenta(Kayenta);
+	 orca(Orca-Armory) --> kayenta(Kayenta);
+	 gate --> orca;
+	 gate --> clouddriver(Clouddriver);
+	 orca --> clouddriver;
+	 gate --> rosco(Rosco);
+	 orca --> front50;
+	 orca --> rosco
+	 gate --> front50(Front50);
+	 gate --> fiat(Fiat);
+	 gate --> kayenta(Kayenta);
+	 orca --> kayenta;
+	 clouddriver --> fiat;
+	 orca --> fiat;
+	 front50 --> fiat;
+	 echo(Echo-Armory) --> orca;
+	 echo --> front50;
+	 igor(Igor) --> echo;
+	 dinghy(Dinghy) --> front50;
+	 dinghy --> orca;
+	 configurator(Configurator) --> S3;
+	 front50 --> S3;
+	 platform(Platform) --> echo;
+	 platform --> orca;
+
+ classDef default fill:#d8e8ec,stroke:#39546a;
+ linkStyle default stroke:#39546a,stroke-width:1px,fill:none;
+
+ classDef external fill:#c0d89d,stroke:#39546a;
+ class deck,api external
+```
+## Google suite shortcode
+
+"Publish to web" and then copy the URL.
+
+### Sheet
+
+
+{{< gsuite src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9PZ2yPxUYIxis4SfAN6ZMFn7haf6KrHQqmW97Co744Mz0dskmD2fIJsR5-kNYG7NOlOKz1SzXww7i/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="100%" >}}
+
+
+### Slide deck
+
+{{< gsuite src="https://docs.google.com/presentation/d/e/2PACX-1vQ7b90rHF2gS-4FUJWwuc8sK5JCb-fO-UupXqEZi-7eIdUBIcqTn2IEn0X9WSf0xucHlIVwPgovTQT5/embed?start=false&loop=false&delayms=3000" width="960" height="569" >}}
+

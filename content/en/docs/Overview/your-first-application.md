@@ -1,11 +1,11 @@
 ---
 title: "Your First Application"
-linkTitle: "Your First Application"
-
-weight: 4
+weight: 30
+description: >
+  Create an application
 ---
 
-Spinnaker is organized around the concept of applications. An application in Spinnaker is a collection of clusters, which in turn are collections of server groups. The application also includes firewalls and load balancers.
+Spinnaker™ is organized around the concept of applications. An application in Spinnaker is a collection of clusters, which in turn are collections of server groups. The application also includes firewalls and load balancers.
 
 An application represents the service which you are going to deploy using Spinnaker, all configuration for that service, and all the infrastructure on which it will run.
 

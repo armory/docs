@@ -1,8 +1,8 @@
 ---
 title: Permissions in Spinnaker
-summary: Learn about how Fiat manages permissions in Spinnaker.
-linkTitle: Permissions in Spinnaker
-weight: 80
+weight: 20
+description: >
+  How Fiat manages permissions in Spinnaker™
 ---
 
 ## Overview
@@ -103,7 +103,7 @@ The following sections describe some of the roles from the role matrix example i
 
 The configuration for `fiat-admin` in the `fiat-local.yml` file looks like the following snippet:
 
-```
+```yaml
 admin:
   roles:
     - fiat-admin
@@ -115,7 +115,7 @@ admin:
 
 The Halconfig snippet for configuring access to `dev-infra` based on our mapping exercise looks similar to the following:
 
-```
+```yaml
 accounts:
 - name: dev-infra
   permissions:
@@ -124,7 +124,7 @@ accounts:
       - dev
       - qa
       - ops
-    WRITE
+    WRITE:
       - admin
       - dev
       - ops
@@ -140,7 +140,7 @@ For information about how to configure permissions for Clouddriver accounts, see
 
 `build1` is a Jenkins deployment used for CI in this example. The Halconfig for controlling access to `build1` looks similar to the following snippet:
 
-```
+```yaml
 ci:
   jenkins:
     enabled: true
@@ -199,7 +199,7 @@ content-type   | `application/json;charset=UTF-8`
 
 The API call returns information about the apps. Refer to the `name` and `permissions` sections to find your applications and the corresponding permissions:
 
-```
+```json
 {
     ...
     "name": "app2",
@@ -229,14 +229,14 @@ Verifying the permissions for service accounts requires access to the Front50 an
 
 List all the service accounts with the following command (from the Front50 pod):
 
-```
+```bash
 export FRONT50=http://spin-front50:8080
 curl -s $FRONT50/serviceAccounts
 ```
 
 Check user or service account permissions for all of Spinnaker (from the Fiat pod):
 
-```
+```bash
 export FIAT=http://spin-fiat:7003
 curl -s $FIAT/authorize/$user-or-service-account
 ```
@@ -247,3 +247,53 @@ The command returns JSON that lists the following information:
 - Spinnaker applications the user/service account has access to
 - Clouddriver accounts the user/service account has access to
 - Build services the user/service account has access to
+
+## Pub Sub and Webhooks
+
+Fiat does not support Pub Sub triggers or authenticating webhooks with group permissions.
+
+## Permissions for Clouddriver accounts
+
+Check Clouddriver's current runtime context with a REST API call to Gate.
+
+**Headers**
+
+Header         | Information
+-------------- | --------------------------------
+Request URL    | `$GATE_URL/credentials`
+Request Method | `GET`
+content-type   | `application/json;charset=UTF-8`
+
+
+The API call returns JSON that lists the Clouddriver accounts.
+
+```json
+[
+  {
+    "name": <account-name>,
+    "type": <account-type>,
+    "providerVersion": <version>,
+    "requiredGroupMembership": [
+
+    ],
+    "skin": <version>,
+    "permissions": {
+
+    },
+    "authorized": <true-or-false>
+  },
+  {
+    "name": "my-docker-registry",
+    "type": "dockerRegistry",
+    "providerVersion": "v1",
+    "requiredGroupMembership": [
+
+    ],
+    "skin": "v1",
+    "permissions": {
+
+    },
+    "authorized": "true"
+  }
+]
+```

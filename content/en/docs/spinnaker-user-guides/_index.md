@@ -1,7 +1,7 @@
 ---
-title: "Spinnaker User Guides"
-linkTitle: "Spinnaker User Guides"
-weight: 4
+title: "User Guides"
+linkTitle: "User Guides"
+weight: 15
 description: >
-  Spinnaker Guides for Developers and Users
+  Guides for Application Developers and other non-admin users
 ---

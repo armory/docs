@@ -1,6 +1,5 @@
 ---
 title: Webhooks
-weight: 190
 aliases:
   - /user-guides/webhooks/
   - /user_guides/webhooks/

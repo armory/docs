@@ -1,13 +1,15 @@
 ---
 title: Nomenclature and Naming Conventions
-summary: "Learn how Spinnaker refers to things like different parts of applications and infrastructure."
-weight: 3
+weight: 5
+description: >
+  Spinnaker™ terminology
 linkTitle: Naming Conventions
 ---
 
 ## Nomenclature
 
 ### Application
+
 An application inside Spinnaker represents what you would typically find in a single code repository - and in many cases, an application maps directly to a microservice.
 
 ![](/images/Image-2017-03-24-at-3.07.57-PM.png)
@@ -37,7 +39,7 @@ From an Amazon Web Service (AWS) point of view, a server group is represented by
 
 ![](/images/Image-2017-03-24-at-3.05.04-PM.png)
 
-###Stage
+### Stage
 Within a pipeline, the tasks that pipeline performs are called stages.
 
 ![](/images/Image-2017-03-24-at-3.06.29-PM.png)

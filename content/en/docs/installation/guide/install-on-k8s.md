@@ -1,5 +1,5 @@
 ---
-title: Installing Spinnaker in Kubernetes
+title: Installing Armory in Kubernetes
 linkTitle: Install in Kubernetes
 weight: 3
 aliases:
@@ -8,7 +8,7 @@ aliases:
 
 ## Overview
 
-This guide describes the initial installation of Spinnaker in Kubernetes. You can choose between two different installation methods: Spinnaker Operator or Halyard. By the end of this guide, you will have an instance of Spinnaker up and running on your Kubernetes cluster.  The document does not fully cover the following:
+This guide describes the initial installation of Armory in Kubernetes. You can choose between two different installation methods: Armory Operator or Halyard. By the end of this guide, you will have an instance of Armory up and running on your Kubernetes cluster.  The document does not fully cover the following:
 
 * TLS Encryption
 * Authentication/Authorization
@@ -17,15 +17,15 @@ This guide describes the initial installation of Spinnaker in Kubernetes. You ca
 
 See [Next Steps](#next-steps) for information related to these topics.
 
-Note: This document focuses on Armory Spinnaker but can be adapted to install Open Source Spinnaker by using Open Source Operator or a different Halyard container, and a corresponding different Spinnaker version.
+Note: This document focuses on Armory but can be adapted to install Open Source Spinnaker<sup>TM</sup> by using Open Source Operator or a different Halyard container, and a corresponding different Spinnaker version.
 
 ## Choosing an installation method
 
-There are two recommended ways of installing Spinnaker: using the [Spinnaker Operator]({{< ref "operator" >}}) or using [Halyard](https://www.spinnaker.io/setup/install/halyard/).
+There are two recommended ways of installing Armory: using the [Armory Operator]({{< ref "operator" >}}) or using [Halyard](https://www.spinnaker.io/setup/install/halyard/).
 
-### Spinnaker Operator
+### Armory Operator
 
-The _Spinnaker Operator_ is the newest installation and configuration method for Spinnaker. Using the Operator, you can entirely manage Spinnaker using only Kubernetes manifest files. You treat Spinnaker like any other Kubernetes application, running standard tools like `kubectl`, `helm`, and `kustomize`. You can even use a Spinnaker pipeline to roll out configuration changes to itself. The Operator runs a few "hot" validations before accepting a manifest into the cluster, preventing some configuration problems from affecting a running Spinnaker installation.
+The _Armory Operator_ is the newest installation and configuration method for Armory. Using the Operator, you can entirely manage Armory using only Kubernetes manifest files. You treat Armory like any other Kubernetes application, running standard tools like `kubectl`, `helm`, and `kustomize`. You can even use a Armory pipeline to roll out configuration changes to itself. The Operator runs a few "hot" validations before accepting a manifest into the cluster, preventing some configuration problems from affecting a running Armory installation.
 
 *Prerequisites*
 
@@ -35,17 +35,19 @@ The _Spinnaker Operator_ is the newest installation and configuration method for
 
 *General workflow*
 
-* Install Spinnaker Operator CRDs cluster wide.
+* Install Armory Operator CRDs cluster wide.
 * Create a Kubernetes namespace for the Operator.
 * Install the Operator in that namespace, using a ServiceAccount with a ClusterRole to access other namespaces.
-* Create an S3 bucket for Spinnaker to store persistent configuration.
-* Create an IAM user that Spinnaker will use to access the S3 bucket (or alternately, granting access to the bucket via IAM roles).
-* Create a Kubernetes namespace for Spinnaker.
-* Install Spinnaker in that namespace.
+* Create an S3 bucket for Armory to store persistent configuration.
+* Create an IAM user that Armory will use to access the S3 bucket (or alternately, granting access to the bucket via IAM roles).
+* Create a Kubernetes namespace for Armory.
+* Install Armory in that namespace.
 
 ### Halyard
 
-Halyard is the former installation method for Spinnaker. It has been around the longest and is the first one supporting new Spinnaker features. Operator uses a customized version of Halyard that is constantly updated to incorporate changes from base Halyard.
+Halyard is the former installation method for Armory. It has been around the longest and is the first one supporting new Armory features. Operator uses a customized version of Halyard that is constantly updated to incorporate changes from base Halyard.
+
+{{< include "halyard-note.md" >}}
 
 *Prerequisites*
 
@@ -53,44 +55,44 @@ Halyard is the former installation method for Spinnaker. It has been around the 
 
 *General workflow*
 
-* Create a Kubernetes namespace where we will run both Halyard and Spinnaker
+* Create a Kubernetes namespace where we will run both Halyard and Armory
 * In the namespace, grant the `default` Kubernetes ServiceAccount the `cluster-admin` ClusterRole. This gives it full permissions within our namespace, but not on other namespaces; for details, see the [Kubernetes RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/))
-* In the namespace, create a PersistentVolumeClaim (PVC), which you use for persistent Spinnaker cluster configuration (the "halyard configuration" or "halconfig")
+* In the namespace, create a PersistentVolumeClaim (PVC), which you use for persistent Armory cluster configuration (the "halyard configuration" or "halconfig")
 * In the namespace, create a StatefulSet to run Halyard.  The PVC will be mounted to this StatefulSet.
-* Halyard will use the `default` Kubernetes ServiceAccount to create and modify resources running the cluster (the Kubernetes Secrets, Deployments, and Services that make up Spinnaker).
-* The Spinnaker microservice called "Clouddriver", which interacts with various clouds including Kubernetes, also uses the `default` ServiceAccount to interact with Kubernetes.
+* Halyard will use the `default` Kubernetes ServiceAccount to create and modify resources running the cluster (the Kubernetes Secrets, Deployments, and Services that make up Armory).
+* The Armory microservice called "Clouddriver", which interacts with various clouds including Kubernetes, also uses the `default` ServiceAccount to interact with Kubernetes.
 * Run Halyard as a Kubernetes Pod in the namespace (using a StatefulSet).
-* Create an S3 bucket for Spinnaker to store persistent configuration.
-* Create an IAM user that Spinnaker will use to access the S3 bucket (or alternately, granting access to the bucket via IAM roles).
+* Create an S3 bucket for Armory to store persistent configuration.
+* Create an IAM user that Armory will use to access the S3 bucket (or alternately, granting access to the bucket via IAM roles).
 * Run the `hal` client interactively in the Kubernetes Pod to:
   * Build out the `hal` config YAML file (`.hal/config`)
-  * Configure Spinnaker with the IAM credentials and bucket information
+  * Configure Armory with the IAM credentials and bucket information
   * Turn on other recommended settings (artifacts and http artifact provider)
-  * Install Spinnaker
-  * Expose Spinnaker
+  * Install Armory
+  * Expose Armory
 
 ## Assumptions / Environments
 
 This document assumes the following:
 
-* Your Kubernetes cluster is up and running with at least 4 CPUs and 12 GB of memory.  This is the bare minimum to install and run Spinnaker; depending on our Spinnaker workload, you may need more resources.
+* Your Kubernetes cluster is up and running with at least 4 CPUs and 12 GB of memory.  This is the bare minimum to install and run Armory; depending on our Armory workload, you may need more resources.
 * You have `kubectl` installed and are able to access and create Kubernetes resources.
 * You have access to an existing object storage bucket or the ability to create an object storage bucket (Amazon S3, Google GCS, Azure Storage, or Minio).  _For the initial version of this document, **only** Amazon S3 is used._
 * You have access to an IAM role or user with access to the S3 bucket. If neither of these exists, you need to create an IAM role or user with access to the S3 bucket.
 * Your cluster has either an existing Kubernetes Ingress controller or the permissions to install the NGINX Ingress Controller
 
-These instructions set up the Spinnaker microservice called "Front50", which stores Spinnaker Application and Pipeline configuration to an object store, with the following permission:
+These instructions set up the Armory microservice called "Front50", which stores Armory Application and Pipeline configuration to an object store, with the following permission:
 
 * Front50 has full access to an S3 bucket through either an IAM user (with an AWS access key and secret access key) or an IAM role (attached to your Kubernetes cluster).
 
-At the end of this guide, you have a Spinnaker deployment that is:
+At the end of this guide, you have a Armory deployment that is:
 
 * Accessible from your browser
 * Able to deploy other Kubernetes resources to the namespace where it runs, but not to any other namespace
 
 ## Configure application and pipeline configuration storage
 
-The Spinnaker microservice Front50 requires a backing store to store Spinnaker Application and Pipeline definitions.  There are a number of options for this:
+The Armory microservice Front50 requires a backing store to store Armory Application and Pipeline definitions.  There are a number of options for this:
 
 * Amazon S3 Bucket
 * Google Cloud Storage (GCS) Bucket
@@ -98,11 +100,11 @@ The Spinnaker microservice Front50 requires a backing store to store Spinnaker A
 * Minio
 * MySQL
 
-**You _must_ set up a backing store for Spinnaker to use for persistent application and pipeline configuration.**
+**You _must_ set up a backing store for Armory to use for persistent application and pipeline configuration.**
 
 ### Using S3 for Front50
 
-Spinnaker (the `Front50` service, specifically) needs access to an S3 bucket. There are a number of ways to achieve this.
+Armory (the `Front50` service, specifically) needs access to an S3 bucket. There are a number of ways to achieve this.
 
 This section describes how to do the following:
 * Create an S3 bucket
@@ -116,7 +118,7 @@ This section describes how to do the following:
 
 <p>If you do not have an S3 bucket, create an S3 bucket.</p>
 
-<p>By default, Spinnaker stores all Spinnaker information in a folder called <code>front50</code> in your bucket. Optionally, you can specify a different directory. You might want to do this if you're using an existing or shared S3 bucket..</p>
+<p>By default, Armory stores all Armory information in a folder called <code>front50</code> in your bucket. Optionally, you can specify a different directory. You might want to do this if you're using an existing or shared S3 bucket..</p>
 
 <p>Perform the following steps:</p>
 <ol>
@@ -253,7 +255,7 @@ kubectl get namespaces
 
 The command returns the namespaces in the EKS cluster.
 
-## Install Spinnaker using the Operator
+## Install Armory using the Operator
 
 ### Install CRDs and Operator
 
@@ -263,7 +265,7 @@ First, download the CRDs and manifests from the [latest stable release](https://
 $ bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
 ```
 
-Install Spinnaker CRDs:
+Install Armory CRDs:
 
 ```bash
 $ kubectl apply -f deploy/crds/
@@ -294,24 +296,24 @@ NAMESPACE                                READY         STATUS       RESTARTS    
 spinnaker-operator-7cd659654b-4vktl      2/2           Running      0             6s
 ```
 
-### Install Spinnaker
+### Install Armory
 
-First, create the namespace where Spinnaker will be installed. In this guide you use `spinnaker`, but it can have any name:
+First, create the namespace where Armory will be installed. In this guide you use `spinnaker`, but it can have any name:
 
 ```bash
 kubectl create namespace spinnaker
 ```
 
-You define and configure Spinnaker in a YAML file and use `kubectl` to create the service. Copy the contents below to a configuration file called `spinnakerservice.yml`. The code creates a Kubernetes `ServiceAccount` with permissions only to the namespace where Spinnaker is installed. Applying this file creates a base Spinnaker installation with one Kubernetes target account, which enables Spinnaker to deploy to the same namespace where it is installed.
+You define and configure Armory in a YAML file and use `kubectl` to create the service. Copy the contents below to a configuration file called `spinnakerservice.yml`. The code creates a Kubernetes `ServiceAccount` with permissions only to the namespace where Armory is installed. Applying this file creates a base Armory installation with one Kubernetes target account, which enables Armory to deploy to the same namespace where it is installed.
 
 Note the values that you need to modify:
 
-- Spinnaker `version`: Use the version of Spinnaker that you want to deploy, which can be found [here]({{< ref "rn-armory-spinnaker#list-of-stable-armory-releases" >}}).
+- Armory `version`: Use the version of Armory that you want to deploy, which can be found [here]({{< ref "rn-armory-spinnaker#list-of-stable-armory-releases" >}}).
 - S3 `bucket`: Use the name of the S3 bucket created above.
 - S3 `region`: Region where the S3 bucket is located.
 - S3 `accessKeyId`: Optional, set when using IAM user credentials to authenticate to the S3 bucket.
 - S3 `secretAccessKey`: Optional, set when using IAM user credentials to authenticate to the S3 bucket.
-- metadata `name`: Change if you're installing Spinnaker to a namespace other than `spinnaker`.
+- metadata `name`: Change if you're installing Armory to a namespace other than `spinnaker`.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -418,7 +420,7 @@ metadata:
 spec:
   spinnakerConfig:
     config:
-      version: 2.17.1  # Replace with desired version of Spinnaker to deploy
+      version: 2.17.1  # Replace with desired version of Armory to deploy
       persistentStorage:
         persistentStoreType: s3
         s3:
@@ -440,7 +442,7 @@ spec:
             dockerRegistries: []
             kinds: []
             namespaces:
-            - spinnaker  # Name of the namespace where Spinnaker is installed
+            - spinnaker  # Name of the namespace where Armory is installed
             oAuthScopes: []
             omitKinds: []
             omitNamespaces: []
@@ -463,13 +465,13 @@ Deploy the manifest with the following command:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-## Install Spinnaker using Halyard
+## Install Armory using Halyard
 
 ### Start the Halyard StatefulSet
 
-Halyard is a Docker image used to install Spinnaker. It generates Kubernetes manifests for each of the Spinnaker services.  This guide explains how to run it in a Kubernetes cluster as a StatefulSet with one (1) Pod.
+Halyard is a Docker image used to install Armory. It generates Kubernetes manifests for each of the Armory services.  This guide explains how to run it in a Kubernetes cluster as a StatefulSet with one (1) Pod.
 
-First, create a namespace for Spinnaker to run in (this can be any namespace):
+First, create a namespace for Armory to run in (this can be any namespace):
 
 ```bash
 kubectl create ns spinnaker
@@ -585,7 +587,7 @@ EOF
 source /home/spinnaker/.bashrc
 ```
 
-### Configure Spinnaker to install in Kubernetes
+### Configure Armory to install in Kubernetes
 
 Inside the container, use the Halyard `hal` command line tool to enable the Kubernetes cloud provider:
 
@@ -615,9 +617,9 @@ hal config provider kubernetes account edit spinnaker \
   # Make sure to include all namespace you need to support
 ```
 
-**Important: These commands and parameters limit Spinnaker to deploying to the `spinnaker` namespace. If you want to deploy to other namespaces, either add a second cloud provider target or grant the `default` service account in your namespace permissions on additional namespaces and change the `--namespaces` flag.**
+**Important: These commands and parameters limit Armory to deploying to the `spinnaker` namespace. If you want to deploy to other namespaces, either add a second cloud provider target or grant the `default` service account in your namespace permissions on additional namespaces and change the `--namespaces` flag.**
 
-Use the Halyard `hal` command line tool to configure Halyard to install Spinnaker in your Kubernetes cluster
+Use the Halyard `hal` command line tool to configure Halyard to install Armory in your Kubernetes cluster
 
 ```bash
 hal config deploy edit \
@@ -629,7 +631,7 @@ hal config deploy edit \
 
 ### Enable and configure the 'Artifact' feature
 
-Within Spinnaker, 'artifacts' are consumable references to items that live outside of Spinnaker, such as a file in a git repository or a file in an S3 bucket. The Artifacts feature must be explicitly turned on.
+Within Armory, 'artifacts' are consumable references to items that live outside of Armory, such as a file in a git repository or a file in an S3 bucket. The Artifacts feature must be explicitly turned on.
 
 The following commands enable the "Artifacts" feature, the new Artifact UI, and the "http" artifact provider:
 
@@ -641,12 +643,12 @@ hal config artifact http enable
 
 Although enabling the new Artifacts UI is optional, Armory recommends using it for better user experience.
 
-In order to add specific types of artifacts, additional configuration must be completed. For now though, it is sufficient to turn on the artifacts feature with the `http` artifact provider. This allows Spinnaker to retrieve files using unauthenticated http.
+In order to add specific types of artifacts, additional configuration must be completed. For now though, it is sufficient to turn on the artifacts feature with the `http` artifact provider. This allows Armory to retrieve files using unauthenticated http.
 
 
-### Configure Spinnaker to access S3 with the IAM Role or User
+### Configure Armory to access S3 with the IAM Role or User
 
-Spinnaker needs information about which bucket to access.  Additionally, if you are using an IAM User to access the the bucket, Spinnaker needs credentials for the IAM User.
+Armory needs information about which bucket to access.  Additionally, if you are using an IAM User to access the the bucket, Armory needs credentials for the IAM User.
 
 <pre class="highlight"><code># Update these snippets with the information for your bucket
 export BUCKET_NAME=spinnaker-abcxyz
@@ -661,7 +663,7 @@ hal config storage s3 edit \
 hal config storage edit --type s3
 </code></pre>
 
-If you are using an IAM User, then provide Spinnaker with the S3 credentials for your IAM User:
+If you are using an IAM User, then provide Armory with the S3 credentials for your IAM User:
 
 <pre class="highlight"><code># Update this with the AWS Access Key ID
 export ACCESS_KEY_ID=AKIAWWWWXXXXYYYYZZZZ
@@ -672,7 +674,7 @@ hal config storage s3 edit \
   --secret-access-key
 </code></pre>
 
-By default, Halyard configures Spinnaker to use the folder `front50` in your S3 bucket. You can configure it to use a different folder with this command:
+By default, Halyard configures Armory to use the folder `front50` in your S3 bucket. You can configure it to use a different folder with this command:
 
 <pre class="highlight"><code># Replace with the root folder within our bucket to use
 ROOT_FOLDER=spinnaker_apps
@@ -682,7 +684,7 @@ hal config storage s3 edit \
 
 ### Set up Gate to listen on the `/api/v1` path
 
-The Spinnaker microservice "Gate" serves as the API gateway for Spinnaker.  Configure it to listen on a specific path rather than requiring different hosts or ports to differentiate it from the UI of Spinnaker.
+The Armory microservice "Gate" serves as the API gateway for Armory.  Configure it to listen on a specific path rather than requiring different hosts or ports to differentiate it from the UI of Armory.
 
 Create these two files (you may have to create several directories):
 
@@ -716,19 +718,19 @@ healthEndpoint: /api/v1/health
 EOF
 ```
 
-### Select the Spinnaker version to install
+### Select the Armory version to install
 
-Before you use Halyard to install Spinnaker, specify the version of Spinnaker you want to use.
+Before you use Armory-extended Halyard to install Armory, specify the version of Armory you want to use. Make sure the version of Armory you want to install is compatible with the version of Armory-extended Halyard you are using.
 
-You can get a list of available versions of Spinnaker with this command:
+You can get a list of available versions of Armory with this command:
 
 ```bash
 hal version list
 ```
 
-* If you are installing Armory Spinnaker using Armory's Halyard, the command returns a version that starts with `2.x.x`
+* If you are installing Armory using Armory-extended Halyard, the command returns a version that starts with `2.x.x`
 
-* If you are installing OSS Spinnaker and using `gcr.io/spinnaker-marketplace/halyard:stable`, the command returns a version that starts with `1.x.x`
+* If you are installing open source Spinnaker and using open source Halyard (installed from `gcr.io/spinnaker-marketplace/halyard:stable`), the command returns a version that starts with `1.x.x`
 
 Select the version with the following:
 
@@ -739,21 +741,21 @@ echo ${VERSION}
 hal config version edit --version ${VERSION}
 ```
 
-### Install Spinnaker
+### Install Armory
 
-Now that our halconfig is configured, you can install Spinnaker:
+Now that our halconfig is configured, you can install Armory:
 
 ```bash
 hal deploy apply --wait-for-completion
 ```
 
-Once this is complete, congratulations! Spinnaker is installed. Keep going to learn how to access Spinnaker.
+Once this is complete, congratulations! Armory is installed. Keep going to learn how to access Armory.
 
-### Connect to Spinnaker using `kubectl port-forward`
+### Connect to Armory using `kubectl port-forward`
 
-If you have `kubectl` on a local machine with access to your Kubernetes cluster, you can test the status of your Spinnaker instance by doing a port-forward.
+If you have `kubectl` on a local machine with access to your Kubernetes cluster, you can test the status of your Armory instance by doing a port-forward.
 
-First, tell Spinnaker about its local endpoint for `localhost:8084/api/v1`:
+First, tell Armory about its local endpoint for `localhost:8084/api/v1`:
 
 ```bash
 hal config security api edit --override-base-url http://localhost:8084/api/v1
@@ -761,7 +763,7 @@ hal config security api edit --override-base-url http://localhost:8084/api/v1
 hal deploy apply --wait-for-completion
 ```
 
-Wait for the pods get in a running state. Then, set up two port forwards, one for Gate (the API gateway) and one for Deck (the Spinnaker UI):
+Wait for the pods get in a running state. Then, set up two port forwards, one for Gate (the API gateway) and one for Deck (the Armory UI):
 
 ```bash
 NAMESPACE=spinnaker
@@ -769,7 +771,7 @@ kubectl -n ${NAMESPACE} port-forward svc/spin-deck 9000 &
 kubectl -n ${NAMESPACE} port-forward svc/spin-gate 8084 &
 ```
 
-Then, you can access Spinnaker at `http://localhost:9000`.
+Then, you can access Armory at `http://localhost:9000`.
 
 If you are doing this on a remote machine, this does not work because your browser attempts to access `localhost` on your local workstation rather than on the remote machine where the port is forwarded.
 
@@ -782,36 +784,32 @@ or check the status of all of the containers using the command for our cloud pro
 
 ## Ingress
 
-There several ways to expose Spinnaker, but there are a some basic requirements.
+There several ways to expose Armory, but there are a some basic requirements.
 
 Given a domain name (or IP address) (such as spinnaker.domain.com or 55.55.55.55), you should be able to:
 
 * Reach the `spin-deck` service at the root of the domain (`http://spinnaker.domain.com` or `http://55.55.55.55`)
 * Reach the `spin-gate` service at the root of the domain (`http://spinnaker.domain.com/api/v1` or `http://55.55.55.55/api/v1`)
 
-You  can use either http or https, as long as you use the same for both. Additionally, you have to configure Spinnaker to be aware of its endpoints.
+You  can use either http or https, as long as you use the same for both. Additionally, you have to configure Armory to be aware of its endpoints.
 
 The Install the NGINX ingress controller section details how to do that with the NGINX ingress controller.
 
 ### Install the NGINX ingress controller
 
-In order to expose Spinnaker to end users, perform the following actions:
+In order to expose Armory to end users, perform the following actions:
 
 * Expose the spin-deck (UI) Kubernetes service on a URL endpoint
 * Expose the spin-gate (API) Kubernetes service on a URL endpoint
-* Update Spinnaker to be aware of the new endpoints
+* Update Armory to be aware of the new endpoints
 
 **If you already have an ingress controller, use that ingress controller instead.  You can check for the existence of the NGINX Ingress Controller by running `kubectl get ns` and looking for a namespace called `ingress-nginx`. If the namespace exists, you likely already have an NGINX Ingress Controller running in your cluster.**
 
 The following instructions walk you through how to install the NGINX ingress controller on AWS. This uses the Layer 4 ELB, as indicated in the NGINX ingress controller [documentation](https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md#aws). You can use other NGINX ingress controller configurations, such as the Layer 7 load balancer, based on your organization's ingress policy.)
 
-(Both of these are configurable with Spinnaker, but the NGINX ingress controller is also generally much more configurable.)
+Both of these are configurable with Armory, but the NGINX ingress controller is also generally much more configurable.
 
-From the `workstation machine` where `kubectl` is installed, install the NGINX ingress controller components:
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
-```
+{{< include "install/nginx-common.md" >}}
 
 Then, install the NGINX ingress controller AWS-specific service:
 
@@ -824,7 +822,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mast
 
 Get the external IP for the NGINX ingress controller:
 
-```
+```bash
 kubectl get svc -n ingress-nginx
 ```
 
@@ -834,7 +832,7 @@ If you stood up a new NGINX ingress controller, you can likely use this value (I
 
 For example, if the command returns `abcd1234abcd1234abcd1234abcd1234-123456789.us-west-2.elb.amazonaws.com`, then you can use `abcd1234abcd1234abcd1234abcd1234-123456789.us-west-2.elb.amazonaws.com` for the `SPINNAKER_ENDPOINT` in the following steps. If the command returns `55.55.55.55`, then use `55.55.55.55` for the `SPINNAKER_ENDPOINT`.
 
-If you use an existing NGINX ingress controller or other services are likely to be using the same NGINX ingress controller, create a DNS entry that points at the NGINX ingress controller endpoint you are using for Spinnaker. You can create either a `CNAME Record` that points at the DNS name or an `A Record` that points at the IP address.
+If you use an existing NGINX ingress controller or other services are likely to be using the same NGINX ingress controller, create a DNS entry that points at the NGINX ingress controller endpoint you are using for Armory. You can create either a `CNAME Record` that points at the DNS name or an `A Record` that points at the IP address.
 
 For the example `abcd1234abcd1234abcd1234abcd1234-123456789.us-west-2.elb.amazonaws.com` DNS name, do the following:
 * Create a CNAME pointing `spinnaker.domain.com` at `abcd1234abcd1234abcd1234abcd1234-123456789.us-west-2.elb.amazonaws.com`
@@ -889,9 +887,9 @@ Apply the ingress file you just created:
 kubectl -n spinnaker apply -f spin-ingress.yml
 ```
 
-### Configure Spinnaker to be aware of its endpoints
+### Configure Armory to be aware of its endpoints
 
-Spinnaker must be aware of its endpoints to work properly. Configuration updates vary depending upon whether you installed Spinnaker using Operator or Halyard.
+Armory must be aware of its endpoints to work properly. Configuration updates vary depending upon whether you installed Armory using Operator or Halyard.
 
 **Operator**
 
@@ -940,14 +938,14 @@ Configuring TLS certificates for ingresses is often very environment-specific. I
 
 * Add certificate(s) so that our ingress controller can use them
 * Configure the ingress(es) so that NGINX (or the load balancer in front of NGINX, or your alternative ingress controller) terminates TLS using the certificate(s)
-* Update Spinnaker to be aware of the new TLS endpoints, by replacing `http` by `https` to override the base URLs in the previous section.
+* Update Armory to be aware of the new TLS endpoints, by replacing `http` by `https` to override the base URLs in the previous section.
 
 ## Next steps
 
-Now that Spinnaker is running, here are potential next steps:
+Now that Armory is running, here are potential next steps:
 
 * Configuration of certificates to secure our cluster (see [this section](#configuring-tls-certificates) for notes on this)
 * Configuration of Authentication/Authorization (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/security/))
-* Add Kubernetes accounts to deploy applications to (see [Creating and Adding a Kubernetes Account to Spinnaker as a Deployment Target]({{< ref "add-kubernetes-account" >}}))
+* Add Kubernetes accounts to deploy applications to (see [Creating and Adding a Kubernetes Account to Armory as a Deployment Target]({{< ref "kubernetes-account-add" >}}))
 * Add GCP accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/gce/))
 * Add AWS accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/aws/))

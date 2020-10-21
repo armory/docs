@@ -2,6 +2,8 @@ baseURL = "/"
 title = "Armory Documentation"
 
 enableRobotsTXT = true
+enableInlineShortcodes = true
+
 
 # Hugo allows theme composition (and inheritance). The precedence is from left to right.
 theme = ["docsy"]
@@ -88,8 +90,9 @@ weight = 1
 # Everything below this are Site Params
 
 [params]
-armory-version = "2.21.x"
-halyard-armory-version = "1.9.3"
+armory-version = "2.22.x"
+halyard-armory-version = "1.9.5"
+kubesvc-version="0.2.0"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 copyright = "Armory Inc."
@@ -112,7 +115,7 @@ archived_version = false
 # The version number for the version of the docs represented in this doc set.
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
-version = "2.21"
+version = "2.22"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
@@ -134,6 +137,9 @@ algolia_docsearch = false
 
 # Enable Lunr.js offline search
 offlineSearch = true
+
+# Enable syntax highlighting and copy buttons on code blocks with Prism
+prism_syntax_highlighting = true
 
 # User interface configuration
 [params.ui]
@@ -163,6 +169,10 @@ no = 'Sorry to hear that. Please <a href="https://github.com/armory/docs/issues/
 # add "hide_readingtime: true" to the page's front matter
 [params.ui.readingtime]
 enable = false
+
+# Enable Mermaid diagrams
+[params.mermaid]
+enable = true
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
@@ -194,6 +204,11 @@ enable = false
   version = "Latest"
   githubbranch = "master"
   url = "https://docs.armory.io"
+
+[[params.versions]]
+  version = "v2.21"
+  githubbranch = "v2.21"
+  url = "https://v2-21.docs.armory.io/docs"
 
 [[params.versions]]
   version = "v2.20"

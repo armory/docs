@@ -1,6 +1,5 @@
 ---
 title: Application Deployment Pipeline (AWS EC2)
-weight: 100
 aliases:
   - /install-guide/application-pipeline/
   - /install-guide/application_pipeline/
