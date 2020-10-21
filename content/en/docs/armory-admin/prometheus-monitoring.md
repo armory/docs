@@ -73,9 +73,6 @@ expose. Spring boot exposes the health endpoint by default though with some
 restrictions on what information is exposed. When auth is enabled, Gate restricts 
 access to the endpoints other than `/health`, preventing access to metric data.
 
-There is an issue on the plugin to expose metrics without security allowing scraping, but this would
-also increase a risk of exposure. For more information, see [Armory Observability Plugin issue #20](https://github.com/armory-plugins/armory-observability-plugin/issues/20).
-
 For more information on Spring actuators, see the [Monitoring and Management](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-monitoring).  
 
 <!-- Spinnaker issue discussing management endpoints: https://github.com/spinnaker/spinnaker/issues/3883--> 
@@ -112,7 +109,7 @@ spinnaker:
       Armory.ObservabilityPlugin:
         # THIS Is absolutely required, though potentially redundant, otherwise the plugin won't start
         enabled: true
-        version: 1.0.0
+        version: 1.1.3
         # This is the basic configuration for prometheus to be enabled
         config.metrics:
           prometheus:
@@ -217,16 +214,8 @@ Note, the example excludes Gate, the API service, since Gate restricts access to
 
 The following example is for a service monitor for Gate on a different path and using TLS.
 
-<<<<<<< HEAD:content/en/docs/spinnaker-install-admin-guides/prometheus-monitoring.md
 Once these are applied, you can port forward prometheus and validate that prometheus
 has discovered and scraped targets as appropriate.
-
-=======
-Armory provides some sample dashboards (in JSON format) that you can import into Grafana as a starting point for metrics to graph for monitoring.
-Armory has additional dashboards that are availabe to Armory customers. You can skip this section if you are a Grafana expert.
-
-To import the sample dashboards, perform the following steps:
->>>>>>> 88da18a4538237bbe2596fb1c9ad9ed6e02555c8:content/en/docs/armory-admin/prometheus-monitoring.md
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
