@@ -37,7 +37,10 @@ Armory Spinnaker 2.22.1 requires one of the following:
 
 #### Pivotal Cloud Foundry
 
-Resolves an issue where `clusterSummaries` fully hydrated server groups.
+This release includes the following improvements to the PCF provider:
+
+* Fixes a regression that caused deployments to fail
+* Improves performance in the Spinnaker UI when viewing PCF clusters
 
 ###  Spinnaker community contributions
 
