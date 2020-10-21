@@ -3,7 +3,7 @@ title: v2.22.2 Armory Release (OSS Spinnaker v1.22.2)
 toc_hide: true
 ---
 
-## 2020/10/110 Release Notes
+## 2020/10/21 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
