@@ -6,26 +6,42 @@ toc_hide: true
 ## 2020/10/110 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-## Required Halyard version
 
-Armory Spinnaker 2.22.2 requires Armory Halyard <PUT IN A VERSION NUMBER> or later.
+## Required Halyard or Operator version
+
+Armory Spinnaker 2.22.1 requires one of the following:
+
+* Armory Halyard 1.9.4 or later.
+* Armory Spinnaker Operator 1.0.3 or later.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
 
-## Known Issues
-<!-- Copy/paste known issues from the previous version if they're not fixed -->
-There are currently no known issues with this release.
+{{< include "bc-k8s-namespace.md" >}}
 
-## Highlighted Updates
+{{< include "bc-docker-giduid.md" >}}
 
-### Armory
+{{< include "bc-k8s-job-suffix.md" >}}
 
-Summary of changes in the latest release.
+{{< include "bc-spinnaker-metrics.md" >}}
 
-###  Spinnaker Community Contributions
+## Known issues
 
-<! -- Copy/paste highlights from the corresponding OSS version. -->
+{{< include "ki-plugins-sdk.md" >}}
+
+{{< include "ki-gce-predictive-autoscaling.md" >}}
+
+## Highlighted updates
+
+### Deployment targets
+
+#### Pivotal Cloud Foundry
+
+Resolves an issue where `clusterSummaries` fully hydrated server groups.
+
+###  Spinnaker community contributions
+
+<!-- Copy/paste highlights from the corresponding OSS version. -->
 
 There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
 [Spinnaker v1.22.2](https://www.spinnaker.io/community/releases/versions/1-22-2-changelog)
@@ -127,5 +143,3 @@ artifactSources:
   - fix(typo): an egregious typo in the Terraform help text (#669) (#672)
 
 #### Armory Echo - 2.22.1...2.22.2
-
-
