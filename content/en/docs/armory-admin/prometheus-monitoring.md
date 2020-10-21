@@ -63,65 +63,11 @@ Access the Prometheus web interface by using the `kubectl port-forward` command.
 
 Navigate to `http://localhost:9090/targets`.
 
-## Configure monitoring using the Observability Plugin 
+#### Grant Prometheus RBAC permissions
+There are two steps to configure Prometheus to monitor Spinnaker:
 
-{{% alert title="Caution" color=warning %}} Before configuring monitoring, read and understand the following information about the security implications.
-If any of your services, typically Gate, are exposed to the open internet, there is a
-risk that you can publicly expose information. Armory recommends that you filter
-these paths at your edge layer in some manner. Be aware of any endpoints you 
-expose. Spring boot exposes the health endpoint by default though with some
-restrictions on what information is exposed. When auth is enabled, Gate restricts 
-access to the endpoints other than `/health`, preventing access to metric data.
-
-For more information on Spring actuators, see the [Monitoring and Management](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-monitoring).  
-
-<!-- Spinnaker issue discussing management endpoints: https://github.com/spinnaker/spinnaker/issues/3883--> 
-{{% /alert %}}
-
-Armory recommends that you monitor your systems by using the [Armory Observabililty Plugin](https://github.com/armory-plugins/armory-observability-plugin/). This is an open source solution for monitoring Spinnaker. The plugin currently supports the following:
-
-* Adding Prometheus (OpenMetrics) endpoints So spinnaker pods (explained below).
-* Sending data to NewRelic (documented on the plugin page). 
-
-Note that the Observability Plugin removes the service name from the metric, which is incompatible with the behavior of the open source Spinnaker Monitoring daemon system. The standard dashboards have not translated at this time in any public repo. It is in constant development.
-
-#### Install the plugin
-
-To install the observability plugin, add a plugin configuration to the profiles
- of your running services:
-
-* Add it for all services in `spinnaker-local.yml` (Halyard installs) or the `spinnaker` profile section (Operator installs).  
-* Add it to the services you want to monitor. This local profile should contain the following to enable Prometheus:
-
-```yaml
-# These lines are spring-boot configuration to allow access to the metrics
-# endpoints.  This plugin adds the "aop-prometheus" endpoint on the 
-# "<service>:<port>/aop-prometheus" path. 
-
-management:
-  endpoints:
-    web:
-      # READ THE SECURITY WARNING ABOVE ON THIS!
-      exposure.include: health,info,aop-prometheus
-spinnaker:
-  extensibility:
-    plugins:
-      Armory.ObservabilityPlugin:
-        # THIS Is absolutely required, though potentially redundant, otherwise the plugin won't start
-        enabled: true
-        version: 1.1.3
-        # This is the basic configuration for prometheus to be enabled
-        config.metrics:
-          prometheus:
-            enabled: true
-    repositories:
-      armory-observability-plugin-releases:
-        url: https://raw.githubusercontent.com/armory-plugins/armory-observability-plugin-releases/master/repositories.json
-```
-
-More options for management endpoints and the plugin are available on the [Plugin readme](https://github.com/armory-plugins/armory-observability-plugin).
-
-#### Grant Prometheus permissions
+- Add permissions for Prometheus to talk to the Spinnaker namespace
+- Configure Prometheus to discover the Spinnaker endpoints
 
 Add permissions for Prometheus by applying the following configuration to your cluster. You can learn more about this process on the
 [Prometheus Operator homepage](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/rbac.md).  
@@ -168,11 +114,69 @@ metadata:
   namespace: monitoring
   name: prometheus
 ```
+## Configure monitoring using the Observability Plugin 
+
+{{% alert title="Caution" color=warning %}} Before configuring monitoring, read and understand the following information about the security implications.
+If any of your services, typically Gate, are exposed to the open internet, there is a
+risk that you can publicly expose information. Armory recommends that you filter
+these paths at your edge layer in some manner. Be aware of any endpoints you 
+expose. Spring boot exposes the health endpoint by default though with some
+restrictions on what information is exposed. When auth is enabled, Gate restricts 
+access to the endpoints other than `/health`, preventing access to metric data.
+
+For more information on Spring actuators, see the [Monitoring and Management](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-monitoring).  
+
+<!-- Spinnaker issue discussing management endpoints: https://github.com/spinnaker/spinnaker/issues/3883--> 
+{{% /alert %}}
+
+Armory recommends that you monitor your systems by using the [Armory Observabililty Plugin](https://github.com/armory-plugins/armory-observability-plugin/). This is an open source solution for monitoring Spinnaker. The plugin currently supports the following:
+
+* Adding Prometheus (OpenMetrics) endpoints So spinnaker pods (explained below).
+* Sending data to NewRelic (documented on the plugin page). 
+
+Note that the Observability Plugin removes the service name from the metric, which is incompatible with the behavior of the open source Spinnaker Monitoring daemon system.
+
+#### Install the plugin
+
+To install the observability plugin, add a plugin configuration to the profiles
+ of your running services:
+
+* Add it for all services in `spinnaker-local.yml` (Halyard installs) or the `spinnaker` profile section (Operator installs).  
+* Add it to the services you want to monitor. This local profile should contain the following to enable Prometheus:
+
+```yaml
+# These lines are spring-boot configuration to allow access to the metrics
+# endpoints.  This plugin adds the "aop-prometheus" endpoint on the 
+# "<service>:<port>/aop-prometheus" path. 
+
+management:
+  endpoints:
+    web:
+      # READ THE SECURITY WARNING ABOVE ON THIS!
+      exposure.include: health,info,aop-prometheus
+spinnaker:
+  extensibility:
+    plugins:
+      Armory.ObservabilityPlugin:
+        # THIS Is absolutely required, though potentially redundant, otherwise the plugin won't start
+        enabled: true
+        version: 1.1.3
+        # This is the basic configuration for prometheus to be enabled
+        config.metrics:
+          prometheus:
+            enabled: true
+    repositories:
+      armory-observability-plugin-releases:
+        url: https://raw.githubusercontent.com/armory-plugins/armory-observability-plugin-releases/master/repositories.json
+```
+
+More options for management endpoints and the plugin are available on the [Plugin readme](https://github.com/armory-plugins/armory-observability-plugin).
 
 #### Add the ServiceMonitor
 
-Prometheus Operator uses a "ServiceMonitor" to add targets that get scraped for monitoring. The following example config shows how to monitor pods which are using the Observability Plugin to expose the `aop-prometheus` endpoint.  Note that the example contains 
-  both the exclusion of certain services (such as Redis) and changes to the Gate endpoint to show you different options.  
+Prometheus Operator uses a "ServiceMonitor" to add targets that get scraped for monitoring. The following
+example config shows how to monitor pods which are using the Observability Plugin to expose the `aop-prometheus` endpoint.
+Note that the example contains both the exclusion of certain services (such as Redis) and changes to the Gate endpoint to show you different options.  
 
 These are ONLY examples of potential configurations. They work, but Armory recommends that you understand how 
 they operate and find services. Adapt them to your environment.
@@ -244,5 +248,140 @@ spec:
     tlsConfig:
       insecureSkipVerify: true
 ```
+## Check for Spinnaker targets in Prometheus
+
+After applying these changes, you should be able to see  Spinnaker targets in Prometheus. It may take 3 to 5 minutes for this to show up depending on where Prometheus is in its config polling interval.
+
+![Prometheus Targets](/images/install-admin/prometheus-2.png)
+
+## Access Grafana
+
+Configure port forwarding for Grafana:
+
+```bash
+$ kubectl --namespace monitoring port-forward svc/grafana 3000
+```
+
+Access the Grafana web interface via http://localhost:3000 and use the default grafana user:password of `admin:admin`.
+
+## Add Armory dashboards to Grafana
+
+Armory provides some sample dashboards (in JSON format) that you can import into Grafana as a starting point for metrics to graph for monitoring.
+Armory has additional dashboards that are availabe to Armory customers. You can skip this section if you are a Grafana expert.
+
+To import the sample dashboards, perform the following steps:
+
+1. Git clone this repo to your local workstation: (https://gitlab.com/uneeq-oss/spinnaker-mixin)
+2. Access the Grafana web interface (as shown above)
+3. Navigate to Dashboards then Manage
+4. Click on the _Import_ button
+5. Upload the one or more of the sample dashboard files from the repo you cloned
+
+After importing the dashboards, you can explore graphs for each service by clicking on _Dashboards_, _Manage_, and then _Spinnaker Kubernetes Details_.
+
+![Grafana Dashboard](/images/install-admin/grafana-2.png)
+
+
+
+
+## Configure monitoring using the monitoring-daemon
+
+To enable monitoring of Spinnaker by Prometheus, enable the `metric-stores` configuration. 
+
+Armory recommends that you monitor your systems by using the [Armory Observabililty Plugin](https://github.com/armory-plugins/armory-observability-plugin/).
+This is an open source solution for monitoring Spinnaker. Due to changes the Spinnaker project is making, the Observability plugin provides a long-term solution.
+
+**Halyard**
+
+Issue these halyard commands from within your hal directory or within your halyard container:
+
+```bash
+halyard-0:~ $ hal config metric-stores prometheus enable
+
++ Get current deployment
+  Success
++ Edit prometheus metric store
+  Success
++ Successfully enabled prometheus
+
+halyard-0:~ $ hal deploy apply
+```
+
+**Operator**
+```yaml
+  apiVersion: spinnaker.armory.io/v1alpha2
+  kind: SpinnakerService
+  metadata:
+    name: spinnaker
+  spec:
+    spinnakerConfig:  
+      config:
+        metricStores:
+          prometheus:
+            enabled: true
+            add_source_metalabels: true          
+```
+
+Wait for all of the Spinnaker pods to be ready before proceeding to the next step. You can check the status by running the `kubectl get pods` command.  Because you are adding a sidecar to each pod, you may need to ensure you have enough capacity in your Kubernetes cluster to be able to support the additional resource requirements.
+
+#### Add the ServiceMonitor
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: spinnaker-all-metrics
+  labels:
+    app: spin
+    # this label is here to match the prometheus operator serviceMonitorSelector attribute
+    # prometheus.prometheusSpec.serviceMonitorSelector
+    # https://github.com/helm/charts/tree/master/stable/prometheus-operator
+    release: prometheus-operator
+spec:
+  selector:
+    matchLabels:
+      app: spin
+    namespaceSelector:
+      any: true
+  endpoints:
+  # "port" is string only. "targetPort" is integer or string.
+  - targetPort: 8008
+    interval: 10s
+    path: "/prometheus_metrics"
+```
+
+## Check for Spinnaker targets in Prometheus
+
+After applying these changes, you should be able to see  Spinnaker targets in Prometheus. It may take 3 to 5 minutes for this to show up depending on where Prometheus is in its config polling interval.
+
+![Prometheus Targets](/images/install-admin/prometheus.png)
+
+## Access Grafana
+
+Configure port forwarding for Grafana:
+
+```bash
+$ kubectl --namespace monitoring port-forward svc/grafana 3000
+```
+
+Access the Grafana web interface via http://localhost:3000 and use the default grafana user:password of `admin:admin`.
+
+## Add Armory dashboards to Grafana
+
+Armory provides some sample dashboards (in JSON format) that you can import into Grafana as a starting point for metrics to graph for monitoring.
+Armory has additional dashboards that are availabe to Armory customers. You can skip this section if you are a Grafana expert.
+
+To import the sample dashboards, perform the following steps:
+
+1. Git clone this repo to your local workstation: (https://github.com/spinnaker/spinnaker-monitoring)
+2. Access the Grafana web interface (as shown above)
+3. Navigate to Dashboards then Manage
+4. Click on the _Import_ button
+5. Upload the one or more of the sample dashboard files from the repo you cloned
+
+After importing the dashboards, you can explore graphs for each service by clicking on _Dashboards_, _Manage_, and then _Spinnaker-main_.
+
+![Grafana Dashboard](/images/install-admin/grafana.png)
+
 
 
