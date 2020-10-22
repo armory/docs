@@ -53,12 +53,12 @@ patchesStrategicMerge:
 
 You can then set the [plugin options]({{< ref "agent-plugin-options" >}}) in `agent-plugin/config.yaml`.
 
-* For topologies like [Infrastructure mode](({{< ref "armory-agent#infrastructure-mode" >}})) and [Agent mode](({{< ref "armory-agent#infrastructure-mode" >}})) which
-  keep the Agent separated from Spinnaker you might want to configure TLS through a load balancer.
-* For Spinnaker installations with one clouddriver instance and no redis, you can use `kubesvc.cluster`. However, a spinnaker installation with redis is recommended.
-* When running [HA](https://spinnaker.io/reference/halyard/high-availability/), make sure to modify the following files:
-  * Edit `agent-service/kustomization.yaml` according to its comments
-  * Edit `agent-plugin/clouddriver-plugin.yaml` & `agent-plugin/config.yaml` references to clouddriver should be to HA versions (i.e: -rw, -ro, etc)
+* For topologies like [Infrastructure mode](({{< ref "armory-agent#infrastructure-mode" >}})) and [Agent mode](({{< ref "armory-agent#infrastructure-mode" >}})), in which the Agent is installed in a different cluster from Spinnaker, you should configure TLS through a load balancer.
+* For Spinnaker installations with one Clouddriver instance and no Redis, you can use `kubesvc.cluster`. However, a Spinnaker installation with Redis is recommended.
+* When running Spinnaker in [HA](https://spinnaker.io/reference/halyard/high-availability/), make sure to modify the following files:
+
+  * `agent-service/kustomization.yaml` according to its comments
+  * `agent-plugin/clouddriver-plugin.yaml` and `agent-plugin/config.yaml` references to Clouddriver should be to HA versions (i.e: -rw, -ro, etc)
 
 When you're ready, deploy with:
 
@@ -134,9 +134,7 @@ kubernetes:
 ...
 ```
 
-* For installations wihtout gRPC TLS connections, `clouddriver.insecure: true` should be included in the agent options.
-   For topologies like [Infrastructure mode](({{< ref "armory-agent#infrastructure-mode" >}})) and [Agent mode](({{< ref "armory-agent#infrastructure-mode" >}})) which
-   keep the Agent separated from Spinnaker you might want to configure TLS instead through a load balancer.
+* For installations without gRPC TLS connections, you should include `clouddriver.insecure: true` in the Agent options.
 * For HA, make sure to set `clouddriver.grpc: clouddriver-ha-grpc-service.yaml:9091`
 
 With the directory structure in place, deploy the Agent service:

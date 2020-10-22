@@ -43,8 +43,10 @@ In infrastructure mode, multiple Agent deployments handle different groups of Ku
 
 ### Agent mode
 
-In this mode, the Agent acts as a piece of infrastructure. It authenticates itself using a [serviceAccount](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#service-account-tokens) and 
-authorized through [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions) to do what you want Spinnaker to do.  In case Spinnaker loses communication to the Agent, Spinnaker will wait for reconnection during a grace period. After that in case the agent was stopped or the cluster was deleted, the cluster will dissapear from Spinnaker.
+In this mode, the Agent acts as a piece of infrastructure. It authenticates  using a [service account token](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#service-account-tokens). You use
+[RBAC service account permissions](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions) to configure what the Agent is authorized to do.
+
+If Spinnaker is unable to communicate with the Agent, Spinnaker attempts to reconnect during a defined grace period. If Spinnaker still can't communicate with the Agent after the grace period has expired, the Agent's cluster is removed from Spinnaker. 
 
 ![Agent mode](/images/armory-agent/agent-mode.png)
 
