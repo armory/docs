@@ -21,13 +21,7 @@ Running Armory-extended Halyard in Docker is convenient and portable. The daemon
 
 ### Starting Daemon
 
-> Note: In the command below, the host (local) directories mapped to the docker 
-> container will need to have permissions set on them to allow for modification 
-> from within the Docker Container.  As an example, the `~/.hal` folder within the 
-> *host (local) system directory* will need writable permissions (`chmod 777 ~/.hal`), 
-> or there will be an issue when attempting to execute a `hal deploy apply` from 
-> within the container.  These permissions should be set before executing the below 
-> commands to start the container
+{{% include "install/docker-note.md" %}}
 
 You can start Armory-extended Halyard in a Docker container with the following command:
 
