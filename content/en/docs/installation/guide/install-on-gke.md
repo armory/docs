@@ -233,6 +233,14 @@ On the `Halyard machine`, start the Halyard container.
 
 *If you want to install OSS Spinnaker instead, use `gcr.io/spinnaker-marketplace/halyard:stable` for the Docker Halyard image reference in substitution of `armory/halyard-armory:<image_version>` in the commands below*
 
+> Note: In the command below, the host (local) directories mapped to the docker 
+> container will need to have permissions set on them to allow for modification 
+> from within the Docker Container.  As an example, the `~/.hal` folder within the 
+> *host (local) system directory* will need writable permissions (`chmod 777 ~/.hal`), 
+> or there will be an issue when attempting to execute a `hal deploy apply` from 
+> within the container.  These permissions should be set before executing the below 
+> commands to start the container
+
 ```bash
 docker run --name armory-halyard -it --rm \
   -v ${WORKING_DIRECTORY}/.hal:/home/spinnaker/.hal \
