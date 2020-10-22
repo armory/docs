@@ -1,3 +1,4 @@
+<!-- Copied from github.com/kubernetes/website project, which has a Creative Commons Attribution 4.0 International license -->
 {{- .Page.Scratch.Add "tabset-counter" 1 -}}
 {{- $tab_set_id := .Get "name" | default (printf "tabset-%s-%d" (.Page.RelPermalink) (.Page.Scratch.Get "tabset-counter") ) | anchorize -}}
 {{- $tabs := .Scratch.Get "tabs" -}}

@@ -397,8 +397,7 @@ Permissions
 {{< gsuite src="https://docs.google.com/presentation/d/e/2PACX-1vQ7b90rHF2gS-4FUJWwuc8sK5JCb-fO-UupXqEZi-7eIdUBIcqTn2IEn0X9WSf0xucHlIVwPgovTQT5/embed?start=false&loop=false&delayms=3000" width="960" height="569" >}}
 
 ## Tabs
-
-Copied from the Kubernetes website project.
+<!-- Copied from github.com/kubernetes/website project, which has a Creative Commons Attribution 4.0 International license -->
 
 In a markdown page (`.md` file) on this site, you can add a tab set to display multiple flavors of a given solution.
 
