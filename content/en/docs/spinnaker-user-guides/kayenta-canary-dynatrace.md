@@ -6,13 +6,14 @@ aliases:
 ---
 
 
-Before you can start using Canary deployments, ensure that Kayenta, the Spinnaker for canary deployments, is enabled. For more information, see [Configuring Kayenta]({{< ref "kayenta-configure" >}}).
+Before you can start using Canary deployments, you need to enable Kayenta, the Spinnaker service for canary deployments. For more information, see [Configuring Kayenta]({{< ref "kayenta-configure" >}}).
 
 
 ## Dynatrace configuration
-To enable dynatrace currently you need to do this on kayenta-local.yml
 
-```
+To enable Dynatrace, add the following `dynatrace` entry to `kayenta-local.yml`:
+
+```yaml
 kayenta:
   dynatrace:
     enabled: true
@@ -27,18 +28,18 @@ kayenta:
 
 ## Canary configs
 
-You need to create a new canary-config for the metrics you are interested.
+In the UI, you need to create a new canary config for the metrics you are interested in.
 
-![image](/images/canary_config_dynatrace.png)
+![image](/images/user-guides/canary/canary_config_dynatrace.png)
 
 
-Add your dynatrace query into the inline configuration.
+Add your Dynatrace query in the **Dynatrace USQL** field.
 
-![image](/images/canary_config_dynatrace_query.png)
+![image](/images/user-guides/canary/canary_config_dynatrace_query.png)
 
 
 ## Pipeline configs
 
-On your canary stage setup the same canary-config you just created. Then setup your namespace and scope corresponding to your application values in dynatrace.
+In your canary stage, set up the canary config you just created. Then use the application values from Dynatrace to fill in the **Baseline + Canary Pair** and **MetricScope** fields.
 
-![image](/images/canary_stage_dynatrace.png)
+![image](/images/user-guides/canary/canary_stage_dynatrace.png)
