@@ -69,6 +69,9 @@ Common errors:
 
 - `io.grpc.netty.shaded.io.netty.handler.codec.http2.Http2Exception: HTTP/2 client preface string missing or corrupt. Hex dump for received bytes: 160301011901000115030383b0f1d28d2a75383e4e1f98f4`
   When connecting to Spinnaker<sup>TM</sup> as a service, make sure to set `clouddriver.insecure: true` or provide certificates so the plugin can terminate TLS.
+- `org.springframework.jdbc.BadSqlGrammarException: jOOQ; bad SQL grammar [update kubesvc_assignments set reachable = ?, last_updated = ? where cd_id = ?]; nested exception is java.sql.SQLSyntaxErrorException: Table 'clouddriver.kubesvc_assignments' doesn't exist`
+  The plugin by default tries to automatically create the tables it needs after printing this error message.
+  This can be ignored, and in case of any issue, another error message should follow later in the logs.
 - `Parameter 1 of method getRedisClusterRecipient in io.armory.kubesvc.config.KubesvcClusterConfiguration required a bean of type 'com.netflix.spinnaker.kork.jedis.RedisClientDelegate' that could not be found.`
   Make sure `redis.enabled: true` is set in Clouddriver's profile. For a more limited solution, keep only one Clouddriver instance and set `kubesvc.cluster: local` in Clouddriver's profile
 - `Parameter 0 of method sqlTableMetricsAgent in com.netflix.spinnaker.config.SqlCacheConfiguration required a bean of type 'org.jooq.DSLContext' that could not be found.`
