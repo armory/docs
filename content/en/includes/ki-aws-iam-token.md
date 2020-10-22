@@ -7,3 +7,6 @@ For more information, see [347](https://github.com/kubernetes-sigs/aws-iam-authe
 **Workaround**
 
 You can use the `aws` CLI to fetch tokens instead of `aws-iam-authenticator`.
+
+**Affected versions:** 2.22.0
+**Fixed versions**: 2.22.1 and later

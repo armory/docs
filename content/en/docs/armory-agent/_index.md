@@ -3,23 +3,26 @@ title: "Armory Agent for Kubernetes"
 linkTitle: "Armory Agent for K8s"
 weight: 20
 description: >
-  The Armory Agent is a lightweight, scaleable service that monitors your Kubernetes infrastructure and streams changes back to Clouddriver.
+  The Armory Agent is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Clouddriver.
 ---
 
-* Massive scale for Kubernetes
-  * The Agent only streams changes to Spinnaker<sup>TM</sup> in real time over a single TCP connection per cluster.
+* Scalability
   * Caching and deployment scales to thousands of Kubernetes clusters for your largest applications.
-  * The Agent optimizes how infrastructure information is cached, resulting in optimal performance for your end users or your pipelines.
+  * By leveraging the Kubernetes `watch` mechanism, the Agent detects changes to Kubernetes and streams them in real time over a single TCP connection per cluster to Spinnaker<sup>TM</sup>.
+  * The Agent optimizes how infrastructure information is cached, making _Force Cache Refresh_ almost instantaneous. This means optimal performance for your end users and your pipeline executions.
 
-* Flexible deployment model
-  * Use the Agent alongside Spinnaker and benefit from performance improvements.
-  * Use the Agent in the target cluster and get Kubernetes accounts automatically registered.
-
-* Enhanced security
+* Security
   * Keep your Kubernetes API servers private from Spinnaker.
-  * Control what Spinnaker can do directly in a service account. No need to change Spinnaker.
-  * Use a service account or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "secrets#supported-secret-engines" >}}) or provision them via the method of your choice as Kubernetes secrets.
   * Only the information Spinnaker needs leaves the cluster.
+  * Decentralize your account management. Using Kubernetes Service Accounts, teams control what Spinnaker can do. Add or remove accounts in real time. and then use them without restarting Spinnaker.
+  * Use Kubernetes Service Accounts or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "secrets#supported-secret-engines" >}}), or provision them via the method of your choice as Kubernetes secrets.
+
+
+* Usability
+  * Use the Agent alongside Spinnaker and benefit from performance improvements.
+  * Use the Agent in a target cluster and get Kubernetes accounts automatically registered.
+  * Use YAML, a HELM chart, or a Kustomize template to inject the Agent into newly provisioned Kubernetes clusters, and immediately make those clusters software deployment targets.
+  * Use the Agent with little operational overhead or changes in the way you currently manage Spinnaker.
 
 Check out the Quick Start [guide]({{< ref "armory-agent-quick" >}}) to deploy the Agent on your Kubernetes infrastructure.
 
