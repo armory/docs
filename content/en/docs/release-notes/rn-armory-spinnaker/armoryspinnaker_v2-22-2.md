@@ -42,6 +42,10 @@ This release includes the following improvements to the PCF provider:
 * Fixes a regression that caused deployments to fail
 * Improves performance in the Spinnaker UI when viewing PCF clusters
 
+### Security
+
+Armory scans the codebase as we develop and release software. For information about CVE scans for this release, contact your Armory account representative.
+
 ###  Spinnaker community contributions
 
 <!-- Copy/paste highlights from the corresponding OSS version. -->
