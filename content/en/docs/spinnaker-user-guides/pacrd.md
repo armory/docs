@@ -461,11 +461,18 @@ Events:
 
 ## Setup mTLS
 
+If you want to setup mTLS for this particular service you need to have your spinnaker already setup with mTLS. For information about mTLS, see [Configuring mTLS for Spinnaker Services]({{< ref "mtls-configure" >}}).
+
 ### Pre-requisites
 For setting up mTLS with PaCRD you need the following:
 - ca.pem file
 - ca.key file
-- ca password
+- ca certificate password
+- pacrd.crt*
+- pacrd.key*
+- pacrd certificate password*
+
+* If you don't have them you can generate these files with the script in step 1.
 
 Once you have that information you can continue.
 
@@ -485,7 +492,7 @@ newPassword() {
 print_san() {
   local svc
   svc="${1?}"
-  printf '%s\n' "subjectAltName=DNS:localhost,DNS:spin-${svc}.${LOCATION}"
+  printf '%s\n' "subjectAltName=DNS:localhost,DNS:pacrd-controller-manager-metrics-service.${LOCATION}"
 }
 
 # Service name
@@ -503,7 +510,7 @@ openssl genrsa -aes256 -passout "pass:${password}" -out "$OUT_CERTS_DIR/${svc}.k
 openssl req -new -key "$OUT_CERTS_DIR/${svc}.key" -out "$OUT_CERTS_DIR/${svc}.csr" -subj /C=US/CN=spin-${svc}.${LOCATION} -passin "pass:${password}"
 openssl x509 -req -in "$OUT_CERTS_DIR/${svc}.csr" -CA "$OUT_CERTS_DIR/ca.pem" -CAkey "$OUT_CERTS_DIR/ca.key" -CAcreateserial -out "$OUT_CERTS_DIR/${svc}.crt" -days 3650 -sha256 -passin "pass:${CA_PASSWORD}" -extfile <(print_san "$svc")
 # Save password
-echo ${password} >> pacrd.pass.txt
+echo ${password} > pacrd.pass.txt
 ```
 
 2. Once you have the certificate files you need to add them as a kubernetes secret like:
@@ -534,7 +541,7 @@ spec:
           name: pacrd-certificates
       volumes:
       - secret:
-          name: pacrd-cert
+          secretName: pacrd-cert
         name: pacrd-certificates
 ```
 
@@ -567,8 +574,8 @@ data:
       # NOTE: change `spinnaker` to your namespace name here
       front50: https://spin-front50.namespace:8080
       orca: https://spin-orca.namespace:8083
-    fiatServiceAccount: <fiatServiceAccount>
-    newRelicLicense: <newRelicLicense>
+    #fiatServiceAccount: <fiatServiceAccount>
+    #newRelicLicense: <newRelicLicense>
     server:
       ssl:
         enabled: true
