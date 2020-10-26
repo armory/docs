@@ -17,7 +17,6 @@ Kayenta uses real-time data sources to validate that a canary is good or bad. To
 * Stackdriver (Google)
 * Prometheus
 * New Relic
-* Dynatrace (Armory feature)
 
 ## Configuring Kayenta on an application
 
