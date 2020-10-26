@@ -11,12 +11,6 @@ aliases:
   Dinghy docs in time.
 !-->
 
-{{< include "experimental-feature.html" >}}
-
-
-__Interested in joining this experiment?
-[Contact us](mailto:pipelines-as-code@armory.io) for more information.__
-
 
 PaCRD (a combination of "Pipelines as Code" and "Custom Resource Definition") is
 a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) that manages the lifecycle of Spinnaker applications
