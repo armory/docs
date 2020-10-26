@@ -66,15 +66,6 @@ spec:
               applicationKey: my-app-key           # Your Datadog application key. See https://app.datadoghq.com/account/settings#api. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/).
               supportedTypes:                      # Array of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
               - METRICS_STORE
-          - name: dynatrace
-            enabled: true
-            accounts:
-            - name: my-dynatrace-account
-              endpoint:
-                baseUrl: https://<your-dynatrace-url>.live.dynatrace.com #You Dynatrace URL
-              apiToken: my-api-key                    # Your org apiToken to query Dynatrace
-              supportedTypes:
-              - METRICS_STORE
           - name: signalfx
             enabled: false    # Enable/disable SignalFx provider
             accounts:
