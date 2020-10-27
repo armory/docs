@@ -229,119 +229,6 @@ _The photo above of the Spruce Picea abies shoot with foliage buds: Bjørn Erik 
 
 ## Another Heading
 
-## Inserting raw HTML
-
-The `rawhtml` shortcode is in `docs-hugo\layouts`.
-
-Usage:
-
-```md
-## Heading
-{{</* rawhtml */>}}
-<p>
-    This is <strong>raw HTML</strong>, inside Markdown.
-  </p>
-{{</* /rawhtml */>}}
-```
-
-
-{{< rawhtml >}}
-<p>
-    This is <strong>raw HTML</strong>, inside Markdown.
-  </p>
-{{< /rawhtml >}}  
-
-### CRD example
-## pacrd.armory.spinnaker.io/v1alpha1
-
-<p>
-<p>Package v1alpha1 contains API Schema definitions for the pacrd.armory.spinnaker.io Applications and Pipelines.</p>
-</p>
-
-## Resource Types:
-
-<ul></ul>
-
-### Application
-
-<p>Application is the Schema for the applications API</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>spec</code><br />
-<em>
-<a href="#applicationspec">
-ApplicationSpec
-</a>
-</em>
-</td>
-<td>
-<br/>
-<br/>
-<table>
-<tr>
-<td>
-<code>email</code><br />
-<em>
-string
-</em>
-</td>
-<td>
-<p>Email points to the e-mail user or list that owns this application.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>description</code><br />
-<em>
-string
-</em>
-</td>
-<td>
-<p>Description explains the purpose of this application.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>dataSources</code><br />
-<em>
-<a href="#datasources">
-DataSources
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>DataSources optionally enable and disable elements of the Spinnaker Application UI.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>permissions</code><br />
-<em>
-<a href="#permissions">
-Permissions
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Permissions maps actions inside Spinnaker to authenticated roles that can take them.</p>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
-
 
 
 ## Mermaid
@@ -382,21 +269,48 @@ Permissions
  classDef external fill:#c0d89d,stroke:#39546a;
  class deck,api external
 ```
-## Google suite shortcode
 
-"Publish to web" and then copy the URL.
+## Custom shortcodes
 
-### Sheet
+location:  `docs/layouts/shortcodes`
+
+### Hyperlink with page title
+
+You can use `linkWithTitle` to replace a markdown hyperlink.
+
+```markdown
+[page name]({{ < ref "file name" >}})
+
+See the [Best Practices]({{</* ref "best-practices" */>}}) guide for ....
+
+```
+
+If you want to use the page's front matter title as the text of the hyperlink, you can use the `linkWithTitle` shortcode instead. It creates an HTML hyperlink using the page's title and `Permalink`.  Do not use this shortcode if you want to link to a specific section within a page.
+
+```markdown
+
+See the {{</* linkWithTitle best-practices.md */>}} page...
+```
+
+Renders as:
+
+See the {{< linkWithTitle best-practices.md >}} page...
+
+### Google suite shortcode
+
+In your Google sheet, choose "Publish to web" and then copy the URL.
+
+#### Sheet
 
 
 {{< gsuite src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9PZ2yPxUYIxis4SfAN6ZMFn7haf6KrHQqmW97Co744Mz0dskmD2fIJsR5-kNYG7NOlOKz1SzXww7i/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="100%" >}}
 
 
-### Slide deck
+#### Slide deck
 
 {{< gsuite src="https://docs.google.com/presentation/d/e/2PACX-1vQ7b90rHF2gS-4FUJWwuc8sK5JCb-fO-UupXqEZi-7eIdUBIcqTn2IEn0X9WSf0xucHlIVwPgovTQT5/embed?start=false&loop=false&delayms=3000" width="960" height="569" >}}
 
-## Tabs
+### Tabs
 <!-- Copied from github.com/kubernetes/website project, which has a Creative Commons Attribution 4.0 International license -->
 
 In a markdown page (`.md` file) on this site, you can add a tab set to display multiple flavors of a given solution.
@@ -415,7 +329,7 @@ Below is a demo of the tabs shortcode.
 The tab **name** in a `tabs` definition must be unique within a content page.
 {{% /alert %}}
 
-### Tabs demo: Code highlighting
+#### Tabs demo: Code highlighting
 
 ```go-text-template
 {{</* tabs name="tab_with_code" >}}
@@ -439,7 +353,7 @@ println "This is tab 2."
 {{< /tab >}}
 {{< /tabs >}}
 
-### Tabs demo: Inline Markdown and HTML
+#### Tabs demo: Inline Markdown and HTML
 
 ```go-html-template
 {{</* tabs name="tab_with_md" >}}
@@ -477,7 +391,7 @@ It can even contain shortcodes.
 {{< /tab >}}
 {{< /tabs >}}
 
-### Tabs demo: File include
+#### Tabs demo: File include
 
 ```go-html-template
 {{</* tabs name="tab_with_file_include" */>}}
@@ -496,3 +410,26 @@ Renders to:
 {{< /tabs >}}
 
 
+### Inserting raw HTML
+
+`rawhtml`
+
+Usage:
+
+```md
+## Heading
+{{</* rawhtml */>}}
+<p>
+    This is <strong>raw HTML</strong>, inside Markdown.
+  </p>
+{{</* /rawhtml */>}}
+```
+
+
+{{< rawhtml >}}
+<p>
+    This is <strong>raw HTML</strong>, inside Markdown.
+  </p>
+{{< /rawhtml >}}  
+
+See the {{< linkWithTitle pacrd-crd-docs.md >}} for an example.
