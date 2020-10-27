@@ -1,15 +1,12 @@
 ---
 title: PaCRD
+linkTitle: PaCRD
+description: >
+  PaCRD is a Kubernetes controller that manages the lifecycle of applications and pipelines within a cluster.
 aliases:
   - /docs/spinnaker/pacrd/
+  - /docs/spinnaker-user-guides/pacrd
 ---
-
-<!-- Note:
-  Setting Order as 171 so it shows up at the bottom on the Spinnaker section
-  of the Armory docs, given its experimental status. When/if this product
-  hits GA we probably want to move it further up the list and/or replace
-  Dinghy docs in time.
-!-->
 
 {{< include "experimental-feature.html" >}}
 

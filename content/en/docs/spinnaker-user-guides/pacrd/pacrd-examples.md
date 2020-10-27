@@ -1,10 +1,9 @@
 ---
-title: PaCRD examples
-aliases:
-  - /docs/spinnaker/pacrd-examples/
+title: PaCRD Examples
+linkTitle: Example CRDs
+description: >
+  YAML examples for testing PaCRD pipelines
 ---
-
-This document contains examples that can be used to test PaCRD pipelines
 
 ## Application example
 
@@ -219,7 +218,7 @@ spec:
         refId: "1"
         account: kubernetes
         cloudProvider: kubernetes
-        moniker: 
+        moniker:
           app: *app-name
         manifestArtifactId: *image-id
         namespaceOverride: spinnaker
@@ -228,7 +227,7 @@ spec:
         source: artifact
         trafficManagement:
           enabled: true
-          options: 
+          options:
             enableTraffic: true
             namespace: jossuegamez
             services: [ "servicea", "serviceb" ]
