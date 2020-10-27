@@ -465,139 +465,110 @@ Events:
 ```
 
 
-## Setup mTLS
+## Setting up mTLS
 
-If you want to setup mTLS for this particular service you need to have your spinnaker already setup with mTLS. For information about mTLS, see [Configuring mTLS for Spinnaker Services]({{< ref "mtls-configure" >}}).
+If you want to set up mTLS for this particular service, you need to configure Spinnaker for mTLS first. See [Configuring mTLS for Spinnaker Services]({{< ref "mtls-configure" >}}) for details.
 
-### Pre-requisites
-For setting up mTLS with PaCRD you need the following:
+### Prerequisites
+
 - ca.pem file
 - ca.key file
 - ca certificate password
-- pacrd.crt*
-- pacrd.key*
-- pacrd certificate password*
+- pacrd.crt
+- pacrd.key
+- pacrd certificate password (pacrd.pass.txt)
 
-* If you don't have them you can generate these files with the script in step 1.
+If you don't have the PaCRD certificate, key, and password files, you can generate them using this script:
+
+{{< gist armory-gists 543b67dba35c5910ffa48cf1649c8954 >}}
 
 Once you have that information you can continue.
 
-### Setup
+### Steps
 
-1. If you currently do not have a set of certificates for pacrd you need to create them, for that you can use this script:
+1. Add the PaCRD certificate files as a Kubernetes secret:
 
-```bash
-#!/bin/bash
+   ```bash
+   kubectl create secret generic pacrd-cert \
+           --from-file=./pacrd.crt \
+           --from-file=./pacrd.key \
+           --from-file=./pacrd.pass.txt \
+           --from-file=./ca.pem
+   ```
 
-# This function creates a new password
-newPassword() {
-  echo $(openssl rand -base64 32)
-}
+1. Go to the `pacrd` installation folder that has your` kustomization.yaml`, `patch.yaml`, and `pacrd.yaml`.  Create a new file called `mtls.yaml` with the following content:
 
-# Add metadata for host spin-svc.namespace
-print_san() {
-  local svc
-  svc="${1?}"
-  printf '%s\n' "subjectAltName=DNS:localhost,DNS:pacrd-controller-manager-metrics-service.${LOCATION}"
-}
+   ```yaml
+   # file: mtls.yaml
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     labels:
+       control-plane: controller-manager
+     name: pacrd-controller-manager
+     namespace: spinnaker
+   spec:
+     template:
+       spec:
+         containers:
+         - name: manager
+           containers:
+           volumeMounts:
+           - mountPath: /opt/secrets
+             name: pacrd-certificates
+         volumes:
+         - secret:
+             secretName: pacrd-cert
+           name: pacrd-certificates
+   ```
 
-# Service name
-svc=pacrd
-# New password
-password=$(newPassword)
-# Where certs are located and will be added - ca.pem and ca.key should be there
-OUT_CERTS_DIR=.
-# Namespace to form spin-svc.namespace
-LOCATION=mtls
-# CA password
-CA_PASSWORD=password
-# Create key and certificate
-openssl genrsa -aes256 -passout "pass:${password}" -out "$OUT_CERTS_DIR/${svc}.key" 2048
-openssl req -new -key "$OUT_CERTS_DIR/${svc}.key" -out "$OUT_CERTS_DIR/${svc}.csr" -subj /C=US/CN=spin-${svc}.${LOCATION} -passin "pass:${password}"
-openssl x509 -req -in "$OUT_CERTS_DIR/${svc}.csr" -CA "$OUT_CERTS_DIR/ca.pem" -CAkey "$OUT_CERTS_DIR/ca.key" -CAcreateserial -out "$OUT_CERTS_DIR/${svc}.crt" -days 3650 -sha256 -passin "pass:${CA_PASSWORD}" -extfile <(print_san "$svc")
-# Save password
-echo ${password} > pacrd.pass.txt
-```
+   This file will mount the certificates to `/opt/secrets/` in the pacrd manager container.
 
-2. Once you have the certificate files you need to add them as a kubernetes secret like:
+1. Update `kustomization.yaml` to include the `mtls.yaml` file:
 
-```bash
-kubectl create secret generic pacrd-cert --from-file=./pacrd.crt --from-file=./pacrd.key --from-file=./pacrd.pass.txt --from-file=./ca.pem
-```
+   ```yaml
+   # file: kustomization.yaml
+   resources:
+     - pac_new.yaml
+   patchesStrategicMerge:
+     - patch.yaml
+     - mtls.yaml
+   namespace: spinnaker # Note: you should change this value if you are _not_ deploying into the `spinnaker` namespace.
+   ```
 
-3. Then you want to go to the pacrd installation folder with your kustomization.yaml, patch.yaml and pacrd.yaml and create a new file called mtls.yaml with the content:
+1. Update your `patch.yaml` file to add the certificate information:
 
-```yaml
-# file: mtls.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    control-plane: controller-manager
-  name: pacrd-controller-manager
-  namespace: spinnaker
-spec:
-  template:
-    spec:
-      containers:
-      - name: manager
-        containers:
-        volumeMounts:
-        - mountPath: /opt/secrets
-          name: pacrd-certificates
-      volumes:
-      - secret:
-          secretName: pacrd-cert
-        name: pacrd-certificates
-```
+   ```yaml
+   # file: patch.yaml
+   apiVersion: v1
+   kind: ConfigMap
+   metadata:
+     name: pacrd-config
+     namespace: spinnaker
+   data:
+     pacrd.yaml: |
+       spinnakerServices:
+         # NOTE: change `spinnaker` to your namespace name here
+         front50: https://spin-front50.namespace:8080
+         orca: https://spin-orca.namespace:8083
+       # fiatServiceAccount: <fiatServiceAccount>
+       # newRelicLicense: <newRelicLicense>
+       server:
+         ssl:
+           enabled: true
+           certFile: /opt/secrets/pacrd.crt
+           keyFile: /opt/secrets/pacrd.key
+           keyPassword: /opt/secrets/pacrd.pass.txt
+           cacertFile: /opt/secrets/ca.pem
+           clientAuth: want
+       http:
+         cacertFile: /opt/secrets/ca.pem
+         clientCertFile: /opt/secrets/pacrd.crt
+         clientKeyFile: /opt/secrets/pacrd.key
+         clientKeyPassword: /opt/secrets/pacrd.pass.txt
+   ```
 
-This file will mount the certificates previously uploaded to /opt/secrets/ path in the pacrd manager container
-
-4. After you have created the mtls.yaml file then you need to change the kustomization.yaml file to add it like:
-
-```yaml
-# file: kustomization.yaml
-resources:
-  - pac_new.yaml
-patchesStrategicMerge:
-  - patch.yaml
-  - mtls.yaml
-namespace: spinnaker # Note: you should change this value if you are _not_ deploying into the `spinnaker` namespace.
-```
-
-5. After that you want to change your patch.yaml file to add the certificate information like this:
-
-```yaml
-# file: patch.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: pacrd-config
-  namespace: spinnaker
-data:
-  pacrd.yaml: |
-    spinnakerServices:
-      # NOTE: change `spinnaker` to your namespace name here
-      front50: https://spin-front50.namespace:8080
-      orca: https://spin-orca.namespace:8083
-    #fiatServiceAccount: <fiatServiceAccount>
-    #newRelicLicense: <newRelicLicense>
-    server:
-      ssl:
-        enabled: true
-        certFile: /opt/secrets/pacrd.crt
-        keyFile: /opt/secrets/pacrd.key
-        keyPassword: /opt/secrets/pacrd.pass.txt
-        cacertFile: /opt/secrets/ca.pem
-        clientAuth: want
-    http:
-      cacertFile: /opt/secrets/ca.pem
-      clientCertFile: /opt/secrets/pacrd.crt
-      clientKeyFile: /opt/secrets/pacrd.key
-      clientKeyPassword: /opt/secrets/pacrd.pass.txt
-```
-
-6. Once you have this changes you want to re-deploy your service with `kustomize build | kubectl apply -f -`
+1. Redeploy your service with `kustomize build | kubectl apply -f -`
 
 ## Known Limitations
 
