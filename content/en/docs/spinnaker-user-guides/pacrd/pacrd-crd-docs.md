@@ -1,5 +1,5 @@
 ---
-title: PaCRD CRD Documentation
+title: CRD Documentation
 aliases:
   - /docs/spinnaker/pacrd-crd-docs/
 ---

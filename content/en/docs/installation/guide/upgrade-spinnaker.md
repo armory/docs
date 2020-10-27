@@ -52,7 +52,7 @@ Rolling an upgrade back is similar to upgrading Spinnaker:
 
 1. Select the version you want to rollback to:
    ```bash
-   hal config edit --version <target_version>
+   hal config version edit --version <target_version>
    ```
 2. Apply the rollback:
    ```bash

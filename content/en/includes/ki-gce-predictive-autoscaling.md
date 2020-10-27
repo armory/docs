@@ -11,3 +11,5 @@ window.spinnakerSettings.providers.gce.feature = {};
 ```
 
 For more information, see this OSS Pull Request: [8585](https://github.com/spinnaker/deck/pull/8585).
+
+**Affected versions**: 2.22.x

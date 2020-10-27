@@ -141,6 +141,13 @@ offlineSearch = true
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = true
 
+# Armory Agent plugin versions
+[params.kubesvc-plugin]
+latestVersion2="0.2.3"
+latestVersion3="0.3.13"
+latestVersion4="0.4.8"
+latestVersion5="0.5.0-rc.14"
+
 # User interface configuration
 [params.ui]
 # Enable to show the side bar menu in its compact state.

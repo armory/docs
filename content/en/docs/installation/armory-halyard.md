@@ -21,6 +21,8 @@ Running Armory-extended Halyard in Docker is convenient and portable. The daemon
 
 ### Starting Daemon
 
+{{% include "install/docker-note.md" %}}
+
 You can start Armory-extended Halyard in a Docker container with the following command:
 
 ```bash
