@@ -7,7 +7,9 @@ description: >
 
 ## Application example
 
+### Basic application
 ```yaml
+#file: application.yaml
 apiVersion: pacrd.armory.spinnaker.io/v1alpha1
 kind: Application
 metadata:
@@ -15,6 +17,25 @@ metadata:
 spec:
   email: test@armory.io
   description: Description
+```
+
+### Application with permissions
+```yaml
+# file: application-permissions.yaml
+apiVersion: pacrd.armory.spinnaker.io/v1alpha1
+kind: Application
+metadata:
+  name: permissions-example
+spec:
+  email: test@armory.io
+  description: Description
+  permissions:
+    READ:
+    - everyone
+    WRITE:
+    - everyone
+    EXECUTE:
+    - everyone
 ```
 
 
