@@ -137,14 +137,14 @@ In Kubernetes, define your application in an `application.yaml` file.  The confi
 __and__ Spinnaker name standards.*
 
 ```yaml
-# file: application.yaml
+#file: application.yaml
 apiVersion: pacrd.armory.spinnaker.io/v1alpha1
 kind: Application
 metadata:
-  name: myapplicationname
+  name: pacrd-pipeline-stages-samples
 spec:
-  email: sam.tribal@armory.io
-  description: My Application is a catalogue of Widgets surfaced by an API.
+  email: test@armory.io
+  description: Description
 ```
 
 Create the application in your cluster by running:
@@ -223,33 +223,49 @@ application from the [previous section](#applications). Create one before
 proceeding if you have not done so already.*
 
 ```yaml
-# file: pipeline.yaml
+# file: deploy-nginx.yaml
 apiVersion: pacrd.armory.spinnaker.io/v1alpha1
 kind: Pipeline
 metadata:
-  name: myapplicationpipeline
+  name: pacrd-deploymanifest-integration-samples
 spec:
-  description: Delivery pipeline for the MyApplicationName service.
-  application: myapplicationname
+  description: A sample showing how to define artifacts.
+  application: &app-name pacrd-pipeline-stages-samples
   stages:
-    # Note: In `v0.1.x` you are required to specify _both_ `type: BakeManifest`
-    #       as well as place options under a `bakeManifest` key. Consult the
-    #       "Known Limitations" section below for more information.
-    - type: BakeManifest
-      name: Bake Application
-      refId: "1"
-      bakeManifest:
-        evaluateOverrideExpressions: false
-        outputName: myapplicationname
-        templateRenderer: helm2
-    - type: ManualJudgment
-      name: Bake Successful?
-      refId: "2"
-      requisiteStageRefIds: [ "1" ]
-      manualJudgment:
-        comments: Was the bake successful?
-        failPipeline: true
-        instructions: Check to see if the helm template was baked correctly
+    - type: deployManifest
+      properties:
+        name: Deploy text manifest
+        refId: "1"
+        requisiteStageRefIds: [ ]
+        account: spinnaker
+        cloudProvider: kubernetes
+        moniker:
+          app: *app-name
+        skipExpressionEvaluation: true
+        source: text
+        manifests:
+          - |
+            apiVersion: apps/v1
+            kind: Deployment
+            metadata:
+              name: nginx-deployment
+              labels:
+                app: nginx
+            spec:
+              replicas: 2
+              selector:
+                matchLabels:
+                  app: nginx
+              template:
+                metadata:
+                  labels:
+                    app: nginx
+                spec:
+                  containers:
+                  - name: nginx
+                    image: nginx:1.14.2
+                    ports:
+                    - containerPort: 80
 ```
 
 Create your pipeline in your cluster:
@@ -373,12 +389,12 @@ spec:
           name: my-organization/my-container
           artifactAccount: docker-registry
   stages:
-    - type: BakeManifest
-      name: Let's Bake Some Manifests
-      refId: "1"
-      bakeManifest:
-        templateRenderer: helm2
+    - type: bakeManifest
+      properties:
+        name: Bake Application
+        refId: "1"
         outputName: myManifest
+        templateRenderer: helm2
         inputArtifacts:
           - id: *image-id
 ```
@@ -421,12 +437,12 @@ spec:
         properties:
           name: my-second-inline-artifact
   stages:
-    - type: BakeManifest
-      name: Let's Bake Some Manifests
-      refId: "1"
-      bakeManifest:
-        templateRenderer: helm2
+    - type: bakeManifest
+      properties:
+        name: Bake Application
+        refId: "1"
         outputName: myManifest
+        templateRenderer: helm2
         inputArtifacts:
           - id: first-inline-artifact-id
           - displayName: My Second Inline Artifact
