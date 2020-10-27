@@ -8,22 +8,6 @@ aliases:
   - /docs/spinnaker-user-guides/pacrd
 ---
 
-<<<<<<< HEAD:content/en/docs/spinnaker-user-guides/pacrd.md
-<!-- Note:
-  Setting Order as 171 so it shows up at the bottom on the Spinnaker section
-  of the Armory docs, given its experimental status. When/if this product
-  hits GA we probably want to move it further up the list and/or replace
-  Dinghy docs in time.
-!-->
-=======
-{{< include "experimental-feature.html" >}}
-
-
-__Interested in joining this experiment?
-[Contact us](mailto:pipelines-as-code@armory.io) for more information.__
->>>>>>> origin:content/en/docs/spinnaker-user-guides/pacrd/_index.md
-
-
 PaCRD (a combination of "Pipelines as Code" and "Custom Resource Definition") is
 a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) that manages the lifecycle of Spinnaker<sup>TM</sup> applications
 and pipelines as objects within your cluster. PaCRD extends Kubernetes
