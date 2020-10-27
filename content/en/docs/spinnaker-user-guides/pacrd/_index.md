@@ -16,7 +16,7 @@ __Interested in joining this experiment?
 
 
 PaCRD (a combination of "Pipelines as Code" and "Custom Resource Definition") is
-a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) that manages the lifecycle of Spinnaker applications
+a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) that manages the lifecycle of Spinnaker<sup>TM</sup> applications
 and pipelines as objects within your cluster. PaCRD extends Kubernetes
 functionality to support Spinnaker Application and Pipeline objects that can be
 observed for changes through a mature lifecycle management API.

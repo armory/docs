@@ -2,7 +2,7 @@
 title: PaCRD Examples
 linkTitle: Example CRDs
 description: >
-  YAML examples for testing PaCRD pipelines
+  Custom Resource Definition examples for testing PaCRD pipelines
 ---
 
 ## Application example
