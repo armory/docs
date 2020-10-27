@@ -78,7 +78,8 @@ Here's an example situation:
 
 ### Configuration
 
-**Operator**
+{{< tabs name="configuration" >}}
+{{% tab name="Operator" %}}
 
 Here's a sample `SpinnakerService` manifest block that supports the above:
 
@@ -140,7 +141,9 @@ spec:
             iamRole: BaseIAMRole
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 Here's a sample halconfig `aws` YAML block that supports the above:
 
@@ -193,6 +196,9 @@ aws:
   defaults:
     iamRole: BaseIAMRole
 ```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Prerequisites
 
@@ -379,7 +385,8 @@ For each account you want to deploy to, perform the following:
 
 The Clouddriver pod(s) should be now able to assume each of the Managed Roles (Target Roles) in each of your Deployment Target accounts.  We need to configure Spinnaker to be aware of the accounts and roles it is allowed to consume.
 
-**Operator**
+{{< tabs name="add-managing-account" >}}
+{{% tab name="Operator" %}}
 
 For each of the Managed (Target) accounts you want to deploy to, add a new entry to the `accounts` array in `SpinnakerService` manifest as follows:
 
@@ -422,7 +429,9 @@ spec:
             iamRole: BaseIAMRole
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 For each of the Managed (Target) accounts you want to deploy to, perform the following from your Halyard instance:
 
@@ -452,9 +461,13 @@ For each of the Managed (Target) accounts you want to deploy to, perform the fol
        --regions us-east-1,us-west-2
    ```
 
+{{% /tab %}}
+{{< /tabs >}}
+
 ### IAM User Part 7: Adding/Enabling the AWS CloudProvider configuration to Spinnaker
 
-**Operator**
+{{< tabs name="enable-cloudprovider" >}}
+{{% tab name="Operator" %}}
 
 Apply the changes done in `Spinnakerservice` manifest:
 
@@ -462,7 +475,9 @@ Apply the changes done in `Spinnakerservice` manifest:
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest file>
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 Once you've added all of the Managed (Target) accounts, run these commands to set up and enable the AWS cloudprovider setting as whole (this can be run multiple times with no ill effects):
 
@@ -486,3 +501,6 @@ Once you've added all of the Managed (Target) accounts, run these commands to se
    # Apply changes
    hal deploy apply
    ```
+
+	{{% /tab %}}
+	{{< /tabs >}}

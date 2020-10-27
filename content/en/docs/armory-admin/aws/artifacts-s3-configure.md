@@ -10,22 +10,21 @@ description: To use a file stored in S3 in your pipeline, configure Spinnaker to
 
 ## Overview
 
-The example on this page describes how to reference a Helm chart tarball for later use during
-deployment.
+The example on this page describes how to reference a Helm chart tarball for
+later use during deployment.
 
-This is just a quick walkthrough of how to configure your Spinnaker to access
-an S3 bucket as a source of artifacts.  Many of the configurations below have
+This is a quick walkthrough of how to configure Armory to access
+an [S3](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html) bucket as a source of artifacts.  Many of the configurations below have
 additional options that may be useful (or possibly required).  If you need
 more detailed help, take a look at the
 [Halyard command reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-artifact-s3-account)
 
 ## Enable S3 artifacts
 
-If you haven't done this yet (for example, if you've just installed Armory
-Spinnaker fresh), you'll need to enable S3 as an artifact source:
+If you've just installed Armory, you need to enable S3 as an artifact source.
 
-**Operator**
-
+{{< tabs name="enable-s3-artifacts" >}}
+{{% tab name="Operator" %}}
 Add the following snippet to `SpinnakerService` manifest:
 
 ```yaml
@@ -43,19 +42,25 @@ spec:
           enabled: true
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 ```bash
 hal config features edit --artifacts true
 hal config artifact s3 enable
 ```
 
+{{% /tab %}}
+{{< /tabs >}}
+
 ## Add S3 Account
 
 You only need to configure the S3 credentials as an account -- all buckets
 that account has access to can be referenced after that.
 
-**Operator**
+{{< tabs name="add-s3-artifacts" >}}
+{{% tab name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -77,7 +82,11 @@ spec:
             awsSecretAccessKey: abc        # Your AWS Secret Key. This field supports "encrypted" secret references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
 ```
 
-**Halyard**
+Apply your changes with `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>`.
+
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 ```bash
 hal config artifact s3 account add my-s3-account \
@@ -86,6 +95,12 @@ hal config artifact s3 account add my-s3-account \
     --aws-secret-access-key # Will be prompted for this interactively
 ```
 
-Detailed information on all command line options can be found [here](https://www.spinnaker.io/reference/halyard/commands/#hal-config-artifact-s3-account-add)
+Apply your changes with `hal deploy apply`.
 
-Apply your changes with `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if using the Operator, or `hal deploy apply` if using Halyard.
+You can find detailed information on all command line options in the Halyard  [reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-artifact-s3-account-add)
+
+
+{{% /tab %}}
+{{< /tabs >}}
+
+

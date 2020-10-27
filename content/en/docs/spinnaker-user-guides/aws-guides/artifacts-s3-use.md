@@ -5,9 +5,10 @@ aliases:
   - /docs/spinnaker-user-guides/artifacts-s3-use/
 ---
 
-> Before you start, you'll need to [configure an S3 artifact account]({{< ref "artifacts-s3-configure" >}}).  If
-> you don't see an S3 option for Expected Artifacts "Match against" in the UI,
-> you'll need to double-check your Spinnaker is configured with the S3 account.
+> Before you start, you'll need to [configure an S3 artifact account]({{<
+ref "artifacts-s3-configure" >}}). If you don't see an S3 option for Expected
+Artifacts "Match against" in the UI, you'll need to double-check your
+installation is configured with the S3 account. 
 
 ## Identifying an S3 file as an artifact
 
