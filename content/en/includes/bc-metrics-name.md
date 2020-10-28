@@ -4,7 +4,7 @@ Metrics data, specifically the metric names, for Spinnaker changed. These change
 
 **Workarounds**:
 
-* **Observability Plugin**: Use the [Observability Plugin](https://github.com/armory-plugins/armory-observability-plugin) instead of the Monitoring Daemon. The plugin supports New Relic & Prometheus. Note that this resolution requires you to make updates to use the new metric names.
+* **Observability Plugin**: Armory is working on updates to the [Observability Plugin](https://github.com/armory-plugins/armory-observability-plugin) to remedy this issue. The plugin currently supports New Relic & Prometheus. Note that this resolution requires you to make updates to use the new metric names.
    
    For information about how to configure the Observability Plugin, see [Monitoring Spinnaker with Prometheus]({{< ref "prometheus-monitoring" >}}).
 
