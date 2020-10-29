@@ -37,7 +37,7 @@ The user-data field needs to be base64 encoded. It is possible to create this dy
 
 ## Examples
 
-You can find the expression language used in the examples within the [baking images]({{< ref "baking-images" >}}), [deploying]({{< ref "deploying" >}}), [working with Jenkins]({{< ref "working-with-jenkins" >}}) and [finding images]({{< ref "find-images" >}}) guides.
+You can find the expression language used in the examples within the [baking images]({{< ref "aws-baking-images" >}}), [deploying]({{< ref "aws-deploy" >}}), [working with Jenkins]({{< ref "working-with-jenkins" >}}) and [finding images]({{< ref "aws-find-images" >}}) guides.
 
 ## Troubleshooting
 

@@ -16,7 +16,7 @@ Take this screenshot for example:
 
 There is a pipeline called 'Deploy' with two executions, both labeled 'Manual Start'. The top execution is marked as 'Succeeded' while the bottom is marked as 'Cancelled'.
 
-For more information on creating bake and deploy pipelines, checkout the [baking]({{< ref "baking-images" >}}) and [deploying]({{< ref "deploying" >}}) guides.
+For more information on creating bake and deploy pipelines on AWS, checkout the [baking]({{< ref "aws-baking-images" >}}) and [deploying]({{< ref "aws-deploy" >}}) guides.
 
 
 ## Manual execution
@@ -76,4 +76,4 @@ You can select different revisions using the dropdown menu labeled 'Revision' in
 
 ### Hanging or timed out pipelines
 
-A lot of the time pipelines hang because of a misconfigured stage. This is a common occurrence when a server group does not complete its deploy because the deployed instances never pass the healthcheck. This happens both when the healthcheck is misconfigured and/or when the image doesn't bake as expected. These two areas should be investigated first. For more information you can see the troubleshooting topic in the [deployment guide]({{< ref "deploying" >}}).
+A lot of the time pipelines hang because of a misconfigured stage. This is a common occurrence when a server group does not complete its deploy because the deployed instances never pass the health check. This happens both when the health check is misconfigured and/or when the image doesn't bake as expected. These two areas should be investigated first. For more information you can see the troubleshooting topic in the [deployment guide]({{< ref "aws-deploy" >}}).

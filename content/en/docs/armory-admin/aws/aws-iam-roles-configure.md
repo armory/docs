@@ -74,7 +74,8 @@ Here's an example situation:
 
 ### Configuration
 
-**Operator**
+{{< tabs name="configure" >}}
+{{% tab name="Operator" %}}
 
 Here's a sample `SpinnakerService` manifest block that supports the above:
 
@@ -131,7 +132,10 @@ Here's a sample `SpinnakerService` manifest block that supports the above:
                iamRole: BaseIAMRole
    ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
+
 
 Here's a sample halconfig `aws` YAML block that supports the above:
 
@@ -179,6 +183,8 @@ Here's a sample halconfig `aws` YAML block that supports the above:
          defaults:
            iamRole: BaseIAMRole
    ```
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Prerequisites
 
@@ -375,96 +381,108 @@ For each account you want to deploy to, perform the following:
 
 The Clouddriver pod(s) should be now able to assume each of the Managed Roles (Target Roles) in each of your Deployment Target accounts.  We need to configure Armory to be aware of the accounts and roles its allowed to consume.
 
-* **Operator**
+{{< tabs name="managed" >}}
+{{% tab name="Operator" %}}
 
-    For each of the Managed (Target) accounts you want to deploy to, add a new entry to the `accounts` array in `SpinnakerService` manifest as follows:
+For each of the Managed (Target) accounts you want to deploy to, add a new entry to the `accounts` array in `SpinnakerService` manifest as follows:
 
-    ```yaml
-    apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-    kind: SpinnakerService
-    metadata:
-      name: spinnaker
-    spec:
-      spinnakerConfig:
-        config:
-          providers:
-            aws:
-              enabled: true
-              accounts:
-              - name: aws-dev-1                   # Should be a unique name which is used in the Armory UI and API  to identify the deployment target.  For example, aws-dev-1 or aws-dev-2
-                requiredGroupMembership: []
-                providerVersion: V1
-                permissions: {}
-                accountId: '111111111111'         # Should be the account ID for the Managed Role (Target Role) you are  assuming.  For example, if the role ARN is arn:aws:iam::123456789012:role/ DevSpinnakerManagedRole, then ACCOUNT_ID would be 123456789012
-                regions:                          # Configure the regions you want to deploy to
-                - name: us-east-1
-                - name: us-west-2
-                assumeRole: role/spinnakerManaged # Should be the full role name within the account, including the type of object (role). For example, if the role ARN is arn:aws:iam::123456789012:role/DevSpinnakerManagedRole, then ROLE_NAME would be role/DevSpinnakerManagedRole
-              primaryAccount: aws-dev-1
-              bakeryDefaults:
-                templateFile: aws-ebs-shared.json
-                baseImages: []
-                awsAssociatePublicIpAddress: true
-                defaultVirtualizationType: hvm
-              defaultKeyPairTemplate: '{{name}}-keypair'
-              defaultRegions:
-              - name: us-west-2
-              defaults:
-                iamRole: BaseIAMRole
+```yaml
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+name: spinnaker
+spec:
+spinnakerConfig:
+  config:
+    providers:
+      aws:
+        enabled: true
+        accounts:
+        - name: aws-dev-1                   # Should be a unique name which is used in the Armory UI and API  to identify the deployment target.  For example, aws-dev-1 or aws-dev-2
+          requiredGroupMembership: []
+          providerVersion: V1
+          permissions: {}
+          accountId: '111111111111'         # Should be the account ID for the Managed Role (Target Role) you are  assuming.  For example, if the role ARN is arn:aws:iam::123456789012:role/ DevSpinnakerManagedRole, then ACCOUNT_ID would be 123456789012
+          regions:                          # Configure the regions you want to deploy to
+          - name: us-east-1
+          - name: us-west-2
+          assumeRole: role/spinnakerManaged # Should be the full role name within the account, including the type of object (role). For example, if the role ARN is arn:aws:iam::123456789012:role/DevSpinnakerManagedRole, then ROLE_NAME would be role/DevSpinnakerManagedRole
+        primaryAccount: aws-dev-1
+        bakeryDefaults:
+          templateFile: aws-ebs-shared.json
+          baseImages: []
+          awsAssociatePublicIpAddress: true
+          defaultVirtualizationType: hvm
+        defaultKeyPairTemplate: '{{name}}-keypair'
+        defaultRegions:
+        - name: us-west-2
+        defaults:
+          iamRole: BaseIAMRole
 
-    ```
+```
 
-* **Halyard**
+{{% /tab %}}
 
-    For each of the Managed (Target) accounts you want to deploy to, perform the following from your Halyard instance:
+{{% tab name="Halyard" %}}
 
-    1. Run this command, **updating fields as follows**:
-        * `AWS_ACCOUNT_NAME` should be a unique name which is used in the Armory UI and API  to identify the deployment target.  For example, `aws-dev-1` or `aws-dev-2`
-        * `ACCOUNT_ID` should be the account ID for the Managed Role (Target Role) you are  assuming.  For example, if the role ARN is `arn:aws:iam::123456789012:role/ DevSpinnakerManagedRole`, then ACCOUNT_ID would be `123456789012`
-        * `ROLE_NAME` should be the full role name within the account, including the type of  object (`role`).  For example, if the role ARN is `arn:aws:iam::123456789012:role/ DevSpinnakerManagedRole`, then ROLE_NAME would be `role/DevSpinnakerManagedRole`
+For each of the Managed (Target) accounts you want to deploy to, perform the following from your Halyard instance:
 
-        ```bash
-        # Enter the account name you want Armory to use to identify the deployment target,  the account ID, and the role name.
-        export AWS_ACCOUNT_NAME=aws-dev-1
-        export ACCOUNT_ID=123456789012
-        export ROLE_NAME=role/DevSpinnakerManagedRole
+1. Run this command, **updating fields as follows**:
+   * `AWS_ACCOUNT_NAME` should be a unique name which is used in the Armory UI and API  to identify the deployment target.  For example, `aws-dev-1` or `aws-dev-2`
+   * `ACCOUNT_ID` should be the account ID for the Managed Role (Target Role) you are  assuming.  For example, if the role ARN is `arn:aws:iam::123456789012:role/ DevSpinnakerManagedRole`, then ACCOUNT_ID would be `123456789012`
+   * `ROLE_NAME` should be the full role name within the account, including the type of  object (`role`).  For example, if the role ARN is `arn:aws:iam::123456789012:role/ DevSpinnakerManagedRole`, then ROLE_NAME would be `role/DevSpinnakerManagedRole`
 
-        hal config provider aws account add ${AWS_ACCOUNT_NAME} \
-            --account-id ${ACCOUNT_ID} \
-            --assume-role ${ROLE_NAME}
-        ```
+   ```bash
+   # Enter the account name you want Armory to use to identify the deployment target,  the account ID, and the role name.
+   export AWS_ACCOUNT_NAME=aws-dev-1
+   export ACCOUNT_ID=123456789012
+   export ROLE_NAME=role/DevSpinnakerManagedRole
 
-    1. Optionally, edit the account with additional options such as those indicated in the [halyard documentation](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-aws-account-edit).  For example, to set the regions that you can deploy to:
+   hal config provider aws account add ${AWS_ACCOUNT_NAME} \
+      --account-id ${ACCOUNT_ID} \
+      --assume-role ${ROLE_NAME}
+   ```
 
-        ```bash
-        export AWS_ACCOUNT_NAME=aws-dev-1
-        hal config provider aws account edit ${AWS_ACCOUNT_NAME} \
-            --regions us-east-1,us-west-2
-        ```
+1. Optionally, edit the account with additional options such as those indicated in the [halyard documentation](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-aws-account-edit).  For example, to set the regions that you can deploy to:
+
+   ```bash
+   export AWS_ACCOUNT_NAME=aws-dev-1
+   hal config provider aws account edit ${AWS_ACCOUNT_NAME} \
+      --regions us-east-1,us-west-2
+   ```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ### Instance Role Part 7: Adding/Enabling the AWS CloudProvider configuration to Armory
 
-* **Operator**
+{{< tabs name="enable" >}}
+{{% tab name="Operator" %}}
 
-    Apply the changes done in `Spinnakerservice` manifest:
+Apply the changes done in `Spinnakerservice` manifest:
 
-    ```bash
-    kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest file>
-    ```
+```bash
+kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest file>
+```
 
-* **Halyard**
+{{% /tab %}}
 
-    Once you've added all of the Managed (Target) accounts, run these commands to set up and enable the AWS CloudProvider setting as whole (this can be run multiple times with no ill effects):
+{{% tab name="Halyard" %}}
 
-    1. Enable the AWS Provider
+Once you've added all of the Managed (Target) accounts, run these commands to set up and enable the AWS CloudProvider setting as whole (this can be run multiple times with no ill effects):
 
-        ```bash
-        hal config provider aws enable
-        ```
+1. Enable the AWS Provider
 
-    1. Apply all changes:
+   ```bash
+   hal config provider aws enable
+   ```
 
-        ```bash
-        # Apply changes
-        hal deploy apply
-        ```
+1. Apply all changes:
+
+   ```bash
+   # Apply changes
+   hal deploy apply
+   ```
+
+{{% /tab %}}
+{{< /tabs >}}

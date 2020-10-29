@@ -231,3 +231,7 @@ _The photo above of the Spruce Picea abies shoot with foliage buds: Bjørn Erik 
 
 
 
+<<<<<<< HEAD:content/en/docs/smoke-test/index.md
+See the {{< linkWithTitle pacrd-crd-docs.md >}} for an example.
+=======
+>>>>>>> origin:content/en/docs/zz-contribute/smoke-test.md
