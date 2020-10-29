@@ -119,7 +119,7 @@ The following table lists specific features for Pipelines as Code and their supp
 
 ### Pipelines as CRD
 
-[![Experiment](/images/exp.svg)]({{< ref "release-definitions#experiment">}}) ![Armory](/images/armory.svg)
+[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) ![Armory](/images/armory.svg)
 
 [PaCRD]({{< ref "pacrd" >}}) gives you the ability to manage your pipelines as
 Kubernetes custom resources.
