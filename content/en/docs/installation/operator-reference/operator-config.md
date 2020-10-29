@@ -267,7 +267,7 @@ Validation options that apply to all validations that Operator performs:
 - `spec.validation.failFast`: Boolean. Defaults to false. If true, validation stops at the first error.
 - `spec.validation.frequencySeconds`: Optional. Integer. Define a grace period before a validation runs again. For example, if you specify a value of `120` and edit the `SpinnakerService` without changing an account within a 120 second window, the validation on that account does not run again.
 
-Additionally, the following settings are specific to kubernetes, docker, aws, s3, CI tools, metric stores, persistent storage, or notification systems:
+Additionally, the following settings are specific to Kubernetes, Docker, AWS, AWS S3, CI tools, metric stores, persistent storage, or notification systems:
 - `spec.validation.providers.kubernetes`
 - `spec.validation.providers.docker`
 - `spec.validation.providers.aws`
