@@ -436,12 +436,11 @@ The [Policy Engine]({{< ref "policy-engine-enable" >}}) gives you the ability to
 
 The Policy Engine requires an Open Policy Agent server. This can be deployed in the same cluster as Spinnaker or in an external cluster.
 
-The following table lists the requirements
+The following table lists the requirements:
 
 | Requirement | Version         | Note                                                                                                                                  |
 | ----------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| OPA Server  | 0.12.x - 0.13.x |                                                                                                                                       |
-| OPA API     | v1              | Only compatible with OPA’s v1 API. When specifying the OPA server URL, include `v1` in the URL: `http://<your-opa-server>:<port>/v1`. |
+| OPA Server  | 0.12.x or later | Specifically, the v1 API must be available. When specify the OPA server URL in the Armory configs, include `v1` in the URL: `http://<your-opa-server>:<port>/v1`.                                                                                                                                      |
 
 **Supported validations**
 
