@@ -11,6 +11,7 @@ docker create -ti --name armory_docs_container armory/documentation
 docker cp armory_docs_container:/srv/jekyll/Gemfile.lock Gemfile.lock
 docker rm -fv armory_docs_container
 
+
 docker run --rm -ti \
   --name=documentation \
   -p 4000:4000 -p 5678:5678 -p 35729:35729 \

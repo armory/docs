@@ -1,28 +1,22 @@
-{
-  "apiVersion": "v1",
-  "kind": "PodTemplate",
-  "metadata": {
-    "name": "nginx"
-  },
-  "template": {
+  {
+    "apiVersion": "v1",
+    "kind": "PodTemplate",
     "metadata": {
-      "labels": {
-        "name": "nginx"
-      },
-      "generateName": "nginx-"
+      "name": "nginx"
     },
-    "spec": {
-      "containers": [
-        {
-          "name": "nginx",
-          "image": "dockerfile/nginx",
-          "ports": [
-            {
-              "containerPort": 80
-            }
-          ]
-        }
-      ]
+    "template": {
+      "metadata": {
+        "labels": {
+          "name": "nginx"
+        },
+        "generateName": "nginx-"
+      },
+      "spec": {
+         "containers": [{
+           "name": "nginx",
+           "image": "dockerfile/nginx",
+           "ports": [{"containerPort": 80}]
+         }]
+      }
     }
   }
-}
