@@ -72,10 +72,10 @@ spec:
               - create2
             accountId: '025179128306'
             regions:
-              - name: us-east-1
-              - name: us-east-2
-              - name: us-west-1
-              - name: us-west-2
+            - name: us-east-1
+            - name: us-east-2
+            - name: us-west-1
+            - name: us-west-2
             assumeRole: role/german-test-role
           primaryAccount: aws-dev
           bakeryDefaults:
@@ -104,10 +104,10 @@ spec:
                 spotPriceAutoProduct: 123
           defaultKeyPairTemplate: '{{"{{"}}name{{"}}"}}-keypair'
           defaultRegions:
-            - name: us-east-1
-            - name: us-east-2
-            - name: us-west-1
-            - name: us-west-2
+          - name: us-east-1
+          - name: us-east-2
+          - name: us-west-1
+          - name: us-west-2
           defaults:
             iamRole: BaseIAMRole
           accessKeyId: xyz # Your AWS Access Key ID. If not provided, Halyard/Spinnaker will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default. Note that if you are baking AMI's via Rosco, you may also need to set the access key on the AWS bakery default options.
@@ -170,7 +170,7 @@ spec:
             packerResourceGroup: abc # The resource group to use if baking images with Packer.
             packerStorageAccount: abc # The storage account to use if baking images with Packer.
             regions:
-              - name: abc
+            - name: abc
             useSshPublicKey: true # Whether to use SSH public key to provision the linux vm. The default value is true which means using the ssh public key. Setting it to false means using the password instead.
           primaryAccount: azure-dev
           bakeryDefaults:
@@ -186,7 +186,7 @@ spec:
                 offer: abc
                 sku: abc
                 version: abc
-              virtualizationSettings: {}
+              virtualizationSettings: { }
         dcos:
           enabled: false
           accounts:
@@ -320,7 +320,7 @@ spec:
               useInternalIp: true # Use the internal rather than external IP of the VM baking your image.
           defaultKeyPairTemplate: '{{"{{"}}name{{"}}"}}-keypair'
           defaultRegions: # A list of regions for caching and mutating calls, applied to all accounts unless overridden.
-           - name: abc
+          - name: abc
         huaweicloud:
           enabled: false
           accounts:
@@ -404,7 +404,7 @@ spec:
               maxEntriesPerAgent: 100
             kubeconfigFile: kubecfg # The path to your kubeconfig file. By default, it will be under the Spinnaker user's home directory in the typical .kube/config location.
             kubeconfigContents: | # Inline kubeconfig file contents
-                abc
+              abc
             kubectlPath: /root # Alternate path inside clouddriver pod of the kubectl binary
             kubectlRequestTimeoutSeconds: 300 # Timeout in seconds of kubectl calls
             checkPermissionsOnStartup: false # When false, clouddriver will skip the permission checks for all kubernetes kinds at startup. This can save a great deal of time during clouddriver startup when you have many kubernetes accounts configured. This disables the log messages at startup about missing permissions.
@@ -595,11 +595,11 @@ spec:
             mountPath: abc
             securityContext:
               privileged: false
-        initContainers: {}
-        hostAliases: {}
+        initContainers: { }
+        hostAliases: { }
         nodeSelectors:
           abc: def
-        affinity: {}
+        affinity: { }
         tolerations:
           spin-clouddriver:
           - key: abc
@@ -820,7 +820,7 @@ spec:
               scope: user:email # The scope for your OAuth provider.
               preEstablishedRedirectUri: abc # The externally accessible URL for Gate. For use with load balancers that do any kind of address manipulation for Gate traffic, such as an SSL terminating load balancer.
               useCurrentUri: false
-            userInfoRequirements: {} # The map of requirements the userInfo request must have. This is used to restrict user login to specific domains or having a specific attribute. Use equal signs between key and value, and additional key/value pairs need to repeat the flag. Example: '--user-info-requirements foo=bar --userInfoRequirements baz=qux'.
+            userInfoRequirements: { } # The map of requirements the userInfo request must have. This is used to restrict user login to specific domains or having a specific attribute. Use equal signs between key and value, and additional key/value pairs need to repeat the flag. Example: '--user-info-requirements foo=bar --userInfoRequirements baz=qux'.
             resource:
               userInfoUri: https://api.github.com/user # The user info uri for your OAuth provider.
             userInfoMapping:
@@ -998,89 +998,89 @@ spec:
       canary:
         enabled: true
         serviceIntegrations:
-          - name: google
-            enabled: true
-            accounts:
-            - name: abc
-              project: abc # The Google Cloud Platform project the canary service will use to consume GCS and Stackdriver.
-              jsonPath: sa.json # The path to a JSON service account that Spinnaker will use as credentials. This is only needed if Spinnaker is not deployed on a Google Compute Engine VM, or needs permissions not afforded to the VM it is running on. See https://cloud.google.com/compute/docs/access/service-accounts for more information.
-              bucket: abc # The name of a storage bucket that your specified account has access to. If you specify a globally unique bucket name that doesn't exist yet, Kayenta will create that bucket for you.
-              bucketLocation: abc # This is only required if the bucket you specify doesn't exist yet. In that case, the bucket will be created in that location. See https://cloud.google.com/storage/docs/managing-buckets#manage-class-location.
-              rootFolder: kayenta-prod # The root folder in the chosen bucket to place all of the canary service's persistent data in (Default: kayenta).
-              supportedTypes: # One of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
-              - METRICS_STORE
-              - CONFIGURATION_STORE
-              - OBJECT_STORE
-            gcsEnabled: true # Whether or not to enable GCS as a persistent store (Default: false).
-            stackdriverEnabled: false # Whether or not to enable Stackdriver as a metrics service (Default: false).
-            metadataCachingIntervalMS: 60000 # Number of milliseconds to wait in between caching the names of available metric types (for use in building canary configs; Default: 60000).
-          - name: prometheus
-            enabled: false
-            accounts:
-            - name: abc
-              endpoint:
-                baseUrl: abc # The base URL to the Prometheus server.
-              username: abc # A basic auth username.
-              password: abc # A basic auth password.
-              usernamePasswordFile: creds # The path to a file containing "username:password".
-              supportedTypes: # One of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
-              - METRICS_STORE
-              - CONFIGURATION_STORE
-              - OBJECT_STORE
-            metadataCachingIntervalMS: 60000 # Number of milliseconds to wait in between caching the names of available metric types (for use in building canary configs; Default: 60000).
-          - name: datadog
-            enabled: true
-            accounts:
-            - name: my-datadog-account
-              endpoint:
-                baseUrl: https://app.datadoghq.com # The base URL to the Datadog server.
-              apiKey: abc # Your org's unique Datadog API key. See https://app.datadoghq.com/account/settings#api.
-              applicationKey: abc # Your Datadog application key. See https://app.datadoghq.com/account/settings#api.
-              supportedTypes: # One of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
-              - METRICS_STORE
-              - CONFIGURATION_STORE
-              - OBJECT_STORE
-          - name: signalfx
-            enabled: true
-            accounts:
-            - name: abc
-              endpoint:
-                baseUrl: https://stream.signalfx.com # The base URL to the SignalFx server. Defaults to https://stream.signalfx.com
-              accessToken: abc # The SignalFx access token.
-              defaultScopeKey: abc # Scope key is used to distinguish between base and canary deployments. If omitted every request must supply the _scope_key param in extended scope params
-              defaultLocationKey: abc # Location key is used to filter by deployment region. If omitted requests must supply the _location_key if it is needed.
-              supportedTypes: # One of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
-              - METRICS_STORE
-              - CONFIGURATION_STORE
-              - OBJECT_STORE
-          - name: aws
-            enabled: false
-            accounts:
-            - name:  abc
-              bucket: abc # The name of a storage bucket that your specified account has access to. If you specify a globally unique bucket name that doesn't exist yet, Kayenta will create that bucket for you.
-              region: abc # The region to use.
-              rootFolder: kayenta # The root folder in the chosen bucket to place all of the canary service's persistent data in (Default: kayenta).
-              profileName: default # The profile name to use when resolving AWS credentials. Typically found in ~/.aws/credentials (Default: default).
-              endpoint: abc # The endpoint used to reach the service implementing the AWS api. Typical use is with Minio.
-              accessKeyId: abc # The default access key used to communicate with AWS.
-              secretAccessKey: abc # The secret key used to communicate with AWS.
-              supportedTypes: # One of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
-              - METRICS_STORE
-              - CONFIGURATION_STORE
-              - OBJECT_STORE
-            s3Enabled: false # Whether or not to enable S3 as a persistent store (Default: false).
-          - name: newrelic
-            enabled: false
-            accounts:
-            - name:  abc
-              endpoint:
-                baseUrl: https://app.datadoghq.com # The base URL to the New Relic Insights server.
-              apiKey: abc # Your account's unique New Relic Insights API key. See https://docs.newrelic.com/docs/insights/insights-api/get-data/query-insights-event-data-api.
-              applicationKey: abc # Your New Relic account id. See https://docs.newrelic.com/docs/accounts/install-new-relic/account-setup/account-id.
-              supportedTypes: # One of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
-              - METRICS_STORE
-              - CONFIGURATION_STORE
-              - OBJECT_STORE
+        - name: google
+          enabled: true
+          accounts:
+          - name: abc
+            project: abc # The Google Cloud Platform project the canary service will use to consume GCS and Stackdriver.
+            jsonPath: sa.json # The path to a JSON service account that Spinnaker will use as credentials. This is only needed if Spinnaker is not deployed on a Google Compute Engine VM, or needs permissions not afforded to the VM it is running on. See https://cloud.google.com/compute/docs/access/service-accounts for more information.
+            bucket: abc # The name of a storage bucket that your specified account has access to. If you specify a globally unique bucket name that doesn't exist yet, Kayenta will create that bucket for you.
+            bucketLocation: abc # This is only required if the bucket you specify doesn't exist yet. In that case, the bucket will be created in that location. See https://cloud.google.com/storage/docs/managing-buckets#manage-class-location.
+            rootFolder: kayenta-prod # The root folder in the chosen bucket to place all of the canary service's persistent data in (Default: kayenta).
+            supportedTypes: # One of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
+            - METRICS_STORE
+            - CONFIGURATION_STORE
+            - OBJECT_STORE
+          gcsEnabled: true # Whether or not to enable GCS as a persistent store (Default: false).
+          stackdriverEnabled: false # Whether or not to enable Stackdriver as a metrics service (Default: false).
+          metadataCachingIntervalMS: 60000 # Number of milliseconds to wait in between caching the names of available metric types (for use in building canary configs; Default: 60000).
+        - name: prometheus
+          enabled: false
+          accounts:
+          - name: abc
+            endpoint:
+              baseUrl: abc # The base URL to the Prometheus server.
+            username: abc # A basic auth username.
+            password: abc # A basic auth password.
+            usernamePasswordFile: creds # The path to a file containing "username:password".
+            supportedTypes: # One of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
+            - METRICS_STORE
+            - CONFIGURATION_STORE
+            - OBJECT_STORE
+          metadataCachingIntervalMS: 60000 # Number of milliseconds to wait in between caching the names of available metric types (for use in building canary configs; Default: 60000).
+        - name: datadog
+          enabled: true
+          accounts:
+          - name: my-datadog-account
+            endpoint:
+              baseUrl: https://app.datadoghq.com # The base URL to the Datadog server.
+            apiKey: abc # Your org's unique Datadog API key. See https://app.datadoghq.com/account/settings#api.
+            applicationKey: abc # Your Datadog application key. See https://app.datadoghq.com/account/settings#api.
+            supportedTypes: # One of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
+            - METRICS_STORE
+            - CONFIGURATION_STORE
+            - OBJECT_STORE
+        - name: signalfx
+          enabled: true
+          accounts:
+          - name: abc
+            endpoint:
+              baseUrl: https://stream.signalfx.com # The base URL to the SignalFx server. Defaults to https://stream.signalfx.com
+            accessToken: abc # The SignalFx access token.
+            defaultScopeKey: abc # Scope key is used to distinguish between base and canary deployments. If omitted every request must supply the _scope_key param in extended scope params
+            defaultLocationKey: abc # Location key is used to filter by deployment region. If omitted requests must supply the _location_key if it is needed.
+            supportedTypes: # One of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
+            - METRICS_STORE
+            - CONFIGURATION_STORE
+            - OBJECT_STORE
+        - name: aws
+          enabled: false
+          accounts:
+          - name: abc
+            bucket: abc # The name of a storage bucket that your specified account has access to. If you specify a globally unique bucket name that doesn't exist yet, Kayenta will create that bucket for you.
+            region: abc # The region to use.
+            rootFolder: kayenta # The root folder in the chosen bucket to place all of the canary service's persistent data in (Default: kayenta).
+            profileName: default # The profile name to use when resolving AWS credentials. Typically found in ~/.aws/credentials (Default: default).
+            endpoint: abc # The endpoint used to reach the service implementing the AWS api. Typical use is with Minio.
+            accessKeyId: abc # The default access key used to communicate with AWS.
+            secretAccessKey: abc # The secret key used to communicate with AWS.
+            supportedTypes: # One of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
+            - METRICS_STORE
+            - CONFIGURATION_STORE
+            - OBJECT_STORE
+          s3Enabled: false # Whether or not to enable S3 as a persistent store (Default: false).
+        - name: newrelic
+          enabled: false
+          accounts:
+          - name: abc
+            endpoint:
+              baseUrl: https://app.datadoghq.com # The base URL to the New Relic Insights server.
+            apiKey: abc # Your account's unique New Relic Insights API key. See https://docs.newrelic.com/docs/insights/insights-api/get-data/query-insights-event-data-api.
+            applicationKey: abc # Your New Relic account id. See https://docs.newrelic.com/docs/accounts/install-new-relic/account-setup/account-id.
+            supportedTypes: # One of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
+            - METRICS_STORE
+            - CONFIGURATION_STORE
+            - OBJECT_STORE
         reduxLoggerEnabled: true # Whether or not to enable redux logging in the canary module in deck (Default: true).
         defaultMetricsAccount: abc # Name of metrics account to use by default.
         defaultStorageAccount: abc # Name of storage account to use by default.
@@ -1102,7 +1102,7 @@ spec:
                 abc:
                   id: abc
                   enabled: false
-                  config: {}
+                  config: { }
           repositories:
             abc:
               id: abc
@@ -1152,17 +1152,17 @@ spec:
             path: abc # (Default: kubernetes) (Applies to KUBERNETES authentication method) Path of the kubernetes authentication backend mount.
             role: spinnaker # (Applies to KUBERNETES authentication method) Name of the role against which the login is being attempted.
             authMethod: KUBERNETES # Method used to authenticate with the Vault endpoint. Must be either KUBERNETES for Kubernetes service account auth or TOKEN for Vault token auth. The TOKEN method will require a VAULT_TOKEN environment variable set for Operator and the services.
-    profiles: {}
-    service-settings: {}
-    files: {}
+    profiles: { }
+    service-settings: { }
+    files: { }
   expose:
     type: service
     service:
       type: LoadBalancer
       publicPort: 80
-      annotations: {}
+      annotations: { }
       overrides:
         deck:
           type: LoadBalancer
           publicPort: 80
-          annotations: {}
+          annotations: { }
