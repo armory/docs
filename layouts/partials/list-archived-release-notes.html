@@ -3,7 +3,7 @@
     {{ $pagesReverse := (where .Site.Pages "Section" .Section).ByWeight.Reverse }}
     {{ $parent := .Page }}
 
-	<ul>
+  <ul>
       {{$displayedMinorVersions := 0}}
       {{$currentMajor := 1000}}
       {{$currentMinor := 1000}}
@@ -25,10 +25,10 @@
               {{end}}
 
               {{if gt $displayedMinorVersions 2}}
-								<li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+                <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
               {{end}}
           {{end}}
       {{end}}
-	</ul>
+  </ul>
 
 </div>
