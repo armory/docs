@@ -53,7 +53,7 @@ patchesStrategicMerge:
 
 You can then set the [plugin options]({{< ref "agent-plugin-options" >}}) in `agent-plugin/config.yaml`.
 
-* For topologies like [Infrastructure mode](({{< ref "armory-agent#infrastructure-mode" >}})) and [Agent mode](({{< ref "armory-agent#infrastructure-mode" >}})), in which the Agent is installed in a different cluster from Spinnaker, you should configure TLS through a load balancer.
+* For topologies like [Infrastructure mode]({{< ref "armory-agent#infrastructure-mode" >}}) and [Agent mode]({{< ref "armory-agent#agent-mode" >}}), in which the Agent is installed in a different cluster from Spinnaker, you should configure TLS through a load balancer.
 * For Spinnaker installations with one Clouddriver instance and no Redis, you can use `kubesvc.cluster`. However, a Spinnaker installation with Redis is recommended.
 * When running Spinnaker in [HA](https://spinnaker.io/reference/halyard/high-availability/), make sure to modify the following files:
 
