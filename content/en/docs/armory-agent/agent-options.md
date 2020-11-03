@@ -14,7 +14,7 @@ At a minimum you will need to add an account, give it a name, and set its Spinna
 
 ### Spinnaker Service and Infrastructure modes
 
-In these modes, you set up multiple accounts per agent. Your configuration should look like:
+In these modes, you set up multiple accounts per agent. Your configurtion should look like:
 
 ```yaml
 kubernetes:
@@ -49,8 +49,8 @@ kubernetes:
 | `clouddriver.tls.insecureSkipVerify` | boolean | false | Do not verify the endpoint's certificate |
 | `clouddriver.tls.clientCertFile`<br>`clouddriver.tls.clientKeyFile`<br>`clouddriver.tls.clientKeyFilePassword`  | string<br>string<br>string| none<br>none<br>none | Client certificate file for mTLS<br>Client key file if not included in the certificate<br>Password the key file if needed|
 | `clouddriver.tls.cacertFile` | string | none |  If provided, verify endpoint certificate with the trust store. Otherwise, the system trust store is used. |
-| `clouddriver.auth.token` | string | none | Optional bearer token added to each request back to the endpoint. |
-| `clouddriver.auth.tokenCommand.command`<br>`clouddriver.auth.tokenCommand.args`<br>`clouddriver.auth.tokenCommand.format`<br>`clouddriver.auth.tokenCommand.refreshIntervalSeconds` | string<br>[]string<br>string<br>integer | none<br>none<br>[]<br>0 | Allows to invoke a command every `refreshIntervalSeconds` seconds that outputs either the token (`format` is `raw`) or a JSON object with an attribute of `token` if `format` is `json` or left empty. `args` is the optional list of parameters to the command.|
+| `clouddriver.auth.token`| string | none | <span class="badge badge-primary">0.3.0+</span> Optional bearer token added to each request back to the endpoint. |
+| `clouddriver.auth.tokenCommand.command`<br>`clouddriver.auth.tokenCommand.args`<br>`clouddriver.auth.tokenCommand.format`<br>`clouddriver.auth.tokenCommand.refreshIntervalSeconds` | string<br>[]string<br>string<br>integer | none<br>none<br>[]<br>0 | <span class="badge badge-primary">0.3.0+</span> Allows to invoke a command every `refreshIntervalSeconds` seconds that outputs either the token (`format` is `raw`) or a JSON object with an attribute of `token` if `format` is `json` or left empty. `args` is the optional list of parameters to the command.|
 | `logging.file`  | string            | stdout if not defined   | File to save logs to  |
 | `logging.level`| string | `INFO` | Log level. Can be any of (case insensitive):<br>`panic`, `fatal` , `error`, `warn` (or `warning`),  `info`, `debug`, `trace` |
 | `kubernetes.reconnectTimeoutMs` | integer           | 5000 | How long to wait before reconnecting to Spinnaker |
