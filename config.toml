@@ -146,7 +146,7 @@ prism_syntax_highlighting = true
 latestVersion2="0.2.3"
 latestVersion3="0.3.13"
 latestVersion4="0.4.8"
-latestVersion5="0.5.0-rc.14"
+latestVersion5="0.5.0-rc.15"
 
 # User interface configuration
 [params.ui]
