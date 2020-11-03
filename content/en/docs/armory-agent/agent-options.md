@@ -14,7 +14,7 @@ At a minimum you will need to add an account, give it a name, and set its Spinna
 
 ### Spinnaker Service and Infrastructure modes
 
-In these modes, you set up multiple accounts per agent. Your configurtion should look like:
+In these modes, you set up multiple accounts per agent. Your configuration should look like:
 
 ```yaml
 kubernetes:
