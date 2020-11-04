@@ -18,7 +18,7 @@ This guide includes:
 
 ## Enabling Pipelines as Code
 
-To configure Pipelines as Code, start by enabling it:
+_Dinghy_ is the microservice for Pipelines as Code. You need to enable it to use Pipelines as Code.
 
 {{< tabs name="enable" >}}
 {{% tab name="Operator" %}}
@@ -57,7 +57,7 @@ hal armory dinghy enable
 {{% /tab %}}
 {{< /tabs >}}
 
-**Dinghy** is the microservice for Pipelines as Code.
+
 
 ## Configuring Redis
 
