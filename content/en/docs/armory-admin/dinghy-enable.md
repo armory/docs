@@ -7,7 +7,7 @@ description: >
   Pipelines as Code allows you to create and maintain pipeline templates in source control.
 ---
 
-{{< include "note-github-branch-name.md" >}}
+{{% include "admin/pac-overview.md" %}}
 
 This guide includes:
 
@@ -16,11 +16,8 @@ This guide includes:
 * GitHub [custom branch configuration](#custom-branch-configuration) for information about how to explicitly set the branch that Pipelines as Code uses.
 
 
-## Overview
-
-To get an overview of Pipelines as Code, check out the [user guide]({{< ref "using-dinghy" >}}).
-
 ## Enabling Pipelines as Code
+
 To configure Pipelines as Code, start by enabling it:
 
 {{< tabs name="enable" >}}
