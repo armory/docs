@@ -192,7 +192,9 @@ The following screenshot shows what your GitHub settings should resemble:
 {{< figure src="/images/dinghy/pr_validation/branch_mandatory.png" alt="Configured dinghy PR validation." >}}
 
 
-### Bitbucket / Stash
+### Bitbucket Server (Stash) and Bitbucket Cloud
+
+Bitbucket has both cloud and server offerings. See the Atlassian [docs](https://confluence.atlassian.com/bitbucketserver/bitbucket-rebrand-faq-779298912.html) for more on the name change from Stash to Bitbucket Server. Consult your company's Bitbucket support desk if you need help determining what flavor and version of Bitbucket you are using.
 
 {{< tabs name="bitbucket" >}}
 {{% tab name="Operator" %}}
