@@ -10,6 +10,8 @@ Or you can write raw HTML :shrug: You might want to do that if you need to do bu
 Or a mixture of html + markdown. ## Deployment targets has an example of what this might look like
 -->
 
+This page describes the features and capabilities that Armory supports. Although Spinnaker™ is part of the Armory Platform, Armory does not support all of Spinnakers capabilities.
+
 ## Legend
 <!-- Copy and paste the below badges that apply to your area -->
 **Feature status** describes what state the feature is in and where you should install it. For more information, see [Release Definitions]({{< ref "release-definitions" >}}). You can also click on the feature status badge directly.
@@ -22,9 +24,9 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 **Enterprise availablility**
 
-![OSS](/images/oss.svg) The feature or parts of it are also available in Open Source Spinnaker.
+![OSS](/images/oss.svg) The feature or parts of it are available in Open Source Spinnaker.
 
-![Armory](/images/armory.svg) The feature or parts of it are available in Armory.
+![Armory](/images/armory.svg) The feature or parts of it are available only as part of the Armory Platform.
 
 **Versions**
 
