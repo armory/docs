@@ -12,11 +12,25 @@ Armory provides a set of credentials to log in to the Cloud Console. These are s
 1. Go to the Armory Cloud Console: https://console.cloud.armory.io.
 2. Log in with the credentials that Armory provides.
 
-The first time logging into the Cloud Console, there will not be any environments created. So select the sandbox environment to get started.
+From here, you can select what environment you want to configure or open Armory Platform for that environment.
 
-## Adding secrets
+## Configuring the environment
 
-Start by adding configuration secrets to Armory Cloud to grant your app developers access to resources such as deployment targets. This way, you do not have secrets visible in plain text for your configurations. Armory Cloud stores and transmits these secrets securely. Since the secrets are encrypted, they are not visible in the Armory Cloud Console. You reference them by a name you assign when needed.
+If you are setting up the Armory Cloud environment for the first time, you need the following information:
+
+**Required**
+
+* [Artifact sources](#artifact-sources) you want to connect to. Artifacts are external JSON objects like an image, a file stored somewhere, or a binary blob in a bucket.
+* [Deployment targets](#deployment-targets) you want your app developers to have access to.
+* [Secrets](#secrets), such as AWS secret IDs, that Armory Cloud encrypts that you can use when configuring resources like deployment targets
+  
+**Optional**
+
+* Packer files to perform customized image baking.
+
+### Secrets
+
+Start by adding configuration secrets, such as your AWS secret key, to Armory Cloud. This way, you do not have secrets visible in plain text for your configurations. Use these secrets Armory Cloud stores and transmits these secrets securely. Since the secrets are encrypted, they are not visible in the Armory Cloud Console after you enter them. 
 
 Note that these are configuration secrets meant for information such as AWS Secret Access Keys. They are separate from any kind of app secret your developers may be using within their deployment pipelines.
 
@@ -32,11 +46,6 @@ If this is your first time configuring an environment, consider adding the follo
 - Artifact sources, such as a Docker or ECR Registry. These are a type of external resource your app developers can reference in their delivery pipelines. You can learn more about artifacts later on in this guide when you configure [Artifact Sources](#artifact-sources).
 - Deployment target, such as an AWS Secert Access Key. These are where your app developers want to deploy their coed to. You can learn more later on in this guide when you configure [Deployment Targets](#deployment-targets).
 
-## Configuring the environment
-
-If you are setting up the Armory Cloud environment for the first time, you need require the following information:
-
-<!-- add link to  saas pcm once that exists. for now, adding it to the sections directly.-->
 
 ### Artifact Sources
 
@@ -64,10 +73,14 @@ Deployment targets are the destination for the code your app developers want to 
 2. Select the deployment target you want to add.
 3. Click **New** and configure the account:
 
-### Pipeline Triggers
+### Packer Files
 
-These are optional but provide a way for your developers to automatically trigger their deployment pipelines.
+Armory Cloud
 
-## Accessing Spinnaker
+<!--### Pipeline Triggers
+
+These are optional but provide a way for your developers to automatically trigger their deployment pipelines. -->
+
+## Accessing the Armory Platform
 
 Once the environments are configured, your Application Developers can access the cloud deployment of the Armory Platform to start deploying applications.
