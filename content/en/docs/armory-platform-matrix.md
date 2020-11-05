@@ -10,7 +10,7 @@ Or you can write raw HTML :shrug: You might want to do that if you need to do bu
 Or a mixture of html + markdown. ## Deployment targets has an example of what this might look like
 -->
 
-This page describes the features and capabilities that Armory supports. Although Spinnaker™ is part of the Armory Platform, Armory does not support all of Spinnakers capabilities.
+This page describes the features and capabilities that Armory supports. Although Spinnaker™ is part of the Armory Platform, Armory does not support all of Spinnaker's capabilities.
 
 ## Legend
 <!-- Copy and paste the below badges that apply to your area -->
