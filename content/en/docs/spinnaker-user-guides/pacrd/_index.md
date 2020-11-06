@@ -463,6 +463,29 @@ Events:
   Warning  PipelineValidationFailed  0s (x4 over 3s)        pipelines  artifact with id "a-nonsense-value" and name "" could not be found for this pipeline
 ```
 
+## Setting up New Relic
+
+If you want to setup a New Relic configuration you can add your license to your `patch.yaml` file like:
+
+   ```yaml
+   # file: patch.yaml
+   apiVersion: v1
+   kind: ConfigMap
+   metadata:
+     name: pacrd-config
+     namespace: spinnaker
+   data:
+     pacrd.yaml: |
+       spinnakerServices:
+         # NOTE: change `spinnaker` to your namespace name here
+         front50: https://spin-front50.spinnaker:8080
+         orca: https://spin-orca.spinnaker:8083
+       # fiatServiceAccount: <fiatServiceAccount>
+       newRelicLicense: <newRelicLicense>
+   ```
+
+By default the application name will be `pacrd`, if you want to change this you can add `NewRelicAppName` property at the same level of `newRelicLicense` and add your own custom application name.
+
 
 ## Setting up mTLS
 
