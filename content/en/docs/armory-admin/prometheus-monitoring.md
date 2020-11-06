@@ -82,7 +82,7 @@ roleRef:
   name: prometheus
 subjects:
   - kind: ServiceAccount
-    name: prometheus
+    name: prometheus-k8s
     namespace: monitoring
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -109,7 +109,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   namespace: monitoring
-  name: prometheus
+  name: prometheus-k8s
 ```
 ## Configure monitoring using the Observability Plugin 
 
@@ -234,8 +234,6 @@ spec:
     matchLabels:
       cluster: spin-gate
       app.kubernetes.io/name: gate
-    namespaceSelector:
-      any: true
   endpoints:
   # "port" is string only. "targetPort" is integer or string.
   - interval: 10s
