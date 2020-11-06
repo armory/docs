@@ -7,22 +7,22 @@ description: >
   Pipelines as Code allows you to create and maintain pipeline templates in source control.
 ---
 
-{{< include "note-github-branch-name.md" >}}
+{{% include "admin/pac-overview.md" %}}
 
 This guide includes:
 
-* Configurations for enabling Armory's Pipelines as code feature using Spinnaker Operator or Halyard
+* Configurations for enabling Armory's Pipelines as Code feature using Armory Operator or Halyard
 * Settings for GitHub, GitLab, or Bitbucket/Stash webhooks to work with the Pipelines as code
-* If you use GitHub, see [Custom branch configuration](#custom-branch-configuration) for information about how to explicitly set the branch that Pipelines as Code uses.
+* GitHub [custom branch configuration](#custom-branch-configuration) for information about how to explicitly set the branch that Pipelines as Code uses.
 
-
-## Overview
-To get an overview of Pipelines as code, check out the [user guide]({{< ref "using-dinghy" >}}).
 
 ## Enabling Pipelines as Code
-To configure Pipelines as Code, start by enabling it:
 
-**Operator**
+_Dinghy_ is the microservice for Pipelines as Code. You need to enable it to use Pipelines as Code.
+
+{{< tabs name="enable" >}}
+{{% tab name="Operator" %}}
+
 
 In `SpinnakerService` manifest:
 
@@ -46,22 +46,29 @@ Assuming Spinnaker lives in the `spinnaker` namespace:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 ```bash
 hal armory dinghy enable
 ```
-Dinghy is the microservice for Pipelines as code.
 
-## Redis
+{{% /tab %}}
+{{< /tabs >}}
+
+
+
+## Configuring Redis
 
 Dinghy uses Redis to store relationships between pipeline templates and pipeline dinghy files. An external Redis instance is highly recommended for production use. If Redis becomes unavailable, dinghy files will need to be updated in order to repopulate Redis with the relationships.
 
-**Note:** Dinghy can only be configured to use a password with the default Redis user.
+> Dinghy can only be configured to use a password with the default Redis user.
 
 To set/override the Spinnaker Redis settings do the following:
 
-**Operator**
+{{< tabs name="redis" >}}
+{{% tab name="Operator" %}}
 
 In `SpinnakerService` manifest:
 
@@ -83,7 +90,9 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 Edit the `~/.hal/default/profiles/dinghy-local.yml` file and add the following:
 
@@ -94,18 +103,19 @@ redis:
 ```
 
 Then run `hal deploy apply` to deploy the changes.
+{{% /tab %}}
+{{< /tabs >}}
 
-## Steps to follow to configure Pipelines as code:
+## Configuring Pipelines as Code
 
-* Create a personal access token (in either [GitHub](https://github.com/settings/tokens) or Bitbucket/Stash) that has read access to all repos where `dinghyfile`s and `module`s reside.
+1. Create a personal access token (in either [GitHub](https://github.com/settings/tokens) or Bitbucket/Stash) that has read access to all repos where you store your `dinghyfile` and `module` files.
+1. Get your Github, GitLab, or Bitbucket/Stash organization where the app repos and templates reside. For example, if your repo is `armory-io/dinghy-templates`, your `template-org` would be `armory-io`.
+1. Get the name of the repo containing modules. . For example, if your repo is `armory-io/dinghy-templates`, your `template-repo` would be `dinghy-templates`.
 
-* Get your Github, GitLab or Bitbucket/Stash "org" where the app repos and templates reside. For example if your repo is `armory-io/dinghy-templates`, your `template-org` would be `armory-io`.
+### GitHub
 
-* Get the name of the repo containing modules. . For example if your repo is `armory-io/dinghy-templates`, your `template-repo` would be `dinghy-templates`.
-
-### GitHub Example
-
-**Operator**
+{{< tabs name="github" >}}
+{{% tab name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -129,7 +139,9 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 ```bash
 hal armory dinghy edit \
@@ -141,49 +153,51 @@ hal armory dinghy edit \
 hal deploy apply
 ```
 
-#### Configure GitHub webhooks
+{{% /tab %}}
+{{< /tabs >}}
 
-Set up webhooks at the organization level for Push events. You can do this by going to: https://github.com/organizations/your_org_here/settings/hooks:
+#### Configuring GitHub webhooks
+
+Set up webhooks at the organization level for Push events. You can do this by going to ```https://github.com/organizations/<your_org_here>/settings/hooks```.
+
 1. Set `content-type` to `application/json`.
-2. Set the `Payload URL` to your Gate URL. Depending on whether you configured Gate to use its own DNS name or a path on the same DNS name as Deck, the URL follows one of the following formats:
+1. Set the `Payload URL` to your Gate URL. Depending on whether you configured Gate to use its own DNS name or a path on the same DNS name as Deck, the URL follows one of the following formats:
 
-  * `https://<your-gate-url>/webhooks/git/github` (if you have a separate DNS name or port for Gate)
-  * `https://<your-spinnaker-url>/api/v1/webhooks/git/github` (if you're using a different path for Gate)
+   * `https://<your-gate-url>/webhooks/git/github` if you have a separate DNS name or port for Gate
+   * `https://<your-spinnaker-url>/api/v1/webhooks/git/github` if you're using a different path for Gate
 
-If your gate endpoint is protected by a firewall, you’ll need to configure your firewall to allow inbound webhooks from Github's IP addresses. You can find their IPs here: [](https://api.github.com/meta), you can read [Github's docs here](https://help.github.com/articles/about-github-s-ip-addresses/).
+If your gate endpoint is protected by a firewall, you need to configure your firewall to allow inbound webhooks from Github's IP addresses. You can find the IPs in this API [response](https://api.github.com/meta). Read more about  [Github's IP addresses](https://help.github.com/articles/about-github-s-ip-addresses/).
 
 > You can configure webhooks on multiple GitHub organizations or repositories to send events to Dinghy. Only a single repository from one organization can be the shared template repository in Dinghy. However, pipelines can be processed from multiple GitHub organizations. You want to ensure the GitHub token configured for Dinghy has permission for all the organizations involved.
 
-#### Pull Request Validations
+#### Pull request validations
 
 {{% alert title="New feature" %}}Pull Request Validation is a new feature in Armory 2.21.{{% /alert %}}
 
-When you make a GitHub Pull Request (PR) and there is a change in a `dinghyfile`, Pipelines as Code automatically performs a validation for that `dinghyfile`. It also updates the Github status accordingly. If the validation fails, it displays an error:
+When you make a GitHub Pull Request (PR) and there is a change in a `dinghyfile`, Pipelines as Code automatically performs a validation for that `dinghyfile`. It also updates the Github status accordingly. If the validation fails, you see an unsuccessful `dinghy` check.
 
-The following image shows what a user sees if their PR fails the validation:
 {{< figure src="/images/dinghy/pr_validation/pr_validation.png" alt="PR that fails validation." >}}
 
 Make PR Validations mandatory to ensure users only merge working `dinghyfiles`.
 
-**Mandatory PR validation**
-
-Perform the following steps:
+Perform the following steps to configure mandatory PR validation:
 
 1. Go to your GitHub repository.
-2. Click on **Settings > Branches**.
-3. In **Branch protection rules**, select **Add rule**.
-4. Add `master` in **Branch name pattern** so that the rule gets enforced on the `master` branch.
-   Note that if this is a brand new repository with no commits, the "dinghy" option does not appear. You must first create a `dinghyfile` in any branch.
-5. Select **Require status checks to pass before merging** and make **dinghy** required.
-   Armory recommends selecting **Include administrators** as well so that all PRs get validated, regardless of user.
+1. Click on **Settings > Branches**.
+1. In **Branch protection rules**, select **Add rule**.
+1. Add `master` in **Branch name pattern** so that the rule gets enforced on the `master` branch. Note that if this is a new repository with no commits, the "dinghy" option does not appear. You must first create a `dinghyfile` in any branch.
+1. Select **Require status checks to pass before merging** and make **dinghy** required.  Select **Include administrators** as well so that all PRs get validated, regardless of user.
 
 The following screenshot shows what your GitHub settings should resemble:
 {{< figure src="/images/dinghy/pr_validation/branch_mandatory.png" alt="Configured dinghy PR validation." >}}
 
 
-### Bitbucket / Stash Example
+### Bitbucket Server (Stash) and Bitbucket Cloud
 
-**Operator**
+Bitbucket has both cloud and server offerings. See the Atlassian [docs](https://confluence.atlassian.com/bitbucketserver/bitbucket-rebrand-faq-779298912.html) for more on the name change from Stash to Bitbucket Server. Consult your company's Bitbucket support desk if you need help determining what flavor and version of Bitbucket you are using.
+
+{{< tabs name="bitbucket" >}}
+{{% tab name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -208,7 +222,9 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 ```bash
 hal armory dinghy edit \
@@ -219,13 +235,18 @@ hal armory dinghy edit \
   --stash-endpoint "https://your-endpoint-here.com"  
 hal deploy apply
 ```
-Note: If you're using Bitbucket Server, update the endpoint to include the api e.g. `--stash-endpoint https://your-endpoint-here.com/rest/api/1.0`
+{{% /tab %}}
+{{< /tabs >}}
 
-You'll need to setup webhooks for each project that has the dinghyfile or module separately. Make the webhook POST to: `https://spinnaker.your-company.com:8084/webhooks/git/stash`. If you're using stash `<v3.11.6`, you'll need to install the following [webhook plugin](https://marketplace.atlassian.com/plugins/com.atlassian.stash.plugin.stash-web-post-receive-hooks-plugin/server/overview) to be able to setup webhooks.
+> If you're using Bitbucket Server, update the endpoint to include the api, e.g. `--stash-endpoint https://your-endpoint-here.com/rest/api/1.0`
 
-### GitLab Example
+You need to set up webhooks for each project that has the `dinghyfile` or module separately. Make the webhook `POST` to: `https://spinnaker.your-company.com:8084/webhooks/git/bitbucket`. If you're using stash `<v3.11.6`, you need to install the [webhook plugin](https://marketplace.atlassian.com/plugins/com.atlassian.stash.plugin.stash-web-post-receive-hooks-plugin/server/overview) to be able to set up webhooks.
 
-**Operator**
+### GitLab
+
+{{< tabs name="gitlab" >}}
+{{% tab name="Operator" %}}
+
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -249,13 +270,12 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-**Halyard**
+{{% /tab %}}
 
-**Requirements**
+{{% tab name="Halyard" %}}
 
-GitLab with Pipelines as Code requires Halyard 1.7.2 or later.
+> GitLab with Pipelines as Code requires Halyard 1.7.2 or later.
 
-**Example**
 
 ```bash
 hal armory dinghy edit \
@@ -267,12 +287,13 @@ hal armory dinghy edit \
 hal deploy apply
 ```
 
-Point your webhooks (Under "Settings -> Integrations"  on your project page)
+{{% /tab %}}
+{{< /tabs >}}
+
+Under "Settings -> Integrations"  on your project page, point your webhooks
 to `https://<your-gate-url>/webhooks/git/gitlab`.  Make sure the server your
-GitLab install is running on can connect to your Gate URL (and adjust any
-firewall settings and the like that you may need).  Spinnaker will also need
-to be able to reach back out to your GitLab installation; ensure that
-connectivity works as well.
+GitLab install is running on can connect to your Gate URL. Armory also needs
+to communicate with your GitLab installation. Ensure that connectivity works as well.
 
 ### Custom branch configuration
 
@@ -290,7 +311,8 @@ All providers available in Dinghy are supported. Please refer to the list below 
 * `bitbucket-cloud`
 * `bitbucket-server`
 
-**Operator**
+{{< tabs name="custom" >}}
+{{% tab name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -311,7 +333,9 @@ spec:
           ... # Rest of config omitted for brevity
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 This configuration goes inside your `profiles/dinghy-local.yml` file:
 ```yaml
@@ -324,7 +348,11 @@ repoConfig:
   repo: my-github-repository
 ```
 
+{{% /tab %}}
+{{< /tabs >}}
+
 ### Other Options
+
 #### Fiat
 
 If Fiat is enabled, add the field `fiatUser: "your-service-account"` to the `dinghy` section in `SpinnakerService` manifest (Operator) or pass the option `--fiat-user "your-service-account"` (Halyard). Note that the service account has to be in a group that has read/write access to the pipelines you will be updating.
@@ -341,9 +369,10 @@ If you want to disable lock pipelines in the UI before overwriting changes, add 
 
 #### Slack Notifications
 
-If you have configured Spinnaker to send Slack notifications for pipeline events (documentation [here]({{< ref "notifications-slack-configure" >}})), you can configure Dinghy to send pipeline update results to Slack:
+If you [configured]({{< ref "notifications-slack-configure" >}}) Armory to send Slack notifications for pipeline events, you can configure Dinghy to send pipeline update results to Slack.
 
-**Operator**
+{{< tabs name="slack" >}}
+{{% tab name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -363,30 +392,41 @@ spec:
               ... # Rest of config omitted for brevity
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
+
 
 ```bash
 $ hal armory dinghy slack enable --channel my-channel
 ```
 
-![Slack Notifications](/images/dinghy-slack-notifications.png)
-
-
 For a complete listing of options check out the [Armory Halyard]({{< ref "armory-halyard#hal-armory-dinghy-edit" >}}) documentation.
+
+{{% /tab %}}
+{{< /tabs >}}
+
+![Slack Notifications](/images/dinghy-slack-notifications.png)
 
 ### Other Template Formats
 
-*Note: this feature requires Armory 2.5.4 or above.*
+> This feature requires Armory 2.5.4 or above.
 
 Dinghy supports two additional template formats in addition to JSON:
+
 * [HCL](https://github.com/hashicorp/hcl)
 * [YAML](https://yaml.org/)
 
-*Note: Selecting one of these parsers means that all of your dinghy templates must also be in that format.*
+> Selecting one of these parsers means that all of your templates must also be in that format.
 
-To use one of these alternate formats, you'll need to configure a local override with one of these parsers.
+You need to configure `parserFormat` with one of the parsers:
 
-**Operator**
+* `json` (Default)
+* `yaml`
+* `hcl`
+
+{{< tabs name="other" >}}
+{{% tab name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -401,7 +441,9 @@ spec:
         ... # Rest of config omitted for brevity
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 Add the following config to `~/.hal/default/profiles/dinghy-local.yml`:
 
@@ -409,21 +451,23 @@ Add the following config to `~/.hal/default/profiles/dinghy-local.yml`:
 parserFormat: hcl
 ```
 
-*Note: in the future armory will add this configuration to Halyard.*
+{{% /tab %}}
+{{< /tabs >}}
 
-The `parserFormat` configuration only accepts the following values:
-* json (Default. There is no need to specify this if you want to keep using json.)
-* yaml
-* hcl
-
-## Known Issue
+## Known Issues
 
 If Dinghy crashes on start up and you encounter an error in Dinghy similar to:
-`time="2020-03-06T22:35:54Z" level=fatal msg="failed to load configuration: 1 error(s) decoding:\n\n* 'Logging.Level' expected type 'string', got unconvertible type 'map[string]interface {}'"`
 
-You have probably configured global logging levels with `spinnaker-local.yml`. The work around is to override Dinghy's logging levels:
+```bash
+time="2020-03-06T22:35:54Z"
+level=fatal
+msg="failed to load configuration: 1 error(s) decoding:\n\n* 'Logging.Level' expected type 'string', got unconvertible type 'map[string]interface {}'"
+```
 
-**Operator**
+You probably configured global logging levels with `spinnaker-local.yml`. The work around is to override Dinghy's logging levels:
+
+{{< tabs name="issues" >}}
+{{% tab name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -439,7 +483,9 @@ spec:
           ... # Rest of config omitted for brevity
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 Create `.hal/default/profiles/dinghy-local.yml` with the following config:
 
@@ -447,3 +493,6 @@ Create `.hal/default/profiles/dinghy-local.yml` with the following config:
 Logging:
   Level: INFO
 ```
+
+{{% /tab %}}
+{{< /tabs >}}
