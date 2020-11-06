@@ -78,17 +78,23 @@ kubectl -n <namespace> create configmap token-refresh-config --from-file <config
 
 ### Update your Spinnaker installation
 
-**Operator**
+{{< tabs name="update" >}}
+{{% tab name="Operator" %}}
 
 ```bash
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
 
-**Halyard**
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 ```bash
 hal deploy apply --service-names clouddriver
 ```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Success! Now you will be able to use ECR as a Docker registry in the configuration stage.
 

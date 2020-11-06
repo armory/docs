@@ -175,7 +175,8 @@ Out of the box, Armory comes with these built-in Packer templates and scripts: h
 
 If you'd like to add additional Packer template or script files, you can add them via the [Armory Operator]({{< ref "operator" >}}) or Halyard.
 
-### Armory Operator
+{{< tabs name="custom" >}}
+{{% tab name="Operator" %}}
 
 Add any Packer template and supporting scripts as string-formatted entries under the `spec.spinnakerConfig.files` section of the `SpinnakerService` config.
 
@@ -211,7 +212,9 @@ NOTE:  The Armory Operator interprets the double underscores in the file names a
 
 See the "Export Packer template files" step in the [Migrating from Halyard to Operator]({{< ref "operator#migrating-from-halyard-to-operator" >}}) section of the Armory Operator document for more examples.
 
-### Halyard
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 * If it does not already exist, create this directory: `~/.hal/<deployment-name>/profiles/rosco/packer/`
   * For example, if you're using the default Halyard deployment, then create this directory: `~/.hal/default/profiles/rosco/packer/`
@@ -224,3 +227,6 @@ See the "Export Packer template files" step in the [Migrating from Halyard to Op
 **Bake Configuration** in Spinnaker
 Spinnaker can send pipeline variables such as `repository` to the packer script by adding it in the extended attributes. Some attributes are prefilled because of selecting `trusty` as the base OS.
 ![example](/images/Screen-Shot-2017-09-05-at-4.34.58-PM.png)
+
+{{% /tab %}}
+{{< /tabs >}}

@@ -1,7 +1,8 @@
 ---
-layout: post
-title: Finding Images (AWS EC2)
-weight: 90
+title: Bake and Find Custom AMIs
+linkTitle: Custom AMIs
+description: >
+  Create a pipeline for baking and distributing custom AMIs
 aliases:
   - /user-guides/find-images/
   - /user-guides/find_images/
@@ -14,7 +15,7 @@ aliases:
 
 ## Prerequisites and assumptions:
 
-- You have experience [baking]({{< ref "baking-images" >}}) and [deploying images]({{< ref "deploying" >}}) with Spinnaker
+- You have experience [baking]({{< ref "aws-baking-images" >}}) and [deploying images]({{< ref "aws-deploy" >}}) with Spinnaker
 
 Spinnaker provides a lot of auto-magic for determining which AMI should be deployed to which server group. However, sometimes it is necessary to override Spinnaker's selection.
 
@@ -25,7 +26,7 @@ Sometimes you may want to build your AMI in several different pipelines before d
 Let's go through an example.
 
 
-I have created a multi-region bake pipeline that creates AMIs from a package built on Jenkins. For directions on how to create a pipeline like this, check out the [baking guide]({{< ref "baking-images" >}}). You can see it running here:
+I have created a multi-region bake pipeline that creates AMIs from a package built on Jenkins. For directions on how to create a pipeline like this, check out the [baking guide]({{< ref "aws-baking-images" >}}). You can see it running here:
 
 ![](/images/Image-2017-04-04-at-11.01.25-AM.png)
 
@@ -36,7 +37,7 @@ Next I want to create a pipeline that is triggered by a Jenkins job and installs
 I start by creating a new pipeline.
 
 
-I add an automated trigger to build from a Jenkins' job. For a more detailed example of this, check out the [baking guide]({{< ref "baking-images" >}}).
+I add an automated trigger to build from a Jenkins' job. For a more detailed example of this, check out the [baking guide]({{< ref "aws-baking-images" >}}).
 
 ![](/images/Image-2017-04-04-at-2.47.40-PM.png)
 
@@ -73,4 +74,4 @@ We can now execute the pipeline with the above inputs.
 
 Notice the 'Results' box in the lower right hand corner. After inspecting it and comparing it to the bake pipeline in the very beginning of the example, I can see that Spinnaker did indeed choose the correct AMI.
 
-If you wanted to deploy this image, you can just add a deploy step and Spinnaker will deploy the correct AMI. For more instructions on deploying, check out the [deployment guide]({{< ref "deploying" >}}).
+If you wanted to deploy this image, you can just add a deploy step and Spinnaker will deploy the correct AMI. For more instructions on deploying, check out the [deployment guide]({{< ref "aws-deploy" >}}).

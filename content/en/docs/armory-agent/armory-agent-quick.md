@@ -51,7 +51,16 @@ patchesStrategicMerge:
 
 ```
 
-You can then set the [plugin options]({{< ref "agent-plugin-options" >}}) in `agent-plugin/config.yaml`. When you're ready, deploy with:
+You can then set the [plugin options]({{< ref "agent-plugin-options" >}}) in `agent-plugin/config.yaml`.
+
+* For topologies like [Infrastructure mode]({{< ref "armory-agent#infrastructure-mode" >}}) and [Agent mode]({{< ref "armory-agent#agent-mode" >}}), in which the Agent is installed in a different cluster from Spinnaker, you should configure TLS through a load balancer.
+* For Spinnaker installations with one Clouddriver instance and no Redis, you can use `kubesvc.cluster`. However, a Spinnaker installation with Redis is recommended.
+* When running Spinnaker in [HA](https://spinnaker.io/reference/halyard/high-availability/), make sure to modify the following files:
+
+  * `agent-service/kustomization.yaml` according to its comments
+  * `agent-plugin/clouddriver-plugin.yaml` and `agent-plugin/config.yaml` references to Clouddriver should be to HA versions (i.e: -rw, -ro, etc)
+
+When you're ready, deploy with:
 
 ```bash
 kustomize build . | kubectl apply -f -
@@ -88,11 +97,11 @@ Create the directory structure described below with `kustomization.yaml`, `kubes
 ```
 
 ```yaml
-# ./kustomization.yaml  
+# ./kustomization.yaml
 
 # Namespace where you want to deploy the agent
 namespace: spinnaker
-bases:  
+bases:
   - https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-{{<param kubesvc-version>}}-kustomize.tar.gz
 
 configMapGenerator:
@@ -105,7 +114,7 @@ secretGenerator:
   - name: kubeconfigs-secret
     files:
     # a list of all needed kubeconfigs
-    - kubecfgs/kubecfg-account01.yaml  
+    - kubecfgs/kubecfg-account01.yaml
     - ...
     - kubecfgs/kubecfg-account1000.yaml
 ```
@@ -121,9 +130,12 @@ kubernetes:
     # as mounted from the `kubeconfigs-secret` Kubernetes secret
     kubeconfigFile: /kubeconfigfiles/kubecfg-account01.yaml
     ...
-  - ...    
+  - ...
 ...
 ```
+
+* For installations without gRPC TLS connections, you should include `clouddriver.insecure: true` in the Agent options.
+* For HA, make sure to set `clouddriver.grpc: clouddriver-ha-grpc-service.yaml:9091`
 
 With the directory structure in place, deploy the Agent service:
 
@@ -136,8 +148,7 @@ kustomize build </path/to/directory> | kubectl apply -f -
 If you prefer to manage manifests directly, download all the manifests:
 
 ```bash
-AGENT_VERSION = {{<param kubesvc-version>}} && \
-curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-$AGENT_VERSION-kustomize.tar.gz | tar -xJvf -
+AGENT_VERSION={{<param kubesvc-version>}} && curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-$AGENT_VERSION-kustomize.tar.gz | tar -xJvf -
 ```
 
 - Change the version of the Agent in `kustomization.yaml`

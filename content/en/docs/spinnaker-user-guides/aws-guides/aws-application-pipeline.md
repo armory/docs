@@ -1,5 +1,7 @@
 ---
-title: Application Deployment Pipeline (AWS EC2)
+title: AMI Pipeline
+description: >
+  Create a pipeline that takes the Debian package produced by a Jenkins job and uses it to create an AMI before deploying that image to a server group.
 aliases:
   - /install-guide/application-pipeline/
   - /install-guide/application_pipeline/
@@ -8,16 +10,16 @@ aliases:
   - /spinnaker_user_guides/application_pipeline/
   - /spinnaker_user_guides/application-pipeline/
   - /spinnaker-user-guides/application_pipeline/
+  - /docs/spinnaker-user-guides/application-pipeline/
 ---
 
-## Creating a pipeline
+## Overview
 
-We'll be creating a pipeline that takes the Debian package produced by a Jenkins job and uses it to create an Amazon Machine Image (AMI) before deploying that image to a server group.
+In this guide, you create a pipeline that takes the Debian package produced by a Jenkins job and uses it to create an Amazon Machine Image (AMI) before deploying that image to a server group.
 
+## Prerequisites
 
-Things you should already have prepared beforehand for this example:
-
-* A Jenkins Master configured
+* A configured Jenkins Master 
 * A Jenkins job that archives a Debian package
 * A security group within AWS with appropriate permissions
 
@@ -99,7 +101,7 @@ The security group will define the access rights to your resource.
 ## Step 16: Select Instance Type.
 Make sure to select the right instance type for your application, preferably the one that is running in production currently.
 
-## Step 17: Select the Capactity
+## Step 17: Select the Capacity
 Select how many instances you want in your server group on deploy. For our example, we will set it at 1.
 
 ![](/images/Image-2017-03-24-at-4.39.12-PM.png)
@@ -127,4 +129,4 @@ You should see a progress bar where blue represents running and green represents
 
 ![](/images/Image-2017-03-24-at-4.45.33-PM.png)
 
-If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "pipelines#troubleshooting" >}}), [baking]({{< ref "baking-images#troubleshooting" >}}), or [deploying]({{< ref "deploying#common-errors-and-troubleshooting" >}}) guides.
+If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "pipelines#troubleshooting" >}}), [baking]({{< ref "aws-baking-images#troubleshooting" >}}), or [deploying]({{< ref "aws-deploy#common-errors-and-troubleshooting" >}}) guides.

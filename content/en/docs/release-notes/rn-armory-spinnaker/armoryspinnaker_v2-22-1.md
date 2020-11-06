@@ -70,23 +70,18 @@ Armory now includes version 3.8.1 of kustomize.
 
 ### Security
 
-This release resolves several CVEs:
+This release resolves several CVEs in Clouddriver:
 
 * [CVE-2017-18342](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-18342)
 * [CVE-2019-17638](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17638)
 * [CVE-2020-1747](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-1747)
 * [CVE-2016-10745](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10745)
 * [CVE-2020-7009](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7009)
-* [CVE-2019-17359](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17359)
-* [CVE-2020-5421](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-5421)
 * [CVE-2020-13757](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-13757)
 * [CVE-2015-9251](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-9251)
-* [CVE-2020-11023](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11023)
 * [CVE-2020-8927](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-8927)
 * [CVE-2014-0012](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0012)
 * [CVE-2014-1402](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1402)
-* [CVE-2020-11022](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11022)
-* [CVE-2020-5408](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-5408)
 * [CVE-2011-4969](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-4969)
 * [CVE-2016-10516](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10516)
 * [CVE-2020-7656](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656)

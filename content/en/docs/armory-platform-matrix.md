@@ -10,6 +10,8 @@ Or you can write raw HTML :shrug: You might want to do that if you need to do bu
 Or a mixture of html + markdown. ## Deployment targets has an example of what this might look like
 -->
 
+This page describes the features and capabilities that Armory supports. Note that although Spinnaker™ is part of the Armory Platform, what Open Source Spinnaker supports and what Armory supports is not a one-to-one relationship.
+
 ## Legend
 <!-- Copy and paste the below badges that apply to your area -->
 **Feature status** describes what state the feature is in and where you should install it. For more information, see [Release Definitions]({{< ref "release-definitions" >}}). You can also click on the feature status badge directly.
@@ -22,9 +24,9 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 **Enterprise availablility**
 
-![OSS](/images/oss.svg) The feature or parts of it are also available in Open Source Spinnaker.
+![OSS](/images/oss.svg) The feature or parts of it are available in Open Source Spinnaker.
 
-![Armory](/images/armory.svg) The feature or parts of it are available in Armory.
+![Armory](/images/armory.svg) The feature or parts of it are available only as part of the Armory Platform.
 
 **Versions**
 
@@ -119,7 +121,7 @@ The following table lists specific features for Pipelines as Code and their supp
 
 ### Pipelines as CRD
 
-[![Experiment](/images/exp.svg)]({{< ref "release-definitions#experiment">}}) ![Armory](/images/armory.svg)
+[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) ![Armory](/images/armory.svg)
 
 [PaCRD]({{< ref "pacrd" >}}) gives you the ability to manage your pipelines as
 Kubernetes custom resources.
@@ -436,12 +438,11 @@ The [Policy Engine]({{< ref "policy-engine-enable" >}}) gives you the ability to
 
 The Policy Engine requires an Open Policy Agent server. This can be deployed in the same cluster as Spinnaker or in an external cluster.
 
-The following table lists the requirements
+The following table lists the requirements:
 
 | Requirement | Version         | Note                                                                                                                                  |
 | ----------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| OPA Server  | 0.12.x - 0.13.x |                                                                                                                                       |
-| OPA API     | v1              | Only compatible with OPA’s v1 API. When specifying the OPA server URL, include `v1` in the URL: `http://<your-opa-server>:<port>/v1`. |
+| OPA Server  | 0.12.x or later | Specifically, the v1 API must be available. When specify the OPA server URL in the Armory configs, include `v1` in the URL: `http://<your-opa-server>:<port>/v1`.                                                                                                                                      |
 
 **Supported validations**
 

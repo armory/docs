@@ -233,6 +233,8 @@ On the `Halyard machine`, start the Halyard container.
 
 *If you want to install OSS Spinnaker instead, use `gcr.io/spinnaker-marketplace/halyard:stable` for the Docker Halyard image reference in substitution of `armory/halyard-armory:<image_version>` in the commands below*
 
+{{< include "install/docker-note.md" >}}
+
 ```bash
 docker run --name armory-halyard -it --rm \
   -v ${WORKING_DIRECTORY}/.hal:/home/spinnaker/.hal \

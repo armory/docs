@@ -1,9 +1,8 @@
 ---
-title: PaCRD CRD Documentation
+title: CRD Documentation
 aliases:
   - /docs/spinnaker/pacrd-crd-docs/
 ---
-{{< include "experimental-feature.html" >}}
 
 ## pacrd.armory.spinnaker.io/v1alpha1
 {{< rawhtml >}}

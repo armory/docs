@@ -1,25 +1,15 @@
 ---
 title: PaCRD
+linkTitle: PaCRD
+description: >
+  PaCRD is a Kubernetes controller that manages the lifecycle of applications and pipelines within a cluster.
 aliases:
   - /docs/spinnaker/pacrd/
+  - /docs/spinnaker-user-guides/pacrd
 ---
 
-<!-- Note:
-  Setting Order as 171 so it shows up at the bottom on the Spinnaker section
-  of the Armory docs, given its experimental status. When/if this product
-  hits GA we probably want to move it further up the list and/or replace
-  Dinghy docs in time.
-!-->
-
-{{< include "experimental-feature.html" >}}
-
-
-__Interested in joining this experiment?
-[Contact us](mailto:pipelines-as-code@armory.io) for more information.__
-
-
 PaCRD (a combination of "Pipelines as Code" and "Custom Resource Definition") is
-a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) that manages the lifecycle of Spinnaker applications
+a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) that manages the lifecycle of Spinnaker<sup>TM</sup> applications
 and pipelines as objects within your cluster. PaCRD extends Kubernetes
 functionality to support Spinnaker Application and Pipeline objects that can be
 observed for changes through a mature lifecycle management API.
@@ -51,7 +41,7 @@ accounts
 Download the current `pacrd` manifest to your local machine:
 
 ```bash
-curl -fsSL https://engineering.armory.io/manifests/pacrd-0.9.0.yaml > pacrd-0.9.0.yaml
+curl -fsSL https://engineering.armory.io/manifests/pacrd-1.0.0.yaml > pacrd-1.0.0.yaml
 ```
 
 Then, inspect the manifest to make sure it is compatible with your cluster.
@@ -65,7 +55,7 @@ the installation settings:
 ```yaml
 # file: kustomization.yaml
 resources:
-  - pacrd-0.9.0.yaml
+  - pacrd-1.0.0.yaml
 patchesStrategicMerge:
   - patch.yaml
 namespace: spinnaker  # Note: you should change this value if you are _not_ deploying into the `spinnaker` namespace.
@@ -87,9 +77,8 @@ data:
       # NOTE: change `spinnaker` to your namespace name here
       front50: http://spin-front50.spinnaker:8080
       orca: http://spin-orca.spinnaker:8083
-      # OPTIONAL: uncomment the next line to configure a Fiat service account.
-      # fiatServiceAccount: my-service-account
-
+    # OPTIONAL: uncomment the next line to configure a Fiat service account, it should be at the same level that spinnakerServices.
+    # fiatServiceAccount: my-service-account
 ```
 
 When you are ready, apply the `pacrd` manifest to your cluster:
@@ -137,14 +126,14 @@ In Kubernetes, define your application in an `application.yaml` file.  The confi
 __and__ Spinnaker name standards.*
 
 ```yaml
-# file: application.yaml
+#file: application.yaml
 apiVersion: pacrd.armory.spinnaker.io/v1alpha1
 kind: Application
 metadata:
-  name: myapplicationname
+  name: pacrd-pipeline-stages-samples
 spec:
-  email: sam.tribal@armory.io
-  description: My Application is a catalogue of Widgets surfaced by an API.
+  email: test@armory.io
+  description: Description
 ```
 
 Create the application in your cluster by running:
@@ -223,33 +212,49 @@ application from the [previous section](#applications). Create one before
 proceeding if you have not done so already.*
 
 ```yaml
-# file: pipeline.yaml
+# file: deploy-nginx.yaml
 apiVersion: pacrd.armory.spinnaker.io/v1alpha1
 kind: Pipeline
 metadata:
-  name: myapplicationpipeline
+  name: pacrd-deploymanifest-integration-samples
 spec:
-  description: Delivery pipeline for the MyApplicationName service.
-  application: myapplicationname
+  description: A sample showing how to define artifacts.
+  application: &app-name pacrd-pipeline-stages-samples
   stages:
-    # Note: In `v0.1.x` you are required to specify _both_ `type: BakeManifest`
-    #       as well as place options under a `bakeManifest` key. Consult the
-    #       "Known Limitations" section below for more information.
-    - type: BakeManifest
-      name: Bake Application
-      refId: "1"
-      bakeManifest:
-        evaluateOverrideExpressions: false
-        outputName: myapplicationname
-        templateRenderer: helm2
-    - type: ManualJudgment
-      name: Bake Successful?
-      refId: "2"
-      requisiteStageRefIds: [ "1" ]
-      manualJudgment:
-        comments: Was the bake successful?
-        failPipeline: true
-        instructions: Check to see if the helm template was baked correctly
+    - type: deployManifest
+      properties:
+        name: Deploy text manifest
+        refId: "1"
+        requisiteStageRefIds: [ ]
+        account: spinnaker
+        cloudProvider: kubernetes
+        moniker:
+          app: *app-name
+        skipExpressionEvaluation: true
+        source: text
+        manifests:
+          - |
+            apiVersion: apps/v1
+            kind: Deployment
+            metadata:
+              name: nginx-deployment
+              labels:
+                app: nginx
+            spec:
+              replicas: 2
+              selector:
+                matchLabels:
+                  app: nginx
+              template:
+                metadata:
+                  labels:
+                    app: nginx
+                spec:
+                  containers:
+                  - name: nginx
+                    image: nginx:1.14.2
+                    ports:
+                    - containerPort: 80
 ```
 
 Create your pipeline in your cluster:
@@ -373,12 +378,12 @@ spec:
           name: my-organization/my-container
           artifactAccount: docker-registry
   stages:
-    - type: BakeManifest
-      name: Let's Bake Some Manifests
-      refId: "1"
-      bakeManifest:
-        templateRenderer: helm2
+    - type: bakeManifest
+      properties:
+        name: Bake Application
+        refId: "1"
         outputName: myManifest
+        templateRenderer: helm2
         inputArtifacts:
           - id: *image-id
 ```
@@ -421,12 +426,12 @@ spec:
         properties:
           name: my-second-inline-artifact
   stages:
-    - type: BakeManifest
-      name: Let's Bake Some Manifests
-      refId: "1"
-      bakeManifest:
-        templateRenderer: helm2
+    - type: bakeManifest
+      properties:
+        name: Bake Application
+        refId: "1"
         outputName: myManifest
+        templateRenderer: helm2
         inputArtifacts:
           - id: first-inline-artifact-id
           - displayName: My Second Inline Artifact
@@ -457,6 +462,112 @@ Events:
   Normal   Updated                   2m53s (x2 over 2m54s)  pipelines  Pipeline successfully updated in Spinnaker.
   Warning  PipelineValidationFailed  0s (x4 over 3s)        pipelines  artifact with id "a-nonsense-value" and name "" could not be found for this pipeline
 ```
+
+
+## Setting up mTLS
+
+If you want to set up mTLS for this particular service, you need to configure Spinnaker for mTLS first. See [Configuring mTLS for Spinnaker Services]({{< ref "mtls-configure" >}}) for details.
+
+### Prerequisites
+
+- ca.pem file
+- ca.key file
+- ca certificate password
+- pacrd.crt
+- pacrd.key
+- pacrd certificate password (pacrd.pass.txt)
+
+If you don't have the PaCRD certificate, key, and password files, you can generate them using this script:
+
+{{< gist armory-gists 543b67dba35c5910ffa48cf1649c8954 >}}
+
+Once you have that information you can continue.
+
+### Steps
+
+1. Add the PaCRD certificate files as a Kubernetes secret:
+
+   ```bash
+   kubectl create secret generic pacrd-cert \
+           --from-file=./pacrd.crt \
+           --from-file=./pacrd.key \
+           --from-file=./pacrd.pass.txt \
+           --from-file=./ca.pem
+   ```
+
+1. Go to the `pacrd` installation folder that has your` kustomization.yaml`, `patch.yaml`, and `pacrd.yaml`.  Create a new file called `mtls.yaml` with the following content:
+
+   ```yaml
+   # file: mtls.yaml
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     labels:
+       control-plane: controller-manager
+     name: pacrd-controller-manager
+     namespace: spinnaker
+   spec:
+     template:
+       spec:
+         containers:
+         - name: manager
+           containers:
+           volumeMounts:
+           - mountPath: /opt/secrets
+             name: pacrd-certificates
+         volumes:
+         - secret:
+             secretName: pacrd-cert
+           name: pacrd-certificates
+   ```
+
+   This file will mount the certificates to `/opt/secrets/` in the pacrd manager container.
+
+1. Update `kustomization.yaml` to include the `mtls.yaml` file:
+
+   ```yaml
+   # file: kustomization.yaml
+   resources:
+     - pac_new.yaml
+   patchesStrategicMerge:
+     - patch.yaml
+     - mtls.yaml
+   namespace: spinnaker # Note: you should change this value if you are _not_ deploying into the `spinnaker` namespace.
+   ```
+
+1. Update your `patch.yaml` file to add the certificate information:
+
+   ```yaml
+   # file: patch.yaml
+   apiVersion: v1
+   kind: ConfigMap
+   metadata:
+     name: pacrd-config
+     namespace: spinnaker
+   data:
+     pacrd.yaml: |
+       spinnakerServices:
+         # NOTE: change `spinnaker` to your namespace name here
+         front50: https://spin-front50.spinnaker:8080
+         orca: https://spin-orca.spinnaker:8083
+       # fiatServiceAccount: <fiatServiceAccount>
+       # newRelicLicense: <newRelicLicense>
+       server:
+         ssl:
+           enabled: true
+           certFile: /opt/secrets/pacrd.crt
+           keyFile: /opt/secrets/pacrd.key
+           keyPassword: /opt/secrets/pacrd.pass.txt
+           cacertFile: /opt/secrets/ca.pem
+           clientAuth: want
+       http:
+         cacertFile: /opt/secrets/ca.pem
+         clientCertFile: /opt/secrets/pacrd.crt
+         clientKeyFile: /opt/secrets/pacrd.key
+         clientKeyPassword: /opt/secrets/pacrd.pass.txt
+   ```
+
+1. Redeploy your service with `kustomize build | kubectl apply -f -`
 
 ## Known Limitations
 
