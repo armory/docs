@@ -205,9 +205,6 @@ spec:
       - spin-dinghy
     matchLabels:
       app: spin
-    namespaceSelector:
-      any: true
-
 ```
 
 The example excludes Gate, the API service since Gate restricts access to the endpoints unless authenticated (excluding health).  
