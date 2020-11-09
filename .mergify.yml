@@ -3,7 +3,7 @@ pull_request_rules:
     conditions: 
       - status-success=main
       - author=armory-jenkins
-      - title~=\bpacrdrelease\b
+      - title~=\bdocs\b\(\bpacrdrelease\b\)
     actions:
       merge:
         method: squash
