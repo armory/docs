@@ -1,0 +1,12 @@
+pull_request_rules:
+  - name: Automatically merge PACRD version bumps
+    conditions: 
+      - status-success=main
+      - author=armory-jenkins
+      - title~=\bdocs\b\(\bpacrdrelease\b\)
+    actions:
+      merge:
+        method: squash
+        strict: smart
+      label:
+        add: ["auto merged"]
