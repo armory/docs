@@ -2,28 +2,33 @@
 title: App Name Plugin
 toc_hide: true
 ---
-<!-- this is a private plugin German created for JPMC. This unlisted page is to satisfy an auditing requirement they have. It is also hidden via robots.txt. -->
+<!-- this is a private plugin German created for JPMC. This unlisted page is to satisfy an auditing requirement they have. It is also hidden via robots.txt and the netlify sitemap plugin. -->
 
 ## Overview
-Plugin for making spinnaker application name rules configurable.
+
+The app name plugin makes rules for Spinnaker application names configurable.
 
 ## Requirements
 
-This plugin requires Armory 2.20.x or later, or Spinnaker 1.20.x or later.
+This plugin requires either:
+
+- Armory 2.20.x or later
+- Spinnaker 1.20.x or later
 
 ## Limitations
 
 The following characters cannot be part of the application name:
 
-1. `:` Is used as a separator in database identifiers.
-1. `/` Is used as path separator in some requests from deck to gate.
-1. `appStackDetailSeparator` Is used as separator in server group names deployed with spinnaker.
+- `:` is used as a separator in database identifiers.
+- `/` is used as path separator in some requests from Deck to Gate.
+- `appStackDetailSeparator` is used as separator in server group names deployed with Spinnaker.
 
-Prior to Spinnaker `1.23` or Armory `2.23`, changing `appStackDetailSeparator` from its default value of `-` has known issues in cloudfoundry deployments.
+For Armory 2.22 (OSS 1.22) and lower, changing `appStackDetailSeparator` from its default value of `-` has known issues in Cloud Foundry deployments.
 
 ## Setup
 
 The plugin can be delivered using two different methods:
+
 1. Docker image as an init container on each affected service
 1. Using a remote plugin repository
 
@@ -31,7 +36,7 @@ The plugin can be delivered using two different methods:
 
 #### Spinnaker operator
 
-This is a sample configuration to use with spinnaker operator:
+This is a sample configuration to use with the Spinnaker operator:
 
 ```yaml
 apiVersion: spinnaker.armory.io/v1alpha2
@@ -152,7 +157,7 @@ spec:
 
 #### Halyard
 
-Content for `profiles/spinnaker-local.yml`:
+Add the following to `profiles/spinnaker-local.yml`:
 ```yaml
 armory:
   appnameplugin:
@@ -168,7 +173,7 @@ spinnaker:
         enabled: true
 ```
 
-Content for `profiles/gate-local.yml`:
+Add the following to `profiles/gate-local.yml`:
 ```yaml
 spinnaker:
   extensibility:
@@ -184,7 +189,7 @@ spinnaker:
         url: file:///opt/spinnaker/lib/local-plugins/appname/plugins.json
 ```
 
-Content for `profiles/orca-local.yml` and `profiles/clouddriver-local.yml`:
+Add the following to `profiles/orca-local.yml` and `profiles/clouddriver-local.yml`:
 ```yaml
 spinnaker:
   extensibility:
@@ -194,7 +199,7 @@ spinnaker:
         url: file:///opt/spinnaker/lib/local-plugins/appname/plugins.json
 ```
 
-Content for `service-settings/gate.yml`, `service-settings/orca.yml` and `service-settings/clouddriver.yml`:
+Add the following to `service-settings/gate.yml`, `service-settings/orca.yml` and `service-settings/clouddriver.yml`:
 ```yaml
 kubernetes:
   volumes:
@@ -203,7 +208,7 @@ kubernetes:
     mountPath: /opt/spinnaker/lib/local-plugins
 ```
 
-Content for `.hal/config`:
+Add the following to  `.hal/config`:
 ```yaml
 deploymentConfigurations:
   - name: default
@@ -231,21 +236,22 @@ deploymentConfigurations:
 
 ### Remote plugin repository
 
-The configuration is mostly the same as with the docker image method, but omitting all volumes and init container configurations, and replacing all occurrences of 
+The configuration is mostly identical to the Docker image method but omits all volumes and init container configurations. Additionally, replace all occurrences of the following:
 
 ```yaml
 url: file:///opt/spinnaker/lib/local-plugins/appname/plugins.json
-``` 
+```
 
- with:
- 
+with:
+
 ```yaml
 url: https://armory.jfrog.io/artifactory/plugins/appname/plugins.json
-``` 
+```
 
 ## Usage
 
-The plugin allows to configure different application name regex patterns and constraints for each cloud provider. For example:
+The plugin allows you to configure different application name regex patterns and constraints for each cloud provider. For example:
+
 ```yaml
 armory:
   appnameplugin:
@@ -259,9 +265,9 @@ armory:
         maxLength: 64
 ```
 
-The above configuration allows to have different rules for kubernetes and cloudfoundry providers, and the rest of providers will use Spinnaker default rules.
+The above configuration sets different rules for applications if they get deployed to Kubernetes or Cloud Foundry. Applications that use other providers continue to use the default Spinnaker rules.
 
-The `appStackDetailSeparator` is a separator character used to build server group names in VM type deployments, like AWS or Cloudfoundry. This separator character is not allowed to be part of the application name.
+The `appStackDetailSeparator` is a separator character used to build server group names in VM type deployments, like AWS or Cloud Foundry. This separator character is not allowed to be part of the application name.
 
 
 ## Release Notes
