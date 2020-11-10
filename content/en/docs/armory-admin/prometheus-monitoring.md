@@ -75,19 +75,23 @@ Example config:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
+  # name can be either prometheus or prometheus-k8s depending on the version of the prometheus-operator
   name: prometheus
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
+  # name can be either prometheus or prometheus-k8s depending on the version of the prometheus-operator
   name: prometheus
 subjects:
   - kind: ServiceAccount
+    # name can be either prometheus or prometheus-k8s depending on the version of the prometheus-operator
     name: prometheus-k8s
     namespace: monitoring
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
+  # name can be either prometheus or prometheus-k8s depending on the version of the prometheus-operator
   name: prometheus
 rules:
 - apiGroups: [""]
@@ -109,6 +113,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   namespace: monitoring
+  # name can be either prometheus or prometheus-k8s depending on the version of the prometheus-operator
   name: prometheus-k8s
 ```
 ## Configure monitoring using the Observability Plugin 
@@ -183,6 +188,9 @@ kind: ServiceMonitor
 metadata:
   labels:
     app: spin
+    # this label is here to match the prometheus operator serviceMonitorSelector attribute
+    # prometheus.prometheusSpec.serviceMonitorSelector
+    # https://github.com/helm/charts/tree/master/stable/prometheus-operator
     release: prometheus-operator
   name: spinnaker-all-metrics
   namespace: spinnaker
@@ -230,11 +238,13 @@ spec:
   selector:
     matchLabels:
       cluster: spin-gate
-      app.kubernetes.io/name: gate
   endpoints:
-  # "port" is string only. "targetPort" is integer or string.
   - interval: 10s
     path: "/api/v1/aop-prometheus"
+    # if Prometheus returns the error "http: server gave HTTP response to HTTPS client" then
+    # replace scheme with targetPort:
+    # Note that "port" is string only. "targetPort" is integer or string.
+    # targetPort: 8084
     scheme: "https"
     tlsConfig:
       insecureSkipVerify: true
