@@ -35,7 +35,7 @@ The Red Hat Marketplace is available directly from your OpenShift web console an
 
 This document covers the following high-level steps:
 
-1. Configure application and pipeline configuration storage 
+1. Configuring application and pipeline storage 
 2. Creating a SpinnakerService Custom Resource
 3. Exposing your Armory instance
 
