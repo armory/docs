@@ -1,0 +1,5 @@
+User-agent: *
+
+{{range .Pages}}
+Disallow: /docs/plugin-guide/plugin-appname/
+{{end}}
