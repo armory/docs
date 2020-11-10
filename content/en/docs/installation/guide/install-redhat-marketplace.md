@@ -39,7 +39,7 @@ Installing Armory consists of the following:
 You can install the Armory Operator from the [Red Hat Marketplace](https://marketplace.redhat.com/) or from the OpenShift web console's **OperatorHub**.
 
 1. Search for `Armory Operator`.
-1. Choose to start a free trial or to purchase the Armory Operator. After you have made your choice, follow the instruction from Red Hat to install the Armory Operator into your cluster.
+1. Choose to start a free trial or to purchase the Armory Operator. After you have made your choice, follow the instructions from Red Hat to install the Armory Operator into your cluster.
 
 ## Deploy Armory
 
