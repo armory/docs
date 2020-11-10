@@ -33,7 +33,8 @@ The plugin can be delivered using two different methods:
 
 ### Docker image as init container
 
-#### Spinnaker operator
+{{< tabs name="enable-plugin" >}}
+{{% tab name="Operator" %}}
 
 This is a sample configuration to use with the Spinnaker operator:
 
@@ -154,7 +155,9 @@ spec:
                     emptyDir: {}
 ```
 
-#### Halyard
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
 
 Add the following to `profiles/spinnaker-local.yml`:
 ```yaml
@@ -232,6 +235,9 @@ deploymentConfigurations:
               - mountPath: /opt/appname-plugin/target
                 name: appname-plugin-vol
 ```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ### Remote plugin repository
 
