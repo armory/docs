@@ -84,3 +84,6 @@ package = "@netlify/plugin-sitemap"
 
   [plugins.inputs]
   buildDir = "public"
+  exclude =[
+    '/docs/plugin-guide/plugin-appname/'
+  ]
