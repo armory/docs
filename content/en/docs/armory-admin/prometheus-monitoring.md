@@ -154,13 +154,12 @@ To install the Observability plugin, add a plugin configuration to the profiles
 management:
   endpoints:
     web:
-      # READ THE SECURITY WARNING ABOVE ON THIS!
+      # Read the security warning at the start of this section about what gets exposed!!
       exposure.include: health,info,aop-prometheus
 spinnaker:
   extensibility:
     plugins:
       Armory.ObservabilityPlugin:
-        # THIS Is absolutely required, though potentially redundant, otherwise the plugin won't start
         enabled: true
         version: 1.1.3
         # This is the basic configuration for prometheus to be enabled
@@ -230,7 +229,7 @@ metadata:
   namespace: spinnaker
   labels:
     app: spin
-    # this label is here to match the prometheus operator serviceMonitorSelector attribute
+    # This label is here to match the prometheus operator serviceMonitorSelector attribute
     # prometheus.prometheusSpec.serviceMonitorSelector
     # https://github.com/helm/charts/tree/master/stable/prometheus-operator
     release: prometheus-operator
@@ -263,7 +262,7 @@ Configure port forwarding for Grafana:
 $ kubectl --namespace monitoring port-forward svc/grafana 3000
 ```
 
-Access the Grafana web interface via http://localhost:3000 and use the default grafana user:password of `admin:admin`.
+Access the Grafana web interface via http://localhost:3000 and use the default Grafana username and password of `admin:admin`.
 
 ## Add Armory dashboards to Grafana
 
