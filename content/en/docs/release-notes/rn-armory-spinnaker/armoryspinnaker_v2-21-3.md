@@ -17,7 +17,7 @@ Armory Spinnaker 2.21.2 requires one of the following:
 
 {{< include "bc-k8s-namespace.md" >}}
 
-{{< include "bc-spinnaker-metrics.md" >}}
+{{< include "bc-metrics-name.md" >}}
 
 #### Scheduled removal of Kubernetes V1 provider
 The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 2.21). Please see the [RFC](https://github.com/spinnaker/governance/blob/master/rfc/eol_kubernetes_v1.md) for more details.

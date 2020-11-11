@@ -25,7 +25,7 @@ Armory Spinnaker 2.22.1 requires one of the following:
 
 {{< include "bc-k8s-job-suffix.md" >}}
 
-{{< include "bc-spinnaker-metrics.md" >}}
+{{< include "bc-metrics-name.md" >}}
 
 ## Known issues
 

@@ -19,7 +19,7 @@ Armory 2.21.1 requires one of the following:
 
 {{< include "bc-k8s-namespace.md" >}}
 
-{{< include "bc-spinnaker-metrics.md" >}}
+{{< include "bc-metrics-name.md" >}}
 
 #### HTTP sessions for Gate
 Armory 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).

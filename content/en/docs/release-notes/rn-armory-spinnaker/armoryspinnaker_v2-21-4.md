@@ -19,7 +19,7 @@ Armory Spinnaker 2.21.2 requires one of the following:
 
 {{< include "bc-k8s-namespace.md" >}}
 
-{{< include "bc-spinnaker-metrics.md" >}}
+{{< include "bc-metrics-name.md" >}}
 
 #### Scheduled removal of Kubernetes V1 provider
 
