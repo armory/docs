@@ -32,7 +32,7 @@ A quick and easy way to configure a cluster monitoring solution is to use `kube-
 
 To create the stack, follow the [kube-prometheus quick start](https://github.com/coreos/kube-prometheus#kubernetes-compatibility-matrix) instructions beginning with the _Compatibility Matrix_ section.
 
-After you complete the instructions, you have pods running in the `monitoring` namespace.
+After you complete the instructions, you have pods running in the `monitoring` namespace:
 
 ```bash
 % kubectl get pods --namespace monitoring
@@ -51,7 +51,7 @@ prometheus-operator-6685db5c6-qfpbj   1/1     Running   0          106s
 
 ```
 
-Access the Prometheus web interface by using the `kubectl port-forward` command. NOTE: if you want to expose this interface for others to use, create an ingress service. Before doing that, enable security controls following Prometheus best practices.
+Access the Prometheus web interface by using the `kubectl port-forward` command. If you want to expose this interface for others to use, create an ingress service. Make sure you nable security controls that follow Prometheus best practices.
 
 ```bash
 % kubectl --namespace monitoring port-forward svc/prometheus-k8s 9090 &
@@ -188,8 +188,8 @@ kind: ServiceMonitor
 metadata:
   labels:
     app: spin
-    # this label is here to match the prometheus operator serviceMonitorSelector attribute
-    # prometheus.prometheusSpec.serviceMonitorSelector
+    # This label is here to match the prometheus operator serviceMonitorSelector attribute
+    # prometheus.prometheusSpec.serviceMonitorSelector. For more information, see
     # https://github.com/helm/charts/tree/master/stable/prometheus-operator
     release: prometheus-operator
   name: spinnaker-all-metrics
@@ -241,10 +241,10 @@ spec:
   endpoints:
   - interval: 10s
     path: "/api/v1/aop-prometheus"
-    # if Prometheus returns the error "http: server gave HTTP response to HTTPS client" then
+    # If Prometheus returns the error "http: server gave HTTP response to HTTPS client" then
     # replace scheme with targetPort:
     # Note that "port" is string only. "targetPort" is integer or string.
-    # targetPort: 8084
+    # For example, targetPort: 8084
     scheme: "https"
     tlsConfig:
       insecureSkipVerify: true
