@@ -1,18 +1,17 @@
 ---
 title: Armory Cloud Admin Quickstart 
-description: If this is your first time using Armory Cloud, use this guide to get started. It walks you through using the Armory Cloud Console, from first log in to granting your app developers access to Armory Cloud.
+description: If this is your first time using Armory Cloud, start here. It walks you through using the Armory Cloud Console, from first log in to granting your app developers access to Armory Cloud.
 ---
 
 {{% alert title="Info" color="primary" %}}{{< include "saas-status.md" >}}{{% /alert %}}
 
 ## Logging in to the Armory Cloud Console 
 
-Armory provides a set of credentials to log in to the Cloud Console. These are separate from the user accounts that app developers use to access the Armory Platform UI and API. The Cloud Console is where you go to make changes to the Armory Cloud environment and what it has access to. For example, you can add artifact stores or deployment targets in the Cloud Console.
+Armory provides a set of credentials to log in to the Cloud Console. These are separate from the user accounts that app developers use to access the Armory Platform UI and API. The Cloud Console is where you go to make changes to the Armory Cloud environment and what it has access to. For example, you can add deployment targets or other resources in the Cloud Console. When app developers log in to the Armory Platform, they can use these resources in their deployment pipelines.
 
-1. Go to the Armory Cloud Console: https://console.cloud.armory.io.
-2. Log in with the credentials that Armory provides.
+To log in to the cloud console, go to https://console.cloud.armory.io. As a design partner, Armory provides a set of credentials for you to use.
 
-From here, you can select what environment you want to configure or open Armory Platform for that environment.
+From here, you can select what environment you want to configure or open the Armory Platform for that environment.
 
 ## Configuring the environment
 
@@ -26,7 +25,9 @@ If you are setting up the Armory Cloud environment for the first time, you need 
   
 **Optional**
 
-* Packer files to perform customized image baking.
+* [Packer files](#packer-files) to perform customized image baking.
+
+To start, click **Configure** for the environment you want to add.
 
 ### Secrets
 
@@ -34,22 +35,28 @@ Start by adding configuration secrets, such as your AWS secret key, to Armory Cl
 
 Note that these are configuration secrets meant for information such as AWS Secret Access Keys. They are separate from any kind of app secret your developers may be using within their deployment pipelines.
 
-1. On the Armory Cloud Console homepage, select **Manage Secrets** for the environment you want to configure secrets for.
-2. On this screen, you can perform several tasks:
-
-   - Add a new secret
-   - Update a secret
-   - Delete a secret
-
-If this is your first time configuring an environment, consider adding the following secrets:
+If this is your first time configuring an environment, consider adding secrets for the following resources:
 
 - Artifact sources, such as a Docker or ECR Registry. These are a type of external resource your app developers can reference in their delivery pipelines. You can learn more about artifacts later on in this guide when you configure [Artifact Sources](#artifact-sources).
 - Deployment target, such as an AWS Secert Access Key. These are where your app developers want to deploy their coed to. You can learn more later on in this guide when you configure [Deployment Targets](#deployment-targets).
 
 
+
+1. On the Armory Cloud Console homepage, select **Configure** for the environment you want to configure.
+2. Go to **Manage Secrets**.
+3. Click **New Secret** and complete the form.
+   
+   When configuring secrets, keep the following in mind:
+   
+   - Use a unique descriptive name for each secret.
+   - Use only alphanumeric characters, `.`, `-`, and `_` are allowed for the name.
+   - Once you save a secret, you can no longer access the plain-text version of it.
+  
+4. Save your changes.
+
 ### Artifact Sources
 
-Add artifact sources to give app developers access to artifacts, external JSON objects like an image, a file stored somewhere, or a binary blob in a bucket. Armory Cloud can retrieve a resource from or store a resource in artifact sources.
+Add artifact sources to give app developers access to artifacts, such as external JSON objects like an image, a file stored somewhere, or a binary blob in a bucket. Armory Cloud can retrieve a resource from or store a resource in artifact sources.
 
 Armory Cloud supports several artifact providers:
 
@@ -69,13 +76,32 @@ Deployment targets are the destination for the code your app developers want to 
 - AWS
 - Kubernetes
 
+Before you start, make sure you have added [secrets](#secrets) so that you do not have to enter sensitive information, like access keys, in plain text.
+
 1. In the Armory Cloud Console, select the environment you want to configure cloud providers for.
 2. Select the deployment target you want to add.
 3. Click **New** and configure the account:
 
 ### Packer Files
 
-Armory Cloud
+Armory Cloud can bake machine images for you using Packer. By default, Armory ships a set of default Packer templates that your app developers can use when crafting their delivery pipelines. For information about Packer templates, see [Templates](https://www.packer.io/docs/templates).
+
+<!-- Once SaaS supports more stuff, point to PCM -->
+Armory supports baking images for Amazon Machine Images (AMI). 
+
+If you want to use custom Packer template files, add them here. This is optional, and you can skip this section if you do not want to use custom Packer templates. Any templates you add are available to app developers when they configure a delivery pipeline.
+
+1. Navigate to **Manage Packer Files**.
+2. Click **New File** and configure the custom Packer template.
+   
+   When configuring a Packer template, keep the following in mind:
+   
+   - Use a unique descriptive name for each secret.
+   - Only alphanumeric characters, `.`, `-`, and `_` are allowed for the name.
+   - As a best practice, maintain your Packer templates in source control and make changes in your source control tool. Then update the template in the Cloud Console.
+
+3. Save your changes.
+
 
 <!--### Pipeline Triggers
 
@@ -83,4 +109,8 @@ These are optional but provide a way for your developers to automatically trigge
 
 ## Accessing the Armory Platform
 
+The Armory Platform is where your app developers create their delivery pipelines
+
 Once the environments are configured, your Application Developers can access the cloud deployment of the Armory Platform to start deploying applications.
+
+The URL to access the Armory platform is available on the Cloud Console homepage if you click **Launch**.
