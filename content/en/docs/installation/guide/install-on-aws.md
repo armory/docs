@@ -28,7 +28,7 @@ This document currently does not fully cover the following (see [Next Steps](#ne
 - Add K8s accounts to deploy to
 - Add cloud accounts to deploy to
 
-Note: This document is focused on Armory, but can be adapted to install Open Source Armory by using a different Halyard container and a corresponding different Armory version
+Note: This document is focused on Armory, but can be adapted to install Open Source Spinnaker<sup>TM</sup> by using a different Halyard container and a corresponding different Armory version
 
 ## AWS Resources
 
