@@ -27,7 +27,8 @@ The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 
 
 ## Known Issues
 <!-- Copy/paste known issues from the previous version if they're not fixed -->
-There are currently no known issues with this release.
+
+{{< include "ki-livemanifests.md" >}}
 
 #### Security update
 

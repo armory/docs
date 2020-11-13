@@ -31,6 +31,8 @@ Armory Spinnaker 2.22.1 requires one of the following:
 
 {{< include "ki-gce-predictive-autoscaling.md" >}}
 
+{{< include "ki-livemanifests.md" >}}
+
 ## Highlighted updates
 
 ### Deployment targets
