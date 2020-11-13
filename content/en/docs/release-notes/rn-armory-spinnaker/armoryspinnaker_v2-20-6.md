@@ -29,6 +29,8 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 ## Known Issues
 
+{{< include "ki-livemanifests.md" >}}
+
 ### Dynamic Accounts for Kubernetes
 
 **Fixed in**: 2.21
