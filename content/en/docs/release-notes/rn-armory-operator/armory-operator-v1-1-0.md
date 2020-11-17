@@ -1,6 +1,7 @@
 ---
 title: v1.1.0 Armory Operator
 toc_hide: true
+date: 2020-08-11
 ---
 
 ## 08/11/2020 Release Notes
@@ -29,13 +30,13 @@ This will be addressed in a patch release for the `1.1.x` release line.
 
 ### Ingress Support
 
-`spec.expose.type: ingress`. When `ingress` is selected, the Operator tries to find an ingress rule 
+`spec.expose.type: ingress`. When `ingress` is selected, the Operator tries to find an ingress rule
 in the same namespace as Spinnaker that points to Gate or Deck. It will then compute these services' hostnames using either `spec.rules[].host` or `status.loadBalancer.ingress[0].hostname`.
 
 Both `extensions` and `networking.k8s.io` ingresses are supported and queried.
 
 For Gate, the Operator also checks for the path and sets up Spinnaker to support relative paths.
- 
+
 The following example sets up Spinnaker's UI (Deck) at `http://acme.com` and API (Gate) at `http://acme.com/api`:
 
 ```yaml

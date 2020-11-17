@@ -1,6 +1,7 @@
 ---
 
 title: v1.7.2 Armory Halyard
+date: 2019-10-09
 toc_hide: true
 aliases:
   - armory-halyard_v1.7.2
@@ -48,7 +49,7 @@ hal deploy apply
 ## Known Issues
 No known issues
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
  - feat(deploy): Allow BOMs in GCS via spinnaker.config.input.gcs.enabled (#268)
  - fix(bom): Expire BOM cache after 1m (#267)
  - feat(gitlab): Add Dinghy config for Gitlab (#266)
