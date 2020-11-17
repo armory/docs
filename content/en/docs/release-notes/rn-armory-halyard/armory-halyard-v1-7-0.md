@@ -1,6 +1,7 @@
 ---
 
 title: v1.7.0 Armory Halyard
+date: 2019-09-13
 toc_hide: true
 aliases:
   - armory-halyard_v1.7.0
@@ -20,7 +21,7 @@ This release has a bug which prevents `kubeconfig` files from being read from re
 
 Please upgrade to `halyard-armory` `1.7.1`
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
 No Changes
 
 ##  Halyard Community Contributions

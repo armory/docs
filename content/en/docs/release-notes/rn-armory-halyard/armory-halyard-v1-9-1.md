@@ -1,6 +1,7 @@
 ---
 
 title: v1.9.1 Armory Halyard
+date: 2020-05-14
 toc_hide: true
 aliases:
   - armory-halyard_v1.9.1
@@ -16,12 +17,12 @@ No known issues
 Armory-extended Halyard 1.9.1 resolves an issue where the Echo Pod in Armory 2.18 remained in a crash loop state.
 
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
 - fix(plugins): Use Armory version to detect if plugins are supported
 - chore(cve): CVE fixes
 
 
-## Halyard Community Contributions 
+## Halyard Community Contributions
 You can see the full changelog here: [version-1.34.0...version-1.35.3](https://github.com/spinnaker/halyard/compare/version-1.34.0...version-1.35.3)
 
 - chore(dependencies): Autobump korkVersion (#1609) …

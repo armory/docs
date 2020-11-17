@@ -1,5 +1,6 @@
 ---
 title: v1.6.0 Armory Halyard
+date: 2019-06-18
 toc_hide: true
 aliases:
   - armory-halyard_v1.6.0
@@ -14,7 +15,7 @@ aliases:
 
 - `hal shutdown` returns an `Error 400` message. We will be submitting a PR to OSS Spinnaker to resolve this.
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
  - chore(gradle): move to gradle5 (#220)
  - fix(release): point to armory-commons/master branch (#218)
  - chore(dependency): add kork dep to halyard-armory (#214)

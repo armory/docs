@@ -1,6 +1,6 @@
 ---
 title: "Armory Operator Release Notes"
-simple_list_reverse: true
+layout: release-notes-all
 ---
 
 > You can find [Armory's releases notes here]({{< ref "rn-armory-spinnaker" >}}).

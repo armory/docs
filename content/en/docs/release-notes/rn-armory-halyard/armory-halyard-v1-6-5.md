@@ -1,6 +1,7 @@
 ---
 
 title: v1.6.5 Armory Halyard
+date: 2019-08-26
 toc_hide: true
 aliases:
   - armory-halyard_v1.6.5
@@ -19,11 +20,11 @@ This release addresses a problem where the Secrets config block was not generate
 ## Known Issues
 - This release has no known issues
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
  - fix(secrets): fix secrets config block in service yamls (#252)
  - feat(artifactory): Move to artifactory for plugins and updated gradle work (#248)
  - chore(terraformer): Remove 'alpha' flag (#250)
  - fix(logging): add logback to all clouddriver HA profiles (#246)
- 
+
 ##  Halyard Community Contributions
 - No changes

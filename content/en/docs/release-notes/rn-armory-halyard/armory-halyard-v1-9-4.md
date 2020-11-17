@@ -1,6 +1,7 @@
 ---
 
 title: v1.9.4 Armory Halyard
+date: 2020-05-21
 toc_hide: true
 ---
 
@@ -12,7 +13,7 @@ No known issues
 ### Known Issues
 No known issues
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
 
 - fix(cve): Security fix for CVE-2020-1945
 - Upgrade OSS Halyard to 1.36.0

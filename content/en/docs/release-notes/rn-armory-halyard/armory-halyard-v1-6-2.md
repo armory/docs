@@ -1,6 +1,7 @@
 ---
 
 title: v1.6.2 Armory Halyard
+date: 2019-06-25
 toc_hide: true
 aliases:
   - armory-halyard_v1.6.2
@@ -13,13 +14,13 @@ aliases:
 
 ## Highlights
 
-This release fixes a regression introduced in `1.6.1` where `aws-iam-authenticator` was not installed properly. 
+This release fixes a regression introduced in `1.6.1` where `aws-iam-authenticator` was not installed properly.
 
 ## Known Issues
 
 - None
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
  - No Changes
 
 ##  Halyard Community Contributions

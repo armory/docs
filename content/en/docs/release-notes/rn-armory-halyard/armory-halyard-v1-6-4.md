@@ -1,6 +1,7 @@
 ---
 
 title: v1.6.4 Armory Halyard
+date: 2019-08-09
 toc_hide: true
 aliases:
   - armory-halyard_v1.6.4
@@ -13,7 +14,7 @@ aliases:
 
 ## Highlights
 
-This release: 
+This release:
 * Brings Halyard Armory in line with OSS Halyard 1.22
 * Enables logging on all HA Clouddriver services
 
@@ -24,8 +25,8 @@ Halyard fails to generate the Secrets config block for some service profiles.
 
 Please upgrade to `Armory-extended Halyard 1.6.5`.
 
-## Armory-extended Halyard 
- - fix(logging): add logback to all clouddriver HA profiles (#246) 
+## Armory-extended Halyard
+ - fix(logging): add logback to all clouddriver HA profiles (#246)
  - chore(release): pin 1_6_x to a later commit (#243)
  - fix(installer): Avoid changing existing customer UUID on hal armory init (#241)
  - feat(aws): upgrade awscli (#240)
