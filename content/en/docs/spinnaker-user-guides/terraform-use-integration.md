@@ -1,5 +1,5 @@
 ---
-title: Using the Terraform Integration Stage
+title: Using the Terraform Integration stage
 aliases:
   - /docs/spinnaker/terraform-use-integration/
 ---
