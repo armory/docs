@@ -6,16 +6,65 @@ aliases:
 
 ## Overview
 
-Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. For more information, see [Enabling the Terraform Integration]({{< ref "terraform-enable-integration">}}). To familiarize yourself with the Terraform stage, you can take a tour of the Terraform Integration Stage UI by watching the Terraform Integration [UI video](https://youtu.be/Xsjql3g-wtU).
-
 At the core of the Terraform Integration is the Terraformer service. This service fetches your Terraform projects from source and executes various Terraform commands against them. When a `terraform` stage starts, Orca submits the task to Terraformer and monitors it until completion. Once a task is submitted, Terraformer fetches your target project, runs `terraform init` to initialize the project, and then runs your desired `action` (`plan` or `apply`). If the task is successful, the stage gets marked successful as well. If the task fails, the stage gets marked as a failure, and the pipeline stops.
 
-At a high level, a Terraform Integration stage performs the following actions when it runs:
+A Terraform Integration stage performs the following actions when it runs:
 
 1. Authenticates to your repo using basic authentication credentials you provide. This can be a GitHub token or a BitBucket username/password combination.
 2. Pulls a full directory from your Git repository.
 3. Optionally uses a Spinnaker artifact provider (Github, BitBucket, or HTTP) to pull in a `tfvars`-formatted variable file.
-4. Runs the Terraform action you select.   
+4. Runs the Terraform action you select.
+
+## Requirements
+
+Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. For more information, see [Enabling the Terraform Integration]({{< ref "terraform-enable-integration">}}). 
+
+Additionally, your Terraform code needs to be stored in either GitHub or BitBucket that the Armory Platform can access, which is part of the configuration process.
+
+## Example Terraform Integration stage
+
+
+The following example describes a basic pipeline that performs the plan and apply Terraform actions. This is a simple example. For a more involved one, watch this [demo](https://youtu.be/_p8v-6_5DTI) of the Terraform Integration.
+
+The pipeline consists of three parts:
+
+**Plan stage**
+
+A Plan stage in a pipeline performs the same action as running the `terraform plan` command. Although a Plan stage is not strictly required since an Apply stage performs a `terraform plan` if no plan file exists, it's a good idea to have one. You'll understand why when during the Manual Judgment stage.
+
+you do not need to For this stage, configure the following:
+
+- For the **Terraform version**, pick any version, such as `0.13.3`.
+- For the **Action**, choose **Plan**.
+- **Main Terraform Artifact**
+  - Select **Expected Artifact > Define a new artifact** 
+    - Select **Account > gitrepo**
+    - In **URL**, add the URL to the Git repo that houses your Terraform code.
+- Under **Terraform Artifacts** 
+  1. Select **Add variable file > Expected Artifact > Define a new artifact**.
+  2. Select **Account > embedded-artifact**
+  3. Name it `planfile`.
+
+The output of this stage, the embedded artifact named `planfile`, can get consumed by subsequent stages in this pipeline. In this example, this occurs during the final stage in the pipeline. Additionally, more complex use cases that involve parent-child pipelines can also use plan files.
+
+**Manual Judgment stage**
+
+You can use the default values for this stage. Manual judgment stages ask the user to approve or fail a pipeline. Having a Manual Judgment stage between a Plan and Apply stage gives you a chance to confirm that the Terraform code is doing what you expect it to do.
+
+**Apply stage**
+
+The Apply stage performs the same action as running the `terraform apply` command. For this stage, configure the following:
+
+- For the **Terraform version**, pick the same version as you did you for the Plan stage.
+- For the **Action**, choose **Apply**.
+- For **Main Terraform Artifact**
+  - Select **Expected Artifact > Define a new artifact**
+    - Select **Account > gitrepo**
+    - In **URL**, add the URL to the Git repo that houses your terraform code
+- For **Terraform Artifacts**, add a new file and select the `planfile` from the dropdown. This is the file that you created during the Plan stage and verified during the Manual Judgment stage.
+- All other fields can be left blank or with their default values for this example.
+
+Run the pipeline! For more information about any of the fields discussed in this example or steps for how to configure your own stage, see [Creating a Terraform Integration stage](#creating-a-terraform-integration-stage)
 
 ## Creating a Terraform Integration stage
 
@@ -68,6 +117,8 @@ To use the stage, perform the following steps:
       For the `backendArtifact` and other artifacts, you can replace `github/file` with some other artifact type. For example, if you're using the BitBucket artifact provider, specify `bitbucket/file` and the corresponding artifact account.
 
       The Terraform Integration supports remote backends as an [Early Access]({{< ref "release-definitions" >}}) feature. Select a Terraform version that is 0.12.0 or higher when configuring the stage. Then, you can use Terraform code that references a remote backend.
+
+
 
 ## Custom Plugins
 
