@@ -1,6 +1,6 @@
 ---
-
 title: v1.8.2 Armory Halyard
+date: 2020-02-19
 toc_hide: true
 aliases:
   - armory-halyard_v1.8.2
@@ -14,7 +14,7 @@ aliases:
 ## Known Issues
 No known issues
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
  No Changes
 
 ## Halyard Community Contributions
@@ -39,4 +39,4 @@ No known issues
  - feat(huaweicloud): add provider of huaweicloud (#1476)
  - fix(deployments): Fixed k8s manifests templates generating invalid yaml (#1456)
  - Revert "feat(huaweicloud): first commit for huaweicloud (#1461)" (#1473)
- 
+

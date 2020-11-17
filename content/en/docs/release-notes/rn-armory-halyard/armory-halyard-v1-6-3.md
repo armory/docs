@@ -1,6 +1,7 @@
 ---
 
 title: v1.6.3 Armory Halyard
+date: 2019-07-16
 toc_hide: true
 aliases:
   - armory-halyard_v1.6.3
@@ -13,7 +14,7 @@ aliases:
 
 ## Highlights
 
-This release: 
+This release:
 * Enables secrets to pass through to Go services (Dinghy and Terraformer)
 * Adds Slack notifications for Dinghy
 
@@ -21,7 +22,7 @@ This release:
 
 - None
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
  - feat(secrets/go): Enable secrets to pass through to Go services that support it (#237)
  - feat(web): add ability to generate json for providers (#236)
  - feat(dinghy): Enable Slack notifications from Dinghy (#235)

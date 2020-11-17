@@ -1,7 +1,7 @@
 ---
-
 title: v1.1.2 Armory Operator
 toc_hide: true
+date: 2020-09-30
 ---
 
 ## 09/30/2020 Release Notes
@@ -13,7 +13,7 @@ No known issues.
 
 * chore(release): upgrade to oss operator 1.1.2
 * chore(license): update LICENSES
-* fix(helm): solve error assigning version to Helm Chart 
+* fix(helm): solve error assigning version to Helm Chart
 * feat(ubi): add build for ubi images
 
 ### Spinnaker Operator

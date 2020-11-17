@@ -1,6 +1,7 @@
 ---
 
-title: v1.7.1 Armory Halyard
+title: v1.07.1 Armory Halyard
+date: 2019-09-17
 toc_hide: true
 aliases:
   - armory-halyard_v1.7.1
@@ -17,7 +18,7 @@ This release fixes an issue which prevented `halyard` from reading local `kubeco
 ## Known Issues
 No known issues
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
 - fix(kubeconfig): Get contents of local kubeconfig files #1425
 
 ##  Halyard Community Contributions

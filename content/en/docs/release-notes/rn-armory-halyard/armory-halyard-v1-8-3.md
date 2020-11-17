@@ -1,6 +1,7 @@
 ---
 
 title: v1.8.3 Armory Halyard
+date: 2020-04-02
 toc_hide: true
 aliases:
   - armory-halyard_v1.8.3
@@ -15,7 +16,7 @@ Armory-extended Halyard  1.8.3 is the minimum version required to deploy Armory 
 
 ## Known Issues
 
-### Plugins 
+### Plugins
 
 When you try to deploy Spinnaker using Halyard 1.8.3, you encounter the following error:
 
@@ -25,9 +26,9 @@ Validation in Global:
   "plugins" (class
 ```
 
-**Workaround** 
+**Workaround**
 
-Remove the top level key for Plugins in your Halconfig. 
+Remove the top level key for Plugins in your Halconfig.
 
 ### Secrets
 
@@ -37,7 +38,7 @@ Secrets are stored decrypted at rest in the Pods of the Spinnaker services.
 Upgrade to Armory-extended Halyard 1.9.0 or later.
 
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
  No Changes
 
 ## Halyard Community Contributions

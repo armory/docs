@@ -1,6 +1,7 @@
 ---
 
 title: v1.8.1 Armory Halyard
+date: 2020-01-06
 toc_hide: true
 aliases:
   - armory-halyard_v1.8.1
@@ -14,7 +15,7 @@ aliases:
 ## Known Issues
 No known issues
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
  - feat(plugin): Send plugin configs to deck (#273)
 
 ##  Halyard Community Contributions
