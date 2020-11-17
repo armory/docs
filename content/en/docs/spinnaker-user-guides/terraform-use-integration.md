@@ -30,22 +30,23 @@ The pipeline consists of three parts:
 
 **Plan stage**
 
-A Plan stage in a pipeline performs the same action as running the `terraform plan` command. Although a Plan stage is not strictly required since an Apply stage performs a `terraform plan` if no plan file exists, it's a good idea to have one. You'll understand why when during the Manual Judgment stage.
+A Plan stage in a pipeline performs the same action as running the `terraform plan` command. Although a Plan stage is not strictly required since an Apply stage performs a `terraform plan` if no plan file exists, it's a good idea to have one. You'll understand why during the Manual Judgment stage.
 
-you do not need to For this stage, configure the following:
+For this stage, configure the following:
 
 - For the **Terraform version**, pick any version, such as `0.13.3`.
 - For the **Action**, choose **Plan**.
 - **Main Terraform Artifact**
   - Select **Expected Artifact > Define a new artifact** 
-    - Select **Account > gitrepo**
+    - Select **Account > <YourGitRepo>**. This is the Git repo that was configured when you enabled the Terraform Integration and houses your Terraform code.
     - In **URL**, add the URL to the Git repo that houses your Terraform code.
-- Under **Terraform Artifacts** 
-  1. Select **Add variable file > Expected Artifact > Define a new artifact**.
-  2. Select **Account > embedded-artifact**
-  3. Name it `planfile`.
+- Under **Produces Artifacts** 
+  1. Select **Define artifact**. A window appears.
+  2. Optionally, provide a descriptive display name.
+  3. For **Match Artifact > Account** , select **embedded-artifact** .
+  4. Name the artifact `planfile`.
 
-The output of this stage, the embedded artifact named `planfile`, can get consumed by subsequent stages in this pipeline. In this example, this occurs during the final stage in the pipeline. Additionally, more complex use cases that involve parent-child pipelines can also use plan files.
+The output of this stage, the embedded artifact named `planfile`, can get consumed by subsequent stages in this pipeline. In this example, this occurs during the final stage of the pipeline. Additionally, more complex use cases that involve parent-child pipelines can also use plan files.
 
 **Manual Judgment stage**
 
@@ -59,8 +60,8 @@ The Apply stage performs the same action as running the `terraform apply` comman
 - For the **Action**, choose **Apply**.
 - For **Main Terraform Artifact**
   - Select **Expected Artifact > Define a new artifact**
-    - Select **Account > gitrepo**
-    - In **URL**, add the URL to the Git repo that houses your terraform code
+    - Select **Account > <YourGitRepo>**. This is the Git repo that was configured when you enabled the Terraform Integration and houses your Terraform code.
+    - In **URL**, add the URL to the Git repo that houses your Terraform code.
 - For **Terraform Artifacts**, add a new file and select the `planfile` from the dropdown. This is the file that you created during the Plan stage and verified during the Manual Judgment stage.
 - All other fields can be left blank or with their default values for this example.
 
