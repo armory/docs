@@ -17,9 +17,9 @@ A Terraform Integration stage performs the following actions when it runs:
 
 ## Requirements
 
-Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. For more information, see [Enabling the Terraform Integration]({{< ref "terraform-enable-integration">}}). 
+Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. Additionally, your Terraform code needs to be stored in either GitHub or BitBucket repo that the Armory Platform can access. You grant access as part of the enablement process.
 
-Additionally, your Terraform code needs to be stored in either GitHub or BitBucket that the Armory Platform can access, which is part of the configuration process.
+For more information, see [Enabling the Terraform Integration]({{< ref "terraform-enable-integration">}}).
 
 ## Example Terraform Integration stage
 
@@ -64,7 +64,7 @@ The Apply stage performs the same action as running the `terraform apply` comman
 - For **Terraform Artifacts**, add a new file and select the `planfile` from the dropdown. This is the file that you created during the Plan stage and verified during the Manual Judgment stage.
 - All other fields can be left blank or with their default values for this example.
 
-Run the pipeline! For more information about any of the fields discussed in this example or steps for how to configure your own stage, see [Creating a Terraform Integration stage](#creating-a-terraform-integration-stage)
+Run the pipeline! For more information about any of the fields discussed in this example or steps for how to configure your own stage, see [Creating a Terraform Integration stage](#creating-a-terraform-integration-stage).
 
 ## Creating a Terraform Integration stage
 
