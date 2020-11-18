@@ -87,6 +87,11 @@ weight = 1
   weight = 8
   url = "https://www.armory.io/blog/"
 
+
+# print support
+[outputs]
+section = [ "HTML", "RSS", "print" ]
+
 # Everything below this are Site Params
 
 [params]
@@ -180,6 +185,10 @@ enable = false
 # Enable Mermaid diagrams
 [params.mermaid]
 enable = true
+
+# disable showing TOC in printable view
+[params.print]
+disable_toc = true
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
