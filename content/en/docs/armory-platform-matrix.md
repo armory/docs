@@ -264,12 +264,12 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 
 These are providers that are manifest based, so Armory applies the manifest and leaves the rollout logic to the platform itself.
 
-| Provider          | Supported Versions | Armory Versions        | Notes |
-| ----------------- | ------------------ | ---------------------- | ----- |
-| Kubernetes        | All versions       | All supported versions |       |
-| Amazon AWS EKS    | All versions       | All supported versions |       |
-| Google GKE        | All versions       | All supported versions |       |
-| Cloud Foundry PKS | All versions       | All supported versions |       |
+| Provider           | Supported Versions | Armory Versions        | Notes |
+| -----------------  | ------------------ | ---------------------- | ----- |
+| Kubernetes         | All versions       | All supported versions |       |
+| Amazon AWS EKS     | All versions       | All supported versions |       |
+| Google GKE         | All versions       | All supported versions |       |
+| VMware/Pivotal PKS | All versions       | All supported versions |       |
 
 
 | Provider       | Deployment strategies                      | Armory Versions        | Notes |
