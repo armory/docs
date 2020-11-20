@@ -13,7 +13,7 @@ experience in the [User Guide](#user-guide) section. For a general overview of
 Armory's Pipelines as Code feature and the Dinghy service, see
 [Using Pipelines as Code]({{< ref "using-dinghy" >}}).
 
-## Feature Overivew
+## Feature Overview
 
 Dinghy Events enhance existing pipeline processing by annotating events and
 storing them for each pipeline. The Armory Cloud UI retrieves these
