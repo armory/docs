@@ -295,7 +295,7 @@ These are providers that are manifest based, so Armory applies the manifest and 
 | Provider                | Deployment strategies                      | Armory Versions        | Notes |
 | ----------------------- | ------------------------------------------ | ---------------------- | ----- |
 | Google Cloud App Engine | <ul><li>Custom</li></ul>                   | All supported versions |       |
-| Cloud Foundry           | {{< caas-cf-deploy-strategies.inline >}}   | 2.1+                   |       |
+| Cloud Foundry           | {{< caas-cf-deploy-strategies.inline >}}   | All supported versions |       |
 
 
 ### Serverless
