@@ -13,4 +13,4 @@ The two components of Armory Cloud are the Armory Cloud Console and the Armory C
 
 Armory Cloud, which includes Armory's enterprise extensions and Spinnaker™, is where your app developers create and manage their delivery pipelines with the environments defined in the Cloud Console.
 
-Armory is also developing and iterating on new features for the Armory Platform and app developers as part of the SaaS development process. For information about that, see [Armory Cloud Preview]({{< ref "armory-cloud-preview" >}})
+Armory is also developing and iterating on new features for the Armory Platform and app developers as part of the SaaS development process. For information about that, see [Armory Cloud Preview]({{< ref "armory-cloud-preview" >}}).
