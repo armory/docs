@@ -11,8 +11,8 @@ Armory Cloud is a Software as a Service (SaaS) platform for continuous delivery 
 
 The three components of Armory Cloud are the Armory Cloud Console, Armory Cloud API, and the Armory Platform:
 
-- [Armory Cloud Console](https://console.cloud.armory.io) is the administrator portal for Armory Cloud where you perform configuration tasks, such as adding a new deployment target or managing your configuration secrets. Use it to configure your Armory Cloud Platform instance and integrations with your existing tools.
-- [Armory Cloud API](https://api.cloud.armory.io/) gives you a way to programmatically configure admin settings.
+- Armory Cloud Console is the administrator portal for Armory Cloud where you perform configuration tasks, such as adding a new deployment target or managing your configuration secrets. Use it to configure your Armory Cloud Platform instance and integrations with your existing tools.
+- Armory Cloud API gives you a way to programmatically configure admin settings.
 - Armory Platform, which includes Spinnaker™ and Armory's enterprise extensions, is where your app developers create and manage their delivery pipelines with the environments defined in the Cloud Console.
 
 In addition to building a SaaS platform, Armory is also developing and iterating on new features that benefit app developers when crafting their delivery pipelines. For information about those features, see [Armory Cloud Preview]({{< ref "armory-cloud-preview" >}}).

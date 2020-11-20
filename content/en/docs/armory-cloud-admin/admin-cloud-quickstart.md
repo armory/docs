@@ -9,7 +9,7 @@ description: If this is your first time using Armory Cloud Console, start here. 
 
 Armory provides a set of credentials to log in to the Cloud Console. These are separate from the user accounts that app developers use to access the Armory Platform UI and API. The Cloud Console is where you go to make changes to the Armory Cloud environment and what it has access to. For example, you can add deployment targets or other resources in the Cloud Console. When app developers log in to the Armory Platform, they can use these resources in their deployment pipelines.
 
-To log in to the cloud console, go to https://console.cloud.armory.io. As a design partner, Armory provides a set of credentials for you to use.
+To log in to the cloud console, go to the Armory Cloud Console. As a design partner, Armory provides a set of credentials for you to use.
 
 From here, you can select what environment you want to configure or open the Armory Platform for that environment.
 
