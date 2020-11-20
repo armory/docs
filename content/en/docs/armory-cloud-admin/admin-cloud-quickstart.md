@@ -1,6 +1,6 @@
 ---
 title: Armory Cloud Admin Quickstart 
-description: If this is your first time using Armory Cloud, start here. It walks you through using the Armory Cloud Console, from first log in to granting your app developers access to Armory Cloud.
+description: If this is your first time using Armory Cloud Console, start here. It walks you through using the Armory Cloud Console, from first log in to granting your app developers access to Armory Cloud.
 ---
 
 {{% alert title="Info" color="primary" %}}{{< include "saas-status.md" >}}{{% /alert %}}
@@ -21,7 +21,7 @@ If you are setting up the Armory Cloud environment for the first time, you need 
 
 * [Artifact sources](#artifact-sources) you want to connect to. Artifacts are external JSON objects like an image, a file stored somewhere, or a binary blob in a bucket.
 * [Deployment targets](#deployment-targets) you want your app developers to have access to.
-* [Secrets](#secrets), such as AWS secret IDs, that Armory Cloud encrypts that you can use when configuring resources like deployment targets
+* [Secrets](#secrets), such as AWS secret IDs, that Armory Cloud encrypts that you can use when configuring resources like deployment targets.
   
 **Optional**
 
