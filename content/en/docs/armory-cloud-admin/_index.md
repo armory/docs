@@ -1,5 +1,5 @@
 ---
-title: "Armory Cloud Admin"
+title: "Armory Cloud Admin Preview"
 description: Administer your Armory Cloud environment
 ---
 
