@@ -13,14 +13,14 @@ When you engage Armory Support, the support team might ask you about enabling Ar
 
 Here's the Halyard command to enable this feature:
 
-```
+```bash
 hal armory diagnostics enable
 hal armory diagnostics edit --logging-enabled=true
 ```
 
 And similarly, to disable it:
 
-```
+```bash
 hal armory diagnostics disable
 hal armory diagnostics edit --logging-enabled=false
 ```

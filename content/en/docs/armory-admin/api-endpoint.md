@@ -514,13 +514,13 @@ The mechanism to achieve this will depend on what type of Ingress you are using.
 
 * If you are using an NGINX Ingress Controller, you will need to add these annotations to the `Ingress` resource that is set up for Deck and gate:
 
-  ```
+  ```yaml
   nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
   ```
 
 * If you are using the Amazon AWS ALB Ingress Controller, you will need to add these annotations to the `Ingress` resource that is set up for Deck and gate:
 
-  ```
+  ```yaml
   alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
   alb.ingress.kubernetes.io/healthcheck-protocol: "HTTPS"
   ```

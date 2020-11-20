@@ -49,11 +49,11 @@ One piece of "dynamic metadata" available to the EC2 instance, is the instance i
 
 You can issue an authentication by issuing the following:
 
-```
-$ vault auth-enable aws-ec2
+```bash
+vault auth-enable aws-ec2
 ```
 
-And then proceeding with any additional vault commands and execution that needs to happen.  These steps need to happen at startup you'll want add this script as a [base 64 encoded users-data in your deployment steps]({{< ref "deploying" >}}).
+And then proceeding with any additional vault commands and execution that needs to happen.  These steps need to happen at startup you'll want add this script as a [base 64 encoded users-data in your deployment steps]({{< ref "aws-deploy" >}}).
 
 ### Isolate delivery pipelines from integration
 

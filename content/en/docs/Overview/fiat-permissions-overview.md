@@ -1,9 +1,8 @@
 ---
 title: Permissions in Spinnaker
-linkTitle: Permissions in Spinnaker
-weight: 80
+weight: 20
 description: >
-  Learn about how Fiat manages permissions in Spinnaker.
+  How Fiat manages permissions in Spinnaker™
 ---
 
 ## Overview
@@ -104,7 +103,7 @@ The following sections describe some of the roles from the role matrix example i
 
 The configuration for `fiat-admin` in the `fiat-local.yml` file looks like the following snippet:
 
-```
+```yaml
 admin:
   roles:
     - fiat-admin
@@ -116,7 +115,7 @@ admin:
 
 The Halconfig snippet for configuring access to `dev-infra` based on our mapping exercise looks similar to the following:
 
-```
+```yaml
 accounts:
 - name: dev-infra
   permissions:
@@ -141,7 +140,7 @@ For information about how to configure permissions for Clouddriver accounts, see
 
 `build1` is a Jenkins deployment used for CI in this example. The Halconfig for controlling access to `build1` looks similar to the following snippet:
 
-```
+```yaml
 ci:
   jenkins:
     enabled: true
@@ -200,7 +199,7 @@ content-type   | `application/json;charset=UTF-8`
 
 The API call returns information about the apps. Refer to the `name` and `permissions` sections to find your applications and the corresponding permissions:
 
-```
+```json
 {
     ...
     "name": "app2",
@@ -230,14 +229,14 @@ Verifying the permissions for service accounts requires access to the Front50 an
 
 List all the service accounts with the following command (from the Front50 pod):
 
-```
+```bash
 export FRONT50=http://spin-front50:8080
 curl -s $FRONT50/serviceAccounts
 ```
 
 Check user or service account permissions for all of Spinnaker (from the Fiat pod):
 
-```
+```bash
 export FIAT=http://spin-fiat:7003
 curl -s $FIAT/authorize/$user-or-service-account
 ```

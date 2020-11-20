@@ -47,6 +47,8 @@ The _Armory Operator_ is the newest installation and configuration method for Ar
 
 Halyard is the former installation method for Armory. It has been around the longest and is the first one supporting new Armory features. Operator uses a customized version of Halyard that is constantly updated to incorporate changes from base Halyard.
 
+{{< include "halyard-note.md" >}}
+
 *Prerequisites*
 
 * Your Kubernetes cluster has storage set up so that PersistentVolumeClaims properly allocates PersistentVolumes.
@@ -718,7 +720,7 @@ EOF
 
 ### Select the Armory version to install
 
-Before you use Halyard to install Armory, specify the version of Armory you want to use.
+Before you use Armory-extended Halyard to install Armory, specify the version of Armory you want to use. Make sure the version of Armory you want to install is compatible with the version of Armory-extended Halyard you are using.
 
 You can get a list of available versions of Armory with this command:
 
@@ -726,9 +728,9 @@ You can get a list of available versions of Armory with this command:
 hal version list
 ```
 
-* If you are installing Armory using Armory's Halyard, the command returns a version that starts with `2.x.x`
+* If you are installing Armory using Armory-extended Halyard, the command returns a version that starts with `2.x.x`
 
-* If you are installing OSS Armory and using `gcr.io/spinnaker-marketplace/halyard:stable`, the command returns a version that starts with `1.x.x`
+* If you are installing open source Spinnaker and using open source Halyard (installed from `gcr.io/spinnaker-marketplace/halyard:stable`), the command returns a version that starts with `1.x.x`
 
 Select the version with the following:
 
@@ -805,13 +807,9 @@ In order to expose Armory to end users, perform the following actions:
 
 The following instructions walk you through how to install the NGINX ingress controller on AWS. This uses the Layer 4 ELB, as indicated in the NGINX ingress controller [documentation](https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md#aws). You can use other NGINX ingress controller configurations, such as the Layer 7 load balancer, based on your organization's ingress policy.)
 
-(Both of these are configurable with Armory, but the NGINX ingress controller is also generally much more configurable.)
+Both of these are configurable with Armory, but the NGINX ingress controller is also generally much more configurable.
 
-From the `workstation machine` where `kubectl` is installed, install the NGINX ingress controller components:
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
-```
+{{< include "install/nginx-common.md" >}}
 
 Then, install the NGINX ingress controller AWS-specific service:
 
@@ -824,7 +822,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/mast
 
 Get the external IP for the NGINX ingress controller:
 
-```
+```bash
 kubectl get svc -n ingress-nginx
 ```
 

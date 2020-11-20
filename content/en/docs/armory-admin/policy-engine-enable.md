@@ -20,7 +20,7 @@ For information about how to use the Policy Engine, see [Using the Policy Engine
 
 Make sure you can meet the following version requirements for the Policy Engine:
 
-* OPA versions 0.12.x or 0.13.x
+* OPA versions 0.12.x or later. Specifically, the OPA v1 API must be available.
 * Halyard 1.7.2 or later if you are using Halyard to manage Spinnaker
 * Armory 2.16.0 or later for Pipeline save time validation
 * Armory 2.19.0 or later for Pipeline runtime validation
@@ -268,7 +268,7 @@ Once Spinnaker finishes redeploying, Policy Engine can evaluate pipelines based 
 
 You can make debugging issues with runtime validation for your pipelines easier by adjusting the logging level to `DEBUG`. Add the following snippet to `hal/default/profiles/spinnaker-local.yml`:
 
-```
+```yaml
 logging:
   level:
     com.netflix.spinnaker.clouddriver.kubernetes.OpaDeployDescriptionValidator: DEBUG
@@ -285,7 +285,7 @@ From this information, you can extract the exact JSON being enforced. You can us
 
 Note: The following ConfigMap is missing some annotations that Spinnaker adds later.
 
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:

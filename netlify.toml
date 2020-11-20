@@ -73,8 +73,17 @@
   status = 301
   force = false
 
+[[redirects]]
+  from = "/docs/installation/armory-agent/agent-options/"
+  to = "/docs/armory-admin/armory-agent/"
+  force = true
+
+
 [[plugins]]
 package = "@netlify/plugin-sitemap"
 
   [plugins.inputs]
   buildDir = "public"
+  exclude =[
+    '/docs/plugin-guide/plugin-appname/'
+  ]

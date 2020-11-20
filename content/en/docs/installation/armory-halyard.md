@@ -7,6 +7,8 @@ description: >
 
 Armory-extended Halyard is a versatile command line interface (CLI) to configure and deploy Spinnaker. It is made of a CLI that connects to a daemon.
 
+{{< include "halyard-note.md" >}}
+
 ## Running in Docker
 
 Running Armory-extended Halyard in Docker is convenient and portable. The daemon will need access to files and environment variables, such as:
@@ -19,9 +21,11 @@ Running Armory-extended Halyard in Docker is convenient and portable. The daemon
 
 ### Starting Daemon
 
+{{% include "install/docker-note.md" %}}
+
 You can start Armory-extended Halyard in a Docker container with the following command:
 
-```
+```bash
 docker run --name armory-halyard --rm \
     -v ~/.hal:/home/spinnaker/.hal \
     -v ~/.kube:/home/spinnaker/.kube \
@@ -39,14 +43,15 @@ the `.kube` directory you map below.  If you've named your config something
 else, you'll need to rename or symlink the file accordingly.
 
 ### Running Halyard Commands
+
 Once Armory-extended Halyard is running, you can interact with it by opening a separate
 Terminal and running:
 
-```
+```bash
 docker exec -it armory-halyard bash
 ```
 
-From there, you can issue all your [halyard commands](https://www.spinnaker.io/reference/halyard/).
+From there, you can issue all your [Halyard commands](https://www.spinnaker.io/reference/halyard/).
 
 ## Run in Kubernetes
 
@@ -55,7 +60,8 @@ Armory-extended Halyard can also be installed as a Kubernetes `StatefulSet`. The
 ### Installing Daemon
 
 You can install Armory-extended Halyard with the following manifest:
-```
+
+```yaml
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -103,7 +109,7 @@ spec:
 ```
 
 Copy and paste the manifest into a file named halyard.yml, then deploy the above manifest (halyard.yml) into Kubernetes with the following command:
-```
+```bash
 kubectl apply -f halyard.yml
 ```
 > Note: This installs Halyard into the namespace 'halyard'
@@ -112,6 +118,6 @@ kubectl apply -f halyard.yml
 ### Running Halyard Commands
 
 Once the `StatefulSet` is ready - you can interact with it by running:
-```
+```bash
 kubectl -n halyard exec -ti statefulset/halyard bash
 ```

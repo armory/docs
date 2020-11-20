@@ -1,4 +1,3 @@
-
 #### Kubernetes deployment namespace 
 
 Upgrading to 2.20x or later introduces a breaking change in the Kubernetes provider for Spinnaker. Spinnaker now correctly interprets the namespace declared in your kubeconfig file and uses that namespace. Previously, Spinnaker deployed to the default namespace called `default` because of an error in how Spinnaker interpreted the namespace in the Kubernetes context.
@@ -28,3 +27,5 @@ Armory recommends using one of the following methods, which involve explicitly s
 For more information, see the following links:
 * OSS Spinnaker issue [#5731](https://github.com/spinnaker/spinnaker/issues/5731)
 * Armory KB [article](https://kb.armory.io/s/article/Upgrade-to-Spinnaker-Causes-Errors-as-Pipelines-Deploy-to-Unavailable-Namespace)
+
+**Introduced in**: Armory 2.20

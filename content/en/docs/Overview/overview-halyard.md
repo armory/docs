@@ -1,12 +1,13 @@
 ---
-title: Overview of Armory Halyard
-weight: 2
-summary: Read about what Halyard is and how it is used to manage Spinnaker.
+title: Halyard Overview
+weight: 15
+description: >
+  Halyard is a versatile command line interface (CLI) to configure and deploy Spinnaker™.
 ---
 
 ## Overview
 
-First, a bit of background.  Spinnaker is composed of a numnber of microservices (primarily Spring Java-based), that often run as Docker containers in a Kubernetes cluster.
+First, a bit of background.  Spinnaker is composed of a number of microservices (primarily Spring Java-based), that often run as Docker containers in a Kubernetes cluster.
 
 The OSS Halyard installer works roughly as follows:
 * You run the `hal` command (locally on your machine, in a container, or on a VM) to start up a Halyard daemon, which you then interact with and which also interacts with your Spinnaker cluster
@@ -40,7 +41,7 @@ Armory uses user provided configuration to deploy a number of Kubernetes manifes
 It's not a single Docker container, and it's not a set of static VMs - it's a highly-resilient distributed microservices architecture that runs on top of Kubernetes.
 
 Here are a couple key points:
-* Armory makes getitng started with Spinnaker very easy
+* Armory makes getting started with Spinnaker very easy
 * We extend Halyard and other Spinnaker services to add capabilitles; we never fork
 * We handle a lot of the manual configuration of Spinnaker for you
 * We make it much easier to upgrade Spinnaker, as well.

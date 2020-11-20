@@ -51,10 +51,10 @@ Then, apply your upgrade with `hal deploy apply`.
 Rolling an upgrade back is similar to upgrading Spinnaker:
 
 1. Select the version you want to rollback to:
-   ```
-   hal config edit --version <target_version>
+   ```bash
+   hal config version edit --version <target_version>
    ```
 2. Apply the rollback:
-   ```
+   ```bash
    hal deploy apply
    ```   

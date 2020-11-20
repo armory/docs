@@ -22,7 +22,7 @@ To set up TLS, provide the following:
 - Certificate and private key to present to the server
 - Chain of certificates to validate the server (if self signed)
 
-For informaiton about TLS, see [how to enable TLS]({{< ref "tls-configure" >}}).
+For information about TLS, see [how to enable TLS]({{< ref "tls-configure" >}}).
 
 ## What you need
 
@@ -119,7 +119,7 @@ spec:
 
 This can be done by adding the following to each service under `<deploy>/service-settings/<service>.yml`:
 
-```
+```yaml
 kubernetes:
   useTcpProbe: true
 ```

@@ -28,7 +28,11 @@ This document currently does not fully cover the following (see [Next Steps](#ne
 - Add K8s accounts to deploy to
 - Add cloud accounts to deploy to
 
-Note: This document is focused on Armory, but can be adapted to install Open Source Armory by using a different Halyard container and a corresponding different Armory version
+Note: This document is focused on Armory, but can be adapted to install Open Source Spinnaker<sup>TM</sup> by using a different Halyard container and a corresponding different Spinnaker version.
+
+## AWS Resources
+
+Before you install Armory on AWS, it is essential that you familiarize yourself with [relevant AWS services]({{< ref "resources-aws" >}}).
 
 ## Requirements
 
@@ -314,9 +318,13 @@ cp kubeconfig-spinnaker-system-sa ${WORKING_DIRECTORY}/.secret
 
 ## Start the Halyard container
 
-On the `docker machine`, start the Halyard container (see the `armory/halyard-armory` [tag list](https://hub.docker.com/r/armory/halyard-armory/tags)) for the latest Armory-extended Halyard Docker image tag.
+{{< include "halyard-note.md" >}}
 
-_If you want to install OSS Spinnaker instead, use `gcr.io/spinnaker-marketplace/halyard:stable` for the Docker image_
+On the `Halyard machine`, start the Halyard container .
+
+*If you want to install OSS Spinnaker instead, use `gcr.io/spinnaker-marketplace/halyard:stable` for the Docker Halyard image reference in substitution of `armory/halyard-armory:<image_version>` in the commands below*
+
+{{< include "install/docker-note.md" >}}
 
 ```bash
 docker run --name armory-halyard -it --rm \
@@ -325,6 +333,10 @@ docker run --name armory-halyard -it --rm \
   -v ${WORKING_DIRECTORY}/resources:/home/spinnaker/resources \
   armory/halyard-armory:{{< param halyard-armory-version >}}
 ```
+
+The installer expects to find your kubeconfig named `config` in
+the `.kube` directory you map below.  If you've named your config something
+else, you need to rename or symlink the file accordingly.
 
 ## Enter the Halyard container
 

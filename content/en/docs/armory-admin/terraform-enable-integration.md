@@ -132,13 +132,17 @@ spec:
 **Halyard**
 
 1. Enable Git Repo as an artifact provider:
-   ```
+   
+   ```bash
    hal config artifact gitrepo enable
    ```
+
 2. Add the Git Repo account:
-   ```
+   
+   ```bash
    hal config artifact gitrepo account add gitrepo-for-terraform --token
    ```
+
    The command prompts you for your Git Repo PAT.
 
 For more configuration options, see [Git Repo](https://spinnaker.io/setup/artifacts/gitrepo/).
@@ -183,11 +187,11 @@ spec:
 
 1. Enable GitHub as an artifact provider:
 
-   ```
+   ```bash
    hal config artifact github enable
    ```
 2. Add the GitHub account:
-   ```
+   ```bash
    hal config artifact github account add github-for-terraform --token
    ```
    The command prompts you for your GitHub PAT.
@@ -267,7 +271,7 @@ This example manifest also enables the Terraform Integration UI.
 
 **Halyard**
 
-```
+```bash
 hal armory terraform enable
 ```
 
@@ -293,7 +297,7 @@ End users can use remote backends by configuring the Terraform Integration stage
 
 To enable support, add the following config to your `terraformer-local.yml` file in the `.hal/default/profiles` directory:
 
-```
+```bash
 terraform:
   remoteBackendSupport: true
 ```
@@ -312,7 +316,7 @@ See the example manifest in [Enabling the Terraform Integration](#enabling-the-t
 
 Edit `~/.hal/default/profiles/settings-local.js` and add the following:
 
-```
+```js
 window.spinnakerSettings.feature.terraform = true;
 ```
 
@@ -470,7 +474,7 @@ Configure profiles that users can select when creating a Terraform Integration s
 3. Save the file.
 4. Apply your changes:
 
-   ```
+   ```bash
    hal deploy apply
    ```
 

@@ -227,9 +227,13 @@ cp spinnaker-gcs-account.json ${WORKING_DIRECTORY}/.secret
 
 ## Start the Halyard container
 
-On the `docker machine`, start the Halyard container (see the `armory/halyard-armory` [tag list](https://hub.docker.com/r/armory/halyard-armory/tags)) for the latest Armory-extended Halyard Docker image tag.
+{{< include "halyard-note.md" >}}
 
-*If you want to install OSS Spinnaker instead, use `gcr.io/spinnaker-marketplace/halyard:stable` for the Docker image*
+On the `Halyard machine`, start the Halyard container.
+
+*If you want to install OSS Spinnaker instead, use `gcr.io/spinnaker-marketplace/halyard:stable` for the Docker Halyard image reference in substitution of `armory/halyard-armory:<image_version>` in the commands below*
+
+{{< include "install/docker-note.md" >}}
 
 ```bash
 docker run --name armory-halyard -it --rm \
@@ -412,21 +416,8 @@ If you already have an NGINX ingress controller installed on your cluster, skip 
 
 (Both of these are configurable with Armory, but the NGINX ingress controller is also generally much more configurable)
 
-From the `workstation machine` (where `kubectl` is installed):
+{{< include "install/nginx-common.md" >}}
 
-Install the NGINX ingress controller components:
-
-```bash
-kubectl --kubeconfig kubeconfig-gke apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
-```
-
-If you are using a Kubernetes version earlier than 1.14, you need to change kubernetes.io/os to beta.kubernetes.io/os at line 217 of `mandatory.yaml`. See the [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/) documentation for more details.
-
-Install the NGINX ingress controller GKE-specific service:
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
-```
 
 ## Set up the Ingress for `spin-deck` and `spin-gate`
 

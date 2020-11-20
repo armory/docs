@@ -4,7 +4,7 @@ aliases:
   - /docs/spinnaker-install-admin-guides/secrets/secrets-aws-sm/
 ---
 
-You can configure AWS Secrets Manager as a secrets engine for Spinnaker. For information about how to set up AWS Secrets Manager, see the [AWS documentation](https://docs.aws.amazon.com/secretsmanager/index.html).
+You can configure AWS Secrets Manager as a secrets engine for Spinnaker.  See the AWS Secrets Manager [User Guide](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) for how to set up AWS Secrets Manager,
 
 
 ## Referencing secrets stored in AWS Secrets Manager
@@ -13,13 +13,13 @@ You can reference a KeyStore or KeyStore password stored in AWS Secrets Manager.
 
 **Keystore**
 
-```
+```yaml
   keyStore: encryptedFile:secrets-manager!r:<some region>!s:<secret name>
 ```
 
 **Keystore password**
 
-```
+```yaml
   keyStorePassword: encrypted:secrets-manager!r:<some region>!s:<secret name>!k:some-key
 ```
 
@@ -32,6 +32,6 @@ You can reference a KeyStore or KeyStore password stored in AWS Secrets Manager.
 
 For example, the following example references a KeyStore stored in `us-west-2`:
 
-```
+```yaml
 encryptedFile:secrets-manager!r:us-west-2!s:dev--cert
 ```

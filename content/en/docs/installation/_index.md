@@ -1,7 +1,7 @@
 ---
 title: "Installation"
 linkTitle: "Installation"
-weight: 2
+weight: 5
 description: |
   Installing Armory in your environment
 aliases:
@@ -21,6 +21,7 @@ There are several methods to install Armory:
 
 All the methods above share similar configurations, and you can migrate between them if your needs change.
 
+> Armory does not generate default hardcoded usernames and passwords for user accounts for any service. Manage these by configuring authentication and authorization for the Armory Platform.
 
 ## Guides
 

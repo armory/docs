@@ -1,7 +1,7 @@
 ---
-
 title: v1.1.1 Armory Operator
 toc_hide: true
+date: 2020-08-13
 ---
 
 ## 08/13/2020 Release Notes
@@ -17,6 +17,6 @@ No known issues.
 
 ### Spinnaker Operator
 
-* fix(test): Added ingress permissions to role used in tests 
+* fix(test): Added ingress permissions to role used in tests
 * fix(expose/ingress): solve issue for spinsvc status URL
 

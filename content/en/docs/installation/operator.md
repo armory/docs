@@ -22,13 +22,12 @@ Using the Armory Operator, you can:
 
 ## Requirements
 
-Before you start, ensure the following requirements are met:
+Before you start, ensure you meet the following requirements:
 
 - Your Kubernetes cluster runs version 1.13 or later.
 - You have admission controllers enabled in Kubernetes (`-enable-admission-plugins`).
 - You have `ValidatingAdmissionWebhook` enabled in the kube-apiserver. Alternatively, you can pass the `--disable-admission-controller` parameter to the to the `deployment.yaml` file that deploys the operator.
 - You have admin rights to install the Custom Resource Definition (CRD) for Operator.
-
 
 ## Install Armory Operator
 
@@ -38,7 +37,7 @@ The Armory Operator has two distinct modes:
 
 Pick a release from [https://github.com/armory-io/spinnaker-operator/releases](https://github.com/armory-io/spinnaker-operator/releases):
 
-```
+```bash
 mkdir -p spinnaker-operator && cd spinnaker-operator
 bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
 
@@ -492,7 +491,7 @@ There are two ways in which you can remove this ownership relationship so that A
 First, export Armory configuration settings to a format that Halyard understands:
 1. From the `SpinnakerService` manifest, copy the contents of `spec.spinnakerConfig.config` to its own file named `config`, and save it with the following structure:
 
-   ```
+   ```yaml
    currentDeployment: default
    deploymentConfigurations:
    - name: default
@@ -525,7 +524,7 @@ kubectl delete -f deploy/crds/
 
 Run the following script to remove ownership of Armory resources, where `NAMESPACE` is the namespace where Armory is installed:
 
-```
+```bash
 NAMESPACE=
 for rtype in deployment service
 do
@@ -537,7 +536,7 @@ done
 ```
 After the script completes, delete the Armory Operator and its CRDs from the Kubernetes cluster:
 
-```
+```bash
 kubectl delete -n <namespace> -f deploy/operator/<installation type>
 kubectl delete -f deploy/crds/
 ```

@@ -67,7 +67,7 @@ If Halyard is running locally on your workstation, then perform the following st
 
 3. Exec into the Halyard container
 
-   ```
+   ```bash
    docker exec -it armory-halyard bash
    ```
 
@@ -115,7 +115,7 @@ If Halyard is already running in a Docker container in your Docker daemon, you c
 
 3. Exec into the Halyard container:
 
-   ```
+   ```bash
    docker exec -it armory-halyard bash
    ```
 

@@ -5,17 +5,19 @@ aliases:
   - /docs/spinnaker/using-dinghy/
 ---
 
-Armory's _Pipelines as Code_ feature provides a way to specify pipeline definitions in source code repos such as GitHub and BitBucket.
-
-The Armory installation provides a service called _Dinghy_, which keeps the pipeline in Spinnaker in sync with what is defined in the GitHub repo. Also, users are able to make a pipeline by composing other pipelines, stages, or tasks and templating certain values.
-
 {{< alert title="Note" >}}
 Before you can use this feature, please ensure you have [configured]({{< ref "dinghy-enable" >}}) it correctly.
 {{< /alert >}}
 
+{{% include "admin/pac-overview.md" %}}
+
 ## How it works in a nutshell
 
-GitHub (or BitBucket) webhooks are sent off when you modify either the Templates or the Module definitions. The Dinghy service looks for and fetches all dependent modules and parses the template and updates the pipelines in Spinnaker. The pipelines get automatically updated whenever a module that is used by a pipeline is updated in VCS. This is done by maintaining a dependency graph.  Dinghy will look for a `dinghyfile` in all directories, not just the root path.  Unless otherwise configured, Dinghy will process changes found in the master branch. For more information on how to configure branches, see [Custom branch configuration]({{< ref "dinghy-enable#custom-branch-configuration" >}})
+GitHub (or BitBucket) webhooks are sent off when you modify either the Templates or the Module definitions. Once the webhook is sent, the following actions occur:
+
+1. The Dinghy service looks for and fetches all dependent modules and parses the template and updates the pipelines in Spinnaker.
+2. The pipelines get automatically updated whenever a module that is used by a pipeline is updated in VCS. This is done by maintaining a dependency graph Dinghy looks for a `dinghyfile` in all directories, not just the root path.  
+3. Dinghy processes changes found in a specific branch. By default, this branch is `master`. If you are using a repo that uses a different branch for the base branch, an administrator must configure the Dinghy service to track that branch. For more information, see [Custom branch configuration]({{< ref "dinghy-enable#custom-branch-configuration" >}}).
 
 ### Intended workflow
 
@@ -24,12 +26,8 @@ for developers to get a brand new application up and running. The general
 workflow for new projects is:
 
 1. Developer creates a new project in source control
-2. They create a Dinghyfile to build the application and pipelines in
-   Spinnaker (even easier if there is a Module Repo set up with a
-templatized set of pipelines)
-1. When the code is committed to "master", Armory picks up the
-   Dinghyfile, renders it, and applies it to Spinnaker, creating the
-application and the pipelines.
+2. They create a Dinghyfile to build the application and pipelines in Spinnaker (even easier if there is a Module Repo set up with a templatized set of pipelines)
+3. When the code is committed to the branch that the Dinghy service tracks, Armory picks up the Dinghyfile, renders it, and applies it to Spinnaker, creating the application and the pipelines.
 
 Job done!  If everything's been configured properly, your developers should
 be able to deploy their code using a previously-proven pipeline model
@@ -37,7 +35,7 @@ without ever having had to go into Spinnaker to configure anything.
 
 As an added bonus, the pipeline definitions have now been saved in source
 control, along with the rest of the project's files.  If changes are made
-to the Dinghyfile, when committed/merged into the "master" branch, the
+to the Dinghyfile, when committed/merged into the tracked branch, the
 pipelines are automatically re-rendered and updated.
 
 ## Basic format
@@ -478,7 +476,7 @@ Inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wai
 
 `dinghyfile`:
 
-``` json
+```json
 {
   "application": "localmodules",
   "globals": {
@@ -500,7 +498,7 @@ Inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wai
 ```
 
 `stage.minimal.wait.localmodule` and `stage.minimal.wait.module` have the same content:
-``` json
+```json
 {
   "name": "{{ var "waitname" ?: "Local Module Wait" }}",
   "waitTime":  "{{ var "waitTime" ?: 10 }}",
@@ -510,7 +508,7 @@ Inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal.wai
 
 The rendered file looks like this:
 
-``` json
+```json
 {
   "application": "localmodules",
   "globals": {
@@ -576,7 +574,7 @@ And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal
 
 `dinghyfile`
 
-``` json
+```json
 {
   "application": "localmodules",
   "globals": {
@@ -596,7 +594,7 @@ And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal
 ```
 
 `stage.minimal.wait.module`:
-``` json
+```json
 {
   "name": "{{ var "waitname" ?: "Local Module Wait" }}",
   "waitTime":  "{{ var "waitTime" ?: 10 }}",
@@ -894,7 +892,7 @@ pipelines:
 
 ### HCL template format
 
-```
+```hcl
 "application" = "Some App"
 "globals" = {
     "waitTime" = 42
@@ -1366,6 +1364,8 @@ Dinghy sends a notification to channel `slack-channel-good` and `slack-channel-b
 
 ## Repository Template processing
 
+*This feature requires __Armory Platform 2.22+__ and __Armory-extended Halyard 1.9.5+__*
+
 Imagine you have a template and a couple of modules and `dinghyfiles` pointing at them. You modify a module and this module is using Rawdata. At this moment the commited Rawdata is from the template repository, so there can be two possible scenarios:
 
   - The Rawdata from the template repository is taken in order to render all the dependent `dinghyfiles` again. Use the `repositoryRawdataProcessing = false` config for this behavior.
@@ -1475,7 +1475,7 @@ spec:
 
 Create `.hal/default/profiles/dinghy-local.yml` and add the following snippet:
 
-```
+```yaml
 Logging:
   Level: INFO
 ```

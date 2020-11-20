@@ -1,6 +1,7 @@
 ---
 
 title: v1.6.1 Armory Halyard
+date: 2019-06-19
 toc_hide: true
 aliases:
   - armory-halyard_v1.6.1
@@ -17,9 +18,9 @@ This release updates `kubectl` to `1.12.9` and fixes the version displayed from 
 
 ## Known Issues
 
-- `hal shutdown` returns an `Error 400` message. A PR has been submitted to OSS Spinnaker to resolve this. 
+- `hal shutdown` returns an `Error 400` message. A PR has been submitted to OSS Spinnaker to resolve this.
 
-## Armory-extended Halyard 
+## Armory-extended Halyard
  - chore(build): Upgrade kubectl to 1.12.9 (#227)
  - fix(build): Fix version returned in hal --version (#226)
 
