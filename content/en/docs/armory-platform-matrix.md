@@ -279,10 +279,23 @@ These are providers that are manifest based, so Armory applies the manifest and 
 
 
 ### Platform as a Service
-| Provider                | Deployment strategies    | Armory Versions        | Notes |
-| ----------------------- | ------------------------ | ---------------------- | ----- |
-| Google Cloud App Engine | <ul><li>Custom</li></ul> | All supported versions |       |
 
+<!--
+{{< caas-cf-deploy-strategies.inline >}}
+<ul>
+    <li>None (always adds a new one)</li>
+    <li>Highlander</li>
+    <li>Red/Back aka Blue/Green</li>
+    <li>Rolling Red/Black</li>
+    <li>Custom (run a custom pipeline)</li>
+</ul>
+{{</ caas-cf-deploy-strategies.inline >}}
+-->
+
+| Provider                | Deployment strategies                      | Armory Versions        | Notes |
+| ----------------------- | ------------------------------------------ | ---------------------- | ----- |
+| Google Cloud App Engine | <ul><li>Custom</li></ul>                   | All supported versions |       |
+| Cloud Foundry           | {{< caas-cf-deploy-strategies.inline >}}   | 2.1+                   |       |
 
 
 ### Serverless
