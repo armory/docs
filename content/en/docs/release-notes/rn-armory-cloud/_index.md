@@ -1,6 +1,7 @@
 ---
 title: Armory Cloud Release Notes
 description: Updates about Armory Cloud
+draft: true
 ---
 
 {{% alert title="Info" color="primary" %}}{{< include "saas-status.md" >}}{{% /alert %}}
