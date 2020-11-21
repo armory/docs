@@ -19,6 +19,15 @@ To install, upgrade, or configure Armory 2.23.0, use one of the following tools:
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
+{{< include "bc-k8s-namespace.md" >}}
+
+{{< include "bc-docker-giduid.md" >}}
+
+{{< include "bc-k8s-job-suffix.md" >}}
+
+{{< include "bc-spinnaker-metrics.md" >}}
+
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. -->
 
