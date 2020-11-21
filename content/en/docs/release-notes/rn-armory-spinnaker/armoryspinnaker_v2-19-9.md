@@ -1,6 +1,7 @@
 ---
 title: v2.19.9 Armory Release (OSS Release 1.19.11)
 toc_hide: true
+date: 2020-06-05
 ---
 
 ## 06/05/20 Release Notes
@@ -29,7 +30,7 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
 
-* Agents get removed but still run on schedule. 
+* Agents get removed but still run on schedule.
 * Force cache refresh times out.
 * If you have the clean up agent setup, your data randomly disappears and reappears.  
 
@@ -63,7 +64,7 @@ You can resolve this issue by rolling back changes to the MySQL database. For mo
 
 ### Armory
 
-This release includes several fixes to CVEs in addition to bug fixes and general improvements. 
+This release includes several fixes to CVEs in addition to bug fixes and general improvements.
 
 Armory has also made enhancements to the following feature:
 

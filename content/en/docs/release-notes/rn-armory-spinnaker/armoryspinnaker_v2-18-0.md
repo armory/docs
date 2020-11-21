@@ -1,7 +1,7 @@
 ---
 title: v2.18.0 Armory Release (OSS Release 1.18.2)
 toc_hide: true
-
+date: 2020-02-14
 aliases:
   - armoryspinnaker_v2.18.0
 ---
@@ -20,7 +20,7 @@ aliases:
 
 There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
 
-* Agents get removed but still run on schedule. 
+* Agents get removed but still run on schedule.
 * Force cache refresh times out.
 * If you have the clean up agent setup, your data randomly disappears and reappears.  
 

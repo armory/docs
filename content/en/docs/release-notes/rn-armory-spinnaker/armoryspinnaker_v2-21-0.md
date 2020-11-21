@@ -1,6 +1,7 @@
 ---
 title: v2.21.0 Armory Release (OSS Spinnaker v1.21.2)
 toc_hide: true
+date: 2020-07-31
 ---
 
 ## 2020/07/31 Release Notes
@@ -53,7 +54,7 @@ The following CVEs still exist in Clouddriver:
 
 - CVE-2017-18342
 - CVE-2020-1747
-- CVE-2019-17638 
+- CVE-2019-17638
 - CVE-2020-13757
 - CVE-2016-10745
 
@@ -68,13 +69,13 @@ The following CVEs will be triaged as part of a future release:
 
 ##### Terraformer
 
-Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration: 
+Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration:
 
 - CVE-2020-15778
 
 ## Highlighted Updates
 
-There have also been numerous enhancements, fixes and features across all of Spinnaker's services. The following summaries describe changes and Armory's assessment of how they might impact your use of Spinnaker. 
+There have also been numerous enhancements, fixes and features across all of Spinnaker's services. The following summaries describe changes and Armory's assessment of how they might impact your use of Spinnaker.
 
 For more information about the changes from the Open Source Community, see [Spinnaker v1.21.2](https://www.spinnaker.io/community/releases/versions/1-21-2-changelog).
 
@@ -100,20 +101,20 @@ This section describes changes to Igor, Spinnaker's service that integrates with
 **Change**: Resolved [5803](https://github.com/spinnaker/spinnaker/issues/5803) where Jenkins stages fail because Igor could not find a property file. [7c47ce3f](https://github.com/spinnaker/igor/commit/7c47ce3fece8120fc53c615a9683f4ce0070ea4b)
 * **Impact**: Igor now automatically retries fetching the property file from Jenkins when encountering a 404.  Igor will retry up to 5 times with 2 seconds non-exponential backoff.
 
-### Cloud providers 
+### Cloud providers
 
 This section describes changes to Clouddriver, Spinnaker's cloud connector service:
 
 **Change**: Legacy Kubernetes (V1) provider removed from Spinnaker. Armory 2.20 (OSS 1.20) was the final release that included support for the V1 provider.
 * **Impact**: Migrate all Kubernetes accounts to the standard V2 provider before upgrading. If you have any jobs still using the v1 provider, you will encounter error messages:
-   
+
    ```
    2020-07-31 22:11:55.146  WARN 1 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'configurationRefreshListener' defined in URL [jar:file:/opt/clouddriver/lib/clouddriver-web-6.10.0-20200625140019.jar!/com/netflix/spinnaker/clouddriver/listeners/ConfigurationRefreshListener.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'kubernetesV2ProviderSynchronizable': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: The legacy Kubernetes provider (V1) is no longer supported. Please migrate all Kubernetes accounts to the standard provider (V2).
    ```
 
    The above message will be followed by the following error that occurs repeatedly:
    <details><summary>Show the error message</summary>
-   
+
    ```
    q2020-07-31 22:12:31.005 ERROR 1 --- [gentScheduler-0] c.n.s.c.r.c.ClusteredAgentScheduler      : Unable to run agents
     redis.clients.jedis.exceptions.JedisConnectionException: Could not get a resource from the pool
@@ -184,7 +185,7 @@ This section describes changes to Clouddriver, Spinnaker's cloud connector servi
 
 2.21 resolves a previous known issue with Dynamic accounts for Kubernetes where the following occurs:
 
-* Agents that get removed but still run on schedule. 
+* Agents that get removed but still run on schedule.
 * Force cache refresh times out.
 * If you have the clean up agent setup, your data randomly disappears and reappears.  
 
@@ -209,7 +210,7 @@ This section describes changes to Echo, Spinnaker's event service:
       }
    ],
    ```
-   
+
 **Change**: Usage statistics for Spinnaker are now collected by default. The Open Source Spinnaker project collects this information to inform the development of Spinnaker. It is anonymized before it gets sent and then aggregated. For more information about these metrics or to view them, see [Usage Statistics](https://spinnaker.io/community/stats/#usage-statistics).
 * **Impact**:  If you want to turn the usage statistics off, see [How is the data collected](https://spinnaker.io/community/stats/#how-is-the-data-collected).
 
@@ -217,7 +218,7 @@ This section describes changes to Echo, Spinnaker's event service:
 * **Impact**: This change adds the following properties that can be used in `echo.yml`:
    * `scheduler.suppressTriggers`: (Default: `false`) Allows suppressing event triggers from the CRON scheduler.
    * `scheduler.compensationJob.suppressTriggers`: (Default: `false`) Allows suppressing event triggers from the compensation job (missed CRON scheduler).
-   
+
    You might use these properties when you are running two instances of Echo that are both running the scheduler for redundancy. Both Echos need to be current in situations where you need to switch the Echo service being used, but only one of them need to trigger events at any given time.
 
    These properties are backed by the DynamicConfigService and can be modified at runtime.
@@ -228,10 +229,10 @@ This section describes changes to Front50, Spinnaker's metadata repository:
 
 **Change**: Ability to overwrite an application config entirely through the API. [2cf86b34](https://github.com/spinnaker/front50/commit/2cf86b34d40f847208a1a55bee352bc731fd1b6b)
 * **Impact**: New API functionality!
-  
+
 **Change**: Ability to validate application names when applications are created or modified through the API. [2cf86b34](https://github.com/spinnaker/front50/commit/2cf86b34d40f847208a1a55bee352bc731fd1b6b)
 * **Impact**: When you submit an application name through the API instead of Deck, Spinnaker can now validate the name to ensure that the name only contains allowed characters. This behavior is off by default. To enable this validation, add the following config to `front50-local.yml`:
-  
+
    ```yaml
    validation:
     applicationNameValidator:

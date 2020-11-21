@@ -1,6 +1,7 @@
 ---
 title: v2.21.4 Armory Release (OSS Spinnaker™ v1.21.4)
 toc_hide: true
+date: 2020-09-11
 ---
 
 ## 2020/09/11 Release Notes
@@ -50,7 +51,7 @@ The following CVEs still exist in Clouddriver:
 
 - CVE-2017-18342
 - CVE-2020-1747
-- CVE-2019-17638 
+- CVE-2019-17638
 - CVE-2020-13757
 - CVE-2016-10745
 

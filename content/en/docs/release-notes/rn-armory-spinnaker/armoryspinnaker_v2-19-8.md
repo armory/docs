@@ -1,6 +1,7 @@
 ---
 title: v2.19.8 Armory Release (OSS Release 1.19.5)
 toc_hide: true
+date: 2020-04-21
 aliases:
   - armoryspinnaker_v2.19.8
 ---
@@ -32,7 +33,7 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
 
-* Agents get removed but still run on schedule. 
+* Agents get removed but still run on schedule.
 * Force cache refresh times out.
 * If you have the clean up agent setup, your data randomly disappears and reappears.  
 
