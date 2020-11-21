@@ -1,6 +1,6 @@
 <div class="section-index">
-{{ $pages := (where .Site.Pages "Section" .Section).ByWeight }}
-{{ $pagesReverse := (where .Site.Pages "Section" .Section).ByWeight.Reverse }}
+{{ $pages := (where .Site.Pages "Section" .Section).ByDate }}
+{{ $pagesReverse := (where .Site.Pages "Section" .Section).ByDate.Reverse }}
 {{ $parent := .Page }}
 
   <ul>

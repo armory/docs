@@ -1,6 +1,7 @@
 ---
 title: v2.20.4 Armory Release (OSS Spinnaker v1.20.6)
 toc_hide: true
+date: 2020-07-21
 ---
 
 ## 2020/07/21 Release Notes
@@ -36,7 +37,7 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
 
-* Agents get removed but still run on schedule. 
+* Agents get removed but still run on schedule.
 * Force cache refresh times out.
 * If you have the clean up agent setup, your data randomly disappears and reappears.  
 
@@ -99,7 +100,7 @@ The following CVE also exist for Clouddriver:
 
 #### Terraformer
 
-Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration: 
+Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration:
 
 - CVE-2020-14422
 - CVE-2020-13757
@@ -116,7 +117,7 @@ Fixed an issue where Slack notifications did not get sent.
 
 ### Terraform Integration
 
-The Terraform Integration now supports using Base64 artifacts as a backend config artifact. 
+The Terraform Integration now supports using Base64 artifacts as a backend config artifact.
 
 ##  Spinnaker Community Contributions
 

@@ -1,7 +1,7 @@
 ---
 title: v2.18.1 Armory Release (OSS Release 1.18.7)
 toc_hide: true
-
+date: 2020-04-03
 aliases:
   - armoryspinnaker_v2.18.1
 ---
@@ -28,7 +28,7 @@ Use Armory-extended Halyard 1.8.3 if you want to install Armory 2.18.1.
 
 There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
 
-* Agents get removed but still run on schedule. 
+* Agents get removed but still run on schedule.
 * Force cache refresh times out.
 * If you have the clean up agent setup, your data randomly disappears and reappears.  
 

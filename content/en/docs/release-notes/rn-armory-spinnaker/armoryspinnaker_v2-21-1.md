@@ -1,7 +1,7 @@
 ---
 title: v2.21.1 Armory Release (OSS Spinnaker v1.21.2)
 toc_hide: true
-description: Release Notes for Armory 2.21.1
+date: 2020-08-06
 ---
 
 ## 2020/08/06 Release Notes
@@ -53,7 +53,7 @@ The following CVEs still exist in Clouddriver:
 
 - CVE-2017-18342
 - CVE-2020-1747
-- CVE-2019-17638 
+- CVE-2019-17638
 - CVE-2020-13757
 - CVE-2016-10745
 
@@ -68,7 +68,7 @@ The following CVEs will be triaged as part of a future release:
 
 ##### Terraformer
 
-Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration: 
+Armory has identified and is triaging the following CVEs in Terraformer, the service for the Terraform integration:
 
 - CVE-2020-15778
 

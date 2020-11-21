@@ -1,7 +1,7 @@
 ---
 title: v2.17.3 Armory Release (OSS Release 1.17.6)
 toc_hide: true
-
+date: 2020-01-14
 aliases:
   - armoryspinnaker_v2.17.3
 ---

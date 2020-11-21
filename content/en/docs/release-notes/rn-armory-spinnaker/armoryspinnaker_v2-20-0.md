@@ -1,7 +1,7 @@
 ---
 title: v2.20.0 Armory Release (OSS Spinnaker v1.20.5)
 toc_hide: true
-description: Changes, fixes, and new features
+date: 2020-06-19
 ---
 
 ## 2020/06/19 Release Notes
@@ -30,7 +30,7 @@ Breaking change: Kubernetes accounts with an unspecified providerVersion will no
 
 There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
 
-* Agents get removed but still run on schedule. 
+* Agents get removed but still run on schedule.
 * Force cache refresh times out.
 * If you have the clean up agent setup, your data randomly disappears and reappears.  
 
@@ -38,7 +38,7 @@ These issues do not occur immediately, and you may even see modified accounts ap
 
 ### Vault secrets
 
-If you use Vault secrets, you should not use this version and instead update to v2.20.3. 
+If you use Vault secrets, you should not use this version and instead update to v2.20.3.
 
 ### Pipelines as code behavior change for application spec
 

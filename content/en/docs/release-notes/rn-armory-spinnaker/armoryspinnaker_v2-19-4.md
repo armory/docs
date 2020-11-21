@@ -1,6 +1,7 @@
 ---
 title: v2.19.4 Armory Release (OSS Release 1.19.4)
 toc_hide: true
+date: 2020-04-15
 aliases:
   - armoryspinnaker_v2.19.4
 ---
@@ -29,7 +30,7 @@ This version includes an upgrade to the Spring Boot dependency. This requires yo
 
 There is an issue with Dynamic Accounts for Kubernetes where the following issues occur:
 
-* Agents get removed but still run on schedule. 
+* Agents get removed but still run on schedule.
 * Force cache refresh times out.
 * If you have the clean up agent setup, your data randomly disappears and reappears.  
 
