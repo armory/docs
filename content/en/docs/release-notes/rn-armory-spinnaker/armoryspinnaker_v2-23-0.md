@@ -39,6 +39,11 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H4.
 -->
 
+### Plugin V2 Framework
+
+The v2 plugin framework is now in place! The V2 plugin framework simplifies configuration of plugins and includes many quality of life changes for plugin developers interested in making spring based plugins. For more information, please see: [V2 Compatibility](https://github.com/spinnaker/kork/blob/master/kork-plugins/V2-COMPATIBILITY.md)
+
+
 ###  Spinnaker Community Contributions
 
 There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
