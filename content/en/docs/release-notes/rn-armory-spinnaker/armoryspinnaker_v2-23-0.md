@@ -77,11 +77,15 @@ The following providers can support loading credentials dynamically:
 - Kubernetes
 - AWS
 
+### Canary analysis with Dynatrace
+
+See the {{< linkWithTitle "kayenta-canary-dynatrace.md" >}} guide for how to configure and use this new feature.
+
 ### Deployment targets - AWS
 
 #### Support `externalID` for granting access to your AWS resources to a third party
 
-Spinnaker can now assume a role into third party resources (delegated access) that require AWS [external IDs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html). To configure an AWS provider, add the `externalId` property when specifying the `accountId` and `assumeRole` properties. For example:
+Spinnaker can assume a role into third party resources (delegated access) that require AWS [external IDs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html). To configure an AWS provider, add the `externalId` property when specifying the `accountId` and `assumeRole` properties. For example:
 
 ```yaml
 aws:
