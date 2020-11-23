@@ -154,6 +154,16 @@ redis:
   connection: rediss://localhost:6379
 ```
 
+### User Interface
+
+#### Support for displaying colors in console outputs
+
+#### Pipelines can now be triggered by Helm Charts when they are published
+
+![Helm automated trigger](/images/release/223/helm-trigger02.png)
+
+![Helm execution parm](/images/release/223/helm-trigger.png)
+
 ###  Spinnaker Community Contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the   
