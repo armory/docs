@@ -12,7 +12,7 @@ date: 2020-11-20
 To install, upgrade, or configure Armory 2.23.0, use one of the following tools: 
 
 - Armory-extended Halyard 1.10.0 or later
-- Armory Operator 1.21.1 or later
+- Armory Operator 1.2.1 or later
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
@@ -36,6 +36,9 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H4.
 -->
+
+### Security
+Armory scans the codebase as we develop and release software. For information about CVE scans for this release, contact your Armory account representative.
 
 ### Plugin V2 Framework
 
