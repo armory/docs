@@ -1,4 +1,4 @@
-#### Spinnaker lifeManifestCalls set to `true` can cause major pipeline errors
+#### Spinnaker liveManifestCalls set to `true` can cause major pipeline errors
 
 Enabling `liveManifestCalls: true` causes the environment to exhibit odd behaviors.  Resources that have been deployed/changed in previous stages are not being taken in to consideration in current stages, leading to errors and issues in the pipeline deployment.
 

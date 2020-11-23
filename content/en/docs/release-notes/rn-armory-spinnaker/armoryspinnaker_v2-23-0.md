@@ -9,10 +9,14 @@ date: 2020-11-20
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
 
-To install, upgrade, or configure Armory 2.23.0, use one of the following tools: 
+To install, upgrade, or configure Armory 2.23.0, use one of the following tools:
 
 - Armory-extended Halyard 1.10.0 or later
 - Armory Operator 1.2.1 or later
+
+## Security
+
+Armory scans the codebase as we develop and release software. For information about CVE scans for this release, contact your Armory account representative.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
@@ -26,29 +30,135 @@ To install, upgrade, or configure Armory 2.23.0, use one of the following tools:
 {{< include "bc-spinnaker-metrics.md" >}}
 
 
+
 ## Known issues
-<!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. -->
+<!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
+There aren't any known issues in this release.
+
+### Previous Known issues fixed in this release
+
+All the [known issues from the previous release (v2.22.2)]( {{< ref "armoryspinnaker_v2-22-2#known-issues" >}}) have been fixed:
+
+* _Orca Plugins using Plugin SDK_ has been addressed in the [Plugin V2 framework](#plugin-v2-framework)
+* _Spinnaker `liveManifestCalls` set to true can cause major pipeline errors_
+* _GCE predictive autoscaling exception_
+
 
 ## Highlighted updates
 
-<!-- 
+<!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H4.
 -->
 
-### Security
-Armory scans the codebase as we develop and release software. For information about CVE scans for this release, contact your Armory account representative.
+### Artifacts
 
-### Plugin V2 Framework
+#### Helm repo indexes are now supported for artifacts
 
-The v2 plugin framework is now in place! The V2 plugin framework simplifies configuration of plugins and includes many quality of life changes for plugin developers interested in making spring based plugins. For more information, please see: [V2 Compatibility](https://github.com/spinnaker/kork/blob/master/kork-plugins/V2-COMPATIBILITY.md)
+You can provide `helm/index` as a type when specifying an artifact path.
 
+#### Versions now supported in artifacts using Oracle Objects
+
+In the artifact selection UI, you can use `#` after the artifact to indicate the version you want to use. For example:
+
+![oci version](/images/release/223/oci-buckets.png)
+
+### Configuration
+
+#### Dynamic Accounts
+
+Spinnaker reads account definitions (cloud providers, CI, metric stores, etc.) from Spring properties. This works well in a world with a handful of accounts that rarely change but causes operational pain when provisioning accounts dynamically or with account information stored externally. See the Spinnaker Account Management [proposal](https://github.com/spinnaker/governance/blob/master/rfc/account-management.md?rgh-link-date=2020-09-29T21%3A29%3A49Z) for details.
+
+The following providers can support loading credentials dynamically:
+
+- CloudFoundry
+- Kubernetes
+- AWS
+
+### Deployment targets - AWS
+
+#### Support `externalID` for granting access to your AWS resources to a third party
+
+Spinnaker can now assume a role into third party resources (delegated access) that require AWS [external IDs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html). To configure an AWS provider, add the `externalId` property when specifying the `accountId` and `assumeRole` properties. For example:
+
+```yaml
+aws:
+  name: delegated-prod
+  accountId: 1234
+  assumeRole: role/spinnaker
+  externalId: "unique ID assigned to Armory"
+```
+
+#### Enabling AWS Lambda in configurations has changed
+
+The `lambda.enabled` key has now moved under `features`.
+
+Old:
+
+```yaml
+aws:
+  lambda:
+    enabled: true
+  accounts:
+    - name: test
+      lambdaEnabled: true
+```
+
+New:
+
+```yaml
+aws:
+  features:
+    lambda:
+      enabled: true
+  accounts:
+    - name: test
+      lambdaEnabled: true
+```
+
+#### Fixes
+
+There have been several fixes for Launch Templates and for the Lambda provider. See the [open source changelog](https://spinnaker.io/community/releases/versions/1-23-2-changelog#fixes-1).
+
+### Deployment targets - Google
+
+#### Google AppEngine add deploy global configuration stage
+
+This new stage was created in order to support various configuration settings for an app engine application. You can find these settings in Google Cloud's [Configuration Files](https://cloud.google.com/appengine/docs/standard/python/configuration-files) content.
+
+For example, `appengine` supports cron configuration. You can update or deploy cron configuration similar to how you deploy services. This stage replicates the functionality offered and allows you to deploy cron, dispatch, index, and queue configuration files to your `appengine` environments.
+
+![stage example](/images/release/223/appengine-stage.png)
+
+### Load Balancers
+
+#### Support for AWS cross zone load balancing for Network Load Balancers
+Spinnaker now supports the AWS cross zone load balancing setting. You’ll see a new checkbox in the UI when configuring NLBs. This is turned on by default for new load NLBs.
+
+### Plugins
+
+#### Plugin V2 Framework
+
+The v2 plugin framework is now in place! The V2 plugin framework simplifies configuration of plugins and includes many quality of life changes for plugin developers interested in making spring based plugins. See [V2 Compatibility](https://github.com/spinnaker/kork/blob/master/kork-plugins/V2-COMPATIBILITY.md) for details.
+
+### Storage
+
+#### Support for Redis SSL connection paths
+
+To turn on SSL, add an `s` to `redis://` in the connection string:
+
+```yaml
+redis:
+  connection: rediss://localhost:6379
+```
 
 ###  Spinnaker Community Contributions
 
-There have also been numerous enhancements, fixes and features across all of Spinnaker's other services. See their changes here:  
-[Spinnaker v1.23.2](https://www.spinnaker.io/community/releases/versions/1-23-2-changelog)
+There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the   
+[Spinnaker v1.23.2](https://www.spinnaker.io/community/releases/versions/1-23-2-changelog) changelog for details.
+
 
 ## Detailed updates
 
