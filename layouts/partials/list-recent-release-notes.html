@@ -3,7 +3,7 @@
   {{ $pagesReverse := (where .Site.Pages "Section" .Section).ByDate.Reverse }}
   {{ $parent := .Page }}
 
-  Armory supports the three most recent minor versions:
+  <div>Armory supports the three most recent minor versions:</div>
 
   <ul>
     {{ $semverActiveMajor := 10000 }}
@@ -51,6 +51,6 @@
     {{ end }}
   </ul>
 
-  Versions older than the last 3 minor versions can be found in the <a href="archive">Armory Release Note Archive</a>
+  <div>Versions older than the last 3 minor versions can be found in the <a href="archive">Armory Release Note Archive</a>.</div>
 
 </div>

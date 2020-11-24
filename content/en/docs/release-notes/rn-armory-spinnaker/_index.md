@@ -12,6 +12,9 @@ layout: release-notes-recent
 semver_list: true
 ---
 
+<!-- the release-notes-recent.html layout inserts the section index list at the top of the page -->
+
+
 ## Different Armory Release Types
 
 Armory is based off OSS's (Open Source Spinnaker) [release cadence](https://www.spinnaker.io/community/releases/release-cadence), in which we extend OSS with Armory features. We provide a few different release types.
@@ -125,6 +128,6 @@ An **edge** release is created from OSS `master` and Armory `master`.
 ```yml
 $ hal config version edit --version 2.3.0
 ```
-See [halyard reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-version-edit) for additional information.
+See [Halyard reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-version-edit) for additional information.
 
 
