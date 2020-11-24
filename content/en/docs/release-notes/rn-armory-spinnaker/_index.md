@@ -12,8 +12,6 @@ layout: release-notes-recent
 semver_list: true
 ---
 
-> You can find [Armory's extended Halyard releases notes here]({{< ref rn-armory-halyard >}}).
-
 ## Different Armory Release Types
 
 Armory is based off OSS's (Open Source Spinnaker) [release cadence](https://www.spinnaker.io/community/releases/release-cadence), in which we extend OSS with Armory features. We provide a few different release types.
@@ -130,7 +128,3 @@ $ hal config version edit --version 2.3.0
 See [halyard reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-version-edit) for additional information.
 
 
-## List of Stable Armory Releases
-<!-- Hugo/docsy auto generates a list of the child pages here. The front matter configures it to go from newest to oldest --!>
-
-Armory supports the three most recent minor versions:
