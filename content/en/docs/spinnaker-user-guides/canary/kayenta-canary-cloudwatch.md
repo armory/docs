@@ -1,15 +1,14 @@
 ---
-title: Using Canary Analysis with Cloudwatch
-aliases:
-  - /spinnaker_user_guides/kayenta_cloudwatch/
-  - /docs/spinnaker-user-guides/kayenta_cloudwatch
+title: Using Canary Analysis with AWS CloudWatch
 ---
 
-Before you can start using Canary deployments, you need to enable Kayenta, the Spinnaker service for canary deployments. For more information, see [Configuring Kayenta]({{< ref "kayenta-configure" >}}).
+{{< include "user-guide/canary/config-kayenta-frag.md" >}}
 
 ## Cloudwatch configuration
 
-To enable Cloudwatch, add the following `cloudwatch` entry and add the supported type `METRICS_STORE` to your aws configuration entry to `kayenta-local.yml`, on this example we are going to configure S3 as Object Storage and Cloudwatch as Metric Store:
+To enable [CloudWatch](https://aws.amazon.com/cloudwatch/), update the AWS configuration entry in your `kayenta-local.yml` file. Make sure `METRICS_STORE` is listed under `supportedTypes`. Add the `cloudwatch` entry with `enabled: true`.
+
+The example below uses S3 as the object store and CloudWatch as the metrics store.
 
 ```yaml
 kayenta:
@@ -17,8 +16,8 @@ kayenta:
     enabled: true
     accounts:
       - name: monitoring
-        bucket: <Your S3 bucket>
-        region: us-west-1
+        bucket: <your-s3-bucket>
+        region: <your-region>
         rootFolder: kayenta
         roleName: default
         supportedTypes:
@@ -65,6 +64,6 @@ Add your Cloudwatch MetricStat JSON in the **Template** field.
 
 ## Pipeline configs
 
-In your canary stage, set up the canary config you just created. Then use the application values from Cloudwatch to fill in the **Baseline + Canary Pair** and **MetricScope** fields.
+In your canary stage, set up the canary config you just created. Then use the application values from CloudWatch to fill in the **Baseline + Canary Pair** and **MetricScope** fields.
 
 ![image](/images/user-guides/canary/cloudwatch/canary_stage_cloudwatch.png)

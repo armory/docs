@@ -6,7 +6,7 @@ aliases:
 ---
 
 
-Before you can start using Canary deployments, you need to enable Kayenta, the Spinnaker service for canary deployments. For more information, see [Configuring Kayenta]({{< ref "kayenta-configure" >}}).
+{{< include "user-guide/canary/config-kayenta-frag.md" >}}
 
 
 ## Dynatrace configuration

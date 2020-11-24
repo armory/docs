@@ -5,7 +5,7 @@ aliases:
   - /docs/spinnaker-user-guides/kayenta
 ---
 
-Before you can start using Canary deployments, ensure that Kayenta, the Spinnaker for canary deployments, is enabled. For more information, see [Configuring Kayenta]({{< ref "kayenta-configure" >}}).
+{{< include "user-guide/canary/config-kayenta-frag.md" >}}
 
 ## Overview
 
