@@ -1,7 +1,6 @@
 ---
-
 title: v1.7.2 Armory Halyard
-date: 2019-10-09
+version: 01.07.02
 toc_hide: true
 aliases:
   - armory-halyard_v1.7.2

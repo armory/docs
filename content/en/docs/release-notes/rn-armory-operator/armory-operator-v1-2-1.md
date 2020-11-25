@@ -1,7 +1,7 @@
 ---
 title: v1.2.1 Armory Operator
 toc_hide: true
-date: 2020-11-16
+version: 01.02.01
 ---
 
 ## 11/16/2020 Release Notes

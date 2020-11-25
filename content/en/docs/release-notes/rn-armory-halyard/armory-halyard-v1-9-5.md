@@ -1,7 +1,6 @@
 ---
-
 title: v1.9.5 Armory Halyard
-date: 2020-09-30
+version: 01.09.05
 hal_version: 1.09.50
 toc_hide: true
 ---
