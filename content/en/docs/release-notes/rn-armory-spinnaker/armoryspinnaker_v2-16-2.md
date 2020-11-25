@@ -3,6 +3,7 @@
 title: v2.16.2 Armory Release (OSS Release 1.16.4)
 toc_hide: true
 date: 2019-10-28
+version: 02.16.02
 aliases:
   - armoryspinnaker_v2.16.2
 ---

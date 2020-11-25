@@ -2,6 +2,7 @@
 title: v2.19.4 Armory Release (OSS Release 1.19.4)
 toc_hide: true
 date: 2020-04-15
+version: 02.19.04
 aliases:
   - armoryspinnaker_v2.19.4
 ---

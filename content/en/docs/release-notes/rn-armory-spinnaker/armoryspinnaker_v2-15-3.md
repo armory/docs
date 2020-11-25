@@ -3,6 +3,7 @@
 title: v2.15.3 Armory Release (OSS Release 1.15.3)
 toc_hide: true
 date: 2019-08-30
+version: 02.15.03
 aliases:
   - armoryspinnaker_v2.15.3
 ---
