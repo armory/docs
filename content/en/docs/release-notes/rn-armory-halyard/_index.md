@@ -7,7 +7,7 @@ aliases:
   - /halyard-versions/
   - /halyard-version/
   - /halyard-release-notes/
-layout: release-notes-no-archive
+layout: release-notes-all
 semver_list: true
 ---
 
