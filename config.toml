@@ -92,7 +92,7 @@ weight = 1
 [params]
 armory-version = "2.22.x"
 halyard-armory-version = "1.9.5"
-kubesvc-version="0.2.0"
+kubesvc-version="0.4.0"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 copyright = "Armory Inc."
@@ -143,10 +143,9 @@ prism_syntax_highlighting = true
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]
-latestVersion2="0.2.3"
-latestVersion3="0.3.13"
-latestVersion4="0.4.8"
-latestVersion5="0.5.0-rc.15"
+latestVersion3="0.3.19"
+latestVersion4="0.4.16"
+latestVersion5="0.5.4"
 
 # User interface configuration
 [params.ui]
