@@ -89,7 +89,7 @@ kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/SpinnakerService.y
 If you installed Operator in `cluster` mode, run this command:
 
 ```bash
-kubectl -n spinnaker-operator apply -f deploy/spinnaker/cluster/SpinnakerService.yml
+kubectl -n spinnaker-operator apply -f deploy/spinnaker/kustomize/SpinnakerService.yml
 ```
 
 Watch the install progress and check out the pods being created:

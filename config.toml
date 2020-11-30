@@ -90,8 +90,8 @@ weight = 1
 # Everything below this are Site Params
 
 [params]
-armory-version = "2.22.x"
-halyard-armory-version = "1.9.5"
+armory-version = "2.23.x"
+halyard-armory-version = "1.10.0"
 kubesvc-version="0.4.0"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
@@ -115,7 +115,7 @@ archived_version = false
 # The version number for the version of the docs represented in this doc set.
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
-version = "2.22"
+version = "2.23"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
@@ -210,6 +210,11 @@ enable = true
   version = "Latest"
   githubbranch = "master"
   url = "https://docs.armory.io"
+
+[[params.versions]]
+  version = "v2.22"
+  githubbranch = "v2.22"
+  url = "https://v2-22.docs.armory.io/docs"
 
 [[params.versions]]
   version = "v2.21"

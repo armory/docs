@@ -12,7 +12,8 @@ layout: release-notes-recent
 semver_list: true
 ---
 
-> You can find [Armory's extended Halyard releases notes here]({{< ref rn-armory-halyard >}}).
+<!-- the release-notes-recent.html layout inserts the section index list at the top of the page -->
+
 
 ## Different Armory Release Types
 
@@ -127,10 +128,6 @@ An **edge** release is created from OSS `master` and Armory `master`.
 ```yml
 $ hal config version edit --version 2.3.0
 ```
-See [halyard reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-version-edit) for additional information.
+See [Halyard reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-version-edit) for additional information.
 
 
-## List of Stable Armory Releases
-<!-- Hugo/docsy auto generates a list of the child pages here. The front matter configures it to go from newest to oldest --!>
-
-Armory supports the three most recent minor versions:

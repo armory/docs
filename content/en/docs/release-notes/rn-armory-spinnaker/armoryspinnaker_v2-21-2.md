@@ -1,6 +1,7 @@
 ---
 title: v2.21.2 Armory Release (OSS Spinnaker™ v1.21.4)
 toc_hide: true
+date: 2020-08-07
 ---
 
 ## 2020/08/07 Release Notes
@@ -27,7 +28,7 @@ The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 
 
 #### Dynamic Account Configurations with Vault
 
-Clouddriver fails to start when you use Vault as the backend for Dynamic Account Configurations. 
+Clouddriver fails to start when you use Vault as the backend for Dynamic Account Configurations.
 
 **Affected version:** 2.21.2
 **Fixed version:** 2.21.3
@@ -52,7 +53,7 @@ The following CVEs still exist in Clouddriver:
 
 - CVE-2017-18342
 - CVE-2020-1747
-- CVE-2019-17638 
+- CVE-2019-17638
 - CVE-2020-13757
 - CVE-2016-10745
 
