@@ -2,6 +2,7 @@
 title: v2.21.2 Armory Release (OSS Spinnaker™ v1.21.4)
 toc_hide: true
 date: 2020-08-07
+version: 02.21.02
 ---
 
 ## 2020/08/07 Release Notes
