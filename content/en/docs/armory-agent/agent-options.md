@@ -64,7 +64,7 @@ kubernetes:
 | `kubernetes.accounts[].serviceAccount`                                                                                                                                      | boolean           | false                   | If true and the Agent runs in Kubernetes - use the current service account to call to the current API server. In that mode, you don’t need to provide a kubeconfig file.|
 | `kubernetes.accounts[].namespaces`                                                                                                                                          | []string          | empty                   | <span class="badge badge-primary">0.4.0+</span> Whitelist of namespaces to monitor.<br>This comes at a greater cost of multiplying the resources by the number of namespaces.|
 | `kubernetes.accounts[].omitNamespaces` | []string          | empty | Blacklist of namespaces <br>This comes at a greater cost of multiplying the resources by the number of namespaces.<br>NOT CURRENTLY IMPLEMENTED |
-| `kubernetes.accounts[].onlyNamespacedResources`                                                                                                                                          | boolean          | false                   | <span class="badge badge-primary">0.4.0+</span> If true, the Agent will ignore non namespaced resources and namespaces must be whitelisted with `namespaces` setting and CRDs with `customResourceDefinitons`.|
+| `kubernetes.accounts[].onlyNamespacedResources`                                                                                                                                          | boolean          | false                   | <span class="badge badge-primary">0.4.0+</span> If true, the Agent will ignore non-namespaced resources; namespaces must be whitelisted with `namespaces` setting and CRDs with `customResourceDefinitons`.|
 | `kubernetes.accounts[].kinds` | []string          | empty                   | If not empty, only kinds in the list will be cached. Use the format `<kind>.<apiGroup>` (e.g. `Deployment.apps`)|
 | `kubernetes.accounts[].omitKinds`  | []string          | empty                   | List of kinds not to cache.|
 | `kubernetes.accounts[].customResourceDefinitions`  | []{kind: <string>}          | empty                   | <span class="badge badge-primary">0.4.0+</span> List of CustomResourceDefinition to expose to Spinnaker. This is not needed if `onlyNamespacedResources` is left off. The format of `kind` is `Kind.group`.|
@@ -92,12 +92,12 @@ kubernetes:
 
 The Agent needs access to its control plane (Spinnaker) as well to the various Kubernetes clusters it is configured to monitor. You can control which traffic should go through an HTTP proxy via the usual `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables.
 
-A common case is to force the connection back to the control plane via a proxy but bypass it for Kubernetes clusters. In that case, define the environment variable `HTTPS_PROXY=https://my.corporate.proxy` and use `kubernetes.noProxy: true` settings to not have to maintain the list of Kubernetes hosts in `NO_PROXY`.
+A common case is to force the connection back to the control plane via a proxy but bypass it for Kubernetes clusters. In that case, define the environment variable `HTTPS_PROXY=https://my.corporate.proxy` and use the `kubernetes.noProxy: true` setting to not have to maintain the list of Kubernetes hosts in `NO_PROXY`.
 
 
 ### Kubernetes Authorization
 
-The Agent should be configured to access each Kubernetes cluster it monitors with a service account. You can limit what Spinnaker can do via the role you assign to that service account. For example, perhaps you'd like Spinnaker to see `NetworkPolicies` but not deploy them.
+The Agent should be configured to access each Kubernetes cluster it monitors with a service account. You can limit what Spinnaker can do via the role you assign to that service account. For example, if you'd like Spinnaker to see `NetworkPolicies` but not deploy them:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -113,9 +113,9 @@ rules:
 
 ### Namespace Restrictions
 
-You can limit the Agent to monitor specific namespaces by listing them under `namespaces`. It is sometimes required to prevent the access of any cluster-wide (non-namespaced) resource. In that case, use `onlyNamespacedResources` setting.
+You can limit the Agent to monitoring specific namespaces by listing them under `namespaces`. If you need to prevent the Agent from accessing cluster-wide (non-namespaced) resources, use the `onlyNamespacedResources` setting.
 
-A side effect of disabling cluster-wide resources is that [CustomResourceDefinitions](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/) won't be known (and therefore deployable by Spinnaker). `CustomResourceDefinitions` are cluster-wide resources but the custom resources themselves may be namespaced. To workaround the limitation, you can define `customResourceDefinitions`. Both namespaces and CRDs will be sent to Spinnaker as "synthetic" resources. They won't be queried or watched but their existence will be known by Spinnaker.
+A side effect of disabling cluster-wide resources is that [CustomResourceDefinitions](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/) won't be known (and therefore deployable by Spinnaker). `CustomResourceDefinitions` are cluster-wide resources, but the custom resources themselves may be namespaced. To workaround the limitation, you can define `customResourceDefinitions`. Both namespaces and CRDs will be sent to Spinnaker as "synthetic" resources. They won't be queried or watched, but their existence will be known by Spinnaker.
 
 ```yaml
 kubernetes:
