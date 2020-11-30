@@ -62,10 +62,12 @@ kubernetes:
 | `kubernetes.accounts[].context`  | string            | empty | If provided, will use the given context of the configured kubeconfig |
 | `kubernetes.accounts[].oAuthScopes` | []string          | empty                   | List of OAuth scope when authenticating with gcp provider<br>https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#authentication  |
 | `kubernetes.accounts[].serviceAccount`                                                                                                                                      | boolean           | false                   | If true and the Agent runs in Kubernetes - use the current service account to call to the current API server. In that mode, you don’t need to provide a kubeconfig file.|
-| `kubernetes.accounts[].namespaces`                                                                                                                                          | []string          | empty                   | Whitelist of namespaces similar to Clouddriver’s.<br>This comes at a great cost of multiplying the resources by the number of namespaces.<br>NOT CURRENTLY AVAILABLE |
-| `kubernetes.accounts[].omitNamespaces` | []string          | empty | Blacklist of namespaces <br>This comes at a great cost of multiplying the resources by the number of namespaces.<br>NOT CURRENTLY IMPLEMENTED |
+| `kubernetes.accounts[].namespaces`                                                                                                                                          | []string          | empty                   | <span class="badge badge-primary">0.4.0+</span> Whitelist of namespaces to monitor.<br>This comes at a greater cost of multiplying the resources by the number of namespaces.|
+| `kubernetes.accounts[].omitNamespaces` | []string          | empty | Blacklist of namespaces <br>This comes at a greater cost of multiplying the resources by the number of namespaces.<br>NOT CURRENTLY IMPLEMENTED |
+| `kubernetes.accounts[].onlyNamespacedResources`                                                                                                                                          | boolean          | false                   | <span class="badge badge-primary">0.4.0+</span> If true, the Agent will ignore non-namespaced resources; namespaces must be whitelisted with `namespaces` setting and CRDs with `customResourceDefinitons`.|
 | `kubernetes.accounts[].kinds` | []string          | empty                   | If not empty, only kinds in the list will be cached. Use the format `<kind>.<apiGroup>` (e.g. `Deployment.apps`)|
 | `kubernetes.accounts[].omitKinds`  | []string          | empty                   | List of kinds not to cache.|
+| `kubernetes.accounts[].customResourceDefinitions`  | []{kind: <string>}          | empty                   | <span class="badge badge-primary">0.4.0+</span> List of CustomResourceDefinition to expose to Spinnaker. This is not needed if `onlyNamespacedResources` is left off. The format of `kind` is `Kind.group`.|
 | `kubernetes.accounts[].metrics` | boolean | false  | When true, sends pod metrics back to Spinnaker every 20s |
 | `kubernetes.accounts[].permissions` | map               | empty                   | Same meaning as `permissions` in Clouddriver: under `READ` and `WRITE` list of roles authorized. |
 | `kubernetes.accounts[].maxResumableResourceAgeMs` | integer           | 300000 (5m)             | When connecting to Spinnaker, the Agent asks Clouddriver for the latest resource version known per resource that is not older than that setting.<br><br>The resource version is used to resume the watch without first doing a list - saving memory and time. There’s no guarantee that the resource version is still known. If not “remembered” by the Kubernetes API server, a `list`  call will be used.<br><br>https://kubernetes.io/docs/reference/using-api/api-concepts/#efficient-detection-of-changes |
@@ -79,8 +81,58 @@ kubernetes:
 | `tasks.totalBudget`                                                                                                                                                         | integer           | 0                       | If > 0, limits the number of tasks that can be started. Tasks have different cost. Watches are considered free because they are part of the normal operations of the Agent.                                                                                                                                                                                                                                                                                                                       |
 | `tasks.budgetPerAccount`                                                                                                                                                    | integer           | 0                       | Same as above but per account. If both settings are provided, they’re both checked.                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `tasks.queueCheckFrequencyMs`                                                                                                                                               | integer           | 2000                    | Frequency at which the Agent will check for new tasks to launch. Once launched a task is not stopped until explicitly requested (account unregistered or connection to Spinnaker lost)                                                                                                                                                                                                                                                                                                            |
-| `certFile`                                                                                                                                                                  | string            | None                    | Client certificate to use when connecting to Spinnaker. <br>Not required but encouraged.                                                                                                                                                                                                                                                                          |
 | `pprof.enabled`                                                                                                                                                             | boolean           | false                   | Enable pprof endpoint. Useful for troubleshooting, slowness, memory leaks, and more!<br>https://github.com/google/pprof/blob/master/doc/README.md                                                                                                                                                                                                                                                                                                                                               |
-| `pprof.port`                                                                                                                                                                | integer           | 6060                    | Port on which to respond to pprof requests                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `pprof.port`                                                                                                                                                                | integer           | 6060                    | Port on which to respond to pprof requests                                                                                                                                       |
 | `secrets.vault.*`                                                                                                                                                           | object            | none                    | [Vault configuration]({{< ref "secrets-vault#1-kubernetes-service-account-recommended" >}}) |
+
+
+## Restricted Environments
+
+### Network Access
+
+The Agent needs access to its control plane (Spinnaker) as well to the various Kubernetes clusters it is configured to monitor. You can control which traffic should go through an HTTP proxy via the usual `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables.
+
+A common case is to force the connection back to the control plane via a proxy but bypass it for Kubernetes clusters. In that case, define the environment variable `HTTPS_PROXY=https://my.corporate.proxy` and use the `kubernetes.noProxy: true` setting to not have to maintain the list of Kubernetes hosts in `NO_PROXY`.
+
+
+### Kubernetes Authorization
+
+The Agent should be configured to access each Kubernetes cluster it monitors with a service account. You can limit what Spinnaker can do via the role you assign to that service account. For example, if you'd like Spinnaker to see `NetworkPolicies` but not deploy them:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: agent-role
+rules:
+- apiGroups: ["networking.k8s.io"]
+  resources: ["networkpolicies"]
+  verbs: [ "get", "list", "watch"]
+...
+```
+
+### Namespace Restrictions
+
+You can limit the Agent to monitoring specific namespaces by listing them under `namespaces`. If you need to prevent the Agent from accessing cluster-wide (non-namespaced) resources, use the `onlyNamespacedResources` setting.
+
+A side effect of disabling cluster-wide resources is that [CustomResourceDefinitions](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/) won't be known (and therefore deployable by Spinnaker). `CustomResourceDefinitions` are cluster-wide resources, but the custom resources themselves may be namespaced. To workaround the limitation, you can define `customResourceDefinitions`. Both namespaces and CRDs will be sent to Spinnaker as "synthetic" resources. They won't be queried or watched, but their existence will be known by Spinnaker.
+
+```yaml
+kubernetes:
+    accounts:
+        - name: production
+          ...
+          # Restricts the agent to namespaces `ns1` and `ns2`
+          namespaces:
+            - ns1
+            - ns2
+          # Prevents the Agent from querying non-namespaced resources
+          onlyNamespacedResources: true
+          # Whitelist CRDs so Spinnaker
+          customResourceDefinitions:
+            - kind: ServiceMonitor.monitoring.coreos.com
+            - kind: SpinnakerService.spinnaker.armory.io
+
+```
+
 
