@@ -169,6 +169,10 @@ redis:
 
 ![Helm execution parm](/images/release/223/helm-trigger.png)
 
+#### Clusters page
+
+If multiple containers exist for a server group, pods get collapsed by default.
+
 ###  Spinnaker Community Contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the   
