@@ -9,19 +9,28 @@ description: >
 ## 2020/12/50 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+> 
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.23.1, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.10.0 or later
+- Armory Operator 1.2.1 or later
 
 ## Security
 
-Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
+Armory scans the codebase as we develop and release software. For information about CVE scans for this release, contact your Armory account representative.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
+
+{{< include "bc-k8s-namespace.md" >}}
+
+{{< include "bc-docker-giduid.md" >}}
+
+{{< include "bc-k8s-job-suffix.md" >}}
+
+{{< include "bc-spinnaker-metrics.md" >}}
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
@@ -33,12 +42,20 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+
+### Automatic Canary Analysis
+
+#### Cloudwatch Integration
+
+Armory now supports Cloudwatch as a metrics provider for Automatic Canary Analysis. For more information, [Using Canary Analysis with AWS CloudWatch]({{< ref "kayenta-canary-cloudwatch" >}}).
+
+### Deployment targets
+
 #### Pivotal Cloud Foundry
 
 This release includes the following improvements to the PCF provider:
 
 * Fixes a regression that caused deployments to fail if routes were specified in a manifest.
-
 
 ###  Spinnaker Community Contributions
 

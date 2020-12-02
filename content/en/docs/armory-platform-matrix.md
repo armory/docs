@@ -40,6 +40,8 @@ Application metrics can be ingested by Kayenta to perform Canary Analysis or Aut
 
 | Provider    | Version                | ACA | Armory                 | Note |
 | ----------- | ---------------------- | --- | ---------------------- | ---- |
+| AWS Cloudwatch    | All supported versions | Yes | 2.23.1 or later |      |
+| Dynatrace    | All supported versions | Yes | 2.23.0 or later |      |
 | Graphite    | All supported versions | Yes | All supported versions |      |
 | New Relic   | All supported versions | Yes | All supported versions |      |
 | Prometheus  | All supported versions | Yes | All supported versions |      |
