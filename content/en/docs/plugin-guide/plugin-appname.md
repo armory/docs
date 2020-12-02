@@ -1,6 +1,7 @@
 ---
 title: App Name Plugin
 toc_hide: true
+exclude_search: true
 description: >
   The app name plugin makes rules for Spinnaker application names configurable.
 ---
