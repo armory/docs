@@ -33,8 +33,11 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+#### Pivotal Cloud Foundry
 
+This release includes the following improvements to the PCF provider:
 
+* Fixes a regression that caused deployments to fail if routes were specified in a manifest.
 
 
 ###  Spinnaker Community Contributions
