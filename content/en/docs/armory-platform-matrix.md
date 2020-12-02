@@ -292,10 +292,10 @@ These are providers that are manifest based, so Armory applies the manifest and 
 {{</ caas-cf-deploy-strategies.inline >}}
 -->
 
-| Provider                | Deployment strategies                      | Armory Versions        | Notes |
-| ----------------------- | ------------------------------------------ | ---------------------- | ----- |
-| Google Cloud App Engine | <ul><li>Custom</li></ul>                   | All supported versions |       |
-| Cloud Foundry           | {{< caas-cf-deploy-strategies.inline />}}  | All supported versions |       |
+| Provider                | Supported Versions                   | Deployment strategies                      | Armory Versions        | Notes |
+| ----------------------- | ------------------------------------ | ------------------------------------------ | ---------------------- | ----- |
+| Google Cloud App Engine |                                      | <ul><li>Custom</li></ul>                   | All supported versions |       |
+| Cloud Foundry           | CC API Version: 2.103.0+ and 3.38.0+ | {{< caas-cf-deploy-strategies.inline />}}  | All supported versions |       |
 
 
 ### Serverless
