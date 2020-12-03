@@ -7,23 +7,21 @@ description: >
 ---
 <!-- This plugin is the next iteration of our Policy Engine extension and is not ready for public consumption. This unlisted page is to satisfy an auditing requirement that one of our customers has. It is also hidden via robots.txt and the netlify sitemap plugin. -->
 
+## Overview
 
-## About
-
-Armory's Policy Engine plugin is the next iteration of the Policy Engine feature that ships with our Armory distribution. Not only does it include support for exsting features like applying policy to pipelines as they're being saved, it also introduces policy hooks into other services like Gate and Orca. 
+Armory's Policy Engine plugin is the next iteration of the Policy Engine feature that ships with our Armory distribution. Not only does it include support for existing features like applying policy to pipelines as they're being saved, it also introduces policy hooks into other services like Gate and Orca. 
 
 ## Requirements
 
-This plugin requires either:
+This plugin requires:
 
-- Armory 2.23.x or later
-- Spinnaker 1.23.x or later
-- Open Policy Agent >= 0.12.x 
+- Armory 2.23.x or later (OSS Spinnaker 1.23.x or later)
+- Open Policy Agent 0.12.x or later
 
-## Limitations
+<!--## Limitations
 
 TODO - figure out if there are any limitations
-
+-->
 
 ## Setup
 
@@ -32,7 +30,7 @@ The plugin can be delivered using two different methods:
 1. Docker image as an init container on each affected service
 1. Using a remote plugin repository
 
-In addition to the plugin, you'll also need access to an Open Policy Agent (OPA) deployment. If you haven't deployed OPA before, you can checkout our [documentation](https://docs.armory.io/docs/armory-admin/policy-engine-enable/#deploy-an-opa-server).
+In addition to the plugin, you need access to an Open Policy Agent (OPA) deployment. If you have not deployed OPA before, see [Deploy an OPA server](https://docs.armory.io/docs/armory-admin/policy-engine-enable/#deploy-an-opa-server).
 
 ### Docker image as init container
 
@@ -198,70 +196,74 @@ spec:
 
 {{% tab name="Halyard" %}}
 
-Add the following to `profiles/spinnaker-local.yml`:
-```yaml
-armory:
-  policyEngine:
-    opa:
-      # should be replaced with the correct URL to your OPA deployment   
-      baseUrl: http://opa.server:8181/v1/data
-spinnaker:
-  extensibility:
-    repositories:
-      policyEngine:
-        enabled: true
-        url: file:///opt/spinnaker/lib/local-plugins/policy-engine/plugins.json
-```
+1. Add the following to `profiles/spinnaker-local.yml`:
 
-For each service you'd like to enable the plugin for, it's respective local profile. For example, for Gate you'd add it to the file `profiles/gate-local.yml`.
-```yaml
-spinnaker:
-  extensibility:
-    plugins:
-        Armory.PolicyEngine:
-            enabled: true
-```
+   ```yaml
+   armory:
+     policyEngine:
+       opa:
+         # Should be replaced with the  URL to your OPA deployment   
+         baseUrl: http://opa.server:8181/v1/data
+   spinnaker:
+     extensibility:
+       repositories:
+         policyEngine:
+           enabled: true
+           url: file:///opt/spinnaker/lib/local-plugins/policy-engine/plugins.json
+   ```
 
-Add the following to `service-settings/gate.yml`, `service-settings/orca.yml`, `service-settings/clouddriver.yml` and `service-settings/clouddriver.yml`:
-```yaml
-kubernetes:
-  volumes:
-  - id: policy-engine-install
-    type: emptyDir
-    mountPath: /opt/spinnaker/lib/local-plugins
-```
+2. For each service you want to enable the plugin for, add the following snippet to its local profile. For example, add it to the file `profiles/gate-local.yml` for Gate.
 
-Add the following to  `.hal/config`:
-```yaml
-deploymentConfigurations:
-  - name: default
-    deploymentEnvironment:
-      initContainers:
-        front50:
-         - name: policy-engine-install
-            image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
-            volumeMounts:
-              - mountPath: /opt/policy-engine/target
-                name: policy-engine-install
-        clouddriver:
-          - name: policy-engine-install
-            image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
-            volumeMounts:
-              - mountPath: /opt/policy-engine/target
-                name: policy-engine-install
-        gate:
-          - name: policy-engine-install
-            image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
-            volumeMounts:
-              - mountPath: /opt/policy-engine/target
-                name: policy-engine-install
-        orca:
-          - name: policy-engine-install
-            image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
-            volumeMounts:
-              - mountPath: /opt/policy-engine/target
-                name: policy-engine-install
-```
+   ```yaml
+   spinnaker:
+     extensibility:
+       plugins:
+           Armory.PolicyEngine:
+               enabled: true
+   ```
+
+3. Add the following to `service-settings/gate.yml`, `service-settings/orca.yml`, `service-settings/clouddriver.yml` and `service-settings/clouddriver.yml`:
+
+   ```yaml
+   kubernetes:
+     volumes:
+     - id: policy-engine-install
+       type: emptyDir
+       mountPath: /opt/spinnaker/lib/local-plugins
+   ```
+
+4. Add the following to  `.hal/config`:
+
+   ```yaml
+   deploymentConfigurations:
+     - name: default
+       deploymentEnvironment:
+         initContainers:
+           front50:
+            - name: policy-engine-install
+               image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
+               volumeMounts:
+                 - mountPath: /opt/policy-engine/target
+                   name: policy-engine-install
+           clouddriver:
+             - name: policy-engine-install
+               image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
+               volumeMounts:
+                 - mountPath: /opt/policy-engine/target
+                   name: policy-engine-install
+           gate:
+             - name: policy-engine-install
+               image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
+               volumeMounts:
+                 - mountPath: /opt/policy-engine/target
+                   name: policy-engine-install
+           orca:
+             - name: policy-engine-install
+               image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
+               volumeMounts:
+                 - mountPath: /opt/policy-engine/target
+                   name: policy-engine-install
+   ```
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -282,91 +284,19 @@ url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/mas
 
 ## Usage
 
-This plugin enables you to apply policy to various actions and tasks within Spinnaker. In the sections below, we'll document examples and possible use cases for Policy Engine. If you'd like to see more example policies, check out our [examples repo](https://github.com/armory-io/policy-engine-examples/).
+The Policy Engine Plugin enables you to enforce policies on various actions and tasks in the Armory platform. It does this by providing hooks within the platform. The sections below include examples and possible use cases for the Policy Engine. To see more example policies, see the [examples repo](https://github.com/armory-io/policy-engine-examples/).
 
-The Policy Engine provides various hooks within Spinnaker through which you can apply policy. 
+You can add policies to the Policy Engine through the OPA API or with a ConfigMap. For information about how to add policies, see [Using the Policy Engine]({{< ref "policy-engine-use#step-2-add-policies-to-opa" >}}). 
 
-### Pipeline save
+### API authorization
 
-Many users begin using Policy Engine to apply policy to all pipelines before they're saved. This ensures that no pipeline that violates policy can be saved. A common use case that we've seen is requiring that all pipelines have a certain stage present. Below is an example for how you might implement such a policy.
+> Note: API Authorization is an early access feature and should not be used in production.
 
-```
-package spinnaker.persistence.pipelines.before
+While Spinnaker provides a level of Role Based Access Control (RBAC) out of the box, it is often necessary to inspect and block certain actions within Spinnaker that aren't necessarily covered by existing features. The Policy Engine is able to intercept all calls to the API and enforce policies to them. Each request for a policy decision includes the acting user, their roles, and admin status.
 
-deny["pipelines must contain a pre-flight check stage"] {
-    input.pipeline.stages[_].name == "preFlightCheck"
-}
-```
+This policy hook is a different from the other example hooks described. By default, API authorization takes a deny-all stance to policy decisions. In order for an API call to be allowed, it must match an `allow` rule in the `spinnaker.http.authz` package. For example, to lock down every action to admins only, you can implement a policy that looks like this:
 
-### Deployment
-
-Another common use case among users of Policy Engine is applying policy to deployments. This prevents any deployments from happening that may violate policy. 
-
-```
-package spinnaker.deployment.tasks.deployManifest
-
-deny["LoadBalancer Services must not have port 22 open"] {
-    manifests := input.deploy.manifests
-    manifest := manifests[_]
-
-    manifest.kind == "Service"
-    manifest.spec.type == "LoadBalancer"
-
-    port := manifest.spec.ports[_]
-    port.port == 22
-}
-```
-
-The above example can be used to ensure that no Kubernetes Services are deployed/created that expose port 22, the port commonly used for SSH. The policy package (`spinnaker.deployment.tasks.deployManifest` used above) is different for deployment to various cloud providers and tasks. For example, if you'd like to use policy to disable the deletion of Kubernetes manifest, you should include a policy with the package name of `spinnaker.deployment.tasks.deleteManifest`.
-
-### Pipeline execution
-
-Not only can policy be applied to pipelines before they're saved, it can also be applied to pipeline before and during execution. 
-
-Before a pipeline is executed, Policy Engine will use the package `spinnaker.execution.pipelines.before` to determine if the pipeline execution can even be started. This is can be useful for a variety of use cases. One example from our customers is using policy to ensure that all pipeline executions triggered by a push even in Github include a secret.
-
-```
-package spinnaker.execution.pipelines.before
-
-deny["Every pipeline Github trigger must have a secret"] {
-	some i
-    trigger := input.pipeline.triggers[i]
-	trigger.type == "git"
-    trigger.source == "github"
-    object.get(trigger, "secret", "") == ""
-}
-
-response := {
-	"allowed": count(deny) == 0,
-	"errors": deny,
-}
-```
-
-If you'd like to do some type of of policy application to all pipelines before they're executed, this is the hook for you.
-
-The other execution hook provided by Policy Engine is more granular. It can apply policy before and after any stage task is executed. In Spinnaker, every stage is made up of a task. Tasks are the individual steps taken to carry out a stage. You can see the various tasks for a stage in the execution details panel of the UI. 
-
-Unlike our deployment hooks, this execution hook can apply policy to any Task in a pipeline. Additionally, task policies can use the rest of a pipeline's execution to make policy decisions. For example, if you'd like to implement a policy that only allows deployments to Kubernetes _after_ a particular stage has been completed successfully you can do so using this hook. 
-
-```
-package spinnaker.execution.task.before.deployManifest
-
-deny["deployManifest cannot be run without requisite canDeploy stage"] {
-    canDeployStages := [s | s = input.pipeline.stages[_]; s.type == "customCanDeployStage"]
-    stage := canDeployStages[_]
-    not stage.context.canDeploy == true
-}
-```
-
-### API Authorization
-
-*Note: API Authorization is a beta feature and should not be used in production.*
-
-While Spinnaker provides a level of Role Based Access Control (RBAC) out of the box, it's often necessary to inspect and block certain actions within Spinnaker that aren't necessarily covered by existing featured. Our Policy Engine is able to intercept all calls to the API and apply policy to them. Each request for a policy decision includes the acting user, their roles and admin status. 
-
-This policy hook is a bit different from the hooks described above. By default, API authorization takes a deny-all stance to policy decisions. In order for an API call to be allowed, it must match an `allow` rule in the `spinnaker.http.authz` package. For example, if you'd like to lock down every action to admins only, you can simply implement a policy that looks like this:
-
-```
+```opa
 package spinnaker.http.authz
 
 default allow = false
@@ -376,18 +306,20 @@ allow {
 }
 ```
 
+#### Creating a policy for the API
+
 All requests made to the `spinnaker.http.authz` package include the following:
 
-1. The requesting user, their role information and admin status 
-2. The HTTP request method - ex. `PUT` or `GET`
-3. The URI of the API call being made (as an array or list) - ex. `/api/v1/tasks` would be `["api", "v1", "tasks"]`
-4. For `PUT` or `POST` request, the entire request body.
+1. The requesting user, their role information and admin status. 
+2. The HTTP request method, such as `PUT` or `GET`.
+3. The URI of the API call being made (as an array or list). For example, `/api/v1/tasks` would be `["api", "v1", "tasks"]`.
+4. For `PUT` or `POST` requests, the entire request body.
 
 These attributes are included in the `input` sent to policies and can be used to make policy decisions.
 
-The below snippet represents a single POST request the the Tasks API. You can see that we include all the relevant information needed when making a policy decision.
+The following snippet represents a single POST request to the Tasks API. You can see the relevant information needed when making a policy decision:
 
-```
+```opa
 {
     "user": {
         "username": "richard.hendricks@piedpiper.net"
@@ -405,9 +337,9 @@ The below snippet represents a single POST request the the Tasks API. You can se
 }
 ```
 
-Let's imagine you only want to allow members of the `middleout-eng` team to deploy Kubernetes manifests to the `middleout-development` account. That policy might look like this:
+Imagine you only want to allow members of the `middleout-eng` team to deploy Kubernetes manifests to the `middleout-development` account. That policy might look like this:
 
-```
+```opa
 package spinnaker.http.authz
 
 default allow = false
@@ -429,7 +361,89 @@ allow {
 }
 ```
 
-*API Authorization depends on having access to a user's identity and role information. Because of this dependency, you must be using Authentication and Authorization (Fiat).*
+*API Authorization depends on having access to a user's identity and role information. Because of this dependency, you must be using Authentication and Authorization, which requires configuring the Fiat service.*
+
+### Deployment
+
+Another common use case is applying policy to deployments. This prevents any deployments from happening that may violate a policy.
+
+The policy package (`spinnaker.deployment.tasks.<taskType>` ) is different for deployment to various cloud providers and tasks. For example, if you'd like to use policy to disable the deletion of Kubernetes manifest, you should include a policy with the package name of `spinnaker.deployment.tasks.deleteManifest`.
+
+The following example shows the `rego` syntax for an OPA policy that ensures no Kubernetes Services are deployed or created that expose port 22, the port commonly used for SSH:
+
+```opa
+package spinnaker.deployment.tasks.deployManifest
+
+deny["LoadBalancer Services must not have port 22 open."] {
+    manifests := input.deploy.manifests
+    manifest := manifests[_]
+
+    manifest.kind == "Service"
+    manifest.spec.type == "LoadBalancer"
+
+    port := manifest.spec.ports[_]
+    port.port == 22
+}
+```
+
+Note the `deployManifest` part of the package, which indicates what tasks this policy should get enforced on.
+
+### Pipeline execution
+
+Not only can policies be enforced on pipelines before they are saved, they can also be applied to pipeline before and during execution. 
+
+Before a pipeline is executed, Policy Engine uses the package `spinnaker.execution.pipelines.before` to determine if the pipeline execution can even be started. This is can be useful for a variety of use cases. 
+
+The following example shows the `rego` syntax for a policy that requires all pipeline executions include a secret when triggered by a push in Github:
+
+```opa
+package spinnaker.execution.pipelines.before
+
+deny["Every pipeline Github trigger must have a secret"] {
+	some i
+    trigger := input.pipeline.triggers[i]
+	trigger.type == "git"
+    trigger.source == "github"
+    object.get(trigger, "secret", "") == ""
+}
+
+response := {
+	"allowed": count(deny) == 0,
+	"errors": deny,
+}
+```
+
+Build off this example if you want to create policies that get enforced on all pipelines before they execute.
+
+The other execution hook provided by Policy Engine is more granular. It can enforce policy before and after any stage task is executed. In Spinnaker, every stage is made up of a task. Tasks are the individual steps taken to carry out a stage. You can see the various tasks for a stage in the execution details panel of the UI. 
+
+Unlike the deployment hooks, this execution hook can apply policy to any task in a pipeline. Additionally, task policies can use the rest of a pipeline's execution to make policy decisions. For example, if you want to implement a policy that only allows deployments to Kubernetes _after_ a particular stage has been completed successfully, you can do so using this hook. 
+
+The following example shows the `rego` syntax for a policy that requires a `canDeploy` type stage to run before a `deployManifest` type stage:
+
+```opa
+package spinnaker.execution.task.before.deployManifest
+
+deny["deployManifest cannot be run without requisite canDeploy stage"] {
+    canDeployStages := [s | s = input.pipeline.stages[_]; s.type == "customCanDeployStage"]
+    stage := canDeployStages[_]
+    not stage.context.canDeploy == true
+}
+```
+
+### Pipeline save
+
+This is the simplest use case for Policy Engine and where many users begin. You can enforce policies on all pipelines when they get saved. This ensures that any pipeline that violates a policy cannot be saved. A common use case for this kind of policy is requiring all pipelines to have a certain stage. T
+
+he following example shows the `rego` syntax for a policy that requires all pipelines to have a `preFlightCheck` type stage:
+
+```opa
+package spinnaker.persistence.pipelines.before
+
+deny["Pipelines must contain a pre-flight check stage."] {
+    input.pipeline.stages[_].name == "preFlightCheck"
+}
+```
 
 ## Release Notes
 
