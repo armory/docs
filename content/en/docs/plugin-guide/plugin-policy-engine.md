@@ -222,7 +222,7 @@ spec:
                enabled: true
    ```
 
-3. Add the following to `service-settings/gate.yml`, `service-settings/orca.yml`, `service-settings/clouddriver.yml` and `service-settings/clouddriver.yml`:
+3. Add the following to `service-settings/gate.yml`, `service-settings/orca.yml`, `service-settings/clouddriver.yml` and `service-settings/front50.yml`:
 
    ```yaml
    kubernetes:
@@ -240,26 +240,38 @@ spec:
        deploymentEnvironment:
          initContainers:
            front50:
-            - name: policy-engine-install
+             - name: policy-engine-install
                image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
+               args:
+                 - -install-path
+                 - /opt/policy-engine-plugin/target
                volumeMounts:
                  - mountPath: /opt/policy-engine/target
                    name: policy-engine-install
            clouddriver:
              - name: policy-engine-install
                image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
+               args:
+                 - -install-path
+                 - /opt/policy-engine-plugin/target
                volumeMounts:
                  - mountPath: /opt/policy-engine/target
                    name: policy-engine-install
            gate:
              - name: policy-engine-install
                image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
+               args:
+                 - -install-path
+                 - /opt/policy-engine-plugin/target
                volumeMounts:
                  - mountPath: /opt/policy-engine/target
                    name: policy-engine-install
            orca:
              - name: policy-engine-install
                image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
+               args:
+                 - -install-path
+                 - /opt/policy-engine-plugin/target
                volumeMounts:
                  - mountPath: /opt/policy-engine/target
                    name: policy-engine-install
@@ -433,9 +445,9 @@ deny["deployManifest cannot be run without requisite canDeploy stage"] {
 
 ### Pipeline save
 
-This is the simplest use case for Policy Engine and where many users begin. You can enforce policies on all pipelines when they get saved. This ensures that any pipeline that violates a policy cannot be saved. A common use case for this kind of policy is requiring all pipelines to have a certain stage. T
+This is the simplest use case for Policy Engine and where many users begin. You can enforce policies on all pipelines when they get saved. This ensures that any pipeline that violates a policy cannot be saved. A common use case for this kind of policy is requiring all pipelines to have a certain stage. 
 
-he following example shows the `rego` syntax for a policy that requires all pipelines to have a `preFlightCheck` type stage:
+The following example shows the `rego` syntax for a policy that requires all pipelines to have a `preFlightCheck` type stage:
 
 ```opa
 package spinnaker.persistence.pipelines.before
