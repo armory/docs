@@ -28,7 +28,7 @@ TODO - figure out if there are any limitations
 The plugin can be delivered using two different methods:
 
 1. Docker image as an init container on each affected service
-1. Using a remote plugin repository
+2. Using a remote plugin repository
 
 In addition to the plugin, you need access to an Open Policy Agent (OPA) deployment. If you have not deployed OPA before, see [Deploy an OPA server](https://docs.armory.io/docs/armory-admin/policy-engine-enable/#deploy-an-opa-server).
 
