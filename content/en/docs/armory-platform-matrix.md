@@ -38,15 +38,15 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 Application metrics can be ingested by Kayenta to perform Canary Analysis or Automated Canary Analysis (ACA). The following table lists supported app metric providers:
 
-| Provider    | Version                | ACA | Armory                 | Note |
-| ----------- | ---------------------- | --- | ---------------------- | ---- |
-| AWS Cloudwatch    | All supported versions | Yes | 2.23.1 or later |      |
-| Dynatrace    | All supported versions | Yes | 2.23.0 or later |      |
-| Graphite    | All supported versions | Yes | All supported versions |      |
-| New Relic   | All supported versions | Yes | All supported versions |      |
-| Prometheus  | All supported versions | Yes | All supported versions |      |
-| SignalFx    | All supported versions | Yes | All supported versions |      |
-| Stackdriver | All supported versions | Yes | All supported versions |      |
+| Provider       | Version                | ACA | Armory                 | Note |
+|----------------|------------------------|-----|------------------------|------|
+| AWS Cloudwatch | All supported versions | Yes | 2.23.1 or later        |      |
+| Dynatrace      | All supported versions | Yes | 2.23.0 or later        |      |
+| Graphite       | All supported versions | Yes | All supported versions |      |
+| New Relic      | All supported versions | Yes | All supported versions |      |
+| Prometheus     | All supported versions | Yes | All supported versions |      |
+| SignalFx       | All supported versions | Yes | All supported versions |      |
+| Stackdriver    | All supported versions | Yes | All supported versions |      |
 
 ## Artifacts
 
