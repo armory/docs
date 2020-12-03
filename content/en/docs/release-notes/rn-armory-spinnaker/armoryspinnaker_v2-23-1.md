@@ -1,7 +1,7 @@
 ---
 title: v2.23.1 Armory Release (OSS Spinnaker™ v1.23.3)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.23.01
 description: >
   Release notes for the Armory Platform
 ---
@@ -160,5 +160,4 @@ artifactSources:
 
 
 #### Armory Clouddriver - 2.23.24...2.23.25
-
 
