@@ -39,6 +39,10 @@ height="75%" width="75%" >}}
 - [Replicate Amazon Aurora MySQL DB Clusters Across AWS Regions](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Replication.CrossRegion.html)
 - [Failover for Aurora Global Databases](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database-failover)
 
+### CloudWatch
+
+- [User Guide](https://aws.amazon.com/cloudwatch/)
+
 ### EKS
 
 - [User Guide](https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html)
