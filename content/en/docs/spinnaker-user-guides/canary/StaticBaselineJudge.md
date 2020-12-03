@@ -2,6 +2,8 @@
 title: Static Judge Canary Analysis (Kayenta)
 ---
 
+{{< include "user-guide/canary/config-kayenta-frag.md" >}}
+
 ## Overview
 
 Most metric stores (DataDog, NewRelic, AppDynamics, etc.) have a way for users to set thresholds. When a threshold is exceeded, an alarm or event gets triggered. This alarm or event API can usually be queried. However, Graphite doesn’t natively support setting thresholds (although it supports it with third party plugins). Therefore, you need to set these thresholds in Spinnaker.
