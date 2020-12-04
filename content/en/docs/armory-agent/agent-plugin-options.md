@@ -1,7 +1,7 @@
 ---
 title: Plugin Configuration Options
 linkTitle: Plugin Options
-weight: 4
+weight: 20
 description: >
   How to configure the Agent plugin for Clouddriver
 ---

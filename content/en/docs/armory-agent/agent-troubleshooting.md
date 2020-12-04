@@ -1,11 +1,11 @@
 ---
-title: Troubleshooting
-weight: 6
+title: "Troubleshooting"
+weight: 30
 ---
 
 ## Agent plugin
 
-After a successful plugin installation, `spin-clouddriver-grpc` (or `spin-clouddriver-ha-grpc`) service should be up:
+After a successful plugin installation, the `spin-clouddriver-grpc` (or `spin-clouddriver-ha-grpc`) service should be running:
 
 ```bash
 $ kubectl get service spin-clouddriver-grpc
@@ -22,7 +22,6 @@ Clouddriver's log should have the following messages:
 
 2020-10-02 16:24:10.046  INFO 1 --- [           main] n.d.b.g.s.s.GrpcServerLifecycle          : gRPC Server started, listening on address: *, port: 9091
 ```
-
 
 In Infrastructure or Agent modes, you can test the gRPC endpoints with the
 [`grpcurl`](https://github.com/fullstorydev/grpcurl) utility.
@@ -96,7 +95,6 @@ Common errors:
   #     token: $TOKEN_SECRET
   # Remember to replace $TOKEN_SECRET with the actual contents from the command above
   ```
-
 
 ## Tips
 

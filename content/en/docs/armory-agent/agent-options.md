@@ -1,7 +1,7 @@
 ---
 title: Agent Configuration Options
 linkTitle: Agent Options
-weight: 3
+weight: 15
 description: >
   How to configure the Agent
 ---

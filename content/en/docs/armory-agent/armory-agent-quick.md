@@ -3,10 +3,10 @@ title: "Armory Agent for Kubernetes Quick Start Installation"
 linkTitle: "Quick Start"
 description: >
   Install quickly using this guide.
-weight: 2
+weight: 10
 ---
 
-> This guide is for experienced Kubernetes and Spinnaker users.
+> This guide is for experienced Kubernetes and Spinnaker<sup>TM</sup> users.
 
 ## Compatibility matrix
 
@@ -26,7 +26,6 @@ The easiest installation path is to modify an existing [`spinnakerservice.yaml`]
 # AGENT_PLUGIN_VERSION is found in the compatibility matrix above
 curl https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-plugin-$AGENT_PLUGIN_VERSION.tar.gz | tar -xJvf -
 ```
-
 
 Then include the manifests in your current kustomization:
 
