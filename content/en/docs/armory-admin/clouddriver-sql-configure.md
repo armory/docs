@@ -153,10 +153,11 @@ redis:
   scheduler:
     enabled: false
 
-dualTaskRepository:
-  enabled: true
-  primaryClass: com.netflix.spinnaker.clouddriver.sql.SqlTaskRepository
-  previousClass: com.netflix.spinnaker.clouddriver.data.task.jedis.RedisTaskRepository
+executionRepository:
+  dual:
+    enabled: true
+    primaryName: sqlExecutionRepository
+    previousClass: redisExecutionRepository
 ```
 
 Note: At this point, you can stop the pods you created in step 1. If you used the script above, just delete the `spin-clouddriver-sql` deployment.
