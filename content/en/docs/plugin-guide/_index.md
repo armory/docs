@@ -1,6 +1,7 @@
 ---
 title: "Plugins"
 weight: 25
+no_list: true
 description: >
   Resources to extend Spinnaker<sup>TM</sup> functionality with plugins
 aliases:

@@ -3,7 +3,7 @@ title: Policy Engine Plugin
 toc_hide: true
 exclude_search: true
 description: >
-  The Policy Engine plugin is the next iteration of Armory's Policy Engine for Spinnaker.
+  The Policy Engine plugin is the next iteration of Armory's Policy Engine for Spinnaker™.
 ---
 <!-- This plugin is the next iteration of our Policy Engine extension and is not ready for public consumption. This unlisted page is to satisfy an auditing requirement that one of our customers has. It is also hidden via robots.txt and the netlify sitemap plugin. -->
 
