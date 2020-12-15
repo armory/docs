@@ -34,6 +34,7 @@ The following known issues affect 2.23.1:
 
 - Clouddriver consumes more threads than it needed. This can lead to a situation where pods do not have enough resources to start.
 - Slack notifications do not work for Pipelines as Code (Dinghy).
+- An old version of Deck, the Spinnaker UI, is packaged with this release.
 
 ## Highlighted updates
 
