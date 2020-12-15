@@ -1,20 +1,20 @@
 ---
 title: v2.23.2 Armory Release (OSS Spinnaker™ v1.23.5)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.23.02
 description: >
   Release notes for the Armory Platform
 ---
 
-## 2020/12/70 Release Notes
+## 2020/12/14 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.23.2, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.10 or later
+- Armory Operator 1.2.1 or later
 
 ## Security
 
@@ -23,8 +23,18 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
+{{< include "bc-docker-giduid.md" >}}
+
+{{< include "bc-k8s-job-suffix.md" >}}
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+No known issues.
+
+### Fixed issues
+
+- Fixed an issue where Clouddriver consumed more threads than it needed, which led to situations where pods did not have enough resources to start.
+- Fixed an issue where Slack notifications for Pipelines as Code (Dinghy) did not work.
 
 ## Highlighted updates
 
@@ -33,9 +43,9 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+### Terraform Integration
 
-
-
+This release includes better logging for when a 503 error occurs between the Terraform Integration and Clouddriver.
 
 ###  Spinnaker Community Contributions
 
