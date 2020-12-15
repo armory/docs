@@ -29,7 +29,8 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
-No known issues.
+
+- The Packer version included with Rosco disregards package overrides that use the `-var-file=` option.
 
 ### Fixed issues
 
@@ -157,5 +158,4 @@ artifactSources:
 
 
 #### Armory Fiat - 2.23.3...2.23.5
-
 
