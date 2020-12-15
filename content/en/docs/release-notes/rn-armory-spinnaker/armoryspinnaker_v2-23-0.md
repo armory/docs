@@ -22,22 +22,16 @@ Armory scans the codebase as we develop and release software. For information ab
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
-{{< include "bc-k8s-namespace.md" >}}
-
 {{< include "bc-docker-giduid.md" >}}
 
 {{< include "bc-k8s-job-suffix.md" >}}
 
-{{< include "bc-spinnaker-metrics.md" >}}
-
-
-
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
-There aren't any known issues in this release.
+There is a known issue with Clouddriver that affects the performance of the Armory Platform, causing it to consume more resources. This can lead to a situation where pods do not have enough resources to start.
 
-### Previous Known issues fixed in this release
+### Fixed issues
 
 All the [known issues from the previous release (v2.22.2)]( {{< ref "armoryspinnaker_v2-22-2#known-issues" >}}) have been fixed:
 

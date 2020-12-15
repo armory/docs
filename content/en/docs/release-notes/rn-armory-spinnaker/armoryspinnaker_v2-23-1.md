@@ -24,16 +24,16 @@ Armory scans the codebase as we develop and release software. For information ab
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
-{{< include "bc-k8s-namespace.md" >}}
-
 {{< include "bc-docker-giduid.md" >}}
 
 {{< include "bc-k8s-job-suffix.md" >}}
 
-{{< include "bc-spinnaker-metrics.md" >}}
-
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+The following known issues affect 2.23.1:
+
+- Clouddriver consumes more threads than it needed. This can lead to a situation where pods do not have enough resources to start.
+- Slack notifications do not work for Pipelines as Code (Dinghy).
 
 ## Highlighted updates
 
@@ -42,6 +42,10 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+
+### Clouddriver
+
+
 
 ### Automatic Canary Analysis
 
