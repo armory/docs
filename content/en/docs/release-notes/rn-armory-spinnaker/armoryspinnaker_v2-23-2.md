@@ -30,7 +30,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
-- The Packer version included with Rosco disregards package overrides that use the `-var-file=` option. This may cause multi-region bakes to fail.
+- The Packer version included with Rosco disregards package overrides that use the `-var-file=` option. This may cause bakes to fail.
 
 ### Fixed issues
 
