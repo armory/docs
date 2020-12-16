@@ -13,7 +13,7 @@ This example uses a bucket (`mybucket`) in the `us-west-2` region to store GitHu
 ## Authorization
 Since you're storing sensitive information, make sure to protect the bucket by restricting access and [enabling encryption](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/default-bucket-encryption.html).
 
-Remember to run the Operator (or Halyard's daemon) and Spinnaker services with IAM roles that allow them to read that content.
+Remember to run the Operator (or Halyard's daemon) and Spinnaker services with IAM roles that allow them to read the keys stored in the AWS S3 Bucket.
 
 ## Storing secrets
 ### Storing credentials
