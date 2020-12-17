@@ -143,9 +143,12 @@ prism_syntax_highlighting = true
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]
-latestVersion3="0.3.19"
-latestVersion4="0.4.17"
-latestVersion5="0.5.5"
+agent_plug_latest-2="0.3.19"
+agent_plug_latest_spin-2="2.20.x (1.20.x)"
+agent_plug_latest-1="0.4.17"
+agent_plug_latest_spin-1="2.21.x (1.21.x)"
+agent_plug_latest="0.5.5"
+agent_plug_latest_spin="2.22.x (1.22.x)"
 
 # User interface configuration
 [params.ui]

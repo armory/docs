@@ -2,7 +2,7 @@ The Armory Agent is compatible with the Armory Platform and open source Spinnake
 
 | Armory (Spinnaker) Version | Armory Agent Plugin Version    | Armory Agent Version |
 |:-------------------------- |:------------------------------ |:---------------------------- |
-| 2.20.x (1.20.x)            | {{<param kubesvc-plugin.latestVersion3>}} | {{<param kubesvc-version>}} |
-| 2.21.x (1.21.x)            | {{<param kubesvc-plugin.latestVersion4>}} | {{<param kubesvc-version>}} |
-| 2.22.x (1.22.x)            | {{<param kubesvc-plugin.latestVersion5>}} | {{<param kubesvc-version>}} |
+| {{<param kubesvc-plugin.agent_plug_latest_spin-2>}} | {{<param kubesvc-plugin.agent_plug_latest-2>}} | {{<param kubesvc-version>}} |
+| {{<param kubesvc-plugin.agent_plug_latest_spin-1>}} | {{<param kubesvc-plugin.agent_plug_latest-1>}} | {{<param kubesvc-version>}} |
+| {{<param kubesvc-plugin.agent_plug_latest_spin>}}   | {{<param kubesvc-plugin.agent_plug_latest>}}   | {{<param kubesvc-version>}} |
 
