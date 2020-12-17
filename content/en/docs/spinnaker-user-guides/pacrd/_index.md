@@ -463,26 +463,28 @@ Events:
   Warning  PipelineValidationFailed  0s (x4 over 3s)        pipelines  artifact with id "a-nonsense-value" and name "" could not be found for this pipeline
 ```
 
-## Setting up New Relic
+## Enabling monitoring with New Relic
 
-If you want to setup a New Relic configuration you can add your license to your `patch.yaml` file like:
+If you want to monitor how PaCRD is used and the errors encountered, you can enable New Relic integration. You can either send this data to your New Relic account or to Armory's New Relic account. If you choose to share the data with Armory, it helps us improve the product and provide better support. For information about what data is sent and how it is used, contact Armory, or simply enable it with your New Relic account first.
 
-   ```yaml
-   # file: patch.yaml
-   apiVersion: v1
-   kind: ConfigMap
-   metadata:
-     name: pacrd-config
-     namespace: spinnaker
-   data:
-     pacrd.yaml: |
-       spinnakerServices:
-         # NOTE: change `spinnaker` to your namespace name here
-         front50: https://spin-front50.spinnaker:8080
-         orca: https://spin-orca.spinnaker:8083
-       # fiatServiceAccount: <fiatServiceAccount>
-       newRelicLicense: <newRelicLicense>
-   ```
+To enable this integration, add the New Relic license to the `patch.yaml` file as shown below. If you send it to Armory's New Relic account, we will give you a license to use, otherwise use your New Relic account's license.
+
+```yaml
+# file: patch.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pacrd-config
+  namespace: spinnaker
+data:
+  pacrd.yaml: |
+    spinnakerServices:
+      # NOTE: change `spinnaker` to your namespace name here
+      front50: https://spin-front50.spinnaker:8080
+      orca: https://spin-orca.spinnaker:8083
+      # fiatServiceAccount: <fiatServiceAccount>
+      newRelicLicense: <newRelicLicense>
+```
 
 Since reconciliation happens multiple times per minute, Armory sends metrics only during the first three minutes of each hour.   Error messages contain obfuscated URLs, application names, and pipeline names.
 
