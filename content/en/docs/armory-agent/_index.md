@@ -101,3 +101,8 @@ You can also mix deployment strategies if you have complex Kubernetes infrastruc
 - Run in target clusters
 - Run next to traditional Spinnaker Kubernetes accounts
 
+## Supported versions
+
+{{< include "agent/agent-compat-matrix.md" >}}
+
+For a full list of previous releases, see this [page](https://armory.jfrog.io/artifactory/manifests/).
