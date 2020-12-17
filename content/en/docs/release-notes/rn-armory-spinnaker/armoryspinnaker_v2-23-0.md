@@ -8,6 +8,7 @@ version: 02.23.00
 ## 2020/11/20 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+> 
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.23.0, use one of the following tools:
@@ -59,6 +60,10 @@ You can provide `helm/index` as a type when specifying an artifact path.
 In the artifact selection UI, you can use `#` after the artifact to indicate the version you want to use. For example:
 
 ![oci version](/images/release/223/oci-buckets.png)
+
+### Baking
+
+The bundled Packer version has been upgraded to 1.6.4.
 
 ### Configuration
 
