@@ -490,7 +490,7 @@ Since reconciliation happens multiple times per minute, Armory sends metrics onl
 
 By default the application name will be `pacrd`, if you want to change this you can add `NewRelicAppName` property at the same level of `newRelicLicense` and add your own custom application name.
 
-Here's an example of error stack traces.
+Here's an example of error stack traces:
 
 ![](/images/pacrd/new_relic.png)
 
