@@ -484,7 +484,7 @@ If you want to setup a New Relic configuration you can add your license to your 
        newRelicLicense: <newRelicLicense>
    ```
 
-Since reconciliation happens multiple times per minute, metrics are send only on minutes 0-3 each hour. Also error messages have obfuscated urls and application names.
+Since reconciliation happens multiple times per minute, Armory sends metrics only during the first three minutes of each hour.   Error messages contain obfuscated URLs, application names, and pipeline names.
 
 By default the application name will be `pacrd`, if you want to change this you can add `NewRelicAppName` property at the same level of `newRelicLicense` and add your own custom application name.
 
