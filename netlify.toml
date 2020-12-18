@@ -79,6 +79,7 @@
   force = true
 
 
+# https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
 package = "@netlify/plugin-sitemap"
 
@@ -90,5 +91,5 @@ package = "@netlify/plugin-sitemap"
   ]
   # append missing trailing slash to prettyURL
   trailingSlash = true
-  changeFreq = daily
+  changeFreq = "daily"
   priority = 0.5
