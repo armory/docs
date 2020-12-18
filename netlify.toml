@@ -78,12 +78,17 @@
   to = "/docs/armory-admin/armory-agent/"
   force = true
 
-
+# https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
 package = "@netlify/plugin-sitemap"
 
   [plugins.inputs]
   buildDir = "public"
   exclude =[
-    '/docs/plugin-guide/plugin-appname/'
+    './public/docs/plugin-guide/plugin-appname/',
+    './public/docs/plugin-guide/plugin-policy-engine/'
   ]
+  # append missing trailing slash to prettyURL
+  trailingSlash = true
+  changeFreq= daily
+  priority = 0.5
