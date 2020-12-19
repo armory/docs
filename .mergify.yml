@@ -5,6 +5,9 @@ pull_request_rules:
       - author=armory-jenkins
       - title~=\bdocs\b\(\bpacrdrelease\b\)
     actions:
+      review:
+        type: APPROVE
+        bot_account: armory-jenkins
       merge:
         method: squash
         strict: smart
@@ -15,6 +18,9 @@ pull_request_rules:
       - files=config.toml
       - "title=chore(release): Autobump agent version"
     actions:
+      review:
+        type: APPROVE
+        bot_account: armory-jenkins
       merge:
         method: squash
         strict: smart
