@@ -101,7 +101,3 @@ package = "@netlify/plugin-sitemap"
   for = "/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
-    Strict-Transport-Security = '''
-    max-age=63072000, 
-    includeSubDomains, 
-    preload'''
