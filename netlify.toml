@@ -93,3 +93,12 @@ package = "@netlify/plugin-sitemap"
   trailingSlash = true
   changeFreq = "weekly"
   priority = 0.5
+
+
+# headers  https://docs.netlify.com/routing/headers/#syntax-for-the-headers-file
+# https://cloud-armory.slack.com/archives/CH4RVCCTS/p1608572781420500
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    Strict-Transport-Security = max-age=63072000; includeSubDomains; preload
