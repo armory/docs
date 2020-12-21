@@ -73,18 +73,23 @@ weight = 1
   url = "https://www.armory.io"
 
 [[menu.main]]
+  name = "Case Studies"
+  weight= 6
+  url = "https://www.armory.io/learn/customer-success-stories/"
+
+[[menu.main]]
   name = "Support"
-  weight = 6
+  weight = 7
   url = "https://go.armory.io/support"
 
 [[menu.main]]
   name = "KB"
-  weight = 7
+  weight = 8
   url = "https://kb.armory.io"
 
 [[menu.main]]
   name = "Blog"
-  weight = 8
+  weight = 9
   url = "https://www.armory.io/blog/"
 
 # Everything below this are Site Params
@@ -212,7 +217,7 @@ enable = true
 [[params.versions]]
   version = "Latest"
   githubbranch = "master"
-  url = "https://docs.armory.io"
+  url = "https://docs.armory.io/docs"
 
 [[params.versions]]
   version = "v2.22"
