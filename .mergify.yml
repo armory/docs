@@ -7,7 +7,7 @@ pull_request_rules:
     actions:
       review:
         type: APPROVE
-        bot_account: armory-jenkins
+        bot_account: armory-gists
       merge:
         method: squash
         strict: smart
@@ -20,7 +20,7 @@ pull_request_rules:
     actions:
       review:
         type: APPROVE
-        bot_account: armory-jenkins
+        bot_account: armory-gists
       merge:
         method: squash
         strict: smart
