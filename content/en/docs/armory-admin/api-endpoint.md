@@ -1059,3 +1059,11 @@ hal config security authn x509 edit \
 
 hal deploy apply
 ```
+
+### Verify the x509 certificate
+
+Make a call to `https://${GATE_FQDN}/auth/user` to verify the setup is correct. The call should return the certificate's Spinnaker login and authorization information. For example, here's a call using curl:
+
+```bash
+curl --cacert ca.crt --key client.key --cert client.crt https://${GATE_FQDN}/auth/user
+```
