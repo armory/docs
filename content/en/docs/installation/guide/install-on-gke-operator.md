@@ -19,7 +19,6 @@ This guide contains instructions for installing Armory on a Google Kubernetes En
 * You have logged into the `gcloud` CLI and have permissions to create GKE
   clusters and a service account
 
-
 ## Armory installation summary
 
 Installing Armory using the Armory Operator consists of the following steps:
