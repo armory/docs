@@ -155,6 +155,7 @@ agent_plug_latest_spin-1="2.22.x (1.22.x)"
 agent_plug_latest="0.5.16"
 agent_plug_latest_spin="2.22.x (1.22.x)"
 
+
 # User interface configuration
 [params.ui]
 # Enable to show the side bar menu in its compact state.
