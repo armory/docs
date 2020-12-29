@@ -150,8 +150,8 @@ prism_syntax_highlighting = true
 [params.kubesvc-plugin]
 agent_plug_latest-2="0.3.26"
 agent_plug_latest_spin-2="2.20.x (1.20.x)"
-agent_plug_latest-1="0.4.24"
-agent_plug_latest_spin-1="2.21.x (1.21.x)"
+agent_plug_latest-1="0.5.17"
+agent_plug_latest_spin-1="2.22.x (1.22.x)"
 agent_plug_latest="0.5.16"
 agent_plug_latest_spin="2.22.x (1.22.x)"
 
