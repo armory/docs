@@ -1,5 +1,5 @@
 ---
-title: Installing Armory in Kubernetes
+title: Installing Armory on Kubernetes
 linkTitle: Install in Kubernetes
 weight: 3
 aliases:

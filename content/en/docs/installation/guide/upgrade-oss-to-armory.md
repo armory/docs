@@ -1,5 +1,5 @@
 ---
-title: Upgrade Open Source Spinnaker<sup>TM</sup> to Armory
+title: Upgrade Open Source Spinnaker to Armory
 aliases:
   - /spinnaker-install-admin-guides/upgrade-oss-to-armory/
 description: >
@@ -8,7 +8,7 @@ description: >
 
 ## Overview of upgrading Spinnaker to Armory
 
-The Armory platform is installed with Armory-extended Halyard, very similarly to the way Open Source Spinnaker is installed with Open Source Halyard. These are the key differences:
+The Armory platform is installed with Armory-extended Halyard, very similarly to the way Open Source Spinnaker<sup>TM</sup> is installed with Open Source Halyard. These are the key differences:
 
 * Armory-extended Halyard installs Armory's Enterprise distribution of Spinnaker; Open Source Halyard installs Open Source Spinnaker.
 * Armory versions are one major version ahead of Open Source. For example, Armory 2.18.x maps to Open Source Spinnaker 1.18.x.

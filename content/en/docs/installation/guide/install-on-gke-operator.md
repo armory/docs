@@ -8,7 +8,7 @@ description: >
   Use the Armory Operator to install Armory in your Google Kubernetes Engine (GKE) cluster.
 ---
 
-> This guide is a work in progress._
+> This guide is a work in progress.
 
 This guide contains instructions for installing Armory on a GKE Cluster using the [Armory Operator]({{< ref "operator" >}}). Refer to the [Armory Operator Reference]({{< ref "operator-config" >}}) for manifest entry details.
 
