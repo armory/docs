@@ -3,12 +3,14 @@ title: "Installation"
 linkTitle: "Installation"
 weight: 5
 description: |
-  Installing Armory in your environment
+  Guides for installing Armory, an enterprise continuous delivery platform built on top of Spinnaker<sup>TM</sup>, in your air-gapped, local, or cloud environment.
 aliases:
   - /install_guide/install/
   - /install-guide/getting_started/
   - /docs/spinnaker/install/
 ---
+
+## Installation methods
 
 There are several methods to install Armory:
 

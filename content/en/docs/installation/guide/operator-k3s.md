@@ -3,10 +3,10 @@ title: Install Armory in Lightweight Kubernetes (K3s) using the Armory Operator
 linkTitle: Install in AWS EC2 using Operator
 weight: 50
 description: >
-  For POCs: Use Armory Operator to install Armory in a K3s instance running on an AWS EC2 VM
+  Use the Armory Operator to install Armory in a lightweight Kubernetes (K3s) instance running on an AWS EC2 virtual machine; for proof of concept an ddevelopment only.
 ---
 
-## Overview
+## Overview of installing Armory for proofs of concept work
 
 This guide walks you through using the [Armory Operator]({{< ref "operator" >}}) to install Armory in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
 
@@ -14,7 +14,7 @@ See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to i
 
 If you want to install open source Spinnaker<sup>TM</sup>, use the open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) instead of the Armory Operator.
 
-## Prerequisites
+## Prerequisites for installing Armory
 
 * Know how to create a VM in AWS [EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 * Be familiar with [AWS IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) and [S3 buckets](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html)

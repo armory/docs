@@ -4,6 +4,8 @@ linkTitle: Install in Kubernetes
 weight: 3
 aliases:
   - /spinnaker-install-admin-guides/install-on-k8s/
+description: >
+  Use Armory-extended Halyard or the Armory Operator to install Armory on Kubernetes.
 ---
 
 ## Overview
@@ -17,13 +19,14 @@ This guide describes the initial installation of Armory in Kubernetes. You can c
 
 See [Next Steps](#next-steps) for information related to these topics.
 
-Note: This document focuses on Armory but can be adapted to install Open Source Spinnaker<sup>TM</sup> by using Open Source Operator or a different Halyard container, and a corresponding different Spinnaker version.
+> This document focuses on Armory but can be adapted to install Open Source Spinnaker<sup>TM</sup> by using Open Source Operator or a different Halyard container, and a corresponding different Spinnaker version.
 
 ## Choosing an installation method
 
 There are two recommended ways of installing Armory: using the [Armory Operator]({{< ref "operator" >}}) or using [Halyard](https://www.spinnaker.io/setup/install/halyard/).
 
-### Armory Operator
+{{< tabs name="install-methods" >}}
+{{% tab name="Armory Operator" %}}
 
 The _Armory Operator_ is the newest installation and configuration method for Armory. Using the Operator, you can entirely manage Armory using only Kubernetes manifest files. You treat Armory like any other Kubernetes application, running standard tools like `kubectl`, `helm`, and `kustomize`. You can even use a Armory pipeline to roll out configuration changes to itself. The Operator runs a few "hot" validations before accepting a manifest into the cluster, preventing some configuration problems from affecting a running Armory installation.
 
@@ -43,7 +46,8 @@ The _Armory Operator_ is the newest installation and configuration method for Ar
 * Create a Kubernetes namespace for Armory.
 * Install Armory in that namespace.
 
-### Halyard
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 Halyard is the former installation method for Armory. It has been around the longest and is the first one supporting new Armory features. Operator uses a customized version of Halyard that is constantly updated to incorporate changes from base Halyard.
 
@@ -71,9 +75,10 @@ Halyard is the former installation method for Armory. It has been around the lon
   * Install Armory
   * Expose Armory
 
-## Assumptions / Environments
+{{% /tab %}}
+{{< /tabs >}}
 
-This document assumes the following:
+## Prerequisites for installing Armory
 
 * Your Kubernetes cluster is up and running with at least 4 CPUs and 12 GB of memory.  This is the bare minimum to install and run Armory; depending on our Armory workload, you may need more resources.
 * You have `kubectl` installed and are able to access and create Kubernetes resources.
@@ -100,7 +105,7 @@ The Armory microservice Front50 requires a backing store to store Armory Applica
 * Minio
 * MySQL
 
-**You _must_ set up a backing store for Armory to use for persistent application and pipeline configuration.**
+> You _must_ set up a backing store for Armory to use for persistent application and pipeline configuration.
 
 ### Using S3 for Front50
 

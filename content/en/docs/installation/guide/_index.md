@@ -1,7 +1,7 @@
 ---
 title: "Guides"
 description: >
-   This section details installing Armory in Kubernetes, Azure, GKE, and AWS (including from the AWS Marketplace). Instructions cover Halyard, Armory Operator, and air-gapped environments.
+   This section details installing Armory in Kubernetes, Azure, Google Kubernetes Engine, and AWS (including from the AWS Marketplace). Instructions cover using Halyard, the Armory Operator, and air-gapped environments.
 weight: 5
 ---
 

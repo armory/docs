@@ -3,6 +3,9 @@ title: Configure Armory Halyard
 weight: 10
 aliases:
   - /docs/spinnaker-install-admin-guides/configure-halyard/
+description: >
+  Configure Armory-extended Halyard profiles and storage.
+
 ---
 
 ## Overview

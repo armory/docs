@@ -4,15 +4,15 @@ linkTitle: "Install in GKE using Operator"
 weight: 7
 aliases:
   - /spinnaker-install-admin-guides/install-on-gke-operator/
+description: >
+  Use the Armory Operator to install Armory in your Google Kubernetes Engine (GKE) cluster.
 ---
 
-_Note: This guide is a work in progress._
+> This guide is a work in progress._
 
 This guide contains instructions for installing Armory on a GKE Cluster using the [Armory Operator]({{< ref "operator" >}}). Refer to the [Armory Operator Reference]({{< ref "operator-config" >}}) for manifest entry details.
 
-## Prerequisites
-
-This document is written with the following workflow in mind:
+## Prerequisites for installing Armory
 
 * You have a machine configured to use the `gcloud` CLI tool and a recent version of the `kubectl` tool
 * You have logged into the `gcloud` CLI and have permissions to create GKE clusters and a service account

@@ -7,7 +7,7 @@ aliases:
   - /docs/spinnaker/operator/
 ---
 
-Using the Armory Operator, you can:
+## Advantages of using the Armory Operator
 
 - Manage Armory with `kubectl` like other applications.
 - Expose Armory via `LoadBalancer` or `Ingress` (optional)
@@ -20,7 +20,7 @@ Using the Armory Operator, you can:
 
 > We refer here to the Armory Operator, which installs Armory. The open source operator installs open source Spinnaker<sup>TM</sup> and is found [here](https://github.com/armory/spinnaker-operator).
 
-## Requirements
+## Requirements for using the Armory Operator
 
 Before you start, ensure you meet the following requirements:
 
@@ -29,9 +29,10 @@ Before you start, ensure you meet the following requirements:
 - You have `ValidatingAdmissionWebhook` enabled in the kube-apiserver. Alternatively, you can pass the `--disable-admission-controller` parameter to the to the `deployment.yaml` file that deploys the operator.
 - You have admin rights to install the Custom Resource Definition (CRD) for Operator.
 
-## Install Armory Operator
+## Install the Armory Operator
 
 The Armory Operator has two distinct modes:
+
 - **Basic**: Installs Armory into a single namespace. This mode does not perform pre-flight checks before applying a manifest.
 - **Cluster**: Installs Armory across namespaces with pre-flight checks to prevent common misconfigurations. This mode requires a `ClusterRole`.
 
@@ -149,7 +150,7 @@ To upgrade an existing Armory deployment, perform the following steps:
 
 
 
-### Manage Armory Instances
+### Manage Armory instances
 
 The Armory Operator allows you to use `kubectl` to manager you Armory deployment.
 
@@ -200,6 +201,7 @@ See this [repo](https://github.com/armory/spinnaker-kustomize-patches) for examp
 You can store secrets in one of the [supported secret engine]({{< ref "secrets#supported-secret-engines" >}}).
 
 #### Kubernetes Secret
+
 With the Operator, you can also reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker.
 
 The format is:
