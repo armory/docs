@@ -1,18 +1,18 @@
 ---
-title: Installing Armory in GKE using the Armory Operator
+title: Installing Armory in the Google Kubernetes Engine using the Armory Operator
 linkTitle: "Install in GKE using Operator"
 weight: 7
 aliases:
   - /spinnaker-install-admin-guides/install-on-gke-operator/
+description: >
+  This tutorial guides the user through installing Armory in a Google Kubernetes Engine cluster using the Armory Operator.
 ---
 
 _Note: This guide is a work in progress._
 
-This guide contains instructions for installing Armory on a GKE Cluster using the [Armory Operator]({{< ref "operator" >}}). Refer to the [Armory Operator Reference]({{< ref "operator-config" >}}) for manifest entry details.
+This guide contains instructions for installing Armory on a Google Kubernetes Engine (GKE) cluster using the [Armory Operator]({{< ref "operator" >}}). Refer to the [Armory Operator Reference]({{< ref "operator-config" >}}) for manifest entry details.
 
-## Prerequisites
-
-This document is written with the following workflow in mind:
+## Prerequisites for installing Armory and the Armory Operator
 
 * You have a machine configured to use the `gcloud` CLI tool and a recent
   version of the `kubectl` tool
@@ -20,7 +20,7 @@ This document is written with the following workflow in mind:
   clusters and a service account
 
 
-## Installation summary
+## Armory installation summary
 
 Installing Armory using the Armory Operator consists of the following steps:
 
@@ -28,11 +28,11 @@ Installing Armory using the Armory Operator consists of the following steps:
 * Deploy Armory Operator pods to the cluster
 * Create a GCS service account
 * Create a Kubernetes service account
-* Create a GCS storage bucket
+* Create a Google Cloud Storage (GCS) bucket
 * Modify the Armory Operator kustomize files for your installation
-* Deploy Armory through the Armory Operator
+* Deploy Armory using the Armory Operator
 
-## Create GKE cluster
+## Create a GKE cluster
 
 This creates a minimal GKE cluster in your default region and zone.
 
@@ -60,7 +60,7 @@ kube-system Active 2m26s
 
 {{% include "armory-operator/installation.md" %}}
 
-## Create GCS service account
+## Create a GCS service account
 
 ```bash
 export SERVICE_ACCOUNT_NAME=<name-for-your-service-account>
@@ -109,9 +109,9 @@ kubectl config set-credentials ${CONTEXT}-token-user --token $TOKEN
 kubectl config set-context $CONTEXT --user ${CONTEXT}-token-user
 ```
 
-## Create GCS bucket
+## Create a GCS bucket
 
-Use the Cloud Console to do create your bucket. If you're going to put secrets in the bucket, make sure to create a secrets directory in the bucket. Also, ensure the bucket is accessible from the service account you created.
+Use the Cloud Console to create your bucket. If you're going to put secrets in the bucket, make sure to create a secrets directory in the bucket. Also, ensure the bucket is accessible from the service account you created.
 
 {{% include "armory-operator/kustomize-patches.md" %}}
 

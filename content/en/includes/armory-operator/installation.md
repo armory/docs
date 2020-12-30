@@ -1,6 +1,7 @@
-## Install Armory Operator
+## Install the Armory Operator
 
 The Armory Operator has two distinct modes:
+
 - **Basic**: Installs Armory into a single namespace. This mode does not
   perform pre-flight checks before applying a manifest.
 - **Cluster**: Installs Armory across namespaces with pre-flight checks to

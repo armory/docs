@@ -1,9 +1,6 @@
-## Install Armory
+## Configure Kustomize patches and install Armory
 
-We provide many common configuration options for Armory and Spinnaker through
-the [`spinnaker-kustomize-patches`](https://github.com/armory/spinnaker-kustomize-patches)
-repository. This gives you a reliable starting point when adding and removing
-Armory or Spinnaker features to your cluster.
+Many common configuration options for Armory and Spinnaker<sup>TM</sup> are available in the [`spinnaker-kustomize-patches`](https://github.com/armory/spinnaker-kustomize-patches) repository. This gives you a reliable starting point when adding and removing Armory or Spinnaker features to your cluster.
 
 To start, create your own copy of the `spinnaker-kustomize-patches` repository
 by clicking the `Use this template` button:
@@ -34,7 +31,7 @@ Watch the install progress and check out the pods being created:
 kubectl -n spinnaker get spinsvc spinnaker -w
 ```
 
-### How it works
+### How configuration works
 
 Armory's configuration is found in a `spinnakerservices.spinnaker.armory.io`
 Custom Resource Definition (CRD) that you can store in version control. After
