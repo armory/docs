@@ -2,11 +2,6 @@
 
 Many common configuration options for Armory and Spinnaker<sup>TM</sup> are available in the [`spinnaker-kustomize-patches`](https://github.com/armory/spinnaker-kustomize-patches) repository. This gives you a reliable starting point when adding and removing Armory or Spinnaker features to your cluster.
 
-We provide many common configuration options for Armory and Spinnaker through
-the [`spinnaker-kustomize-patches`](https://github.com/armory/spinnaker-kustomize-patches)
-repository. This gives you a reliable starting point when adding and removing
-Armory or Spinnaker features to your cluster.
-
 To start, create your own copy of the `spinnaker-kustomize-patches` repository
 by clicking the `Use this template` button:
 
