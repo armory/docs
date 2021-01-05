@@ -458,14 +458,14 @@ deny["Pipelines must contain a pre-flight check stage."] {
 }
 ```
 
-## Additional Configuration
+## Additional configuration
 
 ### Allow API routes by default
 
-When using the API authorization extension, a handful of API paths are allowed by default. This is because these paths are unauthenticated by default
+When using the API authorization extension, certain API paths are allowed by default. This is because these paths are unauthenticated by default
 and are required for Spinnaker to operate normally. These paths include:
 
-```
+```yaml
 /auth/user
 /auth/loggedOut
 /webhooks/**
@@ -474,10 +474,9 @@ and are required for Spinnaker to operate normally. These paths include:
 /plugins/deck/**
 ```
 
-Any API request to these paths will not be subject to authorization requests by the plugin. If you'd like to additional paths to this list, you can configure
-them by adding the following to the plugin configuration in your Gate profile.
+Any API request to these paths is not subject to authorization requests by the plugin. To add additional paths to this list, add the following to the plugin configuration to your Gate profile in the Operator config or `profiles/gate-local.yml` for Halyard:
 
-```
+```yaml
 armory:
   policyEngine:
     allow:
