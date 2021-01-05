@@ -294,6 +294,7 @@ with:
 url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
 ```
 
+
 ## Usage
 
 The Policy Engine Plugin enables you to enforce policies on various actions and tasks in the Armory platform. It does this by providing hooks within the platform. The sections below include examples and possible use cases for the Policy Engine. To see more example policies, see the [examples repo](https://github.com/armory-io/policy-engine-examples/).
@@ -456,6 +457,36 @@ deny["Pipelines must contain a pre-flight check stage."] {
     input.pipeline.stages[_].name == "preFlightCheck"
 }
 ```
+
+## Additional configuration
+
+### Allow API routes by default
+
+When using the API authorization extension, certain API paths are allowed by default. This is because these paths are unauthenticated by default
+and are required for Spinnaker to operate normally. These paths include:
+
+```yaml
+/auth/user
+/auth/loggedOut
+/webhooks/**
+/notifications/callbacks/**
+/health
+/plugins/deck/**
+```
+
+Any API request to these paths is not subject to authorization requests by the plugin. To add additional paths to this list, add the following to the plugin configuration to your Gate profile in the Operator config or `profiles/gate-local.yml` for Halyard:
+
+```yaml
+armory:
+  policyEngine:
+    allow:
+      - path: "/additional/api/one"
+      - path: "/additional/api/two"
+      # wildcards are allowed
+      - path: "/api/**"
+```
+
+*Note the `path` key in the above configuration. This is required.*
 
 ## Release Notes
 
