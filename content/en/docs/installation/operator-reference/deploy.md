@@ -94,7 +94,7 @@ deploymentEnvironment:
   - `enabled`: true or false; whether or not to use Vault as a secret storage mechanism to deploy Spinnaker.
   - `address`: The address of a running [Vault](https://www.vaultproject.io/) datastore. This is only required when Spinnaker is being deployed in non-Kubernetes clustered configuration.
 - `location`: This is the location spinnaker will be deployed to. When deploying to Kubernetes, use this flag to specify the namespace to deploy to (defaults to `spinnaker`)
-- `customSizing`: Configure, validate, and view the component sizings for the Spinnaker services.
+- `customSizing`: Configure, validate, and view the component sizings for the Spinnaker services.  Example above only lists `clouddriver` as an option, but other services can be defined, e.g. `echo`.  Note that if you want to define the sizing for the entire service including sidecars, the definition should be in the `spin-$SERVICE` format.  If only the main container should be defined, use `$SERVICE` for the definition instead.
   - `spin-clouddriver`:
     - `replicas`: Set the number of replicas (pods) to be created for this service.
     - `requests`:
