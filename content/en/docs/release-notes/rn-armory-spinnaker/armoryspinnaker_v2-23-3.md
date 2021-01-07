@@ -6,7 +6,7 @@ description: >
   Release notes for the Armory Platform
 ---
 
-## 2021/01/60 Release Notes
+## 2021/01/06 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
