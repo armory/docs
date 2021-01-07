@@ -13,8 +13,8 @@ description: >
 
 To install, upgrade, or configure Armory 2.23.3, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.10 or later
+- Armory Operator 1.2.1 or later
 
 ## Security
 
@@ -23,8 +23,14 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
+{{< include "bc-docker-giduid.md" >}}
+
+{{< include "bc-k8s-job-suffix.md" >}}
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
+{{< include "ki-bake-var-file.md" >}}
 
 ## Highlighted updates
 
@@ -34,8 +40,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
-
-
+This release includes bug fixes and performance improvements.
 
 ###  Spinnaker Community Contributions
 
@@ -102,7 +107,6 @@ artifactSources:
 </details>
 
 ### Armory
-
 
 #### Armory Deck - 2.23.14...2.23.15
 
