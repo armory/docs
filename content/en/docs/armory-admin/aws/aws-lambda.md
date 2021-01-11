@@ -194,6 +194,12 @@ hal deploy apply
 {{% /tab %}}
 {{% /tabs %}}
 
+## Known issues
+
+{{< include "ki-lambda-ui-caching.md" >}}
+
+
+
 ## References
 
 See the following links for more information:
