@@ -141,6 +141,10 @@ spec:
                 url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json
 ```
 
+## KNOWN ISSUES:
+
+Currently there is a [UI bug](https://github.com/spinnaker/spinnaker/issues/6271) related to the caching agent that prevents Lambda functions from being displayed in the UI when there are no other clusters associated with the Application.  In other words, in order for the function to show up in "Functions" tab - there needs to be a cluster (e.g. AWS ASG/EC2) deployed for that application.
+
 ## References:
 * [GitHub - AWS-Lambda-Deployment-Plugin-Spinnaker](https://github.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker)
 * [AWS Blog - How to integrate AWS Lambda with Spinnaker](https://aws.amazon.com/blogs/opensource/how-to-integrate-aws-lambda-with-spinnaker/)
