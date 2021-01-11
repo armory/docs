@@ -17,7 +17,7 @@ Mermaid resources:
 
 If you work for Armory, see the internal docs for how to contribute content.
 
-People who are not part of the Armory organization need to create a fork of this repo. See the GitHub.com help [docs](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-forks) for how to fork a repo.
+People who are not part of the Armory organization need to create a fork of this repo. See the GitHub.com help [docs](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-forks) for how to fork a repo. 
 
 Clone your forked repo:
 
