@@ -488,11 +488,11 @@ armory:
 
 *Note the `path` key in the above configuration. This is required.*
 
-### Force authentication webhook endpoints
+### Force authentication of webhook endpoints
 
-By default, the `/webhooks/**` endpoint is unauthenticated which means the Policy Engine plugin cannot apply identity-based policies for these calls. In order
-for this to work, you must enable forced authentication these endpoints. This will ensure that all webhook triggers will go through the authentication flow before
-being triggering their associated pipelines. To enable forced authentication, add the following to the plugin configuration to your Gate profile in the Operator config or `profiles/gate-local.yml` for Halyard.
+By default, the `/webhooks/**` endpoint is unauthenticated, which means the Policy Engine plugin cannot apply identity-based policies for these calls. In order
+to apply identity-based policies, you must enable forced authentication of these endpoints. This will ensure that all webhook triggers will go through the authentication flow before
+being triggering within their associated pipelines. To enable forced authentication, add the following to the plugin configuration to your Gate profile in the Operator config or `profiles/gate-local.yml` for Halyard.
 
 ```yaml
 armory:
