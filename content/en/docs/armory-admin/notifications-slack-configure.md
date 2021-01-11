@@ -1,17 +1,21 @@
 ---
-title: Configuring Slack Notifications
+title: Configuring Slack Notifications in Spinnaker
+linkTitle: Configuring Slack Notifications
 aliases:
   - /docs/spinnaker-install-admin-guides/slack-notifcations
+description: >
+  Learn how to configure Spinnaker to send Slack notifications.
 ---
-This article describes how to configure Spinnaker to send Slack notifications.  
 
 ## Create a Slack application
+
 Go to the [Apps Management URL](https://api.slack.com/apps) and click on the “Create New App” button. Once done, you will get access to the basic configuration pane. You might want to customize some settings, like the color or the logo of your application at the bottom of it.
 
 ![Github Webhook](/images/slack-notifications-1.png)
 
 ## Create a bot
-Once the application has been created, you will create a Bot. Next, select the “Add features and functionality” menu and then select “Bots”.
+
+Create a bot after your Slack application has been created. Next, select the “Add features and functionality” menu and then select “Bots”.
 
 Enter the following fields:
 
@@ -29,13 +33,14 @@ Select the “Install your app to your workspace” from the Bot “Basic Inform
 
 ## Invite the bot to a channel
 
-Spinnaker only requires to be able to publish on a channel to interact with Slack. All you have to do is connect to a channel or create a new channel and name the bot you’ve just created. Slack will propose to invite the bot. Accept the invitation.
+Spinnaker only requires publishing on a channel to interact with Slack. All you have to do is connect to a channel or create a new channel and name the bot you’ve just created. Slack will propose to invite the bot. Accept the invitation.
 
 ## Register the Slack token with Spinnaker
 
 You are now ready to configure Spinnaker with the bot you’ve just registered.
 
-**Operator**
+{{< tabs name="register" >}}
+{{% tab name="Operator" %}}
 
 Add the following snippet to the `SpinnakerService` manifest:
 
@@ -60,7 +65,8 @@ Apply the changes:
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
 
-**Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 Start by setting the variables below:
 
@@ -87,6 +93,9 @@ Redeploy the configuration:
 ```bash
 $ hal deploy apply
 ```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Test Spinnaker
 

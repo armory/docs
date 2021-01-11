@@ -1,12 +1,15 @@
 ---
-title: Secrets with Vault
+title: Storing Spinnaker Secrets in Hashicorp's Vault
+linkTitle: Secrets with Vault
 weight: 10
 aliases:
   - /docs/spinnaker-install-admin-guides/secrets-vault/
   - /docs/spinnaker-install-admin-guides/secrets/secrets-vault/
+description: >
+  Learn how to set up Spinnaker secrets in Hashicorp's Vault.
 ---
 
-This document describes how to set up Spinnaker secrets in Hashicorp's Vault. In this example, we'll be using the default KV secret engine called `secret` and will be storing GitHub credentials, a kubeconfig file and a Java keystore for SAML SSO.
+>In this example, you use the default KV secret engine called `secret` and store GitHub credentials, a kubeconfig file, and a Java keystore for SAML SSO.
 
 ## Authorization
 
@@ -20,7 +23,8 @@ Note: If multiple clusters need to access the same Vault server, you'll need to 
 
 After configuring authentication on the Vault side, use the following configuration to enable Vault secrets in Spinnaker:
 
-**Operator**
+{{< tabs name="serviceAccount" >}}
+{{% tab name="Operator" %}}
 
 Add the following snippet to the `SpinnakerService` manifest:
 
@@ -36,13 +40,13 @@ spec:
         secrets:
           vault:
             enabled: true
-            authMethod: KUBERNETES                      # Method used to authenticate with the Vault endpoint. Must be either KUBERNETES for Kubernetes service account auth or TOKEN for Vault token auth. The TOKEN method will require a VAULT_TOKEN environment variable set for Operator and the services.  
+            authMethod: KUBERNETES   # Method used to authenticate with the Vault endpoint. Must be either KUBERNETES for Kubernetes service account auth or TOKEN for Vault token auth. The TOKEN method will require a VAULT_TOKEN environment variable set for Operator and the services.  
             url: <Vault server URL>:<port, if required> # URL of the Vault endpoint from Spinnaker services.
-            role: <Vault role>       # (Applies to KUBERNETES authentication method) Name of the role against which the login is being attempted.
-              # path: <k8s cluster path>                  # (Optional; default: kubernetes) Applies to KUBERNETES authentication method) Path of the kubernetes authentication backend mount. Default is "kubernetes"
+            role: <Vault role> # (Applies to KUBERNETES authentication method) Name of the role against which the login is being attempted.
+            # path: <k8s cluster path> (Optional; default: kubernetes) Applies to KUBERNETES authentication method) Path of the kubernetes authentication backend mount. Default is "kubernetes"
 ```
-
-**Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 ```bash
 hal armory secrets vault enable
@@ -53,13 +57,18 @@ hal armory secrets vault edit \
     --path <k8s cluster path> # Optional.default is kubernetes
 ```
 
+{{% /tab %}}
+{{< /tabs >}}
+
 ### 2. Token authentication
 
 This method is not recommended, but it is supported if you choose to use it. We recommend this for testing and development purposes only. For token authentication, you need to have a `VAULT_TOKEN` environment variable set in the Halyard container of the Operator pod (or in the Halyard machine if using plain Halyard) as well as each of the services.
 
 Use the following configuration to enable Vault secrets using token auth:
 
-**Operator**
+{{< tabs name="token" >}}
+{{% tab name="Operator" %}}
+
 
 Add the following snippet to the `SpinnakerService` manifest:
 
@@ -79,7 +88,9 @@ spec:
             url: <Vault server URL>:<port if required> # URL of the Vault endpoint from Spinnaker services.
 ```
 
-**Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
+
 
 ```bash
 hal armory secrets vault enable
@@ -87,6 +98,8 @@ hal armory secrets vault edit \
     --auth-method TOKEN \
     --url <Vault server URL>:<port if required>
 ```
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Configuring the Operator to use Vault secrets
 

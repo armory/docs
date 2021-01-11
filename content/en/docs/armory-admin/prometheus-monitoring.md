@@ -1,7 +1,7 @@
 ---
 title: Monitoring Spinnaker with Prometheus
 description: >
-  Monitoring Spinnaker using Prometheus and Grafana
+  Monitor Spinnaker using Prometheus and Grafana.
 aliases:
   - /docs/spinnaker-install-admin-guides/prometheus-monitoring/
 ---
@@ -11,10 +11,10 @@ aliases:
 Armory recommends monitoring the health of Spinnaker in every production instance. This
  document describes how to set up a basic [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) stack as well as enabling monitoring for the Spinnaker services.
 
-Additional Prometheus and Grafana configuration is necessary to make them 
+Additional Prometheus and Grafana configuration is necessary to make them
  production-grade, and this configuration is not a part of this document. Also note that monitoring the Pipelines as Code service (Dinghy) and the Terraform Integration service (Terraformer) are not discussed on this page.
 
-{{% alert title="Important" color="note" %}}
+{{% alert title="Important" color="warning" %}}
 Armory 2.20 (OSS 1.20.x) introduced changes to metric names and the Monitoring Daemon. These changes mean that the monitoring solutions before 2.20 are incompatiable with Armory 2.20.x (OSS 1.20.x) and later. If you are using one of those versions, see this page for [2.19.x](https://archive.docs.armory.io/docs/spinnaker-install-admin-guides/prometheus-monitoring/) and earlier.
 {{% /alert %}}
 
@@ -69,7 +69,7 @@ There are two steps to configure Prometheus to monitor Spinnaker:
 Add permissions for Prometheus by applying the following configuration to your cluster. You can learn more about this process on the
 [Prometheus Operator homepage](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/rbac.md).  
 
-Example config: 
+Example config:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -116,25 +116,25 @@ metadata:
   # name can be either prometheus or prometheus-k8s depending on the version of the prometheus-operator
   name: prometheus-k8s
 ```
-## Configure monitoring using the Observability Plugin 
+## Configure monitoring using the Observability Plugin
 
 {{% alert title="Caution" color=warning %}} Before configuring monitoring, read and understand the following information about the security implications.
 If any of your services, typically Gate, are exposed to the open internet, there is a
 risk that you can publicly expose information. Armory recommends that you filter
-these paths at your edge layer in some manner. Be aware of any endpoints you 
+these paths at your edge layer in some manner. Be aware of any endpoints you
 expose. Spring boot exposes the health endpoint by default though with some
-restrictions on what information is exposed. When auth is enabled, Gate restricts 
+restrictions on what information is exposed. When auth is enabled, Gate restricts
 access to the endpoints other than `/health`, preventing access to metric data.
 
 For more information on Spring actuators, see the [Monitoring and Management](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-monitoring).  
 
-<!-- Spinnaker issue discussing management endpoints: https://github.com/spinnaker/spinnaker/issues/3883--> 
+<!-- Spinnaker issue discussing management endpoints: https://github.com/spinnaker/spinnaker/issues/3883-->
 {{% /alert %}}
 
 Armory recommends that you monitor your systems by using the [Armory Observabililty Plugin](https://github.com/armory-plugins/armory-observability-plugin/). This is an open source solution for monitoring Spinnaker. The plugin supports the following:
 
 * Adding Prometheus (OpenMetrics) endpoints to Spinnaker pods (explained below).
-* Sending data to NewRelic (documented on the plugin page). 
+* Sending data to NewRelic (documented on the plugin page).
 
 The Observability Plugin removes the service name from the metric. This is incompatible with the behavior of the open source Spinnaker Monitoring daemon system, which was the default monitoring solution in versions earlier than 2.20 and is now deprecated.
 
@@ -148,8 +148,8 @@ To install the Observability plugin, add a plugin configuration to the profiles
 
 ```yaml
 # These lines are spring-boot configuration to allow access to the metrics
-# endpoints.  This plugin adds the "aop-prometheus" endpoint on the 
-# "<service>:<port>/aop-prometheus" path. 
+# endpoints.  This plugin adds the "aop-prometheus" endpoint on the
+# "<service>:<port>/aop-prometheus" path.
 
 management:
   endpoints:
@@ -178,7 +178,7 @@ More options for management endpoints and the plugin are available on the [Plugi
 Prometheus Operator uses a "ServiceMonitor" to add targets that get scraped for monitoring. The following
 example config shows how to monitor pods that are using the Observability Plugin to expose the `aop-prometheus` endpoint. Note that the example contains both the exclusion of certain services (such as Redis) and changes to the Gate endpoint to show you different options.  
 
-These are examples of potential configurations. Use them as a starting point. Armory recommends that you understand how 
+These are examples of potential configurations. Use them as a starting point. Armory recommends that you understand how
 they operate and find services. Adapt them to your environment.
 
 ```yaml

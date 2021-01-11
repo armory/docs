@@ -1,37 +1,13 @@
 ---
-
 title: Creating and Adding a Kubernetes Account to Spinnaker as a Deployment Target
 linkTitle: Adding Kubernetes Account as Deployment Target
 aliases:
   - /docs/spinnaker-install-admin-guides/add-kubernetes-account/
+description: >
+
 ---
 
-Once you have (OSS or Armory) Spinnaker up and running in Kubernetes, you'll want to start adding deployment targets.
-
-## Overview
-
-This document will guide you through the following:
-
-* Creating the namespace in which the Service Account will live (if it does not yet exist)
-* Creating the service account in the Service Account namespace
-* If granting cluster admin (`cluster-admin`), a clusterrolebinding attaching the `cluster-admin` ClusterRole to the service account
-* If granting namespace-specific access, the following:
-  * For each namespace, the namespace (if it does not exist)
-  * For each target namespace, an admin role
-  * For each target namespace, a rolebinding attaching the admin role to the service account
-* Creating a minified kubeconfig containing only the service account
-* Adding the account to Spinnaker
-
-## Requirements
-
-This document assumes the following conditions are true:
-
-* Spinnaker was installed with the Operator or Halyard.
-* If Spinnaker was installed with the Operator, you have access to the `SpinnakerService` manifest, and have the kubeconfig for the Spinnaker cluster.
-* If Spinnaker was installed with Halyard, you have access to your current halconfig (and a way to operate `hal` against it).
-* You have a kubeconfig with permissions to create the relevant Kubernetes entities (`service account`, `role`, and `rolebinding`) in the target cluster.
-
-## Background
+## How Spinnaker operates when deploying to Kubernetes targets
 
 At a high level, Spinnaker operates in the following way when deploying to Kubernetes:
 
@@ -68,19 +44,35 @@ So here are some takeaways and guiding principles that result from the above:
     * More specific permissions in your cluster (this is not covered in the scope of this document)
 * It is preferable to create a distinct kubeconfig file for each Spinnaker Cloud Provider Kubernetes account; each of these kubeconfigs should have **one** cluster, **one** user, and **one** context referencing the cluster and user.  Its default context should reference the single context
 
-## Prerequisites
+## Prerequisites for adding a Kubernetes Service Account
 
 This document assumes the following:
 
 * Your Spinnaker is up and running
-* Your Spinnaker was installed and configured via Operator or Halyard
-* You have a valid kubeconfig that currently has Cluster Admin access to your target Kubernetes cluster, and you have `kubectl` and are able to use it to interact with your target Kubernetes cluster.
+* Your Spinnaker was installed and configured via the Operator or Halyard
+* If Spinnaker was installed with the Operator, you have access to the `SpinnakerService` manifest and have the kubeconfig for the Spinnaker cluster.
+* If Spinnaker was installed with Halyard, you have access to your current halconfig, and a way to operate `hal` against it.
+* You have a valid kubeconfig that currently has Cluster Admin access to your target Kubernetes cluster so you can create the relevant Kubernetes entities (`service account`, `role`, and `rolebinding`) in the target cluster; you have `kubectl` and are able to use it to interact with your target Kubernetes cluster.
 
 The first several steps of this document will take place on a system that has `kubectl` and the kubeconfig.
 
-## Setting up the Service Account
 
-We're going to create the following:
+## Workflow for adding a Kubernetes Service Account
+
+* Create the namespace in which the Service Account will live (if it does not yet exist)
+* Create the service account in the Service Account namespace
+* If granting cluster admin (`cluster-admin`), a `clusterrolebinding` attaching the `cluster-admin` ClusterRole to the service account
+* If granting namespace-specific access, the following:
+  * For each namespace, the namespace (if it does not exist)
+  * For each target namespace, an admin role
+  * For each target namespace, a rolebinding attaching the admin role to the service account
+* Create a minified kubeconfig containing only the service account
+* Add the account to Spinnaker
+
+
+## Setting up the Kubernetes Service Account
+
+In this section, you create the following:
 
 * A namespace to create the service account in
 * A service account in that namespace
@@ -89,21 +81,21 @@ We're going to create the following:
 
 This document uses the newly-created Armory `spinnaker-tools` Go CLI (available on [Github](https://github.com/armory/spinnaker-tools)) to create many of these resources.  There are separate instructions to perform these steps manually.
 
-### Get the tool
+### Download the latest `spinnaker-tools` release
 
-First, obtain the tool.  Go to <https://github.com/armory/spinnaker-tools/releases>, and download the latest release for your operating system (OSX and Linux available).  You can also use curl:
+Go to <https://github.com/armory/spinnaker-tools/releases> to download the latest release for your operating system (OSX and Linux available).  You can also use curl:
 
 ```bash
 # If you're not already in the directory
 cd ~/eks-spinnaker
-# Replace this with the correct version and link for your workstation (use https://github.com/armory/spinnaker-tools/releases/download/0.0.3/spinnaker-tools-linux if you're on Linux instead of Mac)
-curl -L https://github.com/armory/spinnaker-tools/releases/download/0.0.3/spinnaker-tools-darwin -o spinnaker-tools
+# Replace this with the correct version and link for your workstation (use https://github.com/armory/spinnaker-tools/releases/download/latest/spinnaker-tools-linux if you're on Linux instead of Mac)
+curl -L https://github.com/armory/spinnaker-tools/releases/download/latest/spinnaker-tools-darwin -o spinnaker-tools
 chmod +x spinnaker-tools
 ```
 
 ### Set up bash parameters
 
-First, we'll set up bash environment variables that will be used by later commands
+Set up bash environment variables that you will use later.
 
 ```bash
 # If you're using a different source kubeconfig, specify it here
@@ -156,7 +148,8 @@ export TARGET_NAMESPACES_COMMA_SEPARATED=dev-1,dev-2
 
 ## Add the kubeconfig and cloud provider to Spinnaker
 
-**Operator**
+{{< tabs name="add" >}}
+{{% tab name="Operator" %}}
 
 Add the following configuration to the `SpinnakerServce` manifest, replacing values as needed:
 
@@ -202,7 +195,8 @@ Finally, apply the changes
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest file>
 ```
 
-**Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 You should copy the kubeconfig to a place accessible to halyard; this choice is left to the reader, but one option is `~/.secret/`, which can be mounted into your halyard container
 
@@ -255,8 +249,11 @@ Apply your changes:
 hal deploy apply
 ```
 
-## Done!
+{{% /tab %}}
+{{< /tabs >}}
 
-After your changes get applied, you should be able to see the new Kubernetes account in your Spinnaker UI and be able to deploy to it.  It may take a while for the new Clouddriver to start up and read information from your new Kubernetes account
+## Verify the Kubernetes account appears in the Spinnaker UI
 
-**Don't forget to clear your browser cache / hard refresh your browser (`cmd-shift-r` or `control-shift-r`)**
+After you apply your changes, you should see the new Kubernetes account in your Spinnaker UI and be able to deploy to it.  It may take a while for the  Clouddriver to start up and read information from your new Kubernetes account.
+
+>Don't forget to clear your browser cache / hard refresh your browser (`cmd-shift-r` or `control-shift-r`)

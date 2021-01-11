@@ -1,5 +1,5 @@
 ---
-title: "Connecting to AWS ECR as a Registry"
+title: "Connecting Spinnaker to Amazon Elastic Container Registry"
 linkTitle: "Connecting to AWS ECR"
 aliases:
   - /spinnaker_install_admin_guides/ecr_registry/
@@ -8,9 +8,9 @@ aliases:
   - /docs/spinnaker-install-admin-guides/ecr-registry/
   - /docs/armory-admin/artifacts-ecr-connect/
   - /armory-admin/artifacts-ecr-connect/
+description: >
+  Learn how to configure Spinnaker to connect to AWS ECR.
 ---
-
-This document reviews configuring ECR as a registry for an Armory installation.
 
 ## Adding ECR as a Docker registry
 
@@ -18,12 +18,12 @@ When configuring a registry, you normally use standard `SpinnakerService` config
 
 This works great for Dockerhub, but ECR requires a bit more work for configuration. Amazon ECR requires access tokens to access the images and those access tokens expire after a time.
 
-In order to automate updating the token, we will use a [sidecar container](https://docs.microsoft.com/en-us/azure/architecture/patterns/sidecar) with a script that does it for us. Since both Clouddriver and the sidecar container need access to the ECR access token, we will use a shared volume to store the access token.
+In order to automate updating the token, use a [sidecar container](https://docs.microsoft.com/en-us/azure/architecture/patterns/sidecar) with a script that does it for you. Since both Clouddriver and the sidecar container need access to the ECR access token, you use a shared volume to store the access token.
 
-The sidecar we're going to add does not start with an access token, it needs to be able to request an access token from ECR. The Spinnaker installation must have the `AmazonEC2ContainerRegistryReadOnly` policy attached to the role assigned in order to request and update the required access token.
+The sidecar you're going to add does not start with an access token. It needs to be able to request an access token from ECR. The Spinnaker installation must have the `AmazonEC2ContainerRegistryReadOnly` policy attached to the role assigned in order to request and update the required access token.
 
 
-Note: If using Halyard, this process is easier in version `v1.10` and later. In these later versions, use the `--password-command` option to pass the command to update your access token.
+>If using Halyard, this process is easier in version `v1.10` and later. In these later versions, use the `--password-command` option to pass the command to update your access token.
 
 
 ## Update configs

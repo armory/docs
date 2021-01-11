@@ -10,9 +10,9 @@ aliases:
   - /docs/spinnaker-install-admin-guides/secrets/secrets/
 ---
 
-## Overview
+## Overview of storing secrets
 
-Storing Spinnaker configs in a git repository is a great solution for maintaining versions of your configurations, but storing secrets in plain text is a bad security practice. If you're using the Operator to deploy Spinnaker, separating your secrets from your configs through end-to-end secrets management is already supported. If you're using Halyard, this is supported as of `halyard-armory:1.4.1`. All you need to do is replace secrets in the configuration files with the syntax described here, and Spinnaker will decrypt them as needed.
+Storing Spinnaker<sup>TM</sup> configs in a git repository is a great solution for maintaining versions of your configurations, but storing secrets in plain text is a bad security practice. If you're using the Operator to deploy Spinnaker, separating your secrets from your configs through end-to-end secrets management is already supported. If you're using Halyard, this is supported as of `halyard-armory:1.4.1`. All you need to do is replace secrets in the configuration files with the syntax described here, and Spinnaker will decrypt them as needed.
 
 We can now store secrets (tokens, passwords, sensitive files) separately from the Spinnaker configurations. We'll provide references to these secrets to services that need them.
 

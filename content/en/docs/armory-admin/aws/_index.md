@@ -1,4 +1,4 @@
 ---
 title: "Administration on AWS"
-description: Administer an Armory deployment on AWS infrastructure
+description: Administer a Spinnaker or Armory deployment on AWS infrastructure.
 ---

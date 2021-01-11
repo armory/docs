@@ -5,7 +5,7 @@ linkTitle: Baking Machine Images
 aliases:
   - /spinnaker_install_admin_guides/packer/
   - /docs/spinnaker-install-admin-guides/packer/
-description: Bake (build) machine images for deployment on AWS
+description: Bake (build) machine images for deployment on AWS.
 ---
 
 ## Overview

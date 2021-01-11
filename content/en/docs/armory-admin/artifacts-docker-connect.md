@@ -3,21 +3,22 @@ title: Connecting Docker Registries
 aliases:
   - /spinnaker_install_admin_guides/docker/
   - /docs/spinnaker-install-admin-guides/docker/
+description: >
+  Walkthrough of how to configure Spinnaker to access a Docker registry.
 ---
 
-## Overview
+## Overview of connecting Spinnaker to Docker registries
 
-This is a quick walkthrough of how to configure your Spinnaker to access a
-Docker registry.  Many of the commands below have additional options that
-may be useful (or possibly required).  If you need more detailed help, take
+Many of the commands below have additional options that
+may be useful, or possibly required.  If you need more detailed help, take
 a look at the [Halyard command reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-docker-registry) if you're using Halyard to deploy Spinnaker.
 
-## Enable Docker Registries
+## Enable Docker registries in Spinnaker
 
-If you haven't done this yet (for example, if you've just installed Armory
-Spinnaker fresh), you'll need to enable Docker registry providers:
+If you've just installed Armory or Open Source Spinnaker<sup>TM</sup>, you need to enable Docker registry providers.
 
-**Operator**
+{{< tabs name="enableDocker" >}}
+{{% tab name="Operator" %}}
 
 Add the following snippet to `SpinnakerService` manifest:
 
@@ -34,22 +35,27 @@ spec:
           enabled: true
 ```
 
-**Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 ```bash
 hal config provider docker-registry enable
 ```
 
-### Add a Registry (and Repositories)
+{{% /tab %}}
+{{< /tabs >}}
 
-To add a new registry, you'll use some variation of the following configuration.
+### Add a Docker registry and repositories to Spinnaker
+
+To add a new registry, you use some variation of the following configuration.
 This example uses a public Docker Hub registry (armory/demoapp) and actually
 would not use the `username` or `password` options, since the registry is
 public.  In most cases, you'll be configuring a private registry and the
 authentication credentials will be required, so the options are shown here
 as an example.
 
-**Operator**
+{{< tabs name="addDocker" >}}
+{{% tab name="Operator" %}}
 
 Add the following snippet to `SpinnakerService` manifest:
 
@@ -88,7 +94,9 @@ spec:
             # environment: dev # The environment name for the account. Many accounts can share the same environmen(e.g. dev, test, prod)
 ```
 
-**Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
+
 
 ```bash
 hal config provider docker-registry account add my-docker-registry \
@@ -100,9 +108,12 @@ hal config provider docker-registry account add my-docker-registry \
 
 Detailed information on all command line options can be found [here](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-docker-registry-account-add)
 
-Note:  Some registries, like Docker Hub, require you to identify the
+{{% /tab %}}
+{{< /tabs >}}
+
+>Some registries, like Docker Hub, require you to identify the
 repositories explicitly, like above.  Some do not (such as the Google
-Container Registry).  Further details can be found [here](https://www.spinnaker.io/setup/install/providers/docker-registry/).
+Container Registry).  You can read more in the Spinnaker [docs](https://www.spinnaker.io/setup/install/providers/docker-registry/).
 
 Amazon's ECR requires additional configuration to work properly with Spinnaker.
-[We've documented this separately]({{< ref "artifacts-ecr-connect" >}}).
+See the {{< linkWithTitle "artifacts-ecr-connect" >}} guide for details.
