@@ -1,6 +1,8 @@
 ---
-title: Armory Cloud Admin Quickstart 
+title: Cloud Admin Quickstart  (Preview)
 description: If this is your first time using Armory Cloud Console, start here. It walks you through using the Armory Cloud Console, from first log in to granting your app developers access to Armory Cloud.
+aliases:
+  - /docs/armory-cloud-admin/admin-cloud-quickstart/
 ---
 
 {{% alert title="Info" color="primary" %}}{{< include "saas-status.md" >}}{{% /alert %}}
@@ -15,13 +17,14 @@ From here, you can select what environment you want to configure or open the Arm
 
 ## Configuring the environment
 
-If you are setting up the Armory Cloud environment for the first time, you need the following information:
+If you are setting up the Armory Cloud environment for the first time, you need the following:
 
 **Required**
 
+* AWS permissions that allow you to create AssumeRoles. Armory Cloud provides a Cloud Formation template for you to use to create the required AssumeRole. This AssumeRole is used for things like provisioning new infrastructure to bake an image.
 * [Artifact sources](#artifact-sources) you want to connect to. Artifacts are external JSON objects like an image, a file stored somewhere, or a binary blob in a bucket.
 * [Deployment targets](#deployment-targets) you want your app developers to have access to.
-* [Secrets](#secrets), such as AWS secret IDs, that Armory Cloud encrypts that you can use when configuring resources like deployment targets.
+* [Secrets](#secrets), such as AWS secret IDs. Armory Cloud encrypts these after you add them. When configuring resources like deployment targets, you can reference the secrets by a name you assign.
   
 **Optional**
 
@@ -31,7 +34,7 @@ To start, click **Configure** for the environment you want to add.
 
 ### Secrets
 
-For development and other non-production environments, you can opt to enter secrets in plaintext into the Cloud Console. The best practice though is to secure them using Armory Cloud Console's Secrets UI. This is especially important for secrets that relate to your production environment's deployment target. Armory Cloud stores and transmits these secrets securely. Since the secrets are encrypted, they are not visible in the Armory Cloud Console after you enter them.
+For development and other non-production environments, you can opt to enter secrets in plaintext into the Cloud Console. The best practice, though, is to secure them using the Secrets UI in the Armory Cloud Console. This is especially important for secrets that relate to your production environment's deployment target. Armory Cloud stores and transmits these secrets securely. Since the secrets are encrypted, they are not visible in the Armory Cloud Console after you enter them.
 
 Note that these are configuration secrets meant for information such as AWS Secret Access Keys. They are separate from any kind of app secret your developers may be using within their deployment pipelines.
 
