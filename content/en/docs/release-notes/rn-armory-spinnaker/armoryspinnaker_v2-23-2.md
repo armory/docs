@@ -33,7 +33,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "ki-bake-var-file.md" >}}
 
 {{< include "ki-orca-zombie-execution.md" >}}
-
+{{< include "ki-lambda-ui-caching.md" >}}
 ### Fixed issues
 
 - Fixed an issue where Clouddriver consumed more threads than it needed, which led to situations where pods did not have enough resources to start.

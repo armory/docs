@@ -34,6 +34,7 @@ Armory scans the codebase as we develop and release software. For information ab
 There is a known issue with Clouddriver that affects the performance of the Armory Platform, causing it to consume more resources. This can lead to a situation where pods do not have enough resources to start.
 
 {{< include "ki-orca-zombie-execution.md" >}}
+{{< include "ki-lambda-ui-caching.md" >}}
 
 ### Fixed issues
 
