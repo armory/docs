@@ -507,4 +507,5 @@ be more specific about the paths you want to force authentication on.
 
 ## Release Notes
 
+* v0.0.19 - Adds forced authentication feature and fixes NPE bug
 * v0.0.17 - Initial plugin release
