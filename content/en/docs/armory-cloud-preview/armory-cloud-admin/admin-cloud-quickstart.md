@@ -11,9 +11,9 @@ aliases:
 
 Armory provides a set of credentials to log in to the Cloud Console. These are separate from the user accounts that app developers use to access the Armory Platform UI and API. The Cloud Console is where you go to make changes to the Armory Cloud environment and what it has access to. For example, you can add deployment targets or other resources in the Cloud Console. When app developers log in to the Armory Platform, they can use these resources in their deployment pipelines.
 
-To log in to the cloud console, go to the Armory Cloud Console. As a design partner, Armory provides a set of credentials for you to use.
+As a design partner, Armory provides credentials for you to use for logging in to the Cloud Console.
 
-From here, you can select what environment you want to configure or open the Armory Platform for that environment.
+From here, you can select which environment you want to configure or open the Armory Platform for that environment.
 
 ## Configuring the environment
 
@@ -21,10 +21,10 @@ If you are setting up the Armory Cloud environment for the first time, you need 
 
 **Required**
 
-* AWS permissions that allow you to create AssumeRoles. Armory Cloud provides a Cloud Formation template for you to use to create the required AssumeRole. This AssumeRole is used for things like provisioning new infrastructure to bake an image.
+* AWS permissions that allow you to create AssumeRoles. Armory Cloud provides a Cloud Formation template for you to use to create the required AssumeRole. This AssumeRole gets used for actions like provisioning new infrastructure to bake an image.
 * [Artifact sources](#artifact-sources) you want to connect to. Artifacts are external JSON objects like an image, a file stored somewhere, or a binary blob in a bucket.
 * [Deployment targets](#deployment-targets) you want your app developers to have access to.
-* [Secrets](#secrets), such as AWS secret IDs. Armory Cloud encrypts these after you add them. When configuring resources like deployment targets, you can reference the secrets by a name you assign.
+* [Secrets](#secrets), such as AWS Secret Access Keys. Armory Cloud encrypts these after you add them. When configuring resources like deployment targets, you can reference the secrets by a name you assign.
   
 **Optional**
 
@@ -34,11 +34,9 @@ To start, click **Configure** for the environment you want to add.
 
 ### Secrets
 
-For development and other non-production environments, you can opt to enter secrets in plaintext into the Cloud Console. The best practice, though, is to secure them using the Secrets UI in the Armory Cloud Console. This is especially important for secrets that relate to your production environment's deployment target. Armory Cloud stores and transmits these secrets securely. Since the secrets are encrypted, they are not visible in the Armory Cloud Console after you enter them.
+For development and other non-production environments, you can choose to enter secrets in plaintext into the Cloud Console. The best practice, though, is to secure your secrets using the Secrets UI in the Armory Cloud Console. Secrets are values such as an access token for GitHub. Armory Cloud stores and transmits these secrets securely if they are entered into the Secrets UI. Once entered, they are encrypted and not visible in the Armory Cloud Console. Note that these are configuration secrets meant for information such as AWS Secret Access Keys. They are separate from any kind of app secret your developers may be using within their deployment pipelines.
 
-Note that these are configuration secrets meant for information such as AWS Secret Access Keys. They are separate from any kind of app secret your developers may be using within their deployment pipelines.
-
-If this is your first time configuring an environment, consider adding secrets for the following resources:
+If this is your first time configuring an environment, consider adding secrets for the following resources to start:
 
 - Artifact sources, such as a Docker or ECR Registry. These are a type of external resource your app developers can reference in their delivery pipelines. You can learn more about artifacts later on in this guide when you configure [Artifact Sources](#artifact-sources).
 - Deployment target, such as an AWS Secert Access Key. These are where your app developers want to deploy their coed to. You can learn more later on in this guide when you configure [Deployment Targets](#deployment-targets).
@@ -86,9 +84,9 @@ Before you start, make sure you have added [secrets](#secrets) if it is a produc
 
 ### Packer Files
 
-Armory Cloud can bake machine images for you using Packer. By default, Armory ships a set of default Packer templates for Amazon Machine Images (AMI) that your app developers can use when crafting their delivery pipelines. For information about Packer templates, see [Templates](https://www.packer.io/docs/templates).
+Armory Cloud can bake machine images for you using Packer. Packer templates help you have customized image baking that remains consistent and immutable, giving you the ability to deploy consistently with confidence. By default, Armory ships a set of default Packer templates for Amazon Machine Images (AMI) that your app developers can use when crafting their delivery pipelines. You have the option of adding custom Packer template files to do more customized baking though. For general information about Packer templates, see [Templates](https://www.packer.io/docs/templates).
 
-If you want to use custom Packer template files, add them here. This is optional, and you can skip this section if you do not want to use custom Packer templates. Any templates you add are available to app developers when they configure a delivery pipeline.
+Adding a custom Packer file is optional, and you can skip this section if you do not want to provide any custom Packer templates for your app developers. Any templates you do add here though are available to app developers when they configure a delivery pipeline.
 
 1. Navigate to **Manage Packer Files**.
 2. Click **New File** and configure the custom Packer template.
