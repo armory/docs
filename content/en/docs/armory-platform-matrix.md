@@ -383,13 +383,14 @@ The following table lists the supported notification systems:
 
 | Provider   | Armory                 | Notes |
 | ---------- | ---------------------- | ----- |
-| Slack      | All supported versions |       |
-| PagerDuty  | All supported versions |       |
-| GitHub     | All supported versions |       |
-| Jira       | All supported versions |       |
 | BearyChat  | All supported versions |       |
 | Email      | All supported versions |       |
+| GitHub     | All supported versions |       |
 | GoogleChat | All supported versions |       |
+| Jira       | All supported versions |       |
+| [MS Teams](https://spinnaker.io/setup/features/notifications/#microsoft-teams)      | 2.23.2 or later |       |
+| Slack      | All supported versions |       |
+| PagerDuty  | All supported versions |       |
 | Twilio     | All supported versions |       |
 
 ## Observability
