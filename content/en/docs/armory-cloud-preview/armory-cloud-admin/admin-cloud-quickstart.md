@@ -84,7 +84,7 @@ Before you start, make sure you have added [secrets](#secrets) if it is a produc
 
 ### Packer Files
 
-Armory Cloud can bake machine images for you using Packer. Packer templates help you have customized image baking that remains consistent and immutable, giving you the ability to deploy consistently with confidence. By default, Armory ships a set of default Packer templates for Amazon Machine Images (AMI) that your app developers can use when crafting their delivery pipelines. You have the option of adding custom Packer template files to do more customized baking though. For general information about Packer templates, see [Templates](https://www.packer.io/docs/templates).
+Armory Cloud can bake machine images for you using Packer. Packer templates help you bake images that remain consistent, immutable, and repeatable, which gives your app developers the ability to deploy without worrying about unintended configuration drift and other common issues. By default, Armory ships a set of default Packer templates for Amazon Machine Images (AMI) that your app developers can use when crafting their delivery pipelines. You have the option of adding custom Packer template files to do more customized baking though. For general information about Packer templates, see [Templates](https://www.packer.io/docs/templates).
 
 Adding a custom Packer file is optional, and you can skip this section if you do not want to provide any custom Packer templates for your app developers. Any templates you do add here though are available to app developers when they configure a delivery pipeline.
 
