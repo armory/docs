@@ -4,6 +4,7 @@ linkTitle: Working with S3 Artifacts
 aliases:
   - /docs/spinnaker-user-guides/s3/
   - /docs/spinnaker-user-guides/artifacts-s3-use/
+  - /docs/spinnaker-user-guides/s3-artifacts-use/
 description: >
   Configure an S3 file as an artifact in Spinnaker.
 ---

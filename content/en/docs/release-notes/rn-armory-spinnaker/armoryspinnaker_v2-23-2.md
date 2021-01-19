@@ -33,7 +33,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "ki-bake-var-file.md" >}}
 
 {{< include "ki-orca-zombie-execution.md" >}}
-
+{{< include "ki-lambda-ui-caching.md" >}}
 ### Fixed issues
 
 - Fixed an issue where Clouddriver consumed more threads than it needed, which led to situations where pods did not have enough resources to start.
@@ -47,6 +47,11 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+
+### Notifications
+
+Armory now supports using Microsoft Teams for notifications. For more information, see [Microsoft Teams](https://spinnaker.io/setup/features/notifications/#microsoft-teams).
+
 ### Terraform Integration
 
 This release includes better logging for when a 503 error occurs between the Terraform Integration and Clouddriver.
