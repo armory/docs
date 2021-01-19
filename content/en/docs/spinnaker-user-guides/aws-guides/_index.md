@@ -1,5 +1,6 @@
 ---
-title: "AWS Guides"
+title: AWS Guides for Spinnaker
+linkTitle: "AWS Guides"
 description: >
-  AWS-specific guides for non-admin users
+  AWS-specific guides for non-admin users of Spinnaker
 ---

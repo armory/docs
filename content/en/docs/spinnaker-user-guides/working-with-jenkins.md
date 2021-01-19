@@ -1,5 +1,6 @@
 ---
-title: Working with Jenkins
+title: Working with Jenkins in Spinnaker
+linkTitle: Working with Jenkins
 aliases:
   - /user-guides/working-with-jenkins/
   - /user-guides/working_with_jenkins/
@@ -8,6 +9,8 @@ aliases:
   - /spinnaker_user_guides/working_with_jenkins/
   - /spinnaker_user_guides/working-with-jenkins/
   - /spinnaker-user-guides/working_with_jenkins/
+description: >
+  Learn how to use Jenkins in your Spinnaker pipelines.
 ---
 
 > Before you start, you'll need to [configure Jenkins](/docs/spinnaker-install-admin-guides/jenkins/).  If

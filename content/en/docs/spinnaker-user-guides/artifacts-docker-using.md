@@ -1,8 +1,11 @@
 ---
-title: Working with Docker Images
+title: Working with Docker Images in Spinnaker
+linkTitle: Working with Docker Images
 aliases:
   - /spinnaker_user_guides/docker/
   - /docs/spinnaker-user-guides/docker/
+description: >
+  Learn how to use Docker images in your Spinnaker pipeline.
 ---
 
 

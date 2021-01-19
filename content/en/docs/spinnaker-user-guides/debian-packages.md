@@ -1,4 +1,5 @@
 ---
+title: Using Debian Packages with Spinnaker
 title: Debian Packages
 aliases:
   - /user-guides/debian-packages/
@@ -8,6 +9,8 @@ aliases:
   - /spinnaker_user_guides/debian_packages/
   - /spinnaker_user_guides/debian-packages/
   - /spinnaker-user-guides/debian_packages/
+description: >
+  Learn why you should use Debian packages in your Spinnaker pipelines.
 ---
 
 ## Why Use Debian packages

@@ -1,9 +1,12 @@
 ---
-title: Webhooks
+title: Using Webhooks in Spinnaker
+linkTitle: Using Webhooks
 aliases:
   - /user-guides/webhooks/
   - /user_guides/webhooks/
   - /spinnaker_user_guides/webhooks/
+description: >
+  Learn how to configure a webhook in your Spinnaker pipeline.
 ---
 
 > Spinnaker uses "webhooks" in two ways -- as a trigger for pipeline execution
