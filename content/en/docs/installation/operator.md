@@ -2,7 +2,7 @@
 title: Armory Operator
 weight: 1
 description: >
-  The Armory Operator is a Kubernetes Operator that makes it easy to install, deploy, and upgrade any version of Armory.
+  The Armory Operator is a Kubernetes Operator that makes it easy to install, deploy, and upgrade any version of Armory or Spinnaker.
 aliases:
   - /docs/spinnaker/operator/
 ---
@@ -22,7 +22,7 @@ aliases:
 
 ## Requirements for using the Armory Operator
 
-Before you start, ensure you meet the following requirements:
+Before you use start, ensure you meet the following requirements:
 
 - Your Kubernetes cluster runs version 1.13 or later.
 - You have admission controllers enabled in Kubernetes (`-enable-admission-plugins`).
