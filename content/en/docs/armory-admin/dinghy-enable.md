@@ -59,7 +59,10 @@ hal armory dinghy enable
 
 
 ## Configuring SQL
-Dinghy can use Redis to store relationships between pipeline templates and pipeline dinghy files. An external MySQL instance is highly recommended for production use. If MySQL becomes unavailable, dinghy files will need to be updated in order to repopulate MySQL with the relationships.
+
+{{< include "early-access-feature.html" >}}
+
+The Dinghy service can use Redis to store relationships between pipeline templates and pipeline dinghy files. An external MySQL instance is highly recommended for production use because it can provide more durability for Pipelines as Code. If MySQL becomes unavailable, dinghy files will need to be updated in order to repopulate MySQL with the relationships.
 
 {{< tabs name="MySQL" >}}
 {{% tab name="Operator" %}}
@@ -108,6 +111,7 @@ sql:
 
 
 ### Migration from Redis to SQL
+
 There's a migration strategy to move the relationships from Redis to SQL. In order to do that, you need to have the configuration from your redis and add the configuration for SQL as shown previously, when you do this and the pod starts, what will happen is that the migration will be done automatically by a job. To verify that the migration was done successfully you can enter into your database and query this tables.
 
 ```sql
