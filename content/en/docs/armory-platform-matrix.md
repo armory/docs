@@ -150,7 +150,8 @@ The following table lists the supported Terraform versions:
 | ------------------ | ---------------------- | ---- |
 | 0.11.10 - 0.11.14  | All supported versions |      |
 | 0.12.0 - 0.12.24   | All supported versions |      |
-
+| 0.13.4 - 0.13.5   | 2.24.0 or later |      |
+| 0.14.0 - 0.14.2   | 2.24.0 or later |      |
 **Features**
 
 The following table lists the Terraform Integration features and their supported versions:
