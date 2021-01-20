@@ -2,11 +2,11 @@
 title: "Armory Agent for Kubernetes Quick Start Installation"
 linkTitle: "Quick Start"
 description: >
-  Install quickly using this guide.
+  Leearn how to install the Armory Agent in your Kubernetes and Spinnaker environments.
 weight: 2
 ---
 
-> This guide is for experienced Kubernetes and Spinnaker users.
+> This guide is for experienced Kubernetes and Spinnaker<sup>TM</sup> users.
 
 ## Compatibility matrix
 

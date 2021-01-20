@@ -1,9 +1,12 @@
 ---
-title: Troubleshooting
+title: Troubleshooting the Armory Agent Service and Plugin
+linkTitle: Troubleshooting
 weight: 6
+description: >
+  Successful installation and startup messages, common errors, tips, and gRPC endpoint testing.
 ---
 
-## Agent plugin
+## Agent plugin messages
 
 After a successful plugin installation, `spin-clouddriver-grpc` (or `spin-clouddriver-ha-grpc`) service should be up:
 
@@ -23,6 +26,7 @@ Clouddriver's log should have the following messages:
 2020-10-02 16:24:10.046  INFO 1 --- [           main] n.d.b.g.s.s.GrpcServerLifecycle          : gRPC Server started, listening on address: *, port: 9091
 ```
 
+## Testing gRPC endpoints
 
 In Infrastructure or Agent modes, you can test the gRPC endpoints with the
 [`grpcurl`](https://github.com/fullstorydev/grpcurl) utility.
@@ -38,7 +42,7 @@ ops.Operations
 > Use `-plaintext` if your gRPC endpoint is not configured for TLS, `-insecure` if you are using TLS with custom certificates.
 
 
-## Agent service
+## Agent service messages
 
 On a normal startup, the Agent will show the following messages:
 
@@ -98,7 +102,7 @@ Common errors:
   ```
 
 
-## Tips
+## Agent tips
 
 - It is a good idea to have each Kubernetes cluster accessible by at least two instances of the Agent. Only one instance will actively stream Kubernetes changes. The second one will be on standby and can be used for other operations such as deploying manifests and getting logs.
 

@@ -3,7 +3,7 @@ title: Plugin Configuration Options
 linkTitle: Plugin Options
 weight: 4
 description: >
-  How to configure the Agent plugin for Clouddriver
+  This guide contains a detailed list of Armory Agent plugin configuration options for Clouddriver.
 ---
 
 | Setting  | Type  | Default  | Description |
