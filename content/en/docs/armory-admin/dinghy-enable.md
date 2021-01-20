@@ -62,7 +62,7 @@ hal armory dinghy enable
 
 {{< include "early-access-feature.html" >}}
 
-The Dinghy service can use Redis to store relationships between pipeline templates and pipeline dinghy files. An external MySQL instance is highly recommended for production use because it can provide more durability for Pipelines as Code. If MySQL becomes unavailable, dinghy files will need to be updated in order to repopulate MySQL with the relationships.
+The Dinghy service can use MySQL to store relationships between pipeline templates and pipeline dinghy files. An external MySQL instance is highly recommended for production use because it can provide more durability for Pipelines as Code. If MySQL becomes unavailable, dinghy files will need to be updated in order to repopulate MySQL with the relationships.
 
 {{< tabs name="MySQL" >}}
 {{% tab name="Operator" %}}
