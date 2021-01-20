@@ -185,7 +185,7 @@ modify the `secrets-example.env` file to choose a password unique to you, and
 run the `./create-secrets.sh` script to create Kubernetes credentials in your
 cluster.
 
->Make sure you enable the right Auth Scopes on the GKE node pools, or you may see authentication issues trying to write to Cloud Storage for logging.
+>Make sure you enable the right Auth Scopes on the GKE node pools, or you may see authentication issues trying to write to Google Cloud Storage for logging.
 
 ## Configure Dinghy
 
