@@ -44,7 +44,7 @@ Application metrics can be ingested by Kayenta to perform Canary Analysis or Aut
 | Dynatrace      | All supported versions | Yes | 2.23.0 or later        |      |
 | Graphite       | All supported versions | Yes | All supported versions |      |
 | New Relic      | All supported versions | Yes | All supported versions |      |
-| Prometheus     | All supported versions | Yes | All supported versions |      |
+| Prometheus     | All supported versions | Yes | All supported versions | Authentication using a bearer token is supported.     |
 | SignalFx       | All supported versions | Yes | All supported versions |      |
 | Stackdriver    | All supported versions | Yes | All supported versions |      |
 
@@ -383,20 +383,19 @@ The following table lists the supported notification systems:
 
 | Provider   | Armory                 | Notes |
 | ---------- | ---------------------- | ----- |
-| Slack      | All supported versions |       |
-| PagerDuty  | All supported versions |       |
-| GitHub     | All supported versions |       |
-| Jira       | All supported versions |       |
 | BearyChat  | All supported versions |       |
 | Email      | All supported versions |       |
+| GitHub     | All supported versions |       |
 | GoogleChat | All supported versions |       |
+| Jira       | All supported versions |       |
+| [MS Teams](https://spinnaker.io/setup/features/notifications/#microsoft-teams)      | 2.23.2 or later |       |
+| Slack      | All supported versions |       |
+| PagerDuty  | All supported versions |       |
 | Twilio     | All supported versions |       |
 
-<!--## Observability
+## Observability
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
-
-{{% alert %}}Armory 2.20 and later require the Observability plugin for monitoring Spinnaker. Versions earlier than 2.20 use the Spinnaker monitoring daemon, which is deprecated. {{% /alert %}}
 
 The following table lists the supported observabilty providers:
 
@@ -404,7 +403,7 @@ The following table lists the supported observabilty providers:
 | ---------- | ---------------------- | ---------------------- | --------------------------- |
 | New Relic  | All supported versions | All supported versions |                             |
 | Prometheus | All supported versions | All supported versions | Use Grafana for dashboards. |
--->
+
 ## Persistent storage
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)

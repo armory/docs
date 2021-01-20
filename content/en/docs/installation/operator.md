@@ -18,103 +18,21 @@ aliases:
 - Define Kubernetes accounts in `SpinnakerAccount` objects and store kubeconfig inline, in Kubernetes secrets, in s3, or GCS **(Experimental)**.
 - Deploy Armory in an Istio controlled cluster **(Experimental)**
 
-> We refer here to the Armory Operator, which installs Armory. The open source operator installs open source Spinnaker<sup>TM</sup> and is found [here](https://github.com/armory/spinnaker-operator).
+> This guide uses the Armory Operator, which installs Armory. The open source Operator installs open source Spinnaker<sup>TM</sup>. You can download the open source Operator from the GitHub [repo](https://github.com/armory/spinnaker-operator).
 
 ## Requirements for using the Armory Operator
 
 Before you use start, ensure you meet the following requirements:
 
 - Your Kubernetes cluster runs version 1.13 or later.
+  - If you do not have a cluster already, consult guides for [Google](https://cloud.google.com/kubernetes-engine/docs/quickstart), [Amazon](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html), or [Microsoft](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal) clouds.
 - You have admission controllers enabled in Kubernetes (`-enable-admission-plugins`).
 - You have `ValidatingAdmissionWebhook` enabled in the kube-apiserver. Alternatively, you can pass the `--disable-admission-controller` parameter to the to the `deployment.yaml` file that deploys the operator.
 - You have admin rights to install the Custom Resource Definition (CRD) for Operator.
 
-## Install the Armory Operator
+{{% include "armory-operator/installation.md" %}}
 
-The Armory Operator has two distinct modes:
-
-- **Basic**: Installs Armory into a single namespace. This mode does not perform pre-flight checks before applying a manifest.
-- **Cluster**: Installs Armory across namespaces with pre-flight checks to prevent common misconfigurations. This mode requires a `ClusterRole`.
-
-Pick a release from [https://github.com/armory-io/spinnaker-operator/releases](https://github.com/armory-io/spinnaker-operator/releases):
-
-```bash
-mkdir -p spinnaker-operator && cd spinnaker-operator
-bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
-
-# Install or update CRDs cluster wide
-kubectl apply -f deploy/crds/
-
-# We'll install in the spinnaker-operator namespace
-kubectl create ns spinnaker-operator
-```
-
-Next, install Operator in either `cluster` or `basic` mode:
-
-```bash
-# Install Operator cluster mode
-kubectl -n spinnaker-operator apply -f deploy/operator/cluster
-```
-
-```bash
-# OR install Operator in basic mode
-# kubectl -n spinnaker-operator apply -f deploy/operator/basic
-```
-
-After installation, you can verify that the Operator is running with the following command:
-
-```bash
-kubectl -n spinnaker-operator get pods
-```
-
-The command returns output similar to the following if the pod for the Operator is running:
-
-```
-NAMESPACE                             READY         STATUS       RESTARTS      AGE
-spinnaker-operator-7cd659654b-4vktl   2/2           Running      0             6s
-```
-
-> If you want to use a namespace other than `spinnaker-operator` in cluster mode, you'll also need to edit the namespace in `deploy/operator/cluster/role_binding.yaml`.
-
-
-## Install Armory
-
-Update the values such as `version` and `persistentStorage` in `deploy/spinnaker/<operator-installation-mode>/SpinnakerService.yml` before you install Spinnaker.
-
-If you installed Operator in `basic` mode, you must use the `spinnaker-operator` namespace. The permissions in `basic` mode are scoped to a single namespace so it doesn't see anything in other namespaces. Run the following command:
-
-```bash
-kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/SpinnakerService.yml
-```
-
-If you installed Operator in `cluster` mode, run this command:
-
-```bash
-kubectl -n spinnaker-operator apply -f deploy/spinnaker/kustomize/SpinnakerService.yml
-```
-
-Watch the install progress and check out the pods being created:
-
-```bash
-kubectl -n spinnaker get spinsvc spinnaker -w
-```
-
-### How it works
-Armory's configuration is found in a `spinnakerservices.spinnaker.armory.io` Custom Resource Definition (CRD) that you can store in version control. After you install the Armory Operator, you can use `kubectl` to manage the lifecycle of your deployment.
-
-```yaml
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    config:
-      version: 2.21.0
-```
-
-See [the full format]({{< ref "operator-reference" >}}).
-
+{{% include "armory-operator/kustomize-patches.md" %}}
 
 ### Upgrade Armory
 
