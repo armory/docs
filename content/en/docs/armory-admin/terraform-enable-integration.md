@@ -525,7 +525,22 @@ In the example, only users who belong to the `dev` or `ops` groups can use the c
 
 Don't forget to run `hal deploy apply` once you finish making changes!
 
+## Retries
 
+The Terraformer service can retry connections if it fails to fetch artifacts from Clouddriver. Configure the retry behavior in your `terraformer-local.yml` file by adding the following snippet:
+
+
+```yaml
+# terraformer-local.yml
+clouddriver:
+  retry:
+    enabled: true
+    minWait: 4s # must be a duration, such as 4s for 4 seconds
+  maxWait: 8s # must be a duration, such as 8s for 8 seconds
+  maxRetries: 5
+```
+
+The preceding example enables retries and sets the minimum wait between attempts to 4 seconds, the maximum wait between attempts to 8s, and the maximum number of retries to 5.
 
 ## Submit feedback
 

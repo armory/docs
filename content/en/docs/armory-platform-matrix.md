@@ -408,14 +408,15 @@ The following table lists the supported observabilty providers:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-Depending on the service, Spinnaker can use either Redis or MySQL as the backing store. The following table lists the supported database and the Spinnaker service:
+Depending on the service, Spinnaker can use either Redis, MySQL, or Postgres as the backing store. The following table lists the supported database and the Spinnaker service:
 
 | Database | DB version             | Armory                 | Spinnaker services                                  | Note                                                                                                                       |
 | -------- | ---------------------- | ---------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | Redis    | All supported versions | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. By default, Spinnaker deploys Redis internally to support its services. |
 | MySQL    | MySQL 5.7 (or Aurora)  | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
+| PostgreSQL    | PostgreSQL 10.0 or later  | 2.24.0 | Clouddriver                          |                                                                                                                            |
 
-Armory recommends using MySQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
+Armory recommends using MySQL or PostgreSQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
 
 ## Pipeline triggers
 

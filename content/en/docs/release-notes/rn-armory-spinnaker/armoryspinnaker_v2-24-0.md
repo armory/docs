@@ -1,20 +1,20 @@
 ---
 title: v2.24.0 Armory Release (OSS Spinnaker™ v1.24.2)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.24.00
 description: >
   Release notes for the Armory Platform
 ---
 
-## 2021/01/60 Release Notes
+## 2021/01/21 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.24.0, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.10 or later
+- Armory Operator 1.2.1 or later
 
 ## Security
 
@@ -22,9 +22,18 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
+{{< include "bc-docker-giduid.md" >}}
+
+{{< include "bc-k8s-job-suffix.md" >}}
+
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
+{{< include "ki-bake-var-file.md" >}}
+{{< include "ki-orca-zombie-execution.md" >}}
+{{< include "ki-lambda-ui-caching.md" >}}
+
 
 ## Highlighted updates
 
@@ -34,6 +43,53 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
+### Baking 
+
+* You can now use `git/repo` artifacts when baking a helm chart.
+* Rosco now supports using a secure connection to Redis
+
+### Deployment targets
+
+#### AWS ECS
+
+Improvements to ECS include the following:
+
+- Tag-based Moniker naming strategies are now supported for ECS. For more information, see [Moniker](https://spinnaker.io/community/releases/versions/1-24-0-changelog#moniker-support-for-amazon-ecs).
+- Better ECS performance.
+
+#### Clouddriver
+
+You can now use PostgresSQL 10 or later as the backing store for Clouddriver. 
+
+### Pipelines as Code
+
+Pipelines as Code now supports using MySQL as the backing store, which can provide more durability and scalability than Redis. This feature is currently in early access.
+
+For information about how to configure the backing store for Pipelines as Code, see [Configuring SQL]({{< ref "dinghy-enable#configuring-redis" >}}).
+
+### Terraform Integration
+
+The Terraform Integration now supports the following Terraform versions: 0.13.4, 0.13.5, 0.14.0, 0.14.1, 0.14.2
+
+Additionally, the integration is now more resilient. It will retry if it fails to fetch artifacts from Clouddriver. Configure this feature in your `terraformer-local.yml` file.
+
+The following example enables retries and sets the minimum wait between attempts to 4 seconds, the maximum wait between attempts to 8s, and the maximum number of retries to 5.
+
+```
+# terraformer-local.yml
+clouddriver:
+  retry:
+    enabled: true
+    minWait: 4s # must be a duration, such as 4s for 4 seconds
+  maxWait: 8s # must be a duration, such as 8s for 8 seconds
+  maxRetries: 5
+```
+
+### UI
+
+Nested pipelines now have a breadcrumb trail that shows parent executions, making it easier to see and navigate the context.
+
+{{< figure src="/images/release/224/deck_2240_release_note.jpg" alt="Breadcrumbs for nested pipeline execution context" >}}
 
 
 
