@@ -2,12 +2,12 @@
 title: Armory Operator
 weight: 1
 description: >
-  The Armory Operator is a Kubernetes Operator that makes it easy to install, deploy, and upgrade any version of Armory.
+  The Armory Operator is a Kubernetes Operator that makes it easy to install, deploy, and upgrade any version of Armory or Spinnaker.
 aliases:
   - /docs/spinnaker/operator/
 ---
 
-Using the Armory Operator, you can:
+## Advantages of using the Armory Operator
 
 - Manage Armory with `kubectl` like other applications.
 - Expose Armory via `LoadBalancer` or `Ingress` (optional)
@@ -18,11 +18,11 @@ Using the Armory Operator, you can:
 - Define Kubernetes accounts in `SpinnakerAccount` objects and store kubeconfig inline, in Kubernetes secrets, in s3, or GCS **(Experimental)**.
 - Deploy Armory in an Istio controlled cluster **(Experimental)**
 
-> We refer here to the Armory Operator, which installs Armory. The open source operator installs open source Spinnaker<sup>TM</sup> and is found [here](https://github.com/armory/spinnaker-operator).
+> This guide uses the Armory Operator, which installs Armory. The open source Operator installs open source Spinnaker<sup>TM</sup>. You can download the open source Operator from the GitHub [repo](https://github.com/armory/spinnaker-operator).
 
-## Requirements
+## Requirements for using the Armory Operator
 
-Before you start, ensure you meet the following requirements:
+Before you use start, ensure you meet the following requirements:
 
 - Your Kubernetes cluster runs version 1.13 or later.
   - If you do not have a cluster already, consult guides for [Google](https://cloud.google.com/kubernetes-engine/docs/quickstart), [Amazon](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html), or [Microsoft](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal) clouds.
@@ -68,7 +68,7 @@ To upgrade an existing Armory deployment, perform the following steps:
 
 
 
-### Manage Armory Instances
+### Manage Armory instances
 
 The Armory Operator allows you to use `kubectl` to manager you Armory deployment.
 
@@ -119,6 +119,7 @@ See this [repo](https://github.com/armory/spinnaker-kustomize-patches) for examp
 You can store secrets in one of the [supported secret engine]({{< ref "secrets#supported-secret-engines" >}}).
 
 #### Kubernetes Secret
+
 With the Operator, you can also reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker.
 
 The format is:
