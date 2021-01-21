@@ -100,12 +100,13 @@ and the status and results of all the stages included in that pipeline
 Other events may be the result of performing operations within Spinnaker,
 such as creating a new load balancer, or resizing a server group.
 
-## How the Data is Used
-Armory Technical Account Manager and Support teams may use this data to help generate reports for customers as well as look up data about the configuration of the environment and error logs.  This can allow Technical Account Managers to provide summary information to our customers, and allow our Support Team to reduce the time to resolution on open cases
+## How Armory uses the data
 
-{{< figure src="/images/armory-admin/diagnostics-configure/ModeExample02.jpg" alt="Technical Account Manager Report Example" >}}
+Armory's Technical Account Manager and Support teams may use this data to generate reports for customers and provide summary information to customers. Additionally, Armory may look at environment configuration data and view error logs in order to reduce resolution time on open support cases.
 
-{{< figure src="/images/armory-admin/diagnostics-configure/ModeExample01.jpg" alt="Customer Configuration Example" >}}
+{{< figure src="/images/armory-admin/diagnostics-configure/ModeExample02.jpg" alt="Technical Account Manager Report Example" caption="Technical Account Manager Report Example" >}}
+
+{{< figure src="/images/armory-admin/diagnostics-configure/ModeExample01.jpg" alt="Customer Configuration Example" caption="Customer Configuration Example" >}}
 
 ## A Note on Private Data Exposure Risks
 
