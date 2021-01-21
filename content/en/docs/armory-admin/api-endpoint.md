@@ -7,7 +7,7 @@ aliases:
   - /spinnaker-install-admin-guides/api_endpoint/
   - /docs/spinnaker-install-admin-guides/api-endpoint/
 description: >
-  Set up x509 certificate authentication for exposing the Spinnaker API endpoint when you have third-party authentication configured.
+  Set up x509 certificate authentication to expose the Spinnaker API endpoint when you have third-party authentication configured.
 ---
 
 ## Overview of setting up an X509 client certificate for Spinnaker

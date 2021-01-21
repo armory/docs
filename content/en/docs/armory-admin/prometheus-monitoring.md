@@ -8,14 +8,23 @@ aliases:
 
 ## Overview
 
-Armory recommends monitoring the health of Spinnaker in every production instance. This
- document describes how to set up a basic [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) stack as well as enabling monitoring for the Spinnaker services.
+Armory recommends monitoring the health of Spinnaker in every
+production instance. This document describes how to set up a basic
+[Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) stack
+as well as enabling monitoring for the Spinnaker services.
 
 Additional Prometheus and Grafana configuration is necessary to make them
- production-grade, and this configuration is not a part of this document. Also note that monitoring the Pipelines as Code service (Dinghy) and the Terraform Integration service (Terraformer) are not discussed on this page.
+production-grade, and this configuration is not a part of this document. Also
+note that monitoring the Pipelines as Code service (Dinghy) and the Terraform
+Integration service (Terraformer) are not discussed on this page.
 
 {{% alert title="Important" color="warning" %}}
-Armory 2.20 (OSS 1.20.x) introduced changes to metric names and the Monitoring Daemon. These changes mean that the monitoring solutions before 2.20 are incompatiable with Armory 2.20.x (OSS 1.20.x) and later. If you are using one of those versions, see this page for [2.19.x](https://archive.docs.armory.io/docs/spinnaker-install-admin-guides/prometheus-monitoring/) and earlier.
+Armory 2.20 (OSS 1.20.x) introduced changes to metric names and the
+Monitoring Daemon. These changes mean that the monitoring solutions
+before 2.20 are incompatible with Armory 2.20.x (OSS 1.20.x) and
+later. If you are using one of those versions, see this page for
+[2.19.x](https://archive.docs.armory.io/docs/spinnaker-install-admin-guides/prometheus-monitoring/)
+and earlier.
 {{% /alert %}}
 
 ## Assumptions

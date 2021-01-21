@@ -4,7 +4,7 @@ linkTitle: Rate Limiting Spinnaker
 aliases:
   - /spinnaker-install-admin-guides/rate_limit/
   - /docs/spinnaker-install-admin-guides/rate-limit/
-description: Configure Spinnaker to avoid cloud provides such as AWS, GCP, and Azure from throttling your Spinnaker traffic.
+description: Configure Spinnaker to avoid cloud providers such as AWS, GCP, and Azure from throttling your Spinnaker traffic.
 ---
 
 ## How Spinnaker monitors a deployment

@@ -7,6 +7,8 @@ description: >
   Enable Armory Diagnostics so that Armory's Support team can better troubleshoot any issues you encounter.
 ---
 
+## Advantages to enabling Armory Diagnostics
+
 When you engage Armory Support, the support team might ask you about enabling Armory Diagnostics.  This sends the log and event data from the your system to Armory so that the support team can remotely investigate what might be going on with your system, resulting in a faster turnaround on solutions.
 
 >UUIDs are not checked for uniqueness.  As a result, if you have two environments and you provide both with the same UUID, the logs sent to Armory will conflict with each other.  Please ensure unique UUIDs for each environment.  

@@ -4,13 +4,13 @@ linkTitle: Bake and Share AMIs Across Accounts
 aliases:
   - /docs/spinnaker/bake-and-share/
 description: >
-  Configure Spinnaker to share an Amazon Machine Image (AMI) created where Spinnaker is installed with the AWS account where you deploy your applications.
+  Configure Spinnaker to share an Amazon Machine Image (AMI) when Spinnaker and the deployment target share the same AWS account.
 
 ---
 
 ## Overview of sharing AMIs across accounts
 
-In many environment, Spinnaker<sup>TM</sup> runs under a different AWS account than the target deployment account. This guide shows you how to configure Spinnaker to share an AMI created where Spinnaker lives with the AWS account where your applications live. This guide is assuming that AWS roles are already properly setup for talking to the target account.
+In many environments, Spinnaker<sup>TM</sup> runs under a different AWS account than the target deployment account. This guide shows you how to configure Spinnaker to share an AMI created where Spinnaker lives with the AWS account where your applications live. This guide is assuming that AWS roles are already properly setup for talking to the target account.
 
 ## Spinnaker configuration for sharing baked AMIs
 

@@ -1,11 +1,15 @@
 ---
-title: Integrating a Sumo Logic Dashboard
+title: Integrating a Sumo Logic Dashboard in Spinnaker
 linkTitle: Integrating Sumo Logic
 aliases:
   - /docs/spinnaker-install-admin-guides/sumologic-dashboard/
 description:
-  Integrating Spinnaker and Sumo Logic provides you with the ability to monitor the health and productivity of your end-to-end software delivery process through live dashboards. You gain at-a-glance visibility and longitudinal trends in usage and pipeline deployments across all dev, staging, and production environments.
+  Learn how to integrate a Sumo Logic Dashboard using Halyard or the Armory Operator.
 ---
+
+## Advantages to integrating Sumo Logic
+
+Integrating Spinnaker and Sumo Logic provides you with the ability to monitor the health and productivity of your end-to-end software delivery process through live dashboards. You gain at-a-glance visibility and longitudinal trends in usage and pipeline deployments across all dev, staging, and production environments.
 
 >This application has been developed and is supported by Armory, Inc. In case of technical questions, please [contact Armory](https://armory.io/contact) for support.
 

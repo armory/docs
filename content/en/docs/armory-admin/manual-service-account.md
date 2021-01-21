@@ -4,7 +4,7 @@ linkTitle: Creating Kubernetes Service Accounts
 aliases:
   - /docs/spinnaker-install-admin-guides/manual-service-accounts/
 description: >
-  Manually create a Kubernetes Service Account.
+  Manually create a Kubernetes Service Account to use with Spinnaker.
 ---
 
 ## What Spinnaker needs to connect to Kubernetes

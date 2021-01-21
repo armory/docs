@@ -5,7 +5,7 @@ aliases:
   - /spinnaker/configure_kayenta/
   - /docs/spinnaker/configure-kayenta/
 description: >
-  Use the Armory Operator to configure Kayenta.
+  Learn how to configure Kayenta when Spinnaker has been installed using the Armory Operator.
 ---
 
 ## Kayenta Overview

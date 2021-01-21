@@ -3,6 +3,8 @@ title: Connecting Spinnaker to Travis CI
 linkTitle: Connecting to Travis
 aliases:
   - /docs/spinnaker-install-admin/guides/configure-travis/
+description: >
+  Use Halyard to configure Spinnaker to access to your Travic CI instance.
 ---
 
 ## Overview of connecting Spinnaker to Travis

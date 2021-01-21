@@ -1,8 +1,8 @@
 ---
-title: "Working with Secrets"
+title: Working with Secrets in Spinnaker
 linkTitle: "Working with Secrets"
 description: >
-  Armory supports several secret stores. Use them to keep your secrets secure and not commit plain text secrets to your configs.
+  This section contains guides for using secrets stored outside of Spinnaker in products such as Hashicorp Vault, Google Cloud Storage, AWS S3, and the AWS Secrets Manager.
 aliases:
   - /docs/spinnaker-install-admin-guides/secrets/
   - /docs/spinnaker/halyard_secrets/

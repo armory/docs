@@ -1,5 +1,6 @@
 ---
-title: Enabling the Terraform Integration Stage
+linkTitle: Enabling the Terraform Integration Stage
+title: Enabling the Terraform Integration Stage in Spinnaker
 aliases:
   - /spinnaker/terraform_integration/
   - /spinnaker/terraform-configure-integration/

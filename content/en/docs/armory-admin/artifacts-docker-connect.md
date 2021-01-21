@@ -4,7 +4,7 @@ aliases:
   - /spinnaker_install_admin_guides/docker/
   - /docs/spinnaker-install-admin-guides/docker/
 description: >
-  Walkthrough of how to configure Spinnaker to access a Docker registry.
+  Learn how to configure Spinnaker to access a Docker registry.
 ---
 
 ## Overview of connecting Spinnaker to Docker registries
