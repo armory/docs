@@ -101,7 +101,7 @@ Other events may be the result of performing operations within Spinnaker,
 such as creating a new load balancer, or resizing a server group.
 
 ## How the Data is Used
-Armory Support and Customer Success departments may use this data to help generate reports for customers as well as look up data about the configuration of the environment and error logs.  This can help reduce the time to resolution on open cases, and also allow Technical Account Managers to provide summary information to our customers
+Armory Technical Account Manager and Support teams may use this data to help generate reports for customers as well as look up data about the configuration of the environment and error logs.  This can allow Technical Account Managers to provide summary information to our customers, and allow our Support Team to reduce the time to resolution on open cases
 
 {{< figure src="/images/armory-admin/diagnostics-configure/ModeExample02.jpg" alt="Technical Account Manager Report Example" >}}
 
