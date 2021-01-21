@@ -26,12 +26,14 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "bc-k8s-job-suffix.md" >}}
 
+<!-- Moved this to Breaking changes instead of KI. Didn't bother renaming it. -->
+{{< include "ki-orca-zombie-execution.md" >}}
+
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
 {{< include "ki-bake-var-file.md" >}}
-{{< include "ki-orca-zombie-execution.md" >}}
 {{< include "ki-lambda-ui-caching.md" >}}
 
 
@@ -43,7 +45,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
-### Baking 
+### Baking
 
 * You can now use `git/repo` artifacts when baking a helm chart.
 * Rosco now supports using a secure connection to Redis
@@ -60,6 +62,15 @@ Improvements to ECS include the following:
 #### Clouddriver
 
 You can now use PostgresSQL 10 or later as the backing store for Clouddriver. 
+
+#### Cloud Foundry
+
+Improvements to the Cloud Foundry provider include the following:
+
+* Droplets do not have to be restaged after a service gets bound anymore.
+* The endpoints now use `/v3` to provide more granular control over READ/WRITES.
+* You can now filter based on location and space. This gives you the ability to scope your Spinnaker to a specific organization or space, limiting the resources, operations, and caching to a specific organization or space.
+
 
 ### Pipelines as Code
 
