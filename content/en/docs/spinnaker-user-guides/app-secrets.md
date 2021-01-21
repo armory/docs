@@ -1,11 +1,11 @@
 ---
-title: Managing Spinnaker Application Secrets Using HashiCorp's Vault
-linkTitle: Application Secrets Management
+title: Managing Spinnaker Application Secrets Using HashiCorp Vault
+linkTitle: Managing Application Secrets
 aliases:
   - /spinnaker/app_secrets/
   - /docs/spinnaker/app-secrets/
 description: >
-  Learn how to use HashiCorp's Vault to store Spinnaker secrets.
+  Learn how to use HashiCorp Vault to store Spinnaker secrets.
 ---
 
 ## Overview of storing secrets
@@ -15,7 +15,7 @@ be tricky.  These secrets should not be saved into the application's source
 code, but they do need to be made available to the application when it runs.
 
 Several tools have been built to address this issue.  In this document, we're
-going to focus on how one might use [HashiCorp's Vault](https://www.vaultproject.io/)
+going to focus on how one might use [HashiCorp Vault](https://www.vaultproject.io/)
 to act as our secrets management utility, and then set up our application and
 clusters to pull secrets from there.
 

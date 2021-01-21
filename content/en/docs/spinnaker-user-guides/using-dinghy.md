@@ -5,8 +5,10 @@ aliases:
   - /spinnaker/using_dinghy/
   - /docs/spinnaker/using-dinghy/
 description: >
-  Learn how to store Spinnaker pipeline definitions in source code repos such as GitHub and BitBucket.
+  Learn how to use Spinnaker pipeline definitions that are stored in source code repos such as GitHub and BitBucket.
 ---
+
+## Advantages to using Pipelines as Code in Spinnaker
 
 {{< alert title="Note" >}}
 Before you can use this feature, please ensure you have [configured]({{< ref "dinghy-enable" >}}) it correctly.
@@ -14,7 +16,7 @@ Before you can use this feature, please ensure you have [configured]({{< ref "di
 
 {{% include "admin/pac-overview.md" %}}
 
-## How it works in a nutshell
+## How Pipelines as Code works
 
 GitHub (or BitBucket) webhooks are sent off when you modify either the Templates or the Module definitions. Once the webhook is sent, the following actions occur:
 

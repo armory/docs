@@ -2,5 +2,5 @@
 title: AWS Guides for Spinnaker
 linkTitle: "AWS Guides"
 description: >
-  AWS-specific guides for non-admin users of Spinnaker
+  This section contains AWS-specific guides for non-admin users of Spinnaker.
 ---
