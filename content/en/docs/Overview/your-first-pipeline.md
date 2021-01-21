@@ -1,5 +1,5 @@
 ---
-title: "Your First Pipeline"
+linkTitle: "Your First Pipeline"
 title: "Your First Pipeline in Spinnaker"
 weight: 35
 description: >
