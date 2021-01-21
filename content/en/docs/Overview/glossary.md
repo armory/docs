@@ -1,9 +1,10 @@
 ---
-title: Glossary
+linkTitle: Glossary
+title: Spinnaker Glossary
 weight: 100
+description: >
+  This glossary is a list of words and phrases and their definitions as they apply to Spinnaker.
 ---
-
-Below is a list of words and phrases as they apply to Spinnaker and their definitions, including any additional information that may be helpful.
 
 ## Amazon Web Services
 

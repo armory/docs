@@ -5,7 +5,7 @@ description: >
   Halyard is a versatile command line interface (CLI) to configure and deploy Spinnaker™.
 ---
 
-## Overview
+## Overview of Halyard and Spinnaker
 
 First, a bit of background.  Spinnaker is composed of a number of microservices (primarily Spring Java-based), that often run as Docker containers in a Kubernetes cluster.
 

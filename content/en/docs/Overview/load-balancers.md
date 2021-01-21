@@ -1,8 +1,11 @@
 ---
-title: Load Balancers
+linkTitle: Load Balancers
+title: Load Balancers in Spinnaker
 weight: 25
-description: Control Ingress with Load Balancers
+description: Learn how to control Ingress in Spinnaker with load balancers.
 ---
+
+## What is a load balancer?
 
 A Load Balancer is associated with an Ingress protocol and port range. It balances traffic among instances in its Server Groups. Optionally, you can enable health checks for a load balancer, with flexibility to define health criteria and specify the health check endpoint.
 

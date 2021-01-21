@@ -2,10 +2,10 @@
 title: Permissions in Spinnaker
 weight: 20
 description: >
-  How Fiat manages permissions in Spinnaker™
+  Learn how Fiat manages permissions in Spinnaker™.
 ---
 
-## Overview
+## Overview of Fiat
 
 Fiat is the microservice in Spinnaker responsible for authorization (authz) for the other Spinnaker services. By default, it is not enabled, so users are able to perform any action in Spinnaker. This page describes how Fiat interacts with the following Spinnaker services:
 
