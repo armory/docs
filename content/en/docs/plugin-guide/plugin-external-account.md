@@ -315,7 +315,5 @@ This plugin can read account credentials in the following layouts:
 
 - v0.1.1 (01/22/2021)
 
-    Bug fixes
-    * For sidecar git polling, using user/pass or token auth with a git url including a port number made the clone to fail
-    
-    Included some security fixes
+   * Resolved an issue where `git clone` fails if the URL included a port number. This occurred with git polling with a sidecar when using a username/password or token-based authentication. 
+   * Resolved CVEs.
