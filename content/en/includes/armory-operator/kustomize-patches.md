@@ -46,7 +46,9 @@ metadata:
 spec:
   spinnakerConfig:
     config:
-      version: 2.21.0
+      # Change the `.x` segment to the latest patch release found on our website:
+      # https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/
+      version: {{< param armory-version >}}
 ```
 
 See [the full format]({{< ref "operator-reference" >}}) for more configuration
