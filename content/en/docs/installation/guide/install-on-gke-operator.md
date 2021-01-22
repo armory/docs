@@ -110,7 +110,7 @@ kubectl config set-context $CONTEXT --user ${CONTEXT}-token-user
 
 ## Create a GCS bucket
 
-Use the [Cloud Console](https://cloud.google.com/storage/docs/creating-buckets) to create your bucket. If you're
+Use the Cloud Console to [create your bucket](https://cloud.google.com/storage/docs/creating-buckets). If you're
 going to put secrets in the bucket, make sure to create a secrets directory in
 that bucket. Also, make sure that the Kubernetes service account you created can access the bucket.
 
@@ -120,7 +120,7 @@ that bucket. Also, make sure that the Kubernetes service account you created can
 
 ### Add GCP credentials as a cluster secret
 
-The kustomize template repository that you cloned in the previous section enables you to
+The kustomize template repository that you cloned enables you to
 easily create Secret objects within your Kubernetes cluster so you can securely access
 credentials. Place the `${SERVICE_ACCOUNT_FILE}` file in the `./secrets/files`
 directory and run the `./secrets/create-secrets.sh` script.
@@ -148,7 +148,7 @@ spec:
           jsonPath: encryptedFile:k8s!n:spin-secrets!k:<SERVICE_ACCOUNT_FILE>
 ```
 
-Don't forget to put in your actual bucket name. You should also update the `jsonPath` segment with the name of the service account file you added in the
+Remember to replace `<YOUR_GCS_BUCKET_NAME>` with your bucket name. You should also update the `jsonPath` segment with the name of the service account file you added in the
 [Add GCP credentials as a cluster secret](#add-gcp-credentials-as-a-cluster-secret) section.
 
 ## Install Kustomize (optional)
