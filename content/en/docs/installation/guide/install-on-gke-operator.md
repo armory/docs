@@ -110,36 +110,49 @@ kubectl config set-context $CONTEXT --user ${CONTEXT}-token-user
 
 ## Create a GCS bucket
 
-Use the Cloud Console to create your bucket. If you're going to put secrets in the bucket, make sure to create a secrets directory in the bucket. Also, ensure the bucket is accessible from the service account you created.
+Use the [Cloud Console to create your
+bucket](https://cloud.google.com/storage/docs/creating-buckets). If you're
+going to put secrets in the bucket, make sure to create a secrets directory in
+the bucket. Also, ensure the bucket is accessible from the service account you
+created in the previous two sections.
 
 {{% include "armory-operator/kustomize-patches.md" %}}
 
-## Customize the Kustomize Files
+## Customize Your Spinnaker Installation
 
-**persistence/patch-gcs.yml**
+### Add GCP Credentials as a Cluster Secret
 
-- Set the persistent storage type, bucket, rootFolder, project, jsonPath (pick something unique)
-- Add `gcs` to the config patch
-- Add a file for `your-unique-gcs-account.json`. This will be the content from
-the GCS service account you created above. The file is named `gcs-account.json`
-in the following example:
+The kustomize template repository cloned in the previous section allows you to
+easily create Secret objects within your Kubernetes cluster to securely access
+credentials. Place the `${SERVICE_ACCOUNT_FILE}` file in the `./secrets/files`
+directory and run the `./secrets/create-secrets.sh` script.
+
+### Adding Persistance to Spinnaker
+
+Create a file in your kustomize directory called `./patch-gcs.yml` and add
+it to the `patchesStrategicMerge` section of your `kustomization.yml` file.
+
+The contents of that file should look something like this:
 
 ```yaml
-files:
-  gcs-account.json: |
-    {
-      "type": "service_account",
-      "project_id": "cloud-project",
-      "private_key_id": "cf04d5d545bOTHERSTUFFHERE9f9d134f",
-      "private_key": "-----BEGIN PRIVATE KEY-----\nSTUFF HERE\n-----END PRIVATE KEY-----\n",
-      "client_email": <your-client-email>,
-      "client_id": <your-client-id>,
-      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-      "token_uri": "https://oauth2.googleapis.com/token",
-      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-      "client_x509_cert_url": <your-cert-url>
-    }
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      persistentStorage:
+        persistentStoreType: gcs
+        gcs:
+          bucket: <YOUR_GCS_BUCKET_NAME>
+          rootFolder: front50  
+          jsonPath: encryptedFile:k8s!n:spin-secrets!k:<SERVICE_ACCOUNT_FILE>
 ```
+
+Don't forget to put in your actual bucket name. The `jsonPath` segment should 
+also be updated to the name of the service account file you added in the
+previous section.
 
 ## Install Kustomize (optional)
 
