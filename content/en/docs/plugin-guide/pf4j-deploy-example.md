@@ -2,10 +2,10 @@
 title: "pf4jStagePlugin Deployment Using the Armory Operator"
 linkTitle: "Plugin Deployment - Operator"
 description: >
-  Deploy the RandomWait Stage plugin to an Operator-managed Armory instance
+  Deploy the RandomWait Stage plugin to an Operator-managed Armory instance.
 ---
 
-{{< include "experimental-feature.html" >}}
+## Overview of the Random Wait Stage plugin
 
 In this guide, you deploy the `pf4jStagePlugin` plugin from the [spinnaker-plugin-examples](https://github.com/spinnaker-plugin-examples/examplePluginRepository) repository.
 
