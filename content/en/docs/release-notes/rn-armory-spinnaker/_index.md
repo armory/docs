@@ -1,7 +1,5 @@
 ---
 title: Armory Release Notes
-Summary: >
-  Release Notes For Armory
 aliases:
   - /releases/
   - /release/
@@ -10,6 +8,8 @@ aliases:
   - /release-notes/
 layout: release-notes-recent
 semver_list: true
+description: >
+  Release cadence, versioning explained, relation to Spinnaker releases, release types, and links to release notes for the Armory platform
 ---
 
 <!-- the release-notes-recent.html layout inserts the section index list at the top of the page -->
