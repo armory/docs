@@ -6,7 +6,7 @@ description: >
 
 ## Buildpacks and Procfiles
 
-Buildpacks typically define processes that run with some default values. These default values include things like starting process and commands. Some buildpacks, like Python, do not specify any default processes. During staging, an error occurs if there are no processes defined. This leads to an error similar to the following: `StagingError - Staging error: No process types returned from stager.` Any buildpacks that do not specify  default processes runs into the same issue. 
+Buildpacks typically define processes that run with some default values. These default values include things like starting process and commands. Some buildpacks, like Python, do not specify any default processes. During staging, an error occurs if there are no processes defined. This leads to an error similar to the following: `StagingError - Staging error: No process types returned from stager.` Any buildpacks that do not specify  default processes run into the same issue. 
 
 When developers use the `COMMAND` option in a manifest with the Cloud Foundry (CF) CLI, this command gets propagated to the process, and it gets used as expected. This is, in part, due to the fact that the CF CLI uses the v2 endpoints for the most part. Spinnaker, however, is configured to use various v3 endpoints. These allow more granular control over the deployment.
 
