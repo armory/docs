@@ -148,7 +148,7 @@ spec:
           jsonPath: encryptedFile:k8s!n:spin-secrets!k:<SERVICE_ACCOUNT_FILE>
 ```
 
-Remember to replace `<YOUR_GCS_BUCKET_NAME>` with your bucket name. You should also update the `jsonPath` segment with the name of the service account file you added in the
+Remember to replace `<YOUR_GCS_BUCKET_NAME>` with your bucket name. You should also update the `<SERVICE_ACCOUNT_FILE>` at the end of the `jsonPath` segment with the name of the service account file you added in the
 [Add GCP credentials as a cluster secret](#add-gcp-credentials-as-a-cluster-secret) section.
 
 ## Install Kustomize (optional)
