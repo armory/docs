@@ -1,21 +1,19 @@
 ---
-layout: post
-title: Configuring Vault for Kubernetes Auth
+title: Configuring Hashicorp's Vault for Kubernetes Auth
+linkTitle: Configuring Vault for Kubernetes Auth
 weight: 10
 aliases:
   - /docs/spinnaker-install-admin-guides/vault-configuration/
   - /docs/spinnaker-install-admin-guides/secrets/vault-configuration/
+description: >
+  Learn how to configure Vault to utilize the Kubernetes auth method for managing Spinnaker secrets.
 ---
 
-## Overview
+>Configuration of Vault for the Kubernetes auth method requires configuring both Vault and Kubernetes.
 
-To utilize the Kubernetes auth method for managing your Spinnaker secrets, you need to configure your Vault server. This document describes how to configure Vault for this purpose. It concludes by testing that a pod running in your Kubernetes cluster can authenticate with your Vault server using the Kubernetes auth method.
+## Configure Kubernetes
 
-Configuration of Vault for the Kubernetes auth method requires configuring both Vault and Kubernetes. We will begin by configuring Kubernetes and wrap things up by then configuring Vault itself.
-
-## Kubernetes configuration
-
-**1. Create a Service Account.**
+Create a Kubernetes Service Account.
 
 **vault-auth-service-account.yml**
 
@@ -44,16 +42,12 @@ $ kubectl -n default create serviceaccount vault-auth
 $ kubectl -n default apply --filename vault-auth-service-account.yml
 ```
 
-## Vault Configuration
+## Configure Vault
+
+>This guide assumes that [Key/Value version 1](https://www.vaultproject.io/api/secret/kv/kv-v1.html) secret engine is enabled at `secret/`.
 
 
----
-**NOTE: This guide assumes that [Key/Value version 1](https://www.vaultproject.io/api/secret/kv/kv-v1.html) secret engine is enabled at `secret/`.**
-
----
-
-
-**2. Create a read-only policy `spinnaker-kv-ro` in Vault**
+Create a read-only policy `spinnaker-kv-ro` in Vault.
 
 **spinnaker-kv-ro.hcl**
 
@@ -73,7 +67,7 @@ $ vault policy write spinnaker-kv-ro spinnaker-kv-ro.hcl
 ```
 
 
-**3. Set environment variables required for Vault configuration**
+Set environment variables required for Vault configuration.
 
 ```bash
 # Set VAULT_SA_NAME to the service account you created earlier
@@ -89,21 +83,15 @@ $ export SA_CA_CRT=$(kubectl -n default get secret $VAULT_SA_NAME -o jsonpath="{
 $ export K8S_HOST=<https://your_API_server_endpoint>
 ```
 
-**4. Configure Vault's Kubernetes auth method**
-
-
----
-**NOTE on TTL and Token Renewal**
-
+{{% alert title="NOTE on TTL and Token Renewal" color="info" %}}
 The Kubernetes Vault Auth Secrets Engine does not currently support token renewal. As such the `spinnaker` role created below provides a `TTL` of `two months`.
 
-**Note** by default Vault has a max_ttl parameter set to `768h0m0s` that's 32 days, if you want to set the `TTL` to a higher value, you need to modify this parameter.
-
+**Note** By default, Vault has a max_ttl parameter set to `768h0m0s` - that's 32 days. If you want to set the `TTL` to a higher value, you need to modify this parameter.
 
 **Important:** Spinnaker must be redeployed sometime during the defined `TTL` window -- Armory recommends this be done by updating to a new version of Spinnaker and running `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if using Operator, or `hal deploy apply` if using Halyard.
+{{% /alert %}}
 
----
-
+Next, configure Vault's Kubernetes auth method.
 
 ```bash
 # Enable the Kubernetes auth method at the default path ("kubernetes")
@@ -128,15 +116,15 @@ $ vault write auth/kubernetes/role/spinnaker \
 
 It is time verify that the Kubernetes auth method has been properly configured.
 
-**5. Deploy Armory's [debug container](https://github.com/armory/troubleshooting-toolbox/blob/master/docker-debugging-tools/Dockerfile) into your cluster -- this container has the Vault cli pre-installed.**
+Deploy Armory's [debug container](https://github.com/armory/troubleshooting-toolbox/blob/master/docker-debugging-tools/Dockerfile) into your cluster -- this container has the Vault cli pre-installed.
 
-**Note: This should be deployed into the same namespace as your Spinnaker install**
+>This should be deployed into the same namespace as your Spinnaker installation.
 
 ```bash
 kubectl apply -f  https://raw.githubusercontent.com/armory/troubleshooting-toolbox/master/docker-debugging-tools/deployment.yml
 ```
 
-**6. `exec` into the pod**
+`exec` into the pod.
 
 ```bash
 POD_NAME=$(kubectl get pod -l app=debugging-tools -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' --sort-by=".status.startTime" | tail -n 1)
@@ -144,7 +132,7 @@ POD_NAME=$(kubectl get pod -l app=debugging-tools -o go-template --template '{{r
 kubectl exec -it $POD_NAME bash
 ```
 
-**7. Test the auth method**
+Test the auth method.
 
 ```bash
 export VAULT_ADDR='http://your.vault.address:port'
@@ -172,13 +160,13 @@ token_meta_service_account_secret_name    default-token-h9knn
 token_meta_service_account_uid            13cee6Dbc-0bc2-11e9-9fd2-0a32f8e530cc
 ```
 
-Using the token from the output above allows for the following
+Using the token from the output above allows for the following:
 
 ```bash
 vault login s.bKSSrYOcETCADGvGxhbDaaaD
 ```
 
-Once logged in you should be able to read secrets
+Once logged in you should be able to read secrets:
 
 ```bash
 vault kv get secret/spinnaker/test

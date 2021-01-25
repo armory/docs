@@ -1,11 +1,12 @@
 ---
 title: Spinnaker GitOps with Halyard
-description: You can manage your Halyard configs as part of a GitOps workflow by storing it in source control.
 aliases:
   - /docs/spinnaker-install-admin-guides/halyard-gitops/
+description: >
+  Create a workflow to store Spinnaker configuration files in GitOps and automate deployment.
 ---
 
-## Workflow
+## Spinnaker GitOps workflow
 
 This approach enables the following workflow:
 

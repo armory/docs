@@ -1,5 +1,5 @@
 ---
-title: "Configuring AWS for Armory (using IAM Instance roles)"
+title: "Configuring AWS for Spinnaker Using IAM Instance Roles"
 linkTitle: Configuring AWS (IAM Instance Roles)
 aliases:
   - /spinnaker_install_admin_guides/add-aws-account-iam/
@@ -8,50 +8,65 @@ aliases:
   - /docs/spinnaker-install-admin-guides/add-aws-account-iam/
   - /docs/armory-admin/aws-iam-roles-configure
   - /armory-admin/aws-iam-roles-configure
+description: >
+ Learn how to deploy your applications from Spinnaker to Amazon Web Services using IAM Instance Roles.
 ---
 
-Once you have Armory up and running in Kubernetes, you'll want to start adding deployment targets.  *This document assumes Armory was installed with Operator or Halyard, that you have access to the Armory config files, a way to apply them (`kubectl` or `hal`), and that you have a way to create AWS permissions, users, and roles*
-
-## Overview
+## Overview of deploying applications to AWS
 
 This document will guide you through the following:
 
-* Understanding AWS deployment from Armory
+* Understanding AWS deployment from Spinnaker<sup>TM</sup>
 
-* Configuring Armory to access AWS using an IAM User (with an Access Key and Secret Access Key)
-  * Creating a Managed Account IAM Role in each your target AWS Accounts
+* Configuring Spinnaker to use AWS IAM Instance Roles (if Spinnaker is running on AWS, either via AWS EKS or installed directly on EC2 instances)
+  * Creating a Managed Account IAM Role in each of your target AWS Accounts
   * Creating the default BaseIamRole for use when deploying EC2 instances
   * Creating a Managing Account IAM Policy in your primary AWS Account
-  * Adding the Managing Account IAM Policy to the IAM Instance Profile on your Armory AWS Nodes
-  * Configuring the Managed Accounts to trust the Managing Account IAM User
-  * Adding the Managing Account User and Managed Accounts to Armory
-  * Adding/Enabling the AWS Cloudprovider to Armory
+  * Adding the Managing Account IAM Policy to the existing IAM Instance Role on the AWS nodes
+  * Configuring the Managed Accounts IAM Roles to trust the IAM Instance Role from the AWS nodes
+  * Adding the Managed Accounts to Spinnaker
+  * Adding/Enabling the AWS Cloud Provider to Spinnaker
 
-## Background: Understanding AWS Deployment from Armory
+## Prerequisites for deploying to AWS
 
-Even though Armory is installed in Kubernetes, it can be used to deploy to other cloud environments, such as AWS.  Rather than granting Armory direct access to each of the target AWS accounts, Armory will assume a role in each of the target accounts.
+* You installed Spinnaker with Operator or Halyard.
+* You have access to the Spinnaker config files, and a way to apply them (`kubectl` for Operator or `hal` for Halyard).
+* If you're using Operator, you have a access to run `kubectl` commands against the cluster where Spinnaker is installed. If you're using Halyard, you have access to it.
+* You have permissions to create IAM roles using IAM policies and permissions, in all relevant AWS accounts.
+  * You should also be able to set up cross-account trust relationships between IAM roles.
+* If you want to add the IAM Role to Spinnaker via an Access Key/Secret Access Key, you have permissions to create an IAM User.
+* If you want to add the IAM Role to Spinnaker via IAM instance profiles/policies, you have permissions to modify the IAM instance.
 
-### Deploying
+>All configuration with AWS in this document will be handled via the browser-based AWS Console.  All configurations could **alternatively** be configured via the `aws` CLI, but this is not currently covered in this document.
 
-Armory is able to deploy EC2 instances (via ASGs).
+Also - you will be granting AWS Power User Access to each of the Managed Account Roles.  You could optionally grant fewer permissions, but those more limited permissions are not covered in this document.
 
-* Armory's Clouddriver Pod should be able to assume a **Managed Account Role** in each deployment target AWS account, and use that role to perform any AWS actions.  This may include one or more of the following:
+## Background: Understanding AWS Deployment from Spinnaker
+
+Even if Spinnaker is installed in Kubernetes, it can be used to deploy to other cloud environments, such as AWS.  Rather than granting Spinnaker direct access to each of the target AWS accounts, Spinnaker will assume a role in each of the target accounts.
+
+### Deploying to AWS EC2
+
+Spinnaker is able to deploy EC2 instances via Auto Scaling Groups.
+
+* Spinnaker's Clouddriver Pod should be able to assume a **Managed Account Role** in each deployment target AWS account, and use that role to perform any AWS actions.  This may include one or more of the following:
   * Create AWS Launch Configurations and Auto Scaling Groups to deploy AWS EC2 instances
   * Run ECS Containers
   * Run AWS Lambda Actions (alpha/beta as of the time of this document)
   * Create AWS CloudFormation Stacks (alpha/beta as of the time of this document)
-* Clouddriver is configured with direct access to a **"Managing Account"** Policy (_it may be helpful to think of this as the **Master** or **Source** Policy_), which is accomplished on one of two ways:
-  * If Armory is running in AWS (either in AWS EKS, or with Kubernetes nodes running in AWS EC2), the Managing Account Policy can be made available to Armory by adding it to the AWS nodes (EC2 instances) where the Armory Clouddriver pod(s) are running.
+* Clouddriver is configured with direct access to a **"Managing Account"** Policy (_it may be helpful to think of this as the **Master** or **Source** Policy_), which is accomplished in one of two ways:
+  * If Spinnaker is running in AWS (either in AWS EKS, or with Kubernetes nodes running in AWS EC2), the Managing Account Policy can be made available to Spinnaker by adding it to the AWS nodes (EC2 instances) where the Spinnaker Clouddriver pod(s) are running.
     * _(You can also use Kube2IAM or similar capabilities, but this is not covered in this document)_
-  * An IAM User with access to the Managing Account Policy can be passed directly to Armory via an Access Key and Secret Access Key
-* For each AWS account that you want Armory to be able to deploy to, Armory needs a **"Managed Account"** Role in that AWS account, with permissions to do the things you want Armory to be able to do (_it may be helpful to think of this as a **Target Role**_)
+  * An IAM User with access to the Managing Account Policy can be passed directly to Spinnaker via an Access Key and Secret Access Key
+* For each AWS account that you want Spinnaker to be able to deploy to, Spinnaker needs a **"Managed Account"** Role in that AWS account, with permissions to do the things you want Spinnaker to be able to do (_it may be helpful to think of this as a **Target Role**_)
 * The Managing Account Role (Source/Master Role) should be able to assume each of the Managed Account Roles (Target Roles).  This requires two things:
   * The Managing Account Role needs a permission string for each Managed Account it needs to be able to assume.  _It may be helpful to think of this as an outbound permission._
   * Each Managed Account needs to have a trust relationship with the Managing Account User or Role to allow the Managing Account User or Role to assume it.  _It may be helpful to think of this as an inbound permission._
 
-In addition, if you are deploying EC2 instances with AWS, you will need to provide an IAM role for each instance.  If you do not specify a role, Armory will attempt to use a role called `BaseIAMRole`.  So you should create a BaseIAMRole (potentially with no permissions).
+In addition, if you are deploying EC2 instances with AWS, you will need to provide an IAM role for each instance.  If you do not specify a role, Spinnaker will attempt to use a role called `BaseIAMRole`.  So you should create a BaseIAMRole (potentially with no permissions).
 
-### Example
+
+### Deployment scenario
 
 Here's an example situation:
 
@@ -72,7 +87,7 @@ Here's an example situation:
   * The `iam:PassRole` permission for roles that will be assigned to EC2 instances that are being deployed
   * A trust relationship with the IAM Instance Role attached to the EC2 instances where Armory is running (to allow Armory to assume the Managed Account Role)
 
-### Configuration
+### Spinnaker configuration examples
 
 {{< tabs name="configure" >}}
 {{% tab name="Operator" %}}
@@ -185,22 +200,6 @@ Here's a sample halconfig `aws` YAML block that supports the above:
    ```
 {{% /tab %}}
 {{< /tabs >}}
-
-## Prerequisites
-
-This document assumes the following:
-
-* Your Armory is up and running
-* Your Armory was installed and configured via Operator or Halyard
-* **Operator**: you have access to run `kubectl` commands against the cluster where Armory is installed. If you're using Halyard, you have access to it
-* You have permissions to create IAM roles using IAM policies and permissions, in all relevant AWS accounts
-  * You should also be able to set up cross-account trust relationships between IAM roles.
-* If you want to add the IAM Role to Armory via an Access Key/Secret Access Key, you have permissions to create an IAM User
-* If you want to add the IAM Role to Armory via IAM instance profiles/policies, you have permissions to modify the IAM instance
-
-_All configuration with AWS in this document will be handled via the browser-based AWS Console.  All configurations could **alternately** be configured via the `aws` CLI, but this is not currently covered in this document._
-
-Also - we will be granting AWS Power User Access to each of the Managed Account Roles.  You could optionally grant fewer permisisons, but those more limited permissions are not covered in this document.
 
 ## Configuring Armory to use AWS IAM Instance Roles
 

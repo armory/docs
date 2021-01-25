@@ -1,18 +1,23 @@
 ---
-title: Bake and Share AMIs Across Accounts
+title: Bake and Share Amazon Machine Images Across Accounts
+linkTitle: Bake and Share AMIs Across Accounts
 aliases:
   - /docs/spinnaker/bake-and-share/
+description: >
+  Configure Spinnaker to share an Amazon Machine Image (AMI) when Spinnaker and the deployment target share the same AWS account.
+
 ---
 
-## Overview
+## Overview of sharing AMIs across accounts
 
-Many people have Spinnaker sitting in a different AWS account than where they are deploying to (the target account). This guide will show you how to configure Spinnaker to share an AMI created where Spinnaker lives with the AWS account where your applications live. This guide is assuming that AWS roles are already properly setup for talking to the target account.
+In many environments, Spinnaker<sup>TM</sup> runs under a different AWS account than the target deployment account. This guide shows you how to configure Spinnaker to share an AMI created where Spinnaker lives with the AWS account where your applications live. This guide is assuming that AWS roles are already properly setup for talking to the target account.
 
-## Configuration
+## Spinnaker configuration for sharing baked AMIs
 
-**Operator**
+{{< tabs name="config" >}}
+{{% tab name="Operator" %}}
 
-You can add the following snippet to your `SpinnakerService` manifest and apply it after replacing the examplvalues with ones that correspond to your environment. The example adds an AWS account and configures the bakinservice (Rosco) with default values:
+You can add the following snippet to your `SpinnakerService` manifest and apply it after replacing the example values with ones that correspond to your environment. The example adds an AWS account and configures the baking service (Rosco) with default values:
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -50,7 +55,8 @@ spec:
           ... # Config omitted for brevity
 ```
 
-**Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 First, add the AWS provider account with [Halyard](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-aws-account-add). Next, make sure to enable the AWS provider:
 
@@ -68,7 +74,10 @@ env:
 
 `SPINNAKER_AWS_DEFAULT_ACCOUNT` is the target account ID.
 
-## Bake Stage
+{{% /tab %}}
+{{< /tabs >}}
+
+## Spinnaker pipeline Bake stage configuration
 
 ![Bake Stage](/images/bake-and-share-1.png)
 

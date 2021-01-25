@@ -4,12 +4,12 @@ linkTitle: Rate Limiting Spinnaker
 aliases:
   - /spinnaker-install-admin-guides/rate_limit/
   - /docs/spinnaker-install-admin-guides/rate-limit/
-description: By default Spinnaker, queries (polls) the entire state of cloud resources managed by Spinnaker every 30 seconds through the Clouddriver service.
+description: Configure Spinnaker to avoid cloud providers such as AWS, GCP, and Azure from throttling your Spinnaker traffic.
 ---
 
 ## How Spinnaker monitors a deployment
 
-The polling can cause cloud providers, such as AWS, to throttle the requests on your account. If you have a large number of Auto-Scaling Groups and Elastic Load Balancers in your account or other services commonly querying the same APIs then you can expect to see throttling exceptions in your Spinnaker logs.
+Spinnaker polls the entire state of managed cloud resources every 30 seconds through the Clouddriver service. The polling can cause cloud providers, such as AWS, to throttle the requests on your account. If you have a large number of Auto-Scaling Groups and Elastic Load Balancers in your account or other services commonly querying the same APIs then you can expect to see throttling exceptions in your Spinnaker logs.
 
 ### How to alleviate AWS throttling exceptions
 
@@ -200,7 +200,7 @@ This is the number of retries before the request fails. It's used with an expone
 
 If Fiat is configured to poll Github or Google, you may end up seeing rate limits when Fiat does its polling for user groups. Some symptoms that you might see are:
 
-- You can't log into spinnaker anymore
+- You can't log into Spinnaker anymore
 - Your Fiat logs contain lines similar to:
 
   ```

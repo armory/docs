@@ -1,16 +1,15 @@
 ---
 title: Restrict Application Creation
-description: "Configure Fiat, the Spinnaker microservice responsible for authorization (authz), to control which users can create applications by using the `prefix` parameter."
+description: >
+  Configure Fiat, the Spinnaker microservice responsible for authorization (authz), to control which users can create applications by using the `prefix` parameter.
 aliases:
   - /docs/spinnaker-install-admin-guides/fiat-create-permissions/
 ---
 
-## Requirements
+## Requirements and guidelines for using Fiat
 
-* Armory 2.17 (OSS 1.17) or later
-* Fiat must be enabled and configured to work with an identity provider. For more information, see [Authorization (RBAC)](https://www.spinnaker.io/setup/security/authorization/). 
-
-## Guidelines
+* Armory 2.17 (Open Source Spinnaker<sup>TM</sup> 1.17) or later
+* Fiat must be enabled and configured to work with an identity provider. For more information, see [Authorization (RBAC)](https://www.spinnaker.io/setup/security/authorization/).
 
 When managing roles for Spinnaker, keep the following in mind:
 
@@ -20,7 +19,7 @@ When managing roles for Spinnaker, keep the following in mind:
 
 ## Restrict application creation
 
-Perform the following steps:
+To restrict which users can create applications in Spinnaker, perform the following steps:
 
 1. Add the line `auth.permissions.provider.application: aggregate` to `SpinnakerService` manifest under key `spec.spinnakerConfig.profiles.fiat` if you are using Operator to deploy Spinnaker, or to `fiat-local.yml` if you are using Halyard.
 2. Add prefixes as a source:
@@ -61,11 +60,11 @@ Perform the following steps:
            auth.permissions.source.application.prefix:
              enabled: true
              prefixes:
-               # Defines the prefix `apptest-x`. 
+               # Defines the prefix `apptest-x`.
              - prefix: "apptest-*"
                permissions:
                  # Defines permission requirements for all applications that match the prefix `apptest-*` based on roles.
-                 # role-one and role-two have READ permission 
+                 # role-one and role-two have READ permission
                  READ:
                  - "role-one"
                  - "role-two"
@@ -118,5 +117,5 @@ Perform the following steps:
 
 5. Apply your configuration changes to Spinnaker by running the following command: `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if you are using Operator, or `hal deploy apply` if you are using Halyard.
 
-The following screenshot shows what happens when a user without sufficient permissions attempts to create an application in Deck, Spinnaker's UI: 
+The following screenshot shows what happens when a user without sufficient permissions attempts to create an application in Deck, Spinnaker's UI:
 ![No CREATE Permission](/images/authz_create_permission.png)

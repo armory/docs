@@ -2,13 +2,15 @@
 title: Secrets with AWS Secrets Manager
 aliases:
   - /docs/spinnaker-install-admin-guides/secrets/secrets-aws-sm/
+description: >
+  Configure the AWS Secrets Manager as a secrets engine for Spinnaker.
 ---
 
-You can configure AWS Secrets Manager as a secrets engine for Spinnaker.  See the AWS Secrets Manager [User Guide](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) for how to set up AWS Secrets Manager,
+>See the AWS Secrets Manager [User Guide](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) for how to set up AWS Secrets Manager,
 
-## Authorization
+## Authorize Spinnaker to access the AWS Secrets Manager
 
-Remember to run the Operator (or Halyard's daemon) and Spinnaker services with IAM roles that allow them to read the keys stored in the AWS Secrets Manager. The following example policy enables access to the AWS Secrets Manger and the KMS store:
+Remember to run the Operator (or Halyard's daemon) and Spinnaker<sup>TM</sup> services with IAM roles that allow them to read the keys stored in the AWS Secrets Manager. The following example policy enables access to the AWS Secrets Manger and the KMS store:
 
 ```json
   {

@@ -5,14 +5,14 @@ linkTitle: Baking Machine Images
 aliases:
   - /spinnaker_install_admin_guides/packer/
   - /docs/spinnaker-install-admin-guides/packer/
-description: Bake (build) machine images for deployment on AWS
+description: Bake (build) machine images for deployment on AWS.
 ---
 
-## Overview
+## Overview of baking images in Spinnaker
 
 Spinnaker<sup>TM</sup> uses the open source Packer tool to bake images, which is included in the Spinnaker Rosco microservice. For example, if you are deploying to AWS, you can use Spinnaker to bake Amazon Machine Images (AMIs) from the artifacts that were produced by your CI tool.  
 
-**Note** This section focuses on configuring Packer scripts to build machine images (such as AMIs).  If you're only deploying to Kubernetes, you can skip this section.
+>This section focuses on configuring Packer scripts to build machine images (such as AMIs).  If you're only deploying to Kubernetes, you can skip this section.
 
 ## Configuring AWS bake credentials
 

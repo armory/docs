@@ -3,16 +3,16 @@ title: Connecting Spinnaker to Jenkins
 linkTitle: Connecting to Jenkins
 aliases:
   - /docs/spinnaker-install-admin-guides/jenkins/
-Description: To use Jenkins in Spinnaker, configure access to your Jenkins instance.
+description: >
+  Use Halyard or the Armory Operator to configure Spinnaker to access to your Jenkins instance.
 ---
 
+> Consult the Spinnaker documentation's [Jenkins page](https://www.spinnaker.io/setup/ci/jenkins/) for an in-depth guide.
 
-> The Spinnaker project has more in-depth documentation on configuring Jenkins
-> in Spinnaker [here](https://www.spinnaker.io/setup/ci/jenkins/).
+## Enable Jenkins in Spinnaker
 
-## Enable Jenkins Support
-
-**Operator**
+{{< tabs name="enable" >}}
+{{% tab name="Operator" %}}
 
 Add the following snippet to your `SpinnakerService` manifest:
 
@@ -29,13 +29,17 @@ spec:
           enabled: true
 ```
 
-**Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 Enable Jenkins using the Halyard command:
 
 ```bash
 hal config ci jenkins enable
 ```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Create a User API Token in Jenkins
 
@@ -55,7 +59,8 @@ available jobs and display them in the UI for triggers and stages.
 
 Add the Jenkins master to Spinnaker:
 
-**Operator**
+{{< tabs name="add" >}}
+{{% tab name="Operator" %}}
 
 Add the following snippet to your `SpinnakerService` manifest:
 
@@ -83,7 +88,9 @@ Don't forget to apply your changes:
 kubectl -n >spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
 
-**Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
+
 
 ```bash
 hal config ci jenkins master add <jenkins-master-name> \
@@ -93,6 +100,9 @@ hal config ci jenkins master add <jenkins-master-name> \
 ```
 
 Apply your changes using `hal deploy apply`.
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Troubleshooting Authentication / Connectivity
 
