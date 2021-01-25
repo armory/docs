@@ -6,6 +6,10 @@ description: >
   Successful installation and startup messages, common errors, tips, and gRPC endpoint testing.
 ---
 
+## Networking issues
+
+Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between Clouddriver and the Agent.   
+
 ## Agent plugin messages
 
 After a successful plugin installation, `spin-clouddriver-grpc` (or `spin-clouddriver-ha-grpc`) service should be up:
@@ -69,9 +73,6 @@ grpcurl -v <your-grpc-endpoint>:<port> list
 
 Use `-plaintext` or `-insecure` depending on whether your endpoint is configured for TLS.
 
-## Networking Requirements
-
-Communication between CloudDriver and Agent must allow for `http/2` communication. `http/1.1` will not be compatible and causes issues for the communication between the two parts.  
 
 ## Agent service messages
 
