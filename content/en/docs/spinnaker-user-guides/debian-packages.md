@@ -13,7 +13,7 @@ description: >
   Learn why you should use Debian packages in your Spinnaker pipelines.
 ---
 
-## Why Use Debian packages
+## Why use Debian packages
 
 While Spinnaker is flexible to use any dependency management system, it is predisposed to manage Debian packages due to its default settings with Rosco, Orca and Jenkins.  
 
