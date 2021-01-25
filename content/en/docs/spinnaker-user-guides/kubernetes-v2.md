@@ -1,15 +1,17 @@
 ---
-title: Kubernetes V2 Provider Guide
+title: Deploying to Kubernetes
 # This is different from user-guides/kubernetes - no redirect
 aliases:
   - /spinnaker_user_guides/kubernetes-v2/
   - /spinnaker_user_guides/kubernetes_v2/
   - /spinnaker-user-guides/kubernetes_v2/
+description: >
+  Learn how to use Spinnaker's Kubernetes V2 provider to deploy your applications.
 ---
 
-## Overview
+## Overview of Spinnaker's Kubernetes V2 Provider
 
-The new Kubernetes provider is centered on delivering and promoting Kubernetes manifests to different Kubernetes environments. These manifests are delivered to Spinnaker using [artifacts](https://www.spinnaker.io/reference/artifacts/in-kubernetes-v2/#kubernetes-objects-as-artifacts) and applied to the target cluster using `kubectl` in the background. Currently, there is support to supply artifacts through Git, GCS and Google Pub/Sub.  The V2 provider manages the version of the artifacts deployed to Kubernetes by appending a string such as `v421` to the resource that was deployed to Kubernetes.  This allows for easy rollbacks and management of resources.
+The  Kubernetes V2 provider is centered on delivering and promoting Kubernetes manifests to different Kubernetes environments. These manifests are delivered to Spinnaker using [artifacts](https://www.spinnaker.io/reference/artifacts/in-kubernetes-v2/#kubernetes-objects-as-artifacts) and applied to the target cluster using `kubectl` in the background. Currently, there is support to supply artifacts through Git, GCS and Google Pub/Sub.  The V2 provider manages the version of the artifacts deployed to Kubernetes by appending a string such as `v421` to the resource that was deployed to Kubernetes.  This allows for easy rollbacks and management of resources.
 
 ### Current limitations
 *  The only supported services for artifact delivery are Github, GCS, or Google Pub/Sub. S3, SQS, and SNS are currently not supported.

@@ -1,5 +1,5 @@
 ---
-title: Automating Spinnaker™
+title: Automating Spinnaker
 aliases:
   - /user-guides/writing-scripts/
   - /user-guides/writing_scripts/
@@ -8,10 +8,12 @@ aliases:
   - /spinnaker_user_guides/writing_scripts/
   - /spinnaker_user_guides/writing-scripts/
   - /spinnaker-user-guides/writing_scripts/
+description: >
+  Access Spinnaker's REST APIs.
 ---
 
 ## API docs
-People often ask how they can write scripts and use Spinnaker programmatically. Spinnaker is a collection of subservices that all expose a RESTful API. You can see a list (with descriptions) of all of the endpoints by navigating to:
+People often ask how they can write scripts and use Spinnaker™ programmatically. Spinnaker is a collection of subservices that all expose a RESTful API. You can see a list (with descriptions) of all of the endpoints by navigating to:
 
 ```
 http(s)://<your-gate-url>/swagger-ui.html

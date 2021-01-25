@@ -1,13 +1,16 @@
 ---
-title: Using Automatic Canary Analysis
+linkTitle: Using Automatic Canary Analysis
+title: Using Automatic Canary Analysis in Spinnaker
 aliases:
   - /spinnaker_user_guides/kayenta/
   - /docs/spinnaker-user-guides/kayenta
+description: >
+  Learn how to configure and use Kayenta for Automatic Canary Analysis in Spinnaker.
 ---
 
 {{< include "user-guide/canary/config-kayenta-frag.md" >}}
 
-## Overview
+## Overview of Kayenta for Automated Canary Analysis
 
 Kayenta is the Spinnaker service that performs Automated Canary Analysis (ACA). The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence.
 
@@ -18,11 +21,11 @@ Kayenta uses real-time data sources to validate that a canary is good or bad. To
 * Prometheus
 * New Relic
 * Dynatrace (Armory feature)
-* Cloudwatch (Armory feature)
+* CloudWatch (Armory feature)
 
 ## Configuring Kayenta on an application
 
-If Kayenta is enabled for you instance, if you go to an application's config
+If Kayenta is enabled for your instance, if you go to an application's config
 you should see a checkbox to enable Canarying:
 
 ![image](/images/Image-2018-10-23-at-3.25.33-PM.png)

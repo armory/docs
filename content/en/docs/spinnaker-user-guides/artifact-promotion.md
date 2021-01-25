@@ -1,17 +1,20 @@
 ---
-title: Artifact Progression through Environments
+title: Artifact Progression Through Environments in Spinnaker
+linkTitle: Artifact Progression
 aliases:
   - /spinnaker/artifact_promotion/
   - /docs/spinnaker/artifact-promotion/
+description: >
+  Learn how to deploy artifacts to different environments based on pipeline execution.
 ---
 
+## Prerequisites
 
-## Prereqs
 [Configure Github to post push events](https://www.spinnaker.io/guides/tutorials/codelabs/kubernetes-v2-source-to-prod/#allow-github-to-post-push-events)
 
-[Add two kubernetes accounts (staging and prod)](https://www.spinnaker.io/guides/tutorials/codelabs/kubernetes-v2-source-to-prod/#configure-kubernetes)
+[Add two Kubernetes accounts (staging and prod)](https://www.spinnaker.io/guides/tutorials/codelabs/kubernetes-v2-source-to-prod/#configure-kubernetes)
 
-## Background
+## Overview of promoting artifacts between environments
 
 One of the more powerful and common uses of Spinnaker is the promotion of
 an artifact through a series of environments, i.e. from *staging* to *prod*.
@@ -26,8 +29,6 @@ environment.
 Determining promotion success can be accomplished through the completion of
 integration tests or another automated method but it can also be determined
 through manual judgement. We make use of the latter case in our example below.
-
-## Overview
 
 Below is an example where we deploy an artifact to our *staging* environment.
 The successful completion of this pipeline then triggers another pipeline

@@ -1,8 +1,8 @@
 ---
-title: Bake an Amazon Machine Image
-linkTitle: Bake an AMI
+title: Baking Amazon Machine Images in a Spinnaker Pipeline
+linkTitle: Baking an AMI
 description: >
-  Create a pipeline that bakes an Amazon Machine Image (AMI)
+  Create a pipeline that bakes an Amazon Machine Image (AMI).
 aliases:
   - /spinnaker_user_guides/baking/
   - /user-guides/baking-images/
@@ -15,9 +15,9 @@ aliases:
   - /docs/spinnaker-user-guides/baking-images/
 ---
 
-Definition: The term 'baking' is used within Armory and Spinnaker<sup>TM</sup> to refer to the process of creating machine images.
+Definition: The phrase "baking images" is used within Armory and Spinnaker<sup>TM</sup> to refer to the process of creating machine images.
 
-## Prerequisites:
+## Prerequisites for baking AMIs
 
 - You are familiar with creating [applications]({{< ref "your-first-application" >}}) and [pipelines]({{< ref "your-first-pipeline" >}}).
 - You are deploying to Amazon Web Services (AWS).
@@ -25,7 +25,7 @@ Definition: The term 'baking' is used within Armory and Spinnaker<sup>TM</sup> t
 - You are familiar with Debian packages. See the {{< linkWithTitle debian-packages.md >}} guide for more information.
 
 
-## Baking in a pipeline
+## Example of how to bake an AMI in a pipeline
 
 In this example, you bake an image containing a Debian package created by a Jenkins job.
 
@@ -91,7 +91,7 @@ If I press 'Start Manual Execution' again, since the package version hasn't chan
 
 Notice the whole pipeline only ran for '00:00' and the UI says 'No changes detected; reused existing bake'
 
-## Advanced options
+## Advanced options for baking AMIs
 
 You can do additional things like use a specific base AMI, specify your baked AMI's name, use a custom packer script, or pass variables to a packer script.
 

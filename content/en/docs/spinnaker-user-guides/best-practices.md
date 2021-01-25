@@ -1,5 +1,5 @@
 ---
-title: Best Practices
+title: Spinnaker Best Practices
 aliases:
   - /user-guides/best-practices/
   - /user-guides/best_practices/
@@ -8,6 +8,8 @@ aliases:
   - /spinnaker_user_guides/best-practices/
   - /spinnaker_user_guides/best_practices/
   - /spinnaker-user-guides/best_practices/
+description: >
+  Read about best practices for configuration and secret management. 
 ---
 
 ## Configuration management
