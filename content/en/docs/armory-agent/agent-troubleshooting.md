@@ -41,6 +41,22 @@ ops.Operations
 
 > Use `-plaintext` if your gRPC endpoint is not configured for TLS, `-insecure` if you are using TLS with custom certificates.
 
+### Verbose gRPC Logging Information
+If the above information does not provide enough details, it is also possible to use the following commands to set verbose logging on the `curl` that will be run
+
+```
+export GRPC_GO_LOG_SEVERITY_LEVEL=info GRPC_GO_LOG_VERBOSITY_LEVEL=2 
+```
+
+Then run the `curl` command to see the detailed information
+
+```
+grpcurl -v -insecure <endpoint>:<port> list
+```
+
+## Networking Requirements
+
+Communication between CloudDriver and Agent must allow for `http/2` communication. `http/1.1` will not be compatible and causes issues for the communication between the two parts.  
 
 ## Agent service messages
 

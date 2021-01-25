@@ -16,6 +16,10 @@ weight: 2
 
 The Agent consists of a service deployed as a Kubernetes `Deployment` and a plugin to Spinnaker's Clouddriver service. Be sure to check out the [architecture]({{< ref "armory-agent" >}}).
 
+## Networking Requirements
+
+Communication between CloudDriver and Agent must allow for `http/2` communication. `http/1.1` will not be compatible and causes issues for the communication between the two parts.  
+
 ## Step 1: Agent plugin installation
 
 You modify the current Clouddriver deployment as well as add a new Kubernetes `Service`.
