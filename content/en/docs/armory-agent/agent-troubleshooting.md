@@ -65,13 +65,43 @@ First execute the following:
 export GRPC_GO_LOG_SEVERITY_LEVEL=info GRPC_GO_LOG_VERBOSITY_LEVEL=2
 ```
 
-Then run the `grpcurl` command to see the verbose output:
+Then run the `grpcurl` command like in the above step, to see the verbose output:
 
 ```
 grpcurl -v <your-grpc-endpoint>:<port> list
 ```
 
 Use `-plaintext` or `-insecure` depending on whether your endpoint is configured for TLS.
+
+Output without the export commands:
+```
+events.Caching
+grpc.health.v1.Health
+grpc.reflection.v1alpha.ServerReflection
+ops.Operations
+```
+
+Output with the export commands
+```
+INFO: 2021/01/25 22:10:52 parsed scheme: ""
+INFO: 2021/01/25 22:10:52 scheme "" not registered, fallback to default scheme
+INFO: 2021/01/25 22:10:52 ccResolverWrapper: sending update to cc: {[{192.168.88.133:9091  <nil> 0 <nil>}] <nil> <nil>}
+INFO: 2021/01/25 22:10:52 ClientConn switching balancer to "pick_first"
+INFO: 2021/01/25 22:10:52 Channel switches to new LB policy "pick_first"
+INFO: 2021/01/25 22:10:52 Subchannel Connectivity change to CONNECTING
+INFO: 2021/01/25 22:10:52 Subchannel picks a new address "192.168.88.133:9091" to connect
+INFO: 2021/01/25 22:10:52 pickfirstBalancer: UpdateSubConnState: 0xc0002996b0, {CONNECTING <nil>}
+INFO: 2021/01/25 22:10:52 Channel Connectivity change to CONNECTING
+INFO: 2021/01/25 22:10:52 Subchannel Connectivity change to READY
+INFO: 2021/01/25 22:10:52 pickfirstBalancer: UpdateSubConnState: 0xc0002996b0, {READY <nil>}
+INFO: 2021/01/25 22:10:52 Channel Connectivity change to READY
+events.Caching
+grpc.health.v1.Health
+grpc.reflection.v1alpha.ServerReflection
+ops.Operations
+INFO: 2021/01/25 22:10:52 Channel Connectivity change to SHUTDOWN
+INFO: 2021/01/25 22:10:52 Subchannel Connectivity change to SHUTDOWN
+```
 
 
 ## Agent service messages
