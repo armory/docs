@@ -32,26 +32,39 @@ In Infrastructure or Agent modes, you can test the gRPC endpoints with the
 [`grpcurl`](https://github.com/fullstorydev/grpcurl) utility.
 
 ```bash
-$ grpcurl your-grpc-endpoint:443 list
+$ grpcurl <your-grpc-endpoint>:<port> list
+```
+
+The default `port` is `443`.
+
+Command options:
+
+* `-plaintext`: if your gRPC endpoint is not configured for TLS
+* `-insecure`: if you are using TLS with custom certificates.
+
+Output is similar to:
+
+```bash
 events.Caching
 grpc.health.v1.Health
 grpc.reflection.v1alpha.ServerReflection
 ops.Operations
 ```
 
-> Use `-plaintext` if your gRPC endpoint is not configured for TLS, `-insecure` if you are using TLS with custom certificates.
+### Verbose logging
 
-### Verbose gRPC Logging Information
-If the above information does not provide enough details, it is also possible to use the following commands to set verbose logging on the `curl` that will be run
+You have to change the logging and verbosity levels to display detailed logging output.
 
-```
-export GRPC_GO_LOG_SEVERITY_LEVEL=info GRPC_GO_LOG_VERBOSITY_LEVEL=2 
-```
-
-Then run the `curl` command to see the detailed information
+First execute the following:
 
 ```
-grpcurl -v -insecure <endpoint>:<port> list
+export GRPC_GO_LOG_SEVERITY_LEVEL=info GRPC_GO_LOG_VERBOSITY_LEVEL=2
+```
+
+Then run the `curl` command to see the verbose output:
+
+```
+grpcurl -v -insecure <your-grpc-endpoint>:<port> list
 ```
 
 ## Networking Requirements
