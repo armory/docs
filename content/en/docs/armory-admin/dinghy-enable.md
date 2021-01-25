@@ -1,5 +1,5 @@
 ---
-title: Enabling Pipelines as Code in Spinnaker
+title: Enabling Pipelines as Code in the Armory Platform
 linkTitle: Enabling Pipelines as Code
 aliases:
   - /spinnaker/install_dinghy/
@@ -8,7 +8,7 @@ description: >
   Learn how to configure Spinnaker to use pipeline templates stored in source control.
 ---
 
-## Advantages to using Pipelines as Code in Spinnaker
+## Advantages to using Pipelines as Code
 
 {{% include "admin/pac-overview.md" %}}
 

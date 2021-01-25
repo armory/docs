@@ -11,7 +11,7 @@ description: >
 
 >In this example, you use the default KV secret engine called `secret` and store GitHub credentials, a kubeconfig file, and a Java keystore for SAML SSO.
 
-## Authorization
+## Authentication with Vault servers
 
 We currently support two methods of authentication with Vault servers.
 
