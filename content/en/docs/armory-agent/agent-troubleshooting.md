@@ -40,7 +40,7 @@ The default `port` is `443`.
 Command options:
 
 * `-plaintext`: if your gRPC endpoint is not configured for TLS
-* `-insecure`: if you are using TLS with custom certificates.
+* `-insecure`: if you are using TLS with custom certificates
 
 Output is similar to:
 
@@ -61,11 +61,13 @@ First execute the following:
 export GRPC_GO_LOG_SEVERITY_LEVEL=info GRPC_GO_LOG_VERBOSITY_LEVEL=2
 ```
 
-Then run the `curl` command to see the verbose output:
+Then run the `grpcurl` command to see the verbose output:
 
 ```
-grpcurl -v -insecure <your-grpc-endpoint>:<port> list
+grpcurl -v <your-grpc-endpoint>:<port> list
 ```
+
+Use `-plaintext` or `-insecure` depending on whether your endpoint is configured for TLS.
 
 ## Networking Requirements
 
