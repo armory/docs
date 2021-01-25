@@ -49,5 +49,5 @@ encrypted:s3!r:us-west-2!b:mybucket!f:spinnaker-secrets.yml!k:github.password
 
 And to reference the content of our kubeconfig file:
 ```yaml
-encryptedFile:s3!f:mykubeconfig!r:us-west-2!b:mybucket
+encryptedFile:s3!r:us-west-2!b:mybucket!f:mykubeconfig
 ```
