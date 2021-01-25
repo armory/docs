@@ -65,7 +65,7 @@ First execute the following:
 export GRPC_GO_LOG_SEVERITY_LEVEL=info GRPC_GO_LOG_VERBOSITY_LEVEL=2
 ```
 
-Then run the `grpcurl` command like in the above step, to see the verbose output:
+Then run `grpcurl` with the `-v` switch:
 
 ```
 grpcurl -v <your-grpc-endpoint>:<port> list
@@ -73,16 +73,9 @@ grpcurl -v <your-grpc-endpoint>:<port> list
 
 Use `-plaintext` or `-insecure` depending on whether your endpoint is configured for TLS.
 
-Output without the export commands:
-```
-events.Caching
-grpc.health.v1.Health
-grpc.reflection.v1alpha.ServerReflection
-ops.Operations
-```
+Output is similar to:
 
-Output with the export commands
-```
+```bash
 INFO: 2021/01/25 22:10:52 parsed scheme: ""
 INFO: 2021/01/25 22:10:52 scheme "" not registered, fallback to default scheme
 INFO: 2021/01/25 22:10:52 ccResolverWrapper: sending update to cc: {[{192.168.88.133:9091  <nil> 0 <nil>}] <nil> <nil>}
