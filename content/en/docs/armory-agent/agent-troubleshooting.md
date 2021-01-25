@@ -6,6 +6,10 @@ description: >
   Successful installation and startup messages, common errors, tips, and gRPC endpoint testing.
 ---
 
+## Networking issues
+
+Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between Clouddriver and the Agent.   
+
 ## Agent plugin messages
 
 After a successful plugin installation, `spin-clouddriver-grpc` (or `spin-clouddriver-ha-grpc`) service should be up:
@@ -32,14 +36,65 @@ In Infrastructure or Agent modes, you can test the gRPC endpoints with the
 [`grpcurl`](https://github.com/fullstorydev/grpcurl) utility.
 
 ```bash
-$ grpcurl your-grpc-endpoint:443 list
+$ grpcurl <your-grpc-endpoint>:<port> list
+```
+
+The default `port` is `443`.
+
+Command options:
+
+* `-plaintext`: if your gRPC endpoint is not configured for TLS
+* `-insecure`: if you are using TLS with custom certificates
+
+Output is similar to:
+
+```bash
 events.Caching
 grpc.health.v1.Health
 grpc.reflection.v1alpha.ServerReflection
 ops.Operations
 ```
 
-> Use `-plaintext` if your gRPC endpoint is not configured for TLS, `-insecure` if you are using TLS with custom certificates.
+### Verbose logging
+
+You have to change the logging and verbosity levels to display detailed logging output.
+
+First execute the following:
+
+```
+export GRPC_GO_LOG_SEVERITY_LEVEL=info GRPC_GO_LOG_VERBOSITY_LEVEL=2
+```
+
+Then run `grpcurl` with the `-v` switch:
+
+```
+grpcurl -v <your-grpc-endpoint>:<port> list
+```
+
+Use `-plaintext` or `-insecure` depending on whether your endpoint is configured for TLS.
+
+Output is similar to:
+
+```bash
+INFO: 2021/01/25 22:10:52 parsed scheme: ""
+INFO: 2021/01/25 22:10:52 scheme "" not registered, fallback to default scheme
+INFO: 2021/01/25 22:10:52 ccResolverWrapper: sending update to cc: {[{192.168.88.133:9091  <nil> 0 <nil>}] <nil> <nil>}
+INFO: 2021/01/25 22:10:52 ClientConn switching balancer to "pick_first"
+INFO: 2021/01/25 22:10:52 Channel switches to new LB policy "pick_first"
+INFO: 2021/01/25 22:10:52 Subchannel Connectivity change to CONNECTING
+INFO: 2021/01/25 22:10:52 Subchannel picks a new address "192.168.88.133:9091" to connect
+INFO: 2021/01/25 22:10:52 pickfirstBalancer: UpdateSubConnState: 0xc0002996b0, {CONNECTING <nil>}
+INFO: 2021/01/25 22:10:52 Channel Connectivity change to CONNECTING
+INFO: 2021/01/25 22:10:52 Subchannel Connectivity change to READY
+INFO: 2021/01/25 22:10:52 pickfirstBalancer: UpdateSubConnState: 0xc0002996b0, {READY <nil>}
+INFO: 2021/01/25 22:10:52 Channel Connectivity change to READY
+events.Caching
+grpc.health.v1.Health
+grpc.reflection.v1alpha.ServerReflection
+ops.Operations
+INFO: 2021/01/25 22:10:52 Channel Connectivity change to SHUTDOWN
+INFO: 2021/01/25 22:10:52 Subchannel Connectivity change to SHUTDOWN
+```
 
 
 ## Agent service messages
