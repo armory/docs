@@ -1,6 +1,8 @@
 ---
-title: "Armory Cloud Admin Preview"
+title: "Cloud Admin (Preview)"
 description: Administer your Armory Cloud environment
+aliases:
+  - /docs/armory-cloud-admin/
 ---
 
 {{% alert title="Info" color="primary" %}}{{< include "saas-status.md" >}}{{% /alert %}}
