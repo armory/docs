@@ -39,6 +39,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 There is an issue where Clouddriver fails to cache images that belong to the first account (alphabetically) for each region. For example, in a region with accounts named Edith, Milton, and Pixel, Edith's images do not get cached.
 
 **Affected versions**: 2.23.x
+
 **Fixed versions**: 2.24.0
 
 **Workaround**: 
