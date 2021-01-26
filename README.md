@@ -156,3 +156,6 @@ git submodule update --init --recursive
 
 The Armory documentation uses New Relic to monitor the website status and other metrics.
 
+## Integration with Jira
+
+This repo is linked to the DOC project in Jira. Use `[DOC-xxx]` to link your PR to the Jira ticket. For example: `[DOC-123] fix typo` will be sent through to Jira and appear in the Development Information section of the Jira issue with the key DOC-123
