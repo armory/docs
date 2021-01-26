@@ -36,6 +36,9 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "ki-bake-var-file.md" >}}
 {{< include "ki-lambda-ui-caching.md" >}}
 
+### Fixed issues
+
+- Fixed an issue where Clouddriver fails to cache the images for the account that comes first (alphabetically) in each region.
 
 ## Highlighted updates
 
