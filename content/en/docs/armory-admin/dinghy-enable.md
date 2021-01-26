@@ -61,10 +61,78 @@ hal armory dinghy enable
 {{< /tabs >}}
 
 
+## Configuring SQL
+
+{{< include "early-access-feature.html" >}}
+
+The Dinghy service can use MySQL to store relationships between pipeline templates and pipeline dinghy files. An external MySQL instance is highly recommended for production use because it can provide more durability for Pipelines as Code. If MySQL becomes unavailable, dinghy files will need to be updated in order to repopulate MySQL with the relationships.
+
+{{< tabs name="MySQL" >}}
+{{% tab name="Operator" %}}
+
+In `SpinnakerService` manifest:
+
+```yaml
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        sql:
+          baseUrl: mysql:3306
+          databaseName: dinghy
+          enabled: true
+          password: password
+          user: user
+```
+
+```bash
+kubectl -n spinnaker apply -f spinnakerservice.yml
+```
+
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
+
+Edit the `~/.hal/default/profiles/dinghy-local.yml` file and add the following:
+
+```yaml
+sql:
+  user: root
+  password: password
+  baseUrl: mysql-url:3306
+  databaseName: dinghy
+  enabled: true
+```
+
+
+{{% /tab %}}
+{{< /tabs >}}
+
+
+### Migration from Redis to SQL
+
+There's a migration strategy to move the relationships from Redis to SQL. In order to do that, you need to have the configuration from your redis and add the configuration for SQL as shown previously, when you do this and the pod starts, what will happen is that the migration will be done automatically by a job. To verify that the migration was done successfully you can enter into your database and query this tables.
+
+```sql
+select * from executions;
+select * from fileurls;
+select * from fileurl_childs;
+```
+
+In `executions` table you should be able to see one record with the name `REDIS_TO_SQL_MIGRATION`.
+
+In `fileurls` and `fileurl_childs` you should be able to see the migration information with the dinghyfiles, modules and their relationships.
+
+After Dinghy makes the migration at start, it will close the Redis connection and it will work in full SQL mode.
+
 
 ## Configuring Redis
 
-Dinghy uses Redis to store relationships between pipeline templates and pipeline dinghy files. An external Redis instance is highly recommended for production use. If Redis becomes unavailable, dinghy files will need to be updated in order to repopulate Redis with the relationships.
+Dinghy can use Redis to store relationships between pipeline templates and pipeline dinghy files. An external Redis instance is highly recommended for production use. If Redis becomes unavailable, dinghy files will need to be updated in order to repopulate Redis with the relationships.
 
 > Dinghy can only be configured to use a password with the default Redis user.
 
