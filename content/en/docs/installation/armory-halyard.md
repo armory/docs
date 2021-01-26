@@ -2,10 +2,8 @@
 title: Armory Halyard
 weight: 3
 description: >
-  CLI tool for configuring, deploying, and managing Spinnaker
+  Armory-extended Halyard is a versatile command line interface (CLI) to configure and deploy Armory in Kubernetes or any cloud environment. 
 ---
-
-Armory-extended Halyard is a versatile command line interface (CLI) to configure and deploy Spinnaker. It is made of a CLI that connects to a daemon.
 
 {{< include "halyard-note.md" >}}
 

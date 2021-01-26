@@ -1,12 +1,14 @@
 ---
-title: Upgrading Open Source Spinnaker to Armory
+title: Upgrade Open Source Spinnaker to Armory
 aliases:
   - /spinnaker-install-admin-guides/upgrade-oss-to-armory/
+description: >
+  Upgrade your open source Spinnaker installation to Armory using Armory-extended Halyard.
 ---
 
-## Overview
+## Overview of upgrading Spinnaker to Armory
 
-The Armory platform is installed with the Armory-extended Halyard, very similarly to the way Open Source Spinnaker is installed with Open Source Halyard. These are the key differences:
+The Armory platform is installed with Armory-extended Halyard, very similarly to the way Open Source Spinnaker<sup>TM</sup> is installed with Open Source Halyard. These are the key differences:
 
 * Armory-extended Halyard installs Armory's Enterprise distribution of Spinnaker; Open Source Halyard installs Open Source Spinnaker.
 * Armory versions are one major version ahead of Open Source. For example, Armory 2.18.x maps to Open Source Spinnaker 1.18.x.
@@ -161,7 +163,7 @@ If Halyard is running in your Kubernetes cluster, either as a Kubernetes Deploym
    hal deploy apply
    ```
 
-## Revert
+## Revert back to Spinnaker
 
 If you want to go back to OSS Spinnaker, you can repeat the same process as above with OSS Halyard. Specifically, replace the Armory-extended Halyard image with the OSS Halyard image, update Spinnaker version (from 2.x to 1.x), and run `hal deploy apply`
 
@@ -188,6 +190,6 @@ at [Source: N/A; line: -1, column: -1] (through reference chain:
 - Failed to get deployment name.
 ```
 
-If you see the above error, go to the `/home/spinnaker/.hal/config` file in your Halyard container, search for the offending field, and remove the yaml block (comment it out or completely remove it). 
+If you see the above error, go to the `/home/spinnaker/.hal/config` file in your Halyard container, search for the offending field, and remove the yaml block (comment it out or completely remove it).
 
 For example, in the above case, find the `deploymentEnvironment.nodeSelectors field`, and remove it. Repeat as necessary.

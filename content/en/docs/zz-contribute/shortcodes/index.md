@@ -10,7 +10,7 @@ draft: true
 
 gist, youtube, figure, ref, relref and more
 
-For how to use the `gist` shortcode, see {{< linkWithTitle "gist-vs-codeblock.md" >}} and {{< linkWithTitle "entire-gist.md" >}}
+For how to use the `gist` shortcode, see {{< linkWithTitle "gist-vs-codeblock.md" >}} and {{< linkWithTitle "entire-gist.md" >}}.
 
 ## Docsy theme shortcodes
 
@@ -38,11 +38,15 @@ If you want to use the page's front matter title as the text of the hyperlink, y
 ```markdown
 
 See the {{</* linkWithTitle best-practices.md */>}} page...
+
+Look at this page: {{</* linkWithTitle best-practices.md */>}}.
 ```
 
 Renders as:
 
 See the {{< linkWithTitle best-practices.md >}} page...
+
+See this page: {{< linkWithTitle agent-troubleshooting.md >}}.
 
 ### Google suite shortcode
 

@@ -2,20 +2,19 @@
 title: Armory-extended Halyard Reference
 linkTitle: Halyard Reference
 description: >
-  Command reference with examples and Operator equivalents
+  Armory-extended Halyard command reference with examples and Operator equivalents
 aliases:
   - /docs/spinnaker/armory_halyard/
   - /docs/installation/armory-halyard-reference/
 ---
 
-## hal
+## hal - A tool for configuring, installing, and updating Spinnaker.
 
-A tool for configuring, installing, and updating Spinnaker.
-
-If this is your first time using Halyard to install Spinnaker we recommend that you skim the documentation on www.spinnaker.io/docs for some familiarity with the product. If at any point you get stuck using 'hal', every command can be suffixed with '--help' for usage information.
+If this is your first time using Halyard to install Spinnaker<sup>TM</sup>, look at the Halyard documentation[https://spinnaker.io/reference/halyard/] to familiarize yourself with the product. If at any point you get stuck using 'hal', every command can be suffixed with '--help' for usage information.
 
 
 #### Usage
+
 ```bash
 hal [parameters] [subcommands]
 ```

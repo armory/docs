@@ -1,19 +1,21 @@
 ---
-layout: post
 title: Secrets in Kubernetes
 weight: 50
 aliases:
   - /docs/spinnaker-install-admin-guides/secrets-kubernetes/
   - /docs/spinnaker-install-admin-guides/secrets/secrets-kubernetes/
+description: >
+  Learn how to set up Spinnaker secrets in a Kubernetes secret.
 ---
 
 >Note: Storing Spinnaker secrets in a Kubernetes secret is only supported if you're using the Operator to deploy and manage Spinnaker.
 
-This document describes how to set up Spinnaker secrets in a Kubernetes secret. This example uses a Kubernetes secret to store GitHub credentials and a kubeconfig file.
 
-## Creating a Kubernetes secret
+## Creating a Kubernetes secret for Spinnaker to use
 
-Spinnaker can read secrets only within its own namespace. It cannot access Kubernetes secrets stored in a different namespace. In this document, assume that Spinnaker lives in the namespace `spinnaker`.
+This example uses a Kubernetes secret to store GitHub credentials and a kubeconfig file.
+
+Spinnaker<sup>TM</sup> can read secrets only within its own namespace. It cannot access Kubernetes secrets stored in a different namespace. In this document, assume that Spinnaker lives in the namespace `spinnaker`.
 
 You can store files as well as individual text values in Kubernetes secrets to be referenced by Spinnaker. To create the secret you can use this command, assuming you have a file named `kubeconfig-prod` where you are running the command:
 

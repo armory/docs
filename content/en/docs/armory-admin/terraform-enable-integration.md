@@ -1,13 +1,15 @@
 ---
-layout: post
-title: Enabling the Terraform Integration Stage
+linkTitle: Enabling the Terraform Integration Stage
+title: Enabling the Terraform Integration Stage in the Armory Platform
 aliases:
   - /spinnaker/terraform_integration/
   - /spinnaker/terraform-configure-integration/
   - /docs/spinnaker/terraform-enable-integration/
+description: >
+  Learn how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket.
 ---
 
-## Overview
+## Overview of Terraform Integration in Spinnaker
 
 The examples on this page describe how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket. Note that the Terraform Integration also requires a `git/repo` artifact account. For information about how to use the stage, see [Using the Terraform Integration]({{< ref "terraform-use-integration" >}}).
 
@@ -132,13 +134,13 @@ spec:
 **Halyard**
 
 1. Enable Git Repo as an artifact provider:
-   
+
    ```bash
    hal config artifact gitrepo enable
    ```
 
 2. Add the Git Repo account:
-   
+
    ```bash
    hal config artifact gitrepo account add gitrepo-for-terraform --token
    ```

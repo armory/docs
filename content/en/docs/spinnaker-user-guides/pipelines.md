@@ -1,14 +1,17 @@
 ---
-title: Pipelines
+title: Spinnaker Pipelines
+linkTitle: Pipelines
 aliases:
   - /user-guides/pipelines/
   - /user_guides/pipelines/
   - /spinnaker_user_guides/pipelines/
+description: >
+  Discover why pipelines are the key to orchestrating deployments in Spinnaker.
 ---
 
-## Overview
+## Overview of Spinnaker pipelines
 
-Pipelines are a combination of stages that enable some very sophisticated coordination and branching. They are the key to orchestrating deploys in Spinnaker and each one is specific to an application. To see an application's pipelines, select 'Applications' from Spinnaker's top navigation bar, click on an application's name, and then press the 'Pipelines' tab. The result from a pipeline running is called an execution.
+Pipelines are a combination of stages that enable very sophisticated coordination and branching. They are the key to orchestrating deploys in Spinnaker and each one is specific to an application. To see an application's pipelines, select 'Applications' from Spinnaker's top navigation bar, click on an application's name, and then press the 'Pipelines' tab. The result from a pipeline running is called an execution.
 
 Take this screenshot for example:
 

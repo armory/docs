@@ -1,5 +1,6 @@
 ---
-title: Video Tutorials
+title: Spinnaker Video Tutorials
+linkTitle: Video Tutorials
 aliases:
   - /user-guides/video-tutorials/
   - /user-guides/video_tutorials/
@@ -8,6 +9,8 @@ aliases:
   - /spinnaker_user_guides/video_tutorials/
   - /spinnaker_user_guides/video-tutorials/
   - /spinnaker-user-guides/video_tutorials/
+description: >
+  Learn how to perform tasks in Spinnaker with video tutorials.
 ---
 
 Spinnaker is the continuous delivery platform that codifies the software delivery best practices that put Netflix and Google a decade ahead of most other companies.

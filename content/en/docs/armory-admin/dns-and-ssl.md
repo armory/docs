@@ -1,5 +1,4 @@
 ---
-layout: post
 title: DNS and SSL
 # This has different content than install-guide/dns-and-ssl
 aliases:
@@ -7,6 +6,8 @@ aliases:
   - /spinnaker_install_admin_guides/dns-and-ssl/
   - /spinnaker-install-admin-guides/dns_and_ssl/
   - /docs/spinnaker-install-admin-guides/dns-and-ssl/
+description: >
+  Configure your infrastructure so users can access your Spinnaker instance.   
 ---
 
 ## Overview
@@ -32,13 +33,13 @@ There are a number of ways to expose these endpoints, and your configuration of 
 
 ## Configure TLS encryption for the exposed endpoints
 
-It's recommended to encrypt the exposed Spinnaker endpoints.  There are three high-level ways of achieving this:
+You should encrypt the exposed Spinnaker endpoints.  There are three high-level ways of achieving this:
 
 * Most common: Terminate TLS on the load balancer(s) in front of the endpoints, and allow HTTP traffic between the load balancer and the endpoint backends.
 * Terminate TLS on the load balancer(s) in front of the endpoints, and configure the load balancer and endpoint backends with TLS between them, as well.
 * Least common: Configure your load balancer(s) to support the SNI so that the load balancer passes the initial TLS connection to the backends.
 
-There are a number of ways to achieve all of these - you can work with your Kubernetes, security, and networking teams to determine which methods best meet your organization(s) needs.
+There are a number of ways to achieve all of these - you can work with your Kubernetes, security, and networking teams to determine which methods best meet your organization's needs.
 
 If you need to terminate TLS on the backend containers (the second or third options), review the Open Source Spinnaker documentation regarding configuring TLS certificates on the backend microservices: (Setup/Security/SSL)[https://spinnaker.io/setup/security/ssl/].
 
@@ -56,38 +57,44 @@ Add a CNAME entry for the given ELB to create a simple name you will use to acce
 
 Update the endpoints for Spinnaker Deck (the Spinnaker UI microservice) and Spinnaker Gate (the Spinnaker API microservice)
 
-* **Operator**
+{{< tabs name="config" >}}
+{{% tab name="Operator" %}}
 
-    ```yaml
-    apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-    kind: SpinnakerService
-    metadata:
-      name: spinnaker
-    spec:
-      spinnakerConfig:
-        config:
-          security:
-            apiSecurity:
-              overrideBaseUrl: https://spinnaker-gate.mydomain.com
-            uiSecurity:
-              overrideBaseUrl: https://spinnaker.mydomain.com
-    ```
+```yaml
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      security:
+        apiSecurity:
+          overrideBaseUrl: https://spinnaker-gate.mydomain.com
+        uiSecurity:
+          overrideBaseUrl: https://spinnaker.mydomain.com
+```
 
-    Don't forget to apply your changes:
+Don't forget to apply your changes:
 
-    ```bash
-    kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
-    ```
+```bash
+kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
+```
 
-* **Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
-    ```bash
-    hal config security ui edit --override-base-url=https://spinnaker.mydomain.com
-    hal config security api edit --override-base-url=https://spinnaker-gate.mydomain.com
-    ```
 
-    Don't forget to apply your changes:
+```bash
+hal config security ui edit --override-base-url=https://spinnaker.mydomain.com
+hal config security api edit --override-base-url=https://spinnaker-gate.mydomain.com
+```
 
-    ```bash
-    hal deploy apply
-    ```
+Don't forget to apply your changes:
+
+```bash
+hal deploy apply
+```
+
+{{% /tab %}}
+{{< /tabs >}}

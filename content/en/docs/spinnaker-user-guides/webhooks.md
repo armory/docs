@@ -1,20 +1,23 @@
 ---
-title: Webhooks
+title: Using Webhooks in Spinnaker Pipelines
+linkTitle: Using Webhooks
 aliases:
   - /user-guides/webhooks/
   - /user_guides/webhooks/
   - /spinnaker_user_guides/webhooks/
+description: >
+  Learn how to configure a webhook in your Spinnaker pipeline.
 ---
-
-> Spinnaker uses "webhooks" in two ways -- as a trigger for pipeline execution
-> and as a stage that can make arbitrary calls to another service.  If you're
-> looking for information on configuring a webhook trigger that you can use
-> to run a pipeline, the open source community [has a very good guide for that](https://www.spinnaker.io/guides/user/pipeline/triggers/webhooks/).  Below we
-> discuss the use of the Webhook stage used in pipelines.
 
 ## How does Spinnaker use webhooks?
 
-Spinnaker has a stage type called "Webhook" which allows it to call out to APIs as part of running a pipeline:
+Spinnaker uses "webhooks" in two ways -- as a trigger for pipeline execution
+and as a stage that can make arbitrary calls to another service. If you're
+looking for information on configuring a webhook trigger that you can use
+to run a pipeline, the open source community [has a very good guide for
+that](https://www.spinnaker.io/guides/user/pipeline/triggers/webhooks/).
+
+Spinnaker has a stage type called "Webhook" which allows the stage to call out to APIs as part of running a pipeline:
 
 ![Webhook Type Selection](/images/webhook-type-selection.png)
 

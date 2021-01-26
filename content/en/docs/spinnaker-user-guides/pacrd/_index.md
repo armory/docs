@@ -2,7 +2,7 @@
 title: PaCRD
 linkTitle: PaCRD
 description: >
-  PaCRD is a Kubernetes controller that manages the lifecycle of applications and pipelines within a cluster.
+  This section contains guides for using PaCRD, a Kubernetes controller that manages the lifecycle of Spinnaker applications and pipelines within a cluster.
 aliases:
   - /docs/spinnaker/pacrd/
   - /docs/spinnaker-user-guides/pacrd

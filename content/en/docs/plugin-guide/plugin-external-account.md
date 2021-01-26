@@ -312,3 +312,8 @@ This plugin can read account credentials in the following layouts:
 ## Release Notes
 
 - v0.1.0 Initial plugin release (12/16/2020)
+
+- v0.1.1 (01/22/2021)
+
+   * Resolved an issue where `git clone` fails if the URL included a port number. This occurred with git polling with a sidecar when using a username/password or token-based authentication. 
+   * Resolved CVEs.

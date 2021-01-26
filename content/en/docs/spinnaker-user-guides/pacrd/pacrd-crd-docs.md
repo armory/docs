@@ -1,5 +1,6 @@
 ---
-title: CRD Documentation
+title: PaCRD Custom Resource Definition Documentation
+linkTitle: CRD Documentation
 aliases:
   - /docs/spinnaker/pacrd-crd-docs/
 ---

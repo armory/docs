@@ -1,15 +1,18 @@
 ---
-title: Working with S3 Artifacts
+title: Working with Amazon Secure Storage Service (S3) Artifacts in Spinnaker
+linkTitle: Working with S3 Artifacts
 aliases:
   - /docs/spinnaker-user-guides/s3/
   - /docs/spinnaker-user-guides/artifacts-s3-use/
   - /docs/spinnaker-user-guides/s3-artifacts-use/
+description: >
+  Configure an S3 file as an artifact in Spinnaker.
 ---
 
-> Before you start, you'll need to [configure an S3 artifact account]({{<
+> Before you start, you need to [configure an S3 artifact account]({{<
 ref "artifacts-s3-configure" >}}). If you don't see an S3 option for Expected
 Artifacts "Match against" in the UI, you'll need to double-check your
-installation is configured with the S3 account. 
+installation is configured with the S3 account.
 
 ## Identifying an S3 file as an artifact
 
