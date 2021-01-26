@@ -1,5 +1,5 @@
 ---
-title: "Admin (Preview)"
+title: "Cloud Admin (Preview)"
 description: Administer your Armory Cloud environment
 aliases:
   - /docs/armory-cloud-admin/
