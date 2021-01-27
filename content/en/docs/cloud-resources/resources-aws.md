@@ -86,6 +86,8 @@ height="75%" width="75%" >}}
 
 ## Pricing
 
+See the AWS Pricing [guide](https://aws.amazon.com/pricing) for explanations of AWS pricing tiers.
+
 You can calculate AWS costs by using the [AWS Pricing Calculator](https://calculator.aws) or by consulting individual pricing pages.
 
 - [Aurora](https://aws.amazon.com/rds/aurora/pricing)
