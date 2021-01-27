@@ -106,9 +106,9 @@ If you plan to use EC2 with your Armory installation, you can find related costs
 
 ### Basic cost estimate
 
-The example below is based on a basic Armory production environment running in a single region without disaster recovery. Your infrastructure needs may vary.
+The example below is based on a basic Armory production environment running in a single region without disaster recovery. Your infrastructure needs and costs may vary.
 
-Prices are based on "On Demand" rates. "Reserved" rates may be more cost effective. AWS pricing can change without notice, so be sure to determine your costs using the [AWS Pricing Calculator](https://calculator.aws).
+Prices are based on "On Demand" rates. "Reserved" rates may be more cost effective. AWS pricing can change without notice, so be sure to determine your costs using the [AWS Pricing Calculator](https://calculator.aws). You can also [contact Armory](mailto:info@armory.io?subject=Armory%20on%20AWS%20Cost%20Help) for help in calculating costs.
 
 {{< gsuite src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSlG-eNaziGxpi-d4NbiQfd6RREHZ-EdShx89nTl1gZGeZ5NECAm85BfOXp5-jWVOaPC9d6pzo6vfww/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"  width="100%" height="400" >}}
 
