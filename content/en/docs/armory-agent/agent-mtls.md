@@ -16,7 +16,7 @@ Code is located in gist.github.com. Login creds are in 1Password.
 
 ## Prerequisites
 
-You need the following In order to configure mTLS:
+You need the following in order to configure mTLS:
 
 * Clouddriver certificate and private key
 * `CA.crt`
