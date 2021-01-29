@@ -156,12 +156,7 @@ Common errors:
   # Remember to replace $TOKEN_SECRET with the actual contents from the command above
   ```
 
-<<<<<<< HEAD
-## Tips
-=======
-
 ## Agent tips
->>>>>>> master
 
 - It is a good idea to have each Kubernetes cluster accessible by at least two instances of the Agent. Only one instance will actively stream Kubernetes changes. The second one will be on standby and can be used for other operations such as deploying manifests and getting logs.
 
