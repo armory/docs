@@ -7,9 +7,11 @@ aliases:
   - /spinnaker_install_admin_guides/install-on-gke/
   - /spinnaker-install-admin-guides/install_on_gke/
   - /spinnaker-install-admin-guides/install-on-gke/
+description: >
+  Use Armory-extended Halyard and Armory's Spinnaker<sup>TM</sup> tools CLI to install Armory in your Google Kubernetes Engine (GKE) cluster.
 ---
 
-## Overview
+## Overview of installing Armory
 
 This guide describes how to install Armory in Google Kubernetes Engine (GKE).  It will create / use the following Google Cloud resources:
 
@@ -24,10 +26,10 @@ This document currently does not fully cover the following (see [Next Steps](#ne
 * Add K8s accounts to deploy to
 * Add cloud accounts to deploy to
 
-Note: This document is focused on Armory but can be adapted to install Open Source Spinnaker<sup>TM</sup> by using a different Halyard container and a corresponding different Spinnaker version
+> This document is focused on Armory but can be adapted to install Open Source Spinnaker<sup>TM</sup> by using a different Halyard container and a corresponding different Spinnaker version
 
 
-## Requirements
+## Prerequisites for installing Armory
 
 This document is written with the following workflow in mind:
 
@@ -57,7 +59,7 @@ On the `workstation machine`:
 * You have a persistent working directory in which to work in.  One option here is `~/gke-spinnaker`
 * You will create GKE resources, such as service accounts, that will be permanently associated with your Armory cluster
 
-## Installation Summary
+## Installation summary
 
 In order to install Armory, this document covers the following things:
 
@@ -67,12 +69,13 @@ In order to install Armory, this document covers the following things:
 * Running the Halyard daemon in a Docker container
   * Persistent configuration directories from the workstation/host will be mounted into the container
 * Running the `hal` client interactively in the same Docker container to:
-  * Build out the halconfig YAML file (`.hal/config)
+  * Build out the halconfig YAML file (`.hal/config`)
   * Configure Armory/Halyard to use the kubeconfig to install Armory
   * Configure Armory with the IAM credentials and bucket information
   * Turn on other recommended settings (artifacts and http artifact provider)
   * Install Armory
   * Expose Armory
+
 
 ## Create the GKE cluster
 

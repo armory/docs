@@ -38,13 +38,15 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 Application metrics can be ingested by Kayenta to perform Canary Analysis or Automated Canary Analysis (ACA). The following table lists supported app metric providers:
 
-| Provider    | Version                | ACA | Armory                 | Note |
-| ----------- | ---------------------- | --- | ---------------------- | ---- |
-| Graphite    | All supported versions | Yes | All supported versions |      |
-| New Relic   | All supported versions | Yes | All supported versions |      |
-| Prometheus  | All supported versions | Yes | All supported versions |      |
-| SignalFx    | All supported versions | Yes | All supported versions |      |
-| Stackdriver | All supported versions | Yes | All supported versions |      |
+| Provider       | Version                | ACA | Armory                 | Note |
+|----------------|------------------------|-----|------------------------|------|
+| AWS Cloudwatch | All supported versions | Yes | 2.23.1 or later        |      |
+| Dynatrace      | All supported versions | Yes | 2.23.0 or later        |      |
+| Graphite       | All supported versions | Yes | All supported versions |      |
+| New Relic      | All supported versions | Yes | All supported versions |      |
+| Prometheus     | All supported versions | Yes | All supported versions | Authentication using a bearer token is supported.     |
+| SignalFx       | All supported versions | Yes | All supported versions |      |
+| Stackdriver    | All supported versions | Yes | All supported versions |      |
 
 ## Artifacts
 
@@ -148,7 +150,8 @@ The following table lists the supported Terraform versions:
 | ------------------ | ---------------------- | ---- |
 | 0.11.10 - 0.11.14  | All supported versions |      |
 | 0.12.0 - 0.12.24   | All supported versions |      |
-
+| 0.13.4 - 0.13.5   | 2.24.0 or later |      |
+| 0.14.0 - 0.14.2   | 2.24.0 or later |      |
 **Features**
 
 The following table lists the Terraform Integration features and their supported versions:
@@ -292,10 +295,11 @@ These are providers that are manifest based, so Armory applies the manifest and 
 {{</ caas-cf-deploy-strategies.inline >}}
 -->
 
-| Provider                | Supported Versions                   | Deployment strategies                      | Armory Versions        | Notes |
-| ----------------------- | ------------------------------------ | ------------------------------------------ | ---------------------- | ----- |
-| Google Cloud App Engine |                                      | <ul><li>Custom</li></ul>                   | All supported versions |       |
-| Cloud Foundry           | CC API Version: 2.103.0+ and 3.38.0+ | {{< caas-cf-deploy-strategies.inline />}}  | All supported versions |       |
+| Provider                | Supported Versions                   | Deployment strategies                      | Armory Versions        | Notes                    |
+| ----------------------- | ------------------------------------ | ------------------------------------------ | ---------------------- | ------------------------ |
+| Google Cloud App Engine |                                      | <ul><li>Custom</li></ul>                   | All supported versions |                          |
+| Cloud Foundry           | CC API Version: 2.103.0+ and 3.38.0+ | {{< caas-cf-deploy-strategies.inline />}}  | All supported versions | Buildpacks Supported: <br>    Java, others coming soon! |
+
 
 
 ### Serverless
@@ -380,20 +384,19 @@ The following table lists the supported notification systems:
 
 | Provider   | Armory                 | Notes |
 | ---------- | ---------------------- | ----- |
-| Slack      | All supported versions |       |
-| PagerDuty  | All supported versions |       |
-| GitHub     | All supported versions |       |
-| Jira       | All supported versions |       |
 | BearyChat  | All supported versions |       |
 | Email      | All supported versions |       |
+| GitHub     | All supported versions |       |
 | GoogleChat | All supported versions |       |
+| Jira       | All supported versions |       |
+| [MS Teams](https://spinnaker.io/setup/features/notifications/#microsoft-teams)      | 2.23.2 or later |       |
+| Slack      | All supported versions |       |
+| PagerDuty  | All supported versions |       |
 | Twilio     | All supported versions |       |
 
-<!--## Observability
+## Observability
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
-
-{{% alert %}}Armory 2.20 and later require the Observability plugin for monitoring Spinnaker. Versions earlier than 2.20 use the Spinnaker monitoring daemon, which is deprecated. {{% /alert %}}
 
 The following table lists the supported observabilty providers:
 
@@ -401,19 +404,20 @@ The following table lists the supported observabilty providers:
 | ---------- | ---------------------- | ---------------------- | --------------------------- |
 | New Relic  | All supported versions | All supported versions |                             |
 | Prometheus | All supported versions | All supported versions | Use Grafana for dashboards. |
--->
+
 ## Persistent storage
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-Depending on the service, Spinnaker can use either Redis or MySQL as the backing store. The following table lists the supported database and the Spinnaker service:
+Depending on the service, Spinnaker can use either Redis, MySQL, or Postgres as the backing store. The following table lists the supported database and the Spinnaker service:
 
 | Database | DB version             | Armory                 | Spinnaker services                                  | Note                                                                                                                       |
 | -------- | ---------------------- | ---------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | Redis    | All supported versions | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. By default, Spinnaker deploys Redis internally to support its services. |
 | MySQL    | MySQL 5.7 (or Aurora)  | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
+| PostgreSQL    | PostgreSQL 10.0 or later  | 2.24.0 | Clouddriver                          |                                                                                                                            |
 
-Armory recommends using MySQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
+Armory recommends using MySQL or PostgreSQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
 
 ## Pipeline triggers
 

@@ -22,15 +22,18 @@ To simplify both DNS management and Ingress management, Armory can be configured
 to serve the Gate microservice on the same hostname as the Deck UI but located
 at a sub-path. We recommend configuring the Gate microservice so that it is served from the `/api/v1` of the Deck UI hostname when using a single hostname for both Deck and Gate.
 
-## Assumptions
+## Prerequisites for running on the same host
 
-1. Deck is accessible at `https://spinnaker.example.com`
-2. Gate is accessible at `https://spinnaker.example.com/api/v1`
-3. Kubernetes Ingress and Service is used to route traffic from these paths to port 8084 on Gate and 9000 on Deck.
+* Deck is accessible at `https://spinnaker.example.com`
+* Gate is accessible at `https://spinnaker.example.com/api/v1`
+* Kubernetes Ingress and Service is used to route traffic from these paths to port 8084 on Gate and 9000 on Deck.
 
 >Note: Configuring a Kubernetes Ingress and Service is outside the scope of this document.
 
-## Operator approach
+## Configure Spinnaker
+
+{{< tabs name="approach">}}
+{{% tab name="Operator" %}}
 
 1. Set Gate's server servlet to be aware of its context path at `/api/v1` in your `SpinnakerService` config.
 
@@ -72,8 +75,8 @@ at a sub-path. We recommend configuring the Gate microservice so that it is serv
 
 1. Deploy your `SpinnakerService` config using either `kubectl` or `kustomize` command syntax
 
-
-## Halyard approach
+{{< /tab >}}
+{{% tab name="Halyard" %}}
 
 1. Set Gate's server servlet to be aware of its context path at `/api/v1` by creating a file named `gate-local.yml`
 in the `profiles` directory.
@@ -92,8 +95,7 @@ in the `profiles` directory.
    EOF
    ```
 
-1. Set Gate's health endpoint to `/api/v1/health` by creating a file named `gate.yml` in the `service-settings`
-directory.
+1. Set Gate's health endpoint to `/api/v1/health` by creating a file named `gate.yml` in the `service-settings` directory.
 
    ```bash
    # Make the service-settings directory if it doesn't already exist
@@ -115,14 +117,17 @@ directory.
    hal config security ui edit --override-base-url https://spinnaker.example.com
    ```
 
-2. Update Gate's URL using Halyard command
+1. Update Gate's URL using Halyard command
 
    ```bash
    hal config security api edit --override-base-url https://spinnaker.example.com/api/v1
    ```
 
-3. Apply the Spinnaker Configuration changes using Halyard command
+1. Apply the Spinnaker Configuration changes using Halyard command
 
    ```bash
    hal deploy apply
    ```
+
+{{% /tab %}}
+{{< /tabs >}}

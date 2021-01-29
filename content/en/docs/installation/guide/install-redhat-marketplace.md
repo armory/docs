@@ -1,12 +1,14 @@
 ---
-title: Install from Red Hat Marketplace
-linkTitle: Install from Red Hat Marketplace
+title: Install on OpenShift using the Armory Operator from the Red Hat Marketplace
+linkTitle: Install on OpenShift
 weight: 2
+description: >
+  Use the Armory Operator from the Red Hat Marketplace to install Armory in your OpenShift cluster.
 ---
 
->This document is intended for users who have purchased the Armory Red Hat Marketplace offering. It will not work if you have not purchased the Armory Operator. Please contact [Armory](mailto:hello@armory.io) if you're interested in a Red Hat Marketplace Private Offer.
+> This document is intended for users who have purchased the Armory Red Hat Marketplace offering. It will not work if you have not purchased the Armory Operator. Please contact [Armory](mailto:hello@armory.io) if you're interested in a Red Hat Marketplace Private Offer.
 
-## Overview
+## Overview of the Armory Operator Red Hat Marketplace offering
 
 The {{< linkWithTitle "operator.md" >}} is a Kubernetes Operator that makes it easier to install, deploy, and upgrade Armory. You can get the Armory Operator from the [Red Hat Marketplace](https://marketplace.redhat.com/), which is available directly from your OpenShift web console. See the Red Hat Marketplace [docs](https://marketplace.redhat.com/en-us/documentation/) for how to use marketplace.
 
@@ -16,7 +18,7 @@ Installing Armory consists of the following:
 1. [Deploy Armory](#deploy-armory)
 1. [Expose Armory](#expose-armory)
 
-## Prerequisites
+## Prerequisites for installing Armory
 
 1. You have an active [Red Hat Marketplace account](https://marketplace.redhat.com/en-us/documentation/account-management).
 1. You have a Red Hat Marketplace `Cluster Admin` [role](https://marketplace.redhat.com/en-us/documentation/user-roles), which enables you to install Operators from the Red Hat Marketplace.

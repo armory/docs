@@ -1,13 +1,15 @@
 ---
-layout: post
-title: Enabling the Terraform Integration Stage
+linkTitle: Enabling the Terraform Integration Stage
+title: Enabling the Terraform Integration Stage in the Armory Platform
 aliases:
   - /spinnaker/terraform_integration/
   - /spinnaker/terraform-configure-integration/
   - /docs/spinnaker/terraform-enable-integration/
+description: >
+  Learn how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket.
 ---
 
-## Overview
+## Overview of Terraform Integration in Spinnaker
 
 The examples on this page describe how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket. Note that the Terraform Integration also requires a `git/repo` artifact account. For information about how to use the stage, see [Using the Terraform Integration]({{< ref "terraform-use-integration" >}}).
 
@@ -132,13 +134,13 @@ spec:
 **Halyard**
 
 1. Enable Git Repo as an artifact provider:
-   
+
    ```bash
    hal config artifact gitrepo enable
    ```
 
 2. Add the Git Repo account:
-   
+
    ```bash
    hal config artifact gitrepo account add gitrepo-for-terraform --token
    ```
@@ -525,7 +527,22 @@ In the example, only users who belong to the `dev` or `ops` groups can use the c
 
 Don't forget to run `hal deploy apply` once you finish making changes!
 
+## Retries
 
+The Terraformer service can retry connections if it fails to fetch artifacts from Clouddriver. Configure the retry behavior in your `terraformer-local.yml` file by adding the following snippet:
+
+
+```yaml
+# terraformer-local.yml
+clouddriver:
+  retry:
+    enabled: true
+    minWait: 4s # must be a duration, such as 4s for 4 seconds
+  maxWait: 8s # must be a duration, such as 8s for 8 seconds
+  maxRetries: 5
+```
+
+The preceding example enables retries and sets the minimum wait between attempts to 4 seconds, the maximum wait between attempts to 8s, and the maximum number of retries to 5.
 
 ## Submit feedback
 

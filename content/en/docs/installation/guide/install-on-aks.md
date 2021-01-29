@@ -7,11 +7,13 @@ aliases:
   - /spinnaker_install_admin_guides/install-on-aks/
   - /spinnaker-install-admin-guides/install_on_aks/
   - /spinnaker-install-admin-guides/install-on-aks/
+description: >
+  This guide describes how to install Armory in the Azure Kubernetes Service (AKS).
 ---
 
-## Overview
+## Overview of installing Armory in AKS
 
-This guide describes how to install Armory in Azure Kubernetes Service (AKS).  To do this, the guide walks you through creating and using the following Azure resources:
+This guide walks you through creating and using the following Azure resources:
 
 * An AKS cluster. You can also use an existing cluster.
 * An AZS (Azure Storage) bucket. You can also use an existing bucket.
@@ -26,11 +28,11 @@ This document does not cover the following:
 
 See [Next Steps](#next-steps) for resources related to these topics.
 
-**Note**: This document focuses on Armory's extended Spinnaker for enterprises and uses the Armory-extended version of Halyard (referred to as 'Halyard' in this doc). You can install open source Spinnaker by using an open source Halyard container and a corresponding open source Spinnaker version.
+> This document focuses on Armory's extended Spinnaker for enterprises and uses the Armory-extended version of Halyard (referred to as 'Halyard' in this doc). You can install open source Spinnaker by using an open source Halyard container and a corresponding open source Spinnaker version.
 
-## Requirements
+## Prerequisites for installing Armory
 
-To follow the steps described in this guide, make sure the following prerequisites are met:
+To follow the steps described in this guide, make sure you have met the following prerequisites:
 
 * You have login credentials to Azure that allow you to create resources
 * You have an Azure subscription defined where you will install Spinnaker

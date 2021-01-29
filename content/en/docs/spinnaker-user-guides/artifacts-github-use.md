@@ -1,6 +1,8 @@
 ---
-title: Using GitHub Artifacts in Pipelines
+title: Using GitHub Artifacts in Spinnaker Pipelines
 linkTitle: Using GitHub Artifacts
+description: >
+  Configure Spinnaker to use GitHub artifacts in your pipelines.
 ---
 
 ## Pulling a Kubernetes Manifest from Github

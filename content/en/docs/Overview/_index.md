@@ -1,10 +1,12 @@
 ---
-title: "Overview"
+title: Spinnaker Overview
 linkTitle: "Overview"
 weight: 1
 description: >
   Overview of Armory, Spinnaker™, and related technology
 ---
+
+## What is Spinnaker?
 
 Watch Ethan, an Armory engineer, explain [Spinnaker in three minutes](https://youtu.be/H_rFShgmJHY).
 

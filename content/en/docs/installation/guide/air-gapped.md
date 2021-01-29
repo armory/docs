@@ -1,13 +1,19 @@
 ---
-title: Air-Gapped Environments
+title: Installing Armory in Air-Gapped Environments
+linkTitle: Air-Gapped Environments
 weight: 1
+description: >
+  Options for installing Armory in an environment that is isolated from the internet.
 ---
-If your environment is air-gapped, you have several options for deploying Armory.
+
+## Overview of air-gapped environments
 
 An air-gapped environment is one where any combination of the following conditions are true:
 - No access to Armory Bill Of Materials (BOM), which are published on S3
 - No ability to pull images from docker.io/armory
 - No ability for engineers to deploy with Halyard from their machines
+
+If your environment is air-gapped, you have several options for deploying Armory.
 
 ## Host Armory's Bill Of Materials (BOM)
 

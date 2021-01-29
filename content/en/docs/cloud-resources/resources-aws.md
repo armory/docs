@@ -1,6 +1,8 @@
 ---
 title: AWS Resources
 linkTitle: AWS
+description: >
+  Services used by the Armory Platform when it is deployed on Amazon Web Services - VPC, EKS, IAM, S3, Secrets Manager, Redis, Aurora.
 ---
 
 ## Armory and AWS services
@@ -38,6 +40,10 @@ height="75%" width="75%" >}}
 - [Backup and restore Aurora clusters](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html)
 - [Replicate Amazon Aurora MySQL DB Clusters Across AWS Regions](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Replication.CrossRegion.html)
 - [Failover for Aurora Global Databases](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database-failover)
+
+### CloudWatch
+
+- [User Guide](https://aws.amazon.com/cloudwatch/)
 
 ### EKS
 

@@ -2,17 +2,20 @@
 title: Integrating ServiceNow with Spinnaker
 aliases:
   - /docs/spinnaker/integrations-servicenow/
+description: >
+  Create ServiceNow integrations through a generic webhook stage or a custom webhook stage.
 ---
 
-## Overview
+## Overview of ServiceNow
 
-ServiceNow provides several solutions (ITSM, PPM, Security Response, ITOM, etc). Instead of defining a single use case for an integration that satisfy some use cases, this guide reviews the various building blocks available to create integrations through a generic webhook stage or a custom webhook stage.
+[ServiceNow](https://www.servicenow.com/) provides several workflow solutions (ITSM, PPM, Security Response, ITOM, etc). Instead of defining a single use case for an integration that satisfies some use cases, this guide reviews the various building blocks available to create integrations through a generic webhook stage or a custom webhook stage.
 
-Consuming Webhooks in ServiceNow requires some conifiguration. You can read more about the process [here](https://community.servicenow.com/community?id=community_blog&sys_id=886d2a29dbd0dbc01dcaf3231f9619b0).
+Consuming Webhooks in ServiceNow requires some configuration. You can read more about the process in the ServiceNow [docs](https://community.servicenow.com/community?id=community_blog&sys_id=886d2a29dbd0dbc01dcaf3231f9619b0).
 
 ## Using a custom webhook stage to create a Change Request in ServiceNow
 
 Potential uses for creating a change request in ServiceNow include:
+
 * A deployment happens and a ticket needs to be filed in ServiceNow for record keeping
 * A canary deployment is successful, and you need a change ticket to be created and approved before full deployment into production.
 

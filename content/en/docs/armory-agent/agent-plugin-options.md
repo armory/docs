@@ -3,7 +3,7 @@ title: Plugin Configuration Options
 linkTitle: Plugin Options
 weight: 20
 description: >
-  How to configure the Agent plugin for Clouddriver
+  This guide contains a detailed list of Armory Agent plugin configuration options for Clouddriver.
 ---
 
 | Setting  | Type  | Default  | Description |
@@ -32,4 +32,6 @@ description: >
 | `kubesvc.grpc.server.security.trustCertCollection`| string | none | By default, use the systems default truststore (cacerts). Otherwise, reference to a truststore to validate clients. |
 | `kubesvc.grpc.server.security.protocols`| string | none | By default, use the systems default protocols. Otherwise, list of protocols accepted (`TLSv1.1`, `TLSv1.2`, etc. |
 | `kubesvc.operations.retry.maxRetries`<br>`kubesvc.operations.retry.backoffMs` | int<br>long | 5<br>2000 | When an operation is to be sent to an account, Clouddriver will attempt to find a connected agent. If it cannot (e.g. restart of an agent, re-balancing, network issue), the operation will be retried up to `retry - 1` times with `backoffMs` wait time b/w each try. |
+| `kubesvc.heartbeat.initialDelay`<br>`kubesvc.heartbeat.period`<br>`kubesvc.heartbeat.periodUnit` | long<br>long<br>timeUnit | 0<br>30<br>SECONDS | How often each Clouddriver node reports its assingments as recent. Set the heartbeat period to a value less than `kubesvc.cache.accountCleanupFrequencySeconds` to prevent losing account cache. |
+| `kubesvc.credentials.poller.reloadFrequencyMs` | long | 30000 | <span class="badge badge-primary">2.23.0+</span> <span class="badge badge-primary">1.23.0+</span> How often the plugin will refresh account credentials to clouddriver in case `credentials.poller.enabled` is disabled. Otherwise the standard properties of `credentials.poller.enabled` and `credentials.poller.types.kubernetes.reloadFrequencyMs` are respected |
 

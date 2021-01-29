@@ -3,8 +3,10 @@ title: "Armory Agent for Kubernetes"
 linkTitle: "Armory Agent for Kubernetes"
 weight: 20
 description: >
-  The Armory Agent is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Clouddriver.
+  The Armory Agent is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker's Clouddriver service.
 ---
+
+## Advantages of using the Armory Agent for Kubernetes
 
 * Scalability
   * Caching and deployment scales to thousands of Kubernetes clusters for your largest applications.
@@ -49,7 +51,7 @@ In infrastructure mode, multiple Agent deployments handle different groups of Ku
 In this mode, the Agent acts as a piece of infrastructure. It authenticates  using a [service account token](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#service-account-tokens). You use
 [RBAC service account permissions](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions) to configure what the Agent is authorized to do.
 
-If Spinnaker is unable to communicate with the Agent, Spinnaker attempts to reconnect during a defined grace period. If Spinnaker still can't communicate with the Agent after the grace period has expired, the Agent's cluster is removed from Spinnaker. 
+If Spinnaker is unable to communicate with the Agent, Spinnaker attempts to reconnect during a defined grace period. If Spinnaker still can't communicate with the Agent after the grace period has expired, the Agent's cluster is removed from Spinnaker.
 
 ![Agent mode](/images/armory-agent/agent-mode.png)
 
@@ -101,3 +103,8 @@ You can also mix deployment strategies if you have complex Kubernetes infrastruc
 - Run in target clusters
 - Run next to traditional Spinnaker Kubernetes accounts
 
+## Supported versions
+
+{{< include "agent/agent-compat-matrix.md" >}}
+
+For a full list of previous releases, see this [page](https://armory.jfrog.io/artifactory/manifests/).

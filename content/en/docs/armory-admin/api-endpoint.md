@@ -1,17 +1,21 @@
 ---
-title: Exposing the Spinnaker API Endpoint
+title: Exposing Spinnaker API Endpoints
 linkTitle: Exposing the API
 aliases:
   - /spinnaker_install_admin_guides/api-endpoint/
   - /spinnaker_install_admin_guides/api_endpoint/
   - /spinnaker-install-admin-guides/api_endpoint/
   - /docs/spinnaker-install-admin-guides/api-endpoint/
+description: >
+  Set up x509 certificate authentication to expose Spinnaker API endpoints when you have third-party authentication configured.
 ---
-## Overview
 
-When you have third-party authentication set up for your Spinnaker cluster, automating against the Spinnaker API can be slightly more difficult.  One way to achieve this is to set up X509 client certificate authentication, which can optionally be enabled on a second port on Gate (which then must be exposed to clients).  This document details one way to do this.
+## Overview of setting up an X509 client certificate for Spinnaker
+
+When you have third-party authentication set up for your Spinnaker<sup>TM</sup> cluster, automating against the Spinnaker API can be slightly more difficult.  One way to achieve this is to set up X509 client certificate authentication, which can optionally be enabled on a second port on Gate (which then must be exposed to clients).  This document details one way to do this.
 
 This document details the following:
+
 * Obtaining / Creating a CA certificate.  If your organization has an internal (or other) CA, you can use the organization CA certificate (you only need the certificate in PEM format).  All API clients must present a certificate signed by this CA; if you are creating a self-signed certificate, you can create client certs on your own.  If you are using an organization CA, you must be able to request client certs from your organization CA.
 * Obtaining / Creating a certificate and private key for use by Deck (Spinnaker's UI microservice).  You can either request the certificate from your organization's CA, or use the self-signed CA created above.
 * Obtaining / Creating a certificate and private key for use by Gate (Spinnaker's UI microservice).   You can either request the certificate from your organization's CA, or use the self-signed CA created above.
@@ -25,9 +29,10 @@ This document details the following:
 * Enabling Gate to use the JKS
 * Configuring Gate to support X509 client certificate-based authentication, on a second port.
 
-## Spinnaker endpoints
+## Exposed Spinnaker endpoints
 
-At the end of this process, you will end up with three endpoints for Spinnaker:
+At the end of this process, you will have three exposed endpoints for Spinnaker:
+
 * A UI endpoint on the Deck microservice.  You can terminate TLS on the load balancer (Ingress or other load balancer), and end up with a flow that looks like this:
   ```bash
   [Browser] ---HTTPS--> [Load Balancer with TLS Termination] ---HTTP--> [Deck:9000]
@@ -48,6 +53,7 @@ At the end of this process, you will end up with three endpoints for Spinnaker:
 ## Decision points
 
 Before moving on, you should decide the following:
+
 * For the CA used to validate client certificates, are you using an organization CA or creating a self-signed CA?
 * For the Gate and Deck certificate, are you using certificates signed by an organization CA, certificates signed by a self-signed CA, or self-signed certificates?
 * In order to access the API endpoint, the API endpoint (which is an extra port on the existing Gate service) must be directly exposed.  Clients must be able to provide their certificates to Gate; there should be no TLS termination in front of it.  This means you must do one of the following:
@@ -62,7 +68,7 @@ If your organization has a CA that you can use to sign client certificates, then
 
 Alternatively, you can create a self-signed CA certificate to use to sign client certificates, and configure Gate to trust certificates signed by this CA certificate.
 
-### Obtaining the crganization certificate
+### Obtaining the organization certificate
 
 If your organization has a CA certificate, you should obtain the CA certificate in PEM format.  You do not need the private key, as long as your organization has a way to request client certificates signed by the CA.
 
@@ -117,9 +123,9 @@ encrypt `ca.key`.
 
 ## Get a server certificate for the Deck (UI) service
 
-_This step is technically optional, but it requires setting up separate exposure mechanisms for Deck and Gate if this step is skipped.  For simplicity' sake, we recommend completing this step_
+>This step is technically optional, but it requires setting up separate exposure mechanisms for Deck and Gate if this step is skipped.  For simplicity' sake, we recommend completing this step.
 
-You will need a server certificate and private key.  If you have a load balancer in front of Deck that is terminating TLS, the certificate on Deck generally won't matter aside from the fact that you must have one.  There are two main options here:
+You need a server certificate and private key.  If you have a load balancer in front of Deck that is terminating TLS, the certificate on Deck generally won't matter aside from the fact that you must have one.  There are two main options here:
 
 1. Obtaining a server certificate and private key from your organization CA
 1. Generating a server certificate and private key from the self-signed CA
@@ -1058,4 +1064,12 @@ hal config security authn x509 edit \
     --subject-principal-regex "EMAILADDRESS=(.*?)(?:,|$)"
 
 hal deploy apply
+```
+
+### Verify the x509 certificate
+
+Make a call to `https://${GATE_FQDN}/auth/user` to verify the setup is correct. The call should return the certificate's Spinnaker login and authorization information. For example, here's a call using curl:
+
+```bash
+curl --cacert ca.crt --key client.key --cert client.crt https://${GATE_FQDN}/auth/user
 ```

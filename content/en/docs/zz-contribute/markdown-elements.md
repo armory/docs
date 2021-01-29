@@ -1,8 +1,8 @@
 ---
-title: "Smoke Test"
+title: "Markdown Examples"
 draft: true
 description: >
-  Markdown stuff - change to draft before publication
+  Headers, tables, lists, images
 ---
 
 

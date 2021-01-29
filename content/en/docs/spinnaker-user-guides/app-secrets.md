@@ -1,18 +1,21 @@
 ---
-title: Application Secrets Management
+title: Managing Spinnaker Application Secrets Using HashiCorp Vault
+linkTitle: Managing Application Secrets
 aliases:
   - /spinnaker/app_secrets/
   - /docs/spinnaker/app-secrets/
+description: >
+  Learn how to use HashiCorp Vault to store Spinnaker secrets.
 ---
 
-## Overview
+## Overview of storing secrets
 
 Managing application secrets, such as database passwords and API keys, can
 be tricky.  These secrets should not be saved into the application's source
 code, but they do need to be made available to the application when it runs.
 
 Several tools have been built to address this issue.  In this document, we're
-going to focus on how one might use [Hashicorp's Vault](https://www.vaultproject.io/)
+going to focus on how one might use [HashiCorp Vault](https://www.vaultproject.io/)
 to act as our secrets management utility, and then set up our application and
 clusters to pull secrets from there.
 
@@ -39,7 +42,7 @@ For more general information, see the following pages about AWS Secrets Manager 
 * GoDaddy Engineering blog about their use of [Kubernetes External Secrets](https://www.godaddy.com/engineering/2019/04/16/kubernetes-external-secrets/)
 * GoDaddy GitHub page about their open sourced implementation of [Kubernetes External Secrets](https://github.com/godaddy/kubernetes-external-secrets)
 
-## Basic Outline
+## Basic outline
 
 The basic plan here is to allow developers to write code that references
 "secrets" but which aren't checked into the codebase.  Often this will be
@@ -66,7 +69,7 @@ between the developer and the actual secrets their code uses:
 
 > NOTE:  Vault (and other tools) have taken this security a step further by connecting the secrets service with the backend systems such that the actual password being used is cycled automatically and is never actually known to any specific person.  If your environment permits this setup, it's definitely a more secure mechanism of password management, but it's also a much more complicated topic, and may not be possible depending on what services you are attempting to secure.
 
-## Operations-side Configuration
+## Operations-side configuration
 
 The first step to securing the secrets is to create a policy in Vault, apply
 the policy to the Vault path(s) that contain the secrets, and create a service
@@ -75,13 +78,13 @@ token for this account is what we'll push into the deployed pods via a
 Kubernetes Secret, and will allow that pod to request the current secrets
 from Vault.
 
-### Set Up A Secret Path
+### Set up a secret path
 
 Within Vault, set up your secrets path (such as `/secrets` or `/prod/secrets`
 or whatever works for you).  Don't put any secrets in yet; you'll want to
 secure the path first (next step)
 
-### Secure Path with a Policy
+### Secure path with a policy
 
 Create a policy by name that has access to the path you created.  By default,
 paths are open to anyone authenticated, but as soon as you add a policy to
@@ -89,7 +92,7 @@ the path, it's locked down to only those accounts with that policy.
 
 You can read more about Vault policies [here](https://www.vaultproject.io/docs/concepts/policies.html).
 
-### Create Service Account Token
+### Create service account token
 
 Use `vault token create` to create a token attached to the policy you just
 created ([reference](https://www.vaultproject.io/docs/commands/token/create.html)).
@@ -97,7 +100,7 @@ Your app, using this token, should then have access to the actual secrets.
 
 You can now put in your production secrets into that "bucket" safely.
 
-### Create a K8s Secret
+### Create a Kubernetes secret
 
 Using `kubectl` you'll want to create a Secret within your namespace that
 contains this token.  The [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/secret/)
@@ -112,7 +115,7 @@ Kubernetes secret, the next step is to have your Kubernetes deployment
 mount the auth token secret, and then finally, arrange for your app to
 use Vault to retrieve the actual production secrets.
 
-### Configure Your Manifest
+### Configure your manifest
 
 To make the Vault token available to your application, you'll need to mount
 the secret within your manifest. The
@@ -127,7 +130,7 @@ retrieve the actual token from the secret; Spinnaker allows the developers to
 still manage the deployments to production, but not to retrieve the secret
 itself.
 
-### Configure Your Application
+### Configure your application
 
 Now your code (or perhaps just a bootup script) can be written/configured to
 grab the Vault token that was mounted in your Manifest, and, combining that
@@ -154,7 +157,7 @@ In all cases, Spinnaker provides a terrific way to give developers the ability
 to manage their own deployments while still securing production passwords
 separately.
 
-## See Also
+## See also
 
 Here are some other resources that may provide additional insight into how
 to manage application secrets within your system:

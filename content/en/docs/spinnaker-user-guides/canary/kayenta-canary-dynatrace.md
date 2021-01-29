@@ -1,12 +1,15 @@
 ---
-title: Using Canary Analysis with Dynatrace
+title: Using Canary Analysis with Dynatrace in Spinnaker
+linkTitle: Using Canary Analysis with Dynatrace
 aliases:
   - /spinnaker_user_guides/kayenta_dynatrace/
   - /docs/spinnaker-user-guides/kayenta_dynatrace
+description: >
+  Learn how to configure and use Dynatrace for canary analysis in Spinnaker.
 ---
 
 
-Before you can start using Canary deployments, you need to enable Kayenta, the Spinnaker service for canary deployments. For more information, see [Configuring Kayenta]({{< ref "kayenta-configure" >}}).
+{{< include "user-guide/canary/config-kayenta-frag.md" >}}
 
 
 ## Dynatrace configuration

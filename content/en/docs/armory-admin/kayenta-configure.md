@@ -1,14 +1,16 @@
 ---
-title: Configuring Kayenta for Automated Canary Deployments
+title: Configuring Kayenta for Automated Canary Deployments in Spinnaker
 linkTitle: Configuring Canary Deployments
 aliases:
   - /spinnaker/configure_kayenta/
   - /docs/spinnaker/configure-kayenta/
+description: >
+  Learn how to configure Kayenta when Spinnaker has been installed using the Armory Operator.
 ---
 
-## Overview
+## Kayenta Overview
 
-Kayenta is the Spinnaker service that performs Automated Canary Analysis (ACA). The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence. For information about how to use Canary deployments, see [Using Canary deployments]({{< ref "kayenta-canary-use" >}}).
+Kayenta is the Spinnaker service that performs Automated Canary Analysis (ACA). The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence. For information about how to use Canary deployments, see {{< linkWithTitle "kayenta-canary-use" >}}.
 
 ## Configure Kayenta
 
@@ -117,6 +119,22 @@ spec:
         templatesEnabled: true             # Whether or not to enable custom filter templates for canary configs in deck (Default: true).
         showAllConfigsEnabled: true        # Whether or not to show all canary configs in deck, or just those scoped to the current application (Default: true).
         ...  # rest of config omitted for brevity
+    profiles:
+      kayenta:         
+        kayenta:
+          aws:
+            enabled: true            # Enable/disable aws provider
+            accounts:
+              - name: cloudwatch
+                region: us-west-2    # The region to use.
+                profileName: default # The profile name to use when resolving AWS credentials. Typically found in ~/.aws/credentials (Default: default).
+                explicitCredentials:
+                  accessKey: abc     # The default access key used to communicate with AWS. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+                  secretKey: abc     # The secret key used to communicate with AWS. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+                supportedTypes:      # Array of: METRICS_STORE, METRICS_STORE, OBJECT_STORE
+                  - METRICS_STORE
+          cloudwatch:
+            enabled: true            # Whether or not Cloudwatch is enabled, Cloudwatch as a metrics service (Default: false).
     files:
       gcp-sa.json: |
         <JSON CONTENT HERE. WATCH YOUR SPACING>

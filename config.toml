@@ -73,18 +73,23 @@ weight = 1
   url = "https://www.armory.io"
 
 [[menu.main]]
+  name = "Case Studies"
+  weight= 6
+  url = "https://www.armory.io/learn/customer-success-stories/"
+
+[[menu.main]]
   name = "Support"
-  weight = 6
+  weight = 7
   url = "https://go.armory.io/support"
 
 [[menu.main]]
   name = "KB"
-  weight = 7
+  weight = 8
   url = "https://kb.armory.io"
 
 [[menu.main]]
   name = "Blog"
-  weight = 8
+  weight = 9
   url = "https://www.armory.io/blog/"
 
 # Everything below this are Site Params
@@ -92,7 +97,7 @@ weight = 1
 [params]
 armory-version = "2.23.x"
 halyard-armory-version = "1.10.0"
-kubesvc-version="0.4.0"
+kubesvc-version="0.5.0"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 copyright = "Armory Inc."
@@ -143,9 +148,12 @@ prism_syntax_highlighting = true
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]
-latestVersion3="0.3.19"
-latestVersion4="0.4.16"
-latestVersion5="0.5.4"
+agent_plug_latest-2="0.5.19"
+agent_plug_latest_spin-2="2.22.x (1.22.x)"
+agent_plug_latest-1="0.6.2"
+agent_plug_latest_spin-1="2.23.x (1.23.x)"
+agent_plug_latest="0.7.1"
+agent_plug_latest_spin="2.24.x (1.24.x)"
 
 # User interface configuration
 [params.ui]
@@ -209,7 +217,7 @@ enable = true
 [[params.versions]]
   version = "Latest"
   githubbranch = "master"
-  url = "https://docs.armory.io"
+  url = "https://docs.armory.io/docs"
 
 [[params.versions]]
   version = "v2.22"

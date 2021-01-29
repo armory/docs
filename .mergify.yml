@@ -1,10 +1,26 @@
 pull_request_rules:
   - name: Automatically merge PACRD version bumps
-    conditions: 
+    conditions:
       - status-success=main
       - author=armory-jenkins
       - title~=\bdocs\b\(\bpacrdrelease\b\)
     actions:
+      review:
+        type: APPROVE
+        bot_account: armory-jenkins-approver
+      merge:
+        method: squash
+        strict: smart
+      label:
+        add: ["auto merged"]
+  - name: Automatically merge Agent version bumps
+    conditions:
+      - files=config.toml
+      - "title=chore(release): Autobump agent version"
+    actions:
+      review:
+        type: APPROVE
+        bot_account: armory-jenkins-approver
       merge:
         method: squash
         strict: smart

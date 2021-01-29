@@ -1,14 +1,18 @@
 ---
-title: Secrets with GCS
+title: Secrets with Google Cloud Storage
+linkTitle: Secrets with GCS
 weight: 50
 aliases:
   - /docs/spinnaker-install-admin-guides/secrets-gcs/
   - /docs/spinnaker-install-admin-guides/secrets/secrets-gcs/
+description: >
+  Learn how to set up Spinnaker secrets in an encrypted GCS bucket.
 ---
 
-This document describes how to set up Spinnaker secrets in an encrypted GCS bucket. This example uses a bucket (`mybucket`) to store GitHub credentials and a kubeconfig file.
+>This example uses a bucket (`mybucket`) to store GitHub credentials and a kubeconfig file.
 
-## Authorization
+## Authorize Spinnaker to access the GCS bucket
+
 Since you're storing sensitive information, make sure to protect the bucket by restricting access and [enabling encryption](https://cloud.google.com/storage/docs/encryption/).
 
 Remember to run the Operator deployment (or Halyard's daemon) and Spinnaker services with permissions to read that content.

@@ -4,8 +4,11 @@ linkTitle: Configuring Clouddriver to use an RDBMS
 aliases:
   - /spinnaker_install_admin_guides/clouddriver-sql/
   - /docs/spinnaker-install-admin-guides/clouddriver-sql/
+description: >
+  Configure Spinnaker's Clouddriver service to use MySQL or AWS Aurora.
 ---
-## Overview
+
+## Advantages of using an RDMS with Clouddriver
 
 Since version 2.5.x (OSS 1.14.x), Clouddriver can store its data (task, infrastructure, etc) in a MySQL compatible database. Similar to Orca, the main advantage of doing this is to improve performance and remove Redis as a single point of failure.
 
@@ -153,10 +156,11 @@ redis:
   scheduler:
     enabled: false
 
-dualTaskRepository:
-  enabled: true
-  primaryClass: com.netflix.spinnaker.clouddriver.sql.SqlTaskRepository
-  previousClass: com.netflix.spinnaker.clouddriver.data.task.jedis.RedisTaskRepository
+executionRepository:
+  dual:
+    enabled: true
+    primaryName: sqlExecutionRepository
+    previousClass: redisExecutionRepository
 ```
 
 Note: At this point, you can stop the pods you created in step 1. If you used the script above, just delete the `spin-clouddriver-sql` deployment.
