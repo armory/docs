@@ -36,12 +36,14 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-Application metrics can be ingested by Kayenta to perform Canary Analysis or Automated Canary Analysis (ACA). The following table lists supported app metric providers:
+Application metrics can be ingested by Kayenta to perform Canary Analysis or Automated Canary Analysis (ACA). For information about how to enable Canary Analysis, see {{< linkWithTitle kayenta-configure.md >}}.
+
+The following table lists supported app metric providers:
 
 | Provider       | Version                | ACA | Armory                 | Note |
 |----------------|------------------------|-----|------------------------|------|
-| AWS Cloudwatch | All supported versions | Yes | 2.23.1 or later        |      |
-| Dynatrace      | All supported versions | Yes | 2.23.0 or later        |      |
+| [AWS Cloudwatch]({{< ref "kayenta-canary-cloudwatch.md" >}}) | All supported versions | Yes | 2.23.1 or later        |      |
+| [Dynatrace]({{< ref "kayenta-canary-dynatrace.md" >}})      | All supported versions | Yes | 2.23.0 or later        |      |
 | Graphite       | All supported versions | Yes | All supported versions |      |
 | New Relic      | All supported versions | Yes | All supported versions |      |
 | Prometheus     | All supported versions | Yes | All supported versions | Authentication using a bearer token is supported.     |
@@ -115,10 +117,10 @@ The following table lists specific features for Pipelines as Code and their supp
 | Feature                                                                         | Armory                 | Notes                                                                 |
 | ------------------------------------------------------------------------------- | ---------------------- | --------------------------------------------------------------------- |
 | Modules                                                                         | All supported versions | Templatize and re-use pipeline snippets across applications and teams |
-| Slack notifications                                                             | All supported versions |                                                                       |
-| Fiat service account integration                                                | All supported versions |                                                                       |
-| Webhook secret validation                                                       | 2.20 or later          |                                                                       |
-| Local modules for development                                                   | 2.20 or later          |                                                                       |
+| [Slack notifications]({{< ref "dinghy-enable#slack-notifications" >}})                                                            | All supported versions |                                                                       |
+| [Fiat service account integration]({{< ref "dinghy-enable#fiat" >}}                                                | All supported versions |                                                                       |
+| [Webhook secret validation]({{< ref "using-dinghy#webhook-secret-validation" >}})                                                       | All supported versions          |                                                                       |
+| [Local modules for development]({{< ref "using-dinghy#local-module-functionality" >}})                                                   | All supported versions          |                                                                       |
 | [Pull Request Validation]({{< ref "dinghy-enable#pull-request-validations" >}}) | 2.21 or later          |                                                                       |
 
 ### Pipelines as CRD
@@ -159,7 +161,7 @@ The following table lists the Terraform Integration features and their supported
 | Feature                                                                                        | Armory                 | Notes |
 | ---------------------------------------------------------------------------------------------- | ---------------------- | ----- |
 | [Base Terraform Integration]({{< ref "terraform-enable-integration" >}})                       | All supported versions |       |
-| [Named Profiles with authorization]({{< ref "terraform-enable-integration#named-profiles" >}}) | 2.20 or later          |       |
+| [Named Profiles with authorization]({{< ref "terraform-enable-integration#named-profiles" >}}) | All supported versions          |       |
 
 
 ## Authentication
