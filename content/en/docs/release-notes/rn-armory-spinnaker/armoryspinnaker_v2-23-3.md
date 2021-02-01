@@ -40,6 +40,8 @@ There is an issue where Clouddriver fails to cache images that belong to the fir
 
 **Affected versions**: 2.23.x
 
+**Fixed versions**: 2.24.0
+
 **Workaround**: 
 
 Two workarounds exist for this issue:
