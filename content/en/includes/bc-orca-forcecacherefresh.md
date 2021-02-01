@@ -7,11 +7,11 @@ When you upgrade to 2.23.0 or later, you might encounter the following error:
 com.fasterxml.jackson.databind.JsonMappingException: No task found for 'com.netflix.spinnaker.orca.clouddriver.tasks.manifest.ManifestForceCacheRefreshTask' (through reference chain: com.netflix.spinnaker.orca.q.RunTask["taskType"])
 ```
 
-The `ManifestForceCacheRefreshTask` task is no longer supported by the orchestration service, Orca. Because of this, messages from prior failed executions may have gotten stuck in the message queue, which is stored in Redis or MySQL.
+The `ManifestForceCacheRefreshTask` task is no longer a required task when deploying a manifest. In earlier releases, forcing the cache to refresh was part of the deployment process for manifests. Because of this change, if a task was running or retried before the upgrade, the error shows up in logs as an exception.
 
 **Workaround**
 
-Before starting, make sure that you have access to the Redis or MySQL instance that Orca uses.
+Before starting, make sure that you have access to the Redis instance that Orca uses.
 
 To resolve this issue, delete the message from the queue:
 
