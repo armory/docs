@@ -172,7 +172,7 @@ The following table lists the supported authorization methods:
 | OAuth 2.0/OIDC        | All supported versions |                                                                                      |
 | SAML                  | All supported versions |                                                                                      |
 
-## Baking Images
+## Baking images
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
@@ -184,13 +184,6 @@ The following table lists the supported image bakeries:
 | GCE      | All supported versions |                            |
 | Packer   | All supported versions | Spinnaker includes Packer. |
 
-The following table lists the supported manifest templating engines:
-
-| Provider  | Armory                 | Notes                                |
-| --------- | ---------------------- | ------------------------------------ |
-| Helm 2    | All supported versions |                                      |
-| Helm 3    | 2.19.x or later        |                                      |
-| Kustomize | All supported versions | Kustomize version installed is 3.8.1 |
 
 ## Browsers
 
@@ -352,6 +345,17 @@ Depending on the service, Spinnaker also uses either Redis, MySQL, or Postgres a
 
 Armory recommends using MySQL or PostgreSQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
 
+## Manifest templating
+
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+
+The following table lists the supported manifest templating engines:
+
+| Provider  | Armory                 | Notes                                |
+| --------- | ---------------------- | ------------------------------------ |
+| Helm 2    | All supported versions |                                      |
+| Helm 3    | 2.19.x or later        |                                      |
+| Kustomize | All supported versions | Kustomize version installed is 3.8.1 |
 
 ## Notifications
 
