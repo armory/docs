@@ -393,7 +393,7 @@ The following table lists the supported pipeline triggers:
 | ------------------ | ---------------------- | ----- |
 | AWS Pub/Sub        | All supported versions |       |
 | Cron               | All supported versions |       |
-| Docker             | All supported versions |       |
+| Docker             | All supported versions | Docker Registry API v2 required      |
 | Git                | All supported versions |       |
 | GitHub Webhook     | All supported versions |       |
 | Google Pub/Sub     | All supported versions |       |
