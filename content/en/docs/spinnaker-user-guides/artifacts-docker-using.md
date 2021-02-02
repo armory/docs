@@ -16,7 +16,7 @@ Docker registry as an option, or you're missing your organization or image in
 the UI, you'll need to double-check your Spinnaker is configured to use that
 registry (and/or repository).
 
-To add a Jenkins trigger to your pipeline, go to your configurations stage and
+To add a Docker trigger to your pipeline, go to your configurations stage and
 select "Add Trigger", then select "Docker Registry" from the Type dropdown
 menu. You should then be able to select the Registry to use, and find your
 Organization(s) and Image(s).
