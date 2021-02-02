@@ -117,5 +117,9 @@ kubectl apply -f halyard.yml
 
 Once the `StatefulSet` is ready - you can interact with it by running:
 ```bash
+kubectl -n halyard exec -ti statefulset/halyard -- bash
+```
+Users of kubernetes versions older than 1.19.3 may need to run this instead:
+```bash
 kubectl -n halyard exec -ti statefulset/halyard bash
 ```
