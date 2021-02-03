@@ -29,6 +29,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 <!-- Moved this to Breaking changes instead of KI. Didn't bother renaming it. -->
 {{< include "ki-orca-zombie-execution.md" >}}
 
+{{< include "bc-orca-forcecacherefresh.md" >}}
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->

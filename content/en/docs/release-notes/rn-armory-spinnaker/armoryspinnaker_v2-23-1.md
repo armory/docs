@@ -28,6 +28,8 @@ Armory scans the codebase as we develop and release software. For information ab
 
 {{< include "bc-k8s-job-suffix.md" >}}
 
+{{< include "bc-orca-forcecacherefresh.md" >}}
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 #### Clouddriver resources
