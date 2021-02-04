@@ -37,17 +37,16 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "ki-lambda-ui-caching.md" >}}
 {{< include "ki-aws-image-cache.md" >}}
 
-#### Failing health checks when using dynamic accounts
-<!-- BOB-30108 -->
-
-There is a known issue where the health checks fail for Clouddriver and Orca when the following conditions are true:
+<!-- Internal Jira BOB-30108 -->
+<!--#### Failing health checks when using dynamic accounts 
+There is a known issue where the health checks for Clouddriver and Orca fail when the following conditions are true:
 
 * You use Vault as the backend for dynamic account configurations.
 * A root token is used for authenticating to the Vault backend. 
 
 The health check failures are misleading. The services come up and are healthy. You can verify this with a TCP readiness probe.
 
-For information about how to define a TCP readiness probe, see [Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
+For information about how to define a TCP readiness probe, see [Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/). --> 
 
 
 ## Highlighted updates
