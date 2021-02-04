@@ -20,25 +20,9 @@ enableMissingTranslationPlaceholders = true
 
 #disableKinds = ["taxonomy", "taxonomyTerm"]
 
-# Highlighting config
-pygmentsCodeFences = true
-pygmentsUseClasses = false
-# Use the new Chroma Go highlighter in Hugo.
-pygmentsUseClassic = false
-#pygmentsOptions = "linenos=table"
-# See https://help.farbox.com/pygments.html
-pygmentsStyle = "tango"
-
 # Configure how URLs look like per section.
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
-
-## Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
-[blackfriday]
-plainIDAnchors = true
-hrefTargetBlank = true
-angledQuotes = false
-latexDashes = true
 
 # Image processing configuration.
 [imaging]
@@ -61,11 +45,6 @@ description = "Unlocking Innovation by Making Software Delivery Continuous, Scal
 languageName ="English"
 # Weight used for sorting.
 weight = 1
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
 
 
 [[menu.main]]
