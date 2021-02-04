@@ -1,20 +1,20 @@
 ---
 title: v2.23.4 Armory Release (OSS Spinnaker™ v1.23.6)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.23.04
 description: >
   Release notes for the Armory Platform
 ---
 
-## 2021/02/40 Release Notes
+## 2021/02/04 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.23.4, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.10 or later
+- Armory Operator 1.2.1 or later
 
 ## Security
 
@@ -23,8 +23,32 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
+{{< include "bc-docker-giduid.md" >}}
+
+{{< include "bc-k8s-job-suffix.md" >}}
+
+{{< include "bc-orca-forcecacherefresh.md" >}}
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
+{{< include "ki-bake-var-file.md" >}}
+{{< include "ki-orca-zombie-execution.md" >}}
+{{< include "ki-lambda-ui-caching.md" >}}
+{{< include "ki-aws-image-cache.md" >}}
+
+#### Failing health checks when using dynamic accounts
+<!-- BOB-30108 -->
+
+There is a known issue where the health checks fail for Clouddriver and Orca when the following conditions are true:
+
+* You use Vault as the backend for dynamic account configurations.
+* A root token is used for authenticating to the Vault backend. 
+
+The health check failures are misleading. The services come up and are healthy. You can verify this with a TCP readiness probe.
+
+For information about how to define a TCP readiness probe, see [Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
+
 
 ## Highlighted updates
 
@@ -34,7 +58,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
-
+This release includes various improvements to security and performance.
 
 
 ###  Spinnaker Community Contributions
