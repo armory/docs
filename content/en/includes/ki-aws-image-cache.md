@@ -2,9 +2,9 @@
 
 There is an issue where Clouddriver fails to cache images that belong to the first account (alphabetically) for each region. For example, in a region with accounts named Edith, Milton, and Pixel, Edith's images do not get cached.
 
-**Affected versions**: 2.23.x
+**Affected versions**: 2.23.3 and earlier
 
-**Fixed versions**: 2.24.0
+**Fixed versions**: 2.24.0, 2.23.4
 
 **Workaround**: 
 

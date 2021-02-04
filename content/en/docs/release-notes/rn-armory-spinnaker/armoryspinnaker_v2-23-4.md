@@ -35,7 +35,10 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "ki-bake-var-file.md" >}}
 {{< include "ki-orca-zombie-execution.md" >}}
 {{< include "ki-lambda-ui-caching.md" >}}
-{{< include "ki-aws-image-cache.md" >}}
+
+### Fixed issues
+
+* Fixed an issue where Clouddriver fails to cache images that belong to the first account (alphabetically) for each region.  
 
 <!-- Internal Jira BOB-30108 -->
 <!--#### Failing health checks when using dynamic accounts 
