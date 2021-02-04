@@ -36,21 +36,23 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "ki-orca-zombie-execution.md" >}}
 {{< include "ki-lambda-ui-caching.md" >}}
 
+#### Failing health checks when using dynamic accounts 
+<!-- BOB-30122 -->
+
+There is a known issue where the health checks for the Clouddriver pod fail when the following conditions are true:
+
+* Spinnaker is configured to use Spring Cloud Config Dynamic Accounts backed by Vault using a K/V Secrets Engine v2.
+* Spinnaker is configured to use Armory Vault Secrets.
+
+The health check failure prevents Kubernetes from transitioning the Clouddriver pod to a ready and active state, which prevents Kubernetes from passing traffic to the Clouddriver pod.
+
+There is currently no workaround.
+
+**Affected versions**: 2.23.4
+
 ### Fixed issues
 
 * Fixed an issue where Clouddriver fails to cache images that belong to the first account (alphabetically) for each region.  
-
-<!-- Internal Jira BOB-30108 -->
-<!--#### Failing health checks when using dynamic accounts 
-There is a known issue where the health checks for Clouddriver and Orca fail when the following conditions are true:
-
-* You use Vault as the backend for dynamic account configurations.
-* A root token is used for authenticating to the Vault backend. 
-
-The health check failures are misleading. The services come up and are healthy. You can verify this with a TCP readiness probe.
-
-For information about how to define a TCP readiness probe, see [Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/). --> 
-
 
 ## Highlighted updates
 
