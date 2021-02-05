@@ -172,7 +172,7 @@ The following table lists the supported authorization methods:
 | GitHub Teams          | All supported versions | Roles from GitHub are mapped to the Teams under a specific GitHub organization.      |
 | Google Groups         | All supported versions |                                                                                      |
 | LDAP/Active Directory | All supported versions |                                                                                      |
-| OAuth 2.0/OIDC        | All supported versions |                                                                                      |
+| OAuth 2.0/OIDC        | All supported versions | Requires the provider to include groups in claims or be a supported third party integration.                                                                                     |
 | SAML                  | All supported versions |                                                                                      |
 
 ## Baking machine images
@@ -353,12 +353,11 @@ Depending on the service, Spinnaker also uses either Redis, MySQL, or Postgres a
 
 | Database | DB version             | Armory                 | Spinnaker services                                  | Note                                                                                                                       |
 | -------- | ---------------------- | ---------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Redis    | All supported versions | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. By default, Spinnaker deploys Redis internally to support its services. |
+| Redis    | All supported versions | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. Supported only for services that still require Redis for a feature, such as Gate sessions. Redis is not supported as a core persistent storage engine. Although Spinnaker deploys internal Redis instances, do not use these instances for production deployments. Armory recommends only using them for testing and proof-of-concept deployments. |
 | MySQL    | MySQL 5.7 (or Aurora)  | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
 | PostgreSQL    | PostgreSQL 10.0 or later  | 2.24.0 or later | Clouddriver                          |                                                                                                                            |
 
 Armory recommends using MySQL or PostgreSQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
-
 
 ## Notifications
 
