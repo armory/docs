@@ -196,7 +196,7 @@ hal deploy apply
 
 ## Known issues
 
-{{< include "ki-lambda-ui-caching.md" >}}
+{{< include "known-issues/ki-lambda-ui-caching.md" >}}
 
 
 
