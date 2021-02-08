@@ -16,7 +16,7 @@ jobs:
           https://github.com/errata-ai/Google/releases/latest/download/Google.zip
 
         # Optional
-        config: https://raw.githubusercontent.com/errata-ai/vale/master/.vale.ini
+        # config: https://raw.githubusercontent.com/errata-ai/vale/master/.vale.ini
 
         # Optional
         files: content/en/
