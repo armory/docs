@@ -18,9 +18,9 @@ Armory 2.20.3 requires one of the following:
 
 ## Breaking changes
 
-{{< include "bc-k8s-namespace.md" >}}
+{{< include "breaking-changes/bc-k8s-namespace.md" >}}
 
-{{< include "bc-metrics-name.md" >}}
+{{< include "breaking-changes/bc-metrics-name.md" >}}
 
 ### HTTP sessions for Gate
 Armory 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
@@ -55,7 +55,7 @@ You will see errors similar to the following:
 
 org.springframework.jdbc.BadSqlGrammarException: jOOQ; bad SQL grammar [select max(last_modified_at) as `last_modified_at` from plugin_artifacts]; nested exception is java.sql.SQLSyntaxErrorException: Table 'front50_kinnon.plugin_artifacts' doesn't exist
 	at org.jooq_3.12.3.MYSQL.debug(Unknown Source) ~[na:na]
-	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:93) ~[spring-jdbc-5.1.14.RELEASE.jar:5.1.14.RELEASE]
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:93) ~[spring-jdbreaking-changes/bc-5.1.14.RELEASE.jar:5.1.14.RELEASE]
 ```  
 
 This issue only occurs if you upgrade to 2.19.x or later and then downgrade to a version earlier than 2.19.x.

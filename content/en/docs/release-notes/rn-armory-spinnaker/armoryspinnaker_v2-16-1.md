@@ -46,7 +46,7 @@ services:
   echo:
     version: 2.8.1-16a503d-55a1580-rc9
   fiat:
-    version: 1.7.0-84d2119-e92cfbc-rc4
+    version: 1.7.0-84d2119-e92cfbreaking-changes/bc-rc4
   front50:
     version: 0.19.0-195043d-abc5c16-rc4
   gate:
