@@ -36,6 +36,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "ki-orca-zombie-execution.md" >}}
 {{< include "ki-lambda-ui-caching.md" >}}
 {{< include "ki-aws-image-cache.md" >}}
+{{< include "ki-healthchecks-dynamicAccounts.md" >}}
 
 ## Highlighted updates
 

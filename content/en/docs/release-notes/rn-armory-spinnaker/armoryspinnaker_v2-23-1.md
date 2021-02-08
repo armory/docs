@@ -44,7 +44,9 @@ There is a known issue where Slack notifications do not work for Pipelines as Co
 
 An old version of Deck, the Spinnaker UI, exists in this release.
 
+
 {{< include "ki-lambda-ui-caching.md" >}}
+{{< include "ki-healthchecks-dynamicAccounts.md" >}}
 
 ## Highlighted updates
 
