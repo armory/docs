@@ -1,0 +1,26 @@
+- name: Vale Linter
+  uses: errata-ai/vale-action@v1.3.0
+
+name: Linting
+on: [push]
+
+jobs:
+  prose:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Vale
+      uses: errata-ai/vale-action@v1.3.0
+      with:
+        # Optional
+        styles: |
+          https://github.com/errata-ai/Google/releases/latest/download/Google.zip
+        # only lint changed files
+        files: __onlyModified
+        # only lint changed lines. Eventually, we'll switch to this. With our tech debt though, it wouldn't be a bad idea to just lint the whole file and fix it for a PR.
+        # onlyAnnotateModifiedLines: true
+      env:
+        # Required
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
