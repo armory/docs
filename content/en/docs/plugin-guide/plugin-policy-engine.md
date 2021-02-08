@@ -18,6 +18,8 @@ This plugin requires:
 - Armory 2.23.x or later (OSS Spinnaker 1.23.x or later)
 - Open Policy Agent 0.12.x or later
 
+Additionally, make sure that the non-plugin version of the Policy Engine (described [here]({{< ref "policy-engine-enable" >}})) is not enabled.
+
 <!--## Limitations
 
 TODO - figure out if there are any limitations
