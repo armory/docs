@@ -44,7 +44,7 @@ services:
   echo:
     version: 2.7.0-16a503d-7aae214-edge4
   fiat:
-    version: 1.6.0-84d2119-e92cfbreaking-changes/bc-edge1
+    version: 1.6.0-84d2119-e92cfbc-edge1
   front50:
     version: 0.18.0-195043d-abc5c16-edge1
   gate:
