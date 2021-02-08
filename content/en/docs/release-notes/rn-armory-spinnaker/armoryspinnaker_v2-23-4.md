@@ -1,17 +1,17 @@
 ---
-title: v2.23.3 Armory Release (OSS Spinnaker™ v1.23.5)
+title: v2.23.4 Armory Release (OSS Spinnaker™ v1.23.6)
 toc_hide: true
-version: 02.23.03
+version: 02.23.04
 description: >
   Release notes for the Armory Platform
 ---
 
-## 2021/01/06 Release Notes
+## 2021/02/04 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
 
-To install, upgrade, or configure Armory 2.23.3, use one of the following tools:
+To install, upgrade, or configure Armory 2.23.4, use one of the following tools:
 
 - Armory-extended Halyard 1.10 or later
 - Armory Operator 1.2.1 or later
@@ -35,7 +35,12 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-orca-zombie-execution.md" >}}
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
-{{< include "known-issues/ki-aws-image-cache.md" >}}
+{{< include "known-issues/ki-healthchecks-dynamicAccounts.md" >}}
+
+
+### Fixed issues
+
+* Fixed an issue where Clouddriver fails to cache images that belong to the first account (alphabetically) for each region.  
 
 ## Highlighted updates
 
@@ -45,12 +50,13 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
-This release includes bug fixes and performance improvements.
+This release includes various improvements to security and performance.
+
 
 ###  Spinnaker Community Contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
-[Spinnaker v1.23.5](https://www.spinnaker.io/community/releases/versions/1-23-5-changelog) changelog for details.
+[Spinnaker v1.23.6](https://www.spinnaker.io/community/releases/versions/1-23-6-changelog) changelog for details.
 
 ## Detailed updates
 
@@ -59,49 +65,49 @@ There have also been numerous enhancements, fixes, and features across all of Sp
 Here's the BOM for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
-<code>version: 2.23.3
-timestamp: "2021-01-06 18:34:22"
+<code>version: 2.23.4
+timestamp: "2021-02-03 15:52:32"
 services:
     clouddriver:
-        commit: 7b48618e
-        version: 2.23.28
+        commit: 7b2a33c8
+        version: 2.23.36
     deck:
-        commit: c12cb26f
-        version: 2.23.15
+        commit: ccf47bbb
+        version: 2.23.19
     dinghy:
-        commit: 2af1fe54
-        version: 2.23.8
+        commit: 41fde564
+        version: 2.23.9
     echo:
-        commit: 4ee974dd
-        version: 2.23.6
+        commit: e7ef217c
+        version: 2.23.14
     fiat:
-        commit: 733f0a48
-        version: 2.23.5
+        commit: 7124416c
+        version: 2.23.11
     front50:
-        commit: "19492652"
-        version: 2.23.6
+        commit: 95b3ff9c
+        version: 2.23.14
     gate:
-        commit: 55345b5a
-        version: 2.23.5
+        commit: dee95e1f
+        version: 2.23.13
     igor:
-        commit: 06ff06e0
-        version: 2.23.5
+        commit: c932b693
+        version: 2.23.13
     kayenta:
-        commit: 602679b2
-        version: 2.23.8
+        commit: ac7147d0
+        version: 2.23.17
     monitoring-daemon:
         version: 2.23.0
     monitoring-third-party:
         version: 2.23.0
     orca:
-        commit: 95f678f3
-        version: 2.23.12
+        commit: fe3d069a
+        version: 2.23.21
     rosco:
-        commit: c2b498c9
-        version: 2.23.10
+        commit: 296e82dc
+        version: 2.23.18
     terraformer:
-        commit: 25d9a96b
-        version: 2.23.6
+        commit: 7710fd96
+        version: 2.23.9
 dependencies:
     redis:
         version: 2:2.8.4-2
@@ -113,43 +119,51 @@ artifactSources:
 
 ### Armory
 
-#### Armory Deck - 2.23.14...2.23.15
 
-  - chore(deps): bump to new OSS 1.23.5 bom (#710)
+#### Armory Gate - 2.23.5...2.23.13
 
-#### Armory Front50 - 2.23.6...2.23.6
+  - chore(build): use armory BOM (#219)
+
+#### Armory Igor - 2.23.5...2.23.13
+
+  - chore(build): use armory commons bom (#177) (#179)
+
+#### Armory Deck - 2.23.15...2.23.19
+
+  - chore(deps): bump to new OSS 1.23.6 bom (#728)
+
+#### Armory Clouddriver - 2.23.28...2.23.36
+
+  - fix(build): Dependencies for Spring cloud config + Vault (#266)
+  - fix(build): Remove explicit guava - get from armory-commons (#267)
+
+#### Armory Fiat - 2.23.5...2.23.11
+
+  - chore(build): use armory commons BOM (#156) (#158)
+
+#### Armory Front50 - 2.23.6...2.23.14
+
+  - chore(build): use armory commons BOM (#202) (#204)
+
+#### Armory Kayenta - 2.23.8...2.23.17
+
+  - chore(build): use armory commons BOM (#183) (#185)
+
+#### Armory Rosco - 2.23.10...2.23.18
+
+  - chore(build): use armory commons bom  (#185) (#187)
+
+#### Dinghy™ - 2.23.8...2.23.9
 
 
-#### Terraformer™ - 2.23.5...2.23.6
+#### Armory Echo - 2.23.6...2.23.14
 
-  - refactor(git/repo): improve git/repo perf (bp #295) (#296)
+  - fix(build): use armory commons BOM (#279)
 
-#### Armory Kayenta - 2.23.7...2.23.8
+#### Armory Orca - 2.23.12...2.23.21
 
-  - fix(kayenta): force oss version to 1.24.0 (#158)
+  - fix(build): use armory commons BOM as platform (#205)
 
-#### Armory Orca - 2.23.12...2.23.12
-
-
-#### Armory Gate - 2.23.5...2.23.5
-
-
-#### Armory Echo - 2.23.6...2.23.6
-
-
-#### Dinghy™ - 2.23.8...2.23.8
-
-
-#### Armory Fiat - 2.23.5...2.23.5
-
-
-#### Armory Clouddriver - 2.23.27...2.23.28
-
-  - feat(docker): adding ecr utility to get an ecr token (#235) (#237)
-
-#### Armory Igor - 2.23.5...2.23.5
-
-
-#### Armory Rosco - 2.23.10...2.23.10
+#### Terraformer™ - 2.23.6...2.23.9
 
 
