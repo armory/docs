@@ -29,7 +29,7 @@ Armory docs uses the [Docsy](https://docsy.dev) theme as a submodule. You have t
 
 ```bash
 cd docs
-git submodule update --init --recursive
+git submodule update --init --recursive --depth 1
 ```
 
 Set this docs repo as the upstream remote:
