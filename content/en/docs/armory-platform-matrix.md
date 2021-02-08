@@ -97,7 +97,7 @@ The following table lists the supported artifact types:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
 
-[Pipelines as Code]({{< ref "dinghy-enable" >}}) gives you the ability to manage your pipelines and their templates in source control.
+[Pipelines as Code]({{< ref "dinghy-enable" >}}) gives you the ability to manage your pipelines and their templates in source control by creating and maintaining `dinghyfiles` that contain JSON representations of pipelines. These files are then ingested by Armory to generate pipelines that your app devs can use to deploy their apps.
 
 **Supported version control systems**
 
@@ -122,6 +122,12 @@ The following table lists specific features for Pipelines as Code and their supp
 | [Webhook secret validation]({{< ref "using-dinghy#webhook-secret-validation" >}})                                                       | All supported versions          |                                                                       |
 | [Local modules for development]({{< ref "using-dinghy#local-module-functionality" >}})                                                   | All supported versions          |                                                                       |
 | [Pull Request Validation]({{< ref "dinghy-enable#pull-request-validations" >}}) | 2.21 or later          |                                                                       |
+
+#### ARM CLI
+
+The ARM CLI is a tool to render `dinghyfiles` and modules. Use it to help develop and validate your pipelines locally.
+
+You can find the latest version on [Docker Hub](https://hub.docker.com/r/armory/arm-cli).
 
 ### Pipelines as CRD
 
