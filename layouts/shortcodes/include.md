@@ -1,4 +1,5 @@
-{{/* This will try to find a resource in the "includes"  bundle; copied from github.com/kubernetes/website */}}
+{{/* This will try to find a resource in the "includes"  bundle; copied from github.com/kubernetes/website; a file included using this shortcode can have shortcodes in it, heading in the included file are NOT rendered in the page TOC */}}
+
 {{- $name := .Get 0 -}}
 {{- if $name -}}
 	{{- $bundle := site.GetPage "page" "includes" -}}

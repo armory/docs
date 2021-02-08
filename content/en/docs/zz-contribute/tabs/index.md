@@ -149,3 +149,37 @@ Hugo doesn't render the tabs shortcodes when they are embedded in file in the `i
 ## Tabs in a partial
 
 {{ partial "operator/op-install.html" . }}
+
+
+## Including shared content
+
+**`readFile` custom shortcode**
+
+Headers in included file **are** rendered in page TOC. Shortcodes in the included content **are not** compiled. The shortcode reads the file in as a string.
+
+This shortcode comes from [knative/website](https://github.com/knative/website/blob/master/layouts/shortcodes/readfile.md).
+
+Usage:
+```markdown
+{{%/* readFile file="content/en/includes/armory-operator/kustomize-patches.md"  */%}}
+```
+_Example below - you see headings in the page TOC but the shortcodes t the bottom of the examples have not been compiled:_
+{{% readFile file="/content/en/includes/armory-operator/kustomize-patches.md" %}}
+
+
+**`include` custom shortcode**
+
+Headers in included file **are not** rendered in page TOC.
+Shortcodes in the included file **are** compiled.
+
+This shortcode comes from [kubernetes/website](https://github.com/kubernetes/website/blob/master/layouts/shortcodes/include.html).
+
+Usage
+```markdown
+{{%/* include "armory-operator/kustomize-patches.md" */%}}
+```
+
+Example - headings are not rendered in page TOC but the shortcodes have been compiled:
+
+{{% include "armory-operator/kustomize-patches.md" %}}
+
