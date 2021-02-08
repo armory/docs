@@ -51,7 +51,7 @@ services:
   dinghy:
     version: 0.0.4-9ccc528-rc298
   echo:
-    version: 2.6.0-7f44a96-4aae0breaking-changes/bc-edge3
+    version: 2.6.0-7f44a96-4aae0bc-edge3
   fiat:
     version: 1.6.0-b557350-fced26e-edge4
   front50:
