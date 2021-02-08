@@ -15,7 +15,7 @@ aliases:
 
 
 ## Known Issues
-There are currently no known issues with this release.
+There are currently no known issues with this release. application
 
 ## Highlighted Updates
 ### Armory
