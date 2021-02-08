@@ -46,7 +46,6 @@ An old version of Deck, the Spinnaker UI, exists in this release.
 
 
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
-{{< include "known-issues/ki-healthchecks-dynamicAccounts.md" >}}
 
 ## Highlighted updates
 

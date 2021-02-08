@@ -10,4 +10,4 @@ The health check failure prevents Kubernetes from transitioning the Clouddriver 
 
 There is currently no workaround.
 
-**Affected versions**: 2.23.x, 2.24.x
+**Affected versions**: 2.23.4

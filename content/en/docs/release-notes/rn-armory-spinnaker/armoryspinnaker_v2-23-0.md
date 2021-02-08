@@ -37,7 +37,6 @@ There is a known issue with Clouddriver that affects the performance of the Armo
 
 {{< include "known-issues/ki-orca-zombie-execution.md" >}}
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
-{{< include "known-issues/ki-healthchecks-dynamicAccounts.md" >}}
 
 ### Fixed issues
 
