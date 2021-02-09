@@ -12,12 +12,12 @@ aliases:
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-
-
 ## Known Issues
+
 There are currently no known issues with this release.
 
 ## Highlighted Updates
+
 ### Armory
 This release includes the following:
 
