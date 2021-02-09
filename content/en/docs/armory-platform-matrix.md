@@ -54,8 +54,6 @@ The following table lists supported app metric providers:
 
 Artifacts are  deployable resources.
 
-### Stores
-
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
 The following table lists the supported artifact stores:
@@ -63,6 +61,7 @@ The following table lists the supported artifact stores:
 | Provider                                                          | Armory                 | Notes                                                               |
 | ----------------------------------------------------------------- | ---------------------- | ------------------------------------------------------------------- |
 | [Bitbucket](https://spinnaker.io/setup/artifacts/bitbucket/)      | All supported versions |                                                                     |
+| Container registries                                              | All supported versions | Docker Hub, ECR, and GCR                                                                     |
 | [GitHub](https://spinnaker.io/setup/artifacts/github/)            | All supported versions |                                                                     |
 | [Git Repo](https://spinnaker.io/setup/artifacts/gitrepo/)         | All supported versions | GitHub or Bitbucket. Supports using the entire repo as an artifact. |
 | [Google Cloud Storage](https://spinnaker.io/setup/artifacts/gcs/) | All supported versions |                                                                     |
