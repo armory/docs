@@ -8,12 +8,16 @@ description: >
 
 ## Overview of air-gapped environments
 
-An air-gapped environment is one where any combination of the following conditions are true:
-- No access to Armory Bill Of Materials (BOM), which are published on S3
-- No ability to pull images from docker.io/armory
-- No ability for engineers to deploy with Halyard from their machines
+An air-gapped environment is one where any combination of the following conditions is true:
 
-If your environment is air-gapped, you have several options for deploying Armory.
+- No access to Armory Bill Of Materials (BOM), which is published on S3
+- No ability to pull images from docker.io/armory
+- No ability for engineers to deploy using Halyard running on their workstations
+
+You have the following options for deploying Armory in an air-gapped environment:
+
+* [Host Armory's BOM](#host-armorys-bill-of-materials-bom) in your own storage bucket
+* [Use a custom Docker registry](#use-a-custom-docker-registry)
 
 ## Host Armory's Bill Of Materials (BOM)
 
