@@ -93,7 +93,7 @@ The following table lists specific features for Pipelines as Code and their supp
 
 | Feature                                                                                | Armory                 | Notes                                                                 |
 | -------------------------------------------------------------------------------------- | ---------------------- | --------------------------------------------------------------------- |
-| [Fiat service account integration]({{< ref "dinghy-enable#fiat" >}}                    | All supported versions |                                                                       |
+| [Fiat service account integration]({{< ref "dinghy-enable#fiat" >}})                   | All supported versions |                                                                       |
 | GitHub status notifications                                                            | All supported versions |                                                                       |
 | [Local modules for development]({{< ref "using-dinghy#local-module-functionality" >}}) | All supported versions |                                                                       |
 | Modules                                                                                | All supported versions | Templatize and re-use pipeline snippets across applications and teams |
