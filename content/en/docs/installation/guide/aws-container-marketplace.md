@@ -1,5 +1,5 @@
 ---
-title: Installing Armory in AWS from the AWS Container Marketplace
+title: Installing the Armory Enterprise Platform for Spinnaker in AWS from the AWS Container Marketplace
 linkTitle: Install from AWS Marketplace
 weight: 2
 aliases:

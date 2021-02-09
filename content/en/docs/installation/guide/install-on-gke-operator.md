@@ -1,5 +1,5 @@
 ---
-title: Installing Armory in the Google Kubernetes Engine using the Armory Operator
+title: Installing the Armory Enterprise Platform for Spinnaker in the Google Kubernetes Engine using the Armory Operator
 linkTitle: "Install in GKE using Operator"
 weight: 7
 aliases:

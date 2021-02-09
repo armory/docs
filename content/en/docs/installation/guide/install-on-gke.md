@@ -1,5 +1,5 @@
 ---
-title: Installing Armory in GKE
+title: Installing the Armory Enterprise Platform for Spinnaker in GKE
 linkTitle: "Install in GKE"
 weight: 6
 aliases:

@@ -1,5 +1,5 @@
 ---
-title: Installing Armory on Kubernetes
+title: Installing the Armory Enterprise Platform for Spinnaker on Kubernetes
 linkTitle: Install in Kubernetes
 weight: 3
 aliases:

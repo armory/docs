@@ -1,5 +1,5 @@
 ---
-title: Install on OpenShift using the Armory Operator from the Red Hat Marketplace
+title: Installing the Armory Enterprise Platform for Spinnaker on OpenShift using the Armory Operator from the Red Hat Marketplace
 linkTitle: Install on OpenShift
 weight: 2
 description: >

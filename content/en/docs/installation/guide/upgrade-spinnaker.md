@@ -1,5 +1,5 @@
 ---
-title: Upgrade or Rollback the Armory Version
+title: Upgrading or Downgrading the Armory Version
 aliases:
   - /docs/spinnaker-install-admin-guides/upgrade-spinnaker/
 description: >

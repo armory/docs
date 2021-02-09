@@ -1,5 +1,5 @@
 ---
-title: Installing Armory in AKS
+title: Installing the Armory Enterprise Platform for Spinnaker in AKS
 linkTitle: "Install in AKS"
 weight: 5
 aliases:

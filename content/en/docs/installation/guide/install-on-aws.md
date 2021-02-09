@@ -1,5 +1,5 @@
 ---
-title: Installing Armory in Amazon Web Services
+title: Installing the Armory Enterprise Platform for Spinnaker in Amazon Web Services
 linkTitle: "Install in AWS"
 weight: 4
 aliases:

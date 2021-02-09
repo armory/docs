@@ -2,7 +2,7 @@
 title: Minnaker
 weight: 4
 description: >
-  Minnaker is an all-in-one, open source command line tool to install Armory or Spinnaker<sup>TM</sup> in a lightweight Kubernetes environment.
+  Install Spinnaker or the Armory Enterprise Platform for Spinnaker in a lightweight Kubernetes environment using an all-in-one, open source command line tool.
 ---
 
 ## Overview of Minnaker
