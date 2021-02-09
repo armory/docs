@@ -8,6 +8,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
+    # workaround for __onlyModified value for files not working. GH action to fetch only the modified files
+    - name: Get Changed Files
+      id: get_changed_files
+      uses: jitterbit/get-changed-files@v1
+      with:
+        format: 'json'
+
+
     - name: Vale
       uses: errata-ai/vale-action@v1.3.0
       with:
@@ -15,8 +23,8 @@ jobs:
         styles: |
           https://github.com/errata-ai/Google/releases/latest/download/Google.zip
 
-        # Optional
-        files: content/en/
+        # Optional. Workaround for __onlyModified setting not working. Consumes output from Get Changed Files
+        files: '${{ steps.get_changed_files.outputs.added_modified }}'
       env:
         # Required
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
