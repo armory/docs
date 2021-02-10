@@ -12,7 +12,7 @@ aliases:
 
 - Manage the Armory Enterprise Platform with `kubectl` like other applications.
 - Expose the Armory Enterprise Platform via `LoadBalancer` or `Ingress` (optional)
-- Keep secrets separate from your config. Store your config in `git` and have an easy Gitops workflow.
+- Keep secrets separate from your configuration. Store your config in `git` and have an easy GitOps workflow.
 - Validate your configuration before applying it (with webhook validation).
 - Store Spinnaker secrets in [Kubernetes secrets](https://github.com/armory/spinnaker-operator/blob/master/doc/managing-spinnaker.md#secrets-in-kubernetes-secrets).
 - Gain total control over Armory Enterprise Platform manifests with [`kustomize` style patching](https://github.com/armory/spinnaker-operator/blob/master/doc/options.md#speckustomize)
@@ -29,7 +29,7 @@ Before you use start, ensure you meet the following requirements:
   - If you do not have a cluster already, consult guides for [Google](https://cloud.google.com/kubernetes-engine/docs/quickstart), [Amazon](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html), or [Microsoft](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal) clouds.
 - You have admission controllers enabled in Kubernetes (`-enable-admission-plugins`).
 - You have `ValidatingAdmissionWebhook` enabled in the kube-apiserver. Alternatively, you can pass the `--disable-admission-controller` parameter to the to the `deployment.yaml` file that deploys the operator.
-- You have admin rights to install the Custom Resource Definition (CRD) for Operator.
+- You have administrator rights to install the Custom Resource Definition (CRD) for Operator.
 
 {{% include "armory-operator/installation.md" %}}
 
@@ -233,7 +233,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
 
 3. Export Armory profiles.
 
-   If you have configured Armory profiles, you will need to migrate these profiles to the `SpinnakerService` manifest.
+   If you have configured Armory profiles, you need to migrate these profiles to the `SpinnakerService` manifest.
 
    First, identify the current profiles under  `~/.hal/default/profiles`
 

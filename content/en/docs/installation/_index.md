@@ -10,7 +10,7 @@ aliases:
   - /docs/spinnaker/install/
 ---
 
-## Methods for installing the Armory Enterprise Platform for Spinanker or open source Spinnaker
+## Methods for installing the Armory Enterprise Platform for Spinnaker or open source Spinnaker
 
 There are several methods to install Armory or open source Spinnaker:
 
@@ -22,9 +22,9 @@ There are several methods to install Armory or open source Spinnaker:
 | [Spinnaker Operator]({{< ref "operator" >}})   | Kubernetes            | An open source Kubernetes operator that turns Spinnaker's configuration declarative | GitOps friendly and ready for production use                                 |
 
 
-All the methods above share similar configurations, and you can migrate between them if your needs change.
+All the preceding methods share similar configurations, and you can migrate between them if your needs change.
 
-> Armory does not generate default hardcoded usernames and passwords for user accounts for any service. Manage these by configuring authentication and authorization for the Armory Platform.
+> Armory does not generate default usernames and passwords for user accounts for any service. Manage these by configuring authentication and authorization for the Armory Platform.
 
 ## Guides
 
