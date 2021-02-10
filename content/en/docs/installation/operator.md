@@ -1,24 +1,25 @@
 ---
-title: Armory Operator
+title: Using the Armory Operator for Kubernetes to install and manage the Armory Enterprise Platform for Spinnaker
+linkTitle: Armory Operator
 weight: 1
 description: >
-  The Armory Operator is a Kubernetes Operator that makes it easy to install, deploy, and upgrade any version of Armory or Spinnaker.
+  The Armory Operator is a Kubernetes Operator that makes it easy to install, deploy, and upgrade any version of Spinnaker or the Armory Enterprise Platform for Spinnaker.
 aliases:
   - /docs/spinnaker/operator/
 ---
 
 ## Advantages of using the Armory Operator
 
-- Manage Armory with `kubectl` like other applications.
-- Expose Armory via `LoadBalancer` or `Ingress` (optional)
+- Manage the Armory Enterprise Platform with `kubectl` like other applications.
+- Expose the Armory Enterprise Platform via `LoadBalancer` or `Ingress` (optional)
 - Keep secrets separate from your config. Store your config in `git` and have an easy Gitops workflow.
 - Validate your configuration before applying it (with webhook validation).
 - Store Spinnaker secrets in [Kubernetes secrets](https://github.com/armory/spinnaker-operator/blob/master/doc/managing-spinnaker.md#secrets-in-kubernetes-secrets).
-- Gain total control over Armory manifests with [`kustomize` style patching](https://github.com/armory/spinnaker-operator/blob/master/doc/options.md#speckustomize)
+- Gain total control over Armory Enterprise Platform manifests with [`kustomize` style patching](https://github.com/armory/spinnaker-operator/blob/master/doc/options.md#speckustomize)
 - Define Kubernetes accounts in `SpinnakerAccount` objects and store kubeconfig inline, in Kubernetes secrets, in s3, or GCS **(Experimental)**.
 - Deploy Armory in an Istio controlled cluster **(Experimental)**
 
-> This guide uses the Armory Operator, which installs Armory. The open source Operator installs open source Spinnaker<sup>TM</sup>. You can download the open source Operator from the GitHub [repo](https://github.com/armory/spinnaker-operator).
+> This guide uses the Armory Operator, which installs the Armory Enterprise Platform. The open source Operator installs open source Spinnaker<sup>TM</sup>. You can download the open source Operator from its GitHub [repo](https://github.com/armory/spinnaker-operator).
 
 ## Requirements for using the Armory Operator
 
