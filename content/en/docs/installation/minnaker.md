@@ -1,5 +1,5 @@
 ---
-title: Minnaker - All-In-One Spinnaker on Lightweight Kubernetes
+title: Minnaker/:/ All-In-One Spinnaker on Lightweight Kubernetes
 linkTitle: Minnaker
 weight: 4
 description: >

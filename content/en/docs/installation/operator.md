@@ -1,5 +1,5 @@
 ---
-title: Using the Armory Operator for Kubernetes to install and manage the Armory Enterprise Platform for Spinnaker
+title: Using the Armory Operator to Install and Manage the Armory Enterprise Platform for Spinnaker
 linkTitle: Armory Operator
 weight: 1
 description: >
