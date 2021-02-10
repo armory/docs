@@ -8,7 +8,7 @@ aliases:
   - /spinnaker-install-admin-guides/install_on_gke/
   - /spinnaker-install-admin-guides/install-on-gke/
 description: >
-  Use Armory-extended Halyard and Armory's Spinnaker<sup>TM</sup> tools CLI to install Armory in your Google Kubernetes Engine (GKE) cluster.
+  Use Armory-extended Halyard and Armory's Spinnaker<sup>TM</sup> tools CLI to install the Armory Enterprise Platform for Spinnaker in your Google Kubernetes Engine (GKE) cluster.
 ---
 
 ## Overview of installing Armory

@@ -6,7 +6,7 @@ aliases:
   - /spinnaker/aws_container_marketplace/
   - /spinnaker/aws-container-marketplace/
 description: >
-  Use the Armory Operator from the AWS Container Marketplace to install Armory in your Amazon Kubernetes (EKS) cluster.
+  Use the Armory Operator from the AWS Container Marketplace to install the Armory Enterprise Platform for Spinnaker in your Amazon Kubernetes (EKS) cluster.
 
 ---
 

@@ -8,7 +8,7 @@ aliases:
   - /spinnaker-install-admin-guides/install_on_aks/
   - /spinnaker-install-admin-guides/install-on-aks/
 description: >
-  This guide describes how to install Armory in the Azure Kubernetes Service (AKS).
+  This guide describes how to install the Armory Enterprise Platform for Spinnaker in the Azure Kubernetes Service (AKS).
 ---
 
 ## Overview of installing Armory in AKS

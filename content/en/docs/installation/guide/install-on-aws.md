@@ -12,7 +12,7 @@ aliases:
   - /spinnaker_install_admin_guides/install-on-aws/
   - /spinnaker-install-admin-guides/install-on-aws/
 description: >
-  This guide describes how to install Armory in an AWS Kubernetes cluster or in an on-prem Kubernetes cluster with access to S3.
+  This guide describes how to install the Armory Enterprise Platform for Spinnaker in an AWS Kubernetes cluster or in an on-prem Kubernetes cluster with access to S3.
 ---
 
 ## Overview of installing Armory in AWS

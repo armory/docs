@@ -1,11 +1,11 @@
 ---
-title: Installing the Armory Enterprise Platform for Spinnaker on Kubernetes
+title: Installing the Armory Enterprise Platform for Spinnaker in Kubernetes
 linkTitle: Install in Kubernetes
 weight: 3
 aliases:
   - /spinnaker-install-admin-guides/install-on-k8s/
 description: >
-  Use Armory-extended Halyard or the Armory Operator to install Armory on Kubernetes.
+  Use Armory-extended Halyard or the Armory Operator to install the Armory Enterprise Platform for Spinnaker in Kubernetes.
 ---
 
 ## Overview

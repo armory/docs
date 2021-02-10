@@ -1,13 +1,14 @@
 ---
-title: Minnaker
+title: Minnaker: All-In-One Spinnaker on Lightweight Kubernetes
+linkTitle: Minnaker
 weight: 4
 description: >
-  Install Spinnaker or the Armory Enterprise Platform for Spinnaker in a lightweight Kubernetes environment using an all-in-one, open source command line tool.
+  Install Spinnaker or the Armory Enterprise Platform for Spinnaker in a lightweight Kubernetes environment using an all-in-one, open source command line script.
 ---
 
 ## Overview of Minnaker
 
-Armory Minnaker is an easy to use installation script that leverages the power of **Kubernetes** with the simplicity of a _Virtual Machine_.  The Kubernetes environmnent that gets installed on your behalf is based on [Rancher's K3s](https://k3s.io/).  You do not need to know how to setup Kubernetes! Minnaker takes care of the hard parts for you, allowing you to get up and running with Armory in under 10 minutes.  Check out [our video](https://youtu.be/jg8vJEzcuAA) on running Armory across all of the public clouds including VMWare Fusion locally.  
+Armory Minnaker is an easy to use installation script that leverages the power of **Kubernetes** with the simplicity of a _Virtual Machine_.  The Kubernetes environment that gets installed on your behalf is based on [Rancher's K3s](https://k3s.io/).  You do not need to know how to setup Kubernetes! Minnaker takes care of the hard parts for you, allowing you to get up and running with Armory in under 10 minutes.  Check out [our video](https://youtu.be/jg8vJEzcuAA) on running Armory across all of the public clouds including VMWare Fusion locally.  
 
 Minnaker makes it easy to get up and running today and lets you scale your deployment into a medium to large deployment down the road.
 
