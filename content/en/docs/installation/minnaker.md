@@ -3,7 +3,7 @@ title: Minnaker: All-In-One Spinnaker on Lightweight Kubernetes
 linkTitle: Minnaker
 weight: 4
 description: >
-  Install Spinnaker or the Armory Enterprise Platform for Spinnaker in a lightweight Kubernetes environment using an all-in-one, open source command line script.
+  Install Spinnaker or the Armory Enterprise Platform for Spinnaker in a lightweight Kubernetes environment using the all-in-one, open source command line tool called Minnaker.
 ---
 
 ## Overview of Minnaker
