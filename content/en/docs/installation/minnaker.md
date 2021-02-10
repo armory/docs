@@ -8,9 +8,11 @@ description: >
 
 ## Overview of Minnaker
 
-Armory Minnaker is an easy to use installation script that leverages the power of **Kubernetes** with the simplicity of a _Virtual Machine_.  The Kubernetes environment that gets installed on your behalf is based on [Rancher's K3s](https://k3s.io/).  You do not need to know how to set up Kubernetes. Minnaker takes care of the hard parts for you, allowing you to get up and running with Spinnaker or the Armory Enterprise Platform in under 10 minutes.  Check out [our video](https://youtu.be/jg8vJEzcuAA) on running Armory across all of the public clouds including VMWare Fusion locally.  
+Armory Minnaker is an easy to use installation script that leverages the power of **Kubernetes** with the simplicity of a _Virtual Machine_. Minnaker makes it easy to get up and running today and lets you scale your deployment into a medium to large deployment down the road.
 
-Minnaker makes it easy to get up and running today and lets you scale your deployment into a medium to large deployment down the road.
+The Kubernetes environment that gets installed on your behalf is based on [Rancher's K3s](https://k3s.io/). You do not need to know how to set up Kubernetes. Minnaker takes care of the hard parts for you, allowing you to get Spinnaker up and running in under 10 minutes.
+
+Watch _Spinnaker in 10 minutes or less with Project Minnaker_ for a demo of using Minnaker to install Spinnaker on cloud platforms as well as VMWare Fusion running locally.  
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jg8vJEzcuAA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
