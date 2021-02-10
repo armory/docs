@@ -8,4 +8,4 @@ weight: 5
 
 Once installed, Armory can deploy to supported providers through Clouddriver regardless of where it is installed.
 
-See [Air-gapped Environments]({{< ref "air-gapped" >}}) for additional steps you have to take if you have an air-gapped environment.
+See {{< linkWithTitle "air-gapped.md" >}} for additional steps you have to take if you have an air-gapped environment.

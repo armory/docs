@@ -1,7 +1,7 @@
 ---
-title: Installing the Armory Enterprise Platform for Spinnaker on OpenShift using the Armory Operator from the Red Hat Marketplace
+title: Installing the Armory Enterprise Platform for Spinnaker on OpenShift Using the Armory Operator
 linkTitle: Install on OpenShift
-weight: 2
+weight: 5
 description: >
   Use the Armory Operator from the Red Hat Marketplace to install the Armory Enterprise Platform for Spinnaker in your OpenShift cluster.
 ---

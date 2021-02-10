@@ -1,5 +1,5 @@
 ---
-title: Installing the Armory Enterprise Platform for Spinnaker in AKS
+title: Installing the Armory Enterprise Platform for Spinnaker in the Azure Kubernetes Service
 linkTitle: "Install in AKS"
 weight: 5
 aliases:
@@ -8,7 +8,7 @@ aliases:
   - /spinnaker-install-admin-guides/install_on_aks/
   - /spinnaker-install-admin-guides/install-on-aks/
 description: >
-  This guide describes how to install the Armory Enterprise Platform for Spinnaker in the Azure Kubernetes Service (AKS).
+  Use Armory-extended Halyard and Armory's Spinnaker<sup>TM</sup> tools CLI to install the Armory Enterprise Platform for Spinnaker in the Azure Kubernetes Service (AKS).
 ---
 
 ## Overview of installing Armory in AKS
