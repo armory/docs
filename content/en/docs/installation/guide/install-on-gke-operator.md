@@ -116,6 +116,7 @@ Use the Cloud Console to [create your bucket](https://cloud.google.com/storage/d
 going to put secrets in the bucket, make sure to create a secrets directory in
 that bucket. Also, make sure that the Kubernetes service account you created can access the bucket.
 
+## {{% heading "configKustomizeInstallArmory" %}}
 {{% include "armory-operator/kustomize-patches.md" %}}
 
 ## Customize your Spinnaker installation
