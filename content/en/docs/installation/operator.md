@@ -31,11 +31,13 @@ Before you use start, ensure you meet the following requirements:
 - You have `ValidatingAdmissionWebhook` enabled in the kube-apiserver. Alternatively, you can pass the `--disable-admission-controller` parameter to the to the `deployment.yaml` file that deploys the operator.
 - You have administrator rights to install the Custom Resource Definition (CRD) for Operator.
 
+## {{% heading "installOperator" %}}
 {{% include "armory-operator/installation.md" %}}
 
+## {{% heading "configKustomizeInstallArmory" %}}
 {{% include "armory-operator/kustomize-patches.md" %}}
 
-### Upgrade Armory
+## Upgrade Armory
 
 To upgrade an existing Armory deployment, perform the following steps:
 
@@ -69,7 +71,7 @@ To upgrade an existing Armory deployment, perform the following steps:
 
 
 
-### Manage Armory instances
+## Manage Armory instances
 
 The Armory Operator allows you to use `kubectl` to manager you Armory deployment.
 
