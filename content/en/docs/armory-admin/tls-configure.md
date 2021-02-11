@@ -92,7 +92,7 @@ Switching from plain HTTP to HTTPS will cause some short disruption to the servi
 
 ### Secret engines
 
-You can store secrets (and non secrets) in [supported secret stores]({{< ref "secrets" >}}) as well as in Kubernetes secrets if using the [Spinnaker Operator]({{< ref "operator" >}}). This is the simplest route.
+You can store secrets (and non secrets) in [supported secret stores]({{< ref "secrets" >}}) as well as in Kubernetes secrets if using the [Spinnaker Operator]({{< ref "armory-operator" >}}). This is the simplest route.
 
 For instance, assuming all the information is stored in a bucket named `mybucket` on s3 that all services have access to, `SpinnakerService` manifest (or the corresponding `echo-local.yml` in Halyard) might look like:
 

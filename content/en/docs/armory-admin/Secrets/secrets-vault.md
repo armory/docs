@@ -54,7 +54,7 @@ hal armory secrets vault edit \
     --auth-method KUBERNETES \
     --url <Vault server URL>:<port if required> \
     --role <Role in Vault> \
-    --path <k8s cluster path> # Optional.default is kubernetes
+    --path <k8s cluster path> # Optional; default is kubernetes
 ```
 
 {{% /tab %}}
@@ -98,12 +98,13 @@ hal armory secrets vault edit \
     --auth-method TOKEN \
     --url <Vault server URL>:<port if required>
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
 ## Configuring the Operator to use Vault secrets
 
-If you are using the Spinnaker Operator, set up a custom Halyard configuration per [this section]({{< ref "operator#custom-halyard-configuration" >}}) with this content:
+If you are using the Spinnaker Operator, set up a custom Halyard configuration per [this section]({{< ref "armory-operator#custom-halyard-configuration" >}}) with this content:
 
 ```yaml
 secrets:

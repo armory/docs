@@ -2,10 +2,12 @@
 title: Armory Config
 weight: 2
 description: >
-  This page describes `spec.spinnakerConfig.config.armory`.
+  This page describes the `spec.spinnakerConfig.config.armory` section, which is used to configure proprietary features in the Armory Enterprise Platform for Spinnaker.
 aliases:
   - /operator_reference/armory/
 ---
+
+> This section is for configuring features in the Armory Enterprise Platform for Spinnaker.
 
 **spec.spinnakerConfig.config.armory**
 

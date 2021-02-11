@@ -478,7 +478,7 @@ The following table lists the supported secret stores for referencing secrets in
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
 [Spinnaker Operator](https://github.com/armory/spinnaker-operator) and
-[Armory Operator]({{< ref "operator" >}}) provide Spinnaker users with the ability
+[Armory Operator]({{< ref "armory-operator" >}}) provide Spinnaker users with the ability
 to install, update, and maintain their clusters via a Kubernetes operator.
 
 | Feature                                                                            | Version                | Armory Version         | Notes                                                                                                                                     |

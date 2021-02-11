@@ -1,6 +1,6 @@
 ---
 title: Armory Operator Configuration
-weight: 1
+weight: 2
 description: >
   This guide describes the fields in `SpinnakerService` CRD that you need to deploy Armory Enterprise for Spinnaker on Kubernetes.
 ---
@@ -153,7 +153,7 @@ spec:
 
 * [armory]({{< ref "armory" >}})
 * [artifact]({{< ref "artifact" >}})
-* [canary]({{< ref "canary" >}})
+* [canary]({{< ref "canary-op-config" >}})
 * [ci]({{< ref "ci" >}})
 * [deploymentEnvironment]({{< ref "deploy" >}})
 * [features]({{< ref "features" >}})

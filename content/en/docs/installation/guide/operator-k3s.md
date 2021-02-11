@@ -1,5 +1,5 @@
 ---
-title: Install Armory Enterpriese for Spinnaker in Lightweight Kubernetes using the Armory Operator
+title: Install Armory Enterprise for Spinnaker in Lightweight Kubernetes using the Armory Operator
 linkTitle: Install in AWS EC2 using Operator
 weight: 50
 description: >
@@ -10,7 +10,7 @@ description: >
 
 ## Overview of installing Armory for proofs of concept work
 
-This guide walks you through using the [Armory Operator]({{< ref "operator" >}}) to install Armory in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
+This guide walks you through using the [Armory Operator]({{< ref "armory-operator" >}}) to install Armory in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
 
 See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to install Armory using the Armory Operator in a regular Kubernetes installation.
 
@@ -276,7 +276,7 @@ You can verify pod status by executing:
 
 ## Upgrade Armory
 
-[Upgrade Armory]({{< ref "operator#upgrading-spinnaker" >}}) by changing the `version` value in `SpinnakerService.yml` and using `kubectl` to apply the manifest.
+[Upgrade Armory]({{< ref "armory-operator#upgrading-spinnaker" >}}) by changing the `version` value in `SpinnakerService.yml` and using `kubectl` to apply the manifest.
 
 ## Delete Armory
 
