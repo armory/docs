@@ -8,7 +8,7 @@ The Armory Operator has two distinct modes:
 - **Cluster**: Installs Armory across namespaces with pre-flight checks to
   prevent common misconfigurations. This mode requires a `ClusterRole`.
 
-1. Get the latest release from [https://github.com/armory-io/spinnaker-operator/releases](https://github.com/armory-io/spinnaker-operator/releases).
+1. Get the latest Armory Operator release.
 
    ```bash
    mkdir -p spinnaker-operator && cd spinnaker-operator
