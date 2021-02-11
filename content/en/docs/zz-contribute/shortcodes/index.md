@@ -22,6 +22,27 @@ alert, swaggerui, imgproc
 
 location:  `docs/layouts/shortcodes`
 
+## Heading
+This shortcode works in conjunction with the `i118n/en.toml` file, which contains key/value pairs for common headings.
+
+Usage:
+
+```markdown
+#### {{%/* heading "prereq" */%}}
+```
+
+Renders:
+
+#### {{% heading "prereq" %}}
+
+Another example:
+
+```markdown
+#### {{%/* heading "installOperator" */%}}
+```
+
+#### {{% heading "installOperator" %}}
+
 ### Hyperlink with page title
 
 You can use `linkWithTitle` to replace a markdown hyperlink.
