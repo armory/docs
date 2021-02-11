@@ -8,31 +8,38 @@ The Armory Operator has two distinct modes:
 - **Cluster**: Installs Armory across namespaces with pre-flight checks to
   prevent common misconfigurations. This mode requires a `ClusterRole`.
 
-Get the latest release from
-[https://github.com/armory-io/spinnaker-operator/releases](https://github.com/armory-io/spinnaker-operator/releases):
+1. Get the latest Armory Operator release.
 
-```bash
-mkdir -p spinnaker-operator && cd spinnaker-operator
-bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
+   ```bash
+   mkdir -p spinnaker-operator && cd spinnaker-operator
+   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
+   ```
 
-# Install or update CRDs cluster wide
-kubectl apply -f deploy/crds/
+1. Install or update CRDs across the cluster.
 
-# We'll install in the spinnaker-operator namespace
-kubectl create ns spinnaker-operator
-```
+   ```bash
+   kubectl apply -f deploy/crds/
+   ```
 
-Next, install Operator in either `cluster` or `basic` mode:
+1. Create the `spinnaker-operator` namespace.
 
-```bash
-# Install Operator cluster mode
-kubectl -n spinnaker-operator apply -f deploy/operator/cluster
-```
+   If you want to use a namespace other than `spinnaker-operator` in `cluster` mode, you also need to edit the namespace in `deploy/operator/cluster/role_binding.yaml`.
 
-```bash
-# OR install Operator in basic mode
-# kubectl -n spinnaker-operator apply -f deploy/operator/basic
-```
+   ```bash
+   kubectl create ns spinnaker-operator
+   ```
+
+1. Install the Operator in either `cluster` or `basic` mode:
+
+   `cluster` mode:
+   ```bash
+   kubectl -n spinnaker-operator apply -f deploy/operator/cluster
+   ```
+
+   `basic` mode:
+   ```bash
+   kubectl -n spinnaker-operator apply -f deploy/operator/basic
+   ```
 
 After installation, you can verify that the Operator is running with the
 following command:
@@ -49,6 +56,4 @@ NAMESPACE                             READY         STATUS       RESTARTS      A
 spinnaker-operator-7cd659654b-4vktl   2/2           Running      0             6s
 ```
 
-> If you want to use a namespace other than `spinnaker-operator` in cluster
-> mode, you'll also need to edit the namespace in
-> `deploy/operator/cluster/role_binding.yaml`.
+
