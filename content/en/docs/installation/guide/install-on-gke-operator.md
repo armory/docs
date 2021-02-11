@@ -57,6 +57,8 @@ kube-public Active 2m26s
 kube-system Active 2m26s
 ```
 
+## {{% heading "installOperator "%}}
+
 {{% include "armory-operator/installation.md" %}}
 
 ## Create a GCS service account
