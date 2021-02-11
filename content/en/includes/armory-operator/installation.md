@@ -1,5 +1,6 @@
-## Install the Armory Operator
-
+<!-- this file does not contain H2 etc headings
+Hugo does not render headings in included files
+-->
 The Armory Operator has two distinct modes:
 
 - **Basic**: Installs Armory into a single namespace. This mode does not
