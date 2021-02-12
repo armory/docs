@@ -15,6 +15,14 @@ The Armory Operator has two distinct modes:
    bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
    ```
 
+   Alternately, if you want to install open source Spinnaker, get the latest release of the open source Operator.
+
+   ```bash
+   mkdir -p spinnaker-operator && cd spinnaker-operator
+   bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
+   ```
+
+
 1. Install or update CRDs across the cluster.
 
    ```bash

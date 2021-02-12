@@ -1,5 +1,5 @@
 ---
-title: "Installing the Armory Enterprise Platform for Spinnaker"
+title: "Install the Armory Enterprise Platform for Spinnaker"
 linkTitle: "Installation"
 weight: 5
 description: |
