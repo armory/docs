@@ -1,5 +1,5 @@
 ---
-title: Installing the Armory Enterprise Platform for Spinnaker on OpenShift Using the Armory Operator
+title: Install the Armory Enterprise Platform for Spinnaker on OpenShift Using the Armory Operator
 linkTitle: Install on OpenShift
 weight: 5
 description: >

@@ -1,5 +1,5 @@
 ---
-title: Upgrading Open Source Spinnaker to the Armory Enterprise Platform for Spinnaker
+title: Upgrade Spinnaker to the Armory Enterprise Platform for Spinnaker
 weight: 10
 aliases:
   - /spinnaker-install-admin-guides/upgrade-oss-to-armory/

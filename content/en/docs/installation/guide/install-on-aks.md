@@ -1,5 +1,5 @@
 ---
-title: Installing the Armory Enterprise Platform for Spinnaker in the Azure Kubernetes Service
+title: Install the Armory Enterprise Platform for Spinnaker in the Azure Kubernetes Service (AKS)
 linkTitle: "Install in AKS"
 weight: 5
 aliases:
