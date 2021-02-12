@@ -164,4 +164,4 @@ Check out the [troubleshooting]({{< ref "agent-troubleshooting" >}}) page if you
 
 ## Monitoring
 
-The Agent should only consume about 4 MB of memory and a small amount of CPU. See the [Monitoring]({{< ref "agent-monitoring" >}}) page for how to monitor agents running on an Armory platform.
+Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Agent is monitoring. The gRPC buffer consumes about 4MB of memory. See the [Monitoring]({{< ref "agent-monitoring" >}}) page for how to monitor agents running on an Armory platform.
