@@ -1,5 +1,5 @@
 ---
-title: Upgrading or Downgrading the Armory Enterprise Platform for Spinnaker Version
+title: Upgrade or Downgrade the Armory Enterprise Platform for Spinnaker Version
 weight: 10
 aliases:
   - /docs/spinnaker-install-admin-guides/upgrade-spinnaker/

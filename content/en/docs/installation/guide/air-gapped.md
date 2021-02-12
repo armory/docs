@@ -1,5 +1,5 @@
 ---
-title: Installing the Armory Enterprise Platform for Spinnaker in Air-Gapped Environments
+title: Install the Armory Enterprise Platform for Spinnaker in Air-Gapped Environments
 linkTitle: Air-Gapped Environments
 weight: 1
 description: >
