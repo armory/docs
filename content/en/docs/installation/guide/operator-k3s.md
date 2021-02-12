@@ -1,5 +1,5 @@
 ---
-title: Using the Armory Operator to Install Spinnaker or the Armory Enterprise Platform for Spinnaker in Lightweight Kubernetes
+title: Install Spinnaker or the Armory Enterprise Platform for Spinnaker in Lightweight Kubernetes Using the Armory Operator 
 linkTitle: Install in AWS EC2 using Operator
 weight: 50
 description: >

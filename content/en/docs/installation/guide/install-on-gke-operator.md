@@ -1,5 +1,5 @@
 ---
-title: Installing the Armory Enterprise Platform for Spinnaker in the Google Kubernetes Engine Using the Armory Operator
+title: Install the Armory Enterprise Platform for Spinnaker in the Google Kubernetes Engine (GKE) Using the Armory Operator
 linkTitle: "Install in GKE using Operator"
 weight: 5
 aliases:
@@ -56,6 +56,8 @@ kube-node-lease Active 2m26s
 kube-public Active 2m26s
 kube-system Active 2m26s
 ```
+
+## {{% heading "installOperator" %}}
 
 {{% include "armory-operator/installation.md" %}}
 
@@ -114,6 +116,7 @@ Use the Cloud Console to [create your bucket](https://cloud.google.com/storage/d
 going to put secrets in the bucket, make sure to create a secrets directory in
 that bucket. Also, make sure that the Kubernetes service account you created can access the bucket.
 
+## {{% heading "configKustomizeInstallArmory" %}}
 {{% include "armory-operator/kustomize-patches.md" %}}
 
 ## Customize your Spinnaker installation
