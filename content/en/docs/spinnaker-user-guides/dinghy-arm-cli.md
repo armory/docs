@@ -59,13 +59,13 @@ Optionally, you can integrate the ARM CLI with IntelliJ. This integration allows
 2. Add an External Tool.
 3. Complete the **Create Tool** wizard using the following values for **Tool Settings**:
    
-   - **Name:** ARM
+   - **Name:** Name it something descriptive, such as "ARM"
    - **Program:** Use the path to where the CLI is installed
    - **Arguments:** Use the following snippet and substitute the value for your `module` directory: `dinghy render $FilePathRelativeToProjectRoot$ --modules <directory where templates repository checked out locally>`
    - **Working directory:**: Use the following value: `$ProjectFileDir$`
 
 4. Add a keyboard shortcut for the ARM CLI.
-   1. Go to **Preferences > Keymap > External Tools > ARM > Add Keyboard Shortcut**..
+   1. Go to **Preferences > Keymap > External Tools > Tool_Name > Add Keyboard Shortcut**.
    2. Map the CLI to a shortcut.
 
 You can now run the CLI on open any `dinghyfile` you have open in IntelliJ.
