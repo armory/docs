@@ -36,6 +36,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
+{{< include "known-issues/ki-dinghy-modules.md" >}}
 
 ### Fixed issues
 
