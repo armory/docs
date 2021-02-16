@@ -35,6 +35,8 @@ Armory Spinnaker 2.22.1 requires one of the following:
 
 {{< include "known-issues/ki-livemanifests.md" >}}
 
+{{< include "known-issues/ki-dinghy-modules.md" >}}
+
 ## Highlighted updates
 
 ### Deployment targets
