@@ -1,5 +1,5 @@
 ---
-title: "Armory Documentation"
+title: "Armory Docs"
 linkTitle: "Docs"
 weight: 10
 menu:
