@@ -1,5 +1,5 @@
 ---
-title: "Configuring AWS Using IAM Instance Roles"
+title: "Configure AWS with IAM Instance Roles"
 linkTitle: Configuring AWS (IAM Instance Roles)
 aliases:
   - /spinnaker_install_admin_guides/add-aws-account-iam/
