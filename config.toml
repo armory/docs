@@ -1,5 +1,5 @@
 baseURL = "/"
-title = "Armory Documentation"
+title = "Armory Docs"
 
 enableRobotsTXT = true
 enableInlineShortcodes = true
@@ -55,7 +55,7 @@ id = "UA-79996712-5"
 
 [languages]
 [languages.en]
-title = "Armory Documentation"
+title = "Armory Docs"
 description = "Unlocking Innovation by Making Software Delivery Continuous, Scalable, and Safe"
 languageName ="English"
 # Weight used for sorting.
@@ -205,7 +205,7 @@ enable = true
 	name = "GitHub"
 	url = "https://github.com/armory/docs"
 	icon = "fab fa-github"
-   desc = "Documentation repository"
+   desc = "Docs repository"
 [[params.links.developer]]
 	name = "Slack"
 	url = "https://join.spinnaker.io/"
