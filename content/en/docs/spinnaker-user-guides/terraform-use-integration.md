@@ -1,6 +1,6 @@
 ---
 linkTitle: Using the Terraform Integration Stage
-title: Using the Terraform Integration Stage in the Armory Platform
+title: Using the Terraform Integration Stage
 aliases:
   - /docs/spinnaker/terraform-use-integration/
 description: >
