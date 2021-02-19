@@ -220,7 +220,7 @@ fiat:
     retryIntervalMs: 10000
 ```
 
-## FAQ
+# FAQ
 
 *Q:* Why doesn't Spinnaker use AWS Config to update its state?
 
