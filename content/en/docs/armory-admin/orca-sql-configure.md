@@ -1,5 +1,5 @@
 ---
-title: Configuring Orca to Use RDBMS
+title: Configuring Spinnaker's Orca Service to Use a Relational Database Management System
 linkTitle: Configuring Orca to use RDBMS
 aliases:
   - /spinnaker_install_admin_guides/orca-sql/

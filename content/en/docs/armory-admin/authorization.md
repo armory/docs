@@ -1,5 +1,5 @@
 ---
-title: Authentication and Authorization in Pipelines
+title: Authentication and Authorization Propagation in Spinnaker Pipelines
 linkTitle: Authentication and Authorization
 aliases:
   - /docs/spinnaker/authorization/

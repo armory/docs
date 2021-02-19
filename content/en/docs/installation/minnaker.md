@@ -1,5 +1,5 @@
 ---
-title: Install Spinnaker on Kubernetes Using Minnaker
+title: Install Spinnaker on Lightweight Kubernetes Using Minnaker
 linkTitle: Minnaker
 weight: 4
 description: >
