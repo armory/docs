@@ -35,7 +35,7 @@ oauth2:
       clientSecret: 6xxxaxxxxxxxxxxxxxxxxxxx59   # Secret Enabled Field
       scope: read:org,user:email
       preEstablishedRedirectUri: https://gate.spinnaker.acme.com/login
-    provider: github
+    provider: GITHUB
 ```
 
 For additional configuration options review the [Spinnaker Operator Reference]({{< ref "operator-reference" >}})
@@ -48,7 +48,7 @@ Run the following commands in Halyard with your Client ID and Client Secret.
 ```bash
 CLIENT_ID=a08xxxxxxxxxxxxx93
 CLIENT_SECRET=6xxxaxxxxxxxxxxxxxxxxxxx59
-PROVIDER=github
+PROVIDER=GITHUB
 
 hal config security authn oauth2 edit \
   --client-id $CLIENT_ID \
