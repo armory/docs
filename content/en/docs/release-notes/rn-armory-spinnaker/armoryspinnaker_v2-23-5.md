@@ -1,20 +1,20 @@
 ---
 title: v2.23.5 Armory Release (OSS Spinnaker™ v1.23.7)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.23.05
 description: >
   Release notes for the Armory Platform
 ---
 
-## 2021/02/40 Release Notes
+## 2021/02/04 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.23.5, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.10 or later
+- Armory Operator 1.2.1 or later
 
 ## Security
 
@@ -23,8 +23,20 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
+{{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
+
+{{< include "breaking-changes/bc-orca-forcecacherefresh.md" >}}
+
+{{< include "known-issues/ki-orca-zombie-execution.md" >}}
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
+{{< include "known-issues/ki-bake-var-file.md" >}}
+
+{{< include "known-issues/ki-lambda-ui-caching.md" >}}
+{{< include "known-issues/ki-healthchecks-dynamicAccounts.md" >}}
+{{< include "known-issues/ki-dinghy-modules.md" >}}
 
 ## Highlighted updates
 
