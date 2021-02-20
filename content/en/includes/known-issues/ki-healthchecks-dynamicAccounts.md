@@ -10,11 +10,24 @@ The health check failure prevents Kubernetes from transitioning the Clouddriver 
 
 **Workaround**
 
-As an alternative to the health check, use TCP probes. To add the TCP probe to Clouddriver, add the following to `cloud-driver.yml`
+As an alternative to the default HTTP health check, use TCP probe. 
+
+With Halyard, add the following to `clouddriver-local.yml`
 
 ```yaml
 kubernetes:
   useTcpProbe: true
+```
+
+or with the Spinnaker Operator:
+
+```yaml
+spec:
+  spinnakerConfig:
+    service-settings:
+      clouddriver:
+        kubernetes:
+          useTcpProbe: true
 ```
 
 **Affected versions**: 2.23.4, 2.23.5
