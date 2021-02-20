@@ -40,12 +40,9 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Highlighted updates
 
-<!--
-Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
-- Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
-- Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
--->
-
+### Cloudfoundry improvements
+When using Spring Cloud Config, or another dynamic account solution, at some point the credentials definition will be compared against the existing definitions. This ensures that we only update credentials when they actually are updated/changed.
+This fix adds the annotation to ensure credentials are compared correctly with the equals operation and a test is included to ensure the regression doesn't happen again.
 
 
 
