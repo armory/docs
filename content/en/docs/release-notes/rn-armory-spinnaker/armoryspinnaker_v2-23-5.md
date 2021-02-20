@@ -40,9 +40,10 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Highlighted updates
 
-### Cloudfoundry improvements
-When using Spring Cloud Config, or another dynamic account solution, at some point the credentials definition will be compared against the existing definitions. This ensures that we only update credentials when they actually are updated/changed.
-This fix adds the annotation to ensure credentials are compared correctly with the equals operation and a test is included to ensure the regression doesn't happen again.
+### Cloudfoundry
+
+Improved how  Spring Cloud Config and another dynamic account solutions perform. Credentials definition now get compared against existing definitions. This ensures that Armory only updates credentials when they are updated orchanged.
+This improvement also adds an annotation to ensure credentials are compared correctly with the equals operation.
 
 
 
