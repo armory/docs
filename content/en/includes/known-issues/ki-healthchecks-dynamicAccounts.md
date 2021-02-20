@@ -19,7 +19,7 @@ kubernetes:
   useTcpProbe: true
 ```
 
-If use the Spinnaker Operator, include the following setting:
+If you use the Spinnaker Operator, include the following setting:
 
 ```yaml
 spec:
