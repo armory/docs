@@ -8,6 +8,13 @@ There is a known issue where the health checks for the Clouddriver pod fail when
 
 The health check failure prevents Kubernetes from transitioning the Clouddriver pod to a ready and active state, which prevents Kubernetes from passing traffic to the Clouddriver pod.
 
-There is currently no workaround.
+**Workaround**
 
-**Affected versions**: 2.23.4
+As an alternative to the health check, use TCP probes. To add the TCP probe to Clouddriver, add the following to `cloud-driver.yml`
+
+```yaml
+kubernetes:
+  useTcpProbe: true
+```
+
+**Affected versions**: 2.23.4, 2.23.5
