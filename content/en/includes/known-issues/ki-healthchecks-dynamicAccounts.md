@@ -12,7 +12,7 @@ The health check failure prevents Kubernetes from transitioning the Clouddriver 
 
 As an alternative to the default HTTP health check, use TCP probe. 
 
-If deploying with Halyard, add the following to `clouddriver-local.yml`
+If deploying with Halyard, add the following to `clouddriver-local.yml`:
 
 ```yaml
 kubernetes:
