@@ -23,37 +23,44 @@ Armory Enterprise
 
 These simple instructions will quickly install the Armory Platform with all features enabled.
 
+This Easy PoC uses K3s as the kubernetes server.  If you already have a kubernetes cluster for testing you can start at Step 2.
+
 ## Requirements
 
 Here are the requirements for completing this demo:
 
 * You need to be able to provision instances in your cloud environment.
-* The provisioned instance needs to meet the following requirements
+* The provisioned instance needs to meet the following minimum requirements
   * Ubuntu 18.04
-  * 50 GB of disk space
+  * 4 vCPUs
+  * 16 GB of memory
+  * 50 GB of storage
 
 
 ## Step 1. Create your environment
 
-Step 1. Provision ubuntu 18.04 instance in AWS (ubuntu 18.04 is recommended by Armory.io) - 50GB of disk space is sufficient. 
+Provision an instance that meets the minimum requirements outlined previously.
 
+You can do this through the AWS Console or the AWS CLI. For the AWS CLI, use a c
 
-https://aws.amazon.com/ec2/
+```bash
+aws ec2 run-instances --image-id `ami-<xxxxxxxx>` --count 1 --instance-type t3.xlarge --key-name `<MyKeyPair>`
+```
 
+* Replace `ami-<xxxxxxxx>` with an Ubuntu 18.04 AMI
+* Replace `<MyKeyPair>` with your key pair name
 
-OR used AWS CLI.
+As best practice, make sure to configure the Security Group to only allow access from your trusted source IPs.  This ensures that only engineers from your company can access the Armory demo.
 
-**aws ec2 run-instances --image-id** `*ami-xxxxxxxx*` **--count 1 --instance-type t3.xlarge --key-name** `*MyKeyPair*`
+For this instance, make sure the following ports are open:
 
-As best practice make sure to configure the Security Group to only allow access from your trusted source IPs.  This will ensure that only engineers from your company can access the Armory POC.
-
-Ports to open inbound
-
-:22 (ssh) :80 (redirect) :443 (GUI and API)
+* `22` for SSH 
+* `80` for redirects
+* `443` for the GUI and API
 
 Note!  - The example above is in AWS.  This can be done in any cloud (GCP, Azure, OCI, etc.)
 
-This Easy PoC uses K3s as the kubernetes server.  If you already have a kubernetes cluster for testing you can start at Step 2.
+
 
 Step 2. Log into the instance created above and run the following commands.
 
