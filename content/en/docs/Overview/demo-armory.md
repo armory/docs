@@ -99,7 +99,7 @@ DONE!  Kick the tires and contact Armory if you’d like to enhance your PoC to 
 If you like what you have setup you can push the internal git clone to your repository for future use.
 
 
-# Part 2
+## Part 2
 
 Now we’ll connect your Armory PoC to other tools in your CI/CD toolchain.  The integrations will be applied to Armory through Kustomize patch files to a larger SpinnakerService.yaml.  Here are the specific platforms you can connect to through this guide.  
 
