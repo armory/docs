@@ -37,7 +37,7 @@ Here are the requirements for completing this demo:
   * 50 GB of storage
 
 
-## Step 1. Create your environment
+## Step 1. Create your environment and install Armory
 
 Provision an instance that meets the minimum requirements outlined previously.
 
