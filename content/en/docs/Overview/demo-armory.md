@@ -25,6 +25,16 @@ These simple instructions will quickly install the Armory Platform with all feat
 
 ## Requirements
 
+Here are the requirements for completing this demo:
+
+* You need to be able to provision instances in your cloud environment.
+* The provisioned instance needs to meet the following requirements
+  * Ubuntu 18.04
+  * 50 GB of disk space
+
+
+## Step 1. Create your environment
+
 Step 1. Provision ubuntu 18.04 instance in AWS (ubuntu 18.04 is recommended by Armory.io) - 50GB of disk space is sufficient. 
 
 
