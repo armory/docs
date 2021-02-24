@@ -1,17 +1,24 @@
 ---
-title: Using the Armory Operator to Install and Manage the Armory Enterprise Platform for Spinnaker
+title: Install Armory Enterprise for Spinnaker Using the Armory Operator
 linkTitle: Armory Operator
 weight: 1
 description: >
-  The Armory Operator is a Kubernetes Operator that makes it easy to install, deploy, and upgrade any version of Spinnaker or the Armory Enterprise Platform for Spinnaker.
+  The Armory Operator is a Kubernetes Operator that makes it easy to install, deploy, and upgrade any version of Spinnaker or Armory Enterprise for Spinnaker.
 aliases:
   - /docs/spinnaker/operator/
 ---
 
+## Two types of Kubernetes Operators for installing Spinnaker
+
+* The open source Spinnaker Operator for Kubernetes installs open source Spinnaker<sup>TM</sup>. You can download the Operator from its GitHub [repo](https://github.com/armory/spinnaker-operator).
+* The Armory Operator installs Armory Enterprise for Spinnaker. This Operator processes configuration entries for proprietary enterprise features.
+
+Most of the configuration is the same between the open source and proprietary types of Operators.
+
 ## Advantages of using the Armory Operator
 
-- Manage the Armory Enterprise Platform with `kubectl` like other applications.
-- Expose the Armory Enterprise Platform via `LoadBalancer` or `Ingress` (optional)
+- Manage Armory Enterprise with `kubectl` like other applications.
+- Expose Armory Enterprise via `LoadBalancer` or `Ingress` (optional)
 - Keep secrets separate from your configuration. Store your config in `git` and have an easy GitOps workflow.
 - Validate your configuration before applying it (with webhook validation).
 - Store Spinnaker secrets in [Kubernetes secrets](https://github.com/armory/spinnaker-operator/blob/master/doc/managing-spinnaker.md#secrets-in-kubernetes-secrets).
@@ -19,7 +26,6 @@ aliases:
 - Define Kubernetes accounts in `SpinnakerAccount` objects and store kubeconfig inline, in Kubernetes secrets, in s3, or GCS **(Experimental)**.
 - Deploy Armory in an Istio controlled cluster **(Experimental)**
 
-> This guide uses the Armory Operator, which installs the Armory Enterprise Platform. The open source Operator installs open source Spinnaker<sup>TM</sup>. You can download the open source Operator from its GitHub [repo](https://github.com/armory/spinnaker-operator).
 
 ## Requirements for using the Armory Operator
 
@@ -37,9 +43,9 @@ Before you use start, ensure you meet the following requirements:
 ## {{% heading "configKustomizeInstallArmory" %}}
 {{% include "armory-operator/kustomize-patches.md" %}}
 
-## Upgrade Armory
+## Upgrade Armory Enterprise
 
-To upgrade an existing Armory deployment, perform the following steps:
+To upgrade an existing Armory Enterprise deployment, perform the following steps:
 
 1. Change the `version` field in `deploy/spinnaker/basic/SpinnakerService.yml`  file to the target version for the upgrade.
 2. Apply the updated manifest:
@@ -71,11 +77,11 @@ To upgrade an existing Armory deployment, perform the following steps:
 
 
 
-## Manage Armory instances
+## Manage Armory Enterprise instances
 
-The Armory Operator allows you to use `kubectl` to manager you Armory deployment.
+The Armory Operator allows you to use `kubectl` to manager your Armory Enterprise deployment.
 
-**List Armory instances**
+**List Armory Enterprise instances**
 
 ```bash
 kubectl get spinnakerservice --all-namespaces
@@ -83,27 +89,27 @@ kubectl get spinnakerservice --all-namespaces
 
 The short name `spinsvc` is also available.
 
-**Describe Armory instances**
+**Describe Armory Enterprise instances**
 
 ```bash
 kubectl -n <namespace> describe spinnakerservice spinnaker
 ```
 
 
-**Delete Armory instances**
+**Delete Armory Enterprise instances**
 
 ```bash
 kubectl -n <namespace> delete spinnakerservice spinnaker
 ```
 
 
-## Manage configuration
+## Manage Armory Enterprise configuration in a Kubernetes manifest
 
 ### Kustomize
 
-Because Armory's configuration is now a Kubernetes manifest, you can manage `SpinnakerService` and related manifests in a consistent and repeatable way with [Kustomize](https://kustomize.io/).
+Because Armory Enterprise's configuration is now a Kubernetes manifest, you can manage `SpinnakerService` and related manifests in a consistent and repeatable way with [Kustomize](https://kustomize.io/).
 
-See the example [here](https://github.com/armory-io/spinnaker-operator/tree/master/deploy/spinnaker/kustomize).
+The `spinnaker-kustomize-patches` [repo](https://github.com/armory/spinnaker-kustomize-patches) has many configuration examples.
 
 ```bash
 kubectl create ns spinnaker
@@ -117,13 +123,13 @@ There are many more possibilities:
 
 See this [repo](https://github.com/armory/spinnaker-kustomize-patches) for examples of common setups that you can adapt to your needs.
 
-### Secret Management
+### Secret management
 
 You can store secrets in one of the [supported secret engine]({{< ref "secrets#supported-secret-engines" >}}).
 
 #### Kubernetes Secret
 
-With the Operator, you can also reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker.
+With the Armory Operator, you can also reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker.
 
 The format is:
 - `encrypted:k8s!n:<secret name>!k:<secret key>` for string values. These are added as environment variable to the Spinnaker deployment.
@@ -184,9 +190,9 @@ spec:
 
 ### GitOps
 
-Armory can deploy manifests or kustomize packages. You can configure Armory to redeploy itself (or use a separate Armory) with a trigger on the git repository containing its configuration.
+Armory Enterprise can deploy manifests or Kustomize packages. You can configure Armory Enterprise to redeploy itself (or use a separate Armory Enterprise) with a trigger on the git repository containing its configuration.
 
-A change to Armory's configuration follows:
+A change to Armory Enterprise's configuration follows:
 
 > Pull Request --> Approval --> Configuration Merged --> Pipeline Trigger in Spinnaker --> Deploy Updated SpinnakerService
 
@@ -194,7 +200,7 @@ This process is auditable and reversible.
 
 ## Accounts CRD (Experimental)
 
-Operator has a CRD for Armory accounts. `SpinnakerAccount` is defined in an object - separate from the main Spinnaker config - so its creation and maintenance can be automated.
+The Operator has a CRD for Armory Enterprise accounts. `SpinnakerAccount` is defined in an object - separate from the main Spinnaker config - so its creation and maintenance can be automated.
 
 To read more about this CRD, see [SpinnakerAccount](https://github.com/armory/spinnaker-operator/blob/master/doc/spinnaker-accounts.md).
 

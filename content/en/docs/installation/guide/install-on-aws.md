@@ -1,5 +1,5 @@
 ---
-title: Install the Armory Enterprise Platform for Spinnaker in Amazon Web Services (AWS)
+title: Install Armory Enterprise for Spinnaker in Amazon Web Services (AWS)
 linkTitle: "Install in AWS"
 weight: 5
 aliases:
@@ -12,7 +12,7 @@ aliases:
   - /spinnaker_install_admin_guides/install-on-aws/
   - /spinnaker-install-admin-guides/install-on-aws/
 description: >
-  Use Armory-extended Halyard to install the Armory Enterprise Platform for Spinnaker in an AWS Kubernetes cluster or in an on-prem Kubernetes cluster with access to Amazon Secure Storage Service.
+  Use Armory-extended Halyard to deploy Armory Enterprise for Spinnaker in an AWS Kubernetes cluster or in an on-prem Kubernetes cluster with access to Amazon Secure Storage Service (S3).
 ---
 
 ## Overview of installing Armory in AWS

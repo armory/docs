@@ -2,7 +2,7 @@
 title: Armory Operator Configuration
 weight: 1
 description: >
-  This guide describes the fields in `SpinnakerService` CRD and example manifests.
+  This guide describes the fields in `SpinnakerService` CRD that you need to deploy Armory Enterprise for Spinnaker on Kubernetes.
 aliases:
   - /operator_reference/operator-config/
 ---
