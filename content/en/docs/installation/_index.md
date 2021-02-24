@@ -3,7 +3,7 @@ title: "Install Armory Enterprise for Spinnaker"
 linkTitle: "Installation"
 weight: 5
 description: |
-  Guides for installing Armory Enterprise for Spinnaker, a continuous integration and software delivery platform built on top of Spinnaker<sup>TM</sup>, in your air-gapped, local, or cloud environment (AWS, GCP, Azure, Kubernetes, OpenShift). Use the Armory Operator for Kubernetes to install  Armory Enterprise, or use the open source Operator to install open source Spinnaker in Kubernetes.
+  Guides for deploying Armory Enterprise for Spinnaker, a continuous integration and software delivery platform built on top of Spinnaker<sup>TM</sup>, in your air-gapped, local, or cloud environment (AWS, GCP, Azure, Kubernetes, OpenShift). Use the Armory Operator for Kubernetes to install  Armory Enterprise, or use the open source Operator to install open source Spinnaker in Kubernetes.
 aliases:
   - /install_guide/install/
   - /install-guide/getting_started/

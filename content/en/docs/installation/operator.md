@@ -3,7 +3,7 @@ title: Install Armory Enterprise for Spinnaker Using the Armory Operator
 linkTitle: Armory Operator
 weight: 1
 description: >
-  The Armory Operator is a Kubernetes Operator that makes it easy to install, deploy, and upgrade any version of Spinnaker or Armory Enterprise for Spinnaker.
+  The Armory Operator is a Kubernetes Operator that makes it easy to deploy, upgrade, or remove any version of Spinnaker or Armory Enterprise for Spinnaker.
 aliases:
   - /docs/spinnaker/operator/
 ---
