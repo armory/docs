@@ -115,8 +115,8 @@ In Spinnaker, an Application is a logical construct that allows you to group
 resources under a single name. You can read more about applications in the
 Spinnaker [docs](https://www.spinnaker.io/guides/user/applications/#about-applications).
 
-For available Application configuration options check out
-[our CRD documentation here](../pacrd-crd-docs/).
+For available Application configuration options check out the
+{{< linkWithTitle "pacrd-crd-docs.md" >}}.
 
 ### Creating an application
 
@@ -201,7 +201,7 @@ Pipelines allow you to encode the process that your team follows to take a
 service from commit to a desired environment, such as production. You can
 read more about pipelines in the Spinnaker [docs][https://www.spinnaker.io/concepts/pipelines/].
 
-View Pipeline configuration options in the [CRD documentation](../pacrd-crd-docs/).
+View Pipeline configuration options in the {{< linkWithTitle "pacrd-crd-docs.md" >}}.
 
 ### Creating pipelines
 
