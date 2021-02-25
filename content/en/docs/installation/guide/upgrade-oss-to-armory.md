@@ -1,15 +1,15 @@
 ---
-title: Upgrade Spinnaker to the Armory Enterprise Platform for Spinnaker
+title: Upgrade Spinnaker to Armory Enterprise for Spinnaker
 weight: 10
 aliases:
   - /spinnaker-install-admin-guides/upgrade-oss-to-armory/
 description: >
-  Upgrade your open source Spinnaker installation to the Armory Enterprise Platform for Spinnaker using Armory-extended Halyard.
+  Upgrade your open source Spinnaker deployment to Armory Enterprise for Spinnaker using Armory-extended Halyard.
 ---
 
-## Overview of upgrading Spinnaker to the Armory Enterprise Platform for Spinnaker
+## Overview of upgrading Spinnaker to Armory Enterprise for Spinnaker
 
-The the Armory Enterprise Platform for Spinnaker is installed with Armory-extended Halyard, very similarly to the way Open Source Spinnaker<sup>TM</sup> is installed with Open Source Halyard. These are the key differences:
+Armory Enterprise for Spinnaker is installed with Armory-extended Halyard, very similarly to the way Open Source Spinnaker<sup>TM</sup> is installed with Open Source Halyard. These are the key differences:
 
 * Armory-extended Halyard installs Armory's Enterprise distribution of Spinnaker; Open Source Halyard installs Open Source Spinnaker.
 * Armory versions are one major version ahead of Open Source. For example, Armory 2.18.x maps to Open Source Spinnaker 1.18.x.
