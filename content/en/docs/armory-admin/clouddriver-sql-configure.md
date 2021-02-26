@@ -1,6 +1,6 @@
 ---
-title: Configuring Clouddriver to use a Relational Database Management System
-linkTitle: Configuring Clouddriver to use an RDBMS
+title: Configure Clouddriver to use a SQL Database
+linkTitle: Configure Clouddriver to use SQL
 aliases:
   - /spinnaker_install_admin_guides/clouddriver-sql/
   - /docs/spinnaker-install-admin-guides/clouddriver-sql/

@@ -1,13 +1,15 @@
 ---
-title: Configuring Clouddriver Caching Agents
-linkTitle: Configuring Clouddriver Caching Agents
-aliases:
-  - /docs/spinnaker-install-admin-guides/caching-agents/
+title: Configure Clouddriver Caching Agents in Spinnaker
+linkTitle: Configure Caching Agents
+description: >
+  Learn how to configure caching agents in Spinnaker to improve Clouddriver performance.
 ---
 
-Clouddriver is the Spinnaker service responsible for caching cloud infrastructure like EC2 instances, kubernetes pods, docker images, etc. It does it by running caching agents in separate threads at scheduled intervals that query the infrastructure and save the result in redis or a sql datastore.
+## Caching agents in Spinnaker
 
-Depending on the number of elements of the infrastructure being cached, you would require to increase the number of replicas of clouddriver and/or increase its cpu and memory limits. Refer to this [Deep Dive](https://www.armory.io/blog/deep-dive-into-clouddriver/) for more information about how clouddriver works.
+See the {{< linkWithTitle "caching-agents-concept.md" >}} page for detailed content on caching agents.
+
+Depending on how large your infrastructure is and how many elements it has, you may need to increase Clouddriver's CPU and memory limits, or increase the number of running Clouddriver instances, or both.
 
 The following configuration settings affect the behavior of the caching agents and can be used to adjust them depending on the size of the infrastructure being cached. If using the Spinnaker Operator, these settings live under the key `.spec.spinnakerConfig.profiles.clouddriver` of `SpinnakerService` manifest. If using Halyard, they live in `.hal/<profile name>/profiles/clouddriver-local.yml`.
 
@@ -25,7 +27,7 @@ The following configuration settings affect the behavior of the caching agents a
 |`sql.agent.poll.error-interval-seconds`|Default time for when to run caching agents after an execution fails|30
 |`sql.agent.poll.timeout-seconds`|Maximum time to hold a lock of an agent execution. If an agent takes longer to finish than this, it's possible to have concurrent executions of the same agent|300
 
-For more information about how to configure clouddriver to use SQL, refer to [these instructions](https://docs.armory.io/docs/armory-admin/clouddriver-sql-configure/).
+See the {{< linkWithTitle "clouddriver-sql-configure" >}} page for how to configure Clouddriver.
 
 ### Redis global caching agents configuration
 
