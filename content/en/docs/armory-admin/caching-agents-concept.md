@@ -5,7 +5,7 @@ description: >
   Clouddriver caching agents discover your infrastructure elements and cache the data for use by Spinnaker.
 ---
 
-## Discovering and caching infrastructure data in Spinnaker
+## How Spinnaker discovers and caches infrastructure elements
 
 Clouddriver is the Spinnaker service responsible for discovering and caching cloud provider infrastructure, such as AWS EC2 instances, Kubernetes pods, and Docker images. Clouddriver has a [caching agent scheduler](#the-caching-agent-scheduler) that runs caching agents for providers in separate threads at scheduled intervals. These agents query the infrastructure, index the data, and save the result a [cache store](#the-cache-store), which is usually a Redis or a SQL datastore.
 
