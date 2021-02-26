@@ -32,6 +32,14 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 **All supported versions** for the Armory version refers to the current minor release and the two previous minor releases. For example, if the current version is 2.21.x, all supported versions include 2.19.x, 2.20.x, and 2.21.x. For third-party software, "all supported versions" refers to actively maintained versions by the provider.
 
+## Agent
+
+[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})![Armory](/images/armory.svg)
+
+{{< include "agent/agent-compat-matrix.md" >}}
+
+For a full list of previous releases, see this [page](https://armory.jfrog.io/artifactory/manifests/).
+
 ## Application metrics for Canary Analysis
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
