@@ -1,7 +1,7 @@
 API
 Armory
 AWS
-BitBucket
+Bitbucket
 CLI
 clouddriver
 Clouddriver
