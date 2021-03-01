@@ -21,7 +21,6 @@ Armory Spinnaker 2.22.1 requires one of the following:
 
 {{< include "breaking-changes/bc-k8s-namespace.md" >}}
 
-{{< include "breaking-changes/bc-docker-giduid.md" >}}
 
 {{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
 
@@ -34,6 +33,8 @@ Armory Spinnaker 2.22.1 requires one of the following:
 {{< include "known-issues/ki-gce-predictive-autoscaling.md" >}}
 
 {{< include "known-issues/ki-livemanifests.md" >}}
+
+{{< include "known-issues/ki-dinghy-modules.md" >}}
 
 ## Highlighted updates
 

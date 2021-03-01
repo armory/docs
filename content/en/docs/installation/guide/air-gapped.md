@@ -1,9 +1,9 @@
 ---
-title: Installing Armory in Air-Gapped Environments
+title: Install Armory Enterprise for Spinnaker in Air-Gapped Environments
 linkTitle: Air-Gapped Environments
 weight: 1
 description: >
-  Options for installing Armory in an environment that is isolated from the internet.
+  Options for deploying Armory Enterprise for Spinnaker in an environment that is isolated from the internet.
 ---
 
 ## Overview of air-gapped environments

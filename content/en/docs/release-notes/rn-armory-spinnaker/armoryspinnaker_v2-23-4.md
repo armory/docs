@@ -23,19 +23,20 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
-{{< include "breaking-changes/bc-docker-giduid.md" >}}
-
 {{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
 
 {{< include "breaking-changes/bc-orca-forcecacherefresh.md" >}}
+
+{{< include "known-issues/ki-orca-zombie-execution.md" >}}
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
-{{< include "known-issues/ki-orca-zombie-execution.md" >}}
+
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
 {{< include "known-issues/ki-healthchecks-dynamicAccounts.md" >}}
+{{< include "known-issues/ki-dinghy-modules.md" >}}
 
 
 ### Fixed issues

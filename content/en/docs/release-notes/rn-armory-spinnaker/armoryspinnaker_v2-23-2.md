@@ -23,8 +23,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
-{{< include "breaking-changes/bc-docker-giduid.md" >}}
-
 {{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
 
 {{< include "breaking-changes/bc-orca-forcecacherefresh.md" >}}

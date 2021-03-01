@@ -32,6 +32,14 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 **All supported versions** for the Armory version refers to the current minor release and the two previous minor releases. For example, if the current version is 2.21.x, all supported versions include 2.19.x, 2.20.x, and 2.21.x. For third-party software, "all supported versions" refers to actively maintained versions by the provider.
 
+## Agent
+
+[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})![Armory](/images/armory.svg)
+
+{{< include "agent/agent-compat-matrix.md" >}}
+
+For a full list of previous releases, see this [page](https://armory.jfrog.io/artifactory/manifests/).
+
 ## Application metrics for Canary Analysis
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
@@ -93,7 +101,7 @@ The following table lists specific features for Pipelines as Code and their supp
 
 | Feature                                                                                | Armory                 | Notes                                                                 |
 | -------------------------------------------------------------------------------------- | ---------------------- | --------------------------------------------------------------------- |
-| [Fiat service account integration]({{< ref "dinghy-enable#fiat" >}}                    | All supported versions |                                                                       |
+| [Fiat service account integration]({{< ref "dinghy-enable#fiat" >}})                   | All supported versions |                                                                       |
 | GitHub status notifications                                                            | All supported versions |                                                                       |
 | [Local modules for development]({{< ref "using-dinghy#local-module-functionality" >}}) | All supported versions |                                                                       |
 | Modules                                                                                | All supported versions | Templatize and re-use pipeline snippets across applications and teams |
@@ -290,7 +298,7 @@ These are providers that are manifest based, so Armory applies the manifest and 
 | Provider                | Supported Versions                   | Deployment strategies                      | Armory Versions        | Notes                    |
 | ----------------------- | ------------------------------------ | ------------------------------------------ | ---------------------- | ------------------------ |
 | Google Cloud App Engine |                                      | <ul><li>Custom</li></ul>                   | All supported versions |                          |
-| Cloud Foundry           | CC API Version: 2.103.0+ and 3.38.0+ | {{< caas-cf-deploy-strategies.inline />}}  | All supported versions | Buildpacks Supported: <br>    Java, others coming soon! |
+| Cloud Foundry           | CC API Version: 2.103.0+ and 3.38.0+ | {{< caas-cf-deploy-strategies.inline />}}  | All supported versions |                          |
 
 
 

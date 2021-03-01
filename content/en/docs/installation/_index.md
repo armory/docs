@@ -1,29 +1,30 @@
 ---
-title: "Installation"
+title: "Install Armory Enterprise for Spinnaker"
 linkTitle: "Installation"
 weight: 5
 description: |
-  Guides for installing Armory, an enterprise continuous delivery platform built on top of Spinnaker<sup>TM</sup>, in your air-gapped, local, or cloud environment.
+  Guides for deploying Armory Enterprise for Spinnaker, a continuous integration and software delivery platform built on top of Spinnaker<sup>TM</sup>, in your air-gapped, local, or cloud environment (AWS, GCP, Azure, Kubernetes, OpenShift). Use the Armory Operator for Kubernetes to install  Armory Enterprise, or use the open source Operator to install open source Spinnaker in Kubernetes.
 aliases:
   - /install_guide/install/
   - /install-guide/getting_started/
   - /docs/spinnaker/install/
 ---
 
-## Installation methods
+## Methods for installing Spinnaker or Armory Enterprise
 
-There are several methods to install Armory:
+There are several methods to install Armory or open source Spinnaker:
 
 | Method                             | Environment           | Description                                                          | Benefits                                                            |
 |------------------------------------|-----------------------|----------------------------------------------------------------------|-----------------------------------------------------------------|
-| [Armory Operator]({{< ref "operator" >}})   | Kubernetes            | Kubernetes operator that turns Armory's configuration declarative | GitOps friendly and ready for production use                                 |
+| [Armory Operator]({{< ref "operator" >}})   | Kubernetes            | Kubernetes Operator that turns Armory's configuration declarative | GitOps friendly and ready for production use                                 |
 | [Armory Halyard]({{< ref "armory-halyard" >}}) | Kubernetes            | Versatile command line interface to configure and deploy Armory   | Quick Setup                                                     |
-| [Minnaker]({{< ref "minnaker" >}})             | MacOS, Linux, Windows | Spin up a whole environment on top of Rancher K3s to deploy Armory    | This is ideal if you do not have a Kubernetes cluster available and want to try out Armory |
+| [Minnaker]({{< ref "minnaker" >}})             | MacOS, Linux, Windows | Spin up a whole environment on top of Rancher K3s to deploy Armory or Spinnaker    | This is ideal if you do not have a Kubernetes cluster available and want to try out Armory or Spinnaker |
+| [Operator]({{< ref "operator" >}})   | Kubernetes            | An open source Kubernetes Operator that installs open source Spinnaker | GitOps friendly and ready for production use                                 |
 
 
-All the methods above share similar configurations, and you can migrate between them if your needs change.
+All the preceding methods share similar configurations, and you can migrate between them if your needs change.
 
-> Armory does not generate default hardcoded usernames and passwords for user accounts for any service. Manage these by configuring authentication and authorization for the Armory Platform.
+> Armory does not generate default usernames and passwords for user accounts for any service. Manage these by configuring authentication and authorization for the Armory Platform.
 
 ## Guides
 
