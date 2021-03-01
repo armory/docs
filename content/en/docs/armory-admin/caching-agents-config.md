@@ -2,7 +2,7 @@
 title: Configure Clouddriver Caching Agents in Spinnaker
 linkTitle: Configure Caching Agents
 description: >
-  Learn how to configure caching agents in Spinnaker to improve Clouddriver performance.
+  Learn how to configure caching agents in Spinnaker™ to improve Clouddriver performance.
 ---
 
 ## Caching agents in Spinnaker
