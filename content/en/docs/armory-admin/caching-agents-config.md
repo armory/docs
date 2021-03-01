@@ -41,7 +41,7 @@ See the {{< linkWithTitle "clouddriver-sql-configure" >}} page for how to config
 |`redis.poll.error-interval-seconds`|Default time for when to run caching agents after an execution fails|30
 |`redis.poll.timeout-seconds`|Maximum time to hold a lock of an agent execution. If an agent takes longer to finish that this, it's possible to have concurrent executions of the same agent|300
 
-### Considerations
+## Considerations
 
 * Using the SQL scheduler has [known issues](https://github.com/spinnaker/spinnaker/issues/5829) where some agents may not be running in some versions of Spinnaker.
-* The setting for `max-concurrent-agents` is directly correlated with how much cpu and memory clouddriver needs to cache infrastructure. Higher values will make each replica to consume more resources, but it will also make it possible to reduce the time spent caching all infrastructure.
+* The setting for `max-concurrent-agents` is directly correlated with how much CPU and memory Clouddriver needs to cache infrastructure. Higher values make each replica consume more resources. Higher values also make it possible for Clouddriver to reduce the time spent caching all infrastructure.
