@@ -1,5 +1,7 @@
+API
 Armory
-BitBucket
+AWS
+Bitbucket
 CLI
 clouddriver
 Clouddriver
@@ -11,6 +13,7 @@ Echo
 Fiat
 Front50
 Gate
+GCP
 GitHub
 GitOps
 hal
@@ -28,12 +31,17 @@ kubectl
 Kubernetes
 Kustomize
 Minnaker
+MySQL
 namespace
 namespaces
 OpenShift
 Orca
 rawdata
+Redis
 repo
+REST
 Rosco
+ServiceNow
 Spinnaker
+SQL
 yaml
