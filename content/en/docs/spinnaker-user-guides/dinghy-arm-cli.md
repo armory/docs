@@ -1,6 +1,6 @@
 ---
 title: Using the ARM CLI to Render Pipline JSON
-linkTitle: Using the ARML CLI
+linkTitle: Using the ARM CLI
 description: >
   The Armory (ARM) CLI is a standalone tool that renders dinghyfiles for you to use with Armory's Pipelines as Code feature.
 ---
