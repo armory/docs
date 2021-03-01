@@ -1,5 +1,7 @@
+API
 Armory
-BitBucket
+AWS
+Bitbucket
 CLI
 clouddriver
 Clouddriver
@@ -11,6 +13,7 @@ Echo
 Fiat
 Front50
 Gate
+GCP
 GitHub
 GitOps
 hal
@@ -36,7 +39,9 @@ Orca
 rawdata
 Redis
 repo
+REST
 Rosco
+ServiceNow
 Spinnaker
 SQL
 yaml
