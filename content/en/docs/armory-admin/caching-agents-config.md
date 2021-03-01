@@ -21,7 +21,7 @@ The following configuration settings affect the behavior of the caching agents a
 |`sql.agent.max-concurrent-agents`|Indicates the maximum amount of agents to run at the same time when using the sql scheduler|100
 |`sql.agent.disabled-agents`|List of agent names to disable from running|(empty)
 |`sql.agent.enabled-pattern`|Regex of agent names enabled for running|.*
-|`sql.agent.release-threshold-ms`|Maximum amount of time for releasing agent locks after they finish running. If this value is higher than agent's execution cycle, they will keep running immediately after finishing|500
+|`sql.agent.release-threshold-ms`|Maximum amount of time for releasing agent locks after they finish running. If this value is higher than agent's execution cycle, the agents keep running immediately after finishing|500
 |`sql.agent.agent-lock-acquisition-interval-seconds`|How often the scheduler checks for the next batch of agents to run|1
 |`sql.agent.poll.interval-seconds`|Default time for how often to run caching agents|30
 |`sql.agent.poll.error-interval-seconds`|Default time for when to run caching agents after an execution fails|30
