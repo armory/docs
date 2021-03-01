@@ -21,10 +21,10 @@ The number of caching agents varies greatly between providers and with your Clou
 
 The cache store is where Clouddriver stores cloud resources. You can use different types:
 
-- Redis - the default and most popular implementation
-- SQL - the recommended SQL-backed store; see the {{< linkWithTitle "clouddriver-sql-configure.md" >}} page for how to configure Clouddriver
-- Dynomite - Netflix's key value store
-- an in-memory cache that is not used for actual Spinnaker deployments
+- Redis - the default and most popular implementation.
+- SQL - the recommended SQL-backed store; see the {{< linkWithTitle "clouddriver-sql-configure.md" >}} page for how to configure Clouddriver.
+- Dynomite - Netflix's key value store.
+- an in-memory cache that is not used for actual Spinnaker deployments.
 
 With the exception of the in-memory store, these stores work across multiple Clouddriver instances.
 
@@ -34,11 +34,11 @@ One or more instances of Clouddriver update this single cache store.
 
 The caching agent scheduler is in charge of running caching agents at regular intervals across all Clouddriver instances. There are multiple types of schedulers:
 
-- the Redis-backed scheduler that will lock agents by reading/writing a key to Redis
-- the Redis-backed sort scheduler that does the same as above but can manage the order of agents being executed
-- the SQL-backed scheduler that locks agents by inserting a row in a table with a unique constraint - not very efficient, prefer other schedulers
-- the Dynomite-backed scheduler (and its sort variant) that is similar to its Redis counterpart but uses Dynomite as its store
-- the default scheduler that doesn't lock. Don't use this if you expect more than one Clouddriver to run.
+- the Redis-backed scheduler that locks agents by reading/writing a key to Redis.
+- the Redis-backed sort scheduler that locks agents by reading/writing a key to Redis *and* manages the order of agents being executed.
+- the SQL-backed scheduler that locks agents by inserting a row in a table with a unique constraint - not very efficient, prefer other schedulers.
+- the Dynomite-backed scheduler (and its sort variant) that is similar to its Redis counterpart but uses Dynomite as its store.
+- the default scheduler that doesn't lock. Don't use this if you expect to run more than one Clouddriver instance.
 
 > The cache store does not dictate the type of agent scheduler. For instance, you could use the SQL cache store along with the Redis-backed scheduler.
 
@@ -61,4 +61,4 @@ The main issue is that when using a cache store like Redis that works across mul
 ## Next steps
 
 * {{< linkWithTitle "caching-agents-config.md" >}}
-* If you are using Kubernetes and would like to use a different method for cataloging your Kubernetes infrastructure, check out the [Armory Agent for Kubernetes]({{< ref "armory-agent" >}}). It's a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Clouddriver.
+* If you are using Kubernetes and would like to use a different method for cataloging your Kubernetes infrastructure, see the [Armory Agent for Kubernetes]({{< ref "armory-agent" >}}). It's a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Clouddriver.
