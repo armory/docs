@@ -478,7 +478,7 @@ The Policy Engine requires Armory and the OPA server to be connected. Once you h
    ```bash
    kubectl -n <opaServerNamespace> logs <pod-name>
    ```
-   In the logs, you should see `POST` requests if Armory and the OPA are connected.
+   In the logs, you should see `POST` requests if Armory and the OPA server are connected and policies are being evaluated.
 
 
 ## Additional configuration
