@@ -315,7 +315,7 @@ allow {
 }
 ```
 
-This basic policy allows all API calls. You can customize it to be more restrictive. For information about constructing a more restrictive policy, see [API authorization](#api-authorization).
+This basic policy allows all API calls. For information about constructing a more restrictive policy, see [API authorization](#api-authorization).
 
 For information about loading a policy, see [Using the Policy Engine]({{< ref "policy-engine-use#step-2-add-policies-to-opa" >}}).
 
