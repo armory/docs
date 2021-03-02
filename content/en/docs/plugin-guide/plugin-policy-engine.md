@@ -564,11 +564,11 @@ This may be due to an incorrect container name for a service in the init contain
 
 Problem:
 
-This may be due to an SSL exception. 
+The Armory (or Spinnaker) UI fails to load after you enable Policy Engine. This may be due to an SSL exception. 
 
 Solution:
 
-Open your browser's console and see if there are SSL exceptions. If there are, check what the `baseUrl` value for the OPA server is in `profiles/spinnaker-local.yml` (Halyard deployments) or your operator config. Specifically, using HTTPS for an HTTP server can cause SSL exceptions.
+Open your browser's console and see if there are SSL exceptions. If there are, check what the `baseUrl` value for the OPA server is in `profiles/spinnaker-local.yml` (Halyard-based deployments) or your operator config. Specifically, using HTTPS for an HTTP server can cause SSL exceptions.
 
 ## Release notes
 
