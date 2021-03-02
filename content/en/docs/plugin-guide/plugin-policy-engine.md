@@ -9,7 +9,7 @@ description: >
 
 ## Overview
 
-Armory's Policy Engine plugin is the next iteration of the Policy Engine feature that ships with the Armory Enterprise for Spinnaker. Not only does it include support for existing features like applying policy to pipelines as they're being saved, it also introduces policy hooks into other services like Gate, the API, and Orca, the orchestrator. 
+Armory's Policy Engine plugin is the next iteration of the Policy Engine feature that ships with the Armory Enterprise for Spinnaker. Not only does it include support for existing features like applying policy to pipelines as they're being saved, it also introduces policy hooks into other services like Gate (the API gateway) and Orca (the orchestrator). 
 
 Note that if you enable policies for Gate, you must configure who can make API calls or else Gate rejects all API calls. For more information, see [API authorization](#api-authorization). 
 
