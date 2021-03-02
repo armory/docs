@@ -11,7 +11,7 @@ description: >
 
 Armory's Policy Engine plugin is the next iteration of the Policy Engine feature that ships with the Armory Enterprise for Spinnaker. Not only does it include support for existing features like applying policy to pipelines as they're being saved, it also introduces policy hooks into other services like Gate (the API gateway) and Orca (the orchestrator). 
 
-Note that if you enable policies for Gate, you must configure who can make API calls or else Gate rejects all API calls. For more information, see [API authorization](#api-authorization). 
+> Note that if you enable policies for Gate, you must configure who can make API calls or else Gate rejects all API calls. 
 
 ## Requirements
 
@@ -303,6 +303,22 @@ url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/mas
 
 If you do not omit the `volume` and `initContainers` configurations for the `patchesStrategicMerge` section, the pods for Armory may not start.
 
+### Finishing the setup
+
+Once Policy Engine is enabled, you must authorize API calls in order to use the Armory (or OSS Spinnaker) UI. To do this, you need to load a policy into the Policy Engine that is similar to the following:  
+
+```rego
+package spinnaker.http.authz
+default allow = true
+allow {
+    input.user.isAdmin == true
+}
+```
+
+This basic policy allows all API calls. You can customize it to be more restrictive. For information about constructing a more restrictive policy, see [API authorization](#api-authorization).
+
+For information about loading a policy, see [Using the Policy Engine]({{< ref "policy-engine-use#step-2-add-policies-to-opa" >}}).
+
 ## Usage
 
 The Policy Engine Plugin enables you to enforce policies on various actions and tasks in the Armory platform. It does this by providing hooks within the platform. The sections below include examples and possible use cases for the Policy Engine. To see more example policies, see the [examples repo](https://github.com/armory-io/policy-engine-examples/).
@@ -342,7 +358,7 @@ These attributes are included in the `input` sent to policies and can be used to
 
 The following snippet represents a single POST request to the Tasks API. You can see the relevant information needed when making a policy decision:
 
-```opa
+```rego
 {
     "user": {
         "username": "richard.hendricks@piedpiper.net"
@@ -362,7 +378,7 @@ The following snippet represents a single POST request to the Tasks API. You can
 
 Imagine you only want to allow members of the `middleout-eng` team to deploy Kubernetes manifests to the `middleout-development` account. That policy might look like this:
 
-```opa
+```rego
 package spinnaker.http.authz
 
 default allow = false
@@ -394,7 +410,7 @@ The policy package (`spinnaker.deployment.tasks.<taskType>` ) is different for d
 
 The following example shows the `rego` syntax for an OPA policy that ensures no Kubernetes Services are deployed or created that expose port 22, the port commonly used for SSH:
 
-```opa
+```rego
 package spinnaker.deployment.tasks.deployManifest
 
 deny["LoadBalancer Services must not have port 22 open."] {
@@ -419,7 +435,7 @@ Before a pipeline is executed, Policy Engine uses the package `spinnaker.executi
 
 The following example shows the `rego` syntax for a policy that requires all pipeline executions include a secret when triggered by a push in GitHub:
 
-```opa
+```rego
 package spinnaker.execution.pipelines.before
 
 deny["Every pipeline Github trigger must have a secret"] {
@@ -444,7 +460,7 @@ Unlike the deployment hooks, this execution hook can apply policy to any task in
 
 The following example shows the `rego` syntax for a policy that requires a `canDeploy` type stage to run before a `deployManifest` type stage:
 
-```opa
+```rego
 package spinnaker.execution.task.before.deployManifest
 
 deny["deployManifest cannot be run without requisite canDeploy stage"] {
@@ -460,7 +476,7 @@ This is the simplest use case for Policy Engine and where many users begin. You 
 
 The following example shows the `rego` syntax for a policy that requires all pipelines to have a `preFlightCheck` type stage:
 
-```opa
+```rego
 package spinnaker.persistence.pipelines.before
 
 deny["Pipelines must contain a pre-flight check stage."] {
@@ -543,6 +559,16 @@ You encounter the following error:
 Solution:
 
 This may be due to an incorrect container name for a service in the init container patch. Verify that the `patchesStrategicMerge` for each service is accurate when configuring [Docker image as init container](#docker-image-as-init-container).
+
+**UI not loading after you enable Policy Engine**
+
+Problem:
+
+This may be due to an SSL exception. 
+
+Solution:
+
+Open your browser's console and see if there are SSL exceptions. If there are, check what the `baseUrl` value for the OPA server is in either `profiles/spinnaker-local.yml` (Halyard deployments) or your operator config. Specifically, using HTTPS for an HTTP server can cause SSL exceptions.
 
 ## Release notes
 
