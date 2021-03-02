@@ -9,7 +9,7 @@ description: >
 
 ## Overview
 
-Armory's Policy Engine plugin is the next iteration of the Policy Engine feature that ships with our Armory distribution. Not only does it include support for existing features like applying policy to pipelines as they're being saved, it also introduces policy hooks into other services like Gate, the API, and Orca, the orchestrator. 
+Armory's Policy Engine plugin is the next iteration of the Policy Engine feature that ships with the Armory Enterprise for Spinnaker. Not only does it include support for existing features like applying policy to pipelines as they're being saved, it also introduces policy hooks into other services like Gate, the API, and Orca, the orchestrator. 
 
 Note that if you enable policies for Gate, you must configure who can make API calls or else Gate rejects all API calls. For more information, see [API authorization](#api-authorization). 
 
@@ -417,7 +417,7 @@ Not only can policies be enforced on pipelines before they are saved, they can a
 
 Before a pipeline is executed, Policy Engine uses the package `spinnaker.execution.pipelines.before` to determine if the pipeline execution can even be started. This is can be useful for a variety of use cases. 
 
-The following example shows the `rego` syntax for a policy that requires all pipeline executions include a secret when triggered by a push in Github:
+The following example shows the `rego` syntax for a policy that requires all pipeline executions include a secret when triggered by a push in GitHub:
 
 ```opa
 package spinnaker.execution.pipelines.before
@@ -509,7 +509,7 @@ armory:
       - path: "/api/**"
 ```
 
-*Note the `path` key in the above configuration. This is required.*
+*Note the `path` key in the preceding configuration. This is required.*
 
 ### Enable identity-based policies for webhook endpoints
 
@@ -544,7 +544,7 @@ Solution:
 
 This may be due to an incorrect container name for a service in the init container patch. Verify that the `patchesStrategicMerge` for each service is accurate when configuring [Docker image as init container](#docker-image-as-init-container).
 
-## Release Notes
+## Release notes
 
 * v0.0.19 - Adds forced authentication feature and fixes NPE bug
 * v0.0.17 - Initial plugin release
