@@ -43,7 +43,7 @@ In addition to the plugin, you need access to an Open Policy Agent (OPA) deploym
 
 You can use the sample configuration to install the plugin, but keep the following in mind:
 
-- The `patchesStrategicMerge` section for each service is unique to that service. Do not reuse the snippet from one service for the other services.
+- The `patchesStrategicMerge` section for each service is unique. Do not reuse the snippet from one service for the other services.
 - Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use. For a list of versions, see [Release notes](#release-notes).
 
 ```yaml
