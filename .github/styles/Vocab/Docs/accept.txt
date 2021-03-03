@@ -1,5 +1,7 @@
 API
 Armory
+Armory Agent
+Armory Operator
 AWS
 Bitbucket
 CLI
@@ -38,6 +40,7 @@ OpenShift
 Orca
 rawdata
 Redis
+Release Notes
 repo
 REST
 Rosco
