@@ -17,6 +17,9 @@ jobs:
 
         # Optional. Only lint modified files. Once we pay off tech debt, we'll switch the linting to  onlyAnnotateModifiedLines afterwards
         files: __onlyModified
+        
+        #  only annotate lines that have been modified within a PR
+        onlyAnnotateModifiedLines: true
       env:
         # Required
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
