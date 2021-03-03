@@ -15,7 +15,7 @@ aliases:
   - /docs/spinnaker-user-guides/baking-images/
 ---
 
-Definition: The phrase "baking images" is used within Armory and Spinnaker<sup>TM</sup> to refer to the process of creating machine images.
+>The phrase "baking images" is used within Armory and Spinnaker<sup>TM</sup> to refer to the process of creating machine images.
 
 ## Prerequisites for baking AMIs
 
