@@ -53,7 +53,7 @@ If this is your first time configuring an environment, consider adding secrets f
   
 4. Save your changes.
 
-Once you have a secret, refer to it by name when you are configuring like access keys for Deployment Targets.
+Once you have a secret, refer to it by name when you need to provide values for things like access keys for Deployment Targets.
 
 ### Artifact Sources
 
