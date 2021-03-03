@@ -1,7 +1,7 @@
 ---
 title: v1.2.4 Armory Operator
 toc_hide: true
-version: 01.02.02
+version: 01.02.04
 ---
 
 ## 03/01/2021 Release Notes
