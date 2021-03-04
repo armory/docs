@@ -3,10 +3,7 @@ title: Armory Operator Configuration
 weight: 1
 description: >
   This guide describes the fields in `SpinnakerService` CRD that you need to deploy Armory Enterprise for Spinnaker on Kubernetes.
-aliases:
-  - /operator_reference/operator-config/
 ---
-
 
 ## SpinnakerService CRD
 The following example shows the general structure of `SpinnakerService`.

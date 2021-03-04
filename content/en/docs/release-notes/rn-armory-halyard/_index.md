@@ -10,7 +10,7 @@ aliases:
 layout: release-notes-all
 semver_list: true
 description: >
-  Armory-extended Halyard  is an extended version of Halyard that deploys Armory features.
+  Release notes for Armory-extended Halyard, an extended version of Halyard that deploys Armory features
 ---
 
 > You can find [Armory's releases notes here]({{< ref "rn-armory-spinnaker" >}}).

@@ -4,6 +4,7 @@ title: v2.17.1 Armory Release (OSS Release 1.17.2)
 toc_hide: true
 date: 2019-11-22
 version: 02.17.01
+description: Release notes for Armory Enterprise v2.17.1
 aliases:
   - armoryspinnaker_v2.17.1
 ---

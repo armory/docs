@@ -3,7 +3,7 @@ linkTitle: "Your First Pipeline"
 title: "Your First Pipeline in Spinnaker"
 weight: 35
 description: >
-  Create a pipeline that bakes an Amazon Machine Image (AMI).
+  Create your first pipeline, which bakes an Amazon Machine Image (AMI).
 ---
 
 ## What is a pipeline in Spinnaker?

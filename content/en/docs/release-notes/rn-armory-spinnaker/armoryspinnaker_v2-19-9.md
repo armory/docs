@@ -3,6 +3,7 @@ title: v2.19.9 Armory Release (OSS Release 1.19.11)
 toc_hide: true
 date: 2020-06-05
 version: 02.19.09
+description: Release notes for Armory Enterprise v2.19.9
 ---
 
 ## 06/05/20 Release Notes

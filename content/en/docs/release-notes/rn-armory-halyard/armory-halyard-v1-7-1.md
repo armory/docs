@@ -2,6 +2,7 @@
 title: v1.07.1 Armory Halyard
 version: 01.07.01
 toc_hide: true
+description: Release notes for Armory Halyard v1.7.1
 aliases:
   - armory-halyard_v1.7.1
 ---

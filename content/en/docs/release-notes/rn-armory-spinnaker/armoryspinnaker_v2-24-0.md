@@ -3,7 +3,7 @@ title: v2.24.0 Armory Release (OSS Spinnaker™ v1.24.2)
 toc_hide: true
 version: 02.24.00
 description: >
-  Release notes for the Armory Platform
+  Release notes for v2.24.0 Armory Enterprise
 ---
 
 ## 2021/01/21 Release Notes
@@ -65,7 +65,7 @@ Improvements to ECS include the following:
 
 #### Clouddriver
 
-You can now use PostgresSQL 10 or later as the backing store for Clouddriver. 
+You can now use PostgresSQL 10 or later as the backing store for Clouddriver.
 
 #### Cloud Foundry
 

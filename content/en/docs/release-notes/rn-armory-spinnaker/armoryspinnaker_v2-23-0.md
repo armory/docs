@@ -3,12 +3,13 @@ title: v2.23.0 Armory Release (OSS Spinnaker™ v1.23.2)
 toc_hide: true
 date: 2020-11-20
 version: 02.23.00
+description: Release notes for Armory Enterprise v2.23.0
 ---
 
 ## 2020/11/20 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-> 
+>
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.23.0, use one of the following tools:
