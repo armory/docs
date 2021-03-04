@@ -2,6 +2,7 @@
 title: v1.2.0 Armory Operator
 toc_hide: true
 version: 01.02.00
+description: Release notes for Armory Operator v1.2.0
 ---
 
 ## 10/07/2020 Release Notes

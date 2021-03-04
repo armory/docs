@@ -3,7 +3,7 @@ title: v2.23.2 Armory Release (OSS Spinnaker™ v1.23.5)
 toc_hide: true
 version: 02.23.02
 description: >
-  Release notes for the Armory Platform
+  Release notes for Armory Enterprise v2.23.2
 ---
 
 ## 2020/12/14 Release Notes

@@ -2,6 +2,7 @@
 title: v1.9.4 Armory Halyard
 version: 01.09.04
 toc_hide: true
+description: Release notes for Armory Halyard v1.9.4
 ---
 
 # 05/21/2020 Release Notes

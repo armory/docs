@@ -3,6 +3,7 @@ title: v2.19.6 Armory Release (OSS Release 1.19.5)
 toc_hide: true
 date: 2020-04-20
 version: 02.19.06
+description: Release notes for Armory Enterprise v2.19.6
 aliases:
   - armoryspinnaker_v2.19.6
 ---

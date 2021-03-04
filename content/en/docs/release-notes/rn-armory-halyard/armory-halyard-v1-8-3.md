@@ -2,6 +2,7 @@
 title: v1.8.3 Armory Halyard
 version: 01.08.03
 toc_hide: true
+description: Release notes for Armory Halyard v1.8.3
 aliases:
   - armory-halyard_v1.8.3
 ---

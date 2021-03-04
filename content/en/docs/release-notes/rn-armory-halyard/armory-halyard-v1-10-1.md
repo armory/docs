@@ -2,6 +2,7 @@
 title: v1.10.1 Armory Halyard
 toc_hide: true
 version: 01.10.01
+description: Release notes for Armory Halyard v1.10.1
 ---
 
 ## 12/02/2020 Release Notes
@@ -15,4 +16,4 @@ No known issues
 
 ## Armory-extended Halyard
 
-- chore(cve): resolves CVEs: CVE-2020-28928 CVE-2020-5408 CVE-2020-5407 CVE-2020-28196 
+- chore(cve): resolves CVEs: CVE-2020-28928 CVE-2020-5408 CVE-2020-5407 CVE-2020-28196

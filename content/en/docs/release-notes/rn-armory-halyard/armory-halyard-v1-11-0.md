@@ -2,6 +2,7 @@
 title: v1.11.0 Armory Halyard
 toc_hide: true
 version: 01.11.00
+description: Release notes for Armory Halyard v1.11.0
 ---
 
 ## 03/01/2021 Release Notes
@@ -15,4 +16,4 @@ No known issues
 
 ## Armory-extended Halyard
 
-- feat(secrets): add userpass auth for vault 
+- feat(secrets): add userpass auth for vault
