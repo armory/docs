@@ -78,14 +78,9 @@ weight = 1
   url = "https://www.armory.io/learn/customer-success-stories/"
 
 [[menu.main]]
-  name = "Support"
-  weight = 7
-  url = "https://go.armory.io/support"
-
-[[menu.main]]
   name = "KB"
   weight = 8
-  url = "https://kb.armory.io"
+  url = "https://support.armory.io/"
 
 [[menu.main]]
   name = "Blog"
