@@ -11,7 +11,7 @@ description: >
 ## Triggering a pipeline with a Docker Registry update
 
 > Before you start, you need to [configure a Docker
-registry](/docs/spinnaker-install-admin-guides/docker/). If you don't see your
+registry]({{< ref "artifacts-docker-connect" >}}). If you don't see your
 Docker registry as an option, or you're missing your organization or image in
 the UI, you'll need to double-check your Spinnaker is configured to use that
 registry (and/or repository).
