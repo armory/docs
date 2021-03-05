@@ -1,0 +1,13 @@
+DirectoryPath: public/docs
+CheckExternal: false
+IgnoreAltMissing: true
+CheckImages: false
+CheckScripts: false
+CheckMeta: false
+CheckMetaRefresh: false
+CheckLinks: false
+EnforceHTML5: false
+EnforceHTTPS: false
+IgnoreDirectoryMissingTrailingSlash: false
+IgnoreInternalEmptyHash: true
+IgnoreEmptyHref: true
