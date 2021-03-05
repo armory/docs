@@ -18,7 +18,6 @@ This guide includes:
 * Settings for GitHub, GitLab, or Bitbucket/Stash webhooks to work with the Pipelines as code
 * GitHub [custom branch configuration](#custom-branch-configuration) for information about how to explicitly set the branch that Pipelines as Code uses.
 
-
 ## Enabling Pipelines as Code
 
 _Dinghy_ is the microservice for Pipelines as Code. You need to enable it to use Pipelines as Code.
