@@ -60,6 +60,9 @@ Here is an example Dinghyfile:
 ```json
 {
   "application": "helloworldapp",
+  "appmetadata": {
+    "canary": "true"
+  },
   "pipelines": [
     {
       "application": "helloworldapp",
