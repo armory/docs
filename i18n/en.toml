@@ -5,6 +5,8 @@ other = "Before you begin"
 other = "Install the Armory Operator"
 [heading_configKustomizeInstallArmory]
 other = "Install Armory using Kustomize patches"
+[heading_nextSteps]
+other = "What's next"
 
 # UI strings. Buttons and similar.
 
