@@ -1,7 +1,7 @@
 ---
 title: Add a Cloud Foundry Account in Spinnaker
 linkTitle: Add a Cloud Foundry Account
-description: Add a Cloud Foundry account as a cloud provider deployment target in Spinnaker so you can deploy applications to that Cloud Foundry location.
+description: Add a Cloud Foundry account as a cloud provider deployment target in Spinnaker.
 ---
 
 ## {{< heading "prereq" >}}

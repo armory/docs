@@ -1,7 +1,7 @@
 ---
 title: Cloud Foundry as a Deployment Target in Spinnaker
 linkTitle: Cloud Foundry as Deployment Target
-description: Learn how Spinnaker deploys to Cloud Foundry targets.
+description: Learn how Spinnaker interacts with Cloud Foundry.
 weight: 1
 ---
 
