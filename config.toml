@@ -1,5 +1,5 @@
 baseURL = "/"
-title = "Armory Documentation"
+title = "Armory Docs"
 
 enableRobotsTXT = true
 enableInlineShortcodes = true
@@ -49,13 +49,13 @@ anchor = "smart"
 [services]
 [services.googleAnalytics]
 # Comment out the next line to disable GA tracking. Also disables the feature described in [params.ui.feedback].
-id = "UA-79996712-5"
+# id = "UA-79996712-5"
 
 # Language configuration
 
 [languages]
 [languages.en]
-title = "Armory Documentation"
+title = "Armory Docs"
 description = "Unlocking Innovation by Making Software Delivery Continuous, Scalable, and Safe"
 languageName ="English"
 # Weight used for sorting.
@@ -218,11 +218,6 @@ enable = true
   version = "Latest"
   githubbranch = "master"
   url = "https://docs.armory.io"
-
-[[params.versions]]
-  version = "v2.23"
-  githubbranch = "v2.23"
-  url = "https://v2-23.docs.armory.io/docs"
 
 [[params.versions]]
   version = "v2.22"
