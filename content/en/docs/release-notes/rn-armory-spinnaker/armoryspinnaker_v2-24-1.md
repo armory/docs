@@ -1,20 +1,20 @@
 ---
 title: v2.24.1 Armory Release (OSS Spinnaker™ v1.24.4)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.24.01
 description: >
-  Release notes for the Armory Platform
+  Release notes for v2.24.1 Armory Enterprise
 ---
 
-## 2021/03/110 Release Notes
+## 2021/03/16 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.24.1, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.10 or later
+- Armory Operator 1.2.1 or later
 
 ## Security
 
@@ -22,9 +22,23 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
+{{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
+
+<!-- Moved this to Breaking changes instead of KI. Didn't bother renaming it. -->
+{{< include "known-issues/ki-orca-zombie-execution.md" >}}
+
+{{< include "breaking-changes/bc-orca-forcecacherefresh.md" >}}
+
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+{{< include "known-issues/ki-bake-var-file.md" >}}
+{{< include "known-issues/ki-lambda-ui-caching.md" >}}
+{{< include "known-issues/ki-dinghy-modules.md" >}}
+
+### Fixed issues
+
+* Fixed an issue where pull request comments for GitHub caused the Dinghy pod for Pipelines as Code to crash or report incorrect information
 
 ## Highlighted updates
 
@@ -34,7 +48,17 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
+### Application metrics for Canary Analysis
 
+Improved how the Kayenta service handles data from Dynatrace. The integration now parses integer and null data points properly. 
+
+### Security
+
+Resolved CVEs.
+
+### Terraform Integration
+
+The Terraform Integration stage now supports using key/value pairs in a Terraform variable files. You can use these key/value pairs for configs such as secrets.
 
 
 ###  Spinnaker Community Contributions
@@ -108,10 +132,7 @@ artifactSources:
 
   - chore(build): use armory commons bom  (#185) (#186)
   - chore(build): backport armory-commons changes (#195)
-  - [create-pull-request] automated change (#193)
-  - [create-pull-request] automated change (#199)
-  - [create-pull-request] automated change (#203)
-  - [create-pull-request] automated change (#204)
+
 
 #### Terraformer™ - 2.24.2...2.24.4
 
@@ -121,33 +142,18 @@ artifactSources:
 #### Armory Clouddriver - 2.24.10...2.24.23
 
   - chore(build): use Armory commons BOM, remove some unused constraints (#271) (#272)
-  - [create-pull-request] automated change (#275)
-  - [create-pull-request] automated change (#276)
   - chore(dependencies): exclude tencent, huawei, oracle, yandex, move junit/logback to bom (bp #274) (#277)
-  - [create-pull-request] automated change (#278)
-  - [create-pull-request] automated change (#279)
-  - chore(build): bump google sdk to fix CVE-2019-17638 and CVE-2020-27216 (#280) (#281)
-  - [create-pull-request] automated change (#282)
-  - [create-pull-request] automated change (#285)
-  - [create-pull-request] automated change (#286)
-  - [create-pull-request] automated change (#299)
+  - chore(build): bump google sdk to fix CVEs (#280) (#281)
 
 #### Armory Orca - 2.24.5...2.24.13
 
   - chore(build): use armory commons BOM (#209)
   - chore(dependencies): use armory commons bom (#212) (#214)
-  - [create-pull-request] automated change (#215)
-  - [create-pull-request] automated change (#216)
-  - [create-pull-request] automated change (#219)
-  - [create-pull-request] automated change (#220)
 
 #### Armory Kayenta - 2.24.7...2.24.14
 
   - chore(build): use armory commons BOM (#183) (#184)
   - chore(build): use armory commons bom (#192)
-  - [create-pull-request] automated change (#190)
-  - [create-pull-request] automated change (#195)
-  - [create-pull-request] automated change (#196)
   - fix(dynatrace): fix parse of datapoints values (#204) (#205)
 
 #### Dinghy™ - 2.24.5...2.24.10
@@ -163,18 +169,11 @@ artifactSources:
 
   - chore(build): use armory-commons BOM (#282) (#283)
   - chore(dependencies): move junit/logback to bom (#285) (#287)
-  - [create-pull-request] automated change (#288)
-  - [create-pull-request] automated change (#291)
-  - [create-pull-request] automated change (#292)
 
 #### Armory Front50 - 2.24.4...2.24.12
 
   - chore(build): use armory commons BOM (#202) (#203)
   - chore(dependencies): use armory commons bom (#208) (#210)
-  - [create-pull-request] automated change (#211)
-  - [create-pull-request] automated change (#212)
-  - [create-pull-request] automated change (#213)
-  - [create-pull-request] automated change (#216)
 
 #### Armory Igor - 2.24.5...2.24.9
 
@@ -183,21 +182,9 @@ artifactSources:
 
 #### Armory Gate - 2.24.4...2.24.14
 
-  - [create-pull-request] automated change (#224)
   - chore(dependencies): use armory commons bom (bp #223) (#226)
-  - [create-pull-request] automated change (#225)
-  - [create-pull-request] automated change (#227)
-  - [create-pull-request] automated change (#230)
-  - [create-pull-request] automated change (#231)
-  - [create-pull-request] automated change (#233)
-  - [create-pull-request] automated change (#246)
-
+  
 #### Armory Fiat - 2.24.4...2.24.12
 
   - chore(build): use armory commons BOM (#156) (#157)
   - chore(dependencies): use armory commons bom (#162) (#165)
-  - [create-pull-request] automated change (#164)
-  - [create-pull-request] automated change (#166)
-  - [create-pull-request] automated change (#169)
-  - [create-pull-request] automated change (#171)
-
