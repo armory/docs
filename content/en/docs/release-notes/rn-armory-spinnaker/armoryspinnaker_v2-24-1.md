@@ -38,7 +38,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ### Fixed issues
 
-* Fixed an issue where pull request comments for GitHub caused the Dinghy pod for Pipelines as Code to crash or report incorrect information
+* Fixed an issue where pull request comments on GitHub caused the Dinghy pod for Pipelines as Code to crash or report incorrect information.
 
 ## Highlighted updates
 
@@ -58,7 +58,7 @@ Resolved CVEs.
 
 ### Terraform Integration
 
-The Terraform Integration stage now supports using key/value pairs in a Terraform variable files. You can use these key/value pairs for configs such as secrets.
+Named Profiles for static type credentials now support using key/value pairs in a Terraform variable file. You can use these key/value pairs for configs such as secrets.
 
 
 ###  Spinnaker Community Contributions
