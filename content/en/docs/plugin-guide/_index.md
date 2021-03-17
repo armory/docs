@@ -4,7 +4,7 @@ title: Creating and Using Plugins in Spinnaker
 weight: 25
 no_list: true
 description: >
-  Resources for extending Spinnaker functionality with plugins.
+  Resources for extending Spinnaker<sup>TM</sup> functionality with plugins.
 aliases:
   - /spinnaker-user-guides/plugin-creators/
   - /docs/spinnaker-user-guides/plugin-creators/
@@ -12,7 +12,7 @@ aliases:
   - /docs/spinnaker-user-guides/plugin-users/
 ---
 
-## Spinnaker<sup>TM</sup> plugin guides:
+## Spinnaker plugin guides:
 
 * [Plugin Users Guide](https://spinnaker.io/guides/user/plugins)
   * Explains important concepts and files, such as `plugins.json` and `repositories.json`, that you need to deploy a plugin
