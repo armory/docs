@@ -31,7 +31,7 @@ The Armory Operator has two distinct modes:
 
 1. Create the `spinnaker-operator` namespace.
 
-   If you want to use a namespace other than `spinnaker-operator` in `cluster` mode, you also need to edit the namespace in `deploy/operator/cluster/role_binding.yaml`.
+   If you want to use a namespace other than `spinnaker-operator` in `cluster` mode, you also need to edit the namespace in `deploy/operator/kustomize/role_binding.yaml`.
 
    ```bash
    kubectl create ns spinnaker-operator
