@@ -41,7 +41,7 @@ The Armory Operator has two distinct modes:
 
    `cluster` mode:
    ```bash
-   kubectl -n spinnaker-operator apply -f deploy/operator/cluster
+   kubectl -n spinnaker-operator apply -f deploy/operator/kustomize
    ```
 
    `basic` mode:
