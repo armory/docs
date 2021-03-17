@@ -8,7 +8,7 @@ aliases:
 ---
 
 {{% alert title="Warning" color="warning" %}}
-Plugins are an experimental feature in Armory Spinnaker 2.20.3 (Spinnaker 1.20.6). Please see the [Plugins User Guide](https://spinnaker.io/guides/user/plugins) for a detailed explanation of how to add and configure plugins. The examples in the _Plugins User Guide_ use Halyard, but the concepts apply to plugins added using Operator.
+Please see the [Plugins User Guide](https://spinnaker.io/guides/user/plugins) for a detailed explanation of plugins and how to add and configure using Halyard. 
 {{% /alert %}}
 
 ## Parameters
@@ -32,10 +32,7 @@ spec:
               <plugin-name>:
                 enabled: <true-or-false>
                 version: <version>
-                extensions:
-                  id: <extension-name>
-                  enabled: <true-or-false>
-                  config: {}
+                config: {}
             repositories:
               <repository-name>:
                 id:
@@ -47,11 +44,7 @@ spec:
     - `id`: plugin ID as defined in plugins.json
     - `enabled`: true or false
     - `version`:  version of the plugin to use
-    - `extensions`:
-      - `<extension-name>`:
-        - `id`: same as the name of the plugin extension
-        - `enabled`: true or false
-        - `config`: {} - configuration for this specific plugin
+    - `config`: {} - configuration for this specific plugin
 - `repositories`:
   - `<repository-name>`:
     - `id`: same as <repository-name>
@@ -111,7 +104,7 @@ spec:
               plugins:
                 Armory.RandomWaitPlugin:
                   enabled: true
-                  version: 1.1.14
+                  version: 1.1.17
             repositories:
               examplePluginsRepo:
                 url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
@@ -121,12 +114,9 @@ spec:
            plugins:
              Armory.RandomWaitPlugin:
               enabled: true
-              version: 1.1.14
-              extensions:
-               id: armory.randomWaitStage
-               enabled: true
-               config:
-                 defaultMaxWaitTime: 15
+              version: 1.1.17
+              config:
+                defaultMaxWaitTime: 15
            repositories:
              examplePluginsRepo:
               id: examplePluginsRepo
