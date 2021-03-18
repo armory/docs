@@ -16,4 +16,4 @@ No known issues.
 
 ### Armory Operator
 
-* chore(release): upgrade to oss operator 1.2.5
+* chore(release): upgrade to oss operator 1.2.4
