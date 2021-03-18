@@ -1,0 +1,34 @@
+<div class="section-index">
+  {{ $pages := (where .Site.Pages "Section" .Section).ByParam "version" }}
+  {{ $pagesReverse := $pages.Reverse }}
+  {{ $parent := .Page }}
+
+  <div>Armory Operator:</div>
+
+  <ul>
+    {{ range $pagesReverse }}
+      {{ if eq .Parent $parent }}
+
+        {{ if in .Title "Armory" }}
+          <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+        {{end}}
+
+      {{end}}
+    {{ end }}
+  </ul>
+  <div>OSS Operator:</div>
+  <ul>
+    {{ range $pagesReverse }}
+      {{ if eq .Parent $parent }}
+
+        {{ if in .Title "OSS" }}
+        <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+        {{end}}
+
+      {{end}}
+    {{ end }}
+  </ul>
+
+  <div>Versions older than the last 3 minor versions can be found in the <a href="archive">Armory Release Notes Archive</a>.</div>
+
+</div>
