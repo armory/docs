@@ -48,16 +48,16 @@ Application metrics can be ingested by Kayenta to perform Canary Analysis or Aut
 
 The following table lists supported app metric providers:
 
-| Provider                                                     | Version                | ACA | Armory                 | Note                                              |
-|--------------------------------------------------------------|------------------------|-----|------------------------|---------------------------------------------------|
-| [AWS Cloudwatch]({{< ref "kayenta-canary-cloudwatch.md" >}}) | All supported versions | Yes | 2.23.1 or later        |                                                   |
-| Datadog                                                      | All supported versions | Yes | All supported versions |                                                   |
-| [Dynatrace]({{< ref "kayenta-canary-dynatrace.md" >}})       | All supported versions | Yes | 2.23.0 or later        |                                                   |
-| Graphite                                                     | All supported versions | Yes | All supported versions |                                                   |
-| New Relic                                                    | All supported versions | Yes | All supported versions |                                                   |
-| Prometheus                                                   | All supported versions | Yes | All supported versions | Authentication using a bearer token is supported. |
-| SignalFx                                                     | All supported versions | Yes | All supported versions |                                                   |
-| Stackdriver                                                  | All supported versions | Yes | All supported versions |                                                   |
+| Provider                                                                            | Version                | ACA | Armory                 | Note                                              |
+|-------------------------------------------------------------------------------------|------------------------|-----|------------------------|---------------------------------------------------|
+| [AWS Cloudwatch]({{< ref "kayenta-canary-cloudwatch.md" >}})                        | All supported versions | Yes | 2.23.1 or later        |                                                   |
+| [Datadog](https://spinnaker.io/setup/canary/#set-up-canary-analysis-to-use-datadog) | All supported versions | Yes | All supported versions |                                                   |
+| [Dynatrace]({{< ref "kayenta-canary-dynatrace.md" >}})                              | All supported versions | Yes | 2.23.0 or later        |                                                   |
+| Graphite                                                                            | All supported versions | Yes | All supported versions |                                                   |
+| New Relic                                                                           | All supported versions | Yes | All supported versions |                                                   |
+| Prometheus                                                                          | All supported versions | Yes | All supported versions | Authentication using a bearer token is supported. |
+| SignalFx                                                                            | All supported versions | Yes | All supported versions |                                                   |
+| Stackdriver                                                                         | All supported versions | Yes | All supported versions |                                                   |
 
 ## Artifacts
 
@@ -68,9 +68,9 @@ Artifacts are  deployable resources.
 The following table lists the supported artifact stores:
 
 | Provider                                                          | Armory                 | Notes                                                               |
-| ----------------------------------------------------------------- | ---------------------- | ------------------------------------------------------------------- |
+|-------------------------------------------------------------------|------------------------|---------------------------------------------------------------------|
 | [Bitbucket](https://spinnaker.io/setup/artifacts/bitbucket/)      | All supported versions |                                                                     |
-| Container registries                                              | All supported versions | Docker Hub, ECR, and GCR                                                                     |
+| Container registries                                              | All supported versions | Docker Hub, ECR, and GCR                                            |
 | [GitHub](https://spinnaker.io/setup/artifacts/github/)            | All supported versions |                                                                     |
 | [Git Repo](https://spinnaker.io/setup/artifacts/gitrepo/)         | All supported versions | GitHub or Bitbucket. Supports using the entire repo as an artifact. |
 | [Google Cloud Storage](https://spinnaker.io/setup/artifacts/gcs/) | All supported versions |                                                                     |
