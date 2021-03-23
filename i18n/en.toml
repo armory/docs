@@ -2,9 +2,9 @@
 [heading_prereq]
 other = "Before you begin"
 [heading_installOperator]
-other = "Install the Armory Operator"
+other = "Install the Operator"
 [heading_configKustomizeInstallArmory]
-other = "Install Armory using Kustomize patches"
+other = "Configure Spinnaker using Kustomize patches"
 [heading_nextSteps]
 other = "What's next"
 

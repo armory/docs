@@ -1,1 +1,1 @@
-> This guide uses the Armory Operator, which installs the Armory Enterprise Platform. The open source Operator installs open source Spinnaker<sup>TM</sup>. You can download the open source Operator from its GitHub [repo](https://github.com/armory/spinnaker-operator). Configuration is the same for all sections except for features only in the Armory Enterprise Platform.
+> This guide is for both the Spinnaker Operator and the Armory Operator.  Configuration is the same except for features only in Armory Enterprise. Those features are marked "(Armory Enterprise)". 

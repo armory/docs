@@ -1,10 +1,12 @@
 ---
-title: Migrating from Halyard to the Armory Operator
+title: Migrating from Halyard to the Operator
 linkTitle: Migrate from Halyard
-weight: 3
+weight: 80
 description: >
-  Migrate your Armory Enterprise Platform for Spinnaker installation from Halyard to the Armory Operator.
+  Migrate your Spinnaker or Armory Enterprise installation from Halyard to the  Operator.
 ---
+
+{{< include "armory-operator/os-operator-blurb.md">}}
 
 The migration process from Halyard to Operator can be completed in 7 steps:
 

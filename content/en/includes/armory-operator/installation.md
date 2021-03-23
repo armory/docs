@@ -1,27 +1,22 @@
 <!-- this file does not contain H2 etc headings
 Hugo does not render headings in included files
 -->
-The Armory Operator has two distinct modes:
 
-- **Basic**: Installs Armory into a single namespace. This mode does not
-  perform pre-flight checks before applying a manifest.
-- **Cluster**: Installs Armory across namespaces with pre-flight checks to
-  prevent common misconfigurations. This mode requires a `ClusterRole`.
+1. Get the latest Operator release.
 
-1. Get the latest Armory Operator release.
-
-   ```bash
-   mkdir -p spinnaker-operator && cd spinnaker-operator
-   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
-   ```
-
-   Alternately, if you want to install open source Spinnaker, get the latest release of the open source Operator.
+   **Spinnaker Operator**
 
    ```bash
    mkdir -p spinnaker-operator && cd spinnaker-operator
    bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
    ```
 
+   **Armory Operator**
+
+   ```bash
+   mkdir -p spinnaker-operator && cd spinnaker-operator
+   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
+   ```
 
 1. Install or update CRDs across the cluster.
 
@@ -29,24 +24,28 @@ The Armory Operator has two distinct modes:
    kubectl apply -f deploy/crds/
    ```
 
-1. Create the `spinnaker-operator` namespace.
+1. Create the namespace for the Operator.
 
-   If you want to use a namespace other than `spinnaker-operator` in `cluster` mode, you also need to edit the namespace in `deploy/operator/kustomize/role_binding.yaml`.
+   In `basic` mode, the namespace must be `spinnaker-operator`.
 
    ```bash
    kubectl create ns spinnaker-operator
    ```
 
-1. Install the Operator in either `cluster` or `basic` mode:
+   In `cluster` mode, if you want to use a namespace other than `spinnaker-operator`, you need to edit the namespace in `deploy/operator/kustomize/role_binding.yaml`.
 
-   `cluster` mode:
-   ```bash
-   kubectl -n spinnaker-operator apply -f deploy/operator/kustomize
-   ```
+1. Install the Operator.
 
-   `basic` mode:
+   In `basic` mode:
+
    ```bash
    kubectl -n spinnaker-operator apply -f deploy/operator/basic
+   ```
+
+   In `cluster` mode:
+
+   ```bash
+   kubectl -n spinnaker-operator apply -f deploy/operator/kustomize
    ```
 
 After installation, you can verify that the Operator is running with the
@@ -63,5 +62,3 @@ is running:
 NAMESPACE                             READY         STATUS       RESTARTS      AGE
 spinnaker-operator-7cd659654b-4vktl   2/2           Running      0             6s
 ```
-
-
