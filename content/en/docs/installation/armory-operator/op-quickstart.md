@@ -26,8 +26,8 @@ The Operator has `basic` and `cluster` installation modes. The option you use de
 
 |                                                           |Basic Mode | Cluster Mode |
 |:-------------------------------------------------------- |:------------------:|:---------------:|
-| Deploy Spinnaker to the same namespace as the Operator   |      &#9989;       |    &#10060;     |
-| Deploy Spinnaker to multiple namespaces<br>(requires Kubernetes ClusterRole)                 |      &#10060;      |     &#9989;     |
+| Must deploy Spinnaker in the same namespace as the Operator   |      &#9989;       |    &#10060;     |
+| Can deploy Spinnaker to multiple namespaces<br>(requires Kubernetes ClusterRole)                 |      &#10060;      |     &#9989;     |
 | Configure Spinnaker using a single manifest file            |      &#9989;       |     &#9989;     |
 | Configure Spinnaker using Kustomize patches            |      &#9989;       |     &#9989;     |
 | Perform pre-flight checks to prevent misconfiguration             |     &#10060;       |     &#9989;     |
