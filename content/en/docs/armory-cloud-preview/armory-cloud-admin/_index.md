@@ -4,7 +4,7 @@ description: Administer your Armory Cloud environment
 aliases:
   - /docs/armory-cloud-admin/
 ---
-
+![Proprietary](/images/proprietary.svg)
 {{% alert title="Info" color="primary" %}}{{< include "saas-status.md" >}}{{% /alert %}}
 
 ## Overview

@@ -6,7 +6,7 @@ aliases:
 description: >
   Learn how to use the Terraform Integration pipeline stage to execute tasks against your Terraform projects.
 ---
-
+![Proprietary](/images/proprietary.svg)
 ## Overview of Terraform integration
 
 At the core of the Terraform Integration is the Terraformer service. This service fetches your Terraform projects from source and executes various Terraform commands against them. When a `terraform` stage starts, Orca submits the task to Terraformer and monitors it until completion. Once a task is submitted, Terraformer fetches your target project, runs `terraform init` to initialize the project, and then runs your desired `action` (`plan` or `apply`). If the task is successful, the stage gets marked successful as well. If the task fails, the stage gets marked as a failure, and the pipeline stops.

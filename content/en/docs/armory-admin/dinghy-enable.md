@@ -8,6 +8,8 @@ description: >
   Learn how to configure Spinnaker to use pipeline templates stored in source control.
 ---
 
+![Proprietary](/images/proprietary.svg)
+
 ## Advantages to using Pipelines as Code
 
 {{% include "admin/pac-overview.md" %}}

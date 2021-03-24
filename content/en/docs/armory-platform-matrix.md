@@ -26,7 +26,7 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 ![OSS](/images/oss.svg) The feature or parts of it are available in Open Source Spinnaker.
 
-![Armory](/images/armory.svg) The feature or parts of it are available only as part of the Armory Platform.
+![Armory](/images/armory.svg) The feature or parts of it are available only as part of Armory Enterprise for Spinnaker.
 
 **Versions**
 

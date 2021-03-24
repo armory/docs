@@ -4,7 +4,7 @@ description: If this is your first time using Armory Cloud Console, start here. 
 aliases:
   - /docs/armory-cloud-admin/admin-cloud-quickstart/
 ---
-
+![Proprietary](/images/proprietary.svg)
 {{% alert title="Info" color="primary" %}}{{< include "saas-status.md" >}}{{% /alert %}}
 
 ## Logging in to the Armory Cloud Console 
