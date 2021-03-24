@@ -26,7 +26,7 @@ The Operator has `basic` and `cluster` installation modes. The option you use de
 
 |                                                           |Basic Mode | Cluster Mode |
 |:-------------------------------------------------------- |:------------------:|:---------------:|
-| Must deploy Spinnaker in the same namespace as the Operator   |      &#9989;       |    &#10060;     |
+| Must deploy Spinnaker in the same namespace as the Operator<br>(limited permissions; suitable for POCs)   |      &#9989;       |    &#10060;     |
 | Can deploy Spinnaker to multiple namespaces<br>(requires Kubernetes ClusterRole)                 |      &#10060;      |     &#9989;     |
 | Configure Spinnaker using a single manifest file            |      &#9989;       |     &#9989;     |
 | Configure Spinnaker using Kustomize patches            |      &#9989;       |     &#9989;     |
@@ -35,7 +35,17 @@ The Operator has `basic` and `cluster` installation modes. The option you use de
 
 
 ## {{% heading "installOperator" %}}
-{{% include "armory-operator/installation.md" %}}
+
+{{< tabs name="install-operator" >}}
+{{% tab name="Cluster Mode"%}}
+{{% include "armory-operator/op-install-cluster.md" %}}
+{{% /tab %}}
+{{% tab name="Basic Mode"%}}
+{{% include "armory-operator/op-install-basic.md" %}}
+{{% /tab %}}
+{{< /tabs >}}
+
+
 
 ## Deploy a Spinnaker instance using Operator in `basic` mode
 

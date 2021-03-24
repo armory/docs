@@ -1,6 +1,7 @@
 <!-- this file does not contain H2 etc headings
 Hugo does not render headings in included files
 -->
+Operator in `basic` mode has limited permissions. You must deploy Spinnaker to the same namespace as the Operator. You can find Operator deployment configuration in `spinnaker-operator/deploy/operator/basic` after you download and unpack the archive.
 
 1. Get the latest Operator release.
 
@@ -32,20 +33,10 @@ Hugo does not render headings in included files
    kubectl create ns spinnaker-operator
    ```
 
-   In `cluster` mode, if you want to use a namespace other than `spinnaker-operator`, you need to edit the namespace in `deploy/operator/kustomize/role_binding.yaml`.
-
 1. Install the Operator.
-
-   In `basic` mode:
 
    ```bash
    kubectl -n spinnaker-operator apply -f deploy/operator/basic
-   ```
-
-   In `cluster` mode:
-
-   ```bash
-   kubectl -n spinnaker-operator apply -f deploy/operator/kustomize
    ```
 
 After installation, you can verify that the Operator is running with the

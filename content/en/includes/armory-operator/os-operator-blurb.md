@@ -1,1 +1,1 @@
-> This guide is for both the Spinnaker Operator and the Armory Operator.  Configuration is the same except for features only in Armory Enterprise. Those features are marked "(Armory Enterprise)". 
+> This guide is for both the Spinnaker Operator and the Armory Operator.  Configuration is the same except for features only in Armory Enterprise. Those features are marked **`Armory Enterprise`**. 
