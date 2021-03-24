@@ -167,7 +167,7 @@ The following table lists the supported authentication protocols:
 
 | Identity provider     | Armory                 | Note                                                                                                     |
 | --------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------- |
-| None                  | All supported versions | We highly recommend having Spinnaker only accessible through a VPN if this is turned on.                     |
+| None                  | All supported versions | Armory recommends having Armory Enterprise only accessible through a VPN if this is turned on.                     |
 | SAML                  | All supported versions |                                                                                                          |
 | OAuth 2.0/OIDC        | All supported versions | You can use any OAuth 2.0 provider such as Auth0, Azure, GitHub, Google, Okta, OneLogin, or Oracle Cloud. |
 | LDAP/Active Directory | All supported versions |                                                                                                          |
@@ -181,7 +181,7 @@ The following table lists the supported authorization methods:
 
 | Provider              | Armory                 | Note                                                                                 |
 | --------------------- | ---------------------- | ------------------------------------------------------------------------------------ |
-| None                  | All supported versions | We highly recommend having Spinnaker only accessible through a VPN if this is turned on. |
+| None                  | All supported versions | Armory recommends having Armory Enterprise only accessible through a VPN if this is turned on. |
 | GitHub Teams          | All supported versions | Roles from GitHub are mapped to the Teams under a specific GitHub organization.      |
 | Google Groups         | All supported versions |                                                                                      |
 | LDAP/Active Directory | All supported versions |                                                                                      |
