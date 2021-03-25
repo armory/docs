@@ -1,20 +1,19 @@
 ---
 title: v2.25.0 Armory Release (OSS Spinnaker™ v1.25.3)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.25.00
 description: >
-  Release notes for the Armory Platform
+  Release notes for Armory Enterprise
 ---
 
-## 2021/03/120 Release Notes
+## 2021/03/25 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.25.0, use one of the following tools:
-
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.10 or later
+- Armory Operator 1.2.1 or later
 
 ## Security
 
@@ -23,8 +22,30 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
+{{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
+
+<!-- Moved this to Breaking changes instead of KI. Didn't bother renaming it. -->
+{{< include "known-issues/ki-orca-zombie-execution.md" >}}
+
+{{< include "breaking-changes/bc-orca-forcecacherefresh.md" >}}
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
+{{< include "known-issues/ki-bake-var-file.md" >}}
+{{< include "known-issues/ki-lambda-ui-caching.md" >}}
+
+#### Git repo artifact provider cannot checkout SHAs
+
+Only branches are currently supported. For more information, see [6363](https://github.com/spinnaker/spinnaker/issues/6363).
+
+### Fixed issues
+
+- Fixed an issue where Pipelines as Code fails unexpectedly when updating modules.
+- Fixed an issue where usernames were not deduplicated properly because of case sensitivity.
+- Fixed a start up issue that occurs when `spinnaker.base-url.www` is not set
+- Fixed an issue that occurs when a user enters a value for the **Manifest** field and then deletes it. This caused the resulting stage config to use `"manifest":""`. The manifest now defaults to `spinnaker.yml`.
+- Fixed an issue where a Jenkins stage stalls with a "Wait For Jenkins Job Start" message if the stage is canceled and restarted within a certain time frame.
 
 ## Highlighted updates
 
@@ -33,6 +54,55 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+
+### Artifacts
+
+#### Improved performance for Git repo artifacts
+
+Armory now uses the git binary instead of jgit. This change adds support for shallow clones, allowing for faster downloads. No changes to existing accounts configuration are needed. Note that there is a known issue related to this change: it does not currently support checkouts using a SHA.
+
+#### New configuration parameter for Docker accounts
+
+Docker accounts now support a new configuration parameter: `repositoriesRegex`. When used, only the repositories that match the pattern get cached. This is useful for Docker accounts that have a large number of repositories when operators do not want to specify individual repositories to cache.
+
+### Authz
+
+Access to a service account is now granted if any authorization predicate allows it. The previous behavior 
+
+### Baking images
+
+The Packer version that is bundled with Rosco, the baking service, has been updated. Rosco now supports the AWS parameter `assume_role` in Packer templates.
+
+### CI system
+
+#### Jenkins
+
+The integration between Armory and Jenkins has been improved: 
+
+* You can configure the orchestration service Orca so that it updates the description of a running Jenkins build and generates a backlink. For more information, see [Enabling Backlinks from Jenkins to Spinnaker](https://spinnaker.io/setup/ci/jenkins/#enabling-backlinks-from-jenkins-to-spinnaker).
+* You can now update the job description of a running or completed Jenkins job through the API.
+
+### Clouddriver
+
+Improved the performance of health checks for the Clouddriver pod by running them in different threads. Previously, the Clouddriver pod did not report a Ready state until after all Kubernetes accounts verified connectivity through a kubectl get namespaces call.
+
+### Deployment targets
+
+#### Cloud Foundry
+
+The following improvements have been made to the Cloud Foundry provider:
+
+* Armory now supports the ability to deploy Docker images to Cloud Foundry like any other application. 
+* There is a new stage that supports more granular service bindings. More specifically, if a service needs additional information in order to make a binding successful, you can now customize that information in the Service Binding Stage.
+* Applications during deployment will now bind to their services before completely building the droplet. This allows the deployments to avoid an additional costly restage operation. Not all applications require restages after binding, but this change improves performance for applications that do require restages. 
+
+### SpEL
+
+Armory now supports the following for SpEL expressions:
+
+- `resolvedArtifacts`, which returns all the resolved stage artifacts
+- `canaryConfigNameToId`, which takes a canary config name and converts it to an ID
+
 
 
 
