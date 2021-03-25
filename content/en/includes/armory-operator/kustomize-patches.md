@@ -1,7 +1,7 @@
 <!-- this file does not contain H2 etc headings
 Hugo does not render headings in included files
 -->
-You can find many common configuration options for Spinnaker and Armory Enterprise in the [`spinnaker-kustomize-patches`](https://github.com/armory/spinnaker-kustomize-patches) repository. This gives you a reliable starting point when adding and removing Armory or Spinnaker features to your cluster.
+You can find many common configuration options for Spinnaker and Armory Enterprise in the [`spinnaker-kustomize-patches`](https://github.com/armory/spinnaker-kustomize-patches) repository. This gives you a reliable starting point when adding and removing Armory Enterprise or Spinnaker features.
 
 To start, create your own copy of the `spinnaker-kustomize-patches` repository
 by clicking the `Use this template` button:
@@ -23,6 +23,7 @@ kustomize build | kubectl apply -f -
 
 
 # If you only have `kubectl` installed:
+
 kubectl apply -k .
 ```
 

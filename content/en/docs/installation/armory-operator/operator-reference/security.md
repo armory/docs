@@ -14,10 +14,10 @@ Configure Spinnaker's security. This includes external SSL, authentication mecha
 
 ```yaml
 security:
-        apiSecurity:
-        uiSecurity:
-        authn:
-        authz:
+  apiSecurity:
+  uiSecurity:
+  authn:
+  authz:
 ```
 
 - `apiSecurity`
@@ -88,25 +88,25 @@ authn:
 
 ```yaml
 oauth2:
-    enabled:
-    client:
-      clientId:
-      clientSecret:
-      accessTokenUri:
-      userAuthorizationUri:
-      clientAuthenticationScheme:
-      scope:
-      preEstablishedRedirectUri:
-      useCurrentUri:
-    userInfoRequirements:
-    resource:
-      userInfoUri:
-    userInfoMapping:
-      email:
-      firstName:
-      lastName:
-      username:
-    provider:
+  enabled:
+  client:
+    clientId:
+    clientSecret:
+    accessTokenUri:
+    userAuthorizationUri:
+    clientAuthenticationScheme:
+    scope:
+    preEstablishedRedirectUri:
+    useCurrentUri:
+  userInfoRequirements:
+  resource:
+    userInfoUri:
+  userInfoMapping:
+    email:
+    firstName:
+    lastName:
+    username:
+  provider:
 ```
 
 - `enabled`: true or false.
