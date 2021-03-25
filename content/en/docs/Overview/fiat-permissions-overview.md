@@ -93,7 +93,7 @@ The following image shows an example result of this exercise based on the user r
 
 ![Mapping Exercise Role Matrix](/images/fiat_overview_role_matrix.png)
 
-## Example Configurations
+## Example configs
 
 The following sections describe some of the roles from the role matrix example in the [Mapping exercise](#mapping-exercise).
 

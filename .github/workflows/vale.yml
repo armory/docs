@@ -19,7 +19,7 @@ jobs:
         files: __onlyModified
         
         #  only annotate lines that have been modified within a PR
-        onlyAnnotateModifiedLines: true
+        # onlyAnnotateModifiedLines: true
       env:
         # Required
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
