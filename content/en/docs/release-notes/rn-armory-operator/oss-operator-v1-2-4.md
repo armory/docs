@@ -1,11 +1,11 @@
 ---
-title: v1.2.3 Armory Operator
+title: v1.2.4 OSS Operator
 toc_hide: true
-version: 01.02.03
-description: Release notes for Armory Operator v1.2.3
+version: 01.02.04
+description: Release notes for OSS Operator v1.2.4
 ---
 
-## 03/01/2021 Release Notes
+## 03/17/2021 Release Notes
 
 ## Security
 
@@ -16,4 +16,4 @@ No known issues.
 
 ### Armory Operator
 
-* feat(docker): adding ecr utility to get an ecr token
+* feat(health-check): increase timeout and validate ready replicas for SpinnakerService status
