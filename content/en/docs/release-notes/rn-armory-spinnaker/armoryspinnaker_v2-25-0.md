@@ -41,9 +41,9 @@ Only branches are currently supported. For more information, see [6363](https://
 
 #### Server groups
 
-There is a known issue where you cannot edit server groups with the **Edit** button in the UI. The edit window closes immediately after you open it.
+There is a known issue where you cannot edit AWS server groups with the **Edit** button in the UI. The edit window closes immediately after you open it.
 
-**Workaround**: Edit the stage JSON directly.
+**Workaround**: To make changes to your server groups, edit the stage JSON directly by clicking on the **Edit stage as JSON** button.
 
 ### Fixed issues
 
