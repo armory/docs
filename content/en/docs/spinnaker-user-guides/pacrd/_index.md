@@ -2,11 +2,15 @@
 title: PaCRD
 linkTitle: PaCRD
 description: >
-  This section contains guides for using PaCRD, a Kubernetes controller that manages the lifecycle of Spinnaker applications and pipelines within a cluster.
+  This section contains guides for using PaCRD, a Kubernetes controller that manages the lifecycle of Spinnaker applications and pipelines within a cluster. 
 aliases:
   - /docs/spinnaker/pacrd/
   - /docs/spinnaker-user-guides/pacrd
 ---
+
+![Proprietary](/images/proprietary.svg)
+
+## Overview
 
 PaCRD (a combination of "Pipelines as Code" and "Custom Resource Definition") is
 a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) that manages the lifecycle of Spinnaker<sup>TM</sup> applications
@@ -115,8 +119,8 @@ In Spinnaker, an Application is a logical construct that allows you to group
 resources under a single name. You can read more about applications in the
 Spinnaker [docs](https://www.spinnaker.io/guides/user/applications/#about-applications).
 
-For available Application configuration options check out
-[our CRD documentation here](../pacrd-crd-docs/).
+For available Application configuration options check out the
+{{< linkWithTitle "pacrd-crd-docs.md" >}}.
 
 ### Creating an application
 
@@ -201,7 +205,7 @@ Pipelines allow you to encode the process that your team follows to take a
 service from commit to a desired environment, such as production. You can
 read more about pipelines in the Spinnaker [docs][https://www.spinnaker.io/concepts/pipelines/].
 
-View Pipeline configuration options in the [CRD documentation](../pacrd-crd-docs/).
+View Pipeline configuration options in the {{< linkWithTitle "pacrd-crd-docs.md" >}}.
 
 ### Creating pipelines
 

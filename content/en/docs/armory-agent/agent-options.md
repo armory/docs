@@ -5,7 +5,7 @@ weight: 15
 description: >
   Learn how to configure the Armory Agent based on installation mode and environment restrictions. This guide contains a detailed list of configuration options.
 ---
-
+![Proprietary](/images/proprietary.svg)
 ## Where to configure the Agent
 
 Set these options at the agent level in the `kubesvc.yaml` configuration file. If deploying as a non-Spinnaker<sup>TM</sup> service, you need to specify a `clouddriver.grpc` endpoint (e.g. `grpc.spinnaker.example.com:443`).

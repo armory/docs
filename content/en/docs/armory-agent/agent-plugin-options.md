@@ -5,7 +5,7 @@ weight: 20
 description: >
   This guide contains a detailed list of Armory Agent plugin configuration options for Clouddriver.
 ---
-
+![Proprietary](/images/proprietary.svg)
 | Setting  | Type  | Default  | Description |
 | -------- | ----- | -------- | ----------- |
 | `kubesvc.cluster` | string | none | Type of clustering.<br>`local`: don’t try to coordinate with other Clouddriver instances<br>`redis`: use Redis to coordinate via pubsub. Use `redis` if you plan to use multiple Clouddriver instances.<br>`local` will be deprecated in a future release. |

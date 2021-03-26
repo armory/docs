@@ -292,6 +292,6 @@ In order to use a subnet within Spinnaker, you will need to tag it in AWS a cert
 
 There are two ways you can tag them. One option is to use the convention `spinnaker.<internal|external>.<region>` for the subnet's name. In the screenshot below, you can see that is what I have done on my subnets.
 
-![](/images/Image-2017-03-30-at-1.48.35-PM.png)
+![](/images/user-guides/aws/deploy/Image-2017-03-30-at-1.48.35-PM.png)
 
 Another option is to create a tag named `immutable_metadata` with value `{"purpose": "MySubnetNameInsideSpinnaker"}`

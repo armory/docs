@@ -6,10 +6,12 @@ description: >
   The Policy Engine plugin is the next iteration of Armory's Policy Engine for Spinnaker™.
 ---
 <!-- This plugin is the next iteration of our Policy Engine extension and is not ready for public consumption. This unlisted page is to satisfy an auditing requirement that one of our customers has. It is also hidden via robots.txt and the netlify sitemap plugin. -->
-
+![Proprietary](/images/proprietary.svg)
 ## Overview
 
-Armory's Policy Engine plugin is the next iteration of the Policy Engine feature that ships with our Armory distribution. Not only does it include support for existing features like applying policy to pipelines as they're being saved, it also introduces policy hooks into other services like Gate and Orca. 
+Armory's Policy Engine plugin is the next iteration of the Policy Engine feature that ships with the Armory Enterprise for Spinnaker. Not only does it include support for existing features like applying policy to pipelines as they're being saved, it also introduces policy hooks into other services like Gate (the API gateway) and Orca (the orchestrator). 
+
+> Note that if you enable policies for Gate, you must configure who can make API calls or else Gate rejects all API calls. 
 
 ## Requirements
 
@@ -17,6 +19,8 @@ This plugin requires:
 
 - Armory 2.23.x or later (OSS Spinnaker 1.23.x or later)
 - Open Policy Agent 0.12.x or later
+
+Additionally, make sure that the non-plugin version of the Policy Engine (described [here]({{< ref "policy-engine-enable" >}})) is not enabled.
 
 <!--## Limitations
 
@@ -37,7 +41,10 @@ In addition to the plugin, you need access to an Open Policy Agent (OPA) deploym
 {{< tabs name="enable-plugin" >}}
 {{% tab name="Operator" %}}
 
-This is a sample configuration to use with the Spinnaker operator:
+You can use the sample configuration to install the plugin, but keep the following in mind:
+
+- The `patchesStrategicMerge` section for each service is unique. Do not reuse the snippet from one service for the other services.
+- Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use. For a list of versions, see [Release notes](#release-notes).
 
 ```yaml
 apiVersion: spinnaker.armory.io/v1alpha2
@@ -107,14 +114,14 @@ spec:
                       volumeMounts:
                         - mountPath: /opt/policy-engine-plugin/target
                           name: policy-engine-plugin-vol
-                    containers:
-                      - name: front50
-                        volumeMounts:
-                          - mountPath: /opt/spinnaker/lib/local-plugins
-                            name: policy-engine-plugin-vol
-                    volumes:
-                      - name: policy-engine-plugin-vol
-                        emptyDir: {}
+                  containers:
+                    - name: front50
+                      volumeMounts:
+                        - mountPath: /opt/spinnaker/lib/local-plugins
+                          name: policy-engine-plugin-vol
+                  volumes:
+                    - name: policy-engine-plugin-vol
+                      emptyDir: {}
     orca:
       deployment:
         patchesStrategicMerge:
@@ -132,14 +139,14 @@ spec:
                       volumeMounts:
                         - mountPath: /opt/policy-engine-plugin/target
                           name: policy-engine-plugin-vol
-                    containers:
-                      - name: orca
-                        volumeMounts:
-                          - mountPath: /opt/spinnaker/lib/local-plugins
-                            name: policy-engine-plugin-vol
-                    volumes:
-                      - name: policy-engine-plugin-vol
-                        emptyDir: {}
+                  containers:
+                    - name: orca
+                      volumeMounts:
+                        - mountPath: /opt/spinnaker/lib/local-plugins
+                          name: policy-engine-plugin-vol
+                  volumes:
+                    - name: policy-engine-plugin-vol
+                      emptyDir: {}
     gate:
       deployment:
         patchesStrategicMerge:
@@ -157,14 +164,14 @@ spec:
                       volumeMounts:
                         - mountPath: /opt/policy-engine-plugin/target
                           name: policy-engine-plugin-vol
-                    containers:
-                      - name: gate
-                        volumeMounts:
-                          - mountPath: /opt/spinnaker/lib/local-plugins
-                            name: policy-engine-plugin-vol
-                    volumes:
-                      - name: policy-engine-plugin-vol
-                        emptyDir: {}
+                  containers:
+                    - name: gate
+                      volumeMounts:
+                        - mountPath: /opt/spinnaker/lib/local-plugins
+                          name: policy-engine-plugin-vol
+                  volumes:
+                    - name: policy-engine-plugin-vol
+                      emptyDir: {}
     clouddriver:
       deployment:
         patchesStrategicMerge:
@@ -182,14 +189,14 @@ spec:
                       volumeMounts:
                         - mountPath: /opt/policy-engine-plugin/target
                           name: policy-engine-plugin-vol
-                    containers:
-                      - name: clouddriver
-                        volumeMounts:
-                          - mountPath: /opt/spinnaker/lib/local-plugins
-                            name: policy-engine-plugin-vol
-                    volumes:
-                      - name: policy-engine-plugin-vol
-                        emptyDir: {}
+                  containers:
+                    - name: clouddriver
+                      volumeMounts:
+                        - mountPath: /opt/spinnaker/lib/local-plugins
+                          name: policy-engine-plugin-vol
+                  volumes:
+                    - name: policy-engine-plugin-vol
+                      emptyDir: {}
 ```
 
 {{% /tab %}}
@@ -232,7 +239,7 @@ spec:
        mountPath: /opt/spinnaker/lib/local-plugins
    ```
 
-4. Add the following to  `.hal/config`:
+4. Configure Halyard by updating your  `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use: 
 
    ```yaml
    deploymentConfigurations:
@@ -294,6 +301,23 @@ with:
 url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
 ```
 
+If you do not omit the `volume` and `initContainers` configurations for the `patchesStrategicMerge` section, the pods for Armory may not start.
+
+### Finishing the setup
+
+Once Policy Engine is enabled, you must authorize API calls in order to use the Armory (or OSS Spinnaker) UI. To do this, you need to load a policy into the Policy Engine that is similar to the following:  
+
+```rego
+package spinnaker.http.authz
+default allow = true
+allow {
+    input.user.isAdmin == true
+}
+```
+
+This basic policy allows all API calls. For information about constructing a more restrictive policy, see [API authorization](#api-authorization).
+
+For information about loading a policy, see [Using the Policy Engine]({{< ref "policy-engine-use#step-2-add-policies-to-opa" >}}).
 
 ## Usage
 
@@ -319,6 +343,8 @@ allow {
 }
 ```
 
+If you do not add this policy, Gate rejects all API calls to the Armory instance.
+
 #### Creating a policy for the API
 
 All requests made to the `spinnaker.http.authz` package include the following:
@@ -332,7 +358,7 @@ These attributes are included in the `input` sent to policies and can be used to
 
 The following snippet represents a single POST request to the Tasks API. You can see the relevant information needed when making a policy decision:
 
-```opa
+```rego
 {
     "user": {
         "username": "richard.hendricks@piedpiper.net"
@@ -352,7 +378,7 @@ The following snippet represents a single POST request to the Tasks API. You can
 
 Imagine you only want to allow members of the `middleout-eng` team to deploy Kubernetes manifests to the `middleout-development` account. That policy might look like this:
 
-```opa
+```rego
 package spinnaker.http.authz
 
 default allow = false
@@ -384,7 +410,7 @@ The policy package (`spinnaker.deployment.tasks.<taskType>` ) is different for d
 
 The following example shows the `rego` syntax for an OPA policy that ensures no Kubernetes Services are deployed or created that expose port 22, the port commonly used for SSH:
 
-```opa
+```rego
 package spinnaker.deployment.tasks.deployManifest
 
 deny["LoadBalancer Services must not have port 22 open."] {
@@ -407,9 +433,9 @@ Not only can policies be enforced on pipelines before they are saved, they can a
 
 Before a pipeline is executed, Policy Engine uses the package `spinnaker.execution.pipelines.before` to determine if the pipeline execution can even be started. This is can be useful for a variety of use cases. 
 
-The following example shows the `rego` syntax for a policy that requires all pipeline executions include a secret when triggered by a push in Github:
+The following example shows the `rego` syntax for a policy that requires all pipeline executions include a secret when triggered by a push in GitHub:
 
-```opa
+```rego
 package spinnaker.execution.pipelines.before
 
 deny["Every pipeline Github trigger must have a secret"] {
@@ -434,7 +460,7 @@ Unlike the deployment hooks, this execution hook can apply policy to any task in
 
 The following example shows the `rego` syntax for a policy that requires a `canDeploy` type stage to run before a `deployManifest` type stage:
 
-```opa
+```rego
 package spinnaker.execution.task.before.deployManifest
 
 deny["deployManifest cannot be run without requisite canDeploy stage"] {
@@ -450,13 +476,26 @@ This is the simplest use case for Policy Engine and where many users begin. You 
 
 The following example shows the `rego` syntax for a policy that requires all pipelines to have a `preFlightCheck` type stage:
 
-```opa
+```rego
 package spinnaker.persistence.pipelines.before
 
 deny["Pipelines must contain a pre-flight check stage."] {
     input.pipeline.stages[_].name == "preFlightCheck"
 }
 ```
+
+## Verify that policies are evaluated
+
+The Policy Engine requires Armory and the OPA server to be connected. Once you have one or more policies added, you can verify that the policies are being applied and enforced by either performing an action expressly disallowed by a policy or checking the OPA logs. You can check the OPA logs with the following steps:
+
+1. Log in to the Armory UI.
+2. Check the OPA pod logs:
+   
+   ```bash
+   kubectl -n <opaServerNamespace> logs <pod-name>
+   ```
+   In the logs, you should see `POST` requests if Armory and the OPA server are connected and policies are being evaluated.
+
 
 ## Additional configuration
 
@@ -486,7 +525,7 @@ armory:
       - path: "/api/**"
 ```
 
-*Note the `path` key in the above configuration. This is required.*
+*Note the `path` key in the preceding configuration. This is required.*
 
 ### Enable identity-based policies for webhook endpoints
 
@@ -505,7 +544,33 @@ armory:
 The example configuration forces all webhook calls to provide authentication . If you depend on unauthenticated webhook calls,
 be more specific about the paths you want to force authentication on. 
 
-## Release Notes
+## Troubleshooting
+
+**Spring configured release version not found error**
+
+Problem:
+
+You encounter the following error:
+```
+2021-02-17 16:53:26.842  INFO 1 --- [    scheduler-6] .k.p.u.r.s.SpringPluginInfoReleaseSource : Spring configured release version not found for plugin 'Armory.PolicyEngine'
+2021-02-17 16:53:26.843  INFO 1 --- [    scheduler-6] .k.p.u.r.s.LatestPluginInfoReleaseSource : Latest release version '0.0.16' for plugin 'Armory.PolicyEngine`
+```
+
+Solution:
+
+This may be due to an incorrect container name for a service in the init container patch. Verify that the `patchesStrategicMerge` for each service is accurate when configuring [Docker image as init container](#docker-image-as-init-container).
+
+**UI not loading after you enable Policy Engine**
+
+Problem:
+
+The Armory (or Spinnaker) UI fails to load after you enable Policy Engine. This may be due to an SSL exception. 
+
+Solution:
+
+Open your browser's console and see if there are SSL exceptions. If there are, check what the `baseUrl` value for the OPA server is in `profiles/spinnaker-local.yml` (Halyard-based deployments) or your operator config. Specifically, using HTTPS for an HTTP server can cause SSL exceptions.
+
+## Release notes
 
 * v0.0.19 - Adds forced authentication feature and fixes NPE bug
 * v0.0.17 - Initial plugin release

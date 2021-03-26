@@ -4,7 +4,7 @@ description: If this is your first time using Armory Cloud Console, start here. 
 aliases:
   - /docs/armory-cloud-admin/admin-cloud-quickstart/
 ---
-
+![Proprietary](/images/proprietary.svg)
 {{% alert title="Info" color="primary" %}}{{< include "saas-status.md" >}}{{% /alert %}}
 
 ## Logging in to the Armory Cloud Console 
@@ -53,7 +53,7 @@ If this is your first time configuring an environment, consider adding secrets f
   
 4. Save your changes.
 
-Once you have a secret, refer to it by name when you are configuring like access keys for Deployment Targets.
+Once you have a secret, refer to it by name when you need to provide values for things like access keys for Deployment Targets.
 
 ### Artifact Sources
 

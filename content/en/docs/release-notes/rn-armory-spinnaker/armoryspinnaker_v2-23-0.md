@@ -3,12 +3,13 @@ title: v2.23.0 Armory Release (OSS Spinnaker™ v1.23.2)
 toc_hide: true
 date: 2020-11-20
 version: 02.23.00
+description: Release notes for Armory Enterprise v2.23.0
 ---
 
 ## 2020/11/20 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-> 
+>
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.23.0, use one of the following tools:
@@ -23,9 +24,10 @@ Armory scans the codebase as we develop and release software. For information ab
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
-{{< include "bc-docker-giduid.md" >}}
 
-{{< include "bc-k8s-job-suffix.md" >}}
+{{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
+
+{{< include "breaking-changes/bc-orca-forcecacherefresh.md" >}}
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
@@ -33,8 +35,8 @@ Armory scans the codebase as we develop and release software. For information ab
 
 There is a known issue with Clouddriver that affects the performance of the Armory Platform, causing it to consume more resources. This can lead to a situation where pods do not have enough resources to start.
 
-{{< include "ki-orca-zombie-execution.md" >}}
-{{< include "ki-lambda-ui-caching.md" >}}
+{{< include "known-issues/ki-orca-zombie-execution.md" >}}
+{{< include "known-issues/ki-lambda-ui-caching.md" >}}
 
 ### Fixed issues
 

@@ -15,8 +15,8 @@ description: >
 
 ## Triggering a pipeline with Jenkins
 
-> Before you start, you'll need to [configure
-Jenkins](/docs/spinnaker-install-admin-guides/jenkins/). If you don't see
+> Before you start, you need to [configure
+Jenkins]({{< ref "jenkins-connect" >}}). If you don't see
 Jenkins as an option, or you're not seeing the correct master/job combination
 in the UI, you'll need to double-check your Spinnaker is configured to use
 that resource.

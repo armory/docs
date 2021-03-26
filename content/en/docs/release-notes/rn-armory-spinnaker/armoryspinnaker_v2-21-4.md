@@ -3,6 +3,7 @@ title: v2.21.4 Armory Release (OSS Spinnaker™ v1.21.4)
 toc_hide: true
 date: 2020-09-11
 version: 02.21.04
+description: Release notes for Armory Enterprise v2.21.4
 ---
 
 ## 2020/09/11 Release Notes
@@ -19,9 +20,9 @@ Armory Spinnaker 2.21.2 requires one of the following:
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
 
-{{< include "bc-k8s-namespace.md" >}}
+{{< include "breaking-changes/bc-k8s-namespace.md" >}}
 
-{{< include "bc-metrics-name.md" >}}
+{{< include "breaking-changes/bc-metrics-name.md" >}}
 
 #### Scheduled removal of Kubernetes V1 provider
 
@@ -30,7 +31,7 @@ The Kubernetes V1 provider has been removed in Spinnaker 1.21 (Armory Spinnaker 
 ## Known Issues
 <!-- Copy/paste known issues from the previous version if they're not fixed -->
 
-{{< include "ki-livemanifests.md" >}}
+{{< include "known-issues/ki-livemanifests.md" >}}
 
 #### Security update
 

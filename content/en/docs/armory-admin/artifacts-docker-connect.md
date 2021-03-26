@@ -1,8 +1,5 @@
 ---
 title: Connecting Docker Registries
-aliases:
-  - /spinnaker_install_admin_guides/docker/
-  - /docs/spinnaker-install-admin-guides/docker/
 description: >
   Learn how to configure Spinnaker to access a Docker registry.
 ---

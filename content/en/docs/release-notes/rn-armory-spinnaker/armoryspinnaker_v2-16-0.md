@@ -4,6 +4,7 @@ title: v2.16.0 Armory Release (OSS Release 1.16.1)
 toc_hide: true
 date: 2019-09-18
 version: 02.16.00
+description: Release notes for Armory Enterprise v2.16.0
 aliases:
   - armoryspinnaker_v2.16.0
 ---

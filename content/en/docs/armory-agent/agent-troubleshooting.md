@@ -5,7 +5,7 @@ weight: 6
 description: >
   Successful installation and startup messages, common errors, tips, and gRPC endpoint testing.
 ---
-
+![Proprietary](/images/proprietary.svg)
 ## Networking issues
 
 Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between Clouddriver and the Agent.   

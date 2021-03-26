@@ -7,7 +7,7 @@ aliases:
 description: >
   Learn how to configure and use Dynatrace for canary analysis in Spinnaker.
 ---
-
+![Proprietary](/images/proprietary.svg)
 
 {{< include "user-guide/canary/config-kayenta-frag.md" >}}
 

@@ -3,6 +3,7 @@ title: v2.22.1 Armory Release (OSS Spinnaker™ v1.22.2)
 toc_hide: true
 date: 2020-10-15
 version: 02.22.01
+description: Release notes for Armory Enterprise v2.22.1
 ---
 
 ## 2020/10/15 Release Notes
@@ -19,19 +20,18 @@ Armory Spinnaker 2.22.1 requires one of the following:
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. -->
 
-{{< include "bc-k8s-namespace.md" >}}
+{{< include "breaking-changes/bc-k8s-namespace.md" >}}
 
-{{< include "bc-docker-giduid.md" >}}
 
-{{< include "bc-k8s-job-suffix.md" >}}
+{{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
 
-{{< include "bc-metrics-name.md" >}}
+{{< include "breaking-changes/bc-metrics-name.md" >}}
 
 ## Known issues
 
-{{< include "ki-plugins-sdk.md" >}}
+{{< include "known-issues/ki-plugins-sdk.md" >}}
 
-{{< include "ki-gce-predictive-autoscaling.md" >}}
+{{< include "known-issues/ki-gce-predictive-autoscaling.md" >}}
 
 
 #### Security update

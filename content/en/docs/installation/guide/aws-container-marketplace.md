@@ -1,16 +1,16 @@
 ---
-title: Installing Armory in AWS from the AWS Container Marketplace
+title: Install Armory Enterprise for Spinnaker from the AWS Container Marketplace
 linkTitle: Install from AWS Marketplace
 weight: 2
 aliases:
   - /spinnaker/aws_container_marketplace/
   - /spinnaker/aws-container-marketplace/
 description: >
-  Use the Armory Operator from the AWS Container Marketplace to install Armory in your Amazon Kubernetes (EKS) cluster.
+  Use the Armory Operator from the AWS Container Marketplace to deploy Armory Enterprise for Spinnaker in your Amazon Kubernetes (EKS) cluster.
 
 ---
 
-{{% alert title="Note" %}}This document is intended for users who have purchased the Armory AWS Container Marketplace offering. It will not work if you have not subscribed to the Armory Container Marketplace offering.
+{{% alert title="Note" %}}This document is intended for users who have purchased Armory's AWS Container Marketplace offering. It will not work if you have not subscribed to the Armory Container Marketplace offering.
 
 Please contact [Armory](mailto:hello@armory.io) if you're interested in an AWS Marketplace Private Offer.{{% /alert %}}
 

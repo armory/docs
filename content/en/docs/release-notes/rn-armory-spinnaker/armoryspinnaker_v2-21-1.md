@@ -3,6 +3,7 @@ title: v2.21.1 Armory Release (OSS Spinnaker™ v1.21.2)
 toc_hide: true
 date: 2020-08-06
 version: 02.21.01
+description: Release notes for Armory Enterprise v2.21.1
 ---
 
 ## 2020/08/06 Release Notes
@@ -18,9 +19,9 @@ Armory 2.21.1 requires one of the following:
 
 ## Breaking changes
 
-{{< include "bc-k8s-namespace.md" >}}
+{{< include "breaking-changes/bc-k8s-namespace.md" >}}
 
-{{< include "bc-metrics-name.md" >}}
+{{< include "breaking-changes/bc-metrics-name.md" >}}
 
 #### HTTP sessions for Gate
 Armory 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).
@@ -32,7 +33,7 @@ If you still have any jobs that use the V1 provider, you will encounter an error
 
 ## Known Issues
 
-{{< include "ki-saml-authn.md" >}}
+{{< include "known-issues/ki-saml-authn.md" >}}
 
 #### Security update
 

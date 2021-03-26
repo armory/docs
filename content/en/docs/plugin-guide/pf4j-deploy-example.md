@@ -50,12 +50,9 @@ spec:
             plugins:
               Armory.RandomWaitPlugin:
                 enabled: true
-                version: 1.1.14
-                extensions:
-                  id: armory.randomWaitStage
-                  enabled: true
-                  config:
-                    defaultMaxWaitTime: 15
+                version: 1.1.17
+                config:
+                  defaultMaxWaitTime: 15
             repositories:
               examplePluginsRepo:
                 id: examplePluginsRepo
@@ -79,7 +76,7 @@ spec:
               plugins:
                 Armory.RandomWaitPlugin:
                   enabled: true
-                  version: 1.1.14
+                  version: 1.1.17
             repositories:
               examplePluginsRepo:
                 url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
@@ -89,12 +86,9 @@ spec:
            plugins:
              Armory.RandomWaitPlugin:
               enabled: true
-              version: 1.1.14
-              extensions:
-               id: armory.randomWaitStage
-               enabled: true
-               config:
-                 defaultMaxWaitTime: 15
+              version: 1.1.17
+              config:
+                defaultMaxWaitTime: 15
            repositories:
              examplePluginsRepo:
               id: examplePluginsRepo

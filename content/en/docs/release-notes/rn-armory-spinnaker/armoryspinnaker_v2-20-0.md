@@ -3,6 +3,7 @@ title: v2.20.0 Armory Release (OSS Spinnaker v1.20.5)
 toc_hide: true
 date: 2020-06-19
 version: 02.20.00
+description: Release notes for Armory Enterprise v2.20.0
 ---
 
 ## 2020/06/19 Release Notes
@@ -15,7 +16,7 @@ Armory 2.20.x requires Armory-extended Halyard 1.8.3 or later.
 
 ## Breaking changes
 
-{{< include "bc-metrics-name.md" >}}
+{{< include "breaking-changes/bc-metrics-name.md" >}}
 
 ### HTTP sessions for Gate
 Armory 2.19.x and higher include an upgrade to the Spring Boot dependency. This requires you to flush all the Gate sessions for your Spinnaker deployment. For more information, see [Flushing Gate Sessions](https://kb.armory.io/admin/flush-gate-sessions/).

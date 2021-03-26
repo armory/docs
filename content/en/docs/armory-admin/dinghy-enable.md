@@ -8,6 +8,8 @@ description: >
   Learn how to configure Spinnaker to use pipeline templates stored in source control.
 ---
 
+![Proprietary](/images/proprietary.svg)
+
 ## Advantages to using Pipelines as Code
 
 {{% include "admin/pac-overview.md" %}}
@@ -17,7 +19,6 @@ This guide includes:
 * Configurations for enabling Armory's Pipelines as Code feature using Armory Operator or Halyard
 * Settings for GitHub, GitLab, or Bitbucket/Stash webhooks to work with the Pipelines as code
 * GitHub [custom branch configuration](#custom-branch-configuration) for information about how to explicitly set the branch that Pipelines as Code uses.
-
 
 ## Enabling Pipelines as Code
 

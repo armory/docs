@@ -1,16 +1,16 @@
 ---
-title: Installing Armory on Kubernetes
+title: Install Armory Enterprise for Spinnaker in Kubernetes
 linkTitle: Install in Kubernetes
 weight: 3
 aliases:
   - /spinnaker-install-admin-guides/install-on-k8s/
 description: >
-  Use Armory-extended Halyard or the Armory Operator to install Armory on Kubernetes.
+  Use Armory-extended Halyard or the Armory Operator to deploy Armory Enterprise for Spinnaker in Kubernetes.
 ---
 
-## Overview
+## Overview of installing Armory Enterprise for Spinnaker in Kubernetes
 
-This guide describes the initial installation of Armory in Kubernetes. You can choose between two different installation methods: Armory Operator or Halyard. By the end of this guide, you will have an instance of Armory up and running on your Kubernetes cluster.  The document does not fully cover the following:
+This guide describes the initial installation of Armory Enterprise in Kubernetes. You can choose between two different installation methods: Armory Operator or Halyard. By the end of this guide, you will have an instance of Armory Enterprise up and running on your Kubernetes cluster.  The document does not fully cover the following:
 
 * TLS Encryption
 * Authentication/Authorization
@@ -19,11 +19,11 @@ This guide describes the initial installation of Armory in Kubernetes. You can c
 
 See [Next Steps](#next-steps) for information related to these topics.
 
-> This document focuses on Armory but can be adapted to install Open Source Spinnaker<sup>TM</sup> by using Open Source Operator or a different Halyard container, and a corresponding different Spinnaker version.
+> This document focuses on Armory Enterprise but can be adapted to install Open Source Spinnaker<sup>TM</sup> by using Open Source Operator or a different Halyard container, and a corresponding different Spinnaker version.
 
 ## Choosing an installation method
 
-There are two recommended ways of installing Armory: using the [Armory Operator]({{< ref "operator" >}}) or using [Halyard](https://www.spinnaker.io/setup/install/halyard/).
+There are two recommended ways of installing Armory Enterprise: using the [Armory Operator]({{< ref "operator" >}}) or using [Halyard](https://www.spinnaker.io/setup/install/halyard/).
 
 {{< tabs name="install-methods" >}}
 {{% tab name="Armory Operator" %}}
