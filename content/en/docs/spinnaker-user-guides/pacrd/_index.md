@@ -215,7 +215,7 @@ In Kubernetes, define your pipeline in a `pipeline.yaml` file. The configuration
 
 This example assumes that you've created the `myapplicationname`
 application from the [previous section](#applications). Create one before
-proceeding if you have not done so already.*
+proceeding if you have not done so already.
 
 ```yaml
 # file: deploy-nginx.yaml
