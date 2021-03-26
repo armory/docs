@@ -39,6 +39,12 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 Only branches are currently supported. For more information, see [6363](https://github.com/spinnaker/spinnaker/issues/6363).
 
+#### Server groups
+
+There is a known issue where you cannot edit server groups with the **Edit** button in the UI. The edit window closes immediately after you open it.
+
+**Workaround**: Edit the stage JSON directly.
+
 ### Fixed issues
 
 - Fixed an issue where Pipelines as Code fails unexpectedly when updating modules.
