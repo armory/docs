@@ -39,6 +39,12 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 Only branches are currently supported. For more information, see [6363](https://github.com/spinnaker/spinnaker/issues/6363).
 
+#### Server groups
+<!-- ENG-5847 -->
+There is a known issue where you cannot edit AWS server groups with the **Edit** button in the UI. The edit window closes immediately after you open it.
+
+**Workaround**: To make changes to your server groups, edit the stage JSON directly by clicking on the **Edit stage as JSON** button.
+
 ### Fixed issues
 
 - Fixed an issue where Pipelines as Code fails unexpectedly when updating modules.
