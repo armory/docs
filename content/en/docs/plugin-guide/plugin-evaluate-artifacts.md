@@ -85,7 +85,18 @@ profile = "prod"
 
 ## Known issues
 
-As with other Artifact stages, Armory Enterpise has an issue where the UI state may not reflect the result of creating the artifact. When it changes from `In sync to the server` to the actions buttons, it tells you that whatever change happened to the artifacts has completed. Because of this it is recommended to save your pipeline before modifying the artifacts in this stage, and then immediately save it after modifying the artifact before making any other changes. This allows you to use the button state to ensure that your artifact configuration gets saved correctly.
+### Issue with saving artifacts
+
+You may run into an issue where it seems like artifacts (or changes to them) are not being saved even though you click **Save Changes**. This issue occurs because of how the UI handles updates to artifacts in relation to changes to other configurations.
+
+To avoid this issue, use the following workflow when you want to modify artifacts in a stage:
+
+1. Save any changes you have made to the pipeline before you modify artifacts.
+2. Make changes to the artifacts for the stage.
+3. Wait for the status in the bottom right of the UI to change from **In sync to the server** to the action buttons.
+   This wait period is important. If you make other changes before the artifact is ready, the artifact will not be saved.
+4. Save your changes.
+5. Continue making other changes.
 
 ## Release notes
 
