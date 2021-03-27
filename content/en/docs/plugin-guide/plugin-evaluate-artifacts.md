@@ -56,7 +56,7 @@ Then, deploy your updated Operator configuration using one of the following meth
 To use the stage, perform the following steps:
 
 1. In the Armory Enterprise UI, navigate to the pipeline you want to modify.
-2. Add the stage called **Evaluate Artifacts**’** stage to your pipeline.
+2. Add the stage called **Evaluate Artifacts** stage to your pipeline.
 3. Add an artifact to the stage.
 4. Enter your artifact definition. When entering the definition, you can use a SpEL expression to parameterize it. 
 
