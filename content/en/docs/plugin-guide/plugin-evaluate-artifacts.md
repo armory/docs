@@ -48,7 +48,7 @@ Add the following snippet to your Operator config, such as `spinnakerservice.yml
 
 Then, deploy your updated Operator configuration using one of the following methods:
 
-- The `deploy.sh` script if you use the [Armory kustomize repo](https://github.com/armory/spinnaker-kustomize-patches) to help manage your Operator configs
+- The `deploy.sh` script if you use the [Armory kustomize repo](https://github.com/armory/spinnaker-kustomize-patches) to help manage your Operator configurations
 - `kubectl -n <spinnaker-namespace> -f <operator-config>.yml​`
 
 ## Usage
@@ -84,7 +84,7 @@ profile = "prod"
 
 ## Known issues
 
-### Issue with saving artifacts
+### Problem saving artifacts
 
 You may run into an issue where it seems like artifacts (or changes to them) are not being saved even though you click **Save Changes**. This issue occurs because of how the UI handles updates to artifacts in relation to changes to other configurations.
 
