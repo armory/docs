@@ -26,15 +26,14 @@ Add the following snippet to your Operator config, such as `spinnakerservice.yml
       spinnakerConfig:
         profiles:
           spinnaker:
-            spinnaker:
-              extensibility:
-                plugins:
-                  Armory.EvaluateArtifactsPlugin:
-                    enabled: true
-                    version: <PLUGIN_VERSION> # Replace with the version you want to use
-                repositories:
-                  evaluateArtifacts:
-                    url: https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
+            extensibility:
+              plugins:
+                Armory.EvaluateArtifactsPlugin:
+                  enabled: true
+                  version: <PLUGIN_VERSION> # Replace with the version you want to use
+              repositories:
+                evaluateArtifacts:
+                  url: https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
           gate:
             spinnaker:
               extensibility:
