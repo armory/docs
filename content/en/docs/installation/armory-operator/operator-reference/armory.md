@@ -7,7 +7,7 @@ aliases:
   - /operator_reference/armory/
 ---
 
-> This section is for configuring features in the Armory Enterprise Platform for Spinnaker.
+>![Proprietary](/images/proprietary.svg) This section is for configuring features in Armory Enterprise for Spinnaker.
 
 **spec.spinnakerConfig.config.armory**
 

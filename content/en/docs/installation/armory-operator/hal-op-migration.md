@@ -1,7 +1,7 @@
 ---
 title: Migrating from Halyard to the Operator
 linkTitle: Migrate from Halyard
-weight: 80
+weight: 20
 description: >
   Migrate your Spinnaker or Armory Enterprise installation from Halyard to the  Operator.
 ---

@@ -1,8 +1,9 @@
 ---
-title: Configure Spinnaker
+title: Configure Spinnaker Using a Manifest
+linkTitle: Config Using Manifest
 weight: 3
 description: >
-  This guide describes the fields in the `SpinnakerService` manifest that the Spinnaker Operator uses to deploy Spinanker or the Armory Operator uses to deploy Armory Enterprise.
+  This guide describes the fields in the `SpinnakerService` manifest that the Spinnaker Operator uses to deploy Spinnaker or the Armory Operator uses to deploy Armory Enterprise.
 ---
 
 {{< include "armory-operator/os-operator-blurb.md" >}}
@@ -82,7 +83,7 @@ spec:
 
 `.spec.spinnakerConfig.config` contains the following sections:
 
-* [armory]({{< ref "armory" >}}) **`Armory Enterprise`** proprietary configuration
+* [armory]({{< ref "armory" >}}) ![Proprietary](/images/proprietary.svg)
 * [artifact]({{< ref "artifact" >}})
 * [canary]({{< ref "canary-op-config" >}})
 * [ci]({{< ref "ci" >}})

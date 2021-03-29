@@ -12,7 +12,7 @@ Operator in `basic` mode has permissions scoped to a single namespace, so the Op
    bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
    ```
 
-   **Armory Operator**
+   **Armory Operator** ![Proprietary](/images/proprietary.svg)
 
    ```bash
    mkdir -p spinnaker-operator && cd spinnaker-operator

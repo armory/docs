@@ -1,13 +1,10 @@
 ---
 title: Manage Spinnaker using the Operator
 linkTitle: Manage Spinnaker
-weight: 5
+weight: 15
 description: >
   Manage, upgrade, or uninstall Spinnaker using the Operator.
 ---
-
-
-
 
 ## Upgrade Armory Enterprise
 

@@ -16,7 +16,7 @@ aliases:
 "Operators are software extensions to Kubernetes that make use of custom resources to manage applications and their components." (Kubernetes [docs](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)). In other words, an Operator is Kubernetes controller that manages a specific application. Both the open source [Spinnaker Operator for Kubernetes](https://github.com/armory/spinnaker-operator) and the proprietary Armory Operator are Kubernetes Operators that you can install in your cluster.
 
 * The **Spinnaker Operator** is an application-specific Kubernetes controller that deploys and manages Spinnaker. The Spinnaker Operator and Spinnaker are both open source and free to use.
-* The **Armory Operator** deploys and manages Armory Enterprise.  The Armory Operator extends the Spinnaker Operator's functionality by providing the ability to configure Armory Enterprise's proprietary features: Pipelines as Code, Policy Engine, Terraform integration, Enterprise Vault secrets, and diagnostics. The Armory Operator and Armory Enterprise are proprietary and not free to use.
+* The ![Proprietary](/images/proprietary.svg) **Armory Operator** deploys and manages Armory Enterprise.  The Armory Operator extends the Spinnaker Operator's features by providing the ability to configure Armory Enterprise's features: Pipelines as Code, Policy Engine, Terraform integration, Vault secrets, and diagnostics. The Armory Operator and Armory Enterprise are closed source and not free to use.
 
 ## Advantages to using a Kubernetes Operator for Spinnaker deployment
 

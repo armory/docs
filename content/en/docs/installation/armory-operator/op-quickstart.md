@@ -1,7 +1,7 @@
 ---
 title: Install the Operator and Deploy Spinnaker
 linkTitle: Quickstart
-weight: 2
+weight: 1
 description: >
   Install the Operator, create a Kubernetes manifest for Spinnaker, and deploy using the Operator.
 ---
@@ -90,6 +90,7 @@ kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/spinnakerservice.y
 
 {{% /tab %}}
 {{% tab name="Armory Enterprise"%}}
+![Proprietary](/images/proprietary.svg)
 
 You can find the `SpinnakerService.yml` manifest file in `/spinnaker-operator/deploy/spinnaker/basic/`. You need to specify persistent storage details and the version to deploy before you can use the manifest to deploy Spinnaker.
 
@@ -172,6 +173,7 @@ spec:
 
 {{% /tab %}}
 {{% tab name="Armory Enterprise"%}}
+![Proprietary](/images/proprietary.svg)
 
 You can see the list of Armory Enterprise versions on the [Release Notes]({{< ref "rn-armory-spinnaker" >}}) page.
 

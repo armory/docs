@@ -1,4 +1,4 @@
-|                                                                                                                                                        | Spinnaker Operator | Armory Operator |
+|                                                                                                                                                        | Spinnaker Operator | Armory Operator ![Proprietary](/images/proprietary.svg) |
 |:------------------------------------------------------------------------------------------------------------------------------------------------------ |:------------------:|:---------------:|
 | Deploy open source Spinnaker                                                                                                                           |      &#9989;       |    &#10060;     |
 | Deploy Armory Enterprise for Spinnaker                                                                                                                 |      &#10060;      |     &#9989;     |

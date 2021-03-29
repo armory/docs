@@ -12,7 +12,7 @@ You need Kubernetes `ClusterRole` authority to install the Operator in `cluster`
    bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
    ```
 
-   **Armory Operator**
+   **Armory Operator** ![Proprietary](/images/proprietary.svg)
 
    ```bash
    mkdir -p spinnaker-operator && cd spinnaker-operator
