@@ -1,29 +1,33 @@
 ---
 title: Self Service Demo with Armory Enterprise for Spinnaker
 linkTitle: "Armory Demo"
-description: "This demo is a fully featured proof of concept for Armory Enterprise for Spinnaker™. Walk through installing, configuring, and deploying using sample applications. "
+description: "This demo is a fully featured proof of concept (PoC) of Armory Enterprise for Spinnaker™. Walk through installation, configuration, and deployment using sample applications."
 aliases:
   - /spinnaker-install-admin-guides/architecture/
 ---
 
 ## Overview
 
+Armory Enteprise for Spinnaker is an superset of Spinnaker, which itself is a collection of microservices working in concert to create a single continuous delivery / deployment service.
+
+Installation and configuration of Armory Enterprise for Spinnaker can seem a daunting task for those not yet familiar with open-source Spinnaker, so we created Minnaker: a demo deployment of Spinnaker designed to run in a single instance (EC2 or other virtual machine).
+
+## Features
+
 What is included in Armory Easy Poc? 
 
 Armory Enterprise 
 
-1. IaC using gitops and terraform 
-2. Policy Driven Deployment (PDD) - for security and compliance (Security as Code)
-3. Declarative Spinnaker Application and Pipelines for (Pipelines as Code)
-4. Automatic EKS Provisioning through gitops
-5. Armory Agent for Kubernetes (delegate for kubernetes)
-6. Enterprise Armory Platform powered by Spinnaker
-7. Built in Kubernetes deployment namespace for testing (QA, Stage, Prod)
-8. Extension points through yaml (Jenkins, Git, JIRA, Docker hub)
+- Infrastructure as Code (IaC) using gitops and Terraform
+- Policy Driven Deployment (PDD) - for security and compliance (Security as Code)
+- Declarative Spinnaker Application and Pipelines for (Pipelines as Code)
+- Automatic EKS Provisioning through gitops
+- Armory Agent for Kubernetes (delegate for kubernetes)
+- Enterprise Armory Platform powered by Spinnaker
+- Built in Kubernetes deployment namespace for testing (QA, Stage, Prod)
+- Extension points through yaml (Jenkins, Git, JIRA, Docker hub)
 
-These simple instructions will quickly install the Armory Platform with all features enabled.
-
-This Easy PoC uses K3s as the kubernetes server.  If you already have a kubernetes cluster for testing you can start at Step 2.
+Minnaker uses K3s as the kubernetes server. If you already have a kubernetes cluster for testing you can start at Step 2.
 
 ## Requirements
 
@@ -36,6 +40,7 @@ Here are the requirements for completing this demo:
   * 16 GB of memory
   * 50 GB of storage
 
+Note: You don't need to create this instance ahead of following the guide, only confirm access to the resources required.
 
 ## Step 1. Create your environment and install Armory
 
