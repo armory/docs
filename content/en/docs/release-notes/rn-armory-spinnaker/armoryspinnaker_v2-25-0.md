@@ -67,10 +67,10 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 Armory now uses the git binary instead of jgit. This change adds support for shallow clones, allowing for faster downloads. No changes to existing accounts configuration are needed. Note that there is a known issue related to this change: it does not currently support checkouts using a SHA.
 
-#### New configuration parameter for Docker accounts
+<!--#### New configuration parameter for Docker accounts
 
 Docker accounts now support a new configuration parameter: `repositoriesRegex`. When used, only the repositories that match the pattern get cached. This is useful for Docker accounts that have a large number of repositories when operators do not want to specify individual repositories to cache.
-
+-->
 ### Authz
 
 Access to a service account is now granted if any authorization predicate allows it. The previous behavior 
