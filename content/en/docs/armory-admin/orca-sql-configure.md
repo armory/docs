@@ -84,7 +84,7 @@ executionRepository:
   dual:
     enabled: true
     primaryClass: sqlExecutionRepository
-    previousClass: redisExecutionRepository
+    previousName: redisExecutionRepository
   sql:
     enabled: true
   redis:
