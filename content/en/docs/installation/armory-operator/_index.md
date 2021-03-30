@@ -20,20 +20,24 @@ aliases:
 
 ## Advantages to using a Kubernetes Operator for Spinnaker deployment
 
-* Use a Kubernetes manifest to deploy and manage Spinnaker
-* Use `kubectl` to deploy, manage, and access Spinnaker or Armory Enterprise like you would with any other application deployed on Kubernetes
-* Store Spinnaker secrets in one of the [supported secrets engines]({{< ref "secrets#supported-secret-engines" >}}).
-* Reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker
-* Store your configuration in `git` for an auditable and reversible GitOps workflow
+* Use a Kubernetes manifest to deploy and manage Spinnaker.
+* Use `kubectl` to deploy, manage, and access Spinnaker or Armory Enterprise like you would with any other application deployed on Kubernetes.
+* Store Spinnaker secrets in one of the [supported secrets engines]({{< ref "secrets" >}}).
+* Reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker using the following syntax:
+  * `encrypted:k8s!n:<secret name>!k:<secret key>` for a string value. This is added as an environment variable to the Spinnaker deployment.
+  * `encryptedFile:k8s!n:<secret name>!k:<secret key>` for a file reference. Files come from a volume mount in the Spinnaker deployment.
+* Store your configuration in `git` for an auditable and reversible GitOps workflow. You can use Spinnaker to deploy another instance of Spinnaker using a Pipeline trigger: `Pull Request --> Approval --> Configuration Merged --> Pipeline Trigger in Spinnaker --> Deploy Updated SpinnakerService`.
 
 ## How the Spinnaker Operator and the Armory Operator work
 
 Both Operators use a [Kubernetes manifest](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/) to deploy either Spinnaker or Armory Enterprise.  This manifest defines the configuration for your application. You have the following options for creating the manifest:
 
 * Create the manifest YAML file yourself using an example `spinnakerservice.yml` as a starting point.
-* Create a collection of [Kustomize](https://kustomize.io/) patches.
+* Create a collection of [Kustomize](https://kustomize.io/) patches that `kubectl` compiles into a manifest.
 
 You use `kubectl` to deploy and manage Spinnaker using the manifest or Kustomize patches that you create.
+
+The Operator uses Halyard to manage Spinnaker. See {{< linkWithTitle "op-hal-config.md" >}} if you need to modify Halyard so you can use Armory Enterprise features.
 
 ## Comparison of the Spinnaker Operator and the Armory Operator
 

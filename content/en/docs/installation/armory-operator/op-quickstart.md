@@ -1,9 +1,9 @@
 ---
-title: Install the Operator and Deploy Spinnaker
+title: Install Operator and Deploy Spinnaker Quickstart
 linkTitle: Quickstart
 weight: 1
 description: >
-  Install the Operator, create a Kubernetes manifest for Spinnaker, and deploy using the Operator.
+  Install the Operator, create a Kubernetes manifest for Spinnaker, and then deploy using the Operator.
 ---
 
 {{< include "armory-operator/os-operator-blurb.md" >}}
