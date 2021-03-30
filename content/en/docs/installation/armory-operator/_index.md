@@ -22,8 +22,9 @@ aliases:
 
 * Use a Kubernetes manifest to deploy and manage Spinnaker
 * Use `kubectl` to deploy, manage, and access Spinnaker or Armory Enterprise like you would with any other application deployed on Kubernetes
-* Store Spinnaker secrets in Kubernetes secrets
-* Store your configuration in `git` for an easy GitOps workflow
+* Store Spinnaker secrets in one of the [supported secrets engines]({{< ref "secrets#supported-secret-engines" >}}).
+* Reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker
+* Store your configuration in `git` for an auditable and reversible GitOps workflow
 
 ## How the Spinnaker Operator and the Armory Operator work
 
@@ -43,4 +44,3 @@ Most of the configuration is the same between the open source Spinnaker Operator
 ## {{% heading "nextSteps" %}}
 
 * [Quickstart]({{< ref "op-quickstart.md" >}}) installation
-* Read in-depth about [how to configure Spinnaker in the manifest file]({{< ref "operator-config.md" >}})

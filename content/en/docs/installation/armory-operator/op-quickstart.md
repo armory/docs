@@ -140,11 +140,13 @@ You can verify pod status by executing:
  kubectl -n spinnaker-operator get pods
  ```
 
+The included manifest file is only for a very basic installation. {{< linkWithTitle "operator-config.md" >}} contains detailed manifest configuration options.
+
 ### Kustomize patches option
 
 This example assumes you installed the Operator in the `spinnaker-operator` namespace and want to deploy Spinnaker to the `spinnaker-operator` namespace. Consult the {{< linkWithTitle "operator-config.md" >}} guide if you installed the Operator in `cluster` mode and want to use a different namespace.
 
-You can find basic Kustomize patches in `/spinnaker-operator/deploy/spinnaker/kustomize`. You need to update the `version` and `persistentStorage` values in `config-patch.yml`.
+You can find basic Kustomize patches in `/spinnaker-operator/deploy/spinnaker/kustomize`. You need to update the `version` and `persistentStorage` values in `config-patch.yml`. These included Kustomize patches are for a quick start only. See the {{< linkWithTitle "op-config-kustomize.md" >}} page for more information on using Kustomize patches.
 
 The following example uses an AWS S3 bucket. You can find configuration for other storage types in the [Persistent Storage]({{< ref "persistent-storage" >}}) reference.
 
@@ -210,9 +212,20 @@ If you have Kustomize installed, you build first and then apply:
 kustomize build | kubectl apply -f -
 ```
 
+You can watch the installation progress by executing:
+
+```bash
+kubectl -n spinnaker-operator get spinsvc spinnaker -w
+```
+
+You can verify pod status by executing:
+
+```bash
+ kubectl -n spinnaker-operator get pods
+ ```
 
 ## {{% heading "nextSteps" %}}
 
-* Read in-depth about [how to configure Spinnaker]({{< ref "operator-config.md" >}})
 * Learn how to [manage]({{< ref op-manage-spinnaker >}}) your Spinnaker instance
-* See the [Installation Guides]({{< ref "guide">}}) for details on how to deploy Armory Enterprise on various cloud platforms.
+* {{< linkWithTitle "operator-config.md" >}}
+* {{< linkWithTitle "op-config-kustomize.md" >}}

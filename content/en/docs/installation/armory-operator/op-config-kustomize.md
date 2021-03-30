@@ -5,6 +5,7 @@ weight: 10
 description: >
   This guide describes how to configure Spinnaker using Kustomize patches.
 ---
+{{< include "armory-operator/os-operator-blurb.md">}}
 
 ## Why use Kustomize patches for Spinnaker configuration
 
@@ -40,15 +41,15 @@ in your `kustomization.yml` file to the `spinnaker-operator` namespace.  The
 permissions in `basic` mode are scoped to a single namespace so it doesn't see
 anything in other namespaces.
 
-Once configured, run the following command to install:
+Once configured, run the following command from the :
 
 ```bash
 # If you have `kustomize` installed:
 kustomize build | kubectl apply -f -
+```
 
-
-# If you only have `kubectl` installed:
-
+```yaml
+# If you only have `kubectl` installed
 kubectl apply -k .
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: Configure Spinnaker Using a Manifest
+title: Configure Spinnaker Using a Manifest File
 linkTitle: Config Using Manifest
 weight: 3
 description: >
