@@ -4,7 +4,7 @@ linkTitle: CRD Documentation
 aliases:
   - /docs/spinnaker/pacrd-crd-docs/
 ---
-
+![Proprietary](/images/proprietary.svg)
 ## pacrd.armory.spinnaker.io/v1alpha1
 {{< rawhtml >}}
 <p>

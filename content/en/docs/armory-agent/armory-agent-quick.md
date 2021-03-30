@@ -5,7 +5,7 @@ description: >
   Leearn how to install the Armory Agent in your Kubernetes and Spinnaker environments.
 weight: 2
 ---
-
+![Proprietary](/images/proprietary.svg)
 > This guide is for experienced Kubernetes and Spinnaker<sup>TM</sup> users.
 
 ## Compatibility matrix

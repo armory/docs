@@ -4,7 +4,7 @@ linkTitle: Example CRDs
 description: >
   Custom Resource Definition examples for testing PaCRD pipelines
 ---
-
+![Proprietary](/images/proprietary.svg)
 ## Application example
 
 ### Basic application

@@ -21,4 +21,5 @@ This results in only some pipelines in your deployment getting updated when a mo
 2. Update pipelines manually using the UI.
 
 **Affected versions**: 2.22.x, 2.23.x, 2.24.0
+**Fixed versions**: 2.25.0
 
