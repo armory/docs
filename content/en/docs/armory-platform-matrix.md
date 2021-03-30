@@ -89,9 +89,9 @@ The following table lists the supported artifact stores:
 
 To create `dinghyfiles`, you can use one of the following templating languages:
 
-* HashiCorp Configuration Language (HCL)
-* JSON
-* YAML
+* HashiCorp Configuration Language (HCL) [![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})
+* JSON [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) 
+* YAML [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) 
 
 **Version control systems**
 
