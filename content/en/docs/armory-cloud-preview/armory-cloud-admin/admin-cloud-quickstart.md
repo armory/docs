@@ -133,6 +133,6 @@ These are optional but provide a way for your developers to automatically trigge
 
 ## Accessing the Armory Platform
 
-The Armory Platform is where your app developers create their delivery pipelines. Once the environments are configured, your app devs can access Armory Cloud to start deploying applications.
+The Armory Platform is where your app developers create their delivery pipelines. Once the environments are configured, your app developers can access Armory Cloud to start deploying applications.
 
 The URL to access the Armory platform is available on the Cloud Console homepage when you click **Launch**.
