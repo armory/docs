@@ -83,9 +83,17 @@ The following table lists the supported artifact stores:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
 
-[Pipelines as Code]({{< ref "dinghy-enable" >}}) gives you the ability to manage your pipelines and their templates in source control by creating and maintaining `dinghyfiles` that contain JSON representations of pipelines. These files are then ingested by Armory to generate pipelines that your app devs can use to deploy their apps.
+[Pipelines as Code]({{< ref "dinghy-enable" >}}) gives you the ability to manage your pipelines and their templates in source control by creating and maintaining `dinghyfiles` that contain text representations of pipelines. These files are then ingested by Armory to generate pipelines that your app devs can use to deploy their apps.
 
-**Supported version control systems**
+**Templating languages**
+
+To create `dinghyfiles`, you can use one of the following templating languages:
+
+* HashiCorp Configuration Language (HCL)
+* JSON
+* YAML
+
+**Version control systems**
 
 The following table lists the supported version control systems:
 
