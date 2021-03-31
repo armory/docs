@@ -6,9 +6,9 @@ aliases:
   - /spinnaker/terraform-configure-integration/
   - /docs/spinnaker/terraform-enable-integration/
 description: >
-  Learn how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket.
+  Learn how to configure the Terraform Integration so that app developers can provision infrastructure using Terraform as part of their delivery pipelines.
 ---
-
+![Proprietary](/images/proprietary.svg)
 ## Overview of Terraform Integration in Spinnaker
 
 The examples on this page describe how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket. Note that the Terraform Integration also requires a `git/repo` artifact account. For information about how to use the stage, see [Using the Terraform Integration]({{< ref "terraform-use-integration" >}}).

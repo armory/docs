@@ -4,7 +4,7 @@ linkTitle: Using the ARM CLI
 description: >
   The Armory (ARM) CLI is a standalone tool that renders dinghyfiles for you to use with Armory's Pipelines as Code feature.
 ---
-
+![Proprietary](/images/proprietary.svg)
 This guide assumes that you are familiar with the Pipelines as Code feature. If you are not, see {{< linkWithTitle using-dinghy.md >}}.
 
 ## Requirements

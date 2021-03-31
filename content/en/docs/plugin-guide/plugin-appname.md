@@ -6,8 +6,7 @@ description: >
   The app name plugin makes rules for Spinnaker application names configurable.
 ---
 <!-- this is a private plugin German created for a customer. This unlisted page is to satisfy an auditing requirement they have. It is also hidden via robots.txt and the netlify sitemap plugin. -->
-
-
+![Proprietary](/images/proprietary.svg)
 ## Requirements
 
 This plugin requires either:

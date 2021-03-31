@@ -5,6 +5,7 @@ weight: 4
 description: >
   This guide contains a detailed list of Armory Agent plugin configuration options for Clouddriver.
 ---
+![Proprietary](/images/proprietary.svg)
 
 | Setting  | Type  | Default  | Description |
 | -------- | ----- | -------- | ----------- |

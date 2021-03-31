@@ -7,7 +7,7 @@ aliases:
 description: >
   Learn how to use Spinnaker pipeline definitions that are stored in source code repos such as GitHub and BitBucket.
 ---
-
+![Proprietary](/images/proprietary.svg)
 ## Advantages to using Pipelines as Code in Spinnaker
 
 {{< alert title="Note" >}}
