@@ -42,7 +42,7 @@ For this instance, make sure the following ports are open:
     ./minnaker/scripts/install.sh
     ```
 
-    The commands above declaratively deploy Armory using git clone, [kustomize](https://kustomize.io/), and [Armory Operator](/docs/installation/operator/).  The entire configuration is gitops enabled for you so you can ‘git push’ your configurations to your own source control. 
+    The commands above declaratively deploy Armory using `git clone`, [Kustomize](https://kustomize.io/), and [Armory Operator]({{< ref "operator" >}}).  The entire configuration is GitOps enabled for you so you can ‘git push’ your configurations to your own source control. 
 
 1. The creating of namespaces, loading for CRD and Operator takes around 3 minutes to get Spinnaker fully installed with all services in a “Running” state. The script ends by running a `watch` command to monitor the state of deployment. The environment is ready when the `spinnakerservice` service reads an "OK" status:
 
