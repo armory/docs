@@ -13,7 +13,7 @@ Even though you can configure Spinnaker or Armory Enterprise in a single manifes
 
 ## How Kustomize works
 
-Kustomize uses patch files to build a deployment file by overwriting sections of the `spinnakerservice.yml` manifest file. You can put each manifest config section in its own file. For example, if you have a `profiles-patch.yml`, you are telling Kustomize to overwrite the `profiles` section of the manifest with entries for each of the components (clouddriver, deck, gate, etc). So you put all of the entires for those profile files in `profiles-patch.yml` patch. Kustomize is flexible, though, so you could instead include a separate patch file for each component and then change the `kustomization.yml` file. 
+Kustomize uses patch files to build a deployment file by overwriting sections of the `spinnakerservice.yml` manifest file. You can put each manifest config section in its own file. For example, if you have a `profiles-patch.yml`, you are telling Kustomize to overwrite the `profiles` section of the manifest with entries for each of the components (Clouddriver, Deck, Gate, etc). So you put all of the entries for those profile files in `profiles-patch.yml` patch. Kustomize is flexible, though, so you could instead include a separate patch file for each component and then change the `kustomization.yml` file. 
 
 Kustomize is part of `kubectl`, but you can also install Kustomize for standalone use. With Kustomize installed locally, you can run `kustomize build` to print your Spinnaker configuration based on your `kustomization.yml` and patch files.
 

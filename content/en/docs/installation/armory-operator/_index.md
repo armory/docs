@@ -30,7 +30,7 @@ aliases:
 
 ## How the Spinnaker Operator and the Armory Operator work
 
-Both Operators use a [Kubernetes manifest](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/) to deploy either Spinnaker or Armory Enterprise.  This manifest defines the configuration for your application. You have the following options for creating the manifest:
+Both Operators use a [Kubernetes manifest](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/) to deploy either Spinnaker or Armory Enterprise. This manifest defines the configuration for your application. You have the following options for creating the manifest:
 
 * Create the manifest YAML file yourself using an example `spinnakerservice.yml` as a starting point.
 * Create a collection of [Kustomize](https://kustomize.io/) patches that `kubectl` compiles into a manifest.

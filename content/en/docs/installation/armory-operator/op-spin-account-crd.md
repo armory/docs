@@ -10,7 +10,7 @@ description: >
 
 ## `SpinnakerAcount` Custom Resource Definition overview
 
-The Operator comes with a `SpinnakerAccount` Custom Resource Definition (CRD) for configuring Kubernetes accounts that you want to use with Spinnaker.  This `SpinnakerAccount` enables defining and managing Kubernetes accounts outside of Spinnaker's manifest file. You create a separate manifest for each Kubernetes account and `kubectl apply` each manifest. Operator processes the manifest into the requisite configuration and adds the account to Spinnaker.
+The Operator comes with a `SpinnakerAccount` Custom Resource Definition (CRD) for configuring Kubernetes accounts that you want to use with Spinnaker. This `SpinnakerAccount` enables defining and managing Kubernetes accounts outside of Spinnaker's manifest file. You create a separate manifest for each Kubernetes account and `kubectl apply` each manifest. Operator processes the manifest into the requisite configuration and adds the account to Spinnaker.
 
 For example, you have a pipeline that provisions a Kubernetes
 cluster with Terraform. If you want that new cluster to be available, you can
@@ -42,7 +42,7 @@ Account type. See below for current support:
 
 
 ### `spec.enabled`
-Determines if the account is enabled. If not enabled, it will not be used by `SpinnakerService`.
+Determines if the account is enabled. If not enabled, `SpinnakerService` doesn't use it.
 
 ### `spec.permissions`
 Map of authorizations similar to most accounts in Spinnaker.
