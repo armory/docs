@@ -1,6 +1,6 @@
 ---
 title: Configure Applications and Pipelines
-linkTitle: "Configure"
+linkTitle: "Configure App"
 description: "Configure your Proof-of-concept pipelines."
 weight: 3
 ---
@@ -38,5 +38,34 @@ Remember that in this demo, the production environment is in a k3s cluster runni
 1. Add the following NodePort service definition to the manifest. You can add it above or below the existing content, as long as there is a divider (`---`) in between:
 
     ```yml
-    service definition goes here
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: app-access
+      namespace: prod
+      labels:
+        app: nginx
+    spec:
+      type: NodePort
+      selector:
+        app: nginx
+      ports:
+        - port: 80
+          nodePort: 30080
     ```
+
+    Once the manifest is updated, click **{{< icon "check-circle" >}} Save Changes**.
+
+1. Back on the **PIPELINES** page, start a new manual execution of the pipeline. Remember that you will have to approve the manual judgment step. Once complete, you can confirm the new service from the host shell:
+
+  ```bash
+  kubectl get services -n prod
+  NAME         TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+  app-access   NodePort   10.43.46.255   <none>        80:30080/TCP   7s
+  ```
+
+You can now view the demo app in your browser by navigating to the host domain or IP address, appending `:30080`:
+
+![The default Nginx page, accessed over port 30080](/images/overview/demo/ViewDemoApp.png)
+
+Congratulations, you've deployed an app using Armory Spinnaker! The [next section]() covers configuring common integrations with Spinnaker like Jenkins, GitHub, and Slack.

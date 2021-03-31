@@ -41,6 +41,8 @@ Here are the requirements for completing this demo:
   * 16 GB of memory
   * 50 GB of storage
 
+If deploying to an EC2 instance, we suggest using the t3.xlarge tier.
+
 > You don't need to create this instance ahead of following the guide, only confirm access to the resources required.
 
 When you're ready, go to [Deploy and Install](/docs/overview/demo/install-demo/) to begin.

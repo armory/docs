@@ -9,7 +9,7 @@ weight: 2
 
 Provision an instance that meets the minimum requirements outlined previously.
 
-You can do this through the AWS Console or the AWS CLI. For the AWS CLI, use a c
+You can do this through the AWS Console or the AWS CLI:
 
 ```bash
 aws ec2 run-instances --image-id `ami-<xxxxxxxx>` --count 1 --instance-type t3.xlarge --key-name `<MyKeyPair>`
