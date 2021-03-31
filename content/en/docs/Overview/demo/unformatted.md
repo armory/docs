@@ -1,16 +1,4 @@
----
-title: Configure Applications and Pipelines
-linkTitle: "Configure"
-description: "Configure your Proof-of-concept pipelines."
-weight: 3
----
-
-## Configure an Application and Pipeline
-
-
-Under **Applications**, click on **armory-samples**, then **PIPELINES** from the left-hand menu. There are several integrations and a 
-
-DONE!  Kick the tires and contact Armory if you’d like to enhance your PoC to your use cases!
+This PR isn't ready until this file is gone, it's the source content from which the pages are being built
 
 If you like what you have setup you can push the internal git clone to your repository for future use.
 
@@ -93,3 +81,4 @@ https://docs.armory.io/docs/armory-admin/notifications-slack-configure/
 
 
 
+DONE!  Kick the tires and contact Armory if you’d like to enhance your PoC to your use cases!

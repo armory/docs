@@ -5,8 +5,7 @@ description: "Deploy an EC2 (or other) host and install Minnaker."
 weight: 2
 ---
 
-
-## Create Your Environment
+## Create your environment
 
 Provision an instance that meets the minimum requirements outlined previously.
 
@@ -26,6 +25,7 @@ For this instance, make sure the following ports are open:
 * `22` for SSH 
 * `80` for redirects
 * `443` for the GUI and API
+* `30080` for the demo app
 
 > The example above assume an EC2 instance in AWS, but you can use any similar virtual machine from your preferred cloud provider (GCP, Azure, OCI, etc.).
 
@@ -42,7 +42,7 @@ For this instance, make sure the following ports are open:
     ./minnaker/scripts/install.sh
     ```
 
-    The commands above will declaratively deploy Armory using git clone, [kustomize](https://kustomize.io/), and [Armory Operator](/docs/installation/operator/).  The entire configuration is gitops enabled for you so you can ‘git push’ your configurations to your own source control. 
+    The commands above declaratively deploy Armory using git clone, [kustomize](https://kustomize.io/), and [Armory Operator](/docs/installation/operator/).  The entire configuration is gitops enabled for you so you can ‘git push’ your configurations to your own source control. 
 
 1. The creating of namespaces, loading for CRD and Operator takes around 3 minutes to get Spinnaker fully installed with all services in a “Running” state. The script ends by running a `watch` command to monitor the state of deployment. The environment is ready when the `spinnakerservice` service reads an "OK" status:
 
@@ -61,4 +61,4 @@ For this instance, make sure the following ports are open:
 
     ![Screenshot of the default Spinnaker landing page](/images/overview/demo/SpinnakerFirstView.png)
 
-In the [next section](/docs/overview/demo/configure-demo), we'll use the pre-installed sample application to configure some common pipelines.
+In the [next section](/docs/overview/demo/configure-deployment), we'll use the pre-installed sample application to configure some common pipelines.

@@ -27,7 +27,7 @@ Armory Enterprise
 - Built in Kubernetes deployment namespace for testing (QA, Stage, Prod)
 - Extension points through yaml (Jenkins, Git, JIRA, Docker hub)
 
-Minnaker uses K3s as the kubernetes server. If you already have a kubernetes cluster for testing you can skip to [Install Minnaker](#install-minnaker).
+Minnaker uses [K3s](https://k3s.io/) as the kubernetes server. If you already have a kubernetes cluster for testing you can skip to [Install Minnaker](/docs/overview/demo/install-demo#install-minnaker).
 
 ## Requirements
 
@@ -41,3 +41,5 @@ Here are the requirements for completing this demo:
   * 50 GB of storage
 
 > You don't need to create this instance ahead of following the guide, only confirm access to the resources required.
+
+When you're ready, go to [Deploy and Install](/docs/overview/demo/install-demo/) to begin.
