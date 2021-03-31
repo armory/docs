@@ -61,4 +61,6 @@ For this instance, make sure the following ports are open:
 
     ![Screenshot of the default Spinnaker landing page](/images/overview/demo/SpinnakerFirstView.png)
 
+## {{% heading "nextSteps" %}}
+
 In the [next section](/docs/overview/demo/configure-deployment), we'll use the pre-installed sample application to configure some common pipelines.

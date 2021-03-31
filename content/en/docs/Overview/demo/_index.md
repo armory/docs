@@ -45,4 +45,6 @@ If deploying to an EC2 instance, we suggest using the t3.xlarge tier.
 
 > You don't need to create this instance ahead of following the guide, only confirm access to the resources required.
 
+## {{% heading "nextSteps" %}}
+
 When you're ready, go to [Deploy and Install](/docs/overview/demo/install-demo/) to begin.

@@ -68,4 +68,6 @@ You can now view the demo app in your browser by navigating to the host domain o
 
 ![The default Nginx page, accessed over port 30080](/images/overview/demo/ViewDemoApp.png)
 
+## {{% heading "nextSteps" %}}
+
 Congratulations, you've deployed an app using Armory Spinnaker! The [next section]() covers configuring common integrations with Spinnaker like Jenkins, GitHub, and Slack.
