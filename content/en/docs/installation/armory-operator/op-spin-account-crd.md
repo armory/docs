@@ -3,13 +3,14 @@ title: Spinnaker Accounts CRD
 linkTitle: Spinnaker Accounts CRD
 weight: 50
 description: >
-  Define and manage Spinnaker accounts outside of Spinnaker's configuration.
+  Define and manage Kubernetes accounts outside of Spinnaker's mainfest file.
 ---
 
 {{< include "experimental-feature.html" >}}
+
 ## `SpinnakerAcount` Custom Resource Definition overview
 
-The Operator comes with a Custom Resource Definition (CRD) for Spinnaker accounts. `SpinnakerAccount` is defined in an object separate from the main Spinnaker config.  This enables you to define and manage accounts outside of Spinnaker's configuration. Spinnaker can then dynamically discover those accounts that you provision automatically.
+The Operator comes with a `SpinnakerAccount` Custom Resource Definition (CRD) for configuring Kubernetes accounts that you want to use with Spinnaker.  This `SpinnakerAccount` enables defining and managing Kubernetes accounts outside of Spinnaker's manifest file. You create a separate manifest for each Kubernetes account and `kubectl apply` each manifest. Operator processes the manifest into the requisite configuration and adds the account to Spinnaker.
 
 For example, you have a pipeline that provisions a Kubernetes
 cluster with Terraform. If you want that new cluster to be available, you can
