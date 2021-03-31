@@ -116,13 +116,3 @@ Container Registry).  You can read more in the Spinnaker [docs](https://www.spin
 
 Amazon's ECR requires additional configuration to work properly with Spinnaker.
 See the {{< linkWithTitle "artifacts-ecr-connect" >}} guide for details.
-
-## Limit Docker registries
-
-You can limit which Docker registries get cached and are, as a result, usable by your app developers. Additionally, limiting which registries get cached can improve performance when working with a large number of them. The filter is based on regex and can be configured using either Halyard or Operator, depending on how you set up your Armory instance.
-
-To use the filter, add the `repositoriesRegex` parameter to either your Operator or Halyard config:
-
-{{< tabs name="DockerRegex" >}}
-{{% tab name="Operator" %}}
-
