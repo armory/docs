@@ -2,6 +2,8 @@ API
 Armory
 Armory Agent
 Armory Operator
+artifactory
+Artifactory
 AWS
 Bitbucket
 CLI
@@ -22,6 +24,7 @@ GitOps
 hal
 Halyard
 halyard
+.html
 Igor
 Istio
 json
@@ -33,6 +36,7 @@ kubeconfig
 kubectl
 Kubernetes
 Kustomize
+.md
 Minnaker
 MySQL
 namespace
