@@ -102,4 +102,5 @@ To avoid this issue, use the following workflow when you want to modify artifact
 
 ## Release notes
 
+- v0.1.0 - Improved the user experience. Execution errors for the stage now display in the UI
 - v0.0.10 - Initial Release
