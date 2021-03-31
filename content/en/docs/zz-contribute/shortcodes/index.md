@@ -206,3 +206,16 @@ Usage:
 {{< /rawhtml >}}  
 
 See the {{< linkWithTitle pacrd-crd-docs.md >}} for an example.
+
+## Icons
+
+Search for icons at [Font Awesome](https://fontawesome.com/icons/)
+
+```md
+1. Click **{{< icon "play" >}} Start Manual Execution**. 
+```
+
+Renders to:
+
+1. Click **{{< icon "play" >}} Start Manual Execution**. 
+
