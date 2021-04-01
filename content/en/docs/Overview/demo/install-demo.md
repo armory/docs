@@ -63,4 +63,4 @@ For this instance, make sure the following ports are open:
 
 ## {{% heading "nextSteps" %}}
 
-In the [next section](/docs/overview/demo/configure-deployment), we'll use the pre-installed sample application to configure some common pipelines.
+In the [next section]({{< ref "configure-deployment" >}}), we'll use the pre-installed sample application to configure some common pipelines.

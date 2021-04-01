@@ -30,7 +30,7 @@ Armory Enterprise
 
 Minnaker uses [K3s](https://k3s.io/) as the Kubernetes server. If you already have a Kubernetes cluster for testing, you can skip to [Install Minnaker]({{< ref "install-demo#install-minnaker" >}}).
 
-## Requirements
+## {{% heading "prereq" %}}
 
 Here are the requirements for completing this demo:
 
@@ -47,4 +47,4 @@ If deploying to an EC2 instance, we suggest using the t3.xlarge tier.
 
 ## {{% heading "nextSteps" %}}
 
-When you're ready, go to [Deploy and Install](/docs/overview/demo/install-demo/) to begin.
+When you're ready, go to [Deploy and Install]({{< ref "docs/overview/demo/install-demo" >}}) to begin.
