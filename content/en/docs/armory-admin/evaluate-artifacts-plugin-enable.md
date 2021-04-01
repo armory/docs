@@ -1,23 +1,18 @@
 ---
-title: Evaluate Artifacts Stage Plugin
-toc_hide: true
-exclude_search: true
+title: Enable the Evaluate Artifacts Stage Plugin
 description: >
-  The Evaluate Artifacts Stage plugin adds a stage to Armory Enterprise that makes it easy to evaluate SpEL expressions inside of Spinnaker™ artifacts.
+  Enable the Evaluate Artifacts Stage plugin to add a stage to Armory Enterprise that makes it easy to evaluate SpEL expressions inside of Spinnaker™ artifacts.
+aliases:
+  - /docs/plugin-guide/plugin-evaluate-artifacts/
 ---
 
 ![Proprietary](/images/proprietary.svg)
 
 ## Overview
 
-Armory’s Evaluate Artifacts plugin allows you to easily evaluate SpEL queries inside of any Spinnaker artifacts. Historically some artifacts, such as Kubernetes, have supported leveraging SpEL in order to read parameters from the spinnaker context, and inject them into an artifacts manifest at deploy time. Other stages, such as Terraformer, have not supported this. The new Evaluate Artifacts stage supports evaluating SpEL against any artifact within your spinnaker pipeline.
+Armory’s Evaluate Artifacts plugin allows you to easily evaluate SpEL queries inside of any Spinnaker artifacts. Some artifacts, such as Kubernetes, support  using SpEL to read parameters from the Spinnaker context and inject them into an artifacts manifest at deploy time. Other stages, such as the Terraform Integration stage, do not support this out of the box. The Evaluate Artifacts Stage plugin adds supports for evaluating SpEL against any artifact within your Spinnaker pipeline.
 
-## Requirements
-
-This plugin requires :
-
-- Armory 2.24.x or later (OSS Spinnaker 1.24.x or later)
-
+For information about how to use the stage, see [Use the Evaluate Artifacts Stage]({{< ref "evaluate-artifacts-plugin-use.md" >}}).
 
 ## Setup
 
@@ -100,7 +95,7 @@ To avoid this issue, use the following workflow when you want to modify artifact
 4. Save your changes.
 5. Continue making other changes.
 
-## Release notes
+## Versions
 
 - v0.1.0 - Improved the user experience. Execution errors for the stage now display in the UI
 - v0.0.10 - Initial Release
