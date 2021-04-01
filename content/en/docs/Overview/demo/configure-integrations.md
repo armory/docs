@@ -45,7 +45,7 @@ These steps will let Armory Spinnaker use a Jenkins build as a trigger for deplo
     sed -i -e 's/jenkins.mycompany.com/'"$JENKINSHOST"'/g' /home/ubuntu/minnaker-0.1.*/spinsvc/accounts/ci/patch-jenkins.yml
     sed -i -e 's/john.doe/'"$JENKINSUSER"'/g' /home/ubuntu/minnaker-0.1.*/spinsvc/accounts/ci/patch-jenkins.yml
     #Optional:
-    sed -i -e 's/mymaster/'"$JENKINSCLUSTERNAME"'/g' /home/ubuntu/minnaker-0.1.*/spinsvc/accounts/ci/patch-jenkins.yml
+    sed -i -e 's/mymaster/'"$JENKINSLABEL"'/g' /home/ubuntu/minnaker-0.1.*/spinsvc/accounts/ci/patch-jenkins.yml
     ```
 
 1.  Unset the environment variables:
@@ -54,7 +54,7 @@ These steps will let Armory Spinnaker use a Jenkins build as a trigger for deplo
     unset JENKINSUSER
     unset JENKINSTOKEN
     unset JENKINSHOST
-    unset JENKINSCLUSTERNAME
+    unset JENKINSLABEL
     ```
 
 
@@ -81,6 +81,26 @@ These steps will let Armory Spinnaker use a Jenkins build as a trigger for deplo
     ./spinsvc/deploy.sh
     ```
 
+
+    You can use `watch kubectl get pods,spinsvc -n spinnaker` from the host shell to monitor the status of the redeployment.
+
+### Set up the trigger
+
+1. From the Armory Spinnaker UI, navigate back to the "basic-deploy-to-kubernetes" pipeline and select **{{< icon "cog" >}} Configure**, then **Configuration**.
+
+1. Under **Automated Triggers**, click **{{< icon "plus-circle" >}} Add Trigger**. Apply the following values:
+
+    - **Type**: Jenkins
+    - **Controller**: The value supplied to `$JENKINSLABEL`, or "mymaster" otherwise.
+    - **Job**: Choose a job in from your Jenkins instance. If there is a job you can run arbitrarily with no adverse effects, choose that one.
+
+    ![Automated Trigger configuration](/images/overview/demo/AutomatedTrigger.png)
+
+    Click **{{< icon "check-circle" >}} Save Changes**.
+
+1. The next time the selected Jenkins job completes successfully, it will trigger the pipeline:
+
+    ![Example Build triggered by the Jenkins integration](/images/overview/demo/TriggeredBuild.png)
 
 ## GitHub
 
