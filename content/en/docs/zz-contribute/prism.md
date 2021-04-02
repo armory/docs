@@ -26,11 +26,11 @@ None
 
  - [Line Highlight](https://prismjs.com/plugins/line-highlight/)
 
-## CSS Customizations
+## CSS customizations
 
 Until an automated process is figured out, we much manually apply our custom css directly to `static/css/prism.css` after updating the Prism bundle.
 
-### Font Family
+### Font family
 
 In the `pre[class*="language-"]` block, update the font-family to "Rubik":
 
@@ -49,7 +49,7 @@ pre[class*="language-"] {
 	line-height: 1.5;
 {{< /prism >}}
 
-### Line Highlights
+### Line highlights
 
 In the `.line-highlight` block, update the `linear gradient` section:
 

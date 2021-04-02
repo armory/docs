@@ -95,7 +95,7 @@ Renders to:
 
 1. Click **{{< icon "play" >}} Start Manual Execution**.
 
-## Line Highlighting
+## Line highlighting
 
 In order to highlight specific lines in a code block, we must replace the Markdown code fence with a shortcode:
 
