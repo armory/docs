@@ -24,7 +24,7 @@ To use the stage, perform the following steps:
 This example reads the parameter `moduleConfig` and parses it as JSON. Within that JSON, it reads the variable named `variable1` and injects it into the bucket.
 
 ```json
-bucket  = "${#readJson(parameters['moduleConfig'])['variable1']}"
+bucket  = "${#readJson(parameters['moduleConfig'])['variable1']}" # SpEL expression that gets evaluated
 key     = "terraformer/tests/basic/terraform.tfstate"
 region  = "us-west-2"
 encrypt = false
@@ -35,12 +35,14 @@ If you run this pipeline and give the `moduleConfig` parameter the value `{ "var
 the stage evaluates to the following and stores the result as a base64 encoded artifact:
 
 ```json
-bucket  = "myBucketName"
+bucket  = "myBucketName" # Result of the SpEL expression
 key     = "terraformer/tests/basic/terraform.tfstate"
 region  = "us-west-2"
 encrypt = false
 profile = "prod"
 ```
+
+
 
 ## Known issues
 
