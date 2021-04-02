@@ -105,7 +105,7 @@ These steps will let Armory Spinnaker use a Jenkins build as a trigger for deplo
 ## GitHub
 
 
-#2. Github - Create a “Personal Access Token” in your github account to allow Armory to authenticate to github repos.  The Token will be stored as a Kubernetes secret and username will be stored in a yaml patch file to be added to your SpinnakerService.yaml which will enable the integration.
+#2. Github - Create a “Personal Access Token” in your GitHub account to allow Armory to authenticate to GitHub repos.  The Token will be stored as a Kubernetes secret and username will be stored in a yaml patch file to be added to your SpinnakerService.yaml which will enable the integration.
 
 Secret:
 
