@@ -34,9 +34,9 @@ Add the following snippet to your Operator config, such as `spinnakerservice.yml
                   Armory.EvaluateArtifactsPlugin:
                     enabled: true
                     version: <PLUGIN_VERSION> # Replace with the version you want to use
-              repositories:
-                evaluateArtifacts:
-                  url: https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
+                repositories:
+                  evaluateArtifacts:
+                    url: https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
           gate:
             spinnaker:
               extensibility:
