@@ -24,7 +24,7 @@ These steps will let Armory Spinnaker use a Jenkins build as a trigger for deplo
 
 1. In your Jenkins instance, create a new user and API token to authenticate to your Jenkins with. The Token will be stored as a Kubernetes secret, The user and host name will be stored in a yaml patch file to be added to `SpinnakerService.yaml`, which will enable the integration.
 
-1. Temporarily set the user, token, and host name as envirnment variables:
+1. From the Minnaker host CLI, temporarily set the user, token, and host name as envirnment variables:
 
     ```bash
     export JENKINSUSER=<username>
