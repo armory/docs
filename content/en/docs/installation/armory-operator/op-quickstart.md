@@ -8,9 +8,9 @@ description: >
 
 {{< include "armory-operator/os-operator-blurb.md" >}}
 
-## Requirements for using the Spinnaker or Armory Operator
+## {{% heading "prereq" %}}
 
-Before you use start, ensure you meet the following requirements:
+Ensure you meet the following requirements:
 
 * You are familiar with [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which use custom resources to manage applications and their components.
 * You understand the concept of [managing Kubernetes resources using manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/).
@@ -229,3 +229,4 @@ You can verify pod status by executing:
 * Learn how to [manage]({{< ref op-manage-spinnaker >}}) your Spinnaker instance
 * {{< linkWithTitle "operator-config.md" >}}
 * {{< linkWithTitle "op-config-kustomize.md" >}}
+* {{< linkWithTitle "op-troubleshooting.md" >}}
