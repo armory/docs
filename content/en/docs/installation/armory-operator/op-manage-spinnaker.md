@@ -124,3 +124,6 @@ spinnaker    2.20.2
 kubectl -n <namespace> delete spinnakerservice spinnaker
 ```
 
+## {{% heading "nextSteps" %}}
+
+* See the {{< linkWithTitle "op-troubleshooting.md" >}} guide if you encounter issues.

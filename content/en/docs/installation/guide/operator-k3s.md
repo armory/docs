@@ -159,7 +159,7 @@ Install the Armory Operator in _basic_ mode, which installs Armory into a single
 
 Edit the `SpinnakerService.yml` manifest file located in the `~/spinnaker-operator/deploy/spinnaker/basic` directory.
 
-You can find detailed configuration information in the [Armory Operator Configuration]({{< ref "operator-config" >}}) guide.
+You can find detailed configuration information in the {{< linkWithTitle "op-config-manifest.md" >}} guide.
 
 ### Update Armory version and S3 bucket name
 

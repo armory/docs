@@ -497,3 +497,8 @@ spec:
            service.beta.kubernetes.io/aws-load-balancer-ssl-cert: null
          publicPort: 443
 ```
+
+## {{% heading "nextSteps" %}}
+
+* See the [Manifest Reference]({{< ref "op-manifest-reference" >}}) for configuration options by section.
+* See advanced Kustomize configuration in the {{< linkWithTitle "op-config-kustomize.md" >}} guide.

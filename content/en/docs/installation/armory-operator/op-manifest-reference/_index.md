@@ -1,5 +1,5 @@
 ---
-title: Spinnaker Manifest Reference
+title: Spinnaker Manifest Configuration Reference
 linkTitle: Manifest Reference
 weight: 99
 description: >

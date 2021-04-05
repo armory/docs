@@ -38,7 +38,7 @@ oauth2:
     provider: GITHUB
 ```
 
-For additional configuration options review the [Spinnaker Operator Reference]({{< ref "operator-reference" >}})
+For additional configuration options review the [Spinnaker Manifest Configuration Reference]({{< ref "op-manifest-reference" >}})
 
 {{% /tab %}}
 {{% tab name="Halyard" %}}

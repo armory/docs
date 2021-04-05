@@ -70,3 +70,8 @@ After the script completes, delete the Operator and its CRDs from the Kubernetes
 kubectl delete -n <namespace> -f deploy/operator/<installation type>
 kubectl delete -f deploy/crds/
 ```
+
+## Help resources
+
+* Spinnaker Operator: [Spinnaker Slack](https://join.spinnaker.io/), `#kubernetes-operator` channel
+* Armory Operator: contact [Armory Support](https://support.armory.io/)

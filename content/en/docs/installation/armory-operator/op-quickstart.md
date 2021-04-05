@@ -226,7 +226,7 @@ You can verify pod status by executing:
 
 ## {{% heading "nextSteps" %}}
 
-* Learn how to [manage]({{< ref op-manage-spinnaker >}}) your Spinnaker instance
-* {{< linkWithTitle "operator-config.md" >}}
-* {{< linkWithTitle "op-config-kustomize.md" >}}
-* {{< linkWithTitle "op-troubleshooting.md" >}}
+* Learn how to [manage]({{< ref op-manage-spinnaker >}}) your Spinnaker instance.
+* See advanced manifest configuration in the  {{< linkWithTitle "operator-config.md" >}} guide.
+* See advanced Kustomize confguration in the {{< linkWithTitle "op-config-kustomize.md" >}} guide.
+* See the {{< linkWithTitle "op-troubleshooting.md" >}} guide if you encounter issues.

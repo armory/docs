@@ -1,5 +1,5 @@
 ---
-title: Migrating from Halyard to the Operator
+title: Migrate from Halyard to the Operator
 linkTitle: Migrate from Halyard
 weight: 20
 description: >
@@ -10,8 +10,8 @@ description: >
 
 The migration process from Halyard to Operator can be completed in 7 steps:
 
-1. Install the Armory Operator.
-1. Export Armory configuration.
+1. [Install the Operator]({{< ref "op-quickstart" >}}).
+1. Export configuration.
 
     Copy the desired profile's content from the `config` file
 
@@ -35,7 +35,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
 
    Note: `config` is under `~/.hal`
 
-   More details on [SpinnakerService options]({{< ref "operator-config#specspinnakerconfig" >}}) on `.spec.spinnakerConfig.config` section
+   More details on [SpinnakerService options]({{< ref "op-config-manifest#specspinnakerconfig" >}}) on `.spec.spinnakerConfig.config` section
 
 1. Export Armory profiles.
 
@@ -62,7 +62,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
            <CONTENT>
    ```
 
-   More details on [SpinnakerService Options]({{< ref "operator-config#specspinnakerconfigprofiles" >}}) in the `.spec.spinnakerConfig.profiles` section
+   More details on [SpinnakerService Options]({{< ref "op-config-manifest#specspinnakerconfigprofiles" >}}) in the `.spec.spinnakerConfig.profiles` section
 
 1. Export Armory settings.
 
@@ -88,7 +88,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
          echo:
            <CONTENT>
    ```
-   More details on [SpinnakerService Options]({{< ref "operator-config#specspinnakerconfigservice-settings" >}}) on `.spec.spinnakerConfig.service-settings` section
+   More details on [SpinnakerService Options]({{< ref "op-config-manifest#specspinnakerconfigservice-settings" >}}) on `.spec.spinnakerConfig.service-settings` section
 
 1. Export local file references.
 
@@ -156,7 +156,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
      primaryAccount: prod
    ```
 
-   More details on [SpinnakerService Options]({{< ref "operator-config#specspinnakerconfigfiles" >}}) on `.spec.spinnakerConfig.files` section
+   More details on [SpinnakerService Options]({{< ref "op-config-manifest#specspinnakerconfigfiles" >}}) on `.spec.spinnakerConfig.files` section
 
 1. Export Packer template files (if used).
 
@@ -190,7 +190,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
            <CONTENT>
    ```
 
-   More details on [SpinnakerService Options]({{< ref "operator-config#specspinnakerconfigfiles" >}}) on `.spec.spinnakerConfig.files` section
+   More details on [SpinnakerService Options]({{< ref "op-config-manifest#specspinnakerconfigfiles" >}}) on `.spec.spinnakerConfig.files` section
 
 1. Validate your Armory configuration if you plan to run the Operator in cluster mode.
 
