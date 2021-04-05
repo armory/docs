@@ -17,9 +17,9 @@ description: >
 
 While Spinnaker is flexible enough to use any dependency management system, it is predisposed to manage Debian packages due to its default settings with Rosco, Orca, and Jenkins.  
 
-- Out-of-the-box settings for Spinnaker look for an archived package with a `.deb` suffix within Jenkins. It also grabs the version from the package and automatically appends it to the package name within Rosco. This makes it easy to specify your package in Rosco without the version number, `mycompany-app` but during the bake provisioning process it will install the version that was specified by the Jenkins build: `mycompany-app.3.24.9-3`.  
+- Out-of-the-box settings for Spinnaker look for an archived package with a `.deb` suffix within Jenkins. Spinnaker also gets the version from the package and automatically appends it to the package name within Rosco. This makes it easy to specify your package in Rosco without the version number, `mycompany-app`. However, during the bake provisioning process Spinnaker installs the version that was specified by the Jenkins build: `mycompany-app.3.24.9-3`.  
 
-- Debian packaging allows service teams to easily add their app specific configuration to common Packer templates. If you're using any Debian-based system (Ubuntu, DSL, Astra, etc) you'll likely be using Debian packages for your system configuration and dependency management. So it's a natural extension to use it for your own applications. Using Debian packages helps reduce the variations in Packer templates or variables passed to Packer templates during the bake process.
+- Debian packaging allows service teams to easily add their app specific configuration to common Packer templates. If you're using any Debian-based system (Ubuntu, DSL, Astra, etc), you'll likely be using Debian packages for your system configuration and dependency management. So it's a natural extension to use a Debian package for your own applications. Using Debian packages helps reduce the variations in Packer templates, or variables passed to Packer templates, during the bake process.
 
 
 ## Creating Debian packages
@@ -38,7 +38,10 @@ You can create a Debian package by using various open source packaging tools. If
 
 ### Example: Debian package with OSPackage Gradle plugin
 
-Begin by creating a `build.gradle`.  Below is an example of what a Gradle file might look like for an app that builds a `war`.
+Begin by creating a `build.gradle`.  You also need to create a `config/scripts/post-install.sh` file in your project directory.
+
+
+Below is an example of what a Gradle file might look like for an app that builds a `war`. This uses the [gradle-ospackage-plugin](https://github.com/nebula-plugins/gradle-ospackage-plugin) package. Basic usage of the Deb Plugin in the [Deb Plugin docs](https://github.com/nebula-plugins/gradle-ospackage-plugin/wiki/Deb-Plugin).
 
 ```javascript
 buildscript {
