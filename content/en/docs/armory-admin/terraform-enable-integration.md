@@ -1,6 +1,6 @@
 ---
-linkTitle: Enabling the Terraform Integration Stage
-title: Enabling the Terraform Integration Stage in the Armory Platform
+linkTitle: Enable the Terraform Integration Stage
+title: Enable the Terraform Integration Stage in Armory Enterprise
 aliases:
   - /spinnaker/terraform_integration/
   - /spinnaker/terraform-configure-integration/

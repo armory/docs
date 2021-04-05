@@ -1,6 +1,6 @@
 ---
-title: Configuring Spinnaker to Access AWS Using IAM User Roles
-linkTitle: Configuring AWS (IAM User Roles)
+title: Configure Spinnaker to Access AWS Using IAM User Roles
+linkTitle: Configure AWS (IAM User Roles)
 aliases:
   - /spinnaker_install_admin_guides/add-aws-account/
   - /spinnaker_install_admin_guides/add_aws_account/

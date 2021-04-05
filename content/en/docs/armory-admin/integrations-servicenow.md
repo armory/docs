@@ -1,5 +1,5 @@
 ---
-title: Integrating ServiceNow with Spinnaker
+title: Integrate ServiceNow with Spinnaker
 aliases:
   - /docs/spinnaker/integrations-servicenow/
 description: >

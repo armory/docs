@@ -1,6 +1,6 @@
 ---
-title: Working with Amazon Secure Storage Service (S3) Artifacts in Spinnaker
-linkTitle: Working with S3 Artifacts
+title: Use Amazon Secure Storage Service (S3) Artifacts in Spinnaker
+linkTitle: Use S3 Artifacts
 aliases:
   - /docs/spinnaker-user-guides/s3/
   - /docs/spinnaker-user-guides/artifacts-s3-use/

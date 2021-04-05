@@ -1,5 +1,5 @@
 ---
-title: Using the Static Baseline Judge with Canary Analysis in Spinnaker
+title: Use the Static Baseline Judge with Canary Analysis in Spinnaker
 linkTitle: Static Judge Canary Analysis
 description: >
   Learn how to use Armory's `StaticBaselineJudge` to set a baseline parameter that Spinnaker uses during canary analysis.

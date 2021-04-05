@@ -1,5 +1,5 @@
 ---
-title: Using the Spring Expression Language (SpEL) in Spinnaker Pipelines
+title: Use the Spring Expression Language (SpEL) in Spinnaker Pipelines
 linkTitle: Spring Expression Language
 aliases:
   - /user-guides/expression-language/

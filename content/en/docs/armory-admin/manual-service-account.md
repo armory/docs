@@ -1,6 +1,6 @@
 ---
-title: "Creating Kubernetes Service Accounts and Kubeconfigs"
-linkTitle: Creating Kubernetes Service Accounts
+title: "Create Kubernetes Service Accounts and Kubeconfigs"
+linkTitle: Create Kubernetes Service Accounts
 aliases:
   - /docs/spinnaker-install-admin-guides/manual-service-accounts/
 description: >

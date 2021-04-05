@@ -1,5 +1,5 @@
 ---
-title: Deploying to Kubernetes
+title: Deploy Applications to Kubernetes
 # This is different from user-guides/kubernetes - no redirect
 aliases:
   - /spinnaker_user_guides/kubernetes-v2/

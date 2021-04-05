@@ -1,6 +1,6 @@
 ---
-title: Working with Jenkins in Spinnaker
-linkTitle: Working with Jenkins
+title: Use Jenkins in Spinnaker
+linkTitle: Use Jenkins
 aliases:
   - /user-guides/working-with-jenkins/
   - /user-guides/working_with_jenkins/

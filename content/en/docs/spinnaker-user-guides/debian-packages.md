@@ -1,5 +1,5 @@
 ---
-title: Using Debian Packages with Spinnaker
+title: Use Debian Packages with Spinnaker
 title: Debian Packages
 aliases:
   - /user-guides/debian-packages/

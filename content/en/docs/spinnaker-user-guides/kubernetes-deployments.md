@@ -1,6 +1,6 @@
 ---
-title: Deploying a Docker Image to Kubernetes
-linkTitle: Deploying a Docker Image to Kubernetes
+title: Deploy a Docker Image to Kubernetes
+linkTitle: Deploy a Docker Image to Kubernetes
 aliases:
   - /spinnaker/kubernetes_deployments/
   - /docs/spinnaker/kubernetes-deployments/

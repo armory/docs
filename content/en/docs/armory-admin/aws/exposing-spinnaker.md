@@ -1,6 +1,6 @@
 ---
-title: Exposing Spinnaker on AWS EKS
-linkTitle: Exposing Armory on EKS
+title: Expose Spinnaker on AWS EKS
+linkTitle: Expose Spinnaker on EKS
 aliases:
   - /spinnaker/configure_ingress/
   - /spinnaker/exposing_spinnaker/

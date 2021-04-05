@@ -1,11 +1,11 @@
 ---
-title: Configuring Kayenta for Automated Canary Deployments in Spinnaker
-linkTitle: Configuring Canary Deployments
+title: Configure Automated Canary Deployments in Spinnaker
+linkTitle: Configure Canary Deployments
 aliases:
   - /spinnaker/configure_kayenta/
   - /docs/spinnaker/configure-kayenta/
 description: >
-  Learn how to configure Kayenta when Spinnaker has been installed using the Armory Operator.
+  Learn how to configure Kayenta using the Armory Operator.
 ---
 
 ## Kayenta Overview
