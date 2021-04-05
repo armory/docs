@@ -11,6 +11,7 @@ clouddriver
 Clouddriver
 Cloud Foundry
 config
+Debian
 Deck
 Dinghy
 dinghyfile
@@ -22,6 +23,7 @@ Gate
 GCP
 GitHub
 GitOps
+Gradle
 hal
 Halyard
 halyard
