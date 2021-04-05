@@ -14,6 +14,7 @@ config
 Deck
 Dinghy
 dinghyfile
+Docsy
 Echo
 Fiat
 Front50
