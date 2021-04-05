@@ -831,7 +831,7 @@ An account in the Kubernetes provider refers to a single Kubernetes context. In 
 - `cacheThreads`: Number of caching agents for this kubernetes account. Each agent handles a subset of the namespaces available to this account. By default, only 1 agent caches all kinds for all namespaces in the account.
 - `namespaces`: A list of namespaces this Spinnaker account can deploy to and will cache. When no namespaces are configured, this defaults to 'all namespaces'.
 - `omitNamespaces`: A list of namespaces this Spinnaker account cannot deploy to or cache. This can only be set when --namespaces is empty or not set.
-- `kinds`: (V2 Only) A list of resource kinds this Spinnaker account can deploy to and will cache. When no kinds are configured, this defaults to 'all kinds described here https://spinnaker.io/reference/providers/kubernetes-v2/'.
+- `kinds`: (V2 Only) A list of resource kinds this Spinnaker account can deploy to and will cache. When no kinds are configured, this defaults to all kinds described in the [Kubernetes Provider](https://spinnaker.io/reference/providers/kubernetes-v2/) docs.
 - `omitKinds`: (V2 Only) A list of resource kinds this Spinnaker account cannot deploy to or cache. This can only be set when --kinds is empty or not set.
 - `customResources`: (V2 Only) List of Kubernetes custom resources to managed by clouddriver and made available for use in patch and delete manifest stages.
     - `versioned`: true or false
