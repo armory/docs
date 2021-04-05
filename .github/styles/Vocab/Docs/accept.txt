@@ -2,6 +2,9 @@ API
 Armory
 Armory Agent
 Armory Operator
+artifactory
+Artifactory
+Astra
 AWS
 Bitbucket
 CLI
@@ -13,6 +16,7 @@ Debian
 Deck
 Dinghy
 dinghyfile
+Docsy
 Echo
 Fiat
 Front50
@@ -24,6 +28,7 @@ Gradle
 hal
 Halyard
 halyard
+.html
 Igor
 Istio
 json
@@ -35,6 +40,7 @@ kubeconfig
 kubectl
 Kubernetes
 Kustomize
+.md
 Minnaker
 MySQL
 namespace

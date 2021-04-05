@@ -4,6 +4,7 @@ Armory Agent
 Armory Operator
 artifactory
 Artifactory
+Astra
 AWS
 Bitbucket
 CLI
