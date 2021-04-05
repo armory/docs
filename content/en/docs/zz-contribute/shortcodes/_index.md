@@ -94,3 +94,27 @@ Search for icons at [Font Awesome](https://fontawesome.com/icons/)
 Renders to:
 
 1. Click **{{< icon "play" >}} Start Manual Execution**.
+
+## Line highlighting
+
+In order to highlight specific lines in a code block, we must replace the Markdown code fence with a shortcode:
+
+```markdown
+{{</* prism lang="bash" line="3" */>}}
+A line
+another line
+A highlighted line
+Ooh, that was neat.
+Here, have a $var
+{{</* /prism */>}}
+```
+
+renders to:
+
+{{< prism lang="bash" line="3" >}}
+A line
+another line
+A highlighted line
+Ooh, that was neat.
+Here, have a $var
+{{< /prism >}}
