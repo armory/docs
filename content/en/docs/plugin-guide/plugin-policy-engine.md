@@ -253,7 +253,7 @@ spec:
                  - -install-path
                  - /opt/policy-engine-plugin/target
                volumeMounts:
-                 - mountPath: /opt/policy-engine/target
+                 - mountPath: /opt/policy-engine-plugin/target
                    name: policy-engine-install
            clouddriver:
              - name: policy-engine-install
@@ -262,7 +262,7 @@ spec:
                  - -install-path
                  - /opt/policy-engine-plugin/target
                volumeMounts:
-                 - mountPath: /opt/policy-engine/target
+                 - mountPath: /opt/policy-engine-plugin/target
                    name: policy-engine-install
            gate:
              - name: policy-engine-install
@@ -271,7 +271,7 @@ spec:
                  - -install-path
                  - /opt/policy-engine-plugin/target
                volumeMounts:
-                 - mountPath: /opt/policy-engine/target
+                 - mountPath: /opt/policy-engine-plugin/target
                    name: policy-engine-install
            orca:
              - name: policy-engine-install
@@ -280,7 +280,7 @@ spec:
                  - -install-path
                  - /opt/policy-engine-plugin/target
                volumeMounts:
-                 - mountPath: /opt/policy-engine/target
+                 - mountPath: /opt/policy-engine-plugin/target
                    name: policy-engine-install
    ```
 
