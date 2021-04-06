@@ -62,7 +62,7 @@ These steps will let Armory Spinnaker use a Jenkins build as a trigger for deplo
 
 1. From the `minnaker-0.1.*` directory, open `spinsvc/kustomization.yml`. Under `#Artifacts & Accounts`, uncomment the `patch-jenkins.yml` line:
 
-    ```yaml data-line=8
+    {{< prism lang=yaml line=8 >}}
       # Artifacts & Accounts
       - accounts/kubernetes/patch-kube.yml      # Kubernetes accounts
       - accounts/docker/patch-dockerhub.yml     # Docker accounts
@@ -72,8 +72,7 @@ These steps will let Armory Spinnaker use a Jenkins build as a trigger for deplo
       # - accounts/notifications/patch-slack.yml # Slack Notifications
       - accounts/ci/patch-jenkins.yml          # Jenkins CI Integration
       # - accounts/canary/prometheus.yml        # TODO - need to add CONFIG STORE
-
-    ```
+    {{< /prism >}}
 
 1. Invoke `deploy.sh` to apply the changes:
 
