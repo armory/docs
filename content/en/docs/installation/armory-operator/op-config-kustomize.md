@@ -51,11 +51,7 @@ Follow these steps to configure Spinnaker:
 
 ### Choose a `kustomization` file
 
-Before you begin configuring Spinnaker, you need to choose a `kustomization.yml` file. There are multiple examples in the `recipes` directory. Choose the one that most closely resembles your use case. Then update the link in the top-level `kustomization.yml` to point to the file you want to use.
-
-The `kustomization.yml` specifies the namespace for Spinnaker, a list of Kubenetes resources, and a list of patch files to merge into the Spinnaker manifest file.
-
-For example, the `recipes/kustomization-quickstart.yml` contains the following:
+Before you begin configuring Spinnaker, you need to choose a `kustomization.yml` file. The `kustomization.yml` specifies the namespace for Spinnaker, a list of Kubernetes resources, and a list of patch files to merge into the Spinnaker manifest file. For example, the `recipes/kustomization-quickstart.yml` contains the following:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -83,6 +79,9 @@ The `resources` [section](https://kubectl.docs.kubernetes.io/references/kustomiz
 
 The `patchesStrategicMerge` [section](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesstrategicmerge/) contains links to files that contain partial or complete resource definitions. Kustomize uses these patch files to overwrite sections of the `spinnakerservice.yml` file.
 
+There are multiple `kustomization` examples in the `recipes` directory. Choose the one that most closely resembles your use case. Alternately, you can modify an existing `kustomization.yml` file to include only the patch files you want if none of the examples contains the right patches for your use case.
+
+Update the link in the top-level `kustomization.yml` to point to the `kustomization` file you want to use.
 
 ### Change the `apiVersion`
 
@@ -119,6 +118,8 @@ Read each file linked to in the `resources` section to make sure that the Kubern
 ### Verify patches
 
 Read each file linked to in the `patchesStrategicMerge` section. You may need to update each configuration with values specific to you and your environment. For example, the `kustomization-quickstart.yml` file described in the [Choose a `kustomization` file](#choose-a-kustomization-file) section links to `accounts/docker/patch-dockerhub.yml`. You need to update that patch file with your own DockerHub credentials.
+
+Store secret literals in `secrets/secrets.env` and secret files in `secrets/files` if you want to store Spinnaker secrets in Kubernetes.
 
 ## Deploy Spinnaker
 
