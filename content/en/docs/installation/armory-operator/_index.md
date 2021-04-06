@@ -47,4 +47,4 @@ Most of the configuration is the same between the open source Spinnaker Operator
 
 ## {{% heading "nextSteps" %}}
 
-* [Quickstart]({{< ref "op-quickstart.md" >}}) installation
+* {{< linkWithTitle "op-quickstart.md" >}}

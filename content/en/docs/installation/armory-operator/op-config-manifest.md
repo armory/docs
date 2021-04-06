@@ -518,4 +518,5 @@ spec:
 ## {{% heading "nextSteps" %}}
 
 * See the [Manifest Reference]({{< ref "op-manifest-reference" >}}) for configuration options by section.
-* See advanced Kustomize configuration in the {{< linkWithTitle "op-config-kustomize.md" >}} guide.
+* Configure Kubernetes accounts using the {{< linkWithTitle "op-spin-account-crd.md" >}} (Experimental)
+* See advanced configuration using Kustomize in the {{< linkWithTitle "op-config-kustomize.md" >}} guide.

@@ -231,7 +231,9 @@ You can verify pod status by executing:
 
 ## {{% heading "nextSteps" %}}
 
-* Learn how to [manage]({{< ref op-manage-spinnaker >}}) your Spinnaker instance.
+* Learn how to {{< linkWithTitle "op-manage-spinnaker.md" >}}.
 * See advanced manifest configuration in the  {{< linkWithTitle "op-config-manifest.md" >}} guide.
-* See advanced Kustomize confguration in the {{< linkWithTitle "op-config-kustomize.md" >}} guide.
+* See advanced configuration using Kustomize in the {{< linkWithTitle "op-config-kustomize.md" >}} guide.
 * See the {{< linkWithTitle "op-troubleshooting.md" >}} guide if you encounter issues.
+* If you are deploying Armory Enterprise, you may need to configure Halyard. See the {{< linkWithTitle "op-hal-config.md" >}} guide.
+* Learn how to {{< linkWithTitle "op-manage-operator.md" >}}.
