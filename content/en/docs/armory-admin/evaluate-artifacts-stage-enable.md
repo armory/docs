@@ -10,7 +10,7 @@ aliases:
 
 ## Overview
 
-Armory’s Evaluate Artifacts plugin allows you to easily evaluate SpEL queries inside of any Spinnaker artifacts. Some artifacts, such as Kubernetes, support  using SpEL to read parameters from the Spinnaker context and inject them into an artifacts manifest at deploy time. Other stages, such as the Terraform Integration stage, do not support this out of the box. The Evaluate Artifacts Stage plugin adds supports for evaluating SpEL against any artifact within your Spinnaker pipeline.
+Armory’s Evaluate Artifacts plugin allows you to easily evaluate SpEL queries inside of any Spinnaker artifacts. Some artifact types and their associated stages, such as Kubernetes, support  using SpEL to read parameters from the Spinnaker context and inject them into an artifacts manifest at deploy time. Other stages, such as the Terraform Integration stage, do not support this out of the box. The Evaluate Artifacts Stage plugin adds supports for evaluating SpEL against any artifact within your Spinnaker pipeline.
 
 For information about how to use the stage, see [Use the Evaluate Artifacts Stage]({{< ref "evaluate-artifacts-plugin-use.md" >}}).
 
