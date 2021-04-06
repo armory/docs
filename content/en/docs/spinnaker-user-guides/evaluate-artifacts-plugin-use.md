@@ -8,7 +8,7 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-The Evaluate Artifacts Stage is a plugin to Armory Enterprise. You must have the plugin enabled. For more information, see [Enable the Evaluate Artifacts Stage Plugin]({{< ref "evaluate-artifacts-plugin-enable.md" >}}).
+The Evaluate Artifacts Stage is a plugin to Armory Enterprise. You must have the plugin enabled. For more information, see [Enable the Evaluate Artifacts Stage Plugin]({{< ref "evaluate-artifacts-stage-enable.md" >}}).
 
 ## Using the stage
 

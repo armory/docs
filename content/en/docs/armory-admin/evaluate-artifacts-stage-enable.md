@@ -41,7 +41,6 @@ Add the following snippet to your Operator config, such as `spinnakerservice.yml
                     Armory.EvaluateArtifactsPlugin:
                       enabled: true
                       version: <PLUGIN_VERSION> # Replace with the version you want to use. Omit the 'v' when providing a version. For example, use 0.1.0, not v0.1.0
-    
 ```
 
 Then, deploy your updated Operator configuration using one of the following methods:
@@ -49,8 +48,7 @@ Then, deploy your updated Operator configuration using one of the following meth
 - The `deploy.sh` script if you use the [Armory kustomize repo](https://github.com/armory/spinnaker-kustomize-patches) to help manage your Operator configurations
 - `kubectl -n <spinnaker-namespace> -f <operator-config>.yml​`
 
-
 ## Versions
 
-- v0.1.0 - Improved the user experience. Execution errors for the stage now display in the UI
+- v0.1.0 - Improved the user experience. Execution errors for the stage now display in the UI.
 - v0.0.10 - Initial Release

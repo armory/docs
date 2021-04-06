@@ -241,7 +241,7 @@ Armory Enterprise includes custom stages that you can use to extend the capabili
 
 | Stage              | Armory           | Notes                 |
 |--------------------|------------------|-----------------------|
-| [Evaluate Artifacts]({{< ref "evaluate-artifacts-plugin-enable.md" >}}) | 2.24.0 and later | Available as a plugin |
+| [Evaluate Artifacts]({{< ref "evaluate-artifacts-stage-enable.md" >}}) | 2.24.0 and later | Available as a plugin |
 
 ## Deployment targets
 
