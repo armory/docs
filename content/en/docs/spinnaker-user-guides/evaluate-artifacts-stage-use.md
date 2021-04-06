@@ -27,7 +27,7 @@ When the pipeline runs, the UI prompts the user to enter a value for the paramet
 
 ## Example
 
-This example combines Armory's Terraform Integration and the Evaluate Artifact stage to insert values a user inputs into artifacts when the pipeline runs.
+This example combines Armory's Terraform Integration and the Evaluate Artifact stage to insert values a user inputs into artifacts when the pipeline runs. The example uses the Evaluate Artifact stage to insert the app name, namespace and number of replicas into the sample Terraform script. Then, the Terraform Integration deploys the infrastructure (NGINX in this example).
 
 > To follow along with this example, you need to have the [Terraform Integration stage enabled]({{< ref "terraform-enable-integration.md" >}}) and have permission to provision a Kubernetes cluster and any associated resources.
 
