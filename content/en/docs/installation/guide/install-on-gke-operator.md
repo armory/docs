@@ -186,7 +186,7 @@ any modifications to the examples for your environment, then make sure the file
 is listed in the `patchesStrategicMerge` section of your `kustomization.yml`
 file.
 
-See [spec.expose](/operator_reference/operator-config/#specexpose) for more
+See [spec.expose]({{< ref "op-config-manifest#specexpose" >}}) for more
 information.
 
 ## Configure authentication

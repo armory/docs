@@ -1,0 +1,5 @@
+Kustomize uses patch files to build a deployment file by overwriting sections of the `spinnakerservice.yml` manifest file. You declare your patch files in a `kustomization.yml` file, which Kustomize and `kubectl` use to build the Spinnaker manifest file.
+
+You can put each manifest config section in its own file. When you create a `profiles-patch.yml` patch with configuration for various Spinnaker services, you are telling Kustomize to overwrite the `profiles` section of the `spinnakerservice.yml` manifest with the contents of `profiles-patch.yml`.  Kustomize is flexible, though, so you could instead create a separate patch file for each microservice (`profiles-clouddriver-patch.yml`, `profiles-gate-patch.yml`, `profiles-deck-patch.yml`, etc.), and then declare those patches in the `kustomization.yml` file.
+
+Kustomize is part of `kubectl`, but you can also install Kustomize for standalone use. With Kustomize installed locally, you can run `kustomize build` to print your Spinnaker configuration built from your `kustomization.yml` file.

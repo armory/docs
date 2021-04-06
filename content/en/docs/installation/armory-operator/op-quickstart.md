@@ -47,16 +47,18 @@ The Operator has `basic` and `cluster` installation modes. The option you use de
 
 ## Deploy a Spinnaker instance
 
-Before you deploy Spinnaker, you must create a persistent storage source for Spinnaker to use to store application settings and configured pipelines. You can find a list of supported external storage providers in the open source Spinnaker [About External Storage](https://spinnaker.io/setup/install/storage/#about-external-storage) documentation.
+Before you deploy Spinnaker, you must create a persistent storage source for Spinnaker to use to store app settings and configured pipelines. You can find a list of supported external storage providers in the open source Spinnaker [About External Storage](https://spinnaker.io/setup/install/storage/#about-external-storage) documentation.
 
 ### Single manifest file option
+
+>This example assumes you installed the Operator in `basic` mode and want to deploy Spinnaker into the `spinnaker-operator` namespace.
 
 {{< tabs name="deploy-spinnaker-manifest" >}}
 {{% tab name="Spinnaker"%}}
 
-You can find the basic `spinnakerservice.yml` manifest file in `/spinnaker-operator/deploy/spinnaker/basic/`. You need to specify persistent storage details and the version to deploy before you can use the manifest to deploy Spinnaker.
+You can find the basic `spinnakerservice.yml` manifest file in `/spinnaker-operator/deploy/spinnaker/basic/`.
 
-The following example uses an AWS S3 bucket. You can find configuration for other storage types in the [Persistent Storage]({{< ref "persistent-storage" >}}) reference.
+You need to specify persistent storage details and the version to deploy before you can use the manifest to deploy Spinnaker. The following example uses an AWS S3 bucket. You can find configuration for other storage types in the [Persistent Storage]({{< ref "persistent-storage" >}}) reference.
 
 You can see the list of Spinnaker versions on the Spinnaker [Versions](https://spinnaker.io/community/releases/versions/) page.
 
@@ -87,9 +89,9 @@ Deploy using `kubectl`:
 kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/spinnakerservice.yml
 ```
 
-
 {{% /tab %}}
 {{% tab name="Armory Enterprise"%}}
+
 ![Proprietary](/images/proprietary.svg)
 
 You can find the `SpinnakerService.yml` manifest file in `/spinnaker-operator/deploy/spinnaker/basic/`. You need to specify persistent storage details and the version to deploy before you can use the manifest to deploy Spinnaker.
@@ -140,13 +142,16 @@ You can verify pod status by executing:
  kubectl -n spinnaker-operator get pods
  ```
 
-The included manifest file is only for a very basic installation. {{< linkWithTitle "operator-config.md" >}} contains detailed manifest configuration options.
+The included manifest file is only for a very basic installation.
+{{< linkWithTitle "op-config-manifest.md" >}} contains detailed manifest configuration options.
 
 ### Kustomize patches option
 
-This example assumes you installed the Operator in the `spinnaker-operator` namespace and want to deploy Spinnaker to the `spinnaker-operator` namespace. Consult the {{< linkWithTitle "operator-config.md" >}} guide if you installed the Operator in `cluster` mode and want to use a different namespace.
+> This example assumes you deploy Spinnaker in the `spinnaker-operator` namespace.
 
-You can find basic Kustomize patches in `/spinnaker-operator/deploy/spinnaker/kustomize`. You need to update the `version` and `persistentStorage` values in `config-patch.yml`. These included Kustomize patches are for a quick start only. See the {{< linkWithTitle "op-config-kustomize.md" >}} page for more information on using Kustomize patches.
+{{< include "armory-operator/how-kustomize-works.md" >}}
+
+For this quick start, you can find basic patches in `/spinnaker-operator/deploy/spinnaker/kustomize`. Before you deploy Spinnaker, you need to update the `version` and `persistentStorage` values in `config-patch.yml`.
 
 The following example uses an AWS S3 bucket. You can find configuration for other storage types in the [Persistent Storage]({{< ref "persistent-storage" >}}) reference.
 
@@ -227,6 +232,6 @@ You can verify pod status by executing:
 ## {{% heading "nextSteps" %}}
 
 * Learn how to [manage]({{< ref op-manage-spinnaker >}}) your Spinnaker instance.
-* See advanced manifest configuration in the  {{< linkWithTitle "operator-config.md" >}} guide.
+* See advanced manifest configuration in the  {{< linkWithTitle "op-config-manifest.md" >}} guide.
 * See advanced Kustomize confguration in the {{< linkWithTitle "op-config-kustomize.md" >}} guide.
 * See the {{< linkWithTitle "op-troubleshooting.md" >}} guide if you encounter issues.

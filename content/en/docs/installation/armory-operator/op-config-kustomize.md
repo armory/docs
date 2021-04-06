@@ -9,28 +9,27 @@ description: >
 
 ## Why use Kustomize patches for Spinnaker configuration
 
-Even though you can configure Spinnaker or Armory Enterprise in a single manifest file, the advantage of using [Kustomize](https://kustomize.io/) patch files is readability, consistency across environments, and maintenance manageability.
+{{< include "armory-operator/why-use-kustomize.md" >}}
 
 ## How Kustomize works
 
-Kustomize uses patch files to build a deployment file by overwriting sections of the `spinnakerservice.yml` manifest file. You can put each manifest config section in its own file. For example, if you have a `profiles-patch.yml`, you are telling Kustomize to overwrite the `profiles` section of the manifest with entries for each of the components (Clouddriver, Deck, Gate, etc). So you put all of the entries for those profile files in `profiles-patch.yml` patch. Kustomize is flexible, though, so you could instead include a separate patch file for each component and then change the `kustomization.yml` file.
-
-Kustomize is part of `kubectl`, but you can also install Kustomize for standalone use. With Kustomize installed locally, you can run `kustomize build` to print your Spinnaker configuration based on your `kustomization.yml` and patch files.
+{{< include "armory-operator/how-kustomize-works.md" >}}
 
 ## Kustomize resources
 
 You should familiarize yourself with Kustomize before you create patch files to configure Spinnaker.
 
-* [Install Kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/)
-* [Kustomize introduction](https://kubectl.docs.kubernetes.io/guides/introduction/kustomize/)
+* Kustomize [Glossary](https://kubectl.docs.kubernetes.io/references/kustomize/glossary/)
+* Kustomize [introduction](https://kubectl.docs.kubernetes.io/guides/introduction/kustomize/)
+* Kustomize [installation](https://kubectl.docs.kubernetes.io/installation/kustomize/)
 * [Kustomization file overview](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/)
 
 ## Spinnaker Kustomize patches repo
 
-Armory maintains the [`spinnakaker-kustomize-patches`](https://github.com/armory/spinnaker-kustomize-patches) repository, which contains common configuration options for Spinnaker and Armory Enterprise. This gives you a reliable starting point when adding and removing Armory Enterprise or Spinnaker features.
+Armory maintains the `spinnakaker-kustomize-patches` [repository](https://github.com/armory/spinnaker-kustomize-patches), which contains common configuration options for Spinnaker and Armory Enterprise. This gives you a reliable starting point when adding and removing Armory Enterprise or Spinnaker features.
 
 {{% alert title="Patch Warning" color="warning" %}}
-All of the patches in the repo are for configuring Armory Enterprise. To use the patches to configure open source Spinnaker, you must change `spinnaker.armory.io` in the `apiVersion` field to `spinnaker.io`. This is the first line in the patch file.
+All of the patches in the repo are for configuring Armory Enterprise. To use the patches to configure open source Spinnaker, you must change `spinnaker.armory.io` in the `apiVersion` field to `spinnaker.io`. This field is on the first line in a patch file.
 {{% /alert %}}
 
 To start, create your own copy of the `spinnaker-kustomize-patches` repository
@@ -40,12 +39,90 @@ by clicking the `Use this template` button:
 
 Once created, clone this repository to your local machine.
 
-If you installed Operator in `basic` mode, you must set the `namespace` field
-in your `kustomization.yml` file to the `spinnaker-operator` namespace.  The
-permissions in `basic` mode are scoped to a single namespace so it doesn't see
-anything in other namespaces.
+## Configure Spinnaker
 
-Once configured, run the following command from the :
+Follow these steps to configure Spinnaker:
+
+1. [Choose a `kustomization.yml` file](#choose-a-kustomization-file).
+1. (Optional) If you are deploying open source Spinnaker, [change the `apiVersion` in each patch file](#change-the-apiversion).
+1. [Set the Spinnaker or Armory Enterprise version](#set-the-spinnaker-version).
+1. [Verify the content of each resource file](#verify-resources).
+1. [Verify the configuration contents of each patch file](#verify-patches).
+
+### Choose a `kustomization` file
+
+Before you begin configuring Spinnaker, you need to choose a `kustomization.yml` file. There are multiple examples in the `recipes` directory. Choose the one that most closely resembles your use case. Then update the link in the top-level `kustomization.yml` to point to the file you want to use.
+
+The `kustomization.yml` specifies the namespace for Spinnaker, a list of Kubenetes resources, and a list of patch files to merge into the Spinnaker manifest file.
+
+For example, the `recipes/kustomization-quickstart.yml` contains the following:
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Namespace where spinnaker and all its infrastructure will be installed.
+# NOTE: If changed, also change it in all ClusterRoleBinding namespace references.
+namespace: spinnaker
+
+resources:
+  - spinnakerservice.yml             # (Mandatory). Base spinnaker manifest
+  - infrastructure/minio.yml         # Self hosted minio, a S3 compatible data store
+  - infrastructure/redis.yml
+  - accounts/kubernetes/spin-sa.yml  # Kubernetes service account needed by patch-kube.yml
+
+patchesStrategicMerge:
+  - persistence/patch-minio.yml   # (Mandatory). Persistence to store spinnaker applications and pipelines
+  - persistence/patch-redis.yml
+  - expose/patch-lb.yml                 # Automatically expose spinnaker
+  - accounts/kubernetes/patch-kube.yml  # Kubernetes accounts
+  - accounts/docker/patch-dockerhub.yml # Docker accounts
+```
+
+The `resources` [section](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/resource/) contains links to files that define Kubernetes resources: Minio, Redis, and a Kubernetes Service Account.
+
+The `patchesStrategicMerge` [section](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesstrategicmerge/) contains links to files that contain partial or complete resource definitions. Kustomize uses these patch files to overwrite sections of the `spinnakerservice.yml` file.
+
+
+### Change the `apiVersion`
+
+>This step is required only if you are deploying open source Spinnaker.
+
+The first line in each patch file defines the `apiVersion`:
+
+```yaml
+apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
+```
+
+Change `spinnaker.armory.io` to `spinnaker.io` if you are deploying open source Spinnaker.
+
+### Set the Spinnaker version
+
+In `spinnaker-kustomize-patches/spinnakerservice.yml`, set the [Spinnaker version](https://spinnaker.io/community/releases/versions/) or [Armory Enterprise version]({{< ref "rn-armory-spinnaker" >}}) that you want to deploy, such as `1.25.3` or `2.25.0`.
+
+{{< prism lang="yaml" line="8" >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    # ------- Main config section, equivalent to "~/.hal/config" from Halyard
+    config:
+      version: 1.25.3
+{{< /prism >}}
+
+
+### Verify resources
+
+Read each file linked to in the `resources` section to make sure that the Kubernetes resource as configured will work with your environment.
+
+### Verify patches
+
+Read each file linked to in the `patchesStrategicMerge` section. You may need to update each configuration with values specific to you and your environment. For example, the `kustomization-quickstart.yml` file described in the [Choose a `kustomization` file](#choose-a-kustomization-file) section links to `accounts/docker/patch-dockerhub.yml`. You need to update that patch file with your own DockerHub credentials.
+
+## Deploy Spinnaker
+
+Once you have configured your patch files, run the following command from the `spinnaker-kustomize-patches` directory:
 
 ```bash
 # If you have `kustomize` installed:
@@ -57,32 +134,14 @@ kustomize build | kubectl apply -f -
 kubectl apply -k .
 ```
 
-Watch the install progress and check out the pods being created:
+Watch the install progress and see the pods being created:
 
 ```bash
 kubectl -n spinnaker get spinsvc spinnaker -w
 ```
 
-### How configuration works
-
-Armory's configuration is found in a `spinnakerservices.spinnaker.armory.io`
-Custom Resource Definition (CRD) that you can store in version control. After
-you install the Armory Operator, you can use `kubectl` to manage the lifecycle
-of your deployment.
-
-```yaml
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    config:
-      # Change the `.x` segment to the latest patch release found on our website:
-      # https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/
-      version: {{< param armory-version >}}
-```
-
 ## {{% heading "nextSteps" %}}
 
 * See the [Manifest Reference]({{< ref "op-manifest-reference" >}}) for configuration options by section.
+* Learn how to [manage]({{< ref op-manage-spinnaker >}}) your Spinnaker instance.
+* See the {{< linkWithTitle "op-troubleshooting.md" >}} guide if you encounter issues.

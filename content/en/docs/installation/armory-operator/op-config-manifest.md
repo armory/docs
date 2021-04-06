@@ -12,16 +12,33 @@ description: >
 
 The structure of the manifest file is the same whether you are using the Spinnaker Operator or the Armory Operator. The value of certain keys, though, depends on whether you deploying Spinnaker or Armory Enterprise.
 
-{{< gist armory-gists cb06423bc0f043116657e23121e9d53f "spinnakerservice.yml" >}}
+{{< prism lang="yaml" line="2,11" >}}
+# this is the top few lines from github.com/armory/spinnaker-operator/master/deploy/spinnaker/complete/spinnakerservice.yml
+apiVersion: spinnaker.io/v1alpha2  # this is the Spinnaker Operator version
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
+  spinnakerConfig:
+    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
+    config:
+      version: <version>   # the Spinnaker version to deploy
+      persistentStorage:
+        persistentStoreType: s3
+        s3:
+          bucket: <change-me> # Change to a unique name. Spinnaker stores application and pipeline definitions here
+          rootFolder: front50
+{{< /prism >}}
 
 * Line 2: `apiVersion` is the version of the Spinnaker Operator or the Armory Operator
    * If you are deploying Spinnaker, the value is `spinnaker.io/{{< param "operator-oss-crd-version" >}}`; if you change this value, the Spinnaker Operator won't process the manifest file.
    * If you are deploying Armory Enterprise, the value is `spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}`; if you change this value, the Armory Operator won't process the manifest file.
 * Line 11: `spec.spinnakerConfig.config.version`
-   * If you are using the Spinnaker Operator, this is the version of Spinnaker you want to deploy; for example, `1.25`.
-   * If you are using the Armory Operator, this is the version of Armory Enterprise you want to deploy; for example, `2.25`.         
+   * If you are using the Spinnaker Operator, this is the [version of Spinnaker](https://spinnaker.io/community/releases/versions/) you want to deploy; for example, `1.25`.
+   * If you are using the Armory Operator, this is the [version of Armory Enterprise]({{< ref "rn-armory-spinnaker" >}}) you want to deploy; for example, `2.25`.         
 
-<details><summary>Expand to see a skeleton `spinnakerservice.yml` file</summary>
+<details><summary>Expand to see a skeleton SpinnakerService manifest file</summary>
 
 This file is from the `armory/spinnaker-operator` [repo](https://github.com/armory/spinnaker-operator/blob/master/deploy/spinnaker/complete/spinnakerservice.yml).
 
