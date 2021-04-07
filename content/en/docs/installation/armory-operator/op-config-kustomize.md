@@ -3,7 +3,7 @@ title: Configure Spinnaker Using Kustomize
 linkTitle: Config Using Kustomize
 weight: 10
 description: >
-  This guide describes how to configure Spinnaker using Kustomize patches.
+  This guide describes how to configure Spinnaker or Armory Enterprise using Kustomize patches.
 ---
 {{< include "armory-operator/os-operator-blurb.md">}}
 
@@ -26,7 +26,7 @@ You should familiarize yourself with Kustomize before you create patch files to 
 
 ## Spinnaker Kustomize patches repo
 
-Armory maintains the `spinnakaker-kustomize-patches` [repository](https://github.com/armory/spinnaker-kustomize-patches), which contains common configuration options for Spinnaker and Armory Enterprise. This gives you a reliable starting point when adding and removing Armory Enterprise or Spinnaker features.
+Armory maintains the `spinnakaker-kustomize-patches` [repo](https://github.com/armory/spinnaker-kustomize-patches), which contains common configuration options for Spinnaker and Armory Enterprise. This gives you a reliable starting point when adding and removing Armory Enterprise or Spinnaker features.
 
 {{% alert title="Patch Warning" color="warning" %}}
 All of the patches in the repo are for configuring Armory Enterprise. To use the patches to configure open source Spinnaker, you must change `spinnaker.armory.io` in the `apiVersion` field to `spinnaker.io`. This field is on the first line in a patch file.
@@ -123,23 +123,7 @@ Store secret literals in `secrets/secrets.env` and secret files in `secrets/file
 
 ## Deploy Spinnaker
 
-Once you have configured your patch files, run the following command from the `spinnaker-kustomize-patches` directory:
-
-```bash
-# If you have `kustomize` installed:
-kustomize build | kubectl apply -f -
-```
-
-```yaml
-# If you only have `kubectl` installed
-kubectl apply -k .
-```
-
-Watch the install progress and see the pods being created:
-
-```bash
-kubectl -n spinnaker get spinsvc spinnaker -w
-```
+{{% include "armory-operator/deploy-spin-kust.md" %}}
 
 ## {{% heading "nextSteps" %}}
 
