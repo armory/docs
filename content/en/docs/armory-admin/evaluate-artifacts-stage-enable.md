@@ -16,9 +16,9 @@ For information about how to use the stage, see [Use the Evaluate Artifacts Stag
 
 ## Setup
 
-Add the following snippet to your Operator config, such as `spinnakerservice.yml`. Replace `<PLUGIN_VERSION>` with the version of the plugin that you want to use. Plugin versions can be found [here](#versions).
+Add the following snippet to your Operator config, such as `spinnakerservice.yml`:
 
-```yaml
+{{< prism lang=yaml line="4-5, 10, 22" >}}
     spec:
       spinnakerConfig:
         profiles:
@@ -41,7 +41,12 @@ Add the following snippet to your Operator config, such as `spinnakerservice.yml
                     Armory.EvaluateArtifactsPlugin:
                       enabled: true
                       version: <PLUGIN_VERSION> # Replace with the version you want to use. Omit the 'v' when providing a version. For example, use 0.1.0, not v0.1.0
-```
+{{< /prism >}}
+
+Keep the following in mind when using this configuration snippet: 
+
+* Make sure to include the nested `spinnaker` parameters on lines 4 and 5. Both are required because of how Operator configs are processed and consumed by Armory Enterprise.
+* Replace `<PLUGIN_VERSION>` on lines 10 and 22 with the version of the plugin that you want to use. Plugin versions can be found [here](#versions).
 
 Then, deploy your updated Operator configuration using one of the following methods:
 
