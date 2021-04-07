@@ -220,10 +220,6 @@ The following table lists the supported manifest templating engines:
 | Helm 3    | 2.19.x or later        |                                      |
 | Kustomize | All supported versions | Kustomize version installed is 3.8.1 |
 
-## Browsers
-
-Spinnaker's UI (Deck) works with most modern browsers.
-
 ## Build systems
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
@@ -270,8 +266,6 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 | --------------------------- | ------------------------------------------ | ---------------------- | ----- |
 | Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |       |
 
-
-
 ### Container as a Service Platforms
 
 These are providers that are manifest based, so Armory applies the manifest and leaves the rollout logic to the platform itself.
@@ -308,8 +302,6 @@ These are providers that are manifest based, so Armory applies the manifest and 
 | Google Cloud App Engine |                                      | <ul><li>Custom</li></ul>                   | All supported versions |                          |
 | Cloud Foundry           | CC API Version: 2.103.0+ and 3.38.0+ | {{< caas-cf-deploy-strategies.inline />}}  | All supported versions |                          |
 
-
-
 ### Serverless
 
 You write the function and use Armory to manage the rollout of iterative versions. These are usually hosted by Cloud Providers.
@@ -329,8 +321,6 @@ You write the function and use Armory to manage the rollout of iterative version
 | Provider          | Deployment strategies                        | Armory Versions        | Notes |
 | ----------------- | -------------------------------------------- | ---------------------- | ----- |
 | Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |       |
-
-
 
 ## Dynamic accounts
 
@@ -357,28 +347,6 @@ The following table lists the services that support dynamic accounts:
 | Clouddriver | Cloud provider, artifact    | Automatic configuration refreshing is supported for Cloud Foundry and Kubernetes cloud provider accounts only. |
 | Echo        | Pub/Sub                     |                                                                                                                |
 | Igor        | CI systems, version control |                                                                                                                |
-
-## External storage
-
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
-
-Spinnaker requires an external storage provider for persisting app settings and pipelines. The following table lists the supported storage solutions:
-
-| Provider              | Armory                 | Notes |
-| --------------------- | ---------------------- | ----- |
-| Google Cloud Storage  | All supported versions |       |
-| Minio                 | All supported versions |       |
-| S3                    | All supported versions |       |
-
-Depending on the service, Spinnaker also uses either Redis, MySQL, or Postgres as a backing store. The following table lists the supported database and the Spinnaker service:
-
-| Database | DB version             | Armory                 | Spinnaker services                                  | Note                                                                                                                       |
-| -------- | ---------------------- | ---------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Redis    | All supported versions | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. Supported only for services that still require Redis for a feature, such as Gate sessions. Redis is not supported as a core persistent storage engine. Although Spinnaker deploys internal Redis instances, do not use these instances for production deployments. Armory recommends only using them for testing and proof-of-concept deployments. |
-| MySQL    | MySQL 5.7 (or Aurora)  | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
-| PostgreSQL    | PostgreSQL 10.0 or later  | 2.24.0 or later | Clouddriver                          |                                                                                                                            |
-
-Armory recommends using MySQL or PostgreSQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
 
 ## Notifications
 
