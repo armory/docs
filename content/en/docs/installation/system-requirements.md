@@ -7,7 +7,7 @@ description: >
 
 ## Browsers
 
-You can ues any modern browser to interact with the UI.
+You can use any modern browser to interact with the UI.
 
 ## External storage
 
