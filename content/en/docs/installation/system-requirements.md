@@ -17,7 +17,7 @@ Armory Enterprise requires external storage for information such as persisting a
 
 You need an S3 bucket or Minio
 
-### SQL
+### RDBMS (SQL)
 
 Armory Enterprise also uses either Redis, MySQL, or Postgres as a backing store. The following table lists the supported database and the Spinnaker service:
 
@@ -37,7 +37,7 @@ Java 11 is required to run Halyard (one method of configuring and managing Armor
 
 ## Kubernetes version
 
-Armory Enterprise is a collection of services that run in a Kubernetes cluster. This section defines the versions that you can run Armory Enterprise on. For information about what versions of Kubernetes you can deploy to, see the [Product Compatability Matrix]({{< ref "armory-product-matrix.md" >}}).
+Armory Enterprise is a collection of services that run in a Kubernetes cluster. This section defines the versions that you can run Armory Enterprise on. For information about what versions of Kubernetes you can deploy to, see the [Product Compatibility Matrix]({{< ref "armory-platform-matrix.md" >}}).
 
 > If you want to manage Armory Enterprise using the Operator, you must be able to apply Kubernetes manifests. This can be done directly using `kubectl` commands from your machine or another method.
 
