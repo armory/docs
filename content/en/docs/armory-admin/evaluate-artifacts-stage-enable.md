@@ -122,7 +122,8 @@ Perform the following steps to enable the plugin for the Evaluate Artifact stage
 
 4. Run `hal deploy apply` to apply the changes to your Armory Enterprise instance.
 
-{{< tabs>}}
+{{% /tab %}}
+{{< /tabs>}}
 
 ## Versions
 
