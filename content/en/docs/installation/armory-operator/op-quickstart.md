@@ -214,7 +214,7 @@ kubctl -n spinnaker-operator apply -k .
 If you have Kustomize installed, you build first and then apply:
 
 ```bash
-kustomize build | kubectl apply -f -
+kustomize build | kubectl -n spinnaker-operator apply -f -
 ```
 
 You can watch the installation progress by executing:

@@ -113,7 +113,7 @@ spec:
 
 ### Verify resources
 
-Read each file linked to in the `resources` section to make sure that the Kubernetes resource as configured will work with your environment.
+Read each file linked to in the `resources` section to make sure that the Kubernetes resource as configured works with your environment.
 
 ### Verify patches
 
