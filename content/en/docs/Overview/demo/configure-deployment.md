@@ -70,4 +70,4 @@ You can now view the demo app in your browser by navigating to the host domain o
 
 ## {{% heading "nextSteps" %}}
 
-Congratulations, you've deployed an app using Armory Spinnaker! The [next section]() covers configuring common integrations with Spinnaker like Jenkins, GitHub, and Slack.
+Congratulations, you've deployed an app using Armory Spinnaker! The [next section]({{< ref "docs/overview/demo/configure-integrations" >}}) covers configuring common integrations with Spinnaker like Jenkins, GitHub, and Slack.
