@@ -1,7 +1,9 @@
 <!-- this file does not contain H2 etc headings
 Hugo does not render headings in included files
 -->
-Operator in `basic` mode has permissions scoped to a single namespace, so the Operator can't see anything in other namespaces. You must deploy Spinnaker to the same namespace as the Operator. You can find Operator deployment configuration in `spinnaker-operator/deploy/operator/basic` after you download and unpack the archive.
+Operator in `basic` mode has permissions scoped to a single namespace, so the Operator can't see anything in other namespaces. You must deploy Spinnaker to the same namespace as the Operator.
+
+You can find Operator deployment configuration in `spinnaker-operator/deploy/operator/basic` after you download and unpack the archive. You don't need to update any configuration values.
 
 1. Get the latest Operator release.
 

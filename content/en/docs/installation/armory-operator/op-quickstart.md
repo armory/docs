@@ -10,6 +10,8 @@ description: >
 
 ## {{% heading "prereq" %}}
 
+The goal of this guide is to deploy Armory Enterprise or Spinnaker with bare minimum configuration. The [{{< heading "nextSteps" >}}](#whats-next) section contains links to advanced configuration guides.
+
 Ensure you meet the following requirements:
 
 * You are familiar with [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which use custom resources to manage applications and their components.
@@ -21,7 +23,7 @@ Ensure you meet the following requirements:
 
 ## Operator installation options
 
-The Operator has `basic` and `cluster` installation modes. The option you use depends on how you want to deploy Spinnaker.
+The Operator has `basic` and `cluster` installation modes. The option you use depends on which namespace you want to deploy Spinnaker to.
 
 
 |                                                           |Basic Mode | Cluster Mode |
@@ -37,11 +39,11 @@ The Operator has `basic` and `cluster` installation modes. The option you use de
 ## {{% heading "installOperator" %}}
 
 {{< tabs name="install-operator" >}}
-{{% tab name="Basic Mode"%}}
-{{% include "armory-operator/op-install-basic.md" %}}
-{{% /tab %}}
 {{% tab name="Cluster Mode"%}}
 {{% include "armory-operator/op-install-cluster.md" %}}
+{{% /tab %}}
+{{% tab name="Basic Mode"%}}
+{{% include "armory-operator/op-install-basic.md" %}}
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -51,9 +53,49 @@ Before you deploy Spinnaker, you must create a persistent storage source for Spi
 
 ### Single manifest file option
 
->This example assumes you installed the Operator in `basic` mode and want to deploy Spinnaker into the `spinnaker-operator` namespace.
-
 {{< tabs name="deploy-spinnaker-manifest" >}}
+
+{{% tab name="Armory Enterprise"%}}
+
+![Proprietary](/images/proprietary.svg)
+
+You can find the `SpinnakerService.yml` manifest file in `/spinnaker-operator/deploy/spinnaker/basic/`. You need to specify persistent storage details and the version to deploy before you can use the manifest to deploy Armory Enterprise.
+
+The following example uses an AWS S3 bucket. You can find configuration for other storage types in the [Persistent Storage]({{< ref "persistent-storage" >}}) reference.
+
+You can see the list of Armory Enterprise versions on the [Release Notes]({{< ref "rn-armory-spinnaker" >}}) page.
+
+```yaml
+apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      version: <version>   # the version of Armory Enterprise to deploy
+      persistentStorage:
+        persistentStoreType: s3
+        s3:
+          bucket: <change-me> # Change to a unique name. Spinnaker stores application and pipeline definitions here
+          rootFolder: front50
+  # spec.expose - This section defines how Spinnaker should be publicly exposed
+  expose:
+    type: service  # Kubernetes LoadBalancer type (service/ingress), note: only "service" is supported for now
+    service:
+      type: LoadBalancer
+```
+
+The Armory Operator uses Halyard to deploy Armory Enterprise.
+See [Custom Halyard Configuration]({{< ref "op-hal-config.md" >}}) if you need to modify Halyard so you can use Armory Enterprise features.
+
+Deploy using `kubectl`:
+
+```bash
+kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/SpinnakerService.yml
+```
+
+{{% /tab %}}
 {{% tab name="Spinnaker"%}}
 
 You can find the basic `spinnakerservice.yml` manifest file in `/spinnaker-operator/deploy/spinnaker/basic/`.
@@ -90,44 +132,6 @@ kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/spinnakerservice.y
 ```
 
 {{% /tab %}}
-{{% tab name="Armory Enterprise"%}}
-
-![Proprietary](/images/proprietary.svg)
-
-You can find the `SpinnakerService.yml` manifest file in `/spinnaker-operator/deploy/spinnaker/basic/`. You need to specify persistent storage details and the version to deploy before you can use the manifest to deploy Spinnaker.
-
-The following example uses an AWS S3 bucket. You can find configuration for other storage types in the [Persistent Storage]({{< ref "persistent-storage" >}}) reference.
-
-You can see the list of Armory Enterprise versions on the [Release Notes]({{< ref "rn-armory-spinnaker" >}}) page.
-
-```yaml
-apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    config:
-      version: <version>   # the version of Armory Enterprise to deploy
-      persistentStorage:
-        persistentStoreType: s3
-        s3:
-          bucket: <change-me> # Change to a unique name. Spinnaker stores application and pipeline definitions here
-          rootFolder: front50
-  # spec.expose - This section defines how Spinnaker should be publicly exposed
-  expose:
-    type: service  # Kubernetes LoadBalancer type (service/ingress), note: only "service" is supported for now
-    service:
-      type: LoadBalancer
-```
-
-Deploy using `kubectl`:
-
-```bash
-kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/SpinnakerService.yml
-```
-
-{{% /tab %}}
 {{< /tabs >}}
 
 You can watch the installation progress by executing:
@@ -147,21 +151,25 @@ The included manifest file is only for a very basic installation.
 
 ### Kustomize patches option
 
-> This example assumes you deploy Spinnaker in the `spinnaker-operator` namespace.
+> This example assumes you deploy Spinnaker to the `spinnaker-operator` namespace.
 
 {{< include "armory-operator/how-kustomize-works.md" >}}
 
-For this quick start, you can find basic patches in `/spinnaker-operator/deploy/spinnaker/kustomize`. Before you deploy Spinnaker, you need to update the `version` and `persistentStorage` values in `config-patch.yml`.
+For this quick start, you can find bare minimum patches in `/spinnaker-operator/deploy/spinnaker/kustomize`. Before you deploy Spinnaker, you need to update the `version` and `persistentStorage` values in `config-patch.yml`.
 
 The following example uses an AWS S3 bucket. You can find configuration for other storage types in the [Persistent Storage]({{< ref "persistent-storage" >}}) reference.
 
-{{< tabs name="deploy-spinnaker-kustomize" >}}
-{{% tab name="Spinnaker"%}}
+>This quick start example is suitable for POCs. For production environments, you should use a robust set of Kustomize patches. See {{< linkWithTitle "op-config-customize.md" >}}.
 
-You can see the list of Spinnaker versions on the Spinnaker [Versions](https://spinnaker.io/community/releases/versions/) page.
+{{< tabs name="deploy-spinnaker-kustomize" >}}
+
+{{% tab name="Armory Enterprise"%}}
+![Proprietary](/images/proprietary.svg)
+
+You can see the list of Armory Enterprise versions on the [Release Notes]({{< ref "rn-armory-spinnaker" >}}) page.
 
 ```yaml
-apiVersion: spinnaker.io/{{< param "operator-oss-crd-version" >}}
+apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -178,14 +186,16 @@ spec:
           rootFolder: front50
 ```
 
-{{% /tab %}}
-{{% tab name="Armory Enterprise"%}}
-![Proprietary](/images/proprietary.svg)
+The Armory Operator uses Halyard to deploy Armory Enterprise.
+See [Custom Halyard Configuration]({{< ref "op-hal-config.md" >}}) if you need to modify Halyard so you can use Armory Enterprise features.
 
-You can see the list of Armory Enterprise versions on the [Release Notes]({{< ref "rn-armory-spinnaker" >}}) page.
+{{% /tab %}}
+{{% tab name="Spinnaker"%}}
+
+You can see the list of Spinnaker versions on the Spinnaker [Versions](https://spinnaker.io/community/releases/versions/) page.
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
+apiVersion: spinnaker.io/{{< param "operator-oss-crd-version" >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker

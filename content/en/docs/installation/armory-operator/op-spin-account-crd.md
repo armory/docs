@@ -10,7 +10,7 @@ description: >
 
 ## `SpinnakerAcount` Custom Resource Definition overview
 
-The Operator comes with a `SpinnakerAccount` Custom Resource Definition (CRD) for configuring Kubernetes accounts that you want to use with Spinnaker. This `SpinnakerAccount` enables defining and managing Kubernetes accounts outside of Spinnaker's manifest file. You create a separate manifest for each Kubernetes account and `kubectl apply` each manifest. Operator processes the manifest into the requisite configuration and adds the account to Spinnaker.
+The Operator comes with a `SpinnakerAccount` Custom Resource Definition (CRD) for managing Kubernetes accounts that you want to use with Spinnaker. This `SpinnakerAccount` resource enables defining and managing Kubernetes accounts outside of Spinnaker's manifest file. You create a separate manifest for each Kubernetes account and `kubectl apply` each manifest. `kubectl` delegates to the Operator, which then processes the manifest into the requisite configuration and adds the account to Spinnaker.
 
 For example, you have a pipeline that provisions a Kubernetes
 cluster with Terraform. If you want that new cluster to be available, you can
@@ -31,9 +31,11 @@ spec:
 ```
 
 ### `metadata.name`
+
 This is the name of the `SpinnakerAccount`. It needs to be unique across all accounts - not just type of account as in Spinnaker.
 
 ### `spec.type`
+
 Account type. See below for current support:
 
 | Account type | Status | Notes |
@@ -42,9 +44,11 @@ Account type. See below for current support:
 
 
 ### `spec.enabled`
+
 Determines if the account is enabled. If not enabled, `SpinnakerService` doesn't use it.
 
 ### `spec.permissions`
+
 Map of authorizations similar to most accounts in Spinnaker.
 
 ```yaml
@@ -69,12 +73,15 @@ spec:
 
 
 ### `spec.kubernetes`
+
 Auth options for Kubernetes account type. Pick only one of the options below:
 
 #### `spec.kubernetes.kubeconfigFile`
+
 References a file loaded either out of band to Clouddriver or (more likely) [stored in a secret](./managing-spinnaker.md).
 
 #### `spec.kubernetes.kubeconfigSecret`
+
 Reference to a Kubernetes secret in the same namespace that contains the kubeconfig file:
 
 ```yaml
@@ -87,6 +94,7 @@ spec:
 ```
 
 #### `spec.kubernetes.kubeconfig`
+
 You can also inline the kubeconfig file if it does not contain secrets:
 ```yaml
 spec:

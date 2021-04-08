@@ -1,7 +1,9 @@
 <!-- this file does not contain H2 etc headings
 Hugo does not render headings in included files
 -->
-You need Kubernetes `ClusterRole` authority to install the Operator in `cluster` mode. You can find Operator configuration in `spinnaker-operator/deploy/operator/kustomize` after you download and unpack the archive.
+You need Kubernetes `ClusterRole` authority to install the Operator in `cluster` mode.
+
+You can find Operator deployment configuration in `spinnaker-operator/deploy/operator/cluster` after you download and unpack the archive. You don't need to update any configuration values.
 
 1. Get the latest Operator release.
 

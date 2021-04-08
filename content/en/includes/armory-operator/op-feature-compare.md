@@ -1,21 +1,21 @@
 |                                                                                                                                                        | Spinnaker Operator | Armory Operator ![Proprietary](/images/proprietary.svg) |
 |:------------------------------------------------------------------------------------------------------------------------------------------------------ |:------------------:|:---------------:|
 | Deploy open source Spinnaker                                                                                                                           |      &#9989;       |    &#10060;     |
-| Deploy Armory Enterprise for Spinnaker                                                                                                                 |      &#10060;      |     &#9989;     |
+| Deploy Armory Enterprise for Spinnaker ![Proprietary](/images/proprietary.svg)                                                                         |      &#10060;      |     &#9989;     |
 | Use `kubectl` to manage deployment                                                                                                                     |      &#9989;       |     &#9989;     |
 | Validate your configuration before deployment                                                                                                          |      &#9989;       |     &#9989;     |
 | Use a single `spinnakerservice.yml` configuration file                                                                                                 |      &#9989;       |     &#9989;     |
 | Use Kustomize patches instead of a single configuration file                                                                                           |      &#9989;       |     &#9989;     |
 | Store Spinnaker secrets in Kubernetes secrets                                                                                                          |      &#9989;       |     &#9989;     |
 | Store your configuration in `git` for an easy GitOps workflow                                                                                          |      &#9989;       |     &#9989;     |
-| Define Kubernetes accounts in `SpinnakerAccount` objects<br> and store `kubeconfig` inline, in Kubernetes secrets, in s3, or GCS<br>**(Experimental)** |      &#10060;      |     &#9989;     |
-| Expose via `LoadBalancer` or `Ingress`                                                                                                                 |      &#10060;      |     &#9989;     |
-| Deploy in an Istio-controlled cluster<br>**(Experimental)**                                                                                            |      &#10060;      |     &#9989;     |
-| Configure diagnostics                                                                                                                                  |      &#10060;      |     &#9989;     |
-| Configure Pipelines as Code                                                                                                                            |      &#10060;      |     &#9989;     |
-| Configure Policy Engine                                                                                                                                |      &#10060;      |     &#9989;     |                                                                     
-| Configure Terraform integration                                                                                                                        |      &#10060;      |     &#9989;     |
-| Configure Vault secrets                                                                                                                                |      &#10060;      |     &#9989;     |
+| Define Kubernetes accounts in `SpinnakerAccount` objects<br> and store `kubeconfig` inline, in Kubernetes secrets, in s3, or GCS |      &#9989;      |     &#9989;     |
+| Expose via `LoadBalancer` or `Ingress` ![Proprietary](/images/proprietary.svg)                                                                          |      &#10060;      |     &#9989;     |
+| Deploy in an Istio-controlled cluster ![Proprietary](/images/proprietary.svg)                                                     |      &#10060;      |     &#9989;     |
+| Configure diagnostics ![Proprietary](/images/proprietary.svg)                                               |      &#10060;      |     &#9989;     |
+| Configure Pipelines as Code ![Proprietary](/images/proprietary.svg)                                                                          |      &#10060;      |     &#9989;     |
+| Configure Policy Engine ![Proprietary](/images/proprietary.svg)                                              |      &#10060;      |     &#9989;     |
+| Configure Terraform integration ![Proprietary](/images/proprietary.svg)       |      &#10060;      |     &#9989;     |
+| Configure Vault secrets ![Proprietary](/images/proprietary.svg)               |      &#10060;      |     &#9989;     |
 | Configure artifacts                                                                                                                                    |      &#9989;       |     &#9989;     |
 | Configure canary                                                                                                                                       |      &#9989;       |     &#9989;     |
 | Configure continuous integration providers                                                                                                             |      &#9989;       |     &#9989;     |
