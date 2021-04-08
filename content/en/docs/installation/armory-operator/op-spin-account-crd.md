@@ -38,7 +38,7 @@ Account type. See below for current support:
 
 | Account type | Status | Notes |
 |------------|----------|-------|
-| `Kubernetes` | alpha | Only V2 supported |
+| `Kubernetes` | alpha | Only the Spinnaker Kubernetes V2 provider is supported |
 
 
 ### `spec.enabled`
