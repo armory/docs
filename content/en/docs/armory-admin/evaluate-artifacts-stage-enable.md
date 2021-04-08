@@ -63,15 +63,19 @@ Then, deploy your updated Armory Enterprise configuration using one of the follo
 - If you are using a single manifest file: `kubectl -n <namespace> apply -f <path-to-manifest-file>`
 - If you are using Kustomize patches like the ones in the [Armory kustomize repo](https://github.com/armory/spinnaker-kustomize-patches), you need to apply the kustomization. Depending on how you have Kustomize installed (either directly or as part of `kubectl`), use one of the following commands:
    
-   Kustomize installed:
+   Kustomize is installed separately from `kubectl`:
+   
    ```bash
    # The namespace is declared in kustomization.yml
    # Run this from the same directory as your kustomization.yml file
    kustomize build | kubectl  apply -f -
    ```
 
-   Kustomize is part of `kubectl`:
-   `kubctl -n <namespace> apply -k <path-to-kustomize-directory>`
+   Kustomize is bundled with `kubectl`:
+   
+   ```bash
+   kubctl -n <namespace> apply -k <path-to-kustomize-directory>
+   ```
 
 {{% /tab %}}
 
