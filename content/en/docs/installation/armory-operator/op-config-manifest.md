@@ -10,7 +10,7 @@ description: >
 
 ## Kubernetes manifest file
 
-The structure of the manifest file is the same whether you are using the Spinnaker Operator or the Armory Operator. The value of certain keys, though, depends on whether you deploying Spinnaker or Armory Enterprise.
+The structure of the manifest file is the same whether you are using the Spinnaker Operator or the Armory Operator. The value of certain keys, though, depends on whether you are deploying Spinnaker or Armory Enterprise.
 
 {{< prism lang="yaml" line="2,11" >}}
 # this is the top few lines from github.com/armory/spinnaker-operator/master/deploy/spinnaker/complete/spinnakerservice.yml

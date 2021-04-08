@@ -97,7 +97,7 @@ Change `spinnaker.armory.io` to `spinnaker.io` if you are deploying open source 
 
 ### Set the Spinnaker version
 
-In `spinnaker-kustomize-patches/spinnakerservice.yml`, set the [Spinnaker version](https://spinnaker.io/community/releases/versions/) or [Armory Enterprise version]({{< ref "rn-armory-spinnaker" >}}) that you want to deploy, such as `1.25.3` or `2.25.0`.
+In `spinnaker-kustomize-patches/spinnakerservice.yml`, set the [Spinnaker version](https://spinnaker.io/community/releases/versions/) or [Armory Enterprise version]({{< ref "rn-armory-spinnaker" >}}) that you want to deploy, such as `1.25.3` (Spinnaker) or `2.25.0` (Armory Enterprise).
 
 {{< prism lang="yaml" line="8" >}}
 kind: SpinnakerService
