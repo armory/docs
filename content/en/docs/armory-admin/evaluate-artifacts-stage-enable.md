@@ -1,7 +1,7 @@
 ---
 title: Enable the Evaluate Artifacts Stage
 description: >
-  Enable the Evaluate Artifacts Stage plugin to add a stage to Armory Enterprise that makes it easy to evaluate SpEL expressions inside of Spinnaker™ artifacts.
+  Enable the Evaluate Artifacts Stage plugin to add it to Armory Enterprise. The stage gives pipeline creators the ability to create base64 artifacts from text saved within a pipeline. The contents of the new artifact include the results of any SpEL expressions that are evaluated.
 aliases:
   - /docs/plugin-guide/plugin-evaluate-artifacts/
 ---
@@ -10,7 +10,7 @@ aliases:
 
 ## Overview
 
-Armory’s Evaluate Artifacts plugin allows you to easily evaluate SpEL queries inside of any Spinnaker artifacts. Some artifact types and their associated stages, such as Kubernetes, support  using SpEL to read parameters from the Spinnaker context and inject them into an artifacts manifest at deploy time. Other stages, such as the Terraform Integration stage, do not support this out of the box. The Evaluate Artifacts Stage plugin adds supports for evaluating SpEL against any artifact within your Spinnaker pipeline.
+Some artifact types and their associated stages, such as Kubernetes, support  using SpEL to read parameters from the Spinnaker context and inject them into an artifacts manifest at deploy time. Other stages, such as the Terraform Integration stage, do not support this out of the box. The Evaluate Artifacts Stage plugin adds supports for evaluating SpEL against any artifact within your Spinnaker pipeline.
 
 For information about how to use the stage, see [Use the Evaluate Artifacts Stage]({{< ref "evaluate-artifacts-stage-use.md" >}}).
 

@@ -1,7 +1,8 @@
 ---
 title: Use the Evaluate Artifacts Stage 
 description: >
-  Use the Evaluate Artifacts Stage to evaluate SpEL expressions inside of Spinnaker™ artifacts. Once evaluated, the result of the SpEL expression can be used in subsequent stages.
+  Use the Evaluate Artifacts Stage to create new base64 artifacts from text in the pipeline, which can contain SpEL expressions. When the pipeline runs, the stage creates a new artifact from the provided text and the results of any evaluated SpEL expression. This artifact can then be referenced in subsequent stages.
+  
 ---
 
 ![Proprietary](/images/proprietary.svg)
@@ -53,11 +54,13 @@ This example combines Armory's Terraform Integration and the Evaluate Artifact s
    replicas=${parameters.replicas}
    ```
 
+   {{< figure src="/images/eval-artifact-stage/eval-artifact-add-spel-artifact.jpg" alt="In the window that pops up, provide a name and add the sample JSON to the Contents section." >}}
+
    All three fields were added previously as parameters for the pipeline. The `namespace` and `deployName` fields are SpEL expressions that evaluate JSON that you provide when the pipeline runs. `replicas` accepts an integer value for the number of replicas you want. You can provide a value when the pipeline runs or use the default value of 2.
 
-7. Create the artifact.
-8. Wait until the **Save Changes** button becomes available. Then, save your artifact.
-9. Add a second artifact for **Evaluate Artifacts Configuration**. Use the following example:
+1. Create the artifact.
+2. Wait until the **Save Changes** button becomes available. Then, save your artifact.
+3. Add a second artifact for **Evaluate Artifacts Configuration**. Use the following example:
 
    Name the artifact `main.tf` and use the following snippet for the **Contents**:
 
