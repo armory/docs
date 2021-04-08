@@ -1,5 +1,5 @@
 ---
-title: Enable the Evaluate Artifacts Stage Plugin
+title: Enable the Evaluate Artifacts Stage
 description: >
   Enable the Evaluate Artifacts Stage plugin to add a stage to Armory Enterprise that makes it easy to evaluate SpEL expressions inside of Spinnaker™ artifacts.
 aliases:
@@ -14,21 +14,31 @@ Armory’s Evaluate Artifacts plugin allows you to easily evaluate SpEL queries 
 
 For information about how to use the stage, see [Use the Evaluate Artifacts Stage]({{< ref "evaluate-artifacts-plugin-use.md" >}}).
 
+## {{% heading "prereq" %}}
+
+* If you are new to enabling plugins, read the [Plugin Users Guide](https://spinnaker.io/guides/user/plugins/) to familiarize yourself with how plugins to Armory Enterprise work.
+* The Evaluate Artifacts Stage requires Armory 2.24.x or later (OSS Spinnaker 1.24.x or later)
+
+
 ## Setup
 
-Add the following snippet to your Operator config, such as `spinnakerservice.yml`:
+{{< tabs name="enable-plugin" >}}
 
-{{< prism lang=yaml line="4-5, 10, 22" >}}
+{{% tab name="Operator" %}}
+
+Add the following snippet to your Spinnaker manifest, such as `spinnakerservice.yml`:
+
+   ```yaml
     spec:
       spinnakerConfig:
         profiles:
           spinnaker:  
-            spinnaker:
+            spinnaker:  # This second `spinnaker` is required
               extensibility:
                 plugins:
                   Armory.EvaluateArtifactsPlugin:
                     enabled: true
-                    version: <PLUGIN_VERSION> # Replace with the version you want to use
+                    version: <PLUGIN_VERSION> # Replace with the version you want to use. For example, use 0.1.0.
               repositories:
                 evaluateArtifacts:
                   url: https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
@@ -40,20 +50,81 @@ Add the following snippet to your Operator config, such as `spinnakerservice.yml
                   plugins:
                     Armory.EvaluateArtifactsPlugin:
                       enabled: true
-                      version: <PLUGIN_VERSION> # Replace with the version you want to use. Omit the 'v' when providing a version. For example, use 0.1.0, not v0.1.0
-{{< /prism >}}
+                      version: <PLUGIN_VERSION> # Replace with the version you want to use. For example, use 0.1.0.
+   ```
 
 Keep the following in mind when using this configuration snippet: 
 
-* Make sure to include the nested `spinnaker` parameters on lines 4 and 5. Both are required because of how Operator configs are processed and consumed by Armory Enterprise.
+* Make sure to include the nested `spinnaker` parameter. Both are required because of how Armory Enterprise consumes plugin configurations.
 * Replace `<PLUGIN_VERSION>` on lines 10 and 22 with the version of the plugin that you want to use. Plugin versions can be found [here](#versions).
 
-Then, deploy your updated Operator configuration using one of the following methods:
+Then, deploy your updated Armory Enterprise configuration using one of the following methods:
 
-- The `deploy.sh` script if you use the [Armory kustomize repo](https://github.com/armory/spinnaker-kustomize-patches) to help manage your Operator configurations
-- `kubectl -n <spinnaker-namespace> -f <operator-config>.yml​`
+- If you are using a single manifest file: `kubectl -n <namespace> apply -f <path-to-manifest-file>`
+- If you are using Kustomize patches like the ones in the [Armory kustomize repo](https://github.com/armory/spinnaker-kustomize-patches), you need to apply the kustomization. Depending on how you have Kustomize installed (either directly or as part of `kubectl`), use one of the following commands:
+   
+   Kustomize installed:
+   ```bash
+   # The namespace is declared in kustomization.yml
+   # Run this from the same directory as your kustomization.yml file
+   kustomize build | kubectl  apply -f -
+   ```
+
+   Kustomize is part of `kubectl`:
+   `kubctl -n <namespace> apply -k <path-to-kustomize-directory>`
+
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
+
+> The following method adds the plugin repository as part of the service profile for Orca, the orchestrator service. The benefit of this method is that it minimizes the downtime for your Armory instance. It is possible to add and manage plugin repositories in a separate file. For more information, see [Add a plugin repository using Halyard](https://spinnaker.io/guides/user/plugins/#add-a-plugin-repository-using-halyard).
+
+Perform the following steps to enable the plugin for the Evaluate Artifact stage:
+
+1. Add the plugin repository to your Armory Enterprise instance:
+
+   ```bash
+   hal plugins repository add evaluate-artifacts-releases --url=https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
+
+2. Add the plugin to your `~/.hal/default/profiles/orca-local.yml` file:
+
+   ```yaml
+   spinnaker:
+     extensibility:
+       plugins:
+         Armory.EvaluateArtifactsPlugin:
+           enabled: true
+            version: <PLUGIN_VERSION> # Replace with the version you want to use. For example, use 0.1.0.
+       repositories:
+         evaluateArtifacts:
+           url: https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
+   ```
+
+   Make sure to replace `PLUGIN_VERSION` with the version of the plugin you want to use. Plugin versions can be found [here](#versions).
+
+3. Enable the UI for the stage in your `~/.hal/default/profiles/gate-local.yml` file:
+
+   ```yaml
+   spinnaker:
+     extensibility:
+      deck-proxy:
+        enabled: true
+        plugins:
+          Armory.EvaluateArtifactsPlugin:
+            enabled: true
+            version: <PLUGIN_VERSION> # Replace with the version you want to use. For example, use 0.1.0.
+      repositories:
+        evaluateArtifacts:
+          url: https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
+   ```
+
+   Make sure to replace `PLUGIN_VERSION` with the version of the plugin you want to use. Plugin versions can be found [here](#versions).
+
+4. Run `hal deploy apply` to apply the changes to your Armory Enterprise instance.
+
+{{< tabs>}}
 
 ## Versions
 
-- v0.1.0 - Improved the user experience. Execution errors for the stage now display in the UI.
-- v0.0.10 - Initial Release
+- 0.1.0 - Improved the user experience. Execution errors for the stage now display in the UI.
+- 0.0.10 - Initial Release
