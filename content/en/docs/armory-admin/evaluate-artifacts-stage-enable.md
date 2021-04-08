@@ -85,12 +85,7 @@ Then, deploy your updated Armory Enterprise configuration using one of the follo
 
 Perform the following steps to enable the plugin for the Evaluate Artifact stage:
 
-1. Add the plugin repository to your Armory Enterprise instance:
-
-   ```bash
-   hal plugins repository add evaluate-artifacts-releases --url=https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
-
-2. Add the plugin to your `~/.hal/default/profiles/orca-local.yml` file:
+1. Add the plugin to your `~/.hal/default/profiles/orca-local.yml` file:
 
    ```yaml
    spinnaker:
@@ -98,7 +93,7 @@ Perform the following steps to enable the plugin for the Evaluate Artifact stage
        plugins:
          Armory.EvaluateArtifactsPlugin:
            enabled: true
-            version: <PLUGIN_VERSION> # Replace with the version you want to use. For example, use 0.1.0.
+           version: <PLUGIN_VERSION> # Replace with the version you want to use. For example, use 0.1.0.
        repositories:
          evaluateArtifacts:
            url: https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
@@ -106,7 +101,7 @@ Perform the following steps to enable the plugin for the Evaluate Artifact stage
 
    Make sure to replace `PLUGIN_VERSION` with the version of the plugin you want to use. Plugin versions can be found [here](#versions).
 
-3. Enable the UI for the stage in your `~/.hal/default/profiles/gate-local.yml` file:
+2. Enable the UI for the stage in your `~/.hal/default/profiles/gate-local.yml` file:
 
    ```yaml
    spinnaker:
@@ -124,7 +119,7 @@ Perform the following steps to enable the plugin for the Evaluate Artifact stage
 
    Make sure to replace `PLUGIN_VERSION` with the version of the plugin you want to use. Plugin versions can be found [here](#versions).
 
-4. Run `hal deploy apply` to apply the changes to your Armory Enterprise instance.
+3. Run `hal deploy apply` to apply the changes to your Armory Enterprise instance.
 
 {{% /tab %}}
 {{< /tabs>}}
