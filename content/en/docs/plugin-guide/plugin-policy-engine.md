@@ -239,7 +239,7 @@ spec:
        mountPath: /opt/spinnaker/lib/local-plugins
    ```
 
-4. Configure Halyard by updating your  `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use: 
+4. Configure Halyard by updating your `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use without the `v` prefix: 
 
    ```yaml
    deploymentConfigurations:
