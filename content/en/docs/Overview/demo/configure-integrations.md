@@ -74,7 +74,9 @@ These steps will let Armory Spinnaker use a Jenkins build as a trigger for deplo
       # - accounts/canary/prometheus.yml        # TODO - need to add CONFIG STORE
     {{< /prism >}}
 
-1. Invoke `deploy.sh` to apply the changes:
+1. Run `create-secrets.sh` in `spinsvc/secrets` to update the [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) with the new token.
+
+1. Run `deploy.sh` to apply the changes to the cluster:
 
     ```bash
     ./spinsvc/deploy.sh
@@ -114,6 +116,8 @@ Now let's set up a webhook to trigger a pipeline from a push to a GitHub reposit
     cd ~/minnaker-0.1.*
     sed -i -e 's/github-token=xxx/github-token=<github-token>/g' spinsvc/secrets/secrets-example.env
     ```
+
+1. Run `create-secrets.sh` in `spinsvc/secrets` to update the [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) with the new token.
 
 1. Under `spinsvc/accounts/git/`, open the files `patch-github.yml` and `patch-gitrepo.yml`. Uncomment the `token` key, and confirm that it's using the `github-token` secret:
 
