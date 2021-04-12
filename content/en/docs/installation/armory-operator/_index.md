@@ -30,7 +30,7 @@ From the Kubernetes [Operator pattern docs](https://kubernetes.io/docs/concepts/
 
 ## How the Spinnaker Operator and the Armory Operator work
 
-The Operator is a custom controller of Kubernetes kind `Deployment`. The controller works with a [Kubernetes custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) named `SpinnakerService` to deploy and manage Spinnaker in your cluster.
+The Operator is a custom controller of Kubernetes kind `Deployment`. The Operator works with a [Kubernetes custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) named `SpinnakerService` to deploy and manage Spinnaker in your cluster.
 
 ### `SpinnakerService` Custom Resource Definition
 
