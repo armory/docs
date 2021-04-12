@@ -1,6 +1,6 @@
 ---
-title: Baking Machine Images on AWS Using Packer
-linkTitle: Baking Machine Images
+title: Bake Machine Images on AWS Using Packer
+linkTitle: Bake Machine Images
 # Substantially different from install_guide/packer
 aliases:
   - /spinnaker_install_admin_guides/packer/

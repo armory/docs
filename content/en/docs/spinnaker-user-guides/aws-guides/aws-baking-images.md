@@ -1,6 +1,6 @@
 ---
-title: Baking Amazon Machine Images in a Spinnaker Pipeline
-linkTitle: Baking an AMI
+title: Bake Amazon Machine Images in a Spinnaker Pipeline
+linkTitle: Bake an AMI
 description: >
   Create a pipeline that bakes an Amazon Machine Image (AMI).
 aliases:

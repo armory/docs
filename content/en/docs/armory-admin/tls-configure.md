@@ -1,6 +1,6 @@
 ---
-title: Configuring TLS for Spinnaker Services
-linkTitle: Configuring TLS
+title: Configure TLS for Spinnaker Services
+linkTitle: Configure TLS
 aliases:
   - /spinnaker_install_admin_guides/spinnaker-services-tls/
   - /spinnaker_install_admin_guides/services_tls/

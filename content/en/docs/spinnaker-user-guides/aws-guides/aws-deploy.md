@@ -1,6 +1,6 @@
 ---
-title: Deploying an Application to Amazon EC2
-linkTitle: Deploying to EC2
+title: Deploy an Application to Amazon EC2
+linkTitle: Deploy to EC2
 description: >
   Learn how to create a Spinnaker pipeline that uses a Red/Black (Blue/Green) deployment strategy to deploy a web server.
 aliases:

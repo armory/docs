@@ -1,6 +1,6 @@
 ---
-title: "Connecting Spinnaker to Amazon Elastic Container Registry"
-linkTitle: "Connecting to AWS ECR"
+title: "Connect Spinnaker to Amazon Elastic Container Registry"
+linkTitle: "Connect to AWS ECR"
 aliases:
   - /spinnaker_install_admin_guides/ecr_registry/
   - /spinnaker_install_admin_guides/ecr-registry/

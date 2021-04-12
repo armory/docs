@@ -1,5 +1,5 @@
 ---
-title: Storing Spinnaker Secrets in HashiCorp Vault
+title: Store Spinnaker Secrets in HashiCorp Vault
 linkTitle: Secrets with Vault
 weight: 10
 aliases:
