@@ -41,11 +41,11 @@ These steps will let Armory Spinnaker use a Jenkins build as a trigger for deplo
 1. With these variables in place, the following commands will insert the token into `secrets-example.env` and the other values into `patch-jenkins.yml`:
 
     ```bash
-    sed -i -e 's/jenkins-token=xxx/jenkins-token='"$JENKINSTOKEN"'/g' /home/ubuntu/minnaker-0.1.*/spinsvc/secrets/secrets-example.env
-    sed -i -e 's/jenkins.mycompany.com/'"$JENKINSHOST"'/g' /home/ubuntu/minnaker-0.1.*/spinsvc/accounts/ci/patch-jenkins.yml
-    sed -i -e 's/john.doe/'"$JENKINSUSER"'/g' /home/ubuntu/minnaker-0.1.*/spinsvc/accounts/ci/patch-jenkins.yml
+    sed -i -e 's/jenkins-token=xxx/jenkins-token='"$JENKINSTOKEN"'/g' /home/ubuntu/minnaker/spinsvc/secrets/secrets-example.env
+    sed -i -e 's/jenkins.mycompany.com/'"$JENKINSHOST"'/g' /home/ubuntu/minnaker/spinsvc/accounts/ci/patch-jenkins.yml
+    sed -i -e 's/john.doe/'"$JENKINSUSER"'/g' /home/ubuntu/minnaker/spinsvc/accounts/ci/patch-jenkins.yml
     #Optional:
-    sed -i -e 's/mymaster/'"$JENKINSLABEL"'/g' /home/ubuntu/minnaker-0.1.*/spinsvc/accounts/ci/patch-jenkins.yml
+    sed -i -e 's/mymaster/'"$JENKINSLABEL"'/g' /home/ubuntu/minnaker/spinsvc/accounts/ci/patch-jenkins.yml
     ```
 
 1.  Unset the environment variables:
@@ -60,7 +60,7 @@ These steps will let Armory Spinnaker use a Jenkins build as a trigger for deplo
 
 ### Apply changes
 
-1. From the `minnaker-0.1.*` directory, open `spinsvc/kustomization.yml`. Under `#Artifacts & Accounts`, uncomment the `patch-jenkins.yml` line:
+1. From the `minnaker` directory, open `spinsvc/kustomization.yml`. Under `#Artifacts & Accounts`, uncomment the `patch-jenkins.yml` line:
 
     {{< prism lang=yaml line=8 >}}
       # Artifacts & Accounts
@@ -113,7 +113,7 @@ Now let's set up a webhook to trigger a pipeline from a push to a GitHub reposit
 1. From your Minnaker host, edit the file `spinsvc/secrets/secrets-example.env` to apply your token to the `github-token` key. You can also use `sed`:
 
     ```bash
-    cd ~/minnaker-0.1.*
+    cd ~/minnaker
     sed -i -e 's/github-token=xxx/github-token=<github-token>/g' spinsvc/secrets/secrets-example.env
     ```
 
@@ -170,22 +170,11 @@ Now let's set up a webhook to trigger a pipeline from a push to a GitHub reposit
 
 ## Slack
 
-#3. Slack - Create a Slack Application with a Bot and Authentication token.  The token will be stored as a Kubernetes secret and the Bot will be configured in a Slack Channel within your organization.  This allows Armory to send notifications to Slack at any point in the software delivery pipeline including approval for software promotion to next environment (i.e. QA to Stage, Stage to Production).
+By now you should be getting familiar with how to modify the configuration files needed to enable new features. In this case, read [Configure Slack Notifications in Spinnaker]({{< ref "notifications-slack-configure" >}}) but keep in mind the differences created by our Minnaker deployment:
 
-https://docs.armory.io/docs/armory-admin/notifications-slack-configure/
-#1. Create Slack App in your workspace
-#2. Create Bot in Slack App with “channel:write” permissions.  Then click “Install Workspace” to generate a Bot auth token.
-
-#3. Input App and Token to Armory Patch files.
-
-    /home/ubuntu/spinnaker/spinsvc/secrets/sed -i -e 's/slack-token=xxx/slack-token=xoxb-16939015395-1777101633666-niXpFiW8aUXgNjBMrqFz4qRL/g' secrets-example.env
-
-#4. Add Slack Patch to SpinnakerService.yml
-
-    
-
-#4. Run Deploy.sh script to create Kubernetes secrets and apply new patch.
-
+ - Instead of directly modifying the `SpinnakerService` manifest, uncomment the reference to `patch-slack.yml` in `kustomization.yml`.
+ - Instead of storing your token in the patch file direclty, add it to `secrets-example.yml`.
+ - Instead of applying the changes with `kubectl apply -f`, re-run `deploy.sh` to add update the Kubernetes Secrets and Kustomization configuration.
 
 
 ## {{% heading "nextSteps" %}}

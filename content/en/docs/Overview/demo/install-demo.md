@@ -31,13 +31,15 @@ For this instance, make sure the following ports are open:
 
 ## Install Minnaker
 
-1. Log into the instance created above and run the following commands.
+1. Log into the instance created above and run the following commands. Replace the `curl` target with the latest source code `tar.gz` file from the [releases](https://github.com/armory/minnaker/releases/) page:
 
     ```bash
     # Download the latest release of Minnaker:
-    curl -LO https://github.com/armory/minnaker/releases/latest/download/minnaker.tgz
+    curl -LO https://github.com/armory/minnaker/archive/refs/tags/v0.1.2.tar.gz
     # Extract Minnaker from the archive:
-    tar -xzvf minnaker.tgz
+    tar -xzvf v0.1.2.tar.gz
+    # Rename the minnaker directory:
+    mv minnaker-0.1.* minnaker
     # Execute the installation script:
     ./minnaker/scripts/install.sh
     ```
