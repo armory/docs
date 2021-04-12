@@ -54,6 +54,7 @@ kubectl delete -f deploy/crds/
 Run the following script to remove ownership of Armory resources, where `NAMESPACE` is the namespace where Spinnaker is installed:
 
 ```bash
+#! /usr/bin/env bash
 NAMESPACE=
 for rtype in deployment service
 do
