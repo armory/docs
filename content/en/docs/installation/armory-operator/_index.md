@@ -32,6 +32,8 @@ From the Kubernetes [Operator pattern docs](https://kubernetes.io/docs/concepts/
 
 The Operator is a custom controller of Kubernetes kind `Deployment`. The controller works with a [Kubernetes custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) named `SpinnakerService` to deploy and manage Spinnaker in your cluster.
 
+### `SpinnakerService` Custom Resource Definition
+
 The `SpinnakerService` CRD declares the resource's names, the scope of the resource, and the structural schema of the `spinnakerservice.yml` [Kubernetes manifest](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/) that contains your Spinnaker configuration.
 
 ```yaml
@@ -52,6 +54,8 @@ spec:
 ```
 
 You can view the entire `SpinnakerService` CRD in the `spinnaker-operator` [repo](https://github.com/armory/spinnaker-operator/blob/master/deploy/crds/spinnaker.io_spinnakerservices_crd.yaml).
+
+### Spinnnaker manifest
 
 You have the following options for creating the Spinnaker manifest:
 
