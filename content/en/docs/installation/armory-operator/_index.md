@@ -26,7 +26,7 @@ From the Kubernetes [Operator pattern docs](https://kubernetes.io/docs/concepts/
 * Reference secrets stored in existing Kubernetes secrets in the same namespace as Spinnaker using the following syntax:
   * `encrypted:k8s!n:<secret name>!k:<secret key>` for a string value. This is added as an environment variable to the Spinnaker deployment.
   * `encryptedFile:k8s!n:<secret name>!k:<secret key>` for a file reference. Files come from a volume mount in the Spinnaker deployment.
-* Store your configuration in `git` for an auditable and reversible GitOps workflow. You can use Spinnaker to deploy another instance of Spinnaker using a Pipeline trigger: `Pull Request --> Approval --> Configuration Merged --> Pipeline Trigger in Spinnaker --> Deploy Updated SpinnakerService`.
+* Store your configuration in `git` for an auditable and reversible GitOps workflow. 
 
 ## How the Spinnaker Operator and the Armory Operator work
 
