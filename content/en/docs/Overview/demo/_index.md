@@ -45,6 +45,13 @@ If deploying to an EC2 instance, we suggest using the t2.xlarge tier.
 
 > You don't need to create this instance ahead of following the guide, only confirm access to the resources required.
 
+### Concepts
+
+The Minnaker demo uses the Armory Operator to manage services, and Kustomize to manage configuration files. If you're unfamiliar with either, check out the following docs before you being:
+
+ - {{< linkWithTitle "op-config-kustomize#how-kustomize-works" >}}
+ - {{< linkWithTitle "armory-operator#how-the-spinnaker-operator-and-the-armory-operator-work >}}
+
 ## {{% heading "nextSteps" %}}
 
 When you're ready, go to [Deploy and Install]({{< ref "docs/overview/demo/install-demo" >}}) to begin.
