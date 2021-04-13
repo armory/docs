@@ -8,6 +8,8 @@ aliases:
   - /docs/spinnaker/operator/
 ---
 
+{{< include "armory-license.md" >}}
+
 ## Two types of Kubernetes Operators for installing Spinnaker
 
 * The open source Spinnaker Operator for Kubernetes installs open source Spinnaker<sup>TM</sup>. You can download the Operator from its GitHub [repo](https://github.com/armory/spinnaker-operator).
