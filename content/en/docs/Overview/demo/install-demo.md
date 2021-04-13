@@ -27,7 +27,7 @@ For this instance, make sure the following ports are open:
 * `443` for the GUI and API
 * `30080` for the demo app
 
-> The example above assume an EC2 instance in AWS, but you can use any similar virtual machine from your preferred cloud provider (GCP, Azure, OCI, etc.).
+> This example assume an EC2 instance in AWS, but you can use any similar virtual machine from your preferred cloud provider (GCP, Azure, OCI, etc.).
 
 ## Install Minnaker
 

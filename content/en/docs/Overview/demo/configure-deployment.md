@@ -56,7 +56,7 @@ Remember that in this demo, the production environment is in a k3s cluster runni
 
     Once the manifest is updated, click **{{< icon "check-circle" >}} Save Changes**.
 
-1. Back on the **PIPELINES** page, start a new manual execution of the pipeline. Remember that you will have to approve the manual judgment step. Once complete, you can confirm the new service from the host shell:
+1. Back on the **PIPELINES** page, start a new manual execution of the pipeline. Remember that you have to approve the manual judgment step. Once complete, you can confirm the new service from the host shell:
 
   ```bash
   kubectl get services -n prod
