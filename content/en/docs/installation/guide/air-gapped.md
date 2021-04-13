@@ -6,6 +6,8 @@ description: >
   Options for deploying Armory Enterprise for Spinnaker in an environment that is isolated from the internet.
 ---
 
+{{< include "armory-license.md" >}}
+
 ## Overview of air-gapped environments
 
 An air-gapped environment is one where any combination of the following conditions are true:

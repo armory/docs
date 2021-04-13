@@ -6,6 +6,8 @@ description: >
   Use the Armory Operator to deploy Spinnaker or Armory Enterprise for Spinnaker in a Lightweight Kubernetes (K3s) instance running on an AWS EC2 virtual machine. This environment is for proofs of concept and development.
 ---
 
+{{< include "armory-license.md" >}}
+
 ## Overview of installing Armory for proofs of concept work
 
 This guide walks you through using the [Armory Operator]({{< ref "operator" >}}) to install Armory in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.

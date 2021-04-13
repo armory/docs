@@ -10,7 +10,9 @@ aliases:
   - /docs/spinnaker/install/
 ---
 
-## Methods for installing Spinnaker or Armory Enterprise
+{{< include "armory-license.md" >}}
+
+## Methods for installing Armory Enterprise
 
 There are several methods to install Armory or open source Spinnaker:
 
