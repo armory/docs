@@ -9,7 +9,7 @@ aliases:
 
 ## Overview
 
-Armory Enteprise for Spinnaker is an superset of Spinnaker, which itself is a collection of microservices working in concert to create a single continuous delivery / deployment service.
+Armory Enteprise for Spinnaker is a superset of Spinnaker, which itself is a collection of microservices working in concert to create a single continuous delivery / deployment service.
 
 Installation and configuration of Armory Enterprise for Spinnaker can seem a daunting task for those not yet familiar with open-source Spinnaker, so we created Minnaker: a demo deployment of Spinnaker designed to run in a single instance (EC2 or other virtual machine).
 
