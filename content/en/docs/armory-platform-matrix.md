@@ -235,6 +235,14 @@ The following table lists the supported CI systems:
 | GitHub Actions     | n/a                    | All supported versions | Webhook integration |
 | Jenkins            | All supported versions | All supported versions |                     |
 
+## Custom stages
+
+Armory Enterprise includes custom stages that you can use to extend the capabilities of Armory Enterprise. Some of these stages are available out of the box while others are available as plugins to Armory Enterprise.
+
+| Stage              | Armory           | Notes                 |
+|--------------------|------------------|-----------------------|
+| [Evaluate Artifacts]({{< ref "evaluate-artifacts-stage-enable.md" >}}) | 2.24.0 and later | Available as a plugin |
+
 ## Deployment targets
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
@@ -266,7 +274,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 {{</ caas-gce-deploy-strategies.inline >}}
 -->
 
-| Provider                    | Deployment strategies                      | Armory Versions        | Notes |
+| Provider                    | Deployment strategies                      | Armory         | Notes |
 | --------------------------- | ------------------------------------------ | ---------------------- | ----- |
 | Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |       |
 
@@ -276,14 +284,14 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 
 These are providers that are manifest based, so Armory applies the manifest and leaves the rollout logic to the platform itself.
 
-| Provider           | Supported Versions | Armory Versions        | Notes |
+| Provider           | Version | Armory         | Notes |
 | -----------------  | ------------------ | ---------------------- | ----- |
 | Kubernetes         | 1.16 or later       | All supported versions |       |
 | Amazon AWS EKS     | All versions       | All supported versions |       |
 | Google GKE         | All versions       | All supported versions |       |
 
 
-| Provider       | Deployment strategies                      | Armory Versions        | Notes |
+| Provider       | Deployment strategies                      | Armory         | Notes |
 | -------------- | ------------------------------------------ | ---------------------- | ----- |
 | Amazon AWS ECS | <ul><li>Red/Black aka Blue/Green</li></ul> | All supported versions |       |
 
@@ -303,7 +311,7 @@ These are providers that are manifest based, so Armory applies the manifest and 
 {{</ caas-cf-deploy-strategies.inline >}}
 -->
 
-| Provider                | Supported Versions                   | Deployment strategies                      | Armory Versions        | Notes                    |
+| Provider                | Version                   | Deployment strategies                      | Armory         | Notes                    |
 | ----------------------- | ------------------------------------ | ------------------------------------------ | ---------------------- | ------------------------ |
 | Google Cloud App Engine |                                      | <ul><li>Custom</li></ul>                   | All supported versions |                          |
 | Cloud Foundry           | CC API Version: 2.103.0+ and 3.38.0+ | {{< caas-cf-deploy-strategies.inline />}}  | All supported versions |                          |
@@ -326,11 +334,9 @@ You write the function and use Armory to manage the rollout of iterative version
 -->
 
 
-| Provider          | Deployment strategies                        | Armory Versions        | Notes |
+| Provider          | Deployment strategies                        | Armory         | Notes |
 | ----------------- | -------------------------------------------- | ---------------------- | ----- |
 | Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |       |
-
-
 
 ## Dynamic accounts
 
