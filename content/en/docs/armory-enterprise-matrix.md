@@ -1,8 +1,10 @@
 ---
-title: Armory Platform Compatibility Matrix
-linkTitle: Armory Platform Compatibility
+title: Armory Enterprise Compatibility Matrix
+linkTitle: Armory Compatibility Matrix
 weight: 100
-description: "Information about support and compatibility for the Armory Platform."
+description: "Information about support and compatibility for Armory Enterprise."
+aliases:
+  - /docs/armory-platform-matrix/
 ---
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables#
@@ -10,7 +12,7 @@ Or you can write raw HTML :shrug: You might want to do that if you need to do bu
 Or a mixture of html + markdown. ## Deployment targets has an example of what this might look like
 -->
 
-This page describes the features and capabilities that Armory supports. Note that although Spinnaker™ is part of the Armory Platform, what Open Source Spinnaker supports and what Armory supports is not a one-to-one relationship.
+This page describes the features and capabilities that Armory supports. Note that although Spinnaker™ is part of Armory Enterprise, what Open Source Spinnaker supports and what Armory supports is not a one-to-one relationship.
 
 ## Legend
 <!-- Copy and paste the below badges that apply to your area -->
