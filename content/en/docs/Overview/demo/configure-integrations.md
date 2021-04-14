@@ -131,7 +131,7 @@ Now let's set up a webhook to trigger a pipeline from a push to a GitHub reposit
     ./spinsvc/deploy.sh
     ```
 
-   You can use watch kubectl get pods,spinsvc -n spinnaker from the host shell to monitor the status of the redeployment.
+   You can use `watch kubectl get pods,spinsvc -n spinnaker` from the host shell to monitor the status of the redeployment.
 
 ### Define the webhook
 
