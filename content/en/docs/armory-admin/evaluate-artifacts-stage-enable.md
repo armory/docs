@@ -128,3 +128,7 @@ Perform the following steps to enable the plugin for the Evaluate Artifact stage
 
 - 0.1.0 - Improved the user experience. Execution errors for the stage now display in the UI.
 - 0.0.10 - Initial Release
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "evaluate-artifacts-stage-use.md" >}}
