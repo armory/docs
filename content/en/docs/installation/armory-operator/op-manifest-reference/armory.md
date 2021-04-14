@@ -9,7 +9,7 @@ aliases:
 
 ![Proprietary](/images/proprietary.svg)
 
-**spec.spinnakerConfig.config.armory**
+## **spec.spinnakerConfig.config.armory**
 
 ```yaml
 armory:
@@ -110,3 +110,7 @@ armory:
   - `path`: (Default: `kubernetes`) (Applies to Kubernetes authentication method) Path of the Kubernetes authentication backend mount.
   - `role`: (Applies to Kubernetes authentication method) Name of the role against which the login is being attempted.
   - `authMethod`: Method used to authenticate with the Vault endpoint. Must be either `KUBERNETES` for Kubernetes service account auth or `TOKEN` for Vault token auth. The `TOKEN` method requires a `VAULT_TOKEN` environment variable for Operator and the services.
+
+## Kustomize patch examples
+
+You can see examples in the `spinnaker-kustomize-patches` repo's [`armory` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/armory).
