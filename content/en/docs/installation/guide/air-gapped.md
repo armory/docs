@@ -25,7 +25,7 @@ If you are unable to access this bucket from the machine running Halyard, host t
 
 ### Using a custom bucket and BOM
 
-Your GCS or S3 compatible bucket needs to contain a `versions.yml` at the root of the bucket with the following information:
+Your GCS or S3 compatible bucket needs to contain a `versions.yml` at the root of the bucket with the following information:`````
 
 ```yaml
 latestHalyard: {{< param halyard-armory-version >}}
@@ -39,6 +39,41 @@ versions:
 ```
 
 `latestHalyard` and `latestSpinnaker` are used to notify users of new version of Halyard and Armory. You can optionally update them with newer versions. `versions` is a list of available versions. It is optional if you don't intend to show new versions when `hal version list` is run.
+
+### Enabling a custom bucket with the Spinnaker Operator
+
+To enable custom storage with the Operator start with the manifests located in this subdirectory: https://github.com/armory/spinnaker-kustomize-patches/tree/master/operator
+
+hint: You can clone this repo in its entirety to install and configure Spinnaker.  `git clone https://github.com/armory/spinnaker-kustomize-patches.git`
+
+hint: The [spinnaker-kustomize-patches](https://github.com/armory/spinnaker-kustomize-patches/) repo provides various templates for configuring Spinnaker.
+
+hint: This repo uses kustomize to deploy the spinnaker operator.  To learn more about kustomize check out this link (TODO: find a link on kustomize)
+
+Download and install the spinnaker operator into the `operator` folder mentioned above.
+
+```bash
+curl -L https://github.com/armory-io/spinnaker-operator/releases/download/v1.2.5/manifests.tgz | tar -xz
+```
+
+Now you should see the following directory structure:
+
+```bash
+operator$ tree -L 2
+.
+├── deploy
+│   ├── crds
+│   ├── openshift
+│   ├── operator
+│   └── spinnaker
+├── halyard-local.yml
+├── kustomization.yml
+├── patch-config.yaml
+└── patch-validations.yaml
+```
+
+Update the `halyare-local.yml` so that it points to your new s3 bucket.
+
 
 ### Enabling a custom bucket From Halyard
 
