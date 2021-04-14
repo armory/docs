@@ -117,7 +117,7 @@ Now let's set up a webhook to trigger a pipeline from a push to a GitHub reposit
     sed -i -e 's/github-token=xxx/github-token=<github-token>/g' spinsvc/secrets/secrets-example.env
     ```
 
-1. Run `create-secrets.sh` in `spinsvc/secrets` to update the [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) with the new token.
+1. Run `create-secrets.sh` in `spinsvc/secrets` to update the generated [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/) with the new token.
 
 1. Under `spinsvc/accounts/git/`, open the files `patch-github.yml` and `patch-gitrepo.yml`. Uncomment the `token` key, and confirm that it's using the `github-token` secret:
 
