@@ -9,24 +9,9 @@ aliases:
 
 ## Overview
 
-Armory Enteprise for Spinnaker is a superset of Spinnaker, which itself is a collection of microservices working in concert to create a single continuous delivery / deployment service.
+Armory Enteprise is a superset of Spinnaker, which itself is a collection of microservices working in concert to create a single continuous delivery / deployment service.
 
 Installation and configuration of Armory Enterprise for Spinnaker can seem a daunting task for those not yet familiar with open-source Spinnaker, so we created Minnaker: a demo deployment of Spinnaker designed to run in a single instance (EC2 or other virtual machine).
-
-## Features
-
-What is included in Armory Easy Poc? 
-
-Armory Enterprise 
-
-- Infrastructure as Code (IaC) using gitops and Terraform
-- Policy Driven Deployment (PDD) - for security and compliance (Security as Code)
-- Declarative Spinnaker Application and Pipelines for (Pipelines as Code)
-- Automatic EKS Provisioning through gitops
-- Armory Agent for Kubernetes (delegate for kubernetes)
-- Enterprise Armory Platform powered by Spinnaker
-- Built in Kubernetes deployment namespace for testing (QA, Stage, Prod)
-- Extension points through yaml (Jenkins, Git, JIRA, Docker hub)
 
 Minnaker uses [K3s](https://k3s.io/) as the Kubernetes server. If you already have a Kubernetes cluster for testing, you can skip to [Install Minnaker]({{< ref "install-demo#install-minnaker" >}}).
 
