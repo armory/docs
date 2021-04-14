@@ -12,7 +12,7 @@ aliases:
 
 Some artifact types and their associated stages, such as Kubernetes, support  using SpEL to read parameters from the Spinnaker context and inject them into an artifacts manifest at deploy time. Other stages, such as the Terraform Integration stage, do not support this out of the box. The Evaluate Artifacts Stage plugin adds supports for evaluating SpEL against any artifact within your Spinnaker pipeline.
 
-For information about how to use the stage, see [Use the Evaluate Artifacts Stage]({{< ref "evaluate-artifacts-stage-use.md" >}}).
+For information about how to use the stage, see {{< linkWithTitle "evaluate-artifacts-stage-use.md" >}}.
 
 ## {{% heading "prereq" %}}
 
