@@ -32,7 +32,7 @@ If deploying to an EC2 instance, we suggest using a t3a.xlarge instance.
 
 ### Concepts
 
-The Minnaker demo uses the Armory Operator to manage services, and Kustomize to manage configuration files. If you're unfamiliar with either, check out the following docs before you being:
+The Minnaker demo uses the Armory Operator to manage services, and Kustomize to manage configuration files. If you're unfamiliar with either, check out the following docs before you begin:
 
  - {{< linkWithTitle "op-config-kustomize#how-kustomize-works" >}}
  - {{< linkWithTitle "armory-operator#how-the-spinnaker-operator-and-the-armory-operator-work >}}
