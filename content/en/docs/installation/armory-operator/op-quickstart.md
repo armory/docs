@@ -161,7 +161,7 @@ For this quickstart, you can find bare minimum patches in `/spinnaker-operator/d
 
 The following example uses an AWS S3 bucket. You can find configuration for other storage types in the [Persistent Storage]({{< ref "persistent-storage" >}}) reference.
 
->This quickstart example is suitable for a proof of concept. For production environments, you should use a robust set of Kustomize patches. See {{< linkWithTitle "op-config-customize.md" >}}.
+>This quickstart example is suitable for a proof of concept. For production environments, you should use a robust set of Kustomize patches. See the [Configure Armory Enterprise Using Kustomize]({{< ref "op-config-Kustomize" >}}) guide for details.
 
 {{< tabs name="deploy-spinnaker-kustomize" >}}
 
