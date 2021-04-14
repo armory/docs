@@ -13,7 +13,7 @@ Armory Enteprise is a superset of Spinnaker, which itself is a collection of mic
 
 Installation and configuration of Armory Enterprise for Spinnaker can seem a daunting task for those not yet familiar with open-source Spinnaker, so we created Minnaker: a demo deployment of Spinnaker designed to run in a single instance (EC2 or other virtual machine).
 
-Minnaker uses [K3s](https://k3s.io/) as the Kubernetes server. If you already have a Kubernetes cluster for testing, you can skip to [Install Minnaker]({{< ref "install-demo#install-minnaker" >}}).
+Minnaker uses [K3s](https://k3s.io/) as the Kubernetes implementation. If you already have a Kubernetes cluster for testing, you can skip to [Install Minnaker]({{< ref "install-demo#install-minnaker" >}}).
 
 ## {{% heading "prereq" %}}
 
