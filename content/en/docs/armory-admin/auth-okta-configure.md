@@ -1,6 +1,6 @@
 ---
-title: Configuring Auth for Spinnaker Using Okta SAML
-linkTitle: Configuring Okta for Auth
+title: Configure Auth for Spinnaker Using Okta SAML
+linkTitle: Configure Okta for Auth
 description: >
   Configure Okta for authentication and authorization in Spinnaker.
 aliases:

@@ -1,5 +1,5 @@
 ---
-title: Connecting Docker Registries
+title: Connect Docker Registries
 description: >
   Learn how to configure Spinnaker to access a Docker registry.
 ---

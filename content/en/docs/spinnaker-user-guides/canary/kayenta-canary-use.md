@@ -1,6 +1,6 @@
 ---
-linkTitle: Using Automatic Canary Analysis
-title: Using Automatic Canary Analysis in Spinnaker
+linkTitle: Use Automatic Canary Analysis
+title: Use Automatic Canary Analysis in Spinnaker
 aliases:
   - /spinnaker_user_guides/kayenta/
   - /docs/spinnaker-user-guides/kayenta

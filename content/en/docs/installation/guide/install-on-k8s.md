@@ -8,6 +8,8 @@ description: >
   Use Armory-extended Halyard or the Armory Operator to deploy Armory Enterprise for Spinnaker in Kubernetes.
 ---
 
+{{< include "armory-license.md" >}}
+
 ## Overview of installing Armory Enterprise for Spinnaker in Kubernetes
 
 This guide describes the initial installation of Armory Enterprise in Kubernetes. You can choose between two different installation methods: Armory Operator or Halyard. By the end of this guide, you will have an instance of Armory Enterprise up and running on your Kubernetes cluster.  The document does not fully cover the following:

@@ -1,6 +1,6 @@
 ---
-title: Managing Spinnaker Application Secrets Using HashiCorp Vault
-linkTitle: Managing Application Secrets
+title: Manage Spinnaker Application Secrets Using HashiCorp Vault
+linkTitle: Manage Application Secrets
 aliases:
   - /spinnaker/app_secrets/
   - /docs/spinnaker/app-secrets/

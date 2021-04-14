@@ -1,11 +1,11 @@
 ---
-title: Configuring Spinnaker's Orca Service to Use a Relational Database Management System
-linkTitle: Configuring Orca to use RDBMS
+title: Configure Spinnaker's Orca Service to Use SQL RDBMS
+linkTitle: Configure Orca to use SQL
 aliases:
   - /spinnaker_install_admin_guides/orca-sql/
   - /docs/spinnaker-install-admin-guides/orca-sql/
 description: >
-  Configure Spinnaker's Orca service to use an RDMS to store its pipeline execution.
+  Configure Spinnaker's Orca service to use an RDBMS to store its pipeline execution.
 ---
 
 ## Advantages to using an RDMS with Orca

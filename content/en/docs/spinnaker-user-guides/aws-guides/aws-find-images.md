@@ -1,5 +1,5 @@
 ---
-title: Baking and Finding Custom Amazon Machine Images in Spinnaker
+title: Bake and Find Custom Amazon Machine Images in Spinnaker
 linkTitle: Custom AMIs
 description: >
   Learn how to create a Spinnaker pipeline for baking and distributing custom AMIs.

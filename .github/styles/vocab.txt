@@ -4,6 +4,7 @@ Armory Agent
 Armory Operator
 artifactory
 Artifactory
+Astra
 AWS
 Bitbucket
 CLI
@@ -11,6 +12,7 @@ clouddriver
 Clouddriver
 Cloud Foundry
 config
+Debian
 Deck
 Dinghy
 dinghyfile
@@ -22,6 +24,7 @@ Gate
 GCP
 GitHub
 GitOps
+Gradle
 hal
 Halyard
 halyard

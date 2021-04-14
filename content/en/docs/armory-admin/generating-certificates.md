@@ -1,6 +1,6 @@
 ---
-title: Generating Certificates for Spinnaker
-linkTitle: Generating Certificates
+title: Generate Certificates for Spinnaker
+linkTitle: Generate Certificates
 aliases:
   - /docs/spinnaker-install-admin-guides/generating-certificates/
 description: >

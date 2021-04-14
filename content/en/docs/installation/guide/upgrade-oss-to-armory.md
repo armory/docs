@@ -7,6 +7,8 @@ description: >
   Upgrade your open source Spinnaker deployment to Armory Enterprise for Spinnaker using Armory-extended Halyard.
 ---
 
+{{< include "armory-license.md" >}}
+
 ## Overview of upgrading Spinnaker to Armory Enterprise for Spinnaker
 
 Armory Enterprise for Spinnaker is installed with Armory-extended Halyard, very similarly to the way Open Source Spinnaker<sup>TM</sup> is installed with Open Source Halyard. These are the key differences:
