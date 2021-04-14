@@ -7,7 +7,7 @@ aliases:
   - /operator_reference/artifact/
 ---
 
-**spec.spinnakerConfig.config.artifacts**
+## spec.spinnakerConfig.config.artifacts
 
 ```yaml
 artifacts:
@@ -280,3 +280,4 @@ templates:
  ```
 
 `templatePath`: The path to the Jinja template to use for artifact extraction. File needs to be present on the machine running Spinnaker.
+

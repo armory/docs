@@ -7,7 +7,7 @@ aliases:
   - /operator_reference/canary/
 ---
 
-**spec.spinnakerConfig.config.canary**
+## spec.spinnakerConfig.config.canary
 
 ```yaml
 canary:

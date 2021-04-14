@@ -9,7 +9,7 @@ aliases:
 
 ![Proprietary](/images/proprietary.svg)
 
-## **spec.spinnakerConfig.config.armory**
+## spec.spinnakerConfig.config.armory
 
 ```yaml
 armory:
