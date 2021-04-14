@@ -24,7 +24,7 @@ Armory helps software teams ship better software, faster. Armory Enterprise is a
 
 ## Additional Armory products
 
-### Kubernets Operators for installation
+### Kubernetes Operators for installation
 
 The [Armory Operator]({{< ref "armory-operator" >}}) is a Kubernetes Operator that helps you configure, deploy, and update Armory Enterprise on Kubernetes clusters.
 

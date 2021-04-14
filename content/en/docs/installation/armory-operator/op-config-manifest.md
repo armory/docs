@@ -67,7 +67,7 @@ metadata:
 $ kubectl get spinsvc prod
 ```
 
-Note that you can use `spinsvc` for brevity. You can also use  `spinnakerservices.spinnaker.io` (Spinnaker) or `spinnakerservices.spinnaker.armory.io` (Armory Enterprise).
+Note that you can use `spinsvc` for brevity. You can also use `spinnakerservices.spinnaker.armory.io` (Armory Enterprise) or `spinnakerservices.spinnaker.io` (Spinnaker).
 
 ### spec.spinnakerConfig
 
