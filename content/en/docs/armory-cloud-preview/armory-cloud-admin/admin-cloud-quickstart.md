@@ -9,11 +9,11 @@ aliases:
 
 ## Logging in to the Armory Cloud Console 
 
-Armory provides a set of credentials to log in to the Cloud Console. These are separate from the user accounts that app developers use to access the Armory Platform UI and API. The Cloud Console is where you go to make changes to the Armory Cloud environment and what it has access to. For example, you can add deployment targets or other resources in the Cloud Console. When app developers log in to the Armory Platform, they can use these resources in their deployment pipelines.
+Armory provides a set of credentials to log in to the Cloud Console. These are separate from the user accounts that app developers use to access the Armory Enterprise UI and API. The Cloud Console is where you go to make changes to the Armory Cloud environment and what it has access to. For example, you can add deployment targets or other resources in the Cloud Console. When app developers log in to Armory Enterprise, they can use these resources in their deployment pipelines.
 
 As a design partner, Armory provides credentials for you to use for logging in to the Cloud Console.
 
-From here, you can select which environment you want to configure or open the Armory Platform for that environment.
+From here, you can select which environment you want to configure or open Armory Enterprise for that environment.
 
 ## Configuring the environment
 
@@ -131,8 +131,8 @@ Save the configuration.
 
 These are optional but provide a way for your developers to automatically trigger their deployment pipelines. -->
 
-## Accessing the Armory Platform
+## Accessing Armory Enterprise
 
-The Armory Platform is where your app developers create their delivery pipelines. Once the environments are configured, your app developers can access Armory Cloud to start deploying applications.
+Armory Enterprise is where your app developers create their delivery pipelines. Once the environments are configured, your app developers can access Armory Cloud to start deploying applications.
 
 The URL to access the Armory platform is available on the Cloud Console homepage when you click **Launch**.

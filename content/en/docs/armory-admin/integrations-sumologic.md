@@ -1,5 +1,5 @@
 ---
-title: Integrate a Sumo Logic Dashboard in the Armory Platform
+title: Integrate a Sumo Logic Dashboard in Armory Enterprise
 linkTitle: Integrate Sumo Logic
 aliases:
   - /docs/spinnaker-install-admin-guides/sumologic-dashboard/

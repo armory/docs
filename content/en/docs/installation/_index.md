@@ -26,7 +26,7 @@ There are several methods to install Armory or open source Spinnaker:
 
 All the preceding methods share similar configurations, and you can migrate between them if your needs change.
 
-> Armory does not generate default usernames and passwords for user accounts for any service. Manage these by configuring authentication and authorization for the Armory Platform.
+> Armory does not generate default usernames and passwords for user accounts for any service. Manage these by configuring authentication and authorization for Armory Enterprise.
 
 ## Guides
 

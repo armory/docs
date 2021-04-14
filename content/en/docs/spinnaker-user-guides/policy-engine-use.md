@@ -1,5 +1,5 @@
 ---
-title: Use Policy Engine with the Armory Platform
+title: Use Policy Engine with Armory Enterprise
 linkTitle: Use Policy Engine
 description: >
   Add policies to your Open Policy Agent (OPA) instance for Spinnaker to use when it performs validation to make sure your pipelines meet your policy requirements.
