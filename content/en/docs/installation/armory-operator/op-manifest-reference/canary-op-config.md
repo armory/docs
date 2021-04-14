@@ -253,3 +253,7 @@ canary:
             - METRICS_STORE
             - CONFIGURATION_STORE
             - OBJECT_STORE
+
+## Kustomize patch examples
+
+You can see examples in the `spinnaker-kustomize-patches` repo's [`canary` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/accounts/canary).

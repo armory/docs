@@ -8,7 +8,7 @@ aliases:
 ---
 
 
-**spec.spinnakerConfig.config.metricStores**
+## spec.spinnakerConfig.config.metricStores
 
 Metrics stores are used to store metrics for the various Spinnaker micro-services. These metrics are not related in any way to Canary deployments. The technologies backing both are similar, but metric stores are places to push metrics regarding Spinnaker metrics, whereas Canary metrics stores are used to pull metrics to analyze deployments. This configuration only affects the publishing of metrics against whichever metric stores you enable (it can be more than one).
 
@@ -74,3 +74,7 @@ metricStores:
 - `insert_key`: Your New Relic Insights insert key. Supports encrypted value.
 - `host`: The URL to post metric data to. In almost all cases, this is set correctly by default and should not be used.
 - `tags`: Your custom tags. Please delimit the KVP with colons, e.g. `app:test` `env:dev`
+
+## Kustomize patch examples
+
+You can see examples in the `spinnaker-kustomize-patches` repo's [`metric-stores` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/accounts/metric-stores).

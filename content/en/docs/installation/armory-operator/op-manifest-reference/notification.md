@@ -7,7 +7,7 @@ aliases:
   - /operator_reference/notification/
 ---
 
-**spec.spinnakerConfig.config.notifications**
+## spec.spinnakerConfig.config.notifications
 
 ```yaml
 notifications:
@@ -49,3 +49,7 @@ notifications:
 
 - `enabled`: true or false.
 - `token`: Your GitHub account token. Supports encrypted value.
+
+## Kustomize patch examples
+
+ You can see examples in the `spinnaker-kustomize-patches` repo's [`notifications` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/accounts/notifications).

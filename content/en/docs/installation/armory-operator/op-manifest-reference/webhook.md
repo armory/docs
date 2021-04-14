@@ -8,9 +8,7 @@ aliases:
 ---
 
 
-## Parameters
-
-**spec.spinnakerConfig.config.webhook**
+## spec.spinnakerConfig.config.webhook
 
 ```yaml
 webhook:

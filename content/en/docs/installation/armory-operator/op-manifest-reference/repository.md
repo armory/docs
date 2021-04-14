@@ -8,7 +8,7 @@ aliases:
 ---
 
 
-**spec.spinnakerConfig.config.repository**
+## spec.spinnakerConfig.config.repository
 
 ```yaml
 repository:
@@ -41,3 +41,7 @@ repository:
       - `repoType`: The package type of repo in your artifactory to be searched: maven (default).
       - `username`: The username of the artifactory user to authenticate as.
       - `password`: The password of the artifactory user to authenticate as. Supports encrypted value.
+
+## Kustomize patch examples
+
+You can see examples in the `spinnaker-kustomize-patches` repo's [`git` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/accounts/git).

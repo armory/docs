@@ -7,7 +7,7 @@ aliases:
   - /operator_reference/features/
 ---
 
-**spec.spinnakerConfig.config.features**
+## spec.spinnakerConfig.config.features
 
 ```yaml
 features:

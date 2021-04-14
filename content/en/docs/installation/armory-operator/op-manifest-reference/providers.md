@@ -7,7 +7,7 @@ aliases:
   - /operator_reference/providers/
 ---
 
-## Providers Parameters
+## spec.spinnakerConfig.config.providers
 
 ```yaml
 providers:
@@ -1036,3 +1036,7 @@ tencentcloud:
  - `sshUserName`: (*Required*) The ssh username for the baking configuration.
  - `templateFile`: This is the name of the packer template that will be used to bake images from this base image. The template file must be found in this list [https://github.com/spinnaker/rosco/tree/master/rosco-web/config/packer](https://github.com/spinnaker/rosco/tree/master/rosco-web/config/packer), or supplied as described here: [https://spinnaker.io/setup/bakery/](https://spinnaker.io/setup/bakery/)
  - `zone`: (*Required*) The zone for the baking configuration.
+
+## Kustomize patch examples
+
+ You can see examples in the `spinnaker-kustomize-patches` repo's [`accounts` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/accounts).

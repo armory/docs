@@ -7,7 +7,7 @@ aliases:
   - /operator_reference/stats/
 ---
 
-**spec.spinnakerConfig.config.stats**
+## spec.spinnakerConfig.config.stats
 
 ```yaml
 stats:

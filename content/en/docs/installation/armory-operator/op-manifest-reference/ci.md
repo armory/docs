@@ -199,3 +199,7 @@ wercker:
 - `address`: (*Required*) The address your Wercker master is reachable at.
 - `user`: The username of the Wercker user to authenticate as.
 - `token`: The personal token of the Wercker user to authenticate as. Supports encrypted value.
+
+## Kustomize patch examples
+
+You can see examples in the `spinnaker-kustomize-patches` repo's [`ci` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/accounts/ci).
