@@ -3,14 +3,14 @@ title: Spinnaker Accounts CRD
 linkTitle: Spinnaker Accounts CRD
 weight: 50
 description: >
-  Define and manage Kubernetes accounts outside of Spinnaker's mainfest file.
+  Define and manage Kubernetes accounts outside of a manifest file.
 ---
 
 {{< include "experimental-feature.html" >}}
 
 ## `SpinnakerAcount` Custom Resource Definition overview
 
-The Operator comes with a `SpinnakerAccount` Custom Resource Definition (CRD) for managing Kubernetes accounts that you want to use with Spinnaker. This `SpinnakerAccount` resource enables defining and managing Kubernetes accounts outside of Spinnaker's manifest file. You create a separate manifest for each Kubernetes account and `kubectl apply` each manifest. `kubectl` delegates to the Operator, which then processes the manifest into the requisite configuration and adds the account to Spinnaker.
+The Operator comes with a `SpinnakerAccount` Custom Resource for managing Kubernetes accounts that you want to use with Spinnaker. This `SpinnakerAccount` resource enables defining and managing Kubernetes accounts outside of Spinnaker's manifest file. You create a separate manifest for each Kubernetes account and `kubectl apply` each manifest. `kubectl` delegates to the Operator, which then processes the manifest into the requisite configuration and adds the account to Armory Enterprise or Spinnaker.
 
 For example, you have a pipeline that provisions a Kubernetes
 cluster with Terraform. If you want that new cluster to be available, you can
@@ -126,3 +126,7 @@ spec:
             - my-eks-cluster
             command: aws-iam-authenticator
 ```
+
+## Help resources
+
+{{% include "armory-operator/help-resources.md" %}}

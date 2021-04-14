@@ -9,7 +9,7 @@ description: >
 
 ## Custom Halyard configuration
 
-To override Halyard's configuration, create a Kubernetes [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) with the configuration changes you need. For example, if you using [secrets management with Vault]({{< ref "secrets-vault" >}})(![Proprietary](/images/proprietary.svg)), Halyard and Operator containers need your Vault configuration:
+To override Halyard's configuration, create a Kubernetes [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) with the configuration changes you need. For example, if you're using [secrets management with Vault]({{< ref "secrets-vault" >}})(![Proprietary](/images/proprietary.svg)), Halyard and Operator containers need your Vault configuration:
 
 ```yaml
 apiVersion: v1
@@ -57,3 +57,7 @@ spec:
           name: halyard-custom-config
         name: halconfig-volume
 ```
+
+## Help resources
+
+{{% include "armory-operator/help-resources.md" %}}

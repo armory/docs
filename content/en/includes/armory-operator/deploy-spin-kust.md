@@ -1,27 +1,31 @@
-Once you have configured your patch files, you can deploy Spinnaker.
+Once you have configured your patch files, you can deploy Armory Enterprise.
 
-Create the `spinnaker` namespace. If you want to use a different namespace, you must update the `namespace` value in your `kustomization.yml` file.
+1. Create the `spinnaker` namespace:
 
-```bash
-kubectl create ns spinnaker
-```
+   ```bash
+   kubectl create ns spinnaker
+   ```
 
-If you have Kustomize installed, run the following command from the `spinnaker-kustomize-patches` directory:
+   If you want to use a different namespace, you must update the `namespace` value in your `kustomization.yml` file.
 
-```bash
-# If you have `kustomize` installed:
-kustomize build | kubectl apply -f -
-```
+1. Apply the manifest:
 
-Otherwise, run:
+   Run the command from the `spinnaker-kustomize-patches` directory.
 
-```yaml
-# If you only have `kubectl` installed
-kubectl apply -k .
-```
+   If you have Kustomize installed:
 
-Watch the install progress and see the pods being created:
+   ```bash
+   kustomize build | kubectl apply -f -
+   ```
 
-```bash
-kubectl -n spinnaker get spinsvc spinnaker -w
-```
+   Otherwise:
+
+   ```yaml
+   kubectl apply -k .
+   ```
+
+1. Watch the install progress and see the pods being created:
+
+   ```bash
+   kubectl -n spinnaker get spinsvc spinnaker -w
+   ```

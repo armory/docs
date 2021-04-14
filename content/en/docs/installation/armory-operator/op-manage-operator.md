@@ -3,7 +3,7 @@ title: Manage Operator
 linkTitle: Manage Operator
 weight: 50
 description: >
-  Manage, upgrade, or uninstall Spinnaker using the Operator.
+  Manage, upgrade, or uninstall the Armory Operator.
 ---
 
 {{< include "armory-operator/os-operator-blurb.md" >}}
@@ -12,7 +12,7 @@ description: >
 
 Uninstalling the Operator involves deleting its deployment and `SpinnakerService` CRD. When you delete the Operator CRD, Kubernetes deletes any installation created by Operator. This occurs because the CRD is set as the owner of the resources, so they get garbage collected.
 
-There are two ways in which you can remove this ownership relationship so that Spinnaker is not deleted when deleting the Operator: [replace Operator with Halyard](#replace-operator-with-halyard) or [removing Operator ownership of resources](#remove-operator-ownership-of-spinnaker-resources).
+There are two ways in which you can remove this ownership relationship so that Armory Enterprise is not deleted when deleting the Operator: [replace Operator with Halyard](#replace-operator-with-halyard) or [removing Operator ownership of resources](#remove-operator-ownership-of-spinnaker-resources).
 
 ### Replace Operator with Halyard
 
@@ -40,7 +40,7 @@ default/
   service-settings/
 ```
 
-After that, move these files to your Halyard home directory and deploy Spinnaker with the `hal deploy apply` command.
+After that, move these files to your Halyard home directory and deploy Armory Enterprisewith the `hal deploy apply` command.
 
 Finally, delete Operator and its CRDs from the Kubernetes cluster.
 
@@ -49,9 +49,9 @@ kubectl delete -n <namespace> -f deploy/operator/<installation type>
 kubectl delete -f deploy/crds/
 ```
 
-### Remove Operator ownership of Spinnaker resources
+### Remove Operator ownership of Armory Enterpriseresources
 
-Run the following script to remove ownership of Armory resources, where `NAMESPACE` is the namespace where Spinnaker is installed:
+Run the following script to remove ownership of Armory resources, where `NAMESPACE` is the namespace where Armory Enterpriseis installed:
 
 ```bash
 #! /usr/bin/env bash
@@ -74,5 +74,4 @@ kubectl delete -f deploy/crds/
 
 ## Help resources
 
-* Spinnaker Operator: [Spinnaker Slack](https://join.spinnaker.io/), `#kubernetes-operator` channel
-* Armory Operator: contact [Armory Support](https://support.armory.io/)
+{{% include "armory-operator/help-resources.md" %}}

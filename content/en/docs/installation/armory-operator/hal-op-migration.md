@@ -3,17 +3,19 @@ title: Migrate from Halyard to the Operator
 linkTitle: Migrate from Halyard
 weight: 20
 description: >
-  Migrate your Spinnaker or Armory Enterprise installation from Halyard to the  Operator.
+  Migrate your Armory Enterprise or Spinnaker installation from Halyard to the Operator.
 ---
 
 {{< include "armory-operator/os-operator-blurb.md">}}
+
+This guide assumes you want to deploy Armory Enterprise using a single `SpinnakerSerivce.yml` manifest file rather than Kustomize patches.
 
 The migration process from Halyard to Operator can be completed in 7 steps:
 
 1. [Install the Operator]({{< ref "op-quickstart" >}}).
 1. Export configuration.
 
-    Copy the desired profile's content from the `config` file
+   Copy the desired profile's content from the `config` file
 
    For example, if you want to migrate the `default` hal profile, use the following `SpinnakerService` manifest structure:
 
@@ -35,15 +37,15 @@ The migration process from Halyard to Operator can be completed in 7 steps:
 
    Note: `config` is under `~/.hal`
 
-   More details on [SpinnakerService options]({{< ref "op-config-manifest#specspinnakerconfig" >}}) on `.spec.spinnakerConfig.config` section
+   You can see more details in [`spec.spinnakerConfig.config`]({{< ref "op-config-manifest#specspinnakerconfig" >}}).
 
-1. Export Armory profiles.
+1. Export Armory Enterprise profiles.
 
-   If you have configured Armory profiles, you need to migrate these profiles to the `SpinnakerService` manifest.
+   If you have configured Armory Enterprise profiles, you need to migrate these profiles to the `SpinnakerService` manifest.
 
-   First, identify the current profiles under  `~/.hal/default/profiles`
+   First, identify the current profiles under  `~/.hal/default/profiles`.
 
-   For each file, create an entry under `spec.spinnakerConfig.profiles`
+   For each file, create an entry under `spec.spinnakerConfig.profiles`.
 
    For example, you have the following profile:
 
@@ -62,15 +64,15 @@ The migration process from Halyard to Operator can be completed in 7 steps:
            <CONTENT>
    ```
 
-   More details on [SpinnakerService Options]({{< ref "op-config-manifest#specspinnakerconfigprofiles" >}}) in the `.spec.spinnakerConfig.profiles` section
+   You can see more details in [`spec.spinnakerConfig.profiles`]({{< ref "op-config-manifest#specspinnakerconfigprofiles" >}}).
 
-1. Export Armory settings.
+1. Export Armory Enterprise settings.
 
    If you configured Armory settings, you need to migrate these settings to the `SpinnakerService` manifest also.
 
-   First, identify the current settings under  `~/.hal/default/service-settings`
+   First, identify the current settings under  `~/.hal/default/service-settings`.
 
-   For each file, create an entry under `spec.spinnakerConfig.service-settings`
+   For each file, create an entry under `spec.spinnakerConfig.service-settings`.
 
    For example, you have the following settings:
 
@@ -88,13 +90,14 @@ The migration process from Halyard to Operator can be completed in 7 steps:
          echo:
            <CONTENT>
    ```
-   More details on [SpinnakerService Options]({{< ref "op-config-manifest#specspinnakerconfigservice-settings" >}}) on `.spec.spinnakerConfig.service-settings` section
+
+   You can see more details in [spec.spinnakerConfig.service-settings]({{< ref "op-config-manifest#specspinnakerconfigservice-settings" >}}).
 
 1. Export local file references.
 
-   If you have references to local files in any part of the config, like `kubeconfigFile`, service account json files or others, you need to migrate these files to the `SpinnakerService` manifest.
+   If you have references to local files in any part of the config, like `kubeconfigFile`, service account JSON files or others, you need to migrate these files to the `SpinnakerService` manifest.
 
-   For each file, create an entry under `spec.spinnakerConfig.files`
+   For each file, create an entry under `spec.spinnakerConfig.files`.
 
    For example, you have a Kubernetes account configured like this:
 
@@ -131,7 +134,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
            <CONTENT>
    ```
 
-   Then replace the file path in the config to match the key in the `files` section:
+   Then replace the path in the config to match the key in the `files` section:
 
    ```yaml
    kubernetes:
@@ -156,15 +159,15 @@ The migration process from Halyard to Operator can be completed in 7 steps:
      primaryAccount: prod
    ```
 
-   More details on [SpinnakerService Options]({{< ref "op-config-manifest#specspinnakerconfigfiles" >}}) on `.spec.spinnakerConfig.files` section
+   You can see more details in [spec.spinnakerConfig.files]({{< ref "op-config-manifest#specspinnakerconfigfiles" >}}).
 
 1. Export Packer template files (if used).
 
    If you are using custom Packer templates for baking images, you need to migrate these files to the `SpinnakerService` manifest.
 
-   First, identify the current templates under  `~/.hal/default/profiles/rosco/packer`
+   First, identify the current templates under  `~/.hal/default/profiles/rosco/packer`.
 
-   For each file, create an entry under `spec.spinnakerConfig.files`
+   For each file, create an entry under `spec.spinnakerConfig.files`.
 
    For example, you have the following `example-packer-config` file:
 
@@ -190,9 +193,9 @@ The migration process from Halyard to Operator can be completed in 7 steps:
            <CONTENT>
    ```
 
-   More details on [SpinnakerService Options]({{< ref "op-config-manifest#specspinnakerconfigfiles" >}}) on `.spec.spinnakerConfig.files` section
+   You can see more details in [`spec.spinnakerConfig.files`]({{< ref "op-config-manifest#specspinnakerconfigfiles" >}}).
 
-1. Validate your Armory configuration if you plan to run the Operator in cluster mode.
+1. Validate your Armory configuration if you plan to run the Operator in cluster mode:
 
    ```bash
    kubectl -n <namespace> apply -f <spinnaker service manifest> --dry-run=server
@@ -206,3 +209,6 @@ The migration process from Halyard to Operator can be completed in 7 steps:
    kubectl -n <namespace> apply -f <spinnaker service>
    ```
 
+## Help resources
+
+{{% include "armory-operator/help-resources.md" %}}

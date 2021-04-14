@@ -1,16 +1,16 @@
 ---
-title: Manage Spinnaker using the Operator
-linkTitle: Manage Spinnaker
+title: Manage Armory Enterprise using the Operator
+linkTitle: Manage Armory Enterprise
 weight: 15
 description: >
-  Manage, upgrade, or uninstall Spinnaker using the Operator.
+  Manage, upgrade, or uninstall Armory Enterprise or Spinnaker using the Operator.
 ---
 
 {{< include "armory-operator/os-operator-blurb.md">}}
 
 ## Kubernetes tools
 
-You use [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) to manage the Spinnaker lifecycle like you do with other applications deployed to Kubernetes. For example:
+You use [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) to manage the Armory Enterprise or Spinnaker lifecycle like you do with other applications deployed to Kubernetes. For example:
 
 **List instances**
 
@@ -28,7 +28,7 @@ kubectl -n <namespace> describe spinsvc spinnaker
 
 Consult the `kubectl` [docs](https://kubernetes.io/docs/reference/kubectl/) for a list of commands.
 
-## Deploy Spinnaker
+## Deploy Armory Enterprise
 
 {{< tabs name="deploy" >}}
 {{% tab name="Manifest" %}}
@@ -59,12 +59,12 @@ You can verify pod status by executing:
  kubectl -n <namespace> get pods
  ```
 
-## Upgrade Spinnaker
+## Upgrade Armory Enterprise
 
 {{< tabs name="upgrade" >}}
 {{% tab name="Manifest" %}}
 
-Change the `version` field in your manifest file to the target version for the upgrade.
+Change the `version` field in your manifest file to the target version for the upgrade:
 
 ```bash
 kind: SpinnakerService
@@ -76,7 +76,7 @@ spec:
      version: <version>
 ```
 
-Apply the updated manifest.
+Apply the updated manifest:
 
 ```bash
 kubectl -n <namespace> apply -f <path-to-manifest-file>
@@ -87,7 +87,7 @@ kubectl -n <namespace> apply -f <path-to-manifest-file>
 
 Change the `version` field in your Kustomize patch to the target version for the upgrade.
 
-Apply the update.
+Apply the update:
 
 ```bash
 kubctl -n <namespace> apply -k <path-to-kustomize-directory>
@@ -96,13 +96,13 @@ kubctl -n <namespace> apply -k <path-to-kustomize-directory>
 {{% /tab %}}
 {{< /tabs >}}
 
-You can view the upgraded services starting up by executing `describe`.
+You can view the upgraded services starting up by executing `describe`:
 
 ```bash
 kubectl -n <namespace>  describe spinsvc spinnaker
 ```
 
-Verify the upgraded version of Spinnaker.
+Verify the upgraded version of Spinnaker:
 
 ```bash
 kubectl -n <namespace> get spinsvc
@@ -118,11 +118,15 @@ spinnaker    2.20.2
 `VERSION` should reflect the target version for your upgrade.
 
 
-## Delete Spinnaker
+## Delete Armory Enterprise
 
 ```bash
 kubectl -n <namespace> delete spinnakerservice spinnaker
 ```
+
+## Help resources
+
+{{% include "armory-operator/help-resources.md" %}}
 
 ## {{% heading "nextSteps" %}}
 

@@ -18,7 +18,7 @@ There are several methods to install Armory or open source Spinnaker:
 
 | Method                             | Environment           | Description                                                          | Benefits                                                            |
 |------------------------------------|-----------------------|----------------------------------------------------------------------|-----------------------------------------------------------------|
-| [Armory Operator]({{< ref "armory-operator" >}})   | Kubernetes            | Kubernetes Operator that turns Armory's configuration declarative | GitOps friendly and ready for production use                                 |
+| [Armory Operator]({{< ref "armory-operator" >}})   |  Kubernetes Operator that enables you to configure Armory Enterprise declaratively | GitOps friendly and ready for production use                                 |
 | [Armory Halyard]({{< ref "armory-halyard" >}}) | Kubernetes            | Versatile command line interface to configure and deploy Armory   | Quick Setup                                                     |
 | [Minnaker]({{< ref "minnaker" >}})             | MacOS, Linux, Windows | Spin up a whole environment on top of Rancher K3s to deploy Armory or Spinnaker    | This is ideal if you do not have a Kubernetes cluster available and want to try out Armory or Spinnaker |
 | [Operator]({{< ref "armory-operator" >}}) | Kubernetes            | An open source Kubernetes Operator that installs open source Spinnaker | GitOps friendly and ready for production use                                 |

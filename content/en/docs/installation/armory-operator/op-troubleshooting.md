@@ -38,5 +38,5 @@ This error may be normal depending on the frequency of the error. Controllers wo
 
 ## Help resources
 
-* Spinnaker Operator: [Spinnaker Slack](https://join.spinnaker.io/), `#kubernetes-operator` channel
-* Armory Operator: contact [Armory Support](https://support.armory.io/)
+* Armory Operator: contact [Armory Support](https://support.armory.io/) or use the [Spinnaker Slack](https://join.spinnaker.io/) `#armory` channel.
+* Spinnaker Operator: [Spinnaker Slack](https://join.spinnaker.io/) `#kubernetes-operator` channel.

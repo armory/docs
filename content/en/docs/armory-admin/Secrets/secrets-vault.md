@@ -104,7 +104,7 @@ hal armory secrets vault edit \
 
 ## Configuring the Operator to use Vault secrets
 
-If you are using the Spinnaker Operator, set up a custom Halyard configuration per [this section]({{< ref "armory-operator#custom-halyard-configuration" >}}) with this content:
+If you are using the Armory Operator, set up a [custom Halyard configuration]({{< ref "op-hal-config" >}}) with this content:
 
 ```yaml
 secrets:

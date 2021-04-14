@@ -210,7 +210,7 @@ files:
 
 NOTE:  The Armory Operator interprets the double underscores in the file names as slashes indicating the directory path where the Operator saves the file.  
 
-See the "Export Packer template files" step in the [Migrating from Halyard to Operator]({{< ref "armory-operator#migrating-from-halyard-to-operator" >}}) section of the Armory Operator document for more examples.
+See the "Export Packer template files" step in the [Migrating from Halyard to Operator]({{< ref "hal-op-migration" >}}) section of the Armory Operator document for more examples.
 
 {{% /tab %}}
 

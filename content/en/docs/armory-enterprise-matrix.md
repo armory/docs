@@ -92,8 +92,8 @@ The following table lists the supported artifact stores:
 To create `dinghyfiles`, you can use one of the following templating languages:
 
 * HashiCorp Configuration Language (HCL) [![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})
-* JSON [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) 
-* YAML [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) 
+* JSON [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})
+* YAML [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})
 
 **Version control systems**
 
@@ -473,13 +473,11 @@ The following table lists the supported secret stores for referencing secrets in
 | [Kubernetes secrets]({{< ref "secrets-kubernetes" >}}) | All supported versions | Spinnaker Operator based deployments |
 | [Vault]({{< ref "secrets-vault" >}})                   | All supported versions | Armory only                          |
 
-## Spinnaker Operator
+## Armory Operator
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
 
-[Spinnaker Operator](https://github.com/armory/spinnaker-operator) and
-[Armory Operator]({{< ref "armory-operator" >}}) provide Spinnaker users with the ability
-to install, update, and maintain their clusters via a Kubernetes operator.
+[Armory Operator]({{< ref "armory-operator" >}}) and [Spinnaker Operator](https://github.com/armory/spinnaker-operator) provide functionality to configure, deploy, update, and maintain Armory Enterprise or Spinnaker using Kubernetes operator.
 
 | Feature                                                                            | Version                | Armory Version         | Notes                                                                                                                                     |
 | ---------------------------------------------------------------------------------- | ---------------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |

@@ -3,8 +3,6 @@
 other = "Before you begin"
 [heading_installOperator]
 other = "Install the Operator"
-[heading_configKustomizeInstallArmory]
-other = "Configure Spinnaker using Kustomize patches"
 [heading_nextSteps]
 other = "What's next"
 

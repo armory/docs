@@ -8,7 +8,7 @@ description: >
 
 {{< include "armory-license.md" >}}
 
-## Overview of installing Armory for proofs of concept work
+## Overview of installing Armory for proof of concept (POC) work
 
 This guide walks you through using the [Armory Operator]({{< ref "armory-operator" >}}) to install Armory in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
 
@@ -16,7 +16,7 @@ See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to i
 
 If you want to install open source Spinnaker<sup>TM</sup>, use the open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) instead of the Armory Operator.
 
-## Prerequisites for installing Armory
+## Prerequisites for installing Armory Enterprise
 
 * Know how to create a VM in AWS [EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 * Be familiar with [AWS IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) and [S3 buckets](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html)
