@@ -1,5 +1,5 @@
 ---
-title: Configure Support Diagnostics for the Armory Platform
+title: Configure Support Diagnostics for Armory Enterprise
 linkTitle: Configure Support Diagnostics
 aliases:
   - /docs/spinnaker-install-admin-guides/admin-diagnostics/

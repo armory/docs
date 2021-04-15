@@ -3,7 +3,7 @@ title: External Account Plugin
 toc_hide: true
 exclude_search: true
 description: >
-  The External Account Plugin allows the Armory Platform to read accounts from external sources.
+  The External Account Plugin allows Armory Enterprise to read accounts from external sources.
 ---
 <!-- this is a private plugin German created for a customer. This unlisted page is to satisfy an auditing requirement they have. It is also hidden via robots.txt and the netlify sitemap plugin. -->
 ![Proprietary](/images/proprietary.svg)

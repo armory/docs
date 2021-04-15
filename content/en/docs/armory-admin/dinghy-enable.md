@@ -1,5 +1,5 @@
 ---
-title: Enable Pipelines as Code in the Armory Platform
+title: Enable Pipelines as Code in Armory Enterprise
 linkTitle: Enable Pipelines as Code
 aliases:
   - /spinnaker/install_dinghy/
