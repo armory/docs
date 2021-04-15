@@ -77,15 +77,15 @@ Update the `halyard-local.yml` so that it points to your new s3 bucket.
 ```yaml
 spinnaker:
   config:
-#    # This section is used in air-gapped environments to specify an alternate location for spinnaker Bill Of Materials (BOM).
+    # This section is used in air-gapped environments to specify an alternate location for spinnaker Bill Of Materials (BOM).
     input:
       gcs:
         enabled: false                   # If the BOM is stored in a GCS bucket, switch this to true.
-      bucket: halconfig                  # Name of the bucket where spinnaker BOM is located.
-#      region: us-west-2                  # Bucket region (region does not matter for Minio).
+      bucket: myownbucket                  # Name of the bucket where spinnaker BOM is located.
+      # region: us-west-2                  # Bucket region (region does not matter for Minio).
       enablePathStyleAccess: true       # If you are using a platform that does not support PathStyleAccess, such as Minio, switch this to true (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro).
-      endpoint: https://minio.minio:9000 # For s3 like storage with custom endpoint, such as Minio.
-#      anonymousAccess: false
+      # endpoint: https://minio.minio:9000 # For s3 like storage with custom endpoint, such as Minio.
+      # anonymousAccess: false
 ```
 
 ### Enabling a custom bucket From Halyard
