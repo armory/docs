@@ -488,4 +488,4 @@ to install, update, and maintain their clusters via a Kubernetes operator.
 | Support definition of all Halyard configuration options                            | All supported versions | All supported versions |                                                                                                                                           |
 | In cluster mode, validate configuration before apply                               | All supported versions | All supported versions | Does not work when installed in "basic" mode. Does not guarantee a valid configuration, but does check for most common misconfigurations. |
 
-[^1]: Some or all of Armory's features are proprietary and require a license for use. For more information, see the [Terms of Service](https://www.armory.io/terms-of-service/) and [Terms & Conditions](https://www.armory.io/terms-and-conditions/).
+[^1]: Some of Armory's features are proprietary and require a license for use. For more information, see the [Terms of Service](https://www.armory.io/terms-of-service/) and [Terms & Conditions](https://www.armory.io/terms-and-conditions/).
