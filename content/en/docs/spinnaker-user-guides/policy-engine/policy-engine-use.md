@@ -1,24 +1,17 @@
 ---
-title: Use Policy Engine with the Armory Platform
-linkTitle: Use Policy Engine
+title: Use the Policy Engine to Enforce Requirements
+linkTitle: Use The Policy Engine
 description: >
-  Add policies to your Open Policy Agent (OPA) instance for Spinnaker to use when it performs validation to make sure your pipelines meet your policy requirements.
+  Add policies to the Policy Engine. Once you add a policy, the Policy Engine performs validation to make sure your pipelines meet your policy requirements.
 aliases:
   - /docs/spinnaker/policy-engine-use/
+  - /docs/spinnaker-user-guides/policy-engine/use/
 ---
 ![Proprietary](/images/proprietary.svg)
-## Overview of the Armory Policy Engine
-
-The Armory Policy Engine is designed to allow enterprises more complete control of their software delivery process by providing them with the hooks necessary to perform more extensive verification of their pipelines and processes in Spinnaker. This policy engine is backed by [Open Policy Agent](https://www.openpolicyagent.org/)(OPA) and uses input style documents to perform validation of pipelines during save time and runtime:
-
-* **Save time validation** - Validate pipelines as they're created/modified. This validation operates on all pipelines using a fail closed model. This means that if you have the Policy Engine enabled but no policies configured, the Policy Engine prevents you from creating or updating any pipeline.
-* **Runtime validation** - Validate deployments as a pipeline is executing. This validation only operates on tasks that you have explicitly created policies for. Tasks with no policies are not validated.
-
-For information about how to set up the Policy Engine, see [Enabling the Policy Engine]({{< ref "policy-engine-enable" >}}).
 
 ## Before you start
 
-Using the Policy Engine requires understanding OPA's [rego syntax](https://www.openpolicyagent.org/docs/latest/policy-language/).
+Using the Policy Engine requires understanding OPA's [rego syntax](https://www.openpolicyagent.org/docs/latest/policy-language/). Additionally, the Policy Engine must be enabled for your Armory Enterprise instance.
 
 ## Using the Policy Engine to validate pipeline configurations
 
@@ -43,7 +36,6 @@ At a high level, adding policies for the Policy Engine to use is a two-step proc
 ### Sample OPA Policy
 
 #### Step 1. Create Policies
-
 
 The following OPA policy enforces one requirement on all pipelines:
 
@@ -104,11 +96,9 @@ Note that you must use the `--data-binary` flag, not the `-d` flag.
 
 While simple cases can be validated by the Policy Engine during a pipeline's configuration, there are a number of cases that can only be addressed at runtime. By nature, Spinnaker's pipelines can be dynamic, resolving things like SpEL and Artifacts just in time for them. This means there are external influences on a pipeline that are not known at save time. To solve for this issue, the Policy Engine can validate pipelines when they run to but before deployments make it to your cloud provider.
 
-As an example, let's use Policy Engine to prevent Kubernetes LoadBalancer Services being deployed with open SSH ports.
-
 ### Writing a policy
 
-Deployment validation works by mapping an OPA policy package to a Spinnaker deployment task. For example, deploying a Kubernetes Service is done using the Deploy (Manifest) stage, so we'll write a policy that applies to that task.
+Deployment validation works by mapping an OPA policy package to a Spinnaker deployment task. For example, deploying a Kubernetes Service is done using the Deploy (Manifest) stage. The following example is a policy that applies to that task.
 
 ```json
 # Notice the package. The package maps to the task you want to create a policy for.
@@ -152,7 +142,7 @@ Now that the policy has been uploaded to the OPA server, the policy gets enforce
 ![](/images/runtime-policy-validation.png)
 
 
-### Disabling an OPA policy
+## Disabling an OPA policy
 
 You can disable a `deny` policy by adding a false statement to the policy body.  For example, you can add `0 == 1` as a false statement to the manual judgement policy we used previously:
 
