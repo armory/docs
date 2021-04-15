@@ -1,6 +1,6 @@
 ---
-title: Connecting Spinnaker to Jenkins
-linkTitle: Connecting to Jenkins
+title: Connect Spinnaker to Jenkins
+linkTitle: Connect to Jenkins
 description: >
   Use Halyard or the Armory Operator to configure Spinnaker to access to your Jenkins instance.
 ---

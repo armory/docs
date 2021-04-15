@@ -1,13 +1,13 @@
 ---
-title: Using Pipelines as Code in the Armory Platform
-linkTitle: Using Pipelines as Code
+title: Use Pipelines as Code in Armory Enterprise
+linkTitle: Use Pipelines as Code
 aliases:
   - /spinnaker/using_dinghy/
   - /docs/spinnaker/using-dinghy/
 description: >
   Learn how to use Spinnaker pipeline definitions that are stored in source code repos such as GitHub and BitBucket.
 ---
-
+![Proprietary](/images/proprietary.svg)
 ## Advantages to using Pipelines as Code in Spinnaker
 
 {{< alert title="Note" >}}

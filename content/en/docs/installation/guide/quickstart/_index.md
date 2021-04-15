@@ -5,3 +5,5 @@ weight: 45
 description: >
   This section contains guides that show you how to configure AWS for Spinnaker and deploy an application from Spinnaker to AWS.
 ---
+
+{{< include "armory-license.md" >}}

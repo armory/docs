@@ -1,6 +1,6 @@
 ---
-title: Working with GitHub in Spinnaker Pipelines
-linkTitle: Working with GitHub
+title: Use GitHub in Spinnaker Pipelines
+linkTitle: Use GitHub
 aliases:
   - /spinnaker_user_guides/github/
 description: >

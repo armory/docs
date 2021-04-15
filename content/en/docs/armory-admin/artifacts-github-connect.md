@@ -1,5 +1,5 @@
 ---
-title: Connecting GitHub as an Artifact Source in Spinnaker
+title: Connect GitHub as an Artifact Source in Spinnaker
 linkTitle: Connecting to GitHub
 aliases:
   - /spinnaker_install_admin_guides/github/

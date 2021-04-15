@@ -39,6 +39,12 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 Only branches are currently supported. For more information, see [6363](https://github.com/spinnaker/spinnaker/issues/6363).
 
+#### Server groups
+<!-- ENG-5847 -->
+There is a known issue where you cannot edit AWS server groups with the **Edit** button in the UI. The edit window closes immediately after you open it.
+
+**Workaround**: To make changes to your server groups, edit the stage JSON directly by clicking on the **Edit stage as JSON** button.
+
 ### Fixed issues
 
 - Fixed an issue where Pipelines as Code fails unexpectedly when updating modules.
@@ -61,10 +67,10 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 Armory now uses the git binary instead of jgit. This change adds support for shallow clones, allowing for faster downloads. No changes to existing accounts configuration are needed. Note that there is a known issue related to this change: it does not currently support checkouts using a SHA.
 
-#### New configuration parameter for Docker accounts
+<!--#### New configuration parameter for Docker accounts
 
 Docker accounts now support a new configuration parameter: `repositoriesRegex`. When used, only the repositories that match the pattern get cached. This is useful for Docker accounts that have a large number of repositories when operators do not want to specify individual repositories to cache.
-
+-->
 ### Authz
 
 Access to a service account is now granted if any authorization predicate allows it. The previous behavior 

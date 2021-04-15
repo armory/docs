@@ -23,3 +23,4 @@ Spinnaker has caching agents for Cloud Foundry Server Groups, Load Balancers, an
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "add-cf-account.md" >}}
+* {{< linkWithTitle "best-practices-cf.md" >}}

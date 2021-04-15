@@ -6,7 +6,7 @@ description: >
   The Policy Engine plugin is the next iteration of Armory's Policy Engine for Spinnaker™.
 ---
 <!-- This plugin is the next iteration of our Policy Engine extension and is not ready for public consumption. This unlisted page is to satisfy an auditing requirement that one of our customers has. It is also hidden via robots.txt and the netlify sitemap plugin. -->
-
+![Proprietary](/images/proprietary.svg)
 ## Overview
 
 Armory's Policy Engine plugin is the next iteration of the Policy Engine feature that ships with the Armory Enterprise for Spinnaker. Not only does it include support for existing features like applying policy to pipelines as they're being saved, it also introduces policy hooks into other services like Gate (the API gateway) and Orca (the orchestrator). 
@@ -44,7 +44,7 @@ In addition to the plugin, you need access to an Open Policy Agent (OPA) deploym
 You can use the sample configuration to install the plugin, but keep the following in mind:
 
 - The `patchesStrategicMerge` section for each service is unique. Do not reuse the snippet from one service for the other services.
-- Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use. For a list of versions, see [Release notes](#release-notes).
+- Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use without the `v` prefix. For a list of versions, see [Release notes](#release-notes).
 
 ```yaml
 apiVersion: spinnaker.armory.io/v1alpha2
@@ -239,7 +239,7 @@ spec:
        mountPath: /opt/spinnaker/lib/local-plugins
    ```
 
-4. Configure Halyard by updating your  `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use: 
+4. Configure Halyard by updating your `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use without the `v` prefix: 
 
    ```yaml
    deploymentConfigurations:
@@ -253,7 +253,7 @@ spec:
                  - -install-path
                  - /opt/policy-engine-plugin/target
                volumeMounts:
-                 - mountPath: /opt/policy-engine/target
+                 - mountPath: /opt/policy-engine-plugin/target
                    name: policy-engine-install
            clouddriver:
              - name: policy-engine-install
@@ -262,7 +262,7 @@ spec:
                  - -install-path
                  - /opt/policy-engine-plugin/target
                volumeMounts:
-                 - mountPath: /opt/policy-engine/target
+                 - mountPath: /opt/policy-engine-plugin/target
                    name: policy-engine-install
            gate:
              - name: policy-engine-install
@@ -271,7 +271,7 @@ spec:
                  - -install-path
                  - /opt/policy-engine-plugin/target
                volumeMounts:
-                 - mountPath: /opt/policy-engine/target
+                 - mountPath: /opt/policy-engine-plugin/target
                    name: policy-engine-install
            orca:
              - name: policy-engine-install
@@ -280,7 +280,7 @@ spec:
                  - -install-path
                  - /opt/policy-engine-plugin/target
                volumeMounts:
-                 - mountPath: /opt/policy-engine/target
+                 - mountPath: /opt/policy-engine-plugin/target
                    name: policy-engine-install
    ```
 

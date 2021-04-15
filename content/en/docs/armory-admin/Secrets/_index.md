@@ -1,6 +1,6 @@
 ---
-title: Working with Secrets in Spinnaker
-linkTitle: "Working with Secrets"
+title: Work with Secrets in Spinnaker
+linkTitle: "Work with Secrets"
 description: >
   This section contains guides for using secrets stored outside of Spinnaker in products such as Hashicorp Vault, Google Cloud Storage, AWS S3, and the AWS Secrets Manager.
 aliases:

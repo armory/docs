@@ -1,0 +1,6 @@
+{{ $dataJ := getJSON "https://api.github.com/repos/"  (.Get "repo")  "/contents/"  (.Get "file")  }}
+{{ $con := base64Decode $dataJ.content }}
+
+{{ highlight $con (.Get "lang") (.Get "options") }}
+
+<!--this shortcode is from https://github.com/haideralipunjabi/hugo-shortcodes/blob/master/github/github.html-->

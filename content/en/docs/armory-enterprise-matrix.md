@@ -1,8 +1,10 @@
 ---
-title: Armory Platform Compatibility Matrix
-linkTitle: Armory Platform Compatibility
+title: Armory Enterprise Compatibility Matrix
+linkTitle: Armory Compatibility Matrix
 weight: 100
-description: "Information about support and compatibility for the Armory Platform."
+description: "Information about support and compatibility for Armory Enterprise."
+aliases:
+  - /docs/armory-platform-matrix/
 ---
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables#
@@ -10,7 +12,7 @@ Or you can write raw HTML :shrug: You might want to do that if you need to do bu
 Or a mixture of html + markdown. ## Deployment targets has an example of what this might look like
 -->
 
-This page describes the features and capabilities that Armory supports. Note that although Spinnaker™ is part of the Armory Platform, what Open Source Spinnaker supports and what Armory supports is not a one-to-one relationship.
+This page describes the features and capabilities that Armory supports. Note that although Spinnaker™ is part of Armory Enterprise, what Open Source Spinnaker supports and what Armory supports is not a one-to-one relationship.
 
 ## Legend
 <!-- Copy and paste the below badges that apply to your area -->
@@ -26,7 +28,7 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 ![OSS](/images/oss.svg) The feature or parts of it are available in Open Source Spinnaker.
 
-![Armory](/images/armory.svg) The feature or parts of it are available only as part of the Armory Platform.
+![Armory](/images/armory.svg) The feature or parts of it are available only as part of Armory Enterprise for Spinnaker.
 
 **Versions**
 
@@ -83,9 +85,17 @@ The following table lists the supported artifact stores:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
 
-[Pipelines as Code]({{< ref "dinghy-enable" >}}) gives you the ability to manage your pipelines and their templates in source control by creating and maintaining `dinghyfiles` that contain JSON representations of pipelines. These files are then ingested by Armory to generate pipelines that your app devs can use to deploy their apps.
+[Pipelines as Code]({{< ref "dinghy-enable" >}}) gives you the ability to manage your pipelines and their templates in source control by creating and maintaining `dinghyfiles` that contain text representations of pipelines. These files are then ingested by Armory to generate pipelines that your app devs can use to deploy their apps.
 
-**Supported version control systems**
+**Templating languages**
+
+To create `dinghyfiles`, you can use one of the following templating languages:
+
+* HashiCorp Configuration Language (HCL) [![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})
+* JSON [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) 
+* YAML [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) 
+
+**Version control systems**
 
 The following table lists the supported version control systems:
 
@@ -167,7 +177,7 @@ The following table lists the supported authentication protocols:
 
 | Identity provider     | Armory                 | Note                                                                                                     |
 | --------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------- |
-| None                  | All supported versions | We highly recommend having Spinnaker only accessible through a VPN if this is turned on.                     |
+| None                  | All supported versions | Armory recommends having Armory Enterprise only accessible through a VPN if this is turned on.                     |
 | SAML                  | All supported versions |                                                                                                          |
 | OAuth 2.0/OIDC        | All supported versions | You can use any OAuth 2.0 provider such as Auth0, Azure, GitHub, Google, Okta, OneLogin, or Oracle Cloud. |
 | LDAP/Active Directory | All supported versions |                                                                                                          |
@@ -181,7 +191,7 @@ The following table lists the supported authorization methods:
 
 | Provider              | Armory                 | Note                                                                                 |
 | --------------------- | ---------------------- | ------------------------------------------------------------------------------------ |
-| None                  | All supported versions | We highly recommend having Spinnaker only accessible through a VPN if this is turned on. |
+| None                  | All supported versions | Armory recommends having Armory Enterprise only accessible through a VPN if this is turned on. |
 | GitHub Teams          | All supported versions | Roles from GitHub are mapped to the Teams under a specific GitHub organization.      |
 | Google Groups         | All supported versions |                                                                                      |
 | LDAP/Active Directory | All supported versions |                                                                                      |
@@ -227,6 +237,14 @@ The following table lists the supported CI systems:
 | GitHub Actions     | n/a                    | All supported versions | Webhook integration |
 | Jenkins            | All supported versions | All supported versions |                     |
 
+## Custom stages
+
+Armory Enterprise includes custom stages that you can use to extend the capabilities of Armory Enterprise. Some of these stages are available out of the box while others are available as plugins to Armory Enterprise.
+
+| Stage              | Armory           | Notes                 |
+|--------------------|------------------|-----------------------|
+| [Evaluate Artifacts]({{< ref "evaluate-artifacts-stage-enable.md" >}}) | 2.24.0 and later | Available as a plugin |
+
 ## Deployment targets
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
@@ -258,7 +276,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 {{</ caas-gce-deploy-strategies.inline >}}
 -->
 
-| Provider                    | Deployment strategies                      | Armory Versions        | Notes |
+| Provider                    | Deployment strategies                      | Armory         | Notes |
 | --------------------------- | ------------------------------------------ | ---------------------- | ----- |
 | Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |       |
 
@@ -268,14 +286,14 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 
 These are providers that are manifest based, so Armory applies the manifest and leaves the rollout logic to the platform itself.
 
-| Provider           | Supported Versions | Armory Versions        | Notes |
+| Provider           | Version | Armory         | Notes |
 | -----------------  | ------------------ | ---------------------- | ----- |
 | Kubernetes         | 1.16 or later       | All supported versions |       |
 | Amazon AWS EKS     | All versions       | All supported versions |       |
 | Google GKE         | All versions       | All supported versions |       |
 
 
-| Provider       | Deployment strategies                      | Armory Versions        | Notes |
+| Provider       | Deployment strategies                      | Armory         | Notes |
 | -------------- | ------------------------------------------ | ---------------------- | ----- |
 | Amazon AWS ECS | <ul><li>Red/Black aka Blue/Green</li></ul> | All supported versions |       |
 
@@ -295,7 +313,7 @@ These are providers that are manifest based, so Armory applies the manifest and 
 {{</ caas-cf-deploy-strategies.inline >}}
 -->
 
-| Provider                | Supported Versions                   | Deployment strategies                      | Armory Versions        | Notes                    |
+| Provider                | Version                   | Deployment strategies                      | Armory         | Notes                    |
 | ----------------------- | ------------------------------------ | ------------------------------------------ | ---------------------- | ------------------------ |
 | Google Cloud App Engine |                                      | <ul><li>Custom</li></ul>                   | All supported versions |                          |
 | Cloud Foundry           | CC API Version: 2.103.0+ and 3.38.0+ | {{< caas-cf-deploy-strategies.inline />}}  | All supported versions |                          |
@@ -318,11 +336,9 @@ You write the function and use Armory to manage the rollout of iterative version
 -->
 
 
-| Provider          | Deployment strategies                        | Armory Versions        | Notes |
+| Provider          | Deployment strategies                        | Armory         | Notes |
 | ----------------- | -------------------------------------------- | ---------------------- | ----- |
 | Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |       |
-
-
 
 ## Dynamic accounts
 

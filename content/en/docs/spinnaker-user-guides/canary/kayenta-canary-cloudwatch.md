@@ -1,9 +1,9 @@
 ---
-title: Using Canary Analysis with AWS CloudWatch
+title: Use Canary Analysis with AWS CloudWatch
 description: >
   Learn how to configure and use AWS CloudWatch for canary analysis in Spinnaker.
 ---
-
+![Proprietary](/images/proprietary.svg)
 {{< include "user-guide/canary/config-kayenta-frag.md" >}}
 
 ## CloudWatch configuration

@@ -1,5 +1,5 @@
 ---
-title: Using an Amazon Machine Image in a Spinnaker Pipeline
+title: Use an Amazon Machine Image in a Spinnaker Pipeline
 linkTitle: AMI Pipeline
 description: >
   Create a Spinnaker pipeline that takes the Debian package produced by a Jenkins job and uses it to create an Amazon Machine Image (AMI) before deploying that image to a server group.

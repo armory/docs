@@ -1,6 +1,6 @@
 ---
-title: "Configuring AWS Networking for Spinnaker"
-linkTitle: Configuring AWS Networking
+title: "Configure AWS Networking for Spinnaker"
+linkTitle: Configure AWS Networking
 aliases:
   - /docs/spinnaker-install-admin-guides/aws-subnets/
   - /docs/armory-admin/aws-subnets-configure/

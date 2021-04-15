@@ -1,5 +1,5 @@
 ---
-title: Monitoring Spinnaker with Prometheus
+title: Monitor Spinnaker with Prometheus
 description: >
   Monitor Spinnaker using Prometheus and Grafana.
 aliases:

@@ -1,6 +1,6 @@
 ---
-title: Configuring mTLS for Spinnaker Services
-linkTitle: Configuring mTLS
+title: Configure mTLS for Spinnaker Services
+linkTitle: Configure mTLS
 aliases:
 - /docs/spinnaker-install-admin-guides/service-mtls/
 description: This guide describes how to enable mutual TLS (mTLS) between Spinnaker services. Adding mTLS provides additional security for your Spinnaker services since only validated clients can interact with services when mTLS is enabled.

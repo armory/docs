@@ -1,5 +1,5 @@
 ---
-title: Storing Spinnaker Secrets in HashiCorp Vault
+title: Store Spinnaker Secrets in HashiCorp Vault
 linkTitle: Secrets with Vault
 weight: 10
 aliases:
@@ -8,7 +8,7 @@ aliases:
 description: >
   Learn how to set up Spinnaker secrets in HashiCorp Vault.
 ---
-
+![Proprietary](/images/proprietary.svg)
 >In this example, you use the default KV secret engine called `secret` and store GitHub credentials, a kubeconfig file, and a Java keystore for SAML SSO.
 
 ## Authentication with Vault servers

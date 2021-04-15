@@ -1,6 +1,6 @@
 ---
-title: Using GitHub Artifacts in Spinnaker Pipelines
-linkTitle: Using GitHub Artifacts
+title: Use GitHub Artifacts in Spinnaker Pipelines
+linkTitle: Use GitHub Artifacts
 description: >
   Configure Spinnaker to use GitHub artifacts in your pipelines.
 ---

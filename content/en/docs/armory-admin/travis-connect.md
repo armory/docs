@@ -1,6 +1,6 @@
 ---
-title: Connecting Spinnaker to Travis CI
-linkTitle: Connecting to Travis
+title: Connect Spinnaker to Travis CI
+linkTitle: Connect to Travis
 aliases:
   - /docs/spinnaker-install-admin/guides/configure-travis/
 description: >

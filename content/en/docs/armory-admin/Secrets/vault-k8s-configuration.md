@@ -1,6 +1,6 @@
 ---
-title: Configuring Hashicorp's Vault for Kubernetes Auth
-linkTitle: Configuring Vault for Kubernetes Auth
+title: Configure Hashicorp's Vault for Kubernetes Auth
+linkTitle: Configure Vault for Kubernetes Auth
 weight: 10
 aliases:
   - /docs/spinnaker-install-admin-guides/vault-configuration/

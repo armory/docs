@@ -4,16 +4,16 @@ description: If this is your first time using Armory Cloud Console, start here. 
 aliases:
   - /docs/armory-cloud-admin/admin-cloud-quickstart/
 ---
-
+![Proprietary](/images/proprietary.svg)
 {{% alert title="Info" color="primary" %}}{{< include "saas-status.md" >}}{{% /alert %}}
 
 ## Logging in to the Armory Cloud Console 
 
-Armory provides a set of credentials to log in to the Cloud Console. These are separate from the user accounts that app developers use to access the Armory Platform UI and API. The Cloud Console is where you go to make changes to the Armory Cloud environment and what it has access to. For example, you can add deployment targets or other resources in the Cloud Console. When app developers log in to the Armory Platform, they can use these resources in their deployment pipelines.
+Armory provides a set of credentials to log in to the Cloud Console. These are separate from the user accounts that app developers use to access the Armory Enterprise UI and API. The Cloud Console is where you go to make changes to the Armory Cloud environment and what it has access to. For example, you can add deployment targets or other resources in the Cloud Console. When app developers log in to Armory Enterprise, they can use these resources in their deployment pipelines.
 
 As a design partner, Armory provides credentials for you to use for logging in to the Cloud Console.
 
-From here, you can select which environment you want to configure or open the Armory Platform for that environment.
+From here, you can select which environment you want to configure or open Armory Enterprise for that environment.
 
 ## Configuring the environment
 
@@ -32,7 +32,7 @@ If you are setting up the Armory Cloud environment for the first time, you need 
 
 To start, click **Configure** for the environment you want to add.
 
-### Secrets
+## Secrets
 
 For development and other non-production environments, you can choose to enter secrets in plaintext into the Cloud Console. The best practice, though, is to secure your secrets using the Secrets UI in the Armory Cloud Console. Secrets are values such as an access token for GitHub. Armory Cloud stores and transmits these secrets securely if they are entered into the Secrets UI. Once entered, they are encrypted and not visible in the Armory Cloud Console. Note that these are configuration secrets meant for information such as AWS Secret Access Keys. They are separate from any kind of app secret your developers may be using within their deployment pipelines.
 
@@ -55,7 +55,7 @@ If this is your first time configuring an environment, consider adding secrets f
 
 Once you have a secret, refer to it by name when you need to provide values for things like access keys for Deployment Targets.
 
-### Artifact Sources
+## Artifact Sources
 
 Add artifact sources to give app developers access to artifacts, such as external JSON objects like an image, a file stored somewhere, or a binary blob in a bucket. Armory Cloud can retrieve a resource from or store a resource in artifact sources.
 
@@ -69,7 +69,7 @@ To add an artifact source, perform the following steps:
 2. In the left navigation, select the **Artifact Source** you want to add.
 3. Click **New** and configure the account.
 
-### Deployment Targets
+## Deployment Targets
 
 Deployment targets are the destination for the code your app developers want to deliver. Armory Cloud supports the following deployment targets:
 
@@ -82,7 +82,7 @@ Before you start, make sure you have added [secrets](#secrets) if it is a produc
 2. Select the **Deployment Target** you want to add.
 3. Click **New** and configure the account.
 
-### Packer Files
+## Packer Files
 
 Armory Cloud can bake machine images for you using Packer. Packer templates help you bake images that remain consistent, immutable, and repeatable, which gives your app developers the ability to deploy without worrying about unintended configuration drift and other common issues. By default, Armory ships a set of default Packer templates for Amazon Machine Images (AMI) that your app developers can use when crafting their delivery pipelines. You have the option of adding custom Packer template files to do more customized baking though. For general information about Packer templates, see [Templates](https://www.packer.io/docs/templates).
 
@@ -99,13 +99,40 @@ Adding a custom Packer file is optional, and you can skip this section if you do
 
 3. Save your changes.
 
+## Notifications
+
+Configure notifications to alert your app devs about certain pipeline events, such as pipeline completion or failure. 
+
+### Slack
+
+Before you can configure Slack notifications for Armory Cloud, you need to configure a bot user in Slack:
+
+1. Go to https://api.slack.com/apps.
+2. Create a new app for your workspace.
+3. Create a bot:
+   * For **OAuth & Permissions**, assign the bot write permissions for chat.
+   * By default, the bot uses the name you gave the app. You will use this name when configuring Slack notifications in Armory Cloud.
+   * Although not required, Armory recommends that you set the bot to always be shown as online.
+4. Install the app in your workspace and note the **Bot User OAuth Token**. Save this token somewhere safe. You need to add it to the Cloud Console as a secret. The token authorizes the bot to post messages to your Slack workspace in any channel it is invited to.
+5. Invite the bot to your channels.
+
+After you complete the configuration in Slack, finish setting notifications in the Cloud Console:
+
+1. In the Armory Cloud Console, go to the **Secrets** page.
+2. Add the **Bot User OAuth Token** from Slack as a secret. Give it a descriptive name.
+3. Go to **Notifications > Slack**.
+4. Enable the feature.
+5. Provide the display name for the Slack bot. This is the user name that sends notifications in Slack. It should match the name the bot has in Slack.
+6. Select the **Bot User OAuth Token** from the list of secrets.
+
+Save the configuration.
 
 <!--### Pipeline Triggers
 
 These are optional but provide a way for your developers to automatically trigger their deployment pipelines. -->
 
-## Accessing the Armory Platform
+## Accessing Armory Enterprise
 
-The Armory Platform is where your app developers create their delivery pipelines.Once the environments are configured, your Application Developers can access Armory Cloud to start deploying applications.
+Armory Enterprise is where your app developers create their delivery pipelines. Once the environments are configured, your app developers can access Armory Cloud to start deploying applications.
 
 The URL to access the Armory platform is available on the Cloud Console homepage when you click **Launch**.
