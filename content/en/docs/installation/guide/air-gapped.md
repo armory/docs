@@ -256,4 +256,9 @@ Finally, to access the deployed Halyard environment, perform the following steps
 
 The [Armory Operator]({{< ref "armory-operator" >}}) lets you manage Armory with `kubectl`.
 
+
+FIX-ME
+
 If you also need to use privately hosted bill of materials, configure the Operator to point to your bucket. See {{< linkWithTitle "op-hal-config.md" >}}
+
+If you also need to use privately hosted bill of materials, configure the operator to point to your bucket. See above [Enabling a custom bucket with the Spinnaker Operator]({{< ref "air-gapped#Enabling-a-custom-bucket-with-the-Spinnaker-Operator" >}}) and [Custom Halyard Configuration]({{< ref "operator#custom-halyard-configuration" >}}).
