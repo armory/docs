@@ -245,7 +245,7 @@ spec:
 Support for `SpinnakerAccount` CRD (**Experimental**):
 
 - `spec.accounts.enabled`: Boolean. Defaults to false. If true, the `SpinnakerService` uses all `SpinnakerAccount` objects enabled.
-- `spec.accounts.dynamic` (experimental): Boolean. Defaults to false. If true, `SpinnakerAccount` objects are available to Armory Enterpriseas the account is applied (without redeploying any service).
+- `spec.accounts.dynamic` (experimental): Boolean. Defaults to false. If true, `SpinnakerAccount` objects are available to Armory Enterprise as the account is applied (without redeploying any service).
 
 ## Example Manifests for exposing Armory Enterprise
 

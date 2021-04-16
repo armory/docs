@@ -20,7 +20,7 @@ kubectl get spinnakerservice --all-namespaces
 
 **Describe instances**
 
-You can use `spinsvc` instead of `spinnakerservice`.
+You can use `spinsvc` instead of `spinnakerservice`:
 
 ```bash
 kubectl -n <namespace> describe spinsvc spinnaker
