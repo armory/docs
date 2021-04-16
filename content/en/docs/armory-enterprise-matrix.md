@@ -26,9 +26,9 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 **Enterprise availablility**
 
-![OSS](/images/oss.svg) The feature or parts of it are available in Open Source Spinnaker.
+![OSS](/images/oss.svg) The feature or parts of it are available in open source Spinnaker.
 
-![Armory](/images/armory.svg) The feature or parts of it are available only as part of Armory Enterprise for Spinnaker.
+![Armory](/images/armory.svg) The feature or parts of it are available only as part of Armory Enterprise for Spinnaker.[^1]
 
 **Versions**
 
@@ -487,3 +487,5 @@ to install, update, and maintain their clusters via a Kubernetes operator.
 | Automatically determine Deck/Gate URL configuration if Ingress objects are defined | 1.1.0 or later         | 1.1.1 or later         | Ingress objects must be defined in the same namespace where Spinnaker lives.                                                              |
 | Support definition of all Halyard configuration options                            | All supported versions | All supported versions |                                                                                                                                           |
 | In cluster mode, validate configuration before apply                               | All supported versions | All supported versions | Does not work when installed in "basic" mode. Does not guarantee a valid configuration, but does check for most common misconfigurations. |
+
+[^1]: Some of Armory's features are proprietary and require a license for use. For more information, see the [Terms of Service](https://www.armory.io/terms-of-service/) and [Terms & Conditions](https://www.armory.io/terms-and-conditions/).
