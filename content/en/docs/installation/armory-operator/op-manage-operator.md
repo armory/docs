@@ -40,7 +40,7 @@ default/
   service-settings/
 ```
 
-After that, move these files to your Halyard home directory and deploy Armory Enterprisewith the `hal deploy apply` command.
+After that, move these files to your Halyard home directory and deploy Armory Enterprise with the `hal deploy apply` command.
 
 Finally, delete Operator and its CRDs from the Kubernetes cluster.
 
@@ -49,9 +49,9 @@ kubectl delete -n <namespace> -f deploy/operator/<installation type>
 kubectl delete -f deploy/crds/
 ```
 
-### Remove Operator ownership of Armory Enterpriseresources
+### Remove Operator ownership of Armory Enterprise resources
 
-Run the following script to remove ownership of Armory resources, where `NAMESPACE` is the namespace where Armory Enterpriseis installed:
+Run the following script to remove ownership of Armory resources, where `NAMESPACE` is the namespace where Armory Enterprise is installed:
 
 ```bash
 #! /usr/bin/env bash
