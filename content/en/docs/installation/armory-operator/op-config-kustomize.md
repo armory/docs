@@ -26,6 +26,10 @@ You should familiarize yourself with Kustomize before you create patch files to 
 * Kustomize [installation](https://kubectl.docs.kubernetes.io/installation/kustomize/)
 * [Kustomization file overview](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/)
 
+## Kubernetes requirements
+
+{{% include "armory-operator/k8s-reqs.md" %}}
+
 ## Spinnaker Kustomize patches repo
 
 Armory maintains the `spinnakaker-kustomize-patches` [repo](https://github.com/armory/spinnaker-kustomize-patches), which contains common configuration options for Armory Enterprise or Spinnaker. This gives you a reliable starting point when adding and removing features.
