@@ -36,6 +36,17 @@ This error may be normal depending on the frequency of the error. Controllers wo
 }
 ```
 
+## Kustomize `panic` error
+
+Kustomize v4.0+ `kustomize build` throws a `panic` error when it tries to parse and build using the patch files in the `spinnaker-kustomize-patches` repo. For example:
+
+```bash
+panic: runtime error: index out of range [145] with length 145 [recovered]
+ panic: runtime error: index out of range [145] with length 145
+```
+
+Downgrade to Kustomize v3.8.10 to resolve the parsing error. `kubectl` uses Kustomize v2.
+
 ## Help resources
 
 * Armory Operator: contact [Armory Support](https://support.armory.io/) or use the [Spinnaker Slack](https://join.spinnaker.io/) `#armory` channel.

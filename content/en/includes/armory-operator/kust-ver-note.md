@@ -1,0 +1,1 @@
+>Building patches using standalone Kustomize (`kustomize build`) has been tested using Kustomize v3.8.10 and earlier. You may encounter `panic` errors using Kustomize v4.0+. `kubectl` uses Kustomize v2.
