@@ -15,6 +15,8 @@ description: >
 
 {{< include "armory-operator/how-kustomize-works.md" >}}
 
+{{% include "armory-operator/kust-ver-note.md" %}}
+
 ## Kustomize resources
 
 You should familiarize yourself with Kustomize before you create patch files to configure Armory Enterprise.

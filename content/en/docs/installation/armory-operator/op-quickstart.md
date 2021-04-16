@@ -157,6 +157,8 @@ The included manifest file is only for a very basic installation.
 
 {{< include "armory-operator/how-kustomize-works.md" >}}
 
+{{% include "armory-operator/kust-ver-note.md" %}}
+
 For this quickstart, you can find bare minimum patches in `/spinnaker-operator/deploy/spinnaker/kustomize`. Before you deploy Armory Enterprise, you need to update the `version` and `persistentStorage` values in `config-patch.yml`.
 
 The following example uses an AWS S3 bucket. You can find configuration for other storage types in the [Persistent Storage]({{< ref "persistent-storage" >}}) reference.
