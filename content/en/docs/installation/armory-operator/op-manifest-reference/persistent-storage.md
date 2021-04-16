@@ -7,7 +7,7 @@ aliases:
   - /operator_reference/persistent-storage/
 ---
 
-**spec.spinnakerConfig.config.persistentStorage**
+## spec.spinnakerConfig.config.persistentStorage
 
 ```yaml
 persistentStorage:
@@ -102,3 +102,7 @@ s3:
 - `accessKeyId`: Your AWS Access Key ID. If not provided, Halyard/Spinnaker will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
 - `serverSideEncryption`: Use Amazon Server-Side Encryption ('x-amz-server-side-encryption' header). Supports 'AES256' (for Amazon S3-managed encryption keys, equivalent to a header value of 'AES256') and 'AWSKMS' (for AWS KMS-managed encryption keys, equivalent to a header value of 'aws:kms'.
 - `secretAccessKey`: Your AWS Secret Key. Supports encrypted value.
+
+## Kustomize patch examples
+
+You can see examples in the `spinnaker-kustomize-patches` repo's [`persistence` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/persistence).

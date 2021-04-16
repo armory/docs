@@ -8,7 +8,7 @@ aliases:
 ---
 
 
-**spec.spinnakerConfig.config.pubsub**
+## spec.spinnakerConfig.config.pubsub
 
 
 ```yaml
@@ -51,3 +51,8 @@ pubsub:
       - `project`:
       - `topicName`:
       - `jsonPath`: File needs to be present on the machine running Spinnaker. Supports encrypted file.
+
+
+## Kustomize patch examples
+
+You can see examples in the `spinnaker-kustomize-patches` repo's [`pubsub` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/accounts/pubsub).

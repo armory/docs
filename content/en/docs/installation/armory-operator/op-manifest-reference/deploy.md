@@ -7,6 +7,7 @@ aliases:
   - /operator_reference/deploy/
 ---
 
+## deploymentEnvironment
 
 ```yaml
 deploymentEnvironment:
@@ -149,3 +150,7 @@ deploymentEnvironment:
     - `redisSlaveDeckEndpoint`: Set external Redis endpoint for clouddriver-ro-deck. The Redis URI schema is described [here](https://www.iana.org/assignments/uri-schemes/prov/redis). clouddriver-ro-deck is configured to use the shared Redis, by default.
   - `echo`:
     - `enabled`: true or false.
+
+## Kustomize patch examples
+
+You can see examples in the `spinnaker-kustomize-patches` repo's [`spinnaker_deployment` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/spinnaker_deployment).

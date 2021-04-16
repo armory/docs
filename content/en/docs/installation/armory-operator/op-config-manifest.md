@@ -1,123 +1,75 @@
 ---
-title: Armory Operator Configuration
-weight: 1
+title: Configure Armory Enterprise Using a Manifest File
+linkTitle: Config Using Manifest
+weight: 10
 description: >
-  This guide describes the fields in `SpinnakerService` CRD that you need to deploy Armory Enterprise for Spinnaker on Kubernetes.
+  This guide describes the fields in the `SpinnakerService` manifest that the the Armory Operator uses to deploy Armory Enterprise or the Spinnaker Operator uses to deploy Spinnaker.
 ---
 
-## SpinnakerService CRD
-The following example shows the general structure of `SpinnakerService`.
+{{< include "armory-operator/os-operator-blurb.md" >}}
 
-```yaml
-apiVersion: spinnaker.armory.io/v1alpha2
+## {{% heading "prereq" %}}
+
+* This guide assumes you want to expand the manifest file used in the Quickstart.
+* You know how to deploy Armory Enterprise or Spinnaker using a Kubernetes manifest file. See the Quickstart's [Single manifest file section]({{< ref "op-quickstart#single-manifest-file-option">}}).
+
+## Kubernetes manifest file
+
+The structure of the manifest file is the same whether you are using the Armory Operator or the Spinnaker Operator. The value of certain keys, though, depends on whether you are deploying Armory Enterprise or Spinnaker. The following snippet is the first several lines from a `spinnakerservice.yml` manifest that deploys Armory Enterprise.
+
+{{< prism lang="yaml" line="1,8" >}}
+apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
 spec:
-  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
   spinnakerConfig:
-    # spec.spinnakerConfig.config - This section contains the contents of a deployment found in a halconfig .deploymentConfigurations[0]
     config:
-      version: 2.17.1   # the Armory version to be deployed
+      version: <version>
       persistentStorage:
         persistentStoreType: s3
         s3:
-          bucket: mybucket
-          rootFolder: front50 # Change me
+          bucket: <s3-bucket-name>
+          rootFolder: front50
+{{< /prism >}}
 
-    # spec.spinnakerConfig.profiles - This section contains the YAML of each service's profile
-    profiles:
-      clouddriver: {} # Contents of ~/.hal/default/profiles/clouddriver.yml
-      # deck has a special key "settings-local.js" for the contents of settings-local.js
-      deck:
-        # settings-local.js - contents of ~/.hal/default/profiles/settings-local.js
-        # Use the | YAML symbol to indicate a block-style multiline string
-        settings-local.js: |
-          window.spinnakerSettings.feature.kustomizeEnabled = true;
-      echo: {}    # Contents of ~/.hal/default/profiles/echo.yml
-      fiat: {}    # Contents of ~/.hal/default/profiles/fiat.yml
-      front50: {} # Contents of ~/.hal/default/profiles/front50.yml
-      gate: {}    # Contents of ~/.hal/default/profiles/gate.yml
-      igor: {}    # Contents of ~/.hal/default/profiles/igor.yml
-      kayenta: {} # Contents of ~/.hal/default/profiles/kayenta.yml
-      orca: {}    # Contents of ~/.hal/default/profiles/orca.yml
-      rosco: {}   # Contents of ~/.hal/default/profiles/rosco.yml
-
-    # spec.spinnakerConfig.service-settings - This section contains the YAML of the service's service-setting
-    # see https://www.spinnaker.io/reference/halyard/custom/#tweakable-service-settings for available settings
-    service-settings:
-      clouddriver: {}
-      deck: {}
-      echo: {}
-      fiat: {}
-      front50: {}
-      gate: {}
-      igor: {}
-      kayenta: {}
-      orca: {}
-      rosco: {}
-
-    # spec.spinnakerConfig.files - This section allows you to include any other raw string files not handle above.
-    # The KEY is the filepath and filename of where it should be placed.
-    #   - Files here will be placed into ~/.hal/default/ on halyard.
-    #   - __ (double underscore) is used in place of / for the path separator.
-    # The VALUE Contents of the file.
-    #   - Use the | YAML symbol to indicate a block-style multiline string.
-    #   - We currently only support string files.
-    #   - NOTE: Kubernetes has a manifest size limitation of 1MB.
-    files: {}
-  #      profiles__rosco__packer__example-packer-config.json: |
-  #        {
-  #          "packerSetting": "someValue"
-  #        }
-  #      profiles__rosco__packer__my_custom_script.sh: |
-  #        #!/bin/bash -e
-  #        echo "hello world!"
+* Line 1: `apiVersion` is the CRD version of the `SpinnakerService` custom resource.
+   * If you are deploying Armory Enterprise, the value is `spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}`; if you change this value, the Armory Operator won't process the manifest file.
+   * If you are deploying Spinnaker, the value is `spinnaker.io/{{< param "operator-oss-crd-version" >}}`; if you change this value, the Spinnaker Operator won't process the manifest file.
+* Line 8: `spec.spinnakerConfig.config.version`
+   * If you are using the Armory Operator, this is the [version of Armory Enterprise]({{< ref "rn-armory-spinnaker" >}}) you want to deploy; for example, {{< param "armory-version-exact" >}}.  
+   * If you are using the Spinnaker Operator, this is the [version of Spinnaker](https://spinnaker.io/community/releases/versions/) you want to deploy; for example, `1.25`.
 
 
-  # spec.expose - This section defines how Spinnaker should be publicly exposed.
-  expose:
-    type: service  # Kubernetes LoadBalancer type (service/ingress). Note that only "service" is supported for now.
-    service:
-      type: LoadBalancer
+<details><summary>Expand to see a skeleton manifest file</summary>
 
-      # Annotations to be set on Kubernetes LoadBalancer type.
-      # They only apply to spin-gate, spin-gate-x509, or spin-deck.
-      annotations:
-        service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
-        # Uncomment the line below to provide an AWS SSL certificate to terminate SSL at the LoadBalancer.
-        #service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-west-2:9999999:certificate/abc-123-abc
+This file is from the public `armory/spinnaker-operator` [repo](https://github.com/armory/spinnaker-operator/blob/master/deploy/spinnaker/complete/spinnakerservice.yml). You use this file to configure and deploy Spinnaker. Note that the `apiVersion` is the SpinnakerService CRD used by the Spinnaker Operator.
 
-      # Provide an override to the exposing KubernetesService.
-      overrides: {}
-      # The following example is an example config for the Gate-X509 configuration.
-#        deck:
-#          annotations:
-#            service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-west-2:9999999:certificate/abc-123-abc
-#            service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
-#        gate:
-#          annotations:
-#            service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-west-2:9999999:certificate/abc-123-abc
-#            service.beta.kubernetes.io/aws-load-balancer-backend-protocol: https  # X509 requires https from LoadBalancer -> Gate
-#       gate-x509:
-#         annotations:
-#           service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
-#           service.beta.kubernetes.io/aws-load-balancer-ssl-cert: null
-#         publicPort: 443
+{{< github repo="armory/spinnaker-operator" file="/deploy/spinnaker/complete/spinnakerservice.yml" lang="yaml" options="" >}}
+</details>
 
-  validation:
-```
+
+## Manifest sections
+
+
 ### metadata.name
 
-Name of your Spinnaker service. Use this name to view, edit, or delete Spinnaker. The following example uses the name `prod`:
+```yaml
+apiVersion: apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+```
+
+`metadata.name` is the name of your Armory Enterprise service. Use this name to view, edit, or delete Armory Enterprise. The following example uses the name `prod`:
 
 ```bash
 $ kubectl get spinsvc prod
 ```
 
-Note that you can use spinsvc for brevity. You can also use `spinnakerservices.spinnaker.armory.io`.
+Note that you can use `spinsvc` for brevity. You can also use `spinnakerservices.spinnaker.armory.io` (Armory Enterprise) or `spinnakerservices.spinnaker.io` (Spinnaker).
 
-### .spec.spinnakerConfig
+### spec.spinnakerConfig
 
 Contains the same information as the `deploymentConfigurations` entry in a Halyard configuration.
 
@@ -138,6 +90,10 @@ deploymentConfigurations:
 The equivalent of that Halyard configuration is the following `spec.spinnakerConfig`:
 
 ```yaml
+apiVersion: apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
 spec:
   spinnakerConfig:
     config:
@@ -149,11 +105,11 @@ spec:
           rootFolder: front50
 ```
 
-`.spec.spinnakerConfig.config` contains the following sections:
+`spec.spinnakerConfig.config` contains the following sections:
 
-* [armory]({{< ref "armory" >}})
+* [armory]({{< ref "armory" >}}) ![Proprietary](/images/proprietary.svg)
 * [artifact]({{< ref "artifact" >}})
-* [canary]({{< ref "canary" >}})
+* [canary]({{< ref "canary-op-config" >}})
 * [ci]({{< ref "ci" >}})
 * [deploymentEnvironment]({{< ref "deploy" >}})
 * [features]({{< ref "features" >}})
@@ -168,7 +124,7 @@ spec:
 * [stats]({{< ref "stats" >}})
 * [webhook]({{< ref "webhook" >}})
 
-### .spec.spinnakerConfig.profiles
+### spec.spinnakerConfig.profiles
 
 Configuration for each service profile. This is the equivalent of `~/.hal/default/profiles/<service>-local.yml`. For example the following `profile` is for Gate:
 
@@ -195,7 +151,7 @@ spec:
           window.spinnakerSettings.feature.artifactsRewrite = true;
 ```
 
-### .spec.spinnakerConfig.service-settings
+### spec.spinnakerConfig.service-settings
 
 Settings for each service. This is the equivalent of `~/.hal/default/service-settings/<service>.yml`. For example the following settings are for Clouddriver:
 
@@ -210,7 +166,7 @@ spec:
           serviceAccountName: spin-sa
 ```
 
-### .spec.spinnakerConfig.files
+### spec.spinnakerConfig.files
 
 Contents of any local files that should be added to the services. For example to reference the contents of a kubeconfig file:
 
@@ -244,15 +200,15 @@ A double underscore (`__`) in the file name is translated to a path separator (`
 ```
 
 ### spec.expose
-Optional. Controls how Armory gets exposed. If you omit it, no load balancer gets created. If this section gets removed, the Load Balancer does not get deleted.
+Optional. Controls how Armory Enterprisegets exposed. If you omit it, no load balancer gets created. If this section gets removed, the Load Balancer does not get deleted.
 
 Use the following configurations:
 
-- `spec.expose.type`: How Armory gets exposed. Currently, only `service` is supported, which uses Kubernetes services to expose Armory.
+- `spec.expose.type`: How Armory Enterprisegets exposed. Currently, only `service` is supported, which uses Kubernetes services to expose Spinnaker.
 - `spec.expose.service`: Service configuration
 - `spec.expose.service.type`: Should match a valid Kubernetes service type (i.e. `LoadBalancer`, `NodePort`, or `ClusterIP`).
 - `spec.expose.service.annotations`: Map containing annotations to be added to Gate (API) and Deck (UI) services.
-- `spec.expose.service.overrides`: Map with key for overriding the service type and specifying extra annotations: Armory service name (Gate or Deck) and value. By default, all services receive the same annotations. You can override annotations for a Deck (UI) or Gate (API) services.
+- `spec.expose.service.overrides`: Map with key for overriding the service type and specifying extra annotations: Armory Enterpriseservice name (Gate or Deck) and value. By default, all services receive the same annotations. You can override annotations for a Deck (UI) or Gate (API) services.
 
 ### spec.validation
 
@@ -289,32 +245,13 @@ spec:
 Support for `SpinnakerAccount` CRD (**Experimental**):
 
 - `spec.accounts.enabled`: Boolean. Defaults to false. If true, the `SpinnakerService` uses all `SpinnakerAccount` objects enabled.
-- `spec.accounts.dynamic` (experimental): Boolean. Defaults to false. If true, `SpinnakerAccount` objects are available to Spinnaker as the account is applied (without redeploying any service).
+- `spec.accounts.dynamic` (experimental): Boolean. Defaults to false. If true, `SpinnakerAccount` objects are available to Armory Enterprise as the account is applied (without redeploying any service).
 
-## Example Manifests for Exposing Armory
-The following example manifests deploy Armory with different configurations:
-- [SpinnakerService CRD](#spinnakerservice-crd)
-  - [metadata.name](#metadataname)
-  - [.spec.spinnakerConfig](#specspinnakerconfig)
-  - [.spec.spinnakerConfig.profiles](#specspinnakerconfigprofiles)
-  - [.spec.spinnakerConfig.service-settings](#specspinnakerconfigservice-settings)
-  - [.spec.spinnakerConfig.files](#specspinnakerconfigfiles)
-  - [spec.expose](#specexpose)
-  - [spec.validation](#specvalidation)
-  - [spec.accounts](#specaccounts)
-- [Example Manifests for Exposing Spinnaker](#example-manifests-for-exposing-spinnaker)
-  - [Load balancer Services](#load-balancer-services)
-  - [Different Service Types for Deck (UI) and Gate (API)](#different-service-types-for-deck-ui-and-gate-api)
-  - [Different Annotations for Deck (UI) and Gate (API)](#different-annotations-for-deck-ui-and-gate-api)
-- [X509](#x509)
+## Example Manifests for exposing Armory Enterprise
 
 ### Load balancer Services
 
 ```yaml
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
 spec:
   expose:
     type: service
@@ -385,13 +322,9 @@ spec:
 ```
 
 
-### Different Service Types for Deck (UI) and Gate (API)
+### Different service types for Deck (UI) and Gate (API)
 
 ```yaml
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
 spec:
   expose:
     type: service
@@ -464,13 +397,9 @@ spec:
   type: NodePort
 ```
 
-### Different Annotations for Deck (UI) and Gate (API)
+### Different annotations for Deck (UI) and Gate (API)
 
 ```yaml
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
 spec:
   expose:
     type: service
@@ -486,7 +415,7 @@ spec:
             "service.beta.kubernetes.io/aws-load-balancer-internal": "true"
 ```
 
-Above manifest file will generate these two services:
+The preceding manifest file generates these two services:
 
 *spin-deck*
 
@@ -577,3 +506,13 @@ spec:
            service.beta.kubernetes.io/aws-load-balancer-ssl-cert: null
          publicPort: 443
 ```
+
+## Help resources
+
+{{% include "armory-operator/help-resources.md" %}}
+
+## {{% heading "nextSteps" %}}
+
+* See the [Manifest Reference]({{< ref "op-manifest-reference" >}}) for configuration options by section.
+* Configure Kubernetes accounts using the {{< linkWithTitle "op-spin-account-crd.md" >}} (Experimental)
+* See advanced configuration using Kustomize in the {{< linkWithTitle "op-config-kustomize.md" >}} guide.

@@ -8,16 +8,16 @@ aliases:
 ---
 
 
-**spec.spinnakerConfig.config.security**
+## spec.spinnakerConfig.config.security
 
 Configure Spinnaker's security. This includes external SSL, authentication mechanisms, and authorization policies.
 
 ```yaml
 security:
-        apiSecurity:
-        uiSecurity:
-        authn:
-        authz:
+  apiSecurity:
+  uiSecurity:
+  authn:
+  authz:
 ```
 
 - `apiSecurity`
@@ -88,25 +88,25 @@ authn:
 
 ```yaml
 oauth2:
-    enabled:
-    client:
-      clientId:
-      clientSecret:
-      accessTokenUri:
-      userAuthorizationUri:
-      clientAuthenticationScheme:
-      scope:
-      preEstablishedRedirectUri:
-      useCurrentUri:
-    userInfoRequirements:
-    resource:
-      userInfoUri:
-    userInfoMapping:
-      email:
-      firstName:
-      lastName:
-      username:
-    provider:
+  enabled:
+  client:
+    clientId:
+    clientSecret:
+    accessTokenUri:
+    userAuthorizationUri:
+    clientAuthenticationScheme:
+    scope:
+    preEstablishedRedirectUri:
+    useCurrentUri:
+  userInfoRequirements:
+  resource:
+    userInfoUri:
+  userInfoMapping:
+    email:
+    firstName:
+    lastName:
+    username:
+  provider:
 ```
 
 - `enabled`: true or false.
@@ -328,3 +328,7 @@ uiSecurity:
 - `sslCertificateKeyFile`: Path to your .key file. File needs to be present on the machine running Spinnaker. Supports encrypted file.
 - `sslCertificatePassphrase`: The passphrase needed to unlock your SSL certificate. This will be provided to Apache on startup. Supports encrypted value.
 - `sslCACertificateFile`: Path to the .crt file for the CA that issued your SSL certificate. This is only needed for localgitdeployments that serve the UI using webpack dev server. File needs to be present on the machine running Spinnaker. Supports encrypted file.
+
+## Kustomize patch examples
+
+You can see examples in the `spinnaker-kustomize-patches` repo's [`security` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/security).
