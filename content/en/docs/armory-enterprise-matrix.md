@@ -28,7 +28,7 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 ![OSS](/images/oss.svg) The feature or parts of it are available in open source Spinnaker.
 
-![Armory](/images/armory.svg) The feature or parts of it are available only as part of Armory Enterprise for Spinnaker.[^1]
+![Proprietary](/images/proprietary.svg) The feature or parts of it are available only as part of Armory Enterprise for Spinnaker.[^1]
 
 **Versions**
 
@@ -36,7 +36,7 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 ## Agent
 
-[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})![Armory](/images/armory.svg)
+[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})![Proprietary](/images/proprietary.svg)
 
 {{< include "agent/agent-compat-matrix.md" >}}
 
@@ -44,7 +44,7 @@ For a full list of previous releases, see this [page](https://armory.jfrog.io/ar
 
 ## Application metrics for Canary Analysis
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 Application metrics can be ingested by Kayenta to perform Canary Analysis or Automated Canary Analysis (ACA). For information about how to enable Canary Analysis, see {{< linkWithTitle kayenta-configure.md >}}.
 
@@ -64,7 +64,7 @@ The following table lists supported app metric providers:
 
 Artifacts are  deployable resources.
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 The following table lists the supported artifact stores:
 
@@ -83,7 +83,7 @@ The following table lists the supported artifact stores:
 
 ### Pipelines as Code
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
 
 [Pipelines as Code]({{< ref "dinghy-enable" >}}) gives you the ability to manage your pipelines and their templates in source control by creating and maintaining `dinghyfiles` that contain text representations of pipelines. These files are then ingested by Armory to generate pipelines that your app devs can use to deploy their apps.
 
@@ -127,7 +127,7 @@ You can find the latest version on [Docker Hub](https://hub.docker.com/r/armory/
 
 ### Pipelines as CRD
 
-[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) ![Armory](/images/armory.svg)
+[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) ![Proprietary](/images/proprietary.svg)
 
 [PaCRD]({{< ref "pacrd" >}}) gives you the ability to manage your pipelines as
 Kubernetes custom resources.
@@ -142,7 +142,7 @@ The following table lists the PaCRD features and their supported versions:
 
 ### Terraform Integration
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
 
 The Terraform Integration gives you the ability to use Terraform within your Spinnaker pipelines to create your infrastructure as part of your software delivery pipeline.
 
@@ -171,7 +171,7 @@ The following table lists the Terraform Integration features and their supported
 
 ## Authentication
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 The following table lists the supported authentication protocols:
 
@@ -185,7 +185,7 @@ The following table lists the supported authentication protocols:
 
 ## Authorization
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 The following table lists the supported authorization methods:
 
@@ -200,7 +200,7 @@ The following table lists the supported authorization methods:
 
 ## Baking machine images
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 The following table lists the supported image bakeries:
 
@@ -212,7 +212,7 @@ The following table lists the supported image bakeries:
 
 ## Baking Kubernetes manifests
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 The following table lists the supported manifest templating engines:
 
@@ -228,7 +228,7 @@ Spinnaker's UI (Deck) works with most modern browsers.
 
 ## Build systems
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 The following table lists the supported CI systems:
 
@@ -247,7 +247,7 @@ Armory Enterprise includes custom stages that you can use to extend the capabili
 
 ## Deployment targets
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 Armory supports various deployment targets.
 
@@ -342,7 +342,7 @@ You write the function and use Armory to manage the rollout of iterative version
 
 ## Dynamic accounts
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 Dynamic accounts (external account configurations) for Spinnaker allow you to manage account configuration outside of Spinnaker, including secrets.
 
@@ -368,7 +368,7 @@ The following table lists the services that support dynamic accounts:
 
 ## External storage
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 Spinnaker requires an external storage provider for persisting app settings and pipelines. The following table lists the supported storage solutions:
 
@@ -390,7 +390,7 @@ Armory recommends using MySQL or PostgreSQL as the backing store when possible f
 
 ## Notifications
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 The following table lists the supported notification systems:
 
@@ -404,7 +404,7 @@ The following table lists the supported notification systems:
 
 ## Observability
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 The following table lists the supported observabilty providers:
 
@@ -416,7 +416,7 @@ The following table lists the supported observabilty providers:
 
 ## Pipeline triggers
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 The following table lists the supported pipeline triggers:
 
@@ -436,7 +436,7 @@ The following table lists the supported pipeline triggers:
 
 ## Policy Engine
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
 
 The [Policy Engine]({{< ref "policy-engine-enable" >}}) gives you the ability to ensure any Spinnaker pipeline meets certain requirements you specify.
 
@@ -459,7 +459,7 @@ The following table lists the requirements:
 
 ## Secret stores
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 {{% alert title="Note" %}} This section applies to secrets in configuration files, not application secrets. {{% /alert %}}
 
@@ -475,7 +475,7 @@ The following table lists the supported secret stores for referencing secrets in
 
 ## Spinnaker Operator
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
 [Armory Operator]({{< ref "armory-operator" >}}) and [Spinnaker Operator](https://github.com/armory/spinnaker-operator) provide with the ability to install, update, and maintain their clusters via a Kubernetes operator.
 
