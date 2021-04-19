@@ -15,6 +15,8 @@ description: >
 
 {{< include "armory-operator/how-kustomize-works.md" >}}
 
+{{% include "armory-operator/kust-ver-note.md" %}}
+
 ## Kustomize resources
 
 You should familiarize yourself with Kustomize before you create patch files to configure Armory Enterprise.
@@ -23,6 +25,10 @@ You should familiarize yourself with Kustomize before you create patch files to 
 * Kustomize [introduction](https://kubectl.docs.kubernetes.io/guides/introduction/kustomize/)
 * Kustomize [installation](https://kubectl.docs.kubernetes.io/installation/kustomize/)
 * [Kustomization file overview](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/)
+
+## Kubernetes requirements
+
+{{% include "armory-operator/k8s-reqs.md" %}}
 
 ## Spinnaker Kustomize patches repo
 
