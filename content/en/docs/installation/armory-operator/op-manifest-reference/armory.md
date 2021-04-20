@@ -78,6 +78,8 @@ armory:
   - `slack`:
     - `enabled`: true or false.
     - `channel`: Name of channel to send notifications to.
+  - `github`:
+    - `enabled`: true or false.
 - `webhookValidationEnabledProviders`: List of enabled providers for Webhook validations.
 - `webhookValidations`: Webhook validations list
   - `enabled`: true/false flag to enable this validation.
