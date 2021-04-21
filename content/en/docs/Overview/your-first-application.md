@@ -16,7 +16,7 @@ An application represents the service which you are going to deploy using Spinna
 
 When you first log in to Spinnaker, the landing page should look like this:
 
-![](/images/Image-2017-03-24-at-3.15.34-PM.png)
+![The landing page of a fresh installation](/images/overview/your-first-application/default-view-top.png)
 
 The navigation bar at the top allows you to access Projects, Applications, and
 Infrastructure. The search bar allows you to search through your Infrastructure.
@@ -33,26 +33,25 @@ Remember that Spinnaker considers an application to be anything you would put in
 
 ## Making an application
 
-**Step 1:** Enter Applications from your Navigation bar.
+1. Enter Applications from your Navigation bar.
 
-**Step 2:** Click the “Actions” button and select from the drop-down menu “Create Application”
+1. Click the “Create Application” button:
 
-![](/images/Image-2017-03-24-at-3.20.41-PM.png)
+   ![Highlight the "Create Application" button](/images/overview/your-first-application/create-application.png)
 
-**Step 3:** Fill out the pop-up form with desired user definitions.
+1. Fill out the pop-up form with desired user definitions.
 
-![](/images/Image-2017-03-24-at-3.22.30-PM.png)
+   ![The "New Application" modal](/images/overview/your-first-application/new-application-modal.png)
 
-Notes:
--  The name of the application cannot have hyphens. Using a hyphen in the application name interferes with the naming convention. This applies to all types of applications except for those that use the Kubernetes V2 provider to deploy.
-- The Account(s) can include your AWS account and your Docker registry.
-- When you create an application in Spinnaker, consider it to be anything you would put into a single code repository.
+   -  The name of the application cannot have hyphens. Using a hyphen in the application name interferes with the naming convention. This applies to all types of applications except for those that use the Kubernetes V2 provider to deploy.
+   - The Account(s) can include your AWS account and your Docker registry.
+   - When you create an application in Spinnaker, consider it to be anything you would put into a single code repository.
 
-**Step 4:** After you fill out the form you should see this:
+1. After you fill out the form you should see this:
 
-![](/images/Image-2017-03-24-at-3.26.40-PM.png)
+   ![A fresh application view](/images/overview/your-first-application/new-application.png)
 
-**Step 5:** If you wish to modify the settings for the application, click on “Config” for configurations.
+1. If you wish to modify the settings for the application, click on “Config” for configurations.
 
 Note that by now you should have created an application, but as you have not created a pipeline and executed it, nothing should show up yet.
 
@@ -61,4 +60,4 @@ Note that by now you should have created an application, but as you have not cre
 
 Go to your application, click on “Config” and scroll all the way down. There will be a prompt to confirm if you would like to delete your application.
 
-![](/images/Image-2017-03-24-at-3.28.14-PM.png)
+![Deleting an application](/images/overview/your-first-application/delete-application.png)
