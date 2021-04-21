@@ -87,9 +87,9 @@ kubernetes:
 | `pprof.port`                                                                                                                                                                | integer           | 6060                    | Port on which to respond to pprof requests                                                                                                                                       |
 | `secrets.vault.*`                                                                                                                                                           | object            | none                    | [Vault configuration]({{< ref "secrets-vault#1-kubernetes-service-account-recommended" >}}) |
 
-### Permission Format
+### Permissions format
 
-Permissions use a format that is slightly different from Clouddriver's.
+Permissions for the Agent use a format that is slightly different than the format that Clouddriver uses for permissions:
 
 ```
 kubernetes:
@@ -101,16 +101,16 @@ kubernetes:
 ```
 
 
-## Restricted Environments
+## Restricted environments
 
-### Network Access
+### Network access
 
 The Agent needs access to its control plane (Spinnaker) as well to the various Kubernetes clusters it is configured to monitor. You can control which traffic should go through an HTTP proxy via the usual `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables.
 
 A common case is to force the connection back to the control plane via a proxy but bypass it for Kubernetes clusters. In that case, define the environment variable `HTTPS_PROXY=https://my.corporate.proxy` and use the `kubernetes.noProxy: true` setting to not have to maintain the list of Kubernetes hosts in `NO_PROXY`.
 
 
-### Kubernetes Authorization
+### Kubernetes authorization
 
 The Agent should be configured to access each Kubernetes cluster it monitors with a service account. You can limit what Spinnaker can do via the role you assign to that service account. For example, if you'd like Spinnaker to see `NetworkPolicies` but not deploy them:
 
@@ -126,7 +126,7 @@ rules:
 ...
 ```
 
-### Namespace Restrictions
+### Namespace restrictions
 
 You can limit the Agent to monitoring specific namespaces by listing them under `namespaces`. If you need to prevent the Agent from accessing cluster-wide (non-namespaced) resources, use the `onlyNamespacedResources` setting.
 
