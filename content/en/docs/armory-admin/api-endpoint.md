@@ -408,8 +408,8 @@ spec:
         uiSecurity:
           ssl:
             enabled: true
-            sslCertificateFile: encrypted:k8s!n:spin-deck-secrets!k:deck.crt
-            sslCertificateKeyFile: encrypted:k8s!n:spin-deck-secrets!k:deck.key
+            sslCertificateFile: encryptedFile:k8s!n:spin-deck-secrets!k:deck.crt
+            sslCertificateKeyFile: encryptedFile:k8s!n:spin-deck-secrets!k:deck.key
             sslCertificatePassphrase: abc # Your passphrase
 ```
 
@@ -462,10 +462,10 @@ spec:
           ssl:
             enabled: true
             keyAlias: gate
-            keyStore: encrypted:k8s!n:spin-gate-secrets!k:gate.jks
+            keyStore: encryptedFile:k8s!n:spin-gate-secrets!k:gate.jks
             keyStoreType: jks
             keyStorePassword: abc # The password to unlock your keystore. Due to a limitation in Tomcat, this must match your key's password in the keystore.
-            trustStore: encrypted:k8s!n:spin-gate-secrets!k:gate.jks
+            trustStore: encryptedFile:k8s!n:spin-gate-secrets!k:gate.jks
             trustStoreType: jks
             trustStorePassword: abc # The password to unlock your truststore.
             clientAuth: WANT # Declare 'WANT' when client auth is wanted but not mandatory, or 'NEED', when client auth is mandatory.
