@@ -1,8 +1,8 @@
 ---
-title: Deploy an Application to EC2
+title: Deploy an Application to Amazon EC2
 linkTitle: Deploy to EC2
 description: >
-  Create a pipeline that uses a Red/Black (Blue/Green) deployment strategy to deploy a web server
+  Learn how to create a Spinnaker pipeline that uses a Red/Black (Blue/Green) deployment strategy to deploy a web server.
 aliases:
   - /user-guides/deploying/
   - /user_guides/deploying/
@@ -11,21 +11,21 @@ aliases:
   - /spinnaker-user-guides/deploying/
 ---
 
-## Prerequisites
+## How Spinnaker deploys applications
+
+The primary objective of Spinnaker<sup>TM</sup> is to deploy your software. To do that, you need to bake an image and then use that same image to deploy to all of your environments.
+
+The typical type of distributed application that Spinnaker deploys is one with a cluster of homogeneous instances behind a load balancer. The load balancer is responsible for detecting healthy and unhealthy instances.
+
+This guide continues the example in the {{< linkWithTitle aws-baking-images.md >}} guide. Here, you deploy a simple web server that serves a page with details about its environment.
+
+## Prerequisites for deploying an application to EC2
 
 - You know how to create pipelines.
 - You have read the {{< linkWithTitle aws-baking-images.md >}} guide and completed the steps to bake an image.
-- You have read Armory's {{< linkWithTitle naming-conventions.md >}} guide.
+- You have read the {{< linkWithTitle naming-conventions.md >}} guide.
 - You are familiar with [Elastic Load Balancing (ELB)](https://aws.amazon.com/elasticloadbalancing/) configuration.
 - You have already created a security group to use in your application.
-
-## Overview
-
-The primary objective of Armory is to deploy your software. To do that, you need to bake an image and then use that same image to deploy to all of your environments.
-
-The typical type of distributed application that Armory deploys is one with a cluster of homogeneous instances behind a load balancer. The load balancer is responsible for detecting healthy and unhealthy instances.
-
-This guide continues the example in the {{< linkWithTitle aws-baking-images.md >}} guide. Here, you deploy a simple web server that serves a page with details about its environment.
 
 ## Create a load balancer
 
@@ -292,6 +292,6 @@ In order to use a subnet within Spinnaker, you will need to tag it in AWS a cert
 
 There are two ways you can tag them. One option is to use the convention `spinnaker.<internal|external>.<region>` for the subnet's name. In the screenshot below, you can see that is what I have done on my subnets.
 
-![](/images/Image-2017-03-30-at-1.48.35-PM.png)
+![](/images/user-guides/aws/deploy/Image-2017-03-30-at-1.48.35-PM.png)
 
 Another option is to create a tag named `immutable_metadata` with value `{"purpose": "MySubnetNameInsideSpinnaker"}`

@@ -1,5 +1,6 @@
 ---
-title: Working with Jenkins
+title: Use Jenkins in Spinnaker
+linkTitle: Use Jenkins
 aliases:
   - /user-guides/working-with-jenkins/
   - /user-guides/working_with_jenkins/
@@ -8,14 +9,17 @@ aliases:
   - /spinnaker_user_guides/working_with_jenkins/
   - /spinnaker_user_guides/working-with-jenkins/
   - /spinnaker-user-guides/working_with_jenkins/
+description: >
+  Learn how to use Jenkins in your Spinnaker pipelines.
 ---
 
-> Before you start, you'll need to [configure Jenkins](/docs/spinnaker-install-admin-guides/jenkins/).  If
-> you don't see Jenkins as an option, or you're not seeing the correct
-> master/job combination in the UI, you'll need to double-check your Spinnaker
-> is configured to use that resource.
-
 ## Triggering a pipeline with Jenkins
+
+> Before you start, you need to [configure
+Jenkins]({{< ref "jenkins-connect" >}}). If you don't see
+Jenkins as an option, or you're not seeing the correct master/job combination
+in the UI, you'll need to double-check your Spinnaker is configured to use
+that resource.
 
 To add a Jenkins trigger to your pipeline, go to your configurations stage and select "add trigger", then select "Jenkins" from the Type dropdown menu. Select a Master from the Master category list and then select a Job to trigger from the pipeline.
 

@@ -3,6 +3,7 @@ title: v2.18.0 Armory Release (OSS Release 1.18.2)
 toc_hide: true
 date: 2020-02-14
 version: 02.18.00
+description: Release notes for Armory Enterprise v2.18.0
 aliases:
   - armoryspinnaker_v2.18.0
 ---

@@ -1,34 +1,37 @@
 ---
-title: Installing Armory in AWS from the AWS Container Marketplace
+title: Install Armory Enterprise for Spinnaker from the AWS Container Marketplace
 linkTitle: Install from AWS Marketplace
 weight: 2
 aliases:
   - /spinnaker/aws_container_marketplace/
   - /spinnaker/aws-container-marketplace/
+description: >
+  Use the Armory Operator from the AWS Container Marketplace to deploy Armory Enterprise for Spinnaker in your Amazon Kubernetes (EKS) cluster.
+
 ---
 
-{{% alert title="Note" %}}This document is intended for users who have purchased the Armory AWS Container Marketplace offering. It will not work if you have not subscribed to the Armory Container Marketplace offering.
+{{% alert title="Note" %}}This document is intended for users who have purchased Armory's AWS Container Marketplace offering. It will not work if you have not subscribed to the Armory Container Marketplace offering.
 
 Please contact [Armory](mailto:hello@armory.io) if you're interested in an AWS Marketplace Private Offer.{{% /alert %}}
 
-## Overview
+## Overview of the Armory Operator
 
-The Armory Operator is a Kubernetes Operator for Spinnaker<sup>TM</sup> that makes it easier to install, deploy, and upgrade Spinnaker. The AWS Container Marketplace offering for Armory installs a version of the Armory Operator in an EKS cluster. After that, Armory can be installed in any namespace in your EKS cluster; this document assumes that Armory will be installed in the `spinnaker` namespace.
+The Armory Operator is a Kubernetes Operator for Spinnaker<sup>TM</sup> that makes it easier to install, deploy, and upgrade Spinnaker or Armory. The AWS Container Marketplace offering for Armory installs a version of the Armory Operator in an EKS cluster. After that, Armory can be installed in any namespace in your EKS cluster; this document assumes that Armory will be installed in the `spinnaker` namespace.
 
 ## AWS Resources
 
 Before you install Armory on AWS, it is essential that you familiarize yourself with [relevant AWS services]({{< ref "resources-aws" >}}).
 
-## Prerequisites
+## Prerequisites for using the Armory Operator
 
-To use the Armory Marketplace offering, make sure you meet the following requirements:
+To use the Marketplace's Armory offering, make sure you meet the following requirements:
 
 * You have access to an EKS cluster (Kubernetes 1.16 or above) configured with [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 * You have an ingress controller for your EKS cluster. This document assumes the EKS cluster is using the NGINX Ingress Controller.
 * You have `cluster-admin` access on the EKS cluster.
 * You have An AWS S3 bucket to store Armory application and pipeline configuration.
 
-## Installation
+## Installation summary
 
 This document covers the following high-level steps:
 

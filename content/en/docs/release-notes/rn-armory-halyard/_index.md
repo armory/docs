@@ -9,12 +9,15 @@ aliases:
   - /halyard-release-notes/
 layout: release-notes-all
 semver_list: true
+description: >
+  Release notes for Armory-extended Halyard, an extended version of Halyard that deploys Armory features
 ---
 
 > You can find [Armory's releases notes here]({{< ref "rn-armory-spinnaker" >}}).
 
-## Halyard
-Armory-extended Halyard  is an extended version of Halyard that deploys Armory features. You can find the base OSS version:
+## How to find your Spinnaker version using Halyard
+
+ You can find the base Open Source Spinnaker version by executing the following command:
 
 ```bash
 > hal --version

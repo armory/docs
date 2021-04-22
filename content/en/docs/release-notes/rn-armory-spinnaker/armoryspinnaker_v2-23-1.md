@@ -3,13 +3,13 @@ title: v2.23.1 Armory Release (OSS Spinnaker™ v1.23.3)
 toc_hide: true
 version: 02.23.01
 description: >
-  Release notes for the Armory Platform
+  Release notes for Armory Enterprise v2.23.1
 ---
 
 ## 2020/12/5 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-> 
+>
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.23.1, use one of the following tools:
@@ -24,17 +24,27 @@ Armory scans the codebase as we develop and release software. For information ab
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
-{{< include "bc-docker-giduid.md" >}}
 
-{{< include "bc-k8s-job-suffix.md" >}}
+{{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
+
+{{< include "breaking-changes/bc-orca-forcecacherefresh.md" >}}
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
-The following known issues affect 2.23.1:
+#### Clouddriver resources
 
-- Clouddriver consumes more threads than it needs. This can lead to a situation where pods do not have enough resources to start.
-- Slack notifications do not work for Pipelines as Code (Dinghy).
-- An old version of Deck, the Spinnaker UI, exists in this release.
+There is a known issue with Clouddriver that affects the performance of Armory Enterprise, causing it to consume more resources. This can lead to a situation where pods do not have enough resources to start.
+
+#### Pipelines as Code Slack notifications
+
+There is a known issue where Slack notifications do not work for Pipelines as Code (Dinghy).
+
+#### Spinnaker UI
+
+An old version of Deck, the Spinnaker UI, exists in this release.
+
+
+{{< include "known-issues/ki-lambda-ui-caching.md" >}}
 
 ## Highlighted updates
 

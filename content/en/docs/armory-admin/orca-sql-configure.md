@@ -1,23 +1,24 @@
 ---
-title: Configuring Orca to use a Relational Database Management System
-linkTitle: Configuring Orca to use RDBMS
-description:
+title: Configure Spinnaker's Orca Service to Use SQL RDBMS
+linkTitle: Configure Orca to use SQL
 aliases:
   - /spinnaker_install_admin_guides/orca-sql/
   - /docs/spinnaker-install-admin-guides/orca-sql/
+description: >
+  Configure Spinnaker's Orca service to use an RDBMS to store its pipeline execution.
 ---
 
-## Overview
+## Advantages to using an RDMS with Orca
 
-By default, Orca (the task orchestration service) uses Redis as its backing store. You can configure Orca to use a relational database to store its pipeline execution. The main advantage of doing so is a gain in performance and the removal of Redis as a single point of failure.
+By default, Spinnaker's task orchestration service, Orca, uses Redis as its backing store. You can configure Orca to use a relational database instead of Redis to store its pipeline execution. The main advantage of doing so is a gain in performance and the removal of Redis as a single point of failure.
 
 Armory recommends MySQL 5.7. For AWS, you can use Aurora.
 
-## Base Configuration
+## Base configuration
 
-You can find a complete description of the options in the [open source documentation](https://www.spinnaker.io/setup/productionize/persistence/orca-sql/).
+You can find a complete description of configuration options in the Open Source Spinnaker [documentation](https://www.spinnaker.io/setup/productionize/persistence/orca-sql/).
 
-SQL can be configured by adding the following snippet to `SpinnakerService` manifest under `spec.spinnakerConfig.profiles.orca` if using the Operator, or to `<HALYARD>/<DEPLOYMENT>/profiles/orca-local.yml` if using Halyard:
+You can configure your SQL database by adding the following snippet to `SpinnakerService` manifest under `spec.spinnakerConfig.profiles.orca` if using the Operator, or to `<HALYARD>/<DEPLOYMENT>/profiles/orca-local.yml` if using Halyard:
 
 ```yaml
 sql:
@@ -46,9 +47,9 @@ monitor:
     redis: false
 ```
 
-## Initial run
+## Create the `orca` database and configure authorization
 
-Once you've provisioned your RDBMS and ensured connectivity from Spinnaker, you'll need to create the database. You can skip this step if you create the database during provisioning - for instance with Terraform:
+Once you've provisioned your RDBMS and ensured connectivity from Spinnaker, you need to create the database. You can skip this step if you created the database during provisioning.
 
 ```sql
 CREATE SCHEMA `orca` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -71,7 +72,7 @@ Grant authorization to the `orca_service` and `orca_migrate` users:
 
 The above configuration grants authorization from any host. You can restrict it to the cluster in which Spinnaker runs by replacing the `%` with the IP address of Orca pods from MySQL.
 
-## Keeping existing execution history
+## Migrate from Redis to SQL to keep existing execution history
 
 The above configuration will point Orca to your database.
 You have the option to run a dual repository by adding `dual` in `profiles/orca-local.yml`.
@@ -83,7 +84,7 @@ executionRepository:
   dual:
     enabled: true
     primaryClass: sqlExecutionRepository
-    previousClass: redisExecutionRepository
+    previousName: redisExecutionRepository
   sql:
     enabled: true
   redis:
@@ -105,7 +106,7 @@ executionRepository:
     enabled: true
 ```
 
-However it won't migrate your existing execution history to your new database. This will make your spinnaker instance run on both the SQL and redis backend, it will only write the new execution on SQL but will continue to read the data on redis.
+However, this configuration won't migrate your existing execution history to your new database. This will make your Spinnaker instance run on both the SQL and Redis backend. Spinnaker will only write the new execution on SQL but will continue to read the data on Redis.
 To migrate the data from Redis to SQL, you need to add the following
 
 ```yaml

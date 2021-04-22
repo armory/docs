@@ -3,6 +3,7 @@ title: v2.19.6 Armory Release (OSS Release 1.19.5)
 toc_hide: true
 date: 2020-04-20
 version: 02.19.06
+description: Release notes for Armory Enterprise v2.19.6
 aliases:
   - armoryspinnaker_v2.19.6
 ---
@@ -54,7 +55,7 @@ Addressed a number of CVEs found within the Spinnaker services.
 
 **Plugins**
 
-This release supports Plugin deployment using Armory-extended Halyard or the [Spinnaker Operator]({{< ref "operator" >}}). Consult the open source [Plugin](https://spinnaker.io/guides/user/plugins/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins" >}}) for a manifest example.
+This release supports Plugin deployment using Armory-extended Halyard or the [Spinnaker Operator]({{< ref "armory-operator" >}}). Consult the open source [Plugin](https://spinnaker.io/guides/user/plugins/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins" >}}) for a manifest example.
 
 Additionally, this version of Spinnaker includes updates to how Deck is built. Previously, Deck's builds were non-deterministic, causing issues with loading plugins into the UI. Deck's builds are now deterministic and support UI plugins.
 

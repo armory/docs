@@ -1,5 +1,6 @@
 ---
-title: Spring Expression Language
+title: Use the Spring Expression Language (SpEL) in Spinnaker Pipelines
+linkTitle: Spring Expression Language
 aliases:
   - /user-guides/expression-language/
   - /user-guides/expression_language/
@@ -8,11 +9,13 @@ aliases:
   - /spinnaker_user_guides/expression_language/
   - /spinnaker_user_guides/expression-language/
   - /spinnaker-user-guides/expression_language/
+description: >
+  Learn how to use SpEL for pipeline expressions.
 ---
 
-## Overview
+## Overview of SpEL in Spinnaker
 
-The expression language is a powerful tool that you can use to add logic and decision-making to your pipelines. While a lot of the time you will probably use it to evaluate variables, it can do a lot more. You can write straight Java/Groovy into it. This means you can do transformations, filters, maps, etc. You can use it to branch your pipeline into different directions.
+The Spring Expression Language is a powerful tool that you can use to add logic and decision-making to your pipelines. While a lot of the time you will probably use it to evaluate variables, it can do a lot more. You can write straight Java/Groovy into it. This means you can do transformations, filters, maps, etc. You can use it to branch your pipeline into different directions.
 
 Some of the most common uses include:
 - Getting build information from Jenkins

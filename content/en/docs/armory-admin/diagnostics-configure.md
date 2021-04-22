@@ -1,33 +1,23 @@
 ---
-title: Configuring Support Diagnostics for the Armory Platform
-linkTitle: Configuring Support Diagnostics
+title: Configure Support Diagnostics for Armory Enterprise
+linkTitle: Configure Support Diagnostics
 aliases:
   - /docs/spinnaker-install-admin-guides/admin-diagnostics/
+description: >
+  Enable Armory Diagnostics so that Armory's Support team can better troubleshoot any issues you encounter.
 ---
+
+## Advantages to enabling Armory Diagnostics
 
 When you engage Armory Support, the support team might ask you about enabling Armory Diagnostics.  This sends the log and event data from the your system to Armory so that the support team can remotely investigate what might be going on with your system, resulting in a faster turnaround on solutions.
 
-**Please note:** UUIDs are not checked for uniqueness.  As a result, if you have two environments and you provide both with the same UUID, the logs sent to Armory will conflict with each other.  Please ensure unique UUIDs for each environment.  
+>UUIDs are not checked for uniqueness.  As a result, if you have two environments and you provide both with the same UUID, the logs sent to Armory will conflict with each other.  Please ensure unique UUIDs for each environment.  
 
-## Turning on Armory Diagnostics (Halyard)
+## Turning on Armory Diagnostics
 
-Here's the Halyard command to enable this feature:
+{{< tabs name="enable" >}}
+{{% tab name="Operator" %}}
 
-```bash
-hal armory diagnostics enable
-hal armory diagnostics edit --logging-enabled=true
-```
-
-And similarly, to disable it:
-
-```bash
-hal armory diagnostics disable
-hal armory diagnostics edit --logging-enabled=false
-```
-
-You need to  to run `hal deploy apply` after enabling or disabling the diagnostics.
-
-## Turning on Armory Diagnostics (Operator)
 Generate a unique UUID before adding the information.  You can do this at a number of 3rd party websites that you can find via a Google search.
 
 Add to your `SpinnakerService.yml` file:
@@ -51,11 +41,34 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 
 You can find a description of diagnostic parameters in the "Diagnostics Parameters" section of the Operator [`armory` reference]({{< ref "armory#diagnostics-parameters" >}}).
 
+
+{{% /tab %}}
+{{% tab name="Halyard" %}}
+
+Here's the Halyard command to enable this feature:
+
+```bash
+hal armory diagnostics enable
+hal armory diagnostics edit --logging-enabled=true
+```
+
+And similarly, to disable it:
+
+```bash
+hal armory diagnostics disable
+hal armory diagnostics edit --logging-enabled=false
+```
+
+You need to  to run `hal deploy apply` after enabling or disabling the diagnostics.
+
+{{% /tab %}}
+{{< /tabs >}}
+
 ## Migrating Diagnostics to Operator from Halyard
 
 Follow the same steps as above, but you do not have to generate a UUID, as you already have one in your Halyard config.  Please use the same UUID to ensure diagnostics continue.
 
-## What gets sent
+## What data gets sent to Armory
 
 You're probably wondering exactly what gets sent to Armory when you're sharing
 your log output with us.
@@ -99,6 +112,14 @@ and the status and results of all the stages included in that pipeline
 
 Other events may be the result of performing operations within Spinnaker,
 such as creating a new load balancer, or resizing a server group.
+
+## How Armory uses the data
+
+Armory's Technical Account Manager and Support teams may use this data to generate reports for customers and provide summary information to customers. Additionally, Armory may look at environment configuration data and view error logs in order to reduce resolution time on open support cases.
+
+{{< figure src="/images/armory-admin/diagnostics-configure/ModeExample02.jpg" alt="Technical Account Manager Report Example" caption="Technical Account Manager Report Example" >}}
+
+{{< figure src="/images/armory-admin/diagnostics-configure/ModeExample01.jpg" alt="Customer Configuration Example" caption="Customer Configuration Example" >}}
 
 ## A Note on Private Data Exposure Risks
 

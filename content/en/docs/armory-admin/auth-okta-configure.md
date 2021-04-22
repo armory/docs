@@ -1,7 +1,8 @@
 ---
-title: Configuring Auth for Spinnaker Using Okta SAML
-linkTitle: Configuring Okta for Auth
-description: Spinnaker supports using Okta for authentication and authorization.
+title: Configure Auth for Spinnaker Using Okta SAML
+linkTitle: Configure Okta for Auth
+description: >
+  Configure Okta for authentication and authorization in Spinnaker.
 aliases:
   - /docs/spinnaker-install-admin-guides/okta/
 ---
@@ -74,13 +75,14 @@ KEYSTORE_PATH=/Users/armory/.hal/saml/saml.jks
 keytool -genkey -v -keystore $KEYSTORE_PATH -alias saml -keyalg RSA -keysize 2048 -validity 10000
 ```
 
-### 2: Configure spinnaker to use SAML
+### 2: Configure Spinnaker to use SAML
 
 > Note: The value you enter for `issuerId` must match the value entered in "Audience URI (SP Entity ID)" when configuring the app in Okta
 
-**Operator**
+{{< tabs name="configure" >}}
+{{% tab name="Operator" %}}
 
-Add the following snippet to `SpinnakerService` manifest. This references secrets stored in a Kubernetes secrets in the same namespace as Spinnaker, but secrets can be stored in any of the supported [secret engines](/armory-admin/Secrets):
+Add the following snippet to `SpinnakerService` manifest. This references secrets stored in a Kubernetes secrets in the same namespace as Spinnaker, but secrets can be stored in any of the supported [secret engines](/docs/armory-admin/Secrets):
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -117,7 +119,8 @@ Apply the changes of `SpinnakerService` manifest:
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
 
-**Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 ```bash
 KEYSTORE_PATH=/Users/armory/.hal/saml/saml.jks
@@ -138,6 +141,8 @@ hal config security authn saml enable
 hal deploy apply
 ```
 
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Troubleshooting
 

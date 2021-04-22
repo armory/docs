@@ -1,5 +1,6 @@
 ---
-title: Application Screen
+title: Spinnaker's Application Screen
+linkTitle: Application Screen
 aliases:
   - /user-guides/application-screen/
   - /user_guides/application-screen/
@@ -8,9 +9,11 @@ aliases:
   - /spinnaker_user_guides/application_screen/
   - /spinnaker_user_guides/application-screen/
   - /spinnaker-user-guides/application_screen/
+description: >
+  Learn how to manage your applications in Spinnaker.
 ---
 
-An application within Spinnaker is a combination of clusters and load balancers.
+An application within Spinnaker<sup>TM</sup> is a combination of clusters and load balancers.
 
 To get to the application details screen, select the 'Applications' tab on the top navigation bar in Spinnaker. Then pick an application from the list. It should load to a screen that looks like:
 

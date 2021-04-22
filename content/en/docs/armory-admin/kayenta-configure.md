@@ -1,14 +1,16 @@
 ---
-title: Configuring Kayenta for Automated Canary Deployments
-linkTitle: Configuring Canary Deployments
+title: Configure Automated Canary Deployments in Spinnaker
+linkTitle: Configure Canary Deployments
 aliases:
   - /spinnaker/configure_kayenta/
   - /docs/spinnaker/configure-kayenta/
+description: >
+  Learn how to configure Kayenta using the Armory Operator.
 ---
 
-## Overview
+## Kayenta Overview
 
-Kayenta is the Spinnaker service that performs Automated Canary Analysis (ACA). The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence. For information about how to use Canary deployments, see [Using Canary deployments]({{< ref "kayenta-canary-use" >}}).
+Kayenta is the Spinnaker service that performs Automated Canary Analysis (ACA). The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence. For information about how to use Canary deployments, see {{< linkWithTitle "kayenta-canary-use" >}}.
 
 ## Configure Kayenta
 

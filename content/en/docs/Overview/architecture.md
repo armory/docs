@@ -1,13 +1,16 @@
 ---
-title: "Architecture"
+title: Spinnaker Architecture
+linkTitle: "Architecture"
 weight: 10
 description: "The services that work together in Spinnaker™"
 aliases:
   - /spinnaker-install-admin-guides/architecture/
 ---
 
-Spinnaker is composed of several microservices for resiliency
-and follows the single-responsibility principle.  It allows for faster iteration on each
+## Spinnaker architecture
+
+Spinnaker is composed of several microservices for resiliency and follows
+the single-responsibility principle. It allows for faster iteration on each
 individual component and a more pluggable architecture for custom components.
 
 ![Architecture Diagram](/images/overview/SpinnakerArchitecture.png)

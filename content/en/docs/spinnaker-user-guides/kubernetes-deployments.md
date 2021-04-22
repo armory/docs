@@ -1,18 +1,20 @@
 ---
-title: Kubernetes Deployments
+title: Deploy a Docker Image to Kubernetes
+linkTitle: Deploy a Docker Image to Kubernetes
 aliases:
   - /spinnaker/kubernetes_deployments/
   - /docs/spinnaker/kubernetes-deployments/
+description: >
+  Learn how to use Spinnaker's Kubernetes V2 provider to deploy your Docker image.
 ---
-
-
-This document focuses on the manifest based (aka V2) Kubernetes provider.
 
 ## Kubernetes Deployments
 Spinnaker delegates the deployment of containers to Kubernetes. Kubernetes then proceeds with a rolling update deployment which is effectively a rolling blue/green deployment.
 Pods are created in batches and when a pod is deemed [healthy](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/) it starts receiving traffic.
 
 ### Example
+This example focuses on the manifest-based [Kubernetes V2 provider]({{< ref "kubernetes-v2" >}}).
+
 We've defined a simple pipeline where we first define an artifact (a Docker image) with a version coming from a pipeline parameter.
 You'd usually get the image from a trigger via container registry or a Jenkins job with the same result.
 

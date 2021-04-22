@@ -3,10 +3,10 @@ title: External Account Plugin
 toc_hide: true
 exclude_search: true
 description: >
-  The External Account Plugin allows the Armory Platform to read accounts from external sources.
+  The External Account Plugin allows Armory Enterprise to read accounts from external sources.
 ---
 <!-- this is a private plugin German created for a customer. This unlisted page is to satisfy an auditing requirement they have. It is also hidden via robots.txt and the netlify sitemap plugin. -->
-
+![Proprietary](/images/proprietary.svg)
 ## Overview
 
 The plugin reads account credentials information from a single URL (`http(s)` or `file`):
@@ -312,3 +312,8 @@ This plugin can read account credentials in the following layouts:
 ## Release Notes
 
 - v0.1.0 Initial plugin release (12/16/2020)
+
+- v0.1.1 (01/22/2021)
+
+   * Resolved an issue where `git clone` fails if the URL included a port number. This occurred with git polling with a sidecar when using a username/password or token-based authentication. 
+   * Resolved CVEs.

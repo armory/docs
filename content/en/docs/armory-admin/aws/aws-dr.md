@@ -1,16 +1,17 @@
 ---
-title: "Configuring Armory on AWS for Disaster Recovery"
-linkTitle: "Configuring AWS for Disaster Recovery"
+title: "Configure Spinnaker on AWS for Disaster Recovery"
+linkTitle: "Configure AWS for Disaster Recovery"
 aliases:
   - /docs/spinnaker-install-admin-guides/aws-dr/
   - /docs/armory-admin/aws-dr/
   - /armory-admin/aws-dr/
+description: >
+  Learn how to configure Spinnaker to perform disaster recovery when deployed in an AWS environment.
 ---
 
+## Spinnaker disaster recovery
 
-## Overview
-
-The following guide describes how to configure your Armory on AWS deployment to be more resilient and perform Disaster Recovery (DR). Armory does not function in multi-master mode, which means that active-active is not supported at this time. Instead, this guide describes how to achieve an active-passive Armory setup. This results in two instances of Armory deployed into two regions that can fail independently.
+The following guide describes how to configure Spinnaker<sup>TM</sup>  deployment on AWS to be more resilient and perform disaster recovery (DR). Spinnaker does not function in multi-master mode, which means that active-active is not supported at this time. Instead, this guide describes how to achieve an active-passive setup. This results in two instances of Spinnaker deployed into two regions that can fail independently.
 
 {{< figure src="/images/cloud-resources/aws/armory-active-passive.png"
 alt="Diagram of Armory deployment on AWS with disaster recovery"
@@ -18,14 +19,14 @@ height="75%" width="75%" >}}
 
 ## Requirements
 
-- The passive Armory will have the same permissions as the active Armory
-- The active Armory is configured to use AWS [Aurora](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html) and [S3](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html) for persistent storage
-- Your Secret engine/store has been configured for Disaster Recovery (DR)
-- All other services integrated with Armory, such as your Continuous Integration (CI) system, is configured for DR
+- The passive instance will have the same permissions as the active instance
+- The active instance is configured to use AWS [Aurora](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html) and [S3](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html) for persistent storage
+- Your Secret engine/store has been configured for disaster recovery
+- All other services integrated with Spinnaker, such as your Continuous Integration (CI) system, are configured for disaster recovery
 
-## What is a passive Armory
+## What a passive instance is
 
-A passive Armory means that the deployment:
+A passive instance means that the deployment:
 
 - Is not reachable by its known endpoints while passive (external and internal)
 - Does not schedule pipelines
@@ -42,7 +43,7 @@ Armory recommends using a relational database for Orca and Clouddriver. For Orca
 - Less downtime for patching and maintenance
 - Support for [cross-region replication](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Replication.CrossRegion.html)
 
-Note the following guidelines about Armory storage and caching:
+Note the following guidelines about storage and caching:
 
 * S3 buckets should be set up with cross-region replication turned on. See [Replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html) in the AWS documentation.
 * Consider the following if you plan to use Aurora MySQL:
@@ -79,23 +80,23 @@ A good way to handle failover is to set up DNS entries as a CNAME for each Armor
 
 For example:
 
-- Active Armory accessible through `us-west.spinnaker.acme.com` and `api.us-west-spinnaker.acme.com` load balancers.
-- Passive Armory accessible through `us-east.spinnaker.acme.com` and `api.us-east-spinnaker.acme.com` load balancers.
+- Active Spinnaker accessible through `us-west.spinnaker.acme.com` and `api.us-west-spinnaker.acme.com` load balancers.
+- Passive Spinnaker accessible through `us-east.spinnaker.acme.com` and `api.us-east-spinnaker.acme.com` load balancers.
 - Add DNS entries `spinnaker.acme.com` with a CNAME pointing to `us-west-spinnaker.acme.com` (same for `api` subdomain) and a small TTL (1 minute to 5 minute).
 
 In this setup, point your CNAME to `us-east` when a disaster event happens.
 
 {{% alert title="Note" %}}Armory does not recommend setting up DNS with a backup IP address when manual steps are required for failover.{{% /alert %}}
 
-## Setting up a Passive Armory
+## Setting up a passive Spinnaker
 
-To make a passive version of Armory, use the same configuration files as the current active installation for your starting point. Then, modify it to deactivate certain services before deployment.
+To make a passive version of Spinnaker, use the same configuration files as the current active installation for your starting point. Then, modify it to deactivate certain services before deployment.
 
-To keep the configurations in sync, set up automation to create a passive Armory configuration every time a configuration is changed for the active Armory. An easy way to do this is to use [Kustomize Overlays](https://www.mirantis.com/blog/introduction-to-kustomize-part-2-overriding-values-with-overlays/).
+To keep the configurations in sync, set up automation to create a passive Spinnaker configuration every time a configuration is changed for the active Spinnaker. An easy way to do this is to use [Kustomize Overlays](https://www.mirantis.com/blog/introduction-to-kustomize-part-2-overriding-values-with-overlays/).
 
 ### Configuration modifications
 
-Make sure you set replicas for all Armory services to 0. Example in `SpinnakerService` manifest for service `gate`:
+Make sure you set replicas for all Spinnaker services to 0. Example in `SpinnakerService` manifest for service `gate`:
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -111,19 +112,19 @@ spec:
             replicas: 0
 ```
 
-Once you're done configuring for the passive Armory, run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if using Operator, or `hal deploy apply` if using Halyard to deploy.
+Once you're done configuring for the passive Spinnaker, run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if using Operator, or `hal deploy apply` if using Halyard to deploy.
 
 {{% alert title="Note" %}}Armory recommends performing a DR exercise run to make sure the passive Armory is set up correctly. Ideally, the DR exercise should include both failing over to the DR region and failing back to the primary region.{{% /alert %}}
 
 ## Performing disaster recovery
 
-If the active Armory is failing, the following actions need to be taken:
+If the active Spinnaker is failing, the following actions need to be taken:
 
-### Activating the passive Armory
+### Activating the passive Spinnaker
 
-Perform the following tasks when you make the passive Armory into the active Armory:
+Perform the following tasks when you make the passive Spinnaker into the active Spinnaker:
 
-* Use the same version of Operator or Halyard to deploy the passive Armory installation that was used to deploy the active Armory.
+* Use the same version of Operator or Halyard to deploy the passive Spinnaker installation that was used to deploy the active Spinnaker.
 * AWS Aurora
     * Promote another cluster in the global database to have read/write capability.
     * Update `SpinnakerService` manifest if using Operator, or Halyard configuration if using Halyard to point to the promoted database if the database endpoint and/or the database credentials have changed.
@@ -135,7 +136,7 @@ Perform the following tasks when you make the passive Armory into the active Arm
 
 ##  Recovery Time Objective (RTO)
 
-Restoration time is dependent on the time it takes to restore the database, the Armory services, and the time it takes to update DNS. Most Armory services that fails should recover within a 10 minute timeframe. Clouddriver may take longer especially when at scale because it needs to reconnect to all configured cloud accounts. Note that services are limited to local resources, which are configured to be redundant (databases, nodes, etc.) or highly available. In addition to Clouddriver, the following services may also take additional time to restore since Redis needs time to warm up the cache:
+Restoration time is dependent on the time it takes to restore the database, the Spinnaker services, and the time it takes to update DNS. Most Spinnaker services that fail should recover within a 10-minute timeframe. Clouddriver may take longer especially when at scale because it needs to reconnect to all configured cloud accounts. Note that services are limited to local resources, which are configured to be redundant (databases, nodes, etc.) or highly available. In addition to Clouddriver, the following services may also take additional time to restore since Redis needs time to warm up the cache:
 
 - Orca
 - Igor
@@ -144,7 +145,7 @@ Restoration time is dependent on the time it takes to restore the database, the 
 
 ## Recovery Point Objective (RPO)
 
-This is the state to which Armory will recover the affected systems in case of a failure, such as database corruption. The current Armory RPO target is 24 hours maximum, tied to the last snapshot of the database.
+This is the state to which Spinnaker will recover the affected systems in case of a failure, such as database corruption. The current Spinnaker RPO target is 24 hours maximum, tied to the last snapshot of the database.
 
 
 ## Other resources

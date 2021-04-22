@@ -1,8 +1,11 @@
 ---
-title: Using Kustomize for Manifests
+title: Use Kustomize for Manifest-Based Kubernetes Deployments in Spinnaker
+linkTitle: Use Kustomize for App Manifests
+description: >
+  Learn how to use Kustomize within your Spinnaker pipeline to generate a custom Kubernetes deployment manifest artifact. You can use this artifact in a downstream stage to deploy your application.
 ---
 
-## Overview
+## Overview of Kustomize
 
 > Note that Kustomize is currently in [Beta]({{< ref "release-definitions" >}}). The feature is working and installable but is not meant for production use.
 ​​
@@ -117,7 +120,7 @@ You can now use the *KUSTOMIZE* option on a _Bake (Manifest)_ stage.
 ​
 ### Build the Pipeline
 ​
-For this example, we are going to use this [kustomize public repository](https://github.com/kubernetes-sigs/kustomize), specifically the *helloWorld* example.
+For this example, we are going to use this [Kustomize public repository](https://github.com/kubernetes-sigs/kustomize), specifically the *helloWorld* example.
 
 ### Step 1 - Add an Expected Artifact
 ​

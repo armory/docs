@@ -1,9 +1,9 @@
 ---
-title: Nomenclature and Naming Conventions
+title: Spinnaker Nomenclature and Naming Conventions
+linkTitle: Naming Conventions
 weight: 5
 description: >
   Spinnaker™ terminology
-linkTitle: Naming Conventions
 ---
 
 ## Nomenclature

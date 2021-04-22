@@ -2,6 +2,7 @@
 title: v1.9.5 Armory Halyard
 version: 01.09.05
 hal_version: 1.09.50
+description: Release notes for Armory Halyard v1.9.5
 toc_hide: true
 ---
 

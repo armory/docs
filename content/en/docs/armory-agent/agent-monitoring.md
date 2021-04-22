@@ -1,11 +1,12 @@
 ---
-title: Monitoring
+title: Monitor the Armory Agent with Prometheus
+linkTitle: Monitor
 weight: 5
 description: >
-  Monitor using Prometheus
+  Learn how to configure Prometheus to get metrics from the Armory Agent and display them in a Grafana dashboard.
 ---
-
-## Prometheus
+![Proprietary](/images/proprietary.svg)
+## Configure Prometheus
 
 If `prometheus.enabled` is true in the Agent [configuration]({{< ref "agent-options" >}}), the Agent exposes metrics on port 8008 (`prometheus.port`) on path `/metrics` or `/prometheus_metrics` like other Spinnaker services. Both paths serve the same data.
 
@@ -28,6 +29,6 @@ spec:
     app: spin
 ```
 
-## Grafana
+## Import a Grafana dashboard
 
 You can import [this Grafana dashboard definition](https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-dashboard.json) to use with Prometheus.

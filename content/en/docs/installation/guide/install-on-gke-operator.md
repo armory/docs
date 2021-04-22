@@ -1,37 +1,36 @@
 ---
-title: Installing Armory in GKE using the Armory Operator
+title: Deploy Armory Enterprise for Spinnaker in GKE
 linkTitle: "Install in GKE using Operator"
-weight: 7
+weight: 5
 aliases:
   - /spinnaker-install-admin-guides/install-on-gke-operator/
+description: >
+  Use the Armory Operator to deploy Armory Enterprise for Spinnaker in your Google Kubernetes Engine (GKE) cluster.
 ---
 
-_Note: This guide is a work in progress._
+{{< include "armory-license.md" >}}
 
-This guide contains instructions for installing Armory on a GKE Cluster using the [Armory Operator]({{< ref "operator" >}}). Refer to the [Armory Operator Reference]({{< ref "operator-config" >}}) for manifest entry details.
-
-## Prerequisites
-
-This document is written with the following workflow in mind:
-
-* You have a machine configured to use the `gcloud` CLI tool and a recent version of the `kubectl` tool
-* You have logged into the `gcloud` CLI and have permissions to create GKE clusters and a service account
-
-
-## Installation summary
+## Overview of installing Armory Enterprise in GKE
 
 Installing Armory using the Armory Operator consists of the following steps:
 
-* Create a cluster where Armory and the Armory Operator will reside
-* Setup the Armory Operator CRDs (custom resource definitions)
-* Deploy Armory Operator pods to the cluster
-* Create a GCS service account
-* Create a Kubernetes service account
-* Create a GCS storage bucket
-* Modify the Armory Operator kustomize files for your installation
-* Deploy Armory through the Armory Operator
+* [Create a cluster](#create-a-gke-cluster) for the Armory Operator and Armory Enterprise
+* [Create a GCS service account](#create-a-gcs-service-account)
+* [Create a Kubernetes service account](#create-a-kubernetes-service-account)
+* [Create a Google Cloud Storage (GCS) bucket](#create-a-gcs-bucket)
+* [Install the Armory Operator](#install-the-armory-operator)
+* [Configure your Armory Enterprise installation](#configure-your-armory-enterprise-installation)
+* [Deploy Armory Enterprise using the Armory Operator](#deploy-armory-enterprise)
 
-## Create GKE cluster
+## {{% heading "prereq" %}}
+
+* You know how to [install the Armory Operator in `cluster` mode]({{< ref "op-quickstart#install-the-operator" >}}).
+* You know how to [configure Armory Enterprise using Kustomize patches]({{< ref "op-config-kustomize.md" >}}) from the `spinnaker-kustomize-patches` repo.
+* You know how to use the Armory Operator to [deploy Armory Enterprise using Kustomize patches]({{< ref "op-config-kustomize#deploy-spinnaker" >}}).
+* You have a machine configured to use the `gcloud` CLI tool and a recent version of the `kubectl` tool
+* You have logged into the `gcloud` CLI and have permissions to create GKE clusters and a service account
+
+## Create a GKE cluster
 
 This creates a minimal GKE cluster in your default region and zone.
 
@@ -57,50 +56,7 @@ kube-public Active 2m26s
 kube-system Active 2m26s
 ```
 
-## Set up Armory Operator CRDs
-
-Fetch the Armory Operator manifests:
-
-```bash
-# RELEASE=v0.3.2 bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/download/${RELEASE}/manifests.tgz | tar -xz'
-
-bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
-```
-
-Apply the custom resource definitions:
-
-```bash
-kubectl apply -f deploy/crds/
-```
-
-Output is similar to:
-
-```bash
-customresourcedefinition.apiextensions.k8s.io/spinnakerservices.spinnaker.armory.io created
-customresourcedefinition.apiextensions.k8s.io/spinnakeraccounts.spinnaker.io created
-```
-
-## Deploy Armory Operator
-
-This step creates the spinnaker-operator namespace and deploys the Armory Operator pods.
-
-```bash
-kubectl create ns spinnaker-operator
-
-kubectl -n spinnaker-operator apply -f deploy/operator/cluster
-```
-
-Output is:
-
-```bash
-deployment.apps/spinnaker-operator created
-configmap/halyard-config-map created
-clusterrole.rbac.authorization.k8s.io/spinnaker-operator-role created
-clusterrolebinding.rbac.authorization.k8s.io/spinnaker-operator-binding created
-serviceaccount/spinnaker-operator created
-```
-
-## Create GCS service account
+## Create a GCS service account
 
 ```bash
 export SERVICE_ACCOUNT_NAME=<name-for-your-service-account>
@@ -124,13 +80,13 @@ gcloud --project ${PROJECT} iam service-accounts keys create ${SERVICE_ACCOUNT_F
     --iam-account ${SA_EMAIL}
 ```
 
-## Create Kubernetes service account
+## Create a Kubernetes service account
 
 ```bash
 CONTEXT=$(kubectl config current-context)
 
-# This service account uses the ClusterAdmin role -- this is not necessary,
-# more restrictive roles can by applied.
+# This service account uses the ClusterAdmin role, but this is not necessary.
+# More restrictive roles can by applied.
 curl -s https://spinnaker.io/downloads/kubernetes/service-account.yml | \
   sed "s/spinnaker-service-account/${SERVICE_ACCOUNT_NAME}/g" | \
   kubectl apply --context $CONTEXT -f -
@@ -149,194 +105,74 @@ kubectl config set-credentials ${CONTEXT}-token-user --token $TOKEN
 kubectl config set-context $CONTEXT --user ${CONTEXT}-token-user
 ```
 
-## Create GCS bucket
+## Create a GCS bucket
 
-Use the Cloud Console to do create your bucket. If you're going to put secrets in the bucket, make sure to create a secrets directory in the bucket. Also, ensure the bucket is accessible from the service account you created.
+Use the GCP Console to [create your bucket](https://cloud.google.com/storage/docs/creating-buckets). If you're going to put secrets in the bucket, make sure to create a secrets directory in that bucket. Also, make sure that the Kubernetes service account you created can access the bucket.
 
-## Customize the Kustomize Files
+## Install the Armory Operator
 
-**deploy/spinnaker/kustomize/config-patch.yml**
+Follow the instructions in the _Armory Operator Quickstart_ guide, [Install the Operator section]({{< ref "op-quickstart#install-the-operator" >}}), **Cluster Mode** tab.
 
-- Update Armory version to deploy
-- Set the persistent storage type, bucket, rootFolder, project, jsonPath (pick something unique)
-- Add `gcs`` to the config patch
+## Configure your Armory Enterprise installation
 
-	```yaml
-    config:
-      version: 2.19.8  
-      persistentStorage:
-        persistentStoreType: gcs
-        gcs:
-          bucket: <your-bucket-name>
-          rootFolder: front50
-          project: <your-project-name>
-          jsonPath: <your-unique-gcs-account.json>
-    ```
+Clone the `spinnnaker-kustomize-patches` template repo by following the directions in the {{< linkWithTitle "op-config-kustomize.md" >}} guide. Make sure you choose or create a `kustomization.yml` file as detailed in the _Choose a `kustomization` file_ [section]({{< ref "op-config-kustomize#choose-a-kustomization-file" >}}). You also need to [set the Armory Enterprise version]({{< ref "op-config-kustomize#set-the-Spinnaker-version">}}).
 
-**deploy/spinnaker/kustomize/files-patch.yml**
+### Add GCP credentials as a cluster secret
 
-Under files, add a file for the `your-unique-gcs-account.json`. This will be the content from the GCS service account you created above. The file is named `gcs-account.json` in the following example:
+The `spinnnaker-kustomize-patches` template repo enables you
+to easily create Secret objects within your Kubernetes cluster so you can
+securely access credentials. Place the `${SERVICE_ACCOUNT_FILE}` file in the
+`spinnnaker-kustomize-patches/secrets/files` directory and run the `./secrets/create-secrets.sh` script.
 
-```yaml
-files:
-  gcs-account.json: |
-    {
-      "type": "service_account",
-      "project_id": "cloud-project",
-      "private_key_id": "cf04d5d545bOTHERSTUFFHERE9f9d134f",
-      "private_key": "-----BEGIN PRIVATE KEY-----\nSTUFF HERE\n-----END PRIVATE KEY-----\n",
-      "client_email": <your-client-email>,
-      "client_id": <your-client-id>,
-      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-      "token_uri": "https://oauth2.googleapis.com/token",
-      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-      "client_x509_cert_url": <your-cert-url>
-    }
-```
+### Add your GCS bucket credentials
 
-## Add the Kubernetes provider account
+Update `spinnaker-kustomize-patches/persistence/patch-gcs.yml` with the info for the GCS bucket you created in the [Create a GCS bucket](#create a GCS bucket) section. You should also update the `jsonPath` value with the name of the service account file you added in the [Add GCP credentials as a cluster secret](#add-gcp-credentials-as-a-cluster-secret) section.
 
-There are a few ways to do this with the Armory Operator. This uses the typical way of doing it with config. The Account CRD is probably the way this will be done in the future.
+Add the `persistence/patch-gcs.yml` file to the `patchesStrategicMerge` section of your `kustomization.yml` file.
 
-Update the `config-patch.yml` with the provider accounts:
+### Configure Ingress
 
-```yaml
-providers:
-  kubernetes:
-    enabled: true
-    accounts:
-    - name: spinnaker
-      kubeconfigFile: gke-kubeconfig
-      providerVersion: V2
-      serviceAccount: false
-      onlySpinnakerManaged: false
-    primaryAccount: spinnaker
-```
+The `spinnaker-kustomize-patches` repo contains several examples for
+exposing Ingress to your cluster. Consult the examples in the `expose`
+directory and choose the most appropriate example for your environment. Make
+any modifications to the examples for your environment, then make sure the file
+is listed in the `patchesStrategicMerge` section of your `kustomization.yml`
+file.
 
-You have a couple of ways to get that `kubeconfig` file into the config. From least secure to more secure,  you can put the `kubeconfig`:
+See [spec.expose]({{< ref "op-config-manifest#specexpose" >}}) for configurable fields.
 
-- In the `files-patch.yml` (like the example above shows)
-- In a Kubernetes secret for the Spinnaker namespace
-- In a bucket
-- In Vault
+### Configure authentication
 
-For the first option, the `gke-kubeconfig` file is then added into the `files-patch.yml` like this:
+The `spinnaker-kustomize-patches` repo contains several examples for adding
+authentication to your cluster. Consult the examples in the `security` directory
+and choose the most appropriate example for your environment. For example, to
+enable basic auth, modify the `security/patch-basic-auth.yml` by changing the
+username to one of your choosing. Then, add `security/patch-basic-auth.yml` to
+your `kustomization.yml` file in the `patchesStrategicMerge` section. Finally,
+modify the `secrets-example.env` file to choose a password unique to you, and
+run the `./create-secrets.sh` script to create Kubernetes credentials in your
+cluster.
 
-```yaml
-gke-kubeconfig: |
-  apiVersion: v1
-  clusters:
-    - cluster:
-        certificate-authority-data: LS0tLSSTUFFo=
-        server: https://35.223.76.205
-      name: gke_cloud-armory_us-central1-c_spinnaker-cluster
-  contexts:
-```
+>Make sure you enable the right Auth Scopes on the GKE node pools, or you may see authentication issues trying to write to Google Cloud Storage for logging.
 
-For the third option, the `gke-kubeconfig` file is copied to a bucket. Then the `config-patch.yml` references the location of that file for the `kubeconfig` file key like this:
+### Configure Dinghy
 
-```yaml
-kubeconfigFile: encryptedFile:gcs!b:bucketname!f:secrets/kubeconfig-gke
-```
+The `spinnaker-kustomize-patches` repository contains a patch for
+enabling Dinghy in your Armory Enterprise deployment. Be sure to modify the
+`armory/patch-dinghy.yml` file with configuration specific to your environment.
+Then make sure the file is listed in the `patchesStrategicMerge` section of your
+`kustomization.yml` file.
 
-## Install Kustomize (optional)
+## Deploy Armory Enterprise
 
-You can do a `kubectl -k` to deploy Kustomize templates, but what may be more helpful is to install Kustomize so that you can build Kustomize and look at the YAML first. Note that Kustomize is installed as part of `kubectl`.
-
-```bash
-curl -s "https://raw.githubusercontent.com/\
-kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
-sudo mv kustomize /usr/local/bin/
-```
-
-## Deploy Armory using Kustomize
-
-```bash
-kubectl create ns <spinnaker-namespace>
-kustomize build deploy/spinnaker/kustomize | kubectl -n <spinnaker-namespace> apply -f -
-```
-
-## Configure ingress
-
-The `SpinnakerService.yml` file contains an `expose` section fthat defines how a LoadBalancer object will be setup to publicly expose Deck and Gate. See [spec.expose](/operator_reference/operator-config/#specexpose) for details.
+{{% include "armory-operator/deploy-spin-kust.md" %}}
 
 
-## Configure authentication
-
-To enable basic form authentication in Armory as in this KB [article](https://kb.armory.io/installation/enabling-basic-auth/), you need to understand how your `kustomization.yml` file is [configured](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/fields.md). If you have the `profiles-patch.yml`, you are telling Kustomize to overwrite the profiles section of the config with entries for each of the components (clouddriver, deck, gate, etc). So you can put all of the entries for those profile files into `profiles-patch.yml`.
-
-Here is an example `profiles-patch.yml` with Kustomize turned on and basic form authentication configured.
-
-**profiles-patch.yml**
-
-```yaml
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker  # name doesn't matter since this is a patch
-spec:
-  # spec.spinnakerConfig - This section is how to specify configuration spinnaker
-  spinnakerConfig:
-    # spec.spinnakerConfig.profiles - This section contains the YAML of each service's profile
-    profiles:
-      clouddriver: {} # is the contents of ~/.hal/default/profiles/clouddriver.yml
-      # deck has a special key "settings-local.js" for the contents of settings-local.js
-      deck:
-        # settings-local.js - contents of ~/.hal/default/profiles/settings-local.js
-        # Use the | YAML symbol to indicate a block-style multiline string
-        settings-local.js: |
-          window.spinnakerSettings.feature.kustomizeEnabled = true;
-          window.spinnakerSettings.feature.artifactsRewrite = true;
-          window.spinnakerSettings.authEnabled = true;
-      echo: {}    # is the contents of ~/.hal/default/profiles/echo.yml
-      fiat: {}    # is the contents of ~/.hal/default/profiles/fiat.yml
-      front50: {} # is the contents of ~/.hal/default/profiles/front50.yml
-      gate:
-        security:
-          basicform:
-            enabled: true
-          user:
-            name: spin
-            password: spin4u99
-      igor: {}    # is the contents of ~/.hal/default/profiles/igor.yml
-      kayenta: {} # is the contents of ~/.hal/default/profiles/kayenta.yml
-      orca: {}    # is the contents of ~/.hal/default/profiles/orca.yml
-      rosco: {}   # is the contents of ~/.hal/default/profiles/rosco.yml
-```
-
-Alternately, you can include a separate patch file for each component and then reference the component in the `kustomization.yml` file. See the Kustomize [docs](https://github.com/kubernetes-sigs/kustomize/tree/master/docs) for details.
-
-## Configure Dinghy
-
-Create a `patch-dinghy.yml` file with the following contents:
-
-```yaml
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    config:
-      armory:
-        dinghy:
-          enabled: true
-          templateOrg: yourorg
-          templateRepo: yourrepo
-          githubToken: yourtoken
-          githubEndpoint: https://api.github.com
-          dinghyFilename: dinghyfile
-          autoLockPipelines: true
-          notifiers:
-            slack:
-              enabled: false
-```
-
-Now add an entry to the end of `kustomization.yml` to include `patch-dinghy.yml`.
-
-## Other patch files
-
-You can add additional patch files to turn on functionality. Examples are in the `minnaker` [repository](https://github.com/armory/minnaker/tree/master/operator/install).
-
+<!--
 ## Set Up TLS:
 @TODO
+-->
+
+## {{% heading "nextSteps" %}}
+
+* See the Armory Operator {{< linkWithTitle "op-troubleshooting.md" >}} guide if you encounter issues.

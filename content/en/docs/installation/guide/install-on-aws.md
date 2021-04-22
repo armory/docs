@@ -1,7 +1,7 @@
 ---
-title: Installing Armory in AWS
+title: Install Armory Enterprise for Spinnaker in Amazon Web Services (AWS)
 linkTitle: "Install in AWS"
-weight: 4
+weight: 5
 aliases:
   - /spinnaker_install_admin_guides/install_on_eks/
   - /spinnaker_install_admin_guides/install-on-eks/
@@ -11,11 +11,13 @@ aliases:
   - /spinnaker_install_admin_guides/install_on_aws/
   - /spinnaker_install_admin_guides/install-on-aws/
   - /spinnaker-install-admin-guides/install-on-aws/
+description: >
+  Use Armory-extended Halyard to deploy Armory Enterprise for Spinnaker in an AWS Kubernetes cluster or in an on-prem Kubernetes cluster with access to Amazon Secure Storage Service (S3).
 ---
 
-## Overview
+{{< include "armory-license.md" >}}
 
-This guide describes how to install Armory in AWS or in an on-prem Kubernetes cluster with access to S3. It will create and use the following Amazon Web Services resources:
+## Overview of installing Armory in AWS
 
 - A Kubernetes cluster running on Amazon Web Services (AWS). EKS is a good way to get a Kubernetes cluster up on AWS - see the AWS documentation for this.
 - An Amazon S3 (Simple Storage Service) bucket. You can use an existing one or create a new one.
@@ -28,13 +30,13 @@ This document currently does not fully cover the following (see [Next Steps](#ne
 - Add K8s accounts to deploy to
 - Add cloud accounts to deploy to
 
-Note: This document is focused on Armory, but can be adapted to install Open Source Spinnaker<sup>TM</sup> by using a different Halyard container and a corresponding different Spinnaker version.
+> This document is focused on Armory, but it can be adapted to install Open Source Spinnaker<sup>TM</sup> by using a different Halyard container and a corresponding different Spinnaker version.
 
 ## AWS Resources
 
 Before you install Armory on AWS, it is essential that you familiarize yourself with [relevant AWS services]({{< ref "resources-aws" >}}).
 
-## Requirements
+## Prerequisites for installing Armory
 
 This document assumes the following:
 
@@ -82,9 +84,9 @@ On the `workstation machine`:
 
 - You will create AWS resources, such as service accounts, that will be permanently associated with your Armory cluster
 
-## Installation Summary
+## Installation summary
 
-In order to install Armory, this document covers the following things:
+In order to install Armory, this document covers the following:
 
 - Generating a `kubeconfig` file, which is a Kubernetes credential file that Halyard and Armory will use to communicate with the Kubernetes cluster where Armory will be installed
 - Creating an S3 bucket for Armory to store persistent configuration in

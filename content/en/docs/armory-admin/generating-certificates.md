@@ -1,12 +1,13 @@
 ---
-
-title: Generating Certificates
-description: If you do not have existing certificates to use for securing your Spinnaker environment, create them.
+title: Generate Certificates for Spinnaker
+linkTitle: Generate Certificates
 aliases:
   - /docs/spinnaker-install-admin-guides/generating-certificates/
+description: >
+  Use OpenSSL to generate certificates for Spinnaker.
 ---
 
-## Requirements
+## Prerequisites for generating certificates
 
 You need a recent version of OpenSSL.
 
@@ -26,7 +27,7 @@ Replace `TRUSTSTORE_PASS` with your own CA password.
 Next, generate the certificate of the CA:
 
 ```bash
-openssl req -x509 -new -nodes -key ca.key -sha256 -days 3650 -out ca.pem -passin pass:TRUSTSTORE_PASS -subj /C=US/ST=California/O=Acme Corp/OU=Devops/CN=mydomain.com"
+openssl req -x509 -new -nodes -key ca.key -sha256 -days 3650 -out ca.pem -passin pass:TRUSTSTORE_PASS -subj /C=US/ST=California/O=Acme Corp/OU=Devops/CN=mydomain.com
 ```
 
 Replace the values of the `subj` parameter with your own. Only the `CN` part is required and doesn't need to match a real domain.

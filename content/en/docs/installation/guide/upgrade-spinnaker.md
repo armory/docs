@@ -1,7 +1,10 @@
 ---
-title: Upgrade Spinnaker using Halyard
+title: Upgrade or Downgrade Armory Enterprise for Spinnaker Version
+weight: 10
 aliases:
   - /docs/spinnaker-install-admin-guides/upgrade-spinnaker/
+description: >
+  Update or rollback your Armory Enterprise for Spinnaker version deployed with Armory-extended Halyard.
 ---
 
 ## Determining the target version
@@ -32,9 +35,14 @@ The command returns information similar to the following:
 
 ## Performing an upgrade
 
-Once you know what version you want to upgrade (or downgrade) to, run the following command: `hal config version edit --version <target_version>`.
+Once you know what version you want to upgrade (or downgrade) to, run the following command:
+
+```bash
+hal config version edit --version <target_version>
+```
 
 The command returns information similar to the following:
+
 ```bash
 + Get current deployment
   Success
@@ -48,7 +56,7 @@ Then, apply your upgrade with `hal deploy apply`.
 
 ## Rolling back an upgrade
 
-Rolling an upgrade back is similar to upgrading Spinnaker:
+Rolling an upgrade back is similar to upgrading Armory:
 
 1. Select the version you want to rollback to:
    ```bash

@@ -1,7 +1,9 @@
 ---
-title: "AWS QuickStart"
+title: QuickStart for Deploying to AWS from Spinnaker
 linkTitle: "AWS QuickStart"
-weight: 2
+weight: 45
 description: >
-  These guides show you how to configure AWS for Spinnaker, install Spinnaker on AWS, and deploy an application from Spinnaker to AWS.
+  This section contains guides that show you how to configure AWS for Spinnaker and deploy an application from Spinnaker to AWS.
 ---
+
+{{< include "armory-license.md" >}}

@@ -3,7 +3,7 @@ title: Dinghy Events
 description: >
   Events provide end users access to runtime information about their pipelines-as-code configurations by adding a new tab to the Armory Cloud UI.
 ---
-
+![Proprietary](/images/proprietary.svg)
 {{% alert title="Info" color="warning" %}}{{< include "saas-status.md" >}}{{% /alert %}}
 
 With Dinghy Events, users can troubleshoot and resolve most common

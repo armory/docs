@@ -2,11 +2,11 @@
 title: "Armory Agent for Kubernetes Quick Start Installation"
 linkTitle: "Quick Start"
 description: >
-  Install quickly using this guide.
+  Leearn how to install the Armory Agent in your Kubernetes and Spinnaker environments.
 weight: 2
 ---
-
-> This guide is for experienced Kubernetes and Spinnaker users.
+![Proprietary](/images/proprietary.svg)
+> This guide is for experienced Kubernetes and Spinnaker<sup>TM</sup> users.
 
 ## Compatibility matrix
 
@@ -16,11 +16,15 @@ weight: 2
 
 The Agent consists of a service deployed as a Kubernetes `Deployment` and a plugin to Spinnaker's Clouddriver service. Be sure to check out the [architecture]({{< ref "armory-agent" >}}).
 
+## Networking requirements
+
+Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between Clouddriver and the Agent.  
+
 ## Step 1: Agent plugin installation
 
 You modify the current Clouddriver deployment as well as add a new Kubernetes `Service`.
 
-The easiest installation path is to modify an existing [`spinnakerservice.yaml`]({{< ref "operator-config" >}}) with [kustomize](https://kustomize.io/). To start, download additional manifests into the directory with your `SpinnakerService`:
+The easiest installation path is to modify an existing [`spinnakerservice.yaml`]({{< ref "op-config-manifest" >}}) with [Kustomize](https://kustomize.io/). To start, download additional manifests into the directory with your `SpinnakerService`:
 
 ```bash
 # AGENT_PLUGIN_VERSION is found in the compatibility matrix above
@@ -73,7 +77,7 @@ Note:
 
 ### Alternate methods
 
-If you are not using kustomize, you can still use the same manifests.
+If you are not using Kustomize, you can still use the same manifests.
 
 - Deploy `agent-service/clouddriver-grpc-service.yaml` or `agent-service/clouddriver-ha-grpc-service.yaml` if using Clouddriver "HA" (caching, rw, ro).
 - Merge `agent-plugin/config.yaml` and `agent-plugin/clouddriver-plugin.yaml` into your existing `SpinnakerService`.
@@ -160,4 +164,4 @@ Check out the [troubleshooting]({{< ref "agent-troubleshooting" >}}) page if you
 
 ## Monitoring
 
-The Agent should only consume about 4 MB of memory and a small amount of CPU. See the [Monitoring]({{< ref "agent-monitoring" >}}) page for how to monitor agents running on an Armory platform.
+Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Agent is monitoring. The gRPC buffer consumes about 4MB of memory. See the [Monitoring]({{< ref "agent-monitoring" >}}) page for how to monitor agents running on an Armory platform.

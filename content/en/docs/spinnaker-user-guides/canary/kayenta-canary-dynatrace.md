@@ -1,10 +1,13 @@
 ---
-title: Using Canary Analysis with Dynatrace
+title: Use Canary Analysis with Dynatrace in Spinnaker
+linkTitle: Use Canary Analysis with Dynatrace
 aliases:
   - /spinnaker_user_guides/kayenta_dynatrace/
   - /docs/spinnaker-user-guides/kayenta_dynatrace
+description: >
+  Learn how to configure and use Dynatrace for canary analysis in Spinnaker.
 ---
-
+![Proprietary](/images/proprietary.svg)
 
 {{< include "user-guide/canary/config-kayenta-frag.md" >}}
 

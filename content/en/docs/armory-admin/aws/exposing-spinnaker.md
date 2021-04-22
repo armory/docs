@@ -1,21 +1,24 @@
 ---
-title: Exposing Armory on EKS
+title: Expose Spinnaker on AWS EKS
+linkTitle: Expose Spinnaker on EKS
 aliases:
   - /spinnaker/configure_ingress/
   - /spinnaker/exposing_spinnaker/
   - /docs/spinnaker/exposing-spinnaker/
   - /docs/armory-admin/exposing-spinnaker/
   - /armory-admin/exposing-spinnaker/
+description: >
+  Learn how to expose Spinnaker by using a public load balancer.
 ---
 
 ## DNS Preparation
 
-We'll be setting up two CNAME entries in our DNS in this example; we won't be
-able to actually configure the DNS until we get an A record from AWS after
-creating the LoadBalancer, but we'll need to select the names in order to configure
-the LoadBalancer.  For this tutorial, we've selected `demo.armory.io` to be
-our Deck service (the UI), and `gate.demo.armory.io` to be our Gate service
-(the API).
+In this tutorial, you set up two CNAME entries in your DNS. You
+won't be able to actually configure the DNS until you get an A record from AWS
+after creating the LoadBalancer, but you need to select the names in order to
+configure the LoadBalancer. This example uses `demo.armory.io`
+to be the Deck service (the UI), and `gate.demo.armory.io` to be the Gate
+service (the API).
 
 ## Exposing Armory on EKS with a public Load Balancer
 

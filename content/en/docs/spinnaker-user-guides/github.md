@@ -1,7 +1,10 @@
 ---
-title: Working with GitHub
+title: Use GitHub in Spinnaker Pipelines
+linkTitle: Use GitHub
 aliases:
   - /spinnaker_user_guides/github/
+description: >
+  Add a GitHub trigger to your Spinnaker pipeline.
 ---
 
 ## Trigger a Pipeline with a GitHub commit

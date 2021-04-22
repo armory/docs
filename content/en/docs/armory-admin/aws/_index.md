@@ -1,4 +1,4 @@
 ---
 title: "Administration on AWS"
-description: Administer an Armory deployment on AWS infrastructure
+description: This section contains guides for administering a Spinnaker or Armory deployment on AWS infrastructure.
 ---

@@ -1,10 +1,13 @@
 ---
-title: Using the Terraform Integration stage
+linkTitle: Use the Terraform Integration Stage
+title: Use the Terraform Integration Stage in Armory Enterprise
 aliases:
   - /docs/spinnaker/terraform-use-integration/
+description: >
+  Learn how to use the Terraform Integration pipeline stage to execute tasks against your Terraform projects.
 ---
-
-## Overview
+![Proprietary](/images/proprietary.svg)
+## Overview of Terraform integration
 
 At the core of the Terraform Integration is the Terraformer service. This service fetches your Terraform projects from source and executes various Terraform commands against them. When a `terraform` stage starts, Orca submits the task to Terraformer and monitors it until completion. Once a task is submitted, Terraformer fetches your target project, runs `terraform init` to initialize the project, and then runs your desired `action` (`plan` or `apply`). If the task is successful, the stage gets marked successful as well. If the task fails, the stage gets marked as a failure, and the pipeline stops.
 
@@ -17,7 +20,7 @@ A Terraform Integration stage performs the following actions when it runs:
 
 ## Requirements
 
-Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. Additionally, your Terraform code needs to be stored in either a GitHub or BitBucket repo that the Armory Platform can access. You grant access as part of the enablement process.
+Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. Additionally, your Terraform code needs to be stored in either a GitHub or BitBucket repo that Armory Enterprise can access. You grant access as part of the enablement process.
 
 For more information, see [Enabling the Terraform Integration]({{< ref "terraform-enable-integration">}}).
 
@@ -37,10 +40,10 @@ For this stage, configure the following:
 - For the **Terraform version**, pick any version, such as `0.13.3`.
 - For the **Action**, choose **Plan**.
 - **Main Terraform Artifact**
-  - Select **Expected Artifact > Define a new artifact** 
+  - Select **Expected Artifact > Define a new artifact**
     - Select **Account > <YourGitRepo>**. This is the Git repo that was configured when you enabled the Terraform Integration and houses your Terraform code.
     - In **URL**, add the URL to the Git repo that houses your Terraform code.
-- Under **Produces Artifacts** 
+- Under **Produces Artifacts**
   1. Select **Define artifact**. A window appears.
   2. Optionally, provide a descriptive display name.
   3. For **Match Artifact > Account** , select **embedded-artifact** .

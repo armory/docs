@@ -1,20 +1,22 @@
 ---
-title: Install Armory in Lightweight Kubernetes (K3s) using the Armory Operator
+title: Install Armory Enterprise for Spinnaker in Lightweight Kubernetes using the Armory Operator
 linkTitle: Install in AWS EC2 using Operator
 weight: 50
 description: >
-  For POCs: Use Armory Operator to install Armory in a K3s instance running on an AWS EC2 VM
+  Use the Armory Operator to deploy Spinnaker or Armory Enterprise for Spinnaker in a Lightweight Kubernetes (K3s) instance running on an AWS EC2 virtual machine. This environment is for proofs of concept and development.
 ---
 
-## Overview
+{{< include "armory-license.md" >}}
 
-This guide walks you through using the [Armory Operator]({{< ref "operator" >}}) to install Armory in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
+## Overview of installing Armory for proof of concept (POC) work
+
+This guide walks you through using the [Armory Operator]({{< ref "armory-operator" >}}) to install Armory Enterprise in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
 
 See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to install Armory using the Armory Operator in a regular Kubernetes installation.
 
 If you want to install open source Spinnaker<sup>TM</sup>, use the open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) instead of the Armory Operator.
 
-## Prerequisites
+## {{% heading "prereq" %}}
 
 * Know how to create a VM in AWS [EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 * Be familiar with [AWS IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) and [S3 buckets](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html)
@@ -157,7 +159,7 @@ Install the Armory Operator in _basic_ mode, which installs Armory into a single
 
 Edit the `SpinnakerService.yml` manifest file located in the `~/spinnaker-operator/deploy/spinnaker/basic` directory.
 
-You can find detailed configuration information in the [Armory Operator Configuration]({{< ref "operator-config" >}}) guide.
+You can find detailed configuration information in the {{< linkWithTitle "op-config-manifest.md" >}} guide.
 
 ### Update Armory version and S3 bucket name
 
@@ -274,7 +276,7 @@ You can verify pod status by executing:
 
 ## Upgrade Armory
 
-[Upgrade Armory]({{< ref "operator#upgrading-spinnaker" >}}) by changing the `version` value in `SpinnakerService.yml` and using `kubectl` to apply the manifest.
+[Upgrade Armory]({{< ref "armory-operator#upgrading-spinnaker" >}}) by changing the `version` value in `SpinnakerService.yml` and using `kubectl` to apply the manifest.
 
 ## Delete Armory
 

@@ -3,6 +3,7 @@ title: v2.17.5 Armory Release (OSS Release 1.17.6)
 toc_hide: true
 date: 2020-02-01
 version: 02.17.05
+description: Release notes for Armory Enterprise v2.17.5
 aliases:
   - armoryspinnaker_v2.17.5
 ---
@@ -12,12 +13,12 @@ aliases:
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-
-
 ## Known Issues
+
 There are currently no known issues with this release.
 
 ## Highlighted Updates
+
 ### Armory
 This release includes the following:
 

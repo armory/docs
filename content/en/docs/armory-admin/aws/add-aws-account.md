@@ -1,5 +1,6 @@
 ---
-title: "Deploying to AWS from Armory (using IAM credentials)"
+title: Configure Spinnaker to Access AWS Using IAM User Roles
+linkTitle: Configure AWS (IAM User Roles)
 aliases:
   - /spinnaker_install_admin_guides/add-aws-account/
   - /spinnaker_install_admin_guides/add_aws_account/
@@ -7,15 +8,15 @@ aliases:
   - /spinnaker-install-admin-guides/add-aws-account/
   - /armory-admin/add-aws-account/
   - /docs/armory-admin/add-aws-account/
+description: >
+  Learn how to deploy your applications from Spinnaker to Amazon Web Services using IAM User Roles.
 ---
 
-Once you have (OSS or Armory) Spinnaker up and running in Kubernetes, start adding deployment targets.
-
-## Overview
+## Overview of deploying applications to AWS
 
 This document will guide you through the following:
 
-* Understanding AWS deployment from Spinnaker
+* Understanding AWS deployment from Spinnaker<sup>TM</sup>
 
 * Configuring Spinnaker to use AWS IAM Instance Roles (if Spinnaker is running on AWS, either via AWS EKS or installed directly on EC2 instances)
   * Creating a Managed Account IAM Role in each of your target AWS Accounts
@@ -26,19 +27,27 @@ This document will guide you through the following:
   * Adding the Managed Accounts to Spinnaker
   * Adding/Enabling the AWS Cloud Provider to Spinnaker
 
-## Assumptions
+## Prerequisites for deploying to AWS
 
-* Spinnaker was installed with Operator or Halyard.
-* You have access to the Spinnaker config files, and a way to apply them (`kubectl` for Operator or `hal` for Halyard),
-* You have a way to create AWS permissions, users, and roles.
+* You installed Spinnaker with Operator or Halyard.
+* You have access to the Spinnaker config files, and a way to apply them (`kubectl` for Operator or `hal` for Halyard).
+* If you're using Operator, you have a access to run `kubectl` commands against the cluster where Spinnaker is installed. If you're using Halyard, you have access to it.
+* You have permissions to create IAM roles using IAM policies and permissions, in all relevant AWS accounts.
+  * You should also be able to set up cross-account trust relationships between IAM roles.
+* If you want to add the IAM Role to Spinnaker via an Access Key/Secret Access Key, you have permissions to create an IAM User.
+* If you want to add the IAM Role to Spinnaker via IAM instance profiles/policies, you have permissions to modify the IAM instance.
+
+>All configuration with AWS in this document will be handled via the browser-based AWS Console.  All configurations could **alternatively** be configured via the `aws` CLI, but this is not currently covered in this document.
+
+Also - you will be granting AWS Power User Access to each of the Managed Account Roles.  You could optionally grant fewer permissions, but those more limited permissions are not covered in this document.
 
 ## Background: Understanding AWS Deployment from Spinnaker
 
-Even though Spinnaker is installed in Kubernetes, it can be used to deploy to other cloud environments, such as AWS.  Rather than granting Spinnaker direct access to each of the target AWS accounts, Spinnaker will assume a role in each of the target accounts.
+Even if Spinnaker is installed in Kubernetes, it can be used to deploy to other cloud environments, such as AWS.  Rather than granting Spinnaker direct access to each of the target AWS accounts, Spinnaker will assume a role in each of the target accounts.
 
-### Deploying
+### Deploying to AWS EC2
 
-Spinnaker is able to deploy EC2 instances (via ASGs).
+Spinnaker is able to deploy EC2 instances via Auto Scaling Groups.
 
 * Spinnaker's Clouddriver Pod should be able to assume a **Managed Account Role** in each deployment target AWS account, and use that role to perform any AWS actions.  This may include one or more of the following:
   * Create AWS Launch Configurations and Auto Scaling Groups to deploy AWS EC2 instances
@@ -56,7 +65,8 @@ Spinnaker is able to deploy EC2 instances (via ASGs).
 
 In addition, if you are deploying EC2 instances with AWS, you will need to provide an IAM role for each instance.  If you do not specify a role, Spinnaker will attempt to use a role called `BaseIAMRole`.  So you should create a BaseIAMRole (potentially with no permissions).
 
-### Example
+
+### Deployment scenario
 
 Here's an example situation:
 
@@ -76,7 +86,7 @@ Here's an example situation:
   * The `iam:PassRole` permission for roles that will be assigned to EC2 instances that are being deployed
   * A trust relationship with the Managing Account User (to allow the Managing Account User to assume the Managed Account Role)
 
-### Configuration
+### Spinnaker configuration examples
 
 {{< tabs name="configuration" >}}
 {{% tab name="Operator" %}}
@@ -200,23 +210,8 @@ aws:
 {{% /tab %}}
 {{< /tabs >}}
 
-## Prerequisites
 
-This document assumes the following:
-
-* Your Spinnaker is up and running
-* Your Spinnaker was installed and configured via Operator or Halyard
-* If you're using Operator, you have a access to run `kubectl` commands against the cluster where Spinnaker is installed. If you're using Halyard, you have access to it
-* You have permissions to create IAM roles using IAM policies and permissions, in all relevant AWS accounts
-  * You should also be able to set up cross-account trust relationships between IAM roles.
-* If you want to add the IAM Role to Spinnaker via an Access Key/Secret Access Key, you have permissions to create an IAM User
-* If you want to add the IAM Role to Spinnaker via IAM instance profiles/policies, you have permissions to modify the IAM instance
-
-_All configuration with AWS in this document will be handled via the browser-based AWS Console.  All configurations could **alternatively** be configured via the `aws` CLI, but this is not currently covered in this document._
-
-Also - we will be granting AWS Power User Access to each of the Managed Account Roles.  You could optionally grant fewer permisisons, but those more limited permissions are not covered in this document.
-
-## Configuring Spinnaker to access AWS using an IAM User (with an Acess Key ID and Secret Access Key)
+## Configuring Spinnaker to use AWS IAM Roles
 
 If you are not running Spinnaker on AWS, or if you do not want to use AWS IAM roles (or don't have the ability to modify the roles attached to your Kubernetes instances), you can create an AWS IAM user and provide its credentials to Clouddriver to allow Clouddriver to interact with the various AWS APIs across multiple AWS Accounts.
 
@@ -504,3 +499,4 @@ Once you've added all of the Managed (Target) accounts, run these commands to se
 
 	{{% /tab %}}
 	{{< /tabs >}}
+

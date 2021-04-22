@@ -1,11 +1,14 @@
 ---
-title: Configuring Clouddriver to use a Relational Database Management System
-linkTitle: Configuring Clouddriver to use an RDBMS
+title: Configure Clouddriver to use a SQL Database
+linkTitle: Configure Clouddriver to use SQL
 aliases:
   - /spinnaker_install_admin_guides/clouddriver-sql/
   - /docs/spinnaker-install-admin-guides/clouddriver-sql/
+description: >
+  Configure Spinnaker's Clouddriver service to use MySQL or AWS Aurora.
 ---
-## Overview
+
+## Advantages of using an RDMS with Clouddriver
 
 Since version 2.5.x (OSS 1.14.x), Clouddriver can store its data (task, infrastructure, etc) in a MySQL compatible database. Similar to Orca, the main advantage of doing this is to improve performance and remove Redis as a single point of failure.
 
@@ -40,7 +43,7 @@ Then we'll grant authorization to the `clouddriver_service` and `clouddriver_mig
   TO `clouddriver_migrate`@'%';
 ```
 
-The above configuration grants authorization from any host. You can restrict it to the cluster in which Spinnaker runs by replacing the `%` with the IP address of Clouddriver pods from MySQL.
+This configuration grants authorization from any host. You can restrict it to the cluster in which Spinnaker runs by replacing the `%` with the IP address of Clouddriver pods from MySQL.
 
 ## Deployment
 
@@ -160,11 +163,11 @@ executionRepository:
     previousClass: redisExecutionRepository
 ```
 
-Note: At this point, you can stop the pods you created in step 1. If you used the script above, just delete the `spin-clouddriver-sql` deployment.
+> At this point, you can stop the pods you created in step 1. If you used the preceding script, just delete the `spin-clouddriver-sql` deployment.
 
 #### Step 3:  Remove Redis
 
-After waiting a few minutes so that Redis tasks are no longer relevant, we finish by removing Redis entirely:
+After waiting a few minutes so that Redis tasks are no longer relevant, finish by removing Redis entirely:
 
 ```yaml
 sql:

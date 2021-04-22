@@ -1,21 +1,23 @@
 ---
-title: Authentication and Authorization
+title: Auth Propagation in Spinnaker Pipelines
+linkTitle: Authentication and Authorization
 aliases:
   - /docs/spinnaker/authorization/
+description: >
+  Configure a Spinnaker Manual Judgment pipeline stage to propagate authentication.
 ---
 
 
-## Overview
+## Overview of Authentication and Authorization in Spinnaker
 
-Armory provides the same functionality for authentication ("authn")
-and authorization ("authz").  A full reference of how to set up both can be
-found in the [OSS Spinnaker documentation](https://www.spinnaker.io/setup/security/#security).
+Both Armory and Open Source Spinnaker<sup>TM</sup> provide the same functionality for authentication ("authn")
+and authorization ("authz").  You can find a full reference of how to set up both in the [OSS Spinnaker documentation](https://www.spinnaker.io/setup/security/#security).
 
 ## Authorization &amp; Manual Judgments
 
 The [OSS docs](https://www.spinnaker.io/setup/security/authorization/#restrictable-resources)
-do a pretty good job of explaining that you can limit users' access to both
-"accounts" and "applications", but doesn't talk much about the interaction of
+explain that you can limit users' access to both
+"accounts" and "applications" but doesn't talk much about the interaction of
 the two.
 
 In short, if you have access to an application, you can view the pipelines,
@@ -31,14 +33,14 @@ You can configure a Manual Judgment stage to "Propagate Authentication":
 
 ![Propagate Authentication](/images/Image-2018-10-16-at-10.05.04-AM.png)
 
-Checking this box will cause the pipeline to use the identity (and thus
-authorizations) of the user who approved the stage to be used for all
+Checking this box will cause the pipeline to use the identity and
+authorizations of the user who approved the stage for all
 subsequent stages.  By inserting a Manual Judgment stage with this option
 enabled into your pipeline before the actual deploy, you can allow users
 with limited access to kick off pipelines safely; a user _with_ full access
 to the environment can then continue the pipeline successfully after approval.
 
-## See Also
+## Spinnaker
 
 Here are some other resources that may help you properly configure security in
 Spinnaker:

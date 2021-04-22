@@ -1,5 +1,5 @@
 baseURL = "/"
-title = "Armory Documentation"
+title = "Armory Docs"
 
 enableRobotsTXT = true
 enableInlineShortcodes = true
@@ -55,7 +55,7 @@ id = "UA-79996712-5"
 
 [languages]
 [languages.en]
-title = "Armory Documentation"
+title = "Armory Docs"
 description = "Unlocking Innovation by Making Software Delivery Continuous, Scalable, and Safe"
 languageName ="English"
 # Weight used for sorting.
@@ -73,32 +73,34 @@ weight = 1
   url = "https://www.armory.io"
 
 [[menu.main]]
-  name = "Support"
-  weight = 6
-  url = "https://go.armory.io/support"
+  name = "Case Studies"
+  weight= 6
+  url = "https://www.armory.io/learn/customer-success-stories/"
 
 [[menu.main]]
   name = "KB"
-  weight = 7
-  url = "https://kb.armory.io"
+  weight = 8
+  url = "https://support.armory.io/"
 
 [[menu.main]]
   name = "Blog"
-  weight = 8
+  weight = 9
   url = "https://www.armory.io/blog/"
 
 # Everything below this are Site Params
 
 [params]
-armory-version = "2.23.x"
-halyard-armory-version = "1.10.0"
-kubesvc-version="0.4.4"
+armory-version = "2.25.x"
+#used in the Operator docs
+armory-version-exact = "2.25.0"
+halyard-armory-version = "1.11.0"
+kubesvc-version="0.5.9"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 copyright = "Armory Inc."
-privacy_policy = "https://www.armory.io/privacy-policy"
-terms_of_service = "https://www.armory.io/terms-of-service"
-terms_and_conditions = "https://www.armory.io/terms-and-conditions"
+privacy_policy = "https://www.armory.io/privacy-policy/"
+terms_of_service = "https://www.armory.io/terms-of-service/"
+terms_and_conditions = "https://www.armory.io/terms-and-conditions/"
 
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
@@ -115,14 +117,14 @@ archived_version = false
 # The version number for the version of the docs represented in this doc set.
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
-version = "2.23"
+version = "2.25"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
-url_latest_version = "https://docs.armory.io/docs"
+url_latest_version = "https://docs.armory.io/docs/"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/armory/docs"
+github_repo = "https://github.com/armory/docs/"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
 #github_project_repo = "https://github.com/armory"
 
@@ -143,12 +145,12 @@ prism_syntax_highlighting = true
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]
-agent_plug_latest-2="0.3.23"
-agent_plug_latest_spin-2="2.20.x (1.20.x)"
-agent_plug_latest-1="0.4.21"
-agent_plug_latest_spin-1="2.21.x (1.21.x)"
-agent_plug_latest="0.5.11"
-agent_plug_latest_spin="2.22.x (1.22.x)"
+agent_plug_latest-2="0.6.7"
+agent_plug_latest_spin-2="2.23.x (1.23.x)"
+agent_plug_latest-1="0.7.6"
+agent_plug_latest_spin-1="2.24.x (1.24.x)"
+agent_plug_latest="0.8.5"
+agent_plug_latest_spin="2.25.x (1.25.x)"
 
 # User interface configuration
 [params.ui]
@@ -200,7 +202,7 @@ enable = true
 	name = "GitHub"
 	url = "https://github.com/armory/docs"
 	icon = "fab fa-github"
-   desc = "Documentation repository"
+   desc = "Docs repository"
 [[params.links.developer]]
 	name = "Slack"
 	url = "https://join.spinnaker.io/"
@@ -212,24 +214,20 @@ enable = true
 [[params.versions]]
   version = "Latest"
   githubbranch = "master"
-  url = "https://docs.armory.io"
+  url = "https://docs.armory.io/docs"
+
+[[params.versions]]
+  version = "v2.24"
+  githubbranch = "v2.24"
+  url = "https://v2-24.docs.armory.io/docs"
+
+[[params.versions]]
+  version = "v2.23"
+  githubbranch = "v2.23"
+  url = "https://v2-23.docs.armory.io/docs"
 
 [[params.versions]]
   version = "v2.22"
   githubbranch = "v2.22"
   url = "https://v2-22.docs.armory.io/docs"
 
-[[params.versions]]
-  version = "v2.21"
-  githubbranch = "v2.21"
-  url = "https://v2-21.docs.armory.io/docs"
-
-[[params.versions]]
-  version = "v2.20"
-  githubbranch = "v2.20"
-  url = "https://v2-20.docs.armory.io/docs"
-
-[[params.versions]]
-  version = "v2.0-2.19"
-  githubbranch = "archive"
-  url = "https://archive.docs.armory.io/docs"

@@ -1,13 +1,15 @@
 ---
-title: Connecting to Travis
+title: Connect Spinnaker to Travis CI
+linkTitle: Connect to Travis
 aliases:
   - /docs/spinnaker-install-admin/guides/configure-travis/
+description: >
+  Use Halyard to configure Spinnaker to access to your Travic CI instance.
 ---
 
-## Overview
+## Overview of connecting Spinnaker to Travis
 
-Before you can make use of Jenkins in Spinnaker, you'll need to
-configure access to your Jenkins masters.
+Before you can make use of [Travis CI](https://www.travis-ci.com/) in Spinnaker, you'll need to configure access to your Travis masters.
 
 Configuring Travis in your Spinnaker instance with Halyard is pretty easy, but
 there are a few "gotchas" to watch out for.

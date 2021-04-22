@@ -1,6 +1,6 @@
 ---
-title: Configuring TLS for Spinnaker Services
-linkTitle: Configuring TLS
+title: Configure TLS for Spinnaker Services
+linkTitle: Configure TLS
 aliases:
   - /spinnaker_install_admin_guides/spinnaker-services-tls/
   - /spinnaker_install_admin_guides/services_tls/
@@ -12,7 +12,7 @@ description: >
 > Switching from plain HTTP to HTTPS will cause some short disruption to the services as they become healthy at different times.
 
 
-## Overview
+## Overview of TLS
 
 When a client attempts to communicate with a server over SSL:
 - the server must present a certificate to the user.
@@ -35,48 +35,12 @@ Golang services need a X509 certificate (PEM format) and a private key for #1 as
 
 ## What you need
 
-The following table lists the Armory and Spinnaker services, their type (Java or Golang), and which certificates they need:
-
-| Service | Type | Server | Client |
-|------|---|--|--|
-| Clouddriver | Java  | Yes | Yes |
-| Deck | N/A | - | - |
-| Dinghy* | Golang | Yes | Yes |
-| Echo | Java | Yes | Yes |
-| Fiat | Java | Yes | Yes |
-| Front50 | Java | Yes | Yes |
-| Gate | Java | Maybe | Yes |
-| Kayenta | Java | Yes | Yes |
-| Igor | Java | Yes | Yes |
-| Orca | Java | Yes | Yes |
-| Rosco | Java | Yes | Yes |
-| Terraformer* | Golang | Yes | Yes |
-| PaCRD* | Golang | Yes | Yes |
-
-* Dinghy is the service for Pipelines as Code.
-* Terraformer is the service for the Terraform Integration.
-* PaCRD is the service for Pipelines as Code in the form of Kubernetes Custom Resource Definitions.
-
-**Note**: Gate may be handled differently if you already [terminating SSL at Gate]({{< ref "dns-and-ssl" >}}). If not, make sure the load balancer and ingress you are using supports self-signed certificates.
-
-In the following sections, you need to have the following information available:
-
-- `ca.pem` (all Golang servers): the CA certificate in PEM format
-- `[service].crt` (each Golang server): the certificate and (optionally) the private key of the Golang server in PEM format
-- `[service].key` (each Golang server): the private key of the Golang server if not bundled with the certificate you're using
-- `[GOSERVICE]_KEY_PASS` (each Golang server): the password to the private key of the server
-- `truststore.p12` (all Java clients): a PKCS12 truststore with CA certificate imported
-- `TRUSTSTORE_PASS` (all Java clients): the password to the truststore you're using
-- `[service].p12` (each Java server): a PKCS12 keystore containing the certificate and private key of the server
-- `[SERVICE]_KEY_PASS` (each Java server): the password to the keystore you're using
+{{% include "admin/tls/what-you-need.md" %}}
 
 
-To learn how to generate these files, refer to [generating certificates]({{< ref "generating-certificates/#putting-it-together-tls" >}}).
+## Configuring Java services
 
-
-## Configuration (Java services)
-
-Add the following to each Java service profile: `<deploy>/profiles/<service>-local.yml` in Halyard or under `profiles` in the [SpinnakerService's profiles]({{< ref "operator-config#specspinnakerconfigprofiles" >}}):
+Add the following to each Java service profile: `<deploy>/profiles/<service>-local.yml` in Halyard or under `profiles` in the [SpinnakerService's profiles]({{< ref "op-config-manifest#specspinnakerconfigprofiles" >}}):
 
 ```yaml
 # Only needed for "server" role
@@ -97,9 +61,9 @@ ok-http-client:
   trust-store-password: <TRUSTSTORE_PASS>
 ```
 
-**Note:** Currently, `ok-http-client.key-store` is required even though it is not used in a simple TLS setup.
+>Currently, `ok-http-client.key-store` is required even though it is not used in a simple TLS setup.
 
-## Configuration (Golang services)
+## Configuring Golang services
 
 ```yaml
 server:
@@ -115,49 +79,11 @@ http:
 
 ## Changing service endpoints
 
-### Halyard
-You can change each Java or Golang service endpoints by adding the following in `<hal directory>/<deployment>/service-settings/<service>.yml`:
-```yaml
-baseUrl: https://spin-<SERVICE>.<NAMESPACE>:<SERVICE PORT>
-```
+{{% include "admin/tls/tls-changing-service-endpoints.md" %}}
 
-### Spinnaker Operator
+## Deploying Spinnaker
 
-Similarly, you can change the SpinnakerService custom resource:
-
-```yaml
-kind: SpinnakerService
-...
-spec:
-  spinnakerConfig:
-    service-settings:
-      clouddriver:
-        baseUrl: https://spin-clouddriver.<NAMESPACE>:7002
-      dinghy:
-        baseUrl: https://spin-dinghy.<NAMESPACE>:8081
-      echo:
-        baseUrl: https://spin-echo.<NAMESPACE>:8089
-      fiat:
-        baseUrl: https://spin-fiat.<NAMESPACE>:7003
-      front50:
-        baseUrl: https://spin-front50.<NAMESPACE>:8080
-      gate:
-        baseUrl: https://spin-gate.<NAMESPACE>:8084
-      kayenta:
-        baseUrl: https://spin-kayenta.<NAMESPACE>:8090
-      orca:
-        baseUrl: https://spin-orca.<NAMESPACE>:8083
-      igor:
-        baseUrl: https://spin-igor.<NAMESPACE>:8088
-      rosco:
-        baseUrl: https://spin-rosco.<NAMESPACE>:8087
-      terraformer:
-        baseUrl: https://spin-terraformer.<NAMESPACE>:7088
-```
-
-## Deployment
-
-After you finish modyfing the service YAML files, run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if using Operator, or `hal deploy apply` if using Halyard to apply your changes to your Spinnaker deployment.
+After you finish modifying the service YAML files, run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if using Operator, or `hal deploy apply` if using Halyard to apply your changes to your Spinnaker deployment.
 
 Switching from plain HTTP to HTTPS will cause some short disruption to the services as they become healthy at different times.
 
@@ -166,7 +92,7 @@ Switching from plain HTTP to HTTPS will cause some short disruption to the servi
 
 ### Secret engines
 
-You can store secrets (and non secrets) in [supported secret stores]({{< ref "secrets" >}}) as well as in Kubernetes secrets if using the [Spinnaker Operator]({{< ref "operator" >}}). This is the simplest route.
+You can store secrets (and non secrets) in [supported secret stores]({{< ref "secrets" >}}) as well as in Kubernetes secrets if using the [Armory Operator]({{< ref "armory-operator" >}}). This is the simplest route.
 
 For instance, assuming all the information is stored in a bucket named `mybucket` on s3 that all services have access to, `SpinnakerService` manifest (or the corresponding `echo-local.yml` in Halyard) might look like:
 
@@ -198,7 +124,7 @@ spec:
 
 Run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if using Operator, or `hal deploy apply` if using Halyard after you make your changes.
 
-### Manually Providing Information
+### Manually providing information
 
 An alternative if you cannot use one of the supported secret engine is to store the information in Kubernetes secrets and manually provide the information. Files are added through a `volumeMount` and passwords through an environment variable.
 
@@ -227,4 +153,4 @@ server:
 
 Run `hal deploy apply` after you make your changes.
 
-> There is currently no way to pass passwords stored in Kubernetes secrets as environment variables using Halyard. You can remove passwords from the keys you're using or use the Spinnaker Operator to reference Kubernetes secrets directly.
+>There is currently no way to pass passwords stored in Kubernetes secrets as environment variables using Halyard. You can remove passwords from the keys you're using or use the Spinnaker Operator to reference Kubernetes secrets directly.

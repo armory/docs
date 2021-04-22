@@ -3,7 +3,7 @@ title: v2.23.2 Armory Release (OSS Spinnaker™ v1.23.5)
 toc_hide: true
 version: 02.23.02
 description: >
-  Release notes for the Armory Platform
+  Release notes for Armory Enterprise v2.23.2
 ---
 
 ## 2020/12/14 Release Notes
@@ -23,14 +23,17 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
-{{< include "bc-docker-giduid.md" >}}
+{{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
 
-{{< include "bc-k8s-job-suffix.md" >}}
+{{< include "breaking-changes/bc-orca-forcecacherefresh.md" >}}
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
-- The Packer version included with Rosco disregards package overrides that use the `-var-file=` option. This may cause bakes to fail.
+{{< include "known-issues/ki-bake-var-file.md" >}}
+
+{{< include "known-issues/ki-orca-zombie-execution.md" >}}
+{{< include "known-issues/ki-lambda-ui-caching.md" >}}
 
 ### Fixed issues
 
@@ -45,6 +48,11 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+
+### Notifications
+
+Armory now supports using Microsoft Teams for notifications. For more information, see [Microsoft Teams](https://spinnaker.io/setup/features/notifications/#microsoft-teams).
+
 ### Terraform Integration
 
 This release includes better logging for when a 503 error occurs between the Terraform Integration and Clouddriver.

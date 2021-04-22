@@ -1,8 +1,8 @@
 ---
-title: Bake and Find Custom AMIs
+title: Bake and Find Custom Amazon Machine Images in Spinnaker
 linkTitle: Custom AMIs
 description: >
-  Create a pipeline for baking and distributing custom AMIs
+  Learn how to create a Spinnaker pipeline for baking and distributing custom AMIs.
 aliases:
   - /user-guides/find-images/
   - /user-guides/find_images/
@@ -13,9 +13,9 @@ aliases:
   - /spinnaker-user-guides/find_images/
 ---
 
-## Prerequisites and assumptions:
+## Prerequisites and assumptions
 
-- You have experience [baking]({{< ref "aws-baking-images" >}}) and [deploying images]({{< ref "aws-deploy" >}}) with Spinnaker
+You have experience [baking]({{< ref "aws-baking-images" >}}) and [deploying images]({{< ref "aws-deploy" >}}) with Spinnaker
 
 Spinnaker provides a lot of auto-magic for determining which AMI should be deployed to which server group. However, sometimes it is necessary to override Spinnaker's selection.
 

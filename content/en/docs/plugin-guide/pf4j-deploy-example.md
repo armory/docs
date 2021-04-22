@@ -2,10 +2,10 @@
 title: "pf4jStagePlugin Deployment Using the Armory Operator"
 linkTitle: "Plugin Deployment - Operator"
 description: >
-  Deploy the RandomWait Stage plugin to an Operator-managed Armory instance
+  Deploy the RandomWait Stage plugin to an Operator-managed Armory instance.
 ---
 
-{{< include "experimental-feature.html" >}}
+## Overview of the Random Wait Stage plugin
 
 In this guide, you deploy the `pf4jStagePlugin` plugin from the [spinnaker-plugin-examples](https://github.com/spinnaker-plugin-examples/examplePluginRepository) repository.
 
@@ -15,7 +15,7 @@ By implementing Orca's SimpleStage PF4J extension point, the `pf4jStagePlugin` c
 
 - You are familiar with [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which use custom resources to manage applications and their components
 - You understand the concept of [managing Kubernetes resources using manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/)
-- You have a basic understanding of how the [Armory Operator]({{< ref "operator" >}}) deploys Armory to [Kubernetes](https://kubernetes.io/)
+- You have a basic understanding of how the [Armory Operator]({{< ref "armory-operator" >}}) deploys Armory to [Kubernetes](https://kubernetes.io/)
 - You have `kubectl` access to an instance of Armory installed using the Armory Operator in `basic` and have permissions to modify and apply the manifest that deploys Armory
 - You have read the [Plugin Users Guide](https://spinnaker.io/guides/user/plugins); you are familiar with plugin concepts and the files used when deploying plugins (`repositories.json`, `plugins.json`)
 
@@ -50,12 +50,9 @@ spec:
             plugins:
               Armory.RandomWaitPlugin:
                 enabled: true
-                version: 1.1.14
-                extensions:
-                  id: armory.randomWaitStage
-                  enabled: true
-                  config:
-                    defaultMaxWaitTime: 15
+                version: 1.1.17
+                config:
+                  defaultMaxWaitTime: 15
             repositories:
               examplePluginsRepo:
                 id: examplePluginsRepo
@@ -79,7 +76,7 @@ spec:
               plugins:
                 Armory.RandomWaitPlugin:
                   enabled: true
-                  version: 1.1.14
+                  version: 1.1.17
             repositories:
               examplePluginsRepo:
                 url: https://raw.githubusercontent.com/spinnaker-plugin-examples/examplePluginRepository/master/plugins.json
@@ -89,12 +86,9 @@ spec:
            plugins:
              Armory.RandomWaitPlugin:
               enabled: true
-              version: 1.1.14
-              extensions:
-               id: armory.randomWaitStage
-               enabled: true
-               config:
-                 defaultMaxWaitTime: 15
+              version: 1.1.17
+              config:
+                defaultMaxWaitTime: 15
            repositories:
              examplePluginsRepo:
               id: examplePluginsRepo

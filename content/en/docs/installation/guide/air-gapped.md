@@ -1,13 +1,21 @@
 ---
-title: Air-Gapped Environments
+title: Install Armory Enterprise for Spinnaker in Air-Gapped Environments
+linkTitle: Air-Gapped Environments
 weight: 1
+description: >
+  Options for deploying Armory Enterprise for Spinnaker in an environment that is isolated from the internet.
 ---
-If your environment is air-gapped, you have several options for deploying Armory.
+
+{{< include "armory-license.md" >}}
+
+## Overview of air-gapped environments
 
 An air-gapped environment is one where any combination of the following conditions are true:
 - No access to Armory Bill Of Materials (BOM), which are published on S3
 - No ability to pull images from docker.io/armory
 - No ability for engineers to deploy with Halyard from their machines
+
+If your environment is air-gapped, you have several options for deploying Armory.
 
 ## Host Armory's Bill Of Materials (BOM)
 
@@ -198,6 +206,6 @@ Finally, to access the deployed Halyard environment, perform the following steps
 
 ### Option 2: Armory Operator
 
-The [Armory Operator]({{< ref "operator" >}}) lets you manage Armory with `kubectl`.
+The [Armory Operator]({{< ref "armory-operator" >}}) lets you manage Armory with `kubectl`.
 
-If you also need to use privately hosted bill of materials, configure the operator to point to your bucket. See [Custom Halyard Configuration]({{< ref "operator#custom-halyard-configuration" >}}).
+If you also need to use privately hosted bill of materials, configure the Operator to point to your bucket. See {{< linkWithTitle "op-hal-config.md" >}}

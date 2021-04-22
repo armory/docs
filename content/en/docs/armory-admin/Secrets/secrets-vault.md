@@ -1,26 +1,30 @@
 ---
-title: Secrets with Vault
+title: Store Spinnaker Secrets in HashiCorp Vault
+linkTitle: Secrets with Vault
 weight: 10
 aliases:
   - /docs/spinnaker-install-admin-guides/secrets-vault/
   - /docs/spinnaker-install-admin-guides/secrets/secrets-vault/
+description: >
+  Learn how to set up Spinnaker secrets in HashiCorp Vault.
 ---
+![Proprietary](/images/proprietary.svg)
+>In this example, you use the default KV secret engine called `secret` and store GitHub credentials, a kubeconfig file, and a Java keystore for SAML SSO.
 
-This document describes how to set up Spinnaker secrets in Hashicorp's Vault. In this example, we'll be using the default KV secret engine called `secret` and will be storing GitHub credentials, a kubeconfig file and a Java keystore for SAML SSO.
-
-## Authorization
+## Authentication with Vault servers
 
 We currently support two methods of authentication with Vault servers.
 
 ### 1. Kubernetes service account (recommended)
 
-You'll need to configure Vault to authenticate with Kubernetes per our [Vault Configuration Guide]({{< ref "vault-k8s-configuration" >}}) or [Hashicorp's documentation](https://www.vaultproject.io/docs/auth/kubernetes.html#configuration).
+You'll need to configure Vault to authenticate with Kubernetes per our [Vault Configuration Guide]({{< ref "vault-k8s-configuration" >}}) or HashiCorp's [documentation](https://www.vaultproject.io/docs/auth/kubernetes.html#configuration).
 
 Note: If multiple clusters need to access the same Vault server, you'll need to use the [-path flag](https://www.vaultproject.io/docs/commands/auth/enable.html#usage) and give each cluster a different path name. This becomes `<cluster auth path>` in the example below. If using just one cluster, you can use the default `vault auth enable kubernetes` command, in which case your path will be `kubernetes`.
 
 After configuring authentication on the Vault side, use the following configuration to enable Vault secrets in Spinnaker:
 
-**Operator**
+{{< tabs name="serviceAccount" >}}
+{{% tab name="Operator" %}}
 
 Add the following snippet to the `SpinnakerService` manifest:
 
@@ -36,13 +40,13 @@ spec:
         secrets:
           vault:
             enabled: true
-            authMethod: KUBERNETES                      # Method used to authenticate with the Vault endpoint. Must be either KUBERNETES for Kubernetes service account auth or TOKEN for Vault token auth. The TOKEN method will require a VAULT_TOKEN environment variable set for Operator and the services.  
+            authMethod: KUBERNETES   # Method used to authenticate with the Vault endpoint. Must be either KUBERNETES for Kubernetes service account auth or TOKEN for Vault token auth. The TOKEN method will require a VAULT_TOKEN environment variable set for Operator and the services.  
             url: <Vault server URL>:<port, if required> # URL of the Vault endpoint from Spinnaker services.
-            role: <Vault role>       # (Applies to KUBERNETES authentication method) Name of the role against which the login is being attempted.
-              # path: <k8s cluster path>                  # (Optional; default: kubernetes) Applies to KUBERNETES authentication method) Path of the kubernetes authentication backend mount. Default is "kubernetes"
+            role: <Vault role> # (Applies to KUBERNETES authentication method) Name of the role against which the login is being attempted.
+            # path: <k8s cluster path> (Optional; default: kubernetes) Applies to KUBERNETES authentication method) Path of the kubernetes authentication backend mount. Default is "kubernetes"
 ```
-
-**Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 ```bash
 hal armory secrets vault enable
@@ -50,8 +54,11 @@ hal armory secrets vault edit \
     --auth-method KUBERNETES \
     --url <Vault server URL>:<port if required> \
     --role <Role in Vault> \
-    --path <k8s cluster path> # Optional.default is kubernetes
+    --path <k8s cluster path> # Optional; default is kubernetes
 ```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ### 2. Token authentication
 
@@ -59,7 +66,9 @@ This method is not recommended, but it is supported if you choose to use it. We 
 
 Use the following configuration to enable Vault secrets using token auth:
 
-**Operator**
+{{< tabs name="token" >}}
+{{% tab name="Operator" %}}
+
 
 Add the following snippet to the `SpinnakerService` manifest:
 
@@ -79,7 +88,9 @@ spec:
             url: <Vault server URL>:<port if required> # URL of the Vault endpoint from Spinnaker services.
 ```
 
-**Halyard**
+{{% /tab %}}
+{{% tab name="Halyard" %}}
+
 
 ```bash
 hal armory secrets vault enable
@@ -88,9 +99,12 @@ hal armory secrets vault edit \
     --url <Vault server URL>:<port if required>
 ```
 
+{{% /tab %}}
+{{< /tabs >}}
+
 ## Configuring the Operator to use Vault secrets
 
-If you are using the Spinnaker Operator, set up a custom Halyard configuration per [this section]({{< ref "operator#custom-halyard-configuration" >}}) with this content:
+If you are using the Armory Operator, set up a [custom Halyard configuration]({{< ref "op-hal-config" >}}) with this content:
 
 ```yaml
 secrets:

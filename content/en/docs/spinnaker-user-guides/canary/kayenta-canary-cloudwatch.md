@@ -1,10 +1,12 @@
 ---
-title: Using Canary Analysis with AWS CloudWatch
+title: Use Canary Analysis with AWS CloudWatch
+description: >
+  Learn how to configure and use AWS CloudWatch for canary analysis in Spinnaker.
 ---
-
+![Proprietary](/images/proprietary.svg)
 {{< include "user-guide/canary/config-kayenta-frag.md" >}}
 
-## Cloudwatch configuration
+## CloudWatch configuration
 
 To enable [CloudWatch](https://aws.amazon.com/cloudwatch/), update the AWS configuration entry in your `kayenta-local.yml` file. Make sure `METRICS_STORE` is listed under `supportedTypes`. Add the `cloudwatch` entry with `enabled: true`.
 

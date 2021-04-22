@@ -2,11 +2,15 @@
 title: PaCRD
 linkTitle: PaCRD
 description: >
-  PaCRD is a Kubernetes controller that manages the lifecycle of applications and pipelines within a cluster.
+  This section contains guides for using PaCRD, a Kubernetes controller that manages the lifecycle of Spinnaker applications and pipelines within a cluster.
 aliases:
   - /docs/spinnaker/pacrd/
   - /docs/spinnaker-user-guides/pacrd
 ---
+
+![Proprietary](/images/proprietary.svg)
+
+## Overview
 
 PaCRD (a combination of "Pipelines as Code" and "Custom Resource Definition") is
 a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) that manages the lifecycle of Spinnaker<sup>TM</sup> applications
@@ -115,8 +119,8 @@ In Spinnaker, an Application is a logical construct that allows you to group
 resources under a single name. You can read more about applications in the
 Spinnaker [docs](https://www.spinnaker.io/guides/user/applications/#about-applications).
 
-For available Application configuration options check out
-[our CRD documentation here](../pacrd-crd-docs/).
+For available Application configuration options check out the
+{{< linkWithTitle "pacrd-crd-docs.md" >}}.
 
 ### Creating an application
 
@@ -199,17 +203,19 @@ kubectl describe app myapplicationname
 
 Pipelines allow you to encode the process that your team follows to take a
 service from commit to a desired environment, such as production. You can
-read more about pipelines in the Spinnaker [docs][https://www.spinnaker.io/concepts/pipelines/].
+read more in the Spinnaker [Pipelines](https://www.spinnaker.io/concepts/pipelines/) guide.
 
-View Pipeline configuration options in the [CRD documentation](../pacrd-crd-docs/).
+View Pipeline configuration options in the {{< linkWithTitle "pacrd-crd-docs.md" >}}.
 
 ### Creating pipelines
 
 In Kubernetes, define your pipeline in a `pipeline.yaml` file. The configuration fields are the same as what you see when you [create a pipeline](https://www.spinnaker.io/guides/user/pipeline/managing-pipelines/#create-a-pipeline) using the Spinnaker UI. The following example defines a simple pipeline named "myapplicationpipeline", which bakes a manifest and prompts for a manual judgment.
 
-*Note: This example assumes that you've created the `myapplicationname`
+>Pipeline names should follow the Kubernetes [Object Names and IDs](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names) naming conventions.
+
+This example assumes that you've created the `myapplicationname`
 application from the [previous section](#applications). Create one before
-proceeding if you have not done so already.*
+proceeding if you have not done so already.
 
 ```yaml
 # file: deploy-nginx.yaml
@@ -628,7 +634,6 @@ stages:
       # ...
 # ...
 ```
-
 
 ## v0.1.x - v0.4.0
 

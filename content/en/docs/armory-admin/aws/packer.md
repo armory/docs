@@ -1,18 +1,18 @@
 ---
-title: Baking Machine Images on AWS Using Packer
-linkTitle: Baking Machine Images
+title: Bake Machine Images on AWS Using Packer
+linkTitle: Bake Machine Images
 # Substantially different from install_guide/packer
 aliases:
   - /spinnaker_install_admin_guides/packer/
   - /docs/spinnaker-install-admin-guides/packer/
-description: Bake (build) machine images for deployment on AWS
+description: Bake (build) machine images for deployment on AWS.
 ---
 
-## Overview
+## Overview of baking images in Spinnaker
 
 Spinnaker<sup>TM</sup> uses the open source Packer tool to bake images, which is included in the Spinnaker Rosco microservice. For example, if you are deploying to AWS, you can use Spinnaker to bake Amazon Machine Images (AMIs) from the artifacts that were produced by your CI tool.  
 
-**Note** This section focuses on configuring Packer scripts to build machine images (such as AMIs).  If you're only deploying to Kubernetes, you can skip this section.
+>This section focuses on configuring Packer scripts to build machine images (such as AMIs).  If you're only deploying to Kubernetes, you can skip this section.
 
 ## Configuring AWS bake credentials
 
@@ -173,7 +173,7 @@ If your app is using zip, tarballs or you need some customization, you need to c
 
 Out of the box, Armory comes with these built-in Packer templates and scripts: https://github.com/spinnaker/rosco/tree/master/rosco-web/config/packer
 
-If you'd like to add additional Packer template or script files, you can add them via the [Armory Operator]({{< ref "operator" >}}) or Halyard.
+If you'd like to add additional Packer template or script files, you can add them via the [Armory Operator]({{< ref "armory-operator" >}}) or Halyard.
 
 {{< tabs name="custom" >}}
 {{% tab name="Operator" %}}
@@ -210,7 +210,7 @@ files:
 
 NOTE:  The Armory Operator interprets the double underscores in the file names as slashes indicating the directory path where the Operator saves the file.  
 
-See the "Export Packer template files" step in the [Migrating from Halyard to Operator]({{< ref "operator#migrating-from-halyard-to-operator" >}}) section of the Armory Operator document for more examples.
+See the "Export Packer template files" step in the [Migrating from Halyard to Operator]({{< ref "hal-op-migration" >}}) section of the Armory Operator document for more examples.
 
 {{% /tab %}}
 

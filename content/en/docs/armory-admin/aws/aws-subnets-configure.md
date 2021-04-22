@@ -1,15 +1,15 @@
 ---
-title: "Configuring AWS Networking"
+title: "Configure AWS Networking for Spinnaker"
+linkTitle: Configure AWS Networking
 aliases:
   - /docs/spinnaker-install-admin-guides/aws-subnets/
   - /docs/armory-admin/aws-subnets-configure/
   - /armory-admin/aws-subnets-configure/
+description: >
+  Subnets determine where and how you can deploy AWS resources such as EC2 machines, ELBs, and Security Groups.  Learn how to configure your subnets correctly the first time so you won't have to update your pipelines later.
 ---
-## Overview
 
-Subnets determine where and how you can deploy AWS resources such as EC2 machines, ELBs and Security Groups.  Configuring your Subnets correctly the first time means you won't have to update your pipelines later with changes.
-
-## Resources
+## AWS resources
 
 - AWS VPC [guides](https://docs.aws.amazon.com/vpc/index.html)
 - AWS [VPCs and subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html)

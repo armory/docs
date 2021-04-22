@@ -1,5 +1,5 @@
 ---
-title: Installing Armory in AKS
+title: Install Armory Enterprise for Spinnaker in the Azure Kubernetes Service (AKS)
 linkTitle: "Install in AKS"
 weight: 5
 aliases:
@@ -7,11 +7,15 @@ aliases:
   - /spinnaker_install_admin_guides/install-on-aks/
   - /spinnaker-install-admin-guides/install_on_aks/
   - /spinnaker-install-admin-guides/install-on-aks/
+description: >
+  Use Armory-extended Halyard and Armory's Spinnaker<sup>TM</sup> tools CLI to deploy Armory Enterprise for Spinnaker in the Azure Kubernetes Service (AKS).
 ---
 
-## Overview
+{{< include "armory-license.md" >}}
 
-This guide describes how to install Armory in Azure Kubernetes Service (AKS).  To do this, the guide walks you through creating and using the following Azure resources:
+## Overview of installing Armory Enterprise in AKS
+
+This guide walks you through creating and using the following Azure resources:
 
 * An AKS cluster. You can also use an existing cluster.
 * An AZS (Azure Storage) bucket. You can also use an existing bucket.
@@ -26,11 +30,11 @@ This document does not cover the following:
 
 See [Next Steps](#next-steps) for resources related to these topics.
 
-**Note**: This document focuses on Armory's extended Spinnaker for enterprises and uses the Armory-extended version of Halyard (referred to as 'Halyard' in this doc). You can install open source Spinnaker by using an open source Halyard container and a corresponding open source Spinnaker version.
+> This document focuses on Armory's extended Spinnaker for enterprises and uses the Armory-extended version of Halyard (referred to as 'Halyard' in this doc). You can install open source Spinnaker by using an open source Halyard container and a corresponding open source Spinnaker version.
 
-## Requirements
+## Prerequisites for installing Armory Enterprise
 
-To follow the steps described in this guide, make sure the following prerequisites are met:
+To follow the steps described in this guide, make sure you have met the following prerequisites:
 
 * You have login credentials to Azure that allow you to create resources
 * You have an Azure subscription defined where you will install Spinnaker

@@ -1,16 +1,20 @@
 ---
-title: Integrating a Sumo Logic Dashboard
-linkTitle: Integrating Sumo Logic
+title: Integrate a Sumo Logic Dashboard in Armory Enterprise
+linkTitle: Integrate Sumo Logic
 aliases:
   - /docs/spinnaker-install-admin-guides/sumologic-dashboard/
+description:
+  Learn how to integrate a Sumo Logic Dashboard using Halyard or the Armory Operator.
 ---
 
-*This application has been developed and is supported by Armory, Inc. In case of technical questions, please [contact Armory](https://armory.io/contact) for support.*
+## Advantages to integrating Sumo Logic
 
-Integrating Spinnaker and Sumo Logic provides customers with the ability to monitor the health and productivity of their end-to-end software delivery process through live dashboards. Customers will gain at-a-glance visibility and longitudinal trends in usage and pipeline deployments across all dev, staging, and production environments.
+Integrating Spinnaker and Sumo Logic provides you with the ability to monitor the health and productivity of your end-to-end software delivery process through live dashboards. You gain at-a-glance visibility and longitudinal trends in usage and pipeline deployments across all dev, staging, and production environments.
 
+>This application has been developed and is supported by Armory, Inc. In case of technical questions, please [contact Armory](https://armory.io/contact) for support.
 
 ## Log types
+
 The Spinnaker Sumo Logic App uses echo logs that output event information from Spinnaker to Sumo Logic. Events include the following:
 * Calls made to gate
 * Pipeline events, which includes stages and tasks
@@ -19,7 +23,7 @@ The Spinnaker Sumo Logic App uses echo logs that output event information from S
 ```json
 {"details":{"source":"gate","type":"gate:session","created":"1567639483521","organization":null,"project":null,"application":null,"_content_id":null,"attributes":null,"requestHeaders":{}},"content":{"headers":{"x-request-id":"50cc1dcafa77a7fcf85612678cca01a6","sec-fetch-mode":"cors","referer":"https://spinnaker.se.armory.io/","sec-fetch-site":"same-site","x-forwarded-proto":"https","accept-language":"en-...
 ```
-*Note:* Sumo Logic truncates messages greater than 64kb in length, and may therefore drop some event messages. Message lengths often depend on the size of your pipeline (i.e. number of stages).
+>Sumo Logic truncates messages greater than 64kb in length, and may therefore drop some event messages. Message lengths often depend on the size of your pipeline (i.e. number of stages).
 
 ### Query sample
 
@@ -82,7 +86,7 @@ Run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if u
 
 ## Install the Spinnaker app and view the Dashboards
 
-Go to Sumo Logic App Catalog and search for "Spinnaker" by Armory
+Go to Sumo Logic App Catalog and search for "Spinnaker" by Armory.
 
 ### Dashboard filters
 
@@ -121,6 +125,6 @@ Use this dashboard to:
 
 ![SpinnakerPipelinesDashboard](/images/sumologic-dashboard-useractivity.png)
 
-## Limitations
+## Sumo Logic collector limitations
 
-* Log messages greater than 64kb get truncated by the Sumo Logic collector.  This means that there are potential events that will get dropped and not displayed in the dashboards.  Long pipelines composed of many stages or triggered by other pipelines can make messages longer.
+Log messages greater than 64kb get truncated by the Sumo Logic collector.  This means that there are potential events that will get dropped and not displayed in the dashboards.  Long pipelines composed of many stages or triggered by other pipelines can make messages longer.
