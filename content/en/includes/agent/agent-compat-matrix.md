@@ -1,4 +1,4 @@
-The Armory Agent is compatible with the Armory Platform and open source Spinnaker. It consists of a lightweight service that you deploy on Kubernetes and a plugin that you install into Spinnaker.
+The Armory Agent is compatible with Armory Enterprise and open source Spinnaker. It consists of a lightweight service that you deploy on Kubernetes and a plugin that you install into Spinnaker.
 
 | Armory (Spinnaker) Version | Armory Agent Plugin Version    | Armory Agent Version |
 |:-------------------------- |:------------------------------ |:---------------------------- |

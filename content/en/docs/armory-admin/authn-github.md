@@ -1,6 +1,6 @@
 ---
-title: Configuring GitHub OAuth for Spinnaker
-linkTitle: Configuring GitHub OAuth
+title: Configure GitHub OAuth for Spinnaker
+linkTitle: Configure GitHub OAuth
 aliases:
   - /docs/spinnaker-install-admin-guides/authn-github/
 description: >
@@ -38,7 +38,7 @@ oauth2:
     provider: GITHUB
 ```
 
-For additional configuration options review the [Spinnaker Operator Reference]({{< ref "operator-reference" >}})
+For additional configuration options review the [Spinnaker Manifest Configuration Reference]({{< ref "op-manifest-reference" >}})
 
 {{% /tab %}}
 {{% tab name="Halyard" %}}

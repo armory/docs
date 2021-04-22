@@ -24,7 +24,7 @@ Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is 
 
 You modify the current Clouddriver deployment as well as add a new Kubernetes `Service`.
 
-The easiest installation path is to modify an existing [`spinnakerservice.yaml`]({{< ref "operator-config" >}}) with [kustomize](https://kustomize.io/). To start, download additional manifests into the directory with your `SpinnakerService`:
+The easiest installation path is to modify an existing [`spinnakerservice.yaml`]({{< ref "op-config-manifest" >}}) with [Kustomize](https://kustomize.io/). To start, download additional manifests into the directory with your `SpinnakerService`:
 
 ```bash
 # AGENT_PLUGIN_VERSION is found in the compatibility matrix above
@@ -77,7 +77,7 @@ Note:
 
 ### Alternate methods
 
-If you are not using kustomize, you can still use the same manifests.
+If you are not using Kustomize, you can still use the same manifests.
 
 - Deploy `agent-service/clouddriver-grpc-service.yaml` or `agent-service/clouddriver-ha-grpc-service.yaml` if using Clouddriver "HA" (caching, rw, ro).
 - Merge `agent-plugin/config.yaml` and `agent-plugin/clouddriver-plugin.yaml` into your existing `SpinnakerService`.

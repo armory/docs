@@ -11,6 +11,8 @@ description: >
   Use Armory-extended Halyard and Armory's Spinnaker<sup>TM</sup> tools CLI to deploy Armory Enterprise for Spinnaker in the Azure Kubernetes Service (AKS).
 ---
 
+{{< include "armory-license.md" >}}
+
 ## Overview of installing Armory Enterprise in AKS
 
 This guide walks you through creating and using the following Azure resources:

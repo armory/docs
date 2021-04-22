@@ -94,3 +94,60 @@ Search for icons at [Font Awesome](https://fontawesome.com/icons/)
 Renders to:
 
 1. Click **{{< icon "play" >}} Start Manual Execution**.
+
+## Line highlighting
+
+In order to highlight specific lines in a code block, we must replace the Markdown code fence with a shortcode:
+
+```markdown
+{{</* prism lang="bash" line="3" */>}}
+A line
+another line
+A highlighted line
+Ooh, that was neat.
+Here, have a $var
+{{</* /prism */>}}
+```
+
+renders to:
+
+{{< prism lang="bash" line="3" >}}
+A line
+another line
+A highlighted line
+Ooh, that was neat.
+Here, have a $var
+{{< /prism >}}
+
+You can highlight multiple lines. From the [Line Highlight](https://prismjs.com/plugins/line-highlight/) docs:
+
+A single number refers to the line with that number
+Ranges are denoted by two numbers, separated with a hyphen (-)
+Multiple line numbers or ranges are separated by commas.
+Whitespace is allowed anywhere and will be stripped off.
+Examples:
+
+* `line="5"`: The 5th line
+* `line="1-5"`: Lines 1 through 5
+* `line="1,4"`: Line 1 and line 4
+* `line="1-2, 5, 9-20"`: Lines 1 through 2, line 5, lines 9 through 20
+
+```markdown
+{{</* prism lang="bash" line="1-4" */>}}
+A line
+another line
+A highlighted line
+Ooh, that was neat.
+Here, have a $var
+{{</* /prism */>}}
+```
+
+renders to:
+
+{{< prism lang="bash" line="1-4" >}}
+A line
+another line
+A highlighted line
+Ooh, that was neat.
+Here, have a $var
+{{< /prism >}}

@@ -1,6 +1,6 @@
 ---
-title: Exposing Spinnaker API Endpoints
-linkTitle: Exposing the API
+title: Expose Spinnaker API Endpoints
+linkTitle: Expose the API
 aliases:
   - /spinnaker_install_admin_guides/api-endpoint/
   - /spinnaker_install_admin_guides/api_endpoint/

@@ -1,6 +1,6 @@
 ---
-title: Configuring AWS Lambda for Spinnaker™
-linkTitle: Configuring AWS Lambda
+title: Configure AWS Lambda for Spinnaker™
+linkTitle: Configure AWS Lambda
 description: >
   Enable Spinnaker to deploy apps to AWS Lambda.
 ---

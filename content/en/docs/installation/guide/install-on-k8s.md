@@ -8,6 +8,8 @@ description: >
   Use Armory-extended Halyard or the Armory Operator to deploy Armory Enterprise for Spinnaker in Kubernetes.
 ---
 
+{{< include "armory-license.md" >}}
+
 ## Overview of installing Armory Enterprise for Spinnaker in Kubernetes
 
 This guide describes the initial installation of Armory Enterprise in Kubernetes. You can choose between two different installation methods: Armory Operator or Halyard. By the end of this guide, you will have an instance of Armory Enterprise up and running on your Kubernetes cluster.  The document does not fully cover the following:
@@ -23,7 +25,7 @@ See [Next Steps](#next-steps) for information related to these topics.
 
 ## Choosing an installation method
 
-There are two recommended ways of installing Armory Enterprise: using the [Armory Operator]({{< ref "operator" >}}) or using [Halyard](https://www.spinnaker.io/setup/install/halyard/).
+There are two recommended ways of installing Armory: using the [Armory Operator]({{< ref "armory-operator" >}}) or using [Halyard](https://www.spinnaker.io/setup/install/halyard/).
 
 {{< tabs name="install-methods" >}}
 {{% tab name="Armory Operator" %}}
@@ -34,7 +36,7 @@ The _Armory Operator_ is the newest installation and configuration method for Ar
 
 * Your Kubernetes API Server is running version `1.13` or later.
 * You have admin rights to install the Custom Resource Definition (CRD) for Operator.
-* You can assign a ClusterRole to Operator. This means that Operator has access to all namespaces in the cluster. Operator can still run in an isolated namespace in [Basic]({{< ref "operator#installing-operator-in-basic-mode" >}}) mode (not covered in this installation guide), but it will not be able to run admission validations.
+* You can assign a ClusterRole to Operator. This means that Operator has access to all namespaces in the cluster. Operator can still run in an isolated namespace in [Basic]({{< ref "armory-operator#installing-operator-in-basic-mode" >}}) mode (not covered in this installation guide), but it will not be able to run admission validations.
 
 *General workflow*
 
@@ -264,7 +266,7 @@ The command returns the namespaces in the EKS cluster.
 
 ### Install CRDs and Operator
 
-First, download the CRDs and manifests from the [latest stable release](https://github.com/armory-io/spinnaker-operator/releases).
+First, download the latest release.
 
 ```bash
 $ bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'

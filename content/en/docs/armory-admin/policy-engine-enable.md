@@ -1,6 +1,6 @@
 ---
-title: Enabling Policy Engine in Armory Enterprise
-linkTitle: Enabling Policy Engine
+title: Enable Policy Engine in Armory Enterprise
+linkTitle: Enable Policy Engine
 description: "Enable the Policy Engine and configure an OPA server. When enabled, the Policy Engine can perform save time or runtime validation on your Spinnaker pipelines."
 ---
 ![Proprietary](/images/proprietary.svg)
