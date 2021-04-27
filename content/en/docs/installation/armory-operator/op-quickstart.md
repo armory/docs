@@ -210,29 +210,32 @@ spec:
 {{% /tab %}}
 {{< /tabs >}}
 
-Deploy from the `/spinnaker-operator/deploy/spinnaker/kustomize/` directory:
+1. If you want to verify the contents of the manifest file, execute from the `/spinnaker-operator/deploy/spinnaker/kustomize/` directory:
 
-```bash
-kubctl -n spinnaker-operator apply -k .
-```
+   ```bash
+   kubectl kustomize .
+   ```
 
-If you have Kustomize installed, you build first and then apply:
+   This prints out the contents of the manifest file that Kustomize built based on your `kustomization.yml` file.
 
-```bash
-kustomize build | kubectl -n spinnaker-operator apply -f -
-```
 
-You can watch the installation progress by executing:
+1. Deploy from the `/spinnaker-operator/deploy/spinnaker/kustomize/` directory:
 
-```bash
-kubectl -n spinnaker-operator get spinsvc spinnaker -w
-```
+   ```bash
+   kubctl -n spinnaker-operator apply -k .
+   ```
 
-You can verify pod status by executing:
+1. You can watch the installation progress by executing:
 
-```bash
-kubectl -n spinnaker-operator get pods
-```
+   ```bash
+   kubectl -n spinnaker-operator get spinsvc spinnaker -w
+   ```
+
+1. You can verify pod status by executing:
+
+   ```bash
+   kubectl -n spinnaker-operator get pods
+   ```
 
 ## Help resources
 
