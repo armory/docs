@@ -14,7 +14,7 @@ aliases:
 
 ## Methods for installing Armory Enterprise
 
-There are several methods to install Armory or open source Spinnaker:
+There are several methods to install Armory Enterprise or open source Spinnaker:
 
 | Method                             | Environment           | Description                                                          | Benefits                                                            |
 |------------------------------------|-----------------------|----------------------------------------------------------------------|-----------------------------------------------------------------|
@@ -26,15 +26,15 @@ There are several methods to install Armory or open source Spinnaker:
 
 All the preceding methods share similar configurations, and you can migrate between them if your needs change.
 
-> Armory does not generate default usernames and passwords for user accounts for any service. Manage these by configuring authentication and authorization for Armory Enterprise.
+> Armory Enterprise does not generate default usernames and passwords for user accounts for any service. Manage these by configuring authentication and authorization for Armory Enterprise.
 
 ## Guides
 
-Based on your environment, use one of the following guides to help you install Armory:
+Based on your environment, use one of the following guides to help you install Armory Enterprise:
 
 | Guide                                                                 | Environment                    | Description                               |
 |-----------------------------------------------------------------------|--------------------------------|-------------------------------------------|
-| [Air Gapped]({{< ref "air-gapped" >}})                                | Air-gapped environments that use Halyard or Operator | Learn how to host your own Bill of Materials to install Armory in air-gapped environments.                     |
+| [Air Gapped]({{< ref "air-gapped" >}})                                | Air-gapped environments that use Halyard or Operator | Learn how to host your own Bill of Materials to install Armory Enterprise in air-gapped environments.                     |
 | [AWS Marketplace]({{< ref "aws-container-marketplace" >}})            | AWS                            | One-click install on the AWS marketplace.      |
 | [Install on Kubernetes]({{< ref "install-on-k8s" >}})                 | Halyard, Operator              | General workflow for installing Armory on Kubernetes                    |
 | [Install on AWS]({{< ref "install-on-aws" >}})                        | AWS, Halyard                   | Installation steps for AWS, including IAM configuration |
