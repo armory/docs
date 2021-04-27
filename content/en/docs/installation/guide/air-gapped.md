@@ -26,7 +26,7 @@ If you are unable to access this bucket from the machine running Halyard, host t
 
 ### Using a custom bucket and BOM
 
-Your GCS or S3 compatible bucket needs to contain a `versions.yml` at the root of the bucket with the following information:`````
+Your GCS or S3 compatible bucket needs to contain a `versions.yml` at the root of the bucket with the following information:
 
 ```yaml
 latestHalyard: {{< param halyard-armory-version >}}
@@ -284,7 +284,7 @@ This is a guide for configuring Spinnaker in an air-gapped environment using the
 
 ## Setup environment
 
-You need access to the kubernetes environment you will be using to host Armory, and you will need access to the public internet to retrieve the resources described. 
+You need access to the kubernetes environment you will be using to host Armory, and you will need access to the public internet to retrieve the resources described.
 Start by cloning [`spinnaker-kustomize-patches`](https://github.com/armory/spinnaker-kustomize-patches).
 To learn more about this repo check out this [guide]({{op-config-kustomize#spinnaker-kustomize-patches-repo}})
 
@@ -293,14 +293,14 @@ To learn more about this repo check out this [guide]({{op-config-kustomize#spinn
 ### Download the BOM
 The BOM contains the image versions used by Armory.  First, we will download the version of the BOM that we need.  Check [Armory Release Notes]({{Armory-Enterprise-for-Spinnaker-Release-Notes}) for the latest supported versions.
 
-Use the [bomdownloader.sh](https://github.com/armory/spinnaker-kustomize-patches/blob/master/airgap/bomdownloader.sh) script in spinnaker-kustomize-patches to download the version of Armory you require. Specify the version you want to download and the private registry you want to use. 
+Use the [bomdownloader.sh](https://github.com/armory/spinnaker-kustomize-patches/blob/master/airgap/bomdownloader.sh) script in spinnaker-kustomize-patches to download the version of Armory you require. Specify the version you want to download and the private registry you want to use.
 
 ```bash
 $ ./bomdownloader.sh 2.25.0 my.jfrog.io/myteam/armory
 ```
 *note*: you need to have access to the public internet and the aws cli
 
-The script will create a folder `halconfig` and download the necessary files as well as update the BOM to use the docker registy you specified.  If you need to make any changes, you can manually edit the version file located under `halconfig/bom` and update the value under the key `artifactSources.dockerRegistry`.  e.g. 
+The script will create a folder `halconfig` and download the necessary files as well as update the BOM to use the docker registy you specified.  If you need to make any changes, you can manually edit the version file located under `halconfig/bom` and update the value under the key `artifactSources.dockerRegistry`.  e.g.
 
 ```bash
 $ cat halconfig/bom/2.25.0.yml
@@ -329,7 +329,7 @@ artifactSources:
 Now that we have the BOM, the next step is to copy the BOM into our S3 bucket.
 We will use [MinIO](https://min.io) as our destination bucket. MinIO runs as a pod in k8s, and there is a template for MinIO under [`infrastructure/minio.yml`](https://github.com/armory/spinnaker-kustomize-patches/blob/master/infrastructure/minio.yml).
 
-note: The template relies on the creation of a k8s secret called `spin-secrets.` We will create the secret by running the script `create-secrets.sh` located under the secrets folder. MinIO will 
+note: The template relies on the creation of a k8s secret called `spin-secrets.` We will create the secret by running the script `create-secrets.sh` located under the secrets folder. MinIO will
 
 ```bash
 $ ./secrets/create-secrets.sh
@@ -352,7 +352,7 @@ kubectl port-forward svc/minio 9000 -n spinnaker
 aws s3 mb s3://halconfig --endpoint=http://localhost:9000
 aws s3 cp --recursive halconfig s3://halconfig --endpoint=http://localhost:9000
 ```
-* WARNING: If you're using `kustomize-spinnaker-patches` consider removing `infrastructure/minio.yml` from the list of resources to prevent the accidental deletion of the bucket when calling `kubectl delete -k .`. 
+* WARNING: If you're using `kustomize-spinnaker-patches` consider removing `infrastructure/minio.yml` from the list of resources to prevent the accidental deletion of the bucket when calling `kubectl delete -k .`.
 
 ## Re-Host Images (If necessary)
 
