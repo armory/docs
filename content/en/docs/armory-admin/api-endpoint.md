@@ -257,6 +257,7 @@ Gate's eventual fully-qualified domain name (FQDN) as the Common Name (CN).
    CA_KEY_PASSWORD=SOME_PASSWORD_FOR_CA_KEY
 
    openssl x509 \
+     -sha256 \
      -req \
      -days 365 \
      -in gate.csr \
