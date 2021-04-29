@@ -23,7 +23,6 @@ You should familiarize yourself with Kustomize before you create patch files to 
 
 * Kustomize [Glossary](https://kubectl.docs.kubernetes.io/references/kustomize/glossary/)
 * Kustomize [introduction](https://kubectl.docs.kubernetes.io/guides/introduction/kustomize/)
-* Kustomize [installation](https://kubectl.docs.kubernetes.io/installation/kustomize/)
 * [Kustomization file overview](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/)
 
 ## Kubernetes requirements

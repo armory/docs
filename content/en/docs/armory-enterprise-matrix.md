@@ -109,7 +109,7 @@ To create `dinghyfiles`, you can use one of the following templating languages:
 
 * HashiCorp Configuration Language (HCL) [![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})
 * JSON [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})
-* YAML [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})
+* YAML [![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})
 
 **Version control systems**
 

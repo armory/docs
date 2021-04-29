@@ -1,1 +1,1 @@
->Using Kustomize patches has been tested with Kustomize v3.8.10 and `kubectl` v1.19.x. You may see a `panic` error if you use Kustomize v4.0+ and `kubectl` v1.21+.
+>`kubectl` versions up to and including v1.20 come bundled with Kustomize v2.0.3. `kubectl` 1.21 comes bundled with Kustomize v4.0.5. Using Kustomize patches has been tested with `kubectl` v1.19.x. and standalone Kustomize v2 and v3.  You may see a `panic` error if you use the `spinnaker-kustomize-patches` repo with Kustomize v4.0+ or `kubectl` v1.21+.
