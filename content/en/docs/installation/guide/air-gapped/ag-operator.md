@@ -14,18 +14,22 @@ This guide details how you can host the Armory Enterprise Bill of Materials (BOM
 1. Install S3-compatible MinIO to store the BOM.
 1. Download the BOM.
 1. Move the BOM to your MinIO bucket.
-1. Download and move Armory Enterprise Docker images to your private Docker registry
-1. Update `halyard` to use the custom BOM location.
-1. Install the Armory Operator in your Kubernetes cluster.
+1. Download and move Armory Enterprise Docker images to your private Docker registry.
+1. Update Halyard configuration to use the custom BOM location.
+1. Update Armory Operator configuration to include MinIO access credentials.
+1. Download and move Armory Operator Docker images to your private Docker registry.
+1. Deploy the Armory Operator in your Kubernetes cluster.
 
 ## {{% heading "prereq" %}}
 
 * You are familiar with the [Armory Operator]({{< ref "armory-operator" >}}) and [configuring Armory Enterprise using Kustomize patches]({{< ref "op-config-kustomize" >}}).
-* You have read the [introduction]({{< ref "air-gapped" >}}) to air-gapped environments and have installed the [AWS CLI](https://aws.amazon.com/cli/).
+* You have read the [introduction]({{< ref "air-gapped" >}}) to air-gapped environments.
 * You have public internet access.
 * You have admin access to your Kubernetes cluster.
 * You have created two namespaces in Kubernetes: `spinnaker` and `spinnaker-operator`.
 * You have access to a private Docker registry with credentials to push images.
+* You have installed the [AWS CLI](https://aws.amazon.com/cli/).
+* You have installed [`yq`](https://mikefarah.gitbook.io/yq/#install) **version 3**. This is used by helper scripts.
 * If needed, you have certificates for Custom Certificate Authorities and servers.
 
 ## Clone the `spinnaker-kustomize-patches` repo
@@ -50,11 +54,24 @@ env:
         key: minioAccessKey
 ```
 
-Those keys are stored in a Kubernetes secret called `spin-secrets.` You create the secret by running the script `create-secrets.sh` located in the `spinnaker-kustomize-patches/secrets` folder.
+Those keys are stored in a Kubernetes secret called `spin-secrets.` You create the secret by running the script `create-secrets.sh` located in the `spinnaker-kustomize-patches/secrets` folder. The script looks for a file called `secrets.env` and if it doesn't find it, uses the contents of `secrets-example.env`.
 
-Before executing the following commands, make sure you are in the `spinnaker-kustomize-patches` directory and that you have created the `spinnaker` Kubernetes namespace.
+1. Create your own `secrets.env` file in the `spinnaker-kustomize-patches/secrets` directory. The contents of your file should be:
 
-1. Create the MinIO secret key:
+   ```text
+   #---------------------------------------------------------------------------
+   # Key-value pairs for secrets to store in Kubernetes.
+   #
+   # Reference secrets in spinnaker config files like this (not all fields support secrets):
+   # encrypted:k8s!n:spin-secrets!k:<secret key>
+   #---------------------------------------------------------------------------
+
+   minioAccessKey=changeme
+   ```
+
+   Update the value for `minioAccessKey` and save the file.
+
+1. Switch to the `spinnaker-kustomize-patches` directory. Create the Kubernetes secret key that contains the MinIO access key:
 
    ```bash
    ./secrets/create-secrets.sh
@@ -68,33 +85,58 @@ Before executing the following commands, make sure you are in the `spinnaker-kus
 
 ## Download the BOM
 
-The BOM contains the image versions used by Armory Enterprise. Decide which Armory Enterprise version you want to deploy. Check [Armory Release Notes]({{< ref "rn-armory-spinnaker" >}}) for the latest supported versions.
+Decide which Armory Enterprise version you want to deploy. Check [Armory Release Notes]({{< ref "rn-armory-spinnaker" >}}) for the latest supported versions.
 
 The `spinnaker-kustomize-patches/airgap` directory contains helper scripts for air-gapped environments. Use `bomdownloader.sh` to download the version of the Armory Enterprise BOM you require.
 
 `bomdownloader.sh` takes two command line parameters in the following order:
 
 1. Armory Enterprise version; for example, {{< param "armory-version-exact" >}}.
-2. The name of your Docker registry; for example, `my.jfrog.io/myteam/armory`.
+1. The name of your Docker registry; for example, `my.jfrog.io/myteam/armory`.
 
-The script creates a `halconfig` folder, downloads the necessary files, and updates the BOM to use the Docker registry you specified.
+The script creates a `halconfig` folder, downloads the necessary files, and updates the BOM to use the Docker registry you specified. To download the BOM:
 
-Before you run this script, make sure you have installed the [AWS CLI](https://aws.amazon.com/cli/) and [`yq`](https://mikefarah.gitbook.io/yq/)
+1. Switch to the `spinnaker-kustomize-patches` directory.
+1. Run `bomdownloader.sh <armory-version> <docker-registry>`. For example, if you want to download the 2.25.0 BOM and your registry is `my.jfrog.io/myteam/armory`:
 
-Run `bomdownloader.sh <armory-version> <docker-registry>`. For example:
+   ```bash
+   ./airgap/bomdownloader.sh 2.25.0 my.jfrog.io/myteam/armory
+   ```
+
+   Output is similar to:
+
+   ```bash
+   download: s3://halconfig/versions.yml to halconfig/versions.yml
+   download: s3://halconfig/bom/2.25.0.yml to halconfig/bom/2.25.0.yml
+   download: s3://halconfig/profiles/clouddriver/2.25.3/clouddriver.yml to halconfig/profiles/clouddriver/2.25.3/clouddriver.yml
+   ...
+   Version 2.25.0 is ready to be uploaded to your private bucket.
+   For example, with "aws cp --recursive"  or "gsutil cp -m -r ..."
+   ```
+
+Inspecting your file system, you should see the new `halconfig` folder. For example, if you specified Armory Enterprise v2.25.0, your file system should be:
 
 ```bash
-./airgap/bomdownloader.sh 2.25.0 my.jfrog.io/myteam/armory
+halconfig
+ ┣ bom
+ ┃ ┗ 2.25.0.yml
+ ┣ profiles
+ ┃ ┣ clouddriver
+ ┃ ┣ dinghy
+ ┃ ┣ echo
+ ┃ ┣ fiat
+ ┃ ┣ front50
+ ┃ ┣ gate
+ ┃ ┣ igor
+ ┃ ┣ kayenta
+ ┃ ┣ monitoring-daemon
+ ┃ ┣ orca
+ ┃ ┣ rosco
+ ┃ ┗ terraformer
+ ┗ versions.yml
 ```
 
-Output is similar to:
-
-```bash
-download: s3://halconfig/versions.yml to halconfig/versions.yml
-download: s3://halconfig/bom/2.25.0.yml to halconfig/bom/2.25.0.yml
-Version 2.25.0 is ready to be uploaded to your private bucket.
-For example, with "aws cp --recursive"  or "gsutil cp -m -r ..."
-```
+Each subdirectory in the `profiles` directory contains a `<service-name>.yml` profile file.
 
 If you need to change your Docker registry, you can manually edit the `<armory-version>.yml` file located under `halconfig/bom`.  Update the value for the key `artifactSources.dockerRegistry`.
 
@@ -119,56 +161,82 @@ artifactSources:
     dockerRegistry: my.jfrog.io/myteam/armory
 {{< /prism >}}
 
-## Move the BOM
+## Copy the BOM
 
-With the MinIO pod running, you set up the terminal to copy the BOM into the bucket.
+With the MinIO pod running, copy your local BOM into your MinIO bucket.
+
+1. Set environment variables:
+
+   Update the `AWS_SECRET_ACCESS_KEY` with the `minioAccessKey` value you created in the [Deploy MinIO to host the BOM](#deploy-minio-to-host-the-bom) section.
+
+   ```bash
+   export AWS_ACCESS_KEY_ID=minio
+   export AWS_SECRET_ACCESS_KEY=<minioAccessKey>
+   ```
+
+1. Port forward the MinIO service:
+
+   ```bash
+   kubectl port-forward svc/minio 9000 -n spinnaker
+   ```
+
+1. Copy your local BOM to MinIO:
+
+   ```bash
+   aws s3 mb s3://halconfig --endpoint=http://localhost:9000
+   aws s3 cp --recursive halconfig s3://halconfig --endpoint=http://localhost:9000
+   ```
+>WARNING: If you're using `kustomize-spinnaker-patches` consider removing `infrastructure/minio.yml` from the list of resources to prevent the accidental deletion of the bucket when calling `kubectl delete -k .`.
+
+## Host the Armory Enterprise Docker images
+
+There are two options for hosting the Docker images: 1) configure your Docker registry as a proxy for `docker.io/armory`; or 2) download the images and push them to your private Docker registry.
+
+### Proxy to `docker.io/armory`
+
+Configure `docker.io/armory` as a remote repository within your private Docker registry.  If you are using JFrog Artifactory, you can follow the instructions in the [Remote Docker Repositories](https://www.jfrog.com/confluence/display/JFROG/Docker+Registry#DockerRegistry-RemoteDockerRepositories) section of the JFrog docs.  
+
+### Download images
+
+You can use the `imagedownloader.sh` helper script in the `spinnaker-kustomize-patches/airgap` directory to download and push the images to your private Docker registry.
+
+The execution format is:
 
 ```bash
-export AWS_ACCESS_KEY_ID=minio
-export AWS_SECRET_ACCESS_KEY=changeme
-
-kubectl port-forward svc/minio 9000 -n spinnaker
-aws s3 mb s3://halconfig --endpoint=http://localhost:9000
-aws s3 cp --recursive halconfig s3://halconfig --endpoint=http://localhost:9000
-```
-* WARNING: If you're using `kustomize-spinnaker-patches` consider removing `infrastructure/minio.yml` from the list of resources to prevent the accidental deletion of the bucket when calling `kubectl delete -k .`.
-
-## Re-Host Images (If necessary)
-
-If possible, configure `docker.io/armory` as a remote repository with your docker registry.  For example these are the instructions for configuring a generic docker hub registry in JFrog Artifactory: https://www.jfrog.com/confluence/display/JFROG/Docker+Registry#DockerRegistry-RemoteDockerRepositories
-
-Otherwise, you can utilize the helper script [`imagedownloader.sh`](https://github.com/armory/spinnaker-kustomize-patches/blob/master/airgap/imagedownloader.sh) to download and push the images to your private docker registry. To use it, simply pass in the version of the bom you previously downloaded. The script looks in the current folder for the downloaded bom and proceeds to download, tag, and push the images for that particular version.
-
-```bash
-./imagedownloader.sh 2.25.0
+./airgap/imagedownloader.sh <armory-version>
 ```
 
-## Update Halyard
+`<armory-version>` is the version you specified in the [Download the BOM](#download-the-bom) section.
 
-We now need to point Halyard to the new BOM location.  Update the [`halyard-local.yml`](https://github.com/armory/spinnaker-kustomize-patches/blob/master/operator/halyard-local.yml) with the bucket we just created.
+When you run `imagedownloader.sh` from the `spinnaker-patches-repository` directory, the script looks for the downloaded BOM and proceeds to download, tag, and push the images for that particular version to the private Docker registry you specified when you ran `bomdownloader.sh`.
 
-```yml
+## Update Halyard configuration
+
+The Armory Operator uses its own Halyard installation to deploy and manage Armory Enterprise. You need to configure the new BOM location in `spinnaker-kustomize-patches/operator/halyard-local.yml`.  Update your `halyard-local.yml` to match the content of the highlighted lines in the following example:
+
+{{< prism lang="yaml" line="8-14" >}}
 halyard:
   halconfig:
     directory: /home/spinnaker/.hal
-
 spinnaker:
   config:
-    # This section is used in air-gapped environments to specify an alternate location for spinnaker Bill Of Materials (BOM).
+    # This section is used in air-gapped environments to specify an alternate location for the Bill Of Materials (BOM).
     input:
       gcs:
-        enabled: false                   # If the BOM is stored in a GCS bucket, switch this to true.
-      bucket: halconfig                  # Name of the bucket where spinnaker BOM is located.
-      #region: us-west-2                  # Bucket region (region does not matter for Minio).
-      enablePathStyleAccess: true       # If you are using a platform that does not support PathStyleAccess, such as Minio, switch this to true (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro).
-      endpoint: http://minio.spinnaker:9000 # For s3 like storage with custom endpoint, such as Minio.
+        enabled: false  # If the BOM is stored in a GCS bucket, switch this to true.
+      bucket: halconfig # Name of the bucket where the BOM is located.
+      #region: us-west-2  # Bucket region; (region does not matter for MinIO.
+      enablePathStyleAccess: true # If you are using a platform that does not support PathStyleAccess, such as MinIO, switch this to true (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro).
+      endpoint: http://minio.spinnaker:9000
       anonymousAccess: false
-```
+{{< /prism >}}
 
-We also need to update the operator to include the access key and secret access key used by minio.
-Update the [`patch-config`](https://github.com/armory/spinnaker-kustomize-patches/blob/master/operator/patch-config.yaml)
+## Update Armory Operator configuration
 
-```yaml
+You also need to update Armory Operator configuration to include the secret access key for MinIO.
+Locate `spinnaker-kustomize-patches/operator/patch-config.yml` and updated the `AWS_SECRET_ACCESS_KEY` value with the `minioAccessKey` value you created in the [Deploy MinIO to host the BOM](#deploy-minio-to-host-the-bom) section.
+
+{{< prism lang="yaml" line="14, 24" >}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -202,7 +270,7 @@ spec:
             defaultMode: 420
             name: operator-config
           name: operator-config
-```
+{{< /prism >}}
 
 ## Run the spinnaker operator!
 
