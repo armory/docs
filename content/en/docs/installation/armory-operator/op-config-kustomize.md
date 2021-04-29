@@ -31,18 +31,7 @@ You should familiarize yourself with Kustomize before you create patch files to 
 
 ## Spinnaker Kustomize patches repo
 
-Armory maintains the `spinnakaker-kustomize-patches` [repo](https://github.com/armory/spinnaker-kustomize-patches), which contains common configuration options for Armory Enterprise or Spinnaker. This gives you a reliable starting point when adding and removing features.
-
-{{% alert title="Patch Warning" color="warning" %}}
-All of the patches in the repo are for configuring Armory Enterprise. To use the patches to configure open source Spinnaker, you must change `spinnaker.armory.io` in the `apiVersion` field to `spinnaker.io`. This field is on the first line in a patch file.
-{{% /alert %}}
-
-To start, create your own copy of the `spinnaker-kustomize-patches` repository
-by clicking the `Use this template` button:
-
-![button](/images/kustomize-patches-repo-clone.png)
-
-Once created, clone this repository to your local machine.
+{{% include "armory-operator/spin-kust-repo.md" %}}
 
 ## Configure Armory Enterprise
 

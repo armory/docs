@@ -2,6 +2,7 @@
 title: Install Armory Enterprise for Spinnaker in Air-Gapped Environments
 linkTitle: Air-Gapped Environments
 weight: 1
+no_list: true
 description: >
   Options for deploying Armory Enterprise in an environment that is isolated from the internet.
 aliases:
@@ -13,38 +14,153 @@ aliases:
 
 ## Overview of air-gapped environments
 
-An air-gapped environment is one where any combination of the following conditions are true:
+An air-gapped deployment environment is one where any combination of the following conditions is true:
 
-- No access to Armory Bill Of Materials (BOM), which are published on S3
-- No ability to pull images from docker.io/armory
-- No ability for engineers to deploy with Halyard or the Armory Operator from their machines
+- Your deployment environment, such as a Kubernetes cluster, doesn't have internet access AWS S3 bucket and `docker.io`.
+- No ability for engineers to deploy with Halyard from their machines.
 
-If your environment is air-gapped, you have several options for deploying Armory.  
+If your deployment environment is air-gapped, you need to host the Armory Enterprise Bill of Materials (BOM) and Docker images in a location that your deployment environment can access. To set this up, you need public internet access so you can get the BOM and images, authority to create or access internal storage and image hosting, and permissions to move the Armory Enterprise materials to your internal systems.  
+
+The process for deploying Armory Enterprise in an air-gapped environment is different depending on whether you are using Halyard or the Armory Operator. The first step in both cases, though, is to inspect the Armory Enterprise Bill of Materials.
+
+## {{% heading "prereq" %}}
+
+* You have access to public AWS S3 buckets and docker.io.
+* You have installed the [AWS CLI](https://aws.amazon.com/cli/).
 
 
+## Inspect the Armory Enterprise Bill of Materials
 
-## Host Armory's Bill Of Materials (BOM)
+Armory Enterprise's Bill of Materials (BOM) is stored in the public S3 bucket `halconfig`. You can see the contents of this bucket using the AWS CLI:
 
-Armory's BOMs are stored in the following bucket and are publicly available: `s3://halconfig`.
-
-If you are unable to access this bucket from the machine running Halyard, host the BOM in either a GCS or S3 compatible storage, such as MinIO.
-
-### Using a custom bucket and BOM
-
-Your GCS or S3 compatible bucket needs to contain a `versions.yml` at the root of the bucket with the following information:
-
-```yaml
-latestHalyard: {{< param halyard-armory-version >}}
-latestSpinnaker: {{< param armory-version >}}
-versions:
-- version: {{< param armory-version >}}
-  alias: OSS Release <ossVersion> # The corresponding OSS version can be found in the Release Notes
-  changelog: <Link to Armory Release Notes for this version>
-  minimumHalyardVersion: 1.2.0
-  lastUpdate: "1568853000000"
+```bash
+aws s3 ls s3://halconfig
 ```
 
-`latestHalyard` and `latestSpinnaker` are used to notify users of new version of Halyard and Armory. You can optionally update them with newer versions. `versions` is a list of available versions. It is optional if you don't intend to show new versions when `hal version list` is run.
+There are `bom` and `profiles` directories as well as four files: `versions-edge.yml`, `versions-ossedge.yml`, `version-rc.yml`, and `versions.yml`.
+
+You can view the content of `s3://halconfig/versions.yml` by executing:
+
+```bash
+aws s3 cp s3://halconfig/versions.yml -
+```
+
+Output is similar to:
+
+```yaml
+latestHalyard: 1.10.1
+latestSpinnaker: 2.25.0
+versions:
+    - version: 2.25.0
+      alias: OSS Release 1.25.3
+      changelog: https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v2-25-0/
+      minimumHalyardVersion: 1.10.1
+      lastUpdate: "1616710502000"
+```
+
+The `bom` folder contains files for each release. To see the BOM for a specific release, you can run:
+
+```bash
+ aws s3 ls s3://halconfig/bom/<release-number>.yml
+```
+
+Than you can inspect the file's contents. For example, to see the BOM for release 2.25.0:
+
+```bash
+aws s3 cp s3://halconfig/bom/2.25.0.yml -
+```
+
+Output is similar to:
+
+```yaml
+version: 2.25.0
+timestamp: "2021-03-25 09:28:32"
+services:
+    clouddriver:
+        commit: de3aa3f0
+        version: 2.25.3
+    deck:
+        commit: 516bcf0a
+        version: 2.25.3
+    dinghy:
+        commit: 522e67e5
+        version: 2.25.1
+    echo:
+        commit: 3a098acc
+        version: 2.25.2
+    fiat:
+        commit: ca75f0d0
+        version: 2.25.3
+    front50:
+        commit: 502b753e
+        version: 2.25.2
+    gate:
+        commit: "47352833"
+        version: 2.25.5
+    igor:
+        commit: 252dbd5c
+        version: 2.25.2
+    kayenta:
+        commit: "72616529"
+        version: 2.25.2
+    monitoring-daemon:
+        version: 2.25.0
+    monitoring-third-party:
+        version: 2.25.0
+    orca:
+        commit: 53f48823
+        version: 2.25.2
+    rosco:
+        commit: 272f4f82
+        version: 2.25.2
+    terraformer:
+        commit: 5dcae243
+        version: 2.25.0
+dependencies:
+    redis:
+        version: 2:2.8.4-2
+artifactSources:
+    dockerRegistry: docker.io/armory
+```
+
+
+## Host Armory Enterprise's Bill Of Materials (BOM)
+
+Whether you are deploying Armory Enterprise using Halyard or the Armory Operator, you need to host Armory Enterprise's BOM in GCS, S3, or compatible storage like [MinIO](https://min.io/). Your air-gapped environment must have access to your storage bucket.
 
 
 
+You need to replicate `versions.yml` at the root level of your own storage bucket.
+
+You can copy the displayed contents into your `versions.yml` file or create one with the following structure:
+
+```yaml
+latestHalyard: <armory-hal-version>
+latestSpinnaker: <armory-enterprise-version>
+versions:
+    - version: <armory-enterprise-version>
+      alias: OSS Release <underlying-oss-version>
+      changelog: <link-to-armory-enterprise-release-notes>
+      minimumHalyardVersion: <armory-hal-version>
+      lastUpdate: <release-timestamp-in-milliseconds>
+```
+
+
+* `latestHalyard`: {{< param "halyard-armory-version" >}}; used to notify users of a new version of Armory-extended Halyard.
+* `latestSpinnaker`:  {{< param "armory-version-exact" >}}; used to notify users of a new version of Armory Enterprise.
+* `versions`: list of available Armory Enterprise versions; executing `hal version list` displays the versions from this list.
+   * `version`: {{< param "armory-version-exact" >}}; Armory Enterprise version.
+   * `alias`: OSS Release {{< param "matching-oss-version-exact" >}}; the open source Spinnaker release that matches the Armory Enterprise version. You can find this in the [Armory Enterprise Release Notes]({{< ref "rn-armory-spinnaker">}}) for your desired version.
+   * `changelog`: the [Armory Enterprise Release Notes]({{< ref "rn-armory-spinnaker">}}) for your desired version.
+   * `minimumHalyardVersion`: {{< param "halyard-armory-version" >}}; same as `latestHalyard`.
+   * `lastUpdate`: release timestamp in milliseconds.
+
+
+
+
+Armory recommends hosting the BOM for a single version only.
+
+
+## {{% heading "nextSteps" %}}
+
+Follow the instructions for your deployment method: {{< linkWithTitle "ag-operator.md" >}} or {{< linkWithTitle "ag-halyard.md" >}}.
