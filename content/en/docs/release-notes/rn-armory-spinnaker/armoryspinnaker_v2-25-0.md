@@ -35,6 +35,10 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
 
+#### Incorrect UI
+
+This release includes an incorrect version of the UI. You may notice fields and pages that are missing or are present but not used by Armory Enterprise, such as Managed Pipeline Templates v2.
+
 #### Git repo artifact provider cannot checkout SHAs
 
 Only branches are currently supported. For more information, see [6363](https://github.com/spinnaker/spinnaker/issues/6363).
