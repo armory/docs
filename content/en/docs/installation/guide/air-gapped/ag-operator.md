@@ -234,16 +234,16 @@ operator
 
 ## Download and host the Armory Operator Docker images
 
-You can find the `operatorimageudpate.sh` script in `spinnaker-kustomize-patches/airgap`. The script does the following:
+You can find the `operatorimageupdate.sh` script in `spinnaker-kustomize-patches/airgap`. The script does the following:
 
 1. Downloads the Armory Operator Docker images and updates their names.
 1. Pushes the images to the Docker registry you specify in the command line.
 1. Updates the Armory Operator's `kustomization.yml` with the new image names.
 
-From the `spinnaker-kustomize-patches/operator` folder, execute the `operatorimageudpate.sh` script:
+From the `spinnaker-kustomize-patches/operator` folder, execute the `operatorimageupdate.sh` script:
 
 ```bash
-../airgap/operatorimageudpate.sh <your-docker-registry>
+../airgap/operatorimageupdate.sh <your-docker-registry>
 ```
 
 ## Update Armory Operator configuration
