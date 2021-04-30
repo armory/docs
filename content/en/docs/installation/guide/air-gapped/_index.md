@@ -21,7 +21,7 @@ An air-gapped deployment environment is one where any combination of the followi
 
 If your deployment environment is air-gapped, you need to host the Armory Enterprise Bill of Materials (BOM) and Docker images in a location that your deployment environment can access. To set this up, you need public internet access so you can get the BOM and images, authority to create or access internal storage and image hosting, and permissions to move the Armory Enterprise materials to your internal systems.  
 
-The process for deploying Armory Enterprise in an air-gapped environment is different depending on whether you are using Halyard or the Armory Operator. The first step in both cases, though, is to inspect the Armory Enterprise Bill of Materials.
+The process for deploying Armory Enterprise in an air-gapped environment is different depending on whether you are using Halyard or the Armory Operator. The first step in both cases, though, is to familiarize yourself with the Armory Enterprise Bill of Materials.
 
 ## {{% heading "prereq" %}}
 
@@ -122,44 +122,6 @@ dependencies:
 artifactSources:
     dockerRegistry: docker.io/armory
 ```
-
-
-## Host Armory Enterprise's Bill Of Materials (BOM)
-
-Whether you are deploying Armory Enterprise using Halyard or the Armory Operator, you need to host Armory Enterprise's BOM in GCS, S3, or compatible storage like [MinIO](https://min.io/). Your air-gapped environment must have access to your storage bucket.
-
-
-
-You need to replicate `versions.yml` at the root level of your own storage bucket.
-
-You can copy the displayed contents into your `versions.yml` file or create one with the following structure:
-
-```yaml
-latestHalyard: <armory-hal-version>
-latestSpinnaker: <armory-enterprise-version>
-versions:
-    - version: <armory-enterprise-version>
-      alias: OSS Release <underlying-oss-version>
-      changelog: <link-to-armory-enterprise-release-notes>
-      minimumHalyardVersion: <armory-hal-version>
-      lastUpdate: <release-timestamp-in-milliseconds>
-```
-
-
-* `latestHalyard`: {{< param "halyard-armory-version" >}}; used to notify users of a new version of Armory-extended Halyard.
-* `latestSpinnaker`:  {{< param "armory-version-exact" >}}; used to notify users of a new version of Armory Enterprise.
-* `versions`: list of available Armory Enterprise versions; executing `hal version list` displays the versions from this list.
-   * `version`: {{< param "armory-version-exact" >}}; Armory Enterprise version.
-   * `alias`: OSS Release {{< param "matching-oss-version-exact" >}}; the open source Spinnaker release that matches the Armory Enterprise version. You can find this in the [Armory Enterprise Release Notes]({{< ref "rn-armory-spinnaker">}}) for your desired version.
-   * `changelog`: the [Armory Enterprise Release Notes]({{< ref "rn-armory-spinnaker">}}) for your desired version.
-   * `minimumHalyardVersion`: {{< param "halyard-armory-version" >}}; same as `latestHalyard`.
-   * `lastUpdate`: release timestamp in milliseconds.
-
-
-
-
-Armory recommends hosting the BOM for a single version only.
-
 
 ## {{% heading "nextSteps" %}}
 

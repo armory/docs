@@ -29,7 +29,7 @@ This guide details how you can host the Armory Enterprise Bill of Materials (BOM
 * You have created two namespaces in Kubernetes: `spinnaker` and `spinnaker-operator`.
 * You have access to a private Docker registry with credentials to push images.
 * You have installed the [AWS CLI](https://aws.amazon.com/cli/).
-* You have installed [`yq`](https://mikefarah.gitbook.io/yq/#install) **version 3**. This is used by helper scripts.
+* You have installed [`yq`](https://mikefarah.gitbook.io/yq/#install) **version 4+**. This is used by helper scripts.
 * If needed, you have certificates for Custom Certificate Authorities and servers.
 
 ## Clone the `spinnaker-kustomize-patches` repo
