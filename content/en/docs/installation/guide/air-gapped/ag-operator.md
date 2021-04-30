@@ -332,7 +332,7 @@ The following example uses version 2.25.0 and a private Docker registry called `
 1. Verify that the bucket is properly configured by running:
 
    ```bash
-   aws s3 ls --endpoint=http://minio:9000 s3://halconfig/
+   aws s3 ls --endpoint=http://minio.spinnaker:9000 s3://halconfig/
 
    ```
 
