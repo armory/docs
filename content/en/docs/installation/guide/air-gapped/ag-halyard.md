@@ -6,7 +6,7 @@ description: >
 ---
 
 
-### Enabling a custom bucket From Halyard
+### Enabling a custom bucket from Halyard
 
 To enable custom storage in Halyard, create `/opt/spinnaker/config/halyard-local.yml` with the following content and restart Halyard:
 

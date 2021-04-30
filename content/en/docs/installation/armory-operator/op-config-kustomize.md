@@ -75,6 +75,9 @@ patchesStrategicMerge:
 
 `spinnaker-kustomize-patches/kustomization.yml` is a symlink that points to `spinnaker-kustomize-patches/recipes/kustomization-minimum.yml`. There are multiple `kustomization` examples in the `recipes` directory. Choose the one that most closely resembles your use case and link to it. Alternately, you can delete the symlink, move your desired Kustomization file from `recipes` to the top-level directory, and rename the file to `kustomization.yml`.
 
+{{% alert title="Warning" color="warning" %}}
+If you are in an air-gapped environment and are using MinIO to host the Armory Enterprise BOM, remove `infrastructure/minio.yml` from the list of resources to prevent the accidental deletion of the bucket when calling `kubectl delete -k .`.
+{{% /alert %}}
 
 ### Change the `apiVersion`
 
