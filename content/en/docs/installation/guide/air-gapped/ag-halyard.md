@@ -170,4 +170,6 @@ Finally, to access the deployed Halyard environment, perform the following steps
    kubectl exec -it {pod-name} /bin/bash
    ```
 
+## Help resources
 
+Contact [Armory Support](https://support.armory.io/) or use the [Spinnaker Slack](https://join.spinnaker.io/) `#armory` channel.
