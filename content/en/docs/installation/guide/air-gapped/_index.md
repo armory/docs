@@ -64,7 +64,7 @@ The `bom` folder contains files for each release. To see the BOM for a specific 
  aws s3 ls s3://halconfig/bom/<release-number>.yml
 ```
 
-Than you can inspect the file's contents. For example, to see the BOM for release 2.25.0:
+Then you can inspect the file's contents. For example, to see the BOM for release 2.25.0:
 
 ```bash
 aws s3 cp s3://halconfig/bom/2.25.0.yml -
