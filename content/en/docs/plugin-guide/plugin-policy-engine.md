@@ -303,7 +303,7 @@ url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/mas
 
 If you do not omit the `volume` and `initContainers` configurations for the `patchesStrategicMerge` section, the pods for Armory may not start.
 
-### Finishing the setup
+### Finish the setup
 
 Once Policy Engine is enabled, you must authorize API calls in order to use the Armory (or OSS Spinnaker) UI. To do this, you need to load a policy into the Policy Engine that is similar to the following:  
 
@@ -345,7 +345,7 @@ allow {
 
 If you do not add this policy, Gate rejects all API calls to the Armory instance.
 
-#### Creating a policy for the API
+#### Create a policy for the API
 
 All requests made to the `spinnaker.http.authz` package include the following:
 
