@@ -402,6 +402,52 @@ allow {
 
 *API Authorization depends on having access to a user's identity and role information. Because of this dependency, you must be using Authentication and Authorization, which requires configuring the Fiat service.*
 
+#### Return a custom message
+
+> Providing a custom message for the `spinnaker.http.authz` package requires Armory Enterprise 2.26.0 or later.
+
+The Policy Engine allows you to return a custom message when an action violates a policy and is blocked. For most packages that you want to enforce policies on, this is done by specifying the message as part of the `deny` block. You can see this in the examples for other policy types on this page.
+
+Returning a custom message works slightly differently for the `spinnaker.http.authz` package because it is based on the `allow` rules rather than `deny` rules.
+
+If a user attempts to perform an action that they are not allowed to, a window appears and displays the custom message you specify. If you are running an Armory Enterprise version earlier than 2.26.0, you cannot specify a custom message. Instead, a generic server error message appears.
+
+The following example policy prevents the user `milton` from taking specific actions in the UI. Specifically, the user cannot use the  **Edit** or **Delete** buttons on the **Clusters** tab.
+
+**Example policy:** 
+{{< prism lang="rego" line="2-8" >}}
+package spinnaker.http.authz
+    default allow=false
+    allow {
+      not isInfraDeploy
+      not isDeleteManifest
+    }
+    message = "This action has been blocked by your company's policy. This message is configurable in your policy."{
+    	not allow
+    }
+    default isInfraDeploy=false
+    isInfraDeploy{
+          # Policy that prevents the user milton from manually deploying infrastructure
+          input.method="POST"
+          input.path[_]="tasks"
+          input.body.job[_].type="deployManifest"
+          input.user.username="milton"
+    }
+    isDeleteManifest{
+      # Policy that prevents the user milton from manually deleting infrastructure 
+      input.method="POST"
+      input.path[_]="tasks"
+      input.body.job[_].type="deleteManifest"
+      input.user.username="milton"
+    }
+{{< /prism >}}
+
+Note the highlighted lines. This is where defining and returning a custom message for the `spinnaker.http.authz` package differs from other packages.
+
+When the policy prevents an action, the following window appears in the UI and displays the message:
+
+{{< figure src="/images/pe-plugin/pe-plugin-http-authz-msg.jpg" alt="This is the window that appears and displays the message specified in the policy. Users can cancel the action or attempt to resolve the issue." >}}
+
 ### Deployment
 
 Another common use case is applying policy to deployments. This prevents any deployments from happening that may violate a policy.
