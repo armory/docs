@@ -7,18 +7,18 @@ description: >
 
 ## Overview
 
-This guide details how you can host the Armory Enterprise Bill of Materials (BOM) and Docker images, as well as the Armory Operator Docker images, in your  air-gapped environment.
+This guide details how you can host the Armory Enterprise Bill of Materials (BOM) and Docker images, as well as the Armory Operator Docker images, in your  air-gapped environment. The steps at a high level are:
 
 
-1. Clone the `spinnaker-kustomize-patches` repo, which contains helper scripts as well as Kustomize patches.
-1. Install S3-compatible MinIO to store the BOM.
-1. Download the BOM.
-1. Move the BOM to your MinIO bucket.
-1. Download and move Armory Enterprise Docker images to your private Docker registry.
-1. Update Halyard configuration to use the custom BOM location.
-1. Update Armory Operator configuration to include MinIO access credentials.
-1. Download and move Armory Operator Docker images to your private Docker registry.
-1. Deploy the Armory Operator in your Kubernetes cluster.
+1. [Clone the `spinnaker-kustomize-patches` repo](#clone-the-spinnaker-kustomize-patches-repo), which contains helper scripts as well as Kustomize patches.
+1. [Deploy S3-compatible MinIO](#deploy-minio-for-storage) to store the BOM.
+1. [Download the BOM](#download-the-bom).
+1. [Copy the BOM](#copy-the-bom) to your MinIO bucket.
+1. [Host Armory Enterprise Docker images](#host-the-armory-enterprise-docker-images) in your private Docker registry.
+1. [Download the Armory Operator](#download-the-armory-operator).
+1. [Host Armory Operator Docker images](#host-the-armory-operator-docker-images) in your private Docker registry.
+1. [Update Armory Operator configuration](#update-armory-operator-configuration).
+1. [Deploy the Armory Operator](#deploy-the-armory-operator) in your Kubernetes cluster.
 
 ## {{% heading "prereq" %}}
 
@@ -30,7 +30,6 @@ This guide details how you can host the Armory Enterprise Bill of Materials (BOM
 * You have access to a private Docker registry with credentials to push images.
 * You have installed the [AWS CLI](https://aws.amazon.com/cli/).
 * You have installed [`yq`](https://mikefarah.gitbook.io/yq/#install) **version 4+**. This is used by helper scripts.
-* If needed, you have certificates for Custom Certificate Authorities and servers.
 
 ## Clone the `spinnaker-kustomize-patches` repo
 
@@ -38,7 +37,7 @@ This guide details how you can host the Armory Enterprise Bill of Materials (BOM
 
 ## Deploy MinIO for storage
 
-Now that you have cloned the `spinnaker-kustomize-patches` repo, you need to create a storage bucket to host the BOM. [MinIO](https://min.io) is a good choice for the bucket since it is S3 compatible and runs as a pod in Kubernetes. You can find the manifest for MinIO in `spinnaker-kustomize-patches/infrastructure/minio.yml`.
+Now that you have cloned the `spinnaker-kustomize-patches` repo, you need to create a storage bucket to host the BOM. [MinIO](https://min.io) is a good choice for the bucket since it's S3 compatible and runs as a pod in Kubernetes. You can find the manifest for MinIO in `spinnaker-kustomize-patches/infrastructure/minio.yml`.
 
 When you look at the content of the `minio.yml` manifest, you see that MinIO needs a secret key called `minioAccessKey`:
 
@@ -54,7 +53,7 @@ env:
         key: minioAccessKey
 ```
 
-`minioAccessKey` is stored in a Kubernetes secret called `spin-secrets.` You create the secret by running the script `create-secrets.sh` located in the `spinnaker-kustomize-patches/secrets` folder. The script looks for a file called `secrets.env` and if it doesn't find it, uses the contents of `secrets-example.env`, so you should create your own `secrets.env` file before deplying MinIO.
+`minioAccessKey` is stored in a Kubernetes secret called `spin-secrets.` You create the secret by running the script `create-secrets.sh` located in the `spinnaker-kustomize-patches/secrets` folder. The script looks for a file called `secrets.env` and if it doesn't find it, uses the contents of `secrets-example.env`, so you should create your own `secrets.env` file before deploying MinIO.
 
 1. Create your own `secrets.env` file in the `spinnaker-kustomize-patches/secrets` directory. The contents of your file should be:
 
@@ -232,7 +231,7 @@ operator
  ┗ patch-validations.yaml
  ```
 
-## Download and host the Armory Operator Docker images
+## Host the Armory Operator Docker images
 
 You can find the `operatorimageupdate.sh` script in `spinnaker-kustomize-patches/airgap`. The script does the following:
 
