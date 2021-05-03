@@ -267,213 +267,52 @@ The command returns the namespaces in the EKS cluster.
 {{< tabs name="install-steps" >}}
 {{% tab name="Armory Operator" %}}
 
-### Install CRDs and Operator
+You need Kubernetes `ClusterRole` authority to install the Operator in `cluster` mode.
 
-First, download the latest release.
+You can find the Operator's deployment configuration in `spinnaker-operator/deploy/operator/cluster` after you download and unpack the archive. You don't need to update any configuration values.
 
-```bash
-$ bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
-```
+1. Get the latest Operator release:
 
-Install Armory CRDs:
+   **Armory Operator** ![Proprietary](/images/proprietary.svg)
 
-```bash
-$ kubectl apply -f deploy/crds/
-```
+   ```bash
+   mkdir -p spinnaker-operator && cd spinnaker-operator
+   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
+   ```
 
-Create a namespace for Operator. In this guide you use `spinnaker-operator`, but the namespace can have any name, provided that you update the namespace name in the `role_binding.yaml` file.
+1. Install or update CRDs across the cluster:
 
-```bash
-kubectl create namespace spinnaker-operator
-```
+   ```bash
+   kubectl apply -f deploy/crds/
+   ```
 
-Install Operator manifests:
+1. Create the namespace for the Operator:
 
-```bash
-$ kubectl apply -n spinnaker-operator -f deploy/operator/cluster
-```
+   In `cluster` mode, if you want to use a namespace other than `spinnaker-operator`, you need to edit the namespace in `deploy/operator/kustomize/role_binding.yaml`.
 
-After installation, you can verify that Operator is running with the following command:
+   ```bash
+   kubectl create ns spinnaker-operator
+   ```
 
-```bash
-$ kubectl -n spinnaker-operator get pods
-```
+1. Install the Operator:
 
-The command returns output similar to the following if the pod for Operator is running:
+   ```bash
+   kubectl -n spinnaker-operator apply -f deploy/operator/kustomize
+   ```
 
-```
-NAMESPACE                                READY         STATUS       RESTARTS      AGE
-spinnaker-operator-7cd659654b-4vktl      2/2           Running      0             6s
-```
+1. Verify that the Operator is running:
 
-### Install Armory
+   ```bash
+   kubectl -n spinnaker-operator get pods
+   ```
 
-First, create the namespace where Armory will be installed. In this guide you use `spinnaker`, but it can have any name:
+   The command returns output similar to the following if the pod for the Operator is running:
 
-```bash
-kubectl create namespace spinnaker
-```
+   ```
+   NAMESPACE                             READY         STATUS       RESTARTS      AGE
+   spinnaker-operator-7cd659654b-4vktl   2/2           Running      0             6s
+   ```
 
-You define and configure Armory in a YAML file and use `kubectl` to create the service. Copy the contents below to a configuration file called `spinnakerservice.yml`. The code creates a Kubernetes `ServiceAccount` with permissions only to the namespace where Armory is installed. Applying this file creates a base Armory installation with one Kubernetes target account, which enables Armory to deploy to the same namespace where it is installed.
-
-Note the values that you need to modify:
-
-- Armory `version`: Use the version of Armory that you want to deploy, which can be found [here]({{< ref "rn-armory-spinnaker#list-of-stable-armory-releases" >}}).
-- S3 `bucket`: Use the name of the S3 bucket created above.
-- S3 `region`: Region where the S3 bucket is located.
-- S3 `accessKeyId`: Optional, set when using IAM user credentials to authenticate to the S3 bucket.
-- S3 `secretAccessKey`: Optional, set when using IAM user credentials to authenticate to the S3 bucket.
-- metadata `name`: Change if you're installing Armory to a namespace other than `spinnaker`.
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  creationTimestamp: null
-  name: spin-role
-rules:
-- apiGroups:
-  - ""
-  resources:
-  - pods
-  - services
-  - endpoints
-  - persistentvolumeclaims
-  - events
-  - configmaps
-  - secrets
-  - namespaces
-  verbs:
-  - '*'
-- apiGroups:
-  - batch
-  - extensions
-  resources:
-  - jobs
-  verbs:
-  - '*'
-- apiGroups:
-  - apps
-  - extensions
-  resources:
-  - deployments
-  - daemonsets
-  - replicasets
-  - statefulsets
-  verbs:
-  - '*'
-- apiGroups:
-  - monitoring.coreos.com
-  resources:
-  - servicemonitors
-  verbs:
-  - get
-  - create
-- apiGroups:
-  - apps
-  resourceNames:
-  - spinnaker-operator
-  resources:
-  - deployments/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - metrics.k8s.io
-  resources:
-  - pods
-  verbs:
-  - '*'
-- apiGroups:
-  - apps
-  resourceNames:
-  - spinnaker-operator
-  resources:
-  - deployments/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - spinnaker.io
-  resources:
-  - '*'
-  - spinnakeraccounts
-  verbs:
-  - '*'
-- apiGroups:
-  - spinnaker.armory.io
-  resources:
-  - '*'
-  - spinnakerservices
-  verbs:
-  - '*'
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: spin-sa
----
-kind: RoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: spin-role-binding
-subjects:
-- kind: ServiceAccount
-  name: spin-sa
-roleRef:
-  kind: Role
-  name: spin-role
-  apiGroup: rbac.authorization.k8s.io
----
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    config:
-      version: 2.17.1  # Replace with desired version of Armory to deploy
-      persistentStorage:
-        persistentStoreType: s3
-        s3:
-          bucket: spinnaker-abcxyz # Replace with the name of the S3 bucket created previously
-          region: us-west-2        # Replace with correct bucket's region
-          accessKeyId: XYZ         # (Optional, set only when using an IAM user to authenticate to the bucket instead of an IAM role)
-          secretAccessKey: XYZ     # (Optional, set only when using an IAM user to authenticate to the bucket instead of an IAM role)
-          rootFolder: front50
-      features:
-        artifacts: true
-      providers:
-        kubernetes:
-          accounts:
-          - name: spinnaker
-            cacheThreads: 1
-            cachingPolicies: []
-            configureImagePullSecrets: true
-            customResources: []
-            dockerRegistries: []
-            kinds: []
-            namespaces:
-            - spinnaker  # Name of the namespace where Armory is installed
-            oAuthScopes: []
-            omitKinds: []
-            omitNamespaces: []
-            onlySpinnakerManaged: false
-            permissions: {}
-            providerVersion: V2
-            requiredGroupMembership: []
-            serviceAccount: true
-          enabled: true
-          primaryAccount: spinnaker
-    service-settings:
-      clouddriver:
-        kubernetes:
-          serviceAccountName: spin-sa
-```
-
-Deploy the manifest with the following command:
-
-```bash
-kubectl -n spinnaker apply -f spinnakerservice.yml
-```
 {{% /tab %}}
 {{% tab name="Halyard" %}}
 
