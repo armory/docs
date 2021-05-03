@@ -262,7 +262,10 @@ kubectl get namespaces
 
 The command returns the namespaces in the EKS cluster.
 
-## Install Armory using the Operator
+## Install Armory
+
+{{< tabs name="install-steps" >}}
+{{% tab name="Armory Operator" %}}
 
 ### Install CRDs and Operator
 
@@ -471,8 +474,8 @@ Deploy the manifest with the following command:
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
-
-## Install Armory using Halyard
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 ### Start the Halyard StatefulSet
 
@@ -788,6 +791,9 @@ distributed Kubernetes installs. If you see errors such as `Connection refused`,
 the containers may not be available yet. Either wait
 or check the status of all of the containers using the command for our cloud provider
 (such as `kubectl get pods --namespace spinnaker`).
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Ingress
 
