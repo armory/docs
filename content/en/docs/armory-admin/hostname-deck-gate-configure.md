@@ -106,7 +106,7 @@ in the `profiles` directory.
    ```bash
    # Make the gate-local.yml file in the profile directory
 
-   tee /home/spinnaker/.hal/default/profiles/gate-local.yml <<-'EOF'
+   tee -a /home/spinnaker/.hal/default/profiles/gate-local.yml <<-'EOF'
    healthEndpoint: /api/v1/health
    EOF
    ```
