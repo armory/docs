@@ -2,13 +2,36 @@
 title: Air-Gapped with Halyard
 weight: 3
 description: >
-  Options for deploying Armory Enterprise using Halyard in an air-gapped environment.
+  Options for deploying Armory Enterprise using Armory Halyard in an air-gapped environment.
 ---
 
+## Overview
 
-### Enabling a custom bucket from Halyard
+This guide shows how you can host the Armory Enterprise Bill of Materials (BOM) and Docker images in your air-gapped environment.
 
-To enable custom storage in Halyard, create `/opt/spinnaker/config/halyard-local.yml` with the following content and restart Halyard:
+>Halyard is scheduled for deprecation in 2021, so Armory recommends using the [Armory Operator]({{< ref "armory-operator" >}}) to deploy and manage Armory Enterprise on Kubernetes. See {{< linkWithTitle "ag-operator.md" >}} for instructions.
+
+
+## {{% heading "prereq" %}}
+
+* You have read the [introduction]({{< ref "air-gapped" >}}) to air-gapped environments.
+* You are using Armory-extended Halyard to deploy and manage Armory Enterprise.
+* You have public internet access and access to the environment where you want to deploy Armory Enterprise.
+* You have access to a private Docker registry with credentials to push images.
+* You have installed the [AWS CLI](https://aws.amazon.com/cli/).
+* You have installed [`yq`](https://mikefarah.gitbook.io/yq/#install) **version 4+**. This is used by helper scripts.
+
+## Host Armory's Bill Of Materials (BOM)
+
+Armory's BOMs are stored in public AWS S3 bucket: `s3://halconfig`.
+
+If you are unable to access this bucket from the machine running Halyard, host the BOM in storage that is compatible with AWS S3 or Google Cloud Storage (GCS). [MinIO](https://min.io) is a good option.
+
+### Update Halyard to use your custom storage bucket
+
+>If you're running Halyard in Kubernetes, Armory recommends using the [Armory Operator]({{< ref "armory-operator" >}}) to deploy and manage Armory Enterprise on Kubernetes. See {{< linkWithTitle "ag-operator.md" >}} for instructions.
+
+After you have created your custom storage bucket, you need to enable custom storage in Halyard. Create `/opt/spinnaker/config/halyard-local.yml` with the following content:
 
 ```yaml
 spinnaker:
@@ -18,9 +41,9 @@ spinnaker:
       gcs:
         enabled: false
       # Name of your private bucket
-      bucket: myownbucket
+      bucket: <your-bucket-name>
       # If your s3 bucket is not in us-west-2 (region does not matter for Minio)
-      region: us-east-1
+      region: <aws-s3-bucket-region>
       # If you are using a platform that does not support PathStyleAccess, such as Minio, switch this to true
       # https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro
       enablePathStyleAccess: false
@@ -29,146 +52,134 @@ spinnaker:
       # anonymousAccess: false
 ```
 
-If you're running Halyard in Kubernetes or Armory Operator, you need to create `halyard-local.yml` in your local directory. Then, create a `configmap` in the same namespace as Halyard or Operator with the `halyard-local.yml` file:
+Restart Halyard.
 
-```bash
-kubectl create configmap halyard-custom-config --from-file=halyard-local.yml=path/to/halyard-local.yml -n halyard
-```
 
-If you're running Halyard in Kubernetes, you then need to mount the configmap with the following addition in volumeMounts / volume in your Halyard manifest:
+### Host the Armory Enterprise BOM
 
-```yaml
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: halyard
-  namespace: halyard
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: halyard
-  serviceName: halyard
-  template:
-    metadata:
-      labels:
-        app: halyard
-    spec:
-      containers:
-      - name: halyard
-        image: index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}
-        volumeMounts:
-        - name: halconfig
-          mountPath: /home/spinnaker/
-        ### mount halyard-local.yml into /opt/spinnaker/config/
-        - name: halyard-custom-config
-          mountPath: /opt/spinnaker/config
-        ### add AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY if necessary
-        env:
-        - name: AWS_ACCESS_KEY_ID
-          value: xxxx
-        - name: AWS_SECRET_ACCESS_KEY
-          value: xxxx
-      securityContext:
-        fsGroup: 65533
-      volumes:
-      - name: halconfig
-        persistentVolumeClaim:
-          claimName: halconfig-pvc
-      ### use configMap/halyard-custom-config
-      - name: halyard-custom-config
-        configMap:
-          name: halyard-custom-config
-```
-
-It may be necessary to include your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY for your custom/private s3 bucket.
-
-### Enabling a new version of Armory
-
-You can download version `x.y.z` of Armory with this script:
+Use [`bomdownloader.sh`](https://github.com/armory/spinnaker-kustomize-patches/blob/master/airgap/bomdownloader.sh) to download the version of the Armory Enterprise BOM that you require.
 
 <details><summary>Show the script</summary>
 
-{{< gist armory-gists 1d14179659bd0f2c5026443efc136253 >}}
+{{< github repo="armory/spinnaker-kustomize-patches" file="/airgap/bomdownloader.sh" lang="bash" options="" >}}
 
-Set the value for `NEW_DOCKER_REGISTRY` to point to your docker repository if needed.
 </details><br>
 
-For example, run the following command to download version {{< param armory-version >}}:
+The script creates a `halconfig` folder, downloads the necessary files, and updates the BOM to use the Docker registry you specified.
+
+To download the BOM, run `bomdownloader.sh <armory-version> <docker-registry>`. For example, if you want to download the 2.25.0 BOM and your registry is `my.jfrog.io/myteam/armory`:
 
 ```bash
-# Replace `x` with the edge release you want to use.
-$ download-bom.sh {{< param armory-version >}} versions/
+./bomdownloader.sh 2.25.0 my.jfrog.io/myteam/armory
 ```
 
-You can then upload the files you just downloaded to your storage. Make sure they are readable from wherever Halyard (not necessarily Armory services) will run. For example:
-
-**AWS**
+Output is similar to:
 
 ```bash
-$ aws cp --recursive versions/ s3://myownbucket
-```           
-**GCS**
+download: s3://halconfig/versions.yml to halconfig/versions.yml
+download: s3://halconfig/bom/2.25.0.yml to halconfig/bom/2.25.0.yml
+download: s3://halconfig/profiles/clouddriver/2.25.3/clouddriver.yml to halconfig/profiles/clouddriver/2.25.3/clouddriver.yml
+...
+Version 2.25.0 is ready to be uploaded to your private bucket.
+For example, with "aws cp --recursive"  or "gsutil cp -m -r ..."
+```
 
+Inspecting your file system, you should see the new `halconfig` folder. For example, if you specified Armory Enterprise v2.25.0, your file system should be:
+
+```bash
+halconfig
+ ┣ bom
+ ┃ ┗ 2.25.0.yml
+ ┣ profiles
+ ┃ ┣ clouddriver
+ ┃ ┣ dinghy
+ ┃ ┣ echo
+ ┃ ┣ fiat
+ ┃ ┣ front50
+ ┃ ┣ gate
+ ┃ ┣ igor
+ ┃ ┣ kayenta
+ ┃ ┣ monitoring-daemon
+ ┃ ┣ orca
+ ┃ ┣ rosco
+ ┃ ┗ terraformer
+ ┗ versions.yml
+```
+
+Each subdirectory in the `profiles` directory contains a `<service-name>.yml` profile file.
+
+If you need to change your Docker registry, you can manually edit the `<armory-version>.yml` file located under `halconfig/bom`.  Update the value for the key `artifactSources.dockerRegistry`.
+
+{{< prism lang="yaml" line="18" >}}
+version: 2.25.0
+timestamp: "2021-03-25 09:28:32"
+services:
+    clouddriver:
+        commit: de3aa3f0
+        version: 2.25.3
+    deck:
+        commit: 516bcf0a
+        version: 2.25.3
+    ...
+    terraformer:
+        commit: 5dcae243
+        version: 2.25.0
+dependencies:
+    redis:
+        version: 2:2.8.4-2
+artifactSources:
+    dockerRegistry: my.jfrog.io/myteam/armory
+{{< /prism >}}
+
+### Copy the BOM to your custom storage bucket
+
+Upload the files you just downloaded to your storage bucket. Make sure they are readable from wherever Halyard is running.
+
+For example:
+
+{{< tabs name="copyBOM" >}}
+{{% tab name="AWS" %}}
+
+```bash
+$ aws s3 cp --recursive halconfig s3://halconfig
+```           
+{{% /tab %}}
+{{% tab name="GCS" %}}
 ```bash
 $ gsutil cp -m -r ...
 ```
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Use a custom Docker registry
 
-If you're unable to pull from `docker.io/armory` directly, you can use your own registry.
+There are two options for hosting the Docker images: 1) configure your Docker registry as a proxy for `docker.io/armory`; or 2) download the images and push them to your private Docker registry.
 
-### Docker registry proxy
+### Proxy to `docker.io/armory`
 
-Some registries allow pulling remote Docker images from another source. You can replace the `dockerRegistry` value in the script above via `NEW_DOCKER_REGISTRY`.
+Configure `docker.io/armory` as a remote repository within your private Docker registry.  If you are using JFrog Artifactory, you can follow the instructions in the [Remote Docker Repositories](https://www.jfrog.com/confluence/display/JFROG/Docker+Registry#DockerRegistry-RemoteDockerRepositories) section of the JFrog docs.  
 
-### Isolated Docker registry
+### Download images
 
-If you cannot proxy `docker.io/armory`, push images to your own registry. Images are determined from the BOM. For instance:
+You can use the [`imagedownloader.sh`](https://github.com/armory/spinnaker-kustomize-patches/blob/master/airgap/imagedownloader.sh) helper script to download and push the images to your private Docker registry.
 
-```yaml
-...
-services:
-  deck:
-    version: 2.11.0-896d15d-b0aac47-rc8
-  gate:
-    version: 1.11.0-83b97ab-fd0128a-rc4
-  ...
-artifactSources:
-  dockerRegistry: docker.io/armory
+<details><summary>Show the script</summary>
+
+{{< github repo="armory/spinnaker-kustomize-patches" file="/airgap/imagedownloader.sh" lang="bash" options="" >}}
+
+</details><br>
+
+The script looks for the downloaded BOM and proceeds to download, tag, and push the images for that particular version to the private Docker registry you specified when you ran `bomdownloader.sh`.
+
+The execution format is:
+
+```bash
+.imagedownloader.sh <armory-version>
 ```
 
-You need to copy `docker.io/armory/deck/2.11.0-896d15d-b0aac47-rc8` and `docker.io/armory/gate/1.11.0-83b97ab-fd0128a-rc4` to your own registry.
+Run the script from the parent directory of the `halconfig` directory that the `bomdownloader` script created.
 
-## Halyard cannot run on the local machine
-
-The following solutions assume the that you can use `kubectl` to access the cluster where Armory is installed.
-
-### Option 1: Halyard as a deployment
-
-You can run Halyard as a `Deployment` within the cluster that runs Armory if the following conditions are true:
-
-* You cannot run Halyard directly on your machine. This might be because the local machine cannot run Docker.
-* You have `kubectl` access to the cluster you are deploying to
-
-The `halyard-deployment.yml`manifest file can be found here: https://gist.github.com/imosquera/e6b42a187bd921dbb8a61e523cf568d8
-
-Fetch the deployment manifest and edit values that are relevant to your deployment, such as `namespace`. After you edit the manifest, deploy it with the following command:
-
-```
-kubectl apply -f manifest.yml
-```
-
-Finally, to access the deployed Halyard environment, perform the following steps:
-
-1. Get the name for the Halyard pod:
-   ```bash
-   kubectl get pods
-   ```
-2. Exec into the pod:
-   ```bash
-   kubectl exec -it {pod-name} /bin/bash
-   ```
+Since you already [updated Halyard to use your custom storage bucket](#update-halyard-to-use-your-custom-storage-bucket), you can now configure and deploy Armory Enterprise.
 
 ## Help resources
 

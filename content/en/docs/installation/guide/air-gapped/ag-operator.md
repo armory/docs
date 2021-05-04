@@ -86,7 +86,7 @@ env:
 
 Decide which Armory Enterprise version you want to deploy. Check [Armory Release Notes]({{< ref "rn-armory-spinnaker" >}}) for the latest supported versions.
 
-The `spinnaker-kustomize-patches/airgap` directory contains helper scripts for air-gapped environments. Use `bomdownloader.sh` to download the version of the Armory Enterprise BOM you require.
+The `spinnaker-kustomize-patches/airgap` directory contains helper scripts for air-gapped environments. Use `bomdownloader.sh` to download the version of the Armory Enterprise BOM that you require.
 
 `bomdownloader.sh` takes two command line parameters in the following order:
 
