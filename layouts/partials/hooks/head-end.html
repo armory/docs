@@ -1,4 +1,31 @@
-<script>
+<!-- Google Consent Mode -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+​
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+​
+    gtag('consent', 'default', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500,
+    });
+​
+    gtag('set', 'ads_data_redaction', true);
+</script>
+
+<!-- Cookiebot CMP -->
+<script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="dbb13ff5-899a-4802-a583-6a53788cb99b"
+    data-blockingmode="auto"
+    type="text/javascript"
+></script>
+
+
+<script type="text/plain" data-cookieconsent="marketing">
   (function(){
     window.ldfdr = window.ldfdr || {};
     (function(d, s, ss, fs){
@@ -12,14 +39,15 @@
     })(document, 'script', 'https://sc.lfeeder.com/lftracker_v1_9mDnrdyvnJ6E1KXM.js');
   })();
 </script>
-<script type="text/javascript">
-    (function(i,s,o,g,r,a,m){i['SLScoutObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://scout-cdn.salesloft.com/sl.js','slscout');
-    slscout(["init", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0IjoxMDE4MTd9.6uHV0OpOQbh1CO-UI7lePJq1FyydsGjrN1FCCPRdU_s"]);
+
+<script type="text/plain" data-cookieconsent="marketing">
+  (function(i,s,o,g,r,a,m){i['SLScoutObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://scout-cdn.salesloft.com/sl.js','slscout');
+  slscout(["init", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0IjoxMDE4MTd9.6uHV0OpOQbh1CO-UI7lePJq1FyydsGjrN1FCCPRdU_s"]);
 </script>
-<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="dbb13ff5-899a-4802-a583-6a53788cb99b" data-blockingmode="auto" type="text/javascript"></script>
+
 {{ if .Page.Description }}
   <meta name="description" content="{{ .Page.Description }}">
 {{ else }}
