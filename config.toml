@@ -97,6 +97,7 @@ halyard-armory-version = "1.11.0"
 kubesvc-version="0.5.9"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
+opa-server-version = "0.28.0"
 copyright = "Armory Inc."
 privacy_policy = "https://www.armory.io/privacy-policy/"
 terms_of_service = "https://www.armory.io/terms-of-service/"
@@ -230,4 +231,3 @@ enable = true
   version = "v2.22"
   githubbranch = "v2.22"
   url = "https://v2-22.docs.armory.io/docs"
-
