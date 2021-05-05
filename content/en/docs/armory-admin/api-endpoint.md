@@ -390,9 +390,11 @@ hal backup create
 
     Copy the generated `.tar` file somewhere it will be preserved in the event of a container restart or system reboot (ideally, off to another system).
 
-## Enable Deck SSL
+## Enable SSL for the UI
 
-Next, we will configure Spinnaker's Deck service to use the Deck certificate and private key that we've generated.
+Next, configure Spinnaker's Deck service to use the Deck certificate and private key that you generated.
+
+> The Kubernetes secret engine does not work for encrypting secrets for the UI. Use another [secret engine]({{< ref "secrets.md#supported-secret-engines" >}}).
 
 **Operator**
 
@@ -415,7 +417,7 @@ spec:
             sslCertificatePassphrase: abc # Your passphrase
 ```
 
-Create a new Kubernetes secret having the above files. Here we assume that Spinnaker is installed in the `spinnaker` namespace, and you are in the folder where `deck.crt` and `deck.key` are located:
+Create a new Kubernetes secret containing the files. The following example assumes that Spinnaker is installed in the `spinnaker` namespace, and you are in the folder where `deck.crt` and `deck.key` are located:
 
 ```bash
 kubectl -n spinnaker create secret generic spin-deck-secrets --from-file=deck.crt --from-file=deck.key
@@ -443,7 +445,7 @@ hal config security ui ssl enable
 
 Depending on how your load balancer is configured (if you're using an Ingress vs. a Service), you may have to change your service and/or ingress configuration. This is discussed below, in **Update Load Balancers and URLs**
 
-## Enable Gate SSL
+## Enable SSL for the API
 
 Next, we will configure Spinnaker's Gate service to use the JKS that we've generated.
 
