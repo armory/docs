@@ -8,7 +8,7 @@ description: >
   Learn how to set up Spinnaker secrets in a Kubernetes secret.
 ---
 
->Note: Storing Spinnaker secrets in a Kubernetes secret is only supported if you're using the Operator to deploy and manage Spinnaker.
+>Note: Storing Spinnaker secrets in a Kubernetes secret is only supported if you're using the Operator to deploy and manage Spinnaker. Additionally, you cannot encrypt configuration secrets for the UI (Deck) using the Kubernetes secret engine.
 
 
 ## Creating a Kubernetes secret for Spinnaker to use
