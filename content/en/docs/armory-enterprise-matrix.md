@@ -464,7 +464,7 @@ The following table lists the requirements:
 
 | Requirement | Version         | Note                                                                                                                                  |
 | ----------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| OPA Server  | 0.12.x or later | Specifically, the v1 API must be available. When specify the OPA server URL in the Armory configs, include `v1` in the URL: `http://<your-opa-server>:<port>/v1`.                                                                                                                                      |
+| OPA Server  | 0.12.x or later | Specifically, the v1 API must be available. When you specify the OPA server URL in the Armory configs, include `v1` in the URL: `http://<your-opa-server>:<port>/v1`.                                                                                                                                      |
 
 **Supported validations**
 
