@@ -422,7 +422,7 @@ The following table lists the supported notification systems:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
-The following table lists the supported observabilty providers:
+The following table lists the supported observability providers:
 
 | Provider   | Version                | Armory                 | Note                        |
 | ---------- | ---------------------- | ---------------------- | --------------------------- |
