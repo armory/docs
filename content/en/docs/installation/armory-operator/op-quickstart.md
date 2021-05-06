@@ -80,7 +80,7 @@ spec:
 ```
 
 The Armory Operator uses Halyard to deploy Armory Enterprise.
-See [Custom Halyard Configuration]({{< ref "op-hal-config.md" >}}) if you need to modify Halyard so you can use Armory Enterprise features.
+See [Custom Halyard Configuration]({{< ref "op-advanced-config.md" >}}) if you need to modify Halyard so you can use Armory Enterprise features.
 
 Deploy using `kubectl`:
 
@@ -182,7 +182,7 @@ spec:
 ```
 
 The Armory Operator uses Halyard to deploy Armory Enterprise.
-See [Custom Halyard Configuration]({{< ref "op-hal-config.md" >}}) if you need to modify Halyard so you can use Armory Enterprise features.
+See [Custom Halyard Configuration]({{< ref "op-advanced-config.md" >}}) if you need to modify Halyard so you can use Armory Enterprise features.
 
 {{% /tab %}}
 {{% tab name="Spinnaker"%}}
@@ -247,5 +247,5 @@ spec:
 * See advanced manifest configuration in the  {{< linkWithTitle "op-config-manifest.md" >}} guide.
 * See advanced configuration using Kustomize in the {{< linkWithTitle "op-config-kustomize.md" >}} guide.
 * See the {{< linkWithTitle "op-troubleshooting.md" >}} guide if you encounter issues.
-* If you are deploying Armory Enterprise, you may need to configure Halyard. See the {{< linkWithTitle "op-hal-config.md" >}} guide.
+* If you are deploying Armory Enterprise, you may need to configure Halyard. See the {{< linkWithTitle "op-advanced-config.md" >}} guide.
 * Learn how to {{< linkWithTitle "op-manage-operator.md" >}}.
