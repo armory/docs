@@ -80,7 +80,7 @@ spec:
 ```
 
 The Armory Operator uses Halyard to deploy Armory Enterprise.
-See [Custom Halyard Configuration]({{< ref "op-hal-config.md" >}}) if you need to modify Halyard so you can use Armory Enterprise features.
+See [Custom Halyard Configuration]({{< ref "op-advanced-config.md" >}}) if you need to modify Halyard so you can use Armory Enterprise features.
 
 Deploy using `kubectl`:
 
@@ -182,7 +182,7 @@ spec:
 ```
 
 The Armory Operator uses Halyard to deploy Armory Enterprise.
-See [Custom Halyard Configuration]({{< ref "op-hal-config.md" >}}) if you need to modify Halyard so you can use Armory Enterprise features.
+See [Custom Halyard Configuration]({{< ref "op-advanced-config.md" >}}) if you need to modify Halyard so you can use Armory Enterprise features.
 
 {{% /tab %}}
 {{% tab name="Spinnaker"%}}
@@ -210,29 +210,32 @@ spec:
 {{% /tab %}}
 {{< /tabs >}}
 
-Deploy from the `/spinnaker-operator/deploy/spinnaker/kustomize/` directory:
+1. If you want to verify the contents of the manifest file, execute from the `/spinnaker-operator/deploy/spinnaker/kustomize/` directory:
 
-```bash
-kubctl -n spinnaker-operator apply -k .
-```
+   ```bash
+   kubectl kustomize .
+   ```
 
-If you have Kustomize installed, you build first and then apply:
+   This prints out the contents of the manifest file that Kustomize built based on your `kustomization.yml` file.
 
-```bash
-kustomize build | kubectl -n spinnaker-operator apply -f -
-```
 
-You can watch the installation progress by executing:
+1. Deploy from the `/spinnaker-operator/deploy/spinnaker/kustomize/` directory:
 
-```bash
-kubectl -n spinnaker-operator get spinsvc spinnaker -w
-```
+   ```bash
+   kubctl -n spinnaker-operator apply -k .
+   ```
 
-You can verify pod status by executing:
+1. You can watch the installation progress by executing:
 
-```bash
-kubectl -n spinnaker-operator get pods
-```
+   ```bash
+   kubectl -n spinnaker-operator get spinsvc spinnaker -w
+   ```
+
+1. You can verify pod status by executing:
+
+   ```bash
+   kubectl -n spinnaker-operator get pods
+   ```
 
 ## Help resources
 
@@ -244,5 +247,5 @@ kubectl -n spinnaker-operator get pods
 * See advanced manifest configuration in the  {{< linkWithTitle "op-config-manifest.md" >}} guide.
 * See advanced configuration using Kustomize in the {{< linkWithTitle "op-config-kustomize.md" >}} guide.
 * See the {{< linkWithTitle "op-troubleshooting.md" >}} guide if you encounter issues.
-* If you are deploying Armory Enterprise, you may need to configure Halyard. See the {{< linkWithTitle "op-hal-config.md" >}} guide.
+* If you are deploying Armory Enterprise, you may need to configure Halyard. See the {{< linkWithTitle "op-advanced-config.md" >}} guide.
 * Learn how to {{< linkWithTitle "op-manage-operator.md" >}}.

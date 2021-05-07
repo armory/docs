@@ -247,16 +247,16 @@ Gate's eventual fully-qualified domain name (FQDN) as the Common Name (CN).
      -passin pass:${GATE_KEY_PASSWORD}
    ```
 
-1. Use the CA to sign the server's request and create the Gate server certificate
-(in `pem` format). If using an external CA, they will do this for you.  
+1. Use the CA to sign the server's request and create the Gate server certificate in `pem` format. If using an external CA, they do this for you.  
 
-   This will prompt for the pass phrase used to encrypt `ca.key`.
+   This prompts for the passphrase used to encrypt `ca.key`.
 
    ```bash
    # This should be the passphrase used to encrypt the self-signed CA private key
    CA_KEY_PASSWORD=SOME_PASSWORD_FOR_CA_KEY
 
    openssl x509 \
+     -sha256 \
      -req \
      -days 365 \
      -in gate.csr \
@@ -266,6 +266,8 @@ Gate's eventual fully-qualified domain name (FQDN) as the Common Name (CN).
      -out gate.crt \
      -passin pass:${CA_KEY_PASSWORD}
    ```
+
+   Note: if you omit the `-sha256` argument, `openssl x509` creates a certificate that's not valid to use with Gate. When you import the invalid certificate into a Java KeyStore (JKS), you see `Warning: <gate> uses the SHA1withRSA signature algorithm which is considered a security risk. This algorithm will be disabled in a future update.` Then Gate throws an `Invalid keystore` format when importing the JKS.
 
 1. You should end up with these two files:
     * `gate.key`: a `pem`-formatted private key, which will have a pass phrase
@@ -388,9 +390,11 @@ hal backup create
 
     Copy the generated `.tar` file somewhere it will be preserved in the event of a container restart or system reboot (ideally, off to another system).
 
-## Enable Deck SSL
+## Enable SSL for the UI
 
-Next, we will configure Spinnaker's Deck service to use the Deck certificate and private key that we've generated.
+Next, configure Spinnaker's Deck service to use the Deck certificate and private key that you generated.
+
+> The Kubernetes secret engine does not work for encrypting secrets for the UI. Use another [secret engine]({{< ref "secrets.md#supported-secret-engines" >}}).
 
 **Operator**
 
@@ -408,12 +412,12 @@ spec:
         uiSecurity:
           ssl:
             enabled: true
-            sslCertificateFile: encrypted:k8s!n:spin-deck-secrets!k:deck.crt
-            sslCertificateKeyFile: encrypted:k8s!n:spin-deck-secrets!k:deck.key
+            sslCertificateFile: encryptedFile:k8s!n:spin-deck-secrets!k:deck.crt
+            sslCertificateKeyFile: encryptedFile:k8s!n:spin-deck-secrets!k:deck.key
             sslCertificatePassphrase: abc # Your passphrase
 ```
 
-Create a new Kubernetes secret having the above files. Here we assume that Spinnaker is installed in the `spinnaker` namespace, and you are in the folder where `deck.crt` and `deck.key` are located:
+Create a new Kubernetes secret containing the files. The following example assumes that Spinnaker is installed in the `spinnaker` namespace, and you are in the folder where `deck.crt` and `deck.key` are located:
 
 ```bash
 kubectl -n spinnaker create secret generic spin-deck-secrets --from-file=deck.crt --from-file=deck.key
@@ -441,7 +445,7 @@ hal config security ui ssl enable
 
 Depending on how your load balancer is configured (if you're using an Ingress vs. a Service), you may have to change your service and/or ingress configuration. This is discussed below, in **Update Load Balancers and URLs**
 
-## Enable Gate SSL
+## Enable SSL for the API
 
 Next, we will configure Spinnaker's Gate service to use the JKS that we've generated.
 
@@ -462,10 +466,10 @@ spec:
           ssl:
             enabled: true
             keyAlias: gate
-            keyStore: encrypted:k8s!n:spin-gate-secrets!k:gate.jks
+            keyStore: encryptedFile:k8s!n:spin-gate-secrets!k:gate.jks
             keyStoreType: jks
             keyStorePassword: abc # The password to unlock your keystore. Due to a limitation in Tomcat, this must match your key's password in the keystore.
-            trustStore: encrypted:k8s!n:spin-gate-secrets!k:gate.jks
+            trustStore: encryptedFile:k8s!n:spin-gate-secrets!k:gate.jks
             trustStoreType: jks
             trustStorePassword: abc # The password to unlock your truststore.
             clientAuth: WANT # Declare 'WANT' when client auth is wanted but not mandatory, or 'NEED', when client auth is mandatory.

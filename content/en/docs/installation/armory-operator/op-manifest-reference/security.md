@@ -46,7 +46,7 @@ apiSecurity:
 ```
 
 - `ssl`:
-- `overrideBaseUrl`: If you are accessing the API server remotely, provide the full base URL of whatever proxy or load balancer is fronting the API requests.
+- `overrideBaseUrl`: If you are accessing the API server remotely, provide the full base URL (including protocol) of whatever proxy or load balancer is fronting the API requests.
 - `corsAccessPattern`: `^.*$` If you have authentication enabled, are accessing Spinnaker remotely, and are logging in from sources other than the UI, provide a regex matching all URLs authentication redirects may come from.
 
 ### SSL parameters
@@ -308,7 +308,7 @@ uiSecurity:
   overrideBaseUrl:
 ```
 
-- `overrideBaseUrl`: If you are accessing the UI server remotely, provide the full base URL of whatever proxy or load balancer is fronting the UI requests.
+- `overrideBaseUrl`: If you are accessing the UI server remotely, provide the full base URL (including protocol) of whatever proxy or load balancer is fronting the UI requests.
 - `ssl`:
 
 ### SSL
