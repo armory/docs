@@ -14,6 +14,14 @@ Armory scans the codebase as we develop and release software. For information ab
 ## Known Issues
 No known issues.
 
+## Highlighted updates
+
+### Docker artifacts
+
+This release adds support for the `repositoriesRegex` field. Use the field to provide regex that specifies what repositories Clouddriver caches images from. This is useful if you add repos frequently. Any new repo that matches the regex gets cached automatically.
+
+For more information, see [Docker Artifacts]({{< ref "artifacts-docker-connect.md" >}}).
+
 ### Spinnaker Operator
 
 * feat(validation): Add a CloudFoundry validation.

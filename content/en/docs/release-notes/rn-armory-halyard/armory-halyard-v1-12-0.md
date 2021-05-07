@@ -11,8 +11,16 @@ description: Release notes for Armory Halyard v1.12.0
 
 Armory scans the codebase as we develop and release software. For information about CVE scans for this release, contact your Armory account representative.
 
-## Known Issues
+## Known issues
 No known issues
+
+## Highlighted updates
+
+### Docker artifacts
+
+This release adds support for the `repositoriesRegex` field. Use the field to provide regex that specifies what repositories Clouddriver caches images from. This is useful if you add repos frequently. Any new repo that matches the regex gets cached automatically.
+
+For more information, see [Docker Artifacts]({{< ref "artifacts-docker-connect.md" >}}).
 
 ## Armory-extended Halyard
 
