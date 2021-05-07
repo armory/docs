@@ -94,7 +94,7 @@ armory-version = "2.25.x"
 #used in the Operator docs
 armory-version-exact = "2.25.0"
 halyard-armory-version = "1.11.0"
-kubesvc-version="0.5.9"
+kubesvc-version="0.5.10"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
