@@ -104,7 +104,7 @@ hal armory secrets vault edit \
 
 ## Configuring the Operator to use Vault secrets
 
-If you are using the Armory Operator, set up a [custom Halyard configuration]({{< ref "op-hal-config" >}}) with this content:
+If you are using the Armory Operator, set up a [custom Halyard configuration]({{< ref "op-advanced-config" >}}) with this content:
 
 ```yaml
 secrets:
