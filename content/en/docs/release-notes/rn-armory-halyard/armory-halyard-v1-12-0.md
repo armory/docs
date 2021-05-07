@@ -5,7 +5,7 @@ version: 01.12.00
 description: Release notes for Armory Halyard v1.12.0
 ---
 
-## 05/07/2021 Release Notes
+## 2021/05/07 Release Notes
 
 ## Security
 

@@ -5,7 +5,7 @@ version: 01.02.05
 description: Release notes for OSS Operator v1.2.5
 ---
 
-## 05/07/2021 Release Notes
+## 2021/05/07 Release Notes
 
 ## Security
 
