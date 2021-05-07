@@ -1,11 +1,11 @@
 ---
-title: v1.2.4 OSS Operator
+title: v1.2.5 OSS Operator
 toc_hide: true
-version: 01.02.04
-description: Release notes for OSS Operator v1.2.4
+version: 01.02.05
+description: Release notes for OSS Operator v1.2.5
 ---
 
-## 03/17/2021 Release Notes
+## 05/07/2021 Release Notes
 
 ## Security
 
@@ -16,4 +16,5 @@ No known issues.
 
 ### Spinnaker Operator
 
-* feat(health-check): increase timeout and validate ready replicas for SpinnakerService status
+* feat(validation): Add a CloudFoundry validation.
+* chore(halyard): Update halyard version.
