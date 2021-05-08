@@ -14,6 +14,6 @@ Armory scans the codebase as we develop and release software. For information ab
 ## Known Issues
 No known issues.
 
-### Armory Operator
+### Spinnaker Operator
 
 * feat(health-check): increase timeout and validate ready replicas for SpinnakerService status
