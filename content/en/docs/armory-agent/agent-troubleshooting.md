@@ -138,7 +138,7 @@ Common errors:
 - `Parameter 2 of constructor in io.armory.kubesvc.agent.KubesvcCachingAgentDispatcher required a bean of type 'com.netflix.spinnaker.clouddriver.kubernetes.security.KubernetesCredentials$Factory' that could not be found.`
   Make sure `providers.kubernetes.enabled: true` is set.
 - `Failed to list *unstructured.Unstructured: statefulsets.apps is forbidden: User "system:serviceaccount:default:test" cannot list resource "statefulsets" in API group "apps" at the cluster scope`
-  Make sure the serviceaccount/user that corresponds to the kubeconfig file is bound to a clusterrole/role with `watch` and `list` permisions to all resources, otherwise make sure that agent is aware of which resources will it catch via `kubernetes.accounts[].kinds` in `kubesvc.yaml` file
+  Make sure the serviceaccount/user that corresponds to the kubeconfig file is bound to a clusterrole/role with `watch` and `list` permissions to all resources, otherwise make sure to set `kubernetes.accounts[].kinds` in `kubesvc.yaml` file
 - `Assigning accounts to Kubesvc enabled Clouddrivers (caching)` multiple times in Clouddriver & `[..] is unreachable [..] getting credentials: exec: fork/exec /usr/local/bin/aws: exec format error`
   Currently only static tokens are available. Generate a kubeconfig that uses a token from a SA with permissions to the cluster instead.
 
