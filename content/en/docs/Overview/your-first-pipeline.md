@@ -75,7 +75,7 @@ In this example, we create a pipeline that takes the Debian package produced by 
 
 ### Add a Deploy stage
 
-1. Now add a Deploy stage by clicking **{{< icon "plus-circle" >}} Add stage** again. In the Type category select Deploy. Deploy’s configuration settings should pop up on the screen.
+1. Now add a Deploy stage by clicking **{{< icon "plus-circle" >}} Add stage** again. Select **Deploy** In the **Type** drop down list. Deploy’s configuration settings should pop up on the screen.
 
    ![Add a Deploy stage to the Pipeline](/images/overview/your-first-pipeline/add-deploy-stage.png)
 
