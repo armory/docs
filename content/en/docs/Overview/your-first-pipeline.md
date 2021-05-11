@@ -21,7 +21,7 @@ You can start a pipeline manually, or you can configure it to be automatically t
 
 ## How to create a pipeline
 
-In this example we will create a pipeline that takes the Debian package produced by a Jenkins job and uses it to create an [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) before deploying that image to a server group.
+In this example, we create a pipeline that takes the Debian package produced by a Jenkins job and uses it to create an [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) before deploying that image to a server group.
 
 1. After selecting your Application, click the Pipelines category.
 
@@ -31,7 +31,7 @@ In this example we will create a pipeline that takes the Debian package produced
 
 1. Provide a name for your new pipeline and click **{{< icon "check-circle" >}} Create**.
 
-1. On the Pipeline page you will see:
+1. On the Pipeline page you should see:
 
    - A visual representation of your pipeline and its stages (you should only have configurations at the beginning)
    - Execution Options
@@ -44,31 +44,31 @@ In this example we will create a pipeline that takes the Debian package produced
 
 ### Add a trigger
 
-1. Define how your pipeline will be triggered. Scroll down to the **Automated Triggers** section and click **{{< icon "plus-circle" >}} Add Trigger**. This section will allow you to select a Type:
+1. Define how your pipeline will be triggered. Scroll down to the **Automated Triggers** section and click **{{< icon "plus-circle" >}} Add Trigger**. This section enables you to select a **Type**:
 
    ![Automated Trigger Types](/images/overview/your-first-pipeline/automated-trigger-types.png)
 
-1. For this example we will select Jenkins. By adding a trigger we are defining how our pipeline will be initiated.
+1. For this example, select Jenkins. By adding a trigger, you are defining how your pipeline is initialized.
 
    ![A new Jenkins trigger](/images/overview/your-first-pipeline/jenkins-trigger.png)
 
-   **Note:** The Property File is an important topic that will be covered in a [separate guide]({{< ref "working-with-jenkins#property-file" >}}).
+   **Note:** **Property File** is an important topic that will be covered in a [separate guide]({{< ref "working-with-jenkins#property-file" >}}).
 
 1. Before you test your pipeline, you may want to consider enabling or disabling the trigger via the checkbox at the bottom.
 
 ### Add a Bake stage
 
-1. Now we add our first stage: Baking an AMI. Click the **{{< icon "plus-circle" >}} Add stage** button in the visual representations section:
+1. Now add your first stage: Baking an AMI. Click the **{{< icon "plus-circle" >}} Add stage** button in the visual representations section:
 
    ![Pipeline visual representation, with only a config added](/images/overview/your-first-pipeline/pipeline-config-only.png)
 
-1. Select Bake from the different Types category.
+1. Select **Bake** from the **Types** drop down list.
 
    ![The stage type menu, selecting "Bake"](/images/overview/your-first-pipeline/add-bake-stage.png)
 
-1. Select Amazon from the Provider list (if multiple providers are configured), then the region you want to bake in. Enter the name of the package that was archived by the Jenkins job.
+1. If you have multiple providers configured, select **Amazon** from the **Provider** drop down list. Next select the region or regions you want to bake in. In the **Package** field, enter the name of the package that your Jenkins job archived.
 
-   - The package name should not include any version numbers. (e.g.: If your build produces a deb file named “myapp_1.27-h343”, you would want to enter “myapp” here.)
+   - The package name should not include any version numbers. For example, if your build produces a deb file named “myapp_1.27-h343”, you would enter “myapp” here.
    - If you would like to configure your own Base AMI under the Advanced Options, the Base OS configuration will be ignored.
 
    ![Bake configuration for an AMI image](/images/overview/your-first-pipeline/bake-ami-config.png)
@@ -83,15 +83,15 @@ In this example we will create a pipeline that takes the Debian package produced
 
 1. In the Deploy Configuration, click on the “Add server group” button. Pick your provider, if more than one is configured. For our example it will be AWS.
 
-1. Because this is a new application we will not choose to copy a configuration from a template. Select “Continue without a template”.
+1. Because this is a new application, do not choose to copy a configuration from a template. Press the **Continue without a template** button.
 
    ![Template selection for deployment server group](/images/overview/your-first-pipeline/continue-without-template.png)
 
-1. It's important to set up the correct Deploy Strategy for your use case. We will use the Highlander strategy for this example, which will ensure that only one server group for our application exists at a time.
+1. It's important to set up the correct Deploy Strategy for your use case. Use the Highlander strategy for this example, which will ensure that only one server group for your application exists at a time.
 
    ![The Highlander method under Strategy](/images/overview/your-first-pipeline/deploy-strategy.png)
 
-1. From the Load Balancer list, select one that we’ve created beforehand.
+1. In the **Load Balancers** section, select the load balancer you created before you began this tutorial. 
 
 1. Select a security group that you are comfortable with, which will define the access rights to your resource.
 
