@@ -17,7 +17,7 @@ You can start a pipeline manually, or you can configure it to be automatically t
 - A Jenkins Master configured by your administrator
 - A Jenkins job that archives a Debian package
 - A security group within AWS with appropriate permissions
-- A Load Balancer
+- A [Load Balancer]({{< ref "load-balancers" >}})
 
 ## How to create a pipeline
 
