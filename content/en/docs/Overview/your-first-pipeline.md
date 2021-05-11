@@ -12,7 +12,9 @@ The pipeline is the key deployment management construct in Spinnaker™. It cons
 
 You can start a pipeline manually, or you can configure it to be automatically triggered by an event, such as a Jenkins job completing, a new Docker image appearing in your registry, a CRON schedule, or a stage in another pipeline.
 
-## Prerequisites:
+## {{% heading "prereq" %}}
+
+This page assumes your application stack includes:
 
 - A Jenkins Master configured by your administrator
 - A Jenkins job that archives a Debian package
