@@ -1,7 +1,5 @@
 ---
 title: Policy Engine Plugin
-toc_hide: true
-exclude_search: true
 description: >
   The Policy Engine plugin is the next iteration of Armory's Policy Engine for Spinnaker™.
 ---
