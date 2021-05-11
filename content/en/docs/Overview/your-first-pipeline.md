@@ -69,7 +69,7 @@ In this example, we create a pipeline that takes the Debian package produced by 
 1. If you have multiple providers configured, select **Amazon** from the **Provider** drop down list. Next select the region or regions you want to bake in. In the **Package** field, enter the name of the package that your Jenkins job archived.
 
    - The package name should not include any version numbers. For example, if your build produces a deb file named “myapp_1.27-h343”, you would enter “myapp” here.
-   - If you would like to configure your own Base AMI under the Advanced Options, the Base OS configuration will be ignored.
+   - If you configure your own Base AMI under the Advanced Options, the Base OS configuration is ignored.
 
    ![Bake configuration for an AMI image](/images/overview/your-first-pipeline/bake-ami-config.png)
 
