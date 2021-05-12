@@ -81,7 +81,7 @@ armory:
     - `enabled`: true or false.
     - `channel`: Name of channel to send notifications to.
   - `github`:
-    - `enabled`: true or false. Note this will enable comments to the PR to allow for more robust feedback information from Dinghy.  May cause issues with those using custom Github endpoints, as detailed in [this KB article](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290).
+    - `enabled`: true or false. This enables comments to the PR to allow for more robust feedback information from Dinghy. May cause issues with those using custom GitHub endpoints, as detailed in [this KB article](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290).
 - `webhookValidationEnabledProviders`: List of enabled providers for Webhook validations.
 - `webhookValidations`: Webhook validations list
   - `enabled`: true/false flag to enable this validation.
