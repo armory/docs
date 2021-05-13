@@ -2,7 +2,7 @@
 title: "cleanupArtifacts"
 linkTitle: "cleanupArtifacts"
 description: "Used by policies to affect the ‘Cleanup Artifacts’ task for actions deployment changes triggered from the ‘Clusters’, ‘Load Balancers’ or ‘Firewalls’ tab, as opposed to by executing a pipeline."
-weight: 15
+weight: 5
 ---
 
 The full package name is `spinnaker.deployment.tasks.before.cleanupArtifacts`.
@@ -347,10 +347,25 @@ The full package name is `spinnaker.deployment.tasks.before.cleanupArtifacts`.
 
 ## Keys
 
+> Note: All date values are in [Unix time](https://en.wikipedia.org/wiki/Unix_time).
 
-| Key                                                          | Type    | Description                                              |
-|--------------------------------------------------------------|---------|----------------------------------------------------------|
-| `deploy.account`                                             | `string`  | The spinnaker account being deployed to
-| `deploy.credentials`                                         | `string`  | The credentials to use to access the account.
-| `deploy.events`                                              | `[array]`   | 
-| `deploy.manifests.*`                                         | `{object}`  | The entire Kubernetest manifest that is to be removed.   |
+| Key                                                          | Type       | Description                                            |
+|--------------------------------------------------------------|------------|--------------------------------------------------------|
+| `deploy.account`                                             | `string`   | The spinnaker account being deployed to. |
+| `deploy.allCoordinates[]`                                    | `[array]`  |  |
+| `deploy.credentials`                                         | `string`   | The credentials to use to access the account. |
+| `deploy.events[]`                                            | `[array]`  |  |
+| `deploy.kinds[]`                                             | `[array]`  |  |
+| `deploy.labelSelectors.empty`                                | `boolean`  |  |
+| `deploy.labelSelectors.notEmpty`                             | `boolean`  |  |
+| `deploy.labelSelectors.selectors[]`                          | `[array]`  |  |
+| `deploy.location`                                            | `string`   |  |
+| `deploy.manifestName`                                        | `string`   |  |
+| `deploy.manifests.*`                                         | `{object}` | The entire Kubernetest manifest that is to be removed. |
+| `deploy.options.apiVersion`                                  | `string`   |  |
+| `deploy.options.dryRun`                                      | `boolean`  |  |
+| `deploy.options.gracePeriodSeconds`                          | `num`      |  |
+| `deploy.options.kind`                                        | ?          |  |
+| `deploy.options.orphanDependents`                            | ?          |  |
+| `deploy.options.preconditions`                               | ?          |  |
+| `deploy.options.propagationPolicy`                           | ?          |  |

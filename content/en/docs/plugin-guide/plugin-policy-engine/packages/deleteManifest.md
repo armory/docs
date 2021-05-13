@@ -2,7 +2,7 @@
 title: "deleteManifest"
 linkTitle: "deleteManifest"
 description: "fill me with delicious data, Stephen!"
-weight: 15
+weight: 10
 ---
 
 ## Example Payload
@@ -33,7 +33,7 @@ weight: 15
 | `deploy.labelSelectors.selectors`   | `[array]`   |
 | `deploy.location`                   | `string`  |
 | `deploy.manifestName`               | `string`  |
-| `deploy.options.apiVersion`         | ?       |
+| `deploy.options.apiVersion`         | `string`  |
 | `deploy.options.dryRun`             | ?       |
 | `deploy.options.gracePeriodSeconds` | `num`  |
 | `deploy.options.kind`               | ?       |

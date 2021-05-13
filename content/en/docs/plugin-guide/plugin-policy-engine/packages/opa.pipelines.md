@@ -1,8 +1,8 @@
 ---
 title: "opa.pipelines"
 linkTitle: "opa.pipelines"
-description: "Package that supports pipeline analysis when pipelines are saved"
-weight: 10
+description: "Package that supports pipeline analysis when pipelines are saved."
+weight: 20
 ---
 
 ## Example Payload
@@ -207,6 +207,8 @@ deny["deploy stage must follow a manual judgement stage for production accounts"
 
 ## Keys
 
+> Note: All date values are in [Unix time](https://en.wikipedia.org/wiki/Unix_time).
+
 ### `pipeline`
 
 | Key                                          | Type      | Description                                              |
@@ -275,7 +277,7 @@ deny["deploy stage must follow a manual judgement stage for production accounts"
 | `pipeline.stages[].trafficManagement.enabled`                | `boolean` |  |
 | `pipeline.stages[].trafficManagement.options.enableTraffic`  | `boolean` |  |
 | `pipeline.stages[].trafficManagement.options.services`       | `[array]` |  |
-| `pipeline.stages[].type`                                     | `string`  | what type of spinnaker stage is this. |
+| `pipeline.stages[].type`                                     | `string`  | What type of spinnaker stage is this. |
 
 ### `pipeline.triggers`
 
