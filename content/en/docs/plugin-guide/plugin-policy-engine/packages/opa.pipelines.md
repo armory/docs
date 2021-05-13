@@ -192,7 +192,7 @@ weight: 10
 </details>
 
 ## Example Policy
-
+This policy will prevent saving pipelines unless the pipeline contains a manual approval stage prior to all deploy stages that deploy to production accounts.
 ```rego
 package opa.pipelines
 production_accounts := ["prod1","prod2"]
