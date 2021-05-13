@@ -2,7 +2,7 @@
 title: "savePipeline"
 linkTitle: "savePipeline"
 weight: 10
-description: "I'm hungry for knowledge!"
+description: "This package is checked before the execution of each task in a pipeline stage of type 'Save Pipeline'"
 ---
 
 The full package name
