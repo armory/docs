@@ -196,7 +196,7 @@ weight: 10
 ```rego
 package opa.pipelines
 production_accounts := ["prod1","prod2"]
-deny["deploy stage must immediately follow a manual judgement stage"] {
+deny["deploy stage must follow a manual judgement stage for production accounts"] {
   some j
   input.pipeline.stages[j].type=="deployManifest"
   input.pipeline.stages[j].account==production_accounts[_]
