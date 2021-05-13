@@ -230,59 +230,60 @@ deny["deploy stage must immediately follow a manual judgement stage"] {
 
 | Key                                                          | Type    | Description                                              |
 |--------------------------------------------------------------|---------|----------------------------------------------------------|
-| `pipeline.expectedArtifacts[].defaultArtifact.artifactAccount` | string  | what account should the artifact be read from.
+| `pipeline.expectedArtifacts[].defaultArtifact.artifactAccount` | string  | what account should the default artifact be read from.
 | `pipeline.expectedArtifacts[].defaultArtifact.id`              | string  | The unique ID of the artifact.
 | `pipeline.expectedArtifacts[].defaultArtifact.name`            | string  | the name/path of the artifact
-| `pipeline.expectedArtifacts[].defaultArtifact.reference`       | string  | 
-| `pipeline.expectedArtifacts[].defaultArtifact.type`            | string  |
-| `pipeline.expectedArtifacts[].defaultArtifact.version`         | string  |
-| `pipeline.expectedArtifacts[].displayName`                     | string  |
-| `pipeline.expectedArtifacts[].id`                              | string  |
-| `pipeline.expectedArtifacts[].matchArtifact.artifactAccount`   | string  |
+| `pipeline.expectedArtifacts[].defaultArtifact.reference`       | string  | a full reference to the artifact, often a URL.
+| `pipeline.expectedArtifacts[].defaultArtifact.type`            | string  | what is the type of the artifact. For example, a github artifact will be 'github/file'.
+| `pipeline.expectedArtifacts[].defaultArtifact.version`         | string  | what version of the artifact should be used. For example, if the artifact is coming from a source control system this will be the branch name.
+| `pipeline.expectedArtifacts[].displayName`                     | string  | what name should be displayed to the user for the artifact.
+| `pipeline.expectedArtifacts[].id`                              | string  | a unique id for the artifact.
+| `pipeline.expectedArtifacts[].matchArtifact.artifactAccount`   | string  | what account should the match artifact be read from.
 | `pipeline.expectedArtifacts[].matchArtifact.customKind`        | boolean |
 | `pipeline.expectedArtifacts[].matchArtifact.id`                | string  |
-| `pipeline.expectedArtifacts[].matchArtifact.name`              | string  |
-| `pipeline.expectedArtifacts[].matchArtifact.type`              | string  |
-| `pipeline.expectedArtifacts[].useDefaultArtifact`              | boolean |
-| `pipeline.expectedArtifacts[].usePriorArtifact`                | boolean |
+| `pipeline.expectedArtifacts[].matchArtifact.name`              | string  | the name/path of the artifact
+| `pipeline.expectedArtifacts[].matchArtifact.type`              | string  | what is the type of the artifact. For example, a github artifact will be 'github/file'.
+| `pipeline.expectedArtifacts[].useDefaultArtifact`              | boolean | If your artifact either wasn't supplied from a trigger, or it wasn't found in a prior execution, the artifact specified below will end up in your pipeline's execution context.
+
+| `pipeline.expectedArtifacts[].usePriorArtifact`                | boolean | Attempt to match against an artifact in the prior pipeline execution's context. This ensures that you will always be using the most recently supplied artifact to this pipeline, and is generally a safe choice.
 
 ### `pipeline.stages`
 
 | Key                                                          | Type    | Description                                              |
 |--------------------------------------------------------------|---------|----------------------------------------------------------|
-| `pipeline.stages.account`                                    | string  |
-| `pipeline.stages.app`                                        | string  |
-| `pipeline.stages.cloudProvider`                              | string  |
-| `pipeline.stages.completeOtherBranchesThenFail`              | boolean |
-| `pipeline.stages.continuePipeline`                           | boolean |
-| `pipeline.stages.failPipeline`                               | boolean |
-| `pipeline.stages.instructions`                               | string  |
-| `pipeline.stages.judgmentInputs`                             | array   |
-| `pipeline.stages.location`                                   | string  |
-| `pipeline.stages.manifestArtifactId`                         | string  |
-| `pipeline.stages.manifestName`                               | string  |
-| `pipeline.stages.mode`                                       | string  |
-| `pipeline.stages.moniker.app`                                | string  |
-| `pipeline.stages.name`                                       | string  |
-| `pipeline.stages.refdId`                                     | string  |
-| `pipeline.stages.requisiteStageRefIds`                       | array   |
-| `pipeline.stages.skipExpressionEvaluation`                   | boolean |
-| `pipeline.stages.stageTimeoutMs`                             | number  |
-| `pipeline.stages.source`                                     | string  |
-| `pipeline.stages.trafficManagement.enabled`                  | boolean |
-| `pipeline.stages.trafficManagement.options.enableTraffic`    | boolean |
-| `pipeline.stages.trafficManagement.options.services`         | array   |
-| `pipeline.stages.type`                                       | string  |
+| `pipeline.stages.account`                                    | string  | A Spinnaker account corresponds to a physical Kubernetes cluster or cloud provider account.
+| `pipeline.stages[].app`                                        | string  | available in some stages, the name of the spinnaker application the stage refers to.
+| `pipeline.stages[].cloudProvider`                              | string  | the name of the stages cloud provider. kubernetes, aws, etc.
+| `pipeline.stages[].completeOtherBranchesThenFail`              | boolean | Prevents any stages that depend on this stage from running, but allows other branches of the pipeline to run. The pipeline will be marked as failed once complete if the stage fails.
+| `pipeline.stages[].continuePipeline`                           | boolean | Prevents any stages that depend on this stage from running, but allows other branches of the pipeline to run. The pipeline will be marked as failed once complete if the stage fails.
+| `pipeline.stages[].failPipeline`                               | boolean | Immediately halts execution of all running stages and fails the entire execution if the stage fails.
+| `pipeline.stages[].instructions`                               | string  | this field exists only for the 'manual judgetment' stage, and specifies what message is displayed to the user.
+| `pipeline.stages[].judgmentInputs`                             | array   | Entries populate a dropdown displayed when performing a manual judgment.
+| `pipeline.stages[].location`                                   | string  | some stages store the 'namespace' that they affect in this property.
+| `pipeline.stages[].manifestArtifactId`                         | string  | stage specific. The artifact that is to be applied to the Kubernetes account for this stage. The artifact should represent a valid Kubernetes manifest.
+| `pipeline.stages[].manifestName`                               | string  | stage specific. The artifact name that is to be applied to the Kubernetes account for this stage. The artifact should represent a valid Kubernetes manifest.
+| `pipeline.stages[].mode`                                       | string  |
+| `pipeline.stages[].moniker.app`                                | string  | the name of the application associated with this application.
+| `pipeline.stages[].name`                                       | string  | the name of the pipeline stage.
+| `pipeline.stages[].refdId`                                     | string  | 
+| `pipeline.stages[].requisiteStageRefIds`                       | array   | 
+| `pipeline.stages[].skipExpressionEvaluation`                   | boolean | should SpEL expression evaluation be skipped.
+| `pipeline.stages[].stageTimeoutMs`                             | number  | after how long will the stage timeout in milliseconds.
+| `pipeline.stages[].source`                                     | string  | certain stages use this to state what they are deploying.
+| `pipeline.stages[].trafficManagement.enabled`                  | boolean |
+| `pipeline.stages[].trafficManagement.options.enableTraffic`    | boolean |
+| `pipeline.stages[].trafficManagement.options.services`         | array   |
+| `pipeline.stages[].type`                                       | string  | what type of spinnaker stage is this.
 
 ### `pipeline.triggers`
 
 | Key                                                          | Type    | Description                                              |
 |--------------------------------------------------------------|---------|----------------------------------------------------------|
-| `pipeline.triggers.branch`                                   | string  |
-| `pipeline.triggers.enabled`                                  | boolean |
-| `pipeline.triggers.expectedArtifactIds`                      | array   |
-| `pipeline.triggers.project`                                  | string  |
-| `pipeline.triggers.secret`                                   | string  |
-| `pipeline.triggers.slug`                                     | string  |
-| `pipeline.triggers.source`                                   | string  |
-| `pipeline.triggers.type`                                     | string  |
+| `pipeline.triggers.branch`                                   | string  | what branch should be watched for changes to trigger this pipeline
+| `pipeline.triggers.enabled`                                  | boolean | is this trigger enabled
+| `pipeline.triggers.expectedArtifactIds`                      | array   | the IDs of any artifacts that this trigger provides.
+| `pipeline.triggers.project`                                  | string  | the project in the trigger.
+| `pipeline.triggers.secret`                                   | string  | If specified, verifies the trigger source is correct. Only supported by some triggers.
+| `pipeline.triggers.slug`                                     | string  | what is the name of the trigger's project.
+| `pipeline.triggers.source`                                   | string  | what is the source system for the trigger.
+| `pipeline.triggers.type`                                     | string  | what type of trigger is this.
