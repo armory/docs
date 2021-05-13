@@ -1,7 +1,7 @@
 ---
 title: "cleanupArtifacts"
 linkTitle: "cleanupArtifacts"
-description: "fill me with delicious data, Stephen!"
+description: "fill me with delicious data, Stephen! ok, now I'm full.... YUM!"
 weight: 15
 ---
 
