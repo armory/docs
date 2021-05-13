@@ -1,13 +1,15 @@
 ---
 title: "cleanupArtifacts"
 linkTitle: "cleanupArtifacts"
-description: "fill me with delicious data, Stephen! ok, now I'm full.... YUM!"
+description: "Used by policies to affect the ‘Cleanup Artifacts’ task for actions deployment changes triggered from the ‘Clusters’, ‘Load Balancers’ or ‘Firewalls’ tab, as opposed to by executing a pipeline."
 weight: 15
 ---
 
-The full package name is `spinnaker/deployment/tasks/before/cleanupArtifacts`.
+The full package name is `spinnaker.deployment.tasks.before.cleanupArtifacts`.
 
 ## Example Payload
+
+<details><summary>Click to expand</summary>
 
 ```json
 {
@@ -335,6 +337,7 @@ The full package name is `spinnaker/deployment/tasks/before/cleanupArtifacts`.
   }
 }
 ```
+</details>
 
 ## Example Policy
 
@@ -347,7 +350,7 @@ The full package name is `spinnaker/deployment/tasks/before/cleanupArtifacts`.
 
 | Key                                                          | Type    | Description                                              |
 |--------------------------------------------------------------|---------|----------------------------------------------------------|
-| `deploy.account`                                             | string  | The spinnaker account being deployed to
-| `deploy.credentials`                                         | string  | The credentials to use to access the account.
-| `deploy.events`                                              | array   | 
-| `deploy.manifests.*`                                         | object  | The entire Kubernetest manifest that is to be removed.   |
+| `deploy.account`                                             | `string`  | The spinnaker account being deployed to
+| `deploy.credentials`                                         | `string`  | The credentials to use to access the account.
+| `deploy.events`                                              | `[array]`   | 
+| `deploy.manifests.*`                                         | `{object}`  | The entire Kubernetest manifest that is to be removed.   |

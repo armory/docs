@@ -23,19 +23,19 @@ weight: 15
 
 | Key                                 | Type    | Description                                              |
 |-------------------------------------|---------|----------------------------------------------------------|
-| `deploy.account`                    | string  |
-| `deploy.allCoordinates`             | array   |
-| `deploy.credentials`                | string  |
-| `deploy.events`                     | array   |
-| `deploy.kinds`                      | array   |
-| `deploy.labelSelectors.empty`       | boolean |
-| `deploy.labelSelectors.notEmpty`    | boolean |
-| `deploy.labelSelectors.selectors`   | array   |
-| `deploy.location`                   | string  |
-| `deploy.manifestName`               | string  |
+| `deploy.account`                    | `string`  |
+| `deploy.allCoordinates`             | `[array]`   |
+| `deploy.credentials`                | `string`  |
+| `deploy.events`                     | `[array]`   |
+| `deploy.kinds`                      | `[array]`   |
+| `deploy.labelSelectors.empty`       | `boolean` |
+| `deploy.labelSelectors.notEmpty`    | `boolean` |
+| `deploy.labelSelectors.selectors`   | `[array]`   |
+| `deploy.location`                   | `string`  |
+| `deploy.manifestName`               | `string`  |
 | `deploy.options.apiVersion`         | ?       |
 | `deploy.options.dryRun`             | ?       |
-| `deploy.options.gracePeriodSeconds` | number  |
+| `deploy.options.gracePeriodSeconds` | `num`  |
 | `deploy.options.kind`               | ?       |
 | `deploy.options.orphanDependents`   | ?       |
 | `deploy.options.preconditions`      | ?       |
