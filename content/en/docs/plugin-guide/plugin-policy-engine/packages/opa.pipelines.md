@@ -1,7 +1,7 @@
 ---
 title: "opa.pipelines"
 linkTitle: "opa.pipelines"
-description: "This is a description"
+description: "Package that supports pipeline analysis when pipelines are saved"
 weight: 10
 ---
 
