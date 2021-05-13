@@ -231,8 +231,8 @@ deny["deploy stage must follow a manual judgement stage for production accounts"
 
 ### `pipeline.expectedArtifacts`
 
-| Key                                                            | Type    | Description                                              |
-|----------------------------------------------------------------|---------|----------------------------------------------------------|
+| Key                                                            | Type      | Description                                              |
+|----------------------------------------------------------------|-----------|----------------------------------------------------------|
 | `pipeline.expectedArtifacts[].defaultArtifact.artifactAccount` | `string`  | What account should the default artifact be read from. |
 | `pipeline.expectedArtifacts[].defaultArtifact.id`              | `string`  | The unique ID of the artifact. |
 | `pipeline.expectedArtifacts[].defaultArtifact.name`            | `string`  | The name/path of the artifact. |
@@ -264,28 +264,28 @@ deny["deploy stage must follow a manual judgement stage for production accounts"
 | `pipeline.stages[].location`                                 | `string`  | Some stages store the 'namespace' that they affect in this property. |
 | `pipeline.stages[].manifestArtifactId`                       | `string`  | Stage specific. The artifact that is to be applied to the Kubernetes account for this stage. The artifact should represent a valid Kubernetes manifest. |
 | `pipeline.stages[].manifestName`                             | `string`  | Stage specific. The artifact name that is to be applied to the Kubernetes account for this stage. The artifact should represent a valid Kubernetes manifest. |
-| `pipeline.stages[].mode`                                     | `string`  | |
+| `pipeline.stages[].mode`                                     | `string`  |  |
 | `pipeline.stages[].moniker.app`                              | `string`  | The name of the application associated with this application. |
 | `pipeline.stages[].name`                                     | `string`  | The name of the pipeline stage. |
-| `pipeline.stages[].refdId`                                   | `string`  | |
-| `pipeline.stages[].requisiteStageRefIds`                     | `[array]` | |
+| `pipeline.stages[].refdId`                                   | `string`  |  |
+| `pipeline.stages[].requisiteStageRefIds`                     | `[array]` |  |
 | `pipeline.stages[].skipExpressionEvaluation`                 | `boolean` | Should SpEL expression evaluation be skipped. |
 | `pipeline.stages[].stageTimeoutMs`                           | `num`     | After how long will the stage timeout in milliseconds. |
 | `pipeline.stages[].source`                                   | `string`  | Certain stages use this to state what they are deploying. |
-| `pipeline.stages[].trafficManagement.enabled`                | `boolean` | |
-| `pipeline.stages[].trafficManagement.options.enableTraffic`  | `boolean` | |
-| `pipeline.stages[].trafficManagement.options.services`       | `[array]` | |
-| `pipeline.stages[].type`                                     | `string`  | what type of spinnaker stage is this.
+| `pipeline.stages[].trafficManagement.enabled`                | `boolean` |  |
+| `pipeline.stages[].trafficManagement.options.enableTraffic`  | `boolean` |  |
+| `pipeline.stages[].trafficManagement.options.services`       | `[array]` |  |
+| `pipeline.stages[].type`                                     | `string`  | what type of spinnaker stage is this. |
 
 ### `pipeline.triggers`
 
-| Key                                                          | Type    | Description                                              |
-|--------------------------------------------------------------|---------|----------------------------------------------------------|
-| `pipeline.triggers.branch`                                   | `string`  | what branch should be watched for changes to trigger this pipeline
-| `pipeline.triggers.enabled`                                  | `boolean` | is this trigger enabled
-| `pipeline.triggers.expectedArtifactIds`                      | `[array]`   | the IDs of any artifacts that this trigger provides.
-| `pipeline.triggers.project`                                  | `string`  | the project in the trigger.
-| `pipeline.triggers.secret`                                   | `string`  | If specified, verifies the trigger source is correct. Only supported by some triggers.
-| `pipeline.triggers.slug`                                     | `string`  | what is the name of the trigger's project.
-| `pipeline.triggers.source`                                   | `string`  | what is the source system for the trigger.
-| `pipeline.triggers.type`                                     | `string`  | what type of trigger is this.
+| Key                                                          | Type      | Description                                              |
+|--------------------------------------------------------------|-----------|----------------------------------------------------------|
+| `pipeline.triggers.branch`                                   | `string`  | What branch should be watched for changes to trigger this pipeline. |
+| `pipeline.triggers.enabled`                                  | `boolean` | True when this trigger is enabled |
+| `pipeline.triggers.expectedArtifactIds`                      | `[array]` | the IDs of any artifacts that this trigger provides.
+| `pipeline.triggers.project`                                  | `string`  | The project in the trigger. |
+| `pipeline.triggers.secret`                                   | `string`  | If specified, verifies the trigger source is correct. Only supported by some triggers. |
+| `pipeline.triggers.slug`                                     | `string`  | The name of the trigger's project. |
+| `pipeline.triggers.source`                                   | `string`  | The source system for the trigger. |
+| `pipeline.triggers.type`                                     | `string`  | What type of trigger is this. |
