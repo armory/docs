@@ -479,7 +479,51 @@ For a complete listing of options check out the [Armory Halyard]({{< ref "armory
 {{< /tabs >}}
 
 ![Slack Notifications](/images/dinghy-slack-notifications.png)
+#### Github Notifications
+{{% alert title="New feature" %}}Github Notifications is a new feature in Armory 2.24.{{% /alert %}}
 
+As a new feature in Armory's release of 2.24.x+, Dinghy can now provide more robust information to Github about executed pipeline changes.  This information appears as a comment in the PR.  
+
+*Currently, as of 2.24.1 and 2.25.0, [Github notifications are not supported with custom endpoints and should be disabled](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290).*
+
+Please note: 
+
+{{< tabs name="slack" >}}
+{{% tab name="Operator" %}}
+
+```yaml
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          enabled: true
+          notifiers:
+            github:
+              enabled: true       # Whether or not github notifications are enabled for dinghy events
+```
+
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
+
+
+In the hal config profiles directory e.g. (`~/.hal/default/profiles/`), change the dinghy-local.yml file to include the following
+
+```yaml
+notifiers:
+  github:
+    enabled: true
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+![Github Notifications](/images/armory-admin/dinghy-enable/dinghy-github-notifications.jpg)
 ### Other Template Formats
 
 > This feature requires Armory 2.5.4 or above.
