@@ -1,11 +1,12 @@
 ---
-title: "savePipeline"
-linkTitle: "savePipeline"
+title: "spinnaker.execution.stages.before.savePipeline"
+linkTitle: "spinnaker.execution.stages.before.savePipeline"
 weight: 10
 description: "This package is checked before the execution of each task in a pipeline stage of type 'Save Pipeline'"
 ---
 
 The full package name sent to OPA is `spinnaker.execution.stages.before.savePipeline`. The keys below are children of this path.
+This package contains a subset of the functionality found in opa.pipelines. Armory reccomends using the opa.pipelines package instead of this package for most usecases.
 
 ## Example Payload
 
