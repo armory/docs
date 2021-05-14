@@ -2,6 +2,7 @@
 title: "Armory Agent for Kubernetes"
 linkTitle: "Armory Agent for Kubernetes"
 weight: 20
+no_list: true
 description: >
   The Armory Agent is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker's Clouddriver service.
 ---
@@ -107,4 +108,10 @@ You can also mix deployment strategies if you have complex Kubernetes infrastruc
 
 {{< include "agent/agent-compat-matrix.md" >}}
 
-For a full list of previous releases, see this [page](https://armory.jfrog.io/artifactory/manifests/).
+You can find a full list of previous releases in the [artifactory](https://armory.jfrog.io/artifactory/manifests/).
+
+## {{% heading "nextSteps" %}}
+
+{{< linkWithTitle "armory-agent-quick.md" >}}
+</br>
+</br>

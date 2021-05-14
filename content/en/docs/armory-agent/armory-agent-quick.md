@@ -2,11 +2,11 @@
 title: "Armory Agent for Kubernetes Quick Start Installation"
 linkTitle: "Quick Start"
 description: >
-  Learn how to install the Armory Agent in your Kubernetes and Spinnaker environments.
+  Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
 weight: 2
 ---
 ![Proprietary](/images/proprietary.svg)
-> This guide is for experienced Kubernetes and Spinnaker<sup>TM</sup> users.
+> This guide is for experienced Kubernetes and Armory Enterprise users.
 
 ## Compatibility matrix
 
@@ -14,11 +14,15 @@ weight: 2
 
 {{< include "agent/agent-compat-matrix.md" >}}
 
-The Agent consists of a service deployed as a Kubernetes `Deployment` and a plugin to Spinnaker's Clouddriver service. Be sure to check out the [architecture]({{< ref "armory-agent" >}}).
+The Agent consists of a service deployed as a Kubernetes `Deployment` and a plugin to Spinnaker's Clouddriver service. You can review the architecture in the Armory Agent [overview]({{< ref "armory-agent" >}}).
 
 ## Networking requirements
 
 Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between Clouddriver and the Agent.  
+
+## Permissions needed by the Agent
+
+
 
 ## Step 1: Agent plugin installation
 
@@ -30,7 +34,6 @@ The easiest installation path is to modify an existing [`spinnakerservice.yaml`]
 # AGENT_PLUGIN_VERSION is found in the compatibility matrix above
 curl https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-plugin-$AGENT_PLUGIN_VERSION.tar.gz | tar -xJvf -
 ```
-
 
 Then include the manifests in your current kustomization:
 
