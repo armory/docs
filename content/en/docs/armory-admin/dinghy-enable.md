@@ -40,7 +40,7 @@ spec:
     config:
       armory:
         dinghy:
-          enabled: true       # Whether or not dinghy is enabled
+          enabled: true       # Whether or not Dinghy is enabled
           ... # Rest of config omitted for brevity
 ```
 
@@ -66,7 +66,7 @@ hal armory dinghy enable
 
 {{< include "early-access-feature.html" >}}
 
-The Dinghy service can use MySQL to store relationships between pipeline templates and pipeline dinghy files. An external MySQL instance is highly recommended for production use because it can provide more durability for Pipelines as Code. If MySQL becomes unavailable, dinghy files will need to be updated in order to repopulate MySQL with the relationships.
+The Dinghy service can use MySQL to store relationships between pipeline templates and pipeline Dinghy files. An external MySQL instance is highly recommended for production use because it can provide more durability for Pipelines as Code. If MySQL becomes unavailable, Dinghy files will need to be updated in order to repopulate MySQL with the relationships.
 
 {{< tabs name="MySQL" >}}
 {{% tab name="Operator" %}}
@@ -126,14 +126,14 @@ select * from fileurl_childs;
 
 In `executions` table you should be able to see one record with the name `REDIS_TO_SQL_MIGRATION`.
 
-In `fileurls` and `fileurl_childs` you should be able to see the migration information with the dinghyfiles, modules and their relationships.
+In `fileurls` and `fileurl_childs` you should be able to see the migration information with the Dinghyfiles, modules and their relationships.
 
 After Dinghy makes the migration at start, it will close the Redis connection and it will work in full SQL mode.
 
 
 ## Configuring Redis
 
-Dinghy can use Redis to store relationships between pipeline templates and pipeline dinghy files. An external Redis instance is highly recommended for production use. If Redis becomes unavailable, dinghy files will need to be updated in order to repopulate Redis with the relationships.
+Dinghy can use Redis to store relationships between pipeline templates and pipeline Dinghy files. An external Redis instance is highly recommended for production use. If Redis becomes unavailable, Dinghy files will need to be updated in order to repopulate Redis with the relationships.
 
 > Dinghy can only be configured to use a password with the default Redis user.
 
@@ -181,7 +181,7 @@ Then run `hal deploy apply` to deploy the changes.
 ## Configuring Pipelines as Code
 
 1. Create a personal access token (in either [GitHub](https://github.com/settings/tokens) or Bitbucket/Stash) that has read access to all repos where you store your `dinghyfile` and `module` files.
-1. Get your Github, GitLab, or Bitbucket/Stash organization where the app repos and templates reside. For example, if your repo is `armory-io/dinghy-templates`, your `template-org` would be `armory-io`.
+1. Get your GitHub, GitLab, or Bitbucket/Stash organization where the app repos and templates reside. For example, if your repo is `armory-io/dinghy-templates`, your `template-org` would be `armory-io`.
 1. Get the name of the repo containing modules. . For example, if your repo is `armory-io/dinghy-templates`, your `template-repo` would be `dinghy-templates`.
 
 ### GitHub
@@ -203,7 +203,7 @@ spec:
           templateOrg: my-org            # SCM organization or namespace where application and template repositories are located
           templateRepo: dinghy-templates # SCM repository where module templates are located
           githubToken: abc               #  GitHub token. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
-          githubEndpoint: https://api.github.com # (Default: https://api.github.com) Github API endpoint. Useful if you’re using Github Enterprise
+          githubEndpoint: https://api.github.com # (Default: https://api.github.com) GitHub API endpoint. Useful if you’re using GitHub Enterprise
           ... # Rest of config omitted for brevity
 ```
 
@@ -220,8 +220,8 @@ hal armory dinghy edit \
   --template-org "armory-io" \
   --template-repo "dinghy-templates" \
   --github-token "your_token/password"
-# For Github enterprise, you may customize the endpoint:
-  --github-endpoint "https://your-endpoint-here.com/api/v3" # (Default: https://api.github.com) Github API endpoint. Useful if you’re using Github Enterprise
+# For GitHub enterprise, you may customize the endpoint:
+  --github-endpoint "https://your-endpoint-here.com/api/v3" # (Default: https://api.github.com) GitHub API endpoint. Useful if you’re using GitHub Enterprise
 hal deploy apply
 ```
 
@@ -238,7 +238,7 @@ Set up webhooks at the organization level for Push events. You can do this by go
    * `https://<your-gate-url>/webhooks/git/github` if you have a separate DNS name or port for Gate
    * `https://<your-spinnaker-url>/api/v1/webhooks/git/github` if you're using a different path for Gate
 
-If your gate endpoint is protected by a firewall, you need to configure your firewall to allow inbound webhooks from Github's IP addresses. You can find the IPs in this API [response](https://api.github.com/meta). Read more about  [Github's IP addresses](https://help.github.com/articles/about-github-s-ip-addresses/).
+If your gate endpoint is protected by a firewall, you need to configure your firewall to allow inbound webhooks from GitHub's IP addresses. You can find the IPs in this API [response](https://api.github.com/meta). Read more about  [GitHub's IP addresses](https://help.github.com/articles/about-github-s-ip-addresses/).
 
 > You can configure webhooks on multiple GitHub organizations or repositories to send events to Dinghy. Only a single repository from one organization can be the shared template repository in Dinghy. However, pipelines can be processed from multiple GitHub organizations. You want to ensure the GitHub token configured for Dinghy has permission for all the organizations involved.
 
@@ -246,7 +246,7 @@ If your gate endpoint is protected by a firewall, you need to configure your fir
 
 {{% alert title="New feature" %}}Pull Request Validation is a new feature in Armory 2.21.{{% /alert %}}
 
-When you make a GitHub Pull Request (PR) and there is a change in a `dinghyfile`, Pipelines as Code automatically performs a validation for that `dinghyfile`. It also updates the Github status accordingly. If the validation fails, you see an unsuccessful `dinghy` check.
+When you make a GitHub Pull Request (PR) and there is a change in a `dinghyfile`, Pipelines as Code automatically performs a validation for that `dinghyfile`. It also updates the GitHub status accordingly. If the validation fails, you see an unsuccessful `dinghy` check.
 
 {{< figure src="/images/dinghy/pr_validation/pr_validation.png" alt="PR that fails validation." >}}
 
@@ -281,7 +281,7 @@ spec:
     config:
       armory:
         dinghy:
-          enabled: true                      # Whether or not dinghy is enabled
+          enabled: true                      # Whether or not Dinghy is enabled
           templateOrg: my-org                # SCM organization or namespace where application and template repositories are located
           templateRepo: dinghy-templates     # SCM repository where module templates are located
           stashUsername: stash_user          # Stash username
@@ -330,7 +330,7 @@ spec:
     config:
       armory:
         dinghy:
-          enabled: true                       # Whether or not dinghy is enabled
+          enabled: true                       # Whether or not Dinghy is enabled
           templateOrg: my-org                 # SCM organization or namespace where application and template repositories are located
           templateRepo: dinghy-templates      # SCM repository where module templates are located
           gitlabToken: abc                    # GitLab token. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
@@ -479,6 +479,51 @@ For a complete listing of options check out the [Armory Halyard]({{< ref "armory
 {{< /tabs >}}
 
 ![Slack Notifications](/images/dinghy-slack-notifications.png)
+
+#### GitHub Notifications
+{{% alert title="New feature" %}}GitHub Notifications is a new feature in Armory 2.24.{{% /alert %}}
+
+As a new feature in Armory's release of 2.24.x+, Dinghy can now provide more robust information to GitHub about executed pipeline changes. This information appears as a comment in the PR.  
+
+>Currently, as of 2.24.1 and 2.25.0, GitHub notifications are not supported with custom endpoints and should be disabled. See the KB article [Dinghy Crashing for Customers using 2.24+ when customers are using a Custom Endpoint](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290) for details.
+
+
+{{< tabs name="ghnotifications" >}}
+{{% tab name="Operator" %}}
+
+```yaml
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          enabled: true
+          notifiers:
+            github:
+              enabled: true       # Whether or not github notifications are enabled for Dinghy events
+```
+
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
+
+
+In your hal config profiles directory e.g. (`~/.hal/default/profiles/`), update the `dinghy-local.yml` file to include the following:
+
+```yaml
+notifiers:
+  github:
+    enabled: true
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+![GitHub Notifications](/images/armory-admin/dinghy-enable/dinghy-github-notifications.jpg)
 
 ### Other Template Formats
 
