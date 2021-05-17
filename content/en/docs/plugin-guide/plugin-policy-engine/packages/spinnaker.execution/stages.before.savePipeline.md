@@ -1,7 +1,6 @@
 ---
 title: "spinnaker.execution.stages.before.savePipeline"
-linkTitle: "spinnaker.execution.stages.before.savePipeline"
-weight: 10
+linktitle: "stages.before.savePipeline"
 description: "This package is checked before the execution of each task in a pipeline stage of type 'Save Pipeline'"
 ---
 
@@ -9,6 +8,8 @@ The full package name sent to OPA is `spinnaker.execution.stages.before.savePipe
 This package contains a subset of the functionality found in opa.pipelines. Armory reccomends using the opa.pipelines package instead of this package for most usecases.
 
 ## Example Payload
+
+<details><summary>Click to expand</summary>
 
 ```json
 {
@@ -21,7 +22,7 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
           "staging",
           "staging-ecs"
         ],
-        "user": "elfie2002"
+        "user": "myUserName"
       },
       "buildTime": 1620677310519,
       "canceled": false,
@@ -66,12 +67,12 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
           "resolvedExpectedArtifacts": [],
           "strategy": false,
           "type": "manual",
-          "user": "elfie2002"
+          "user": "myUserName"
         },
         "parameters": {},
         "resolvedExpectedArtifacts": [],
         "type": "manual",
-        "user": "elfie2002"
+        "user": "myUserName"
       },
       "type": "ORCHESTRATION"
     },
@@ -83,7 +84,7 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
         "pipeline.id": "7db1e350-dedb-4dc1-9976-e71f97b5f132",
         "pipeline.name": "scale deployments",
         "staleCheck": true,
-        "user": "elfie2002"
+        "user": "myUserName"
       },
       "endTime": null,
       "id": "01F5BYAE1Q1GFVPXQM49ZS0XXQ",
@@ -129,11 +130,12 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
     "user": {
       "isAdmin": false,
       "roles": [],
-      "username": "elfie2002"
+      "username": "myUserName"
     }
   }
 }
 ```
+</details>
 
 ## Example Policy
 
@@ -141,89 +143,87 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
 
 ```
 
-### Keys
-
-> Note: All date values are in [Unix time](https://en.wikipedia.org/wiki/Unix_time).
+## Keys
 
 ### `input.pipeline`
 
-| Key                                                        | Type       | Description                                              |
-|------------------------------------------------------------|------------|----------------------------------------------------------|
-| `input.pipeline.application`                               | `string`   | The name of the Spinnaker application for this pipeline. |
-| `input.pipeline.authentication.allowedAccounts`            | `[array]`  | `[array]` of accounts Spinnaker is authorized to access. |
-| `input.pipeline.authentication.user`                       | `string`   | The Spinnaker user initiating the change.                |
-| `input.pipeline.description`                               | `string`   | Description of the pipeline defined in the UI |
-| `input.pipeline.initialConfig`                             | `{object}` |    |
-| `input.pipeline.keepWaitingPipelines`                      | `boolean`  |    |
-| `input.pipeline.limitConcurrent`                           | `boolean`  | True if only 1 concurrent execution of this pipeline be allowed. |
-| `input.pipeline.name`                                      | `string`   | The name of this pipeline. |
-| `input.pipeline.notifications`                             | `{object}` |    |
-| `input.pipeline.origin`                                    | `string`   |    |
-| `input.pipeline.partition`                                 | ?          |    |
-| `input.pipeline.paused`                                    | ?          |    |
-| `input.pipeline.pipelineConfigId`                          | ?          |    |
-| `input.pipeline.source`                                    | ?          |    |
-| `input.pipeline.spelEvaluator`                             | `string`   | Which version of spring expression language is being used to evaluate SpEL. |
-| `input.pipeline.startTime`                                 | `date`     | Timestamp from when the pipeline was started. |
-| `input.pipeline.startTimeExpiry`                           | `date`     | Unix epoch date at which the pipeline will expire. |
-| `input.pipeline.status`                                    | `string`   |    |
-| `input.pipeline.systemNotifications[]`                     | `[array]`  |    |
-| `input.pipeline.templateVariables`                         | ?          |    |
-| `input.pipeline.trigger.artifacts[]`                       | `[array]`  |    |
-| `input.pipeline.trigger.correlationId`                     | ?          |    |
-| `input.pipeline.trigger.isDryRun`                          | `boolean`  |    |
-| `input.pipeline.trigger.isRebake`                          | `boolean`  |    |
-| `input.pipeline.trigger.isStrategy`                        | `boolean`  |    |
-| `input.pipeline.trigger.notifications[]`                   | `[array]`  |    |
-| `input.pipeline.trigger.other.artifacts[]`                 | `[array]`  |    |
-| `input.pipeline.trigger.other.dryRun`                      | `boolean`  |    |
-| `input.pipeline.trigger.other.expectedArtifacts[]`         | `[array]`  |    |
-| `input.pipeline.trigger.other.notifications[]`             | `[array]`  |    |
-| `input.pipeline.trigger.other.parameters`                  | `{object}` |    |
-| `input.pipeline.trigger.other.rebake`                      | `boolean`  |    |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[]` | `[array]`  |    |
-| `input.pipeline.trigger.other.strategy`                    | `boolean`  |    |
-| `input.pipeline.trigger.other.type`                        | `string`   |    |
-| `input.pipeline.trigger.other.user`                        | `string`   | The Spinnaker user initiating the change. |
-| `input.pipeline.trigger.parameters`                        | `{object}` |    |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[]`       | `[array]`  |    |
-| `input.pipeline.trigger.type`                              | `string`   |    |
-| `input.pipeline.trigger.user`                              | `string`   | The Spinnaker user initiating the change. |
-| `input.pipeline.type`                                      | `string`   |    |
+| Key                                          | Type      | Description                                              |
+|----------------------------------------------|-----------|----------------------------------------------------------|
+| `input.pipeline.application` | `string` | The name of the Spinnaker application for this pipeline. |
+| `input.pipeline.authentication.allowedAccounts.[]` | `string` | `[array]` of accounts Spinnaker is authorized to access. |
+| `input.pipeline.authentication.user` | `string` | The Spinnaker user initiating the change. |
+| `input.pipeline.buildTime` | `number` |
+| `input.pipeline.canceled` | `boolean` |
+| `input.pipeline.canceledBy` | `` |
+| `input.pipeline.cancellationReason` | `` |
+| `input.pipeline.description` | `string` | Description of the pipeline defined in the UI |
+| `input.pipeline.endTime` | `` |
+| `input.pipeline.id` | `string` |
+| `input.pipeline.keepWaitingPipelines` | `boolean` |
+| `input.pipeline.limitConcurrent` | `boolean` | True if only 1 concurrent execution of this pipeline be allowed. |
+| `input.pipeline.name` | `` | The name of this pipeline. |
+| `input.pipeline.origin` | `string` |
+| `input.pipeline.partition` | `` |
+| `input.pipeline.paused` | `` |
+| `input.pipeline.pipelineConfigId` | `` |
+| `input.pipeline.source` | `` |
+| `input.pipeline.spelEvaluator` | `` | Which version of spring expression language is being used to evaluate SpEL. |
+| `input.pipeline.stages.[]` | `string` |
+| `input.pipeline.startTime` | `number` | Timestamp from when the pipeline was started. |
+| `input.pipeline.startTimeExpiry` | ` ` | Unix epoch date at which the pipeline will expire. |
+| `input.pipeline.status` | `string` |
+| `input.pipeline.templateVariables` | `` |
+| `input.pipeline.trigger.correlationId` | `` |
+| `input.pipeline.trigger.isDryRun` | `boolean` |
+| `input.pipeline.trigger.isRebake` | `boolean` |
+| `input.pipeline.trigger.isStrategy` | `boolean` |
+| `input.pipeline.trigger.other.dryRun` | `boolean` |
+| `input.pipeline.trigger.other.rebake` | `boolean` |
+| `input.pipeline.trigger.other.strategy` | `boolean` |
+| `input.pipeline.trigger.other.type` | `string` |
+| `input.pipeline.trigger.other.user` | `string` | The Spinnaker user initiating the change. |
+| `input.pipeline.trigger.type` | `string` |
+| `input.pipeline.trigger.user` | `string` | The Spinnaker user initiating the change. |
+| `input.pipeline.type` | `string` |
+| `input.stage.context.application` | `string` | The name of the Spinnaker application for this pipeline. |
 
 ### `input.stage`
 
-| Key                                     | Type       | Description                                              |
-|-----------------------------------------|------------|----------------------------------------------------------|
-| `input.stage.context.application`       | `string`   | The name of the Spinnaker application for this pipeline. |
-| `input.stage.context.notification.type` | `string`   | What type of spinnaker stage is this. |
-| `input.stage.context.pipeline.name`     | `string`   | The name of this pipeline. |
-| `input.stage.context.staleCheck`        | `boolean`  |    |
-| `input.stage.context.user`              | `string`   | The Spinnaker user initiating the change. |
-| `input.stage.lastModified`              | `date`     | |
-| `input.stage.name`                      | `string`   | The name of a prticular stage.  |
-| `input.stage.outputs`                   | `{object}` |     |
-| `input.stage.parentStageId`             | ?          |     |
-| `input.stage.refId`                     | `string`   |     |
-| `input.stage.requisiteStageRefIds`      | `[array]`  |     |
-| `input.stage.scheduledTime`             | `date`     |     |
-| `input.stage.startTimeExpiry`           | `date`     | The current state of activity of the stage. |
-| `input.stage.status`                    | `string`   |     |
-| `input.stage.syntheticStageOwner`       | ?          |     |
-| `input.stage.tasks.id`                  | `string`   |     |
-| `input.stage.tasks.implementingClass`   | `string`   |     |
-| `input.stage.tasks.loopEnd`             | `boolean`  |     |
-| `input.stage.tasks.loopStart`           | `boolean`  |     |
-| `input.stage.tasks.name`                | `string`   |     |
-| `input.stage.tasks.stageEnd`            | `boolean`  |     |
-| `input.stage.tasks.stageStart`          | `boolean`  |     |
-| `input.stage.tasks.status`              | `string`   |     |
-| `input.stage.type`                      | `string`   | The current state of activity of the stage. |
+| Key                                          | Type      | Description                                              |
+|----------------------------------------------|-----------|----------------------------------------------------------|
+| `input.stage.context.notification.type` | `string` | What type of spinnaker stage is this. |
+| `input.stage.context.pipeline` | `string` |
+| `input.stage.context.pipeline.id` | `string` |
+| `input.stage.context.pipeline.name` | `string` | The name of this pipeline. |
+| `input.stage.context.staleCheck` | `boolean` |
+| `input.stage.context.user` | `string` | The Spinnaker user initiating the change. |
+| `input.stage.endTime` | `` |
+| `input.stage.id` | `string` |
+| `input.stage.lastModified` | `` |
+| `input.stage.name` | `string` | The name of a prticular stage. |
+| `input.stage.parentStageId` | `` |
+| `input.stage.refId` | `string` |
+| `input.stage.scheduledTime` | `` |
+| `input.stage.startTime` | `number` |
+| `input.stage.startTimeExpiry` | `` | The current state of activity of the stage. |
+| `input.stage.status` | `string` |
+| `input.stage.syntheticStageOwner` | `` |
+| `input.stage.tasks[].endTime` | `number` |
+| `input.stage.tasks[].endTime` | `` |
+| `input.stage.tasks[].id` | `string` |
+| `input.stage.tasks[].implementingClass` | `string` |
+| `input.stage.tasks[].loopEnd` | `boolean` |
+| `input.stage.tasks[].loopStart` | `boolean` |
+| `input.stage.tasks[].name` | `string` |
+| `input.stage.tasks[].stageEnd` | `boolean` |
+| `input.stage.tasks[].stageStart` | `boolean` |
+| `input.stage.tasks[].startTime` | `number` |
+| `input.stage.tasks[].status` | `string` |
+| `input.stage.type` | `string` | The current state of activity of the stage. |
 
 ### `input.user`
 
-| Key                   | Type      | Description                                      |
-|-----------------------|-----------|--------------------------------------------------|
-| `input.user.isAdmin`  | `boolean` | True if the Spinnaker user has admin privlidges. |
-| `input.user.roles[]`  | `[array]` |  |
-| `input.user.username` | `string`  | The Spinnaker user initiating the change. |
+| Key                                          | Type      | Description                                              |
+|----------------------------------------------|-----------|----------------------------------------------------------|
+| `input.user.isAdmin` | `boolean` | True if the Spinnaker user has admin privileges. |
+| `input.user.username` | `string` | The Spinnaker user initiating the change. |
