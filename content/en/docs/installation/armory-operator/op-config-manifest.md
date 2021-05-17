@@ -2,6 +2,9 @@
 title: Configure Armory Enterprise Using a Manifest File
 linkTitle: Config Using Manifest
 weight: 10
+aliases:
+  - /docs/installation/armory-operator/op-manifest-reference/operator-config
+  - /installation/armory-operator/op-manifest-reference/operator-config
 description: >
   This guide describes the fields in the `SpinnakerService` manifest that the the Armory Operator uses to deploy Armory Enterprise or the Spinnaker Operator uses to deploy Spinnaker.
 ---
