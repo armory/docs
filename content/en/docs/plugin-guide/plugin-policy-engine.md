@@ -44,7 +44,7 @@ In addition to the plugin, you need access to an Open Policy Agent (OPA) deploym
 You can use the sample configuration to install the plugin, but keep the following in mind:
 
 - The `patchesStrategicMerge` section for each service is unique. Do not reuse the snippet from one service for the other services.
-- Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use. For a list of versions, see [Release notes](#release-notes).
+- Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use without the `v` prefix. For a list of versions, see [Release notes](#release-notes).
 
 ```yaml
 apiVersion: spinnaker.armory.io/v1alpha2
@@ -239,7 +239,7 @@ spec:
        mountPath: /opt/spinnaker/lib/local-plugins
    ```
 
-4. Configure Halyard by updating your  `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use: 
+4. Configure Halyard by updating your `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use without the `v` prefix: 
 
    ```yaml
    deploymentConfigurations:
@@ -253,7 +253,7 @@ spec:
                  - -install-path
                  - /opt/policy-engine-plugin/target
                volumeMounts:
-                 - mountPath: /opt/policy-engine/target
+                 - mountPath: /opt/policy-engine-plugin/target
                    name: policy-engine-install
            clouddriver:
              - name: policy-engine-install
@@ -262,7 +262,7 @@ spec:
                  - -install-path
                  - /opt/policy-engine-plugin/target
                volumeMounts:
-                 - mountPath: /opt/policy-engine/target
+                 - mountPath: /opt/policy-engine-plugin/target
                    name: policy-engine-install
            gate:
              - name: policy-engine-install
@@ -271,7 +271,7 @@ spec:
                  - -install-path
                  - /opt/policy-engine-plugin/target
                volumeMounts:
-                 - mountPath: /opt/policy-engine/target
+                 - mountPath: /opt/policy-engine-plugin/target
                    name: policy-engine-install
            orca:
              - name: policy-engine-install
@@ -280,7 +280,7 @@ spec:
                  - -install-path
                  - /opt/policy-engine-plugin/target
                volumeMounts:
-                 - mountPath: /opt/policy-engine/target
+                 - mountPath: /opt/policy-engine-plugin/target
                    name: policy-engine-install
    ```
 
@@ -572,5 +572,6 @@ Open your browser's console and see if there are SSL exceptions. If there are, c
 
 ## Release notes
 
+* v0.0.25 - Fixes an unsatisfied dependency error in the API (Gate) when using SAML and x509 certificates. This fix requires Armory Enterprise 2.26.0 later.
 * v0.0.19 - Adds forced authentication feature and fixes NPE bug
 * v0.0.17 - Initial plugin release

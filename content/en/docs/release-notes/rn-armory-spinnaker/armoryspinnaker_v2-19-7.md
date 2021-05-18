@@ -63,7 +63,7 @@ Addressed a number of CVEs found within the Spinnaker services.
 
 **Plugins**
 
-This release supports Plugin deployment using Armory-extended Halyard or the [Armory Operator]({{< ref "operator.md" >}}). Consult the open source [Plugin](https://www.spinnaker.io/guides/user/plugins/user-guide/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins">}}) for a manifest example.
+This release supports Plugin deployment using Armory-extended Halyard or the [Armory Operator]({{< ref "armory-operator.md" >}}). Consult the open source [Plugin](https://www.spinnaker.io/guides/user/plugins/user-guide/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins">}}) for a manifest example.
 
 Additionally, this version of Spinnaker includes updates to how Deck is built. Previously, Deck's builds were non-deterministic, causing issues with loading plugins into the UI. Deck's builds are now deterministic and support UI plugins.
 

@@ -1,6 +1,6 @@
 ---
-title: Configuring mTLS for Spinnaker Services
-linkTitle: Configuring mTLS
+title: Configure mTLS for Spinnaker Services
+linkTitle: Configure mTLS
 aliases:
 - /docs/spinnaker-install-admin-guides/service-mtls/
 description: This guide describes how to enable mutual TLS (mTLS) between Spinnaker services. Adding mTLS provides additional security for your Spinnaker services since only validated clients can interact with services when mTLS is enabled.
@@ -32,7 +32,7 @@ For information about TLS, see {{< linkWithTitle "tls-configure" >}}.
 
 ## Configuring Java services
 
-Add the following to each Java service profile: `<deploy>/profiles/<service>-local.yml` in Halyard or under `profiles` in the [SpinnakerService's profiles]({{< ref "operator-config#specspinnakerconfigprofiles" >}}):
+Add the following to each Java service profile: `<deploy>/profiles/<service>-local.yml` in Halyard or under `profiles` in the [SpinnakerService's profiles]({{< ref "op-config-manifest#specspinnakerconfigprofiles" >}}):
 
 ```yaml
 # Only needed for "server" role

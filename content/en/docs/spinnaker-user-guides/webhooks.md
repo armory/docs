@@ -1,6 +1,6 @@
 ---
-title: Using Webhooks in Spinnaker Pipelines
-linkTitle: Using Webhooks
+title: Use Webhooks in Spinnaker Pipelines
+linkTitle: Use Webhooks
 aliases:
   - /user-guides/webhooks/
   - /user_guides/webhooks/
