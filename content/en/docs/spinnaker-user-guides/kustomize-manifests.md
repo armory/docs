@@ -7,9 +7,6 @@ description: >
 
 ## Overview of Kustomize
 
-> Note that Kustomize is currently in [Beta]({{< ref "release-definitions" >}}). The feature is working and installable but is not meant for production use.
-​​
-
 Kustomize is a tool that lets you create customized Kubernetes deployments without modifying underlying YAML configuration files. Since the files remain unchanged, others are able to reuse the same files to build their own customizations. Your customizations are stored in a file called `kustomization.yaml`. If configuration changes are needed, the underlying YAML files and `kustomization.yaml` can be updated independently of each other.
 ​
 To learn more about Kustomize and how to define a `kustomization.yaml` file, see the following links:
@@ -23,37 +20,6 @@ In the context of Spinnaker, Kustomize lets you generate a custom manifest, whic
 Spinnaker uses the latest non-kubectl version of Kustomize.
 ​
 
-## Kustomize in 2.16 (Beta)
-​
-### Enabling Kustomize in 2.16 (Beta)
-​
-Kustomize can be enabled by a feature flag in 2.16.
-
-**Operator**
-
-Add the following settings to the `SpinnakerService` manifest:
-
-```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:    
-    profiles:
-      deck:
-        settings-local.js: |
-          window.spinnakerSettings.feature.kustomizeEnabled = true;
-```
-​
-**Halyard**
-
-Add the following line to `~/.hal/{DEPLOYMENT_NAME}/profiles/settings-local.js`:
-
-```javascript
-window.spinnakerSettings.feature.kustomizeEnabled = true;
-```
-​
 ### Using Kustomize
 ​
 Kustomize works by running `kustomize build` against a `kustomization.yaml` file located in a Git repository. This file defines all of the other files needed by Kustomize to render a fully hydrated manifest.
@@ -74,50 +40,30 @@ Define the artifact:
 ​
 You can now run your pipeline and get a Kustomize rendered manifest!
 ​
-## Kustomize in 2.17 (Beta)
-​
+## Kustomize 
 ### Requirements
-Kustomize in 2.17+ requires the [git/repo](https://www.spinnaker.io/reference/artifacts/types/git-repo/) artifact type.
-​
-### Enable Kustomize
-​
-Kustomize can be enabled by a feature flag in Armory 2.16 and later.
+Kustomize requires the git/repo artifact type.
 
-**Operator**
+**Configure git/repo artifact with Operator**
 
-Add the following settings to the `SpinnakerService` manifest and apply the changes:
+Add the follwing settings to the `SpinnakerService` manifest:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+apiVersion: spinnaker.armory.io/v1alpha2
 kind: SpinnakerService
 metadata:
   name: spinnaker
 spec:
-  spinnakerConfig:    
-    profiles:
-      deck:
-        settings-local.js: |
-          window.spinnakerSettings.feature.kustomizeEnabled = true;
+  spinnakerConfig:
+    config:
+      artifacts:
+        gitrepo:
+          enabled: true
+          accounts:
+          - name: gitrepo
+            username: # Git username.
+            token: encrypted: # (Secret). Git token.
 ```
-
-**Halyard**
-
-Add the following line to `~/.hal/{DEPLOYMENT_NAME}/profiles/settings-local.js`:
-
-```javascript
-window.spinnakerSettings.feature.kustomizeEnabled = true;
-```
-
-Apply your changes to your Spinnaker deployment:  `hal deploy apply`. Wait until the pods are in RUNNING state before proceeding.
-​
-
-You can now use the *KUSTOMIZE* option on a _Bake (Manifest)_ stage.
-​
-![](/images/kustomize-enable.png)
-​
-> **Note:** Sometimes you will need to clear the cache in your browser in order to see the new *KUSTOMIZE* option available on a _Bake (Manifest)_ stage.
-
-​
 ### Build the Pipeline
 ​
 For this example, we are going to use this [Kustomize public repository](https://github.com/kubernetes-sigs/kustomize), specifically the *helloWorld* example.
