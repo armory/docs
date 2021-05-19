@@ -1,6 +1,6 @@
 ---
-title: Troubleshooting the Armory Agent Service and Plugin
-linkTitle: Troubleshooting
+title: Troubleshoot the Armory Agent Service and Plugin
+linkTitle: Troubleshoot
 weight: 6
 description: >
   Successful installation and startup messages, common errors, tips, and gRPC endpoint testing.

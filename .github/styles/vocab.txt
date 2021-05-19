@@ -40,6 +40,7 @@ kubeconfig
 kubectl
 Kubernetes
 Kustomize
+kustomization
 .md
 Minnaker
 MySQL
