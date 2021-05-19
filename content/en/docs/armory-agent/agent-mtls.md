@@ -12,7 +12,7 @@ Code is located in gist.github.com. Login creds are in 1Password.
 
 ## {{% heading "prereq" %}}
 
-You need the following in order to configure mTLS:
+You need the following to configure mTLS:
 
 * Clouddriver certificate and private key
 * `CA.crt`
@@ -171,7 +171,7 @@ Modify the Agent's deployment configuration to mount the certs.
 If you have a custom CA, you need to mount the cert into the known trusted cert location:  `/etc/ssl/cert.pem`. Golang apps in Alpine use `/etc/ssl/cert.pem` as the source of a trusted CA.
 
   1. Obtain a copy of the `cert.pem` file from a running Agent.
-  2. Append your custom CA onto the copied `cert.pem`  (e.g. `cat ca.crt >> cert.pem`)
+  2. Append your custom CA onto the copied `cert.pem`  (for example `cat ca.crt >> cert.pem`)
   3. Mount `cert.pem` to Agent deployment
 
 
