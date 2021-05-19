@@ -1,7 +1,7 @@
 ---
 title: Armory Agent Configuration Options
 linkTitle: Agent Options
-weight: 3
+weight: 50
 description: >
   Learn how to configure the Armory Agent based on installation mode and environment restrictions. This guide contains a detailed list of configuration options.
 ---

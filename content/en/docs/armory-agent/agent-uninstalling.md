@@ -1,6 +1,6 @@
 ---
 title: Uninstall the Agent
-weight: 5
+weight: 90
 draft: true
 ---
 ![Proprietary](/images/proprietary.svg)

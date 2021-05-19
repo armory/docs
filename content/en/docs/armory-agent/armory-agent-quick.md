@@ -3,7 +3,7 @@ title: "Armory Agent for Kubernetes Quickstart Installation"
 linkTitle: "Quickstart"
 description: >
   Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
-weight: 2
+weight: 30
 ---
 ![Proprietary](/images/proprietary.svg)
 
