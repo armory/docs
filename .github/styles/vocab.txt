@@ -18,6 +18,7 @@ Dinghy
 dinghyfile
 Docsy
 Echo
+env:
 Fiat
 Front50
 Gate
@@ -25,10 +26,13 @@ GCP
 GitHub
 GitOps
 Gradle
+gPRC
+grpc
 hal
 Halyard
 halyard
 .html
+http
 Igor
 Istio
 json
@@ -37,9 +41,13 @@ K8s
 Kayenta
 Keel
 kubeconfig
+kubeconfigfiles
 kubectl
+kubesvc
+Kubesvc
 Kubernetes
 Kustomize
+kustomize
 kustomization
 .md
 Minnaker
@@ -56,7 +64,12 @@ REST
 Rosco
 ServiceNow
 Spinnaker
+SpinnakerService
+spinnakerservice
 SQL
+.yml
+yml
+.yaml
 yaml
 {{< heading "prereq" >}}
 {{% heading "prereq" %}}
