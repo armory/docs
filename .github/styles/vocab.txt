@@ -17,7 +17,7 @@ Deck
 Dinghy
 dinghyfile
 Docsy
-Echo]
+Echo
 env:
 Fiat
 Front50
