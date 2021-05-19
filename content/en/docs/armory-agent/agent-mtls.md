@@ -54,14 +54,14 @@ openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial \
 Create a secret that contains `clouddriver.crt` and `clouddriver.pem`.
 
 ```bash
-kubectl create secret tls vincent-clouddriver-agent-v3 \
+kubectl create secret tls <your-secret-name> \
    --cert=clouddriver.crt --key=clouddriver.key  
 ```
 
 Or:
 
 ```bash
-kubectl create secret generic vincent-clouddriver-agent-v3 \
+kubectl create secret generic <your-secret-name> \
    --from-file=clouddriver.crt --from-file=clouddriver.key
 ```
 
@@ -127,7 +127,7 @@ spec:
 
 ### Configure the Agent
 
-Configure the Agent to use the mounted certs in the `agent-plugin/config.yaml` file. See lines 12 - 19 in the file below. Note that `certificateChain`, `trustCertCollection`, and `privateKey` values must in `file:///filepath/filename` format.
+Configure the Agent to use the mounted certs in the `agent-plugin/config.yaml` file. See lines 12 - 19 in the following example. Note that `certificateChain`, `trustCertCollection`, and `privateKey` values must in `file:///filepath/filename` format.
 
 {{< prism lang="yaml" line="12-19" >}}
 apiVersion: spinnaker.armory.io/v1alpha2
@@ -145,8 +145,10 @@ spec:
             server:
               security:
                 enabled: true
-                certificateChain: file:///opt/clouddriver/cert/tls.crt    #list of crts
-                trustCertCollection: file:///opt/clouddriver/cert/tls.crt #cacert
+                certificateChain: file:///opt/clouddriver/cert/tls.crt
+                # list of crts
+                trustCertCollection: file:///opt/clouddriver/cert/tls.crt
+                # cacert
                 privateKey: file:///opt/clouddriver/cert/tls.key
                 clientAuth: REQUIRE
 {{< /prism >}}
@@ -160,7 +162,7 @@ See the {{< linkWithTitle "agent-plugin-options.md" >}} page for additional opti
 Create a secret in the target cluster namespace where the Agent resides.
 
 ```bash
-kubectl create secret generic armoryagentcert \
+kubectl create secret generic <agent-secret-name> \
 --from-file=agent.crt --from-file=agent.key
 ```
 
@@ -174,11 +176,7 @@ If you have a custom CA, you need to mount the cert into the known trusted cert 
   2. Append your custom CA onto the copied `cert.pem`  (for example `cat ca.crt >> cert.pem`)
   3. Mount `cert.pem` to Agent deployment
 
-
-<br/>
-See lines 53-54 and 74-76 for how to mount the certs.
-
-See lines 59-60 and 80-82 for how to mount the custom certs.
+In the following example, see lines 53-54 and 74-76 for how to mount the certs and lines 59-60 and 80-82 for how to mount the custom certs.
 
 {{< prism lang="yaml" line="53-54, 59-60, 74-76, 80-82" >}}
 apiVersion: apps/v1
@@ -268,18 +266,18 @@ spec:
 
 ### Configure the Agent
 
-See lines 19-25 for an example of how to configure the Agent.
+In the following example, see lines 19-25 for how to configure the Agent.
 
 {{< prism lang="yaml" line="19-25" >}}
 kubernetes:
   accounts:
-  - name: armory-sales-dev
+  - name: <account-name>
     serviceAccount: true
     #permissions:
     #  WRITE:
     #  - APPDEV_TEAMA
     #  READ:
-  # Add your accounts here, /kubeconfigfiles is the path where kubeconfig files added
+  # Add your accounts here; /kubeconfigfiles is the path where kubeconfig files added
   # to kustomization.yaml are mounted.
 #  - kubeconfigFile: /kubeconfigfiles/kubecfg-test.yml
 #    name: account1
@@ -287,13 +285,13 @@ kubernetes:
 #    kinds: []
 #    omitKinds: []
 clouddriver:
-  grpc: vincent-clouddriver.se.armory.io:443
+  grpc: <:443
   insecure: false
   tls:
-    #serverName: my-ca  #to override the server name to verify (my-ca vs vincent...)
+    #serverName: my-ca  #to override the server name to verify
     insecureSkipVerify: false #if true, don't verify server's cert
     clientKeyFile: /opt/kubesvc/cert/agent.key #ref to the private key (mTLS)
-    #clientKeyPassword: #if the above file is password protected
+    #clientKeyPassword: #if the clientKeyFile is password protected
     #cacertFile: /opt/kubesvc/cacert/ca.crt #to validate server's cert
     clientCertFile: /opt/kubesvc/cert/agent.crt #client cert for mTLS.
 #certFile: #deprecated
@@ -403,7 +401,7 @@ spec:
 
 Configure the Agent to **not** proxy Kubernetes traffic intended for KubeAPI in your cluster.
 
-Add this `noProxy: true` option to have traffic destined for Kubernetes ignore the proxy environment settings under `kubernetes`. @TODO what file is this?
+Add the `noProxy: true` option to have traffic destined for Kubernetes ignore the proxy environment settings under `kubernetes`.
 
 See line 13.
 
@@ -431,3 +429,38 @@ prometheus:
   enabled: true
 {{< /prism >}}
 
+## x509 certificate subject filtering
+
+If you have many Agents that want to talk to Clouddriver, and all of them have valid x509 certificates for mTLS, you can authorize a particular subset by configuring a subject filter in your `clouddriver.yaml` configuration. If a certificate subject line matches **any** of the filters, that certificate is authorized. All non-matching certificate subjects calls are rejected with an `X509CertificateAuthorizationFilterException`.
+
+You can specify multiple filtering criteria. However, the order in which the criteria are read is not guaranteed. Be careful when matching on two parts of a subject line, for example `UID=.*O=Armory`, because the `UID` and `O` attributes may not appear in that order. It might be safest to write a regular expression that can match in any order.
+
+### Plugin filter configuration
+
+Add an `grpc.auth.x509` section to your Clouddriver profile. See lines 7-13 in the following example:
+
+
+{{< prism lang="yaml" line="7-13" >}}
+spec:
+  spinnakerConfig:;;
+    profiles:
+      clouddriver:
+        kubesvc:
+          cluster: redis
+          grpc:
+            auth:
+              x509:
+				        #Note: enabled must be true for filters to be applied
+                enabled: true
+                filters:
+                  - UID=([a-z]){3}:[1-9]{3}:ksvc
+            server:
+              security:
+                enabled: true
+                # protocols: SSLv2Hello:TLSv1:TLSv1.1:TLSv1.2:TLSv1.3
+                clientAuth: REQUIRE
+                trustCertCollection: file:<path-to-ca.crt>
+                certificateChain: file:<path-to-clouddriver.crt>
+                privateKey: file:<path-to-clouddriver.key>
+               # privateKeyPassword: <private-key-password>
+{{< /prism >}}
