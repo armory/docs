@@ -11,7 +11,8 @@ weight: 2
 
 * This guide is for experienced Kubernetes and Armory Enterprise users.
 * You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
-* You have installed [MySQL storage for Clouddriver]({{< ref "clouddriver-sql-configure" >}}), which is required for the Agent.
+* You have a Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
+* You have configured Clouddriver to use MySQL or PostgreSQL. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for details.
 
 ## Compatibility matrix
 
@@ -30,7 +31,7 @@ The Agent should have `ClusterRole` authorization if you need to deploy pods acr
 * If Agent is running in [Agent Mode]({{< ref "armory-agent#agent-mode" >}}), then the `ClusterRole` or `Role` is the one attached to the Kubernetes Service Account mounted by the Agent pod.
 * If Agent is running in any of the other modes, then the `ClusterRole` or `Role` is the one the `kubeconfigFile` uses to interact with the target cluster. `kubeconfigFile` is configured in `kubesvc.yml` of the Agent pod.
 
-Basic configuration examples:
+Example configuration for deploying `Pod` manifests:
 
 {{< tabs name="agent-permissions" >}}
 {{% tab name="ClusterRole" %}}
