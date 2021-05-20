@@ -1,6 +1,6 @@
 ---
-title: "spinnaker.ui.entitlements.isFeatureEnabled.tasks.updateApplication"
-linktitle: "updateApplication"
+title: "spinnaker.ui.entitlements.isFeatureEnabled.tasks.type.updateApplication"
+linktitle: "type.updateApplication"
 description: "fill me with delicious data, Stephen!"
 ---
 

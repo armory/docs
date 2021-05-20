@@ -1,6 +1,6 @@
 ---
-title: "spinnaker.http.authz.tasks.createApplication"
-linktitle: "createApplication"
+title: "spinnaker.http.authz.tasks.type.createApplication"
+linktitle: "type.createApplication"
 description: "fill me with delicious data, Stephen!"
 ---
 

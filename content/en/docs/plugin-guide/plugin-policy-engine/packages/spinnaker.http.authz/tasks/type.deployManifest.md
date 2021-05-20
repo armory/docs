@@ -1,6 +1,6 @@
 ---
-title: "spinnaker.http.authz.tasks.deployManifest"
-linktitle: "deployManifest"
+title: "spinnaker.http.authz.tasks.type.deployManifest"
+linktitle: "type.deployManifest"
 description: "fill me with delicious data, Stephen!"
 ---
 

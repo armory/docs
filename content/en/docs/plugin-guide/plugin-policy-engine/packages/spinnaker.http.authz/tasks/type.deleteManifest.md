@@ -1,6 +1,6 @@
 ---
-title: "spinnaker.http.authz.tasks.deleteManifest"
-linktitle: "deleteManifest"
+title: "spinnaker.http.authz.tasks.type.deleteManifest"
+linktitle: "type.deleteManifest"
 description: "fill me with delicious data, Stephen!"
 ---
 
