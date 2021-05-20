@@ -5,6 +5,7 @@ Starting in 2.26, the UI has been updated to more closely follow immutable infra
 When you navigate to the **Infrastructure** tab in the UI for an application that has the Kubernetes provider configured, actions that change the Kubernetes infrastructure (such as **Create** or **Delete**), including Clusters, Load Balancers, and Firewalls, are no longer available.
 
 **Impact**
+
 Users do not see these actions in the UI by default. You must configure the UI to display them if you want your users to be able to perform them through the UI.
 
 **Workaround**
