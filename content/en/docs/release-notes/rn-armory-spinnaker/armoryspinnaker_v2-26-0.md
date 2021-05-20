@@ -1,5 +1,5 @@
 ---
-title: v2.26.0 Armory Release (OSS Spinnaker™ v1.26.3)
+title: v2.26.0 Armory Enterprise Release (OSS Spinnaker™ v1.26.3)
 toc_hide: true
 version: 02.26.00
 description: >
@@ -48,7 +48,7 @@ To continue adding a random suffix to jobs created by the Kubernetes Run Job sta
 * Fixed an issue where an error occured when deleting a CRD through the UI.
 * Fixed an issue where some caching agents for the SQL agent scheduler never executed. This could lead to the UI not reflecting changes caused by pipelines or pipelines not running if they were configured to use a Docker trigger. This issue affected all cloud providers and Docker triggers.
 * Fixed an issue where the **Expected Artifact** did not function as intended with
-*
+
 ## Highlighted updates
 
 <!--
