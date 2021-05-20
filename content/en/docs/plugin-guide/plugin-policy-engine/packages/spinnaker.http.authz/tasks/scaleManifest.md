@@ -1,6 +1,6 @@
 ---
 title: "spinnaker.http.authz.tasks.scaleManifest"
-linktitle: "tasks.scaleManifest"
+linktitle: "scaleManifest"
 description: "fill me with delicious data, Stephen!"
 ---
 

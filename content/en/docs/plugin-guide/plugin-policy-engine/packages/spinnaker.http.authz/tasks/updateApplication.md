@@ -1,6 +1,6 @@
 ---
 title: "spinnaker.http.authz.tasks.updateApplication"
-linktitle: "tasks.updateApplication"
+linktitle: "updateApplication"
 description: "fill me with delicious data, Stephen!"
 ---
 

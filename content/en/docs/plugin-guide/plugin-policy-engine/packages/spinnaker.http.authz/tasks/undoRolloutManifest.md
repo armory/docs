@@ -1,6 +1,6 @@
 ---
 title: "spinnaker.http.authz.tasks.undoRolloutManifest"
-linktitle: "tasks.undoRolloutManifest"
+linktitle: "undoRolloutManifest"
 description: "fill me with delicious data, Stephen!"
 ---
 

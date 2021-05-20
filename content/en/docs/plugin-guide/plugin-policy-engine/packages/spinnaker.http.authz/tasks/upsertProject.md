@@ -1,6 +1,6 @@
 ---
 title: "spinnaker.http.authz.tasks.upsertProject"
-linktitle: "tasks.upsertProject"
+linktitle: "upsertProject"
 description: "fill me with delicious data, Stephen!"
 ---
 
