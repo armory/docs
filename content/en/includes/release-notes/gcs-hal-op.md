@@ -3,7 +3,7 @@
 If you have configured a persistent storage or a canary service integration account for GCS without the `bucketLocation` property defined, validation fails with a message similar to this:
 
 ```bash
-Failed to ensure the required bucket "cristhian-canary" exists: bucketLocation, spinnakerConfig.config.default.canary: Failed to ensure the required bucket "cristhian-canary" exists: bucketLocation, spinnakerConfig.config.default.canary.google.gcp-canary: Failed to ensure the required bucket "cristhian-canary" exists: bucketLocation
+Failed to ensure the required bucket "mybucket" exists: bucketLocation, spinnakerConfig.config.default.canary: Failed to ensure the required bucket "mybucket" exists: bucketLocation, spinnakerConfig.config.default.canary.google.gcp-canary: Failed to ensure the required bucket "mybucket" exists: bucketLocation
 ```
 
 **Workaround**
