@@ -47,7 +47,7 @@ To continue adding a random suffix to jobs created by the Kubernetes Run Job sta
 * Fixed an issue where the first deployment of a manifest that used a blue/green strategy failed to find the service load balancer. This occurred if the service is in the same manifest as the workload getting deployed.
 * Fixed an issue where an error occurred when deleting a CRD through the UI.
 * Fixed an issue where some caching agents for the SQL agent scheduler never executed. This could lead to the UI not reflecting changes caused by pipelines or pipelines not running if they were configured to use a Docker trigger. This issue affected all cloud providers and Docker triggers.
-* Fixed an issue in the Deploy stage when the Docker container was selected and image was set. The artifact information was not saved in JSON format. Now the  artifact information is written to the `expectedArtifact` attribute. 
+* Fixed an issue in the Deploy stage when the Docker container was selected and image was set, the artifact information was not saved in JSON format. Now the  artifact information is written to the `expectedArtifact` attribute. 
 
 ## Highlighted updates
 
