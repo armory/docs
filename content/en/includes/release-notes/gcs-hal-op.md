@@ -25,7 +25,3 @@ persistentStorage:
 **Affected versions:** Halyard 1.12.0, Armory Operator 1.2.6
 
 **Fixed versions:** Halyard 1.12.01, Armory Operator 1.2.7
-
-**Context**
-
-A [pull request](https://github.com/spinnaker/halyard/pull/1851) to open source Halyard updated Front50 and introduced a change for `GcsStorageService`. Prior to the rewrite of `GcsStorageService`, Front50 accepted either null or an empty string as the bucket location. Now that `GcsStorageService` is written in Kotlin and does not use a String for the field, an error occurs on trying to create the `GcsStorageService` if `bucketLocation` is null.
