@@ -1,20 +1,21 @@
 ---
 title: v2.26.0 Armory Release (OSS Spinnaker™ v1.26.3)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.26.00
 description: >
-  Release notes for Armory Enterprise v2.26.0 
+  Release notes for Armory Enterprise v2.26.0
 ---
 
 ## 2021/05/20 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.26.0, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.12 or later
+- Armory Operator 1.2.6 or later
 
 ## Security
 
@@ -23,9 +24,31 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
+#### Suffixes for the Kubernetes Run Job stage
+
+The `kubernetes.jobs.append-suffix` parameter no longer works. The removal of this parameter was previously announced as part of a [breaking change](https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v2-22-0/#suffix-no-longer-added-to-jobs-created-by-kubernetes-run-job-stage) in Armory 2.22.
+
+To continue adding a random suffix to jobs created by the Kubernetes Run Job stage, use the `metadata.generateName` field in your Kubernetes job manifests. For more information, see [Generated values](https://kubernetes.io/docs/reference/using-api/api-concepts/#generated-values).
+
+{{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
+
+{{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+{{< include "known-issues/ki-bake-var-file.md" >}}
+{{< include "known-issues/ki-lambda-ui-caching.md" >}}
+
+## Fixed issues
+
+* Fixed an issue where you could not edit AWS server groups with the **Edit** button in the UI. The edit window closed immediately after you opened it.
+* Fixed an issue where names for ECS server groups were not being recognized.
+* Fixed an issue where the first deployment of a manifest that used a blue/green strategy failed to find the service load balancer. This occurred if the service is in the same manifest as the workload getting deployed.
+* Fixed an issue where an error occured when deleting a CRD through the UI.
+* Fixed an issue where some caching agents for the SQL agent scheduler never executed. This could lead to the UI not reflecting changes caused by pipelines or pipelines not running if they were configured to use a Docker trigger. This issue affected all cloud providers and Docker triggers.
+* Fixed an issue where the **Expected Artifact** did not function as intended with
+*
 ## Highlighted updates
 
 <!--
@@ -34,7 +57,63 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
+### Artifacts - Git repo
 
+The Git repo artifact provider has been improved.
+
+#### SHA support
+
+The Git repo provider can now checkout SHAs. Previously, the provider could only checkout branches.
+
+#### Caching Git repo artifacts
+
+The provider can now cache Git repo artifacts. Clouddriver, the service that connects to artifact providers, clones the Git repo the first time a pipeline needs it and then caches the repo for a configured retention time. Each subsequent time the pipeline needs to use that Git repo artifact, Clouddriver does a `git pull` to fetch updates rather than cloning the entire repo again. This behavior is especially useful if you have a large repo.
+
+Clouddriver deletes the cloned Git repo when the configured retention time expires.
+
+This is an opt-in feature that is disabled by default. See [Enable git pull support](https://spinnaker.io/setup/artifacts/gitrepo/#enable-git-pull-support) for how to enable and configure this feature.
+
+### Application metrics for Canary Analysis
+
+The Dynatrace integration for Canary Analysis now supports the `resolution` parameter for queries. This parameter is optional. Here is an example query that contains the resolution:
+
+`parameter`: `metricSelector=ext:dyna.test.memory:filter(eq(namespace,${location}))&resolution=10m`
+
+For more information, see [Get Data Points](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/metric-v2/get-data-points/).
+
+### Clound Foundry
+
+* General performance improvements.
+* Improved the resiliency of the Cloud Foundry provider by adding retries when a socket timeout occurs.
+* Armory Enterprise now supports configuration options related to timeouts. To use these timeouts, add the following snippet to `clouddriver-local`.yml (Halyard) or the `cloudfoundry` section of your SpinnakerService manifest (Operator):
+
+   ```yaml
+   cloudfoundry:
+     client:
+       readtimeout: 5000ms # Replace with the timeout you want to use
+       writetimeout: 5000ms # Replace with the timeout you want to use
+       connectiontimeout: 5000ms # Replace with the timeout you want to use
+       retries: 3 # Replace with the number of retries you want to use
+   ```
+
+- Improved the observability for the Cloud Foundry provider. You can see metrics related to Cloud Foundry through the tool you use for observability into the performance of Armory Enterprise. Look for metrics that start with the following: `cf.okhttp.requests`.
+
+### Performance
+
+Improved start times for air-gapped environments by fixing an issue that caused the `enableDefaultRepositories` config to not work. This led to a situation where air-gapped environments had to wait for the timeout. The config works now. If you set `enableDefaultRepositories` to false, Armory Enterprise no longer attempts to connect to the plugin repositories maintained by the Spinnaker community.
+
+### Plugin framework
+
+The following changes to the Plugin Framework may affect you if you are developing plugins for Armory Enterprise or Spinnaker:
+
+- If you depend on Spinnaker jars, you need to change your dependency coordinates from `com.netflix.spinnaker.<service>` to `io.spinnaker.<service>`.
+- When working on Deck, you can now replace the literal `process.env.NODE_ENV` with the current environment variable value. This is useful for libraries such as React that expect this to be set to production or development.
+
+### Terraform Integration stage
+
+- The integration now supports Terraform versions up to 14.10.
+- The container for the Terraformer service now includes the GCloud SDK and `anthos-cli`.
+- All the Terraform binaries bundled as part of the integration have been updated in accordance with [HCSEC-2021-12](https://discuss.hashicorp.com/t/terraform-updates-for-hcsec-2021-12/23570) to address potential issues from the Codecov incident.
 
 
 ###  Spinnaker Community Contributions
