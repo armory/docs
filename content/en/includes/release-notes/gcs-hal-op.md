@@ -17,7 +17,7 @@ persistentStorage:
     bucketLocation: "" # use an emptry string if you don't have a bucket location
     jsonPath: <path-to-encrypted-json-file>
     project: <your-cloud-project>
-    rootFolder: front50 old root folder
+    rootFolder: front50
   persistentStoreType: gcs
 ```
 
