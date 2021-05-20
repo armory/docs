@@ -81,7 +81,7 @@ The Dynatrace integration for Canary Analysis now supports the `resolution` para
 
 For more information, see [Get Data Points](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/metric-v2/get-data-points/).
 
-### Clound Foundry
+### Cloud Foundry
 
 * General performance improvements.
 * Improved the resiliency of the Cloud Foundry provider by adding retries when a socket timeout occurs.
