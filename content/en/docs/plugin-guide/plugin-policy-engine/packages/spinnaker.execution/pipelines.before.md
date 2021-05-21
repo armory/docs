@@ -372,43 +372,43 @@ description: "Where are we going in this ocean of chaos?"
 | ------------------------------------------------------------------------------------ | --------- | --------------------------------------------------------------------- |
 | `input.pipeline.application`                                                         | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
 | `input.pipeline.disabled`                                                            | `boolean` |                                                                       |
-| `input.pipeline.executionId`                                                         | `string`  |                                                                       |
-| `input.pipeline.expectedArtifacts[].defaultArtifact.artifactAccount`                 | `string`  |                                                                       |
+| `input.pipeline.executionId`                                                         | `string`  | The unique ID of the execution                                                                      |
+| `input.pipeline.expectedArtifacts[].defaultArtifact.artifactAccount`                 | `string`  | If your artifact either wasn't supplied from a trigger, or it wasn't found in a prior execution, this account provides a default artifact.                                                                     |
 | `input.pipeline.expectedArtifacts[].defaultArtifact.customKind`                      | `boolean` |                                                                       |
-| `input.pipeline.expectedArtifacts[].defaultArtifact.metadata.id`                     | `string`  |                                                                       |
-| `input.pipeline.expectedArtifacts[].defaultArtifact.name`                            | `string`  |                                                                       |
+| `input.pipeline.expectedArtifacts[].defaultArtifact.metadata.id`                     | `string`  | The unique ID of the default artifact                                                                      |
+| `input.pipeline.expectedArtifacts[].defaultArtifact.name`                            | `string`  | The display name of the default artifact                                                                      |
 | `input.pipeline.expectedArtifacts[].defaultArtifact.reference`                       | `string`  |                                                                       |
 | `input.pipeline.expectedArtifacts[].defaultArtifact.type`                            | `string`  |                                                                       |
-| `input.pipeline.expectedArtifacts[].defaultArtifact.version`                         | `string`  |                                                                       |
+| `input.pipeline.expectedArtifacts[].defaultArtifact.version`                         | `string`  | what version/branch of the artifact should be read from the account.                                                                      |
 | `input.pipeline.expectedArtifacts[].id`                                              | `string`  |                                                                       |
-| `input.pipeline.expectedArtifacts[].matchArtifact.artifactAccount`                   | `string`  |                                                                       |
+| `input.pipeline.expectedArtifacts[].matchArtifact.artifactAccount`                   | `string`  | this account provides an artifact.                                                                      |
 | `input.pipeline.expectedArtifacts[].matchArtifact.customKind`                        | `boolean` |                                                                       |
 | `input.pipeline.expectedArtifacts[].matchArtifact.metadata.id`                       | `string`  |                                                                       |
-| `input.pipeline.expectedArtifacts[].matchArtifact.name`                              | `string`  |                                                                       |
+| `input.pipeline.expectedArtifacts[].matchArtifact.name`                              | `string`  | The display name of the artifact                                                                      |
 | `input.pipeline.expectedArtifacts[].matchArtifact.type`                              | `string`  |                                                                       |
-| `input.pipeline.expectedArtifacts[].useDefaultArtifact`                              | `boolean` |                                                                       |
-| `input.pipeline.expectedArtifacts[].usePriorArtifact`                                | `boolean` |                                                                       |
+| `input.pipeline.expectedArtifacts[].useDefaultArtifact`                              | `boolean` | If your artifact either wasn't supplied from a trigger, or it wasn't found in a prior execution, the artifact specified below will end up in your pipeline's execution context.                                                                      |
+| `input.pipeline.expectedArtifacts[].usePriorArtifact`                                | `boolean` | Attempt to match against an artifact in the prior pipeline execution's context. This ensures that you will always be using the most recently supplied artifact to this pipeline, and is generally a safe choice.                                                                      |
 | `input.pipeline.id`                                                                  | `string`  |                                                                       |
-| `input.pipeline.keepWaitingPipelines`                                                | `boolean` |                                                                       |
-| `input.pipeline.limitConcurrent`                                                     | `boolean` |                                                                       |
-| `input.pipeline.name`                                                                | `string`  |                                                                       |
+| `input.pipeline.keepWaitingPipelines`                                                | `boolean` | If concurrent pipeline execution is disabled, then the pipelines that are in the waiting queue will get canceled when the next execution starts unless this is true.               |
+| `input.pipeline.limitConcurrent`                                                     | `boolean` | Disable concurrent pipeline executions (only run one at a time).                                                                       |
+| `input.pipeline.name`                                                                | `string`  |  The name of the pipeline                                                                     |
 | `input.pipeline.parallel`                                                            | `boolean` |                                                                       |
-| `input.pipeline.parameterConfig[].default`                                           | `string`  |                                                                       |
-| `input.pipeline.parameterConfig[].description`                                       | `string`  |                                                                       |
-| `input.pipeline.parameterConfig[].hasOptions`                                        | `boolean` |                                                                       |
-| `input.pipeline.parameterConfig[].label`                                             | `string`  |                                                                       |
-| `input.pipeline.parameterConfig[].name`                                              | `string`  |                                                                       |
-| `input.pipeline.parameterConfig[].options[].value`                                   | `string`  |                                                                       |
-| `input.pipeline.parameterConfig[].pinned`                                            | `boolean` |                                                                       |
-| `input.pipeline.parameterConfig[].required`                                          | `boolean` |                                                                       |
+| `input.pipeline.parameterConfig[].default`                                           | `string`  | What is the default value of the parameter                                                                      |
+| `input.pipeline.parameterConfig[].description`                                       | `string`  | if supplied, will be displayed to users as a tooltip when triggering the pipeline manually. You can include HTML in this field.                                                                      |
+| `input.pipeline.parameterConfig[].hasOptions`                                        | `boolean` | Does this parameter require users to specify an option from a predefined list.                                                                      |
+| `input.pipeline.parameterConfig[].label`                                             | `string`  | a label to display when users are triggering the pipeline manually                                                                      |
+| `input.pipeline.parameterConfig[].name`                                              | `string`  | The name of the parameter                                                                      |
+| `input.pipeline.parameterConfig[].options[].value`                                   | `string`  | What values exist in a picklist for the user to choose from for the parameter.                                                                      |
+| `input.pipeline.parameterConfig[].pinned`                                            | `boolean` | if checked, this parameter will be always shown in a pipeline execution view, otherwise it'll be collapsed by default.                                                                      |
+| `input.pipeline.parameterConfig[].required`                                          | `boolean` | Must the user provide a value for this parameter when executing the pipeline.                                                                      |
 | `input.pipeline.plan`                                                                | `boolean` |                                                                       |
 | `input.pipeline.respectQuietPeriod`                                                  | `boolean` |                                                                       |
-| `input.pipeline.spelEvaluator`                                                       | `string`  |                                                                       |
-| `input.pipeline.stages[].account`                                                    | `string`  |                                                                       |
-| `input.pipeline.stages[].artifactContents[].contents`                                | `string`  |                                                                       |
-| `input.pipeline.stages[].artifactContents[].id`                                      | `string`  |                                                                       |
-| `input.pipeline.stages[].artifactContents[].name`                                    | `string`  |                                                                       |
-| `input.pipeline.stages[].cloudProvider`                                              | `string`  |                                                                       |
+| `input.pipeline.spelEvaluator`                                                       | `string`  | Which version of SpEL should SpEL expressions be evaluated with.                                                                      |
+| `input.pipeline.stages[].account`                                                    | `string`  | Which account does this stage deploy to.                                                                      |
+| `input.pipeline.stages[].artifactContents[].contents`                                | `string`  | The contents of an artifact used by this stage.                                                                      |
+| `input.pipeline.stages[].artifactContents[].id`                                      | `string`  | The unique id of an artifact used by this stage.                                                                      |
+| `input.pipeline.stages[].artifactContents[].name`                                    | `string`  | The name of an artifact used by this stage.                                                                      |
+| `input.pipeline.stages[].cloudProvider`                                              | `string`  | What type of cloud provider (AWSD, Kubernetes) does this stage deploy to.                                                                      |
 | `input.pipeline.stages[].expectedArtifacts[].defaultArtifact.customKind`             | `boolean` |                                                                       |
 | `input.pipeline.stages[].expectedArtifacts[].defaultArtifact.id`                     | `string`  |                                                                       |
 | `input.pipeline.stages[].expectedArtifacts[].displayName`                            | `string`  |                                                                       |
@@ -421,24 +421,24 @@ description: "Where are we going in this ocean of chaos?"
 | `input.pipeline.stages[].expectedArtifacts[].useDefaultArtifact`                     | `boolean` |                                                                       |
 | `input.pipeline.stages[].expectedArtifacts[].usePriorArtifact`                       | `boolean` |                                                                       |
 | `input.pipeline.stages[].manifestArtifactId`                                         | `string`  |                                                                       |
-| `input.pipeline.stages[].moniker.app`                                                | `string`  |                                                                       |
-| `input.pipeline.stages[].name`                                                       | `string`  |                                                                       |
-| `input.pipeline.stages[].refId`                                                      | `string`  |                                                                       |
-| `input.pipeline.stages[].requisiteStageRefIds[]`                                     | `string`  |                                                                       |
+| `input.pipeline.stages[].name`                                                       | `string`  |  The name of this stage                                                                     |
+| `input.pipeline.stages[].refId`                                                      | `string`  | This provides the unique identifier for this stage and can be used to generate a stage dependancy graph                                                                      |
+| `input.pipeline.stages[].requisiteStageRefIds[]`                                     | `string`  | This specifies what stages in the pipeline ran before this stage, and can be used to generate a stage dependancy graph.                                                                     |
 | `input.pipeline.stages[].skipExpressionEvaluation`                                   | `boolean` |                                                                       |
 | `input.pipeline.stages[].source`                                                     | `string`  |                                                                       |
 | `input.pipeline.stages[].trafficManagement.enabled`                                  | `boolean` |                                                                       |
 | `input.pipeline.stages[].trafficManagement.options.enableTraffic`                    | `boolean` |                                                                       |
-| `input.pipeline.stages[].type`                                                       | `string`  |                                                                       |
-| `input.pipeline.trigger.artifacts[].artifactAccount`                                 | `string`  |                                                                       |
+| `input.pipeline.stages[].type`                                                       | `string`  | That is the type of the stage                                                                   |
+| `input.pipeline.stages[]`                                                       | `string`  |    The serialized configuration of your spinnaker stages. Fields within the stages relate to the field given in the spinnaker/execution/stages/before package for that stage type. In general, users are advised to wright policies that are specific to whether a single stage should execute against the stage execution, not the pipeline execution. This ensures stages referencing SpEL will have had their SpEL evaluated.                                                                   |
+| `input.pipeline.trigger.artifacts[].artifactAccount`                                 | `string`  | Specifies the account to read this triggers artifact from                                                                      |
 | `input.pipeline.trigger.artifacts[].customKind`                                      | `boolean` |                                                                       |
 | `input.pipeline.trigger.artifacts[].metadata.id`                                     | `string`  |                                                                       |
-| `input.pipeline.trigger.artifacts[].name`                                            | `string`  |                                                                       |
+| `input.pipeline.trigger.artifacts[].name`                                            | `string`  | specifies a name for the artifact                                                                      |
 | `input.pipeline.trigger.artifacts[].reference`                                       | `string`  |                                                                       |
-| `input.pipeline.trigger.artifacts[].type`                                            | `string`  |                                                                       |
-| `input.pipeline.trigger.artifacts[].version`                                         | `string`  |                                                                       |
+| `input.pipeline.trigger.artifacts[].type`                                            | `string`  | specifies the type of the artifact, for example 'git'.                                                                      |
+| `input.pipeline.trigger.artifacts[].version`                                         | `string`  | what branch/version should the artifact be read from.                                                                      |
 | `input.pipeline.trigger.dryRun`                                                      | `boolean` |                                                                       |
-| `input.pipeline.trigger.enabled`                                                     | `boolean` |                                                                       |
+| `input.pipeline.trigger.enabled`                                                     | `boolean` | is the trigger enabled                                                                      |
 | `input.pipeline.trigger.eventId`                                                     | `string`  |                                                                       |
 | `input.pipeline.trigger.executionId`                                                 | `string`  |                                                                       |
 | `input.pipeline.trigger.expectedArtifacts[].boundArtifact.artifactAccount`           | `string`  |                                                                       |
@@ -489,10 +489,10 @@ description: "Where are we going in this ocean of chaos?"
 | `input.pipeline.trigger.resolvedExpectedArtifacts[].useDefaultArtifact`              | `boolean` |                                                                       |
 | `input.pipeline.trigger.resolvedExpectedArtifacts[].usePriorArtifact`                | `boolean` |                                                                       |
 | `input.pipeline.trigger.type`                                                        | `string`  |                                                                       |
-| `input.pipeline.trigger.user`                                                        | `string`  |                                                                       |
-| `input.pipeline.triggers[].branch`                                                   | `string`  |                                                                       |
+| `input.pipeline.trigger.user`                                                        | `string`  |  for triuggers of type 'git' what is the user or organization associated with the git repository.                                                                     |
+| `input.pipeline.triggers[].branch`                                                   | `string`  | what branch of the git repository triggers this pipeline                                                                      |
 | `input.pipeline.triggers[].dryRun`                                                   | `boolean` |                                                                       |
-| `input.pipeline.triggers[].enabled`                                                  | `boolean` |                                                                       |
+| `input.pipeline.triggers[].enabled`                                                  | `boolean` | is the trigger enabled.                                                                      |
 | `input.pipeline.triggers[].expectedArtifactIds[]`                                    | `string`  |                                                                       |
 | `input.pipeline.triggers[].id`                                                       | `string`  |                                                                       |
 | `input.pipeline.triggers[].preferred`                                                | `boolean` |                                                                       |
@@ -502,5 +502,7 @@ description: "Where are we going in this ocean of chaos?"
 | `input.pipeline.triggers[].slug`                                                     | `string`  |                                                                       |
 | `input.pipeline.triggers[].source`                                                   | `string`  |                                                                       |
 | `input.pipeline.triggers[].type`                                                     | `string`  |                                                                       |
-| `input.user.isAdmin`                                                                 | `boolean` |                                                                       |
-| `input.user.username`                                                                | `string`  |                                                                       |
+| `input.user.isAdmin`                                                                 | `boolean` | is the user who started this pipeline an admin user                                                                      |
+| `input.user.username`                                                                | `string`  |  what is the user ID of the user that started this pipeline.                                                                     |
+| `input.user.role[].name`                                                                | `string`  |  The names of the roles assigned to the user. This will only show up if FIAT is configured to provide roles.                                                                     |
+| `input.user.role[].source`                                                                | `string`  |  The source that granted the user this role. If you have multiple sources defining roles in fiat, this can be used to differentiate between them.
