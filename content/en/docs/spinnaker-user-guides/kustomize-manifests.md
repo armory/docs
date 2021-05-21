@@ -63,7 +63,7 @@ spec:
           accounts:
           - name: gitrepo
             username: # Git username.
-            token: encrypted: # (Secret). Git token.
+            token: encrypted:k8s!n:spin-secrets!k:github-token # Your github access token from a K8s secret (here secret='spin-secrets', key='github-token')
 ```
 
 ### Build the Pipeline
