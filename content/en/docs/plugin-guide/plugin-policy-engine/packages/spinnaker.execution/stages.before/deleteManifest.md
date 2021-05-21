@@ -1,6 +1,6 @@
 ---
 title: "spinnaker.execution.stages.before.deleteManifest"
-linktitle: "stages.before.deleteManifest"
+linktitle: "deleteManifest"
 description: "fill me with delicious data, Stephen!"
 ---
 

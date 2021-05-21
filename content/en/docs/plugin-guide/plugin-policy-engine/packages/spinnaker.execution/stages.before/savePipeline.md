@@ -1,6 +1,6 @@
 ---
 title: "spinnaker.execution.stages.before.savePipeline"
-linktitle: "stages.before.savePipeline"
+linktitle: "savePipeline"
 description: "This package is checked before the execution of each task in a pipeline stage of type 'Save Pipeline'"
 ---
 

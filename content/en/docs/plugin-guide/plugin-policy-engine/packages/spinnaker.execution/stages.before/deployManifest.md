@@ -1,6 +1,6 @@
 ---
 title: "spinnaker.execution.stages.before.deployManifest"
-linktitle: "stages.before.deployManifest"
+linktitle: "deployManifest"
 description: "WHO AM I?"
 ---
 

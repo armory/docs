@@ -1,6 +1,6 @@
 ---
 title: "spinnaker.execution.stages.before.scaleManifest"
-linktitle: "stages.before.scaleManifest"
+linktitle: "scaleManifest"
 description: "fill me with delicious data, Stephen!"
 ---
 

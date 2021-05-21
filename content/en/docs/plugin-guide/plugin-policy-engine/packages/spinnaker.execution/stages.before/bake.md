@@ -1,6 +1,6 @@
 ---
 title: "spinnaker.execution.stages.before.bake"
-linktitle: "stages.before.bake"
+linktitle: "bake"
 description: "fill me with delicious data, Stephen!"
 ---
 
