@@ -163,6 +163,20 @@ deny["A port typically used by an unencrypted protocol was detected."] {
 
 
 ```
+Require that the Annotations 'owner' and 'app' are applied on all deployed infrastructure.
+```rego
+package spinnaker.deployment.tasks.before.deployManifest
+
+required_annotations:=["app","owner"]
+
+deny["Manifest is missing a required annotation"] {
+    annotations :=input.deploy.manifests[_].metadata.annotations 
+
+    # Use object.get to check if data exists
+    object.get(annotations,required_annotations[_],null)==null
+}
+
+```
 
 ## Keys
 
