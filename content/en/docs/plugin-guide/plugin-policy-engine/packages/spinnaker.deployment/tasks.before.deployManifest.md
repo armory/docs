@@ -142,8 +142,25 @@ description: "WHO AM I?"
 </details>
 
 ## Example Policy
-
+This example prevents deploying of pods, pod templates (Deploym,ents/jobs/replicasets) and services that us the following services: HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, SMTP
 ```rego
+package spinnaker.deployment.tasks.before.deployManifest
+
+blockedPorts := [20,21,23,80,110,119,143,389,587,8080,8088,8888]
+
+deny["A port typically used by an unencrypted protocol was detected."] {
+    #Check for service
+    ports := input.deploy.manifests[_].spec.ports[_]
+    any([object.get(ports,"port",null) == blockedPorts[_], 
+           object.get(ports,"targetPort",null) == blockedPorts[_]])
+}{ 
+    #Check for pod
+    input.deploy.manifests[_].spec.containers[_].ports[_].containerPort=blockedPorts[_]
+} { 
+    #Check for pod template
+    input.deploy.manifests[_].spec.template.spec.containers[_].ports[_].containerPort=blockedPorts[_]
+    }
+
 
 ```
 
@@ -153,17 +170,17 @@ description: "WHO AM I?"
 | -------------------------------- | --------- | ------------------------------------------------------- |
 | `input.deploy.account`           | `string`  | The spinnaker account being deployed to.                |
 | `input.deploy.credentials`       | `string`  | The credentials to use to access the account.           |
-| `input.deploy.enableTraffic`     | `boolean` |                                                         |
-| `input.deploy.manifest`          | ` `       |                                                         |
-| `input.deploy.manifestArtifact`  | ` `       |                                                         |
+| `input.deploy.enableTraffic`     | `boolean` | Allow Spinnaker to associate each ReplicaSet deployed in this stage with one or more Services and manage traffic based on your selected rollout strategy options.                                                        |
+| `input.deploy.manifest`          | ` `       | An arrach of the manifests being deployed                                                      |
+| `input.deploy.manifestArtifact`  | ` `       | The name of the artifact from which the manifest should be read.                                                        |
 | `input.deploy.manifests[].*`     | `*`       | The entire Kubernetest manifest that is to be deployed. |
-| `input.deploy.moniker.app`       | `string`  |                                                         |
-| `input.deploy.moniker.cluster`   | `string`  |                                                         |
+| `input.deploy.moniker.app`       | `string`  | The name of the application being deployed                                                        |
+| `input.deploy.moniker.cluster`   | `string`  | The name of the cluster to which you are deploying                                                        |
 | `input.deploy.moniker.detail`    | ` `       |                                                         |
 | `input.deploy.moniker.sequence`  | ` `       |                                                         |
 | `input.deploy.moniker.stack`     | ` `       |                                                         |
-| `input.deploy.namespaceOverride` | ` `       |                                                         |
-| `input.deploy.services`          | ` `       |                                                         |
+| `input.deploy.namespaceOverride` | ` `       | The namespace to which the job should deploy                                                        |
+| `input.deploy.services`          | ` `       | The services that are having their traffic managed, if any.                                                        |
 | `input.deploy.source`            | `string`  |                                                         |
-| `input.deploy.strategy`          | ` `       |                                                         |
+| `input.deploy.strategy`          | ` `       | The rollout strategy tells Spinnaker what to do with the previous version(s) of the ReplicaSet in the cluster.                                                        |
 | `input.deploy.versioned`         | ` `       |                                                         |
