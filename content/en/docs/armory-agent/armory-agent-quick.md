@@ -1,24 +1,92 @@
 ---
-title: "Armory Agent for Kubernetes Quick Start Installation"
-linkTitle: "Quick Start"
+title: "Armory Agent for Kubernetes Quickstart Installation"
+linkTitle: "Quickstart"
 description: >
-  Learn how to install the Armory Agent in your Kubernetes and Spinnaker environments.
+  Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
 weight: 2
 ---
 ![Proprietary](/images/proprietary.svg)
-> This guide is for experienced Kubernetes and Spinnaker<sup>TM</sup> users.
+
+## {{% heading "prereq" %}}
+
+* This guide is for experienced Kubernetes and Armory Enterprise users.
+* You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
+* You have a Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
+* You have configured Clouddriver to use MySQL or PostgreSQL. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for details.
 
 ## Compatibility matrix
 
-> [MySQL storage for Clouddriver]({{< ref "clouddriver-sql-configure" >}}) is required for the Agent.
-
 {{< include "agent/agent-compat-matrix.md" >}}
 
-The Agent consists of a service deployed as a Kubernetes `Deployment` and a plugin to Spinnaker's Clouddriver service. Be sure to check out the [architecture]({{< ref "armory-agent" >}}).
+The Agent consists of a service deployed as a Kubernetes `Deployment` and a plugin to Spinnaker's Clouddriver service. You can review the architecture in the Armory Agent [overview]({{< ref "armory-agent" >}}).
 
 ## Networking requirements
 
 Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between Clouddriver and the Agent.  
+
+## Kubernetes permissions needed by the Agent
+
+The Agent should have `ClusterRole` authorization if you need to deploy pods across your cluster or `Role` authorization if you deploy pods only to a single namespace.
+
+* If Agent is running in [Agent Mode]({{< ref "armory-agent#agent-mode" >}}), then the `ClusterRole` or `Role` is the one attached to the Kubernetes Service Account mounted by the Agent pod.
+* If Agent is running in any of the other modes, then the `ClusterRole` or `Role` is the one the `kubeconfigFile` uses to interact with the target cluster. `kubeconfigFile` is configured in `kubesvc.yml` of the Agent pod.
+
+Example configuration for deploying `Pod` manifests:
+
+{{< tabs name="agent-permissions" >}}
+{{% tab name="ClusterRole" %}}
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: agent-role
+rules:
+- apiGroups: ""
+  resources:
+  - pods
+  - pods/log
+  - pods/finalizers  
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+```
+
+{{% /tab %}}
+{{% tab name="Role" %}}
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: agent-role
+rules:
+- apiGroups: ""
+  resources:
+  - pods
+  - pods/log
+  - pods/finalizers  
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+You can see a more detailed example of the kind of `ClusterRole` permissions you may need in the `spinnaker-kustomize-patch` repo's `spin-sa.yml` [file](https://github.com/armory/spinnaker-kustomize-patches/blob/master/accounts/kubernetes/spin-sa.yml#L5).
+
+See the Kubernetes [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) guide for details on configuring `ClusterRole` and `Role` authorization.
 
 ## Step 1: Agent plugin installation
 
@@ -30,7 +98,6 @@ The easiest installation path is to modify an existing [`spinnakerservice.yaml`]
 # AGENT_PLUGIN_VERSION is found in the compatibility matrix above
 curl https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-plugin-$AGENT_PLUGIN_VERSION.tar.gz | tar -xJvf -
 ```
-
 
 Then include the manifests in your current kustomization:
 
@@ -72,7 +139,7 @@ kustomize build . | kubectl apply -f -
 
 Note:
 
-- If you gave `SpinnakerService` a name other than `spinnaker`, you will need to change it in files under `agent-plugin`.
+- If you gave `SpinnakerService` a name other than `spinnaker`, you need to change it in files under `agent-plugin`.
 - If you are using the Agent on an OSS installation, use the following download URL `https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-oss-plugin-${AGENT_PLUGIN_VERSION}-tar.gz` or replace the `apiVersion` with `spinnaker.io/v1alpha2`.
 
 ### Alternate methods
@@ -158,10 +225,8 @@ AGENT_VERSION={{<param kubesvc-version>}} && curl -s https://armory.jfrog.io/art
 - Change the version of the Agent in `kustomization.yaml`
 - Modify [Agent options]({{< ref "agent-options" >}}) in `kubesvc.yaml`
 
-## Troubleshooting
 
-Check out the [troubleshooting]({{< ref "agent-troubleshooting" >}}) page if you run into issues.
+## {{% heading "nextSteps" %}}
 
-## Monitoring
-
-Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Agent is monitoring. The gRPC buffer consumes about 4MB of memory. See the [Monitoring]({{< ref "agent-monitoring" >}}) page for how to monitor agents running on an Armory platform.
+* {{< linkWithTitle "agent-troubleshooting.md" >}} page if you run into issues.
+* {{< linkWithTitle "agent-monitoring.md" >}} page for how to monitor agents running on an Armory platform. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
