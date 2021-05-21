@@ -7,7 +7,7 @@ description: >
 
 ## Overview of Kustomize
 
-Kustomize is a tool that lets you create customized Kubernetes deployments without modifying underlying YAML configuration files. Since the files remain unchanged, others are able to reuse the same files to build their own customizations. Your customizations are stored in a file called `kustomization.yaml`. If configuration changes are needed, the underlying YAML files and `kustomization.yaml` can be updated independently of each other.
+Kustomize is a tool that lets you create customized Kubernetes deployments without modifying underlying YAML configuration files. Since the files remain unchanged, others are able to reuse the same files to build their own customizations. Your customizations are stored in a file called `kustomization.yaml`. If you need to make configuration changes, the underlying YAML files and `kustomization.yaml` can be updated independently of each other.
 ​
 To learn more about Kustomize and how to define a `kustomization.yaml` file, see the following links:
 ​
@@ -19,7 +19,6 @@ In the context of Spinnaker, Kustomize lets you generate a custom manifest, whic
 ​
 Spinnaker uses the latest non-kubectl version of Kustomize.
 ​
-
 ### Using Kustomize
 ​
 Kustomize works by running `kustomize build` against a `kustomization.yaml` file located in a Git repository. This file defines all of the other files needed by Kustomize to render a fully hydrated manifest.
@@ -40,16 +39,18 @@ Define the artifact:
 ​
 You can now run your pipeline and get a Kustomize rendered manifest!
 ​
-## Kustomize 
+## Kustomize
+
 ### Requirements
-Kustomize requires the git/repo artifact type.
+
+Kustomize requires the `git/repo` artifact type.
 
 **Configure git/repo artifact with Operator**
 
-Add the follwing settings to the `SpinnakerService` manifest:
+Add the following settings to the `SpinnakerService` manifest:
 
 ```yaml
-apiVersion: spinnaker.armory.io/v1alpha2
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -64,9 +65,10 @@ spec:
             username: # Git username.
             token: encrypted: # (Secret). Git token.
 ```
+
 ### Build the Pipeline
 ​
-For this example, we are going to use this [Kustomize public repository](https://github.com/kubernetes-sigs/kustomize), specifically the *helloWorld* example.
+For this example, you are going to use the *helloWorld* example from the  [Kustomize public repository](https://github.com/kubernetes-sigs/kustomize).
 
 ### Step 1 - Add an Expected Artifact
 ​
@@ -79,7 +81,7 @@ Add a **git/repo** Expected Artifact in the _Configuration_ section:
 
 ​![](/images/kustomize-expected-artifact.png)
 
-> **Note:** In order to execute the pipeline mannualy, it is necesary to check the *Use Default Artifact* and also fill the fields (same information above).
+>In order to execute the pipeline manually, it is necessary to select **Use Default Artifact** and also fill the fields (same information above).
 ​
 
 ### Step 2 - Add a Bake (Manifest) Stage
