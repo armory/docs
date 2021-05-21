@@ -19,7 +19,7 @@ description: "fill me with delicious data, Stephen!"
     "user": {
       "isAdmin": false,
       "roles": [],
-      "username": "elfie2002"
+      "username": "myUserName"
     }
   }
 }

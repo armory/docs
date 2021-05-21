@@ -17,17 +17,17 @@ description: "fill me with delicious data, Stephen!"
       "expectedArtifacts": [
         {
           "defaultArtifact": {
-            "artifactAccount": "stephenatwell",
+            "artifactAccount": "myUserName",
             "id": "4aa85178-0618-46c4-b530-6883d393656d",
             "name": "manifests/deploy-spinnaker.yaml",
-            "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+            "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
             "type": "github/file",
             "version": "master"
           },
           "displayName": "hostname-deploy",
           "id": "0cf98032-1b0f-48db-9314-09c69293b3a6",
           "matchArtifact": {
-            "artifactAccount": "stephenatwell",
+            "artifactAccount": "myUserName",
             "customKind": true,
             "id": "3f72ed8e-cb95-454f-9119-2323682121ff",
             "name": "manifests/deploy-spinnaker.yaml",
@@ -38,16 +38,16 @@ description: "fill me with delicious data, Stephen!"
         },
         {
           "defaultArtifact": {
-            "artifactAccount": "stephenatwell",
+            "artifactAccount": "myUserName",
             "id": "e79162ab-69cb-4ff7-acf4-a8f2875ef8ef",
             "name": "manifests/service-spinnaker.yaml",
-            "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+            "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
             "type": "github/file"
           },
           "displayName": "service-hostname",
           "id": "425d20a8-2942-4902-8d2b-277769a1492c",
           "matchArtifact": {
-            "artifactAccount": "stephenatwell",
+            "artifactAccount": "myUserName",
             "customKind": true,
             "id": "d7ac7eca-0131-4d54-ab8f-880ff0041e4f",
             "name": "manifests/service-spinnaker",
@@ -60,7 +60,7 @@ description: "fill me with delicious data, Stephen!"
       "id": "7db1e350-dedb-4dc1-9976-e71f97b5f132",
       "index": 0,
       "keepWaitingPipelines": false,
-      "lastModifiedBy": "stephenatwell",
+      "lastModifiedBy": "myUserName",
       "limitConcurrent": true,
       "name": "scale deployments",
       "parameterConfig": [
@@ -177,7 +177,7 @@ description: "fill me with delicious data, Stephen!"
             "0cf98032-1b0f-48db-9314-09c69293b3a6",
             "425d20a8-2942-4902-8d2b-277769a1492c"
           ],
-          "project": "stephenatwell",
+          "project": "myUserName",
           "secret": "spinnaker",
           "slug": "hostname",
           "source": "github",
@@ -193,7 +193,7 @@ description: "fill me with delicious data, Stephen!"
     "user": {
       "isAdmin": false,
       "roles": [],
-      "username": "elfie2002"
+      "username": "myUserName"
     }
   }
 }

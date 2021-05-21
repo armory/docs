@@ -1,6 +1,6 @@
 ---
-title: "spinnaker.execution.stages.before.createServerGroup"
-linktitle: "createServerGroup"
+title: "spinnaker.execution.stages.before.wercker"
+linktitle: "wercker"
 description: "fill me with delicious data, Stephen!"
 ---
 
@@ -42,22 +42,6 @@ description: "fill me with delicious data, Stephen!"
       "stages": [
         {
           "context": {
-            "exception": {
-              "details": {
-                "error": "Internal Server Error",
-                "errors": [
-                  "Bake failed: Error: file '/tmp/rosco-2833166343726058950/f547ea98-52eb-4b6c-8c17-173d21535456' does not appear to be a gzipped archive; got 'text/plain; charset=utf-8'\n"
-                ],
-                "kind": "HTTP",
-                "responseBody": "{\"timestamp\":\"2021-05-13T17:25:05.658+00:00\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Bake failed: Error: file '/tmp/rosco-2833166343726058950/f547ea98-52eb-4b6c-8c17-173d21535456' does not appear to be a gzipped archive; got 'text/plain; charset=utf-8'\\n\"}",
-                "status": 500,
-                "url": "http://spin-rosco.spinnaker:8087/api/v2/manifest/bake/HELM2"
-              },
-              "exceptionType": "RetrofitError",
-              "operation": "createBake",
-              "shouldRetry": false,
-              "timestamp": 1620926705665
-            },
             "expectedArtifacts": [
               {
                 "defaultArtifact": {
@@ -88,7 +72,7 @@ description: "fill me with delicious data, Stephen!"
             "overrides": {},
             "templateRenderer": "HELM2"
           },
-          "endTime": 1620926706486,
+          "endTime": null,
           "id": "01F5KC59VXSVC287E96M310EF5",
           "lastModified": null,
           "name": "Bake (Manifest)",
@@ -99,11 +83,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926703574,
           "startTimeExpiry": null,
-          "status": "TERMINAL",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706252,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.bakery.tasks.manifests.CreateBakeManifestTask",
               "loopEnd": false,
@@ -112,7 +96,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926703700,
-              "status": "TERMINAL"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -190,14 +174,11 @@ description: "fill me with delicious data, Stephen!"
         {
           "context": {
             "application": "test",
-            "attempt": 2,
             "cloudProvider": "aws",
             "cloudProviderType": "aws",
-            "consecutiveNotFound": 0,
             "copySourceCustomBlockDeviceMappings": false,
             "credentials": "staging",
             "freeFormDetails": "",
-            "lastException": "Unable to locate current_asg_dynamic in staging/us-east-2/test\ncom.netflix.spinnaker.orca.clouddriver.pipeline.servergroup.support.TargetServerGroup$NotFoundException: Unable to locate current_asg_dynamic in staging/us-east-2/test\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)\n\tat org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)\n\tat org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:74)\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:59)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:237)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:249)\n\tat com.netflix.spinnaker.orca.clouddriver.pipeline.servergroup.support.TargetServerGroupResolver.resolveByTarget(TargetServerGroupResolver.groovy:75)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)\n\tat org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:351)\n\tat org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:64)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:176)\n\tat com.netflix.spinnaker.orca.clouddriver.pipeline.servergroup.support.TargetServerGroupResolver$_resolveByParams_closure1.doCall(TargetServerGroupResolver.groovy:56)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)\n\tat org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:263)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)\n\tat groovy.lang.Closure.call(Closure.java:405)\n\tat groovy.lang.Closure.call(Closure.java:421)\n\tat org.codehaus.groovy.runtime.DefaultGroovyMethods.collect(DefaultGroovyMethods.java:3574)\n\tat org.codehaus.groovy.runtime.DefaultGroovyMethods.collect(DefaultGroovyMethods.java:3559)\n\tat org.codehaus.groovy.runtime.DefaultGroovyMethods.collect(DefaultGroovyMethods.java:3659)\n\tat org.codehaus.groovy.runtime.dgm$87.invoke(Unknown Source)\n\tat org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:244)\n\tat org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:115)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:127)\n\tat com.netflix.spinnaker.orca.clouddriver.pipeline.servergroup.support.TargetServerGroupResolver.resolveByParams(TargetServerGroupResolver.groovy:54)\n\tat com.netflix.spinnaker.orca.kato.pipeline.support.SourceResolver.getSource(SourceResolver.groovy:79)\n\tat com.netflix.spinnaker.orca.kato.pipeline.support.SourceResolver$getSource.call(Unknown Source)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:115)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:127)\n\tat com.netflix.spinnaker.orca.kato.pipeline.strategy.DetermineSourceServerGroupTask.execute(DetermineSourceServerGroupTask.groovy:59)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1$1.invoke(RunTaskHandler.kt:144)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withLoggingContext(RunTaskHandler.kt:419)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.access$withLoggingContext(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1.invoke(RunTaskHandler.kt:105)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.AuthenticationAware$sam$java_util_concurrent_Callable$0.call(AuthenticationAware.kt)\n\tat com.netflix.spinnaker.security.AuthenticatedRequest.lambda$wrapCallableForPrincipal$0(AuthenticatedRequest.java:272)\n\tat com.netflix.spinnaker.orca.q.handler.AuthenticationAware$DefaultImpls.withAuth(AuthenticationAware.kt:51)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withAuth(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1.invoke(RunTaskHandler.kt:104)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$withTask$1.invoke(RunTaskHandler.kt:247)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$withTask$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withTask$1.invoke(OrcaMessageHandler.kt:68)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withTask$1.invoke(OrcaMessageHandler.kt:46)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withStage$1.invoke(OrcaMessageHandler.kt:85)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withStage$1.invoke(OrcaMessageHandler.kt:46)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withExecution(OrcaMessageHandler.kt:95)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withExecution(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withStage(OrcaMessageHandler.kt:74)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withStage(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withTask(OrcaMessageHandler.kt:60)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withTask(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withTask(RunTaskHandler.kt:236)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.handle(RunTaskHandler.kt:101)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.handle(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.q.MessageHandler$DefaultImpls.invoke(MessageHandler.kt:36)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.invoke(OrcaMessageHandler.kt)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.audit.ExecutionTrackingMessageHandlerPostProcessor$ExecutionTrackingMessageHandlerProxy.invoke(ExecutionTrackingMessageHandlerPostProcessor.kt:72)\n\tat com.netflix.spinnaker.q.QueueProcessor$callback$1$1.run(QueueProcessor.kt:90)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)\n\tat java.base/java.lang.Thread.run(Thread.java:834)\n",
             "region": "us-east-2",
             "stack": "",
             "target": "current_asg_dynamic",
@@ -385,7 +366,7 @@ description: "fill me with delicious data, Stephen!"
             "notification.type": "upsertloadbalancer",
             "targets": []
           },
-          "endTime": 1620926706673,
+          "endTime": null,
           "id": "01F5KC59VX3VNVYJ5PTGDJQ4PK",
           "lastModified": null,
           "name": "Create Load Balancers",
@@ -396,7 +377,7 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926703592,
           "startTimeExpiry": null,
-          "status": "CANCELED",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
@@ -412,7 +393,7 @@ description: "fill me with delicious data, Stephen!"
               "status": "SUCCEEDED"
             },
             {
-              "endTime": 1620926706403,
+              "endTime": null,
               "id": "2",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.MonitorKatoTask",
               "loopEnd": false,
@@ -421,7 +402,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": false,
               "startTime": 1620926705108,
-              "status": "CANCELED"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -450,7 +431,178 @@ description: "fill me with delicious data, Stephen!"
           ],
           "type": "upsertLoadBalancers"
         },
-        "01F5KC59ZVHCFYZPQ9851X0D3X",
+        {
+          "context": {
+            "account": "staging",
+            "application": "test",
+            "availabilityZones": {
+              "us-east-2": [
+                "us-east-2a",
+                "us-east-2b",
+                "us-east-2c"
+              ]
+            },
+            "capacity": {
+              "desired": 1,
+              "max": 1,
+              "min": 1
+            },
+            "cloudProvider": "aws",
+            "cooldown": 10,
+            "copySourceCustomBlockDeviceMappings": false,
+            "ebsOptimized": false,
+            "enabledMetrics": [],
+            "freeFormDetails": "",
+            "healthCheckGracePeriod": 600,
+            "healthCheckType": "EC2",
+            "iamRole": "BaseIAMRole",
+            "instanceMonitoring": false,
+            "instanceType": "t3.nano",
+            "keyPair": "Demo",
+            "loadBalancers": [],
+            "name": "Deploy in us-east-2",
+            "provider": "aws",
+            "reason": "sad",
+            "securityGroups": [],
+            "spotPrice": "",
+            "stack": "",
+            "strategy": "",
+            "subnetType": "",
+            "suspendedProcesses": [],
+            "tags": {},
+            "targetGroups": [],
+            "targetHealthyDeployPercentage": 100,
+            "terminationPolicies": [
+              "Default"
+            ],
+            "type": "createServerGroup",
+            "useAmiBlockDeviceMappings": false
+          },
+          "endTime": null,
+          "id": "01F5KC59ZVHCFYZPQ9851X0D3X",
+          "lastModified": null,
+          "name": "Deploy in us-east-2",
+          "outputs": {},
+          "parentStageId": "01F5KC59VX6DZFTP10F521J3G2",
+          "refId": "15<1",
+          "requisiteStageRefIds": [],
+          "scheduledTime": null,
+          "startTime": 1620926703698,
+          "startTimeExpiry": null,
+          "status": "RUNNING",
+          "syntheticStageOwner": "STAGE_BEFORE",
+          "tasks": [
+            {
+              "endTime": null,
+              "id": "1",
+              "implementingClass": "com.netflix.spinnaker.orca.kato.pipeline.strategy.DetermineSourceServerGroupTask",
+              "loopEnd": false,
+              "loopStart": false,
+              "name": "determineSourceServerGroup",
+              "stageEnd": false,
+              "stageStart": true,
+              "startTime": 1620926703970,
+              "status": "RUNNING"
+            },
+            {
+              "endTime": null,
+              "id": "2",
+              "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.DetermineHealthProvidersTask",
+              "loopEnd": false,
+              "loopStart": false,
+              "name": "determineHealthProviders",
+              "stageEnd": false,
+              "stageStart": false,
+              "startTime": null,
+              "status": "NOT_STARTED"
+            },
+            {
+              "endTime": null,
+              "id": "3",
+              "implementingClass": "com.netflix.spinnaker.orca.clouddriver.pipeline.providers.aws.CaptureSourceServerGroupCapacityTask",
+              "loopEnd": false,
+              "loopStart": false,
+              "name": "snapshotSourceServerGroup",
+              "stageEnd": false,
+              "stageStart": false,
+              "startTime": null,
+              "status": "NOT_STARTED"
+            },
+            {
+              "endTime": null,
+              "id": "4",
+              "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.servergroup.CreateServerGroupTask",
+              "loopEnd": false,
+              "loopStart": false,
+              "name": "createServerGroup",
+              "stageEnd": false,
+              "stageStart": false,
+              "startTime": null,
+              "status": "NOT_STARTED"
+            },
+            {
+              "endTime": null,
+              "id": "5",
+              "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.MonitorKatoTask",
+              "loopEnd": false,
+              "loopStart": false,
+              "name": "monitorDeploy",
+              "stageEnd": false,
+              "stageStart": false,
+              "startTime": null,
+              "status": "NOT_STARTED"
+            },
+            {
+              "endTime": null,
+              "id": "6",
+              "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.servergroup.ServerGroupCacheForceRefreshTask",
+              "loopEnd": false,
+              "loopStart": false,
+              "name": "forceCacheRefresh",
+              "stageEnd": false,
+              "stageStart": false,
+              "startTime": null,
+              "status": "NOT_STARTED"
+            },
+            {
+              "endTime": null,
+              "id": "7",
+              "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.instance.WaitForUpInstancesTask",
+              "loopEnd": false,
+              "loopStart": false,
+              "name": "waitForUpInstances",
+              "stageEnd": false,
+              "stageStart": false,
+              "startTime": null,
+              "status": "NOT_STARTED"
+            },
+            {
+              "endTime": null,
+              "id": "8",
+              "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.servergroup.ServerGroupCacheForceRefreshTask",
+              "loopEnd": false,
+              "loopStart": false,
+              "name": "forceCacheRefresh",
+              "stageEnd": false,
+              "stageStart": false,
+              "startTime": null,
+              "status": "NOT_STARTED"
+            },
+            {
+              "endTime": null,
+              "id": "9",
+              "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.GetCommitsTask",
+              "loopEnd": false,
+              "loopStart": false,
+              "name": "getCommits",
+              "stageEnd": true,
+              "stageStart": false,
+              "startTime": null,
+              "status": "NOT_STARTED"
+            }
+          ],
+          "type": "createServerGroup"
+        },
         {
           "context": {
             "clusters": [
@@ -562,8 +714,8 @@ description: "fill me with delicious data, Stephen!"
               "name": "determineTargetServerGroup",
               "stageEnd": true,
               "stageStart": true,
-              "startTime": 1620926705590,
-              "status": "RUNNING"
+              "startTime": null,
+              "status": "NOT_STARTED"
             }
           ],
           "type": "determineTargetServerGroup"
@@ -645,7 +797,7 @@ description: "fill me with delicious data, Stephen!"
             "stackName": "satest",
             "tags": {}
           },
-          "endTime": 1620926706234,
+          "endTime": null,
           "id": "01F5KC59VXV45WRT9VBRT4HSQC",
           "lastModified": null,
           "name": "Deploy (CloudFormation Stack)",
@@ -656,11 +808,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926703613,
           "startTimeExpiry": null,
-          "status": "TERMINAL",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926705629,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.providers.aws.cloudformation.DeployCloudFormationTask",
               "loopEnd": false,
@@ -669,7 +821,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926703699,
-              "status": "TERMINAL"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -758,8 +910,8 @@ description: "fill me with delicious data, Stephen!"
               "name": "disableCluster",
               "stageEnd": false,
               "stageStart": false,
-              "startTime": 1620926705735,
-              "status": "RUNNING"
+              "startTime": null,
+              "status": "NOT_STARTED"
             },
             {
               "endTime": null,
@@ -907,21 +1059,13 @@ description: "fill me with delicious data, Stephen!"
         },
         {
           "context": {
-            "exception": {
-              "details": {
-                "error": "Failed Expression Evaluation",
-                "errors": [
-                  "Failed to evaluate [var] EL1007E: Property or field 'number' cannot be found on null"
-                ]
-              }
-            },
             "expressionEvaluationSummary": {
               "trigger.buildInfo.number": [
                 {
                   "description": "Failed to evaluate [var] EL1007E: Property or field 'number' cannot be found on null",
                   "exceptionType": "org.springframework.expression.spel.SpelEvaluationException",
                   "level": "ERROR",
-                  "timestamp": 1620926706348
+                  "timestamp": 1620926704357
                 }
               ]
             },
@@ -934,24 +1078,22 @@ description: "fill me with delicious data, Stephen!"
               }
             ]
           },
-          "endTime": 1620926706688,
+          "endTime": null,
           "id": "01F5KC59VXH51C7G7KH5CA8JDZ",
           "lastModified": null,
           "name": "Evaluate Variables",
-          "outputs": {
-            "test": "${trigger.buildInfo.number}"
-          },
+          "outputs": {},
           "parentStageId": null,
           "refId": "21",
           "requisiteStageRefIds": [],
           "scheduledTime": null,
           "startTime": 1620926704036,
           "startTimeExpiry": null,
-          "status": "TERMINAL",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706275,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.pipeline.tasks.EvaluateVariablesTask",
               "loopEnd": false,
@@ -960,7 +1102,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": true,
               "stageStart": true,
               "startTime": 1620926704354,
-              "status": "SUCCEEDED"
+              "status": "RUNNING"
             }
           ],
           "type": "evaluateVariables"
@@ -968,19 +1110,6 @@ description: "fill me with delicious data, Stephen!"
         {
           "context": {
             "application": "hostname",
-            "artifacts": [
-              {
-                "customKind": false,
-                "location": "staging",
-                "metadata": {
-                  "account": "spinnaker"
-                },
-                "name": "hostname-metrics",
-                "reference": "hostname-metrics",
-                "type": "kubernetes/service",
-                "version": ""
-              }
-            ],
             "executionOptions": {
               "successful": true
             },
@@ -1000,98 +1129,24 @@ description: "fill me with delicious data, Stephen!"
                 "usePriorArtifact": false
               }
             ],
-            "pipeline": "7db1e350-dedb-4dc1-9976-e71f97b5f132",
-            "resolvedExpectedArtifacts": [
-              {
-                "boundArtifact": {
-                  "customKind": false,
-                  "location": "staging",
-                  "metadata": {
-                    "account": "spinnaker"
-                  },
-                  "name": "hostname-metrics",
-                  "reference": "hostname-metrics",
-                  "type": "kubernetes/service",
-                  "version": ""
-                },
-                "defaultArtifact": {
-                  "customKind": true,
-                  "metadata": {
-                    "id": "df96edee-9d90-486c-b269-ef110f469499"
-                  }
-                },
-                "id": "4d764059-d642-4870-ae63-476e59af708c",
-                "matchArtifact": {
-                  "customKind": true,
-                  "metadata": {
-                    "id": "7bd826db-a9c8-4052-ad15-5029baba0067"
-                  }
-                },
-                "useDefaultArtifact": false,
-                "usePriorArtifact": false
-              }
-            ]
+            "pipeline": "7db1e350-dedb-4dc1-9976-e71f97b5f132"
           },
-          "endTime": 1620926706460,
+          "endTime": null,
           "id": "01F5KC59VXDDF9TBZTVM242YHT",
           "lastModified": null,
           "name": "Find Artifacts From Execution",
-          "outputs": {
-            "artifacts": [
-              {
-                "customKind": false,
-                "location": "staging",
-                "metadata": {
-                  "account": "spinnaker"
-                },
-                "name": "hostname-metrics",
-                "reference": "hostname-metrics",
-                "type": "kubernetes/service",
-                "version": ""
-              }
-            ],
-            "resolvedExpectedArtifacts": [
-              {
-                "boundArtifact": {
-                  "customKind": false,
-                  "location": "staging",
-                  "metadata": {
-                    "account": "spinnaker"
-                  },
-                  "name": "hostname-metrics",
-                  "reference": "hostname-metrics",
-                  "type": "kubernetes/service",
-                  "version": ""
-                },
-                "defaultArtifact": {
-                  "customKind": true,
-                  "metadata": {
-                    "id": "df96edee-9d90-486c-b269-ef110f469499"
-                  }
-                },
-                "id": "4d764059-d642-4870-ae63-476e59af708c",
-                "matchArtifact": {
-                  "customKind": true,
-                  "metadata": {
-                    "id": "7bd826db-a9c8-4052-ad15-5029baba0067"
-                  }
-                },
-                "useDefaultArtifact": false,
-                "usePriorArtifact": false
-              }
-            ]
-          },
+          "outputs": {},
           "parentStageId": null,
           "refId": "22",
           "requisiteStageRefIds": [],
           "scheduledTime": null,
           "startTime": 1620926703681,
           "startTimeExpiry": null,
-          "status": "SUCCEEDED",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706126,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.artifacts.FindArtifactFromExecutionTask",
               "loopEnd": false,
@@ -1100,7 +1155,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": true,
               "stageStart": true,
               "startTime": 1620926703882,
-              "status": "SUCCEEDED"
+              "status": "RUNNING"
             }
           ],
           "type": "findArtifactFromExecution"
@@ -1129,7 +1184,7 @@ description: "fill me with delicious data, Stephen!"
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926705606,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.manifest.ResolveTargetManifestTask",
               "loopEnd": false,
@@ -1138,7 +1193,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926703827,
-              "status": "SUCCEEDED"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -1149,8 +1204,8 @@ description: "fill me with delicious data, Stephen!"
               "name": "findArtifactsFromResource",
               "stageEnd": false,
               "stageStart": false,
-              "startTime": 1620926706170,
-              "status": "RUNNING"
+              "startTime": null,
+              "status": "NOT_STARTED"
             },
             {
               "endTime": null,
@@ -1192,7 +1247,7 @@ description: "fill me with delicious data, Stephen!"
             ],
             "selectionStrategy": "LARGEST"
           },
-          "endTime": 1620926706311,
+          "endTime": null,
           "id": "01F5KC59VXR6HM4ZDGQS533X3Z",
           "lastModified": null,
           "name": "Find Image from Cluster",
@@ -1203,11 +1258,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926703771,
           "startTimeExpiry": null,
-          "status": "TERMINAL",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926705748,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.cluster.FindImageFromClusterTask",
               "loopEnd": false,
@@ -1216,7 +1271,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": true,
               "stageStart": true,
               "startTime": 1620926704082,
-              "status": "TERMINAL"
+              "status": "RUNNING"
             }
           ],
           "type": "findImage"
@@ -1248,7 +1303,7 @@ description: "fill me with delicious data, Stephen!"
               "test": "test"
             }
           },
-          "endTime": 1620926706292,
+          "endTime": null,
           "id": "01F5KC59VXVYM16F67ZF4DKPDP",
           "lastModified": null,
           "name": "Find Image from Tags",
@@ -1259,11 +1314,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926703765,
           "startTimeExpiry": null,
-          "status": "TERMINAL",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926705759,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.image.FindImageFromTagsTask",
               "loopEnd": false,
@@ -1272,7 +1327,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": true,
               "stageStart": true,
               "startTime": 1620926704147,
-              "status": "TERMINAL"
+              "status": "RUNNING"
             }
           ],
           "type": "findImageFromTags"
@@ -1291,7 +1346,7 @@ description: "fill me with delicious data, Stephen!"
               "timestamp": 1620926705364
             }
           },
-          "endTime": 1620926706406,
+          "endTime": null,
           "id": "01F5KC59VXFCE23E6ZZVWS5E34",
           "lastModified": null,
           "name": "Google Cloud Build",
@@ -1302,11 +1357,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926703770,
           "startTimeExpiry": null,
-          "status": "TERMINAL",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926705938,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.StartGoogleCloudBuildTask",
               "loopEnd": false,
@@ -1315,7 +1370,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926704336,
-              "status": "TERMINAL"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -1372,7 +1427,7 @@ description: "fill me with delicious data, Stephen!"
               "timestamp": 1620926704638
             }
           },
-          "endTime": 1620926706252,
+          "endTime": null,
           "id": "01F5KC59VXD6BY9PBRNTTQJVPV",
           "lastModified": null,
           "name": "Gremlin",
@@ -1383,11 +1438,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926703775,
           "startTimeExpiry": null,
-          "status": "TERMINAL",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926705680,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.gremlin.tasks.LaunchGremlinAttackTask",
               "loopEnd": false,
@@ -1396,7 +1451,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926704078,
-              "status": "TERMINAL"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -1416,20 +1471,9 @@ description: "fill me with delicious data, Stephen!"
         {
           "context": {
             "continuePipeline": false,
-            "exception": {
-              "details": {
-                "error": "Path parameter \"name\" value must not be null.",
-                "errors": [],
-                "kind": "UNEXPECTED"
-              },
-              "exceptionType": "RetrofitError",
-              "operation": "startJenkinsJob",
-              "shouldRetry": false,
-              "timestamp": 1620926705729
-            },
             "failPipeline": true
           },
-          "endTime": 1620926706506,
+          "endTime": null,
           "id": "01F5KC59VX8GY09S5X7RW10BWR",
           "lastModified": null,
           "name": "Jenkins",
@@ -1440,11 +1484,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926703791,
           "startTimeExpiry": null,
-          "status": "TERMINAL",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706275,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.StartJenkinsJobTask",
               "loopEnd": false,
@@ -1453,7 +1497,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926704300,
-              "status": "TERMINAL"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -1541,8 +1585,8 @@ description: "fill me with delicious data, Stephen!"
               "name": "determineTargetServerGroup",
               "stageEnd": true,
               "stageStart": true,
-              "startTime": 1620926705670,
-              "status": "RUNNING"
+              "startTime": null,
+              "status": "NOT_STARTED"
             }
           ],
           "type": "determineTargetServerGroup"
@@ -1714,7 +1758,7 @@ description: "fill me with delicious data, Stephen!"
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706122,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.manifest.ResolveTargetManifestTask",
               "loopEnd": false,
@@ -1723,7 +1767,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926704220,
-              "status": "SUCCEEDED"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -1734,8 +1778,8 @@ description: "fill me with delicious data, Stephen!"
               "name": "resolvePatchSourceManifest",
               "stageEnd": false,
               "stageStart": false,
-              "startTime": 1620926706461,
-              "status": "RUNNING"
+              "startTime": null,
+              "status": "NOT_STARTED"
             },
             {
               "endTime": null,
@@ -1935,23 +1979,10 @@ description: "fill me with delicious data, Stephen!"
             "application": "test",
             "cloudProvider": "kubernetes",
             "credentials": "spinnaker",
-            "exception": {
-              "details": {
-                "error": "Unexpected Task Failure",
-                "errors": [
-                  "Run Job only supports manifests with a single Job."
-                ],
-                "stackTrace": "java.lang.IllegalArgumentException: Run Job only supports manifests with a single Job.\n\tat com.netflix.spinnaker.orca.clouddriver.tasks.providers.kubernetes.KubernetesJobRunner.getManifestFields(KubernetesJobRunner.java:70)\n\tat com.netflix.spinnaker.orca.clouddriver.tasks.providers.kubernetes.KubernetesJobRunner.getOperations(KubernetesJobRunner.java:53)\n\tat com.netflix.spinnaker.orca.clouddriver.tasks.job.JobRunner$getOperations.call(Unknown Source)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:115)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:127)\n\tat com.netflix.spinnaker.orca.clouddriver.tasks.job.RunJobTask.execute(RunJobTask.groovy:72)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1$1.invoke(RunTaskHandler.kt:144)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withLoggingContext(RunTaskHandler.kt:419)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.access$withLoggingContext(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1.invoke(RunTaskHandler.kt:105)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.AuthenticationAware$sam$java_util_concurrent_Callable$0.call(AuthenticationAware.kt)\n\tat com.netflix.spinnaker.security.AuthenticatedRequest.lambda$wrapCallableForPrincipal$0(AuthenticatedRequest.java:272)\n\tat com.netflix.spinnaker.orca.q.handler.AuthenticationAware$DefaultImpls.withAuth(AuthenticationAware.kt:51)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withAuth(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1.invoke(RunTaskHandler.kt:104)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$withTask$1.invoke(RunTaskHandler.kt:247)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$withTask$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withTask$1.invoke(OrcaMessageHandler.kt:68)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withTask$1.invoke(OrcaMessageHandler.kt:46)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withStage$1.invoke(OrcaMessageHandler.kt:85)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withStage$1.invoke(OrcaMessageHandler.kt:46)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withExecution(OrcaMessageHandler.kt:95)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withExecution(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withStage(OrcaMessageHandler.kt:74)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withStage(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withTask(OrcaMessageHandler.kt:60)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withTask(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withTask(RunTaskHandler.kt:236)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.handle(RunTaskHandler.kt:101)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.handle(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.q.MessageHandler$DefaultImpls.invoke(MessageHandler.kt:36)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.invoke(OrcaMessageHandler.kt)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.audit.ExecutionTrackingMessageHandlerPostProcessor$ExecutionTrackingMessageHandlerProxy.invoke(ExecutionTrackingMessageHandlerPostProcessor.kt:72)\n\tat com.netflix.spinnaker.q.QueueProcessor$callback$1$1.run(QueueProcessor.kt:90)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)\n\tat java.base/java.lang.Thread.run(Thread.java:834)\n"
-              },
-              "exceptionType": "IllegalArgumentException",
-              "operation": "runJob",
-              "shouldRetry": false,
-              "timestamp": 1620926705804
-            },
             "manifestArtifactId": "05ad020e-73a6-49f2-9988-2073831219e9",
             "source": "artifact"
           },
-          "endTime": 1620926706674,
+          "endTime": null,
           "id": "01F5KC59VX0JK21YEGDWX8310Z",
           "lastModified": null,
           "name": "Run Job (Manifest)",
@@ -1962,11 +1993,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926703889,
           "startTimeExpiry": null,
-          "status": "TERMINAL",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706323,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.job.RunJobTask",
               "loopEnd": false,
@@ -1975,7 +2006,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926704288,
-              "status": "TERMINAL"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -2018,34 +2049,9 @@ description: "fill me with delicious data, Stephen!"
         },
         {
           "context": {
-            "exception": {
-              "details": {
-                "errors": [
-                  "com.fasterxml.jackson.core.JsonParseException: Unexpected character ('-' (code 45)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (String)\"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: '${parameters.namespace ?: staging}'\nspec:\n  finalizers:\n  - kubernetes\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: hostname\n  namespace: '${parameters.namespace ?: staging}'\nspec:\n  replicas: '3'\n  selector:\n    matchLabels:\n      app: hostname\n      version: v1\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n    \"[truncated 1231 chars]; line: 1, column: 3]",
-                  "Failed to evaluate [stackTrace] : java.lang.IllegalStateException: com.fasterxml.jackson.core.JsonParseException: Unexpected character ('-' (code 45)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (String)\"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: 'parameters.namespace ?: staging'\nspec:\n  finalizers:\n  - kubernetes\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: hostname\n  namespace: 'parameters.namespace ?: staging'\nspec:\n  replicas: '#toInt( parameters.replicas ?: 3)'\n  selector:\n    matchLabels:\n      app: hostname\n      version: v1\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n    \"[truncated 1231 chars]; line: 1, column: 3]\n\tat com.netflix.spinnaker.orca.clouddriver.tasks.pipeline.GetPipelinesFromArtifactTask.execute(GetPipelinesFromArtifactTask.java:100)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1$1.invoke(RunTaskHandler.kt:144)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withLoggingContext(RunTaskHandler.kt:419)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.access$withLoggingContext(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1.invoke(RunTaskHandler.kt:105)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.AuthenticationAware$sam$java_util_concurrent_Callable$0.call(AuthenticationAware.kt)\n\tat com.netflix.spinnaker.security.AuthenticatedRequest.lambda$wrapCallableForPrincipal$0(AuthenticatedRequest.java:272)\n\tat com.netflix.spinnaker.orca.q.handler.AuthenticationAware$DefaultImpls.withAuth(AuthenticationAware.kt:51)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withAuth(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1.invoke(RunTaskHandler.kt:104)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$withTask$1.invoke(RunTaskHandler.kt:247)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$withTask$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withTask$1.invoke(OrcaMessageHandler.kt:68)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withTask$1.invoke(OrcaMessageHandler.kt:46)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withStage$1.invoke(OrcaMessageHandler.kt:85)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withStage$1.invoke(OrcaMessageHandler.kt:46)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withExecution(OrcaMessageHandler.kt:95)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withExecution(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withStage(OrcaMessageHandler.kt:74)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withStage(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withTask(OrcaMessageHandler.kt:60)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withTask(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withTask(RunTaskHandler.kt:236)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.handle(RunTaskHandler.kt:101)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.handle(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.q.MessageHandler$DefaultImpls.invoke(MessageHandler.kt:36)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.invoke(OrcaMessageHandler.kt)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.audit.ExecutionTrackingMessageHandlerPostProcessor$ExecutionTrackingMessageHandlerProxy.invoke(ExecutionTrackingMessageHandlerPostProcessor.kt:72)\n\tat com.netflix.spinnaker.q.QueueProcessor$callback$1$1.run(QueueProcessor.kt:90)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)\n\tat java.base/java.lang.Thread.run(Thread.java:834)\nCaused by: com.fasterxml.jackson.core.JsonParseException: Unexpected character ('-' (code 45)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (String)\"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: 'parameters.namespace ?: staging'\nspec:\n  finalizers:\n  - kubernetes\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: hostname\n  namespace: 'parameters.namespace ?: staging'\nspec:\n  replicas: '#toInt( parameters.replicas ?: 3)'\n  selector:\n    matchLabels:\n      app: hostname\n      version: v1\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n    \"[truncated 1231 chars]; line: 1, column: 3]\n\tat com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:1851)\n\tat com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:707)\n\tat com.fasterxml.jackson.core.base.ParserMinimalBase.reportUnexpectedNumberChar(ParserMinimalBase.java:536)\n\tat com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleInvalidNumberStart(ReaderBasedJsonParser.java:1679)\n\tat com.fasterxml.jackson.core.json.ReaderBasedJsonParser._parseNegNumber(ReaderBasedJsonParser.java:1433)\n\tat com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:758)\n\tat com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4664)\n\tat com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4513)\n\tat com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3468)\n\tat com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3451)\n\tat com.netflix.spinnaker.orca.clouddriver.tasks.pipeline.GetPipelinesFromArtifactTask.execute(GetPipelinesFromArtifactTask.java:97)\n\t... 35 more\n not found",
-                  "Failed to evaluate com.fasterxml.jackson.core.JsonParseException: Unexpected character ('-' (code 45)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (String)\"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: '${ parameters.namespace ?: staging }'\nspec:\n  finalizers:\n  - kubernetes\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: hostname\n  namespace: '${ parameters.namespace ?: staging }'\nspec:\n  replicas: '${ #toInt( parameters.replicas ?: 3) }'\n  selector:\n    matchLabels:\n      app: hostname\n      version: v1\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n    \"[truncated 1231 chars]; line: 1, column: 3] : com.fasterxml.jackson.core.JsonParseException: Unexpected character ('-' (code 45)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (String)\"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: 'parameters.namespace ?: staging'\nspec:\n  finalizers:\n  - kubernetes\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: hostname\n  namespace: 'parameters.namespace ?: staging'\nspec:\n  replicas: '#toInt( parameters.replicas ?: 3)'\n  selector:\n    matchLabels:\n      app: hostname\n      version: v1\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n    \"[truncated 1231 chars]; line: 1, column: 3] not found"
-                ]
-              }
-            },
-            "expressionEvaluationSummary": {
-              "com.fasterxml.jackson.core.JsonParseException: Unexpected character ('-' (code 45)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (String)\"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: 'parameters.namespace ?: staging'\nspec:\n  finalizers:\n  - kubernetes\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: hostname\n  namespace: 'parameters.namespace ?: staging'\nspec:\n  replicas: '#toInt( parameters.replicas ?: 3)'\n  selector:\n    matchLabels:\n      app: hostname\n      version: v1\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n    \"[truncated 1231 chars]; line: 1, column: 3]": [
-                {
-                  "description": "Failed to evaluate com.fasterxml.jackson.core.JsonParseException: Unexpected character ('-' (code 45)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (String)\"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: '${ parameters.namespace ?: staging }'\nspec:\n  finalizers:\n  - kubernetes\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: hostname\n  namespace: '${ parameters.namespace ?: staging }'\nspec:\n  replicas: '${ #toInt( parameters.replicas ?: 3) }'\n  selector:\n    matchLabels:\n      app: hostname\n      version: v1\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n    \"[truncated 1231 chars]; line: 1, column: 3] : com.fasterxml.jackson.core.JsonParseException: Unexpected character ('-' (code 45)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (String)\"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: 'parameters.namespace ?: staging'\nspec:\n  finalizers:\n  - kubernetes\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: hostname\n  namespace: 'parameters.namespace ?: staging'\nspec:\n  replicas: '#toInt( parameters.replicas ?: 3)'\n  selector:\n    matchLabels:\n      app: hostname\n      version: v1\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n    \"[truncated 1231 chars]; line: 1, column: 3] not found",
-                  "level": "INFO",
-                  "timestamp": 1620926706287
-                }
-              ],
-              "java.lang.IllegalStateException: com.fasterxml.jackson.core.JsonParseException: Unexpected character ('-' (code 45)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (String)\"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: 'parameters.namespace ?: staging'\nspec:\n  finalizers:\n  - kubernetes\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: hostname\n  namespace: 'parameters.namespace ?: staging'\nspec:\n  replicas: '#toInt( parameters.replicas ?: 3)'\n  selector:\n    matchLabels:\n      app: hostname\n      version: v1\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n    \"[truncated 1231 chars]; line: 1, column: 3]\n\tat com.netflix.spinnaker.orca.clouddriver.tasks.pipeline.GetPipelinesFromArtifactTask.execute(GetPipelinesFromArtifactTask.java:100)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1$1.invoke(RunTaskHandler.kt:144)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withLoggingContext(RunTaskHandler.kt:419)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.access$withLoggingContext(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1.invoke(RunTaskHandler.kt:105)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.AuthenticationAware$sam$java_util_concurrent_Callable$0.call(AuthenticationAware.kt)\n\tat com.netflix.spinnaker.security.AuthenticatedRequest.lambda$wrapCallableForPrincipal$0(AuthenticatedRequest.java:272)\n\tat com.netflix.spinnaker.orca.q.handler.AuthenticationAware$DefaultImpls.withAuth(AuthenticationAware.kt:51)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withAuth(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1.invoke(RunTaskHandler.kt:104)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$withTask$1.invoke(RunTaskHandler.kt:247)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$withTask$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withTask$1.invoke(OrcaMessageHandler.kt:68)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withTask$1.invoke(OrcaMessageHandler.kt:46)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withStage$1.invoke(OrcaMessageHandler.kt:85)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withStage$1.invoke(OrcaMessageHandler.kt:46)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withExecution(OrcaMessageHandler.kt:95)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withExecution(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withStage(OrcaMessageHandler.kt:74)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withStage(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withTask(OrcaMessageHandler.kt:60)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withTask(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withTask(RunTaskHandler.kt:236)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.handle(RunTaskHandler.kt:101)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.handle(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.q.MessageHandler$DefaultImpls.invoke(MessageHandler.kt:36)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.invoke(OrcaMessageHandler.kt)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.audit.ExecutionTrackingMessageHandlerPostProcessor$ExecutionTrackingMessageHandlerProxy.invoke(ExecutionTrackingMessageHandlerPostProcessor.kt:72)\n\tat com.netflix.spinnaker.q.QueueProcessor$callback$1$1.run(QueueProcessor.kt:90)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)\n\tat java.base/java.lang.Thread.run(Thread.java:834)\nCaused by: com.fasterxml.jackson.core.JsonParseException: Unexpected character ('-' (code 45)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (String)\"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: 'parameters.namespace ?: staging'\nspec:\n  finalizers:\n  - kubernetes\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: hostname\n  namespace: 'parameters.namespace ?: staging'\nspec:\n  replicas: '#toInt( parameters.replicas ?: 3)'\n  selector:\n    matchLabels:\n      app: hostname\n      version: v1\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n    \"[truncated 1231 chars]; line: 1, column: 3]\n\tat com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:1851)\n\tat com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:707)\n\tat com.fasterxml.jackson.core.base.ParserMinimalBase.reportUnexpectedNumberChar(ParserMinimalBase.java:536)\n\tat com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleInvalidNumberStart(ReaderBasedJsonParser.java:1679)\n\tat com.fasterxml.jackson.core.json.ReaderBasedJsonParser._parseNegNumber(ReaderBasedJsonParser.java:1433)\n\tat com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:758)\n\tat com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4664)\n\tat com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4513)\n\tat com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3468)\n\tat com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3451)\n\tat com.netflix.spinnaker.orca.clouddriver.tasks.pipeline.GetPipelinesFromArtifactTask.execute(GetPipelinesFromArtifactTask.java:97)\n\t... 35 more\n": [
-                {
-                  "description": "Failed to evaluate [stackTrace] : java.lang.IllegalStateException: com.fasterxml.jackson.core.JsonParseException: Unexpected character ('-' (code 45)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (String)\"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: 'parameters.namespace ?: staging'\nspec:\n  finalizers:\n  - kubernetes\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: hostname\n  namespace: 'parameters.namespace ?: staging'\nspec:\n  replicas: '#toInt( parameters.replicas ?: 3)'\n  selector:\n    matchLabels:\n      app: hostname\n      version: v1\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n    \"[truncated 1231 chars]; line: 1, column: 3]\n\tat com.netflix.spinnaker.orca.clouddriver.tasks.pipeline.GetPipelinesFromArtifactTask.execute(GetPipelinesFromArtifactTask.java:100)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1$1.invoke(RunTaskHandler.kt:144)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withLoggingContext(RunTaskHandler.kt:419)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.access$withLoggingContext(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1.invoke(RunTaskHandler.kt:105)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.AuthenticationAware$sam$java_util_concurrent_Callable$0.call(AuthenticationAware.kt)\n\tat com.netflix.spinnaker.security.AuthenticatedRequest.lambda$wrapCallableForPrincipal$0(AuthenticatedRequest.java:272)\n\tat com.netflix.spinnaker.orca.q.handler.AuthenticationAware$DefaultImpls.withAuth(AuthenticationAware.kt:51)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withAuth(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1.invoke(RunTaskHandler.kt:104)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$handle$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$withTask$1.invoke(RunTaskHandler.kt:247)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler$withTask$1.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withTask$1.invoke(OrcaMessageHandler.kt:68)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withTask$1.invoke(OrcaMessageHandler.kt:46)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withStage$1.invoke(OrcaMessageHandler.kt:85)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$withStage$1.invoke(OrcaMessageHandler.kt:46)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withExecution(OrcaMessageHandler.kt:95)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withExecution(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withStage(OrcaMessageHandler.kt:74)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withStage(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.withTask(OrcaMessageHandler.kt:60)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withTask(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.withTask(RunTaskHandler.kt:236)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.handle(RunTaskHandler.kt:101)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.handle(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.q.MessageHandler$DefaultImpls.invoke(MessageHandler.kt:36)\n\tat com.netflix.spinnaker.orca.q.handler.OrcaMessageHandler$DefaultImpls.invoke(OrcaMessageHandler.kt)\n\tat com.netflix.spinnaker.orca.q.handler.RunTaskHandler.invoke(RunTaskHandler.kt:75)\n\tat com.netflix.spinnaker.orca.q.audit.ExecutionTrackingMessageHandlerPostProcessor$ExecutionTrackingMessageHandlerProxy.invoke(ExecutionTrackingMessageHandlerPostProcessor.kt:72)\n\tat com.netflix.spinnaker.q.QueueProcessor$callback$1$1.run(QueueProcessor.kt:90)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)\n\tat java.base/java.lang.Thread.run(Thread.java:834)\nCaused by: com.fasterxml.jackson.core.JsonParseException: Unexpected character ('-' (code 45)) in numeric value: expected digit (0-9) to follow minus sign, for valid numeric value\n at [Source: (String)\"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: 'parameters.namespace ?: staging'\nspec:\n  finalizers:\n  - kubernetes\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: hostname\n  namespace: 'parameters.namespace ?: staging'\nspec:\n  replicas: '#toInt( parameters.replicas ?: 3)'\n  selector:\n    matchLabels:\n      app: hostname\n      version: v1\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n    \"[truncated 1231 chars]; line: 1, column: 3]\n\tat com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:1851)\n\tat com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:707)\n\tat com.fasterxml.jackson.core.base.ParserMinimalBase.reportUnexpectedNumberChar(ParserMinimalBase.java:536)\n\tat com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleInvalidNumberStart(ReaderBasedJsonParser.java:1679)\n\tat com.fasterxml.jackson.core.json.ReaderBasedJsonParser._parseNegNumber(ReaderBasedJsonParser.java:1433)\n\tat com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:758)\n\tat com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4664)\n\tat com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4513)\n\tat com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3468)\n\tat com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3451)\n\tat com.netflix.spinnaker.orca.clouddriver.tasks.pipeline.GetPipelinesFromArtifactTask.execute(GetPipelinesFromArtifactTask.java:97)\n\t... 35 more\n not found",
-                  "level": "INFO",
-                  "timestamp": 1620926706260
-                }
-              ]
-            },
             "pipelinesArtifactId": "05ad020e-73a6-49f2-9988-2073831219e9"
           },
-          "endTime": 1620926706582,
+          "endTime": null,
           "id": "01F5KC59VXEB15WXN5VSW8H8H8",
           "lastModified": null,
           "name": "Save Pipelines",
@@ -2056,11 +2062,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926703891,
           "startTimeExpiry": null,
-          "status": "TERMINAL",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706257,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.pipeline.GetPipelinesFromArtifactTask",
               "loopEnd": false,
@@ -2069,7 +2075,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926704288,
-              "status": "TERMINAL"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -2153,9 +2159,6 @@ description: "fill me with delicious data, Stephen!"
             "cloudProviderType": "aws",
             "cluster": "TEST",
             "credentials": "staging",
-            "interestingHealthProviderNames": [
-              "Amazon"
-            ],
             "preferLargerOverNewer": "false",
             "regions": [
               "us-east-2"
@@ -2177,7 +2180,7 @@ description: "fill me with delicious data, Stephen!"
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706325,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.DetermineHealthProvidersTask",
               "loopEnd": false,
@@ -2186,7 +2189,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926704294,
-              "status": "SUCCEEDED"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -2197,8 +2200,8 @@ description: "fill me with delicious data, Stephen!"
               "name": "scaleDownCluster",
               "stageEnd": false,
               "stageStart": false,
-              "startTime": 1620926706627,
-              "status": "RUNNING"
+              "startTime": null,
+              "status": "NOT_STARTED"
             },
             {
               "endTime": null,
@@ -2329,9 +2332,6 @@ description: "fill me with delicious data, Stephen!"
             "cloudProviderType": "aws",
             "cluster": "TEST",
             "credentials": "staging",
-            "interestingHealthProviderNames": [
-              "Amazon"
-            ],
             "regions": [
               "us-east-2"
             ],
@@ -2353,7 +2353,7 @@ description: "fill me with delicious data, Stephen!"
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706404,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.DetermineHealthProvidersTask",
               "loopEnd": false,
@@ -2362,7 +2362,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926704384,
-              "status": "SUCCEEDED"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -2373,8 +2373,8 @@ description: "fill me with delicious data, Stephen!"
               "name": "shrinkCluster",
               "stageEnd": false,
               "stageStart": false,
-              "startTime": 1620926706682,
-              "status": "RUNNING"
+              "startTime": null,
+              "status": "NOT_STARTED"
             },
             {
               "endTime": null,
@@ -2449,7 +2449,7 @@ description: "fill me with delicious data, Stephen!"
               "TEST": "TEST"
             }
           },
-          "endTime": 1620926706305,
+          "endTime": null,
           "id": "01F5KC59VX7DERMTWGYZA30B5X",
           "lastModified": null,
           "name": "Tag Image",
@@ -2460,11 +2460,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926703980,
           "startTimeExpiry": null,
-          "status": "TERMINAL",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926705773,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.image.UpsertImageTagsTask",
               "loopEnd": false,
@@ -2473,7 +2473,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926704310,
-              "status": "TERMINAL"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -2551,22 +2551,10 @@ description: "fill me with delicious data, Stephen!"
           "context": {
             "account": "spinnaker",
             "cloudProvider": "kubernetes",
-            "kato.last.task.id": {
-              "id": "9e7cc23a-1448-47cc-99d8-511122b9b613"
-            },
-            "kato.result.expected": false,
             "location": "staging",
-            "manifest.account.name": "spinnaker",
-            "manifest.location": "staging",
-            "manifest.name": "deployment hostname",
             "manifestName": "deployment hostname",
             "mode": "static",
-            "numRevisionsBack": 1,
-            "outputs.manifestNamesByNamespace": {
-              "staging": [
-                "deployment hostname"
-              ]
-            }
+            "numRevisionsBack": 1
           },
           "endTime": null,
           "id": "01F5KC59VX9TE0A2AJ6XMJ8F4X",
@@ -2583,7 +2571,7 @@ description: "fill me with delicious data, Stephen!"
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706592,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.manifest.UndoRolloutManifestTask",
               "loopEnd": false,
@@ -2592,7 +2580,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926704314,
-              "status": "SUCCEEDED"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -2625,7 +2613,7 @@ description: "fill me with delicious data, Stephen!"
           "context": {
             "waitTime": 30
           },
-          "endTime": 1620926706402,
+          "endTime": null,
           "id": "01F5KC59VXSZJG27YDEWDA3X4N",
           "lastModified": null,
           "name": "Wait",
@@ -2636,11 +2624,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926704152,
           "startTimeExpiry": null,
-          "status": "CANCELED",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706086,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.pipeline.tasks.WaitTask",
               "loopEnd": false,
@@ -2649,7 +2637,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": true,
               "stageStart": true,
               "startTime": 1620926704453,
-              "status": "CANCELED"
+              "status": "RUNNING"
             }
           ],
           "type": "wait"
@@ -2658,7 +2646,7 @@ description: "fill me with delicious data, Stephen!"
           "context": {
             "statusUrlResolution": "getMethod"
           },
-          "endTime": 1620926706658,
+          "endTime": null,
           "id": "01F5KC59VXHMA91KG8XYQ7RRZK",
           "lastModified": null,
           "name": "Webhook",
@@ -2669,11 +2657,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926704157,
           "startTimeExpiry": null,
-          "status": "CANCELED",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706369,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.webhook.tasks.CreateWebhookTask",
               "loopEnd": false,
@@ -2682,93 +2670,12 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": true,
               "stageStart": true,
               "startTime": 1620926704632,
-              "status": "CANCELED"
+              "status": "RUNNING"
             }
           ],
           "type": "webhook"
         },
-        {
-          "context": {
-            "continuePipeline": false,
-            "failPipeline": true
-          },
-          "endTime": 1620926706589,
-          "id": "01F5KC59VXKBS6NWPNNTG1T1EH",
-          "lastModified": null,
-          "name": "Wercker",
-          "outputs": {},
-          "parentStageId": null,
-          "refId": "44",
-          "requisiteStageRefIds": [],
-          "scheduledTime": null,
-          "startTime": 1620926704161,
-          "startTimeExpiry": null,
-          "status": "CANCELED",
-          "syntheticStageOwner": null,
-          "tasks": [
-            {
-              "endTime": 1620926706286,
-              "id": "1",
-              "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.StartJenkinsJobTask",
-              "loopEnd": false,
-              "loopStart": false,
-              "name": "startWerckerJob",
-              "stageEnd": false,
-              "stageStart": true,
-              "startTime": 1620926704452,
-              "status": "CANCELED"
-            },
-            {
-              "endTime": null,
-              "id": "2",
-              "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.MonitorWerckerJobStartedTask",
-              "loopEnd": false,
-              "loopStart": false,
-              "name": "waitForWerckerJobStart",
-              "stageEnd": false,
-              "stageStart": false,
-              "startTime": null,
-              "status": "NOT_STARTED"
-            },
-            {
-              "endTime": null,
-              "id": "3",
-              "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.MonitorJenkinsJobTask",
-              "loopEnd": false,
-              "loopStart": false,
-              "name": "monitorWerckerJob",
-              "stageEnd": false,
-              "stageStart": false,
-              "startTime": null,
-              "status": "NOT_STARTED"
-            },
-            {
-              "endTime": null,
-              "id": "4",
-              "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.GetBuildPropertiesTask",
-              "loopEnd": false,
-              "loopStart": false,
-              "name": "getBuildProperties",
-              "stageEnd": false,
-              "stageStart": false,
-              "startTime": null,
-              "status": "NOT_STARTED"
-            },
-            {
-              "endTime": null,
-              "id": "5",
-              "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.GetBuildArtifactsTask",
-              "loopEnd": false,
-              "loopStart": false,
-              "name": "getBuildArtifacts",
-              "stageEnd": true,
-              "stageStart": false,
-              "startTime": null,
-              "status": "NOT_STARTED"
-            }
-          ],
-          "type": "wercker"
-        },
+        "01F5KC59VXKBS6NWPNNTG1T1EH",
         {
           "context": {
             "amiSuffix": "20210513172504",
@@ -2808,8 +2715,8 @@ description: "fill me with delicious data, Stephen!"
               "name": "createBake",
               "stageEnd": false,
               "stageStart": true,
-              "startTime": 1620926705585,
-              "status": "RUNNING"
+              "startTime": null,
+              "status": "NOT_STARTED"
             },
             {
               "endTime": null,
@@ -2898,7 +2805,7 @@ description: "fill me with delicious data, Stephen!"
         },
         {
           "context": {},
-          "endTime": 1620926706396,
+          "endTime": null,
           "id": "01F5KC59VX4RE5RZVJG239ZD42",
           "lastModified": null,
           "name": "AWS CodeBuild",
@@ -2909,11 +2816,11 @@ description: "fill me with delicious data, Stephen!"
           "scheduledTime": null,
           "startTime": 1620926704185,
           "startTimeExpiry": null,
-          "status": "CANCELED",
+          "status": "RUNNING",
           "syntheticStageOwner": null,
           "tasks": [
             {
-              "endTime": 1620926706077,
+              "endTime": null,
               "id": "1",
               "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.StartAwsCodeBuildTask",
               "loopEnd": false,
@@ -2922,7 +2829,7 @@ description: "fill me with delicious data, Stephen!"
               "stageEnd": false,
               "stageStart": true,
               "startTime": 1620926704452,
-              "status": "CANCELED"
+              "status": "RUNNING"
             },
             {
               "endTime": null,
@@ -3150,97 +3057,54 @@ description: "fill me with delicious data, Stephen!"
     },
     "stage": {
       "context": {
-        "account": "staging",
-        "application": "test",
-        "availabilityZones": {
-          "us-east-2": [
-            "us-east-2a",
-            "us-east-2b",
-            "us-east-2c"
-          ]
-        },
-        "capacity": {
-          "desired": 1,
-          "max": 1,
-          "min": 1
-        },
-        "cloudProvider": "aws",
-        "cooldown": 10,
-        "copySourceCustomBlockDeviceMappings": false,
-        "ebsOptimized": false,
-        "enabledMetrics": [],
-        "freeFormDetails": "",
-        "healthCheckGracePeriod": 600,
-        "healthCheckType": "EC2",
-        "iamRole": "BaseIAMRole",
-        "instanceMonitoring": false,
-        "instanceType": "t3.nano",
-        "keyPair": "Demo",
-        "loadBalancers": [],
-        "name": "Deploy in us-east-2",
-        "provider": "aws",
-        "reason": "sad",
-        "securityGroups": [],
-        "source": {},
-        "spotPrice": "",
-        "stack": "",
-        "strategy": "",
-        "subnetType": "",
-        "suspendedProcesses": [],
-        "tags": {},
-        "targetGroups": [],
-        "targetHealthyDeployPercentage": 100,
-        "terminationPolicies": [
-          "Default"
-        ],
-        "type": "createServerGroup",
-        "useAmiBlockDeviceMappings": false
+        "continuePipeline": false,
+        "failPipeline": true
       },
       "endTime": null,
-      "id": "01F5KC59ZVHCFYZPQ9851X0D3X",
+      "id": "01F5KC59VXKBS6NWPNNTG1T1EH",
       "lastModified": null,
-      "name": "Deploy in us-east-2",
+      "name": "Wercker",
       "outputs": {},
-      "parentStageId": "01F5KC59VX6DZFTP10F521J3G2",
-      "refId": "15<1",
+      "parentStageId": null,
+      "refId": "44",
       "requisiteStageRefIds": [],
       "scheduledTime": null,
-      "startTime": 1620926703698,
+      "startTime": 1620926704161,
       "startTimeExpiry": null,
       "status": "RUNNING",
-      "syntheticStageOwner": "STAGE_BEFORE",
+      "syntheticStageOwner": null,
       "tasks": [
         {
-          "endTime": 1620926706124,
+          "endTime": null,
           "id": "1",
-          "implementingClass": "com.netflix.spinnaker.orca.kato.pipeline.strategy.DetermineSourceServerGroupTask",
+          "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.StartJenkinsJobTask",
           "loopEnd": false,
           "loopStart": false,
-          "name": "determineSourceServerGroup",
+          "name": "startWerckerJob",
           "stageEnd": false,
           "stageStart": true,
-          "startTime": 1620926703970,
-          "status": "SUCCEEDED"
-        },
-        {
-          "endTime": null,
-          "id": "2",
-          "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.DetermineHealthProvidersTask",
-          "loopEnd": false,
-          "loopStart": false,
-          "name": "determineHealthProviders",
-          "stageEnd": false,
-          "stageStart": false,
-          "startTime": 1620926706454,
+          "startTime": 1620926704452,
           "status": "RUNNING"
         },
         {
           "endTime": null,
-          "id": "3",
-          "implementingClass": "com.netflix.spinnaker.orca.clouddriver.pipeline.providers.aws.CaptureSourceServerGroupCapacityTask",
+          "id": "2",
+          "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.MonitorWerckerJobStartedTask",
           "loopEnd": false,
           "loopStart": false,
-          "name": "snapshotSourceServerGroup",
+          "name": "waitForWerckerJobStart",
+          "stageEnd": false,
+          "stageStart": false,
+          "startTime": null,
+          "status": "NOT_STARTED"
+        },
+        {
+          "endTime": null,
+          "id": "3",
+          "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.MonitorJenkinsJobTask",
+          "loopEnd": false,
+          "loopStart": false,
+          "name": "monitorWerckerJob",
           "stageEnd": false,
           "stageStart": false,
           "startTime": null,
@@ -3249,10 +3113,10 @@ description: "fill me with delicious data, Stephen!"
         {
           "endTime": null,
           "id": "4",
-          "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.servergroup.CreateServerGroupTask",
+          "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.GetBuildPropertiesTask",
           "loopEnd": false,
           "loopStart": false,
-          "name": "createServerGroup",
+          "name": "getBuildProperties",
           "stageEnd": false,
           "stageStart": false,
           "startTime": null,
@@ -3261,65 +3125,17 @@ description: "fill me with delicious data, Stephen!"
         {
           "endTime": null,
           "id": "5",
-          "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.MonitorKatoTask",
+          "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.GetBuildArtifactsTask",
           "loopEnd": false,
           "loopStart": false,
-          "name": "monitorDeploy",
-          "stageEnd": false,
-          "stageStart": false,
-          "startTime": null,
-          "status": "NOT_STARTED"
-        },
-        {
-          "endTime": null,
-          "id": "6",
-          "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.servergroup.ServerGroupCacheForceRefreshTask",
-          "loopEnd": false,
-          "loopStart": false,
-          "name": "forceCacheRefresh",
-          "stageEnd": false,
-          "stageStart": false,
-          "startTime": null,
-          "status": "NOT_STARTED"
-        },
-        {
-          "endTime": null,
-          "id": "7",
-          "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.instance.WaitForUpInstancesTask",
-          "loopEnd": false,
-          "loopStart": false,
-          "name": "waitForUpInstances",
-          "stageEnd": false,
-          "stageStart": false,
-          "startTime": null,
-          "status": "NOT_STARTED"
-        },
-        {
-          "endTime": null,
-          "id": "8",
-          "implementingClass": "com.netflix.spinnaker.orca.clouddriver.tasks.servergroup.ServerGroupCacheForceRefreshTask",
-          "loopEnd": false,
-          "loopStart": false,
-          "name": "forceCacheRefresh",
-          "stageEnd": false,
-          "stageStart": false,
-          "startTime": null,
-          "status": "NOT_STARTED"
-        },
-        {
-          "endTime": null,
-          "id": "9",
-          "implementingClass": "com.netflix.spinnaker.orca.igor.tasks.GetCommitsTask",
-          "loopEnd": false,
-          "loopStart": false,
-          "name": "getCommits",
+          "name": "getBuildArtifacts",
           "stageEnd": true,
           "stageStart": false,
           "startTime": null,
           "status": "NOT_STARTED"
         }
       ],
-      "type": "createServerGroup"
+      "type": "wercker"
     },
     "user": {
       "isAdmin": false,
@@ -3347,8 +3163,8 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.authentication.allowedAccounts[]` | `string`  |             |
 | `input.pipeline.authentication.user`              | `string`  |             |
 | `input.pipeline.buildTime`                        | `number`  |             |
-| `input.pipeline.canceled`                         | `boolean` |             |
 | `input.pipeline.canceledBy`                       | ` `       |             |
+| `input.pipeline.canceled`                         | `boolean` |             |
 | `input.pipeline.cancellationReason`               | ` `       |             |
 | `input.pipeline.description`                      | ` `       |             |
 | `input.pipeline.endTime`                          | `number`  |             |
@@ -3362,8 +3178,8 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.pipelineConfigId`                 | `string`  |             |
 | `input.pipeline.source`                           | ` `       |             |
 | `input.pipeline.spelEvaluator`                    | `string`  |             |
-| `input.pipeline.startTime`                        | `number`  |             |
 | `input.pipeline.startTimeExpiry`                  | ` `       |             |
+| `input.pipeline.startTime`                        | `number`  |             |
 | `input.pipeline.status`                           | `string`  |             |
 | `input.pipeline.templateVariables`                | ` `       |             |
 | `input.pipeline.type`                             | `string`  |             |
@@ -3372,7 +3188,6 @@ description: "fill me with delicious data, Stephen!"
 
 | Key                                                                                                    | Type      | Description |
 | ------------------------------------------------------------------------------------------------------ | --------- | ----------- |
-| `input.pipeline.stages[]`                                                                              | `string`  |             |
 | `input.pipeline.stages[].context.account`                                                              | `string`  |             |
 | `input.pipeline.stages[].context.action`                                                               | `string`  |             |
 | `input.pipeline.stages[].context.alias`                                                                | `string`  |             |
@@ -3382,21 +3197,16 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.stages[].context.analysisType`                                                         | `string`  |             |
 | `input.pipeline.stages[].context.app`                                                                  | `string`  |             |
 | `input.pipeline.stages[].context.application`                                                          | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].customKind`                                               | `boolean` |             |
-| `input.pipeline.stages[].context.artifacts[].location`                                                 | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].metadata.account`                                         | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].name`                                                     | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].reference`                                                | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].type`                                                     | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].version`                                                  | `string`  |             |
-| `input.pipeline.stages[].context.attempt`                                                              | `number`  |             |
-| `input.pipeline.stages[].context.baseAmi`                                                              | `string`  |             |
+| `input.pipeline.stages[].context.availabilityZones.us-east-2[]`                                        | `string`  |             |
 | `input.pipeline.stages[].context.baseLabel`                                                            | `string`  |             |
 | `input.pipeline.stages[].context.baseOs`                                                               | `string`  |             |
 | `input.pipeline.stages[].context.beforeStagePlanningFailed`                                            | `boolean` |             |
 | `input.pipeline.stages[].context.canaryConfig.metricsAccountName`                                      | `string`  |             |
 | `input.pipeline.stages[].context.canaryConfig.scopes[].scopeName`                                      | `string`  |             |
 | `input.pipeline.stages[].context.canaryConfig.storageAccountName`                                      | `string`  |             |
+| `input.pipeline.stages[].context.capacity.desired`                                                     | `number`  |             |
+| `input.pipeline.stages[].context.capacity.max`                                                         | `number`  |             |
+| `input.pipeline.stages[].context.capacity.min`                                                         | `number`  |             |
 | `input.pipeline.stages[].context.cloudProviderType`                                                    | `string`  |             |
 | `input.pipeline.stages[].context.cloudProvider`                                                        | `string`  |             |
 | `input.pipeline.stages[].context.cluster`                                                              | `string`  |             |
@@ -3409,8 +3219,6 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.stages[].context.clusters[].cloudProvider`                                             | `string`  |             |
 | `input.pipeline.stages[].context.clusters[].cooldown`                                                  | `number`  |             |
 | `input.pipeline.stages[].context.clusters[].copySourceCustomBlockDeviceMappings`                       | `boolean` |             |
-| `input.pipeline.stages[].context.clusters[].delayBeforeDisableSec`                                     | `number`  |             |
-| `input.pipeline.stages[].context.clusters[].delayBeforeScaleDownSec`                                   | `number`  |             |
 | `input.pipeline.stages[].context.clusters[].ebsOptimized`                                              | `boolean` |             |
 | `input.pipeline.stages[].context.clusters[].freeFormDetails`                                           | `string`  |             |
 | `input.pipeline.stages[].context.clusters[].healthCheckGracePeriod`                                    | `number`  |             |
@@ -3419,23 +3227,20 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.stages[].context.clusters[].instanceMonitoring`                                        | `boolean` |             |
 | `input.pipeline.stages[].context.clusters[].instanceType`                                              | `string`  |             |
 | `input.pipeline.stages[].context.clusters[].keyPair`                                                   | `string`  |             |
-| `input.pipeline.stages[].context.clusters[].maxRemainingAsgs`                                          | `number`  |             |
 | `input.pipeline.stages[].context.clusters[].provider`                                                  | `string`  |             |
 | `input.pipeline.stages[].context.clusters[].reason`                                                    | `string`  |             |
-| `input.pipeline.stages[].context.clusters[].rollback.onFailure`                                        | `boolean` |             |
-| `input.pipeline.stages[].context.clusters[].scaleDown`                                                 | `boolean` |             |
 | `input.pipeline.stages[].context.clusters[].spotPrice`                                                 | `string`  |             |
 | `input.pipeline.stages[].context.clusters[].stack`                                                     | `string`  |             |
 | `input.pipeline.stages[].context.clusters[].strategy`                                                  | `string`  |             |
 | `input.pipeline.stages[].context.clusters[].subnetType`                                                | `string`  |             |
-| `input.pipeline.stages[].context.clusters[].tags.Name`                                                 | `string`  |             |
 | `input.pipeline.stages[].context.clusters[].targetHealthyDeployPercentage`                             | `number`  |             |
 | `input.pipeline.stages[].context.clusters[].terminationPolicies[]`                                     | `string`  |             |
 | `input.pipeline.stages[].context.clusters[].useAmiBlockDeviceMappings`                                 | `boolean` |             |
-| `input.pipeline.stages[].context.consecutiveNotFound`                                                  | `number`  |             |
 | `input.pipeline.stages[].context.continuePipeline`                                                     | `boolean` |             |
+| `input.pipeline.stages[].context.cooldown`                                                             | `number`  |             |
 | `input.pipeline.stages[].context.copySourceCustomBlockDeviceMappings`                                  | `boolean` |             |
 | `input.pipeline.stages[].context.credentials`                                                          | `string`  |             |
+| `input.pipeline.stages[].context.ebsOptimized`                                                         | `boolean` |             |
 | `input.pipeline.stages[].context.entityRef.entityId`                                                   | `string`  |             |
 | `input.pipeline.stages[].context.entityRef.entityType`                                                 | `string`  |             |
 | `input.pipeline.stages[].context.exception.details.error`                                              | `string`  |             |
@@ -3468,16 +3273,18 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.stages[].context.failOnFailedExpressions`                                              | `boolean` |             |
 | `input.pipeline.stages[].context.failPipeline`                                                         | `boolean` |             |
 | `input.pipeline.stages[].context.freeFormDetails`                                                      | `string`  |             |
+| `input.pipeline.stages[].context.healthCheckGracePeriod`                                               | `number`  |             |
+| `input.pipeline.stages[].context.healthCheckType`                                                      | `string`  |             |
+| `input.pipeline.stages[].context.iamRole`                                                              | `string`  |             |
 | `input.pipeline.stages[].context.inputArtifacts[].account`                                             | `string`  |             |
 | `input.pipeline.stages[].context.inputArtifacts[].id`                                                  | `string`  |             |
+| `input.pipeline.stages[].context.instanceMonitoring`                                                   | `boolean` |             |
+| `input.pipeline.stages[].context.instanceType`                                                         | `string`  |             |
 | `input.pipeline.stages[].context.interestingHealthProviderNames[]`                                     | `string`  |             |
 | `input.pipeline.stages[].context.kato.last.task.id.id`                                                 | `string`  |             |
 | `input.pipeline.stages[].context.kato.result.expected`                                                 | `boolean` |             |
-| `input.pipeline.stages[].context.lastException`                                                        | `string`  |             |
+| `input.pipeline.stages[].context.keyPair`                                                              | `string`  |             |
 | `input.pipeline.stages[].context.location`                                                             | `string`  |             |
-| `input.pipeline.stages[].context.manifest.account.name`                                                | `string`  |             |
-| `input.pipeline.stages[].context.manifest.location`                                                    | `string`  |             |
-| `input.pipeline.stages[].context.manifest.name`                                                        | `string`  |             |
 | `input.pipeline.stages[].context.manifestArtifactId`                                                   | `string`  |             |
 | `input.pipeline.stages[].context.manifestName`                                                         | `string`  |             |
 | `input.pipeline.stages[].context.mode`                                                                 | `string`  |             |
@@ -3489,7 +3296,6 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.stages[].context.options.mergeStrategy`                                                | `string`  |             |
 | `input.pipeline.stages[].context.options.record`                                                       | `boolean` |             |
 | `input.pipeline.stages[].context.outputName`                                                           | `string`  |             |
-| `input.pipeline.stages[].context.outputs.manifestNamesByNamespace.staging[]`                           | `string`  |             |
 | `input.pipeline.stages[].context.package`                                                              | `string`  |             |
 | `input.pipeline.stages[].context.patchBody[].apiVersion`                                               | `string`  |             |
 | `input.pipeline.stages[].context.patchBody[].kind`                                                     | `string`  |             |
@@ -3523,36 +3329,27 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.stages[].context.pipeline`                                                             | `string`  |             |
 | `input.pipeline.stages[].context.pipelinesArtifactId`                                                  | `string`  |             |
 | `input.pipeline.stages[].context.preferLargerOverNewer`                                                | `string`  |             |
+| `input.pipeline.stages[].context.provider`                                                             | `string`  |             |
+| `input.pipeline.stages[].context.reason`                                                               | `string`  |             |
 | `input.pipeline.stages[].context.rebake`                                                               | `boolean` |             |
 | `input.pipeline.stages[].context.region`                                                               | `string`  |             |
 | `input.pipeline.stages[].context.regions[]`                                                            | `string`  |             |
 | `input.pipeline.stages[].context.remainingEnabledServerGroups`                                         | `number`  |             |
 | `input.pipeline.stages[].context.remainingFullSizeServerGroups`                                        | `number`  |             |
 | `input.pipeline.stages[].context.resizeType`                                                           | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].boundArtifact.customKind`                 | `boolean` |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].boundArtifact.location`                   | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].boundArtifact.metadata.account`           | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].boundArtifact.name`                       | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].boundArtifact.reference`                  | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].boundArtifact.type`                       | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].boundArtifact.version`                    | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].defaultArtifact.customKind`               | `boolean` |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].defaultArtifact.metadata.id`              | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].id`                                       | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].matchArtifact.customKind`                 | `boolean` |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].matchArtifact.metadata.id`                | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].useDefaultArtifact`                       | `boolean` |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].usePriorArtifact`                         | `boolean` |             |
 | `input.pipeline.stages[].context.retainLargerOverNewer`                                                | `string`  |             |
 | `input.pipeline.stages[].context.selectionStrategy`                                                    | `string`  |             |
 | `input.pipeline.stages[].context.shrinkToSize`                                                         | `number`  |             |
 | `input.pipeline.stages[].context.source`                                                               | `string`  |             |
+| `input.pipeline.stages[].context.spotPrice`                                                            | `string`  |             |
 | `input.pipeline.stages[].context.stackArtifactAccount`                                                 | `string`  |             |
 | `input.pipeline.stages[].context.stackArtifactId`                                                      | `string`  |             |
 | `input.pipeline.stages[].context.stackName`                                                            | `string`  |             |
 | `input.pipeline.stages[].context.stack`                                                                | `string`  |             |
 | `input.pipeline.stages[].context.statusUrlResolution`                                                  | `string`  |             |
 | `input.pipeline.stages[].context.storeType`                                                            | `string`  |             |
+| `input.pipeline.stages[].context.strategy`                                                             | `string`  |             |
+| `input.pipeline.stages[].context.subnetType`                                                           | `string`  |             |
 | `input.pipeline.stages[].context.tags.TEST`                                                            | `string`  |             |
 | `input.pipeline.stages[].context.tags.test`                                                            | `string`  |             |
 | `input.pipeline.stages[].context.tags[].name`                                                          | `string`  |             |
@@ -3565,6 +3362,7 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.stages[].context.targetLocation.value`                                                 | `string`  |             |
 | `input.pipeline.stages[].context.target`                                                               | `string`  |             |
 | `input.pipeline.stages[].context.templateRenderer`                                                     | `string`  |             |
+| `input.pipeline.stages[].context.terminationPolicies[]`                                                | `string`  |             |
 | `input.pipeline.stages[].context.type`                                                                 | `string`  |             |
 | `input.pipeline.stages[].context.useAmiBlockDeviceMappings`                                            | `boolean` |             |
 | `input.pipeline.stages[].context.useSourceCapacity`                                                    | `boolean` |             |
@@ -3580,28 +3378,6 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.stages[].id`                                                                           | `string`  |             |
 | `input.pipeline.stages[].lastModified`                                                                 | ` `       |             |
 | `input.pipeline.stages[].name`                                                                         | `string`  |             |
-| `input.pipeline.stages[].outputs.artifacts[].customKind`                                               | `boolean` |             |
-| `input.pipeline.stages[].outputs.artifacts[].location`                                                 | `string`  |             |
-| `input.pipeline.stages[].outputs.artifacts[].metadata.account`                                         | `string`  |             |
-| `input.pipeline.stages[].outputs.artifacts[].name`                                                     | `string`  |             |
-| `input.pipeline.stages[].outputs.artifacts[].reference`                                                | `string`  |             |
-| `input.pipeline.stages[].outputs.artifacts[].type`                                                     | `string`  |             |
-| `input.pipeline.stages[].outputs.artifacts[].version`                                                  | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].boundArtifact.customKind`                 | `boolean` |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].boundArtifact.location`                   | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].boundArtifact.metadata.account`           | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].boundArtifact.name`                       | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].boundArtifact.reference`                  | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].boundArtifact.type`                       | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].boundArtifact.version`                    | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].defaultArtifact.customKind`               | `boolean` |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].defaultArtifact.metadata.id`              | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].id`                                       | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].matchArtifact.customKind`                 | `boolean` |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].matchArtifact.metadata.id`                | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].useDefaultArtifact`                       | `boolean` |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].usePriorArtifact`                         | `boolean` |             |
-| `input.pipeline.stages[].outputs.test`                                                                 | `string`  |             |
 | `input.pipeline.stages[].parentStageId`                                                                | ` `       |             |
 | `input.pipeline.stages[].parentStageId`                                                                | `string`  |             |
 | `input.pipeline.stages[].refId`                                                                        | `string`  |             |
@@ -3622,11 +3398,11 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.stages[].tasks[].name`                                                                 | `string`  |             |
 | `input.pipeline.stages[].tasks[].stageEnd`                                                             | `boolean` |             |
 | `input.pipeline.stages[].tasks[].stageStart`                                                           | `boolean` |             |
-| `input.pipeline.stages[].tasks[].startTime`                                                            | `number`  |             |
 | `input.pipeline.stages[].tasks[].startTime`                                                            | ` `       |             |
+| `input.pipeline.stages[].tasks[].startTime`                                                            | `number`  |             |
 | `input.pipeline.stages[].tasks[].status`                                                               | `string`  |             |
 | `input.pipeline.stages[].type`                                                                         | `string`  |             |
-
+| `input.pipeline.stages[]`                                                                              | `string`  |             |
 
 ### `input.pipeline.trigger`
 
@@ -3746,60 +3522,33 @@ description: "fill me with delicious data, Stephen!"
 
 ### `input.stage`
 
-| Key                                                       | Type      | Description |
-| --------------------------------------------------------- | --------- | ----------- |
-| `input.stage.context.account`                             | `string`  |             |
-| `input.stage.context.application`                         | `string`  |             |
-| `input.stage.context.availabilityZones.us-east-2[]`       | `string`  |             |
-| `input.stage.context.capacity.desired`                    | `number`  |             |
-| `input.stage.context.capacity.max`                        | `number`  |             |
-| `input.stage.context.capacity.min`                        | `number`  |             |
-| `input.stage.context.cloudProvider`                       | `string`  |             |
-| `input.stage.context.cooldown`                            | `number`  |             |
-| `input.stage.context.copySourceCustomBlockDeviceMappings` | `boolean` |             |
-| `input.stage.context.ebsOptimized`                        | `boolean` |             |
-| `input.stage.context.freeFormDetails`                     | `string`  |             |
-| `input.stage.context.healthCheckGracePeriod`              | `number`  |             |
-| `input.stage.context.healthCheckType`                     | `string`  |             |
-| `input.stage.context.iamRole`                             | `string`  |             |
-| `input.stage.context.instanceMonitoring`                  | `boolean` |             |
-| `input.stage.context.instanceType`                        | `string`  |             |
-| `input.stage.context.keyPair`                             | `string`  |             |
-| `input.stage.context.name`                                | `string`  |             |
-| `input.stage.context.provider`                            | `string`  |             |
-| `input.stage.context.reason`                              | `string`  |             |
-| `input.stage.context.spotPrice`                           | `string`  |             |
-| `input.stage.context.stack`                               | `string`  |             |
-| `input.stage.context.strategy`                            | `string`  |             |
-| `input.stage.context.subnetType`                          | `string`  |             |
-| `input.stage.context.targetHealthyDeployPercentage`       | `number`  |             |
-| `input.stage.context.terminationPolicies[]`               | `string`  |             |
-| `input.stage.context.type`                                | `string`  |             |
-| `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` |             |
-| `input.stage.endTime`                                     | ` `       |             |
-| `input.stage.id`                                          | `string`  |             |
-| `input.stage.lastModified`                                | ` `       |             |
-| `input.stage.name`                                        | `string`  |             |
-| `input.stage.parentStageId`                               | `string`  |             |
-| `input.stage.refId`                                       | `string`  |             |
-| `input.stage.scheduledTime`                               | ` `       |             |
-| `input.stage.startTime`                                   | `number`  |             |
-| `input.stage.startTimeExpiry`                             | ` `       |             |
-| `input.stage.status`                                      | `string`  |             |
-| `input.stage.syntheticStageOwner`                         | `string`  |             |
-| `input.stage.tasks[].endTime`                             | `number`  |             |
-| `input.stage.tasks[].endTime`                             | ` `       |             |
-| `input.stage.tasks[].id`                                  | `string`  |             |
-| `input.stage.tasks[].implementingClass`                   | `string`  |             |
-| `input.stage.tasks[].loopEnd`                             | `boolean` |             |
-| `input.stage.tasks[].loopStart`                           | `boolean` |             |
-| `input.stage.tasks[].name`                                | `string`  |             |
-| `input.stage.tasks[].stageEnd`                            | `boolean` |             |
-| `input.stage.tasks[].stageStart`                          | `boolean` |             |
-| `input.stage.tasks[].startTime`                           | `number`  |             |
-| `input.stage.tasks[].startTime`                           | ` `       |             |
-| `input.stage.tasks[].status`                              | `string`  |             |
-| `input.stage.type`                                        | `string`  |             |
+| Key                                     | Type      | Description |
+| --------------------------------------- | --------- | ----------- |
+| `input.stage.context.continuePipeline`  | `boolean` |             |
+| `input.stage.context.failPipeline`      | `boolean` |             |
+| `input.stage.endTime`                   | ` `       |             |
+| `input.stage.id`                        | `string`  |             |
+| `input.stage.lastModified`              | ` `       |             |
+| `input.stage.name`                      | `string`  |             |
+| `input.stage.parentStageId`             | ` `       |             |
+| `input.stage.refId`                     | `string`  |             |
+| `input.stage.scheduledTime`             | ` `       |             |
+| `input.stage.startTimeExpiry`           | ` `       |             |
+| `input.stage.startTime`                 | `number`  |             |
+| `input.stage.status`                    | `string`  |             |
+| `input.stage.syntheticStageOwner`       | ` `       |             |
+| `input.stage.tasks[].endTime`           | ` `       |             |
+| `input.stage.tasks[].id`                | `string`  |             |
+| `input.stage.tasks[].implementingClass` | `string`  |             |
+| `input.stage.tasks[].loopEnd`           | `boolean` |             |
+| `input.stage.tasks[].loopStart`         | `boolean` |             |
+| `input.stage.tasks[].name`              | `string`  |             |
+| `input.stage.tasks[].stageEnd`          | `boolean` |             |
+| `input.stage.tasks[].stageStart`        | `boolean` |             |
+| `input.stage.tasks[].startTime`         | ` `       |             |
+| `input.stage.tasks[].startTime`         | `number`  |             |
+| `input.stage.tasks[].status`            | `string`  |             |
+| `input.stage.type`                      | `string`  |             |
 
 
 ### `input.user`

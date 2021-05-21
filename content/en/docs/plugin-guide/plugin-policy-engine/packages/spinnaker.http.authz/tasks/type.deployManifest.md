@@ -131,7 +131,7 @@ description: "fill me with delicious data, Stephen!"
           },
           "source": "text",
           "type": "deployManifest",
-          "user": "elfie2002",
+          "user": "myUserName",
           "versioned": null
         }
       ]
@@ -143,7 +143,7 @@ description: "fill me with delicious data, Stephen!"
     "user": {
       "isAdmin": false,
       "roles": [],
-      "username": "elfie2002"
+      "username": "myUserName"
     }
   }
 }

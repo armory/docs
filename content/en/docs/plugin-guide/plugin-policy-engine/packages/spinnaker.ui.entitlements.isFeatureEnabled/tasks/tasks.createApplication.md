@@ -34,7 +34,7 @@ description: "fill me with delicious data, Stephen!"
           "source": "GITHUB_TEAMS"
         }
       ],
-      "username": "stephenatwell"
+      "username": "myUserName"
     }
   }
 }

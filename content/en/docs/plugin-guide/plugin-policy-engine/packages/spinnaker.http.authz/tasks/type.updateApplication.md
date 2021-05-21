@@ -25,7 +25,7 @@ description: "fill me with delicious data, Stephen!"
             "description": "description2",
             "email": "dasdasd@trest.com",
             "instancePort": 80,
-            "lastModifiedBy": "stephenatwell",
+            "lastModifiedBy": "myUserName",
             "name": "aftest2",
             "permissions": {
               "EXECUTE": [
@@ -43,10 +43,10 @@ description: "fill me with delicious data, Stephen!"
             "repoType": "github",
             "trafficGuards": [],
             "updateTs": "1621444448000",
-            "user": "stephenatwell"
+            "user": "myUserName"
           },
           "type": "updateApplication",
-          "user": "stephenatwell"
+          "user": "myUserName"
         }
       ]
     },
@@ -66,7 +66,7 @@ description: "fill me with delicious data, Stephen!"
           "source": "GITHUB_TEAMS"
         }
       ],
-      "username": "stephenatwell"
+      "username": "myUserName"
     }
   }
 }

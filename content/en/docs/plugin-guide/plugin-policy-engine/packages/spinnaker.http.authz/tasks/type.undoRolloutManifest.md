@@ -23,7 +23,7 @@ description: "fill me with delicious data, Stephen!"
           "reason": "someReason",
           "revision": "3",
           "type": "undoRolloutManifest",
-          "user": "elfie2002"
+          "user": "myUserName"
         }
       ]
     },
@@ -34,7 +34,7 @@ description: "fill me with delicious data, Stephen!"
     "user": {
       "isAdmin": false,
       "roles": [],
-      "username": "elfie2002"
+      "username": "myUserName"
     }
   }
 }

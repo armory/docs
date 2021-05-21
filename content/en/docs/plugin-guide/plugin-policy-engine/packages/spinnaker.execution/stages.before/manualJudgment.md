@@ -19,7 +19,7 @@ description: "fill me with delicious data, Stephen!"
           "staging",
           "staging-ecs"
         ],
-        "user": "elfie2002"
+        "user": "myUserName"
       },
       "buildTime": 1620762127532,
       "canceled": false,
@@ -884,24 +884,24 @@ description: "fill me with delicious data, Stephen!"
             },
             "optionalArtifacts": [
               {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "4aa85178-0618-46c4-b530-6883d393656d"
                 },
                 "name": "manifests/deploy-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
                 "type": "github/file",
                 "version": "master"
               },
               {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "e79162ab-69cb-4ff7-acf4-a8f2875ef8ef"
                 },
                 "name": "manifests/service-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
                 "type": "github/file"
               }
             ],
@@ -1578,24 +1578,24 @@ description: "fill me with delicious data, Stephen!"
             ],
             "optionalArtifacts": [
               {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "4aa85178-0618-46c4-b530-6883d393656d"
                 },
                 "name": "manifests/deploy-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
                 "type": "github/file",
                 "version": "master"
               },
               {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "e79162ab-69cb-4ff7-acf4-a8f2875ef8ef"
                 },
                 "name": "manifests/service-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
                 "type": "github/file"
               }
             ],
@@ -2702,24 +2702,24 @@ description: "fill me with delicious data, Stephen!"
             },
             "optionalArtifacts": [
               {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "4aa85178-0618-46c4-b530-6883d393656d"
                 },
                 "name": "manifests/deploy-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
                 "type": "github/file",
                 "version": "master"
               },
               {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "e79162ab-69cb-4ff7-acf4-a8f2875ef8ef"
                 },
                 "name": "manifests/service-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
                 "type": "github/file"
               }
             ],
@@ -3075,24 +3075,24 @@ description: "fill me with delicious data, Stephen!"
             ],
             "optionalArtifacts": [
               {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "4aa85178-0618-46c4-b530-6883d393656d"
                 },
                 "name": "manifests/deploy-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
                 "type": "github/file",
                 "version": "master"
               },
               {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "e79162ab-69cb-4ff7-acf4-a8f2875ef8ef"
                 },
                 "name": "manifests/service-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
                 "type": "github/file"
               }
             ],
@@ -3503,7 +3503,7 @@ description: "fill me with delicious data, Stephen!"
       "trigger": {
         "artifacts": [
           {
-            "artifactAccount": "stephenatwell",
+            "artifactAccount": "myUserName",
             "customKind": false,
             "location": null,
             "metadata": {
@@ -3511,13 +3511,13 @@ description: "fill me with delicious data, Stephen!"
             },
             "name": "manifests/deploy-spinnaker.yaml",
             "provenance": null,
-            "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+            "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
             "type": "github/file",
             "uuid": null,
             "version": "master"
           },
           {
-            "artifactAccount": "stephenatwell",
+            "artifactAccount": "myUserName",
             "customKind": false,
             "location": null,
             "metadata": {
@@ -3525,7 +3525,7 @@ description: "fill me with delicious data, Stephen!"
             },
             "name": "manifests/service-spinnaker.yaml",
             "provenance": null,
-            "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+            "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
             "type": "github/file",
             "uuid": null,
             "version": null
@@ -3539,24 +3539,24 @@ description: "fill me with delicious data, Stephen!"
         "other": {
           "artifacts": [
             {
-              "artifactAccount": "stephenatwell",
+              "artifactAccount": "myUserName",
               "customKind": false,
               "metadata": {
                 "id": "4aa85178-0618-46c4-b530-6883d393656d"
               },
               "name": "manifests/deploy-spinnaker.yaml",
-              "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+              "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
               "type": "github/file",
               "version": "master"
             },
             {
-              "artifactAccount": "stephenatwell",
+              "artifactAccount": "myUserName",
               "customKind": false,
               "metadata": {
                 "id": "e79162ab-69cb-4ff7-acf4-a8f2875ef8ef"
               },
               "name": "manifests/service-spinnaker.yaml",
-              "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+              "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
               "type": "github/file"
             }
           ],
@@ -3567,30 +3567,30 @@ description: "fill me with delicious data, Stephen!"
           "expectedArtifacts": [
             {
               "boundArtifact": {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "4aa85178-0618-46c4-b530-6883d393656d"
                 },
                 "name": "manifests/deploy-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
                 "type": "github/file",
                 "version": "master"
               },
               "defaultArtifact": {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "4aa85178-0618-46c4-b530-6883d393656d"
                 },
                 "name": "manifests/deploy-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
                 "type": "github/file",
                 "version": "master"
               },
               "id": "0cf98032-1b0f-48db-9314-09c69293b3a6",
               "matchArtifact": {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": true,
                 "metadata": {
                   "id": "3f72ed8e-cb95-454f-9119-2323682121ff"
@@ -3603,28 +3603,28 @@ description: "fill me with delicious data, Stephen!"
             },
             {
               "boundArtifact": {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "e79162ab-69cb-4ff7-acf4-a8f2875ef8ef"
                 },
                 "name": "manifests/service-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
                 "type": "github/file"
               },
               "defaultArtifact": {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "e79162ab-69cb-4ff7-acf4-a8f2875ef8ef"
                 },
                 "name": "manifests/service-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
                 "type": "github/file"
               },
               "id": "425d20a8-2942-4902-8d2b-277769a1492c",
               "matchArtifact": {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": true,
                 "metadata": {
                   "id": "d7ac7eca-0131-4d54-ab8f-880ff0041e4f"
@@ -3646,30 +3646,30 @@ description: "fill me with delicious data, Stephen!"
           "resolvedExpectedArtifacts": [
             {
               "boundArtifact": {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "4aa85178-0618-46c4-b530-6883d393656d"
                 },
                 "name": "manifests/deploy-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
                 "type": "github/file",
                 "version": "master"
               },
               "defaultArtifact": {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "4aa85178-0618-46c4-b530-6883d393656d"
                 },
                 "name": "manifests/deploy-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
                 "type": "github/file",
                 "version": "master"
               },
               "id": "0cf98032-1b0f-48db-9314-09c69293b3a6",
               "matchArtifact": {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": true,
                 "metadata": {
                   "id": "3f72ed8e-cb95-454f-9119-2323682121ff"
@@ -3682,28 +3682,28 @@ description: "fill me with delicious data, Stephen!"
             },
             {
               "boundArtifact": {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "e79162ab-69cb-4ff7-acf4-a8f2875ef8ef"
                 },
                 "name": "manifests/service-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
                 "type": "github/file"
               },
               "defaultArtifact": {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": false,
                 "metadata": {
                   "id": "e79162ab-69cb-4ff7-acf4-a8f2875ef8ef"
                 },
                 "name": "manifests/service-spinnaker.yaml",
-                "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+                "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
                 "type": "github/file"
               },
               "id": "425d20a8-2942-4902-8d2b-277769a1492c",
               "matchArtifact": {
-                "artifactAccount": "stephenatwell",
+                "artifactAccount": "myUserName",
                 "customKind": true,
                 "metadata": {
                   "id": "d7ac7eca-0131-4d54-ab8f-880ff0041e4f"
@@ -3717,7 +3717,7 @@ description: "fill me with delicious data, Stephen!"
           ],
           "strategy": false,
           "type": "manual",
-          "user": "elfie2002"
+          "user": "myUserName"
         },
         "parameters": {
           "namespace": "staging",
@@ -3726,7 +3726,7 @@ description: "fill me with delicious data, Stephen!"
         "resolvedExpectedArtifacts": [
           {
             "boundArtifact": {
-              "artifactAccount": "stephenatwell",
+              "artifactAccount": "myUserName",
               "customKind": false,
               "location": null,
               "metadata": {
@@ -3734,13 +3734,13 @@ description: "fill me with delicious data, Stephen!"
               },
               "name": "manifests/deploy-spinnaker.yaml",
               "provenance": null,
-              "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+              "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
               "type": "github/file",
               "uuid": null,
               "version": "master"
             },
             "defaultArtifact": {
-              "artifactAccount": "stephenatwell",
+              "artifactAccount": "myUserName",
               "customKind": false,
               "location": null,
               "metadata": {
@@ -3748,14 +3748,14 @@ description: "fill me with delicious data, Stephen!"
               },
               "name": "manifests/deploy-spinnaker.yaml",
               "provenance": null,
-              "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/deploy-spinnaker.yaml",
+              "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/deploy-spinnaker.yaml",
               "type": "github/file",
               "uuid": null,
               "version": "master"
             },
             "id": "0cf98032-1b0f-48db-9314-09c69293b3a6",
             "matchArtifact": {
-              "artifactAccount": "stephenatwell",
+              "artifactAccount": "myUserName",
               "customKind": true,
               "location": null,
               "metadata": {
@@ -3773,7 +3773,7 @@ description: "fill me with delicious data, Stephen!"
           },
           {
             "boundArtifact": {
-              "artifactAccount": "stephenatwell",
+              "artifactAccount": "myUserName",
               "customKind": false,
               "location": null,
               "metadata": {
@@ -3781,13 +3781,13 @@ description: "fill me with delicious data, Stephen!"
               },
               "name": "manifests/service-spinnaker.yaml",
               "provenance": null,
-              "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+              "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
               "type": "github/file",
               "uuid": null,
               "version": null
             },
             "defaultArtifact": {
-              "artifactAccount": "stephenatwell",
+              "artifactAccount": "myUserName",
               "customKind": false,
               "location": null,
               "metadata": {
@@ -3795,14 +3795,14 @@ description: "fill me with delicious data, Stephen!"
               },
               "name": "manifests/service-spinnaker.yaml",
               "provenance": null,
-              "reference": "Https://api.github.com/repos/stephenatwell/hostname/contents/manifests/service-spinnaker.yaml",
+              "reference": "Https://api.github.com/repos/myUserName/hostname/contents/manifests/service-spinnaker.yaml",
               "type": "github/file",
               "uuid": null,
               "version": null
             },
             "id": "425d20a8-2942-4902-8d2b-277769a1492c",
             "matchArtifact": {
-              "artifactAccount": "stephenatwell",
+              "artifactAccount": "myUserName",
               "customKind": true,
               "location": null,
               "metadata": {
@@ -3820,7 +3820,7 @@ description: "fill me with delicious data, Stephen!"
           }
         ],
         "type": "manual",
-        "user": "elfie2002"
+        "user": "myUserName"
       },
       "type": "PIPELINE"
     },
@@ -3832,7 +3832,7 @@ description: "fill me with delicious data, Stephen!"
         "instructions": "is the new service working?",
         "judgmentInputs": [],
         "judgmentStatus": "continue",
-        "lastModifiedBy": "elfie2002",
+        "lastModifiedBy": "myUserName",
         "notifications": [],
         "stageTimeoutMs": 60000
       },
@@ -3845,7 +3845,7 @@ description: "fill me with delicious data, Stephen!"
           "staging-ecs"
         ],
         "lastModifiedTime": 1620762143342,
-        "user": "elfie2002"
+        "user": "myUserName"
       },
       "name": "Manual Judgment",
       "outputs": {},
@@ -3879,7 +3879,7 @@ description: "fill me with delicious data, Stephen!"
     "user": {
       "isAdmin": false,
       "roles": [],
-      "username": "elfie2002"
+      "username": "myUserName"
     }
   }
 }

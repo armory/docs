@@ -39,7 +39,7 @@ description: "fill me with delicious data, Stephen!"
             "name": "testProjectName"
           },
           "type": "upsertProject",
-          "user": "elfie2002"
+          "user": "myUserName"
         }
       ],
       "project": "testProjectName"
@@ -51,7 +51,7 @@ description: "fill me with delicious data, Stephen!"
     "user": {
       "isAdmin": false,
       "roles": [],
-      "username": "elfie2002"
+      "username": "myUserName"
     }
   }
 }

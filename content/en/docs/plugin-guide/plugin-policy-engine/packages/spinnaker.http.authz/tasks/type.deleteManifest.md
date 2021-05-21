@@ -26,7 +26,7 @@ description: "fill me with delicious data, Stephen!"
           },
           "reason": null,
           "type": "deleteManifest",
-          "user": "elfie2002"
+          "user": "myUserName"
         }
       ]
     },
@@ -37,7 +37,7 @@ description: "fill me with delicious data, Stephen!"
     "user": {
       "isAdmin": false,
       "roles": [],
-      "username": "elfie2002"
+      "username": "myUserName"
     }
   }
 }
