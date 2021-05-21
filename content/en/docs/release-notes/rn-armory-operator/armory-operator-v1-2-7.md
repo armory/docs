@@ -14,6 +14,10 @@ Armory scans the codebase as we develop and release software. For information ab
 ## Known issues
 No known issues.
 
+## Fixed issues
+
+The GCS `bucketLocation` issue introduced in 1.2.6 has been fixed.
+
 ### Armory Operator
 
 * chore(cve): resolves CVEs: CVE-2020-14343, CVE-2020-25658
