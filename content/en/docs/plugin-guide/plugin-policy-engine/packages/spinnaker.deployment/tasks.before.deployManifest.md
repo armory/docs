@@ -149,21 +149,21 @@ description: "WHO AM I?"
 
 ## Keys
 
-| Key                                          | Type      | Description                                              |
-|----------------------------------------------|-----------|----------------------------------------------------------|
-| `input.deploy.account` | `string` |
-| `input.deploy.credentials` | `string` |
-| `input.deploy.enableTraffic` | `boolean` |
-| `input.deploy.manifest` | ` ` |
-| `input.deploy.manifestArtifact` | ` ` |
-| `input.deploy.manifests[].*` | `*` | The entire Kubernetest manifest that is to be deployed. |
-| `input.deploy.moniker.app` | `string` |
-| `input.deploy.moniker.cluster` | `string` |
-| `input.deploy.moniker.detail` | ` ` |
-| `input.deploy.moniker.sequence` | ` ` |
-| `input.deploy.moniker.stack` | ` ` |
-| `input.deploy.namespaceOverride` | ` ` |
-| `input.deploy.services` | ` ` |
-| `input.deploy.source` | `string` |
-| `input.deploy.strategy` | ` ` |
-| `input.deploy.versioned` | ` ` |
+| Key                              | Type      | Description                                             |
+| -------------------------------- | --------- | ------------------------------------------------------- |
+| `input.deploy.account`           | `string`  | The spinnaker account being deployed to.                |
+| `input.deploy.credentials`       | `string`  | The credentials to use to access the account.           |
+| `input.deploy.enableTraffic`     | `boolean` |                                                         |
+| `input.deploy.manifest`          | ` `       |                                                         |
+| `input.deploy.manifestArtifact`  | ` `       |                                                         |
+| `input.deploy.manifests[].*`     | `*`       | The entire Kubernetest manifest that is to be deployed. |
+| `input.deploy.moniker.app`       | `string`  |                                                         |
+| `input.deploy.moniker.cluster`   | `string`  |                                                         |
+| `input.deploy.moniker.detail`    | ` `       |                                                         |
+| `input.deploy.moniker.sequence`  | ` `       |                                                         |
+| `input.deploy.moniker.stack`     | ` `       |                                                         |
+| `input.deploy.namespaceOverride` | ` `       |                                                         |
+| `input.deploy.services`          | ` `       |                                                         |
+| `input.deploy.source`            | `string`  |                                                         |
+| `input.deploy.strategy`          | ` `       |                                                         |
+| `input.deploy.versioned`         | ` `       |                                                         |

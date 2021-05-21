@@ -3898,7 +3898,7 @@ description: "fill me with delicious data, Stephen!"
 
 | Key                                               | Type      | Description |
 | ------------------------------------------------- | --------- | ----------- |
-| `input.pipeline.application`                      | `string`  |             |
+| `input.pipeline.application` | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
 | `input.pipeline.authentication.allowedAccounts[]` | `string`  |             |
 | `input.pipeline.authentication.user`              | `string`  |             |
 | `input.pipeline.buildTime`                        | `number`  |             |

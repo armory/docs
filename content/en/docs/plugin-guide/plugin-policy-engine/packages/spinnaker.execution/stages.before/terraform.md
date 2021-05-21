@@ -552,32 +552,32 @@ description: "fill me with delicious data, Stephen!"
 
 ### `input.pipeline`
 
-| Key                                               | Type      | Description |
-| ------------------------------------------------- | --------- | ----------- |
-| `input.pipeline.application`                      | `string`  |             |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  |             |
-| `input.pipeline.authentication.user`              | `string`  |             |
-| `input.pipeline.buildTime`                        | `number`  |             |
-| `input.pipeline.canceledBy`                       | ` `       |             |
-| `input.pipeline.canceled`                         | `boolean` |             |
-| `input.pipeline.cancellationReason`               | ` `       |             |
-| `input.pipeline.description`                      | ` `       |             |
-| `input.pipeline.endTime`                          | ` `       |             |
-| `input.pipeline.id`                               | `string`  |             |
-| `input.pipeline.keepWaitingPipelines`             | `boolean` |             |
-| `input.pipeline.limitConcurrent`                  | `boolean` |             |
-| `input.pipeline.name`                             | `string`  |             |
-| `input.pipeline.origin`                           | `string`  |             |
-| `input.pipeline.partition`                        | ` `       |             |
-| `input.pipeline.paused`                           | ` `       |             |
-| `input.pipeline.pipelineConfigId`                 | `string`  |             |
-| `input.pipeline.source`                           | ` `       |             |
-| `input.pipeline.spelEvaluator`                    | `string`  |             |
-| `input.pipeline.startTimeExpiry`                  | ` `       |             |
-| `input.pipeline.startTime`                        | `number`  |             |
-| `input.pipeline.status`                           | `string`  |             |
-| `input.pipeline.templateVariables`                | ` `       |             |
-| `input.pipeline.type`                             | `string`  |             |
+| Key                                               | Type      | Description                                                           |
+| ------------------------------------------------- | --------- | --------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  |                                                                       |
+| `input.pipeline.authentication.user`              | `string`  |                                                                       |
+| `input.pipeline.buildTime`                        | `number`  |                                                                       |
+| `input.pipeline.canceledBy`                       | ` `       |                                                                       |
+| `input.pipeline.canceled`                         | `boolean` |                                                                       |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                       |
+| `input.pipeline.description`                      | ` `       |                                                                       |
+| `input.pipeline.endTime`                          | ` `       |                                                                       |
+| `input.pipeline.id`                               | `string`  |                                                                       |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` |                                                                       |
+| `input.pipeline.limitConcurrent`                  | `boolean` |                                                                       |
+| `input.pipeline.name`                             | `string`  |                                                                       |
+| `input.pipeline.origin`                           | `string`  |                                                                       |
+| `input.pipeline.partition`                        | ` `       |                                                                       |
+| `input.pipeline.paused`                           | ` `       |                                                                       |
+| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                       |
+| `input.pipeline.source`                           | ` `       |                                                                       |
+| `input.pipeline.spelEvaluator`                    | `string`  |                                                                       |
+| `input.pipeline.startTimeExpiry`                  | ` `       |                                                                       |
+| `input.pipeline.startTime`                        | `number`  |                                                                       |
+| `input.pipeline.status`                           | `string`  |                                                                       |
+| `input.pipeline.templateVariables`                | ` `       |                                                                       |
+| `input.pipeline.type`                             | `string`  |                                                                       |
 
 ### `input.pipeline.stages`
 

@@ -49,21 +49,21 @@ The full package name sent to OPA is `spinnaker.execution.stages.before.deleteMa
 
 ## Keys
 
-| Key                                       | Type      | Description |
-| ----------------------------------------- | --------- | ----------- |
-| `input.deploy.account`                    | `string`  |             |
-| `input.deploy.credentials`                | `string`  |             |
-| `input.deploy.labelSelectors.empty`       | `boolean` |             |
-| `input.deploy.labelSelectors.notEmpty`    | `boolean` |             |
-| `input.deploy.location`                   | `string`  |             |
-| `input.deploy.manifestName`               | `string`  |             |
-| `input.deploy.options.apiVersion`         | ``        |             |
-| `input.deploy.options.dryRun`             | ``        |             |
-| `input.deploy.options.gracePeriodSeconds` | `number`  |             |
-| `input.deploy.options.kind`               | ``        |             |
-| `input.deploy.options.orphanDependents`   | ``        |             |
-| `input.deploy.options.preconditions`      | ``        |             |
-| `input.deploy.options.propagationPolicy`  | ``        |             |
-| `path`                                    | `string`  |             |
-| `subpath`                                 | ``        |             |
-| `tasktype`                                | ``        |             |
+| Key                                       | Type      | Description                                   |
+| ----------------------------------------- | --------- | --------------------------------------------- |
+| `input.deploy.account`                    | `string`  | The spinnaker account being deployed to.      |
+| `input.deploy.credentials`                | `string`  | The credentials to use to access the account. |
+| `input.deploy.labelSelectors.empty`       | `boolean` |                                               |
+| `input.deploy.labelSelectors.notEmpty`    | `boolean` |                                               |
+| `input.deploy.location`                   | `string`  |                                               |
+| `input.deploy.manifestName`               | `string`  |                                               |
+| `input.deploy.options.apiVersion`         | ``        |                                               |
+| `input.deploy.options.dryRun`             | ``        |                                               |
+| `input.deploy.options.gracePeriodSeconds` | `number`  |                                               |
+| `input.deploy.options.kind`               | ``        |                                               |
+| `input.deploy.options.orphanDependents`   | ``        |                                               |
+| `input.deploy.options.preconditions`      | ``        |                                               |
+| `input.deploy.options.propagationPolicy`  | ``        |                                               |
+| `path`                                    | `string`  |                                               |
+| `subpath`                                 | ``        |                                               |
+| `tasktype`                                | ``        |                                               |
