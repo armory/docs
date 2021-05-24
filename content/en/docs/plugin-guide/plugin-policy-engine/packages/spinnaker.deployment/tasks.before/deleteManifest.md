@@ -64,7 +64,7 @@ deny["A minimum 30 second grace period must be given when deleting a kubernetes 
 | `input.deploy.manifestName`               | `string`  | The name of the manifest being deleted                                              |
 | `input.deploy.options.apiVersion`         | ` `       | The API version in which the manifest's kind is defined.                                              |
 | `input.deploy.options.dryRun`             | ` `       | If true then the manifest will not actually be deleted. if false it will be.                                              |
-| `input.deploy.options.gracePeriodSeconds` | `number`  |                                               |
+| `input.deploy.options.gracePeriodSeconds` | `number`  | How many seconds should the resource being deleted be given to shut down gracefully before being forcefully shut down.                                              |
 | `input.deploy.options.kind`               | ` `       | What is the kind of manifest that is being deleted.                                              |
 | `input.deploy.options.orphanDependents`   | ` `       |                                               |
 | `input.deploy.options.preconditions`      | ` `       |                                               |
