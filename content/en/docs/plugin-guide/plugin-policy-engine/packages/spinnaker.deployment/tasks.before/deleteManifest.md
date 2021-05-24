@@ -68,8 +68,4 @@ deny["A minimum 30 second grace period must be given when deleting a kubernetes 
 | `input.deploy.options.kind`               | ` `       | What is the kind of manifest that is being deleted.                                              |
 | `input.deploy.options.orphanDependents`   | ` `       |                                               |
 | `input.deploy.options.preconditions`      | ` `       |                                               |
-| `input.deploy.options.propagationPolicy`  | ` `       |      There are three different ways to delete a Kubernetes object:
-
-Foreground: The object itself cannot be deleted unless the objects that it owns have already been deleted.
-Background: The object itself is deleted, then the objects that it owned are automatically deleted.
-Orphan: The object itself is deleted. Any objects it owns are “orphaned.”                                  |
+| `input.deploy.options.propagationPolicy`  | ` `       |      There are three different ways to delete a Kubernetes object: Foreground: The object itself cannot be deleted unless the objects that it owns have already been deleted. Background: The object itself is deleted, then the objects that it owned are automatically deleted. Orphan: The object itself is deleted. Any objects it owns are “orphaned.”                                  |
