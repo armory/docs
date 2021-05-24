@@ -368,6 +368,8 @@ description: "Where are we going in this ocean of chaos?"
 
 ## Keys
 
+### `input.pipeline`
+
 | Key                                                                                  | Type      | Description                                                           |
 | ------------------------------------------------------------------------------------ | --------- | --------------------------------------------------------------------- |
 | `input.pipeline.application`                                                         | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
@@ -404,6 +406,11 @@ description: "Where are we going in this ocean of chaos?"
 | `input.pipeline.plan`                                                                | `boolean` |                                                                       |
 | `input.pipeline.respectQuietPeriod`                                                  | `boolean` |                                                                       |
 | `input.pipeline.spelEvaluator`                                                       | `string`  | Which version of SpEL should SpEL expressions be evaluated with.                                                                      |
+
+### `input.pipeline.stages`
+
+| Key                                                                                  | Type      | Description                                                           |
+| ------------------------------------------------------------------------------------ | --------- | --------------------------------------------------------------------- |
 | `input.pipeline.stages[].account`                                                    | `string`  | Which account does this stage deploy to.                                                                      |
 | `input.pipeline.stages[].artifactContents[].contents`                                | `string`  | The contents of an artifact used by this stage.                                                                      |
 | `input.pipeline.stages[].artifactContents[].id`                                      | `string`  | The unique id of an artifact used by this stage.                                                                      |
@@ -430,6 +437,11 @@ description: "Where are we going in this ocean of chaos?"
 | `input.pipeline.stages[].trafficManagement.options.enableTraffic`                    | `boolean` |                                                                       |
 | `input.pipeline.stages[].type`                                                       | `string`  | That is the type of the stage                                                                   |
 | `input.pipeline.stages[]`                                                       | `string`  |    The serialized configuration of your spinnaker stages. Fields within the stages relate to the field given in the spinnaker/execution/stages/before package for that stage type. In general, users are advised to wright policies that are specific to whether a single stage should execute against the stage execution, not the pipeline execution. This ensures stages referencing SpEL will have had their SpEL evaluated.                                                                   |
+
+### `input.pipeline.trigger`
+
+| Key                                                                                  | Type      | Description                                                           |
+| ------------------------------------------------------------------------------------ | --------- | --------------------------------------------------------------------- |
 | `input.pipeline.trigger.artifacts[].artifactAccount`                                 | `string`  | Specifies the account to read this triggers artifact from                                                                      |
 | `input.pipeline.trigger.artifacts[].customKind`                                      | `boolean` |                                                                       |
 | `input.pipeline.trigger.artifacts[].metadata.id`                                     | `string`  |                                                                       |
@@ -502,7 +514,7 @@ description: "Where are we going in this ocean of chaos?"
 | `input.pipeline.triggers[].slug`                                                     | `string`  |                                                                       |
 | `input.pipeline.triggers[].source`                                                   | `string`  |                                                                       |
 | `input.pipeline.triggers[].type`                                                     | `string`  |                                                                       |
-| `input.user.isAdmin`                                                                 | `boolean` | is the user who started this pipeline an admin user                                                                      |
-| `input.user.username`                                                                | `string`  |  what is the user ID of the user that started this pipeline.                                                                     |
-| `input.user.role[].name`                                                                | `string`  |  The names of the roles assigned to the user. This will only show up if FIAT is configured to provide roles.                                                                     |
-| `input.user.role[].source`                                                                | `string`  |  The source that granted the user this role. If you have multiple sources defining roles in fiat, this can be used to differentiate between them.
+
+### `input.user`
+
+This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.

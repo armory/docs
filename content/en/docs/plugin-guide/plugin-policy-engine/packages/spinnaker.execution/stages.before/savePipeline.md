@@ -223,7 +223,4 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
 
 ### `input.user`
 
-| Key                                          | Type      | Description                                              |
-|----------------------------------------------|-----------|----------------------------------------------------------|
-| `input.user.isAdmin` | `boolean` | True if the Spinnaker user has admin privileges. |
-| `input.user.username` | `string` | The Spinnaker user initiating the change. |
+This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.

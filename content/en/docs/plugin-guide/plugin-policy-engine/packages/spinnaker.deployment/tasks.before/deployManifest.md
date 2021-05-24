@@ -1,7 +1,6 @@
 ---
 title: "spinnaker.deployment.tasks.before.deployManifest"
 linkTitle: "deployManifest"
-weight: 10
 description: "WHO AM I?"
 ---
 
@@ -142,7 +141,7 @@ description: "WHO AM I?"
 </details>
 
 ## Example Policy
-This example prevents deploying of pods, pod templates (Deploym,ents/jobs/replicasets) and services that us the following services: HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, SMTP
+This example prevents deploying of pods, pod templates (Deployments/jobs/replicasets) and services that use the following services: HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, SMTP
 ```rego
 package spinnaker.deployment.tasks.before.deployManifest
 

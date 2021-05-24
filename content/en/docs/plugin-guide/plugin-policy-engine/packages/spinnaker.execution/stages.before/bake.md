@@ -3371,8 +3371,6 @@ description: "fill me with delicious data, Stephen!"
 | `input.stage.tasks[].startTime`                   | ` `       |             |
 | `input.stage.tasks[].status`                      | `string`  |             |
 | `input.stage.type`                                | `string`  |             |
-| `input.user.isAdmin`                              | `boolean` |             |
-| `input.user.username`                             | `string`  |             |
 
 ### `input.pipeline.stages[]`
 
@@ -3753,3 +3751,7 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.trigger.resolvedExpectedArtifacts[].usePriorArtifact`                      | `boolean` |             |
 | `input.pipeline.trigger.type`                                                              | `string`  |             |
 | `input.pipeline.trigger.user`                                                              | `string`  |             |
+
+### `input.user`
+
+This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.

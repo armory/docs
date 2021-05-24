@@ -2,7 +2,7 @@
 title: "opa.pipelines"
 linkTitle: "opa.pipelines"
 description: "Package that supports pipeline analysis when pipelines are saved."
-weight: 20
+weight: 10
 ---
 
 ## Example Payload

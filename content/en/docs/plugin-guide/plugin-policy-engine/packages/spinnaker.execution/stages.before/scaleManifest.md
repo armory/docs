@@ -314,7 +314,4 @@ The full package name sent to OPA is `spinnaker.execution.stages.before.scaleMan
 
 ### `input.user`
 
-| Key                                                               | Type      | Description                                                                 |
-| ----------------------------------------------------------------- | --------- | --------------------------------------------------------------------------- |
-| `input.user.isAdmin`                                              | `boolean` |                                                                             |
-| `input.user.username`                                             | `string`  |                                                                             |
+This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.

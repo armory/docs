@@ -1558,6 +1558,8 @@ description: "WHO AM I?"
 
 ## Keys
 
+### `input.pipeline`
+
 | Key                                          | Type      | Description                                              |
 |----------------------------------------------|-----------|----------------------------------------------------------|
 | `input.pipeline.application` | `string` |
@@ -1596,6 +1598,11 @@ description: "WHO AM I?"
 | `input.pipeline.trigger.type` | `string` |
 | `input.pipeline.trigger.user` | `string` |
 | `input.pipeline.type` | `string` |
+
+### `input.stage`
+
+| Key                                          | Type      | Description                                              |
+|----------------------------------------------|-----------|----------------------------------------------------------|
 | `input.stage.context.account` | `string` |
 | `input.stage.context.artifacts[].customKind` | `boolean` |
 | `input.stage.context.artifacts[].location` | `string` |
@@ -1995,5 +2002,7 @@ description: "WHO AM I?"
 | `input.stage.tasks[].startTime` | ` ` |
 | `input.stage.tasks[].status` | `string` |
 | `input.stage.type` | `string` |
-| `input.user.isAdmin` | `boolean` |
-| `input.user.username` | `string` |
+
+### `input.user`
+
+This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.
