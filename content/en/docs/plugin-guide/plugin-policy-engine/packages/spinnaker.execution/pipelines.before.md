@@ -363,7 +363,17 @@ description: "Where are we going in this ocean of chaos?"
 ## Example Policy
 
 ```rego
+package spinnaker.execution.pipelines.before
 
+deny["Kubernetes deployments can only be triggered by webhooks, docker, or manually."] { 
+  stage := input.pipeline.stages[_]
+  trigger := input.pipeline.trigger
+
+  stage.type == "deployManifest"
+  trigger.type != "docker"
+  trigger.type != "webhook"
+  trigger.type != "manual"
+}
 ```
 
 ## Keys
