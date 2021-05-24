@@ -42,8 +42,13 @@ Note: If your policy is for controlling manual deletion triggers from within the
 </details>
 
 ## Example Policy
-
+This example policy will prevent deleteMAnifest tasks from running unless they provide a grasce period of >= 30 seconds.
 ```rego
+package spinnaker.deployment.tasks.before.deleteManifest
+
+deny["A minimum 30 second grace period must be given when deleting a kubernetes manifest"] { 
+  input.deploy.options.gracePeriodSeconds<30
+}
 
 ```
 
