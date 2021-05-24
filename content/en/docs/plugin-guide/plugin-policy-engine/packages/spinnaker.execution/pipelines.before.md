@@ -428,65 +428,17 @@ deny["Kubernetes deployments can only be triggered by webhooks, docker, or manua
 
 | Key                                                                                  | Type      | Description                                                                                      |
 | ------------------------------------------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------ |
-| `input.pipeline.trigger.artifacts[].artifactAccount`                                 | `string`  | Specifies the account to read this triggers artifact from                                        |
-| `input.pipeline.trigger.artifacts[].customKind`                                      | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.artifacts[].metadata.id`                                     | `string`  |                                                                                                  |
-| `input.pipeline.trigger.artifacts[].name`                                            | `string`  | specifies a name for the artifact                                                                |
-| `input.pipeline.trigger.artifacts[].reference`                                       | `string`  |                                                                                                  |
-| `input.pipeline.trigger.artifacts[].type`                                            | `string`  | specifies the type of the artifact, for example 'git'.                                           |
-| `input.pipeline.trigger.artifacts[].version`                                         | `string`  | what branch/version should the artifact be read from.                                            |
+| `input.pipeline.trigger.artifacts[]`                                                 | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.                                |
 | `input.pipeline.trigger.dryRun`                                                      | `boolean` |                                                                                                  |
 | `input.pipeline.trigger.enabled`                                                     | `boolean` | is the trigger enabled                                                                           |
 | `input.pipeline.trigger.eventId`                                                     | `string`  |                                                                                                  |
 | `input.pipeline.trigger.executionId`                                                 | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].boundArtifact.artifactAccount`           | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].boundArtifact.customKind`                | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].boundArtifact.metadata.id`               | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].boundArtifact.name`                      | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].boundArtifact.reference`                 | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].boundArtifact.type`                      | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].boundArtifact.version`                   | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].defaultArtifact.artifactAccount`         | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].defaultArtifact.customKind`              | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].defaultArtifact.metadata.id`             | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].defaultArtifact.name`                    | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].defaultArtifact.reference`               | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].defaultArtifact.type`                    | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].defaultArtifact.version`                 | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].id`                                      | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].matchArtifact.artifactAccount`           | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].matchArtifact.customKind`                | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].matchArtifact.metadata.id`               | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].matchArtifact.name`                      | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].matchArtifact.type`                      | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].useDefaultArtifact`                      | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[].usePriorArtifact`                        | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.parameters.<parameterName>`                                     | `string`  |  The value that was specified for the parameter when triggering the pipeline.                                                                                                |
+| `input.pipeline.trigger.expectedArtifacts[]`                                         | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.                                |
+| `input.pipeline.trigger.parameters.<parameterName>`                                  | `string`  | The value that was specified for the parameter when triggering the pipeline.                     |
 | `input.pipeline.trigger.preferred`                                                   | `boolean` |                                                                                                  |
 | `input.pipeline.trigger.rebake`                                                      | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.artifactAccount`   | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.customKind`        | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.metadata.id`       | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.name`              | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.reference`         | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.type`              | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.version`           | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.artifactAccount` | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.customKind`      | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.metadata.id`     | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.name`            | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.reference`       | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.type`            | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.version`         | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].id`                              | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.artifactAccount`   | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.customKind`        | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.metadata.id`       | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.name`              | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.type`              | `string`  |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].useDefaultArtifact`              | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].usePriorArtifact`                | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.type`                                                        | `string`  |  What is the type of trigger                                                                                                |
+| `input.pipeline.trigger.resolvedExpectedArtifacts[]`                                 | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.                                |
+| `input.pipeline.trigger.type`                                                        | `string`  | What is the type of trigger                                                                      |
 | `input.pipeline.trigger.user`                                                        | `string`  | for triuggers of type 'git' what is the user or organization associated with the git repository. |
 | `input.pipeline.triggers[].branch`                                                   | `string`  | what branch of the git repository triggers this pipeline                                         |
 | `input.pipeline.triggers[].dryRun`                                                   | `boolean` |                                                                                                  |
@@ -494,12 +446,12 @@ deny["Kubernetes deployments can only be triggered by webhooks, docker, or manua
 | `input.pipeline.triggers[].expectedArtifactIds[]`                                    | `string`  |                                                                                                  |
 | `input.pipeline.triggers[].id`                                                       | `string`  |                                                                                                  |
 | `input.pipeline.triggers[].preferred`                                                | `boolean` |                                                                                                  |
-| `input.pipeline.triggers[].project`                                                  | `string`  |   a change in what project will trigger this pipeline                                                                                               |
-| `input.pipeline.triggers[].rebake`                                                   | `boolean` |   should all baked artifacts be rebaked even if their inputs have not changed.                                                                                               |
-| `input.pipeline.triggers[].secret`                                                   | `string`  |   the secret that the trigger uses to authenticate with spinnaker                                                                                               |
-| `input.pipeline.triggers[].slug`                                                     | `string`  |   the triggers slug, for example with a github trigger this will be the project name.                                                                                               |
-| `input.pipeline.triggers[].source`                                                   | `string`  | the type of the source for the trigger                                                                                                 |
-| `input.pipeline.triggers[].type`                                                     | `string`  | the configured type of the trigger                                                                                                 |
+| `input.pipeline.triggers[].project`                                                  | `string`  | a change in what project will trigger this pipeline                                              |
+| `input.pipeline.triggers[].rebake`                                                   | `boolean` | should all baked artifacts be rebaked even if their inputs have not changed.                     |
+| `input.pipeline.triggers[].secret`                                                   | `string`  | the secret that the trigger uses to authenticate with spinnaker                                  |
+| `input.pipeline.triggers[].slug`                                                     | `string`  | the triggers slug, for example with a github trigger this will be the project name.              |
+| `input.pipeline.triggers[].source`                                                   | `string`  | the type of the source for the trigger                                                           |
+| `input.pipeline.triggers[].type`                                                     | `string`  | the configured type of the trigger                                                               |
 
 ### `input.user`
 
