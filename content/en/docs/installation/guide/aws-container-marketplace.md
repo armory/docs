@@ -358,7 +358,7 @@ kubectl apply -f manifests/spinnaker
 If everything is configured properly, the Armory Operator should see the SpinnakerService custom resource, and start creating Kubernetes Deployments, ServiceAccounts, and Secrets in the `spinnaker` Namespace.  You can monitor this with the following:
 
 ```bash
-kubectl -n spinnaker get all -owide
+kubectl -n spinnaker get all -o wide
 ```
 
 ## Exposing your Armory instance
