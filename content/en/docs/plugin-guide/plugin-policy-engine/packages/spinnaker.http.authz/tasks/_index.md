@@ -11,3 +11,14 @@ Posts to the tasks api create new tasks in spinnaker. The following rego functio
         input.body.job[_].type=tasktype
     }
 ```
+## Keys
+
+| Key                                                  |   Type    | Description |
+| :--------------------------------------------------- | :-------: | ----------- |
+| `input.body`                             | `object`  | The contents of this field will depend on the task type. It corresponds to the payload body being posted to the spinnaker API for that task.           |
+| `input.method`                                       | `string`  | The HTTP method by which the API is being called. When createing a task this will be 'POST'            |
+| `input.path[]`                                       | `string`  | The API path of the job. When creating a new task this will be the array ["tasks"]            |
+| `input.user.isAdmin`                                 | `boolean` |             |
+| `input.user.roles[].name`                            | `string`  |             |
+| `input.user.roles[].source`                          | `string`  |             |
+| `input.user.username`                                | `string`  |             |
