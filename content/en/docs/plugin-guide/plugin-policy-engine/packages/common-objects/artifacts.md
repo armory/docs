@@ -11,9 +11,11 @@ Tooltip copy goes here.
 The objects and endpoints found in:
 
 - `artifacts`,
-- `expectedArtifacts`,
 - `boundArtifact`,
+- `createdArtifacts`,
+- `expectedArtifacts`,
 - `matchArtifact`,
+- `optionalArtifacts`,
 - and `resolvedExpectedArtifacts`,
 
 will be the same. Additionally:

@@ -503,232 +503,122 @@ description: "fill me with delicious data, Stephen!"
 
 ### `input.pipeline`
 
-| Key                                                                                        | Type      | Description |
-| ------------------------------------------------------------------------------------------ | --------- | ----------- |
-| `input.pipeline.application` | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
-| `input.pipeline.authentication.allowedAccounts[]`                                          | `string`  |             |
-| `input.pipeline.authentication.user`                                                       | `string`  |             |
-| `input.pipeline.buildTime`                                                                 | `number`  |             |
-| `input.pipeline.canceled`                                                                  | `boolean` |             |
-| `input.pipeline.canceledBy`                                                                | ` `       |             |
-| `input.pipeline.cancellationReason`                                                        | ` `       |             |
-| `input.pipeline.description`                                                               | ` `       |             |
-| `input.pipeline.endTime`                                                                   | ` `       |             |
-| `input.pipeline.id`                                                                        | `string`  |             |
-| `input.pipeline.keepWaitingPipelines`                                                      | `boolean` |             |
-| `input.pipeline.limitConcurrent`                                                           | `boolean` |             |
-| `input.pipeline.name`                                                                      | `string`  |             |
-| `input.pipeline.origin`                                                                    | `string`  |             |
-| `input.pipeline.partition`                                                                 | ` `       |             |
-| `input.pipeline.paused`                                                                    | ` `       |             |
-| `input.pipeline.pipelineConfigId`                                                          | `string`  |             |
-| `input.pipeline.source`                                                                    | ` `       |             |
-| `input.pipeline.spelEvaluator`                                                             | `string`  |             |
-| `input.pipeline.stages[]`                                                                  | `string`  |             |
-| `input.pipeline.stages[].context.account`                                                  | `string`  |             |
-| `input.pipeline.stages[].context.action`                                                   | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].account`                                      | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].id`                                           | `string`  |             |
-| `input.pipeline.stages[].context.cloudProvider`                                            | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].defaultArtifact.customKind`           | `boolean` |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].defaultArtifact.id`                   | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].displayName`                          | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].id`                                   | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.artifactAccount`        | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.id`                     | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.name`                   | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.type`                   | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].useDefaultArtifact`                   | `boolean` |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].usePriorArtifact`                     | `boolean` |             |
-| `input.pipeline.stages[].context.failPipeline`                                             | `boolean` |             |
-| `input.pipeline.stages[].context.manifestArtifactId`                                       | `string`  |             |
-| `input.pipeline.stages[].context.moniker.app`                                              | `string`  |             |
-| `input.pipeline.stages[].context.planForDestroy`                                           | `boolean` |             |
-| `input.pipeline.stages[].context.skipExpressionEvaluation`                                 | `boolean` |             |
-| `input.pipeline.stages[].context.source`                                                   | `string`  |             |
-| `input.pipeline.stages[].context.terraformVersion`                                         | `string`  |             |
-| `input.pipeline.stages[].context.trafficManagement.enabled`                                | `boolean` |             |
-| `input.pipeline.stages[].context.trafficManagement.options.enableTraffic`                  | `boolean` |             |
-| `input.pipeline.stages[].endTime`                                                          | ` `       |             |
-| `input.pipeline.stages[].id`                                                               | `string`  |             |
-| `input.pipeline.stages[].lastModified`                                                     | ` `       |             |
-| `input.pipeline.stages[].name`                                                             | `string`  |             |
-| `input.pipeline.stages[].parentStageId`                                                    | ` `       |             |
-| `input.pipeline.stages[].refId`                                                            | `string`  |             |
-| `input.pipeline.stages[].requisiteStageRefIds[]`                                           | `string`  |             |
-| `input.pipeline.stages[].scheduledTime`                                                    | ` `       |             |
-| `input.pipeline.stages[].startTime`                                                        | ` `       |             |
-| `input.pipeline.stages[].startTimeExpiry`                                                  | ` `       |             |
-| `input.pipeline.stages[].status`                                                           | `string`  |             |
-| `input.pipeline.stages[].syntheticStageOwner`                                              | ` `       |             |
-| `input.pipeline.stages[].type`                                                             | `string`  |             |
-| `input.pipeline.startTime`                                                                 | `number`  |             |
-| `input.pipeline.startTimeExpiry`                                                           | ` `       |             |
-| `input.pipeline.status`                                                                    | `string`  |             |
-| `input.pipeline.templateVariables`                                                         | ` `       |             |
-| `input.pipeline.trigger.artifacts[].artifactAccount`                                       | `string`  |             |
-| `input.pipeline.trigger.artifacts[].customKind`                                            | `boolean` |             |
-| `input.pipeline.trigger.artifacts[].location`                                              | ` `       |             |
-| `input.pipeline.trigger.artifacts[].metadata.id`                                           | `string`  |             |
-| `input.pipeline.trigger.artifacts[].name`                                                  | `string`  |             |
-| `input.pipeline.trigger.artifacts[].provenance`                                            | ` `       |             |
-| `input.pipeline.trigger.artifacts[].reference`                                             | `string`  |             |
-| `input.pipeline.trigger.artifacts[].type`                                                  | `string`  |             |
-| `input.pipeline.trigger.artifacts[].uuid`                                                  | ` `       |             |
-| `input.pipeline.trigger.artifacts[].version`                                               | `string`  |             |
-| `input.pipeline.trigger.artifacts[].version`                                               | ` `       |             |
-| `input.pipeline.trigger.correlationId`                                                     | ` `       |             |
-| `input.pipeline.trigger.isDryRun`                                                          | `boolean` |             |
-| `input.pipeline.trigger.isRebake`                                                          | `boolean` |             |
-| `input.pipeline.trigger.isStrategy`                                                        | `boolean` |             |
-| `input.pipeline.trigger.other.artifacts[].artifactAccount`                                 | `string`  |             |
-| `input.pipeline.trigger.other.artifacts[].customKind`                                      | `boolean` |             |
-| `input.pipeline.trigger.other.artifacts[].metadata.id`                                     | `string`  |             |
-| `input.pipeline.trigger.other.artifacts[].name`                                            | `string`  |             |
-| `input.pipeline.trigger.other.artifacts[].reference`                                       | `string`  |             |
-| `input.pipeline.trigger.other.artifacts[].type`                                            | `string`  |             |
-| `input.pipeline.trigger.other.artifacts[].version`                                         | `string`  |             |
-| `input.pipeline.trigger.other.dryRun`                                                      | `boolean` |             |
-| `input.pipeline.trigger.other.enabled`                                                     | `boolean` |             |
-| `input.pipeline.trigger.other.eventId`                                                     | `string`  |             |
-| `input.pipeline.trigger.other.executionId`                                                 | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].boundArtifact.artifactAccount`           | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].boundArtifact.customKind`                | `boolean` |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].boundArtifact.metadata.id`               | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].boundArtifact.name`                      | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].boundArtifact.reference`                 | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].boundArtifact.type`                      | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].boundArtifact.version`                   | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].defaultArtifact.artifactAccount`         | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].defaultArtifact.customKind`              | `boolean` |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].defaultArtifact.metadata.id`             | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].defaultArtifact.name`                    | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].defaultArtifact.reference`               | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].defaultArtifact.type`                    | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].defaultArtifact.version`                 | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].id`                                      | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].matchArtifact.artifactAccount`           | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].matchArtifact.customKind`                | `boolean` |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].matchArtifact.metadata.id`               | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].matchArtifact.name`                      | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].matchArtifact.type`                      | `string`  |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].useDefaultArtifact`                      | `boolean` |             |
-| `input.pipeline.trigger.other.expectedArtifacts[].usePriorArtifact`                        | `boolean` |             |
-| `input.pipeline.trigger.other.parameters.nameAndSpace`                                     | `string`  |             |
-| `input.pipeline.trigger.other.parameters.replicas`                                         | `string`  |             |
-| `input.pipeline.trigger.other.parameters.moduleConfig`                                     | `string`  |             |
-| `input.pipeline.trigger.other.preferred`                                                   | `boolean` |             |
-| `input.pipeline.trigger.other.rebake`                                                      | `boolean` |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].boundArtifact.artifactAccount`   | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].boundArtifact.customKind`        | `boolean` |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].boundArtifact.metadata.id`       | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].boundArtifact.name`              | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].boundArtifact.reference`         | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].boundArtifact.type`              | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].boundArtifact.version`           | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].defaultArtifact.artifactAccount` | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].defaultArtifact.customKind`      | `boolean` |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].defaultArtifact.metadata.id`     | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].defaultArtifact.name`            | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].defaultArtifact.reference`       | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].defaultArtifact.type`            | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].defaultArtifact.version`         | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].id`                              | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].matchArtifact.artifactAccount`   | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].matchArtifact.customKind`        | `boolean` |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].matchArtifact.metadata.id`       | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].matchArtifact.name`              | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].matchArtifact.type`              | `string`  |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].useDefaultArtifact`              | `boolean` |             |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[].usePriorArtifact`                | `boolean` |             |
-| `input.pipeline.trigger.other.strategy`                                                    | `boolean` |             |
-| `input.pipeline.trigger.other.type`                                                        | `string`  |             |
-| `input.pipeline.trigger.other.user`                                                        | `string`  |             |
-| `input.pipeline.trigger.parameters.nameAndSpace`                                           | `string`  |             |
-| `input.pipeline.trigger.parameters.replicas`                                               | `string`  |             |
-| `input.pipeline.trigger.parameters.moduleConfig`                                           | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.artifactAccount`         | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.customKind`              | `boolean` |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.location`                | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.metadata.id`             | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.name`                    | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.provenance`              | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.reference`               | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.type`                    | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.uuid`                    | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.version`                 | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].boundArtifact.version`                 | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.artifactAccount`       | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.customKind`            | `boolean` |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.location`              | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.metadata.id`           | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.name`                  | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.provenance`            | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.reference`             | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.type`                  | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.uuid`                  | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.version`               | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].defaultArtifact.version`               | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].id`                                    | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.artifactAccount`         | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.customKind`              | `boolean` |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.location`                | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.metadata.id`             | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.name`                    | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.provenance`              | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.reference`               | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.type`                    | `string`  |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.uuid`                    | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].matchArtifact.version`                 | ` `       |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].useDefaultArtifact`                    | `boolean` |             |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[].usePriorArtifact`                      | `boolean` |             |
-| `input.pipeline.trigger.type`                                                              | `string`  |             |
-| `input.pipeline.trigger.user`                                                              | `string`  |             |
-| `input.pipeline.type`                                                                      | `string`  |             |
+| Key                                                                       | Type      | Description                                                           |
+| ------------------------------------------------------------------------- | --------- | --------------------------------------------------------------------- |
+| `input.pipeline.application`                                              | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
+| `input.pipeline.authentication.allowedAccounts[]`                         | `string`  |                                                                       |
+| `input.pipeline.authentication.user`                                      | `string`  |                                                                       |
+| `input.pipeline.buildTime`                                                | `number`  |                                                                       |
+| `input.pipeline.canceled`                                                 | `boolean` |                                                                       |
+| `input.pipeline.canceledBy`                                               | ` `       |                                                                       |
+| `input.pipeline.cancellationReason`                                       | ` `       |                                                                       |
+| `input.pipeline.description`                                              | ` `       |                                                                       |
+| `input.pipeline.endTime`                                                  | ` `       |                                                                       |
+| `input.pipeline.id`                                                       | `string`  |                                                                       |
+| `input.pipeline.keepWaitingPipelines`                                     | `boolean` |                                                                       |
+| `input.pipeline.limitConcurrent`                                          | `boolean` |                                                                       |
+| `input.pipeline.name`                                                     | `string`  |                                                                       |
+| `input.pipeline.origin`                                                   | `string`  |                                                                       |
+| `input.pipeline.partition`                                                | ` `       |                                                                       |
+| `input.pipeline.paused`                                                   | ` `       |                                                                       |
+| `input.pipeline.pipelineConfigId`                                         | `string`  |                                                                       |
+| `input.pipeline.source`                                                   | ` `       |                                                                       |
+| `input.pipeline.spelEvaluator`                                            | `string`  |                                                                       |
+| `input.pipeline.stages[]`                                                 | `string`  |                                                                       |
+| `input.pipeline.stages[].context.account`                                 | `string`  |                                                                       |
+| `input.pipeline.stages[].context.action`                                  | `string`  |                                                                       |
+| `input.pipeline.stages[].context.artifacts[].account`                     | `string`  |                                                                       |
+| `input.pipeline.stages[].context.artifacts[].id`                          | `string`  |                                                                       |
+| `input.pipeline.stages[].context.cloudProvider`                           | `string`  |                                                                       |
+| `input.pipeline.stages[].context.expectedArtifacts[]`                     | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.     |
+| `input.pipeline.stages[].context.failPipeline`                            | `boolean` |                                                                       |
+| `input.pipeline.stages[].context.manifestArtifactId`                      | `string`  |                                                                       |
+| `input.pipeline.stages[].context.moniker.app`                             | `string`  |                                                                       |
+| `input.pipeline.stages[].context.planForDestroy`                          | `boolean` |                                                                       |
+| `input.pipeline.stages[].context.skipExpressionEvaluation`                | `boolean` |                                                                       |
+| `input.pipeline.stages[].context.source`                                  | `string`  |                                                                       |
+| `input.pipeline.stages[].context.terraformVersion`                        | `string`  |                                                                       |
+| `input.pipeline.stages[].context.trafficManagement.enabled`               | `boolean` |                                                                       |
+| `input.pipeline.stages[].context.trafficManagement.options.enableTraffic` | `boolean` |                                                                       |
+| `input.pipeline.stages[].endTime`                                         | ` `       |                                                                       |
+| `input.pipeline.stages[].id`                                              | `string`  |                                                                       |
+| `input.pipeline.stages[].lastModified`                                    | ` `       |                                                                       |
+| `input.pipeline.stages[].name`                                            | `string`  |                                                                       |
+| `input.pipeline.stages[].parentStageId`                                   | ` `       |                                                                       |
+| `input.pipeline.stages[].refId`                                           | `string`  |                                                                       |
+| `input.pipeline.stages[].requisiteStageRefIds[]`                          | `string`  |                                                                       |
+| `input.pipeline.stages[].scheduledTime`                                   | ` `       |                                                                       |
+| `input.pipeline.stages[].startTime`                                       | ` `       |                                                                       |
+| `input.pipeline.stages[].startTimeExpiry`                                 | ` `       |                                                                       |
+| `input.pipeline.stages[].status`                                          | `string`  |                                                                       |
+| `input.pipeline.stages[].syntheticStageOwner`                             | ` `       |                                                                       |
+| `input.pipeline.stages[].type`                                            | `string`  |                                                                       |
+| `input.pipeline.startTime`                                                | `number`  |                                                                       |
+| `input.pipeline.startTimeExpiry`                                          | ` `       |                                                                       |
+| `input.pipeline.status`                                                   | `string`  |                                                                       |
+| `input.pipeline.templateVariables`                                        | ` `       |                                                                       |
+| `input.pipeline.trigger.artifacts[]`                                      | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.     |
+| `input.pipeline.trigger.correlationId`                                    | ` `       |                                                                       |
+| `input.pipeline.trigger.isDryRun`                                         | `boolean` |                                                                       |
+| `input.pipeline.trigger.isRebake`                                         | `boolean` |                                                                       |
+| `input.pipeline.trigger.isStrategy`                                       | `boolean` |                                                                       |
+| `input.pipeline.trigger.other.artifacts[]`                                | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.     |
+| `input.pipeline.trigger.other.dryRun`                                     | `boolean` |                                                                       |
+| `input.pipeline.trigger.other.enabled`                                    | `boolean` |                                                                       |
+| `input.pipeline.trigger.other.eventId`                                    | `string`  |                                                                       |
+| `input.pipeline.trigger.other.executionId`                                | `string`  |                                                                       |
+| `input.pipeline.trigger.other.expectedArtifacts[]`                        | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.     |
+| `input.pipeline.trigger.other.parameters.nameAndSpace`                    | `string`  |                                                                       |
+| `input.pipeline.trigger.other.parameters.replicas`                        | `string`  |                                                                       |
+| `input.pipeline.trigger.other.parameters.moduleConfig`                    | `string`  |                                                                       |
+| `input.pipeline.trigger.other.preferred`                                  | `boolean` |                                                                       |
+| `input.pipeline.trigger.other.rebake`                                     | `boolean` |                                                                       |
+| `input.pipeline.trigger.other.resolvedExpectedArtifacts[]`                | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.     |
+| `input.pipeline.trigger.other.strategy`                                   | `boolean` |                                                                       |
+| `input.pipeline.trigger.other.type`                                       | `string`  |                                                                       |
+| `input.pipeline.trigger.other.user`                                       | `string`  |                                                                       |
+| `input.pipeline.trigger.parameters.nameAndSpace`                          | `string`  |                                                                       |
+| `input.pipeline.trigger.parameters.replicas`                              | `string`  |                                                                       |
+| `input.pipeline.trigger.parameters.moduleConfig`                          | `string`  |                                                                       |
+| `input.pipeline.trigger.resolvedExpectedArtifacts[]`                      | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.     |
+| `input.pipeline.trigger.type`                                             | `string`  |                                                                       |
+| `input.pipeline.trigger.user`                                             | `string`  |                                                                       |
+| `input.pipeline.type`                                                     | `string`  |                                                                       |
 
 ### `input.stage`
 
-| Key                                                                     | Type      | Description |
-| ----------------------------------------------------------------------- | --------- | ----------- |
-| `input.stage.context.artifactContents[].contents`                       | `string`  |             |
-| `input.stage.context.artifactContents[].name`                           | `string`  |             |
-| `input.stage.context.expectedArtifacts[].defaultArtifact.customKind`    | `boolean` |             |
-| `input.stage.context.expectedArtifacts[].defaultArtifact.metadata.id`   | `string`  |             |
-| `input.stage.context.expectedArtifacts[].id`                            | `string`  |             |
-| `input.stage.context.expectedArtifacts[].matchArtifact.artifactAccount` | `string`  |             |
-| `input.stage.context.expectedArtifacts[].matchArtifact.customKind`      | `boolean` |             |
-| `input.stage.context.expectedArtifacts[].matchArtifact.metadata.id`     | `string`  |             |
-| `input.stage.context.expectedArtifacts[].matchArtifact.name`            | `string`  |             |
-| `input.stage.context.expectedArtifacts[].matchArtifact.type`            | `string`  |             |
-| `input.stage.context.expectedArtifacts[].useDefaultArtifact`            | `boolean` |             |
-| `input.stage.context.expectedArtifacts[].usePriorArtifact`              | `boolean` |             |
-| `input.stage.endTime`                                                   | ` `       |             |
-| `input.stage.id`                                                        | `string`  |             |
-| `input.stage.lastModified`                                              | ` `       |             |
-| `input.stage.name`                                                      | `string`  |             |
-| `input.stage.outputs.artifacts[].customKind`                            | `boolean` |             |
-| `input.stage.outputs.artifacts[].name`                                  | `string`  |             |
-| `input.stage.outputs.artifacts[].reference`                             | `string`  |             |
-| `input.stage.outputs.artifacts[].type`                                  | `string`  |             |
-| `input.stage.parentStageId`                                             | ` `       |             |
-| `input.stage.refId`                                                     | `string`  |             |
-| `input.stage.scheduledTime`                                             | ` `       |             |
-| `input.stage.startTime`                                                 | `number`  |             |
-| `input.stage.startTimeExpiry`                                           | ` `       |             |
-| `input.stage.status`                                                    | `string`  |             |
-| `input.stage.syntheticStageOwner`                                       | ` `       |             |
-| `input.stage.tasks[].endTime`                                           | `number`  |             |
-| `input.stage.tasks[].endTime`                                           | ` `       |             |
-| `input.stage.tasks[].id`                                                | `string`  |             |
-| `input.stage.tasks[].implementingClass`                                 | `string`  |             |
-| `input.stage.tasks[].loopEnd`                                           | `boolean` |             |
-| `input.stage.tasks[].loopStart`                                         | `boolean` |             |
-| `input.stage.tasks[].name`                                              | `string`  |             |
-| `input.stage.tasks[].stageEnd`                                          | `boolean` |             |
-| `input.stage.tasks[].stageStart`                                        | `boolean` |             |
-| `input.stage.tasks[].startTime`                                         | `number`  |             |
-| `input.stage.tasks[].status`                                            | `string`  |             |
-| `input.stage.type`                                                      | `string`  |             |
+| Key                                                                     | Type      | Description                                                       |
+| ----------------------------------------------------------------------- | --------- | ----------------------------------------------------------------- |
+| `input.stage.context.artifactContents[].contents`                       | `string`  |                                                                   |
+| `input.stage.context.artifactContents[].name`                           | `string`  |                                                                   |
+| `input.stage.context.expectedArtifacts[]`                               | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
+| `input.stage.endTime`                                                   | ` `       |                                                                   |
+| `input.stage.id`                                                        | `string`  |                                                                   |
+| `input.stage.lastModified`                                              | ` `       |                                                                   |
+| `input.stage.name`                                                      | `string`  |                                                                   |
+| `input.stage.outputs.artifacts[].customKind`                            | `boolean` |                                                                   |
+| `input.stage.outputs.artifacts[].name`                                  | `string`  |                                                                   |
+| `input.stage.outputs.artifacts[].reference`                             | `string`  |                                                                   |
+| `input.stage.outputs.artifacts[].type`                                  | `string`  |                                                                   |
+| `input.stage.parentStageId`                                             | ` `       |                                                                   |
+| `input.stage.refId`                                                     | `string`  |                                                                   |
+| `input.stage.scheduledTime`                                             | ` `       |                                                                   |
+| `input.stage.startTime`                                                 | `number`  |                                                                   |
+| `input.stage.startTimeExpiry`                                           | ` `       |                                                                   |
+| `input.stage.status`                                                    | `string`  |                                                                   |
+| `input.stage.syntheticStageOwner`                                       | ` `       |                                                                   |
+| `input.stage.tasks[].endTime`                                           | `number`  |                                                                   |
+| `input.stage.tasks[].endTime`                                           | ` `       |                                                                   |
+| `input.stage.tasks[].id`                                                | `string`  |                                                                   |
+| `input.stage.tasks[].implementingClass`                                 | `string`  |                                                                   |
+| `input.stage.tasks[].loopEnd`                                           | `boolean` |                                                                   |
+| `input.stage.tasks[].loopStart`                                         | `boolean` |                                                                   |
+| `input.stage.tasks[].name`                                              | `string`  |                                                                   |
+| `input.stage.tasks[].stageEnd`                                          | `boolean` |                                                                   |
+| `input.stage.tasks[].stageStart`                                        | `boolean` |                                                                   |
+| `input.stage.tasks[].startTime`                                         | `number`  |                                                                   |
+| `input.stage.tasks[].status`                                            | `string`  |                                                                   |
+| `input.stage.type`                                                      | `string`  |                                                                   |
 
 
 ### `input.user`
