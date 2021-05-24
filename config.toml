@@ -88,6 +88,9 @@ weight = 1
 armory-version = "2.25.x"
 #used in air-gapped
 matching-oss-version-exact = "1.26.0"
+# used in agent compat and system requirements
+mysql-version="5.7; AWS Aurora"
+postgresql-version="10+"
 #used in the Operator docs
 armory-version-exact = "2.25.0"
 halyard-armory-version = "1.12.0"

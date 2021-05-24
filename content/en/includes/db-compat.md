@@ -2,4 +2,4 @@ Database compatibility:
 
 | MySQL | PostgreSQL |
 |:----- |:---------- |
-| 5.7   | 10+
+| {{< param "mysql-version" >}}   | {{< param "postgresql-version" >}}
