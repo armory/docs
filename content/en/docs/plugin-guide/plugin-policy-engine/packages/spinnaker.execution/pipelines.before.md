@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.pipelines.before"
 linktitle: "pipelines.before"
-description: "Where are we going in this ocean of chaos?"
+description: "Policy that is evaluated when a pipeline starts executing, but before any stages attempt to run."
 ---
 
 ## Example Payload
