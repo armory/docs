@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.deployment.tasks.before.deleteManifest"
 linkTitle: "deleteManifest"
-description: "WHO AM I?"
+description: "Policy checks that run immediate before a task deletes a spinnaker manifest"
 ---
 
 
@@ -54,12 +54,12 @@ description: "WHO AM I?"
 | `input.deploy.credentials`                | `string`  | The credentials to use to access the account. |
 | `input.deploy.labelSelectors.empty`       | `boolean` |                                               |
 | `input.deploy.labelSelectors.notEmpty`    | `boolean` |                                               |
-| `input.deploy.location`                   | `string`  |                                               |
-| `input.deploy.manifestName`               | `string`  |                                               |
-| `input.deploy.options.apiVersion`         | ` `       |                                               |
-| `input.deploy.options.dryRun`             | ` `       |                                               |
+| `input.deploy.location`                   | `string`  | The name of the namespace from which the manifest is being deleted                                              |
+| `input.deploy.manifestName`               | `string`  | The name of the manifest being deleted                                              |
+| `input.deploy.options.apiVersion`         | ` `       | The API version in which the manifest's kind is defined.                                              |
+| `input.deploy.options.dryRun`             | ` `       | If true then the manifest will not actually be deleted. if false it will be.                                              |
 | `input.deploy.options.gracePeriodSeconds` | `number`  |                                               |
-| `input.deploy.options.kind`               | ` `       |                                               |
+| `input.deploy.options.kind`               | ` `       | What is the kind of manifest that is being deleted.                                              |
 | `input.deploy.options.orphanDependents`   | ` `       |                                               |
 | `input.deploy.options.preconditions`      | ` `       |                                               |
 | `input.deploy.options.propagationPolicy`  | ` `       |                                               |
