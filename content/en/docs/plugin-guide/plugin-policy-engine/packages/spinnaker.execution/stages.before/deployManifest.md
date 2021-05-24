@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.deployManifest"
 linktitle: "deployManifest"
-description: "WHO AM I?"
+description: "a policy that is run before executing each task in a deploy manifest stage"
 ---
 
 
@@ -1551,9 +1551,60 @@ description: "WHO AM I?"
 </details>
 
 ## Example Policy
-
+This policy requires that a set of annotations have been applied to any manifests that are being deployed. Specifically the annotations 'app' and 'owner' must have been applied.
 ```rego
+package spinnaker.deployment.tasks.before.deployManifest
 
+required_annotations:=["app","owner"]
+
+deny["Manifest is missing a required annotation"] {
+    annotations :=input.deploy.manifests[_].metadata.annotations 
+
+    # Use object.get to check if data exists
+    object.get(annotations,required_annotations[_],null)==null
+}
+
+```
+This policy requires prevents exposing a set of ports that are unencrypted buy have encrypted alternatives. Specifically this policy prevents exposing HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, and SMTP from a pod, deployment, or replicaset.
+```rego
+package spinnaker.deployment.tasks.before.deployManifest
+
+blockedPorts := [20,21,23,80,110,119,143,389,587,8080,8088,8888]
+
+deny["A port typically used by an unencrypted protocol was detected."] {
+    #Check for service
+    ports := input.deploy.manifests[_].spec.ports[_]
+    any([object.get(ports,"port",null) == blockedPorts[_], 
+           object.get(ports,"targetPort",null) == blockedPorts[_]])
+}{ 
+    #Check for pod
+    input.deploy.manifests[_].spec.containers[_].ports[_].containerPort=blockedPorts[_]
+} { 
+    #Check for pod template
+    input.deploy.manifests[_].spec.template.spec.containers[_].ports[_].containerPort=blockedPorts[_]
+    }
+
+```
+
+This policy checks whether or not the image being approved is on a list of imaged that are approved for deployment. The list of what images are approved must seperately be uploaded to the OPA data document
+```rego
+package spinnaker.deployment.tasks.before.deployManifest
+
+deny["Manifest creates a pod from an image that is not approved by the security scanning process."] {
+#Check pod templates
+    isImageUnApproved(input.deploy.manifests[_].spec.template.spec.containers[_].image)
+} {#check pods
+    isImageUnApproved(input.deploy.manifests[_].spec.containers[_].image)
+}
+{#check pod template initContainers
+    isImageUnApproved(input.deploy.manifests[_].spec.template.spec.initContainers[_].image)
+}
+{#check pod initContainers
+    isImageUnApproved(input.deploy.manifests[_].spec.initContainers[_].image)
+}
+
+isImageUnApproved(image){    not isImageApproved(image) }
+isImageApproved(image){    image==data.approvedImages[_]}
 ```
 
 ## Keys
