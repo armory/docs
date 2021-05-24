@@ -1,7 +1,7 @@
 ---
-title: "spinnaker.http.authz.pipelines"
+title: "Package: spinnaker.http.authz Path: pipelines"
 linktitle: "pipelines"
-description: "fill me with delicious data, Stephen!"
+description: "Controls access to the spinnaker pipelines api. Can be used to prevent a user from creating a pipeline. Many usecases for this API call are better authored against the opa.pipelines package."
 ---
 
 
@@ -203,6 +203,13 @@ description: "fill me with delicious data, Stephen!"
 ## Example Policy
 
 ```rego
+package spinnaker.http.authz
+
+deny["Only admins can save pipelines"]{
+    input.path[0]=="pipelines"
+    input.method="POST"
+    input.user.isAdmin!=true
+}
 
 ```
 
