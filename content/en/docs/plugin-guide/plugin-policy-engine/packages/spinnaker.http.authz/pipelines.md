@@ -204,9 +204,11 @@ description: "Controls access to the spinnaker pipelines api. Can be used to pre
 
 ```rego
 package spinnaker.http.authz
+default message=""
+allow=message==""
 
-deny["Only admins can save pipelines"]{
-    input.path[0]=="pipelines"
+message="Only admins can save pipelines"{
+    input.path[0]!="pipelines"
     input.method="POST"
     input.user.isAdmin!=true
 }
