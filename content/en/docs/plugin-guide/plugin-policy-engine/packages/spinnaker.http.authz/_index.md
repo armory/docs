@@ -52,8 +52,8 @@ The following objects in `spinnaker.http.authz` all contain the same endpoints:
 
 | Key                         | Type      | Description |
 | :-------------------------- | --------- | ----------- |
-| `input.method`              | `string`  |             |
-| `input.path[]`              | `string`  |             |
+| `input.method`              | `string`  | The HTTP method that is being used to call the API            |
+| `input.path[]`              | `string`  | This array corresponds to the subpath of the API being invoked.            |
 | `input.user.isAdmin`        | `boolean` |             |
 | `input.user.username`       | `string`  |             |
 | `input.user.roles[].name`   | `string`  |             |
