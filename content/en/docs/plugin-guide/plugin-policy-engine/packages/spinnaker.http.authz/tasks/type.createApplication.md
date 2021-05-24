@@ -70,6 +70,28 @@ createsTaskOfType(tasktype){
     input.body.job[_].type=tasktype
 }
 ```
+This policy will disable the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions. Note: The spinnaker UI is not currently able to display an error message when this policy denies the action.
+```rego
+package spinnaker.http.authz
+
+allow = message==""
+
+default message=""
+message="You must provide at least 1 user with full execute permissions"{
+  not(hasWritePermissions(input.body.job[0]))
+  createsTaskOfType(["createApplication","updateApplication"][_])
+}
+
+hasWritePermissions(job) {
+  count(job.application.permissions.WRITE)>0
+}
+
+createsTaskOfType(tasktype){
+    input.method="POST"
+    input.path=["tasks"]
+    input.body.job[_].type=tasktype
+}
+```
 
 ## Keys
 
