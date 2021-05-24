@@ -1633,29 +1633,25 @@ canDeploy(namespace, application){
 
 | Key                                          | Type      | Description                                              |
 |----------------------------------------------|-----------|----------------------------------------------------------|
-| `input.pipeline.application` | `string` |
-| `input.pipeline.authentication.allowedAccounts[]` | `string` |
-| `input.pipeline.authentication.user` | `string` |
+| `input.pipeline.application` | `string` | The name of the application to which this pipeline belongs.
+| `input.pipeline.authentication.allowedAccounts[]` | `string` | The list of accounts to which the user this stage is running as has access.
+| `input.pipeline.authentication.user` | `string` | The id of the user that this stage is running as.
 | `input.pipeline.buildTime` | `number` |
-| `input.pipeline.canceled` | `boolean` |
-| `input.pipeline.canceledBy` | ` ` |
-| `input.pipeline.cancellationReason` | ` ` |
 | `input.pipeline.description` | `string` |
-| `input.pipeline.endTime` | ` ` |
 | `input.pipeline.id` | `string` |
 | `input.pipeline.keepWaitingPipelines` | `boolean` |
 | `input.pipeline.limitConcurrent` | `boolean` |
-| `input.pipeline.name` | ` ` |
+| `input.pipeline.name` | `string ` | 
 | `input.pipeline.origin` | `string` |
 | `input.pipeline.partition` | ` ` |
 | `input.pipeline.paused` | ` ` |
 | `input.pipeline.pipelineConfigId` | ` ` |
 | `input.pipeline.source` | ` ` |
 | `input.pipeline.spelEvaluator` | ` ` |
-| `input.pipeline.stages[]` | `string` |
+| `input.pipeline.stages[]` | `string` | an array of the stages in the pipeline.
 | `input.pipeline.startTime` | `number` |
 | `input.pipeline.startTimeExpiry` | ` ` |
-| `input.pipeline.status` | `string` |
+| `input.pipeline.status` | `string` | The status of the pipeline, typically 'RUNNING'
 | `input.pipeline.templateVariables` | ` ` |
 | `input.pipeline.trigger.correlationId` | ` ` |
 | `input.pipeline.trigger.isDryRun` | `boolean` |
@@ -1674,7 +1670,7 @@ canDeploy(namespace, application){
 
 | Key                                          | Type      | Description                                              |
 |----------------------------------------------|-----------|----------------------------------------------------------|
-| `input.stage.context.account` | `string` |
+| `input.stage.context.account` | `string` | What account is this stage deploying to. This is often used, for example, to check whther or not a policy applies to the given account.
 | `input.stage.context.artifacts[].customKind` | `boolean` |
 | `input.stage.context.artifacts[].location` | `string` |
 | `input.stage.context.artifacts[].metadata.account` | `string` |
@@ -1682,7 +1678,7 @@ canDeploy(namespace, application){
 | `input.stage.context.artifacts[].reference` | `string` |
 | `input.stage.context.artifacts[].type` | `string` |
 | `input.stage.context.artifacts[].version` | `string` |
-| `input.stage.context.cloudProvider` | `string` |
+| `input.stage.context.cloudProvider` | `string` | what is the cloudprovider for the account this is deploying to. Typically 'kubernetes'
 | `input.stage.context.deploy.account.name` | `string` |
 | `input.stage.context.kato.last.task.id.id` | `string` |
 | `input.stage.context.kato.result.expected` | `boolean` |
@@ -1690,389 +1686,33 @@ canDeploy(namespace, application){
 | `input.stage.context.kato.task.lastStatus` | `string` |
 | `input.stage.context.kato.task.notFoundRetryCount` | `number` |
 | `input.stage.context.kato.task.terminalRetryCount` | `number` |
-| `input.stage.context.kato.tasks[].history[].phase` | `string` |
-| `input.stage.context.kato.tasks[].history[].status` | `string` |
+| `input.stage.context.kato.tasks[]` | `string` | This array contains the tasks that are executed during this stage. when each task finishes execution, the policy will be rechecked with the status of each execution task updated.
+| `input.stage.context.kato.tasks[].history[].phase` | `string` | The history of task phase changes.
+| `input.stage.context.kato.tasks[].history[].status` | `string` | The history of task status changes.
 | `input.stage.context.kato.tasks[].id` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].createdArtifacts[].customKind` | `boolean` |
-| `input.stage.context.kato.tasks[].resultObjects[].createdArtifacts[].location` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].createdArtifacts[].metadata.account` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].createdArtifacts[].name` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].createdArtifacts[].reference` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].createdArtifacts[].type` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].createdArtifacts[].version` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifestNamesByNamespace.staging[]` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].apiVersion` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].kind` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.annotations.artifact.spinnaker.io/location` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.annotations.artifact.spinnaker.io/name` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.annotations.artifact.spinnaker.io/type` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.annotations.artifact.spinnaker.io/version` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.annotations.deployment.kubernetes.io/revision` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.annotations.kubectl.kubernetes.io/last-applied-configuration` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.annotations.moniker.spinnaker.io/application` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.annotations.moniker.spinnaker.io/cluster` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.creationTimestamp` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.generation` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.labels.app.kubernetes.io/managed-by` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.labels.app.kubernetes.io/name` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.managedFields[].apiVersion` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.managedFields[].fieldsType` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.managedFields[].manager` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.managedFields[].operation` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.managedFields[].time` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.name` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.namespace` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.resourceVersion` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.selfLink` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].metadata.uid` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.progressDeadlineSeconds` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.replicas` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.revisionHistoryLimit` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.selector.matchLabels.app` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.selector.matchLabels.version` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.strategy.rollingUpdate.maxSurge` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.strategy.rollingUpdate.maxUnavailable` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.strategy.type` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/location` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/name` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/type` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/version` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.metadata.annotations.moniker.spinnaker.io/application` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.metadata.annotations.moniker.spinnaker.io/cluster` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.metadata.annotations.prometheus.io/port` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.metadata.annotations.prometheus.io/scrape` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.metadata.labels.app` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.metadata.labels.app.kubernetes.io/managed-by` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.metadata.labels.app.kubernetes.io/name` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.metadata.labels.version` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].args[]` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].image` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].imagePullPolicy` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].name` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].ports[].containerPort` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].ports[].name` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].ports[].protocol` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].terminationMessagePath` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].terminationMessagePolicy` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].volumeMounts[].mountPath` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].volumeMounts[].name` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].volumeMounts[].readOnly` | `boolean` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.containers[].volumeMounts[].subPath` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.dnsPolicy` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.restartPolicy` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.schedulerName` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.terminationGracePeriodSeconds` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.volumes[].configMap.defaultMode` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.volumes[].configMap.name` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].spec.template.spec.volumes[].name` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].status.availableReplicas` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].status.conditions[].lastTransitionTime` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].status.conditions[].lastUpdateTime` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].status.conditions[].message` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].status.conditions[].reason` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].status.conditions[].status` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].status.conditions[].type` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].status.observedGeneration` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].status.readyReplicas` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].status.replicas` | `number` |
-| `input.stage.context.kato.tasks[].resultObjects[].manifests[].status.updatedReplicas` | `number` |
-| `input.stage.context.kato.tasks[].status.completed` | `boolean` |
-| `input.stage.context.kato.tasks[].status.failed` | `boolean` |
-| `input.stage.context.kato.tasks[].status.retryable` | `boolean` |
-| `input.stage.context.manifestArtifactAccount` | `string` |
-| `input.stage.context.manifests[].apiVersion` | `string` |
-| `input.stage.context.manifests[].kind` | `string` |
-| `input.stage.context.manifests[].metadata.annotations.artifact.spinnaker.io/location` | `string` |
-| `input.stage.context.manifests[].metadata.annotations.artifact.spinnaker.io/name` | `string` |
-| `input.stage.context.manifests[].metadata.annotations.artifact.spinnaker.io/type` | `string` |
-| `input.stage.context.manifests[].metadata.annotations.artifact.spinnaker.io/version` | `string` |
-| `input.stage.context.manifests[].metadata.annotations.moniker.spinnaker.io/application` | `string` |
-| `input.stage.context.manifests[].metadata.annotations.moniker.spinnaker.io/cluster` | `string` |
-| `input.stage.context.manifests[].metadata.labels.app.kubernetes.io/managed-by` | `string` |
-| `input.stage.context.manifests[].metadata.labels.app.kubernetes.io/name` | `string` |
-| `input.stage.context.manifests[].metadata.name` | `string` |
-| `input.stage.context.manifests[].metadata.namespace` | `string` |
-| `input.stage.context.manifests[].spec.replicas` | `number` |
-| `input.stage.context.manifests[].spec.selector.matchLabels.app` | `string` |
-| `input.stage.context.manifests[].spec.selector.matchLabels.version` | `string` |
-| `input.stage.context.manifests[].spec.strategy.rollingUpdate.maxSurge` | `number` |
-| `input.stage.context.manifests[].spec.strategy.rollingUpdate.maxUnavailable` | `number` |
-| `input.stage.context.manifests[].spec.strategy.type` | `string` |
-| `input.stage.context.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/location` | `string` |
-| `input.stage.context.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/name` | `string` |
-| `input.stage.context.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/type` | `string` |
-| `input.stage.context.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/version` | `string` |
-| `input.stage.context.manifests[].spec.template.metadata.annotations.moniker.spinnaker.io/application` | `string` |
-| `input.stage.context.manifests[].spec.template.metadata.annotations.moniker.spinnaker.io/cluster` | `string` |
-| `input.stage.context.manifests[].spec.template.metadata.annotations.prometheus.io/port` | `string` |
-| `input.stage.context.manifests[].spec.template.metadata.annotations.prometheus.io/scrape` | `string` |
-| `input.stage.context.manifests[].spec.template.metadata.labels.app` | `string` |
-| `input.stage.context.manifests[].spec.template.metadata.labels.app.kubernetes.io/managed-by` | `string` |
-| `input.stage.context.manifests[].spec.template.metadata.labels.app.kubernetes.io/name` | `string` |
-| `input.stage.context.manifests[].spec.template.metadata.labels.version` | `string` |
-| `input.stage.context.manifests[].spec.template.spec.containers[].args[]` | `string` |
-| `input.stage.context.manifests[].spec.template.spec.containers[].image` | `string` |
-| `input.stage.context.manifests[].spec.template.spec.containers[].imagePullPolicy` | `string` |
-| `input.stage.context.manifests[].spec.template.spec.containers[].name` | `string` |
-| `input.stage.context.manifests[].spec.template.spec.containers[].ports[].containerPort` | `number` |
-| `input.stage.context.manifests[].spec.template.spec.containers[].ports[].name` | `string` |
-| `input.stage.context.manifests[].spec.template.spec.containers[].ports[].protocol` | `string` |
-| `input.stage.context.manifests[].spec.template.spec.containers[].volumeMounts[].mountPath` | `string` |
-| `input.stage.context.manifests[].spec.template.spec.containers[].volumeMounts[].name` | `string` |
-| `input.stage.context.manifests[].spec.template.spec.containers[].volumeMounts[].readOnly` | `boolean` |
-| `input.stage.context.manifests[].spec.template.spec.containers[].volumeMounts[].subPath` | `string` |
-| `input.stage.context.manifests[].spec.template.spec.restartPolicy` | `string` |
-| `input.stage.context.manifests[].spec.template.spec.volumes[].configMap.defaultMode` | `number` |
-| `input.stage.context.manifests[].spec.template.spec.volumes[].configMap.name` | `string` |
-| `input.stage.context.manifests[].spec.template.spec.volumes[].name` | `string` |
-| `input.stage.context.moniker.app` | `string` |
-| `input.stage.context.moniker.cluster` | `string` |
-| `input.stage.context.outputs.createdArtifacts[].customKind` | `boolean` |
-| `input.stage.context.outputs.createdArtifacts[].location` | `string` |
-| `input.stage.context.outputs.createdArtifacts[].metadata.account` | `string` |
-| `input.stage.context.outputs.createdArtifacts[].name` | `string` |
-| `input.stage.context.outputs.createdArtifacts[].reference` | `string` |
-| `input.stage.context.outputs.createdArtifacts[].type` | `string` |
-| `input.stage.context.outputs.createdArtifacts[].version` | `string` |
-| `input.stage.context.outputs.manifestNamesByNamespace.staging[]` | `string` |
-| `input.stage.context.outputs.manifests[].apiVersion` | `string` |
-| `input.stage.context.outputs.manifests[].kind` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.annotations.artifact.spinnaker.io/location` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.annotations.artifact.spinnaker.io/name` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.annotations.artifact.spinnaker.io/type` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.annotations.artifact.spinnaker.io/version` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.annotations.deployment.kubernetes.io/revision` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.annotations.kubectl.kubernetes.io/last-applied-configuration` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.annotations.moniker.spinnaker.io/application` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.annotations.moniker.spinnaker.io/cluster` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.creationTimestamp` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.generation` | `number` |
-| `input.stage.context.outputs.manifests[].metadata.labels.app.kubernetes.io/managed-by` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.labels.app.kubernetes.io/name` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.managedFields[].apiVersion` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.managedFields[].fieldsType` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.managedFields[].manager` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.managedFields[].operation` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.managedFields[].time` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.name` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.namespace` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.resourceVersion` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.selfLink` | `string` |
-| `input.stage.context.outputs.manifests[].metadata.uid` | `string` |
-| `input.stage.context.outputs.manifests[].spec.progressDeadlineSeconds` | `number` |
-| `input.stage.context.outputs.manifests[].spec.replicas` | `number` |
-| `input.stage.context.outputs.manifests[].spec.revisionHistoryLimit` | `number` |
-| `input.stage.context.outputs.manifests[].spec.selector.matchLabels.app` | `string` |
-| `input.stage.context.outputs.manifests[].spec.selector.matchLabels.version` | `string` |
-| `input.stage.context.outputs.manifests[].spec.strategy.rollingUpdate.maxSurge` | `number` |
-| `input.stage.context.outputs.manifests[].spec.strategy.rollingUpdate.maxUnavailable` | `number` |
-| `input.stage.context.outputs.manifests[].spec.strategy.type` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/location` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/name` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/type` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/version` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.metadata.annotations.moniker.spinnaker.io/application` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.metadata.annotations.moniker.spinnaker.io/cluster` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.metadata.annotations.prometheus.io/port` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.metadata.annotations.prometheus.io/scrape` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.metadata.labels.app` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.metadata.labels.app.kubernetes.io/managed-by` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.metadata.labels.app.kubernetes.io/name` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.metadata.labels.version` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].args[]` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].image` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].imagePullPolicy` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].name` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].ports[].containerPort` | `number` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].ports[].name` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].ports[].protocol` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].terminationMessagePath` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].terminationMessagePolicy` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].volumeMounts[].mountPath` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].volumeMounts[].name` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].volumeMounts[].readOnly` | `boolean` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.containers[].volumeMounts[].subPath` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.dnsPolicy` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.restartPolicy` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.schedulerName` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.terminationGracePeriodSeconds` | `number` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.volumes[].configMap.defaultMode` | `number` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.volumes[].configMap.name` | `string` |
-| `input.stage.context.outputs.manifests[].spec.template.spec.volumes[].name` | `string` |
-| `input.stage.context.outputs.manifests[].status.availableReplicas` | `number` |
-| `input.stage.context.outputs.manifests[].status.conditions[].lastTransitionTime` | `string` |
-| `input.stage.context.outputs.manifests[].status.conditions[].lastUpdateTime` | `string` |
-| `input.stage.context.outputs.manifests[].status.conditions[].message` | `string` |
-| `input.stage.context.outputs.manifests[].status.conditions[].reason` | `string` |
-| `input.stage.context.outputs.manifests[].status.conditions[].status` | `string` |
-| `input.stage.context.outputs.manifests[].status.conditions[].type` | `string` |
-| `input.stage.context.outputs.manifests[].status.observedGeneration` | `number` |
-| `input.stage.context.outputs.manifests[].status.readyReplicas` | `number` |
-| `input.stage.context.outputs.manifests[].status.replicas` | `number` |
-| `input.stage.context.outputs.manifests[].status.updatedReplicas` | `number` |
+| `input.stage.context.kato.tasks[].resultObjects[] | `object` | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs.
+| `input.stage.context.kato.tasks[].status.completed` | `boolean` | has the task finished executing
+| `input.stage.context.kato.tasks[].status.failed` | `boolean` | Did the task attempt to execute and fail
+| `input.stage.context.kato.tasks[].status.retryable` | `boolean` | Can the task retry if execution fails.
+| `input.stage.context.manifestArtifactAccount` | `string` | What artifact account are artifacts stored in.
+| `input.stage.context.manifests[]`| `object` | The raw kubernetes manifest being deployed. This is the element you should write mpolicies against that involve the manifest.
+| `input.stage.context.moniker.app` | `string` | The name of the application to which this pipeline belongs.
+| `input.stage.context.moniker.cluster` | `string` | The name of the cluster to which this stage is deploying.
+| `input.stage.context.outputs` | `object` | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs.
 | `input.stage.context.source` | `string` |
 | `input.stage.context.stableManifests[].location` | `string` |
 | `input.stage.context.stableManifests[].manifestName` | `string` |
-| `input.stage.context.user` | `string` |
-| `input.stage.endTime` | ` ` |
-| `input.stage.id` | `string` |
-| `input.stage.lastModified` | ` ` |
-| `input.stage.name` | `string` |
-| `input.stage.outputs.artifacts[].customKind` | `boolean` |
-| `input.stage.outputs.artifacts[].location` | `string` |
-| `input.stage.outputs.artifacts[].metadata.account` | `string` |
-| `input.stage.outputs.artifacts[].name` | `string` |
-| `input.stage.outputs.artifacts[].reference` | `string` |
-| `input.stage.outputs.artifacts[].type` | `string` |
-| `input.stage.outputs.artifacts[].version` | `string` |
-| `input.stage.outputs.manifests[].apiVersion` | `string` |
-| `input.stage.outputs.manifests[].kind` | `string` |
-| `input.stage.outputs.manifests[].metadata.annotations.artifact.spinnaker.io/location` | `string` |
-| `input.stage.outputs.manifests[].metadata.annotations.artifact.spinnaker.io/name` | `string` |
-| `input.stage.outputs.manifests[].metadata.annotations.artifact.spinnaker.io/type` | `string` |
-| `input.stage.outputs.manifests[].metadata.annotations.artifact.spinnaker.io/version` | `string` |
-| `input.stage.outputs.manifests[].metadata.annotations.moniker.spinnaker.io/application` | `string` |
-| `input.stage.outputs.manifests[].metadata.annotations.moniker.spinnaker.io/cluster` | `string` |
-| `input.stage.outputs.manifests[].metadata.labels.app.kubernetes.io/managed-by` | `string` |
-| `input.stage.outputs.manifests[].metadata.labels.app.kubernetes.io/name` | `string` |
-| `input.stage.outputs.manifests[].metadata.name` | `string` |
-| `input.stage.outputs.manifests[].metadata.namespace` | `string` |
-| `input.stage.outputs.manifests[].spec.replicas` | `number` |
-| `input.stage.outputs.manifests[].spec.selector.matchLabels.app` | `string` |
-| `input.stage.outputs.manifests[].spec.selector.matchLabels.version` | `string` |
-| `input.stage.outputs.manifests[].spec.strategy.rollingUpdate.maxSurge` | `number` |
-| `input.stage.outputs.manifests[].spec.strategy.rollingUpdate.maxUnavailable` | `number` |
-| `input.stage.outputs.manifests[].spec.strategy.type` | `string` |
-| `input.stage.outputs.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/location` | `string` |
-| `input.stage.outputs.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/name` | `string` |
-| `input.stage.outputs.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/type` | `string` |
-| `input.stage.outputs.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/version` | `string` |
-| `input.stage.outputs.manifests[].spec.template.metadata.annotations.moniker.spinnaker.io/application` | `string` |
-| `input.stage.outputs.manifests[].spec.template.metadata.annotations.moniker.spinnaker.io/cluster` | `string` |
-| `input.stage.outputs.manifests[].spec.template.metadata.annotations.prometheus.io/port` | `string` |
-| `input.stage.outputs.manifests[].spec.template.metadata.annotations.prometheus.io/scrape` | `string` |
-| `input.stage.outputs.manifests[].spec.template.metadata.labels.app` | `string` |
-| `input.stage.outputs.manifests[].spec.template.metadata.labels.app.kubernetes.io/managed-by` | `string` |
-| `input.stage.outputs.manifests[].spec.template.metadata.labels.app.kubernetes.io/name` | `string` |
-| `input.stage.outputs.manifests[].spec.template.metadata.labels.version` | `string` |
-| `input.stage.outputs.manifests[].spec.template.spec.containers[].args[]` | `string` |
-| `input.stage.outputs.manifests[].spec.template.spec.containers[].image` | `string` |
-| `input.stage.outputs.manifests[].spec.template.spec.containers[].imagePullPolicy` | `string` |
-| `input.stage.outputs.manifests[].spec.template.spec.containers[].name` | `string` |
-| `input.stage.outputs.manifests[].spec.template.spec.containers[].ports[].containerPort` | `number` |
-| `input.stage.outputs.manifests[].spec.template.spec.containers[].ports[].name` | `string` |
-| `input.stage.outputs.manifests[].spec.template.spec.containers[].ports[].protocol` | `string` |
-| `input.stage.outputs.manifests[].spec.template.spec.containers[].volumeMounts[].mountPath` | `string` |
-| `input.stage.outputs.manifests[].spec.template.spec.containers[].volumeMounts[].name` | `string` |
-| `input.stage.outputs.manifests[].spec.template.spec.containers[].volumeMounts[].readOnly` | `boolean` |
-| `input.stage.outputs.manifests[].spec.template.spec.containers[].volumeMounts[].subPath` | `string` |
-| `input.stage.outputs.manifests[].spec.template.spec.restartPolicy` | `string` |
-| `input.stage.outputs.manifests[].spec.template.spec.volumes[].configMap.defaultMode` | `number` |
-| `input.stage.outputs.manifests[].spec.template.spec.volumes[].configMap.name` | `string` |
-| `input.stage.outputs.manifests[].spec.template.spec.volumes[].name` | `string` |
-| `input.stage.outputs.outputs.createdArtifacts[].customKind` | `boolean` |
-| `input.stage.outputs.outputs.createdArtifacts[].location` | `string` |
-| `input.stage.outputs.outputs.createdArtifacts[].metadata.account` | `string` |
-| `input.stage.outputs.outputs.createdArtifacts[].name` | `string` |
-| `input.stage.outputs.outputs.createdArtifacts[].reference` | `string` |
-| `input.stage.outputs.outputs.createdArtifacts[].type` | `string` |
-| `input.stage.outputs.outputs.createdArtifacts[].version` | `string` |
-| `input.stage.outputs.outputs.manifestNamesByNamespace.staging[]` | `string` |
-| `input.stage.outputs.outputs.manifests[].apiVersion` | `string` |
-| `input.stage.outputs.outputs.manifests[].kind` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.annotations.artifact.spinnaker.io/location` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.annotations.artifact.spinnaker.io/name` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.annotations.artifact.spinnaker.io/type` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.annotations.artifact.spinnaker.io/version` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.annotations.deployment.kubernetes.io/revision` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.annotations.kubectl.kubernetes.io/last-applied-configuration` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.annotations.moniker.spinnaker.io/application` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.annotations.moniker.spinnaker.io/cluster` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.creationTimestamp` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.generation` | `number` |
-| `input.stage.outputs.outputs.manifests[].metadata.labels.app.kubernetes.io/managed-by` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.labels.app.kubernetes.io/name` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.managedFields[].apiVersion` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.managedFields[].fieldsType` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.managedFields[].manager` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.managedFields[].operation` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.managedFields[].time` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.name` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.namespace` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.resourceVersion` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.selfLink` | `string` |
-| `input.stage.outputs.outputs.manifests[].metadata.uid` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.progressDeadlineSeconds` | `number` |
-| `input.stage.outputs.outputs.manifests[].spec.replicas` | `number` |
-| `input.stage.outputs.outputs.manifests[].spec.revisionHistoryLimit` | `number` |
-| `input.stage.outputs.outputs.manifests[].spec.selector.matchLabels.app` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.selector.matchLabels.version` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.strategy.rollingUpdate.maxSurge` | `number` |
-| `input.stage.outputs.outputs.manifests[].spec.strategy.rollingUpdate.maxUnavailable` | `number` |
-| `input.stage.outputs.outputs.manifests[].spec.strategy.type` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/location` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/name` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/type` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.metadata.annotations.artifact.spinnaker.io/version` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.metadata.annotations.moniker.spinnaker.io/application` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.metadata.annotations.moniker.spinnaker.io/cluster` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.metadata.annotations.prometheus.io/port` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.metadata.annotations.prometheus.io/scrape` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.metadata.labels.app` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.metadata.labels.app.kubernetes.io/managed-by` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.metadata.labels.app.kubernetes.io/name` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.metadata.labels.version` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].args[]` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].image` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].imagePullPolicy` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].name` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].ports[].containerPort` | `number` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].ports[].name` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].ports[].protocol` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].terminationMessagePath` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].terminationMessagePolicy` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].volumeMounts[].mountPath` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].volumeMounts[].name` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].volumeMounts[].readOnly` | `boolean` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.containers[].volumeMounts[].subPath` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.dnsPolicy` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.restartPolicy` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.schedulerName` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.terminationGracePeriodSeconds` | `number` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.volumes[].configMap.defaultMode` | `number` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.volumes[].configMap.name` | `string` |
-| `input.stage.outputs.outputs.manifests[].spec.template.spec.volumes[].name` | `string` |
-| `input.stage.outputs.outputs.manifests[].status.availableReplicas` | `number` |
-| `input.stage.outputs.outputs.manifests[].status.conditions[].lastTransitionTime` | `string` |
-| `input.stage.outputs.outputs.manifests[].status.conditions[].lastUpdateTime` | `string` |
-| `input.stage.outputs.outputs.manifests[].status.conditions[].message` | `string` |
-| `input.stage.outputs.outputs.manifests[].status.conditions[].reason` | `string` |
-| `input.stage.outputs.outputs.manifests[].status.conditions[].status` | `string` |
-| `input.stage.outputs.outputs.manifests[].status.conditions[].type` | `string` |
-| `input.stage.outputs.outputs.manifests[].status.observedGeneration` | `number` |
-| `input.stage.outputs.outputs.manifests[].status.readyReplicas` | `number` |
-| `input.stage.outputs.outputs.manifests[].status.replicas` | `number` |
-| `input.stage.outputs.outputs.manifests[].status.updatedReplicas` | `number` |
+| `input.stage.context.user` | `string` | the ID of the user that the stage is running as.
+| `input.stage.id` | `string` | This stages unique ID
+| `input.stage.name` | `string` | The name of the pipeline stage.
+| `input.stage.outputs| `object` | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs.
 | `input.stage.parentStageId` | ` ` |
-| `input.stage.refId` | `string` |
-| `input.stage.scheduledTime` | ` ` |
-| `input.stage.startTime` | `number` |
-| `input.stage.startTimeExpiry` | ` ` |
-| `input.stage.status` | `string` |
-| `input.stage.syntheticStageOwner` | ` ` |
-| `input.stage.tasks[].endTime` | `number` |
-| `input.stage.tasks[].endTime` | ` ` |
-| `input.stage.tasks[].id` | `string` |
-| `input.stage.tasks[].implementingClass` | `string` |
-| `input.stage.tasks[].loopEnd` | `boolean` |
-| `input.stage.tasks[].loopStart` | `boolean` |
-| `input.stage.tasks[].name` | `string` |
-| `input.stage.tasks[].stageEnd` | `boolean` |
-| `input.stage.tasks[].stageStart` | `boolean` |
-| `input.stage.tasks[].startTime` | `number` |
-| `input.stage.tasks[].startTime` | ` ` |
-| `input.stage.tasks[].status` | `string` |
-| `input.stage.type` | `string` |
+| `input.stage.refId` | `string` | This stages ID reference in the stage graph. Typically if you are writing a policy that depends on pipeline stage order, it is better to write that policy against either the opa.pipelines bpackage, or the spinnaker.execution.pipelines.before package.
+| `input.stage.startTime` | `number` | When did this stage start running.
+| `input.stage.status` | `string` | The status of this stage, typically 'RUNNING' when this policy is checked.
+| `input.stage.tasks[].name` | `string` | The name of the task being executed. Each stage will execute multiple tasks to accomplish its goals.
+| `input.stage.tasks[].status` | `string` | The status of the running tasks. If you wish to check whether or not this is the first task of the stage you can include the following in your policy: input.stage.tasks[_].status=="SUCCEEDED", which will return 'true' if a task has finished running successfully.
+| `input.stage.type` | `string` | Will always be 'deployManifest'
 
 ### `input.user`
 
