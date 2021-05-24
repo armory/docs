@@ -1648,7 +1648,7 @@ canDeploy(namespace, application){
 | `input.pipeline.pipelineConfigId` | ` ` |
 | `input.pipeline.source` | ` ` |
 | `input.pipeline.spelEvaluator` | ` ` |
-| `input.pipeline.stages[]` | `string` | an array of the stages in the pipeline.
+| `input.pipeline.stages[]` | `string` | an array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the opa.pipelines bpackage, or the spinnaker.execution.pipelines.before package.
 | `input.pipeline.startTime` | `number` |
 | `input.pipeline.startTimeExpiry` | ` ` |
 | `input.pipeline.status` | `string` | The status of the pipeline, typically 'RUNNING'
