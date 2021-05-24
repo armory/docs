@@ -111,7 +111,7 @@ The following changes to the Plugin Framework may affect you if you are developi
 
 ### Terraform Integration stage
 
-- The integration now supports Terraform versions up to 14.10.
+- The integration now supports Terraform versions up to 0.15.1.
 - The container for the Terraformer service now includes the GCloud SDK and `anthos-cli`.
 - All the Terraform binaries bundled as part of the integration have been updated in accordance with [HCSEC-2021-12](https://discuss.hashicorp.com/t/terraform-updates-for-hcsec-2021-12/23570) to address potential issues from the Codecov incident.
 
