@@ -1606,6 +1606,26 @@ deny["Manifest creates a pod from an image that is not approved by the security 
 isImageUnApproved(image){    not isImageApproved(image) }
 isImageApproved(image){    image==data.approvedImages[_]}
 ```
+This policy prevents applications from deploying to namespaces that they are not whitelisted for.
+```rego
+package spinnaker.execution.stages.before.deployManifest
+
+allowedNamespaces:=[{"app":"app1","ns": ["ns1","ns2"]},
+                    {"app":"app2", "ns":["ns3"]}]
+
+deny["stage deploys to a namespace to which this application lacks access"]{
+    ns :=object.get(input.stage.context.manifests[_].metadata,"namespace","default")
+    application := input.pipeline.application
+    not canDeploy(ns, application)
+}
+
+canDeploy(namespace, application){
+    some i
+    allowedNamespaces[i].app==application
+    allowedNamespaces[i].ns[_]==namespace
+}
+
+```
 
 ## Keys
 
