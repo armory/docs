@@ -1,6 +1,6 @@
 ---
 title: "spinnaker.deployment.tasks.before.cleanupArtifacts"
-linkTitle: "spinnaker.deployment.tasks.before.cleanupArtifacts"
+linkTitle: "cleanupArtifacts"
 description: "Used by policies to affect the ‘Cleanup Artifacts’ task for actions deployment changes triggered from the ‘Clusters’, ‘Load Balancers’ or ‘Firewalls’ tab, as opposed to by executing a pipeline."
 weight: 5
 ---

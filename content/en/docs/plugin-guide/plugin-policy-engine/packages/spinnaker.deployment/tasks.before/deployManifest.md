@@ -1,6 +1,6 @@
 ---
 title: "spinnaker.deployment.tasks.before.deployManifest"
-linkTitle: "spinnaker.deployment.tasks.before.deployManifest"
+linkTitle: "deployManifest"
 weight: 10
 description: "WHO AM I?"
 ---
