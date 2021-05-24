@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.http.authz.tasks.type.createApplication"
 linktitle: "type.createApplication"
-description: "fill me with delicious data, Stephen!"
+description: "A policy call is made for this type anytime a user attmpts to create a new application."
 ---
 
 ## Example Payload
