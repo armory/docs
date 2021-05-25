@@ -1,6 +1,6 @@
 ---
 title: "Package: spinnaker.http.authz Path: tasks Method: Post Task-Type: createApplication"
-linktitle: "type.createApplication"
+linktitle: "createApplication"
 description: "A policy call is made for this type anytime a user attmpts to create a new application."
 ---
 
