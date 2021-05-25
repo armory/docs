@@ -155,9 +155,25 @@ description: "Policy controls whether or not a deployManifest that is triggered 
 </details>
 
 ## Example Policy
-
+Prevents editing manifests from outside of a pipeline on production accounts.
 ```rego
+package spinnaker.http.authz
+default message=""
+allow = message==""
 
+isProductionAccount(account){
+	["prodAccount1","prodAccount2"][_]==account
+}
+
+message = "Manifests cannot be deployed outside of a pipeline in production accounts"{
+      createsTaskOfType("deployManifest")
+      isProductionAccount(input.body.job[_].account)
+}
+createsTaskOfType(tasktype){
+    input.method="POST"
+    input.path=["tasks"]
+    input.body.job[_].type=tasktype
+}
 ```
 
 ## Keys
