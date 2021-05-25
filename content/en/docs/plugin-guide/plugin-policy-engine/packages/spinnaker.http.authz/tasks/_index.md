@@ -1,5 +1,5 @@
 ---
-title: spinnaker.http.authz.tasks
+title: Package: spinnaker.http.authz Path: tasks Method: Post
 linkTitle: tasks
 ---
 Posts to the tasks api create new tasks in spinnaker. The following rego function can be leveraged in any task in order to determine what task type is being created:
