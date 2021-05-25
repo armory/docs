@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.ui.entitlements.isFeatureEnabled.projects"
 linktitle: "projects"
-description: "fill me with delicious data, Stephen!"
+description: "Can hide the 'Projects' tab of the spinnaker UI."
 ---
 
 ## Example Payload
