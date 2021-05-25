@@ -192,17 +192,35 @@ weight: 10
 </details>
 
 ## Example Policy
-
+requires that a manual approval by the 'qa' role, and a manual approval by the 'infosec' role happy earlier in a pipeline than any deployment to a production account. Production accounts must have been loaded into the OPA data document in an array named 'production_accounts'
 {{< prism lang="rego" line-numbers="true" >}}
 package opa.pipelines
-production_accounts := ["prod1","prod2"]
-deny["deploy stage must follow a manual judgement stage for production accounts"] {
+
+deny["production deploy stage must follow approval by 'qa' and 'infosec'"] {
   some j
-  input.pipeline.stages[j].type=="deployManifest"
-  input.pipeline.stages[j].account==production_accounts[_]
-  approvers := [i | input.pipeline.stages[i].type=="manualJudgment"; i<j]
-  count(approvers)==0
+  stage :=input.pipeline.stages[j]
+  stage.type=="deployManifest"
+  stage.account==data.production_accounts[_] 
+  lacksEarlierApprovalBy(["qa","infosec"][_],j)  
 }
+
+stage_graph[idx]  = edges { #converts stage graph into the structure rego needs
+  input.pipeline.stages[idx]
+  edges := {neighbor | input.pipeline.stages[neighbor].refId ==   
+                  input.pipeline.stages[idx].requisiteStageRefIds[_]}
+}
+
+hasEarlierApprovalBy(role, idx){
+    stage := input.pipeline.stages[i]
+    stage.type=="manualJudgment"
+    stage.selectedStageRoles[0]==role; count(stage.selectedStageRoles)==1
+    reachable := graph.reachable(stage_graph, {idx})[_]==i
+}
+lacksEarlierApprovalBy(role,idx) {
+    not hasEarlierApprovalBy(role,idx) 
+}
+
+
 {{< /prism >}}
 
 ## Keys
