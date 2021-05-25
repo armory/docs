@@ -581,110 +581,60 @@ description: "fill me with delicious data, Stephen!"
 
 ### `input.pipeline.stages`
 
-| Key                                                                                         | Type      | Description |
-| ------------------------------------------------------------------------------------------- | --------- | ----------- |
-| `input.pipeline.stages[].context.action`                                                    | `string`  |             |
-| `input.pipeline.stages[].context.artifactContents[].contents`                               | `string`  |             |
-| `input.pipeline.stages[].context.artifactContents[].name`                                   | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].account`                                       | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].customKind`                                    | `boolean` |             |
-| `input.pipeline.stages[].context.artifacts[].id`                                            | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].name`                                          | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].reference`                                     | `string`  |             |
-| `input.pipeline.stages[].context.artifacts[].type`                                          | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].defaultArtifact.customKind`            | `boolean` |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].defaultArtifact.id`                    | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].defaultArtifact.metadata.id`           | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].displayName`                           | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].id`                                    | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.artifactAccount`         | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.customKind`              | `boolean` |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.id`                      | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.metadata.id`             | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.name`                    | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.type`                    | `string`  |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].useDefaultArtifact`                    | `boolean` |             |
-| `input.pipeline.stages[].context.expectedArtifacts[].usePriorArtifact`                      | `boolean` |             |
-| `input.pipeline.stages[].context.failPipeline`                                              | `boolean` |             |
-| `input.pipeline.stages[].context.judgmentStatus`                                            | `string`  |             |
-| `input.pipeline.stages[].context.lastModifiedBy`                                            | `string`  |             |
-| `input.pipeline.stages[].context.planForDestroy`                                            | `boolean` |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].boundArtifact.customKind`      | `boolean` |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].boundArtifact.name`            | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].boundArtifact.reference`       | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].boundArtifact.type`            | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].defaultArtifact.customKind`    | `boolean` |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].defaultArtifact.metadata.id`   | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].id`                            | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].matchArtifact.artifactAccount` | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].matchArtifact.customKind`      | `boolean` |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].matchArtifact.metadata.id`     | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].matchArtifact.name`            | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].matchArtifact.type`            | `string`  |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].useDefaultArtifact`            | `boolean` |             |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[].usePriorArtifact`              | `boolean` |             |
-| `input.pipeline.stages[].context.terraformVersion`                                          | `string`  |             |
-| `input.pipeline.stages[].endTime`                                                           | ` `       |             |
-| `input.pipeline.stages[].endTime`                                                           | `number`  |             |
-| `input.pipeline.stages[].id`                                                                | `string`  |             |
-| `input.pipeline.stages[].lastModified.allowedAccounts[]`                                    | `string`  |             |
-| `input.pipeline.stages[].lastModified.lastModifiedTime`                                     | `number`  |             |
-| `input.pipeline.stages[].lastModified.user`                                                 | `string`  |             |
-| `input.pipeline.stages[].lastModified`                                                      | ` `       |             |
-| `input.pipeline.stages[].name`                                                              | `string`  |             |
-| `input.pipeline.stages[].outputs.artifacts[].customKind`                                    | `boolean` |             |
-| `input.pipeline.stages[].outputs.artifacts[].name`                                          | `string`  |             |
-| `input.pipeline.stages[].outputs.artifacts[].reference`                                     | `string`  |             |
-| `input.pipeline.stages[].outputs.artifacts[].type`                                          | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].boundArtifact.customKind`      | `boolean` |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].boundArtifact.name`            | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].boundArtifact.reference`       | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].boundArtifact.type`            | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].defaultArtifact.customKind`    | `boolean` |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].defaultArtifact.metadata.id`   | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].id`                            | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].matchArtifact.artifactAccount` | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].matchArtifact.customKind`      | `boolean` |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].matchArtifact.metadata.id`     | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].matchArtifact.name`            | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].matchArtifact.type`            | `string`  |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].useDefaultArtifact`            | `boolean` |             |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[].usePriorArtifact`              | `boolean` |             |
-| `input.pipeline.stages[].outputs.status.code`                                               | `number`  |             |
-| `input.pipeline.stages[].outputs.status.error`                                              | `string`  |             |
-| `input.pipeline.stages[].outputs.status.id`                                                 | `string`  |             |
-| `input.pipeline.stages[].outputs.status.logs.combined`                                      | `string`  |             |
-| `input.pipeline.stages[].outputs.status.logs.init_stderr`                                   | `string`  |             |
-| `input.pipeline.stages[].outputs.status.logs.init_stdout`                                   | `string`  |             |
-| `input.pipeline.stages[].outputs.status.logs.plan_stderr`                                   | `string`  |             |
-| `input.pipeline.stages[].outputs.status.logs.plan_stdout`                                   | `string`  |             |
-| `input.pipeline.stages[].outputs.status.outputs.artifacts[].customKind`                     | `boolean` |             |
-| `input.pipeline.stages[].outputs.status.outputs.artifacts[].kind`                           | `string`  |             |
-| `input.pipeline.stages[].outputs.status.outputs.artifacts[].name`                           | `string`  |             |
-| `input.pipeline.stages[].outputs.status.outputs.artifacts[].reference`                      | `string`  |             |
-| `input.pipeline.stages[].outputs.status.outputs.artifacts[].type`                           | `string`  |             |
-| `input.pipeline.stages[].outputs.status.state`                                              | `string`  |             |
-| `input.pipeline.stages[].parentStageId`                                                     | ` `       |             |
-| `input.pipeline.stages[].refId`                                                             | `string`  |             |
-| `input.pipeline.stages[].requisiteStageRefIds[]`                                            | `string`  |             |
-| `input.pipeline.stages[].scheduledTime`                                                     | ` `       |             |
-| `input.pipeline.stages[].startTimeExpiry`                                                   | ` `       |             |
-| `input.pipeline.stages[].startTime`                                                         | ` `       |             |
-| `input.pipeline.stages[].startTime`                                                         | `number`  |             |
-| `input.pipeline.stages[].status`                                                            | `string`  |             |
-| `input.pipeline.stages[].syntheticStageOwner`                                               | ` `       |             |
-| `input.pipeline.stages[].tasks[].endTime`                                                   | `number`  |             |
-| `input.pipeline.stages[].tasks[].id`                                                        | `string`  |             |
-| `input.pipeline.stages[].tasks[].implementingClass`                                         | `string`  |             |
-| `input.pipeline.stages[].tasks[].loopEnd`                                                   | `boolean` |             |
-| `input.pipeline.stages[].tasks[].loopStart`                                                 | `boolean` |             |
-| `input.pipeline.stages[].tasks[].name`                                                      | `string`  |             |
-| `input.pipeline.stages[].tasks[].stageEnd`                                                  | `boolean` |             |
-| `input.pipeline.stages[].tasks[].stageStart`                                                | `boolean` |             |
-| `input.pipeline.stages[].tasks[].startTime`                                                 | `number`  |             |
-| `input.pipeline.stages[].tasks[].status`                                                    | `string`  |             |
-| `input.pipeline.stages[].type`                                                              | `string`  |             |
-| `input.pipeline.stages[]`                                                                   | `string`  |             |
+| Key                                                           | Type      | Description                                                       |
+| ------------------------------------------------------------- | --------- | ----------------------------------------------------------------- |
+| `input.pipeline.stages[].context.action`                      | `string`  |                                                                   |
+| `input.pipeline.stages[].context.artifactContents[].contents` | `string`  |                                                                   |
+| `input.pipeline.stages[].context.artifactContents[].name`     | `string`  |                                                                   |
+| `input.pipeline.stages[].context.artifacts[]`                 | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
+| `input.pipeline.stages[].context.expectedArtifacts[]`         | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
+| `input.pipeline.stages[].context.failPipeline`                | `boolean` |                                                                   |
+| `input.pipeline.stages[].context.judgmentStatus`              | `string`  |                                                                   |
+| `input.pipeline.stages[].context.lastModifiedBy`              | `string`  |                                                                   |
+| `input.pipeline.stages[].context.planForDestroy`              | `boolean` |                                                                   |
+| `input.pipeline.stages[].context.resolvedExpectedArtifacts[]` | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
+| `input.pipeline.stages[].context.terraformVersion`            | `string`  |                                                                   |
+| `input.pipeline.stages[].endTime`                             | ` `       |                                                                   |
+| `input.pipeline.stages[].endTime`                             | `number`  |                                                                   |
+| `input.pipeline.stages[].id`                                  | `string`  |                                                                   |
+| `input.pipeline.stages[].lastModified.allowedAccounts[]`      | `string`  |                                                                   |
+| `input.pipeline.stages[].lastModified.lastModifiedTime`       | `number`  |                                                                   |
+| `input.pipeline.stages[].lastModified.user`                   | `string`  |                                                                   |
+| `input.pipeline.stages[].lastModified`                        | ` `       |                                                                   |
+| `input.pipeline.stages[].name`                                | `string`  |                                                                   |
+| `input.pipeline.stages[].outputs.artifacts[]`                 | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
+| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[]` | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
+| `input.pipeline.stages[].outputs.status.code`                 | `number`  |                                                                   |
+| `input.pipeline.stages[].outputs.status.error`                | `string`  |                                                                   |
+| `input.pipeline.stages[].outputs.status.id`                   | `string`  |                                                                   |
+| `input.pipeline.stages[].outputs.status.logs.combined`        | `string`  |                                                                   |
+| `input.pipeline.stages[].outputs.status.logs.init_stderr`     | `string`  |                                                                   |
+| `input.pipeline.stages[].outputs.status.logs.init_stdout`     | `string`  |                                                                   |
+| `input.pipeline.stages[].outputs.status.logs.plan_stderr`     | `string`  |                                                                   |
+| `input.pipeline.stages[].outputs.status.logs.plan_stdout`     | `string`  |                                                                   |
+| `input.pipeline.stages[].outputs.status.outputs.artifacts[]`  | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
+| `input.pipeline.stages[].outputs.status.state`                | `string`  |                                                                   |
+| `input.pipeline.stages[].parentStageId`                       | ` `       |                                                                   |
+| `input.pipeline.stages[].refId`                               | `string`  |                                                                   |
+| `input.pipeline.stages[].requisiteStageRefIds[]`              | `string`  |                                                                   |
+| `input.pipeline.stages[].scheduledTime`                       | ` `       |                                                                   |
+| `input.pipeline.stages[].startTimeExpiry`                     | ` `       |                                                                   |
+| `input.pipeline.stages[].startTime`                           | ` `       |                                                                   |
+| `input.pipeline.stages[].startTime`                           | `number`  |                                                                   |
+| `input.pipeline.stages[].status`                              | `string`  |                                                                   |
+| `input.pipeline.stages[].syntheticStageOwner`                 | ` `       |                                                                   |
+| `input.pipeline.stages[].tasks[].endTime`                     | `number`  |                                                                   |
+| `input.pipeline.stages[].tasks[].id`                          | `string`  |                                                                   |
+| `input.pipeline.stages[].tasks[].implementingClass`           | `string`  |                                                                   |
+| `input.pipeline.stages[].tasks[].loopEnd`                     | `boolean` |                                                                   |
+| `input.pipeline.stages[].tasks[].loopStart`                   | `boolean` |                                                                   |
+| `input.pipeline.stages[].tasks[].name`                        | `string`  |                                                                   |
+| `input.pipeline.stages[].tasks[].stageEnd`                    | `boolean` |                                                                   |
+| `input.pipeline.stages[].tasks[].stageStart`                  | `boolean` |                                                                   |
+| `input.pipeline.stages[].tasks[].startTime`                   | `number`  |                                                                   |
+| `input.pipeline.stages[].tasks[].status`                      | `string`  |                                                                   |
+| `input.pipeline.stages[].type`                                | `string`  |                                                                   |
+| `input.pipeline.stages[]`                                     | `string`  |                                                                   |
 
 
 ### `input.pipeline.trigger`
