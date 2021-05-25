@@ -142,7 +142,7 @@ kubectl create secret generic <agent-secret-name> \
 
 ### Modify deployment configuration
 
-Modify the Agent's deployment configuration to mount the certs. @TODO what file is this in?
+Modify the Agent's deployment configuration in `deployment.yaml` to mount the certs.
 
 If you have a custom CA, you need to mount the cert into the known trusted cert location:  `/etc/ssl/cert.pem`. Golang apps in Alpine use `/etc/ssl/cert.pem` as the source of a trusted CA.
 
@@ -179,7 +179,7 @@ spec:
 
 ### Configure the service
 
-@TODO what file is this in?
+Add the certificate information in `kubesvc.yaml`:
 
 {{< prism lang="yaml" >}}
 clouddriver:
@@ -201,7 +201,7 @@ See the {{< linkWithTitle "agent-options.md" >}} for additional options.
 
 ### Add proxy variables
 
-Add proxy variables in the Agent's deployment file. @TODO what file is this?
+Add proxy variables in the Agent's `deployment.yaml` file.
 
 {{< prism lang="yaml" line="25-30" >}}
 spec:
@@ -220,9 +220,7 @@ spec:
 
 Configure the Agent to **not** proxy Kubernetes traffic intended for KubeAPI in your cluster.
 
-Add the `noProxy: true` option to have traffic destined for Kubernetes ignore the proxy environment settings under `kubernetes`.
-
-@TODO what file is this?
+In `kubesvc.yaml`, add the `noProxy: true` option to have traffic destined for Kubernetes ignore the proxy environment settings under `kubernetes`.
 
 {{< prism lang="yaml" line="12" >}}
 kubernetes:  
@@ -238,12 +236,11 @@ You can specify multiple filtering criteria. However, the order in which the cri
 
 ### Plugin filter configuration
 
-Add an `grpc.auth.x509` section to your Clouddriver profile. See lines 7-13 in the following example:
-
+Add an `grpc.auth.x509` section to your Clouddriver profile:
 
 {{< prism lang="yaml" line="7-13" >}}
 spec:
-  spinnakerConfig:;;
+  spinnakerConfig:
     profiles:
       clouddriver:
         kubesvc:
