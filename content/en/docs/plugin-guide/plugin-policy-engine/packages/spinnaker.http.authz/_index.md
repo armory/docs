@@ -1,7 +1,7 @@
 ---
 title: spinnaker.http.authz
 linkTitle: spinnaker.http.authz
-description: this policy allows you to write policies on spinnakers core APIs. This allows restricting many actions from the UI, or from custom API clients. Many paths in here have dedicated packages weritten for them, and in such cases it is reccomended to write your package against the dedicated package rather than spinnaker.http.authz. spinnaker.http.authz is available because it grants the ability to write policy on almost any UI event within spinnaker.
+description: "This policy allows you to write policies on spinnakers core APIs. This allows restricting many actions from the UI, or from custom API clients. Many paths in here have dedicated packages weritten for them, and in such cases it is reccomended to write your package against the dedicated package rather than spinnaker.http.authz. spinnaker.http.authz is available because it grants the ability to write policy on almost any UI event within spinnaker."
 weight: 10
 ---
 

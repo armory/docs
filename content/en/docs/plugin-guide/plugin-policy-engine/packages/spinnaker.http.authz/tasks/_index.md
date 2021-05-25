@@ -1,8 +1,15 @@
 ---
-title: Package: spinnaker.http.authz Path: tasks Method: Post
-linkTitle: API Type: Create Task
+title: "Tasks"
+linkTitle: "Tasks"
 ---
-Posts to the tasks api create new tasks in spinnaker. The following rego function can be leveraged in any task in order to determine what task type is being created:
+
+- **Path:** tasks
+- **Method:** Post
+- **Package:** `spinnaker.http.authz`
+
+
+Posts to the tasks api create new tasks in Spinnaker. The following rego function can be leveraged in any task to determine what task type is being created:
+
 ```rego
 
     createsTaskOfType(tasktype){
@@ -22,3 +29,5 @@ Posts to the tasks api create new tasks in spinnaker. The following rego functio
 | `input.user.roles[].name`                            | `string`  |             |
 | `input.user.roles[].source`                          | `string`  |             |
 | `input.user.username`                                | `string`  |             |
+
+# Task Types
