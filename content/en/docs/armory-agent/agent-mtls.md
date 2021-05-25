@@ -121,9 +121,9 @@ spec:
             server:
               security:
                 enabled: true
-                certificateChain: file:<path-to-agent.crt>
-                trustCertCollection: file:<path-to-agent.crt>
-                privateKey: file:<path-to-agent.key>
+                trustCertCollection: file:<path-to-ca.crt>
+                certificateChain: file:<path-to-clouddriver.crt>
+                privateKey: file:<path-to-clouddriver.key>
                 clientAuth: REQUIRE
 {{< /prism >}}
 
