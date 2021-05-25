@@ -38,9 +38,16 @@ description: "fill me with delicious data, Stephen!"
 </details>
 
 ## Example Policy
-
+Disables access to the 'Projects' tab of the spinnaker UI.
 ```rego
+package spinnaker.ui.entitlements.isFeatureEnabled
 
+default allow=true
+allow=false{
+	count(input.path)==1
+    input.path[0]=="projects"
+    input.method=="GET"
+}
 ```
 
 ## Keys
