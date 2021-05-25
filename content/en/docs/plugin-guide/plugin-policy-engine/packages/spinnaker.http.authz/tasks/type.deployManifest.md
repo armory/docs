@@ -164,28 +164,19 @@ description: "fill me with delicious data, Stephen!"
 
 | Key                                                    | Type      | Description |
 | ------------------------------------------------------ | --------- | ----------- |
-| `input.body.application`                               | `string`  |             |
-| `input.body.description`                               | `string`  |             |
-| `input.body.job[].account`                             | `string`  |             |
-| `input.body.job[].cloudProvider`                       | `string`  |             |
-| `input.body.job[].manifest`                            | ` `       |             |
-| `input.body.job[].manifestArtifactAccount`             | `string`  |             |
-| `input.body.job[].manifests[].*`                       | `*`       |             |
-| `input.body.job[].moniker.app`                         | `string`  |             |
-| `input.body.job[].moniker.cluster`                     | `string`  |             |
+| `input.body.application`                               | `string`  | The name of the application for which a manifest will be deployed.            |
+| `input.body.description`                               | `string`  | Depoloy Manifest            |
+| `input.body.job[].account`                             | `string`  | The account to which the manifest will be deployed            |
+| `input.body.job[].cloudProvider`                       | `string`  | The cloud provider for the account, typically 'kubernetes'            |
+| `input.body.job[].manifestArtifactAccount`             | `string`  | The account from which the manifest artifact should be read, if any.            |
+| `input.body.job[].manifests[].*`                       | `*`       | The set of manifests that will be deployed. Can be referenced to require certain conditions on manifests that are being deployed.            |
+| `input.body.job[].moniker.app`                         | `string`  | The name of the application for which a manifest will be deployed.             |
+| `input.body.job[].moniker.cluster`                     | `string`  | What existing resource cluster is having its manifest updated.            |
 | `input.body.job[].source`                              | `string`  |             |
-| `input.body.job[].type`                                | `string`  |             |
-| `input.body.job[].user`                                | `string`  |             |
+| `input.body.job[].type`                                | `string`  | deployManifest            |
+| `input.body.job[].user`                                | `string`  | The username of the user who is trying to deploy. More information is available under the input.user fields.            |
 | `input.body.job[].versioned`                           | ` `       |             |
-| `input.method`                                         | `string`  |             |
-| `input.path[]`                                         | `string`  |             |
+| `input.method`                                         | `string`  | POST            |
+| `input.path[]`                                         | `string`  | `[tasks]`            |
 | `input.user.isAdmin`                                   | `boolean` |             |
 | `input.user.username`                                  | `string`  |             |
-| `input.body.job[].manifests[].metadata.labels.app`     | `string`  |             |
-| `input.body.job[].manifests[].metadata.labels.test`    | `string`  |             |
-| `input.body.job[].manifests[].spec.ports[].port`       | `number`  |             |
-| `input.body.job[].manifests[].spec.ports[].protocol`   | `string`  |             |
-| `input.body.job[].manifests[].spec.ports[].targetPort` | `number`  |             |
-| `input.body.job[].manifests[].spec.selector.app`       | `string`  |             |
-| `input.body.job[].manifests[].spec.sessionAffinity`    | `string`  |             |
-| `input.body.job[].manifests[].spec.type`               | `string`  |             |
