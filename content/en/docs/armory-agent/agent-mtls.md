@@ -6,10 +6,6 @@ description: >
   Configure mTLS authentication in the Armory Agent plugin and service.
 ---
 
-<!--
-Code is located in gist.github.com. Login creds are in 1Password.
--->
-
 ## {{% heading "prereq" %}}
 
 You need the following to configure mTLS:
@@ -20,29 +16,29 @@ You need the following to configure mTLS:
 You can create a certificate and keys like this:
 
 ```bash
-# The first step is to create a certificate authority (CA) that both the client and server trust
+# The first step is to create a certificate authority (CA) that both the Agent and Clouddriver trust
 openssl req -new -x509 -nodes -days 365 -subj '/CN=my-ca' -keyout ca.key \
     -out ca.crt
 
 openssl x509 -in ca.crt -text -noout
 
-#server cert
-openssl genrsa -out server.key 2048
+#Clouddriver cert
+openssl genrsa -out clouddriver.key 2048
 
-openssl req -new -key server.key -subj '/CN=localhost' -out server.csr
+openssl req -new -key clouddriver.key -subj '/CN=localhost' -out clouddriver.csr
 
-openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial \
-    -days 365 -out server.crt
+openssl x509 -req -in clouddriver.csr -CA ca.crt -CAkey ca.key -CAcreateserial \
+    -days 365 -out clouddriver.crt
 
-openssl x509 -in server.crt -text -noout
+openssl x509 -in clouddriver.crt -text -noout
 
 #client certificate
-openssl genrsa -out client.key 2048
+openssl genrsa -out agent.key 2048
 
-openssl req -new -key client.key -subj '/CN=my-client' -out client.csr
+openssl req -new -key agent.key -subj '/CN=my-client' -out agent.csr
 
-openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial \
-    -days 365 -out client.crt
+openssl x509 -req -in agent.csr -CA ca.crt -CAkey ca.key -CAcreateserial \
+    -days 365 -out agent.crt
 ```
 
 
@@ -69,34 +65,14 @@ kubectl create secret generic <your-secret-name> \
 
 Mount the secret in the plugin.
 
-In your `agent-plugin/clouddriver-plugin.yaml` file, add lines 43-44 and 48-50 to mount the Clouddriver cert from your secret.
+In your `agent-plugin/clouddriver-plugin.yaml` file,
+`spec.kustomize.clouddriver.deployment.patchesStrategicMerge` section,
+add the following lines to mount the Clouddriver cert from your secret:
 
-{{< prism lang="yaml" line="43-44, 48-50" >}}
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
+{{< prism lang="yaml" line="20-21, 26-28" >}}
 spec:
-  spinnakerConfig:
-    profiles:
-      clouddriver:
-        spinnaker:
-          extensibility:
-            pluginsRootPath: /opt/clouddriver/lib/plugins
-            plugins:
-              Armory.Kubesvc:
-                enabled: true
   kustomize:
     clouddriver:
-      service:
-        patchesStrategicMerge:
-          - |
-            spec:
-              ports:
-                - name: http
-                  port: 7002
-                - name: grpc
-                  port: 9091
       deployment:
         patchesStrategicMerge:
           - |
@@ -125,12 +101,12 @@ spec:
 {{< /prism >}}
 
 
-### Configure the Agent
+### Configure the plugin
 
-Configure the Agent to use the mounted certs in the `agent-plugin/config.yaml` file. See lines 12 - 19 in the following example. Note that `certificateChain`, `trustCertCollection`, and `privateKey` values must in `file:///filepath/filename` format.
+Configure the plugin to use the mounted certs in the `agent-plugin/config.yaml` file. Note that `certificateChain`, `trustCertCollection`, and `privateKey` values must in `file:///filepath/filename` format.
 
-{{< prism lang="yaml" line="12-19" >}}
-apiVersion: spinnaker.armory.io/v1alpha2
+{{< prism lang="yaml" line="12-20" >}}
+apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -145,11 +121,9 @@ spec:
             server:
               security:
                 enabled: true
-                certificateChain: file:///opt/clouddriver/cert/tls.crt
-                # list of crts
-                trustCertCollection: file:///opt/clouddriver/cert/tls.crt
-                # cacert
-                privateKey: file:///opt/clouddriver/cert/tls.key
+                certificateChain: file:<path-to-agent.crt>
+                trustCertCollection: file:<path-to-agent.crt>
+                privateKey: file:<path-to-agent.key>
                 clientAuth: REQUIRE
 {{< /prism >}}
 
@@ -168,7 +142,7 @@ kubectl create secret generic <agent-secret-name> \
 
 ### Modify deployment configuration
 
-Modify the Agent's deployment configuration to mount the certs.
+Modify the Agent's deployment configuration to mount the certs. @TODO what file is this in?
 
 If you have a custom CA, you need to mount the cert into the known trusted cert location:  `/etc/ssl/cert.pem`. Golang apps in Alpine use `/etc/ssl/cert.pem` as the source of a trusted CA.
 
@@ -176,60 +150,13 @@ If you have a custom CA, you need to mount the cert into the known trusted cert 
   2. Append your custom CA onto the copied `cert.pem`  (for example `cat ca.crt >> cert.pem`)
   3. Mount `cert.pem` to Agent deployment
 
-In the following example, see lines 53-54 and 74-76 for how to mount the certs and lines 59-60 and 80-82 for how to mount the custom certs.
+@TODO is this config correct? do the "this didn't work" sections work now or not?
 
-{{< prism lang="yaml" line="53-54, 59-60, 74-76, 80-82" >}}
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: spin
-    app.kubernetes.io/name: kubesvc
-    app.kubernetes.io/part-of: spinnaker
-    cluster: spin-kubesvc
-  name: spin-kubesvc
+{{< prism lang="yaml"  >}}
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: spin
-      cluster: spin-kubesvc
   template:
-    metadata:
-      labels:
-        app: spin
-        app.kubernetes.io/name: kubesvc
-        app.kubernetes.io/part-of: spinnaker
-        cluster: spin-kubesvc
     spec:
-      # imagePullSecrets:
-      # - name: regcred
       containers:
-      - env:
-        - name: GRPC_GO_LOG_SEVERITY_LEVEL
-          value: INFO
-        - name: GRPC_GO_LOG_VERBOSITY_LEVEL
-          value: "9999"
-        image: armory/kubesvc
-        imagePullPolicy: IfNotPresent
-        name: kubesvc
-        ports:
-          - name: health
-            containerPort: 8082
-            protocol: TCP
-          - name: metrics
-            containerPort: 8008
-            protocol: TCP
-        readinessProbe:
-          httpGet:
-            port: health
-            path: /health
-          failureThreshold: 3
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
         volumeMounts:
         - mountPath: /opt/kubesvc/cert
           name: armoryagentcert
@@ -237,53 +164,24 @@ spec:
           name: volume-kubesvc-config
         - mountPath: /opt/kubesvc/cacert  # this didn't work as of Nov 2020
           name: clouddrivercacert         # this didn't work as of Nov 2020
-        - mountPath: /etc/ssl
-          name: certpem
-        resources:
-          limits:
-            cpu: 1000m
-            memory: 1Gi
-          requests:
-            cpu: 200m
-            memory: 500Mi
-      serviceAccount: kubesvc
-      restartPolicy: Always
       volumes:
-      - name: volume-kubesvc-config
-        configMap:
-          name: kubesvc-config
       - name: armoryagentcert
         secret:
-          secretName: <your-secret-name>
+          secretName: <agent-secret-name>
       - name: clouddrivercacert         # this didn't work as of Nov 2020
         secret:                         # this didn't work as of Nov 2020
           secretName: <your-secret-name> # this didn't work as of Nov 2020
       - name: certpem
         secret:
-          secretName: <your-secret-name>
+          secretName: ??? @TODO what secret is this?
 {{< /prism >}}
 
 
-### Configure the Agent
+### Configure the service
 
-In the following example, see lines 19-25 for how to configure the Agent.
+@TODO what file is this in?
 
-{{< prism lang="yaml" line="19-25" >}}
-kubernetes:
-  accounts:
-  - name: <account-name>
-    serviceAccount: true
-    #permissions:
-    #  WRITE:
-    #  - APPDEV_TEAMA
-    #  READ:
-  # Add your accounts here; /kubeconfigfiles is the path where kubeconfig files added
-  # to kustomization.yaml are mounted.
-#  - kubeconfigFile: /kubeconfigfiles/kubecfg-test.yml
-#    name: account1
-#    metrics: false
-#    kinds: []
-#    omitKinds: []
+{{< prism lang="yaml" >}}
 clouddriver:
   grpc: <:443
   insecure: false
@@ -294,14 +192,7 @@ clouddriver:
     #clientKeyPassword: #if the clientKeyFile is password protected
     #cacertFile: /opt/kubesvc/cacert/ca.crt #to validate server's cert
     clientCertFile: /opt/kubesvc/cert/agent.crt #client cert for mTLS.
-#certFile: #deprecated
-# OPTIONAL
-# server:
-#   port: 8082
 
-prometheus:
-  enabled: true
-  # port: 8008
 {{< /prism >}}
 
 See the {{< linkWithTitle "agent-options.md" >}} for additional options.
@@ -310,33 +201,11 @@ See the {{< linkWithTitle "agent-options.md" >}} for additional options.
 
 ### Add proxy variables
 
-Add proxy variables in the Agent's deployment file.
-
-See lines 25-30.
+Add proxy variables in the Agent's deployment file. @TODO what file is this?
 
 {{< prism lang="yaml" line="25-30" >}}
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: spin
-    app.kubernetes.io/name: kubesvc
-    app.kubernetes.io/part-of: spinnaker
-    cluster: spin-kubesvc
-  name: spin-kubesvc
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: spin
-      cluster: spin-kubesvc
   template:
-    metadata:
-      labels:
-        app: spin
-        app.kubernetes.io/name: kubesvc
-        app.kubernetes.io/part-of: spinnaker
-        cluster: spin-kubesvc
     spec:
       containers:
       - image: armory/kubesvc
@@ -345,56 +214,6 @@ spec:
           value: <proxyaddress:proxyport>
         - name: HTTPS_PROXY
           value: <proxyaddress:proxyport>
-        imagePullPolicy: IfNotPresent
-        name: kubesvc
-        ports:
-          - name: health
-            containerPort: 8082
-            protocol: TCP
-          - name: metrics
-            containerPort: 8008
-            protocol: TCP
-        readinessProbe:
-          httpGet:
-            port: health
-            path: /health
-          failureThreshold: 3
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        volumeMounts:
-        - mountPath: /opt/spinnaker/config
-          name: volume-kubesvc-config
-        - mountPath: /kubeconfigfiles
-          name: volume-kubesvc-kubeconfigs
-      restartPolicy: Always
-      volumes:
-      - name: volume-kubesvc-config
-        configMap:
-          name: kubesvc-config
-      - name: volume-kubesvc-kubeconfigs
-        secret:
-          defaultMode: 420
-          secretName: kubeconfigs-secret
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: kubesvc-metrics
-  labels:
-    app: spin
-    cluster: spin-kubesvc
-spec:
-  ports:
-  - name: metrics
-    port: 8008
-    targetPort: metrics
-    protocol: TCP
-  selector:
-    app: spin
-    cluster: spin-kubesvc
 {{< /prism >}}
 
 ### Configure the Agent
@@ -403,30 +222,12 @@ Configure the Agent to **not** proxy Kubernetes traffic intended for KubeAPI in 
 
 Add the `noProxy: true` option to have traffic destined for Kubernetes ignore the proxy environment settings under `kubernetes`.
 
-See line 13.
+@TODO what file is this?
 
 {{< prism lang="yaml" line="12" >}}
 kubernetes:  
   accounts: []
-  # Add your accounts here, /kubeconfigfiles is the path where kubeconfig files added
-  # to kustomization.yaml are mounted.
-#  - kubeconfigFile: /kubeconfigfiles/kubecfg-test.yml
-#    name: account1
-#    metrics: false
-#    kinds: []
-#    omitKinds: []
-    # You can add all the other fields from clouddriver settings, they'll be ignored.
-
   noProxy: true
-
-clouddriver:
-  grpc: spin-clouddriver-grpc:9091
-
-server:
-  port: 8082
-
-prometheus:
-  enabled: true
 {{< /prism >}}
 
 ## x509 certificate subject filtering
