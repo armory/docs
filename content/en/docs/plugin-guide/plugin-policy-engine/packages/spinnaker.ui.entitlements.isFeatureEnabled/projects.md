@@ -38,7 +38,7 @@ description: "Can hide the 'Projects' tab of the spinnaker UI."
 </details>
 
 ## Example Policy
-Disables access to the 'Projects' tab of the spinnaker UI.
+Disables access to the 'Projects' tab of the spinnaker UI for non-admin users.
 ```rego
 package spinnaker.ui.entitlements.isFeatureEnabled
 
@@ -47,6 +47,7 @@ allow=false{
 	count(input.path)==1
     input.path[0]=="projects"
     input.method=="GET"
+    input.user.isAdmin!=true
 }
 ```
 
