@@ -1,5 +1,6 @@
 ---
 title: Armory Enterprise for Spinnaker Release Notes
+linkTitle: Armory Enterprise Release Notes
 aliases:
   - /releases/
   - /release/

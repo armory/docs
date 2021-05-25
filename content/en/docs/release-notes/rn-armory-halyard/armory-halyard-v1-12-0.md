@@ -12,7 +12,8 @@ description: Release notes for Armory Halyard v1.12.0
 Armory scans the codebase as we develop and release software. For information about CVE scans for this release, contact your Armory account representative.
 
 ## Known issues
-No known issues
+
+{{% include "release-notes/gcs-hal-op.md" %}}
 
 ## Highlighted updates
 
