@@ -3378,13 +3378,7 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.stages[].context.analysisType`                                                         | `string`  |                                                                   |
 | `input.pipeline.stages[].context.app`                                                                  | `string`  |                                                                   |
 | `input.pipeline.stages[].context.application`                                                          | `string`  |                                                                   |
-| `input.pipeline.stages[].context.artifacts[].customKind`                                               | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.artifacts[].location`                                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].context.artifacts[].metadata.account`                                         | `string`  |                                                                   |
-| `input.pipeline.stages[].context.artifacts[].name`                                                     | `string`  |                                                                   |
-| `input.pipeline.stages[].context.artifacts[].reference`                                                | `string`  |                                                                   |
-| `input.pipeline.stages[].context.artifacts[].type`                                                     | `string`  |                                                                   |
-| `input.pipeline.stages[].context.artifacts[].version`                                                  | `string`  |                                                                   |
+| `input.pipeline.stages[].context.artifacts[]`                                                          | `array`   | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
 | `input.pipeline.stages[].context.attempt`                                                              | `number`  |                                                                   |
 | `input.pipeline.stages[].context.availabilityZones.us-east-2[]`                                        | `string`  |                                                                   |
 | `input.pipeline.stages[].context.baseLabel`                                                            | `string`  |                                                                   |
@@ -3445,17 +3439,7 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.stages[].context.exception.shouldRetry`                                                | `boolean` |                                                                   |
 | `input.pipeline.stages[].context.exception.timestamp`                                                  | `number`  |                                                                   |
 | `input.pipeline.stages[].context.executionOptions.successful`                                          | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.expectedArtifacts[].defaultArtifact.customKind`                       | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.expectedArtifacts[].defaultArtifact.id`                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.expectedArtifacts[].displayName`                                      | `string`  |                                                                   |
-| `input.pipeline.stages[].context.expectedArtifacts[].id`                                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.artifactAccount`                    | `string`  |                                                                   |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.customKind`                         | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.id`                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.name`                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.expectedArtifacts[].matchArtifact.type`                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.expectedArtifacts[].useDefaultArtifact`                               | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.expectedArtifacts[].usePriorArtifact`                                 | `boolean` |                                                                   |
+| `input.pipeline.stages[].context.expectedArtifacts[]`                                                  | `array`   | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
 | `input.pipeline.stages[].context.expressionEvaluationSummary.trigger.buildInfo.number[].description`   | `string`  |                                                                   |
 | `input.pipeline.stages[].context.expressionEvaluationSummary.trigger.buildInfo.number[].exceptionType` | `string`  |                                                                   |
 | `input.pipeline.stages[].context.expressionEvaluationSummary.trigger.buildInfo.number[].level`         | `string`  |                                                                   |

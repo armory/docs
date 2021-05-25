@@ -1551,7 +1551,9 @@ description: "a policy that is run before executing each task in a deploy manife
 </details>
 
 ## Example Policy
+
 This policy requires that a set of annotations have been applied to any manifests that are being deployed. Specifically the annotations 'app' and 'owner' must have been applied.
+
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.deployManifest
 
@@ -1563,9 +1565,10 @@ deny["Manifest is missing a required annotation"] {
     # Use object.get to check if data exists
     object.get(annotations,required_annotations[_],null)==null
 }
-
 {{< /prism >}}
+
 This policy requires prevents exposing a set of ports that are unencrypted buy have encrypted alternatives. Specifically this policy prevents exposing HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, and SMTP from a pod, deployment, or replicaset.
+
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.deployManifest
 
@@ -1583,10 +1586,10 @@ deny["A port typically used by an unencrypted protocol was detected."] {
     #Check for pod template
     input.deploy.manifests[_].spec.template.spec.containers[_].ports[_].containerPort=blockedPorts[_]
     }
-
 {{< /prism >}}
 
 This policy checks whether or not the image being approved is on a list of imaged that are approved for deployment. The list of what images are approved must seperately be uploaded to the OPA data document
+
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.deployManifest
 
@@ -1624,7 +1627,6 @@ canDeploy(namespace, application){
     allowedNamespaces[i].app==application
     allowedNamespaces[i].ns[_]==namespace
 }
-
 {{< /prism >}}
 
 ## Keys
@@ -1665,13 +1667,7 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | Key                                                  | Type       | Description                                                                                                                                                                                                                                                            |
 | ---------------------------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `input.stage.context.account`                        | `string`   | What account is this stage deploying to. This is often used, for example, to check whther or not a policy applies to the given account.                                                                                                                                |
-| `input.stage.context.artifacts[].customKind`         | `boolean`  |                                                                                                                                                                                                                                                                        |
-| `input.stage.context.artifacts[].location`           | `string`   |                                                                                                                                                                                                                                                                        |
-| `input.stage.context.artifacts[].metadata.account`   | `string`   |                                                                                                                                                                                                                                                                        |
-| `input.stage.context.artifacts[].name`               | `string`   |                                                                                                                                                                                                                                                                        |
-| `input.stage.context.artifacts[].reference`          | `string`   |                                                                                                                                                                                                                                                                        |
-| `input.stage.context.artifacts[].type`               | `string`   |                                                                                                                                                                                                                                                                        |
-| `input.stage.context.artifacts[].version`            | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.artifacts[]`                    | `array`    | See [artifacts]({{< ref "artifacts.md" >}}) for more information.                                                                                                                                                                                                      |
 | `input.stage.context.cloudProvider`                  | `string`   | what is the cloudprovider for the account this is deploying to. Typically 'kubernetes'                                                                                                                                                                                 |
 | `input.stage.context.deploy.account.name`            | `string`   |                                                                                                                                                                                                                                                                        |
 | `input.stage.context.kato.last.task.id.id`           | `string`   |                                                                                                                                                                                                                                                                        |
