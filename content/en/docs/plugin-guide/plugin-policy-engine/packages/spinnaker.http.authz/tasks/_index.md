@@ -1,13 +1,14 @@
 ---
 title: "Tasks"
 linkTitle: "Tasks"
+description: "Posts to the tasks api create new tasks in Spinnaker."
 ---
 
 - **Path:** tasks
 - **Method:** Post
 - **Package:** `spinnaker.http.authz`
 
-Posts to the tasks api create new tasks in Spinnaker. The following rego function can be leveraged in any task to determine what task type is being created:
+The following rego function can be leveraged in any task to determine what task type is being created:
 
 {{< prism lang="rego" line-numbers="true" >}}
     createsTaskOfType(tasktype){
