@@ -217,14 +217,14 @@ message="Only admins can save pipelines"{
 
 ## Keys
 
-### `input`
+### input
 
 | Key            | Type     | Description |
 | :------------- | -------- | ----------- |
 | `input.method` | `string` |             |
 | `input.path[]` | `string` |             |
 
-### `input.body`
+### input.body
 
 | Key                                                              | Type      | Description |
 | :--------------------------------------------------------------- | --------- | ----------- |
@@ -261,7 +261,7 @@ message="Only admins can save pipelines"{
 | `input.body.spelEvaluator`                                       | `string`  |             |
 | `input.body.updateTs`                                            | `string`  |             |
 
-### `input.body.stages`
+### input.body.stages
 
 | Key                                                                  | Type      | Description |
 | :------------------------------------------------------------------- | --------- | ----------- |
@@ -328,7 +328,7 @@ message="Only admins can save pipelines"{
 | `input.body.stages[].user`                                           | `string`  |             |
 | `input.body.stages[].vmType`                                         | `string`  |             |
 
-### `input.body.triggers`
+### input.body.triggers
 
 | Key                                           | Type      | Description |
 | :-------------------------------------------- | --------- | ----------- |
@@ -341,6 +341,6 @@ message="Only admins can save pipelines"{
 | `input.body.triggers[].source`                | `string`  |             |
 | `input.body.triggers[].type`                  | `string`  |             |
 
-### `input.user`
+### input.user
 
 This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.

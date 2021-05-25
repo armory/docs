@@ -1629,91 +1629,85 @@ canDeploy(namespace, application){
 
 ## Keys
 
-### `input.pipeline`
+### input.pipeline
 
-| Key                                          | Type      | Description                                              |
-|----------------------------------------------|-----------|----------------------------------------------------------|
-| `input.pipeline.application` | `string` | The name of the application to which this pipeline belongs.
-| `input.pipeline.authentication.allowedAccounts[]` | `string` | The list of accounts to which the user this stage is running as has access.
-| `input.pipeline.authentication.user` | `string` | The id of the user that this stage is running as.
-| `input.pipeline.buildTime` | `number` |
-| `input.pipeline.description` | `string` |
-| `input.pipeline.id` | `string` |
-| `input.pipeline.keepWaitingPipelines` | `boolean` |
-| `input.pipeline.limitConcurrent` | `boolean` |
-| `input.pipeline.name` | `string ` | 
-| `input.pipeline.origin` | `string` |
-| `input.pipeline.partition` | ` ` |
-| `input.pipeline.paused` | ` ` |
-| `input.pipeline.pipelineConfigId` | ` ` |
-| `input.pipeline.source` | ` ` |
-| `input.pipeline.spelEvaluator` | ` ` |
-| `input.pipeline.stages[]` | `string` | an array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the opa.pipelines bpackage, or the spinnaker.execution.pipelines.before package.
-| `input.pipeline.startTime` | `number` |
-| `input.pipeline.startTimeExpiry` | ` ` |
-| `input.pipeline.status` | `string` | The status of the pipeline, typically 'RUNNING'
-| `input.pipeline.templateVariables` | ` ` |
-| `input.pipeline.trigger.correlationId` | ` ` |
-| `input.pipeline.trigger.isDryRun` | `boolean` |
-| `input.pipeline.trigger.isRebake` | `boolean` |
-| `input.pipeline.trigger.isStrategy` | `boolean` |
-| `input.pipeline.trigger.other.dryRun` | `boolean` |
-| `input.pipeline.trigger.other.rebake` | `boolean` |
-| `input.pipeline.trigger.other.strategy` | `boolean` |
-| `input.pipeline.trigger.other.type` | `string` |
-| `input.pipeline.trigger.other.user` | `string` |
-| `input.pipeline.trigger.type` | `string` |
-| `input.pipeline.trigger.user` | `string` |
-| `input.pipeline.type` | `string` |
+| Key                                               | Type      | Description                                                                                                                                                                                                                                             |
+| ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the application to which this pipeline belongs.                                                                                                                                                                                             |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                                                                                                                             |
+| `input.pipeline.authentication.user`              | `string`  | The id of the user that this stage is running as.                                                                                                                                                                                                       |
+| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                                                                                                                         |
+| `input.pipeline.description`                      | `string`  |                                                                                                                                                                                                                                                         |
+| `input.pipeline.id`                               | `string`  |                                                                                                                                                                                                                                                         |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` |                                                                                                                                                                                                                                                         |
+| `input.pipeline.limitConcurrent`                  | `boolean` |                                                                                                                                                                                                                                                         |
+| `input.pipeline.name`                             | `string ` |                                                                                                                                                                                                                                                         |
+| `input.pipeline.origin`                           | `string`  |                                                                                                                                                                                                                                                         |
+| `input.pipeline.partition`                        | ` `       |                                                                                                                                                                                                                                                         |
+| `input.pipeline.paused`                           | ` `       |                                                                                                                                                                                                                                                         |
+| `input.pipeline.pipelineConfigId`                 | ` `       |                                                                                                                                                                                                                                                         |
+| `input.pipeline.source`                           | ` `       |                                                                                                                                                                                                                                                         |
+| `input.pipeline.spelEvaluator`                    | ` `       |                                                                                                                                                                                                                                                         |
+| `input.pipeline.stages[]`                         | `string`  | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the opa.pipelines bpackage, or the spinnaker.execution.pipelines.before package. |
+| `input.pipeline.startTime`                        | `number`  |                                                                                                                                                                                                                                                         |
+| `input.pipeline.startTimeExpiry`                  | ` `       |                                                                                                                                                                                                                                                         |
+| `input.pipeline.status`                           | `string`  | The status of the pipeline, typically 'RUNNING'                                                                                                                                                                                                         |
+| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                                                                                                                         |
+| `input.pipeline.type`                             | `string`  |                                                                                                                                                                                                                                                         |
 
-### `input.stage`
+### input.pipeline.trigger
 
-| Key                                          | Type      | Description                                              |
-|----------------------------------------------|-----------|----------------------------------------------------------|
-| `input.stage.context.account` | `string` | What account is this stage deploying to. This is often used, for example, to check whther or not a policy applies to the given account.
-| `input.stage.context.artifacts[].customKind` | `boolean` |
-| `input.stage.context.artifacts[].location` | `string` |
-| `input.stage.context.artifacts[].metadata.account` | `string` |
-| `input.stage.context.artifacts[].name` | `string` |
-| `input.stage.context.artifacts[].reference` | `string` |
-| `input.stage.context.artifacts[].type` | `string` |
-| `input.stage.context.artifacts[].version` | `string` |
-| `input.stage.context.cloudProvider` | `string` | what is the cloudprovider for the account this is deploying to. Typically 'kubernetes'
-| `input.stage.context.deploy.account.name` | `string` |
-| `input.stage.context.kato.last.task.id.id` | `string` |
-| `input.stage.context.kato.result.expected` | `boolean` |
-| `input.stage.context.kato.task.firstNotFoundRetry` | `number` |
-| `input.stage.context.kato.task.lastStatus` | `string` |
-| `input.stage.context.kato.task.notFoundRetryCount` | `number` |
-| `input.stage.context.kato.task.terminalRetryCount` | `number` |
-| `input.stage.context.kato.tasks[]` | `string` | This array contains the tasks that are executed during this stage. when each task finishes execution, the policy will be rechecked with the status of each execution task updated.
-| `input.stage.context.kato.tasks[].history[].phase` | `string` | The history of task phase changes.
-| `input.stage.context.kato.tasks[].history[].status` | `string` | The history of task status changes.
-| `input.stage.context.kato.tasks[].id` | `string` |
-| `input.stage.context.kato.tasks[].resultObjects[] | `object` | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs.
-| `input.stage.context.kato.tasks[].status.completed` | `boolean` | has the task finished executing
-| `input.stage.context.kato.tasks[].status.failed` | `boolean` | Did the task attempt to execute and fail
-| `input.stage.context.kato.tasks[].status.retryable` | `boolean` | Can the task retry if execution fails.
-| `input.stage.context.manifestArtifactAccount` | `string` | What artifact account are artifacts stored in.
-| `input.stage.context.manifests[]`| `object` | The raw kubernetes manifest being deployed. This is the element you should write mpolicies against that involve the manifest.
-| `input.stage.context.moniker.app` | `string` | The name of the application to which this pipeline belongs.
-| `input.stage.context.moniker.cluster` | `string` | The name of the cluster to which this stage is deploying.
-| `input.stage.context.outputs` | `object` | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs.
-| `input.stage.context.source` | `string` |
-| `input.stage.context.stableManifests[].location` | `string` |
-| `input.stage.context.stableManifests[].manifestName` | `string` |
-| `input.stage.context.user` | `string` | the ID of the user that the stage is running as.
-| `input.stage.id` | `string` | This stages unique ID
-| `input.stage.name` | `string` | The name of the pipeline stage.
-| `input.stage.outputs| `object` | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs.
-| `input.stage.parentStageId` | ` ` |
-| `input.stage.refId` | `string` | This stages ID reference in the stage graph. Typically if you are writing a policy that depends on pipeline stage order, it is better to write that policy against either the opa.pipelines bpackage, or the spinnaker.execution.pipelines.before package.
-| `input.stage.startTime` | `number` | When did this stage start running.
-| `input.stage.status` | `string` | The status of this stage, typically 'RUNNING' when this policy is checked.
-| `input.stage.tasks[].name` | `string` | The name of the task being executed. Each stage will execute multiple tasks to accomplish its goals.
-| `input.stage.tasks[].status` | `string` | The status of the running tasks. If you wish to check whether or not this is the first task of the stage you can include the following in your policy: input.stage.tasks[_].status=="SUCCEEDED", which will return 'true' if a task has finished running successfully.
-| `input.stage.type` | `string` | Will always be 'deployManifest'
+See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
-### `input.user`
+
+### input.stage
+
+| Key                                                  | Type       | Description                                                                                                                                                                                                                                                            |
+| ---------------------------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.stage.context.account`                        | `string`   | What account is this stage deploying to. This is often used, for example, to check whther or not a policy applies to the given account.                                                                                                                                |
+| `input.stage.context.artifacts[].customKind`         | `boolean`  |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.artifacts[].location`           | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.artifacts[].metadata.account`   | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.artifacts[].name`               | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.artifacts[].reference`          | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.artifacts[].type`               | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.artifacts[].version`            | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.cloudProvider`                  | `string`   | what is the cloudprovider for the account this is deploying to. Typically 'kubernetes'                                                                                                                                                                                 |
+| `input.stage.context.deploy.account.name`            | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.kato.last.task.id.id`           | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.kato.result.expected`           | `boolean`  |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.kato.task.firstNotFoundRetry`   | `number`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.kato.task.lastStatus`           | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.kato.task.notFoundRetryCount`   | `number`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.kato.task.terminalRetryCount`   | `number`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.kato.tasks[]`                   | `string`   | This array contains the tasks that are executed during this stage. when each task finishes execution, the policy will be rechecked with the status of each execution task updated.                                                                                     |
+| `input.stage.context.kato.tasks[].history[].phase`   | `string`   | The history of task phase changes.                                                                                                                                                                                                                                     |
+| `input.stage.context.kato.tasks[].history[].status`  | `string`   | The history of task status changes.                                                                                                                                                                                                                                    |
+| `input.stage.context.kato.tasks[].id`                | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.kato.tasks[].resultObjects[]`   | `{object}` | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs.                                                                                   |
+| `input.stage.context.kato.tasks[].status.completed`  | `boolean`  | has the task finished executing                                                                                                                                                                                                                                        |
+| `input.stage.context.kato.tasks[].status.failed`     | `boolean`  | Did the task attempt to execute and fail                                                                                                                                                                                                                               |
+| `input.stage.context.kato.tasks[].status.retryable`  | `boolean`  | Can the task retry if execution fails.                                                                                                                                                                                                                                 |
+| `input.stage.context.manifestArtifactAccount`        | `string`   | What artifact account are artifacts stored in.                                                                                                                                                                                                                         |
+| `input.stage.context.manifests[]`                    | `object`   | The raw kubernetes manifest being deployed. This is the element you should write mpolicies against that involve the manifest.                                                                                                                                          |
+| `input.stage.context.moniker.app`                    | `string`   | The name of the application to which this pipeline belongs.                                                                                                                                                                                                            |
+| `input.stage.context.moniker.cluster`                | `string`   | The name of the cluster to which this stage is deploying.                                                                                                                                                                                                              |
+| `input.stage.context.outputs`                        | `object`   | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs.                                                                                   |
+| `input.stage.context.source`                         | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.stableManifests[].location`     | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.stableManifests[].manifestName` | `string`   |                                                                                                                                                                                                                                                                        |
+| `input.stage.context.user`                           | `string`   | the ID of the user that the stage is running as.                                                                                                                                                                                                                       |
+| `input.stage.id`                                     | `string`   | This stages unique ID                                                                                                                                                                                                                                                  |
+| `input.stage.name`                                   | `string`   | The name of the pipeline stage.                                                                                                                                                                                                                                        |
+| `input.stage.outputs`                                | `{object}` | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs.                                                                                   |
+| `input.stage.parentStageId`                          | ` `        |                                                                                                                                                                                                                                                                        |
+| `input.stage.refId`                                  | `string`   | This stages ID reference in the stage graph. Typically if you are writing a policy that depends on pipeline stage order, it is better to write that policy against either the opa.pipelines bpackage, or the spinnaker.execution.pipelines.before package.             |
+| `input.stage.startTime`                              | `number`   | When did this stage start running.                                                                                                                                                                                                                                     |
+| `input.stage.status`                                 | `string`   | The status of this stage, typically 'RUNNING' when this policy is checked.                                                                                                                                                                                             |
+| `input.stage.tasks[].name`                           | `string`   | The name of the task being executed. Each stage will execute multiple tasks to accomplish its goals.                                                                                                                                                                   |
+| `input.stage.tasks[].status`                         | `string`   | The status of the running tasks. If you wish to check whether or not this is the first task of the stage you can include the following in your policy: input.stage.tasks[_].status=="SUCCEEDED", which will return 'true' if a task has finished running successfully. |
+| `input.stage.type`                                   | `string`   | Will always be 'deployManifest'                                                                                                                                                                                                                                        |
+
+### input.user
 
 This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.

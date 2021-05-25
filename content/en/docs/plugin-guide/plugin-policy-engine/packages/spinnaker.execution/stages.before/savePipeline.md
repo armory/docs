@@ -145,7 +145,7 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
 
 ## Keys
 
-### `input.pipeline`
+### input.pipeline
 
 | Key                                          | Type      | Description                                              |
 |----------------------------------------------|-----------|----------------------------------------------------------|
@@ -173,21 +173,14 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
 | `input.pipeline.startTimeExpiry` | ` ` | Unix epoch date at which the pipeline will expire. |
 | `input.pipeline.status` | `string` |
 | `input.pipeline.templateVariables` | `` |
-| `input.pipeline.trigger.correlationId` | `` |
-| `input.pipeline.trigger.isDryRun` | `boolean` |
-| `input.pipeline.trigger.isRebake` | `boolean` |
-| `input.pipeline.trigger.isStrategy` | `boolean` |
-| `input.pipeline.trigger.other.dryRun` | `boolean` |
-| `input.pipeline.trigger.other.rebake` | `boolean` |
-| `input.pipeline.trigger.other.strategy` | `boolean` |
-| `input.pipeline.trigger.other.type` | `string` |
-| `input.pipeline.trigger.other.user` | `string` | The Spinnaker user initiating the change. |
-| `input.pipeline.trigger.type` | `string` |
-| `input.pipeline.trigger.user` | `string` | The Spinnaker user initiating the change. |
 | `input.pipeline.type` | `string` |
 | `input.stage.context.application` | `string` | The name of the Spinnaker application for this pipeline. |
 
-### `input.stage`
+### input.pipeline.trigger
+
+See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
+
+### input.stage
 
 | Key                                          | Type      | Description                                              |
 |----------------------------------------------|-----------|----------------------------------------------------------|
@@ -221,6 +214,6 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
 | `input.stage.tasks[].status` | `string` |
 | `input.stage.type` | `string` | The current state of activity of the stage. |
 
-### `input.user`
+### input.user
 
 This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.

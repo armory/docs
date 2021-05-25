@@ -3894,7 +3894,7 @@ description: "fill me with delicious data, Stephen!"
 
 ## Keys
 
-### `input.pipeline`
+### input.pipeline
 
 | Key                                               | Type      | Description |
 | ------------------------------------------------- | --------- | ----------- |
@@ -3923,7 +3923,7 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.status`                           | `string`  |             |
 | `input.pipeline.templateVariables`                | ` `       |             |
 
-### `input.pipeline.stages`
+### input.pipeline.stages
 
 | Key                                                                                                                                              | Type      | Description                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ----------------------------------------------------------------- |
@@ -4373,37 +4373,11 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.stages[].tasks[].status`                                                                                                         | `string`  |                                                                   |
 | `input.pipeline.stages[].type`                                                                                                                   | `string`  |                                                                   |
 
-### `input.pipeline.trigger`
+### input.pipeline.trigger
 
-| Key                                                                                  | Type      | Description                                                       |
-| ------------------------------------------------------------------------------------ | --------- | ----------------------------------------------------------------- |
-| `input.pipeline.trigger.artifacts[]`                                                 | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.trigger.correlationId`                                               | ` `       |                                                                   |
-| `input.pipeline.trigger.isDryRun`                                                    | `boolean` |                                                                   |
-| `input.pipeline.trigger.isRebake`                                                    | `boolean` |                                                                   |
-| `input.pipeline.trigger.isStrategy`                                                  | `boolean` |                                                                   |
-| `input.pipeline.trigger.other.artifacts[]`                                           | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.trigger.other.dryRun`                                                | `boolean` |                                                                   |
-| `input.pipeline.trigger.other.enabled`                                               | `boolean` |                                                                   |
-| `input.pipeline.trigger.other.eventId`                                               | `string`  |                                                                   |
-| `input.pipeline.trigger.other.executionId`                                           | `string`  |                                                                   |
-| `input.pipeline.trigger.other.expectedArtifacts[]`                                   | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.trigger.other.parameters.namespace`                                  | `string`  |                                                                   |
-| `input.pipeline.trigger.other.parameters.replicas`                                   | `string`  |                                                                   |
-| `input.pipeline.trigger.other.preferred`                                             | `boolean` |                                                                   |
-| `input.pipeline.trigger.other.rebake`                                                | `boolean` |                                                                   |
-| `input.pipeline.trigger.other.resolvedExpectedArtifacts[]`                           | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.trigger.other.strategy`                                              | `boolean` |                                                                   |
-| `input.pipeline.trigger.other.type`                                                  | `string`  |                                                                   |
-| `input.pipeline.trigger.other.user`                                                  | `string`  |                                                                   |
-| `input.pipeline.trigger.parameters.namespace`                                        | `string`  |                                                                   |
-| `input.pipeline.trigger.parameters.replicas`                                         | `string`  |                                                                   |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[]`                                 | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.trigger.type`                                                        | `string`  |                                                                   |
-| `input.pipeline.trigger.user`                                                        | `string`  |                                                                   |
-| `input.pipeline.type`                                                                | `string`  |                                                                   |
+See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
-### `input.stage`
+### input.stage
 
 | Key                                                 | Type      | Description |
 | --------------------------------------------------- | --------- | ----------- |
@@ -4440,6 +4414,6 @@ description: "fill me with delicious data, Stephen!"
 | `input.stage.tasks[].status`                        | `string`  |             |
 | `input.stage.type`                                  | `string`  |             |
 
-### `input.user`
+### input.user
 
 This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.

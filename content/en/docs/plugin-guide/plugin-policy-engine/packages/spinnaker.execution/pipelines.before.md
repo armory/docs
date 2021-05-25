@@ -378,7 +378,7 @@ deny["Kubernetes deployments can only be triggered by webhooks, docker, or manua
 
 ## Keys
 
-### `input.pipeline`
+### input.pipeline
 
 | Key                                                | Type       | Description                                                                                                                                                          |
 | -------------------------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -403,7 +403,7 @@ deny["Kubernetes deployments can only be triggered by webhooks, docker, or manua
 | `input.pipeline.respectQuietPeriod`                | `boolean`  |                                                                                                                                                                      |
 | `input.pipeline.spelEvaluator`                     | `string`   | Which version of SpEL should SpEL expressions be evaluated with.                                                                                                     |
 
-### `input.pipeline.stages`
+### input.pipeline.stages
 
 | Key                                                               | Type       | Description                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ----------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -424,10 +424,10 @@ deny["Kubernetes deployments can only be triggered by webhooks, docker, or manua
 | `input.pipeline.stages[].type`                                    | `string`   | That is the type of the stage                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `input.pipeline.stages[]`                                         | `string`   | The serialized configuration of your spinnaker stages. Fields within the stages relate to the field given in the spinnaker/execution/stages/before package for that stage type. In general, users are advised to wright policies that are specific to whether a single stage should execute against the stage execution, not the pipeline execution. This ensures stages referencing SpEL will have had their SpEL evaluated. |
 
-### `input.pipeline.trigger`
+### input.pipeline.trigger
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
-### `input.user`
+### input.user
 
 This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.

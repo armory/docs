@@ -221,7 +221,7 @@ The full package name sent to OPA is `spinnaker.execution.stages.before.scaleMan
 
 ## Keys
 
-### `input.pipeline`
+### input.pipeline
 
 | Key                                                               | Type      | Description                                                                 |
 | ----------------------------------------------------------------- | --------- | --------------------------------------------------------------------------- |
@@ -249,20 +249,13 @@ The full package name sent to OPA is `spinnaker.execution.stages.before.scaleMan
 | `input.pipeline.startTimeExpiry`                                  | ``        |                                                                             |
 | `input.pipeline.status`                                           | `string`  |                                                                             |
 | `input.pipeline.templateVariables`                                | ``        |                                                                             |
-| `input.pipeline.trigger.correlationId`                            | ``        |                                                                             |
-| `input.pipeline.trigger.isDryRun`                                 | `boolean` |                                                                             |
-| `input.pipeline.trigger.isRebake`                                 | `boolean` |                                                                             |
-| `input.pipeline.trigger.isStrategy`                               | `boolean` |                                                                             |
-| `input.pipeline.trigger.other.dryRun`                             | `boolean` |                                                                             |
-| `input.pipeline.trigger.other.rebake`                             | `boolean` |                                                                             |
-| `input.pipeline.trigger.other.strategy`                           | `boolean` |                                                                             |
-| `input.pipeline.trigger.other.type`                               | `string`  |                                                                             |
-| `input.pipeline.trigger.other.user`                               | `string`  |                                                                             |
-| `input.pipeline.trigger.type`                                     | `string`  |                                                                             |
-| `input.pipeline.trigger.user`                                     | `string`  |                                                                             |
 | `input.pipeline.type`                                             | `string`  |                                                                             |
 
-### `input.stage`
+### input.pipeline.trigger
+
+See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
+
+### input.stage
 
 | Key                                                               | Type      | Description                                                                 |
 | ----------------------------------------------------------------- | --------- | --------------------------------------------------------------------------- |
@@ -312,6 +305,6 @@ The full package name sent to OPA is `spinnaker.execution.stages.before.scaleMan
 | `input.stage.tasks.[].status`                                     | `string`  |                                                                             |
 | `input.stage.type`                                                | `string`  | The current state of activity of the stage.                                 |
 
-### `input.user`
+### input.user
 
 This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.
