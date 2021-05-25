@@ -10,10 +10,11 @@ description: >
 
 You need the following to configure mTLS:
 
-* Clouddriver certificate and private key
 * `CA.crt`
+* Clouddriver certificate and private key
+* Agent certificate and private key
 
-You can create a certificate and keys like this:
+For testing, you can create a self-signed certificate and keys like this:
 
 ```bash
 # The first step is to create a certificate authority (CA) that both the Agent and Clouddriver trust
@@ -32,7 +33,7 @@ openssl x509 -req -in clouddriver.csr -CA ca.crt -CAkey ca.key -CAcreateserial \
 
 openssl x509 -in clouddriver.crt -text -noout
 
-#client certificate
+#agent certificate
 openssl genrsa -out agent.key 2048
 
 openssl req -new -key agent.key -subj '/CN=my-client' -out agent.csr
@@ -45,19 +46,19 @@ openssl x509 -req -in agent.csr -CA ca.crt -CAkey ca.key -CAcreateserial \
 
 ## Agent plugin configuration
 
-### Create a secret
+### Create a Kubernetes secret
 
 Create a secret that contains `clouddriver.crt` and `clouddriver.pem`.
 
 ```bash
-kubectl create secret tls <your-secret-name> \
+kubectl create secret tls <clouddriver-secret-name> \
    --cert=clouddriver.crt --key=clouddriver.key  
 ```
 
 Or:
 
 ```bash
-kubectl create secret generic <your-secret-name> \
+kubectl create secret generic <clouddriver-secret-name> \
    --from-file=clouddriver.crt --from-file=clouddriver.key
 ```
 
@@ -97,13 +98,13 @@ spec:
                     emptyDir: {}
                   - name: cert
                     secret:
-                      secretName: <your-secret-name>
+                      secretName: <clouddriver-secret-name>
 {{< /prism >}}
 
 
 ### Configure the plugin
 
-Configure the plugin to use the mounted certs in the `agent-plugin/config.yaml` file. Note that `certificateChain`, `trustCertCollection`, and `privateKey` values must in `file:///filepath/filename` format.
+In the `agent-plugin/config.yaml` file, configure the plugin to use the mounted certs.  Note that `trustCertCollection`, `certificateChain`, and `privateKey` values must in `file:///filepath/filename` format.
 
 {{< prism lang="yaml" line="12-20" >}}
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}
@@ -150,7 +151,7 @@ If you have a custom CA, you need to mount the cert into the known trusted cert 
   2. Append your custom CA onto the copied `cert.pem`  (for example `cat ca.crt >> cert.pem`)
   3. Mount `cert.pem` to Agent deployment
 
-@TODO is this config correct? do the "this didn't work" sections work now or not?
+>The paths that files are mounted to in the `deployment.yaml` file should always match the corresponding location in the `kubesvc.yaml` configuration file. For example, the `mountPath` of the CA cert in the `deployment.yaml` file must match the `clouddriver.tls.clientCertFile` location in `kubesvc.yaml`.
 
 {{< prism lang="yaml"  >}}
 spec:
@@ -158,22 +159,20 @@ spec:
     spec:
       containers:
         volumeMounts:
-        - mountPath: /opt/kubesvc/cert
+        - mountPath: <path> # for example, /opt/kubesvc/cert
           name: armoryagentcert
-        - mountPath: /opt/spinnaker/config
-          name: volume-kubesvc-config
-        - mountPath: /opt/kubesvc/cacert  # this didn't work as of Nov 2020
-          name: clouddrivercacert         # this didn't work as of Nov 2020
+        - mountPath: <path> # for example, /opt/kubesvc/cacert
+          name: clouddrivercacert         
       volumes:
       - name: armoryagentcert
         secret:
           secretName: <agent-secret-name>
-      - name: clouddrivercacert         # this didn't work as of Nov 2020
-        secret:                         # this didn't work as of Nov 2020
-          secretName: <your-secret-name> # this didn't work as of Nov 2020
+      - name: clouddrivercacert         
+        secret:                         
+          secretName: <clouddriver-secret-name>
       - name: certpem
         secret:
-          secretName: ??? @TODO what secret is this?
+          secretName: <ca-secret-name>
 {{< /prism >}}
 
 
@@ -188,10 +187,10 @@ clouddriver:
   tls:
     #serverName: my-ca  #to override the server name to verify
     insecureSkipVerify: false #if true, don't verify server's cert
-    clientKeyFile: /opt/kubesvc/cert/agent.key #ref to the private key (mTLS)
+    clientKeyFile: <path>/agent.key #ref to the private key (mTLS)
     #clientKeyPassword: #if the clientKeyFile is password protected
-    #cacertFile: /opt/kubesvc/cacert/ca.crt #to validate server's cert
-    clientCertFile: /opt/kubesvc/cert/agent.crt #client cert for mTLS.
+    #cacertFile: <path>/ca.crt #to validate server's cert
+    clientCertFile: <path>/agent.crt #client cert for mTLS.
 
 {{< /prism >}}
 
