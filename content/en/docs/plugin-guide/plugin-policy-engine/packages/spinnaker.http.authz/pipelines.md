@@ -226,40 +226,26 @@ message="Only admins can save pipelines"{
 
 ### input.body
 
-| Key                                                              | Type      | Description |
-| :--------------------------------------------------------------- | --------- | ----------- |
-| `input.body.application`                                         | `string`  |             |
-| `input.body.expectedArtifacts[].defaultArtifact.artifactAccount` | `string`  |             |
-| `input.body.expectedArtifacts[].defaultArtifact.id`              | `string`  |             |
-| `input.body.expectedArtifacts[].defaultArtifact.name`            | `string`  |             |
-| `input.body.expectedArtifacts[].defaultArtifact.reference`       | `string`  |             |
-| `input.body.expectedArtifacts[].defaultArtifact.type`            | `string`  |             |
-| `input.body.expectedArtifacts[].defaultArtifact.version`         | `string`  |             |
-| `input.body.expectedArtifacts[].displayName`                     | `string`  |             |
-| `input.body.expectedArtifacts[].id`                              | `string`  |             |
-| `input.body.expectedArtifacts[].matchArtifact.artifactAccount`   | `string`  |             |
-| `input.body.expectedArtifacts[].matchArtifact.customKind`        | `boolean` |             |
-| `input.body.expectedArtifacts[].matchArtifact.id`                | `string`  |             |
-| `input.body.expectedArtifacts[].matchArtifact.name`              | `string`  |             |
-| `input.body.expectedArtifacts[].matchArtifact.type`              | `string`  |             |
-| `input.body.expectedArtifacts[].useDefaultArtifact`              | `boolean` |             |
-| `input.body.expectedArtifacts[].usePriorArtifact`                | `boolean` |             |
-| `input.body.id`                                                  | `string`  |             |
-| `input.body.index`                                               | `number`  |             |
-| `input.body.keepWaitingPipelines`                                | `boolean` |             |
-| `input.body.lastModifiedBy`                                      | `string`  |             |
-| `input.body.limitConcurrent`                                     | `boolean` |             |
-| `input.body.name`                                                | `string`  |             |
-| `input.body.parameterConfig[].default`                           | `string`  |             |
-| `input.body.parameterConfig[].description`                       | `string`  |             |
-| `input.body.parameterConfig[].hasOptions`                        | `boolean` |             |
-| `input.body.parameterConfig[].label`                             | `string`  |             |
-| `input.body.parameterConfig[].name`                              | `string`  |             |
-| `input.body.parameterConfig[].options[].value`                   | `string`  |             |
-| `input.body.parameterConfig[].pinned`                            | `boolean` |             |
-| `input.body.parameterConfig[].required`                          | `boolean` |             |
-| `input.body.spelEvaluator`                                       | `string`  |             |
-| `input.body.updateTs`                                            | `string`  |             |
+| Key                                            | Type      | Description                                                       |
+| :--------------------------------------------- | --------- | ----------------------------------------------------------------- |
+| `input.body.application`                       | `string`  |                                                                   |
+| `input.body.expectedArtifacts[]`               | `array`   | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
+| `input.body.id`                                | `string`  |                                                                   |
+| `input.body.index`                             | `number`  |                                                                   |
+| `input.body.keepWaitingPipelines`              | `boolean` |                                                                   |
+| `input.body.lastModifiedBy`                    | `string`  |                                                                   |
+| `input.body.limitConcurrent`                   | `boolean` |                                                                   |
+| `input.body.name`                              | `string`  |                                                                   |
+| `input.body.parameterConfig[].default`         | `string`  |                                                                   |
+| `input.body.parameterConfig[].description`     | `string`  |                                                                   |
+| `input.body.parameterConfig[].hasOptions`      | `boolean` |                                                                   |
+| `input.body.parameterConfig[].label`           | `string`  |                                                                   |
+| `input.body.parameterConfig[].name`            | `string`  |                                                                   |
+| `input.body.parameterConfig[].options[].value` | `string`  |                                                                   |
+| `input.body.parameterConfig[].pinned`          | `boolean` |                                                                   |
+| `input.body.parameterConfig[].required`        | `boolean` |                                                                   |
+| `input.body.spelEvaluator`                     | `string`  |                                                                   |
+| `input.body.updateTs`                          | `string`  |                                                                   |
 
 ### input.body.stages
 
