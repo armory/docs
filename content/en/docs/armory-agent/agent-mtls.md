@@ -14,7 +14,7 @@ You need the following to configure mTLS:
 * Clouddriver certificate and private key
 * Agent certificate and private key
 
-For testing, you can create a self-signed certificate and keys like this:
+For testing, you can create self-signed certificates and keys like this:
 
 ```bash
 # The first step is to create a certificate authority (CA) that both the Agent and Clouddriver trust
@@ -185,7 +185,7 @@ clouddriver:
   grpc: <:443
   insecure: false
   tls:
-    #serverName: my-ca  #to override the server name to verify
+    #serverName: <my-ca> #to override the server name of the certificate authority
     insecureSkipVerify: false #if true, don't verify server's cert
     clientKeyFile: <path>/agent.key #ref to the private key (mTLS)
     #clientKeyPassword: #if the clientKeyFile is password protected
@@ -231,7 +231,7 @@ kubernetes:
 
 If you have many Agents that want to talk to Clouddriver, and all of them have valid x509 certificates for mTLS, you can authorize a particular subset by configuring a subject filter in your `clouddriver.yaml` configuration. If a certificate subject line matches **any** of the filters, that certificate is authorized. All non-matching certificate subjects calls are rejected with an `X509CertificateAuthorizationFilterException`.
 
-You can specify multiple filtering criteria. However, the order in which the criteria are read is not guaranteed. Be careful when matching on two parts of a subject line, for example `UID=.*O=Armory`, because the `UID` and `O` attributes may not appear in that order. It might be safest to write a regular expression that can match in any order.
+You can specify multiple filtering criteria. However, the order in which the criteria are read is not guaranteed because when Java reads the certificates, it does not maintain the order used in the certificate itself. Be careful when matching on two parts of a subject line, for example `UID=.*O=Armory`, because the `UID` and `O` attributes may not appear in that order. It might be safest to write a regular expression that can match in any order.
 
 ### Plugin filter configuration
 
@@ -254,7 +254,6 @@ spec:
             server:
               security:
                 enabled: true
-                # protocols: SSLv2Hello:TLSv1:TLSv1.1:TLSv1.2:TLSv1.3
                 clientAuth: REQUIRE
                 trustCertCollection: file:<path-to-ca.crt>
                 certificateChain: file:<path-to-clouddriver.crt>
