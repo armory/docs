@@ -78,38 +78,52 @@ description: "fill me with delicious data, Stephen!"
 </details>
 
 ## Example Policy
+This policy will disable the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions. Note: The spinnaker UI is not currently able to display an error message when this policy denies the action.
 
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
+package spinnaker.http.authz
 
-```
+allow = message==""
+
+default message=""
+message="You must provide at least 1 user with full execute permissions"{
+  not(hasWritePermissions(input.body.job[0]))
+  createsTaskOfType(["createApplication","updateApplication"][_])
+}
+
+hasWritePermissions(job) {
+  count(job.application.permissions.WRITE)>0
+}
+
+createsTaskOfType(tasktype){
+    input.method="POST"
+    input.path=["tasks"]
+    input.body.job[_].type=tasktype
+}
+{{< /prism >}}
 
 ## Keys
 
-| Key                                                  | Type      | Description |
-| :--------------------------------------------------- | :-------- | ----------- |
-| `input.body.application`                             | `string`  |             |
-| `input.body.description`                             | `string`  |             |
-| `input.body.job[].application.cloudProviders`        | `string`  |             |
-| `input.body.job[].application.description`           | `string`  |             |
-| `input.body.job[].application.email`                 | `string`  |             |
+| Key                                                  |   Type    | Description |
+| :--------------------------------------------------- | :-------: | ----------- |
+| `input.body.application`                             | `string`  | The name of the application being created.            |
+| `input.body.description`                             | `string`  | The description of the application being created.            |
+| `input.body.job[].application.cloudProviders`        | `string`  | The applications allowed cloud providers.            |
+| `input.body.job[].application.email`                 | `string`  | The email address of the owner of the application.          |
 | `input.body.job[].application.instancePort`          | `number`  |             |
-| `input.body.job[].application.lastModifiedBy`        | `string`  |             |
-| `input.body.job[].application.name`                  | `string`  |             |
-| `input.body.job[].application.permissions.EXECUTE[]` | `string`  |             |
-| `input.body.job[].application.permissions.READ[]`    | `string`  |             |
-| `input.body.job[].application.permissions.WRITE[]`   | `string`  |             |
-| `input.body.job[].application.repoProjectKey`        | `string`  |             |
-| `input.body.job[].application.repoSlug`              | `string`  |             |
-| `input.body.job[].application.repoType`              | `string`  |             |
-| `input.body.job[].application.updateTs`              | `string`  |             |
-| `input.body.job[].application.user`                  | `string`  |             |
-| `input.body.job[].type`                              | `string`  |             |
-| `input.body.job[].user`                              | `string`  |             |
-| `input.method`                                       | `string`  |             |
-| `input.path[]`                                       | `string`  |             |
+| `input.body.job[].application.name`                  | `string`  | The name of the application being created.              |
+| `input.body.job[].type`                              | `string`  | The type of task being run, in this case 'createApplication'        |
+| `input.body.job[].user`                              | `string`  | The id of the user to run the job as.            |
+| `input.method`                                       | `string`  | The HTTP method by which the API is being called. When createing a task this will be 'POST'            |
+| `input.path[]`                                       | `string`  | The API path of the job. When creating a new task this will be the array ["tasks"]            |
 | `input.user.isAdmin`                                 | `boolean` |             |
 | `input.user.roles[].name`                            | `string`  |             |
 | `input.user.roles[].source`                          | `string`  |             |
 | `input.user.username`                                | `string`  |             |
-| `input.body.job[].application.createTs`              | `string`  |             |
-| `input.body.job[].application.platformHealthOnly`    | `boolean` |             |
+| `input.body.job[].application.description`           | `string`  | The description of the application being created.             |
+| `input.body.job[].application.permissions.EXECUTE[]` | `string`  | The list of roles that have execute permission to the application.            |
+| `input.body.job[].application.permissions.READ[]`    | `string`  | The list of roles that have read permission to the application.            |
+| `input.body.job[].application.permissions.WRITE[]`   | `string`  | The list of roles that have write permission to the application.            |
+| `input.body.job[].application.repoProjectKey`        | `string`  | What is the unique ID of the project in source control.            |
+| `input.body.job[].application.repoSlug`              | `string`  | What is the slug for the source code repo? Typically the repository's owner or organization ID.            |
+| `input.body.job[].application.repoType`              | `string`  | With what type of sourcecode repo is this application associated.            |
