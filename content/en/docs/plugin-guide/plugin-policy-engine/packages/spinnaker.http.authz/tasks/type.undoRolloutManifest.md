@@ -1,8 +1,12 @@
 ---
-title: "spinnaker.http.authz.tasks.type.undoRolloutManifest"
-linktitle: "type.undoRolloutManifest"
+title: "Task Type: undoRolloutManifest"
+linktitle: "undoRolloutManifest"
 description: "fill me with delicious data, Stephen!"
 ---
+
+- **Path:** tasks
+- **Method:** Post
+- **Package:** `spinnaker.http.authz`
 
 ## Example Payload
 

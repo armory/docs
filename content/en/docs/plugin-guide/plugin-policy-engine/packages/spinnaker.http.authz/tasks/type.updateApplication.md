@@ -1,8 +1,12 @@
 ---
-title: "spinnaker.http.authz.tasks.type.updateApplication"
-linktitle: "type.updateApplication"
+title: "Task Type: updateApplication"
+linktitle: "updateApplication"
 description: "fill me with delicious data, Stephen!"
 ---
+
+- **Path:** tasks
+- **Method:** Post
+- **Package:** `spinnaker.http.authz`
 
 ## Example Payload
 

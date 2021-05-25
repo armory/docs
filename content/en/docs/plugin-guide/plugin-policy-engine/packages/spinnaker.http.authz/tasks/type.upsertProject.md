@@ -1,8 +1,12 @@
 ---
-title: "spinnaker.http.authz.tasks.type.upsertProject"
-linktitle: "type.upsertProject"
+title: "Task Type: upsertProject"
+linktitle: "upsertProject"
 description: "fill me with delicious data, Stephen!"
 ---
+
+- **Path:** tasks
+- **Method:** Post
+- **Package:** `spinnaker.http.authz`
 
 ## Example Payload
 

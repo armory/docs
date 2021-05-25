@@ -1,8 +1,12 @@
 ---
-title: "spinnaker.http.authz.tasks.type.deployManifest"
-linktitle: "type.deployManifest"
+title: "Task Type: deployManifest"
+linktitle: "deployManifest"
 description: "fill me with delicious data, Stephen!"
 ---
+
+- **Path:** tasks
+- **Method:** Post
+- **Package:** `spinnaker.http.authz`
 
 ## Example Payload
 

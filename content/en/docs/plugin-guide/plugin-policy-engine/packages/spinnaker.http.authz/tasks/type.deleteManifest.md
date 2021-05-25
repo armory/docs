@@ -1,8 +1,12 @@
 ---
-title: "spinnaker.http.authz.tasks.type.deleteManifest"
-linktitle: "type.deleteManifest"
+title: "Task Type: deleteManifest"
+linktitle: "deleteManifest"
 description: "fill me with delicious data, Stephen!"
 ---
+
+- **Path:** tasks
+- **Method:** Post
+- **Package:** `spinnaker.http.authz`
 
 ## Example Payload
 

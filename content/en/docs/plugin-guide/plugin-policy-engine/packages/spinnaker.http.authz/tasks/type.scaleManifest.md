@@ -1,8 +1,12 @@
 ---
-title: "spinnaker.http.authz.tasks.type.scaleManifest"
-linktitle: "type.scaleManifest"
+title: "Task Type: scaleManifest"
+linktitle: "scaleManifest"
 description: "fill me with delicious data, Stephen!"
 ---
+
+- **Path:** tasks
+- **Method:** Post
+- **Package:** `spinnaker.http.authz`
 
 ## Example Payload
 
