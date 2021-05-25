@@ -223,6 +223,27 @@ lacksEarlierApprovalBy(role,idx) {
 
 {{< /prism >}}
 
+## Example Policy
+Only allows applications to deploy to namespaces that are on a whitelist.
+{{< prism lang="rego" line-numbers="true" >}}
+package opa.pipelines
+
+allowedNamespaces:=[{"app":"app1","ns": ["ns1","ns2"]},
+                                     {"app":"app2", "ns":["ns3"]}]
+
+deny["stage deploys to a namespace to which this application lacks access"]{
+    ns :=object.get(input.stage.context.manifests[_].metadata,"namespace","default")
+    application := input.pipeline.application
+    not canDeploy(ns, application)
+}
+
+canDeploy(namespace, application){
+    some i
+    allowedNamespaces[i].app==application
+    allowedNamespaces[i].ns[_]==namespace
+}
+{{< /prism >}}
+
 ## Keys
 
 | Key                                                               | Type       | Description                                                                                                                                 |
