@@ -15,7 +15,7 @@ Posts to the tasks api create new tasks in spinnaker. The following rego functio
 
 | Key                                                  |   Type    | Description |
 | :--------------------------------------------------- | :-------: | ----------- |
-| `input.body`                             | `object`  | The contents of this field will depend on the task type. It corresponds to the payload body being posted to the spinnaker API for that task.           |
+| `input.body`                             | `object`  | The contents of this field will depend on the task type. It corresponds to the payload body being posted to the spinnaker API for that task. If your policy needs to conditionally enable/disable a task based off a property being configured by that task, the value you need will likely be in this object.           |
 | `input.method`                                       | `string`  | The HTTP method by which the API is being called. When createing a task this will be 'POST'            |
 | `input.path[]`                                       | `string`  | The API path of the job. When creating a new task this will be the array ["tasks"]            |
 | `input.user.isAdmin`                                 | `boolean` |             |
