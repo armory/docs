@@ -193,7 +193,7 @@ weight: 10
 
 ## Example Policy
 
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package opa.pipelines
 production_accounts := ["prod1","prod2"]
 deny["deploy stage must follow a manual judgement stage for production accounts"] {
@@ -203,7 +203,7 @@ deny["deploy stage must follow a manual judgement stage for production accounts"
   approvers := [i | input.pipeline.stages[i].type=="manualJudgment"; i<j]
   count(approvers)==0
 }
-```
+{{< /prism >}}
 
 ## Keys
 

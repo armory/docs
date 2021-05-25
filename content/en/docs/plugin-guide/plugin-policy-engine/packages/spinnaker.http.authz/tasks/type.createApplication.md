@@ -79,7 +79,8 @@ createsTaskOfType(tasktype){
 {{< /prism >}}
 
 This policy will disable the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions. Note: The spinnaker UI is not currently able to display an error message when this policy denies the action.
-```rego
+
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.http.authz
 
 allow = message==""
@@ -99,7 +100,7 @@ createsTaskOfType(tasktype){
     input.path=["tasks"]
     input.body.job[_].type=tasktype
 }
-```
+{{< /prism >}}
 
 ## Keys
 

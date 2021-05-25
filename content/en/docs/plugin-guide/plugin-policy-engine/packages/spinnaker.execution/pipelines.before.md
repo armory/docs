@@ -362,7 +362,7 @@ description: "Policy that is evaluated when a pipeline starts executing, but bef
 
 ## Example Policy
 
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.pipelines.before
 
 deny["Kubernetes deployments can only be triggered by webhooks, docker, or manually."] { 
@@ -374,7 +374,7 @@ deny["Kubernetes deployments can only be triggered by webhooks, docker, or manua
   trigger.type != "webhook"
   trigger.type != "manual"
 }
-```
+{{< /prism >}}
 
 ## Keys
 
@@ -426,32 +426,7 @@ deny["Kubernetes deployments can only be triggered by webhooks, docker, or manua
 
 ### `input.pipeline.trigger`
 
-| Key                                                                                  | Type      | Description                                                                                      |
-| ------------------------------------------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------ |
-| `input.pipeline.trigger.artifacts[]`                                                 | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.                                |
-| `input.pipeline.trigger.dryRun`                                                      | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.enabled`                                                     | `boolean` | is the trigger enabled                                                                           |
-| `input.pipeline.trigger.eventId`                                                     | `string`  |                                                                                                  |
-| `input.pipeline.trigger.executionId`                                                 | `string`  |                                                                                                  |
-| `input.pipeline.trigger.expectedArtifacts[]`                                         | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.                                |
-| `input.pipeline.trigger.parameters.<parameterName>`                                  | `string`  | The value that was specified for the parameter when triggering the pipeline.                     |
-| `input.pipeline.trigger.preferred`                                                   | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.rebake`                                                      | `boolean` |                                                                                                  |
-| `input.pipeline.trigger.resolvedExpectedArtifacts[]`                                 | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.                                |
-| `input.pipeline.trigger.type`                                                        | `string`  | What is the type of trigger                                                                      |
-| `input.pipeline.trigger.user`                                                        | `string`  | for triuggers of type 'git' what is the user or organization associated with the git repository. |
-| `input.pipeline.triggers[].branch`                                                   | `string`  | what branch of the git repository triggers this pipeline                                         |
-| `input.pipeline.triggers[].dryRun`                                                   | `boolean` |                                                                                                  |
-| `input.pipeline.triggers[].enabled`                                                  | `boolean` | is the trigger enabled.                                                                          |
-| `input.pipeline.triggers[].expectedArtifactIds[]`                                    | `string`  |                                                                                                  |
-| `input.pipeline.triggers[].id`                                                       | `string`  |                                                                                                  |
-| `input.pipeline.triggers[].preferred`                                                | `boolean` |                                                                                                  |
-| `input.pipeline.triggers[].project`                                                  | `string`  | a change in what project will trigger this pipeline                                              |
-| `input.pipeline.triggers[].rebake`                                                   | `boolean` | should all baked artifacts be rebaked even if their inputs have not changed.                     |
-| `input.pipeline.triggers[].secret`                                                   | `string`  | the secret that the trigger uses to authenticate with spinnaker                                  |
-| `input.pipeline.triggers[].slug`                                                     | `string`  | the triggers slug, for example with a github trigger this will be the project name.              |
-| `input.pipeline.triggers[].source`                                                   | `string`  | the type of the source for the trigger                                                           |
-| `input.pipeline.triggers[].type`                                                     | `string`  | the configured type of the trigger                                                               |
+See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
 ### `input.user`
 

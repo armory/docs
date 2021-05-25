@@ -44,14 +44,14 @@ The following objects in `spinnaker.http.authz` all contain the same endpoints:
 
 ## Example Policy
 This policy simply grants all users access to all APIs. It is a goiod policy to put on spinnaker.,http.authz if you do not need a more complicated policy.
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 Grants full API access in spinnaker.
 package spinnaker.http.authz
 default allow = true
 allow {
     input.user.isAdmin == true
 }
-```
+{{< /prism >}}
 
 Special considerations:
 unlike most other packages, when writing policies against 'spinnaker.http.authz' you must return a single boolean value named 'allow'. If 'allow' is 'false' then access will be denied.

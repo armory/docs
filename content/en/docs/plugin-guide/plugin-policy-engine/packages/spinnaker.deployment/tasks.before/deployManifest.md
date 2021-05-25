@@ -142,7 +142,7 @@ description: "WHO AM I?"
 
 ## Example Policy
 This example prevents deploying of pods, pod templates (Deployments/jobs/replicasets) and services that use the following services: HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, SMTP
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.deployManifest
 
 blockedPorts := [20,21,23,80,110,119,143,389,587,8080,8088,8888]
@@ -161,9 +161,9 @@ deny["A port typically used by an unencrypted protocol was detected."] {
     }
 
 
-```
+{{< /prism >}}
 Require that the Annotations 'owner' and 'app' are applied on all deployed infrastructure.
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.deployManifest
 
 required_annotations:=["app","owner"]
@@ -175,7 +175,7 @@ deny["Manifest is missing a required annotation"] {
     object.get(annotations,required_annotations[_],null)==null
 }
 
-```
+{{< /prism >}}
 
 ## Keys
 

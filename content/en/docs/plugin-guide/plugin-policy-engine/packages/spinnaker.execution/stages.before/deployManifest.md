@@ -1552,7 +1552,7 @@ description: "a policy that is run before executing each task in a deploy manife
 
 ## Example Policy
 This policy requires that a set of annotations have been applied to any manifests that are being deployed. Specifically the annotations 'app' and 'owner' must have been applied.
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.deployManifest
 
 required_annotations:=["app","owner"]
@@ -1564,9 +1564,9 @@ deny["Manifest is missing a required annotation"] {
     object.get(annotations,required_annotations[_],null)==null
 }
 
-```
+{{< /prism >}}
 This policy requires prevents exposing a set of ports that are unencrypted buy have encrypted alternatives. Specifically this policy prevents exposing HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, and SMTP from a pod, deployment, or replicaset.
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.deployManifest
 
 blockedPorts := [20,21,23,80,110,119,143,389,587,8080,8088,8888]
@@ -1584,10 +1584,10 @@ deny["A port typically used by an unencrypted protocol was detected."] {
     input.deploy.manifests[_].spec.template.spec.containers[_].ports[_].containerPort=blockedPorts[_]
     }
 
-```
+{{< /prism >}}
 
 This policy checks whether or not the image being approved is on a list of imaged that are approved for deployment. The list of what images are approved must seperately be uploaded to the OPA data document
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.deployManifest
 
 deny["Manifest creates a pod from an image that is not approved by the security scanning process."] {
@@ -1605,9 +1605,9 @@ deny["Manifest creates a pod from an image that is not approved by the security 
 
 isImageUnApproved(image){    not isImageApproved(image) }
 isImageApproved(image){    image==data.approvedImages[_]}
-```
+{{< /prism >}}
 This policy prevents applications from deploying to namespaces that they are not whitelisted for.
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.deployManifest
 
 allowedNamespaces:=[{"app":"app1","ns": ["ns1","ns2"]},
@@ -1625,7 +1625,7 @@ canDeploy(namespace, application){
     allowedNamespaces[i].ns[_]==namespace
 }
 
-```
+{{< /prism >}}
 
 ## Keys
 
