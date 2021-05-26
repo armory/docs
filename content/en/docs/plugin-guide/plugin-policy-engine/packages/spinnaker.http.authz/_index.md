@@ -5,12 +5,14 @@ description: "This policy allows you to write policies on spinnakers core APIs. 
 weight: 10
 ---
 
-The following objects in `spinnaker.http.authz` all contain the same endpoints:
+The following paths in `spinnaker.http.authz` all contain the same keys.:
 
  - `applications`
  - `applications.<app>`
  - `projects`
  - `v2/canaryConfig`
+
+Other paths contain additional keys/data that can be used when writing policies.
 
 ## Example Payload
 
