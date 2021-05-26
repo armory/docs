@@ -3335,44 +3335,54 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.status`                                   | `string`  |                                                                       |
 | `input.pipeline.templateVariables`                        | ` `       |                                                                       |
 | `input.pipeline.type`                                     | `string`  |                                                                       |
-| `input.stage.context.application`                         | `string`  |                                                                       |
-| `input.stage.context.attempt`                             | `number`  |                                                                       |
-| `input.stage.context.cloudProvider`                       | `string`  |                                                                       |
-| `input.stage.context.cloudProviderType`                   | `string`  |                                                                       |
-| `input.stage.context.consecutiveNotFound`                 | `number`  |                                                                       |
-| `input.stage.context.copySourceCustomBlockDeviceMappings` | `boolean` |                                                                       |
-| `input.stage.context.credentials`                         | `string`  |                                                                       |
-| `input.stage.context.freeFormDetails`                     | `string`  |                                                                       |
-| `input.stage.context.lastException`                       | `string`  |                                                                       |
-| `input.stage.context.region`                              | `string`  |                                                                       |
-| `input.stage.context.stack`                               | `string`  |                                                                       |
-| `input.stage.context.target`                              | `string`  |                                                                       |
-| `input.stage.context.targetCluster`                       | `string`  |                                                                       |
-| `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` |                                                                       |
-| `input.stage.context.useSourceCapacity`                   | `boolean` |                                                                       |
-| `input.stage.endTime`                                     | ` `       |                                                                       |
-| `input.stage.id`                                          | `string`  |                                                                       |
-| `input.stage.lastModified`                                | ` `       |                                                                       |
-| `input.stage.name`                                        | `string`  |                                                                       |
-| `input.stage.parentStageId`                               | ` `       |                                                                       |
-| `input.stage.refId`                                       | `string`  |                                                                       |
-| `input.stage.scheduledTime`                               | ` `       |                                                                       |
-| `input.stage.startTime`                                   | `number`  |                                                                       |
-| `input.stage.startTimeExpiry`                             | ` `       |                                                                       |
-| `input.stage.status`                                      | `string`  |                                                                       |
-| `input.stage.syntheticStageOwner`                         | ` `       |                                                                       |
-| `input.stage.tasks[].endTime`                             | ` `       |                                                                       |
-| `input.stage.tasks[].id`                                  | `string`  |                                                                       |
-| `input.stage.tasks[].implementingClass`                   | `string`  |                                                                       |
-| `input.stage.tasks[].loopEnd`                             | `boolean` |                                                                       |
-| `input.stage.tasks[].loopStart`                           | `boolean` |                                                                       |
-| `input.stage.tasks[].name`                                | `string`  |                                                                       |
-| `input.stage.tasks[].stageEnd`                            | `boolean` |                                                                       |
-| `input.stage.tasks[].stageStart`                          | `boolean` |                                                                       |
-| `input.stage.tasks[].startTime`                           | `number`  |                                                                       |
-| `input.stage.tasks[].startTime`                           | ` `       |                                                                       |
-| `input.stage.tasks[].status`                              | `string`  |                                                                       |
-| `input.stage.type`                                        | `string`  |                                                                       |
+
+### input.stage.context
+
+| Key                                                       | Type      | Description |
+| --------------------------------------------------------- | --------- | ----------- |
+| `input.stage.context.application`                         | `string`  |             |
+| `input.stage.context.attempt`                             | `number`  |             |
+| `input.stage.context.cloudProvider`                       | `string`  |             |
+| `input.stage.context.cloudProviderType`                   | `string`  |             |
+| `input.stage.context.consecutiveNotFound`                 | `number`  |             |
+| `input.stage.context.copySourceCustomBlockDeviceMappings` | `boolean` |             |
+| `input.stage.context.credentials`                         | `string`  |             |
+| `input.stage.context.freeFormDetails`                     | `string`  |             |
+| `input.stage.context.lastException`                       | `string`  |             |
+| `input.stage.context.region`                              | `string`  |             |
+| `input.stage.context.stack`                               | `string`  |             |
+| `input.stage.context.target`                              | `string`  |             |
+| `input.stage.context.targetCluster`                       | `string`  |             |
+| `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` |             |
+| `input.stage.context.useSourceCapacity`                   | `boolean` |             |
+
+### input.stage
+
+| Key                                     | Type      | Description |
+| --------------------------------------- | --------- | ----------- |
+| `input.stage.endTime`                   | ` `       |             |
+| `input.stage.id`                        | `string`  |             |
+| `input.stage.lastModified`              | ` `       |             |
+| `input.stage.name`                      | `string`  |             |
+| `input.stage.parentStageId`             | ` `       |             |
+| `input.stage.refId`                     | `string`  |             |
+| `input.stage.scheduledTime`             | ` `       |             |
+| `input.stage.startTime`                 | `number`  |             |
+| `input.stage.startTimeExpiry`           | ` `       |             |
+| `input.stage.status`                    | `string`  |             |
+| `input.stage.syntheticStageOwner`       | ` `       |             |
+| `input.stage.tasks[].endTime`           | ` `       |             |
+| `input.stage.tasks[].id`                | `string`  |             |
+| `input.stage.tasks[].implementingClass` | `string`  |             |
+| `input.stage.tasks[].loopEnd`           | `boolean` |             |
+| `input.stage.tasks[].loopStart`         | `boolean` |             |
+| `input.stage.tasks[].name`              | `string`  |             |
+| `input.stage.tasks[].stageEnd`          | `boolean` |             |
+| `input.stage.tasks[].stageStart`        | `boolean` |             |
+| `input.stage.tasks[].startTime`         | `number`  |             |
+| `input.stage.tasks[].startTime`         | ` `       |             |
+| `input.stage.tasks[].status`            | `string`  |             |
+| `input.stage.type`                      | `string`  |             |
 
 ### input.pipeline.stages
 

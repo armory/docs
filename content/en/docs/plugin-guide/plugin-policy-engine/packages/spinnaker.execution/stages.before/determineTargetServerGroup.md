@@ -3557,7 +3557,7 @@ description: "fill me with delicious data, Stephen!"
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
-### input.stage
+### input.stage.context
 
 | Key                                     | Type      | Description |
 | --------------------------------------- | --------- | ----------- |
@@ -3568,6 +3568,11 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.credentials`       | `string`  |             |
 | `input.stage.context.regions[]`         | `string`  |             |
 | `input.stage.context.target`            | `string`  |             |
+
+### input.stage
+
+| Key                                               | Type      | Description |
+| ------------------------------------------------- | --------- | ----------- |
 | `input.stage.endTime`                   | ` `       |             |
 | `input.stage.id`                        | `string`  |             |
 | `input.stage.lastModified`              | ` `       |             |

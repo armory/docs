@@ -3310,67 +3310,77 @@ description: "fill me with delicious data, Stephen!"
 
 ### input.pipeline
 
-| Key                                               | Type      | Description |
-| ------------------------------------------------- | --------- | ----------- |
+| Key                                               | Type      | Description                                                           |
+| ------------------------------------------------- | --------- | --------------------------------------------------------------------- |
 | `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  |             |
-| `input.pipeline.authentication.user`              | `string`  |             |
-| `input.pipeline.buildTime`                        | `number`  |             |
-| `input.pipeline.canceled`                         | `boolean` |             |
-| `input.pipeline.canceledBy`                       | ` `       |             |
-| `input.pipeline.cancellationReason`               | ` `       |             |
-| `input.pipeline.description`                      | ` `       |             |
-| `input.pipeline.endTime`                          | `number`  |             |
-| `input.pipeline.id`                               | `string`  |             |
-| `input.pipeline.keepWaitingPipelines`             | `boolean` |             |
-| `input.pipeline.limitConcurrent`                  | `boolean` |             |
-| `input.pipeline.name`                             | `string`  |             |
-| `input.pipeline.origin`                           | `string`  |             |
-| `input.pipeline.partition`                        | ` `       |             |
-| `input.pipeline.paused`                           | ` `       |             |
-| `input.pipeline.pipelineConfigId`                 | `string`  |             |
-| `input.pipeline.source`                           | ` `       |             |
-| `input.pipeline.spelEvaluator`                    | `string`  |             |
-| `input.pipeline.startTime`                        | `number`  |             |
-| `input.pipeline.startTimeExpiry`                  | ` `       |             |
-| `input.pipeline.status`                           | `string`  |             |
-| `input.pipeline.templateVariables`                | ` `       |             |
-| `input.pipeline.type`                             | `string`  |             |
-| `input.stage.context.amiSuffix`                   | `string`  |             |
-| `input.stage.context.baseLabel`                   | `string`  |             |
-| `input.stage.context.baseOs`                      | `string`  |             |
-| `input.stage.context.cloudProviderType`           | `string`  |             |
-| `input.stage.context.name`                        | `string`  |             |
-| `input.stage.context.package`                     | `string`  |             |
-| `input.stage.context.rebake`                      | `boolean` |             |
-| `input.stage.context.region`                      | `string`  |             |
-| `input.stage.context.storeType`                   | `string`  |             |
-| `input.stage.context.type`                        | `string`  |             |
-| `input.stage.context.user`                        | `string`  |             |
-| `input.stage.context.vmType`                      | `string`  |             |
-| `input.stage.endTime`                             | ` `       |             |
-| `input.stage.id`                                  | `string`  |             |
-| `input.stage.lastModified`                        | ` `       |             |
-| `input.stage.name`                                | `string`  |             |
-| `input.stage.parentStageId`                       | `string`  |             |
-| `input.stage.refId`                               | `string`  |             |
-| `input.stage.scheduledTime`                       | ` `       |             |
-| `input.stage.startTime`                           | `number`  |             |
-| `input.stage.startTimeExpiry`                     | ` `       |             |
-| `input.stage.status`                              | `string`  |             |
-| `input.stage.syntheticStageOwner`                 | `string`  |             |
-| `input.stage.tasks[].endTime`                     | ` `       |             |
-| `input.stage.tasks[].id`                          | `string`  |             |
-| `input.stage.tasks[].implementingClass`           | `string`  |             |
-| `input.stage.tasks[].loopEnd`                     | `boolean` |             |
-| `input.stage.tasks[].loopStart`                   | `boolean` |             |
-| `input.stage.tasks[].name`                        | `string`  |             |
-| `input.stage.tasks[].stageEnd`                    | `boolean` |             |
-| `input.stage.tasks[].stageStart`                  | `boolean` |             |
-| `input.stage.tasks[].startTime`                   | `number`  |             |
-| `input.stage.tasks[].startTime`                   | ` `       |             |
-| `input.stage.tasks[].status`                      | `string`  |             |
-| `input.stage.type`                                | `string`  |             |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  |                                                                       |
+| `input.pipeline.authentication.user`              | `string`  |                                                                       |
+| `input.pipeline.buildTime`                        | `number`  |                                                                       |
+| `input.pipeline.canceled`                         | `boolean` |                                                                       |
+| `input.pipeline.canceledBy`                       | ` `       |                                                                       |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                       |
+| `input.pipeline.description`                      | ` `       |                                                                       |
+| `input.pipeline.endTime`                          | `number`  |                                                                       |
+| `input.pipeline.id`                               | `string`  |                                                                       |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` |                                                                       |
+| `input.pipeline.limitConcurrent`                  | `boolean` |                                                                       |
+| `input.pipeline.name`                             | `string`  |                                                                       |
+| `input.pipeline.origin`                           | `string`  |                                                                       |
+| `input.pipeline.partition`                        | ` `       |                                                                       |
+| `input.pipeline.paused`                           | ` `       |                                                                       |
+| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                       |
+| `input.pipeline.source`                           | ` `       |                                                                       |
+| `input.pipeline.spelEvaluator`                    | `string`  |                                                                       |
+| `input.pipeline.startTime`                        | `number`  |                                                                       |
+| `input.pipeline.startTimeExpiry`                  | ` `       |                                                                       |
+| `input.pipeline.status`                           | `string`  |                                                                       |
+| `input.pipeline.templateVariables`                | ` `       |                                                                       |
+| `input.pipeline.type`                             | `string`  |                                                                       |
+
+### input.stage.context
+
+| Key                                     | Type      | Description |
+| --------------------------------------- | --------- | ----------- |
+| `input.stage.context.amiSuffix`         | `string`  |             |
+| `input.stage.context.baseLabel`         | `string`  |             |
+| `input.stage.context.baseOs`            | `string`  |             |
+| `input.stage.context.cloudProviderType` | `string`  |             |
+| `input.stage.context.name`              | `string`  |             |
+| `input.stage.context.package`           | `string`  |             |
+| `input.stage.context.rebake`            | `boolean` |             |
+| `input.stage.context.region`            | `string`  |             |
+| `input.stage.context.storeType`         | `string`  |             |
+| `input.stage.context.type`              | `string`  |             |
+| `input.stage.context.user`              | `string`  |             |
+| `input.stage.context.vmType`            | `string`  |             |
+
+### input.stage
+
+| Key                                     | Type      | Description |
+| --------------------------------------- | --------- | ----------- |
+| `input.stage.endTime`                   | ` `       |             |
+| `input.stage.id`                        | `string`  |             |
+| `input.stage.lastModified`              | ` `       |             |
+| `input.stage.name`                      | `string`  |             |
+| `input.stage.parentStageId`             | `string`  |             |
+| `input.stage.refId`                     | `string`  |             |
+| `input.stage.scheduledTime`             | ` `       |             |
+| `input.stage.startTime`                 | `number`  |             |
+| `input.stage.startTimeExpiry`           | ` `       |             |
+| `input.stage.status`                    | `string`  |             |
+| `input.stage.syntheticStageOwner`       | `string`  |             |
+| `input.stage.tasks[].endTime`           | ` `       |             |
+| `input.stage.tasks[].id`                | `string`  |             |
+| `input.stage.tasks[].implementingClass` | `string`  |             |
+| `input.stage.tasks[].loopEnd`           | `boolean` |             |
+| `input.stage.tasks[].loopStart`         | `boolean` |             |
+| `input.stage.tasks[].name`              | `string`  |             |
+| `input.stage.tasks[].stageEnd`          | `boolean` |             |
+| `input.stage.tasks[].stageStart`        | `boolean` |             |
+| `input.stage.tasks[].startTime`         | `number`  |             |
+| `input.stage.tasks[].startTime`         | ` `       |             |
+| `input.stage.tasks[].status`            | `string`  |             |
+| `input.stage.type`                      | `string`  |             |
 
 ### input.pipeline.stages
 
