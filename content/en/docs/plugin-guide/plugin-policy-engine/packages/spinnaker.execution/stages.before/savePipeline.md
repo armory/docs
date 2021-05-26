@@ -160,7 +160,7 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.pipeline.cancellationReason`                | ``        |                                                                             |
 | `input.pipeline.description`                       | `string`  | Description of the pipeline defined in the UI                               |
 | `input.pipeline.endTime`                           | ``        |                                                                             |
-| `input.pipeline.id`                                | `string`  |                                                                             |
+| `input.pipeline.id` | `string`   |  The unique ID of the pipeline |
 | `input.pipeline.keepWaitingPipelines`              | `boolean`  | If concurrent pipeline execution is disabled, then the pipelines that are in the waiting queue will get canceled when the next execution starts unless this is true. |
 | `input.pipeline.limitConcurrent`                   | `boolean` | True if only 1 concurrent execution of this pipeline be allowed.            |
 | `input.pipeline.name`                              | ``        | The name of this pipeline.                                                  |

@@ -32,10 +32,10 @@ description: "WHO AM I?"
 
 ## Keys
 
-| Key                         | Type     | Description                                   |
-| --------------------------- | -------- | --------------------------------------------- |
-| `input.deploy.account`      | `string` | The spinnaker account being deployed to.      |
-| `input.deploy.credentials`  | `string` | The credentials to use to access the account. |
-| `input.deploy.location`     | `string` |                                               |
-| `input.deploy.manifestName` | `string` |                                               |
-| `input.deploy.replicas`     | `number` |                                               |
+| Key                         | Type     | Description                                                         |
+| --------------------------- | -------- | ------------------------------------------------------------------- |
+| `input.deploy.account`      | `string` | The spinnaker account being deployed to.                            |
+| `input.deploy.credentials`  | `string` | The credentials to use to access the account.                       |
+| `input.deploy.location`     | `string` | The name of the namespace from which the manifest is being deleted. |
+| `input.deploy.manifestName` | `string` | The name of the manifest being deleted.                             |
+| `input.deploy.replicas`     | `number` |                                                                     |
