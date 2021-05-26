@@ -1,7 +1,7 @@
 ---
 title: "Pipelines"
 linktitle: "Pipelines"
-description: "Controls access to the spinnaker pipelines api. Can be used to prevent a user from creating a pipeline. Many usecases for this API call are better authored against the opa.pipelines package."
+description: "Controls access to the spinnaker pipelines api. Can be used to prevent a user from creating a pipeline. Most usecases for this API call are better authored against the opa.pipelines package."
 ---
 - **Path:** pipelines
 - **Method:** Post
