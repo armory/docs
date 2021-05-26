@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.deployment.tasks.before.cleanupArtifacts"
 linkTitle: "cleanupArtifacts"
-description: "Used by policies to affect the ‘Cleanup Artifacts’ task for actions deployment changes triggered from the ‘Clusters’, ‘Load Balancers’ or ‘Firewalls’ tab, as opposed to by executing a pipeline."
+description: "Used by policies to affect the ‘Cleanup Artifacts’ task."
 ---
 
 The full package name sent to OPA is `spinnaker.deployment.tasks.before.cleanupArtifacts`. The keys below are children of this path.
