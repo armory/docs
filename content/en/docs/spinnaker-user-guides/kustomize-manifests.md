@@ -95,4 +95,5 @@ After you execute the pipeline, you can see the manifest generated in YAML forma
 ​
 ![](/images/kustomize-execution.png)
 ​
-Also in the _Deploy_ stage you can see the Kubernetes objects as result of the manifest deployment.
+
+In the _Deploy_ stage you can see the Kubernetes objects as result of the manifest deployment.
