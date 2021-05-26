@@ -339,8 +339,15 @@ The full package name sent to OPA is `spinnaker.deployment.tasks.before.cleanupA
 </details>
 
 ## Example Policy
-
+Prevents cleanupArtifacts tasks from running on any account in a predefined list.
 ```rego
+package spinnaker.deployment.tasks.before.cleanupArtifacts
+
+productionAccounts :=["prod1","prod2"]
+
+deny["Artifactss may not be cleaned up from production accounts"] { 
+	input.deploy.account==productionAccounts[_]
+}
 
 ```
 
