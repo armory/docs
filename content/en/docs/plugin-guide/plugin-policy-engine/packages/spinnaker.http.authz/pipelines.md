@@ -295,28 +295,28 @@ These fields are all stage specific, and may or may not be present depending on 
 | `input.body.stages[].clusters[].useAmiBlockDeviceMappings`           | `boolean` | Only available on the 'deploy' stage. If true Spinnaker will use the block device mappings from the selected AMI when deploying a new server group.            |
 | `input.body.stages[].completeOtherBranchesThenFail`                  | `boolean` | Prevents any stages that depend on this stage from running, but allows other branches of the pipeline to run. The pipeline will be marked as failed once complete. Available for all stages.             |
 | `input.body.stages[].continuePipeline`                               | `boolean` | Continues execution of downstream stages, marking this stage as failed/continuing. Available for all stages.            |
-| `input.body.stages[].failPipeline`                                   | `boolean` |              |
-| `input.body.stages[].instructions`                                   | `string`  |             |
-| `input.body.stages[].location`                                       | `string`  |             |
-| `input.body.stages[].manifestArtifactId`                             | `string`  |             |
-| `input.body.stages[].manifestName`                                   | `string`  |             |
-| `input.body.stages[].mode`                                           | `string`  |             |
-| `input.body.stages[].moniker.app`                                    | `string`  |             |
-| `input.body.stages[].name`                                           | `string`  |             |
-| `input.body.stages[].refId`                                          | `string`  |             |
-| `input.body.stages[].region`                                         | `string`  |             |
-| `input.body.stages[].regions[]`                                      | `string`  |             |
+| `input.body.stages[].failPipeline`                                   | `boolean` | Immediately halts execution of all running stages and fails the entire execution if this stage fails. Available for all stages.              |
+| `input.body.stages[].instructions`                                   | `string`  | Only available on the 'manual Judgement' stage. Instructions are shown to the user when making a manual judgment.            |
+| `input.body.stages[].location`                                       | `string`  | Only available on the 'scale manifest' stage. The namespace in which to scale the manifest.            |
+| `input.body.stages[].manifestArtifactId`                             | `string`  | Only available on the 'deploy manifest' stage. The artifact ID to deploy.            |
+| `input.body.stages[].manifestName`                                   | `string`  | Only available on the 'scale manifest' stage. The name of the manifest to scale.            |
+| `input.body.stages[].mode`                                           | `string`  | Only available on the 'scale manifest' stage. Determines whetehr the stage uses a static or a dynamic selector.           |
+| `input.body.stages[].moniker.app`                                    | `string`  | The application being deployed.            |
+| `input.body.stages[].name`                                           | `string`  | The name of the stage.             |
+| `input.body.stages[].refId`                                          | `string`  | The unique ID for the stage in the stage graph            |
+| `input.body.stages[].region`                                         | `string`  | The region in which to bake, only available on the bake stage.            |
+| `input.body.stages[].regions[]`                                      | `string`  | The regions in which to bake, only available on the bake stage.            |
 | `input.body.stages[].replicas`                                       | `string`  |             |
-| `input.body.stages[].requisiteStageRefIds[]`                         | `string`  |             |
-| `input.body.stages[].skipExpressionEvaluation`                       | `boolean` |             |
-| `input.body.stages[].source`                                         | `string`  |             |
-| `input.body.stages[].stageTimeoutMs`                                 | `number`  |             |
-| `input.body.stages[].storeType`                                      | `string`  |             |
-| `input.body.stages[].trafficManagement.enabled`                      | `boolean` |             |
-| `input.body.stages[].trafficManagement.options.enableTraffic`        | `boolean` |             |
-| `input.body.stages[].type`                                           | `string`  |             |
-| `input.body.stages[].user`                                           | `string`  |             |
-| `input.body.stages[].vmType`                                         | `string`  |             |
+| `input.body.stages[].requisiteStageRefIds[]`                         | `string`  | The unique ids of other stages that must complete before this stage.            |
+| `input.body.stages[].skipExpressionEvaluation`                       | `boolean` | If true then SpEL will not be evaluated in artifacts references by the stage.             |
+| `input.body.stages[].source`                                         | `string`  | Only applicable to the deploy manifest stage. Specified whether the manifest should be reas from an artifact, or provided as text in the pipeline definition.           |
+| `input.body.stages[].stageTimeoutMs`                                 | `number`  | Only applicable to the manual judgement stage. Specifies how long the user have to provide a judgement.            |
+| `input.body.stages[].storeType`                                      | `string`  | Only applicable in the bake stage.            |
+| `input.body.stages[].trafficManagement.enabled`                      | `boolean` | Only applicable to the deploy manifest stage. Allow Spinnaker to associate each ReplicaSet deployed in this stage with one or more Services and manage traffic based on your selected rollout strategy options.            |
+| `input.body.stages[].trafficManagement.options.enableTraffic`        | `boolean` | Only applicable to the deploy manifest stage. Allow Spinnaker to associate each ReplicaSet deployed in this stage with one or more Services and manage traffic based on your selected rollout strategy options.            |
+| `input.body.stages[].type`                                           | `string`  | The type of the stage.            |
+| `input.body.stages[].user`                                           | `string`  | Only applicable in the bake stage.            |
+| `input.body.stages[].vmType`                                         | `string`  | Only applicable in the bake stage.           |
 
 ### input.body.triggers
 
