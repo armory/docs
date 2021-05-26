@@ -1,7 +1,7 @@
 ---
 title: "Task Type: deployManifest"
 linktitle: "deployManifest"
-description: "Policy controls whether or not a deployManifest that is triggered from outside a spinnaker pipeline (e.g. from the ‘Clusters’ tab of an application's "edit" action) can run."
+description: "Policy controls whether or not a deployManifest that is triggered from outside a spinnaker pipeline (e.g. from the ‘Clusters’ tab of an application's 'edit' action) can run."
 ---
 
 - **Path:** tasks
