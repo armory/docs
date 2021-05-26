@@ -7,18 +7,18 @@ weight: 2
 ---
 ![Proprietary](/images/proprietary.svg)
 
-## {{% heading "prereq" %}}
-
-* This guide is for experienced Kubernetes and Armory Enterprise users.
-* You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
-* You have a Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
-* You have configured Clouddriver to use MySQL or PostgreSQL. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for details.
-
 ## Compatibility matrix
 
 {{< include "agent/agent-compat-matrix.md" >}}
 
 The Agent consists of a service deployed as a Kubernetes `Deployment` and a plugin to Spinnaker's Clouddriver service. You can review the architecture in the Armory Agent [overview]({{< ref "armory-agent" >}}).
+
+## {{% heading "prereq" %}}
+
+* This guide is for experienced Kubernetes and Armory Enterprise users.
+* You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
+* You have a Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
+* You have configured Clouddriver to use MySQL or PostgreSQL. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions.
 
 ## Networking requirements
 
