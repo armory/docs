@@ -255,47 +255,47 @@ These fields are all stage specific, and may or may not be present depending on 
 
 | Key                                                                  | Type      | Description |
 | :------------------------------------------------------------------- | --------- | ----------- |
-| `input.body.stages[].account`                                        | `string`  | The account to which the stage deploys.             |
-| `input.body.stages[].app`                                            | `string`  | The name of the application being deployed. Use input.body.application instead            |
+| `input.body.stages[].account`                                        | `string`  | The account to which the stage deploys. Applies to the following stage types: deployManifest, scaleManifest,deploy            |
+| `input.body.stages[].app`                                            | `string`  | The name of the application being deployed. Use input.body.application instead. Applies to the following stage types: deployManifest, scaleManifest            |
 | `input.body.stages[].baseAmi`                                        | `string`  | Only available for the 'bake' stage. If Base AMI is specified, this will be used instead of the Base OS provided            |
-| `input.body.stages[].baseLabel`                                      | `string`  |             |
-| `input.body.stages[].baseOs`                                         | `string`  |             |
-| `input.body.stages[].cloudProviderType`                              | `string`  |             |
-| `input.body.stages[].cloudProvider`                                  | `string`  |             |
-| `input.body.stages[].clusters[].account`                             | `string`  |             |
-| `input.body.stages[].clusters[].application`                         | `string`  |             |
-| `input.body.stages[].clusters[].availabilityZones.us-east-2[]`       | `string`  |             |
-| `input.body.stages[].clusters[].capacity.desired`                    | `number`  |             |
-| `input.body.stages[].clusters[].capacity.max`                        | `number`  |             |
-| `input.body.stages[].clusters[].capacity.min`                        | `number`  |             |
-| `input.body.stages[].clusters[].cloudProvider`                       | `string`  |             |
-| `input.body.stages[].clusters[].cooldown`                            | `number`  |             |
-| `input.body.stages[].clusters[].copySourceCustomBlockDeviceMappings` | `boolean` |             |
-| `input.body.stages[].clusters[].delayBeforeDisableSec`               | `number`  |             |
-| `input.body.stages[].clusters[].delayBeforeScaleDownSec`             | `number`  |             |
-| `input.body.stages[].clusters[].ebsOptimized`                        | `boolean` |             |
-| `input.body.stages[].clusters[].freeFormDetails`                     | `string`  |             |
-| `input.body.stages[].clusters[].healthCheckGracePeriod`              | `number`  |             |
-| `input.body.stages[].clusters[].healthCheckType`                     | `string`  |             |
-| `input.body.stages[].clusters[].iamRole`                             | `string`  |             |
-| `input.body.stages[].clusters[].instanceMonitoring`                  | `boolean` |             |
-| `input.body.stages[].clusters[].instanceType`                        | `string`  |             |
-| `input.body.stages[].clusters[].keyPair`                             | `string`  |             |
-| `input.body.stages[].clusters[].maxRemainingAsgs`                    | `number`  |             |
-| `input.body.stages[].clusters[].provider`                            | `string`  |             |
-| `input.body.stages[].clusters[].rollback.onFailure`                  | `boolean` |             |
-| `input.body.stages[].clusters[].scaleDown`                           | `boolean` |             |
-| `input.body.stages[].clusters[].spotPrice`                           | `string`  |             |
-| `input.body.stages[].clusters[].stack`                               | `string`  |             |
-| `input.body.stages[].clusters[].strategy`                            | `string`  |             |
-| `input.body.stages[].clusters[].subnetType`                          | `string`  |             |
-| `input.body.stages[].clusters[].tags.Name`                           | `string`  |             |
-| `input.body.stages[].clusters[].targetHealthyDeployPercentage`       | `number`  |             |
-| `input.body.stages[].clusters[].terminationPolicies[]`               | `string`  |             |
-| `input.body.stages[].clusters[].useAmiBlockDeviceMappings`           | `boolean` |             |
-| `input.body.stages[].completeOtherBranchesThenFail`                  | `boolean` |             |
-| `input.body.stages[].continuePipeline`                               | `boolean` |             |
-| `input.body.stages[].failPipeline`                                   | `boolean` |             |
+| `input.body.stages[].baseLabel`                                      | `string`  | Only available for the 'bake' stage. either 'release','candidate','previous' or 'unstable'            |
+| `input.body.stages[].baseOs`                                         | `string`  | Only available for the 'bake' stage. What OS should be used to identify a base ami if none is specified.            |
+| `input.body.stages[].cloudProviderType`                              | `string`  | Only available for the 'bake' stage. What cloud provider type is being used.            |
+| `input.body.stages[].cloudProvider`                                  | `string`  | Which specific cloud provider is being used. Applies to the following stage types: deployManifest, scaleManifest,deploy            |
+| `input.body.stages[].clusters[].account`                             | `string`  | Only available on the 'deploy' stage. This is the cluster to which the stage will deploy            |
+| `input.body.stages[].clusters[].application`                         | `string`  | Only available on the 'deploy' stage. This is the application being deployed            |
+| `input.body.stages[].clusters[].availabilityZones.<Region>[]`       | `string`  | Only available on the 'deploy' stage, specified what availability zones should be deployed to.            |
+| `input.body.stages[].clusters[].capacity.desired`                    | `number`  | Only available on the 'deploy' stage. The desired number of instances in the autoscaling group.            |
+| `input.body.stages[].clusters[].capacity.max`                        | `number`  | Only available on the 'deploy' stage. The maximum number of instances in the autoscaling group.            |
+| `input.body.stages[].clusters[].capacity.min`                        | `number`  | Only available on the 'deploy' stage. The minimum number of instances in the autoscaling group.            |
+| `input.body.stages[].clusters[].cloudProvider`                       | `string`  | Only available on the 'deploy' stage. Which cloud provider is being used.            |
+| `input.body.stages[].clusters[].cooldown`                            | `number`  | Only available on the 'deploy' stage. A scaling cooldown helps you prevent your Auto Scaling group from launching or terminating additional instances before the effects of previous activities are visible.             |
+| `input.body.stages[].clusters[].copySourceCustomBlockDeviceMappings` | `boolean` | Only available on the 'deploy' stage. If true Spinnaker will use the block device mappings of the existing server group when deploying a new server group.            |
+| `input.body.stages[].clusters[].delayBeforeDisableSec`               | `number`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].delayBeforeScaleDownSec`             | `number`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].ebsOptimized`                        | `boolean` | Only available on the 'deploy' stage. Are instances optomized for EBS           |
+| `input.body.stages[].clusters[].freeFormDetails`                     | `string`  | Only available on the 'deploy' stage. a string of free-form alphanumeric characters and hyphens to describe any other variables in naming a cluster.            |
+| `input.body.stages[].clusters[].healthCheckGracePeriod`              | `number`  | Only available on the 'deploy' stage. When an instance launches, Amazon EC2 Auto Scaling uses the value of the HealthCheckGracePeriod for the Auto Scaling group to determine how long to wait before checking the health status of the instance.            |
+| `input.body.stages[].clusters[].healthCheckType`                     | `string`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].iamRole`                             | `string`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].instanceMonitoring`                  | `boolean` | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].instanceType`                        | `string`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].keyPair`                             | `string`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].maxRemainingAsgs`                    | `number`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].provider`                            | `string`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].rollback.onFailure`                  | `boolean` | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].scaleDown`                           | `boolean` | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].spotPrice`                           | `string`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].stack`                               | `string`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].strategy`                            | `string`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].subnetType`                          | `string`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].tags.Name`                           | `string`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].targetHealthyDeployPercentage`       | `number`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].terminationPolicies[]`               | `string`  | Only available on the 'deploy' stage. The name of the policy to determine how old instances are terminated.            |
+| `input.body.stages[].clusters[].useAmiBlockDeviceMappings`           | `boolean` | Only available on the 'deploy' stage. If true Spinnaker will use the block device mappings from the selected AMI when deploying a new server group.            |
+| `input.body.stages[].completeOtherBranchesThenFail`                  | `boolean` |              |
+| `input.body.stages[].continuePipeline`                               | `boolean` |              |
+| `input.body.stages[].failPipeline`                                   | `boolean` |              |
 | `input.body.stages[].instructions`                                   | `string`  |             |
 | `input.body.stages[].location`                                       | `string`  |             |
 | `input.body.stages[].manifestArtifactId`                             | `string`  |             |
