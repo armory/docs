@@ -276,25 +276,30 @@ These fields are all stage specific, and may or may not be present depending on 
 | `input.body.stages[].clusters[].ebsOptimized`                        | `boolean` | Only available on the 'deploy' stage. Are instances optomized for EBS           |
 | `input.body.stages[].clusters[].freeFormDetails`                     | `string`  | Only available on the 'deploy' stage. a string of free-form alphanumeric characters and hyphens to describe any other variables in naming a cluster.            |
 | `input.body.stages[].clusters[].healthCheckGracePeriod`              | `number`  | Only available on the 'deploy' stage. When an instance launches, Amazon EC2 Auto Scaling uses the value of the HealthCheckGracePeriod for the Auto Scaling group to determine how long to wait before checking the health status of the instance.            |
-| `input.body.stages[].clusters[].healthCheckType`                     | `string`  | Only available on the 'deploy' stage.             |
-| `input.body.stages[].clusters[].iamRole`                             | `string`  | Only available on the 'deploy' stage.             |
-| `input.body.stages[].clusters[].instanceMonitoring`                  | `boolean` | Only available on the 'deploy' stage.             |
-| `input.body.stages[].clusters[].instanceType`                        | `string`  | Only available on the 'deploy' stage.             |
-| `input.body.stages[].clusters[].keyPair`                             | `string`  | Only available on the 'deploy' stage.             |
-| `input.body.stages[].clusters[].maxRemainingAsgs`                    | `number`  | Only available on the 'deploy' stage.             |
-| `input.body.stages[].clusters[].provider`                            | `string`  | Only available on the 'deploy' stage.             |
-| `input.body.stages[].clusters[].rollback.onFailure`                  | `boolean` | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].healthCheckType`                     | `string`  | Only available on the 'deploy' stage. Either 'ELB' or 'EC2'            |
+| `input.body.stages[].clusters[].iamRole`                             | `string`  | Only available on the 'deploy' stage. What role is being used to run the instances            |
+| `input.body.stages[].clusters[].instanceMonitoring`                  | `boolean` | Only available on the 'deploy' stage. whether to enable detailed monitoring of instances.             |
+| `input.body.stages[].clusters[].instanceType`                        | `string`  | Only available on the 'deploy' stage. The type of instances to which to deploy.            |
+| `input.body.stages[].clusters[].keyPair`                             | `string`  | Only available on the 'deploy' stage. The set of security credentials that can be used to connect to this instance.            |
+| `input.body.stages[].clusters[].maxRemainingAsgs`                    | `number`  | Only available on the 'deploy' stage. How many auto scaling groups from prior deploys for this application should be left up and running once the new deploy is complete.            |
+| `input.body.stages[].clusters[].provider`                            | `string`  | Only available on the 'deploy' stage. The cloud provider            |
+| `input.body.stages[].clusters[].rollback.onFailure`                  | `boolean` | Only available on the 'deploy' stage. Should the deploy be automatically rolled back on failure.            |
 | `input.body.stages[].clusters[].scaleDown`                           | `boolean` | Only available on the 'deploy' stage.             |
 | `input.body.stages[].clusters[].spotPrice`                           | `string`  | Only available on the 'deploy' stage.             |
 | `input.body.stages[].clusters[].stack`                               | `string`  | Only available on the 'deploy' stage.             |
-| `input.body.stages[].clusters[].strategy`                            | `string`  | Only available on the 'deploy' stage.             |
-| `input.body.stages[].clusters[].subnetType`                          | `string`  | Only available on the 'deploy' stage.             |
-| `input.body.stages[].clusters[].tags.Name`                           | `string`  | Only available on the 'deploy' stage.             |
+| `input.body.stages[].clusters[].strategy`                            | `string`  | Only available on the 'deploy' stage. The deployment strategy tells Spinnaker what to do with the previous version of the server group.            |
+| `input.body.stages[].clusters[].subnetType`                          | `string`  | Only available on the 'deploy' stage. The subnet selection determines the VPC in which your server group will run. Options vary by account and region; the most common ones are:
+
+    None (EC2 Classic): instances will not run in a VPC
+    internal instances will be restricted to internal clients (i.e. require VPN access)
+    external instances will be publicly accessible and running in VPC
+            |
+| `input.body.stages[].clusters[].tags.Name`                           | `string`  | Only available on the 'deploy' stage. Tags are propagated to the instances in this cluster.           |
 | `input.body.stages[].clusters[].targetHealthyDeployPercentage`       | `number`  | Only available on the 'deploy' stage.             |
 | `input.body.stages[].clusters[].terminationPolicies[]`               | `string`  | Only available on the 'deploy' stage. The name of the policy to determine how old instances are terminated.            |
 | `input.body.stages[].clusters[].useAmiBlockDeviceMappings`           | `boolean` | Only available on the 'deploy' stage. If true Spinnaker will use the block device mappings from the selected AMI when deploying a new server group.            |
-| `input.body.stages[].completeOtherBranchesThenFail`                  | `boolean` |              |
-| `input.body.stages[].continuePipeline`                               | `boolean` |              |
+| `input.body.stages[].completeOtherBranchesThenFail`                  | `boolean` | Prevents any stages that depend on this stage from running, but allows other branches of the pipeline to run. The pipeline will be marked as failed once complete. Available for all stages.             |
+| `input.body.stages[].continuePipeline`                               | `boolean` | Continues execution of downstream stages, marking this stage as failed/continuing. Available for all stages.            |
 | `input.body.stages[].failPipeline`                                   | `boolean` |              |
 | `input.body.stages[].instructions`                                   | `string`  |             |
 | `input.body.stages[].location`                                       | `string`  |             |
