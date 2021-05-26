@@ -3324,7 +3324,7 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.pipeline.description`                      | ` `       |                                                                       |
 | `input.pipeline.endTime`                          | `number`  |                                                                       |
 | `input.pipeline.id`                               | `string`  |                                                                       |
-| `input.pipeline.keepWaitingPipelines`             | `boolean` |                                                                       |
+| `input.pipeline.keepWaitingPipelines`              | `boolean`  | If concurrent pipeline execution is disabled, then the pipelines that are in the waiting queue will get canceled when the next execution starts unless this is true. |
 | `input.pipeline.limitConcurrent`                  | `boolean` |                                                                       |
 | `input.pipeline.name`                             | `string`  |                                                                       |
 | `input.pipeline.origin`                           | `string`  |                                                                       |
