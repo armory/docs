@@ -288,12 +288,7 @@ These fields are all stage specific, and may or may not be present depending on 
 | `input.body.stages[].clusters[].spotPrice`                           | `string`  | Only available on the 'deploy' stage.             |
 | `input.body.stages[].clusters[].stack`                               | `string`  | Only available on the 'deploy' stage.             |
 | `input.body.stages[].clusters[].strategy`                            | `string`  | Only available on the 'deploy' stage. The deployment strategy tells Spinnaker what to do with the previous version of the server group.            |
-| `input.body.stages[].clusters[].subnetType`                          | `string`  | Only available on the 'deploy' stage. The subnet selection determines the VPC in which your server group will run. Options vary by account and region; the most common ones are:
-
-    None (EC2 Classic): instances will not run in a VPC
-    internal instances will be restricted to internal clients (i.e. require VPN access)
-    external instances will be publicly accessible and running in VPC
-            |
+| `input.body.stages[].clusters[].subnetType`                          | `string`  | Only available on the 'deploy' stage. The subnet selection determines the VPC in which your server group will run. Options vary by account and region  |
 | `input.body.stages[].clusters[].tags.Name`                           | `string`  | Only available on the 'deploy' stage. Tags are propagated to the instances in this cluster.           |
 | `input.body.stages[].clusters[].targetHealthyDeployPercentage`       | `number`  | Only available on the 'deploy' stage.             |
 | `input.body.stages[].clusters[].terminationPolicies[]`               | `string`  | Only available on the 'deploy' stage. The name of the policy to determine how old instances are terminated.            |
