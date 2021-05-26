@@ -1,9 +1,10 @@
 ---
 title: "spinnaker.execution.stages.before.deployManifest"
 linktitle: "deployManifest"
-description: "a policy that is run before executing each task in a deploy manifest stage. See https://docs.armory.io/docs/spinnaker-user-guides/kubernetes-v2/#available-manifest-based-stages for more information on this stage."
+description: "A policy that is run before executing each task in a deploy manifest stage."
 ---
 
+ See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifest-based-stages" >}}) for more information on this stage.
 
 ## Example Payload
 
