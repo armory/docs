@@ -230,12 +230,12 @@ message="Only admins can save pipelines"{
 
 | Key                                            | Type      | Description                                                       |
 | :--------------------------------------------- | --------- | ----------------------------------------------------------------- |
-| `input.body.application`                       | `string`  |                                                                   |
+| `input.body.application`                       | `string`  | The application for which a pipeline is being saved.              |
 | `input.body.expectedArtifacts[]`               | `array`   | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.body.id`                                | `string`  |                                                                   |
+| `input.body.id`                                | `string`  | The unique ID of the pipeline.                                    |
 | `input.body.index`                             | `number`  |                                                                   |
 | `input.body.keepWaitingPipelines`              | `boolean` |                                                                   |
-| `input.body.lastModifiedBy`                    | `string`  |                                                                   |
+| `input.body.lastModifiedBy`                    | `string`  | The id of the last user that modified the pipeline, should match the user in the input.users field.                                            |
 | `input.body.limitConcurrent`                   | `boolean` |                                                                   |
 | `input.body.name`                              | `string`  |                                                                   |
 | `input.body.parameterConfig[].default`         | `string`  |                                                                   |
@@ -250,12 +250,13 @@ message="Only admins can save pipelines"{
 | `input.body.updateTs`                          | `string`  |                                                                   |
 
 ### input.body.stages
+These fields are all stage specific, and may or may not be present depending on the stage type.
 
 | Key                                                                  | Type      | Description |
 | :------------------------------------------------------------------- | --------- | ----------- |
-| `input.body.stages[].account`                                        | `string`  |             |
-| `input.body.stages[].app`                                            | `string`  |             |
-| `input.body.stages[].baseAmi`                                        | `string`  |             |
+| `input.body.stages[].account`                                        | `string`  | The account to which the stage deploys.             |
+| `input.body.stages[].app`                                            | `string`  | The name of the application being deployed. Use input.body.application instead            |
+| `input.body.stages[].baseAmi`                                        | `string`  | Only available for the 'bake' stage. If Base AMI is specified, this will be used instead of the Base OS provided            |
 | `input.body.stages[].baseLabel`                                      | `string`  |             |
 | `input.body.stages[].baseOs`                                         | `string`  |             |
 | `input.body.stages[].cloudProviderType`                              | `string`  |             |
