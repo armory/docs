@@ -223,8 +223,8 @@ message="Only admins can save pipelines"{
 
 | Key            | Type     | Description |
 | :------------- | -------- | ----------- |
-| `input.method` | `string` |             |
-| `input.path[]` | `string` |             |
+| `input.method` | `string` | Post            |
+| `input.path[]` | `string` | `["pipelines"]`            |
 
 ### input.body
 
