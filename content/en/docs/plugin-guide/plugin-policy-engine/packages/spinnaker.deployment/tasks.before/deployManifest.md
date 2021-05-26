@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.deployment.tasks.before.deployManifest"
 linkTitle: "deployManifest"
-description: "WHO AM I?"
+description: "Policy checks that run immediate before a task deploys a spinnaker manifest"
 ---
 
 
