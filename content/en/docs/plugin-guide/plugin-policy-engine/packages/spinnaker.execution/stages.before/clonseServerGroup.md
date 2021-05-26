@@ -3339,25 +3339,9 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.pipeline.templateVariables`                | ` `       |                                                                       |
 | `input.pipeline.type`                             | `string`  |                                                                       |
 
-### input.stage.context
+### input.pipeline.trigger
 
-| Key                                                       | Type      | Description |
-| --------------------------------------------------------- | --------- | ----------- |
-| `input.stage.context.application`                         | `string`  |             |
-| `input.stage.context.attempt`                             | `number`  |             |
-| `input.stage.context.cloudProvider`                       | `string`  |             |
-| `input.stage.context.cloudProviderType`                   | `string`  |             |
-| `input.stage.context.consecutiveNotFound`                 | `number`  |             |
-| `input.stage.context.copySourceCustomBlockDeviceMappings` | `boolean` |             |
-| `input.stage.context.credentials`                         | `string`  |             |
-| `input.stage.context.freeFormDetails`                     | `string`  |             |
-| `input.stage.context.lastException`                       | `string`  |             |
-| `input.stage.context.region`                              | `string`  |             |
-| `input.stage.context.stack`                               | `string`  |             |
-| `input.stage.context.target`                              | `string`  |             |
-| `input.stage.context.targetCluster`                       | `string`  |             |
-| `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` |             |
-| `input.stage.context.useSourceCapacity`                   | `boolean` |             |
+See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
 ### input.stage
 
@@ -3387,9 +3371,25 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.stage.tasks[].status`            | `string`  |             |
 | `input.stage.type`                      | `string`  |             |
 
-### input.pipeline.trigger
+### input.stage.context
 
-See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
+| Key                                                       | Type      | Description |
+| --------------------------------------------------------- | --------- | ----------- |
+| `input.stage.context.application`                         | `string`  |             |
+| `input.stage.context.attempt`                             | `number`  |             |
+| `input.stage.context.cloudProvider`                       | `string`  |             |
+| `input.stage.context.cloudProviderType`                   | `string`  |             |
+| `input.stage.context.consecutiveNotFound`                 | `number`  |             |
+| `input.stage.context.copySourceCustomBlockDeviceMappings` | `boolean` |             |
+| `input.stage.context.credentials`                         | `string`  |             |
+| `input.stage.context.freeFormDetails`                     | `string`  |             |
+| `input.stage.context.lastException`                       | `string`  |             |
+| `input.stage.context.region`                              | `string`  |             |
+| `input.stage.context.stack`                               | `string`  |             |
+| `input.stage.context.target`                              | `string`  |             |
+| `input.stage.context.targetCluster`                       | `string`  |             |
+| `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` |             |
+| `input.stage.context.useSourceCapacity`                   | `boolean` |             |
 
 ### input.user
 

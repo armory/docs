@@ -3340,22 +3340,10 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.pipeline.templateVariables`                | ` `       |                                                                       |
 | `input.pipeline.type`                             | `string`  |                                                                       |
 
-### input.stage.context
 
-| Key                                     | Type      | Description |
-| --------------------------------------- | --------- | ----------- |
-| `input.stage.context.amiSuffix`         | `string`  |             |
-| `input.stage.context.baseLabel`         | `string`  |             |
-| `input.stage.context.baseOs`            | `string`  |             |
-| `input.stage.context.cloudProviderType` | `string`  |             |
-| `input.stage.context.name`              | `string`  |             |
-| `input.stage.context.package`           | `string`  |             |
-| `input.stage.context.rebake`            | `boolean` |             |
-| `input.stage.context.region`            | `string`  |             |
-| `input.stage.context.storeType`         | `string`  |             |
-| `input.stage.context.type`              | `string`  |             |
-| `input.stage.context.user`              | `string`  |             |
-| `input.stage.context.vmType`            | `string`  |             |
+### input.pipeline.trigger
+
+See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
 ### input.stage
 
@@ -3385,9 +3373,25 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.stage.tasks[].status`            | `string`  |             |
 | `input.stage.type`                      | `string`  |             |
 
-### input.pipeline.trigger
+### input.stage.context
 
-See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
+| Key                                     | Type      | Description |
+| --------------------------------------- | --------- | ----------- |
+| `input.stage.context.amiSuffix`         | `string`  |             |
+| `input.stage.context.baseLabel`         | `string`  |             |
+| `input.stage.context.baseOs`            | `string`  |             |
+| `input.stage.context.cloudProviderType` | `string`  |             |
+| `input.stage.context.name`              | `string`  |             |
+| `input.stage.context.package`           | `string`  |             |
+| `input.stage.context.rebake`            | `boolean` |             |
+| `input.stage.context.region`            | `string`  |             |
+| `input.stage.context.storeType`         | `string`  |             |
+| `input.stage.context.type`              | `string`  |             |
+| `input.stage.context.user`              | `string`  |             |
+| `input.stage.context.vmType`            | `string`  |             |
+
+
+
 
 ### input.user
 
