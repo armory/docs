@@ -289,12 +289,8 @@ canDeploy(namespace, application){
 | `input.pipeline.stages[].trafficManagement.enabled`               | `boolean` |                                                                                                                                             |
 | `input.pipeline.stages[].trafficManagement.options.enableTraffic` | `boolean` |                                                                                                                                             |
 | `input.pipeline.stages[].type`                                    | `string`  |                                                                                                                                             |
-| `input.pipeline.triggers[].branch`                                | `string`  |                                                                                                                                             |
-| `input.pipeline.triggers[].enabled`                               | `boolean` |                                                                                                                                             |
-| `input.pipeline.triggers[].expectedArtifactIds.[]`                | `string`  |                                                                                                                                             |
-| `input.pipeline.triggers[].project`                               | `string`  |                                                                                                                                             |
-| `input.pipeline.triggers[].secret`                                | `string`  |                                                                                                                                             |
-| `input.pipeline.triggers[].slug`                                  | `string`  |                                                                                                                                             |
-| `input.pipeline.triggers[].source`                                | `string`  |                                                                                                                                             |
-| `input.pipeline.triggers[].type`                                  | `string`  |                                                                                                                                             |
 | `input.pipeline.updateTs`                                         | `string`  | The timestamp of the pipeline's last modification.                                                                                          |
+
+### input.pipeline.trigger
+
+See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
