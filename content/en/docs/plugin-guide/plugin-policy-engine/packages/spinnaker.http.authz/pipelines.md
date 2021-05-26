@@ -6,7 +6,6 @@ description: "Controls access to the spinnaker pipelines api. Can be used to pre
 - **Path:** pipelines
 - **Method:** Post
 - **Package:** `spinnaker.http.authz`
-- 
 
 ## Example Payload
 
