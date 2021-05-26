@@ -87,7 +87,7 @@ Finally, add a **Deploy (Manifest)** stage. Make sure to select the _Manifest So
 ​
 ![](/images/kustomize-deploy.png)
 ​
-> **Note:** Due we are deploying a manifest without a specified namespace we need to override the namespace checking the _"Override Namespace"_ option in the deployment stage.
+> **Note:** As we are deploying a manifest without a specified namespace, we need to override the namespace by checking the _"Override Namespace"_ option in the deployment stage.
 
 ### Run the Pipeline
 ​
