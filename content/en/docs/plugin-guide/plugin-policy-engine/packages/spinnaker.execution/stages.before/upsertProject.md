@@ -146,35 +146,37 @@ description: "fill me with delicious data, Stephen!"
 
 ## Keys
 
+Parameters related to the stage against which the policy is executing can be found in the [input.stage.context](#inputstagecontext) object.
+
 ### input.pipeline
 
-| Key                                               | Type      | Description |
-| ------------------------------------------------- | --------- | ----------- |
-| `input.pipeline.application` | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  |             |
-| `input.pipeline.authentication.user`              | `string`  |             |
-| `input.pipeline.buildTime`                        | `number`  |             |
-| `input.pipeline.canceled`                         | `boolean` |             |
-| `input.pipeline.canceledBy`                       | ` `       |             |
-| `input.pipeline.cancellationReason`               | ` `       |             |
-| `input.pipeline.description`                      | `string`  |             |
-| `input.pipeline.endTime`                          | ` `       |             |
-| `input.pipeline.id`                               | `string`  |             |
-| `input.pipeline.keepWaitingPipelines`             | `boolean` |             |
-| `input.pipeline.limitConcurrent`                  | `boolean` |             |
-| `input.pipeline.name`                             | ` `       |             |
-| `input.pipeline.origin`                           | `string`  |             |
-| `input.pipeline.partition`                        | ` `       |             |
-| `input.pipeline.paused`                           | ` `       |             |
-| `input.pipeline.pipelineConfigId`                 | ` `       |             |
-| `input.pipeline.source`                           | ` `       |             |
-| `input.pipeline.spelEvaluator`                    | ` `       |             |
-| `input.pipeline.stages[]`                         | `string`  |             |
-| `input.pipeline.startTime`                        | `number`  |             |
-| `input.pipeline.startTimeExpiry`                  | ` `       |             |
-| `input.pipeline.status`                           | `string`  |             |
-| `input.pipeline.templateVariables`                | ` `       |             |
-| `input.pipeline.type`                             | `string`  |             |
+| Key                                               | Type      | Description                                                           |
+| ------------------------------------------------- | --------- | --------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  |                                                                       |
+| `input.pipeline.authentication.user`              | `string`  |                                                                       |
+| `input.pipeline.buildTime`                        | `number`  |                                                                       |
+| `input.pipeline.canceled`                         | `boolean` |                                                                       |
+| `input.pipeline.canceledBy`                       | ` `       |                                                                       |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                       |
+| `input.pipeline.description`                      | `string`  |                                                                       |
+| `input.pipeline.endTime`                          | ` `       |                                                                       |
+| `input.pipeline.id`                               | `string`  |                                                                       |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` |                                                                       |
+| `input.pipeline.limitConcurrent`                  | `boolean` |                                                                       |
+| `input.pipeline.name`                             | ` `       |                                                                       |
+| `input.pipeline.origin`                           | `string`  |                                                                       |
+| `input.pipeline.partition`                        | ` `       |                                                                       |
+| `input.pipeline.paused`                           | ` `       |                                                                       |
+| `input.pipeline.pipelineConfigId`                 | ` `       |                                                                       |
+| `input.pipeline.source`                           | ` `       |                                                                       |
+| `input.pipeline.spelEvaluator`                    | ` `       |                                                                       |
+| `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
+| `input.pipeline.startTime`                        | `number`  |                                                                       |
+| `input.pipeline.startTimeExpiry`                  | ` `       |                                                                       |
+| `input.pipeline.status`                           | `string`  |                                                                       |
+| `input.pipeline.templateVariables`                | ` `       |                                                                       |
+| `input.pipeline.type`                             | `string`  |                                                                       |
 
 ### input.pipeline.trigger
 

@@ -550,6 +550,8 @@ description: "fill me with delicious data, Stephen!"
 
 ## Keys
 
+Parameters related to the stage against which the policy is executing can be found in the [input.stage.context](#inputstagecontext) object.
+
 ### input.pipeline
 
 | Key                                               | Type      | Description                                                           |
@@ -573,83 +575,32 @@ description: "fill me with delicious data, Stephen!"
 | `input.pipeline.pipelineConfigId`                 | `string`  |                                                                       |
 | `input.pipeline.source`                           | ` `       |                                                                       |
 | `input.pipeline.spelEvaluator`                    | `string`  |                                                                       |
+| `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
 | `input.pipeline.startTimeExpiry`                  | ` `       |                                                                       |
 | `input.pipeline.startTime`                        | `number`  |                                                                       |
 | `input.pipeline.status`                           | `string`  |                                                                       |
 | `input.pipeline.templateVariables`                | ` `       |                                                                       |
 | `input.pipeline.type`                             | `string`  |                                                                       |
 
-### input.pipeline.stages
-
-| Key                                                           | Type      | Description                                                       |
-| ------------------------------------------------------------- | --------- | ----------------------------------------------------------------- |
-| `input.pipeline.stages[].context.action`                      | `string`  |                                                                   |
-| `input.pipeline.stages[].context.artifactContents[].contents` | `string`  |                                                                   |
-| `input.pipeline.stages[].context.artifactContents[].name`     | `string`  |                                                                   |
-| `input.pipeline.stages[].context.artifacts[]`                 | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.stages[].context.expectedArtifacts[]`         | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.stages[].context.failPipeline`                | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.judgmentStatus`              | `string`  |                                                                   |
-| `input.pipeline.stages[].context.lastModifiedBy`              | `string`  |                                                                   |
-| `input.pipeline.stages[].context.planForDestroy`              | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[]` | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.stages[].context.terraformVersion`            | `string`  |                                                                   |
-| `input.pipeline.stages[].endTime`                             | ` `       |                                                                   |
-| `input.pipeline.stages[].endTime`                             | `number`  |                                                                   |
-| `input.pipeline.stages[].id`                                  | `string`  |                                                                   |
-| `input.pipeline.stages[].lastModified.allowedAccounts[]`      | `string`  |                                                                   |
-| `input.pipeline.stages[].lastModified.lastModifiedTime`       | `number`  |                                                                   |
-| `input.pipeline.stages[].lastModified.user`                   | `string`  |                                                                   |
-| `input.pipeline.stages[].lastModified`                        | ` `       |                                                                   |
-| `input.pipeline.stages[].name`                                | `string`  |                                                                   |
-| `input.pipeline.stages[].outputs.artifacts[]`                 | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[]` | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.stages[].outputs.status.code`                 | `number`  |                                                                   |
-| `input.pipeline.stages[].outputs.status.error`                | `string`  |                                                                   |
-| `input.pipeline.stages[].outputs.status.id`                   | `string`  |                                                                   |
-| `input.pipeline.stages[].outputs.status.logs.combined`        | `string`  |                                                                   |
-| `input.pipeline.stages[].outputs.status.logs.init_stderr`     | `string`  |                                                                   |
-| `input.pipeline.stages[].outputs.status.logs.init_stdout`     | `string`  |                                                                   |
-| `input.pipeline.stages[].outputs.status.logs.plan_stderr`     | `string`  |                                                                   |
-| `input.pipeline.stages[].outputs.status.logs.plan_stdout`     | `string`  |                                                                   |
-| `input.pipeline.stages[].outputs.status.outputs.artifacts[]`  | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.stages[].outputs.status.state`                | `string`  |                                                                   |
-| `input.pipeline.stages[].parentStageId`                       | ` `       |                                                                   |
-| `input.pipeline.stages[].refId`                               | `string`  |                                                                   |
-| `input.pipeline.stages[].requisiteStageRefIds[]`              | `string`  |                                                                   |
-| `input.pipeline.stages[].scheduledTime`                       | ` `       |                                                                   |
-| `input.pipeline.stages[].startTimeExpiry`                     | ` `       |                                                                   |
-| `input.pipeline.stages[].startTime`                           | ` `       |                                                                   |
-| `input.pipeline.stages[].startTime`                           | `number`  |                                                                   |
-| `input.pipeline.stages[].status`                              | `string`  |                                                                   |
-| `input.pipeline.stages[].syntheticStageOwner`                 | ` `       |                                                                   |
-| `input.pipeline.stages[].tasks[].endTime`                     | `number`  |                                                                   |
-| `input.pipeline.stages[].tasks[].id`                          | `string`  |                                                                   |
-| `input.pipeline.stages[].tasks[].implementingClass`           | `string`  |                                                                   |
-| `input.pipeline.stages[].tasks[].loopEnd`                     | `boolean` |                                                                   |
-| `input.pipeline.stages[].tasks[].loopStart`                   | `boolean` |                                                                   |
-| `input.pipeline.stages[].tasks[].name`                        | `string`  |                                                                   |
-| `input.pipeline.stages[].tasks[].stageEnd`                    | `boolean` |                                                                   |
-| `input.pipeline.stages[].tasks[].stageStart`                  | `boolean` |                                                                   |
-| `input.pipeline.stages[].tasks[].startTime`                   | `number`  |                                                                   |
-| `input.pipeline.stages[].tasks[].status`                      | `string`  |                                                                   |
-| `input.pipeline.stages[].type`                                | `string`  |                                                                   |
-| `input.pipeline.stages[]`                                     | `string`  |                                                                   |
-
 ### input.pipeline.trigger
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
+
+### input.stage.context
+
+| Key                                       | Type      | Description                                                       |
+| ----------------------------------------- | --------- | ----------------------------------------------------------------- |
+| `input.stage.context.action`              | `string`  |                                                                   |
+| `input.stage.context.artifacts[].account` | `string`  |                                                                   |
+| `input.stage.context.artifacts[].id`      | `string`  |                                                                   |
+| `input.stage.context.expectedArtifacts[]` | `array`   | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
+| `input.stage.context.planForDestroy`      | `boolean` |                                                                   |
+| `input.stage.context.terraformVersion`    | `string`  |                                                                   |
 
 ### input.stage
 
 | Key                                              | Type      | Description                                                       |
 | ------------------------------------------------ | --------- | ----------------------------------------------------------------- |
-| `input.stage.context.action`                     | `string`  |                                                                   |
-| `input.stage.context.artifacts[].account`        | `string`  |                                                                   |
-| `input.stage.context.artifacts[].id`             | `string`  |                                                                   |
-| `input.stage.context.expectedArtifacts[]`        | `array`   | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.stage.context.planForDestroy`             | `boolean` |                                                                   |
-| `input.stage.context.terraformVersion`           | `string`  |                                                                   |
 | `input.stage.endTime`                            | ` `       |                                                                   |
 | `input.stage.id`                                 | `string`  |                                                                   |
 | `input.stage.lastModified`                       | ` `       |                                                                   |

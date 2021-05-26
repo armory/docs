@@ -3357,264 +3357,44 @@ description: "fill me with delicious data, Stephen!"
 
 ## Keys
 
+Parameters related to the stage against which the policy is executing can be found in the [input.stage.context](#inputstagecontext) object.
+
 ### input.pipeline
 
-| Key                                          | Type      | Description                                              |
-|----------------------------------------------|-----------|----------------------------------------------------------|
-| `input.pipeline.application` | `string` |
-| `input.pipeline.authentication.allowedAccounts[]` | `string` |
-| `input.pipeline.authentication.user` | `string` |
-| `input.pipeline.buildTime` | `number` |
-| `input.pipeline.canceledBy` | ` ` |
-| `input.pipeline.canceled` | `boolean` |
-| `input.pipeline.cancellationReason` | ` ` |
-| `input.pipeline.description` | ` ` |
-| `input.pipeline.endTime` | ` ` |
-| `input.pipeline.endTime` | `number` |
-| `input.pipeline.id` | `string` |
-| `input.pipeline.keepWaitingPipelines` | `boolean` |
-| `input.pipeline.limitConcurrent` | `boolean` |
-| `input.pipeline.name` | `string` |
-| `input.pipeline.origin` | `string` |
-| `input.pipeline.partition` | ` ` |
-| `input.pipeline.paused` | ` ` |
-| `input.pipeline.pipelineConfigId` | `string` |
-| `input.pipeline.source` | ` ` |
-| `input.pipeline.spelEvaluator` | `string` |
-| `input.pipeline.startTimeExpiry` | ` ` |
-| `input.pipeline.startTime` | `number` |
-| `input.pipeline.status` | `string` |
-| `input.pipeline.templateVariables` | ` ` |
-| `input.pipeline.type` | `string` |
-
-### input.pipeline.stages
-
-| Key                                                                                                    | Type      | Description                                                       |
-| ------------------------------------------------------------------------------------------------------ | --------- | ----------------------------------------------------------------- |
-| `input.pipeline.stages[].context.account`                                                              | `string`  |                                                                   |
-| `input.pipeline.stages[].context.action`                                                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.alias`                                                                | `string`  |                                                                   |
-| `input.pipeline.stages[].context.allowDeleteActive`                                                    | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.allowScaleDownActive`                                                 | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.amiSuffix`                                                            | `string`  |                                                                   |
-| `input.pipeline.stages[].context.analysisType`                                                         | `string`  |                                                                   |
-| `input.pipeline.stages[].context.app`                                                                  | `string`  |                                                                   |
-| `input.pipeline.stages[].context.application`                                                          | `string`  |                                                                   |
-| `input.pipeline.stages[].context.artifacts[]`                                                          | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.stages[].context.attempt`                                                              | `number`  |                                                                   |
-| `input.pipeline.stages[].context.availabilityZones.us-east-2[]`                                        | `string`  |                                                                   |
-| `input.pipeline.stages[].context.baseLabel`                                                            | `string`  |                                                                   |
-| `input.pipeline.stages[].context.baseOs`                                                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.beforeStagePlanningFailed`                                            | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.canaryConfig.metricsAccountName`                                      | `string`  |                                                                   |
-| `input.pipeline.stages[].context.canaryConfig.scopes[].scopeName`                                      | `string`  |                                                                   |
-| `input.pipeline.stages[].context.canaryConfig.storageAccountName`                                      | `string`  |                                                                   |
-| `input.pipeline.stages[].context.capacity.desired`                                                     | `number`  |                                                                   |
-| `input.pipeline.stages[].context.capacity.max`                                                         | `number`  |                                                                   |
-| `input.pipeline.stages[].context.capacity.min`                                                         | `number`  |                                                                   |
-| `input.pipeline.stages[].context.cloudProviderType`                                                    | `string`  |                                                                   |
-| `input.pipeline.stages[].context.cloudProvider`                                                        | `string`  |                                                                   |
-| `input.pipeline.stages[].context.cluster`                                                              | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].account`                                                   | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].application`                                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].availabilityZones.us-east-2[]`                             | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].capacity.desired`                                          | `number`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].capacity.max`                                              | `number`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].capacity.min`                                              | `number`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].cloudProvider`                                             | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].cooldown`                                                  | `number`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].copySourceCustomBlockDeviceMappings`                       | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.clusters[].ebsOptimized`                                              | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.clusters[].freeFormDetails`                                           | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].healthCheckGracePeriod`                                    | `number`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].healthCheckType`                                           | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].iamRole`                                                   | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].instanceMonitoring`                                        | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.clusters[].instanceType`                                              | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].keyPair`                                                   | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].provider`                                                  | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].reason`                                                    | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].spotPrice`                                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].stack`                                                     | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].strategy`                                                  | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].subnetType`                                                | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].targetHealthyDeployPercentage`                             | `number`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].terminationPolicies[]`                                     | `string`  |                                                                   |
-| `input.pipeline.stages[].context.clusters[].useAmiBlockDeviceMappings`                                 | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.consecutiveNotFound`                                                  | `number`  |                                                                   |
-| `input.pipeline.stages[].context.continuePipeline`                                                     | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.cooldown`                                                             | `number`  |                                                                   |
-| `input.pipeline.stages[].context.copySourceCustomBlockDeviceMappings`                                  | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.credentials`                                                          | `string`  |                                                                   |
-| `input.pipeline.stages[].context.ebsOptimized`                                                         | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.entityRef.entityId`                                                   | `string`  |                                                                   |
-| `input.pipeline.stages[].context.entityRef.entityType`                                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].context.exception.details.error`                                              | `string`  |                                                                   |
-| `input.pipeline.stages[].context.exception.details.errors[]`                                           | `string`  |                                                                   |
-| `input.pipeline.stages[].context.exception.details.kind`                                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.exception.details.responseBody`                                       | `string`  |                                                                   |
-| `input.pipeline.stages[].context.exception.details.stackTrace`                                         | `string`  |                                                                   |
-| `input.pipeline.stages[].context.exception.details.status`                                             | `number`  |                                                                   |
-| `input.pipeline.stages[].context.exception.details.url`                                                | `string`  |                                                                   |
-| `input.pipeline.stages[].context.exception.exceptionType`                                              | `string`  |                                                                   |
-| `input.pipeline.stages[].context.exception.operation`                                                  | `string`  |                                                                   |
-| `input.pipeline.stages[].context.exception.shouldRetry`                                                | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.exception.timestamp`                                                  | `number`  |                                                                   |
-| `input.pipeline.stages[].context.executionOptions.successful`                                          | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.expectedArtifacts[]`                                                  | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.stages[].context.expressionEvaluationSummary.trigger.buildInfo.number[].description`   | `string`  |                                                                   |
-| `input.pipeline.stages[].context.expressionEvaluationSummary.trigger.buildInfo.number[].exceptionType` | `string`  |                                                                   |
-| `input.pipeline.stages[].context.expressionEvaluationSummary.trigger.buildInfo.number[].level`         | `string`  |                                                                   |
-| `input.pipeline.stages[].context.expressionEvaluationSummary.trigger.buildInfo.number[].timestamp`     | `number`  |                                                                   |
-| `input.pipeline.stages[].context.failOnFailedExpressions`                                              | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.failPipeline`                                                         | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.freeFormDetails`                                                      | `string`  |                                                                   |
-| `input.pipeline.stages[].context.healthCheckGracePeriod`                                               | `number`  |                                                                   |
-| `input.pipeline.stages[].context.healthCheckType`                                                      | `string`  |                                                                   |
-| `input.pipeline.stages[].context.iamRole`                                                              | `string`  |                                                                   |
-| `input.pipeline.stages[].context.inputArtifacts[].account`                                             | `string`  |                                                                   |
-| `input.pipeline.stages[].context.inputArtifacts[].id`                                                  | `string`  |                                                                   |
-| `input.pipeline.stages[].context.instanceMonitoring`                                                   | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.instanceType`                                                         | `string`  |                                                                   |
-| `input.pipeline.stages[].context.interestingHealthProviderNames[]`                                     | `string`  |                                                                   |
-| `input.pipeline.stages[].context.kato.last.task.id.id`                                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].context.kato.result.expected`                                                 | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.keyPair`                                                              | `string`  |                                                                   |
-| `input.pipeline.stages[].context.lastException`                                                        | `string`  |                                                                   |
-| `input.pipeline.stages[].context.location`                                                             | `string`  |                                                                   |
-| `input.pipeline.stages[].context.manifest.account.name`                                                | `string`  |                                                                   |
-| `input.pipeline.stages[].context.manifest.location`                                                    | `string`  |                                                                   |
-| `input.pipeline.stages[].context.manifest.name`                                                        | `string`  |                                                                   |
-| `input.pipeline.stages[].context.manifestArtifactId`                                                   | `string`  |                                                                   |
-| `input.pipeline.stages[].context.manifestName`                                                         | `string`  |                                                                   |
-| `input.pipeline.stages[].context.mode`                                                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].context.name`                                                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].context.namespace`                                                            | `string`  |                                                                   |
-| `input.pipeline.stages[].context.notification.type`                                                    | `string`  |                                                                   |
-| `input.pipeline.stages[].context.numRevisionsBack`                                                     | `number`  |                                                                   |
-| `input.pipeline.stages[].context.onlyEnabled`                                                          | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.options.mergeStrategy`                                                | `string`  |                                                                   |
-| `input.pipeline.stages[].context.options.record`                                                       | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.outputName`                                                           | `string`  |                                                                   |
-| `input.pipeline.stages[].context.outputs.manifestNamesByNamespace.staging[]`                           | `string`  |                                                                   |
-| `input.pipeline.stages[].context.package`                                                              | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].apiVersion`                                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].kind`                                                     | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].metadata.name`                                            | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].metadata.namespace`                                       | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.replicas`                                            | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.selector.matchLabels.app`                            | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.selector.matchLabels.version`                        | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.strategy.rollingUpdate.maxSurge`                     | `number`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.strategy.rollingUpdate.maxUnavailable`               | `number`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.strategy.type`                                       | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.metadata.annotations.prometheus.io/port`    | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.metadata.annotations.prometheus.io/scrape`  | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.metadata.labels.app`                        | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.metadata.labels.version`                    | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.containers[].args[]`                   | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.containers[].imagePullPolicy`          | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.containers[].image`                    | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.containers[].name`                     | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.containers[].ports[].containerPort`    | `number`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.containers[].ports[].name`             | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.containers[].ports[].protocol`         | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.containers[].volumeMounts[].mountPath` | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.containers[].volumeMounts[].name`      | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.containers[].volumeMounts[].readOnly`  | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.containers[].volumeMounts[].subPath`   | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.restartPolicy`                         | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.volumes[].configMap.defaultMode`       | `number`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.volumes[].configMap.name`              | `string`  |                                                                   |
-| `input.pipeline.stages[].context.patchBody[].spec.template.spec.volumes[].name`                        | `string`  |                                                                   |
-| `input.pipeline.stages[].context.pipeline`                                                             | `string`  |                                                                   |
-| `input.pipeline.stages[].context.pipelinesArtifactId`                                                  | `string`  |                                                                   |
-| `input.pipeline.stages[].context.preferLargerOverNewer`                                                | `string`  |                                                                   |
-| `input.pipeline.stages[].context.provider`                                                             | `string`  |                                                                   |
-| `input.pipeline.stages[].context.reason`                                                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.rebake`                                                               | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.region`                                                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.regions[]`                                                            | `string`  |                                                                   |
-| `input.pipeline.stages[].context.remainingEnabledServerGroups`                                         | `number`  |                                                                   |
-| `input.pipeline.stages[].context.remainingFullSizeServerGroups`                                        | `number`  |                                                                   |
-| `input.pipeline.stages[].context.resizeType`                                                           | `string`  |                                                                   |
-| `input.pipeline.stages[].context.resolvedExpectedArtifacts[]`                                          | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.stages[].context.retainLargerOverNewer`                                                | `string`  |                                                                   |
-| `input.pipeline.stages[].context.selectionStrategy`                                                    | `string`  |                                                                   |
-| `input.pipeline.stages[].context.shrinkToSize`                                                         | `number`  |                                                                   |
-| `input.pipeline.stages[].context.source`                                                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.spotPrice`                                                            | `string`  |                                                                   |
-| `input.pipeline.stages[].context.stackArtifactAccount`                                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].context.stackArtifactId`                                                      | `string`  |                                                                   |
-| `input.pipeline.stages[].context.stackName`                                                            | `string`  |                                                                   |
-| `input.pipeline.stages[].context.stack`                                                                | `string`  |                                                                   |
-| `input.pipeline.stages[].context.statusUrlResolution`                                                  | `string`  |                                                                   |
-| `input.pipeline.stages[].context.storeType`                                                            | `string`  |                                                                   |
-| `input.pipeline.stages[].context.strategy`                                                             | `string`  |                                                                   |
-| `input.pipeline.stages[].context.subnetType`                                                           | `string`  |                                                                   |
-| `input.pipeline.stages[].context.tags.TEST`                                                            | `string`  |                                                                   |
-| `input.pipeline.stages[].context.tags.test`                                                            | `string`  |                                                                   |
-| `input.pipeline.stages[].context.tags[].name`                                                          | `string`  |                                                                   |
-| `input.pipeline.stages[].context.tags[].namespace`                                                     | `string`  |                                                                   |
-| `input.pipeline.stages[].context.tags[].value`                                                         | `string`  |                                                                   |
-| `input.pipeline.stages[].context.targetCluster`                                                        | `string`  |                                                                   |
-| `input.pipeline.stages[].context.targetHealthyDeployPercentage`                                        | `number`  |                                                                   |
-| `input.pipeline.stages[].context.targetHealthyRollbackPercentage`                                      | `number`  |                                                                   |
-| `input.pipeline.stages[].context.targetLocation.type`                                                  | `string`  |                                                                   |
-| `input.pipeline.stages[].context.targetLocation.value`                                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].context.target`                                                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.templateRenderer`                                                     | `string`  |                                                                   |
-| `input.pipeline.stages[].context.terminationPolicies[]`                                                | `string`  |                                                                   |
-| `input.pipeline.stages[].context.type`                                                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].context.useAmiBlockDeviceMappings`                                            | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.useSourceCapacity`                                                    | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.user`                                                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].context.variables[].key`                                                      | `string`  |                                                                   |
-| `input.pipeline.stages[].context.variables[].sourceValue`                                              | `string`  |                                                                   |
-| `input.pipeline.stages[].context.variables[].value`                                                    | `string`  |                                                                   |
-| `input.pipeline.stages[].context.vmType`                                                               | `string`  |                                                                   |
-| `input.pipeline.stages[].context.waitForCompletion`                                                    | `boolean` |                                                                   |
-| `input.pipeline.stages[].context.waitTime`                                                             | `number`  |                                                                   |
-| `input.pipeline.stages[].endTime`                                                                      | ` `       |                                                                   |
-| `input.pipeline.stages[].endTime`                                                                      | `number`  |                                                                   |
-| `input.pipeline.stages[].id`                                                                           | `string`  |                                                                   |
-| `input.pipeline.stages[].lastModified`                                                                 | ` `       |                                                                   |
-| `input.pipeline.stages[].name`                                                                         | `string`  |                                                                   |
-| `input.pipeline.stages[].outputs.artifacts[]`                                                          | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.stages[].outputs.resolvedExpectedArtifacts[]`                                          | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.pipeline.stages[].outputs.test`                                                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].parentStageId`                                                                | ` `       |                                                                   |
-| `input.pipeline.stages[].parentStageId`                                                                | `string`  |                                                                   |
-| `input.pipeline.stages[].refId`                                                                        | `string`  |                                                                   |
-| `input.pipeline.stages[].requisiteStageRefIds[]`                                                       | `string`  |                                                                   |
-| `input.pipeline.stages[].scheduledTime`                                                                | ` `       |                                                                   |
-| `input.pipeline.stages[].startTimeExpiry`                                                              | ` `       |                                                                   |
-| `input.pipeline.stages[].startTime`                                                                    | ` `       |                                                                   |
-| `input.pipeline.stages[].startTime`                                                                    | `number`  |                                                                   |
-| `input.pipeline.stages[].status`                                                                       | `string`  |                                                                   |
-| `input.pipeline.stages[].syntheticStageOwner`                                                          | ` `       |                                                                   |
-| `input.pipeline.stages[].syntheticStageOwner`                                                          | `string`  |                                                                   |
-| `input.pipeline.stages[].tasks[].endTime`                                                              | ` `       |                                                                   |
-| `input.pipeline.stages[].tasks[].endTime`                                                              | `number`  |                                                                   |
-| `input.pipeline.stages[].tasks[].id`                                                                   | `string`  |                                                                   |
-| `input.pipeline.stages[].tasks[].implementingClass`                                                    | `string`  |                                                                   |
-| `input.pipeline.stages[].tasks[].loopEnd`                                                              | `boolean` |                                                                   |
-| `input.pipeline.stages[].tasks[].loopStart`                                                            | `boolean` |                                                                   |
-| `input.pipeline.stages[].tasks[].name`                                                                 | `string`  |                                                                   |
-| `input.pipeline.stages[].tasks[].stageEnd`                                                             | `boolean` |                                                                   |
-| `input.pipeline.stages[].tasks[].stageStart`                                                           | `boolean` |                                                                   |
-| `input.pipeline.stages[].tasks[].startTime`                                                            | ` `       |                                                                   |
-| `input.pipeline.stages[].tasks[].startTime`                                                            | `number`  |                                                                   |
-| `input.pipeline.stages[].tasks[].status`                                                               | `string`  |                                                                   |
-| `input.pipeline.stages[].type`                                                                         | `string`  |                                                                   |
-| `input.pipeline.stages[]`                                                                              | `string`  |                                                                   |
-
+| Key                                               | Type      | Description |
+| ------------------------------------------------- | --------- | ----------- |
+| `input.pipeline.application`                      | `string`  |             |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  |             |
+| `input.pipeline.authentication.user`              | `string`  |             |
+| `input.pipeline.buildTime`                        | `number`  |             |
+| `input.pipeline.canceledBy`                       | ` `       |             |
+| `input.pipeline.canceled`                         | `boolean` |             |
+| `input.pipeline.cancellationReason`               | ` `       |             |
+| `input.pipeline.description`                      | ` `       |             |
+| `input.pipeline.endTime`                          | ` `       |             |
+| `input.pipeline.endTime`                          | `number`  |             |
+| `input.pipeline.id`                               | `string`  |             |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` |             |
+| `input.pipeline.limitConcurrent`                  | `boolean` |             |
+| `input.pipeline.name`                             | `string`  |             |
+| `input.pipeline.origin`                           | `string`  |             |
+| `input.pipeline.partition`                        | ` `       |             |
+| `input.pipeline.paused`                           | ` `       |             |
+| `input.pipeline.pipelineConfigId`                 | `string`  |             |
+| `input.pipeline.source`                           | ` `       |             |
+| `input.pipeline.spelEvaluator`                    | `string`  |             |
+| `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
+| `input.pipeline.startTimeExpiry`                  | ` `       |             |
+| `input.pipeline.startTime`                        | `number`  |             |
+| `input.pipeline.status`                           | `string`  |             |
+| `input.pipeline.templateVariables`                | ` `       |             |
+| `input.pipeline.type`                             | `string`  |             |
 
 ### input.pipeline.trigger
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
-### input.stage
+### input.stage.context
 
 | Key                                     | Type      | Description |
 | --------------------------------------- | --------- | ----------- |
@@ -3624,6 +3404,11 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.failPipeline`      | `boolean` |             |
 | `input.stage.context.pipeline`          | `string`  |             |
 | `input.stage.context.waitForCompletion` | `boolean` |             |
+
+### input.stage
+
+| Key                                     | Type      | Description |
+| --------------------------------------- | --------- | ----------- |
 | `input.stage.endTime`                   | ` `       |             |
 | `input.stage.id`                        | `string`  |             |
 | `input.stage.lastModified`              | ` `       |             |

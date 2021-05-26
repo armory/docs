@@ -503,61 +503,33 @@ description: "fill me with delicious data, Stephen!"
 
 ### input.pipeline
 
-| Key                                                                       | Type      | Description                                                           |
-| ------------------------------------------------------------------------- | --------- | --------------------------------------------------------------------- |
-| `input.pipeline.application`                                              | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
-| `input.pipeline.authentication.allowedAccounts[]`                         | `string`  |                                                                       |
-| `input.pipeline.authentication.user`                                      | `string`  |                                                                       |
-| `input.pipeline.buildTime`                                                | `number`  |                                                                       |
-| `input.pipeline.canceled`                                                 | `boolean` |                                                                       |
-| `input.pipeline.canceledBy`                                               | ` `       |                                                                       |
-| `input.pipeline.cancellationReason`                                       | ` `       |                                                                       |
-| `input.pipeline.description`                                              | ` `       |                                                                       |
-| `input.pipeline.endTime`                                                  | ` `       |                                                                       |
-| `input.pipeline.id`                                                       | `string`  |                                                                       |
-| `input.pipeline.keepWaitingPipelines`                                     | `boolean` |                                                                       |
-| `input.pipeline.limitConcurrent`                                          | `boolean` |                                                                       |
-| `input.pipeline.name`                                                     | `string`  |                                                                       |
-| `input.pipeline.origin`                                                   | `string`  |                                                                       |
-| `input.pipeline.partition`                                                | ` `       |                                                                       |
-| `input.pipeline.paused`                                                   | ` `       |                                                                       |
-| `input.pipeline.pipelineConfigId`                                         | `string`  |                                                                       |
-| `input.pipeline.source`                                                   | ` `       |                                                                       |
-| `input.pipeline.spelEvaluator`                                            | `string`  |                                                                       |
-| `input.pipeline.stages[]`                                                 | `string`  |                                                                       |
-| `input.pipeline.stages[].context.account`                                 | `string`  |                                                                       |
-| `input.pipeline.stages[].context.action`                                  | `string`  |                                                                       |
-| `input.pipeline.stages[].context.artifacts[].account`                     | `string`  |                                                                       |
-| `input.pipeline.stages[].context.artifacts[].id`                          | `string`  |                                                                       |
-| `input.pipeline.stages[].context.cloudProvider`                           | `string`  |                                                                       |
-| `input.pipeline.stages[].context.expectedArtifacts[]`                     | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.     |
-| `input.pipeline.stages[].context.failPipeline`                            | `boolean` |                                                                       |
-| `input.pipeline.stages[].context.manifestArtifactId`                      | `string`  |                                                                       |
-| `input.pipeline.stages[].context.moniker.app`                             | `string`  |                                                                       |
-| `input.pipeline.stages[].context.planForDestroy`                          | `boolean` |                                                                       |
-| `input.pipeline.stages[].context.skipExpressionEvaluation`                | `boolean` |                                                                       |
-| `input.pipeline.stages[].context.source`                                  | `string`  |                                                                       |
-| `input.pipeline.stages[].context.terraformVersion`                        | `string`  |                                                                       |
-| `input.pipeline.stages[].context.trafficManagement.enabled`               | `boolean` |                                                                       |
-| `input.pipeline.stages[].context.trafficManagement.options.enableTraffic` | `boolean` |                                                                       |
-| `input.pipeline.stages[].endTime`                                         | ` `       |                                                                       |
-| `input.pipeline.stages[].id`                                              | `string`  |                                                                       |
-| `input.pipeline.stages[].lastModified`                                    | ` `       |                                                                       |
-| `input.pipeline.stages[].name`                                            | `string`  |                                                                       |
-| `input.pipeline.stages[].parentStageId`                                   | ` `       |                                                                       |
-| `input.pipeline.stages[].refId`                                           | `string`  |                                                                       |
-| `input.pipeline.stages[].requisiteStageRefIds[]`                          | `string`  |                                                                       |
-| `input.pipeline.stages[].scheduledTime`                                   | ` `       |                                                                       |
-| `input.pipeline.stages[].startTime`                                       | ` `       |                                                                       |
-| `input.pipeline.stages[].startTimeExpiry`                                 | ` `       |                                                                       |
-| `input.pipeline.stages[].status`                                          | `string`  |                                                                       |
-| `input.pipeline.stages[].syntheticStageOwner`                             | ` `       |                                                                       |
-| `input.pipeline.stages[].type`                                            | `string`  |                                                                       |
-| `input.pipeline.startTime`                                                | `number`  |                                                                       |
-| `input.pipeline.startTimeExpiry`                                          | ` `       |                                                                       |
-| `input.pipeline.status`                                                   | `string`  |                                                                       |
-| `input.pipeline.templateVariables`                                        | ` `       |                                                                       |
-| `input.pipeline.type`                                                     | `string`  |                                                                       |
+| Key                                               | Type      | Description                                                            |
+| ------------------------------------------------- | --------- | ---------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.  |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  |                                                                        |
+| `input.pipeline.authentication.user`              | `string`  |                                                                        |
+| `input.pipeline.buildTime`                        | `number`  |                                                                        |
+| `input.pipeline.canceled`                         | `boolean` |                                                                        |
+| `input.pipeline.canceledBy`                       | ` `       |                                                                        |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                        |
+| `input.pipeline.description`                      | ` `       |                                                                        |
+| `input.pipeline.endTime`                          | ` `       |                                                                        |
+| `input.pipeline.id`                               | `string`  |                                                                        |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` |                                                                        |
+| `input.pipeline.limitConcurrent`                  | `boolean` |                                                                        |
+| `input.pipeline.name`                             | `string`  |                                                                        |
+| `input.pipeline.origin`                           | `string`  |                                                                        |
+| `input.pipeline.partition`                        | ` `       |                                                                        |
+| `input.pipeline.paused`                           | ` `       |                                                                        |
+| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                        |
+| `input.pipeline.source`                           | ` `       |                                                                        |
+| `input.pipeline.spelEvaluator`                    | `string`  |                                                                        |
+| `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
+| `input.pipeline.startTime`                        | `number`  |                                                                        |
+| `input.pipeline.startTimeExpiry`                  | ` `       |                                                                        |
+| `input.pipeline.status`                           | `string`  |                                                                        |
+| `input.pipeline.templateVariables`                | ` `       |                                                                        |
+| `input.pipeline.type`                             | `string`  |                                                                        |
 
 ### input.pipeline.trigger
 
