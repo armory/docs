@@ -205,6 +205,7 @@ description: "Controls access to the spinnaker pipelines api. Can be used to pre
 ## Example Policy
 
 {{< prism lang="rego" line-numbers="true" >}}
+
 package spinnaker.http.authz
 default message=""
 allow=message==""
