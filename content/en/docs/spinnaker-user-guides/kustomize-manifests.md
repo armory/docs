@@ -23,22 +23,6 @@ Spinnaker uses the latest non-kubectl version of Kustomize.
 ​
 Kustomize works by running `kustomize build` against a `kustomization.yaml` file located in a Git repository. This file defines all of the other files needed by Kustomize to render a fully hydrated manifest.
 ​
-Select `Kustomize` as the Render Engine and define the artifact for your `kustomization.yaml`:
-​
-![](/images/kustomize-render-engine.png)
-​
-​
-With the Kustomize file defined, configure a Produced Artifact to use the result in a stage downstream.
-Add an artifact:
-​
-![](/images/kustomize-add-artifact.png)
-​
-Define the artifact:
-​
-![](/images/kustomize-define-artifact.png)
-​
-You can now run your pipeline and get a Kustomize rendered manifest!
-​
 ## Kustomize
 
 ### Requirements
