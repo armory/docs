@@ -53,7 +53,7 @@ spec:
 
 ### Build the Pipeline
 ​
-For this example, you are going to use the *helloWorld* example from the  [Kustomize public repository](https://github.com/kubernetes-sigs/kustomize).
+For this example, you can use the *helloWorld* example from the  [Kustomize public repository](https://github.com/kubernetes-sigs/kustomize).
 ### Step 1 - Add an Expected Artifact
 ​
 Add a **git/repo** Expected Artifact in the _Configuration_ section:
