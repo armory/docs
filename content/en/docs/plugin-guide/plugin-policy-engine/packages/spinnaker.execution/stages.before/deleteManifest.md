@@ -58,10 +58,10 @@ The full package name sent to OPA is `spinnaker.execution.stages.before.deleteMa
 | `input.deploy.labelSelectors.notEmpty`    | `boolean` |                                               |
 | `input.deploy.location`                   | `string`  |                                               |
 | `input.deploy.manifestName`               | `string`  |                                               |
-| `input.deploy.options.apiVersion`         | ``        |                                               |
-| `input.deploy.options.dryRun`             | ``        |                                               |
+| `input.deploy.options.apiVersion`         | `string`  |                                               |
+| `input.deploy.options.dryRun`             | `boolean` |                                               |
 | `input.deploy.options.gracePeriodSeconds` | `number`  |                                               |
-| `input.deploy.options.kind`               | ``        |                                               |
+| `input.deploy.options.kind`               | `string`  |                                               |
 | `input.deploy.options.orphanDependents`   | ``        |                                               |
 | `input.deploy.options.preconditions`      | ``        |                                               |
 | `input.deploy.options.propagationPolicy`  | ``        |                                               |

@@ -353,8 +353,8 @@ deny["Artifactss may not be cleaned up from production accounts"] {
 
 ## Keys
 
-| Key                          | Type     | Description                                            |
-| ---------------------------- | -------- | ------------------------------------------------------ |
-| `input.deploy.account`       | `string` | The spinnaker account being deployed to.               |
-| `input.deploy.credentials`   | `string` | The credentials to use to access the account.          |
-| `input.deploy.manifests[].*` | `*`      | The entire Kubernetest manifest that is to be removed. |
+| Key                          | Type     | Description                                    |
+| ---------------------------- | -------- | ---------------------------------------------- |
+| `input.deploy.account`       | `string` | The spinnaker account being deployed to.       |
+| `input.deploy.credentials`   | `string` | The credentials to use to access the account.  |
+| `input.deploy.manifests[].*` | `*`      | The entire Kubernetest manifest to be removed. |
