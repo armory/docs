@@ -618,6 +618,10 @@ Open your browser's console and see if there are SSL exceptions. If there are, c
 
 ## Release notes
 
+* v0.1.2  - Added support for writing policies against the package `spinnaker.ui.entitlements.isFeatureEnabled` to show/hide the following UI buttons:
+  * Create Application
+  * Application Config
+  * Project Configuration.
 * v0.0.25 - Fixes an unsatisfied dependency error in the API (Gate) when using SAML and x509 certificates. This fix requires Armory Enterprise 2.26.0 later.
 * v0.0.19 - Adds forced authentication feature and fixes NPE bug
 * v0.0.17 - Initial plugin release
