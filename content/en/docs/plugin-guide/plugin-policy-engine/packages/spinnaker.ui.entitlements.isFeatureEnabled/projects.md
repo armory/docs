@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.ui.entitlements.isFeatureEnabled.projects"
 linktitle: "projects"
-description: "Can hide the 'configure projects' button in the spinnaker UI."
+description: "Can hide UI Elements from Spinnaker"
 ---
 
 ## Example Payload
@@ -49,6 +49,51 @@ allow=false{
     input.method=="GET"
     input.user.isAdmin!=true
 }
+```
+## Example Policy
+Disables the 'configure application' and 'create application' buttons of the spinnaker UI for non-admin users unless they have a particular role.
+```rego
+    package spinnaker.ui.entitlements.isFeatureEnabled
+    default message=""
+    allow = message==""
+    message = "Your role lacks permissions to update application configuration"{
+          createsTaskOfType(["updateApplication","createApplication"][_])
+          input.user.isAdmin!=true
+          not hasRole("applicationAdmins")
+    }
+    message = "Your role lacks permissions to create projects"{
+          createsTaskOfType("upsertProject")
+          input.user.isAdmin!=true
+          not hasRole("qa")
+    }
+    hasRole(role){
+        input.user.roles[_].name=role
+    }
+    createsTaskOfType(tasktype){
+        input.method="POST"
+        input.path=["tasks"]
+        input.body.job[_].type=tasktype
+    }
+```
+## Example Policy
+Disables the 'create project' button of the spinnaker UI for non-admin users unless they have a particular role.
+```rego
+    package spinnaker.ui.entitlements.isFeatureEnabled
+    default message=""
+    allow = message==""
+    message = "Your role lacks permissions to create projects"{
+          createsTaskOfType("upsertProject")
+          input.user.isAdmin!=true
+          not hasRole("projectAdmin")
+    }
+    hasRole(role){
+        input.user.roles[_].name=role
+    }
+    createsTaskOfType(tasktype){
+        input.method="POST"
+        input.path=["tasks"]
+        input.body.job[_].type=tasktype
+    }
 ```
 
 ## Keys
