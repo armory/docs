@@ -62,26 +62,6 @@ Disables the 'configure application' and 'create application' and 'create Projec
         input.body.job[_].type=tasktype
     }
 ```
-## Example Policy
-Disables the 'create project' button of the spinnaker UI for non-admin users unless they have a particular role.
-```rego
-    package spinnaker.ui.entitlements.isFeatureEnabled
-    default message=""
-    allow = message==""
-    message = "Your role lacks permissions to create projects"{
-          createsTaskOfType("upsertProject")
-          input.user.isAdmin!=true
-          not hasRole("projectAdmin")
-    }
-    hasRole(role){
-        input.user.roles[_].name=role
-    }
-    createsTaskOfType(tasktype){
-        input.method="POST"
-        input.path=["tasks"]
-        input.body.job[_].type=tasktype
-    }
-```
 
 ## Keys
 
