@@ -25,7 +25,9 @@ The Agent consists of a plugin to Spinnaker's Clouddriver service and a Kubernet
 
 ### Networking requirements
 
-Communication from the Agent to Clouddriver occurs over gRPC port 9091.
+Communication from the Agent to Clouddriver occurs over gRPC port 9091. Communication between the Agent and Clouddriver must be http/2. http/1.1 is not compatible and causes communication issues between the Agent and Clouddrive.
+
+
 
 ### Kubernetes permissions required by the Agent
 
