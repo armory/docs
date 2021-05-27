@@ -37,7 +37,7 @@ The Agent can use a kubeconfig file loaded as a Kubernetes secret when deploying
 
 This step is performed in the cluster Spinnaker service is running. You will add the Clouddriver plugin and expose it as type `LoadBalancer` on gRPC port `9091`. In step 2, the Agent will be configured to communicate with Clouddriver. _Take note to ensure the plugin version is compatible with the Spinnaker version. See the comments in the manifest_.
 
-Add this manifest to your Kustomize patches:
+Add this manifest to your Kustomize patches directory and include it under the patchesStrategicMerge section of your kustomization file:
 
 ```yaml
 # The plugin version (see kubesvc-plugin below) must be compatible with the spinnaker version, check here: https://docs.armory.io/docs/armory-agent/armory-agent-quick/#compatibility-matrix
@@ -95,7 +95,7 @@ spec:
 
 ```
 
-To expose Clouddriver for remote Agents, add this manifest to your Kustomize resources:
+To expose Clouddriver for remote Agents, add this manifest to your kustomize directory structure and include it in your kustomization resources section:
 
 ```yaml
 # This loadbalancer service exposes the gRPC port on cloud-driver for the remote agents to connect
@@ -117,7 +117,7 @@ spec:
   type: LoadBalancer
 ```
 
-Once both manifests are configured, apply the update. Use ```kubectl get svc spin-agent-cloud-driver -n spinnaker``` to make note of the LB IP external address for use later.
+Once both manifests are configured, apply the update with kustomize. Use ```kubectl get svc spin-agent-cloud-driver -n spinnaker``` to make note of the LB IP external address for use later.
 
 You can also use netcat to confirm Clouddriver is listening on port 9091:  ```nc -zv [LB address] 9091```. Perform this check from a node in your Spinnaker cluster and your target cluster.
 
