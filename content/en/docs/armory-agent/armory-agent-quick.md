@@ -17,7 +17,7 @@ The Agent consists of a plugin to Spinnaker's Clouddriver service and a Kubernet
 
 * You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
 * You have configured Clouddriver to use MySQL or PostgreSQL. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions.
-* You have Spinnaker installed in one cluster, and an additional cluster to serve as your target deployment cluster.
+* You have an additional cluster to serve as your target deployment cluster.
 
 ### Compatibility matrix
 
