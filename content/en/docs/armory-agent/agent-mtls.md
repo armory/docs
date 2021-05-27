@@ -139,21 +139,19 @@ spec:
 
 Add the certificate information in `kubesvc.yaml`. Note that `clientCertFile` and `clientKeyFile` values must in `file:///filepath/filename` format.
 
-{{< prism lang="yaml" line="8-9">}}
+{{< prism lang="yaml" line="7-8">}}
 clouddriver:
   grpc: <:443
   insecure: false
   tls:
-    #serverName: <my-ca> #to override the server name of the Certificate Authority
-    insecureSkipVerify: false #if true, don't verify server's cert
-    #cacertFile: <path-to-CA-cert> #to validate server's cert
+    #serverName: <my-ca>
+    insecureSkipVerify: false
     clientCertFile: <path-to-your-agent-cert> #client cert for mTLS.
     clientKeyFile: <path-to-your-agent-key>
-    #clientKeyPassword: #if the clientKeyFile is password protected
-
+    #clientKeyPassword:
 {{< /prism >}}
 
-See the {{< linkWithTitle "agent-options.md" >}} for additional options.
+See the [Agent Options]({{< ref "agent-options#options" >}}) for configuration details.
 
 ## x509 certificate subject filtering
 
@@ -175,7 +173,9 @@ spec:
           grpc:
             auth:
               x509:
-                enabled: true #Note: enabled must be true for filters to be applied
+                enabled: true # must be true for filters to be applied
                 filters:
                   - UID=([a-z]){3}:[1-9]{3}:ksvc
 {{< /prism >}}
+
+See the {{< linkWithTitle "agent-plugin-options.md" >}} page for configuration options.
