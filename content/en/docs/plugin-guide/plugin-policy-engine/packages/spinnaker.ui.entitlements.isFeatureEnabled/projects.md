@@ -51,7 +51,7 @@ Disables the 'configure application' and 'create application' and 'create Projec
     message = "Your role lacks permissions to create projects"{
           createsTaskOfType("upsertProject")
           input.user.isAdmin!=true
-          not hasRole("qa")
+          not hasRole("projectAdmin")
     }
     hasRole(role){
         input.user.roles[_].name=role
