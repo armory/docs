@@ -109,12 +109,10 @@ Disables the 'create project' button of the spinnaker UI for non-admin users unl
 | `input.user.username`       | `string`  |             |
 
 ## Supported UI Elements
-
-| UI Element                         | path      | method |
-| --------------------------- | --------- | ----------- |
-| `input.method`              | `string`  | The method of the API call for which we are hiding UI elements. This will be 'HTTP Get' to hide the projects UI.            |
-| `input.path[]`              | `string`  | The path to the API call that UI elements will be hiden for. This is 'Projects'            |
-| `input.user.isAdmin`        | `boolean` |             |
-| `input.user.roles[].name`   | `string`  |             |
-| `input.user.roles[].source` | `string`  |             |
-| `input.user.username`       | `string`  |             |
+The following table provides a summary of the values to check in the policy to enable/disable different UI elements.
+| UI Element                  | input.path. | input.method | input.body.job[_].type |
+| --------------------------- | ----------- | ------------ | ---------------------- |
+| Create Application Button   | `["tasks"]` | POST         | createApplication      |
+| Application Configuration Button   | `["tasks"]` | POST         | updateApplication      |
+| Create Project Button   | `["tasks"]` | POST         | upsertProject      |
+| Project Configuration Button   | `["projects"]` | GET         | n/a      |
