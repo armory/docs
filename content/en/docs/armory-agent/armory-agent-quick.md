@@ -95,7 +95,9 @@ spec:
 
 ```
 
-To expose Clouddriver for remote Agents, add this manifest to your kustomize directory structure and include it in your kustomization resources section:
+To expose Clouddriver as Kubernetes type LoadBalancer, add this manifest to your kustomize directory structure and include it in your kustomization resources section:
+
+_(note: Various cloud providers may require additional annotations for LoadBalancer, consult your cloud provider's documentation)_
 
 ```yaml
 # This loadbalancer service exposes the gRPC port on cloud-driver for the remote agents to connect
