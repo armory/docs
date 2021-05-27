@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.ui.entitlements.isFeatureEnabled.projects"
 linktitle: "projects"
-description: "Can hide the 'Projects' tab of the spinnaker UI."
+description: "Can hide the 'configure projects' button in the spinnaker UI."
 ---
 
 ## Example Payload
@@ -38,7 +38,7 @@ description: "Can hide the 'Projects' tab of the spinnaker UI."
 </details>
 
 ## Example Policy
-Disables access to the 'Projects' tab of the spinnaker UI for non-admin users.
+Disables the 'configure projects' button of the spinnaker UI for non-admin users.
 ```rego
 package spinnaker.ui.entitlements.isFeatureEnabled
 
