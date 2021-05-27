@@ -91,7 +91,7 @@ createsTaskOfType(tasktype){
 | `input.body.job[].cloudProvider` | `string`  | The name of the cloud provider in which the manifest is being scaled.           |
 | `input.body.job[].location`      | `string`  | The namespace of the manifest beign scaled.            |
 | `input.body.job[].manifestName`  | `string`  | The name of the manifest being scaled            |
-| `input.body.job[].reason`        | ` `       | The reason the user enteres to explain the reason for this change            |
+| `input.body.job[].reason`        | `string`       | The reason the user enteres to explain the reason for this change            |
 | `input.body.job[].replicas`      | `string`  | The desired number of running pods after scaling.            |
 | `input.body.job[].type`          | `string`  | Always `scaleManifest`            |
 | `input.body.job[].user`          | `string`  | The username of the user starting the task. It is reccomended to write rules using input.user instead.            |
