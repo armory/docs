@@ -10,56 +10,26 @@ description: >
 
 You need the following to configure mTLS:
 
-* `CA.crt`
-* Clouddriver certificate and private key
-* Agent certificate and private key
-
-For testing, you can create self-signed certificates and keys like this:
-
-```bash
-# The first step is to create a certificate authority (CA) that both the Agent and Clouddriver trust
-openssl req -new -x509 -nodes -days 365 -subj '/CN=my-ca' -keyout ca.key \
-    -out ca.crt
-
-openssl x509 -in ca.crt -text -noout
-
-#Clouddriver cert
-openssl genrsa -out clouddriver.key 2048
-
-openssl req -new -key clouddriver.key -subj '/CN=localhost' -out clouddriver.csr
-
-openssl x509 -req -in clouddriver.csr -CA ca.crt -CAkey ca.key -CAcreateserial \
-    -days 365 -out clouddriver.crt
-
-openssl x509 -in clouddriver.crt -text -noout
-
-#agent certificate
-openssl genrsa -out agent.key 2048
-
-openssl req -new -key agent.key -subj '/CN=my-client' -out agent.csr
-
-openssl x509 -req -in agent.csr -CA ca.crt -CAkey ca.key -CAcreateserial \
-    -days 365 -out agent.crt
-```
-
-
+* A Certificate Authority (CA) certificate in the `pem` format, used for validating the issuer for mTLS requests.
+* Clouddriver certificate and corresponding private key.
+* Agent certificate and corresponding private key.
 
 ## Agent plugin configuration
 
 ### Create a Kubernetes secret
 
-Create a secret that contains `clouddriver.crt` and `clouddriver.pem`.
+Create a secret that contains your Clouddriver certificate and corresponding key.
 
 ```bash
 kubectl create secret tls <clouddriver-secret-name> \
-   --cert=clouddriver.crt --key=clouddriver.key  
+   --cert=<your-clouddriver-cert> --key=<your-clouddriver-key>
 ```
 
 Or:
 
 ```bash
 kubectl create secret generic <clouddriver-secret-name> \
-   --from-file=clouddriver.crt --from-file=clouddriver.key
+   --from-file=<your-clouddriver-cert> --from-file=<your-clouddriver-key>
 ```
 
 ### Mount the secret
@@ -70,7 +40,7 @@ In your `agent-plugin/clouddriver-plugin.yaml` file,
 `spec.kustomize.clouddriver.deployment.patchesStrategicMerge` section,
 add the following lines to mount the Clouddriver cert from your secret:
 
-{{< prism lang="yaml" line="20-21, 26-28" >}}
+{{< prism lang="yaml" line="10-18" >}}
 spec:
   kustomize:
     clouddriver:
@@ -80,22 +50,12 @@ spec:
             spec:
               template:
                 spec:
-                  initContainers:
-                  - name: kubesvc-plugin
-                    image: docker.io/armory/kubesvc-plugin:<release>
-                    volumeMounts:
-                      - mountPath: /opt/plugin/target
-                        name: kubesvc-plugin-vol
                   containers:
                   - name: clouddriver
                     volumeMounts:
-                      - mountPath: /opt/clouddriver/lib/plugins
-                        name: kubesvc-plugin-vol
-                      - mountPath: /opt/clouddriver/cert  
+                      - mountPath: <path> # such as /opt/clouddriver/cert  
                         name: cert
                   volumes:
-                  - name: kubesvc-plugin-vol
-                    emptyDir: {}
                   - name: cert
                     secret:
                       secretName: <clouddriver-secret-name>
@@ -104,9 +64,9 @@ spec:
 
 ### Configure the plugin
 
-In the `agent-plugin/config.yaml` file, configure the plugin to use the mounted certs.  Note that `trustCertCollection`, `certificateChain`, and `privateKey` values must in `file:///filepath/filename` format.
+In the `agent-plugin/config.yaml` file, configure the plugin to use the mounted certs. Note that `trustCertCollection`, `certificateChain`, and `privateKey` values must in `file:///filepath/filename` format.
 
-{{< prism lang="yaml" line="12-20" >}}
+{{< prism lang="yaml" line="12-18" >}}
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}
 kind: SpinnakerService
 metadata:
@@ -115,16 +75,15 @@ spec:
   spinnakerConfig:
     profiles:
       clouddriver:
-        # See https://docs.armory.io/docs/installation/armory-agent/agent-options/
         kubesvc:
           cluster: redis
           grpc:
             server:
               security:
                 enabled: true
-                trustCertCollection: file:<path-to-ca.crt>
-                certificateChain: file:<path-to-clouddriver.crt>
-                privateKey: file:<path-to-clouddriver.key>
+                trustCertCollection: file:<path-to-CA-cert>
+                certificateChain: file:<path-to-your-clouddriver-cert>
+                privateKey: file:<path-to-your-clouddriver-key>
                 clientAuth: REQUIRE
 {{< /prism >}}
 
@@ -138,7 +97,7 @@ Create a secret in the target cluster namespace where the Agent resides.
 
 ```bash
 kubectl create secret generic <agent-secret-name> \
---from-file=agent.crt --from-file=agent.key
+--from-file=<your-agent-cert> --from-file=<your-agent-key>
 ```
 
 ### Modify deployment configuration
@@ -153,7 +112,7 @@ If you have a custom CA, you need to mount the cert into the known trusted cert 
 
 >The paths that files are mounted to in the `deployment.yaml` file should always match the corresponding location in the `kubesvc.yaml` configuration file. For example, the `mountPath` of the CA cert in the `deployment.yaml` file must match the `clouddriver.tls.clientCertFile` location in `kubesvc.yaml`.
 
-{{< prism lang="yaml"  >}}
+{{< prism lang="yaml" line="5-19" >}}
 spec:
   template:
     spec:
@@ -172,60 +131,29 @@ spec:
           secretName: <clouddriver-secret-name>
       - name: certpem
         secret:
-          secretName: <ca-secret-name>
+          secretName: <CA-secret-name>
 {{< /prism >}}
 
 
 ### Configure the service
 
-Add the certificate information in `kubesvc.yaml`:
+Add the certificate information in `kubesvc.yaml`. Note that `clientCertFile` and `clientKeyFile` values must in `file:///filepath/filename` format.
 
-{{< prism lang="yaml" >}}
+{{< prism lang="yaml" line="8-9">}}
 clouddriver:
   grpc: <:443
   insecure: false
   tls:
-    #serverName: <my-ca> #to override the server name of the certificate authority
+    #serverName: <my-ca> #to override the server name of the Certificate Authority
     insecureSkipVerify: false #if true, don't verify server's cert
-    clientKeyFile: <path>/agent.key #ref to the private key (mTLS)
+    #cacertFile: <path-to-CA-cert> #to validate server's cert
+    clientCertFile: <path-to-your-agent-cert> #client cert for mTLS.
+    clientKeyFile: <path-to-your-agent-key>
     #clientKeyPassword: #if the clientKeyFile is password protected
-    #cacertFile: <path>/ca.crt #to validate server's cert
-    clientCertFile: <path>/agent.crt #client cert for mTLS.
 
 {{< /prism >}}
 
 See the {{< linkWithTitle "agent-options.md" >}} for additional options.
-
-## Forward proxy configuration
-
-### Add proxy variables
-
-Add proxy variables in the Agent's `deployment.yaml` file.
-
-{{< prism lang="yaml" line="25-30" >}}
-spec:
-  template:
-    spec:
-      containers:
-      - image: armory/kubesvc
-        env:
-        - name: HTTP_PROXY
-          value: <proxyaddress:proxyport>
-        - name: HTTPS_PROXY
-          value: <proxyaddress:proxyport>
-{{< /prism >}}
-
-### Configure the Agent
-
-Configure the Agent to **not** proxy Kubernetes traffic intended for KubeAPI in your cluster.
-
-In `kubesvc.yaml`, add the `noProxy: true` option to have traffic destined for Kubernetes ignore the proxy environment settings under `kubernetes`.
-
-{{< prism lang="yaml" line="12" >}}
-kubernetes:  
-  accounts: []
-  noProxy: true
-{{< /prism >}}
 
 ## x509 certificate subject filtering
 
@@ -237,7 +165,7 @@ You can specify multiple filtering criteria. However, the order in which the cri
 
 Add an `grpc.auth.x509` section to your Clouddriver profile:
 
-{{< prism lang="yaml" line="7-13" >}}
+{{< prism lang="yaml" line="7-12" >}}
 spec:
   spinnakerConfig:
     profiles:
@@ -247,16 +175,7 @@ spec:
           grpc:
             auth:
               x509:
-				        #Note: enabled must be true for filters to be applied
-                enabled: true
+                enabled: true #Note: enabled must be true for filters to be applied
                 filters:
                   - UID=([a-z]){3}:[1-9]{3}:ksvc
-            server:
-              security:
-                enabled: true
-                clientAuth: REQUIRE
-                trustCertCollection: file:<path-to-ca.crt>
-                certificateChain: file:<path-to-clouddriver.crt>
-                privateKey: file:<path-to-clouddriver.key>
-               # privateKeyPassword: <private-key-password>
 {{< /prism >}}
