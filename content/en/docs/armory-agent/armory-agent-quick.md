@@ -252,10 +252,32 @@ roleRef:
   name: spin-cluster-role
 ```
 
-Create a configmap for the Agent config. Apply the following manifest to your spin-agent namespace:
+Create a configmap for the Agent config. Replace _[LoadBalancer Exposed Address]_ with the IP address cloudriver was exposed on earlier. Apply the following manifest to your spin-agent namespace:
 
 ```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubesvc-config
+  namespace: spin-agent
+data:
+  cm: |
+    kubernetes:
+      accounts:
+      - name: remote1 # Change this name for each remote cluster
+        serviceAccount: true
+        serviceAccountName: spin-sa
+        metrics: false
+        # /kubeconfigfiles/ is the path to the config files
+        # as mounted from the `kubeconfigs-secret` Kubernetes secret
+        #kubeconfigFile: /kubeconfigfiles/kubecfg-account01.yaml
 
+    clouddriver:
+      grpc: [LoadBalancer Exposed Address]:9091 # For Agent or Infrastructure mode, change this to your exposed lb address
+      insecure: true #Set this to true if TLS between spinnaker services is not enabled
+
+    server:
+      port: 8082
 ```
 
 The last task in this step is to apply the Agent deployment manifest in your spin-agent namespace: 
