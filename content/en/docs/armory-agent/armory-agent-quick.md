@@ -54,9 +54,6 @@ spec:
             plugins:
               Armory.Kubesvc:
                 enabled: true
-                extensions:
-                  armory.kubesvc:
-                    enabled: true
         # Plugin config
         kubesvc:
           cluster: redis
