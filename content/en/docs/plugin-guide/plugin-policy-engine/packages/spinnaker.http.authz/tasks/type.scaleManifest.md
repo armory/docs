@@ -46,14 +46,14 @@ description: "Policy controls whether or not a scaleManifest that is triggered f
 </details>
 
 ## Example Policy
-This policy prevents non-admin users from initiating a scaleManifest from the 'clusters' tab of an application.
+This policy prevents requires users to enter a reason when performing a scale from outside or a pipeline.
 ```rego
 package spinnaker.http.authz
 default message=""
 allow = message==""
-message = "Your role lacks permissions to scale applications outside of pipelines"{
+message = "You must provide a reason when scaling a manifest outside of a pipeline."{
       createsTaskOfType("scaleManifest")
-      input.user.isAdmin!=true
+      object.get(input.body.job[_],"reason",null)==null
 }
 
 createsTaskOfType(tasktype){
@@ -64,14 +64,14 @@ createsTaskOfType(tasktype){
 ```
 
 ## Example Policy
-This policy prevents requires users to enter a reason when performing a scale from outside or a pipeline.
+This policy prevents non-admin users from initiating a scaleManifest from the 'clusters' tab of an application.
 ```rego
 package spinnaker.http.authz
 default message=""
 allow = message==""
-message = "You must provide a reason when scaling a manifest outside of a pipeline."{
+message = "Your role lacks permissions to scale applications outside of pipelines"{
       createsTaskOfType("scaleManifest")
-      object.get(input.body.job[_],"reason",null)==null
+      input.user.isAdmin!=true
 }
 
 createsTaskOfType(tasktype){
