@@ -38,7 +38,7 @@ This step is performed in the cluster Spinnaker service is running. You will add
 Add this manifest to your Kustomize patches:
 
 ```yaml
-# The plugin version (see kubesvc-plugin below) must be comatible with the spinnaker version, check here: https://docs.armory.io/docs/armory-agent/armory-agent-quick/#compatibility-matrix
+# The plugin version (see kubesvc-plugin below) must be compatible with the spinnaker version, check here: https://docs.armory.io/docs/armory-agent/armory-agent-quick/#compatibility-matrix
 # Change "spinnaker" name below if your spinsvc is called something else
 apiVersion: spinnaker.armory.io/v1alpha2
 kind: SpinnakerService
