@@ -9,7 +9,7 @@ weight: 2
 
 ## Overview
 
-The Agent consists of a plugin to Spinnaker's Clouddriver service and a K8s deployment that connects to Clouddriver. You can review the architecture in the Armory Agent [overview]({{< ref "armory-agent" >}}).
+The Agent consists of a plugin to Spinnaker's Clouddriver service and a Kubernetes deployment that connects to Clouddriver. You can review the architecture in the Armory Agent [overview]({{< ref "armory-agent" >}}).
 
 ## {{% heading "prereq" %}}
 
@@ -29,7 +29,7 @@ Communication from the Agent to Clouddriver occurs over gRPC port 9091.
 
 ### Kubernetes permissions required by the Agent
 
-The Agent can use a kubeconfig file loaded as a K8s secret (This is only appropriate when the agent runs in a separate cluster from the target cluster), or as a service account in the cluster it resides in. Running Agent in the target cluster with a service account is the preferred model. 
+The Agent can use a kubeconfig file loaded as a Kubernetes secret (This is only appropriate when the agent runs in a separate cluster from the target cluster), or as a service account in the cluster it resides in. Running Agent in the target cluster with a service account is the preferred model. 
 
 ## Step 1: Agent Clouddriver Plugin Installation
 
