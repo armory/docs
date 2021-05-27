@@ -105,7 +105,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-  name: spin-agent-cloud-driver
+  name: spin-agent-clouddriver
 spec:
   ports: 
     - name: grpc
