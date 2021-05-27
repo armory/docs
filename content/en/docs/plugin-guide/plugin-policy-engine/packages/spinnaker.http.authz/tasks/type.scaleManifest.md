@@ -63,6 +63,24 @@ createsTaskOfType(tasktype){
 }
 ```
 
+## Example Policy
+This policy prevents requires users to enter a reason when performing a scale from outside or a pipeline.
+```rego
+package spinnaker.http.authz
+default message=""
+allow = message==""
+message = "You must provide a reason when scaling a manifest outside of a pipeline."{
+      createsTaskOfType("scaleManifest")
+      object.get(input.body.job[_],"reason",null)==null
+}
+
+createsTaskOfType(tasktype){
+    input.method="POST"
+    input.path=["tasks"]
+    input.body.job[_].type=tasktype
+}
+```
+
 ## Keys
 
 | Key                              | Type      | Description |
