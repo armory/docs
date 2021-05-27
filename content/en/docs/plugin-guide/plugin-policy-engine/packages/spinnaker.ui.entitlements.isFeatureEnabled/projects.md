@@ -38,20 +38,7 @@ description: "Can hide UI Elements from Spinnaker"
 </details>
 
 ## Example Policy
-Disables the 'configure projects' button of the spinnaker UI for non-admin users.
-```rego
-package spinnaker.ui.entitlements.isFeatureEnabled
-
-default allow=true
-allow=false{
-	count(input.path)==1
-    input.path[0]=="projects"
-    input.method=="GET"
-    input.user.isAdmin!=true
-}
-```
-## Example Policy
-Disables the 'configure application' and 'create application' buttons of the spinnaker UI for non-admin users unless they have a particular role.
+Disables the 'configure application' and 'create application' and 'create Project' buttons of the spinnaker UI for non-admin users unless they have a particular role.
 ```rego
     package spinnaker.ui.entitlements.isFeatureEnabled
     default message=""
