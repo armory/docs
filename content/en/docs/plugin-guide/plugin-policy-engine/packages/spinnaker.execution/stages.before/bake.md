@@ -404,9 +404,13 @@ More information about the back stage can be found at: https://docs.armory.io/do
 </details>
 
 ## Example Policy
-
+requires that baked images are of type hvm.
 ```rego
+package spinnaker.execution.stages.before.bake
 
+deny["all baked images must be of type hvm"]{
+	input.stage.context.vmType!="hvm"
+}
 ```
 
 ## Keys
@@ -452,46 +456,46 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 | Key                                     | Type      | Description |
 | --------------------------------------- | --------- | ----------- |
-| `input.stage.endTime`                   | ` `       |             |
-| `input.stage.id`                        | `string`  |             |
-| `input.stage.lastModified`              | ` `       |             |
-| `input.stage.name`                      | `string`  |             |
+| `input.stage.endTime`                   | ` `       | The time at which the stage finished executing. This will be blank since the stage has not yet completed.            |
+| `input.stage.id`                        | `string`  | The unique ID for the stage.            |
+| `input.stage.lastModified`              | ` `       | When the stage was last modified.            |
+| `input.stage.name`                      | `string`  | The name of the stage.            |
 | `input.stage.parentStageId`             | `string`  |             |
 | `input.stage.refId`                     | `string`  |             |
-| `input.stage.scheduledTime`             | ` `       |             |
-| `input.stage.startTime`                 | `number`  |             |
+| `input.stage.scheduledTime`             | `number`       |             |
+| `input.stage.startTime`                 | `number`  | The timestamp at which the stage started            |
 | `input.stage.startTimeExpiry`           | ` `       |             |
-| `input.stage.status`                    | `string`  |             |
+| `input.stage.status`                    | `string`  | The stages status, this will typically be 'running' when this policy is evaluated.            |
 | `input.stage.syntheticStageOwner`       | `string`  |             |
-| `input.stage.tasks[].endTime`           | ` `       |             |
+| `input.stage.tasks[].endTime`           | `number`  | The time at which the task finished executing.            |
 | `input.stage.tasks[].id`                | `string`  |             |
-| `input.stage.tasks[].implementingClass` | `string`  |             |
+| `input.stage.tasks[].implementingClass` | `string`  | The name of the spinnaker class that implements this task.            |
 | `input.stage.tasks[].loopEnd`           | `boolean` |             |
 | `input.stage.tasks[].loopStart`         | `boolean` |             |
-| `input.stage.tasks[].name`              | `string`  |             |
+| `input.stage.tasks[].name`              | `string`  | The tasks name            |
 | `input.stage.tasks[].stageEnd`          | `boolean` |             |
 | `input.stage.tasks[].stageStart`        | `boolean` |             |
-| `input.stage.tasks[].startTime`         | `number`  |             |
-| `input.stage.tasks[].startTime`         | ` `       |             |
-| `input.stage.tasks[].status`            | `string`  |             |
-| `input.stage.type`                      | `string`  |             |
+| `input.stage.tasks[].startTime`         | `number`  | The time at which the task started exeucting.            |
+| `input.stage.tasks[].status`            | `string`  | The status of the task.            |
+| `input.stage.type`                      | `string`  | The type of the stage, always 'bake'            |
 
 ### input.stage.context
 
 | Key                                     | Type      | Description |
 | --------------------------------------- | --------- | ----------- |
-| `input.stage.context.amiSuffix`         | `string`  |             |
-| `input.stage.context.baseLabel`         | `string`  |             |
-| `input.stage.context.baseOs`            | `string`  |             |
-| `input.stage.context.cloudProviderType` | `string`  |             |
+| `input.stage.context.amiSuffix`         | `string`  | A suffix to apply to the ami. String of date in format YYYYMMDDHHmm, default is calculated from timestamp,            |
+| `input.stage.context.baseLabel`         | `string`  | a base label to use for the AMI.            |
+| `input.stage.context.baseOs`            | `string`  | What operating system should be used to find a baseAMI to base the AMI off.            |
+| `input.stage.context.baseAmi`           | `string`  | If Base AMI is specified, this will be used instead of the Base OS provided            |
+| `input.stage.context.cloudProviderType` | `string`  | The type of the cloud provider for which an image will be baked.            |
 | `input.stage.context.name`              | `string`  |             |
-| `input.stage.context.package`           | `string`  |             |
-| `input.stage.context.rebake`            | `boolean` |             |
-| `input.stage.context.region`            | `string`  |             |
-| `input.stage.context.storeType`         | `string`  |             |
-| `input.stage.context.type`              | `string`  |             |
-| `input.stage.context.user`              | `string`  |             |
-| `input.stage.context.vmType`            | `string`  |             |
+| `input.stage.context.package`           | `string`  | The package that should be installed in the new AMI            |
+| `input.stage.context.rebake`            | `boolean` | Rebake image without regard to the status of any existing bake             |
+| `input.stage.context.region`            | `string`  | The region in which to perform the back            |
+| `input.stage.context.storeType`         | `string`  | What type of storage the basked image will use.            |
+| `input.stage.context.type`              | `string`  | always `bake`            |
+| `input.stage.context.user`              | `string`  | The ID of the user that started the bake            |
+| `input.stage.context.vmType`            | `string`  | `'HVM' of 'PV'` the type of vm for which the image should be baked.            |
 
 
 
