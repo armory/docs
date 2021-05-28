@@ -358,7 +358,7 @@ spec:
       #     secretName: kubeconfigs-secret
 {{< /prism >}}
 
-## Confirm Success
+## Confirm success
 
 Create a pipeline with a `Deploy manifest` stage. You should see your target cluster available in the `Accounts` list. Deploy a static manifest.
 
