@@ -378,7 +378,19 @@ More information on the clone server group stage can be found at: https://spinna
 ## Example Policy
 
 ```rego
+package spinnaker.execution.stages.before.cloneServerGroup
 
+productionAccounts :=["prod1","prod2"]
+
+deny["ASGs running in production must have a minimum of 2 instances to avoid having a single point of failure."]{
+	input.stage.context.credentials==productionAccounts[_]
+    input.stage.context.useSourceCapacity==false
+    object.get(input.stage.context.capacity,"min",0)<2
+}{
+	input.stage.context.credentials==productionAccounts[_]
+    input.stage.context.useSourceCapacity==false
+    object.get(input.stage.context,"capacity",null)==null
+}
 ```
 
 ## Keys
