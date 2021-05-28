@@ -209,12 +209,18 @@ description: "A policy that is run before executing each task in an Undo Rollout
 ## Example Policy
 
 ```rego
-package spinnaker.execution.stages.before.undoRolloutManifest
+package spinnaker.http.authz
+default message=""
+allow = message==""
 
-deny ["A reason must be provided when rolling back a deploy."]{
-	count(input.stage.context.reason)==0
-}{
-    object.get(input.stage.context,"reason",null)==null
+message = "A reason must be provided when rolling back a deploy."{
+      createsTaskOfType("undoRolloutManifest")
+      count(input.body.job[_].reason)==0
+}
+createsTaskOfType(tasktype){
+    input.method="POST"
+    input.path=["tasks"]
+    input.body.job[_].type=tasktype
 }
 ```
 
