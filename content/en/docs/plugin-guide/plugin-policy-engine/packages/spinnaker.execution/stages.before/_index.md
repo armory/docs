@@ -7,4 +7,4 @@ Note: all packages has a corresponding package name that replaces 'before' with 
 
 When writing policies against sub-packages of spinnaker.execution.stages.before, the most interesting data is in the input.stage.context object. The contents of this object corresponds to the JSON you see if you open that stage in the spinnaker UI and click the 'Edit stage as JSON' button.
 
-The contents of custom stages are not covered here, but the fields unique to their context can be identified through the 'Edit as JSON' button in the spinnaker UI.
+The contents of custom stages are not covered here, but the fields unique to their context can be identified through the 'Edit stage as JSON' button in the spinnaker UI.
