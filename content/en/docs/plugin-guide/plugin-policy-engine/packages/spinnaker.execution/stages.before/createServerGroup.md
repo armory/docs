@@ -409,9 +409,16 @@ description: "A policy that is run before executing each task in a Create Server
 </details>
 
 ## Example Policy
-
+Prevent server groups from being created in production with fewer than 1 instance.
 ```rego
+package spinnaker.execution.stages.before.createServerGroup
 
+productionAccounts :=["prod1","prod2"]
+
+deny["ASGs running in production must have a minimum of 2 instances to avoid having a single point of failure."]{
+	input.stage.context.account==productionAccounts[_]
+    object.get(input.stage.context.capacity,"min",0)<2
+}
 ```
 
 ## Keys
