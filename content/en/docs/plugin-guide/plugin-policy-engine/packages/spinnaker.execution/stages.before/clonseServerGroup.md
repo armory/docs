@@ -1,13 +1,10 @@
 ---
 title: "spinnaker.execution.stages.before.cloneServerGroup"
 linktitle: "cloneServerGroup"
-description: "fill me with delicious data, Stephen!"
+description: "A policy that is run before executing each task in a clone server group stage."
 ---
-
+More information on the clone server group stage can be found at: https://spinnaker.io/reference/pipeline/stages/#clone-server-group
 ## Example Payload
-
-<details><summary>Click to expand</summary>
-
 ```json
 {
   "input": {
@@ -459,18 +456,18 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.capacity.desired`                         | `number`  | If useSourceCapacity==false, the desired number of instances to run in the group.            |
 | `input.stage.context.capacity.max`                             | `number`  | If useSourceCapacity==false, the maximum number of instances to run in the group.            |
 | `input.stage.context.capacity.min`                             | `number`  | If useSourceCapacity==false, the minimum number of instances to run in the group.            |
-| `input.stage.context.cloudProvider`                       | `string`  |             |
-| `input.stage.context.cloudProviderType`                   | `string`  |             |
+| `input.stage.context.cloudProvider`                       | `string`  | The name of the cloud provider that will execute the stage.            |
+| `input.stage.context.cloudProviderType`                   | `string`  | The type of the cloud provider that will execute the stage.            |
 | `input.stage.context.consecutiveNotFound`                 | `number`  |             |
 | `input.stage.context.copySourceCustomBlockDeviceMappings` | `boolean` |             |
-| `input.stage.context.credentials`                         | `string`  |             |
+| `input.stage.context.credentials`                         | `string`  | The account/credential set that will be used to execute this stage.            |
 | `input.stage.context.freeFormDetails`                     | `string`  |             |
-| `input.stage.context.lastException`                       | `string`  |             |
-| `input.stage.context.region`                              | `string`  |             |
+| `input.stage.context.lastException`                       | `string`  | The last exception that occurred when executing this stage.            |
+| `input.stage.context.region`                              | `string`  | The region in which the new server group will be deployed.            |
 | `input.stage.context.stack`                               | `string`  |             |
-| `input.stage.context.target`                              | `string`  |             |
-| `input.stage.context.targetCluster`                       | `string`  |             |
-| `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` |             |
+| `input.stage.context.target`                              | `string`  | Which server group should be selected when this stage starts.            |
+| `input.stage.context.targetCluster`                       | `string`  | The cluster that contains the target.            |
+| `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` | Spinnaker will use the block device mappings from the selected AMI when deploying a new server group.            |
 | `input.stage.context.useSourceCapacity`                   | `boolean` | Spinnaker will use the current capacity of the existing server group when deploying a new server group. This setting is intended to support a server group with auto-scaling enabled, where the bounds and desired capacity are controlled by an external process. In the event that there is no existing server group, the deploy will fail.            |
 
 ### input.user
