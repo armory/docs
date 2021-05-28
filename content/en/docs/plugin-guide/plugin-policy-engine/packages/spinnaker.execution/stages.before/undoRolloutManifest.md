@@ -209,7 +209,13 @@ description: "A policy that is run before executing each task in an Undo Rollout
 ## Example Policy
 
 ```rego
+package spinnaker.execution.stages.before.undoRolloutManifest
 
+deny ["A reason must be provided when rolling back a deploy."]{
+	count(input.stage.context.reason)==0
+}{
+    object.get(input.stage.context,"reason",null)==null
+}
 ```
 
 ## Keys
@@ -259,7 +265,7 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 | Key                                                              | Type      | Description |
 | ---------------------------------------------------------------- | --------- | ----------- |
-| `input.stage.context.account`                                    | `string`  |             |
+| `input.stage.context.account`                                    | `string`  | The account containing            |
 | `input.stage.context.cloudProvider`                              | `string`  |             |
 | `input.stage.context.kato.last.task.id.id`                       | `string`  |             |
 | `input.stage.context.kato.result.expected`                       | `boolean` |             |
