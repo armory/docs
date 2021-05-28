@@ -5,44 +5,46 @@ description: >
   Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
 weight: 30
 ---
-![Proprietary](/images/proprietary.svg) This feature requires an Armory licensed entitlement.
+![Proprietary](/images/proprietary.svg)
 
 ## Overview
 
-The Agent consists of a plugin to Spinnaker's Clouddriver service and a Kubernetes deployment that connects to Clouddriver. You can review the architecture in the Armory Agent [overview]({{< ref "armory-agent" >}}).
+The Agent consists of a service deployed as a Kubernetes `Deployment` and a plugin to the Clouddriver service. You can review the architecture in the Armory Agent [overview]({{< ref "armory-agent#deployment-topologieshug" >}}).
+
+Deploying the Agent consists of the following:
+
+1. [Install the Clouddriver plugin](#install-the-clouddriver-plugin). You do this in the cluster where you are running Armory Enterprise. You add the plugin and expose it as type `LoadBalancer` on gRPC port `9091`.
+1. [Install the Agent](#install-the-agent) in the deployment target cluster. Configure it to communicate with Clouddriver. Configure Agent permissions with a Kubernetes `ServiceAccount`.
+
+>This installation does not include [mTLS configuration]({{< ref "agent-mtls" >}}). The Agent uses insecure config for connecting to Clouddriver.
 
 ## {{% heading "prereq" %}}
 
-* This guide assumes you're using the Armory Operator to install Spinnaker, with the Kustomize method from the [spinnaker-kustomize-patch repo](https://github.com/armory/spinnaker-kustomize-patches).
-
-* You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
+* You deployed Armory Enterprise using the [Armory Operator and Kustomize patches]({{< ref "op-config-kustomize" >}}).
 * You have configured Clouddriver to use MySQL or PostgreSQL. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions.
-* You have an additional cluster to serve as your target deployment cluster.
+* You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
+* If you are running multiple Clouddriver instances, you have a running Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
+* You have an additional cluster to serve as your deployment target cluster.
+
+### Networking requirements
+
+Communication from the Agent to Clouddriver occurs over gRPC port 9091. Communication between the Agent and Clouddriver must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between the Agent and Clouddriver.  
 
 ### Compatibility matrix
 
 {{< include "agent/agent-compat-matrix.md" >}}
 
-### Networking requirements
+## Install the Clouddriver plugin
 
-Communication from the Agent to Clouddriver occurs over gRPC port 9091. Communication between the Agent and Clouddriver must be http/2. http/1.1 is not compatible and causes communication issues between the Agent and Clouddrive.
+### Create the plugin manifest
 
+Add the following manifest to your Kustomize patches directory. Then include the file under the `patchesStrategicMerge` section of your `kustomization` file.
 
+* Change the value for `name` if your Armory Enterprise service is called something other than "spinnaker".
+* Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix](#compatibility-matrix).
 
-### Kubernetes permissions required by the Agent
-
-The Agent can use a kubeconfig file loaded as a Kubernetes secret when deploying to a remote cluster, or a service account when deploying to the cluster it resides in.
-
-## Step 1: Agent Clouddriver Plugin Installation
-
-This step is performed in the cluster Spinnaker service is running. You will add the Clouddriver plugin and expose it as type `LoadBalancer` on gRPC port `9091`. In step 2, the Agent will be configured to communicate with Clouddriver. _Take note to ensure the plugin version is compatible with the Spinnaker version. See the comments in the manifest_.
-
-Add this manifest to your Kustomize patches directory and include it under the patchesStrategicMerge section of your kustomization file:
-
-```yaml
-# The plugin version (see kubesvc-plugin below) must be compatible with the spinnaker version, check here: https://docs.armory.io/docs/armory-agent/armory-agent-quick/#compatibility-matrix
-# Change "spinnaker" name below if your spinsvc is called something else
-apiVersion: spinnaker.armory.io/v1alpha2
+{{< prism lang="yaml" line="4, 39" >}}
+apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -80,7 +82,7 @@ spec:
                 spec:
                   initContainers:
                   - name: kubesvc-plugin
-                    image: docker.io/armory/kubesvc-plugin:0.8.9 # <-- Version number must be compatible with spinnaker version
+                    image: docker.io/armory/kubesvc-plugin:<version> # must be compatible with your Armory Enterprise version
                     volumeMounts:
                       - mountPath: /opt/plugin/target
                         name: kubesvc-plugin-vol
@@ -92,16 +94,17 @@ spec:
                   volumes:
                   - name: kubesvc-plugin-vol
                     emptyDir: {}
+{{< /prism >}}
 
-```
+### Expose Clouddriver as a LoadBalancer
 
-To expose Clouddriver as Kubernetes type LoadBalancer, add this manifest to your kustomize directory structure and include it in your kustomization resources section:
+To expose Clouddriver as a Kubernetes-type LoadBalancer, add the following manifest to your Kustomize directory. Then include the file in the `resources` section of your `kustomization` file.
 
-_(note: Various cloud providers may require additional annotations for LoadBalancer, consult your cloud provider's documentation)_
+>Various cloud providers may require additional annotations for LoadBalancer. Consult your cloud provider's documentation.
 
-```yaml
-# This loadbalancer service exposes the gRPC port on cloud-driver for the remote agents to connect
-# Look for the LB svc IP address that is exposed on 9091
+{{< prism lang="yaml" >}}
+# This LoadBalancer service exposes the gRPC port on Clouddriver for the remote Agents to connect to
+# Look for the LoadBalancer service IP address that is exposed on 9091
 apiVersion: v1
 kind: Service
 metadata:
@@ -117,21 +120,15 @@ spec:
     app: spin
     cluster: spin-clouddriver
   type: LoadBalancer
-```
+{{< /prism >}}
 
-Once both manifests are configured, apply the update with kustomize. Use ```kubectl get svc spin-agent-cloud-driver -n spinnaker``` to make note of the LB IP external address for use later.
+### Apply the manifests
 
-You can also use netcat to confirm Clouddriver is listening on port 9091:  ```nc -zv [LB address] 9091```. Perform this check from a node in your Spinnaker cluster and your target cluster.
+After you have configured both manifests, apply the updates.
 
-## Step 2: Agent Installation
+### Get the LoadBalancer IP address
 
-This step is performed in the deployment target cluster.
-
-This installation is intended as a quickstart and does not include mTLS configuration. Insecure config will be used for connecting to Clouddriver. The Agent will be installed in the deployment target cluster and configured with a K8s service account.
-
-Create a namespace for the Agent to run in: ```kubectl create ns spin-agent```
-
-Create a service account, clusterrole, and clusterrolebinding for the Agent. Apply the following manifest in your spin-agent namespace:
+Use `kubectl get svc spin-agent-cloud-driver -n spinnaker` to make note of the LoadBalancer IP external address. You need this address when you configure the Agent.
 
 ### Confirm Clouddriver is listening
 
@@ -165,25 +162,6 @@ rules:
   - get
   - list
   - update
-  - patch
-  - delete
-- apiGroups:
-  - ""
-  resources:
-  - services
-  - services/finalizers
-  - events
-  - configmaps
-  - secrets
-  - namespaces
-  - ingresses
-  - jobs
-  verbs:
-  - create
-  - get
-  - list
-  - update
-  - watch
   - patch
   - delete
 - apiGroups:
@@ -282,11 +260,13 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: spin-cluster-role
-```
+{{< /prism >}}
 
-Create a configmap for the Agent config. Replace _[LoadBalancer Exposed Address]_ with the IP address cloudriver was exposed on earlier. Apply the following manifest to your spin-agent namespace:
+### Configure Agent for the Clouddriver LoadBalancer
 
-```yaml
+Configure the Agent using a `configmap`. In the following manifest, replace **[LoadBalancer Exposed Address]** with the IP address you obtained in the [Get the LoadBalancer IP address section](#get-the-loadbalancer-ip-address).
+
+{{< prism lang="yaml" line="18" >}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -303,18 +283,20 @@ data:
         # /kubeconfigfiles/ is the path to the config files
         # as mounted from the `kubeconfigs-secret` Kubernetes secret
         #kubeconfigFile: /kubeconfigfiles/kubecfg-account01.yaml
-
     clouddriver:
       grpc: [LoadBalancer Exposed Address]:9091 # For Agent or Infrastructure mode, change this to your exposed lb address
       insecure: true #Set this to true if TLS between spinnaker services is not enabled
-
     server:
       port: 8082
-```
+{{< /prism >}}
 
-The last task in this step is to apply the Agent deployment manifest in your spin-agent namespace:
+Apply the manifest to your `spin-agent` namespace.
 
-```yaml
+### Deploy the Agent
+
+Apply the following Agent deployment manifest in your `spin-agent` namespace:
+
+{{< prism lang="yaml" >}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -374,8 +356,15 @@ spec:
       #   secret:
       #     defaultMode: 420
       #     secretName: kubeconfigs-secret
-```
+{{< /prism >}}
 
 ## Confirm Success
 
-Create a pipeline with a ```Deploy manifest``` stage. You should see your target cluster available in the ```Accounts``` list. Deploy a static manifest.
+Create a pipeline with a `Deploy manifest` stage. You should see your target cluster available in the `Accounts` list. Deploy a static manifest.
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "agent-troubleshooting.md" >}} page if you run into issues.
+* Learn how to {{< linkWithTitle "agent-monitoring.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
+* {{< linkWithTitle "agent-mtls.md" >}}
+* Read about {{< linkWithTitle "agent-permissions.md" >}}

@@ -69,7 +69,7 @@ rules:
 {{% /tab %}}
 {{< /tabs >}}
 
-See the Quickstart's _Configure permissions_[section]({{< ref "armory-agent-quick#configure-permissions" >}}) for a complete example that uses `ClusterRole`, `ClusterRoleBinding`, and `ServiceAccount`.
+See the Quickstart's _Configure permissions_ [section]({{< ref "armory-agent-quick#configure-permissions" >}}) for a complete example that uses `ClusterRole`, `ClusterRoleBinding`, and `ServiceAccount`.
 
 See the Kubernetes [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) guide for details on configuring `ClusterRole` and `Role` authorization.
 
