@@ -452,7 +452,7 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | Key                                                       | Type      | Description |
 | --------------------------------------------------------- | --------- | ----------- |
 | `input.stage.context.application` | `string`  | The name of the Spinnaker application for this pipeline. |
-| `input.stage.context.attempt`                             | `number`  |             |
+| `input.stage.context.attempt`                             | `number`  | How many times has this stage attempted to execute.            |
 | `input.stage.context.capacity.desired`                         | `number`  | If useSourceCapacity==false, the desired number of instances to run in the group.            |
 | `input.stage.context.capacity.max`                             | `number`  | If useSourceCapacity==false, the maximum number of instances to run in the group.            |
 | `input.stage.context.capacity.min`                             | `number`  | If useSourceCapacity==false, the minimum number of instances to run in the group.            |
