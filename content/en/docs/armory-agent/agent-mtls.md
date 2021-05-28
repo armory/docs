@@ -104,12 +104,6 @@ kubectl create secret generic <agent-secret-name> \
 
 Modify the Agent's deployment configuration in `deployment.yaml` to mount the certs.
 
-If you have a custom CA, you need to mount the cert into the known trusted cert location:  `/etc/ssl/cert.pem`. Golang apps in Alpine use `/etc/ssl/cert.pem` as the source of a trusted CA.
-
-  1. Obtain a copy of the `cert.pem` file from a running Agent.
-  2. Append your custom CA onto the copied `cert.pem`  (for example `cat ca.crt >> cert.pem`)
-  3. Mount `cert.pem` to Agent deployment
-
 >The paths that files are mounted to in the `deployment.yaml` file should always match the corresponding location in the `kubesvc.yaml` configuration file. For example, the `mountPath` of the CA cert in the `deployment.yaml` file must match the `clouddriver.tls.clientCertFile` location in `kubesvc.yaml`.
 
 {{< prism lang="yaml" line="5-19" >}}
@@ -134,6 +128,10 @@ spec:
           secretName: <CA-secret-name>
 {{< /prism >}}
 
+If you use a custom CA, you can install it on the Agent pod. The default location on that image, which uses the Alpine base, is `/etc/ssl/cert.pem`, so you can either append your CA cert to the trust store, which is `/etc/ssl/cert.pem`, or you can mount the file anywhere and configure the
+`clouddriver.tls.cacertFile` property in your YAML to point to that location.
+
+See the [Agent Options]({{< ref "agent-options#options" >}}) for configuration details.
 
 ### Configure the service
 
