@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.deployment.tasks.before.undoRolloutManifest"
 linkTitle: "undoRolloutManifest"
-description: "WHO AM I?"
+description: "Policy checks that run immediate before a task rolls back a spinnaker manifest"
 ---
 
 ## Example Payload
@@ -28,7 +28,11 @@ description: "WHO AM I?"
 ## Example Policy
 
 ```rego
+package spinnaker.deployment.tasks.before.undoRolloutManifest
 
+deny ["You may only rollback 1 revision at a time."]{
+	input.deploy.numRevisionsBack!=1
+}
 ```
 
 ## Keys
@@ -39,5 +43,5 @@ description: "WHO AM I?"
 | `input.deploy.credentials`      | `string` | The credentials to use to access the account.                       |
 | `input.deploy.location`         | `string` | The name of the namespace from which the manifest is being deleted. |
 | `input.deploy.manifestName`     | `string` | The name of the manifest being deleted.                             |
-| `input.deploy.numRevisionsBack` | `number` |                                                                     |
-| `input.deploy.revision`         | ` `      |                                                                     |
+| `input.deploy.numRevisionsBack` | `number` | How many revisions of the manifest should be rolled back.                                                                    |
+| `input.deploy.revision`         | ` `      | What revision should be rolled back to.                                                                    |
