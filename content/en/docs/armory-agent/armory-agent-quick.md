@@ -261,7 +261,7 @@ metadata:
   name: kubesvc-config
   namespace: spin-agent
 data:
-  cm: |
+  kubesvc.yaml: |
     kubernetes:
       accounts:
       - name: remote1 # Change this name for each remote cluster
