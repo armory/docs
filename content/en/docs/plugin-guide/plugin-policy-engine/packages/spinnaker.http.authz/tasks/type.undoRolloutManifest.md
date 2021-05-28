@@ -1,7 +1,7 @@
 ---
 title: "Task Type: undoRolloutManifest"
 linktitle: "undoRolloutManifest"
-description: "fill me with delicious data, Stephen!"
+description: "Policy controls whether or not a rollback that is triggered from outside a spinnaker pipeline (e.g. from the 'Clusters' tab of an application) can run."
 ---
 
 - **Path:** tasks
@@ -10,7 +10,6 @@ description: "fill me with delicious data, Stephen!"
 
 ## Example Payload
 
-<details><summary>Click to expand</summary>
 
 ```json
 {
@@ -55,17 +54,17 @@ description: "fill me with delicious data, Stephen!"
 
 | Key                                          | Type      | Description                                              |
 |----------------------------------------------|-----------|----------------------------------------------------------|
-| `input.body.application` | `string` |
-| `input.body.description` | `string` |
-| `input.body.job[].account` | `string` |
-| `input.body.job[].cloudProvider` | `string` |
-| `input.body.job[].location` | `string` |
-| `input.body.job[].manifestName` | `string` |
-| `input.body.job[].reason` | `string` |
-| `input.body.job[].revision` | `string` |
-| `input.body.job[].type` | `string` |
-| `input.body.job[].user` | `string` |
-| `input.method` | `string` |
-| `input.path[]` | `string` |
+| `input.body.application` | `string` | The name of the application that is being rolled back.
+| `input.body.description` | `string` | Always 'Undo rollout of manifest'
+| `input.body.job[].account` | `string` | The account in which the deployment is being rolled back.
+| `input.body.job[].cloudProvider` | `string` | The cloud provider of the account in which the rollback will occur.
+| `input.body.job[].location` | `string` | The namespace of the manifest being rolled back.
+| `input.body.job[].manifestName` | `string` | The type and name of hte manifest being rolled back.
+| `input.body.job[].reason` | `string` | The reason provided by the user for initiating the rollback.
+| `input.body.job[].revision` | `string` | The revision to which the manifest should be rolled back.
+| `input.body.job[].type` | `string` | always 'undoRolloutManifest'
+| `input.body.job[].user` | `string` |the ID of the user who initiated the rollback.
+| `input.method` | `string` | POST
+| `input.path[]` | `string` | `["tasks"]`
 | `input.user.isAdmin` | `boolean` |
 | `input.user.username` | `string` |
