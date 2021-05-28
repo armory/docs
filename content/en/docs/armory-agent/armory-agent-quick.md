@@ -3,7 +3,7 @@ title: "Armory Agent for Kubernetes Quickstart Installation"
 linkTitle: "Quickstart"
 description: >
   Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
-weight: 2
+weight: 30
 ---
 ![Proprietary](/images/proprietary.svg) This feature requires an Armory licensed entitlement.
 
@@ -108,7 +108,7 @@ metadata:
   labels:
   name: spin-agent-clouddriver
 spec:
-  ports: 
+  ports:
     - name: grpc
       port: 9091
       protocol: TCP
@@ -127,13 +127,28 @@ You can also use netcat to confirm Clouddriver is listening on port 9091:  ```nc
 
 This step is performed in the deployment target cluster.
 
-This installation is intended as a quickstart and does not include mTLS configuration. Insecure config will be used for connecting to Clouddriver. The Agent will be installed in the deployment target cluster and configured with a K8s service account. 
+This installation is intended as a quickstart and does not include mTLS configuration. Insecure config will be used for connecting to Clouddriver. The Agent will be installed in the deployment target cluster and configured with a K8s service account.
 
 Create a namespace for the Agent to run in: ```kubectl create ns spin-agent```
 
 Create a service account, clusterrole, and clusterrolebinding for the Agent. Apply the following manifest in your spin-agent namespace:
 
-```yaml
+### Confirm Clouddriver is listening
+
+Use `netcat` to confirm Clouddriver is listening on port 9091 by executing `nc -zv [LB address] 9091`. Perform this check from a node in your
+Armory Enterprise cluster and one in your target cluster.
+
+## Install the Agent
+
+### Create a namespace
+
+In the deployment target cluster, execute `kubectl create ns spin-agent` to create a namespace for the Agent.
+
+### Configure permissions
+
+Create a `ClusterRole`, `ServiceAccount`, and `ClusterRoleBinding` for the Agent by applying the following manifest in your `spin-agent` namespace:
+
+{{< prism lang="yaml" line="2, 98, 103" >}}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -149,9 +164,26 @@ rules:
   verbs:
   - get
   - list
-  - watch
-  - create
   - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - services
+  - services/finalizers
+  - events
+  - configmaps
+  - secrets
+  - namespaces
+  - ingresses
+  - jobs
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
   - patch
   - delete
 - apiGroups:
@@ -280,7 +312,7 @@ data:
       port: 8082
 ```
 
-The last task in this step is to apply the Agent deployment manifest in your spin-agent namespace: 
+The last task in this step is to apply the Agent deployment manifest in your spin-agent namespace:
 
 ```yaml
 apiVersion: apps/v1

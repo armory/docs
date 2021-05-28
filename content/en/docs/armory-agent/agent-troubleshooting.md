@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot the Armory Agent Service and Plugin
 linkTitle: Troubleshoot
-weight: 6
+weight: 80
 description: >
   Successful installation and startup messages, common errors, tips, and gRPC endpoint testing.
 ---
@@ -12,7 +12,7 @@ Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is 
 
 ## Agent plugin messages
 
-After a successful plugin installation, `spin-clouddriver-grpc` (or `spin-clouddriver-ha-grpc`) service should be up:
+After a successful plugin installation, the `spin-clouddriver-grpc` (or `spin-clouddriver-ha-grpc`) service should be running:
 
 ```bash
 $ kubectl get service spin-clouddriver-grpc

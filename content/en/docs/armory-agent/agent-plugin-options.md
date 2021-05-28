@@ -1,7 +1,7 @@
 ---
 title: Plugin Configuration Options
 linkTitle: Plugin Options
-weight: 4
+weight: 60
 description: >
   This guide contains a detailed list of Armory Agent plugin configuration options for Clouddriver.
 ---
@@ -20,7 +20,9 @@ description: >
 | `kubesvc.runtime.defaults.onlySpinnakerManaged` | boolean | false | Same meaning as V2 provider. Should Spinnaker cache manifests that are not deployed by Spinnaker? |
 | `kubesvc.runtime.defaults.customResources[].kubernetesKind`<br>`kubesvc.runtime.defaults.customResources[].spinnakerKind`<br>`kubesvc.runtime.defaults.customResources[].deployPriority`<br>`kubesvc.runtime.defaults.customResources[].versioned`<br>`kubesvc.runtime.defaults.customResources[].namespaced` | string<br>string<br>number as string (“100”)<br>boolean<br>boolean | none<br>none<br>“100”<br>false<br>false | Same meaning as V2 provider. Customize behavior of Spinnaker for an unknown (to Spinnaker) resource.<br><br>- `kubernetesKind` in the format `<kind>.<api group>`<br>- `spinnakerKind` is one of the Spinnaker kinds<br>- `deployPriority` will determine in which order Spinnaker will deploy a resource if multiple manifests are to be deployed in an operation.<br>- `versioned` should Spinnaker version new resource or just update them?<br>- `namespaced` is barely used with kubesvc. TODO: remove |
 | `kubesvc.runtime.accounts[string].onlySpinnakerManaged`<br>`kubesvc.runtime.accounts[string].customResources[]…`  |                                                                    |                                         | Same as above but per account. This takes priority over default runtime settings. Default values are used if not populated for the account.<br><br>Format is a map (account name → props), e.g.<br>kubesvc.runtime.accounts:<br>   prod:<br>     onlySpinnakerManaged: true |
-| `kubesvc.grpc.server.address`| string| `*` |Address to bind the gRPC server to|
+| `kubesvc.grpc.auth.x509.enabled` | boolean | false | Enable x509 subject filtering |
+| `kubesvc.grpc.auth.x509.filters` | list(string) | `[]` | x509 subject line filter; see [x509 Certificate Subject Filtering]({{< ref "agent-mtls#x509-certificate-subject-filtering" >}}) |
+| `kubesvc.grpc.server.address`| string| `*` | Address to bind the gRPC server to|
 | `kubesvc.grpc.server.port`| int | `9091` | Port to bind the gRPC server to |
 | `kubesvc.grpc.server.healthServiceEnabled`| boolean | `true` | Enable gRPC healthcheck service |
 | `kubesvc.grpc.server.maxInboundMessageSize`| data size | `4MB` | Maximum size of a gRPC message. It should be at least as big as the biggest Kubernetes object manifest you can expect. |
