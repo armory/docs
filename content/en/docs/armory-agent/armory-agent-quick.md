@@ -3,7 +3,7 @@ title: "Armory Agent for Kubernetes Quickstart Installation"
 linkTitle: "Quickstart"
 description: >
   Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
-weight: 2
+weight: 30
 ---
 ![Proprietary](/images/proprietary.svg)
 
@@ -228,5 +228,6 @@ AGENT_VERSION={{<param kubesvc-version>}} && curl -s https://armory.jfrog.io/art
 
 ## {{% heading "nextSteps" %}}
 
+* {{< linkWithTitle "agent-mtls.md" >}}
 * {{< linkWithTitle "agent-troubleshooting.md" >}} page if you run into issues.
 * {{< linkWithTitle "agent-monitoring.md" >}} page for how to monitor agents running on an Armory platform. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
