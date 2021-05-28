@@ -232,11 +232,9 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.pipeline.authentication.allowedAccounts.[]` | `string`  |                                                                                                                                                                                                                                                            |
 | `input.pipeline.authentication.user`               | `string`  | The Spinnaker user initiating the change.                                                                                                                                                                                                                  |
 | `input.pipeline.buildTime`                         | `number`  |                                                                                                                                                                                                                                                            |
-| `input.pipeline.canceled`                          | `boolean` |                                                                                                                                                                                                                                                            |
-| `input.pipeline.canceledBy`                        | ``        |                                                                                                                                                                                                                                                            |
-| `input.pipeline.cancellationReason`                | ``        |                                                                                                                                                                                                                                                            |
+
 | `input.pipeline.description`                       | `string`  | Description of the pipeline defined in the UI                                                                                                                                                                                                              |
-| `input.pipeline.endTime`                           | ``        |                                                                                                                                                                                                                                                            |
+
 | `input.pipeline.id`                                | `string`  | The unique ID of the pipeline                                                                                                                                                                                                                              |
 | `input.pipeline.keepWaitingPipelines`              | `boolean` | If concurrent pipeline execution is disabled, then the pipelines that are in the waiting queue will get canceled when the next execution starts unless this is true.                                                                                       |
 | `input.pipeline.limitConcurrent`                   | `boolean` | True if only 1 concurrent execution of this pipeline be allowed.                                                                                                                                                                                           |
@@ -250,9 +248,8 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.pipeline.stages[]`                          | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
 | `input.pipeline.startTime` | `number`  | Timestamp from when the pipeline was started. |
 | `input.pipeline.startTimeExpiry`                   | ``        |                                                                                                                                                                                                                                                            |
-| `input.pipeline.status`                            | `string`  |                                                                                                                                                                                                                                                            |
+
 | `input.pipeline.templateVariables`                 | ``        |                                                                                                                                                                                                                                                            |
-| `input.pipeline.type`                              | `string`  |                                                                                                                                                                                                                                                            |
 
 ### input.pipeline.trigger
 
@@ -262,8 +259,8 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 | Key                                                               | Type      | Description |
 | ----------------------------------------------------------------- | --------- | ----------- |
-| `input.stage.context.account`                                     | `string`  |             |
-| `input.stage.context.cloudProvider`                               | `string`  |             |
+| `input.stage.context.account`                                     | `string`  | The name of the account containing the manifest that will be scaled.            |
+| `input.stage.context.cloudProvider`                               | `string`  | The cloud provider of the account            |
 | `input.stage.context.kato.last.task.id.id`                        | `string`  |             |
 | `input.stage.context.kato.result.expected`                        | `boolean` |             |
 | `input.stage.context.kato.task.firstNotFoundRetry`                | `number`  |             |
@@ -276,29 +273,27 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.kato.tasks.[].status.completed`              | `boolean` |             |
 | `input.stage.context.kato.tasks.[].status.failed`                 | `boolean` |             |
 | `input.stage.context.kato.tasks.[].status.retryable`              | `boolean` |             |
-| `input.stage.context.location`                                    | `string`  |             |
-| `input.stage.context.manifest.account.name`                       | `string`  |             |
-| `input.stage.context.manifest.location`                           | `string`  |             |
-| `input.stage.context.manifest.name`                               | `string`  |             |
-| `input.stage.context.manifestName`                                | `string`  |             |
-| `input.stage.context.outputs.manifestNamesByNamespace.staging.[]` | `string`  |             |
-| `input.stage.context.replicas`                                    | `string`  |             |
-| `input.stage.context.user`                                        | `string`  |             |
+| `input.stage.context.location`                                    | `string`  | The namespace in which to scale the manifest            |
+| `input.stage.context.manifest.account.name`                       | `string`  | The name of the account containing the manifest that will be scaled.            |
+| `input.stage.context.manifest.location`                           | `string`  | The namespace in which to scale the manifest            |
+| `input.stage.context.manifest.name`                               | `string`  | The type and name of the manifest to be scaled. This is the best field from which to reference the manifest name and namespace.            |
+| `input.stage.context.manifestName`                                | `string`  | The type and name of the manifest to be scaled.            |
+| `input.stage.context.outputs.manifestNamesByNamespace.<manespace>.[]` | `string`  | the name and type of the output manifest.             |
+| `input.stage.context.replicas`                                    | `string`  | The number of pods desired to be running following the scaling event.            |
+| `input.stage.context.user`                                        | `string`  | the id of the user as whom the stage is running.            |
 
 ### input.stage
 
 | Key                                      | Type      | Description                                 |
 | ---------------------------------------- | --------- | ------------------------------------------- |
-| `input.stage.endTime`                    | ``        |                                             |
-| `input.stage.id`                         | `string`  |                                             |
-| `input.stage.lastModified`               | ``        |                                             |
-| `input.stage.name`                       | `string`  |                                             |
+| `input.stage.id`                         | `string`  | This stages unique ID                                            |
+| `input.stage.name`                       | `string`  | The name of the pipeline stage.                                            |
 | `input.stage.parentStageId`              | ``        |                                             |
-| `input.stage.refId`                      | `string`  |                                             |
+| `input.stage.refId`                      | `string`  | This stages ID reference in the stage graph. Typically if you are writing a policy that depends on pipeline stage order, it is better to write that policy against either the opa.pipelines bpackage, or the spinnaker.execution.pipelines.before package.                                            |
 | `input.stage.scheduledTime`              | ``        |                                             |
-| `input.stage.startTime`                  | `number`  |                                             |
+| `input.stage.startTime`                  | `number`  | When did this stage start running.                                            |
 | `input.stage.startTimeExpiry`            | ``        |                                             |
-| `input.stage.status`                     | `string`  |                                             |
+| `input.stage.status`                     | `string`  | The status of this stage, typically ‘RUNNING’ when this policy is checked.                                            |
 | `input.stage.syntheticStageOwner`        | ``        |                                             |
 | `input.stage.tasks.[].endTime`           | `number`  |                                             |
 | `input.stage.tasks.[].endTime`           | ``        |                                             |
@@ -306,11 +301,11 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.tasks.[].implementingClass` | `string`  |                                             |
 | `input.stage.tasks.[].loopEnd`           | `boolean` |                                             |
 | `input.stage.tasks.[].loopStart`         | `boolean` |                                             |
-| `input.stage.tasks.[].name`              | `string`  |                                             |
+| `input.stage.tasks.[].name`              | `string`  | The name of the task being executed. Each stage will execute multiple tasks to accomplish its goals.                                            |
 | `input.stage.tasks.[].stageEnd`          | `boolean` |                                             |
 | `input.stage.tasks.[].stageStart`        | `boolean` |                                             |
-| `input.stage.tasks.[].startTime`         | `number`  |                                             |
-| `input.stage.tasks.[].status`            | `string`  |                                             |
+| `input.stage.tasks.[].startTime`         | `number`  | When did this stage start running.                                            |
+| `input.stage.tasks.[].status`            | `string`  | The status of this stage, typically ‘RUNNING’ when this policy is checked.                                            |
 | `input.stage.type`                       | `string`  | The current state of activity of the stage. |
 
 ### input.user
