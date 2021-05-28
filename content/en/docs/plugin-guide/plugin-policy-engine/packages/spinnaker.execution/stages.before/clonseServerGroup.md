@@ -456,6 +456,9 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | --------------------------------------------------------- | --------- | ----------- |
 | `input.stage.context.application` | `string`  | The name of the Spinnaker application for this pipeline. |
 | `input.stage.context.attempt`                             | `number`  |             |
+| `input.stage.context.capacity.desired`                         | `number`  | If useSourceCapacity==false, the desired number of instances to run in the group.            |
+| `input.stage.context.capacity.max`                             | `number`  | If useSourceCapacity==false, the maximum number of instances to run in the group.            |
+| `input.stage.context.capacity.min`                             | `number`  | If useSourceCapacity==false, the minimum number of instances to run in the group.            |
 | `input.stage.context.cloudProvider`                       | `string`  |             |
 | `input.stage.context.cloudProviderType`                   | `string`  |             |
 | `input.stage.context.consecutiveNotFound`                 | `number`  |             |
@@ -468,7 +471,7 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.target`                              | `string`  |             |
 | `input.stage.context.targetCluster`                       | `string`  |             |
 | `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` |             |
-| `input.stage.context.useSourceCapacity`                   | `boolean` |             |
+| `input.stage.context.useSourceCapacity`                   | `boolean` | Spinnaker will use the current capacity of the existing server group when deploying a new server group. This setting is intended to support a server group with auto-scaling enabled, where the bounds and desired capacity are controlled by an external process. In the event that there is no existing server group, the deploy will fail.            |
 
 ### input.user
 
