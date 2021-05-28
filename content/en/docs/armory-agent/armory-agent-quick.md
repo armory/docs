@@ -15,16 +15,23 @@ The Agent consists of a service deployed as a Kubernetes `Deployment` and a plug
 
 ## {{% heading "prereq" %}}
 
-* This guide is for experienced Kubernetes and Armory Enterprise users.
-* You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
-* You have a Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
+* You deployed Armory Enterprise using the [Armory Operator and Kustomize patches]({{< ref "op-config-kustomize" >}}).
 * You have configured Clouddriver to use MySQL or PostgreSQL. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions.
+* You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
+* If you are running multiple Clouddriver instances, you need a Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
+* You have an additional cluster to serve as your target deployment cluster.
+
+### Compatibility matrix
+
+{{< include "agent/agent-compat-matrix.md" >}}
 
 ## Networking requirements
 
-Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between Clouddriver and the Agent.  
+Communication from the Agent to Clouddriver occurs over gRPC port 9091. Communication between the Agent and Clouddriver must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between the Agent and Clouddriver.  
 
 ## Kubernetes permissions needed by the Agent
+
+The Agent can use a `kubeconfig` file loaded as a Kubernetes secret when deploying to a remote cluster or a Kubernetes Service Account when deploying to the cluster it resides in.
 
 The Agent should have `ClusterRole` authorization if you need to deploy pods across your cluster or `Role` authorization if you deploy pods only to a single namespace.
 
@@ -88,143 +95,315 @@ You can see a more detailed example of the kind of `ClusterRole` permissions you
 
 See the Kubernetes [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) guide for details on configuring `ClusterRole` and `Role` authorization.
 
-## Step 1: Agent plugin installation
+## Step 1: Agent Clouddriver plugin installation
 
-You modify the current Clouddriver deployment as well as add a new Kubernetes `Service`.
+This step is performed in the cluster Spinnaker service is running. You will add the Clouddriver plugin and expose it as type `LoadBalancer` on gRPC port `9091`. In step 2, the Agent will be configured to communicate with Clouddriver. _Take note to ensure the plugin version is compatible with the Spinnaker version. See the comments in the manifest_.
 
-The easiest installation path is to modify an existing [`spinnakerservice.yaml`]({{< ref "op-config-manifest" >}}) with [Kustomize](https://kustomize.io/). To start, download additional manifests into the directory with your `SpinnakerService`:
-
-```bash
-# AGENT_PLUGIN_VERSION is found in the compatibility matrix above
-curl https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-plugin-$AGENT_PLUGIN_VERSION.tar.gz | tar -xJvf -
-```
-
-Then include the manifests in your current kustomization:
+Add this manifest to your Kustomize patches directory and include it under the patchesStrategicMerge section of your kustomization file:
 
 ```yaml
-# Existing kustomization.yaml
-namespace: spinnaker  #   could be different
-resources:
-  # Pre-existing SpinnakerService resource (may have a different name)
-  - spinnakerservice.yaml
-
-bases:
-  # Add the agent service
-  - agent-service
-
-patchesStrategicMerge:
-  # Include plugin configuration
-  - agent-plugin/config.yaml
-  # Change plugin version as well the name of your SpinnakerService in this manifest
-  - agent-plugin/clouddriver-plugin.yaml
-  # Alternatively you can include this remote manifest
-#  - https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/clouddriver-plugin-<AGENT_PLUGIN_VERSION>.yaml
-
+# The plugin version (see kubesvc-plugin below) must be compatible with the spinnaker version, check here: https://docs.armory.io/docs/armory-agent/armory-agent-quick/#compatibility-matrix
+# Change "spinnaker" name below if your spinsvc is called something else
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        spinnaker:
+          extensibility:
+            pluginsRootPath: /opt/clouddriver/lib/plugins
+            plugins:
+              Armory.Kubesvc:
+                enabled: true
+        # Plugin config
+        kubesvc:
+          cluster: redis
+#          eventsCleanupFrequencySeconds: 7200
+#          localShortCircuit: false
+#          runtime:
+#            defaults:
+#              onlySpinnakerManaged: true
+#            accounts:
+#              account1:
+#                customResources:
+#                  - kubernetesKind: MyKind.mygroup.acme
+#                    versioned: true
+#                    deployPriority: "400"
+  kustomize:
+    clouddriver:
+      deployment:
+        patchesStrategicMerge:
+          - |
+            spec:
+              template:
+                spec:
+                  initContainers:
+                  - name: kubesvc-plugin
+                    image: docker.io/armory/kubesvc-plugin:0.8.9 # <-- Version number must be compatible with spinnaker version
+                    volumeMounts:
+                      - mountPath: /opt/plugin/target
+                        name: kubesvc-plugin-vol
+                  containers:
+                  - name: clouddriver
+                    volumeMounts:
+                      - mountPath: /opt/clouddriver/lib/plugins
+                        name: kubesvc-plugin-vol
+                  volumes:
+                  - name: kubesvc-plugin-vol
+                    emptyDir: {}
 ```
 
-You can then set the [plugin options]({{< ref "agent-plugin-options" >}}) in `agent-plugin/config.yaml`.
+To expose Clouddriver as a Kubernetes-type LoadBalancer, add this manifest to your kustomize directory structure and include it in your kustomization resources section:
 
-* For topologies like [Infrastructure mode]({{< ref "armory-agent#infrastructure-mode" >}}) and [Agent mode]({{< ref "armory-agent#agent-mode" >}}), in which the Agent is installed in a different cluster from Spinnaker, you should configure TLS through a load balancer.
-* For Spinnaker installations with one Clouddriver instance and no Redis, you can use `kubesvc.cluster`. However, a Spinnaker installation with Redis is recommended.
-* When running Spinnaker in [HA](https://spinnaker.io/reference/halyard/high-availability/), make sure to modify the following files:
-
-  * `agent-service/kustomization.yaml` according to its comments
-  * `agent-plugin/clouddriver-plugin.yaml` and `agent-plugin/config.yaml` references to Clouddriver should be to HA versions (i.e: -rw, -ro, etc)
-
-When you're ready, deploy with:
-
-```bash
-kustomize build . | kubectl apply -f -
+```yaml
+# This loadbalancer service exposes the gRPC port on Clouddriver for the remote agents to connect
+# Look for the LB svc IP address that is exposed on 9091
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+  name: spin-agent-clouddriver
+spec:
+  ports:
+    - name: grpc
+      port: 9091
+      protocol: TCP
+      targetPort: 9091
+  selector:
+    app: spin
+    cluster: spin-clouddriver
+  type: LoadBalancer
 ```
 
-Note:
+>Various cloud providers may require additional annotations for LoadBalancer. Consult your cloud provider's documentation.
 
-- If you gave `SpinnakerService` a name other than `spinnaker`, you need to change it in files under `agent-plugin`.
-- If you are using the Agent on an OSS installation, use the following download URL `https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-oss-plugin-${AGENT_PLUGIN_VERSION}-tar.gz` or replace the `apiVersion` with `spinnaker.io/v1alpha2`.
+Once both manifests are configured, apply the update with kustomize. Use ```kubectl get svc spin-agent-cloud-driver -n spinnaker``` to make note of the LB IP external address for use later.
 
-### Alternate methods
-
-If you are not using Kustomize, you can still use the same manifests.
-
-- Deploy `agent-service/clouddriver-grpc-service.yaml` or `agent-service/clouddriver-ha-grpc-service.yaml` if using Clouddriver "HA" (caching, rw, ro).
-- Merge `agent-plugin/config.yaml` and `agent-plugin/clouddriver-plugin.yaml` into your existing `SpinnakerService`.
-
+You can also use netcat to confirm Clouddriver is listening on port 9091:  ```nc -zv [LB address] 9091```. Perform this check from a node in your Spinnaker cluster and your target cluster.
 
 ## Step 2: Agent installation
 
-### Kustomize
+This step is performed in the deployment target cluster.
 
-Create the directory structure described below with `kustomization.yaml`, `kubesvc.yaml`, and `kubecfg/` containing the [kubeconfig files]({{< ref "manual-service-account" >}}) required to access target deployment clusters:
+This installation is intended as a quickstart and does not include mTLS configuration. Insecure config will be used for connecting to Clouddriver. The Agent will be installed in the deployment target cluster and configured with a K8s service account.
 
-```
-.
-├── kustomization.yaml
-├── kubesvc.yaml
-├── kubecfgs/
-│   ├── kubecfg-01.yaml
-│   ├── kubecfg-02.yaml
-│   ├── ...
-│   └── kubecfg-nn.yaml
-```
+Create a namespace for the Agent to run in: ```kubectl create ns spin-agent```
+
+Create a service account, clusterrole, and clusterrolebinding for the Agent. Apply the following manifest in your spin-agent namespace:
 
 ```yaml
-# ./kustomization.yaml
-
-# Namespace where you want to deploy the agent
-namespace: spinnaker
-bases:
-  - https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-{{<param kubesvc-version>}}-kustomize.tar.gz
-
-configMapGenerator:
-  - name: kubesvc-config
-    behavior: merge
-    files:
-      - kubesvc.yaml
-
-secretGenerator:
-  - name: kubeconfigs-secret
-    files:
-    # a list of all needed kubeconfigs
-    - kubecfgs/kubecfg-account01.yaml
-    - ...
-    - kubecfgs/kubecfg-account1000.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: spin-cluster-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - pods/log
+  - ingresses/status
+  - endpoints
+  verbs:
+  - get
+  - list
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  -  resources:
+  - services
+  - services/finalizers
+  - events
+  - configmaps
+  - secrets
+  - namespaces
+  - ingresses
+  - jobs
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
+  - patch
+  - delete
+- apiGroups:
+  - batch
+  resources:
+  - jobs
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
+  - patch
+- apiGroups:
+  - apps
+  - extensions
+  resources:
+  - deployments
+  - deployments/finalizers
+  - deployments/scale
+  - daemonsets
+  - replicasets
+  - replicasets/finalizers
+  - replicasets/scale
+  - statefulsets
+  - statefulsets/finalizers
+  - statefulsets/scale
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
+  - patch
+  - delete
+- apiGroups:
+  - monitoring.coreos.com
+  resources:
+  - servicemonitors
+  verbs:
+  - get
+  - create
+- apiGroups:
+  - spinnaker.armory.io
+  resources:
+  - '*'
+  - spinnakerservices
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
+  - patch
+- apiGroups:
+  - admissionregistration.k8s.io
+  resources:
+  - validatingwebhookconfigurations
+  verbs:
+  - '*'
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: spin-agent
+  name: spin-sa
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: spin-cluster-role-binding
+subjects:
+  - kind: ServiceAccount
+    name: spin-sa
+    namespace: spin-agent
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: spin-cluster-role
 ```
 
-`kubesvc.yaml`  contains the [Agent options]({{< ref "agent-options" >}}):
+Create a `configmap` for the Agent config. Replace _[LoadBalancer Exposed Address]_ with the IP address Clouddriver was exposed on earlier. Apply the following manifest to your spin-agent namespace:
+
 ```yaml
-# ./kubesvc.yaml
-
-kubernetes:
-  accounts:
-  - name: account01
-    # /kubeconfigfiles/ is the path to the config files
-    # as mounted from the `kubeconfigs-secret` Kubernetes secret
-    kubeconfigFile: /kubeconfigfiles/kubecfg-account01.yaml
-    ...
-  - ...
-...
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubesvc-config
+  namespace: spin-agent
+data:
+  kubesvc.yaml: |
+    kubernetes:
+      accounts:
+      - name: remote1 # Change this name for each remote cluster
+        serviceAccount: true
+        serviceAccountName: spin-sa
+        metrics: false
+        # /kubeconfigfiles/ is the path to the config files
+        # as mounted from the `kubeconfigs-secret` Kubernetes secret
+        #kubeconfigFile: /kubeconfigfiles/kubecfg-account01.yaml
+    clouddriver:
+      grpc: [LoadBalancer Exposed Address]:9091 # For Agent or Infrastructure mode, change this to your exposed lb address
+      insecure: true #Set this to true if TLS between spinnaker services is not enabled
+    server:
+      port: 8082
 ```
 
-* For installations without gRPC TLS connections, you should include `clouddriver.insecure: true` in the Agent options.
-* For HA, make sure to set `clouddriver.grpc: clouddriver-ha-grpc-service.yaml:9091`
+The last task in this step is to apply the Agent deployment manifest in your spin-agent namespace:
 
-With the directory structure in place, deploy the Agent service:
-
-```bash
-kustomize build </path/to/directory> | kubectl apply -f -
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: spin
+    app.kubernetes.io/name: kubesvc
+    app.kubernetes.io/part-of: spinnaker
+    cluster: spin-kubesvc
+  name: spin-kubesvc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spin
+      cluster: spin-kubesvc
+  template:
+    metadata:
+      labels:
+        app: spin
+        app.kubernetes.io/name: kubesvc
+        app.kubernetes.io/part-of: spinnaker
+        cluster: spin-kubesvc
+    spec:
+      serviceAccount: spin-sa
+      containers:
+      - image: armory/kubesvc
+        imagePullPolicy: IfNotPresent
+        name: kubesvc
+        ports:
+          - name: health
+            containerPort: 8082
+            protocol: TCP
+          - name: metrics
+            containerPort: 8008
+            protocol: TCP
+        readinessProbe:
+          httpGet:
+            port: health
+            path: /health
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /opt/spinnaker/config
+          name: volume-kubesvc-config
+        # - mountPath: /kubeconfigfiles
+        #   name: volume-kubesvc-kubeconfigs
+      restartPolicy: Always
+      volumes:
+      - name: volume-kubesvc-config
+        configMap:
+          name: kubesvc-config
+      # - name: volume-kubesvc-kubeconfigs
+      #   secret:
+      #     defaultMode: 420
+      #     secretName: kubeconfigs-secret
 ```
 
-### Managing kustomization locally
+## Confirm Success
 
-If you prefer to manage manifests directly, download all the manifests:
-
-```bash
-AGENT_VERSION={{<param kubesvc-version>}} && curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-$AGENT_VERSION-kustomize.tar.gz | tar -xJvf -
-```
-
-- Change the version of the Agent in `kustomization.yaml`
-- Modify [Agent options]({{< ref "agent-options" >}}) in `kubesvc.yaml`
-
+Create a pipeline with a `Deploy manifest` stage. You should see your target cluster available in the `Accounts` list. Deploy a static manifest.
 
 ## {{% heading "nextSteps" %}}
 
