@@ -1,14 +1,11 @@
 ---
 title: "spinnaker.execution.stages.before.bake"
 linktitle: "bake"
-description: "fill me with delicious data, Stephen!"
+description: "A policy that is run before executing each task in a bake stage."
 ---
+More information about the back stage can be found at: https://docs.armory.io/docs/spinnaker-user-guides/aws-guides/aws-baking-images/
 
 ## Example Payload
-
-
-<details><summary>Click to expand</summary>
-
 ```json
 {
   "input": {
