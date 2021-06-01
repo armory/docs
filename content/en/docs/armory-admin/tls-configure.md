@@ -1,6 +1,6 @@
 ---
-title: Configuring TLS for Spinnaker Services
-linkTitle: Configuring TLS
+title: Configure TLS for Spinnaker Services
+linkTitle: Configure TLS
 aliases:
   - /spinnaker_install_admin_guides/spinnaker-services-tls/
   - /spinnaker_install_admin_guides/services_tls/
@@ -40,7 +40,7 @@ Golang services need a X509 certificate (PEM format) and a private key for #1 as
 
 ## Configuring Java services
 
-Add the following to each Java service profile: `<deploy>/profiles/<service>-local.yml` in Halyard or under `profiles` in the [SpinnakerService's profiles]({{< ref "operator-config#specspinnakerconfigprofiles" >}}):
+Add the following to each Java service profile: `<deploy>/profiles/<service>-local.yml` in Halyard or under `profiles` in the [SpinnakerService's profiles]({{< ref "op-config-manifest#specspinnakerconfigprofiles" >}}):
 
 ```yaml
 # Only needed for "server" role
@@ -92,7 +92,7 @@ Switching from plain HTTP to HTTPS will cause some short disruption to the servi
 
 ### Secret engines
 
-You can store secrets (and non secrets) in [supported secret stores]({{< ref "secrets" >}}) as well as in Kubernetes secrets if using the [Spinnaker Operator]({{< ref "operator" >}}). This is the simplest route.
+You can store secrets (and non secrets) in [supported secret stores]({{< ref "secrets" >}}) as well as in Kubernetes secrets if using the [Armory Operator]({{< ref "armory-operator" >}}). This is the simplest route.
 
 For instance, assuming all the information is stored in a bucket named `mybucket` on s3 that all services have access to, `SpinnakerService` manifest (or the corresponding `echo-local.yml` in Halyard) might look like:
 

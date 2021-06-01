@@ -15,6 +15,8 @@ description: >
   Use Armory-extended Halyard to deploy Armory Enterprise for Spinnaker in an AWS Kubernetes cluster or in an on-prem Kubernetes cluster with access to Amazon Secure Storage Service (S3).
 ---
 
+{{< include "armory-license.md" >}}
+
 ## Overview of installing Armory in AWS
 
 - A Kubernetes cluster running on Amazon Web Services (AWS). EKS is a good way to get a Kubernetes cluster up on AWS - see the AWS documentation for this.

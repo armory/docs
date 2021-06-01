@@ -46,11 +46,6 @@ resampleFilter = "CatmullRom"
 quality = 75
 anchor = "smart"
 
-[services]
-[services.googleAnalytics]
-# Comment out the next line to disable GA tracking. Also disables the feature described in [params.ui.feedback].
-id = "UA-79996712-5"
-
 # Language configuration
 
 [languages]
@@ -90,11 +85,19 @@ weight = 1
 # Everything below this are Site Params
 
 [params]
-armory-version = "2.25.x"
-halyard-armory-version = "1.11.0"
-kubesvc-version="0.5.6"
+armory-version = "2.26.x"
+#used in air-gapped
+matching-oss-version-exact = "1.26.3"
+# used in agent compat and system requirements
+mysql-version="5.7; AWS Aurora"
+postgresql-version="10+"
+#used in the Operator docs
+armory-version-exact = "2.26.0"
+halyard-armory-version = "1.12.0"
+kubesvc-version="0.5.11"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
+opa-server-version = "0.28.0"
 copyright = "Armory Inc."
 privacy_policy = "https://www.armory.io/privacy-policy/"
 terms_of_service = "https://www.armory.io/terms-of-service/"
@@ -115,7 +118,7 @@ archived_version = false
 # The version number for the version of the docs represented in this doc set.
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
-version = "2.25"
+version = "2.26"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
@@ -143,12 +146,12 @@ prism_syntax_highlighting = true
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]
-agent_plug_latest-2="0.6.4"
-agent_plug_latest_spin-2="2.23.x (1.23.x)"
-agent_plug_latest-1="0.7.3"
-agent_plug_latest_spin-1="2.24.x (1.24.x)"
-agent_plug_latest="0.8.3"
-agent_plug_latest_spin="2.25.x (1.25.x)"
+agent_plug_latest-2="0.7.13"
+agent_plug_latest_spin-2="2.24.x (1.24.x)"
+agent_plug_latest-1="0.8.12"
+agent_plug_latest_spin-1="2.25.x (1.25.x)"
+agent_plug_latest="0.9.4"
+agent_plug_latest_spin="2.26.x (1.26.x)"
 
 # User interface configuration
 [params.ui]
@@ -215,6 +218,11 @@ enable = true
   url = "https://docs.armory.io/docs"
 
 [[params.versions]]
+  version = "v2.25"
+  githubbranch = "v2.25"
+  url = "https://v2-25.docs.armory.io/docs"
+
+[[params.versions]]
   version = "v2.24"
   githubbranch = "v2.24"
   url = "https://v2-24.docs.armory.io/docs"
@@ -223,9 +231,3 @@ enable = true
   version = "v2.23"
   githubbranch = "v2.23"
   url = "https://v2-23.docs.armory.io/docs"
-
-[[params.versions]]
-  version = "v2.22"
-  githubbranch = "v2.22"
-  url = "https://v2-22.docs.armory.io/docs"
-

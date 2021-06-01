@@ -73,3 +73,7 @@ kubectl -n <your-spinnaker-namespace> apply -f <path-to-SpinnakerService.yml>
 After you apply your changes, you should see the new Cloud Foundry account in your Spinnaker UI and be able to deploy to it.
 
 >To see the changes, you may have to clear your browser cache / hard refresh your browser (`cmd-shift-r` or `control-shift-r`)
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "best-practices-cf.md" >}}

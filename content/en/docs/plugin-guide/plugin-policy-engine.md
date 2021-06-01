@@ -44,7 +44,7 @@ In addition to the plugin, you need access to an Open Policy Agent (OPA) deploym
 You can use the sample configuration to install the plugin, but keep the following in mind:
 
 - The `patchesStrategicMerge` section for each service is unique. Do not reuse the snippet from one service for the other services.
-- Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use. For a list of versions, see [Release notes](#release-notes).
+- Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use without the `v` prefix. For a list of versions, see [Release notes](#release-notes).
 
 ```yaml
 apiVersion: spinnaker.armory.io/v1alpha2
@@ -239,7 +239,7 @@ spec:
        mountPath: /opt/spinnaker/lib/local-plugins
    ```
 
-4. Configure Halyard by updating your  `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use: 
+4. Configure Halyard by updating your `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use without the `v` prefix: 
 
    ```yaml
    deploymentConfigurations:
@@ -303,7 +303,7 @@ url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/mas
 
 If you do not omit the `volume` and `initContainers` configurations for the `patchesStrategicMerge` section, the pods for Armory may not start.
 
-### Finishing the setup
+### Finish the setup
 
 Once Policy Engine is enabled, you must authorize API calls in order to use the Armory (or OSS Spinnaker) UI. To do this, you need to load a policy into the Policy Engine that is similar to the following:  
 
@@ -345,7 +345,7 @@ allow {
 
 If you do not add this policy, Gate rejects all API calls to the Armory instance.
 
-#### Creating a policy for the API
+#### Create a policy for the API
 
 All requests made to the `spinnaker.http.authz` package include the following:
 
@@ -401,6 +401,52 @@ allow {
 ```
 
 *API Authorization depends on having access to a user's identity and role information. Because of this dependency, you must be using Authentication and Authorization, which requires configuring the Fiat service.*
+
+#### Return a custom message
+
+> Providing a custom message for the `spinnaker.http.authz` package requires Armory Enterprise 2.26.0 or later.
+
+The Policy Engine allows you to return a custom message when an action violates a policy and is blocked. For most packages that you want to enforce policies on, this is done by specifying the message as part of the `deny` block. You can see this in the examples for other policy types on this page.
+
+Returning a custom message works slightly differently for the `spinnaker.http.authz` package because it is based on the `allow` rules rather than `deny` rules.
+
+If a user attempts to perform an action that they are not allowed to, a window appears and displays the custom message you specify. If you are running an Armory Enterprise version earlier than 2.26.0, you cannot specify a custom message. Instead, a generic server error message appears.
+
+The following example policy prevents the user `milton` from taking specific actions in the UI. Specifically, the user cannot use the  **Edit** or **Delete** buttons on the **Clusters** tab.
+
+**Example policy:** 
+{{< prism lang="rego" line="2-8" >}}
+package spinnaker.http.authz
+    default allow=false
+    allow {
+      not isInfraDeploy
+      not isDeleteManifest
+    }
+    message = "This action has been blocked by your company's policy. This message is configurable in your policy."{
+    	not allow
+    }
+    default isInfraDeploy=false
+    isInfraDeploy{
+          # Policy that prevents the user milton from manually deploying infrastructure
+          input.method="POST"
+          input.path[_]="tasks"
+          input.body.job[_].type="deployManifest"
+          input.user.username="milton"
+    }
+    isDeleteManifest{
+      # Policy that prevents the user milton from manually deleting infrastructure 
+      input.method="POST"
+      input.path[_]="tasks"
+      input.body.job[_].type="deleteManifest"
+      input.user.username="milton"
+    }
+{{< /prism >}}
+
+Note the highlighted lines. This is where defining and returning a custom message for the `spinnaker.http.authz` package differs from other packages.
+
+When the policy prevents an action, the following window appears in the UI and displays the message:
+
+{{< figure src="/images/pe-plugin/pe-plugin-http-authz-msg.jpg" alt="This is the window that appears and displays the message specified in the policy. Users can cancel the action or attempt to resolve the issue." >}}
 
 ### Deployment
 
@@ -572,5 +618,10 @@ Open your browser's console and see if there are SSL exceptions. If there are, c
 
 ## Release notes
 
+* v0.1.2  - Added support for writing policies against the package `spinnaker.ui.entitlements.isFeatureEnabled` to show/hide the following UI buttons:
+  * Create Application
+  * Application Config
+  * Create Project
+* v0.0.25 - Fixes an unsatisfied dependency error in the API (Gate) when using SAML and x509 certificates. This fix requires Armory Enterprise 2.26.0 later.
 * v0.0.19 - Adds forced authentication feature and fixes NPE bug
 * v0.0.17 - Initial plugin release

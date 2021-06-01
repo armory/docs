@@ -1,6 +1,6 @@
 ---
-title: Using Pipelines as Code in the Armory Platform
-linkTitle: Using Pipelines as Code
+title: Use Pipelines as Code in Armory Enterprise
+linkTitle: Use Pipelines as Code
 aliases:
   - /spinnaker/using_dinghy/
   - /docs/spinnaker/using-dinghy/

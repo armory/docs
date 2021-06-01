@@ -1,7 +1,7 @@
 ---
-title: Troubleshooting the Armory Agent Service and Plugin
-linkTitle: Troubleshooting
-weight: 6
+title: Troubleshoot the Armory Agent Service and Plugin
+linkTitle: Troubleshoot
+weight: 80
 description: >
   Successful installation and startup messages, common errors, tips, and gRPC endpoint testing.
 ---
@@ -12,7 +12,7 @@ Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is 
 
 ## Agent plugin messages
 
-After a successful plugin installation, `spin-clouddriver-grpc` (or `spin-clouddriver-ha-grpc`) service should be up:
+After a successful plugin installation, the `spin-clouddriver-grpc` (or `spin-clouddriver-ha-grpc`) service should be running:
 
 ```bash
 $ kubectl get service spin-clouddriver-grpc
@@ -137,6 +137,8 @@ Common errors:
   Make sure `sql.enabled: true` is set in Clouddriver's profile
 - `Parameter 2 of constructor in io.armory.kubesvc.agent.KubesvcCachingAgentDispatcher required a bean of type 'com.netflix.spinnaker.clouddriver.kubernetes.security.KubernetesCredentials$Factory' that could not be found.`
   Make sure `providers.kubernetes.enabled: true` is set.
+- `Failed to list *unstructured.Unstructured: statefulsets.apps is forbidden: User "system:serviceaccount:default:test" cannot list resource "statefulsets" in API group "apps" at the cluster scope`
+  Make sure the service account or user that corresponds to the `kubeconfig` file is bound to a cluster role or role with `watch` and `list` permissions to all resources. Alternatively, make sure to set `kubernetes.accounts[].kinds` in `kubesvc.yaml` file
 - `Assigning accounts to Kubesvc enabled Clouddrivers (caching)` multiple times in Clouddriver & `[..] is unreachable [..] getting credentials: exec: fork/exec /usr/local/bin/aws: exec format error`
   Currently only static tokens are available. Generate a kubeconfig that uses a token from a SA with permissions to the cluster instead.
 

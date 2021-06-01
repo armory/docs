@@ -1,6 +1,6 @@
 ---
-title: Configuring Amazon Simple Storage Service (S3) Artifacts
-linkTitle: "Configuring S3 Artifacts"
+title: Configure Amazon Simple Storage Service (S3) Artifacts
+linkTitle: "Configure S3 Artifacts"
 aliases:
   - /spinnaker_install_admin_guides/s3/
   - /docs/spinnaker-install-admin-guides/s3/

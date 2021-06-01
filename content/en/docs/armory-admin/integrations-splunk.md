@@ -1,6 +1,6 @@
 ---
-linkTitle: Configuring the Armory Splunk App
-title: Configuring the Armory Splunk App for Spinnaker
+linkTitle: Configure the Armory Splunk App
+title: Configure the Armory Splunk App for Spinnaker
 aliases:
   - /docs/spinnaker-install-admin-guides/splunk-spinnaker/
 description: >

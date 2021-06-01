@@ -1,4 +1,4 @@
-The Armory Agent is compatible with the Armory Platform and open source Spinnaker. It consists of a lightweight service that you deploy on Kubernetes and a plugin that you install into Spinnaker.
+The Armory Agent is compatible with Armory Enterprise and open source Spinnaker. It consists of a lightweight service that you deploy on Kubernetes and a plugin that you install into Spinnaker. Your Clouddriver service must use a MySQL-compatible database. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions.
 
 | Armory (Spinnaker) Version | Armory Agent Plugin Version    | Armory Agent Version |
 |:-------------------------- |:------------------------------ |:---------------------------- |
@@ -6,3 +6,4 @@ The Armory Agent is compatible with the Armory Platform and open source Spinnake
 | {{<param kubesvc-plugin.agent_plug_latest_spin-1>}} | {{<param kubesvc-plugin.agent_plug_latest-1>}} | {{<param kubesvc-version>}} |
 | {{<param kubesvc-plugin.agent_plug_latest_spin>}}   | {{<param kubesvc-plugin.agent_plug_latest>}}   | {{<param kubesvc-version>}} |
 
+{{< include "db-compat.md" >}}

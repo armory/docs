@@ -32,15 +32,15 @@ You need an S3-compatible object store, such as an S3 bucket or Minio, for persi
 
 ### RDBMS (SQL)
 
-Armory Enterprise also either Redis, MySQL, or Postgres as a backing store for some services. The following table lists the supported database and the service that requires it:
+Depending on the service, Armory Enterprise also uses either Redis, MySQL, or Postgres as a backing store. The following table lists the supported database and the  service:
 
-| Database | DB version             | Armory services                           | Note                                                                                                                                                                                                                                                                                                                                                                                                   |
-|----------|------------------------|-------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Redis    | All supported versions | All services that require a backing store | The DB version refers to external Redis instances. Supported only for services that still require Redis for a feature, such as Gate sessions. Redis is not supported as a core persistent storage engine. Although Armory Enterprise can deploy internal Redis instances, do not use these for production deployments. Armory recommends only using them for testing and proof-of-concept deployments. |
-| MySQL    | MySQL 5.7 (or Aurora)  | Clouddriver, Front50, Orca, Fiat, Echo    |                                                                                                                                                                                                                                                                                                                                                                                                        |
-| PostgreSQL | PostgreSQL 10.0 or later | Clouddriver, Front50, Orca, Fiat                     |                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Database | DB version             | Armory                 | Spinnaker services                                  | Note                                                                                                                       |
+| -------- | ---------------------- | ---------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Redis    | All supported versions | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. Supported only for services that still require Redis for a feature, such as Gate sessions. Redis is not supported as a core persistent storage engine. Although Spinnaker deploys internal Redis instances, do not use these instances for production deployments. Armory recommends only using them for testing and proof-of-concept deployments. |
+| MySQL    | MySQL 5.7 (or Aurora)  | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
+| PostgreSQL    | PostgreSQL 10.0 or later  | 2.24.0 or later | Clouddriver                          |                                                                                                                            |
 
-Armory recommends using MySQL or PostgreSQL as the backing store where possible for production instances. For services where this is not an option, use an external Redis instance.
+Armory recommends using MySQL or PostgreSQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
 
 ## Hardware requirements
 
@@ -63,7 +63,7 @@ The Armory Operator supports using any actively maintained version of `kubectl` 
 
 ## Networking
 
-The ports for the API gateway (the Gate service) and the UI (the Deck service) need to be exposed. All interactions with Armory Enterprise go through these two services. 
+The ports for the API gateway (the Gate service) and the UI (the Deck service) need to be exposed. All interactions with Armory Enterprise go through these two services.
 
 **Gate ports**
 

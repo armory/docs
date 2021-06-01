@@ -1,6 +1,6 @@
 ---
-title: Configuring Gate and Deck to Run on the Same Hostname
-linkTitle: Configuring Gate and Deck for the Same Hostname
+title: Configure Gate and Deck to Run on the Same Hostname
+linkTitle: Configure Gate and Deck for the Same Hostname
 description: >
   Simplify DNS and Ingress management by deploying Gate and Deck to the same host.  
 aliases:
@@ -106,7 +106,7 @@ in the `profiles` directory.
    ```bash
    # Make the gate-local.yml file in the profile directory
 
-   tee /home/spinnaker/.hal/default/profiles/gate-local.yml <<-'EOF'
+   tee -a /home/spinnaker/.hal/default/profiles/gate-local.yml <<-'EOF'
    healthEndpoint: /api/v1/health
    EOF
    ```

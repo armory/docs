@@ -8,9 +8,11 @@ description: >
   Use Armory-extended Halyard or the Armory Operator to deploy Armory Enterprise for Spinnaker in Kubernetes.
 ---
 
+{{< include "armory-license.md" >}}
+
 ## Overview of installing Armory Enterprise for Spinnaker in Kubernetes
 
-This guide describes the initial installation of Armory Enterprise in Kubernetes. You can choose between two different installation methods: Armory Operator or Halyard. By the end of this guide, you will have an instance of Armory Enterprise up and running on your Kubernetes cluster.  The document does not fully cover the following:
+This guide describes the initial installation of Armory Enterprise in Kubernetes. You can choose between two different installation methods: Armory Operator or Armory-extended Halyard. By the end of this guide, you have an instance of Armory Enterprise deployed on your Kubernetes cluster. This guide does not fully cover the following:
 
 * TLS Encryption
 * Authentication/Authorization
@@ -19,37 +21,35 @@ This guide describes the initial installation of Armory Enterprise in Kubernetes
 
 See [Next Steps](#next-steps) for information related to these topics.
 
-> This document focuses on Armory Enterprise but can be adapted to install Open Source Spinnaker<sup>TM</sup> by using Open Source Operator or a different Halyard container, and a corresponding different Spinnaker version.
-
 ## Choosing an installation method
 
-There are two recommended ways of installing Armory Enterprise: using the [Armory Operator]({{< ref "operator" >}}) or using [Halyard](https://www.spinnaker.io/setup/install/halyard/).
+There are two recommended ways of installing Armory Enterprise: using the [Armory Operator]({{< ref "armory-operator" >}}) or using [Armory-extended Halyard]({{< ref "armory-halyard" >}}).
 
 {{< tabs name="install-methods" >}}
 {{% tab name="Armory Operator" %}}
 
-The _Armory Operator_ is the newest installation and configuration method for Armory. Using the Operator, you can entirely manage Armory using only Kubernetes manifest files. You treat Armory like any other Kubernetes application, running standard tools like `kubectl`, `helm`, and `kustomize`. You can even use a Armory pipeline to roll out configuration changes to itself. The Operator runs a few "hot" validations before accepting a manifest into the cluster, preventing some configuration problems from affecting a running Armory installation.
+The _Armory Operator_ is the newest installation and configuration method for Armory Enterprise. Using the Operator, you can entirely manage Armory Enterprise using only Kubernetes manifest files. You treat Armory Enterprise like any other Kubernetes application, running standard tools like `kubectl`, `helm`, and `kustomize`. You can even use an Armory Enterprise pipeline to roll out configuration changes to itself. The Operator runs a few "hot" validations before accepting a manifest into the cluster, preventing some configuration problems from affecting a running Armory Enterprise installation.
 
 *Prerequisites*
 
 * Your Kubernetes API Server is running version `1.13` or later.
 * You have admin rights to install the Custom Resource Definition (CRD) for Operator.
-* You can assign a ClusterRole to Operator. This means that Operator has access to all namespaces in the cluster. Operator can still run in an isolated namespace in [Basic]({{< ref "operator#installing-operator-in-basic-mode" >}}) mode (not covered in this installation guide), but it will not be able to run admission validations.
+* You can assign a ClusterRole to Operator. This means that Operator has access to all namespaces in the cluster. Operator can still run in an isolated namespace in [Basic]({{< ref "armory-operator#installing-operator-in-basic-mode" >}}) mode (not covered in this installation guide), but it will not be able to run admission validations.
 
 *General workflow*
 
 * Install Armory Operator CRDs cluster wide.
 * Create a Kubernetes namespace for the Operator.
 * Install the Operator in that namespace, using a ServiceAccount with a ClusterRole to access other namespaces.
-* Create an S3 bucket for Armory to store persistent configuration.
-* Create an IAM user that Armory will use to access the S3 bucket (or alternately, granting access to the bucket via IAM roles).
-* Create a Kubernetes namespace for Armory.
-* Install Armory in that namespace.
+* Create an S3 bucket for Armory Enterprise to store persistent configuration.
+* Create an IAM user that Armory Enterprise will use to access the S3 bucket (or alternately, granting access to the bucket via IAM roles).
+* Create a Kubernetes namespace for Armory Enterprise.
+* Install Armory Enterprise in that namespace.
 
 {{% /tab %}}
 {{% tab name="Halyard" %}}
 
-Halyard is the former installation method for Armory. It has been around the longest and is the first one supporting new Armory features. Operator uses a customized version of Halyard that is constantly updated to incorporate changes from base Halyard.
+Halyard is the former installation method for Armory Enterprise. It has been around the longest and is the first one supporting new Armory Enterprise features. Operator uses a customized version of Halyard that is constantly updated to incorporate changes from base Halyard.
 
 {{< include "halyard-note.md" >}}
 
@@ -59,45 +59,45 @@ Halyard is the former installation method for Armory. It has been around the lon
 
 *General workflow*
 
-* Create a Kubernetes namespace where we will run both Halyard and Armory
+* Create a Kubernetes namespace where we will run both Halyard and Armory Enterprise
 * In the namespace, grant the `default` Kubernetes ServiceAccount the `cluster-admin` ClusterRole. This gives it full permissions within our namespace, but not on other namespaces; for details, see the [Kubernetes RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/))
-* In the namespace, create a PersistentVolumeClaim (PVC), which you use for persistent Armory cluster configuration (the "halyard configuration" or "halconfig")
+* In the namespace, create a PersistentVolumeClaim (PVC), which you use for persistent Armory Enterprise cluster configuration (the "halyard configuration" or "halconfig")
 * In the namespace, create a StatefulSet to run Halyard.  The PVC will be mounted to this StatefulSet.
-* Halyard will use the `default` Kubernetes ServiceAccount to create and modify resources running the cluster (the Kubernetes Secrets, Deployments, and Services that make up Armory).
-* The Armory microservice called "Clouddriver", which interacts with various clouds including Kubernetes, also uses the `default` ServiceAccount to interact with Kubernetes.
+* Halyard will use the `default` Kubernetes ServiceAccount to create and modify resources running the cluster (the Kubernetes Secrets, Deployments, and Services that make up Armory Enterprise).
+* The Armory Enterprise microservice called "Clouddriver", which interacts with various clouds including Kubernetes, also uses the `default` ServiceAccount to interact with Kubernetes.
 * Run Halyard as a Kubernetes Pod in the namespace (using a StatefulSet).
-* Create an S3 bucket for Armory to store persistent configuration.
-* Create an IAM user that Armory will use to access the S3 bucket (or alternately, granting access to the bucket via IAM roles).
+* Create an S3 bucket for Armory Enterprise to store persistent configuration.
+* Create an IAM user that Armory Enterprise will use to access the S3 bucket (or alternately, granting access to the bucket via IAM roles).
 * Run the `hal` client interactively in the Kubernetes Pod to:
   * Build out the `hal` config YAML file (`.hal/config`)
-  * Configure Armory with the IAM credentials and bucket information
+  * Configure Armory Enterprise with the IAM credentials and bucket information
   * Turn on other recommended settings (artifacts and http artifact provider)
-  * Install Armory
-  * Expose Armory
+  * Install Armory Enterprise
+  * Expose Armory Enterprise
 
 {{% /tab %}}
 {{< /tabs >}}
 
-## Prerequisites for installing Armory
+## Prerequisites for installing Armory Enterprise
 
-* Your Kubernetes cluster is up and running with at least 4 CPUs and 12 GB of memory.  This is the bare minimum to install and run Armory; depending on our Armory workload, you may need more resources.
+* Your Kubernetes cluster is up and running with at least 4 CPUs and 12 GB of memory.  This is the bare minimum to install and run Armory Enterprise; depending on our Armory Enterprise workload, you may need more resources.
 * You have `kubectl` installed and are able to access and create Kubernetes resources.
 * You have access to an existing object storage bucket or the ability to create an object storage bucket (Amazon S3, Google GCS, Azure Storage, or Minio).  _For the initial version of this document, **only** Amazon S3 is used._
 * You have access to an IAM role or user with access to the S3 bucket. If neither of these exists, you need to create an IAM role or user with access to the S3 bucket.
 * Your cluster has either an existing Kubernetes Ingress controller or the permissions to install the NGINX Ingress Controller
 
-These instructions set up the Armory microservice called "Front50", which stores Armory Application and Pipeline configuration to an object store, with the following permission:
+These instructions set up the Armory Enterprise microservice called "Front50", which stores Armory Enterprise Application and Pipeline configuration to an object store, with the following permission:
 
 * Front50 has full access to an S3 bucket through either an IAM user (with an AWS access key and secret access key) or an IAM role (attached to your Kubernetes cluster).
 
-At the end of this guide, you have a Armory deployment that is:
+At the end of this guide, you have a Armory Enterprise deployment that is:
 
 * Accessible from your browser
 * Able to deploy other Kubernetes resources to the namespace where it runs, but not to any other namespace
 
 ## Configure application and pipeline configuration storage
 
-The Armory microservice Front50 requires a backing store to store Armory Application and Pipeline definitions.  There are a number of options for this:
+The Armory Enterprise microservice Front50 requires a backing store to store Armory Enterprise Application and Pipeline definitions.  There are a number of options for this:
 
 * Amazon S3 Bucket
 * Google Cloud Storage (GCS) Bucket
@@ -105,11 +105,11 @@ The Armory microservice Front50 requires a backing store to store Armory Applica
 * Minio
 * MySQL
 
-> You _must_ set up a backing store for Armory to use for persistent application and pipeline configuration.
+> You _must_ set up a backing store for Armory Enterprise to use for persistent application and pipeline configuration.
 
 ### Using S3 for Front50
 
-Armory (the `Front50` service, specifically) needs access to an S3 bucket. There are a number of ways to achieve this.
+Armory Enterprise (the `Front50` service, specifically) needs access to an S3 bucket. There are a number of ways to achieve this.
 
 This section describes how to do the following:
 * Create an S3 bucket
@@ -123,7 +123,7 @@ This section describes how to do the following:
 
 <p>If you do not have an S3 bucket, create an S3 bucket.</p>
 
-<p>By default, Armory stores all Armory information in a folder called <code>front50</code> in your bucket. Optionally, you can specify a different directory. You might want to do this if you're using an existing or shared S3 bucket..</p>
+<p>By default, Armory Enterprise stores all Armory Enterprise information in a folder called <code>front50</code> in your bucket. Optionally, you can specify a different directory. You might want to do this if you're using an existing or shared S3 bucket..</p>
 
 <p>Perform the following steps:</p>
 <ol>
@@ -260,65 +260,77 @@ kubectl get namespaces
 
 The command returns the namespaces in the EKS cluster.
 
-## Install Armory using the Operator
+## Install Armory Enterprise
 
-### Install CRDs and Operator
+{{< tabs name="install-steps" >}}
+{{% tab name="Armory Operator" %}}
 
-First, download the CRDs and manifests from the [latest stable release](https://github.com/armory-io/spinnaker-operator/releases).
+### Install Armory Operator
 
-```bash
-$ bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
-```
+You need Kubernetes `ClusterRole` authority to install the Operator in `cluster` mode.
 
-Install Armory CRDs:
+You can find the Operator's deployment configuration in `spinnaker-operator/deploy/operator/cluster` after you download and unpack the archive. You don't need to update any configuration values.
 
-```bash
-$ kubectl apply -f deploy/crds/
-```
+1. Get the latest Operator release:
 
-Create a namespace for Operator. In this guide you use `spinnaker-operator`, but the namespace can have any name, provided that you update the namespace name in the `role_binding.yaml` file.
+   **Armory Operator** ![Proprietary](/images/proprietary.svg)
 
-```bash
-kubectl create namespace spinnaker-operator
-```
+   ```bash
+   mkdir -p spinnaker-operator && cd spinnaker-operator
+   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
+   ```
 
-Install Operator manifests:
+1. Install or update CRDs across the cluster:
 
-```bash
-$ kubectl apply -n spinnaker-operator -f deploy/operator/cluster
-```
+   ```bash
+   kubectl apply -f deploy/crds/
+   ```
 
-After installation, you can verify that Operator is running with the following command:
+1. Create the namespace for the Operator:
 
-```bash
-$ kubectl -n spinnaker-operator get pods
-```
+   In `cluster` mode, if you want to use a namespace other than `spinnaker-operator`, you need to edit the namespace in `deploy/operator/kustomize/role_binding.yaml`.
 
-The command returns output similar to the following if the pod for Operator is running:
+   ```bash
+   kubectl create ns spinnaker-operator
+   ```
 
-```
-NAMESPACE                                READY         STATUS       RESTARTS      AGE
-spinnaker-operator-7cd659654b-4vktl      2/2           Running      0             6s
-```
+1. Install the Operator:
 
-### Install Armory
+   ```bash
+   kubectl -n spinnaker-operator apply -f deploy/operator/kustomize
+   ```
 
-First, create the namespace where Armory will be installed. In this guide you use `spinnaker`, but it can have any name:
+1. Verify that the Operator is running:
+
+   ```bash
+   kubectl -n spinnaker-operator get pods
+   ```
+
+   The command returns output similar to the following if the pod for the Operator is running:
+
+   ```
+   NAMESPACE                             READY         STATUS       RESTARTS      AGE
+   spinnaker-operator-7cd659654b-4vktl   2/2           Running      0             6s
+   ```
+
+### Deploy Armory Enterprise
+
+First, create the namespace where you want to deploy Armory Enterprise. In this guide you use `spinnaker`, but it can have any name:
 
 ```bash
 kubectl create namespace spinnaker
 ```
 
-You define and configure Armory in a YAML file and use `kubectl` to create the service. Copy the contents below to a configuration file called `spinnakerservice.yml`. The code creates a Kubernetes `ServiceAccount` with permissions only to the namespace where Armory is installed. Applying this file creates a base Armory installation with one Kubernetes target account, which enables Armory to deploy to the same namespace where it is installed.
+You define and configure Armory Enterprise in a YAML file and use `kubectl` to create the service. Copy the contents below to a configuration file called `spinnakerservice.yml`. The code creates a Kubernetes `ServiceAccount` with permissions only to the namespace where Armory Enterprise is installed. Applying this file creates a base Armory Enterprise installation with one Kubernetes target account, which enables Armory Enterprise to deploy to the same namespace where it is installed.
 
 Note the values that you need to modify:
 
-- Armory `version`: Use the version of Armory that you want to deploy, which can be found [here]({{< ref "rn-armory-spinnaker#list-of-stable-armory-releases" >}}).
+- Armory Enterprise `version`: Use the version of Armory Enterprise that you want to deploy, which can be found [here]({{< ref "rn-armory-spinnaker#list-of-stable-armory-releases" >}}).
 - S3 `bucket`: Use the name of the S3 bucket created above.
 - S3 `region`: Region where the S3 bucket is located.
 - S3 `accessKeyId`: Optional, set when using IAM user credentials to authenticate to the S3 bucket.
 - S3 `secretAccessKey`: Optional, set when using IAM user credentials to authenticate to the S3 bucket.
-- metadata `name`: Change if you're installing Armory to a namespace other than `spinnaker`.
+- metadata `name`: Change if you're installing Armory Enterprise to a namespace other than `spinnaker`.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -425,7 +437,7 @@ metadata:
 spec:
   spinnakerConfig:
     config:
-      version: 2.17.1  # Replace with desired version of Armory to deploy
+      version: 2.17.1  # Replace with desired version of Armory Enterprise to deploy
       persistentStorage:
         persistentStoreType: s3
         s3:
@@ -447,7 +459,7 @@ spec:
             dockerRegistries: []
             kinds: []
             namespaces:
-            - spinnaker  # Name of the namespace where Armory is installed
+            - spinnaker  # Name of the namespace where Armory Enterprise is installed
             oAuthScopes: []
             omitKinds: []
             omitNamespaces: []
@@ -470,13 +482,14 @@ Deploy the manifest with the following command:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-## Install Armory using Halyard
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 ### Start the Halyard StatefulSet
 
-Halyard is a Docker image used to install Armory. It generates Kubernetes manifests for each of the Armory services.  This guide explains how to run it in a Kubernetes cluster as a StatefulSet with one (1) Pod.
+Halyard is a Docker image used to install Armory Enterprise. It generates Kubernetes manifests for each of the Armory Enterprise services.  This guide explains how to run it in a Kubernetes cluster as a StatefulSet with one (1) Pod.
 
-First, create a namespace for Armory to run in (this can be any namespace):
+First, create a namespace for Armory Enterprise to run in (this can be any namespace):
 
 ```bash
 kubectl create ns spinnaker
@@ -592,7 +605,7 @@ EOF
 source /home/spinnaker/.bashrc
 ```
 
-### Configure Armory to install in Kubernetes
+### Configure Armory Enterprise to install in Kubernetes
 
 Inside the container, use the Halyard `hal` command line tool to enable the Kubernetes cloud provider:
 
@@ -622,9 +635,9 @@ hal config provider kubernetes account edit spinnaker \
   # Make sure to include all namespace you need to support
 ```
 
-**Important: These commands and parameters limit Armory to deploying to the `spinnaker` namespace. If you want to deploy to other namespaces, either add a second cloud provider target or grant the `default` service account in your namespace permissions on additional namespaces and change the `--namespaces` flag.**
+**Important: These commands and parameters limit Armory Enterprise to deploying to the `spinnaker` namespace. If you want to deploy to other namespaces, either add a second cloud provider target or grant the `default` service account in your namespace permissions on additional namespaces and change the `--namespaces` flag.**
 
-Use the Halyard `hal` command line tool to configure Halyard to install Armory in your Kubernetes cluster
+Use the Halyard `hal` command line tool to configure Halyard to install Armory Enterprise in your Kubernetes cluster
 
 ```bash
 hal config deploy edit \
@@ -636,7 +649,7 @@ hal config deploy edit \
 
 ### Enable and configure the 'Artifact' feature
 
-Within Armory, 'artifacts' are consumable references to items that live outside of Armory, such as a file in a git repository or a file in an S3 bucket. The Artifacts feature must be explicitly turned on.
+Within Armory Enterprise, 'artifacts' are consumable references to items that live outside of Armory Enterprise, such as a file in a git repository or a file in an S3 bucket. The Artifacts feature must be explicitly turned on.
 
 The following commands enable the "Artifacts" feature, the new Artifact UI, and the "http" artifact provider:
 
@@ -648,12 +661,12 @@ hal config artifact http enable
 
 Although enabling the new Artifacts UI is optional, Armory recommends using it for better user experience.
 
-In order to add specific types of artifacts, additional configuration must be completed. For now though, it is sufficient to turn on the artifacts feature with the `http` artifact provider. This allows Armory to retrieve files using unauthenticated http.
+In order to add specific types of artifacts, additional configuration must be completed. For now though, it is sufficient to turn on the artifacts feature with the `http` artifact provider. This allows Armory Enterprise to retrieve files using unauthenticated http.
 
 
-### Configure Armory to access S3 with the IAM Role or User
+### Configure Armory Enterprise to access S3 with the IAM Role or User
 
-Armory needs information about which bucket to access.  Additionally, if you are using an IAM User to access the the bucket, Armory needs credentials for the IAM User.
+Armory Enterprise needs information about which bucket to access.  Additionally, if you are using an IAM User to access the the bucket, Armory Enterprise needs credentials for the IAM User.
 
 <pre class="highlight"><code># Update these snippets with the information for your bucket
 export BUCKET_NAME=spinnaker-abcxyz
@@ -668,7 +681,7 @@ hal config storage s3 edit \
 hal config storage edit --type s3
 </code></pre>
 
-If you are using an IAM User, then provide Armory with the S3 credentials for your IAM User:
+If you are using an IAM User, then provide Armory Enterprise with the S3 credentials for your IAM User:
 
 <pre class="highlight"><code># Update this with the AWS Access Key ID
 export ACCESS_KEY_ID=AKIAWWWWXXXXYYYYZZZZ
@@ -679,7 +692,7 @@ hal config storage s3 edit \
   --secret-access-key
 </code></pre>
 
-By default, Halyard configures Armory to use the folder `front50` in your S3 bucket. You can configure it to use a different folder with this command:
+By default, Halyard configures Armory Enterprise to use the folder `front50` in your S3 bucket. You can configure it to use a different folder with this command:
 
 <pre class="highlight"><code># Replace with the root folder within our bucket to use
 ROOT_FOLDER=spinnaker_apps
@@ -689,7 +702,7 @@ hal config storage s3 edit \
 
 ### Set up Gate to listen on the `/api/v1` path
 
-The Armory microservice "Gate" serves as the API gateway for Armory.  Configure it to listen on a specific path rather than requiring different hosts or ports to differentiate it from the UI of Armory.
+The Armory Enterprise microservice "Gate" serves as the API gateway for Armory Enterprise.  Configure it to listen on a specific path rather than requiring different hosts or ports to differentiate it from the UI of Armory Enterprise.
 
 Create these two files (you may have to create several directories):
 
@@ -723,17 +736,17 @@ healthEndpoint: /api/v1/health
 EOF
 ```
 
-### Select the Armory version to install
+### Select the Armory Enterprise version to install
 
-Before you use Armory-extended Halyard to install Armory, specify the version of Armory you want to use. Make sure the version of Armory you want to install is compatible with the version of Armory-extended Halyard you are using.
+Before you use Armory-extended Halyard to install Armory Enterprise, specify the version of Armory Enterprise you want to use. Make sure the version of Armory Enterprise you want to install is compatible with the version of Armory-extended Halyard you are using.
 
-You can get a list of available versions of Armory with this command:
+You can get a list of available versions of Armory Enterprise with this command:
 
 ```bash
 hal version list
 ```
 
-* If you are installing Armory using Armory-extended Halyard, the command returns a version that starts with `2.x.x`
+* If you are installing Armory Enterprise using Armory-extended Halyard, the command returns a version that starts with `2.x.x`
 
 * If you are installing open source Spinnaker and using open source Halyard (installed from `gcr.io/spinnaker-marketplace/halyard:stable`), the command returns a version that starts with `1.x.x`
 
@@ -746,21 +759,21 @@ echo ${VERSION}
 hal config version edit --version ${VERSION}
 ```
 
-### Install Armory
+### Install Armory Enterprise
 
-Now that our halconfig is configured, you can install Armory:
+Now that our halconfig is configured, you can install Armory Enterprise:
 
 ```bash
 hal deploy apply --wait-for-completion
 ```
 
-Once this is complete, congratulations! Armory is installed. Keep going to learn how to access Armory.
+Once this is complete, congratulations! Armory Enterprise is installed. Keep going to learn how to access Armory Enterprise.
 
-### Connect to Armory using `kubectl port-forward`
+### Connect to Armory Enterprise using `kubectl port-forward`
 
-If you have `kubectl` on a local machine with access to your Kubernetes cluster, you can test the status of your Armory instance by doing a port-forward.
+If you have `kubectl` on a local machine with access to your Kubernetes cluster, you can test the status of your Armory Enterprise instance by doing a port-forward.
 
-First, tell Armory about its local endpoint for `localhost:8084/api/v1`:
+First, tell Armory Enterprise about its local endpoint for `localhost:8084/api/v1`:
 
 ```bash
 hal config security api edit --override-base-url http://localhost:8084/api/v1
@@ -768,7 +781,7 @@ hal config security api edit --override-base-url http://localhost:8084/api/v1
 hal deploy apply --wait-for-completion
 ```
 
-Wait for the pods get in a running state. Then, set up two port forwards, one for Gate (the API gateway) and one for Deck (the Armory UI):
+Wait for the pods get in a running state. Then, set up two port forwards, one for Gate (the API gateway) and one for Deck (the Armory Enterprise UI):
 
 ```bash
 NAMESPACE=spinnaker
@@ -776,7 +789,7 @@ kubectl -n ${NAMESPACE} port-forward svc/spin-deck 9000 &
 kubectl -n ${NAMESPACE} port-forward svc/spin-gate 8084 &
 ```
 
-Then, you can access Armory at `http://localhost:9000`.
+Then, you can access Armory Enterprise at `http://localhost:9000`.
 
 If you are doing this on a remote machine, this does not work because your browser attempts to access `localhost` on your local workstation rather than on the remote machine where the port is forwarded.
 
@@ -787,40 +800,43 @@ the containers may not be available yet. Either wait
 or check the status of all of the containers using the command for our cloud provider
 (such as `kubectl get pods --namespace spinnaker`).
 
+{{% /tab %}}
+{{< /tabs >}}
+
 ## Ingress
 
-There several ways to expose Armory, but there are a some basic requirements.
+There several ways to expose Armory Enterprise, but there are a some basic requirements.
 
 Given a domain name (or IP address) (such as spinnaker.domain.com or 55.55.55.55), you should be able to:
 
 * Reach the `spin-deck` service at the root of the domain (`http://spinnaker.domain.com` or `http://55.55.55.55`)
 * Reach the `spin-gate` service at the root of the domain (`http://spinnaker.domain.com/api/v1` or `http://55.55.55.55/api/v1`)
 
-You  can use either http or https, as long as you use the same for both. Additionally, you have to configure Armory to be aware of its endpoints.
+You  can use either http or https, as long as you use the same for both. Additionally, you have to configure Armory Enterprise to be aware of its endpoints.
 
 The Install the NGINX ingress controller section details how to do that with the NGINX ingress controller.
 
 ### Install the NGINX ingress controller
 
-In order to expose Armory to end users, perform the following actions:
+In order to expose Armory Enterprise to end users, perform the following actions:
 
 * Expose the spin-deck (UI) Kubernetes service on a URL endpoint
 * Expose the spin-gate (API) Kubernetes service on a URL endpoint
-* Update Armory to be aware of the new endpoints
+* Update Armory Enterprise to be aware of the new endpoints
 
 **If you already have an ingress controller, use that ingress controller instead.  You can check for the existence of the NGINX Ingress Controller by running `kubectl get ns` and looking for a namespace called `ingress-nginx`. If the namespace exists, you likely already have an NGINX Ingress Controller running in your cluster.**
 
 The following instructions walk you through how to install the NGINX ingress controller on AWS. This uses the Layer 4 ELB, as indicated in the NGINX ingress controller [documentation](https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md#aws). You can use other NGINX ingress controller configurations, such as the Layer 7 load balancer, based on your organization's ingress policy.)
 
-Both of these are configurable with Armory, but the NGINX ingress controller is also generally much more configurable.
+Both of these are configurable with Armory Enterprise, but the NGINX ingress controller is also generally much more configurable.
 
 {{< include "install/nginx-common.md" >}}
 
 Then, install the NGINX ingress controller AWS-specific service:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/aws/service-l4.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/aws/patch-configmap-l4.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/provider/aws/service-l4.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/provider/aws/patch-configmap-l4.yaml
 ```
 
 ### Set up an Ingress for `spin-deck` and `spin-gate`
@@ -837,7 +853,7 @@ If you stood up a new NGINX ingress controller, you can likely use this value (I
 
 For example, if the command returns `abcd1234abcd1234abcd1234abcd1234-123456789.us-west-2.elb.amazonaws.com`, then you can use `abcd1234abcd1234abcd1234abcd1234-123456789.us-west-2.elb.amazonaws.com` for the `SPINNAKER_ENDPOINT` in the following steps. If the command returns `55.55.55.55`, then use `55.55.55.55` for the `SPINNAKER_ENDPOINT`.
 
-If you use an existing NGINX ingress controller or other services are likely to be using the same NGINX ingress controller, create a DNS entry that points at the NGINX ingress controller endpoint you are using for Armory. You can create either a `CNAME Record` that points at the DNS name or an `A Record` that points at the IP address.
+If you use an existing NGINX ingress controller or other services are likely to be using the same NGINX ingress controller, create a DNS entry that points at the NGINX ingress controller endpoint you are using for Armory Enterprise. You can create either a `CNAME Record` that points at the DNS name or an `A Record` that points at the IP address.
 
 For the example `abcd1234abcd1234abcd1234abcd1234-123456789.us-west-2.elb.amazonaws.com` DNS name, do the following:
 * Create a CNAME pointing `spinnaker.domain.com` at `abcd1234abcd1234abcd1234abcd1234-123456789.us-west-2.elb.amazonaws.com`
@@ -892,9 +908,9 @@ Apply the ingress file you just created:
 kubectl -n spinnaker apply -f spin-ingress.yml
 ```
 
-### Configure Armory to be aware of its endpoints
+### Configure Armory Enterprise to be aware of its endpoints
 
-Armory must be aware of its endpoints to work properly. Configuration updates vary depending upon whether you installed Armory using Operator or Halyard.
+Armory Enterprise must be aware of its endpoints to work properly. Configuration updates vary depending upon whether you installed Armory Enterprise using Operator or Halyard.
 
 **Operator**
 
@@ -943,14 +959,14 @@ Configuring TLS certificates for ingresses is often very environment-specific. I
 
 * Add certificate(s) so that our ingress controller can use them
 * Configure the ingress(es) so that NGINX (or the load balancer in front of NGINX, or your alternative ingress controller) terminates TLS using the certificate(s)
-* Update Armory to be aware of the new TLS endpoints, by replacing `http` by `https` to override the base URLs in the previous section.
+* Update Armory Enterprise to be aware of the new TLS endpoints, by replacing `http` by `https` to override the base URLs in the previous section.
 
 ## Next steps
 
-Now that Armory is running, here are potential next steps:
+Now that Armory Enterprise is running, here are potential next steps:
 
 * Configuration of certificates to secure our cluster (see [this section](#configuring-tls-certificates) for notes on this)
 * Configuration of Authentication/Authorization (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/security/))
-* Add Kubernetes accounts to deploy applications to (see [Creating and Adding a Kubernetes Account to Armory as a Deployment Target]({{< ref "kubernetes-account-add" >}}))
+* Add Kubernetes accounts to deploy applications to (see [Creating and Adding a Kubernetes Account to Armory Enterprise as a Deployment Target]({{< ref "kubernetes-account-add" >}}))
 * Add GCP accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/gce/))
 * Add AWS accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/aws/))

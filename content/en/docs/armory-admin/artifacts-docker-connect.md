@@ -1,5 +1,5 @@
 ---
-title: Connecting Docker Registries
+title: Connect Docker Registries
 description: >
   Learn how to configure Spinnaker to access a Docker registry.
 ---
@@ -84,7 +84,8 @@ spec:
             sortTagsByDate: false              # Sort tags by creation date.
             trackDigests: false                # Track digest changes. This is not recommended as it consumes a high QPM, and most registries are flaky.
             insecureRegistry: false            # Treat the docker registry as insecure (don't validate the ssl cert).
-            repositories:                      # An optional list of repositories to cache images from. If not provided, Spinnaker will attempt to read accessible repositories from the registries _catalog endpoint
+            # repositories:                      # An optional list of repositories to cache images from. If not provided, Spinnaker will attempt to read accessible repositories from the registries _catalog endpoint
+            # repositoriesRegex: <regexForYourRepos> # Optional regular expression that specifies what repositories Clouddriver caches images from. This is useful if you add repos frequently. Any new repo that matches the regex gets cached automatically.
             - library/nginx
             # passwordFile: docker-pass        # The path to a file containing your docker password in plaintext (not docker/config.json file). This field support "encryptedFile" secret references.
             # passwordCommand: abc # Command to retrieve docker token/password, commands must be available in environment
@@ -101,6 +102,7 @@ hal config provider docker-registry account add my-docker-registry \
     --repositories armory/demoapp
     --username yourusername
     --password # you'll be prompted for this interactively
+    # --repositoriesRegex: <regexForYourRepos> # Optional regular expression that limits what repositories Clouddriver caches images from. This is useful if you add repos frequently. Any new repo that matches the regex gets cached automatically.
 ```
 
 Detailed information on all command line options can be found [here](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-docker-registry-account-add)

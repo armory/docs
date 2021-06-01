@@ -4,6 +4,7 @@ Armory Agent
 Armory Operator
 artifactory
 Artifactory
+Astra
 AWS
 Bitbucket
 CLI
@@ -11,21 +12,27 @@ clouddriver
 Clouddriver
 Cloud Foundry
 config
+Debian
 Deck
 Dinghy
 dinghyfile
 Docsy
 Echo
+env:
 Fiat
 Front50
 Gate
 GCP
 GitHub
 GitOps
+Gradle
+gPRC
+grpc
 hal
 Halyard
 halyard
 .html
+http
 Igor
 Istio
 json
@@ -34,9 +41,14 @@ K8s
 Kayenta
 Keel
 kubeconfig
+kubeconfigfiles
 kubectl
+kubesvc
+Kubesvc
 Kubernetes
 Kustomize
+kustomize
+kustomization
 .md
 Minio
 Minnaker
@@ -54,7 +66,12 @@ REST
 Rosco
 ServiceNow
 Spinnaker
+SpinnakerService
+spinnakerservice
 SQL
+.yml
+yml
+.yaml
 yaml
 {{< heading "prereq" >}}
 {{% heading "prereq" %}}

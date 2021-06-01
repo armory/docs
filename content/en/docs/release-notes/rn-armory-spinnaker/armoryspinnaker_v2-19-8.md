@@ -53,7 +53,7 @@ Highlighted Updates describe some of the major changes in this release. Highligh
 
 This update contians improvements and fixes to the Plugins framework:
 
-* Support for Plugin deployment using Armory-extended Halyard or the [Spinnaker Operator]({{< ref "operator" >}}). Consult the open source [Plugin](https://www.spinnaker.io/guides/user/plugins/user-guide/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins" >}}) for a manifest example.
+* Support for Plugin deployment using Armory-extended Halyard or the [Spinnaker Operator]({{< ref "armory-operator" >}}). Consult the open source [Plugin](https://www.spinnaker.io/guides/user/plugins/user-guide/) docs for Halyard usage or the [Plugins Operator Reference]({{< ref "plugins" >}}) for a manifest example.
 * Updates to how Deck is built. Previously, Deck's builds were non-deterministic, causing issues with loading plugins into the UI. Deck's builds are now deterministic and support UI plugins.
 
 ###  Spinnaker Community Contributions
