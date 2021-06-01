@@ -586,6 +586,10 @@ Parameters related to the stage against which the policy is executing can be fou
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
+### input.stage
+
+See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
+
 ### input.stage.context
 
 | Key                                       | Type      | Description                                                       |
@@ -596,49 +600,6 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.expectedArtifacts[]` | `array`   | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
 | `input.stage.context.planForDestroy`      | `boolean` |                                                                   |
 | `input.stage.context.terraformVersion`    | `string`  |                                                                   |
-
-### input.stage
-
-| Key                                              | Type      | Description                                                       |
-| ------------------------------------------------ | --------- | ----------------------------------------------------------------- |
-| `input.stage.endTime`                            | ` `       |                                                                   |
-| `input.stage.id`                                 | `string`  |                                                                   |
-| `input.stage.lastModified`                       | ` `       |                                                                   |
-| `input.stage.name`                               | `string`  |                                                                   |
-| `input.stage.outputs.artifacts[]`                | `array`   | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.stage.outputs.status.code`                | `number`  |                                                                   |
-| `input.stage.outputs.status.error`               | `string`  |                                                                   |
-| `input.stage.outputs.status.id`                  | `string`  |                                                                   |
-| `input.stage.outputs.status.logs.apply_stderr`   | `string`  |                                                                   |
-| `input.stage.outputs.status.logs.apply_stdout`   | `string`  |                                                                   |
-| `input.stage.outputs.status.logs.combined`       | `string`  |                                                                   |
-| `input.stage.outputs.status.logs.init_stderr`    | `string`  |                                                                   |
-| `input.stage.outputs.status.logs.init_stdout`    | `string`  |                                                                   |
-| `input.stage.outputs.status.logs.plan_stderr`    | `string`  |                                                                   |
-| `input.stage.outputs.status.logs.plan_stdout`    | `string`  |                                                                   |
-| `input.stage.outputs.status.outputs.artifacts[]` | `array`   | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.stage.outputs.status.state`               | `string`  |                                                                   |
-| `input.stage.parentStageId`                      | ` `       |                                                                   |
-| `input.stage.refId`                              | `string`  |                                                                   |
-| `input.stage.requisiteStageRefIds[]`             | `string`  |                                                                   |
-| `input.stage.scheduledTime`                      | ` `       |                                                                   |
-| `input.stage.startTimeExpiry`                    | ` `       |                                                                   |
-| `input.stage.startTime`                          | `number`  |                                                                   |
-| `input.stage.status`                             | `string`  |                                                                   |
-| `input.stage.syntheticStageOwner`                | ` `       |                                                                   |
-| `input.stage.tasks[].endTime`                    | ` `       |                                                                   |
-| `input.stage.tasks[].endTime`                    | `number`  |                                                                   |
-| `input.stage.tasks[].id`                         | `string`  |                                                                   |
-| `input.stage.tasks[].implementingClass`          | `string`  |                                                                   |
-| `input.stage.tasks[].loopEnd`                    | `boolean` |                                                                   |
-| `input.stage.tasks[].loopStart`                  | `boolean` |                                                                   |
-| `input.stage.tasks[].name`                       | `string`  |                                                                   |
-| `input.stage.tasks[].stageEnd`                   | `boolean` |                                                                   |
-| `input.stage.tasks[].stageStart`                 | `boolean` |                                                                   |
-| `input.stage.tasks[].startTime`                  | ` `       |                                                                   |
-| `input.stage.tasks[].startTime`                  | `number`  |                                                                   |
-| `input.stage.tasks[].status`                     | `string`  |                                                                   |
-| `input.stage.type`                               | `string`  |                                                                   |
 
 ### input.user
 

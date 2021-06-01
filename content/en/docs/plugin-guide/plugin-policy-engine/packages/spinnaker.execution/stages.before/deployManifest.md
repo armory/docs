@@ -1664,6 +1664,9 @@ Parameters related to the stage against which the policy is executing can be fou
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
+### input.stage
+
+See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 ### input.stage.context
 
@@ -1696,21 +1699,6 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.stableManifests[].location`     | `string`   | The namespace of the stable manifest.                                                                                                                                                                                     |
 | `input.stage.context.stableManifests[].manifestName` | `string`   | The manifests name.                                                                                                                                                                                     |
 | `input.stage.context.user`                           | `string`   | the ID of the user that the stage is running as.                                                                                                                                     |
-
-### input.stage
-
-| Key                          | Type       | Description                                                                                                                                                                                                                                                            |
-| ---------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `input.stage.id`             | `string`   | This stages unique ID                                                                                                                                                                                                                                                  |
-| `input.stage.name`           | `string`   | The name of the pipeline stage.                                                                                                                                                                                                                                        |
-| `input.stage.outputs`        | `{object}` | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs.                                                                                   |
-| `input.stage.parentStageId`  | ` `        |                                                                                                                                                                                                                                                                        |
-| `input.stage.refId`          | `string`   | This stages ID reference in the stage graph. Typically if you are writing a policy that depends on pipeline stage order, it is better to write that policy against either the opa.pipelines bpackage, or the spinnaker.execution.pipelines.before package.             |
-| `input.stage.startTime`      | `number`   | When did this stage start running.                                                                                                                                                                                                                                     |
-| `input.stage.status`         | `string`   | The status of this stage, typically 'RUNNING' when this policy is checked.                                                                                                                                                                                             |
-| `input.stage.tasks[].name`   | `string`   | The name of the task being executed. Each stage will execute multiple tasks to accomplish its goals.                                                                                                                                                                   |
-| `input.stage.tasks[].status` | `string`   | The status of the running tasks. If you wish to check whether or not this is the first task of the stage you can include the following in your policy: input.stage.tasks[_].status=="SUCCEEDED", which will return 'true' if a task has finished running successfully. |
-| `input.stage.type`           | `string`   | Will always be 'deployManifest'                                                                                                                                                                                                                                        |
 
 ### input.user
 
