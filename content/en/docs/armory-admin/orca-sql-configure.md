@@ -83,7 +83,7 @@ Armory v2.18+:
 executionRepository:
   dual:
     enabled: true
-    primaryClass: sqlExecutionRepository
+    primaryName: sqlExecutionRepository
     previousName: redisExecutionRepository
   sql:
     enabled: true
