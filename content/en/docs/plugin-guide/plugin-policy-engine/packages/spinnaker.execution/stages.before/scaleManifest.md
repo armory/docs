@@ -228,7 +228,10 @@ deny ["scaling can only be run in pipelines that are triggered by monitoring, no
 
 ## Keys
 
-Parameters related to the stage against which the policy is executing can be found in the [input.stage.context](#inputstagecontext) object.
+### input.stage
+
+See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
+
 
 ### input.pipeline
 
@@ -239,7 +242,6 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.pipeline.authentication.user`               | `string`  | The Spinnaker user initiating the change.                                                                                                                                                                                                                  |
 | `input.pipeline.buildTime`                         | `number`  |                                                                                                                                                                                                                                                            |
 | `input.pipeline.description`                       | `string`  | Description of the pipeline defined in the UI                                                                                                                                                                                                              |
-
 | `input.pipeline.id`                                | `string`  | The unique ID of the pipeline                                                                                                                                                                                                                              |
 | `input.pipeline.keepWaitingPipelines`              | `boolean` | If concurrent pipeline execution is disabled, then the pipelines that are in the waiting queue will get canceled when the next execution starts unless this is true.                                                                                       |
 | `input.pipeline.limitConcurrent`                   | `boolean` | True if only 1 concurrent execution of this pipeline be allowed.                                                                                                                                                                                           |
@@ -289,29 +291,7 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 ### input.stage
 
-| Key                                      | Type      | Description                                 |
-| ---------------------------------------- | --------- | ------------------------------------------- |
-| `input.stage.id`                         | `string`  | This stages unique ID                                            |
-| `input.stage.name`                       | `string`  | The name of the pipeline stage.                                            |
-| `input.stage.parentStageId`              | ``        |                                             |
-| `input.stage.refId`                      | `string`  | This stages ID reference in the stage graph. Typically if you are writing a policy that depends on pipeline stage order, it is better to write that policy against either the opa.pipelines bpackage, or the spinnaker.execution.pipelines.before package.                                            |
-| `input.stage.scheduledTime`              | ``        |                                             |
-| `input.stage.startTime`                  | `number`  | When did this stage start running.                                            |
-| `input.stage.startTimeExpiry`            | ``        |                                             |
-| `input.stage.status`                     | `string`  | The status of this stage, typically ‘RUNNING’ when this policy is checked.                                            |
-| `input.stage.syntheticStageOwner`        | ``        |                                             |
-| `input.stage.tasks.[].endTime`           | `number`  |                                             |
-| `input.stage.tasks.[].endTime`           | ``        |                                             |
-| `input.stage.tasks.[].id`                | `string`  |                                             |
-| `input.stage.tasks.[].implementingClass` | `string`  |                                             |
-| `input.stage.tasks.[].loopEnd`           | `boolean` |                                             |
-| `input.stage.tasks.[].loopStart`         | `boolean` |                                             |
-| `input.stage.tasks.[].name`              | `string`  | The name of the task being executed. Each stage will execute multiple tasks to accomplish its goals.                                            |
-| `input.stage.tasks.[].stageEnd`          | `boolean` |                                             |
-| `input.stage.tasks.[].stageStart`        | `boolean` |                                             |
-| `input.stage.tasks.[].startTime`         | `number`  | When did this stage start running.                                            |
-| `input.stage.tasks.[].status`            | `string`  | The status of this stage, typically ‘RUNNING’ when this policy is checked.                                            |
-| `input.stage.type`                       | `string`  | The current state of activity of the stage. |
+See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 ### input.user
 

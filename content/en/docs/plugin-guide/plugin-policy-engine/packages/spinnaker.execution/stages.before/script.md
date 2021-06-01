@@ -3357,6 +3357,8 @@ description: "fill me with delicious data, Stephen!"
 
 ## Keys
 
+Parameters related to the stage against which the policy is executing can be found in the [input.stage.context](#inputstagecontext) object.
+
 ### input.pipeline
 
 | Key                                               | Type      | Description |
@@ -3393,34 +3395,15 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 ### input.stage
 
+See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
+
+### input.stage.context
+
 | Key                                     | Type      | Description |
 | --------------------------------------- | --------- | ----------- |
 | `input.stage.context.failPipeline`      | `boolean` |             |
 | `input.stage.context.user`              | `string`  |             |
 | `input.stage.context.waitForCompletion` | `boolean` |             |
-| `input.stage.endTime`                   | ` `       |             |
-| `input.stage.id`                        | `string`  |             |
-| `input.stage.lastModified`              | ` `       |             |
-| `input.stage.name`                      | `string`  |             |
-| `input.stage.parentStageId`             | ` `       |             |
-| `input.stage.refId`                     | `string`  |             |
-| `input.stage.scheduledTime`             | ` `       |             |
-| `input.stage.startTimeExpiry`           | ` `       |             |
-| `input.stage.startTime`                 | `number`  |             |
-| `input.stage.status`                    | `string`  |             |
-| `input.stage.syntheticStageOwner`       | ` `       |             |
-| `input.stage.tasks[].endTime`           | ` `       |             |
-| `input.stage.tasks[].id`                | `string`  |             |
-| `input.stage.tasks[].implementingClass` | `string`  |             |
-| `input.stage.tasks[].loopEnd`           | `boolean` |             |
-| `input.stage.tasks[].loopStart`         | `boolean` |             |
-| `input.stage.tasks[].name`              | `string`  |             |
-| `input.stage.tasks[].stageEnd`          | `boolean` |             |
-| `input.stage.tasks[].stageStart`        | `boolean` |             |
-| `input.stage.tasks[].startTime`         | ` `       |             |
-| `input.stage.tasks[].startTime`         | `number`  |             |
-| `input.stage.tasks[].status`            | `string`  |             |
-| `input.stage.type`                      | `string`  |             |
 
 ### input.user
 

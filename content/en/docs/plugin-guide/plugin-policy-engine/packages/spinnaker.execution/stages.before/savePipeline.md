@@ -195,31 +195,7 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 ### input.stage
 
-| Key                                     | Type      | Description                                 |
-| --------------------------------------- | --------- | ------------------------------------------- |
-| `input.stage.endTime`                   | ``        |                                             |
-| `input.stage.id`                        | `string`  |                                             |
-| `input.stage.lastModified`              | ``        |                                             |
-| `input.stage.name`                      | `string`  | The name of a prticular stage.              |
-| `input.stage.parentStageId`             | ``        |                                             |
-| `input.stage.refId`                     | `string`  |                                             |
-| `input.stage.scheduledTime`             | ``        |                                             |
-| `input.stage.startTime`                 | `number`  |                                             |
-| `input.stage.startTimeExpiry`           | ``        | The current state of activity of the stage. |
-| `input.stage.status`                    | `string`  |                                             |
-| `input.stage.syntheticStageOwner`       | ``        |                                             |
-| `input.stage.tasks[].endTime`           | `number`  |                                             |
-| `input.stage.tasks[].endTime`           | ``        |                                             |
-| `input.stage.tasks[].id`                | `string`  |                                             |
-| `input.stage.tasks[].implementingClass` | `string`  |                                             |
-| `input.stage.tasks[].loopEnd`           | `boolean` |                                             |
-| `input.stage.tasks[].loopStart`         | `boolean` |                                             |
-| `input.stage.tasks[].name`              | `string`  |                                             |
-| `input.stage.tasks[].stageEnd`          | `boolean` |                                             |
-| `input.stage.tasks[].stageStart`        | `boolean` |                                             |
-| `input.stage.tasks[].startTime`         | `number`  |                                             |
-| `input.stage.tasks[].status`            | `string`  |                                             |
-| `input.stage.type`                      | `string`  | The current state of activity of the stage. |
+See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 ### input.user
 
