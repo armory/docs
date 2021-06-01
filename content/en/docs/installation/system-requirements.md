@@ -9,7 +9,7 @@ The requirements described on this page are meant as a minimum starting point fo
 
 ## Installation targets
 
-> This section defines where you can run Armory Enterprise, not where you can deploy your applications. For information about what versions of Kubernetes you can deploy to, see the [Product Compatibility Matrix]({{< ref "armory-platform-matrix.md" >}}).
+> This section defines where you can run Armory Enterprise, not where you can deploy your applications. For information about what versions of Kubernetes you can deploy to, see the [Product Compatibility Matrix]({{< ref "armory-enterprise-matrix.md" >}}).
 
 Armory Enterprise can be installed on either Amazon EKS or a [certified Kubernetes cluster](https://www.cncf.io/certification/software-conformance/).
 
@@ -81,8 +81,8 @@ Additionally, pods in your Kubernetes cluster must be able to communicate with e
 
 ### Authentication and authorization
 
-Armory Enterprise supports several providers for authentication and authorization. For more information, see see [Authentication]({{< ref "armory-platform-matrix#authentication" >}}) and [Authorization]({{< ref "armory-platform-matrix#authorization" >}})
+Armory Enterprise supports several providers for authentication and authorization. For more information, see see [Authentication]({{< ref "armory-enterprise-matrix#authentication" >}}) and [Authorization]({{< ref "armory-enterprise-matrix#authorization" >}})
 
 ### Secrets
 
-Encrypt your configuration secrets. For more information about what secret engines are supported, see [Secret stores]({{< ref "armory-platform-matrix#secret-stores" >}}).
+Encrypt your configuration secrets. For more information about what secret engines are supported, see [Secret stores]({{< ref "armory-enterprise-matrix#secret-stores" >}}).
