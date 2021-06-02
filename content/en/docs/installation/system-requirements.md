@@ -9,7 +9,7 @@ The requirements described on this page are meant as a minimum starting point fo
 
 ## Installation targets
 
-> This section defines where you can run Armory Enterprise, not where you can deploy your applications. For information about what versions of Kubernetes you can deploy to, see the [Product Compatibility Matrix]({{< ref "armory-enterprise-matrix.md" >}}).
+> This section defines where you can run Armory Enterprise, not where you can deploy your applications. For information about where you can deploy applications to, see the [Product Compatibility Matrix]({{< ref "armory-enterprise-matrix#deployment-targets" >}}).
 
 Armory Enterprise can be installed on either Amazon EKS or a [certified Kubernetes cluster](https://www.cncf.io/certification/software-conformance/).
 
