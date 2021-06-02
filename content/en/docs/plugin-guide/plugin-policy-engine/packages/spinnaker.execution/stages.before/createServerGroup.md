@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.createServerGroup"
 linktitle: "createServerGroup"
-description: "A policy that is run before executing each task in a Create Server Group stage."
+description: "A policy that is run before executing each task in a deploy stage."
 ---
 
 ## Example Payload
@@ -472,7 +472,7 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.cloudProvider`                       | `string`  | The name of the cloud provider that will execute the stage.            |
 | `input.stage.context.cooldown`                            | `number`  |             |
 | `input.stage.context.copySourceCustomBlockDeviceMappings` | `boolean` |             |
-| `input.stage.context.ebsOptimized`                        | `boolean` |             |
+| `input.stage.context.ebsOptimized`                        | `boolean` | Will instances be optimized for EBS            |
 | `input.stage.context.freeFormDetails`                     | `string`  |             |
 | `input.stage.context.healthCheckGracePeriod`              | `number`  |             |
 | `input.stage.context.healthCheckType`                     | `string`  |             |
@@ -487,9 +487,9 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.stack`                               | `string`  |             |
 | `input.stage.context.strategy`                            | `string`  |             |
 | `input.stage.context.subnetType`                          | `string`  | The subnet selection determines the VPC in which your server group will run. Options vary by account and region; the most common ones are:    None (EC2 Classic): instances will not run in a VPC    internal instances will be restricted to internal clients (i.e. require VPN access)    external instances will be publicly accessible and running in VPC            |
-| `input.stage.context.targetHealthyDeployPercentage`       | `number`  |             |
+| `input.stage.context.targetHealthyDeployPercentage`       | `number`  | What percentage of the ASG should be healthy instances during rollouts.            |
 | `input.stage.context.terminationPolicies[]`               | `string`  |             |
-| `input.stage.context.type`                                | `string`  |             |
+| `input.stage.context.type`                                | `string`  | The name of this stage, typically 'createServerGroup'            |
 | `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` |             |
 
 ### input.stage
