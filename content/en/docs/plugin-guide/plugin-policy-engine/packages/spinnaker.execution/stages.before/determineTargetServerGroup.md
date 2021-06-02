@@ -1,7 +1,8 @@
 ---
 title: "spinnaker.execution.stages.before.determineTargetServerGroup"
 linktitle: "determineTargetServerGroup"
-description: "fill me with delicious data, Stephen!"
+description: "A policy that is run before executing each task in a determine server group stage.
+"
 ---
 
 ## Example Payload
@@ -3346,12 +3347,12 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 | Key                                     | Type      | Description |
 | --------------------------------------- | --------- | ----------- |
-| `input.stage.context.action`            | `string`  |             |
-| `input.stage.context.cloudProvider`     | `string`  |             |
-| `input.stage.context.cloudProviderType` | `string`  |             |
-| `input.stage.context.cluster`           | `string`  |             |
-| `input.stage.context.credentials`       | `string`  |             |
-| `input.stage.context.regions[]`         | `string`  |             |
+| `input.stage.context.action`            | `string`  | What action will be taken against the target server group.            |
+| `input.stage.context.cloudProvider`     | `string`  | The name of the cloud provider that will execute the stage.            |
+| `input.stage.context.cloudProviderType` | `string`  | The type of the cloud provider that will execute the stage.            |
+| `input.stage.context.cluster`           | `string`  | The name of the AWS cluster to deploy to.            |
+| `input.stage.context.credentials`       | `string`  | The credentials/account used to connect to the cloud provider.            |
+| `input.stage.context.regions[]`         | `string`  | The regions to use.            |
 | `input.stage.context.target`            | `string`  |             |
 
 ### input.stage
