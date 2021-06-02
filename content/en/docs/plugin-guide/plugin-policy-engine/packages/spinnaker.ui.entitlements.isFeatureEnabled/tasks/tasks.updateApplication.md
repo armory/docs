@@ -45,7 +45,7 @@ description: "fill me with delicious data, Stephen!"
 
 {{< prism lang="rego" line-numbers="true" >}}
 
-{{/prism}}
+{{< /prism >}}
 
 ## Keys
 

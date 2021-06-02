@@ -3282,7 +3282,7 @@ description: "A policy targeting this object is run before executing each task i
 
 {{< prism lang="rego" line-numbers="true" >}}
 
-{{/prism}}
+{{< /prism >}}
 
 ## Keys
 

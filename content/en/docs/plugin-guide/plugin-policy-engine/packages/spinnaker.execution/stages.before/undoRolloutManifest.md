@@ -4,7 +4,8 @@ linktitle: "undoRolloutManifest"
 description: "A policy targeting this object is run before executing each task in a undoRolloutManifest stage."
 ---
 
- See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifest-based-stages" >}}) for more information on this stage.
+See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifest-based-stages" >}}) for more information on this stage.
+
 ## Example Payload
 
 <details><summary>Click to expand</summary>

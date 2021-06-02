@@ -141,7 +141,7 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
 
 {{< prism lang="rego" line-numbers="true" >}}
 
-{{/prism}}
+{{< /prism >}}
 
 ## Keys
 
