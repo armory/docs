@@ -4,9 +4,7 @@ linktitle: "bake"
 description: "A policy targeting this object is run before executing each task in a bake stage."
 ---
 
-More information about the bake stage can be found at: https://docs.armory.io/docs/spinnaker-user-guides/aws-guides/aws-baking-images/
-
-## Example Payload
+More information about the bake stage can be found in [Bake Amazon Machine Images in a Spinnaker Pipeline]({{< ref "aws-baking-images" >}})
 
 <details><summary>Click to expand</summary>
 
@@ -426,33 +424,33 @@ Parameters related to the stage against which the policy is executing can be fou
 
 ### input.pipeline
 
-| Key                                               | Type      | Description                                                                                                                                                          |
-| ------------------------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                                                |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                                          |
-| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                                            |
-| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                                      |
-| `input.pipeline.canceled`                         | `boolean` | Has the pipeline execution been cancelled. This will always be false since the policy check requires the pipeline to be running.                                     |
-| `input.pipeline.canceledBy`                       | `string ` | The userID of the user that cancelled the pipeline.                                                                                                                  |
-| `input.pipeline.cancellationReason`               | ` `       |                                                                                                                                                                      |
-| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI.                                                                                                                       |
-| `input.pipeline.endTime`                          | `number`  |                                                                                                                                                                      |
-| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline.                                                                                                                                       |
-| `input.pipeline.keepWaitingPipelines` | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
-| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                                     |
-| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                                           |
-| `input.pipeline.origin`                           | `string`  |                                                                                                                                                                      |
-| `input.pipeline.partition`                        | ` `       |                                                                                                                                                                      |
-| `input.pipeline.paused`                           | ` `       |                                                                                                                                                                      |
-| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                                                                                                                      |
-| `input.pipeline.source`                           | ` `       |                                                                                                                                                                      |
-| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                                          |
+| Key                                               | Type      | Description                                                                                                                                       |
+| ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                             |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                       |
+| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                         |
+| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                   |
+| `input.pipeline.canceled`                         | `boolean` | Has the pipeline execution been cancelled. This will always be false since the policy check requires the pipeline to be running.                  |
+| `input.pipeline.canceledBy`                       | `string ` | The userID of the user that cancelled the pipeline.                                                                                               |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                                                                                                   |
+| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI.                                                                                                    |
+| `input.pipeline.endTime`                          | `number`  |                                                                                                                                                   |
+| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline.                                                                                                                    |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
+| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                  |
+| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                        |
+| `input.pipeline.origin`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.partition`                        | ` `       |                                                                                                                                                   |
+| `input.pipeline.paused`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                                                                                                   |
+| `input.pipeline.source`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                       |
 | `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
-| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                                        |
-| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                                   |
-| `input.pipeline.status`                           | `string`  |                                                                                                                                                                      |
-| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                                      |
-| `input.pipeline.type`                             | `string`  |                                                                                                                                                                      |
+| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                     |
+| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                |
+| `input.pipeline.status`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                   |
+| `input.pipeline.type`                             | `string`  |                                                                                                                                                   |
 
 ### input.pipeline.trigger
 
@@ -464,21 +462,21 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 ### input.stage.context
 
-| Key                                     | Type      | Description                                                                                                |
-| --------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
-| `input.stage.context.amiSuffix`         | `string`  | A suffix to apply to the ami. String of date in format YYYYMMDDHHmm, default is calculated from timestamp, |
-| `input.stage.context.baseLabel`         | `string`  | A base label to use for the AMI.                                                                           |
-| `input.stage.context.baseOs`            | `string`  | What operating system should be used to find a baseAMI to base the AMI from.                               |
-| `input.stage.context.baseAmi`           | `string`  | If Base AMI is specified, this will be used instead of the Base OS provided.                               |
-| `input.stage.context.cloudProviderType` | `string`  | The type of the cloud provider for which an image will be baked.                                           |
-| `input.stage.context.name`              | `string`  |                                                                                                            |
-| `input.stage.context.package`           | `string`  | The package that should be installed in the new AMI.                                                       |
-| `input.stage.context.rebake`            | `boolean` | Rebake image without regard to the status of any existing bake.                                            |
-| `input.stage.context.region`            | `string`  | The region in which to perform the backe.                                                                  |
-| `input.stage.context.storeType`         | `string`  | What type of storage the baked image will use.                                                             |
-| `input.stage.context.type`              | `string`  | Always `bake`.                                                                                             |
-| `input.stage.context.user`              | `string`  | The ID of the user that started the bake.                                                                  |
-| `input.stage.context.vmType`            | `string`  | `HVM` or `PV`. The type of virtual machine for which the image should be baked.                            |
+| Key                                     | Type      | Description                                                                              |
+| --------------------------------------- | --------- | ---------------------------------------------------------------------------------------- |
+| `input.stage.context.amiSuffix`         | `string`  | A suffix to apply to the ami. By default, a string of the date in format `YYYYMMDDHHmm`. |
+| `input.stage.context.baseLabel`         | `string`  | A base label to use for the AMI.                                                         |
+| `input.stage.context.baseOs`            | `string`  | What operating system should be used to find a baseAMI to base the AMI from.             |
+| `input.stage.context.baseAmi`           | `string`  | If Base AMI is specified, this will be used instead of the Base OS provided.             |
+| `input.stage.context.cloudProviderType` | `string`  | The type of the cloud provider for which an image will be baked.                         |
+| `input.stage.context.name`              | `string`  |                                                                                          |
+| `input.stage.context.package`           | `string`  | The package that should be installed in the new AMI.                                     |
+| `input.stage.context.rebake`            | `boolean` | Rebake image without regard to the status of any existing bake.                          |
+| `input.stage.context.region`            | `string`  | The region in which to perform the backe.                                                |
+| `input.stage.context.storeType`         | `string`  | What type of storage the baked image will use.                                           |
+| `input.stage.context.type`              | `string`  | Always `bake`.                                                                           |
+| `input.stage.context.user`              | `string`  | The ID of the user that started the bake.                                                |
+| `input.stage.context.vmType`            | `string`  | `HVM` or `PV`. The type of virtual machine for which the image should be baked.          |
 
 ### input.user
 
