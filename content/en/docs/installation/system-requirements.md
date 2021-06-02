@@ -16,7 +16,7 @@ Armory Enterprise can be installed on any [certified Kubernetes cluster](https:/
 * **Minimum version**: 1.16
 * **Maximum version**: 1.20
 <!-- track EKS versions -->
-To install Armory Enterprise, use the Armory Operator (a Kubernetes operator) or Halyard. Note that you must be able to apply Kubernetes manifests, either directly using `kubectl` commands from your machine or another method.
+To install Armory Enterprise, use the Armory Operator (a Kubernetes operator). Note that you must be able to apply Kubernetes manifests, either directly using `kubectl` commands from your machine or another method.
 
 Armory does not produce marketplace specific images that can be used by different certified Kubernetes offerings.
 
