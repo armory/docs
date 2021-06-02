@@ -497,11 +497,11 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.completeOtherBranchesThenFail` | `boolean` |             |
 | `input.stage.context.continuePipeline`              | `boolean` |             |
 | `input.stage.context.failPipeline`                  | `boolean` |             |
-| `input.stage.context.instructions`                  | `string`  |             |
+| `input.stage.context.instructions`                  | `string`  | Instructions are shown to the user when making a manual judgment.            |
 | `input.stage.context.judgmentStatus`                | `string`  |             |
-| `input.stage.context.lastModifiedBy`                | `string`  |             |
+| `input.stage.context.lastModifiedBy`                | `string`  | Once completed, this is the ID of the user that approved the judgement.            |
 | `input.stage.context.selectedStageRoles[]`          | `string`  | The list of roles that are permitted to approve the manual judgement.            |
-| `input.stage.context.stageTimeoutMs`                | `number`  |             |
+| `input.stage.context.stageTimeoutMs`                | `number`  | Allows forcing the stage to fail if its not approved within a certain time  |
 
 ### input.stage
 
