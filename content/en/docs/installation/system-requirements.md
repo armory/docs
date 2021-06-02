@@ -5,7 +5,7 @@ description: >
   Armory Enterprise is a collection of services that run in a Kubernetes cluster. In addition to the cluster, other requirements, such as storage, need to be met to run Armory Enterprise for production environments.
 ---
 
-The requirements described on this page are meant as a minimum starting point for installing Armory Enterprise. You may need to increase the resources based on the number of pipelines and executions.
+The requirements described on this page are meant as a minimum starting point for installing Armory Enterprise. You may need to increase the resources based on the number of applications, pipelines, and executions.
 
 ## Installation targets
 
@@ -13,16 +13,16 @@ The requirements described on this page are meant as a minimum starting point fo
 
 Armory Enterprise can be installed on any [certified Kubernetes cluster](https://www.cncf.io/certification/software-conformance/).
 
-* **Minimum version**: Some TBD version
-* **Maximum version**: Some TBD version
+* **Minimum version**: 1.16
+* **Maximum version**: 1.20
+<!-- track EKS versions -->
+To install Armory Enterprise, use the Armory Operator (a Kubernetes operator) or Halyard. Note that you must be able to apply Kubernetes manifests, either directly using `kubectl` commands from your machine or another method.
 
-To install Armory Enterprise, you can use either the Armory Operator (a Kubernetes operator) or Halyard. If you are installing Armory Enterprise for the first time, Armory recommends using the Armory Operator. Note that you must be able to apply Kubernetes manifests, either directly using `kubectl` commands from your machine or another method.
-
-Armory does not produce marketplace specific images that are used by different certified Kubernetes offerings.
+Armory does not produce marketplace specific images that can be used by different certified Kubernetes offerings.
 
 ## Browsers
 
-You can use any modern browser to interact with the UI for Armory Enterprise.
+The UI for Armory Enterprise works best on Firefox or Chromium-based browsers.
 
 ## External storage
 
@@ -51,12 +51,6 @@ Armory recommends a minimum of 3 nodes that match the following profile:
 * **CPUS**: 8
 * **Memory (GiB)**: 32
 
-## Java
-
-> For new installations of Armory Enterprise, Armory recommends using the Armory Operator instead of Halyard.
-
-The machine that runs Halyard, a CLI for installing and managing Armory Enterprise, requires Java 11. If you use the Armory Operator to install and manage Armory Enterprise, there is no Java requirement.
-
 ## kubectl
 
 The Armory Operator supports using any actively maintained version of `kubectl` unless you want to use the Armory Kustomize Repo to help you configure Armory Enterprise. The Armory Kustomize repo supports the following versions of `kubectl` and Kustomize:
@@ -80,6 +74,8 @@ Additionally, pods in your Kubernetes cluster must be able to communicate with e
 
 
 ## Additional considerations
+
+Although the following configurations are not required to install and run Armory Enterprise, they are recommended as
 
 ### Authentication and authorization
 
