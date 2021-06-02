@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.deployment.tasks.before.deployManifest"
 linkTitle: "deployManifest"
-description: "Policy checks that run immediate before a task deploys a spinnaker manifest"
+description: "Policy checks that run immediately before a task deploys a spinnaker manifest"
 ---
 
 
@@ -142,7 +142,7 @@ description: "Policy checks that run immediate before a task deploys a spinnaker
 
 ## Example Policy
 
-This example prevents deploying of pods, pod templates (Deployments/jobs/replicasets) and services that use the following services: HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, SMTP
+This example prevents deploying of pods, pod templates (deployments/jobs/replicasets) and services that use the following services: HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, SMTP
 
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.deployManifest
@@ -163,7 +163,7 @@ deny["A port typically used by an unencrypted protocol was detected."] {
     }
 {{< /prism >}}
 
-Require that the Annotations 'owner' and 'app' are applied on all deployed infrastructure.
+This example requires that the annotations 'owner' and 'app' are applied on all deployed infrastructure.
 
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.deployManifest
@@ -180,21 +180,21 @@ deny["Manifest is missing a required annotation"] {
 
 ## Keys
 
-| Key                              | Type      | Description                                                                                                                                                       |
-| -------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `input.deploy.account`           | `string`  | The spinnaker account being deployed to.                                                                                                                          |
-| `input.deploy.credentials`       | `string`  | The credentials to use to access the account.                                                                                                                     |
-| `input.deploy.enableTraffic`     | `boolean` | Allow Spinnaker to associate each ReplicaSet deployed in this stage with one or more Services and manage traffic based on your selected rollout strategy options. |
-| `input.deploy.manifest`          | `[array]` | An array of the manifests being deployed                                                                                                                          |
-| `input.deploy.manifestArtifact`  | ` `       | The name of the artifact from which the manifest should be read.                                                                                                  |
-| `input.deploy.manifests[].*`     | `*`       | The entire Kubernetest manifest that is to be deployed.                                                                                                           |
-| `input.deploy.moniker.app`       | `string`  | The name of the application being deployed                                                                                                                        |
-| `input.deploy.moniker.cluster`   | `string`  | The name of the cluster to which you are deploying                                                                                                                |
-| `input.deploy.moniker.detail`    | ` `       |                                                                                                                                                                   |
-| `input.deploy.moniker.sequence`  | ` `       |                                                                                                                                                                   |
-| `input.deploy.moniker.stack`     | ` `       |                                                                                                                                                                   |
-| `input.deploy.namespaceOverride` | ` `       | The namespace to which the job should deploy                                                                                                                      |
-| `input.deploy.services`          | ` `       | The services that are having their traffic managed, if any.                                                                                                       |
-| `input.deploy.source`            | `string`  |                                                                                                                                                                   |
-| `input.deploy.strategy`          | ` `       | The rollout strategy tells Spinnaker what to do with the previous version(s) of the ReplicaSet in the cluster.                                                    |
-| `input.deploy.versioned`         | ` `       |                                                                                                                                                                   |
+| Key                              | Type      | Description                                                                                                    |
+| -------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------- |
+| `input.deploy.account`           | `string`  | The spinnaker account being deployed to.                                                                       |
+| `input.deploy.credentials`       | `string`  | The credentials to use to access the account.                                                                  |
+| `input.deploy.enableTraffic`     | `boolean` | Allow Spinnaker to associate each ReplicaSet deployed in this stage with one or more services, and manage traffic based on your selected rollout strategy options. |
+| `input.deploy.manifest`          | `[array]` | An array of the manifests being deployed                                                                       |
+| `input.deploy.manifestArtifact`  | ` `       | The name of the artifact from which the manifest should be read.                                               |
+| `input.deploy.manifests[].*`     | `*`       | The entire Kubernetest manifest to be deployed.                                                                |
+| `input.deploy.moniker.app`       | `string`  | The name of the application being deployed                                                                     |
+| `input.deploy.moniker.cluster`   | `string`  | The name of the cluster you are deploying to.                                                                  |
+| `input.deploy.moniker.detail`    | ` `       |                                                                                                                |
+| `input.deploy.moniker.sequence`  | ` `       |                                                                                                                |
+| `input.deploy.moniker.stack`     | ` `       |                                                                                                                |
+| `input.deploy.namespaceOverride` | ` `       | The namespace the job should deploy to                                                                         |
+| `input.deploy.services`          | ` `       | The services that are having their traffic managed, if any.                                                    |
+| `input.deploy.source`            | `string`  |                                                                                                                |
+| `input.deploy.strategy`          | ` `       | The rollout strategy tells Spinnaker what to do with the previous version(s) of the ReplicaSet in the cluster. |
+| `input.deploy.versioned`         | ` `       |                                                                                                                |

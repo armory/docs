@@ -26,8 +26,10 @@ description: "A policy that is run before executing each task in a Scale Manifes
 </details>
 
 ## Example Policy
-This policy prevents scaling a deploytment or replicaset in a production account to have <1 replica.
-```rego
+
+This policy prevents scaling a deployment or replicaset in a production account to have <1 replica.
+
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.scaleManifest
 
 productionAccounts :=["prod1","prod2"]
@@ -36,14 +38,14 @@ deny["production accounts require >1 replicas to avoid a single point of failure
 	input.deploy.location==productionAccounts[_]
     input.deploy.replicas<2
 }
-```
+{{< /prism >}}
 
 ## Keys
 
-| Key                         | Type     | Description                                                         |
-| --------------------------- | -------- | ------------------------------------------------------------------- |
-| `input.deploy.account`      | `string` | The spinnaker account being deployed to.                            |
-| `input.deploy.credentials`  | `string` | The credentials to use to access the account.                       |
-| `input.deploy.location`     | `string` | The name of the namespace from which the manifest is being deleted. |
-| `input.deploy.manifestName` | `string` | The name of the manifest being deleted.                             |
-| `input.deploy.replicas`     | `number` | How many pods should be running after the scaling action.           |
+| Key                         | Type     | Description                                                   |
+| --------------------------- | -------- | ------------------------------------------------------------- |
+| `input.deploy.account`      | `string` | The spinnaker account being deployed to.                      |
+| `input.deploy.credentials`  | `string` | The credentials used to access the account.                   |
+| `input.deploy.location`     | `string` | The name of the namespace the manifest is being deleted from. |
+| `input.deploy.manifestName` | `string` | The name of the manifest being deleted.                       |
+| `input.deploy.replicas`     | `number` | How many pods should be running after the scaling action.     |
