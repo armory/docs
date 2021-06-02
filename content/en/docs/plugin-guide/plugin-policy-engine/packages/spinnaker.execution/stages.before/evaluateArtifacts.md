@@ -493,12 +493,6 @@ description: "A policy targeting this object is run before executing each task i
 ```
 </details>
 
-## Example Policy
-
-{{< prism lang="rego" line-numbers="true" >}}
-
-{{< /prism >}}
-
 ## Keys
 
 Parameters related to the stage against which the policy is executing can be found in the [input.stage.context](#inputstagecontext) object.
@@ -545,8 +539,8 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 | Key                                               | Type      | Description                                                       |
 | ------------------------------------------------- | --------- | ----------------------------------------------------------------- |
-| `input.stage.context.artifactContents[].contents` | `string`  |                                                                   |
-| `input.stage.context.artifactContents[].name`     | `string`  |                                                                   |
+| `input.stage.context.artifactContents[].contents` | `string`  | The contents of the artifact that will be evaluated.                                                                  |
+| `input.stage.context.artifactContents[].name`     | `string`  | The name under which to store the newly evaluated artifact.                                                                  |
 | `input.stage.context.expectedArtifacts[]`         | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
 
 ### input.user
