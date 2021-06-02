@@ -27,7 +27,7 @@ description: "A policy that is run before executing each task in a Scale Manifes
 
 ## Example Policy
 
-This policy prevents scaling a deployment or replicaset in a production account to have <1 replica.
+This policy prevents scaling a deployment or replicaset in a production account to have <2 replicas.
 
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.scaleManifest
