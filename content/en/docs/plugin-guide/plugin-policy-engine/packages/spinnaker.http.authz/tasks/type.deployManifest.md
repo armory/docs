@@ -156,7 +156,7 @@ description: "Policy controls whether or not a deployManifest that is triggered 
 
 ## Example Policy
 Prevents editing manifests from outside of a pipeline on production accounts.
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.http.authz
 default message=""
 allow = message==""
@@ -174,7 +174,7 @@ createsTaskOfType(tasktype){
     input.path=["tasks"]
     input.body.job[_].type=tasktype
 }
-```
+{{< /prism >}}
 
 ## Keys
 

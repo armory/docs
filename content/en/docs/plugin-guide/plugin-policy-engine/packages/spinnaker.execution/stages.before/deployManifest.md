@@ -1610,7 +1610,9 @@ deny["Manifest creates a pod from an image that is not approved by the security 
 isImageUnApproved(image){    not isImageApproved(image) }
 isImageApproved(image){    image==data.approvedImages[_]}
 {{< /prism >}}
+
 This policy prevents applications from deploying to namespaces that they are not whitelisted for.
+
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.deployManifest
 

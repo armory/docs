@@ -208,7 +208,7 @@ description: "A policy targeting this object is run before executing each task i
 
 ## Example Policy
 
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.http.authz
 default message=""
 allow = message==""
@@ -222,7 +222,7 @@ createsTaskOfType(tasktype){
     input.path=["tasks"]
     input.body.job[_].type=tasktype
 }
-```
+{{< /prism >}}
 
 ## Keys
 

@@ -409,8 +409,10 @@ description: "A policy targeting this object is run before executing each task i
 </details>
 
 ## Example Policy
+
 Prevent server groups from being created in production with fewer than 1 instance.
-```rego
+
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.createServerGroup
 
 productionAccounts :=["prod1","prod2"]
@@ -419,7 +421,7 @@ deny["ASGs running in production must have a minimum of 2 instances to avoid hav
 	input.stage.context.account==productionAccounts[_]
     object.get(input.stage.context.capacity,"min",0)<2
 }
-```
+{{< /prism >}}
 
 ## Keys
 

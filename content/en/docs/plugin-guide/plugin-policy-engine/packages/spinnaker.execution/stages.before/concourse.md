@@ -281,12 +281,14 @@ description: "A policy targeting this object is run before executing each task i
 </details>
 
 ## Example Policy
+
 This example disables the use of concourse stages.
-```rego
+
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.concourse
 
 deny["Pipelines may not use the 'Concourse' stage."]
-```
+{{< /prism >}}
 
 ## Keys
 

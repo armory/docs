@@ -64,9 +64,9 @@ description: "fill me with delicious data, Stephen!"
 
 ## Example Policy
 
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 
-```
+{{/prism}}
 
 ## Keys
 

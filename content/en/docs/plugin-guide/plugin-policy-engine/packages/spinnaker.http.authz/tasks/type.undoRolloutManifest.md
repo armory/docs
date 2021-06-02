@@ -46,9 +46,9 @@ description: "Policy controls whether or not a rollback that is triggered from o
 
 ## Example Policy
 
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 
-```
+{{/prism}}
 
 ## Keys
 

@@ -411,13 +411,13 @@ More information about the back stage can be found at: https://docs.armory.io/do
 
 Requires that baked images are of type hvm.
 
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.bake
 
 deny["all baked images must be of type hvm"]{
 	input.stage.context.vmType!="hvm"
 }
-```
+{{< /prism >}}
 
 ## Keys
 

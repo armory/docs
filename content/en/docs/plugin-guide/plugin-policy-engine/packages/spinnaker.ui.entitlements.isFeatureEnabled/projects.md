@@ -39,7 +39,7 @@ description: "Can hide UI Elements from Spinnaker"
 
 ## Example Policy
 Disables the 'configure application' and 'create application' and 'create Project' buttons of the spinnaker UI for non-admin users unless they have a particular role.
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
     package spinnaker.ui.entitlements.isFeatureEnabled
     default message=""
     allow = message==""
@@ -61,7 +61,7 @@ Disables the 'configure application' and 'create application' and 'create Projec
         input.path=["tasks"]
         input.body.job[_].type=tasktype
     }
-```
+{{< /prism >}}
 
 ## Keys
 

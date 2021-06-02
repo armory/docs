@@ -49,7 +49,7 @@ Note: this package only allows hiding functionality entirely. If you instead wan
 
 ## Example Policy
 Disables the 'configure projects' button of the spinnaker UI for non-admin users.
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.ui.entitlements.isFeatureEnabled
 
 default allow=true
@@ -59,7 +59,7 @@ allow=false{
     input.method=="GET"
     input.user.isAdmin!=true
 }
-```
+{{< /prism >}}
 
 ## Keys
 

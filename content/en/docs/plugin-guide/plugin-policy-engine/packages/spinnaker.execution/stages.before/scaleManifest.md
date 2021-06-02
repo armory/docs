@@ -216,7 +216,7 @@ The full package name sent to OPA is `spinnaker.execution.stages.before.scaleMan
 
 ## Example Policy
 This policy will prevent scaleManifest stages from running in a pipeline unless it is triggered by a webhook with a source of 'prometheus'
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.scaleManifest
 
 deny ["scaling can only be run in pipelines that are triggered by monitoring, not by manually triggered pipelines"]{
@@ -224,7 +224,7 @@ deny ["scaling can only be run in pipelines that are triggered by monitoring, no
     }{
 	object.get(input.pipeline.trigger,"source","")!="prometheus"
 }
-```
+{{< /prism >}}
 
 ## Keys
 

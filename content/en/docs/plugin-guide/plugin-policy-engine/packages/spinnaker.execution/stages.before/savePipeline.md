@@ -139,9 +139,9 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
 
 ## Example Policy
 
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 
-```
+{{/prism}}
 
 ## Keys
 
