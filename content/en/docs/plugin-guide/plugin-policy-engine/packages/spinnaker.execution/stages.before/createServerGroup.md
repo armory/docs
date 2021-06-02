@@ -463,30 +463,30 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 | Key                                                       | Type      | Description |
 | --------------------------------------------------------- | --------- | ----------- |
-| `input.stage.context.account`                             | `string`  |             |
+| `input.stage.context.account`                             | `string`  | The account in which the server group will be created.             |
 | `input.stage.context.application` | `string`  | The name of the Spinnaker application for this pipeline. |
 | `input.stage.context.availabilityZones.<region>[]`       | `string`  | The availability zones in which the server group will be created.             |
-| `input.stage.context.capacity.desired`                    | `number`  |             |
-| `input.stage.context.capacity.max`                        | `number`  |             |
-| `input.stage.context.capacity.min`                        | `number`  |             |
-| `input.stage.context.cloudProvider`                       | `string`  |             |
+| `input.stage.context.capacity.desired`                    | `number`  | The desired number of instances to run in the group.            |
+| `input.stage.context.capacity.max`                        | `number`  | The maximum number of instances to run in the group.            |
+| `input.stage.context.capacity.min`                        | `number`  | The minimum number of instances to run in the group.            |
+| `input.stage.context.cloudProvider`                       | `string`  | The name of the cloud provider that will execute the stage.            |
 | `input.stage.context.cooldown`                            | `number`  |             |
 | `input.stage.context.copySourceCustomBlockDeviceMappings` | `boolean` |             |
 | `input.stage.context.ebsOptimized`                        | `boolean` |             |
 | `input.stage.context.freeFormDetails`                     | `string`  |             |
 | `input.stage.context.healthCheckGracePeriod`              | `number`  |             |
 | `input.stage.context.healthCheckType`                     | `string`  |             |
-| `input.stage.context.iamRole`                             | `string`  |             |
+| `input.stage.context.iamRole`                             | `string`  | What IAM Role should the instances execute with.             |
 | `input.stage.context.instanceMonitoring`                  | `boolean` |             |
-| `input.stage.context.instanceType`                        | `string`  |             |
-| `input.stage.context.keyPair`                             | `string`  |             |
-| `input.stage.context.name`                                | `string`  |             |
-| `input.stage.context.provider`                            | `string`  |             |
-| `input.stage.context.reason`                              | `string`  |             |
-| `input.stage.context.spotPrice`                           | `string`  |             |
+| `input.stage.context.instanceType`                        | `string`  | What type of instances should be used to run the server group.            |
+| `input.stage.context.keyPair`                             | `string`  | The security credentials that can be used to connect to the instance.             |
+| `input.stage.context.name`                                | `string`  | The name of the server group.            |
+| `input.stage.context.provider`                            | `string`  | The name of the cloud provider that will execute the stage.             |
+| `input.stage.context.reason`                              | `string`  | The user-provided reason for creating the server group.            |
+| `input.stage.context.spotPrice`                           | `string`  | The maximum price per unit hour to pay for a Spot instance.             |
 | `input.stage.context.stack`                               | `string`  |             |
 | `input.stage.context.strategy`                            | `string`  |             |
-| `input.stage.context.subnetType`                          | `string`  |             |
+| `input.stage.context.subnetType`                          | `string`  | The subnet selection determines the VPC in which your server group will run. Options vary by account and region; the most common ones are:    None (EC2 Classic): instances will not run in a VPC    internal instances will be restricted to internal clients (i.e. require VPN access)    external instances will be publicly accessible and running in VPC            |
 | `input.stage.context.targetHealthyDeployPercentage`       | `number`  |             |
 | `input.stage.context.terminationPolicies[]`               | `string`  |             |
 | `input.stage.context.type`                                | `string`  |             |
