@@ -306,11 +306,6 @@ description: "A policy targeting this object is run before executing each task i
 ```
 </details>
 
-## Example Policy
-
-{{< prism lang="rego" line-numbers="true" >}}
-
-{{< /prism >}}
 
 ## Keys
 
