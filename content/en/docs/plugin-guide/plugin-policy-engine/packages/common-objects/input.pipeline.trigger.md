@@ -1,7 +1,7 @@
 ---
 title: "input.pipeline.trigger"
 linkTitle: "input.pipeline.trigger"
-description: "WHO AM I?"
+description: "Fields relating to external triggers that start a pipeline."
 ---
 
 ## Keys
