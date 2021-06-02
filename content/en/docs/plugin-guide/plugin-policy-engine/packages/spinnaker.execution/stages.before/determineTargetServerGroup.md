@@ -3300,11 +3300,6 @@ description: "A policy that is run before executing each task in a determine ser
 ```
 </details>
 
-## Example Policy
-
-```rego
-
-```
 
 ## Keys
 
