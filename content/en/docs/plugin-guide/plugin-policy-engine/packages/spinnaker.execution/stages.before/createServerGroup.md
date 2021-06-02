@@ -465,7 +465,7 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | --------------------------------------------------------- | --------- | ----------- |
 | `input.stage.context.account`                             | `string`  |             |
 | `input.stage.context.application` | `string`  | The name of the Spinnaker application for this pipeline. |
-| `input.stage.context.availabilityZones.us-east-2[]`       | `string`  |             |
+| `input.stage.context.availabilityZones.<region>[]`       | `string`  | The availability zones in which the server group will be created.             |
 | `input.stage.context.capacity.desired`                    | `number`  |             |
 | `input.stage.context.capacity.max`                        | `number`  |             |
 | `input.stage.context.capacity.min`                        | `number`  |             |
