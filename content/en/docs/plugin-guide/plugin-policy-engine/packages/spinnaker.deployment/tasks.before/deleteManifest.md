@@ -42,7 +42,7 @@ Note: If your policy is for controlling manual deletion triggers from within the
 </details>
 
 ## Example Policy
-This example policy will prevent deleteMAnifest tasks from running unless they provide a grasce period of >= 30 seconds.
+This example policy will prevent deleteManifest tasks from running unless they provide a grace period of >= 30 seconds.
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.deleteManifest
 
