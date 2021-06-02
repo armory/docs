@@ -72,7 +72,7 @@ The ports for the API gateway (the Gate service) and the UI (the Deck service) n
 * 8084
 * 8085 when secured by x509
 
-**Deck ports**
+**Deck port**
 
 * 9000
 
