@@ -1,7 +1,8 @@
 ---
 title: "spinnaker.deployment.tasks.before.scaleManifest"
 linkTitle: "scaleManifest"
-description: "WHO AM I?"
+description: "A policy that is run before executing each task in a Scale Manifest stage."
+
 ---
 
 ## Example Payload
