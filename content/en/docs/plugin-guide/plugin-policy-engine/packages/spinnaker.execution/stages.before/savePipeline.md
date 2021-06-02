@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.savePipeline"
 linktitle: "savePipeline"
-description: "A policy targeting this object is run before executing each task in a savePipeline stage."
+description: "A policy targeting this object is run before executing each task in a savePipeline stage. Typically writing policies in the opa.pipelines package is preferred."
 ---
 
 The full package name sent to OPA is `spinnaker.execution.stages.before.savePipeline`. The keys below are children of this path.
@@ -42,9 +42,7 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
       "pipelineConfigId": null,
       "source": null,
       "spelEvaluator": null,
-      "stages": [
-        "01F5BYAE1Q1GFVPXQM49ZS0XXQ"
-      ],
+      "stages": [],
       "startTime": 1620677310559,
       "startTimeExpiry": null,
       "status": "RUNNING",
@@ -134,6 +132,7 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
     }
   }
 }
+
 ```
 </details>
 
@@ -187,7 +186,7 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | --------------------------------------- | --------- | ------------------------------------------- |
 | `input.stage.context.application`       | `string`  | The name of the Spinnaker application for this pipeline. |
 | `input.stage.context.notification.type` | `string`  | What type of spinnaker stage is this.       |
-| `input.stage.context.pipeline`          | `string`  |                                             |
+| `input.stage.context.pipeline`          | `string`  | a base 64 encoded json represenation of the pipeline that is being saved.                  |
 | `input.stage.context.pipeline.id`       | `string`  |                                             |
 | `input.stage.context.pipeline.name`     | `string`  | The name of this pipeline.                  |
 | `input.stage.context.staleCheck`        | `boolean` |                                             |
