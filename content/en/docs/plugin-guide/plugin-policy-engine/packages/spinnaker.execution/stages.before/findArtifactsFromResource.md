@@ -3374,12 +3374,12 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 | Key                                     | Type      | Description |
 | --------------------------------------- | --------- | ----------- |
-| `input.stage.context.account`           | `string`  |             |
-| `input.stage.context.app`               | `string`  |             |
+| `input.stage.context.account`           | `string`  | The account containing the deployed manifest for which the the artifact will be retrieved            |
+| `input.stage.context.app`               | `string`  | The name of the application            |
 | `input.stage.context.cloudProvider`     | `string`  | The name of the cloud provider that will execute the stage. |
-| `input.stage.context.location`          | `string`  |             |
-| `input.stage.context.manifestName`      | `string`  |             |
-| `input.stage.context.mode`              | `string`  |             |
+| `input.stage.context.location`          | `string`  | The namespace in which to find the manifest.            |
+| `input.stage.context.manifestName`      | `string`  | The name of the deployed manifest to which the artifact corresponds.            |
+| `input.stage.context.mode`              | `string`  | Specifies whether the manifest is located statically or dynamically.            |
 
 ### input.stage
 
