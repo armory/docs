@@ -44,4 +44,4 @@ deny ["You may only rollback 1 revision at a time."]{
 | `input.deploy.location`         | `string` | The name of the namespace the manifest is being deleted from. |
 | `input.deploy.manifestName`     | `string` | The name of the manifest being deleted.                       |
 | `input.deploy.numRevisionsBack` | `number` | How many revisions of the manifest should be rolled back.     |
-| `input.deploy.revision`         | ` `      | What revision the manifest should be rolled back to.          |
+| `input.deploy.revision`         | `number`      | What revision the manifest should be rolled back to.          |
