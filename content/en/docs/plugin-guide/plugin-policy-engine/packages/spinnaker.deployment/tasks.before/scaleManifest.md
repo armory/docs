@@ -25,9 +25,16 @@ description: "WHO AM I?"
 </details>
 
 ## Example Policy
-
+This policy prevents scaling a deploytment or replicaset in a production account to have <1 replica.
 ```rego
+package spinnaker.deployment.tasks.before.scaleManifest
 
+productionAccounts :=["prod1","prod2"]
+
+deny["production accounts require >1 replicas to avoid a single point of failure."]{
+	input.deploy.location==productionAccounts[_]
+    input.deploy.replicas<2
+}
 ```
 
 ## Keys
@@ -38,4 +45,4 @@ description: "WHO AM I?"
 | `input.deploy.credentials`  | `string` | The credentials to use to access the account.                       |
 | `input.deploy.location`     | `string` | The name of the namespace from which the manifest is being deleted. |
 | `input.deploy.manifestName` | `string` | The name of the manifest being deleted.                             |
-| `input.deploy.replicas`     | `number` |                                                                     |
+| `input.deploy.replicas`     | `number` | How many pods should be running after the scaling action.           |
