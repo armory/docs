@@ -473,24 +473,24 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.cooldown`                            | `number`  |             |
 | `input.stage.context.copySourceCustomBlockDeviceMappings` | `boolean` |             |
 | `input.stage.context.ebsOptimized`                        | `boolean` | Will instances be optimized for EBS            |
-| `input.stage.context.freeFormDetails`                     | `string`  |             |
+| `input.stage.context.freeFormDetails`                     | `string`  | Detail is a string of free-form alphanumeric characters and hyphens to describe any other variables in naming a cluster.            |
 | `input.stage.context.healthCheckGracePeriod`              | `number`  |             |
-| `input.stage.context.healthCheckType`                     | `string`  |             |
+| `input.stage.context.healthCheckType`                     | `string`  | What type of health check to use. EC2 or ELB.            |
 | `input.stage.context.iamRole`                             | `string`  | What IAM Role should the instances execute with.             |
-| `input.stage.context.instanceMonitoring`                  | `boolean` |             |
+| `input.stage.context.instanceMonitoring`                  | `boolean` | Whether to enable detailed monitoring of instances. Group metrics must be disabled to update an ASG with Instance Monitoring set to false.            |
 | `input.stage.context.instanceType`                        | `string`  | What type of instances should be used to run the server group.            |
 | `input.stage.context.keyPair`                             | `string`  | The security credentials that can be used to connect to the instance.             |
 | `input.stage.context.name`                                | `string`  | The name of the server group.            |
 | `input.stage.context.provider`                            | `string`  | The name of the cloud provider that will execute the stage.             |
 | `input.stage.context.reason`                              | `string`  | The user-provided reason for creating the server group.            |
 | `input.stage.context.spotPrice`                           | `string`  | The maximum price per unit hour to pay for a Spot instance.             |
-| `input.stage.context.stack`                               | `string`  |             |
-| `input.stage.context.strategy`                            | `string`  |             |
+| `input.stage.context.stack`                               | `string`  | Stack is one of the core naming components of a cluster, used to create vertical stacks of dependent services for integration testing.            |
+| `input.stage.context.strategy`                            | `string`  | The deployment strategy tells Spinnaker what to do with the previous version of the server group.            |
 | `input.stage.context.subnetType`                          | `string`  | The subnet selection determines the VPC in which your server group will run. Options vary by account and region; the most common ones are:    None (EC2 Classic): instances will not run in a VPC    internal instances will be restricted to internal clients (i.e. require VPN access)    external instances will be publicly accessible and running in VPC            |
 | `input.stage.context.targetHealthyDeployPercentage`       | `number`  | What percentage of the ASG should be healthy instances during rollouts.            |
 | `input.stage.context.terminationPolicies[]`               | `string`  |             |
 | `input.stage.context.type`                                | `string`  | The name of this stage, typically 'createServerGroup'            |
-| `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` |             |
+| `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` | Spinnaker will use the block device mappings from the selected AMI when deploying a new server group.            |
 
 ### input.stage
 
