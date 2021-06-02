@@ -3,7 +3,8 @@ title: "spinnaker.execution.stages.before.bake"
 linktitle: "bake"
 description: "A policy targeting this object is run before executing each task in a bake stage."
 ---
-More information about the back stage can be found at: https://docs.armory.io/docs/spinnaker-user-guides/aws-guides/aws-baking-images/
+
+More information about the bake stage can be found at: https://docs.armory.io/docs/spinnaker-user-guides/aws-guides/aws-baking-images/
 
 ## Example Payload
 
@@ -409,7 +410,7 @@ More information about the back stage can be found at: https://docs.armory.io/do
 
 ## Example Policy
 
-Requires that baked images are of type hvm.
+Requires that baked images are of type `hvm`.
 
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.bake
@@ -434,11 +435,11 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.pipeline.canceled`                         | `boolean` | Has the pipeline execution been cancelled. This will always be false since the policy check requires the pipeline to be running.                                     |
 | `input.pipeline.canceledBy`                       | `string ` | The userID of the user that cancelled the pipeline.                                                                                                                  |
 | `input.pipeline.cancellationReason`               | ` `       |                                                                                                                                                                      |
-| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI                                                                                                                        |
+| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI.                                                                                                                       |
 | `input.pipeline.endTime`                          | `number`  |                                                                                                                                                                      |
-| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline                                                                                                                                        |
-| `input.pipeline.keepWaitingPipelines`             | `boolean` | If concurrent pipeline execution is disabled, then the pipelines that are in the waiting queue will get canceled when the next execution starts unless this is true. |
-| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline be allowed.                                                                                                     |
+| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline.                                                                                                                                       |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts.                    |
+| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                                     |
 | `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                                           |
 | `input.pipeline.origin`                           | `string`  |                                                                                                                                                                      |
 | `input.pipeline.partition`                        | ` `       |                                                                                                                                                                      |
@@ -466,21 +467,18 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 | Key                                     | Type      | Description                                                                                                |
 | --------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
 | `input.stage.context.amiSuffix`         | `string`  | A suffix to apply to the ami. String of date in format YYYYMMDDHHmm, default is calculated from timestamp, |
-| `input.stage.context.baseLabel`         | `string`  | a base label to use for the AMI.                                                                           |
-| `input.stage.context.baseOs`            | `string`  | What operating system should be used to find a baseAMI to base the AMI off.                                |
+| `input.stage.context.baseLabel`         | `string`  | A base label to use for the AMI.                                                                           |
+| `input.stage.context.baseOs`            | `string`  | What operating system should be used to find a baseAMI to base the AMI from.                               |
 | `input.stage.context.baseAmi`           | `string`  | If Base AMI is specified, this will be used instead of the Base OS provided.                               |
 | `input.stage.context.cloudProviderType` | `string`  | The type of the cloud provider for which an image will be baked.                                           |
 | `input.stage.context.name`              | `string`  |                                                                                                            |
 | `input.stage.context.package`           | `string`  | The package that should be installed in the new AMI.                                                       |
 | `input.stage.context.rebake`            | `boolean` | Rebake image without regard to the status of any existing bake.                                            |
 | `input.stage.context.region`            | `string`  | The region in which to perform the backe.                                                                  |
-| `input.stage.context.storeType`         | `string`  | What type of storage the basked image will use.                                                            |
+| `input.stage.context.storeType`         | `string`  | What type of storage the baked image will use.                                                             |
 | `input.stage.context.type`              | `string`  | Always `bake`.                                                                                             |
 | `input.stage.context.user`              | `string`  | The ID of the user that started the bake.                                                                  |
-| `input.stage.context.vmType`            | `string`  | `'HVM' of 'PV'` the type of vm for which the image should be baked.                                        |
-
-
-
+| `input.stage.context.vmType`            | `string`  | `HVM` or `PV`. The type of virtual machine for which the image should be baked.                            |
 
 ### input.user
 

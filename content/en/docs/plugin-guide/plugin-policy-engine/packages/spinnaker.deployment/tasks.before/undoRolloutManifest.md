@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.deployment.tasks.before.undoRolloutManifest"
 linkTitle: "undoRolloutManifest"
-description: "Policy checks that run immediately before a task rolls back a spinnaker manifest"
+description: "Policy checks that run immediately before a task rolls back a spinnaker manifest."
 ---
 
 ## Example Payload

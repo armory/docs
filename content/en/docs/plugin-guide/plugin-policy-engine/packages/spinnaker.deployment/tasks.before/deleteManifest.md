@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.deployment.tasks.before.deleteManifest"
 linkTitle: "deleteManifest"
-description: "Policy checks that run immediate before a task deletes a spinnaker manifest"
+description: "Policy checks that run immediate before a task deletes a spinnaker manifest."
 ---
 
 If your policy is for controlling deletion from within a pipeline, more information is available in policies written against the [spinnaker.deployment.tasks.before.deployManifest]({{< ref "deployManifest.md" >}}) package.
