@@ -2,7 +2,6 @@
 title: "spinnaker.execution.stages.before.deleteManifest"
 linktitle: "deleteManifest"
 description: "A policy targeting this object is run before executing each task in a deleteManifest stage."
-"
 ---
  See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifest-based-stages" >}}) for more information on this stage.
 The full package name sent to OPA is `spinnaker.execution.stages.before.deleteManifest`. The keys below are children of this path.
@@ -43,7 +42,9 @@ The full package name sent to OPA is `spinnaker.execution.stages.before.deleteMa
 </details>
 
 ## Example Policy
+
 This example policy requires delete manifest stages to provide a minimum 2 minute grace period when run in production.
+
 ```rego
 package spinnaker.execution.stages.before.deleteManifest
 
@@ -57,18 +58,18 @@ deny["deletions in production accounts must allow a minimum of 2 minutes for gra
 
 ## Keys
 
-| Key                                       | Type      | Description                                                                                                                                                                                                                                                                                                                                            |
-| ----------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `input.deploy.account`                    | `string`  | The spinnaker account being deployed to.                                                                                                                                                                                                                                                                                                               |
-| `input.deploy.credentials`                | `string`  | The credentials to use to access the account.                                                                                                                                                                                                                                                                                                          |
-| `input.deploy.labelSelectors.empty`       | `boolean` |                                                                                                                                                                                                                                                                                                                                                        |
-| `input.deploy.labelSelectors.notEmpty`    | `boolean` |                                                                                                                                                                                                                                                                                                                                                        |
-| `input.deploy.location`                   | `string`  | The name of the namespace from which the manifest is being deleted.                                                                                                                                                                                                                                                                                    |
-| `input.deploy.manifestName`               | `string`  | The name of the manifest being deleted.                                                                                                                                                                                                                                                                                                                |
-| `input.deploy.options.apiVersion`         | `string`  | The API version in which the manifest's kind is defined.                                                                                                                                                                                                                                                                                               |
-| `input.deploy.options.dryRun`             | `boolean` | If true then the manifest will not actually be deleted. if false it will be.                                                                                                                                                                                                                                                                           |
-| `input.deploy.options.gracePeriodSeconds` | `number`  | How many seconds the resource being deleted is given to shut down gracefully before being forcefully shut down.                                                                                                                                                                                                                                        |
-| `input.deploy.options.kind`               | `string`  | What is the kind of manifest that is being deleted.                                                                                                                                                                                                                                                                                                    |
-| `input.deploy.options.orphanDependents`   | ` `        | When set, delete all resources managed by this resource as well (all pods owned by a replica set). When unset, this may orphan resources.                                                                                                                                                                                                              |
-| `input.deploy.options.preconditions`      | ` `        |                                                                                                                                                                                                                                                                                                                                                        |
-| `input.deploy.options.propagationPolicy`  | ` `        | There are three different ways to delete a Kubernetes object: Foreground: The object itself cannot be deleted unless the objects that it owns have already been deleted. Background: The object itself is deleted, then the objects that it owned are automatically deleted. Orphan: The object itself is deleted. Any objects it owns are “orphaned.” |
+| Key                                       | Type      | Description                                                                                                                               |
+| ----------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.deploy.account`                    | `string`  | The spinnaker account being deployed to.                                                                                                  |
+| `input.deploy.credentials`                | `string`  | The credentials to use to access the account.                                                                                             |
+| `input.deploy.labelSelectors.empty`       | `boolean` |                                                                                                                                           |
+| `input.deploy.labelSelectors.notEmpty`    | `boolean` |                                                                                                                                           |
+| `input.deploy.location`                   | `string`  | The name of the namespace from which the manifest is being deleted.                                                                       |
+| `input.deploy.manifestName`               | `string`  | The name of the manifest being deleted.                                                                                                   |
+| `input.deploy.options.apiVersion`         | `string`  | The API version in which the manifest's kind is defined.                                                                                  |
+| `input.deploy.options.dryRun`             | `boolean` | If true then the manifest will not actually be deleted. if false it will be.                                                              |
+| `input.deploy.options.gracePeriodSeconds` | `number`  | How many seconds the resource being deleted is given to shut down gracefully before being forcefully shut down.                           |
+| `input.deploy.options.kind`               | `string`  | What is the kind of manifest that is being deleted.                                                                                       |
+| `input.deploy.options.orphanDependents`   | ` `       | When set, delete all resources managed by this resource as well (all pods owned by a replica set). When unset, this may orphan resources. |
+| `input.deploy.options.preconditions`      | ` `       |                                                                                                                                           |
+| `input.deploy.options.propagationPolicy`  | ` `       | There are three different ways to delete a Kubernetes object:<br/> Foreground: The object itself cannot be deleted unless the objects that it owns have already been deleted.<br/> Background: The object itself is deleted, then the objects that it owned are automatically deleted.<br/> Orphan: The object itself is deleted. Any objects it owns are “orphaned.” |

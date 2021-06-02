@@ -3377,46 +3377,46 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 ### input.stage.context
 
-| Key                                                                                        | Type      | Description |
-| ------------------------------------------------------------------------------------------ | --------- | ----------- |
-| `input.stage.context.account`                                                              | `string`  |             |
-| `input.stage.context.app`                                                                  | `string`  |             |
-| `input.stage.context.cloudProvider`                                                        | `string`  |             |
-| `input.stage.context.location`                                                             | `string`  |             |
-| `input.stage.context.manifestName`                                                         | `string`  |             |
-| `input.stage.context.mode`                                                                 | `string`  |             |
-| `input.stage.context.options.mergeStrategy`                                                | `string`  |             |
-| `input.stage.context.options.record`                                                       | `boolean` |             |
-| `input.stage.context.patchBody[].apiVersion`                                               | `string`  |             |
-| `input.stage.context.patchBody[].kind`                                                     | `string`  |             |
-| `input.stage.context.patchBody[].metadata.name`                                            | `string`  |             |
-| `input.stage.context.patchBody[].metadata.namespace`                                       | `string`  |             |
-| `input.stage.context.patchBody[].spec.replicas`                                            | `string`  |             |
-| `input.stage.context.patchBody[].spec.selector.matchLabels.app`                            | `string`  |             |
-| `input.stage.context.patchBody[].spec.selector.matchLabels.version`                        | `string`  |             |
-| `input.stage.context.patchBody[].spec.strategy.rollingUpdate.maxSurge`                     | `number`  |             |
-| `input.stage.context.patchBody[].spec.strategy.rollingUpdate.maxUnavailable`               | `number`  |             |
-| `input.stage.context.patchBody[].spec.strategy.type`                                       | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.metadata.annotations.prometheus.io/port`    | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.metadata.annotations.prometheus.io/scrape`  | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.metadata.labels.app`                        | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.metadata.labels.version`                    | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.containers[].args[]`                   | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.containers[].imagePullPolicy`          | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.containers[].image`                    | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.containers[].name`                     | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.containers[].ports[].containerPort`    | `number`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.containers[].ports[].name`             | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.containers[].ports[].protocol`         | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.containers[].volumeMounts[].mountPath` | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.containers[].volumeMounts[].name`      | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.containers[].volumeMounts[].readOnly`  | `boolean` |             |
-| `input.stage.context.patchBody[].spec.template.spec.containers[].volumeMounts[].subPath`   | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.restartPolicy`                         | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.volumes[].configMap.defaultMode`       | `number`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.volumes[].configMap.name`              | `string`  |             |
-| `input.stage.context.patchBody[].spec.template.spec.volumes[].name`                        | `string`  |             |
-| `input.stage.context.source`                                                               | `string`  |             |
+| Key                                                                                        | Type      | Description                                                 |
+| ------------------------------------------------------------------------------------------ | --------- | ----------------------------------------------------------- |
+| `input.stage.context.account`                                                              | `string`  |                                                             |
+| `input.stage.context.app`                                                                  | `string`  |                                                             |
+| `input.stage.context.cloudProvider`                                                        | `string`  | The name of the cloud provider that will execute the stage. |
+| `input.stage.context.location`                                                             | `string`  |                                                             |
+| `input.stage.context.manifestName`                                                         | `string`  |                                                             |
+| `input.stage.context.mode`                                                                 | `string`  |                                                             |
+| `input.stage.context.options.mergeStrategy`                                                | `string`  |                                                             |
+| `input.stage.context.options.record`                                                       | `boolean` |                                                             |
+| `input.stage.context.patchBody[].apiVersion`                                               | `string`  |                                                             |
+| `input.stage.context.patchBody[].kind`                                                     | `string`  |                                                             |
+| `input.stage.context.patchBody[].metadata.name`                                            | `string`  |                                                             |
+| `input.stage.context.patchBody[].metadata.namespace`                                       | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.replicas`                                            | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.selector.matchLabels.app`                            | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.selector.matchLabels.version`                        | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.strategy.rollingUpdate.maxSurge`                     | `number`  |                                                             |
+| `input.stage.context.patchBody[].spec.strategy.rollingUpdate.maxUnavailable`               | `number`  |                                                             |
+| `input.stage.context.patchBody[].spec.strategy.type`                                       | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.metadata.annotations.prometheus.io/port`    | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.metadata.annotations.prometheus.io/scrape`  | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.metadata.labels.app`                        | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.metadata.labels.version`                    | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.containers[].args[]`                   | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.containers[].imagePullPolicy`          | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.containers[].image`                    | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.containers[].name`                     | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.containers[].ports[].containerPort`    | `number`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.containers[].ports[].name`             | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.containers[].ports[].protocol`         | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.containers[].volumeMounts[].mountPath` | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.containers[].volumeMounts[].name`      | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.containers[].volumeMounts[].readOnly`  | `boolean` |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.containers[].volumeMounts[].subPath`   | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.restartPolicy`                         | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.volumes[].configMap.defaultMode`       | `number`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.volumes[].configMap.name`              | `string`  |                                                             |
+| `input.stage.context.patchBody[].spec.template.spec.volumes[].name`                        | `string`  |                                                             |
+| `input.stage.context.source`                                                               | `string`  |                                                             |
 
 ### input.stage
 

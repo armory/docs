@@ -408,7 +408,9 @@ More information about the back stage can be found at: https://docs.armory.io/do
 </details>
 
 ## Example Policy
-requires that baked images are of type hvm.
+
+Requires that baked images are of type hvm.
+
 ```rego
 package spinnaker.execution.stages.before.bake
 
@@ -466,15 +468,15 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 | `input.stage.context.amiSuffix`         | `string`  | A suffix to apply to the ami. String of date in format YYYYMMDDHHmm, default is calculated from timestamp, |
 | `input.stage.context.baseLabel`         | `string`  | a base label to use for the AMI.                                                                           |
 | `input.stage.context.baseOs`            | `string`  | What operating system should be used to find a baseAMI to base the AMI off.                                |
-| `input.stage.context.baseAmi`           | `string`  | If Base AMI is specified, this will be used instead of the Base OS provided                                |
+| `input.stage.context.baseAmi`           | `string`  | If Base AMI is specified, this will be used instead of the Base OS provided.                               |
 | `input.stage.context.cloudProviderType` | `string`  | The type of the cloud provider for which an image will be baked.                                           |
 | `input.stage.context.name`              | `string`  |                                                                                                            |
-| `input.stage.context.package`           | `string`  | The package that should be installed in the new AMI                                                        |
-| `input.stage.context.rebake`            | `boolean` | Rebake image without regard to the status of any existing bake                                             |
-| `input.stage.context.region`            | `string`  | The region in which to perform the back                                                                    |
+| `input.stage.context.package`           | `string`  | The package that should be installed in the new AMI.                                                       |
+| `input.stage.context.rebake`            | `boolean` | Rebake image without regard to the status of any existing bake.                                            |
+| `input.stage.context.region`            | `string`  | The region in which to perform the backe.                                                                  |
 | `input.stage.context.storeType`         | `string`  | What type of storage the basked image will use.                                                            |
-| `input.stage.context.type`              | `string`  | always `bake`                                                                                              |
-| `input.stage.context.user`              | `string`  | The ID of the user that started the bake                                                                   |
+| `input.stage.context.type`              | `string`  | Always `bake`.                                                                                             |
+| `input.stage.context.user`              | `string`  | The ID of the user that started the bake.                                                                  |
 | `input.stage.context.vmType`            | `string`  | `'HVM' of 'PV'` the type of vm for which the image should be baked.                                        |
 
 

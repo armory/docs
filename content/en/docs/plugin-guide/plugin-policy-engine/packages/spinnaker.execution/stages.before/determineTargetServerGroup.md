@@ -2,7 +2,6 @@
 title: "spinnaker.execution.stages.before.determineTargetServerGroup"
 linktitle: "determineTargetServerGroup"
 description: "A policy targeting this object is run before executing each task in a determineTargetServerGroup stage."
-"
 ---
 
 ## Example Payload
@@ -3340,15 +3339,15 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 ### input.stage.context
 
-| Key                                     | Type      | Description |
-| --------------------------------------- | --------- | ----------- |
-| `input.stage.context.action`            | `string`  | What action will be taken against the target server group.            |
-| `input.stage.context.cloudProvider`     | `string`  | The name of the cloud provider that will execute the stage.            |
-| `input.stage.context.cloudProviderType` | `string`  | The type of the cloud provider that will execute the stage.            |
-| `input.stage.context.cluster`           | `string`  | The name of the AWS cluster to deploy to.            |
-| `input.stage.context.credentials`       | `string`  | The credentials/account used to connect to the cloud provider.            |
-| `input.stage.context.regions[]`         | `string`  | The regions to use.            |
-| `input.stage.context.target`            | `string`  |             |
+| Key                                     | Type     | Description                                                    |
+| --------------------------------------- | -------- | -------------------------------------------------------------- |
+| `input.stage.context.action`            | `string` | What action will be taken against the target server group.     |
+| `input.stage.context.cloudProvider`     | `string` | The name of the cloud provider that will execute the stage.    |
+| `input.stage.context.cloudProviderType` | `string` | The type of the cloud provider that will execute the stage.    |
+| `input.stage.context.cluster`           | `string` | The name of the AWS cluster to deploy to.                      |
+| `input.stage.context.credentials`       | `string` | The credentials/account used to connect to the cloud provider. |
+| `input.stage.context.regions[]`         | `string` | The regions to use.                                            |
+| `input.stage.context.target`            | `string` | Which server group should be selected when this stage starts.  |
 
 ### input.stage
 

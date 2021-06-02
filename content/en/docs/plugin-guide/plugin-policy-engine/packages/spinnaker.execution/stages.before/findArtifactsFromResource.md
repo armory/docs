@@ -3376,7 +3376,7 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | --------------------------------------- | --------- | ----------- |
 | `input.stage.context.account`           | `string`  |             |
 | `input.stage.context.app`               | `string`  |             |
-| `input.stage.context.cloudProvider`     | `string`  |             |
+| `input.stage.context.cloudProvider`     | `string`  | The name of the cloud provider that will execute the stage. |
 | `input.stage.context.location`          | `string`  |             |
 | `input.stage.context.manifestName`      | `string`  |             |
 | `input.stage.context.mode`              | `string`  |             |

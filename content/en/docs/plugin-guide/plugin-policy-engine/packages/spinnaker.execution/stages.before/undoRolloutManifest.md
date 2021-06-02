@@ -230,38 +230,38 @@ Parameters related to the stage against which the policy is executing can be fou
 
 ### input.pipeline
 
-| Key                                               | Type      | Description |
-| ------------------------------------------------- | --------- | ----------- |
-| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access. |
-| `input.pipeline.authentication.user` | `string`  | The Spinnaker user initiating the change. |
-| `input.pipeline.buildTime`                        | `number`  |             |
-| `input.pipeline.canceledBy`                       | ` `       |             |
-| `input.pipeline.canceled`                         | `boolean` |             |
-| `input.pipeline.cancellationReason`               | ` `       |             |
-| `input.pipeline.description` | `string`  | Description of the pipeline defined in the UI |
-| `input.pipeline.description` | `string`  | Description of the pipeline defined in the UI |
-| `input.pipeline.endTime`                          | ` `       |             |
-| `input.pipeline.endTime`                          | `number`  |             |
-| `input.pipeline.id` | `string`   |  The unique ID of the pipeline |
-| `input.pipeline.keepWaitingPipelines`              | `boolean`  | If concurrent pipeline execution is disabled, then the pipelines that are in the waiting queue will get canceled when the next execution starts unless this is true. |
-| `input.pipeline.limitConcurrent` | `boolean` | True if only 1 concurrent execution of this pipeline be allowed. |
-| `input.pipeline.name` | `string`  | The name of this pipeline. |
-| `input.pipeline.name` | `string`  | The name of this pipeline. |
-| `input.pipeline.origin`                           | `string`  |             |
-| `input.pipeline.partition`                        | ` `       |             |
-| `input.pipeline.paused`                           | ` `       |             |
-| `input.pipeline.pipelineConfigId`                 | ` `       |             |
-| `input.pipeline.pipelineConfigId`                 | `string`  |             |
-| `input.pipeline.source`                           | ` `       |             |
-| `input.pipeline.spelEvaluator` | `string`  | Which version of spring expression language is being used to evaluate SpEL. |
-| `input.pipeline.spelEvaluator` | `string`  | Which version of spring expression language is being used to evaluate SpEL. |
+| Key                                               | Type      | Description                                                                                                                                                                                                                                                |
+| ------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                                                                                                                                      |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                                                                                                                                |
+| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                                                                                                                                  |
+| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                                                                                                                            |
+| `input.pipeline.canceledBy`                       | ` `       |                                                                                                                                                                                                                                                            |
+| `input.pipeline.canceled`                         | `boolean` |                                                                                                                                                                                                                                                            |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                                                                                                                                                                                                            |
+| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI                                                                                                                                                                                                              |
+| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI                                                                                                                                                                                                              |
+| `input.pipeline.endTime`                          | ` `       |                                                                                                                                                                                                                                                            |
+| `input.pipeline.endTime`                          | `number`  |                                                                                                                                                                                                                                                            |
+| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline                                                                                                                                                                                                                              |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` | If concurrent pipeline execution is disabled, then the pipelines that are in the waiting queue will get canceled when the next execution starts unless this is true.                                                                                       |
+| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline be allowed.                                                                                                                                                                                           |
+| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                                                                                                                                 |
+| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                                                                                                                                 |
+| `input.pipeline.origin`                           | `string`  |                                                                                                                                                                                                                                                            |
+| `input.pipeline.partition`                        | ` `       |                                                                                                                                                                                                                                                            |
+| `input.pipeline.paused`                           | ` `       |                                                                                                                                                                                                                                                            |
+| `input.pipeline.pipelineConfigId`                 | ` `       |                                                                                                                                                                                                                                                            |
+| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                                                                                                                                                                                                            |
+| `input.pipeline.source`                           | ` `       |                                                                                                                                                                                                                                                            |
+| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                                                                                                                                |
+| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                                                                                                                                |
 | `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
-| `input.pipeline.startTimeExpiry` | `date `   | Unix epoch date at which the pipeline will expire. |
-| `input.pipeline.startTime` | `number`  | Timestamp from when the pipeline was started. |
-| `input.pipeline.status`                           | `string`  |             |
-| `input.pipeline.templateVariables`                | ` `       |             |
-| `input.pipeline.type`                             | `string`  |             |
+| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                                                                                                                         |
+| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                                                                                                                              |
+| `input.pipeline.status`                           | `string`  |                                                                                                                                                                                                                                                            |
+| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                                                                                                                            |
+| `input.pipeline.type`                             | `string`  |                                                                                                                                                                                                                                                            |
 
 ### input.pipeline.trigger
 
@@ -269,34 +269,34 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 ### input.stage.context
 
-| Key                                                              | Type      | Description |
-| ---------------------------------------------------------------- | --------- | ----------- |
-| `input.stage.context.account`                                    | `string`  | The account containing            |
-| `input.stage.context.cloudProvider`                              | `string`  |             |
-| `input.stage.context.kato.last.task.id.id`                       | `string`  |             |
-| `input.stage.context.kato.result.expected`                       | `boolean` |             |
-| `input.stage.context.kato.task.firstNotFoundRetry`               | `number`  |             |
-| `input.stage.context.kato.task.lastStatus`                       | `string`  |             |
-| `input.stage.context.kato.task.notFoundRetryCount`               | `number`  |             |
-| `input.stage.context.kato.task.terminalRetryCount`               | `number`  |             |
-| `input.stage.context.kato.tasks[].history[].phase`               | `string`  |             |
-| `input.stage.context.kato.tasks[].history[].status`              | `string`  |             |
-| `input.stage.context.kato.tasks[].id`                            | `string`  |             |
-| `input.stage.context.kato.tasks[].status.completed`              | `boolean` |             |
-| `input.stage.context.kato.tasks[].status.failed`                 | `boolean` |             |
-| `input.stage.context.kato.tasks[].status.retryable`              | `boolean` |             |
-| `input.stage.context.location`                                   | `string`  |             |
-| `input.stage.context.manifest.account.name`                      | `string`  |             |
-| `input.stage.context.manifest.location`                          | `string`  |             |
-| `input.stage.context.manifest.name`                              | `string`  |             |
-| `input.stage.context.manifestName`                               | `string`  |             |
-| `input.stage.context.messages[]`                                 | `string`  |             |
-| `input.stage.context.mode`                                       | `string`  |             |
-| `input.stage.context.numRevisionsBack`                           | `number`  |             |
-| `input.stage.context.outputs.manifestNamesByNamespace.staging[]` | `string`  |             |
-| `input.stage.context.reason`                                     | `string`  |             |
-| `input.stage.context.revision`                                   | `string`  |             |
-| `input.stage.context.user`                                       | `string`  |             |
+| Key                                                              | Type      | Description                                                 |
+| ---------------------------------------------------------------- | --------- | ----------------------------------------------------------- |
+| `input.stage.context.account`                                    | `string`  | The account containing the                                  |
+| `input.stage.context.cloudProvider`                              | `string`  | The name of the cloud provider that will execute the stage. |
+| `input.stage.context.kato.last.task.id.id`                       | `string`  |                                                             |
+| `input.stage.context.kato.result.expected`                       | `boolean` |                                                             |
+| `input.stage.context.kato.task.firstNotFoundRetry`               | `number`  |                                                             |
+| `input.stage.context.kato.task.lastStatus`                       | `string`  |                                                             |
+| `input.stage.context.kato.task.notFoundRetryCount`               | `number`  |                                                             |
+| `input.stage.context.kato.task.terminalRetryCount`               | `number`  |                                                             |
+| `input.stage.context.kato.tasks[].history[].phase`               | `string`  |                                                             |
+| `input.stage.context.kato.tasks[].history[].status`              | `string`  |                                                             |
+| `input.stage.context.kato.tasks[].id`                            | `string`  |                                                             |
+| `input.stage.context.kato.tasks[].status.completed`              | `boolean` |                                                             |
+| `input.stage.context.kato.tasks[].status.failed`                 | `boolean` |                                                             |
+| `input.stage.context.kato.tasks[].status.retryable`              | `boolean` |                                                             |
+| `input.stage.context.location`                                   | `string`  |                                                             |
+| `input.stage.context.manifest.account.name`                      | `string`  |                                                             |
+| `input.stage.context.manifest.location`                          | `string`  |                                                             |
+| `input.stage.context.manifest.name`                              | `string`  |                                                             |
+| `input.stage.context.manifestName`                               | `string`  |                                                             |
+| `input.stage.context.messages[]`                                 | `string`  |                                                             |
+| `input.stage.context.mode`                                       | `string`  |                                                             |
+| `input.stage.context.numRevisionsBack`                           | `number`  |                                                             |
+| `input.stage.context.outputs.manifestNamesByNamespace.staging[]` | `string`  |                                                             |
+| `input.stage.context.reason`                                     | `string`  |                                                             |
+| `input.stage.context.revision`                                   | `string`  |                                                             |
+| `input.stage.context.user`                                       | `string`  |                                                             |
 
 ### input.stage
 

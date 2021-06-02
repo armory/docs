@@ -3,7 +3,9 @@ title: "spinnaker.execution.stages.before.cloneServerGroup"
 linktitle: "cloneServerGroup"
 description: "A policy targeting this object is run before executing each task in a cloneServerGroup stage."
 ---
+
 More information on the clone server group stage can be found at: https://spinnaker.io/reference/pipeline/stages/#clone-server-group
+
 ## Example Payload
 ```json
 {
@@ -377,7 +379,7 @@ More information on the clone server group stage can be found at: https://spinna
 
 ## Example Policy
 
-```rego
+{{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.cloneServerGroup
 
 productionAccounts :=["prod1","prod2"]
@@ -391,7 +393,7 @@ deny["ASGs running in production must have a minimum of 2 instances to avoid hav
     input.stage.context.useSourceCapacity==false
     object.get(input.stage.context,"capacity",null)==null
 }
-```
+{{< /prism >}}
 
 ## Keys
 
@@ -399,33 +401,33 @@ Parameters related to the stage against which the policy is executing can be fou
 
 ### input.pipeline
 
-| Key                                               | Type      | Description                                                           |
-| ------------------------------------------------- | --------- | --------------------------------------------------------------------- |
-| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access. |
-| `input.pipeline.authentication.user` | `string`  | The Spinnaker user initiating the change. |
-| `input.pipeline.buildTime`                        | `number`  |                                                                       |
-| `input.pipeline.canceled`                         | `boolean` |                                                                       |
-| `input.pipeline.canceledBy`                       | ` `       |                                                                       |
-| `input.pipeline.cancellationReason`               | ` `       |                                                                       |
-| `input.pipeline.description` | `string`  | Description of the pipeline defined in the UI |
-| `input.pipeline.endTime`                          | `number`  |                                                                       |
-| `input.pipeline.id` | `string`   |  The unique ID of the pipeline |
-| `input.pipeline.keepWaitingPipelines`              | `boolean`  | If concurrent pipeline execution is disabled, then the pipelines that are in the waiting queue will get canceled when the next execution starts unless this is true. |
-| `input.pipeline.limitConcurrent` | `boolean` | True if only 1 concurrent execution of this pipeline be allowed. |
-| `input.pipeline.name` | `string`  | The name of this pipeline. |
-| `input.pipeline.origin`                           | `string`  |                                                                       |
-| `input.pipeline.partition`                        | ` `       |                                                                       |
-| `input.pipeline.paused`                           | ` `       |                                                                       |
-| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                       |
-| `input.pipeline.source`                           | ` `       |                                                                       |
-| `input.pipeline.spelEvaluator` | `string`  | Which version of spring expression language is being used to evaluate SpEL. |
+| Key                                               | Type      | Description                                                                                                                                                          |
+| ------------------------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                                                |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                                          |
+| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                                            |
+| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                                      |
+| `input.pipeline.canceled`                         | `boolean` |                                                                                                                                                                      |
+| `input.pipeline.canceledBy`                       | ` `       |                                                                                                                                                                      |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                                                                                                                      |
+| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI                                                                                                                        |
+| `input.pipeline.endTime`                          | `number`  |                                                                                                                                                                      |
+| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline                                                                                                                                        |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` | If concurrent pipeline execution is disabled, then the pipelines that are in the waiting queue will get canceled when the next execution starts unless this is true. |
+| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline be allowed.                                                                                                     |
+| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                                           |
+| `input.pipeline.origin`                           | `string`  |                                                                                                                                                                      |
+| `input.pipeline.partition`                        | ` `       |                                                                                                                                                                      |
+| `input.pipeline.paused`                           | ` `       |                                                                                                                                                                      |
+| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                                                                                                                      |
+| `input.pipeline.source`                           | ` `       |                                                                                                                                                                      |
+| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                                          |
 | `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
-| `input.pipeline.startTime` | `number`  | Timestamp from when the pipeline was started. |
-| `input.pipeline.startTimeExpiry` | `date `   | Unix epoch date at which the pipeline will expire. |
-| `input.pipeline.status`                           | `string`  |                                                                       |
-| `input.pipeline.templateVariables`                | ` `       |                                                                       |
-| `input.pipeline.type`                             | `string`  |                                                                       |
+| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                                        |
+| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                                   |
+| `input.pipeline.status`                           | `string`  |                                                                                                                                                                      |
+| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                                      |
+| `input.pipeline.type`                             | `string`  |                                                                                                                                                                      |
 
 ### input.pipeline.trigger
 
@@ -437,26 +439,26 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 ### input.stage.context
 
-| Key                                                       | Type      | Description |
-| --------------------------------------------------------- | --------- | ----------- |
-| `input.stage.context.application` | `string`  | The name of the Spinnaker application for this pipeline. |
-| `input.stage.context.attempt`                             | `number`  | How many times has this stage attempted to execute.            |
-| `input.stage.context.capacity.desired`                         | `number`  | If useSourceCapacity==false, the desired number of instances to run in the group.            |
-| `input.stage.context.capacity.max`                             | `number`  | If useSourceCapacity==false, the maximum number of instances to run in the group.            |
-| `input.stage.context.capacity.min`                             | `number`  | If useSourceCapacity==false, the minimum number of instances to run in the group.            |
-| `input.stage.context.cloudProvider`                       | `string`  | The name of the cloud provider that will execute the stage.            |
-| `input.stage.context.cloudProviderType`                   | `string`  | The type of the cloud provider that will execute the stage.            |
-| `input.stage.context.consecutiveNotFound`                 | `number`  |             |
-| `input.stage.context.copySourceCustomBlockDeviceMappings` | `boolean` |             |
-| `input.stage.context.credentials`                         | `string`  | The account/credential set that will be used to execute this stage.            |
-| `input.stage.context.freeFormDetails`                     | `string`  |             |
-| `input.stage.context.lastException`                       | `string`  | The last exception that occurred when executing this stage.            |
-| `input.stage.context.region`                              | `string`  | The region in which the new server group will be deployed.            |
-| `input.stage.context.stack`                               | `string`  |             |
-| `input.stage.context.target`                              | `string`  | Which server group should be selected when this stage starts.            |
-| `input.stage.context.targetCluster`                       | `string`  | The cluster that contains the target.            |
-| `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` | Spinnaker will use the block device mappings from the selected AMI when deploying a new server group.            |
-| `input.stage.context.useSourceCapacity`                   | `boolean` | Spinnaker will use the current capacity of the existing server group when deploying a new server group. This setting is intended to support a server group with auto-scaling enabled, where the bounds and desired capacity are controlled by an external process. In the event that there is no existing server group, the deploy will fail.            |
+| Key                                                       | Type      | Description                                                                                           |
+| --------------------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------- |
+| `input.stage.context.application`                         | `string`  | The name of the Spinnaker application for this pipeline.                                              |
+| `input.stage.context.attempt`                             | `number`  | How many times has this stage attempted to execute.                                                   |
+| `input.stage.context.capacity.desired`                    | `number`  | If `useSourceCapacity` is false, the desired number of instances to run in the group.                 |
+| `input.stage.context.capacity.max`                        | `number`  | If `useSourceCapacity` is false, the maximum number of instances to run in the group.                 |
+| `input.stage.context.capacity.min`                        | `number`  | If `useSourceCapacity` is false, the minimum number of instances to run in the group.                 |
+| `input.stage.context.cloudProvider`                       | `string`  | The name of the cloud provider that will execute the stage.                                           |
+| `input.stage.context.cloudProviderType`                   | `string`  | The type of the cloud provider that will execute the stage.                                           |
+| `input.stage.context.consecutiveNotFound`                 | `number`  |                                                                                                       |
+| `input.stage.context.copySourceCustomBlockDeviceMappings` | `boolean` |                                                                                                       |
+| `input.stage.context.credentials`                         | `string`  | The account/credential set that will be used to execute this stage.                                   |
+| `input.stage.context.freeFormDetails`                     | `string`  |                                                                                                       |
+| `input.stage.context.lastException`                       | `string`  | The last exception that occurred when executing this stage.                                           |
+| `input.stage.context.region`                              | `string`  | The region in which the new server group will be deployed.                                            |
+| `input.stage.context.stack`                               | `string`  |                                                                                                       |
+| `input.stage.context.target`                              | `string`  | Which server group should be selected when this stage starts.                                         |
+| `input.stage.context.targetCluster`                       | `string`  | The cluster that contains the target.                                                                 |
+| `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` | Spinnaker will use the block device mappings from the selected AMI when deploying a new server group. |
+| `input.stage.context.useSourceCapacity`                   | `boolean` | Spinnaker will use the current capacity of the existing server group when deploying a new server group. This setting is intended to support a server group with auto-scaling enabled, where the bounds and desired capacity are controlled by an external process. In the event that there is no existing server group, the deploy will fail. |
 
 ### input.user
 

@@ -3373,15 +3373,15 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 ### input.stage.context
 
-| Key                                                    | Type      | Description |
-| ------------------------------------------------------ | --------- | ----------- |
-| `input.stage.context.cloudProvider`                    | `string`  |             |
-| `input.stage.context.cloudProviderType`                | `string`  |             |
-| `input.stage.context.cluster`                          | `string`  |             |
-| `input.stage.context.credentials`                      | `string`  |             |
-| `input.stage.context.interestingHealthProviderNames[]` | `string`  |             |
-| `input.stage.context.preferLargerOverNewer`            | `string`  |             |
-| `input.stage.context.remainingEnabledServerGroups`     | `number`  |             |
+| Key                                                    | Type     | Description                                                         |
+| ------------------------------------------------------ | -------- | ------------------------------------------------------------------- |
+| `input.stage.context.cloudProvider`                    | `string` | The name of the cloud provider that will execute the stage.         |
+| `input.stage.context.cloudProviderType`                | `string` | The type of the cloud provider that will execute the stage.         |
+| `input.stage.context.cluster`                          | `string` |                                                                     |
+| `input.stage.context.credentials`                      | `string` | The account/credential set that will be used to execute this stage. |
+| `input.stage.context.interestingHealthProviderNames[]` | `string` |                                                                     |
+| `input.stage.context.preferLargerOverNewer`            | `string` |                                                                     |
+| `input.stage.context.remainingEnabledServerGroups`     | `number` |                                                                     |
 
 ### input.stage
 
