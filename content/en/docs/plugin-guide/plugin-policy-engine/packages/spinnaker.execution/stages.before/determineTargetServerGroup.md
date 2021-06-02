@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.determineTargetServerGroup"
 linktitle: "determineTargetServerGroup"
-description: "A policy that is run before executing each task in a determine server group stage.
+description: "A policy targeting this object is run before executing each task in a determineTargetServerGroup stage."
 "
 ---
 

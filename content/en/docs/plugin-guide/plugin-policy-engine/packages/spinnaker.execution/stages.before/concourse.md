@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.concourse"
 linktitle: "concourse"
-description: "A policy that is run before executing each task in a 'concourse' stage."
+description: "A policy targeting this object is run before executing each task in a concourse stage."
 ---
 
 ## Example Payload

@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.bake"
 linktitle: "bake"
-description: "A policy that is run before executing each task in a bake stage."
+description: "A policy targeting this object is run before executing each task in a bake stage."
 ---
 More information about the back stage can be found at: https://docs.armory.io/docs/spinnaker-user-guides/aws-guides/aws-baking-images/
 

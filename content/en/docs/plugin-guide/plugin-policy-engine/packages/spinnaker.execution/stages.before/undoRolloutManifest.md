@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.undoRolloutManifest"
 linktitle: "undoRolloutManifest"
-description: "A policy that is run before executing each task in an Undo Rollout (manifest) stage."
+description: "A policy targeting this object is run before executing each task in a undoRolloutManifest stage."
 ---
 
  See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifest-based-stages" >}}) for more information on this stage.

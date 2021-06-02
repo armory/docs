@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.findArtifactsFromResource"
 linktitle: "findArtifactsFromResource"
-description: "fill me with delicious data, Stephen!"
+description: "A policy targeting this object is run before executing each task in a findArtifactsFromResource stage."
 ---
 
 ## Example Payload

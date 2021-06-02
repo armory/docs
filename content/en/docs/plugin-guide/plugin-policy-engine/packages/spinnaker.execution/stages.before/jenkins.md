@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.jenkins"
 linktitle: "jenkins"
-description: "fill me with delicious data, Stephen!"
+description: "A policy targeting this object is run before executing each task in a jenkins stage."
 ---
 
 ## Example Payload

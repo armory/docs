@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.wercker"
 linktitle: "wercker"
-description: "fill me with delicious data, Stephen!"
+description: "A policy targeting this object is run before executing each task in a wercker stage."
 ---
 
 ## Example Payload

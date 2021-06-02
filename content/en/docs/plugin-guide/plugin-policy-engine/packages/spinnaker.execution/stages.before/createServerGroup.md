@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.createServerGroup"
 linktitle: "createServerGroup"
-description: "A policy that is run before executing each task in a deploy stage."
+description: "A policy targeting this object is run before executing each task in a createServerGroup stage."
 ---
 
 ## Example Payload
