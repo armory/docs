@@ -429,37 +429,42 @@ Parameters related to the stage against which the policy is executing can be fou
 
 ### input.pipeline
 
-| Key                                               | Type      | Description                                                           |
-| ------------------------------------------------- | --------- | --------------------------------------------------------------------- |
-| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access. |
-| `input.pipeline.authentication.user` | `string`  | The Spinnaker user initiating the change. |
-| `input.pipeline.buildTime`                        | `number`  |                                                                       |
-| `input.pipeline.canceled`                         | `boolean` |                                                                       |
-| `input.pipeline.canceledBy`                       | ` `       |                                                                       |
-| `input.pipeline.cancellationReason`               | ` `       |                                                                       |
-| `input.pipeline.description` | `string`  | Description of the pipeline defined in the UI |
-| `input.pipeline.endTime`                          | `number`  |                                                                       |
-| `input.pipeline.id` | `string`   |  The unique ID of the pipeline |
-| `input.pipeline.keepWaitingPipelines` | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
-| `input.pipeline.limitConcurrent` | `boolean` | True if only 1 concurrent execution of this pipeline be allowed. |
-| `input.pipeline.name` | `string`  | The name of this pipeline. |
-| `input.pipeline.origin`                           | `string`  |                                                                       |
-| `input.pipeline.partition`                        | ` `       |                                                                       |
-| `input.pipeline.paused`                           | ` `       |                                                                       |
-| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                       |
-| `input.pipeline.source`                           | ` `       |                                                                       |
-| `input.pipeline.spelEvaluator` | `string`  | Which version of spring expression language is being used to evaluate SpEL. |
+| Key                                               | Type      | Description                                                                                                                                       |
+| ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                             |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                       |
+| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                         |
+| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                   |
+| `input.pipeline.canceled`                         | `boolean` |                                                                                                                                                   |
+| `input.pipeline.canceledBy`                       | ` `       |                                                                                                                                                   |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                                                                                                   |
+| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI.                                                                                                    |
+| `input.pipeline.endTime`                          | `number`  |                                                                                                                                                   |
+| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline.                                                                                                                    |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
+| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                  |
+| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                        |
+| `input.pipeline.origin`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.partition`                        | ` `       |                                                                                                                                                   |
+| `input.pipeline.paused`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                                                                                                   |
+| `input.pipeline.source`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                       |
 | `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
-| `input.pipeline.startTime` | `number`  | Timestamp from when the pipeline was started. |
-| `input.pipeline.startTimeExpiry` | `date `   | Unix epoch date at which the pipeline will expire. |
-| `input.pipeline.status`                           | `string`  |                                                                       |
-| `input.pipeline.templateVariables`                | ` `       |                                                                       |
-| `input.pipeline.type`                             | `string`  |                                                                       |
+| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                     |
+| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                |
+| `input.pipeline.status`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                   |
+| `input.pipeline.type`                             | `string`  |                                                                                                                                                   |
 
 ### input.pipeline.trigger
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
+
+### input.stage
+
+See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
+
 
 ### input.stage.context
 
@@ -488,16 +493,11 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.spotPrice`                           | `string`  | The maximum price per unit hour to pay for a Spot instance.                                                                                |
 | `input.stage.context.stack`                               | `string`  | Stack is one of the core naming components of a cluster, used to create vertical stacks of dependent services for integration testing.     |
 | `input.stage.context.strategy`                            | `string`  | The deployment strategy tells Spinnaker what to do with the previous version of the server group.                                          |
-| `input.stage.context.subnetType`                          | `string`  | The subnet selection determines the VPC in which your server group will run. Options vary by account and region; the most common ones are:    None (EC2 Classic): instances will not run in a VPC    internal instances will be restricted to internal clients (i.e. require VPN access)    external instances will be publicly accessible and running in VPC |
+| `input.stage.context.subnetType`                          | `string`  | The subnet selection determines the VPC in which your server group will run. Options vary by account and region; the most common ones are:<br/> None (EC2 Classic): instances will not run in a VPC.<br/> Internal: instances will be restricted to internal clients (i.e. require VPN access).<br/> External: instances will be publicly accessible and running in VPC. |
 | `input.stage.context.targetHealthyDeployPercentage`       | `number`  | What percentage of the ASG should be healthy instances during rollouts.                                                                    |
 | `input.stage.context.terminationPolicies[]`               | `string`  |                                                                                                                                            |
-| `input.stage.context.type`                                | `string`  | The name of this stage, typically 'createServerGroup'                                                                                      |
+| `input.stage.context.type`                                | `string`  | The name of this stage, typically `createServerGroup`.                                                                                     |
 | `input.stage.context.useAmiBlockDeviceMappings`           | `boolean` | Spinnaker will use the block device mappings from the selected AMI when deploying a new server group.                                      |
-
-### input.stage
-
-See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
-
 
 ### input.user
 

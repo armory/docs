@@ -1553,84 +1553,90 @@ description: "A policy targeting this object is run before executing each task i
 
 ## Example Policy
 
-This policy requires that a set of annotations have been applied to any manifests that are being deployed. Specifically the annotations 'app' and 'owner' must have been applied.
+- This policy requires that a set of annotations have been applied to any manifests that are being deployed. Specifically the annotations 'app' and 'owner' must have been applied.
 
-{{< prism lang="rego" line-numbers="true" >}}
-package spinnaker.deployment.tasks.before.deployManifest
+  {{< prism lang="rego" line-numbers="true" >}}
+  package spinnaker.deployment.tasks.before.deployManifest
 
-required_annotations:=["app","owner"]
+  required_annotations:=["app","owner"]
 
-deny["Manifest is missing a required annotation"] {
-    annotations :=input.deploy.manifests[_].metadata.annotations 
+  deny["Manifest is missing a required annotation"] {
+      annotations :=input.deploy.manifests[_].metadata.annotations 
 
-    # Use object.get to check if data exists
-    object.get(annotations,required_annotations[_],null)==null
-}
-{{< /prism >}}
+      # Use object.get to check if data exists
+      object.get(annotations,required_annotations[_],null)==null
+  }
+  {{< /prism >}}
 
-This policy requires prevents exposing a set of ports that are unencrypted buy have encrypted alternatives. Specifically this policy prevents exposing HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, and SMTP from a pod, deployment, or replicaset.
+<br/>
 
-{{< prism lang="rego" line-numbers="true" >}}
-package spinnaker.deployment.tasks.before.deployManifest
+- This policy requires prevents exposing a set of ports that are unencrypted buy have encrypted alternatives. Specifically this policy prevents exposing HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, and SMTP from a pod, deployment, or replicaset.
 
-blockedPorts := [20,21,23,80,110,119,143,389,587,8080,8088,8888]
+  {{< prism lang="rego" line-numbers="true" >}}
+  package spinnaker.deployment.tasks.before.deployManifest
 
-deny["A port typically used by an unencrypted protocol was detected."] {
-    #Check for service
-    ports := input.deploy.manifests[_].spec.ports[_]
-    any([object.get(ports,"port",null) == blockedPorts[_], 
-           object.get(ports,"targetPort",null) == blockedPorts[_]])
-}{ 
-    #Check for pod
-    input.deploy.manifests[_].spec.containers[_].ports[_].containerPort=blockedPorts[_]
-} { 
-    #Check for pod template
-    input.deploy.manifests[_].spec.template.spec.containers[_].ports[_].containerPort=blockedPorts[_]
-    }
-{{< /prism >}}
+  blockedPorts := [20,21,23,80,110,119,143,389,587,8080,8088,8888]
 
-This policy checks whether or not the image being approved is on a list of imaged that are approved for deployment. The list of what images are approved must seperately be uploaded to the OPA data document
+  deny["A port typically used by an unencrypted protocol was detected."] {
+      #Check for service
+      ports := input.deploy.manifests[_].spec.ports[_]
+      any([object.get(ports,"port",null) == blockedPorts[_], 
+            object.get(ports,"targetPort",null) == blockedPorts[_]])
+  }{ 
+      #Check for pod
+      input.deploy.manifests[_].spec.containers[_].ports[_].containerPort=blockedPorts[_]
+  } { 
+      #Check for pod template
+      input.deploy.manifests[_].spec.template.spec.containers[_].ports[_].containerPort=blockedPorts[_]
+      }
+  {{< /prism >}}
 
-{{< prism lang="rego" line-numbers="true" >}}
-package spinnaker.deployment.tasks.before.deployManifest
+<br/>
 
-deny["Manifest creates a pod from an image that is not approved by the security scanning process."] {
-#Check pod templates
-    isImageUnApproved(input.deploy.manifests[_].spec.template.spec.containers[_].image)
-} {#check pods
-    isImageUnApproved(input.deploy.manifests[_].spec.containers[_].image)
-}
-{#check pod template initContainers
-    isImageUnApproved(input.deploy.manifests[_].spec.template.spec.initContainers[_].image)
-}
-{#check pod initContainers
-    isImageUnApproved(input.deploy.manifests[_].spec.initContainers[_].image)
-}
+- This policy checks whether or not the image being approved is on a list of imaged that are approved for deployment. The list of what images are approved must seperately be uploaded to the OPA data document
 
-isImageUnApproved(image){    not isImageApproved(image) }
-isImageApproved(image){    image==data.approvedImages[_]}
-{{< /prism >}}
+  {{< prism lang="rego" line-numbers="true" >}}
+  package spinnaker.deployment.tasks.before.deployManifest
 
-This policy prevents applications from deploying to namespaces that they are not whitelisted for.
+  deny["Manifest creates a pod from an image that is not approved by the security scanning process."] {
+  #Check pod templates
+      isImageUnApproved(input.deploy.manifests[_].spec.template.spec.containers[_].image)
+  } {#check pods
+      isImageUnApproved(input.deploy.manifests[_].spec.containers[_].image)
+  }
+  {#check pod template initContainers
+      isImageUnApproved(input.deploy.manifests[_].spec.template.spec.initContainers[_].image)
+  }
+  {#check pod initContainers
+      isImageUnApproved(input.deploy.manifests[_].spec.initContainers[_].image)
+  }
 
-{{< prism lang="rego" line-numbers="true" >}}
-package spinnaker.execution.stages.before.deployManifest
+  isImageUnApproved(image){    not isImageApproved(image) }
+  isImageApproved(image){    image==data.approvedImages[_]}
+  {{< /prism >}}
 
-allowedNamespaces:=[{"app":"app1","ns": ["ns1","ns2"]},
-                    {"app":"app2", "ns":["ns3"]}]
+<br/>
 
-deny["stage deploys to a namespace to which this application lacks access"]{
-    ns :=object.get(input.stage.context.manifests[_].metadata,"namespace","default")
-    application := input.pipeline.application
-    not canDeploy(ns, application)
-}
+- This policy prevents applications from deploying to namespaces that they are not whitelisted for.
 
-canDeploy(namespace, application){
-    some i
-    allowedNamespaces[i].app==application
-    allowedNamespaces[i].ns[_]==namespace
-}
-{{< /prism >}}
+  {{< prism lang="rego" line-numbers="true" >}}
+  package spinnaker.execution.stages.before.deployManifest
+
+  allowedNamespaces:=[{"app":"app1","ns": ["ns1","ns2"]},
+                      {"app":"app2", "ns":["ns3"]}]
+
+  deny["stage deploys to a namespace to which this application lacks access"]{
+      ns :=object.get(input.stage.context.manifests[_].metadata,"namespace","default")
+      application := input.pipeline.application
+      not canDeploy(ns, application)
+  }
+
+  canDeploy(namespace, application){
+      some i
+      allowedNamespaces[i].app==application
+      allowedNamespaces[i].ns[_]==namespace
+  }
+  {{< /prism >}}
 
 ## Keys
 
@@ -1638,29 +1644,29 @@ Parameters related to the stage against which the policy is executing can be fou
 
 ### input.pipeline
 
-| Key                                               | Type      | Description                                                                                                                                                                                                                                             |
-| ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `input.pipeline.application`                      | `string`  | The name of the application to which this pipeline belongs.                                                                                                                                                                                             |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                                                                                                                             |
-| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                                                                                                                               |
-| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                                                                                                                         |
-| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI                                                                                                                                                                                                           |
-| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline                                                                                                                                                                                                                           |
-| `input.pipeline.keepWaitingPipelines` | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
-| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline be allowed.                                                                                                                                                                                        |
-| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                                                                                                                              |
-| `input.pipeline.origin`                           | `string`  |                                                                                                                                                                                                                                                         |
-| `input.pipeline.partition`                        | ` `       |                                                                                                                                                                                                                                                         |
-| `input.pipeline.paused`                           | ` `       |                                                                                                                                                                                                                                                         |
-| `input.pipeline.pipelineConfigId`                 | ` `       |                                                                                                                                                                                                                                                         |
-| `input.pipeline.source`                           | ` `       |                                                                                                                                                                                                                                                         |
-| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                                                                                                                             |
-| `input.pipeline.stages[]`                         | `string`  | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the opa.pipelines bpackage, or the spinnaker.execution.pipelines.before package. |
-| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                                                                                                                           |
-| `input.pipeline.startTimeExpiry` | `date `   | Unix epoch date at which the pipeline will expire. |
-| `input.pipeline.status`                           | `string`  | The status of the pipeline, typically 'RUNNING'                                                                                                                                                                                                         |
-| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                                                                                                                         |
-| `input.pipeline.type`                             | `string`  |                                                                                                                                                                                                                                                         |
+| Key                                               | Type      | Description                                                                                                                                                          |
+| ------------------------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the application to which this pipeline belongs.                                                                                                          |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                                          |
+| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                                            |
+| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                                      |
+| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI.                                                                                                                       |
+| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline.                                                                                                                                       |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` | If concurrent pipeline execution is disabled, then the pipelines that are in the waiting queue will get canceled when the next execution starts unless this is true. |
+| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                                     |
+| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                                           |
+| `input.pipeline.origin`                           | `string`  |                                                                                                                                                                      |
+| `input.pipeline.partition`                        | ` `       |                                                                                                                                                                      |
+| `input.pipeline.paused`                           | ` `       |                                                                                                                                                                      |
+| `input.pipeline.pipelineConfigId`                 | ` `       |                                                                                                                                                                      |
+| `input.pipeline.source`                           | ` `       |                                                                                                                                                                      |
+| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                                          |
+| `input.pipeline.stages[]`                         | `string`  | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines` package, or the `spinnaker.execution.pipelines.before package`. |
+| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                                        |
+| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                                   |
+| `input.pipeline.status`                           | `string`  | The status of the pipeline, typically 'RUNNING'.                                                                                                                     |
+| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                                      |
+| `input.pipeline.type`                             | `string`  |                                                                                                                                                                      |
 
 ### input.pipeline.trigger
 
@@ -1674,9 +1680,9 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 | Key                                                  | Type       | Description                                                                                                                                                                          |
 | ---------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `input.stage.context.account`                        | `string`   | What account is this stage deploying to. This is often used, for example, to check whther or not a policy applies to the given account.                                              |
+| `input.stage.context.account`                        | `string`   | What account is this stage deploying to. This is often used, for example, to check whether or not a policy applies to the given account.                                             |
 | `input.stage.context.artifacts[]`                    | `array`    | See [artifacts]({{< ref "artifacts.md" >}}) for more information.                                                                                                                    |
-| `input.stage.context.cloudProvider`                  | `string`   | The cloudprovider for the account this is deploying to. Typically 'kubernetes'                                                                                                       |
+| `input.stage.context.cloudProvider`                  | `string`   | The cloud provider for the account this is deploying to. Typically 'kubernetes'                                                                                                      |
 | `input.stage.context.deploy.account.name`            | `string`   | The name of the account to which the stage is deploying.                                                                                                                             |
 | `input.stage.context.kato.last.task.id.id`           | `string`   |                                                                                                                                                                                      |
 | `input.stage.context.kato.result.expected`           | `boolean`  |                                                                                                                                                                                      |
@@ -1689,15 +1695,15 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 | `input.stage.context.kato.tasks[].history[].status`  | `string`   | The history of task status changes.                                                                                                                                                  |
 | `input.stage.context.kato.tasks[].id`                | `string`   | The unique id of the task.                                                                                                                                                           |
 | `input.stage.context.kato.tasks[].resultObjects[]`   | `{object}` | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs. |
-| `input.stage.context.kato.tasks[].status.completed`  | `boolean`  | has the task finished executing                                                                                                                                                      |
-| `input.stage.context.kato.tasks[].status.failed`     | `boolean`  | Did the task attempt to execute and fail                                                                                                                                             |
+| `input.stage.context.kato.tasks[].status.completed`  | `boolean`  | True when the task has finished executing.                                                                                                                                           |
+| `input.stage.context.kato.tasks[].status.failed`     | `boolean`  | Did the task attempt to execute and fail.                                                                                                                                            |
 | `input.stage.context.kato.tasks[].status.retryable`  | `boolean`  | Can the task retry if execution fails.                                                                                                                                               |
 | `input.stage.context.manifestArtifactAccount`        | `string`   | What artifact account are artifacts stored in.                                                                                                                                       |
-| `input.stage.context.manifests[]`                    | `object`   | The raw kubernetes manifest being deployed. This is the element you should write mpolicies against that involve the manifest.                                                        |
+| `input.stage.context.manifests[]`                    | `object`   | The raw kubernetes manifest being deployed. This is the element you should write policies against that involve the manifest.                                                         |
 | `input.stage.context.moniker.app`                    | `string`   | The name of the application to which this pipeline belongs.                                                                                                                          |
 | `input.stage.context.moniker.cluster`                | `string`   | The name of the cluster to which this stage is deploying.                                                                                                                            |
 | `input.stage.context.outputs`                        | `object`   | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs. |
-| `input.stage.context.source`                         | `string`   | specifies whether the manifest is coming from an artifact or was directly specified in the pipeline as text.                                                                         |
+| `input.stage.context.source`                         | `string`   | Specifies whether the manifest is coming from an artifact or was directly specified in the pipeline as text.                                                                         |
 | `input.stage.context.stableManifests[].location`     | `string`   | The namespace of the stable manifest.                                                                                                                                                |
 | `input.stage.context.stableManifests[].manifestName` | `string`   | The manifests name.                                                                                                                                                                  |
 | `input.stage.context.user`                           | `string`   | the ID of the user that the stage is running as.                                                                                                                                     |
