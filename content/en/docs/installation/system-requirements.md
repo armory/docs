@@ -11,12 +11,14 @@ The requirements described on this page are meant as a minimum starting point fo
 
 > This section defines where you can run Armory Enterprise, not where you can deploy your applications. For information about where you can deploy applications to, see the [Product Compatibility Matrix]({{< ref "armory-enterprise-matrix#deployment-targets" >}}).
 
-Armory Enterprise can be installed on either Amazon EKS or a [certified Kubernetes cluster](https://www.cncf.io/certification/software-conformance/).
+Armory Enterprise can be installed on any [certified Kubernetes cluster](https://www.cncf.io/certification/software-conformance/).
 
 * **Minimum version**: Some TBD version
 * **Maximum version**: Some TBD version
 
-If you are installing Armory Enterprise for the first time, Armory recommends using the Armory Operator, a Kubernetes operator. Note that you must be able to apply Kubernetes manifests, either directly using `kubectl` commands from your machine or another method.
+To install Armory Enterprise, you can use either the Armory Operator (a Kubernetes operator) or Halyard. If you are installing Armory Enterprise for the first time, Armory recommends using the Armory Operator. Note that you must be able to apply Kubernetes manifests, either directly using `kubectl` commands from your machine or another method.
+
+Armory does not produce marketplace specific images that are used by different certified Kubernetes offerings.
 
 ## Browsers
 
