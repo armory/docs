@@ -460,15 +460,15 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 | Key                                                    | Type      | Description                                                         |
 | ------------------------------------------------------ | --------- | ------------------------------------------------------------------- |
-| `input.stage.context.allowDeleteActive`                | `boolean` |                                                                     |
+| `input.stage.context.allowDeleteActive`                | `boolean` | Allow deletion of active server groups                              |
 | `input.stage.context.cloudProviderType`                | `string`  | The type of the cloud provider that will execute the stage.         |
 | `input.stage.context.cloudProvider`                    | `string`  | The name of the cloud provider that will execute the stage.         |
-| `input.stage.context.cluster`                          | `string`  |                                                                     |
+| `input.stage.context.cluster`                          | `string`  | The cluster to look at when selecting the image to use in this pipeline.                                                                    |
 | `input.stage.context.credentials`                      | `string`  | The account/credential set that will be used to execute this stage. |
 | `input.stage.context.interestingHealthProviderNames[]` | `string`  |                                                                     |
-| `input.stage.context.regions[]`                        | `string`  |                                                                     |
-| `input.stage.context.retainLargerOverNewer`            | `string`  |                                                                     |
-| `input.stage.context.shrinkToSize`                     | `number`  |                                                                     |
+| `input.stage.context.regions[]`                        | `string`  | which regions the cluster is in.                                                                    |
+| `input.stage.context.retainLargerOverNewer`            | `string`  | true or false, will spinnaker attempt to keep the newest instance, or the largest.                                                            |
+| `input.stage.context.shrinkToSize`                     | `number`  | The desired number of server groups after shrinking.                                                                    |
 
 ### input.stage
 
