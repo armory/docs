@@ -376,7 +376,17 @@ weight: 10
 | `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                                   |
 | `input.pipeline.status`                           | `string`  | The status of the pipeline, typically 'RUNNING'.                                                                                                                     |
 | `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                                      |
-| `input.pipeline.type`                             | `string`  |                                                                                                                                                                      |
+| `input.pipeline.type`                             | `string`  |                                                                                                  
+### input.stage.context
+
+| Key                                                       | Type      | Description                                                                                                                                |
+| --------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `input.stage.context.allowScaleDownActive`        | `boolean`  |                                                                              |
+| `input.stage.context.cloudProvider`               | `string`   |                                                                              |
+| `input.stage.context.cloudProviderType`           | `string`   |                                                                              |
+| `input.stage.context.cluster`           | `string`   |                                                                              |
+| `input.stage.context.credentials`           | `string`   |                                                                              |
+| `input.stage.context.interestingHealthProviderNames[]`           | `string`   |                                                                              |
 
 ### input.pipeline.trigger
 
