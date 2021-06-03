@@ -2,8 +2,8 @@
 title: "spinnaker.execution.stages.before.deployManifest"
 linktitle: "deployManifest"
 description: "A policy targeting this object is run before executing each task in a deployManifest stage."
+weight: 10
 ---
-
  See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifest-based-stages" >}}) for more information on this stage.
 
 ## Example Payload

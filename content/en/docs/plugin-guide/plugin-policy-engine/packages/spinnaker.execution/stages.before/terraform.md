@@ -2,8 +2,8 @@
 title: "spinnaker.execution.stages.before.terraform"
 linktitle: "terraform"
 description: "A policy targeting this object is run before executing each task in a terraform stage."
+weight: 10
 ---
-
 ## Example Payload
 
 <details><summary>Click to expand</summary>

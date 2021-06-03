@@ -2,8 +2,8 @@
 title: "spinnaker.execution.stages.before.cloneServerGroup"
 linktitle: "cloneServerGroup"
 description: "A policy targeting this object is run before executing each task in a cloneServerGroup stage."
+weight: 10
 ---
-
 More information on the clone server group stage can be found in Spinnaker's [documentation](https://spinnaker.io/reference/pipeline/stages/#clone-server-group).
 
 ## Example Payload

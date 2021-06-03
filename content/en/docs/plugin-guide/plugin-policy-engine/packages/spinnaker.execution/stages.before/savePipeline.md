@@ -2,8 +2,8 @@
 title: "spinnaker.execution.stages.before.savePipeline"
 linktitle: "savePipeline"
 description: "A policy targeting this object is run before executing each task in a savePipeline stage. Typically writing policies in the opa.pipelines package is preferred."
+weight: 10
 ---
-
 The full package name sent to OPA is `spinnaker.execution.stages.before.savePipeline`. The keys below are children of this path.
 This package contains a subset of the functionality found in opa.pipelines. Armory reccomends using the opa.pipelines package instead of this package for most usecases.
 

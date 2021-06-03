@@ -2,8 +2,10 @@
 title: "spinnaker.execution.stages.before.scaleManifest"
 linktitle: "scaleManifest"
 description: "A policy targeting this object is run before executing each task in a scaleManifest stage."
+weight: 10
 ---
- See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifest-based-stages" >}}) for more information on this stage.
+
+See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifest-based-stages" >}}) for more information on this stage.
 
 The full package name sent to OPA is `spinnaker.execution.stages.before.scaleManifest`. The keys below are children of this path.
 

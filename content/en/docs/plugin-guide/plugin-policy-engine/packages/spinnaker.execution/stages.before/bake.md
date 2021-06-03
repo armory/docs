@@ -2,8 +2,8 @@
 title: "spinnaker.execution.stages.before.bake"
 linktitle: "bake"
 description: "A policy targeting this object is run before executing each task in a bake stage."
+weight: 10
 ---
-
 More information about the bake stage can be found in [Bake Amazon Machine Images in a Spinnaker Pipeline]({{< ref "aws-baking-images" >}})
 
 <details><summary>Click to expand</summary>

@@ -2,8 +2,8 @@
 title: "spinnaker.execution.stages.before.disableCluster"
 linktitle: "disableCluster"
 description: "A policy targeting this object is run before executing each task in a disableCluster stage."
+weight: 10
 ---
-
 ## Example Payload
 
 <details><summary>Click to expand</summary>
