@@ -543,41 +543,39 @@ weight: 10
 ```
 </details>
 
-
-
 ## Keys
 
 Parameters related to the stage against which the policy is executing can be found in the [input.stage.context](#inputstagecontext) object.
 
 ### input.pipeline
 
-| Key                                               | Type      | Description                                                           |
-| ------------------------------------------------- | --------- | --------------------------------------------------------------------- |
-| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access. |
-| `input.pipeline.authentication.user` | `string`  | The Spinnaker user initiating the change. |
-| `input.pipeline.buildTime`                        | `number`  |                                                                       |
-| `input.pipeline.canceledBy`                       | ` `       |                                                                       |
-| `input.pipeline.canceled`                         | `boolean` |                                                                       |
-| `input.pipeline.cancellationReason`               | ` `       |                                                                       |
-| `input.pipeline.description` | `string`  | Description of the pipeline defined in the UI.|
-| `input.pipeline.endTime`                          | ` `       |                                                                       |
-| `input.pipeline.id` | `string`   |  The unique ID of the pipeline.|
-| `input.pipeline.keepWaitingPipelines` | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
-| `input.pipeline.limitConcurrent` | `boolean` | True if only 1 concurrent execution of this pipeline is allowed. |
-| `input.pipeline.name` | `string`  | The name of this pipeline. |
-| `input.pipeline.origin`                           | `string`  |                                                                       |
-| `input.pipeline.partition`                        | ` `       |                                                                       |
-| `input.pipeline.paused`                           | ` `       |                                                                       |
-| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                       |
-| `input.pipeline.source`                           | ` `       |                                                                       |
-| `input.pipeline.spelEvaluator` | `string`  | Which version of spring expression language is being used to evaluate SpEL. |
+| Key                                               | Type      | Description                                                                                                                                       |
+| ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                             |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                       |
+| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                         |
+| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                   |
+| `input.pipeline.canceledBy`                       | ` `       |                                                                                                                                                   |
+| `input.pipeline.canceled`                         | `boolean` |                                                                                                                                                   |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                                                                                                   |
+| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI.                                                                                                    |
+| `input.pipeline.endTime`                          | ` `       |                                                                                                                                                   |
+| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline.                                                                                                                    |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
+| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                  |
+| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                        |
+| `input.pipeline.origin`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.partition`                        | ` `       |                                                                                                                                                   |
+| `input.pipeline.paused`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                                                                                                   |
+| `input.pipeline.source`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                       |
 | `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
-| `input.pipeline.startTimeExpiry` | `date `   | Unix epoch date at which the pipeline will expire. |
-| `input.pipeline.startTime` | `number`  | Timestamp from when the pipeline was started. |
-| `input.pipeline.status`                           | `string`  |                                                                       |
-| `input.pipeline.templateVariables`                | ` `       |                                                                       |
-| `input.pipeline.type`                             | `string`  |                                                                       |
+| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                |
+| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                     |
+| `input.pipeline.status`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                   |
+| `input.pipeline.type`                             | `string`  |                                                                                                                                                   |
 
 ### input.pipeline.trigger
 
@@ -589,14 +587,14 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 ### input.stage.context
 
-| Key                                       | Type      | Description                                                       |
-| ----------------------------------------- | --------- | ----------------------------------------------------------------- |
-| `input.stage.context.action`              | `string`  | One of 'plan', 'apply', 'destroy', or 'output'                                                                  |
-| `input.stage.context.artifacts[].account` | `string`  | The account of the terraform artifact.                                                                  |
-| `input.stage.context.artifacts[].id`      | `string`  | The id of the terraform artifact                                                                  |
-| `input.stage.context.expectedArtifacts[]` | `array`   | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.stage.context.planForDestroy`      | `boolean` | Shows what gets destroyed if the destroy action runs. Equivalent to running terraform plan with the -destroy option.                                                                  |
-| `input.stage.context.terraformVersion`    | `string`  | Which version of terraform to use.                                                                  |
+| Key                                       | Type      | Description                                                                                                              |
+| ----------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `input.stage.context.action`              | `string`  | One of `plan`, `apply`, `destroy`, or `output`.                                                                          |
+| `input.stage.context.artifacts[].account` | `string`  | The account of the Terraform artifact.                                                                                   |
+| `input.stage.context.artifacts[].id`      | `string`  | The ID of the Terraform artifact                                                                                         |
+| `input.stage.context.expectedArtifacts[]` | `array`   | See [artifacts]({{< ref "artifacts.md" >}}) for more information.                                                        |
+| `input.stage.context.planForDestroy`      | `boolean` | Shows what gets destroyed if the destroy action runs. Equivalent to running a Terraform plan with the `-destroy` option. |
+| `input.stage.context.terraformVersion`    | `string`  | Which version of Terraform to use.                                                                                       |
 
 ### input.user
 

@@ -307,40 +307,39 @@ weight: 10
 ```
 </details>
 
-
 ## Keys
 
 Parameters related to the stage against which the policy is executing can be found in the [input.stage.context](#inputstagecontext) object.
 
 ### input.pipeline
 
-| Key                                               | Type      | Description |
-| ------------------------------------------------- | --------- | ----------- |
-| `input.pipeline.application` | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access. |
-| `input.pipeline.authentication.user` | `string`  | The Spinnaker user initiating the change. |
-| `input.pipeline.buildTime`                        | `number`  |             |
-| `input.pipeline.canceledBy`                       | ` `       |             |
-| `input.pipeline.canceled`                         | `boolean` |             |
-| `input.pipeline.cancellationReason`               | ` `       |             |
-| `input.pipeline.description` | `string`  | Description of the pipeline defined in the UI.|
-| `input.pipeline.endTime`                          | `number`  |             |
-| `input.pipeline.id` | `string`   |  The unique ID of the pipeline.|
-| `input.pipeline.keepWaitingPipelines` | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
-| `input.pipeline.limitConcurrent` | `boolean` | True if only 1 concurrent execution of this pipeline is allowed. |
-| `input.pipeline.name` | `string`  | The name of this pipeline. |
-| `input.pipeline.origin`                           | `string`  |             |
-| `input.pipeline.partition`                        | ` `       |             |
-| `input.pipeline.paused`                           | ` `       |             |
-| `input.pipeline.pipelineConfigId`                 | `string`  |             |
-| `input.pipeline.source`                           | ` `       |             |
-| `input.pipeline.spelEvaluator` | `string`  | Which version of spring expression language is being used to evaluate SpEL. |
+| Key                                               | Type      | Description                                                                                                                                       |
+| ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                             |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                       |
+| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                         |
+| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                   |
+| `input.pipeline.canceledBy`                       | ` `       |                                                                                                                                                   |
+| `input.pipeline.canceled`                         | `boolean` |                                                                                                                                                   |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                                                                                                   |
+| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI.                                                                                                    |
+| `input.pipeline.endTime`                          | `number`  |                                                                                                                                                   |
+| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline.                                                                                                                    |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
+| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                  |
+| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                        |
+| `input.pipeline.origin`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.partition`                        | ` `       |                                                                                                                                                   |
+| `input.pipeline.paused`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                                                                                                   |
+| `input.pipeline.source`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                       |
 | `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
-| `input.pipeline.startTimeExpiry` | `date `   | Unix epoch date at which the pipeline will expire. |
-| `input.pipeline.startTime` | `number`  | Timestamp from when the pipeline was started. |
-| `input.pipeline.status`                           | `string`  |             |
-| `input.pipeline.templateVariables`                | ` `       |             |
-| `input.pipeline.type`                             | `string`  |             |
+| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                |
+| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                     |
+| `input.pipeline.status`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                   |
+| `input.pipeline.type`                             | `string`  |                                                                                                                                                   |
 
 ### input.pipeline.trigger
 
@@ -352,22 +351,22 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 ### input.stage.context
 
-| Key                                     | Type      | Description |
-| --------------------------------------- | --------- | ----------- |
-| `input.stage.context.account`      | `string` | account passed down to script execution as ENV_PARAM             |
-| `input.stage.context.cluster`      | `string` | cluster passed down to script execution as CLUSTER_PARAM             |
-| `input.stage.context.cmc`      | `string` | cmc passed down to script execution as CMC             |
-| `input.stage.context.command`      | `string` | Executable script and parameters. (e.g. script.py --ami-id ${deploymentDetails[0].ami} )              |
-| `input.stage.context.failPipeline`      | `boolean` | If the triggered script fails, should the pipeline fail.            |
-| `input.stage.context.image`      | `string` | image passed down to script execution as IMAGE_ID              |
-| `input.stage.context.name`      | `string` |              |
-| `input.stage.context.propertyFile`      | `string` | The name to the properties file produced by the script execution to be used by later stages of the Spinnaker pipeline.              |
-| `input.stage.context.region`      | `string` | region passed down to script execution as REGION_PARAM             |
-| `input.stage.context.repoBranch`      | `string` | Git Branch. (e.g. master). Leave empty to use the master branch.             |
-| `input.stage.context.repoUrl`      | `string` | Path to the repo hosting the scripts in Stash. (e.g. CDL/mimir-scripts). Leave empty to use the default.             |
-| `input.stage.context.scriptPath`      | `string` | Path to the folder hosting the scripts in Stash. (e.g. groovy, python or shell)             |
-| `input.stage.context.user`              | `string`  |             |
-| `input.stage.context.waitForCompletion` | `boolean` | Should the stage wait for the invcoked script to finish executing.            |
+| Key                                     | Type      | Description                                                                                                             |
+| --------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `input.stage.context.account`           | `string`  | Account passed down to script execution as `ENV_PARAM`                                                                  |
+| `input.stage.context.cluster`           | `string`  | Cluster passed down to script execution as `CLUSTER_PARAM`                                                              |
+| `input.stage.context.cmc`               | `string`  | cmc passed down to script execution as `CMC`                                                                            |
+| `input.stage.context.command`           | `string`  | Executable script and parameters. (e.g. `script.py --ami-id ${deploymentDetails[0].ami}`)                               |
+| `input.stage.context.failPipeline`      | `boolean` | If the triggered script fails, should the pipeline fail.                                                                |
+| `input.stage.context.image`             | `string`  | Image passed down to script execution as `IMAGE_ID`                                                                     |
+| `input.stage.context.name`              | `string`  |                                                                                                                         |
+| `input.stage.context.propertyFile`      | `string`  | The name of the properties file produced by the script execution, to be used by later stages of the Spinnaker pipeline. |
+| `input.stage.context.region`            | `string`  | Region passed down to script execution as `REGION_PARAM`                                                                |
+| `input.stage.context.repoBranch`        | `string`  | Git Branch. (e.g. master). Leave empty to use the master branch.                                                        |
+| `input.stage.context.repoUrl`           | `string`  | Path to the repo hosting the scripts in Stash. (e.g. CDL/mimir-scripts). Leave empty to use the default.                |
+| `input.stage.context.scriptPath`        | `string`  | Path to the folder hosting the scripts in Stash. (e.g. groovy, python or shell)                                         |
+| `input.stage.context.user`              | `string`  |                                                                                                                         |
+| `input.stage.context.waitForCompletion` | `boolean` | If true, the stage will wait for the invoked script to finish executing.                                                |
 
 ### input.user
 

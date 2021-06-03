@@ -208,7 +208,9 @@ See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifes
 </details>
 
 ## Example Policy
-requires a reason to be provided for any rollback.
+
+Requires a reason to be provided for any rollback.
+
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.http.authz
 default message=""
@@ -263,40 +265,40 @@ Parameters related to the stage against which the policy is executing can be fou
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
-### input.stage.context
-
-| Key                                                              | Type      | Description                                                 |
-| ---------------------------------------------------------------- | --------- | ----------------------------------------------------------- |
-| `input.stage.context.account`                                    | `string`  | The account containing the manifest                                 |
-| `input.stage.context.cloudProvider`                              | `string`  | The name of the cloud provider that will execute the stage. |
-| `input.stage.context.kato.last.task.id.id`                       | `string`  |                                                             |
-| `input.stage.context.kato.result.expected`                       | `boolean` |                                                             |
-| `input.stage.context.kato.task.firstNotFoundRetry`               | `number`  |                                                             |
-| `input.stage.context.kato.task.lastStatus`                       | `string`  |                                                             |
-| `input.stage.context.kato.task.notFoundRetryCount`               | `number`  |                                                             |
-| `input.stage.context.kato.task.terminalRetryCount`               | `number`  |                                                             |
-| `input.stage.context.kato.tasks[].history[].phase`               | `string`  |                                                             |
-| `input.stage.context.kato.tasks[].history[].status`              | `string`  |                                                             |
-| `input.stage.context.kato.tasks[].id`                            | `string`  |                                                             |
-| `input.stage.context.kato.tasks[].status.completed`              | `boolean` |                                                             |
-| `input.stage.context.kato.tasks[].status.failed`                 | `boolean` |                                                             |
-| `input.stage.context.kato.tasks[].status.retryable`              | `boolean` |                                                             |
-| `input.stage.context.location`                                   | `string`  |                                                             |
-| `input.stage.context.manifest.account.name`                      | `string`  | The account containing the manifest                                                            |
-| `input.stage.context.manifest.location`                          | `string`  | The namespace containing the manifest.                                                            |
-| `input.stage.context.manifest.name`                              | `string`  | The kind and name of the manifest.                                                            |
-| `input.stage.context.manifestName`                               | `string`  | The kind and name of the manifest.                                                            |
-| `input.stage.context.messages[]`                                 | `string`  |                                                             |
-| `input.stage.context.mode`                                       | `string`  |                                                             |
-| `input.stage.context.numRevisionsBack`                           | `number`  | The number of revisions to roll back.                                                            |
-| `input.stage.context.outputs.manifestNamesByNamespace.<namespace>[]` | `string`  | a list of output manifests in the specified namespace.                                                            |
-| `input.stage.context.reason`                                     | `string`  | The reason for the rollback.                                                            |
-| `input.stage.context.revision`                                   | `string`  | The revision to rollback to.                                                            |
-| `input.stage.context.user`                                       | `string`  |                                                             |
-
 ### input.stage
 
 See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
+
+### input.stage.context
+
+| Key                                                                  | Type      | Description                                                 |
+| -------------------------------------------------------------------- | --------- | ----------------------------------------------------------- |
+| `input.stage.context.account`                                        | `string`  | The account containing the manifest.                        |
+| `input.stage.context.cloudProvider`                                  | `string`  | The name of the cloud provider that will execute the stage. |
+| `input.stage.context.kato.last.task.id.id`                           | `string`  |                                                             |
+| `input.stage.context.kato.result.expected`                           | `boolean` |                                                             |
+| `input.stage.context.kato.task.firstNotFoundRetry`                   | `number`  |                                                             |
+| `input.stage.context.kato.task.lastStatus`                           | `string`  |                                                             |
+| `input.stage.context.kato.task.notFoundRetryCount`                   | `number`  |                                                             |
+| `input.stage.context.kato.task.terminalRetryCount`                   | `number`  |                                                             |
+| `input.stage.context.kato.tasks[].history[].phase`                   | `string`  |                                                             |
+| `input.stage.context.kato.tasks[].history[].status`                  | `string`  |                                                             |
+| `input.stage.context.kato.tasks[].id`                                | `string`  |                                                             |
+| `input.stage.context.kato.tasks[].status.completed`                  | `boolean` |                                                             |
+| `input.stage.context.kato.tasks[].status.failed`                     | `boolean` |                                                             |
+| `input.stage.context.kato.tasks[].status.retryable`                  | `boolean` |                                                             |
+| `input.stage.context.location`                                       | `string`  |                                                             |
+| `input.stage.context.manifest.account.name`                          | `string`  | The account containing the manifest.                        |
+| `input.stage.context.manifest.location`                              | `string`  | The namespace containing the manifest.                      |
+| `input.stage.context.manifest.name`                                  | `string`  | The kind and name of the manifest.                          |
+| `input.stage.context.manifestName`                                   | `string`  | The kind and name of the manifest.                          |
+| `input.stage.context.messages[]`                                     | `string`  |                                                             |
+| `input.stage.context.mode`                                           | `string`  |                                                             |
+| `input.stage.context.numRevisionsBack`                               | `number`  | The number of revisions to roll back.                       |
+| `input.stage.context.outputs.manifestNamesByNamespace.<namespace>[]` | `string`  | A list of output manifests in the specified namespace.      |
+| `input.stage.context.reason`                                         | `string`  | The reason for the rollback.                                |
+| `input.stage.context.revision`                                       | `string`  | The revision to rollback to.                                |
+| `input.stage.context.user`                                           | `string`  |                                                             |
 
 ### input.user
 

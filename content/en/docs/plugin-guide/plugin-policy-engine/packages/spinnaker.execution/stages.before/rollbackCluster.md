@@ -275,7 +275,6 @@ weight: 10
 ```
 </details>
 
-
 ## Keys
 
 Parameters related to the stage against which the policy is executing can be found in the [input.stage.context](#inputstagecontext) object.
