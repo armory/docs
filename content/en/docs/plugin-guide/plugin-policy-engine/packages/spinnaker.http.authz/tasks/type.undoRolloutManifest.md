@@ -26,7 +26,7 @@ window.spinnakerSettings.kubernetesAdHocInfraWritesEnabled = <boolean>;
 ```
 
 This setting must be applied in order for a policy to conditionally allow this functionality.
-  
+
 ## Example Payload
 
 <details><summary>Click to expand</summary>
