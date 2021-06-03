@@ -39,9 +39,9 @@ deny ["You may only rollback 1 revision at a time."]{
 
 | Key                             | Type     | Description                                                   |
 | ------------------------------- | -------- | ------------------------------------------------------------- |
-| `input.deploy.account`          | `string` | The spinnaker account to which this stage is deploying.                      |
+| `input.deploy.account`          | `string` | The spinnaker account to which this stage is deploying.       |
 | `input.deploy.credentials`      | `string` | The credentials to use to access the account.                 |
 | `input.deploy.location`         | `string` | The name of the namespace the manifest is being deleted from. |
 | `input.deploy.manifestName`     | `string` | The name of the manifest being deleted.                       |
 | `input.deploy.numRevisionsBack` | `number` | How many revisions of the manifest should be rolled back.     |
-| `input.deploy.revision`         | `number`      | What revision the manifest should be rolled back to.          |
+| `input.deploy.revision`         | `number` | What revision the manifest should be rolled back to.          |
