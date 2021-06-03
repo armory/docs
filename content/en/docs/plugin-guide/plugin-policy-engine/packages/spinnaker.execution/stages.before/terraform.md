@@ -594,12 +594,12 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 | Key                                       | Type      | Description                                                       |
 | ----------------------------------------- | --------- | ----------------------------------------------------------------- |
-| `input.stage.context.action`              | `string`  |                                                                   |
-| `input.stage.context.artifacts[].account` | `string`  |                                                                   |
-| `input.stage.context.artifacts[].id`      | `string`  |                                                                   |
+| `input.stage.context.action`              | `string`  | One of 'plan', 'apply', 'destroy', or 'output'                                                                  |
+| `input.stage.context.artifacts[].account` | `string`  | The account of the terraform artifact.                                                                  |
+| `input.stage.context.artifacts[].id`      | `string`  | The id of the terraform artifact                                                                  |
 | `input.stage.context.expectedArtifacts[]` | `array`   | See [artifacts]({{< ref "artifacts.md" >}}) for more information. |
-| `input.stage.context.planForDestroy`      | `boolean` |                                                                   |
-| `input.stage.context.terraformVersion`    | `string`  |                                                                   |
+| `input.stage.context.planForDestroy`      | `boolean` | Shows what gets destroyed if the destroy action runs. Equivalent to running terraform plan with the -destroy option.                                                                  |
+| `input.stage.context.terraformVersion`    | `string`  | Which version of terraform to use.                                                                  |
 
 ### input.user
 
