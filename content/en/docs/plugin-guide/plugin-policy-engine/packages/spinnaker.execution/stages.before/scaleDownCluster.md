@@ -371,16 +371,17 @@ weight: 10
 | `input.pipeline.status`                           | `string`  | The status of the pipeline, typically 'RUNNING'.                                                                                                                     |
 | `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                                      |
 | `input.pipeline.type`                             | `string`  |                                                                                                  
+
 ### input.stage.context
 
-| Key                                                       | Type      | Description                                                                                                                                |
-| --------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `input.stage.context.allowScaleDownActive`        | `boolean`  |                                                                              |
-| `input.stage.context.cloudProvider`               | `string`   |                                                                              |
-| `input.stage.context.cloudProviderType`           | `string`   |                                                                              |
-| `input.stage.context.cluster`           | `string`   |                                                                              |
-| `input.stage.context.credentials`           | `string`   |                                                                              |
-| `input.stage.context.interestingHealthProviderNames[]`           | `string`   |                                                                              |
+| Key                                                    | Type      | Description |
+| ------------------------------------------------------ | --------- | ----------- |
+| `input.stage.context.allowScaleDownActive`             | `boolean` |             |
+| `input.stage.context.cloudProvider`                    | `string`  |             |
+| `input.stage.context.cloudProviderType`                | `string`  |             |
+| `input.stage.context.cluster`                          | `string`  |             |
+| `input.stage.context.credentials`                      | `string`  |             |
+| `input.stage.context.interestingHealthProviderNames[]` | `string`  |             |
 
 ### input.pipeline.trigger
 
@@ -392,17 +393,17 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 ### input.stage.context
 
-| Key                                                    | Type      | Description |
-| ------------------------------------------------------ | --------- | ----------- |
-| `input.stage.context.allowScaleDownActive`             | `boolean` | Should scaling down of active server groups be allowed            |
-| `input.stage.context.cloudProvider`                    | `string`  | The name of the cloud provider for the server group            |
-| `input.stage.context.cloudProviderType`                | `string`  | The type of the cloud provider for the server group            |
-| `input.stage.context.cluster`                          | `string`  | The cluster to look at when selecting the image to use in this pipeline.            |
-| `input.stage.context.credentials`                      | `string`  | The specific account / credential set to use            |
-| `input.stage.context.interestingHealthProviderNames[]` | `string`  |             |
-| `input.stage.context.preferLargerOverNewer`            | `string`  | "true" or "false": should 'larger' servers, or 'newer' instances be preferred to be left online.            |
-| `input.stage.context.regions[]`                        | `string`  | What regions should be scaled.            |
-| `input.stage.context.remainingFullSizeServerGroups`    | `number`  | How many server groups should be running after the stage completes.            |
+| Key                                                    | Type      | Description                                                                                      |
+| ------------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------ |
+| `input.stage.context.allowScaleDownActive`             | `boolean` | Should scaling down of active server groups be allowed.                                          |
+| `input.stage.context.cloudProvider`                    | `string`  | The name of the cloud provider for the server group.                                             |
+| `input.stage.context.cloudProviderType`                | `string`  | The type of the cloud provider for the server group.                                             |
+| `input.stage.context.cluster`                          | `string`  | The cluster to look at when selecting the image to use in this pipeline.                         |
+| `input.stage.context.credentials`                      | `string`  | The specific account / credential set to use.                                                    |
+| `input.stage.context.interestingHealthProviderNames[]` | `string`  |                                                                                                  |
+| `input.stage.context.preferLargerOverNewer`            | `string`  | "true" or "false": should 'larger' servers, or 'newer' instances be preferred to be left online. |
+| `input.stage.context.regions[]`                        | `string`  | What regions should be scaled.                                                                   |
+| `input.stage.context.remainingFullSizeServerGroups`    | `number`  | How many server groups should be running after the stage completes.                              |
 
 ### input.user
 
