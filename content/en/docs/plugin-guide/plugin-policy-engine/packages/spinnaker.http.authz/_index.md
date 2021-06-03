@@ -69,9 +69,11 @@ A second optional parameter named `message` can be passed back, and set to a str
 | :-------------------------- | --------- | --------------------------------------------------------------- |
 | `input.method`              | `string`  | The HTTP method being used to call the API.                     |
 | `input.path[]`              | `string`  | This array corresponds to the subpath of the API being invoked. |
-| `input.user.isAdmin`        | `boolean` |                                                                 |
-| `input.user.username`       | `string`  |                                                                 |
-| `input.user.roles[].name`   | `string`  |                                                                 |
-| `input.user.roles[].source` | `string`  |                                                                 |
+
+### input.user
+
+This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.
+
+<hr/>
 
 Other objects are listed below:
