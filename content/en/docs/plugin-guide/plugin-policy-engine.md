@@ -72,6 +72,9 @@ spec:
       gate:
         spinnaker:
           extensibility:
+            plugins:
+              Armory.PolicyEngine:
+                enabled: true
             deck-proxy:
               enabled: true
               plugins:
