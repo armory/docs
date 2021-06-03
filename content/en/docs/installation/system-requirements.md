@@ -69,3 +69,7 @@ The ports for the API gateway (the Gate service) and the UI (the Deck service) n
 * 9000
 
 Additionally, pods in your Kubernetes cluster must be able to communicate with each other without restrictions.
+
+## Security
+
+Armory Enterprise needs to be able to assume roles in the accounts that it deploys applications to. For example, Armory Enterprise needs the `sts:AssumeRole` permission for AWS.
