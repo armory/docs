@@ -1,7 +1,7 @@
 ---
 title: "Task Type: updateApplication"
 linktitle: "updateApplication"
-description: "fill me with delicious data, Stephen!"
+description: "A policy call is made for this type anytime a user attmpts to edit an existing application."
 ---
 
 - **Path:** tasks
