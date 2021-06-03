@@ -194,10 +194,10 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.project.config.pipelineConfigs[]`      | `object`  |  The pipeline configurations associated with the project.           |
 | `input.stage.context.project.createTs`                                  | `number`  | The time that the project was created.            |
 | `input.stage.context.project.email`                                     | `string`  | The email of the project's owner.            |
-| `input.stage.context.project.id`                                        | `string`  |             |
-| `input.stage.context.project.lastModifiedBy`                            | `string`  |             |
+| `input.stage.context.project.id`                                        | `string`  | The unique ID of the project.            |
+| `input.stage.context.project.lastModifiedBy`                            | `string`  | The ID of the last user that modified the project definition.           |
 | `input.stage.context.project.name`                                      | `string`  | The name of the project.            |
-| `input.stage.context.project.updateTs`                                  | `number`  |             |
+| `input.stage.context.project.updateTs`                                  | `number`  | The timestamp of the last update to the project definition.            |
 | `input.stage.context.user`                                              | `string`  |             |
 
 ### input.stage
