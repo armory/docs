@@ -629,7 +629,7 @@ Open your browser's console and see if there are SSL exceptions. If there are, c
 
 ## Release notes
 
-* v0.1.4 - Adds the `opa.timeoutSeconds` property, which allows you to configure how long the Policy Engine will wait for a response from the OPA server.
+* v0.1.4 - Adds the `opa.timeoutSeconds` property, which allows you to configure how long the Policy Engine waits for a response from the OPA server.
 * v0.1.3 - Fixes an issue introduced in v0.1.2 where the **Project Configuration** button's name was changing when Policy Engine is enabled.
 * v0.1.2  - Adds support for writing policies against the package `spinnaker.ui.entitlements.isFeatureEnabled` to show/hide the following UI buttons:
   * Create Application
