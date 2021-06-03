@@ -2,6 +2,7 @@
 title: spinnaker.ui.entitlements.isFeatureEnabled
 linkTitle: spinnaker.ui.entitlements.isFeatureEnabled
 Description: Allows UI elements to be hidden from the Spinnaker UI entirely.
+weight: 10
 ---
 
 >**Note:** This package is only available if you are running policy engine version 0.1.2 or later.
