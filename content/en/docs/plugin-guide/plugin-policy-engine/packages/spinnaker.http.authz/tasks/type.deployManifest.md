@@ -7,7 +7,24 @@ description: "Policy controls whether or not a deployManifest that is triggered 
 - **Path:** tasks
 - **Method:** Post
 - **Package:** `spinnaker.http.authz`
+- 
+## Compatibility Note
+Starting in 2.26, the UI has been updated to more closely follow immutable infrastructure principles.
 
+When you navigate to the Infrastructure tab in the UI for an application that has the Kubernetes provider configured, actions that change the Kubernetes infrastructure (such as Create or Delete), including Clusters, Load Balancers, and Firewalls, are no longer available.
+
+Impact
+
+Users do not see these actions in the UI by default. You must configure the UI to display them if you want your users to be able to perform them through the UI.
+
+Workaround
+
+Whether or not these actions are available in the UI is controlled by the following property in settings-local.yml:
+
+window.spinnakerSettings.kubernetesAdHocInfraWritesEnabled = <boolean>;
+  
+This setting must be applied in order for policy to conditionally allow this functionality.
+  
 ## Example Payload
 
 <details><summary>Click to expand</summary>
