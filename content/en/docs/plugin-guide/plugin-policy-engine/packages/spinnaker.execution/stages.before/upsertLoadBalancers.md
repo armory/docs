@@ -360,7 +360,7 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 | ------------------------------------------ | --------- | ------------------------------------- |
 | `input.stage.context.kato.last.task.id.id` | `string`  |                                       |
 | `input.stage.context.kato.result.expected` | `boolean` |                                       |
-| `input.stage.context.notification.type`    | `string`  | What type of spinnaker stage is this. |
+| `input.stage.context.notification.type`    | `string`  |          |
 
 
 ### input.user
