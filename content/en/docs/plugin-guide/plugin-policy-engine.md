@@ -54,7 +54,7 @@ metadata:
 spec:
   spinnakerConfig:
     profiles:
-      # Spinnaker profile will be applied to all services
+      # Configs in the spinnaker profile get applied to all services
       spinnaker:
         armory:
           policyEngine:
