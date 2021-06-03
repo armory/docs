@@ -4,6 +4,7 @@ linktitle: "scaleDownCluster"
 description: "You know what to do..."
 weight: 10
 ---
+
 ## Example Payload
 
 <details><summary>Click to expand</summary>

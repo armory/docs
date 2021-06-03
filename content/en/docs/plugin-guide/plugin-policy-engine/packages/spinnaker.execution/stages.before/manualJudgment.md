@@ -4,6 +4,7 @@ linktitle: "manualJudgment"
 description: "A policy targeting this object is run before executing each task in a manualJudgment stage."
 weight: 10
 ---
+
 ## Example Payload
 
 <details><summary>Click to expand</summary>
@@ -433,7 +434,9 @@ weight: 10
 </details>
 
 ## Example Policy
+
 This example policy will prevent exedcution of any manual judgement stage that can be approved by multiple roles, or for which the approving role is not on a whitelist of approving roles.
+
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.manualJudgment
 
@@ -459,53 +462,53 @@ Parameters related to the stage against which the policy is executing can be fou
 
 ### input.pipeline
 
-| Key                                               | Type      | Description                                                                                                                                                                                                                                                |
-| ------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                                                                                                                                      |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                                                                                                                                |
-| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                                                                                                                                  |
-| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                                                                                                                            |
-| `input.pipeline.canceled`                         | `boolean` |                                                                                                                                                                                                                                                            |
-| `input.pipeline.canceledBy`                       | ` `       |                                                                                                                                                                                                                                                            |
-| `input.pipeline.cancellationReason`               | ` `       |                                                                                                                                                                                                                                                            |
-| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI                                                                                                                                                                                                              |
-| `input.pipeline.endTime`                          | ` `       |                                                                                                                                                                                                                                                            |
-| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline                                                                                                                                                                                                                              |
-| `input.pipeline.keepWaitingPipelines` | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
-| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                                                                                                                           |
-| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                                                                                                                                 |
-| `input.pipeline.origin`                           | `string`  |                                                                                                                                                                                                                                                            |
-| `input.pipeline.partition`                        | ` `       |                                                                                                                                                                                                                                                            |
-| `input.pipeline.paused`                           | ` `       |                                                                                                                                                                                                                                                            |
-| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                                                                                                                                                                                                            |
-| `input.pipeline.source`                           | ` `       |                                                                                                                                                                                                                                                            |
-| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                                                                                                                                |
+| Key                                               | Type      | Description                                                                                                                                       |
+| ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                             |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                       |
+| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                         |
+| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                   |
+| `input.pipeline.canceled`                         | `boolean` |                                                                                                                                                   |
+| `input.pipeline.canceledBy`                       | ` `       |                                                                                                                                                   |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                                                                                                   |
+| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI.                                                                                                    |
+| `input.pipeline.endTime`                          | ` `       |                                                                                                                                                   |
+| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline.                                                                                                                    |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
+| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                  |
+| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                        |
+| `input.pipeline.origin`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.partition`                        | ` `       |                                                                                                                                                   |
+| `input.pipeline.paused`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                                                                                                   |
+| `input.pipeline.source`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                       |
 | `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
-| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                                                                                                                              |
-| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                                                                                                                         |
-| `input.pipeline.status`                           | `string`  |                                                                                                                                                                                                                                                            |
-| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                                                                                                                            |
+| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                     |
+| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                |
+| `input.pipeline.status`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                   |
 
 ### input.pipeline.trigger
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
-### input.stage.context
-
-| Key                                                 | Type      | Description |
-| --------------------------------------------------- | --------- | ----------- |
-| `input.stage.context.completeOtherBranchesThenFail` | `boolean` |             |
-| `input.stage.context.continuePipeline`              | `boolean` |             |
-| `input.stage.context.failPipeline`                  | `boolean` |             |
-| `input.stage.context.instructions`                  | `string`  | Instructions are shown to the user when making a manual judgment.            |
-| `input.stage.context.judgmentStatus`                | `string`  |             |
-| `input.stage.context.lastModifiedBy`                | `string`  | Once completed, this is the ID of the user that approved the judgement.            |
-| `input.stage.context.selectedStageRoles[]`          | `string`  | The list of roles that are permitted to approve the manual judgement.            |
-| `input.stage.context.stageTimeoutMs`                | `number`  | Allows forcing the stage to fail if its not approved within a certain time  |
-
 ### input.stage
 
 See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
+
+### input.stage.context
+
+| Key                                                 | Type      | Description                                                                 |
+| --------------------------------------------------- | --------- | --------------------------------------------------------------------------- |
+| `input.stage.context.completeOtherBranchesThenFail` | `boolean` |                                                                             |
+| `input.stage.context.continuePipeline`              | `boolean` |                                                                             |
+| `input.stage.context.failPipeline`                  | `boolean` |                                                                             |
+| `input.stage.context.instructions`                  | `string`  | Instructions are shown to the user when making a manual judgment.           |
+| `input.stage.context.judgmentStatus`                | `string`  |                                                                             |
+| `input.stage.context.lastModifiedBy`                | `string`  | Once completed, this is the ID of the user that approved the judgement.     |
+| `input.stage.context.selectedStageRoles[]`          | `string`  | The list of roles that are permitted to approve the manual judgement.       |
+| `input.stage.context.stageTimeoutMs`                | `number`  | Allows forcing the stage to fail if its not approved within a certain time. |
 
 ### input.user
 

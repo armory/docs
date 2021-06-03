@@ -4,6 +4,7 @@ linktitle: "upsertProject"
 description: "A policy targeting this object is run before executing each task in a upsertProject stage."
 weight: 10
 ---
+
 ## Example Payload
 
 <details><summary>Click to expand</summary>
@@ -159,9 +160,9 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.pipeline.canceled`                         | `boolean` |                                                                       |
 | `input.pipeline.canceledBy`                       | ` `       |                                                                       |
 | `input.pipeline.cancellationReason`               | ` `       |                                                                       |
-| `input.pipeline.description` | `string`  | Description of the pipeline defined in the UI |
+| `input.pipeline.description` | `string`  | Description of the pipeline defined in the UI.|
 | `input.pipeline.endTime`                          | ` `       |                                                                       |
-| `input.pipeline.id` | `string`   |  The unique ID of the pipeline |
+| `input.pipeline.id` | `string`   |  The unique ID of the pipeline.|
 | `input.pipeline.keepWaitingPipelines` | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
 | `input.pipeline.limitConcurrent` | `boolean` | True if only 1 concurrent execution of this pipeline is allowed. |
 | `input.pipeline.name` | `string`  | The name of this pipeline. |

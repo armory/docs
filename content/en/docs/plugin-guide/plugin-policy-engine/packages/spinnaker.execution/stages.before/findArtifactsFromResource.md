@@ -4,6 +4,7 @@ linktitle: "findArtifactsFromResource"
 description: "A policy targeting this object is run before executing each task in a findArtifactsFromResource stage."
 weight: 10
 ---
+
 ## Example Payload
 
 <details><summary>Click to expand</summary>
@@ -3333,51 +3334,51 @@ Parameters related to the stage against which the policy is executing can be fou
 
 ### input.pipeline
 
-| Key                                               | Type      | Description                                                           |
-| ------------------------------------------------- | --------- | --------------------------------------------------------------------- |
-| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access. |
-| `input.pipeline.authentication.user` | `string`  | The Spinnaker user initiating the change. |
-| `input.pipeline.buildTime`                        | `number`  |                                                                       |
-| `input.pipeline.canceled`                         | `boolean` |                                                                       |
-| `input.pipeline.canceledBy`                       | ` `       |                                                                       |
-| `input.pipeline.cancellationReason`               | ` `       |                                                                       |
-| `input.pipeline.description` | `string`  | Description of the pipeline defined in the UI |
-| `input.pipeline.endTime`                          | `number`  |                                                                       |
-| `input.pipeline.id` | `string`   |  The unique ID of the pipeline |
-| `input.pipeline.keepWaitingPipelines` | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
-| `input.pipeline.limitConcurrent` | `boolean` | True if only 1 concurrent execution of this pipeline is allowed. |
-| `input.pipeline.name` | `string`  | The name of this pipeline. |
-| `input.pipeline.origin`                           | `string`  |                                                                       |
-| `input.pipeline.partition`                        | ` `       |                                                                       |
-| `input.pipeline.paused`                           | ` `       |                                                                       |
-| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                       |
-| `input.pipeline.source`                           | ` `       |                                                                       |
-| `input.pipeline.spelEvaluator` | `string`  | Which version of spring expression language is being used to evaluate SpEL. |
+| Key                                               | Type      | Description                                                                                                                                       |
+| ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                             |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                       |
+| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                         |
+| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                   |
+| `input.pipeline.canceled`                         | `boolean` |                                                                                                                                                   |
+| `input.pipeline.canceledBy`                       | ` `       |                                                                                                                                                   |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                                                                                                   |
+| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI.                                                                                                    |
+| `input.pipeline.endTime`                          | `number`  |                                                                                                                                                   |
+| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline.                                                                                                                    |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
+| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                  |
+| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                        |
+| `input.pipeline.origin`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.partition`                        | ` `       |                                                                                                                                                   |
+| `input.pipeline.paused`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                                                                                                   |
+| `input.pipeline.source`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                       |
 | `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
-| `input.pipeline.startTime` | `number`  | Timestamp from when the pipeline was started. |
-| `input.pipeline.startTimeExpiry` | `date `   | Unix epoch date at which the pipeline will expire. |
-| `input.pipeline.status`                           | `string`  |                                                                       |
-| `input.pipeline.templateVariables`                | ` `       |                                                                       |
+| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                     |
+| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                |
+| `input.pipeline.status`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                   |
 
 ### input.pipeline.trigger
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
-### input.stage.context
-
-| Key                                     | Type      | Description |
-| --------------------------------------- | --------- | ----------- |
-| `input.stage.context.account`           | `string`  | The account containing the deployed manifest for which the the artifact will be retrieved            |
-| `input.stage.context.app`               | `string`  | The name of the application            |
-| `input.stage.context.cloudProvider`     | `string`  | The name of the cloud provider that will execute the stage. |
-| `input.stage.context.location`          | `string`  | The namespace in which to find the manifest.            |
-| `input.stage.context.manifestName`      | `string`  | The name of the deployed manifest to which the artifact corresponds.            |
-| `input.stage.context.mode`              | `string`  | Specifies whether the manifest is located statically or dynamically.            |
-
 ### input.stage
 
 See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
+
+### input.stage.context
+
+| Key                                 | Type     | Description                                                                               |
+| ----------------------------------- | -------- | ----------------------------------------------------------------------------------------- |
+| `input.stage.context.account`       | `string` | The account containing the deployed manifest for which the the artifact will be retrieved |
+| `input.stage.context.app`           | `string` | The name of the application                                                               |
+| `input.stage.context.cloudProvider` | `string` | The name of the cloud provider that will execute the stage.                               |
+| `input.stage.context.location`      | `string` | The namespace in which to find the manifest.                                              |
+| `input.stage.context.manifestName`  | `string` | The name of the deployed manifest to which the artifact corresponds.                      |
+| `input.stage.context.mode`          | `string` | Specifies whether the manifest is located statically or dynamically.                      |
 
 ### input.user
 

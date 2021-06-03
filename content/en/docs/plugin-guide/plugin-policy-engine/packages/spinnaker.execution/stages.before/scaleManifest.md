@@ -217,7 +217,9 @@ The full package name sent to OPA is `spinnaker.execution.stages.before.scaleMan
 </details>
 
 ## Example Policy
+
 This policy will prevent scaleManifest stages from running in a pipeline unless it is triggered by a webhook with a source of 'prometheus'
+
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.scaleManifest
 
@@ -230,66 +232,64 @@ deny ["scaling can only be run in pipelines that are triggered by monitoring, no
 
 ## Keys
 
-### input.stage
-
-See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
-
-
 ### input.pipeline
 
-| Key                                                | Type      | Description                                                                                                                                                                                                                                                |
-| -------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `input.pipeline.application`                       | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                                                                                                                                      |
-| `input.pipeline.authentication.allowedAccounts.[]` | `string`  | The list of accounts that this pipeline execution has permissions to execute against.                                                                                                                                                                                                                                                           |
-| `input.pipeline.authentication.user`               | `string`  | The Spinnaker user initiating the change.                                                                                                                                                                                                                  |
-| `input.pipeline.buildTime`                         | `number`  |                                                                                                                                                                                                                                                            |
-| `input.pipeline.description`                       | `string`  | Description of the pipeline defined in the UI                                                                                                                                                                                                              |
-| `input.pipeline.id`                                | `string`  | The unique ID of the pipeline                                                                                                                                                                                                                              |
-| `input.pipeline.keepWaitingPipelines` | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
-| `input.pipeline.limitConcurrent`                   | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                                                                                                                           |
-| `input.pipeline.name`                              | `string`  | The name of this pipeline.                                                                                                                                                                                                                                 |
-| `input.pipeline.origin`                            | `string`  |                                                                                                                                                                                                                                                            |
-| `input.pipeline.partition`                         | ``        |                                                                                                                                                                                                                                                            |
-| `input.pipeline.paused`                            | ``        |                                                                                                                                                                                                                                                            |
-| `input.pipeline.pipelineConfigId`                  | ``        |                                                                                                                                                                                                                                                            |
-| `input.pipeline.source`                            | ``        |                                                                                                                                                                                                                                                            |
-| `input.pipeline.spelEvaluator`                     | ``        | Which version of spring expression language is being used to evaluate SpEL.                                                                                                                                                                                |
+| Key                                                | Type      | Description                                                                                                                                       |
+| -------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.pipeline.application`                       | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                             |
+| `input.pipeline.authentication.allowedAccounts.[]` | `string`  | The list of accounts that this pipeline execution has permissions to execute against.                                                             |
+| `input.pipeline.authentication.user`               | `string`  | The Spinnaker user initiating the change.                                                                                                         |
+| `input.pipeline.buildTime`                         | `number`  |                                                                                                                                                   |
+| `input.pipeline.description`                       | `string`  | Description of the pipeline defined in the UI.                                                                                                    |
+| `input.pipeline.id`                                | `string`  | The unique ID of the pipeline.                                                                                                                    |
+| `input.pipeline.keepWaitingPipelines`              | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
+| `input.pipeline.limitConcurrent`                   | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                  |
+| `input.pipeline.name`                              | `string`  | The name of this pipeline.                                                                                                                        |
+| `input.pipeline.origin`                            | `string`  |                                                                                                                                                   |
+| `input.pipeline.partition`                         | ``        |                                                                                                                                                   |
+| `input.pipeline.paused`                            | ``        |                                                                                                                                                   |
+| `input.pipeline.pipelineConfigId`                  | ``        |                                                                                                                                                   |
+| `input.pipeline.source`                            | ``        |                                                                                                                                                   |
+| `input.pipeline.spelEvaluator`                     | ``        | Which version of spring expression language is being used to evaluate SpEL.                                                                       |
 | `input.pipeline.stages[]`                          | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
-| `input.pipeline.startTime` | `number`  | Timestamp from when the pipeline was started. |
-| `input.pipeline.startTimeExpiry`                   | ``        |                                                                                                                                                                                                                                                            |
-
-| `input.pipeline.templateVariables`                 | ``        |                                                                                                                                                                                                                                                            |
+| `input.pipeline.startTime`                         | `number`  | Timestamp from when the pipeline was started.                                                                                                     |
+| `input.pipeline.startTimeExpiry`                   | ``        |                                                                                                                                                   |
+| `input.pipeline.templateVariables`                 | ``        |                                                                                                                                                   |
 
 ### input.pipeline.trigger
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
+### input.stage
+
+See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
+
 ### input.stage.context
 
-| Key                                                               | Type      | Description |
-| ----------------------------------------------------------------- | --------- | ----------- |
-| `input.stage.context.account`                                     | `string`  | The name of the account containing the manifest that will be scaled.            |
-| `input.stage.context.cloudProvider`                               | `string`  | The cloud provider of the account            |
-| `input.stage.context.kato.last.task.id.id`                        | `string`  |             |
-| `input.stage.context.kato.result.expected`                        | `boolean` |             |
-| `input.stage.context.kato.task.firstNotFoundRetry`                | `number`  |             |
-| `input.stage.context.kato.task.lastStatus`                        | `string`  |             |
-| `input.stage.context.kato.task.notFoundRetryCount`                | `number`  |             |
-| `input.stage.context.kato.task.terminalRetryCount`                | `number`  |             |
-| `input.stage.context.kato.tasks.[].history.[].phase`              | `string`  |             |
-| `input.stage.context.kato.tasks.[].history.[].status`             | `string`  |             |
-| `input.stage.context.kato.tasks.[].id`                            | `string`  |             |
-| `input.stage.context.kato.tasks.[].status.completed`              | `boolean` |             |
-| `input.stage.context.kato.tasks.[].status.failed`                 | `boolean` |             |
-| `input.stage.context.kato.tasks.[].status.retryable`              | `boolean` |             |
-| `input.stage.context.location`                                    | `string`  | The namespace in which to scale the manifest            |
-| `input.stage.context.manifest.account.name`                       | `string`  | The name of the account containing the manifest that will be scaled.            |
-| `input.stage.context.manifest.location`                           | `string`  | The namespace in which to scale the manifest            |
-| `input.stage.context.manifest.name`                               | `string`  | The type and name of the manifest to be scaled. This is the best field from which to reference the manifest name and namespace.            |
-| `input.stage.context.manifestName`                                | `string`  | The type and name of the manifest to be scaled.            |
-| `input.stage.context.outputs.manifestNamesByNamespace.<manespace>.[]` | `string`  | the name and type of the output manifest.             |
-| `input.stage.context.replicas`                                    | `string`  | The number of pods desired to be running following the scaling event.            |
-| `input.stage.context.user`                                        | `string`  | the id of the user as whom the stage is running.            |
+| Key                                                                   | Type      | Description                                                           |
+| --------------------------------------------------------------------- | --------- | --------------------------------------------------------------------- |
+| `input.stage.context.account`                                         | `string`  | The name of the account containing the manifest that will be scaled.  |
+| `input.stage.context.cloudProvider`                                   | `string`  | The cloud provider of the account.                                    |
+| `input.stage.context.kato.last.task.id.id`                            | `string`  |                                                                       |
+| `input.stage.context.kato.result.expected`                            | `boolean` |                                                                       |
+| `input.stage.context.kato.task.firstNotFoundRetry`                    | `number`  |                                                                       |
+| `input.stage.context.kato.task.lastStatus`                            | `string`  |                                                                       |
+| `input.stage.context.kato.task.notFoundRetryCount`                    | `number`  |                                                                       |
+| `input.stage.context.kato.task.terminalRetryCount`                    | `number`  |                                                                       |
+| `input.stage.context.kato.tasks.[].history.[].phase`                  | `string`  |                                                                       |
+| `input.stage.context.kato.tasks.[].history.[].status`                 | `string`  |                                                                       |
+| `input.stage.context.kato.tasks.[].id`                                | `string`  |                                                                       |
+| `input.stage.context.kato.tasks.[].status.completed`                  | `boolean` |                                                                       |
+| `input.stage.context.kato.tasks.[].status.failed`                     | `boolean` |                                                                       |
+| `input.stage.context.kato.tasks.[].status.retryable`                  | `boolean` |                                                                       |
+| `input.stage.context.location`                                        | `string`  | The namespace in which to scale the manifest.                         |
+| `input.stage.context.manifest.account.name`                           | `string`  | The name of the account containing the manifest that will be scaled.  |
+| `input.stage.context.manifest.location`                               | `string`  | The namespace in which to scale the manifest.                         |
+| `input.stage.context.manifest.name`                                   | `string`  | The type and name of the manifest to be scaled. This is the best field from which to reference the manifest name and namespace. |
+| `input.stage.context.manifestName`                                    | `string`  | The type and name of the manifest to be scaled.                       |
+| `input.stage.context.outputs.manifestNamesByNamespace.<manespace>.[]` | `string`  | the name and type of the output manifest.                             |
+| `input.stage.context.replicas`                                        | `string`  | The number of pods desired to be running following the scaling event. |
+| `input.stage.context.user`                                            | `string`  | the ID of the user as whom the stage is running.                      |
 
 ### input.stage
 

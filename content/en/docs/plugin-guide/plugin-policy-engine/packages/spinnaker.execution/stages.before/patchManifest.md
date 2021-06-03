@@ -4,6 +4,7 @@ linktitle: "patchManifest"
 description: "A policy targeting this object is run before executing each task in a patchManifest stage."
 weight: 10
 ---
+
 ## Example Payload
 
 <details><summary>Click to expand</summary>
@@ -432,28 +433,30 @@ weight: 10
 </details>
 
 ## Example Policy
-This example checks the manifest being applied and ensures that it contains a set of required annotations.
-{{< prism lang="rego" line-numbers="true" >}}
-package spinnaker.execution.stages.before.patchManifest
 
-required_annotations:=["app","owner"]
+- This example checks the manifest being applied and ensures that it contains a set of required annotations.
 
-deny["Manifest is missing a required annotation"] {
-    annotations :=object.get(input.stage.context.patchBody[_].metadata,"annotations",{})
-    # Use object.get to check if data exists
-    object.get(annotations,required_annotations[_],null)==null
-}
-{{< /prism >}}
+  {{< prism lang="rego" line-numbers="true" >}}
+  package spinnaker.execution.stages.before.patchManifest
 
-## Example Policy
-This example prevents patchManifest stages from running unless they require recording the patch annotation.
-{{< prism lang="rego" line-numbers="true" >}}
-package spinnaker.execution.stages.before.patchManifest
+  required_annotations:=["app","owner"]
 
-deny["Patching manifests is not allowed by policy unless recording the patch annotation is enabled."] {
-    input.stage.context.options.record!=true
-}
-{{< /prism >}}
+  deny["Manifest is missing a required annotation"] {
+      annotations :=object.get(input.stage.context.patchBody[_].metadata,"annotations",{})
+      # Use object.get to check if data exists
+      object.get(annotations,required_annotations[_],null)==null
+  }
+  {{< /prism >}}
+
+- This example prevents patchManifest stages from running unless they require recording the patch annotation.
+
+  {{< prism lang="rego" line-numbers="true" >}}
+  package spinnaker.execution.stages.before.patchManifest
+
+  deny["Patching manifests is not allowed by policy unless recording the patch annotation is enabled."] {
+      input.stage.context.options.record!=true
+  }
+  {{< /prism >}}
 
 ## Keys
 
@@ -461,56 +464,56 @@ Parameters related to the stage against which the policy is executing can be fou
 
 ### input.pipeline
 
-| Key                                               | Type      | Description |
-| ------------------------------------------------- | --------- | ----------- |
-| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs. |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access. |
-| `input.pipeline.authentication.user` | `string`  | The Spinnaker user initiating the change. |
-| `input.pipeline.buildTime`                        | `number`  |             |
-| `input.pipeline.canceledBy`                       | ` `       |             |
-| `input.pipeline.canceled`                         | `boolean` |             |
-| `input.pipeline.cancellationReason`               | ` `       |             |
-| `input.pipeline.description` | `string`  | Description of the pipeline defined in the UI |
-| `input.pipeline.endTime`                          | `number`  |             |
-| `input.pipeline.id` | `string`   |  The unique ID of the pipeline |
-| `input.pipeline.keepWaitingPipelines` | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
-| `input.pipeline.limitConcurrent` | `boolean` | True if only 1 concurrent execution of this pipeline is allowed. |
-| `input.pipeline.name` | `string`  | The name of this pipeline. |
-| `input.pipeline.origin`                           | `string`  |             |
-| `input.pipeline.partition`                        | ` `       |             |
-| `input.pipeline.paused`                           | ` `       |             |
-| `input.pipeline.pipelineConfigId`                 | `string`  |             |
-| `input.pipeline.source`                           | ` `       |             |
-| `input.pipeline.spelEvaluator` | `string`  | Which version of spring expression language is being used to evaluate SpEL. |
+| Key                                               | Type      | Description                                                                                                                                       |
+| ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                             |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                       |
+| `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                         |
+| `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                   |
+| `input.pipeline.canceledBy`                       | ` `       |                                                                                                                                                   |
+| `input.pipeline.canceled`                         | `boolean` |                                                                                                                                                   |
+| `input.pipeline.cancellationReason`               | ` `       |                                                                                                                                                   |
+| `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI.                                                                                                    |
+| `input.pipeline.endTime`                          | `number`  |                                                                                                                                                   |
+| `input.pipeline.id`                               | `string`  | The unique ID of the pipeline.                                                                                                                    |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
+| `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                  |
+| `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                        |
+| `input.pipeline.origin`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.partition`                        | ` `       |                                                                                                                                                   |
+| `input.pipeline.paused`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.pipelineConfigId`                 | `string`  |                                                                                                                                                   |
+| `input.pipeline.source`                           | ` `       |                                                                                                                                                   |
+| `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                       |
 | `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
-| `input.pipeline.startTimeExpiry` | `date `   | Unix epoch date at which the pipeline will expire. |
-| `input.pipeline.startTime` | `number`  | Timestamp from when the pipeline was started. |
-| `input.pipeline.status`                           | `string`  |             |
-| `input.pipeline.templateVariables`                | ` `       |             |
-| `input.pipeline.type`                             | `string`  |             |
+| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                |
+| `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                     |
+| `input.pipeline.status`                           | `string`  |                                                                                                                                                   |
+| `input.pipeline.templateVariables`                | ` `       |                                                                                                                                                   |
+| `input.pipeline.type`                             | `string`  |                                                                                                                                                   |
 
 ### input.pipeline.trigger
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
-### input.stage.context
-
-| Key                                                                                        | Type      | Description                                                 |
-| ------------------------------------------------------------------------------------------ | --------- | ----------------------------------------------------------- |
-| `input.stage.context.account`                                                              | `string`  | The name of the account containing the manifest that will be patched.                                                            |
-| `input.stage.context.app`                                                                  | `string`  | The application with which the manifest to be patched is associated.                                                            |
-| `input.stage.context.cloudProvider`                                                        | `string`  | The name of the cloud provider that will execute the stage. |
-| `input.stage.context.location`                                                             | `string`  | The namespace that contains the manifest to be patched.                                                            |
-| `input.stage.context.manifestName`                                                         | `string`  | The name of the manifest to patch.                                                            |
-| `input.stage.context.mode`                                                                 | `string`  | Specifies whether the target manifest is identified statically or dynamically.                                                            |
-| `input.stage.context.options.mergeStrategy`                                                | `string`  | The merge strategy to use when patching Kubernetes objects: strategic: (Default) Kubernetes Strategic merge patch. json: JSON Patch, RFC 6902 merge: JSON Merge Patch, RFC 7386                               |
-| `input.stage.context.options.record`                                                       | `boolean` | Record the applied patch in the kubernetes.io/change-cause annotation. If the annotation already exists, the contents are replaced.                                                            |
-| `input.stage.context.patchBody[]`                                               | `string`  | The raw kubernetes manifest being applied. This is the element you should write policies against that involve the manifest.                                                            |                                                           |
-| `input.stage.context.source`                                                               | `string`  |                                                             |
-
 ### input.stage
 
 See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
+
+### input.stage.context
+
+| Key                                         | Type      | Description                                                                                                                         |
+| ------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `input.stage.context.account`               | `string`  | The name of the account containing the manifest that will be patched.                                                               |
+| `input.stage.context.app`                   | `string`  | The application with which the manifest to be patched is associated.                                                                |
+| `input.stage.context.cloudProvider`         | `string`  | The name of the cloud provider that will execute the stage.                                                                         |
+| `input.stage.context.location`              | `string`  | The namespace that contains the manifest to be patched.                                                                             |
+| `input.stage.context.manifestName`          | `string`  | The name of the manifest to patch.                                                                                                  |
+| `input.stage.context.mode`                  | `string`  | Specifies whether the target manifest is identified statically or dynamically.                                                      |
+| `input.stage.context.options.mergeStrategy` | `string`  | The merge strategy to use when patching Kubernetes objects:<br/> Strategic: (Default) Kubernetes Strategic merge patch.<br/> JSON: JSON Patch, [RFC 6902](https://datatracker.ietf.org/doc/html/rfc6902)<br/> Merge: JSON Merge Patch, [RFC 7386](https://datatracker.ietf.org/doc/html/rfc7386) |
+| `input.stage.context.options.record`        | `boolean` | Record the applied patch in the kubernetes.io/change-cause annotation. If the annotation already exists, the contents are replaced. |
+| `input.stage.context.patchBody[]`           | `string`  | The raw kubernetes manifest being applied. This is the element you should write policies against that involve the manifest.         |                                                           
+| `input.stage.context.source`                | `string`  |                                                                                                                                     |
 
 ### input.user
 

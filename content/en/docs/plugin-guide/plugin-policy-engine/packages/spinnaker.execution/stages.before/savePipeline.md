@@ -136,12 +136,6 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
 ```
 </details>
 
-## Example Policy
-
-{{< prism lang="rego" line-numbers="true" >}}
-
-{{< /prism >}}
-
 ## Keys
 
 Parameters related to the stage against which the policy is executing can be found in the [input.stage.context](#inputstagecontext) object.
@@ -157,9 +151,9 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.pipeline.canceled`                          | `boolean` |                                                                                                                                                   |
 | `input.pipeline.canceledBy`                        | ``        |                                                                                                                                                   |
 | `input.pipeline.cancellationReason`                | ``        |                                                                                                                                                   |
-| `input.pipeline.description`                       | `string`  | Description of the pipeline defined in the UI                                                                                                     |
+| `input.pipeline.description`                       | `string`  | Description of the pipeline defined in the UI.                                                                                                    |
 | `input.pipeline.endTime`                           | ``        |                                                                                                                                                   |
-| `input.pipeline.id`                                | `string`  | The unique ID of the pipeline                                                                                                                     |
+| `input.pipeline.id`                                | `string`  | The unique ID of the pipeline.                                                                                                                    |
 | `input.pipeline.keepWaitingPipelines`              | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
 | `input.pipeline.limitConcurrent`                   | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                  |
 | `input.pipeline.name`                              | ``        | The name of this pipeline.                                                                                                                        |
@@ -180,6 +174,10 @@ Parameters related to the stage against which the policy is executing can be fou
 
 See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more information.
 
+### input.stage
+
+See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
+
 ### input.stage.context
 
 | Key                                     | Type      | Description                                                               |
@@ -191,10 +189,6 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 | `input.stage.context.pipeline.name`     | `string`  | The name of this pipeline.                                                |
 | `input.stage.context.staleCheck`        | `boolean` |                                                                           |
 | `input.stage.context.user`              | `string`  | The Spinnaker user initiating the change.                                 |
-
-### input.stage
-
-See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 ### input.user
 
