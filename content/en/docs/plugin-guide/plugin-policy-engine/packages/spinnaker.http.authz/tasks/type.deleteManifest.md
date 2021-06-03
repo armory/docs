@@ -87,7 +87,9 @@ createsTaskOfType(tasktype){
 | `input.body.job[].reason`                     | ` `       |                                                                                                                                    |
 | `input.body.job[].type`                       | `string`  | "deleteManifest"                                                                                                                   |
 | `input.body.job[].user`                       | `string`  | The ID of the user who started the job. More information is available under the `input.user` fields.                               |
-| `input.method`                                | `string`  | `POST`                                                                                                                               |
+| `input.method`                                | `string`  | `POST`                                                                                                                             |
 | `input.path[]`                                | `string`  | `[tasks]`                                                                                                                          |
-| `input.user.isAdmin`                          | `boolean` |                                                                                                                                    |
-| `input.user.username`                         | `string`  |                                                                                                                                    |
+
+### input.user
+
+This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.

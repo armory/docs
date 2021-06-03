@@ -99,5 +99,7 @@ description: "Policy controls whether or not a scaleManifest that is triggered f
 | `input.body.job[].user`          | `string`  | The username of the user starting the task. It is reccomended to write rules using `input.user` instead. |
 | `input.method`                   | `string`  | `POST`                                                                                                   |
 | `input.path[]`                   | `string`  | `["tasks"]`                                                                                              |
-| `input.user.isAdmin`             | `boolean` |                                                                                                          |
-| `input.user.username`            | `string`  |                                                                                                          |
+
+### input.user
+
+This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.
