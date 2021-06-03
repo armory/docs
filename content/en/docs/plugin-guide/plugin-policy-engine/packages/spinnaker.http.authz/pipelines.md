@@ -324,14 +324,14 @@ These fields are all stage specific, and may or may not be present depending on 
 
 | Key                                           | Type      | Description |
 | :-------------------------------------------- | --------- | ----------- |
-| `input.body.triggers[].branch`                | `string`  |             |
-| `input.body.triggers[].enabled`               | `boolean` |             |
+| `input.body.triggers[].branch`                | `string`  | Which branch of the git repository triggers this pipeline.            |
+| `input.body.triggers[].enabled`               | `boolean` | True if the trigger is enabled.            |
 | `input.body.triggers[].expectedArtifactIds[]` | `string`  |             |
-| `input.body.triggers[].project`               | `string`  |             |
-| `input.body.triggers[].secret`                | `string`  |             |
-| `input.body.triggers[].slug`                  | `string`  |             |
-| `input.body.triggers[].source`                | `string`  |             |
-| `input.body.triggers[].type`                  | `string`  |             |
+| `input.body.triggers[].project`               | `string`  | A change in what project will trigger this pipeline            |
+| `input.body.triggers[].secret`                | `string`  | The secret that the trigger uses to authenticate with spinnaker            |
+| `input.body.triggers[].slug`                  | `string`  | The trigger’s slug. For example, with a GitHub trigger this will be the project name.            |
+| `input.body.triggers[].source`                | `string`  | The type of the source for the trigger. For some trigger types this can be used to disambiguate amongst multiple trigger invokers.            |
+| `input.body.triggers[].type`                  | `string`  | The configured type of the trigger.            |
 
 ### input.user
 
