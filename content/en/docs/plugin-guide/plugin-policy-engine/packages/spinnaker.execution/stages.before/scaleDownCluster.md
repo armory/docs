@@ -396,6 +396,20 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
+### input.stage.context
+
+| Key                                                    | Type      | Description |
+| ------------------------------------------------------ | --------- | ----------- |
+| `input.stage.context.allowScaleDownActive`             | `boolean` |             |
+| `input.stage.context.cloudProvider`                    | `string`  |             |
+| `input.stage.context.cloudProviderType`                | `string`  |             |
+| `input.stage.context.cluster`                          | `string`  |             |
+| `input.stage.context.credentials`                      | `string`  |             |
+| `input.stage.context.interestingHealthProviderNames[]` | `string`  |             |
+| `input.stage.context.preferLargerOverNewer`            | `string`  |             |
+| `input.stage.context.regions[]`                        | `string`  |             |
+| `input.stage.context.remainingFullSizeServerGroups`    | `number`  |             |
+
 ### input.user
 
 This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.
