@@ -1,7 +1,7 @@
 ---
 title: "Task Type: upsertProject"
 linktitle: "upsertProject"
-description: "fill me with delicious data, Stephen!"
+description: "A policy call is made for this type anytime a user attmpts to create a new project or edit an existing one."
 ---
 
 - **Path:** tasks
