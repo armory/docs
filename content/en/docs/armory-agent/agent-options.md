@@ -1,7 +1,7 @@
 ---
 title: Armory Agent Configuration Options
 linkTitle: Agent Options
-weight: 3
+weight: 50
 description: >
   Learn how to configure the Armory Agent based on installation mode and environment restrictions. This guide contains a detailed list of configuration options.
 ---
@@ -46,6 +46,8 @@ kubernetes:
 | Settings                                                                                                                                                                    | Type              | Default                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `clouddriver.grpc`                                                                                                                                                          | string (hostname) | `spin-clouddriver-grpc:9091` | Hostname of the Clouddriver or gRPC proxy endpoint  |
+| `clouddriver.keepAliveHeartbeatSeconds`                                                                                                                                     | integer           | none | how often is the grpc ping sent  |
+| `clouddriver.keepAliveTimeOutSeconds`                                                                                                                                       | integer           | none | timeout before closing the grpc connection   |
 | `clouddriver.insecure`  | boolean           | false                   | If true, we’re connecting to a non TLS server |
 | `clouddriver.tls.serverName` | string | none | Server name on the remote certificate (override from the hostname) |
 | `clouddriver.tls.insecureSkipVerify` | boolean | false | Do not verify the endpoint's certificate |
@@ -71,7 +73,7 @@ kubernetes:
 | `kubernetes.accounts[].omitKinds`  | []string          | empty                   | List of kinds not to cache.|
 | `kubernetes.accounts[].customResourceDefinitions`  | []{kind: <string>}          | empty                   | <span class="badge badge-primary">0.4.0+</span> List of CustomResourceDefinition to expose to Spinnaker. This is not needed if `onlyNamespacedResources` is left off. The format of `kind` is `Kind.group`.|
 | `kubernetes.accounts[].metrics` | boolean | false  | When true, sends pod metrics back to Spinnaker every 20s |
-| `kubernetes.accounts[].permissions` | map               | empty                   | Same meaning as `permissions` in Clouddriver: under `READ` and `WRITE` list of roles authorized. |
+| `kubernetes.accounts[].permissions` | list               | empty                   | List of permissions (currently `READ` or `WRITE`) with a list of roles authorized. For more information, see [Permissions format](#permissions-format).|
 | `kubernetes.accounts[].maxResumableResourceAgeMs` | integer           | 300000 (5m)             | When connecting to Spinnaker, the Agent asks Clouddriver for the latest resource version known per resource that is not older than that setting.<br><br>The resource version is used to resume the watch without first doing a list - saving memory and time. There’s no guarantee that the resource version is still known. If not “remembered” by the Kubernetes API server, a `list`  call will be used.<br><br>https://kubernetes.io/docs/reference/using-api/api-concepts/#efficient-detection-of-changes |
 | `kubernetes.accounts[].onlySpinnakerManaged`   | boolean           | false   | Only return Spinnaker managed resources<br>NOT IMPLEMENTED in the Agent but added to the plugin see `kubesvc.runtime.defaults.onlySpinnakerManaged`|
 | `kubernetes.accounts[].noProxy` | boolean | false | <span class="badge badge-primary">0.3.1+</span> Ignore the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables when connecting to that Kubernetes cluster |
@@ -87,17 +89,30 @@ kubernetes:
 | `pprof.port`                                                                                                                                                                | integer           | 6060                    | Port on which to respond to pprof requests                                                                                                                                       |
 | `secrets.vault.*`                                                                                                                                                           | object            | none                    | [Vault configuration]({{< ref "secrets-vault#1-kubernetes-service-account-recommended" >}}) |
 
+### Permissions format
 
-## Restricted Environments
+Permissions for the Agent use a format that is slightly different than the format that Clouddriver uses for permissions:
 
-### Network Access
+```
+kubernetes:
+  accounts:
+    - name: my-k8s-account
+      permissions:
+        - READ: ['role1', 'role2']
+        - WRITE: ['role3', 'role4']
+```
+
+
+## Restricted environments
+
+### Network access
 
 The Agent needs access to its control plane (Spinnaker) as well to the various Kubernetes clusters it is configured to monitor. You can control which traffic should go through an HTTP proxy via the usual `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables.
 
 A common case is to force the connection back to the control plane via a proxy but bypass it for Kubernetes clusters. In that case, define the environment variable `HTTPS_PROXY=https://my.corporate.proxy` and use the `kubernetes.noProxy: true` setting to not have to maintain the list of Kubernetes hosts in `NO_PROXY`.
 
 
-### Kubernetes Authorization
+### Kubernetes authorization
 
 The Agent should be configured to access each Kubernetes cluster it monitors with a service account. You can limit what Spinnaker can do via the role you assign to that service account. For example, if you'd like Spinnaker to see `NetworkPolicies` but not deploy them:
 
@@ -113,7 +128,7 @@ rules:
 ...
 ```
 
-### Namespace Restrictions
+### Namespace restrictions
 
 You can limit the Agent to monitoring specific namespaces by listing them under `namespaces`. If you need to prevent the Agent from accessing cluster-wide (non-namespaced) resources, use the `onlyNamespacedResources` setting.
 

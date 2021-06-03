@@ -78,7 +78,7 @@ spec:
           rootFolder: front50
 ```
 
-Add your configuration using the example `SpinnakerService.yml` file below as a guide. Consult the {{< linkWithTitle "operator-config.md" >}} page for detailed explanations of each config section. Be sure to configure the `spec.spinnakerConfig.config.persistentStorage` section based on the persistent storage option you created for your Armory instance. See the {{< linkWithTitle "persistent-storage.md" >}} page for details.
+Add your configuration using the example `SpinnakerService.yml` file below as a guide. Consult the {{< linkWithTitle "op-config-manifest.md" >}} page for detailed explanations of each config section. Be sure to configure the `spec.spinnakerConfig.config.persistentStorage` section based on the persistent storage option you created for your Armory instance. See the {{< linkWithTitle "persistent-storage.md" >}} page for details.
 
 <details><summary>Show  complete SpinnakerService.yml file</summary>
 {{< gist armory-gists d3385d4dc964956435e16a090561b487 >}}

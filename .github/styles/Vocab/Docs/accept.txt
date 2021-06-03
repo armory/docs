@@ -40,8 +40,12 @@ kubeconfig
 kubectl
 Kubernetes
 Kustomize
+kustomization
 .md
 Minnaker
+linkTitle:
+.md
+md
 MySQL
 namespace
 namespaces
@@ -56,6 +60,7 @@ Rosco
 ServiceNow
 Spinnaker
 SQL
+title:
 yaml
 {{< heading "prereq" >}}
 {{% heading "prereq" %}}

@@ -5,21 +5,23 @@ aliases:
   - /spinnaker_install_admin_guides/clouddriver-sql/
   - /docs/spinnaker-install-admin-guides/clouddriver-sql/
 description: >
-  Configure Spinnaker's Clouddriver service to use MySQL or AWS Aurora.
+  Configure Spinnaker's Clouddriver service to use MySQL-compatible database.
 ---
 
 ## Advantages of using an RDMS with Clouddriver
 
-Since version 2.5.x (OSS 1.14.x), Clouddriver can store its data (task, infrastructure, etc) in a MySQL compatible database. Similar to Orca, the main advantage of doing this is to improve performance and remove Redis as a single point of failure.
+Since version 2.5.x (OSS 1.14.x), Clouddriver can store its data (task, infrastructure, etc) in a MySQL-compatible database. Similar to Orca, the main advantage of doing this is to improve performance and remove Redis as a single point of failure.
 
-Armory recommends MySQL 5.7. For AWS, you can use Aurora.
+{{< include "db-compat.md" >}}
+
+Armory recommends MySQL 5.7 or AWS Aurora.
 
 ## Base configuration
 
 You can find a complete description of the options in the [open source documentation](https://www.spinnaker.io/setup/productionize/persistence/clouddriver-sql/).
 
-
 ## Database setup
+
 You can skip this step if you create the database during provisioning - for instance with Terraform.
 
 Once you've provisioned your RDBMS and ensured connectivity with Spinnaker, you need to create the database:
