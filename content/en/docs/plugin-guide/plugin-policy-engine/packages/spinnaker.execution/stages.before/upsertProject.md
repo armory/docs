@@ -186,17 +186,16 @@ See [input.pipeline.trigger]({{< ref "input.pipeline.trigger.md" >}}) for more i
 
 | Key                                                                     | Type      | Description |
 | ----------------------------------------------------------------------- | --------- | ----------- |
-| `input.stage.context.project.config.applications[]`                     | `string`  |             |
-| `input.stage.context.project.config.clusters[].account`                 | `string`  |             |
-| `input.stage.context.project.config.clusters[].detail`                  | `string`  |             |
-| `input.stage.context.project.config.clusters[].stack`                   | `string`  |             |
-| `input.stage.context.project.config.pipelineConfigs[].application`      | `string`  |             |
-| `input.stage.context.project.config.pipelineConfigs[].pipelineConfigId` | `string`  |             |
-| `input.stage.context.project.createTs`                                  | `number`  |             |
-| `input.stage.context.project.email`                                     | `string`  |             |
+| `input.stage.context.project.config.applications[]`                     | `string`  | The applications associated with the project.            |
+| `input.stage.context.project.config.clusters[].account`                 | `string`  | The accounts associated with the project            |
+| `input.stage.context.project.config.clusters[].detail`                  | `string`  | The cluster details associated with the project.            |
+| `input.stage.context.project.config.clusters[].stack`                   | `string`  | The stacks associated with the project's clusters.            |
+| `input.stage.context.project.config.pipelineConfigs[]`      | `object`  |  The pipeline configurations associated with the project.           |
+| `input.stage.context.project.createTs`                                  | `number`  | The time that the project was created.            |
+| `input.stage.context.project.email`                                     | `string`  | The email of the project's owner.            |
 | `input.stage.context.project.id`                                        | `string`  |             |
 | `input.stage.context.project.lastModifiedBy`                            | `string`  |             |
-| `input.stage.context.project.name`                                      | `string`  |             |
+| `input.stage.context.project.name`                                      | `string`  | The name of the project.            |
 | `input.stage.context.project.updateTs`                                  | `number`  |             |
 | `input.stage.context.user`                                              | `string`  |             |
 
