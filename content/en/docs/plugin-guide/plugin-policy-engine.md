@@ -68,7 +68,7 @@ spec:
             repositories:
               policyEngine:
                 enabled: true
-                # init container will install plugins.json to this path.
+                # The init container will install plugins.json to this path.
                 url: file:///opt/spinnaker/lib/local-plugins/policy-engine/plugins.json
       gate:
         spinnaker:
