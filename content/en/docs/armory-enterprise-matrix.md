@@ -14,6 +14,8 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 This page describes the features and capabilities that Armory supports. Note that although Spinnaker™ is part of Armory Enterprise, what Open Source Spinnaker supports and what Armory supports is not a one-to-one relationship.
 
+For information about the system requirements to install Armory Enterprise, see {{< linkWithTitle "system-requirements" >}}.
+
 ## Legend
 <!-- Copy and paste the below badges that apply to your area -->
 **Feature status** describes what state the feature is in and where you should install it. For more information, see [Release Definitions]({{< ref "release-definitions" >}}). You can also click on the feature status badge directly.
