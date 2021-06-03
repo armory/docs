@@ -139,11 +139,6 @@ weight: 10
 ```
 </details>
 
-## Example Policy
-
-{{< prism lang="rego" line-numbers="true" >}}
-
-{{< /prism >}}
 
 ## Keys
 
