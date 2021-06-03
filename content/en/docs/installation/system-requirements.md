@@ -1,6 +1,7 @@
 ---
 title: System Requirements for Armory Enterprise
 linkTitle: System Requirements
+weight: 1
 description: >
   Armory Enterprise is a collection of services that run in a Kubernetes cluster. In addition to the cluster, other requirements, such as storage, need to be met to run Armory Enterprise for production environments.
 ---
@@ -11,14 +12,12 @@ The requirements described on this page are meant as a minimum starting point fo
 
 > This section defines where you can run Armory Enterprise, not where you can deploy your applications. For information about where you can deploy applications to, see the [Product Compatibility Matrix]({{< ref "armory-enterprise-matrix#deployment-targets" >}}).
 
-Armory Enterprise can be installed on any [certified Kubernetes cluster](https://www.cncf.io/certification/software-conformance/).
+Armory Enterprise can be installed on any [certified Kubernetes cluster](https://www.cncf.io/certification/software-conformance/). Armory does not produce marketplace specific images that can be used by different certified Kubernetes offerings. The cluster needs to run one of the following supported versions:
 
 * **Minimum version**: 1.16
 * **Maximum version**: 1.20
 <!-- track EKS versions -->
 To install Armory Enterprise, use the Armory Operator (a Kubernetes operator). Note that you must be able to apply Kubernetes manifests, either directly using `kubectl` commands from your machine or another method.
-
-Armory does not produce marketplace specific images that can be used by different certified Kubernetes offerings.
 
 ## Browsers
 
@@ -53,9 +52,8 @@ Armory recommends a minimum of 3 nodes that match the following profile:
 
 ## kubectl
 
-The Armory Operator supports using any actively maintained version of `kubectl` unless you want to use the Armory Kustomize Repo to help you configure Armory Enterprise. The Armory Kustomize repo supports the following versions of `kubectl` and Kustomize:
-
-* <kubectl versions without the kustomize parsing problem>
+To install and manage Armory Enterprise, any actively maintained version of `kubectl` is supported unless you want to use the [Armory Kustomize Repo](https://github.com/armory/spinnaker-kustomize-patches). The Kustomize Repo is a collection of Kustomize files that help you configure Armory Enterprise. The repo supports the following versions of `kubectl`: 1.16 to 1.19.
+<!-- this is cause of the go-yaml bug: https://github.com/kubernetes-sigs/kustomize/issues/3605 -->
 
 ## Networking
 
@@ -71,16 +69,3 @@ The ports for the API gateway (the Gate service) and the UI (the Deck service) n
 * 9000
 
 Additionally, pods in your Kubernetes cluster must be able to communicate with each other without restrictions.
-
-
-## Additional considerations
-
-Although the following configurations are not required to install and run Armory Enterprise, they are recommended as
-
-### Authentication and authorization
-
-Armory Enterprise supports several providers for authentication and authorization. For more information, see see [Authentication]({{< ref "armory-enterprise-matrix#authentication" >}}) and [Authorization]({{< ref "armory-enterprise-matrix#authorization" >}})
-
-### Secrets
-
-Encrypt your configuration secrets. For more information about what secret engines are supported, see [Secret stores]({{< ref "armory-enterprise-matrix#secret-stores" >}}).
