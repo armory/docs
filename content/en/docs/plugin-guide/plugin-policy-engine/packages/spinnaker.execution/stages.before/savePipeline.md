@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.savePipeline"
 linktitle: "savePipeline"
-description: "A policy targeting this object is run before executing each task in a savePipeline stage. Typically writing policies in the opa.pipelines package is preferred."
+description: "A policy targeting this object is run before executing each task in a savePipeline stage."
 weight: 10
 ---
 The full package name sent to OPA is `spinnaker.execution.stages.before.savePipeline`. The keys below are children of this path.
