@@ -72,4 +72,6 @@ Additionally, pods in your Kubernetes cluster must be able to communicate with e
 
 ## Security
 
-Armory Enterprise needs to be able to assume roles in the accounts that it deploys applications to. For example, Armory Enterprise needs the `sts:AssumeRole` permission for AWS.
+Armory Enterprise needs to be able to assume roles in the accounts that it deploys applications to. For example, Armory Enterprise needs the `sts:AssumeRole` permission for AWS. 
+
+Additionally, elevated access (equivalent to the level of **PowerUser** access in AWS) is helpful so that Armory Enterprise can cache data from deployment target accounts and deploy without errors.
