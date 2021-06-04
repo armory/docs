@@ -61,7 +61,7 @@ allow {
 
 Unlike most other packages, when writing policies against `spinnaker.http.authz` you must return a single boolean value named `allow`. If `allow` is `false` then access will be denied.
 
-A second optional parameter named `message` can be passed back, and set to a string. If `message` is returned and `allow` is false, then the given message will bereturned to the API call, and in many cases displayed to the user if the UI made the API call.
+A second optional parameter named `message` can be passed back, and set to a string. If `message` is returned and `allow` is false, then the given message will be returned to the API call, and in many cases displayed to the user if the UI made the API call.
 
  ## Keys
 
