@@ -89,7 +89,7 @@ description: "A policy call is made for this type anytime a user attmpts to crea
 | `input.path[]` | `string` |
 | `input.user.isAdmin` | `boolean` |
 | `input.user.username` | `string` |
-| `input.body.job[].project.config.clusters[].applications` | ` ` |
+| `input.body.job[].project.config.clusters[].applications` |     |
 | `input.body.job[].project.createTs` | `number` |
 | `input.body.job[].project.id` | `string` |
 | `input.body.job[].project.lastModifiedBy` | `string` |

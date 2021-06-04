@@ -244,15 +244,15 @@ deny ["scaling can only be run in pipelines that are triggered by monitoring, no
 | `input.pipeline.limitConcurrent`                   | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                  |
 | `input.pipeline.name`                              | `string`  | The name of this pipeline.                                                                                                                        |
 | `input.pipeline.origin`                            | `string`  |                                                                                                                                                   |
-| `input.pipeline.partition`                         | ``        |                                                                                                                                                   |
-| `input.pipeline.paused`                            | ``        |                                                                                                                                                   |
-| `input.pipeline.pipelineConfigId`                  | ``        |                                                                                                                                                   |
-| `input.pipeline.source`                            | ``        |                                                                                                                                                   |
-| `input.pipeline.spelEvaluator`                     | ``        | Which version of spring expression language is being used to evaluate SpEL.                                                                       |
+| `input.pipeline.partition`                         |           |                                                                                                                                                   |
+| `input.pipeline.paused`                            |           |                                                                                                                                                   |
+| `input.pipeline.pipelineConfigId`                  |           |                                                                                                                                                   |
+| `input.pipeline.source`                            |           |                                                                                                                                                   |
+| `input.pipeline.spelEvaluator`                     |           | Which version of spring expression language is being used to evaluate SpEL.                                                                       |
 | `input.pipeline.stages[]`                          | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
 | `input.pipeline.startTime`                         | `number`  | Timestamp from when the pipeline was started.                                                                                                     |
-| `input.pipeline.startTimeExpiry`                   | ``        |                                                                                                                                                   |
-| `input.pipeline.templateVariables`                 | ``        |                                                                                                                                                   |
+| `input.pipeline.startTimeExpiry`                   |           |                                                                                                                                                   |
+| `input.pipeline.templateVariables`                 |           |                                                                                                                                                   |
 
 ### input.pipeline.trigger
 

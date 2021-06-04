@@ -213,7 +213,7 @@ createsTaskOfType(tasktype){
 | `input.body.job[].source`                  | `string` |                                                                                                                                   |
 | `input.body.job[].type`                    | `string` | "deployManifest"                                                                                                                  |
 | `input.body.job[].user`                    | `string` | The username of the user who is trying to deploy. More information is available under the `input.user` fields.                    |
-| `input.body.job[].versioned`               | ` `      |                                                                                                                                   |
+| `input.body.job[].versioned`               |          |                                                                                                                                   |
 | `input.method`                             | `string` | `POST`                                                                                                                            |
 | `input.path[]`                             | `string` | `[tasks]`                                                                                                                         |
 

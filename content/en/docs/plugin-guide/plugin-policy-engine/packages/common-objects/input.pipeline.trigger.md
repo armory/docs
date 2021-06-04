@@ -8,7 +8,7 @@ description: "Fields relating to external triggers that start a pipeline."
 | Key                                                        | Type      | Description                                                                              |
 | ---------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------- |
 | `input.pipeline.trigger.artifacts[]`                       | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.                        |
-| `input.pipeline.trigger.correlationId`                     | ` `       |                                                                                          |
+| `input.pipeline.trigger.correlationId`                     |           |                                                                                          |
 | `input.pipeline.trigger.dryRun`                            | `boolean` |                                                                                          |
 | `input.pipeline.trigger.enabled`                           | `boolean` | True if the trigger is enabled.                                                          |
 | `input.pipeline.trigger.eventId`                           | `string`  |                                                                                          |

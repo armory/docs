@@ -7,16 +7,16 @@ weight: 10
 
 | Key                                     | Type       | Description                                                                                               |
 | --------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------- |
-| `input.stage.endTime`                   | ` `        | The time at which the stage finished executing. This will be blank since the stage has not yet completed. |
+| `input.stage.endTime`                   |            | The time at which the stage finished executing. This will be blank since the stage has not yet completed. |
 | `input.stage.id`                        | `string`   | The unique ID for the stage.                                                                              |
-| `input.stage.lastModified`              | ` `        | When the stage was last modified.                                                                         |
+| `input.stage.lastModified`              |            | When the stage was last modified.                                                                         |
 | `input.stage.name`                      | `string`   | The name of the stage.                                                                                    |
 | `input.stage.outputs`                   | `{object}` | DO NOT USE. This contains numerous manifests/artifacts created by the execution of the stage. Typically policies should be written against the inputs to the stage, not its outputs. |
 | `input.stage.parentStageId`             | `string`   |                                                                                                           |
 | `input.stage.refId`                     | `string`   | This stages ID reference in the stage graph. Typically if you are writing a policy that depends on pipeline stage order, it is better to write that policy against either the opa.pipelines bpackage, or the spinnaker.execution.pipelines.before package. |
 | `input.stage.scheduledTime`             | `number`   |                                                                                                           |
 | `input.stage.startTime`                 | `number`   | The timestamp at which the stage started                                                                  |
-| `input.stage.startTimeExpiry`           | ` `        |                                                                                                           |
+| `input.stage.startTimeExpiry`           |            |                                                                                                           |
 | `input.stage.status`                    | `string`   | The stages status, this will typically be 'running' when this policy is evaluated.                        |
 | `input.stage.syntheticStageOwner`       | `string`   |                                                                                                           |
 | `input.stage.tasks[].endTime`           | `number`   | The time at which the task finished executing.                                                            |

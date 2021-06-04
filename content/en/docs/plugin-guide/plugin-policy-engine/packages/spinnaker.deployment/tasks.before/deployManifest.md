@@ -186,15 +186,15 @@ deny["Manifest is missing a required annotation"] {
 | `input.deploy.credentials`       | `string`  | The credentials to use to access the account.                                                                  |
 | `input.deploy.enableTraffic`     | `boolean` | Allow Spinnaker to associate each ReplicaSet deployed in this stage with one or more services, and manage traffic based on your selected rollout strategy options. |
 | `input.deploy.manifest`          | `[array]` | An array of the manifests being deployed                                                                       |
-| `input.deploy.manifestArtifact`  | ` `       | The name of the artifact from which the manifest should be read.                                               |
+| `input.deploy.manifestArtifact`  |           | The name of the artifact from which the manifest should be read.                                               |
 | `input.deploy.manifests[].*`     | `*`       | The entire Kubernetest manifest to be deployed.                                                                |
 | `input.deploy.moniker.app`       | `string`  | The name of the application being deployed                                                                     |
 | `input.deploy.moniker.cluster`   | `string`  | The name of the cluster you are deploying to.                                                                  |
-| `input.deploy.moniker.detail`    | ` `       |                                                                                                                |
-| `input.deploy.moniker.sequence`  | ` `       |                                                                                                                |
-| `input.deploy.moniker.stack`     | ` `       |                                                                                                                |
-| `input.deploy.namespaceOverride` | ` `       | The namespace the job should deploy to                                                                         |
-| `input.deploy.services`          | ` `       | The services that are having their traffic managed, if any.                                                    |
+| `input.deploy.moniker.detail`    |           |                                                                                                                |
+| `input.deploy.moniker.sequence`  |           |                                                                                                                |
+| `input.deploy.moniker.stack`     |           |                                                                                                                |
+| `input.deploy.namespaceOverride` |           | The namespace the job should deploy to                                                                         |
+| `input.deploy.services`          |           | The services that are having their traffic managed, if any.                                                    |
 | `input.deploy.source`            | `string`  |                                                                                                                |
-| `input.deploy.strategy`          | ` `       | The rollout strategy tells Spinnaker what to do with the previous version(s) of the ReplicaSet in the cluster. |
-| `input.deploy.versioned`         | ` `       |                                                                                                                |
+| `input.deploy.strategy`          |           | The rollout strategy tells Spinnaker what to do with the previous version(s) of the ReplicaSet in the cluster. |
+| `input.deploy.versioned`         |           |                                                                                                                |
