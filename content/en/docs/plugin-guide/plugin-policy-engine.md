@@ -206,7 +206,8 @@ spec:
                       emptyDir: {}
 ```
 
-#### Optional settings
+### Optional settings
+#### Timeout Settings
 
 You can configure the amount of time that the Policy Engine waits for a response from your OPA server. If you have network or latency issues, increasing the timeout can make Policy Engine more resilient. Use the following config to set the timeout in seconds:  `spec.spinnakerConfig.profiles.spinnaker.armory.policyEngine.opa.timeoutSeconds`. The default timeout is 10 seconds if you omit the config.
 
