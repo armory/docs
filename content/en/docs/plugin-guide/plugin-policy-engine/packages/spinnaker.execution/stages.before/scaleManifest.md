@@ -285,9 +285,9 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 | `input.stage.context.manifest.location`                               | `string`  | The namespace in which to scale the manifest.                         |
 | `input.stage.context.manifest.name`                                   | `string`  | The type and name of the manifest to be scaled. This is the best field from which to reference the manifest name and namespace. |
 | `input.stage.context.manifestName`                                    | `string`  | The type and name of the manifest to be scaled.                       |
-| `input.stage.context.outputs.manifestNamesByNamespace.<manespace>.[]` | `string`  | the name and type of the output manifest.                             |
+| `input.stage.context.outputs.manifestNamesByNamespace.<manespace>.[]` | `string`  | The name and type of the output manifest.                             |
 | `input.stage.context.replicas`                                        | `string`  | The number of pods desired to be running following the scaling event. |
-| `input.stage.context.user`                                            | `string`  | the ID of the user as whom the stage is running.                      |
+| `input.stage.context.user`                                            | `string`  | The ID of the user as whom the stage is running.                      |
 
 ### input.stage
 
