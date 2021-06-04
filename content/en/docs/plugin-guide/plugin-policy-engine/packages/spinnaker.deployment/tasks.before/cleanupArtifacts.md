@@ -4,8 +4,6 @@ linkTitle: "cleanupArtifacts"
 description: "Used by policies to affect the ‘Cleanup Artifacts’ task."
 ---
 
-The full package name sent to OPA is `spinnaker.deployment.tasks.before.cleanupArtifacts`. The keys below are children of this path.
-
 ## Example Payload
 
 <details><summary>Click to expand</summary>
