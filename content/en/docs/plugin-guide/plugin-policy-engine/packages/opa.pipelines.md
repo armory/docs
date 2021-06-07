@@ -193,58 +193,58 @@ weight: 10
 
 ## Example Policy
 
-Requires a manual approval by the `qa` role, and a manual approval by the `infosec` role happen earlier in a pipeline than any deployment to a production account. Production accounts must have been loaded into the OPA data document in an array named `production_accounts`:
+- Requires a manual approval by the `qa` role, and a manual approval by the `infosec` role happen earlier in a pipeline than any deployment to a production account. Production accounts must have been loaded into the OPA data document in an array named `production_accounts`:
 
-{{< prism lang="rego" line-numbers="true" >}}
-package opa.pipelines
+  {{< prism lang="rego" line-numbers="true" >}}
+  package opa.pipelines
 
-deny["production deploy stage must follow approval by 'qa' and 'infosec'"] {
-  some j
-  stage :=input.pipeline.stages[j]
-  stage.type=="deployManifest"
-  stage.account==data.production_accounts[_] 
-  lacksEarlierApprovalBy(["qa","infosec"][_],j)  
-}
+  deny["production deploy stage must follow approval by 'qa' and 'infosec'"] {
+    some j
+    stage :=input.pipeline.stages[j]
+    stage.type=="deployManifest"
+    stage.account==data.production_accounts[_] 
+    lacksEarlierApprovalBy(["qa","infosec"][_],j)  
+  }
 
-stage_graph[idx]  = edges { #converts stage graph into the structure rego needs
-  input.pipeline.stages[idx]
-  edges := {neighbor | input.pipeline.stages[neighbor].refId ==   
-                  input.pipeline.stages[idx].requisiteStageRefIds[_]}
-}
+  stage_graph[idx]  = edges { #converts stage graph into the structure rego needs
+    input.pipeline.stages[idx]
+    edges := {neighbor | input.pipeline.stages[neighbor].refId ==   
+                    input.pipeline.stages[idx].requisiteStageRefIds[_]}
+  }
 
-hasEarlierApprovalBy(role, idx){
-    stage := input.pipeline.stages[i]
-    stage.type=="manualJudgment"
-    stage.selectedStageRoles[0]==role; count(stage.selectedStageRoles)==1
-    reachable := graph.reachable(stage_graph, {idx})[_]==i
-}
-lacksEarlierApprovalBy(role,idx) {
-    not hasEarlierApprovalBy(role,idx) 
-}
-{{< /prism >}}
+  hasEarlierApprovalBy(role, idx){
+      stage := input.pipeline.stages[i]
+      stage.type=="manualJudgment"
+      stage.selectedStageRoles[0]==role; count(stage.selectedStageRoles)==1
+      reachable := graph.reachable(stage_graph, {idx})[_]==i
+  }
+  lacksEarlierApprovalBy(role,idx) {
+      not hasEarlierApprovalBy(role,idx) 
+  }
+  {{< /prism >}}
 
-## Example Policy
+<br/>
 
-Only allows applications to deploy to namespaces that are on a whitelist.
+- Only allows applications to deploy to namespaces that are on a whitelist.
 
-{{< prism lang="rego" line-numbers="true" >}}
-package opa.pipelines
+  {{< prism lang="rego" line-numbers="true" >}}
+  package opa.pipelines
 
-allowedNamespaces:=[{"app":"app1","ns": ["ns1","ns2"]},
-                                     {"app":"app2", "ns":["ns3"]}]
+  allowedNamespaces:=[{"app":"app1","ns": ["ns1","ns2"]},
+                                      {"app":"app2", "ns":["ns3"]}]
 
-deny["stage deploys to a namespace to which this application lacks access"]{
-    ns :=object.get(input.stage.context.manifests[_].metadata,"namespace","default")
-    application := input.pipeline.application
-    not canDeploy(ns, application)
-}
+  deny["stage deploys to a namespace to which this application lacks access"]{
+      ns :=object.get(input.stage.context.manifests[_].metadata,"namespace","default")
+      application := input.pipeline.application
+      not canDeploy(ns, application)
+  }
 
-canDeploy(namespace, application){
-    some i
-    allowedNamespaces[i].app==application
-    allowedNamespaces[i].ns[_]==namespace
-}
-{{< /prism >}}
+  canDeploy(namespace, application){
+      some i
+      allowedNamespaces[i].app==application
+      allowedNamespaces[i].ns[_]==namespace
+  }
+  {{< /prism >}}
 
 ## Keys
 
