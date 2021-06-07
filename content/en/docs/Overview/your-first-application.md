@@ -43,14 +43,14 @@ Remember that Spinnaker considers an application to be anything you would put in
 
    ![The "New Application" modal](/images/overview/your-first-application/new-application-modal.png)
 
-   -  The name of the application cannot have hyphens. Using a hyphen in the application name interferes with the naming convention. This applies to all types of applications except for those that use the Kubernetes V2 provider to deploy.
+   - The name of the application cannot have hyphens. Using a hyphen in the application name interferes with the naming convention. This applies to all types of applications except for those that use the Kubernetes V2 provider to deploy.
    - When you create an application in Spinnaker, consider it to be anything you would put into a single code repository.
 
 1. After you fill out the form you should see this:
 
    ![A fresh application view](/images/overview/your-first-application/new-application.png)
 
-1. If you wish to modify the settings for the application, click on “Config” for configurations.
+1. If you wish to modify the settings for the application, click “Config” for configurations.
 
 Note that by now you should have created an application, but as you have not created a pipeline and executed it, nothing should show up yet.
 

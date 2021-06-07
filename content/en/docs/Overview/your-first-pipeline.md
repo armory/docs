@@ -23,7 +23,7 @@ This page assumes your application stack includes:
 
 ## How to create a pipeline
 
-In this example, we create a pipeline that takes the Debian package produced by a Jenkins job and uses it to create an [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) before deploying that image to a server group.
+This example creates a pipeline that takes the Debian package produced by a Jenkins job and uses it to create an [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) before deploying that image to a server group.
 
 1. After selecting your Application, click the Pipelines category.
 
@@ -46,7 +46,7 @@ In this example, we create a pipeline that takes the Debian package produced by 
 
 ### Add a trigger
 
-1. Define how your pipeline will be triggered. Scroll down to the **Automated Triggers** section and click **{{< icon "plus-circle" >}} Add Trigger**. This section enables you to select a **Type**:
+1. Define how your pipeline is triggered. Scroll down to the **Automated Triggers** section and click **{{< icon "plus-circle" >}} Add Trigger**. This section enables you to select a **Type**:
 
    ![Automated Trigger Types](/images/overview/your-first-pipeline/automated-trigger-types.png)
 
