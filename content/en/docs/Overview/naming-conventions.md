@@ -12,49 +12,49 @@ description: >
 
 An application inside Spinnaker represents what you would typically find in a single code repository - and in many cases, an application maps directly to a microservice.
 
-![](/images/Image-2017-03-24-at-3.07.57-PM.png)
+![The Spinnaker Applications view](/images/overview/application.png)
 
 ### Cluster
 A server group is a regional view of servers, whereas a cluster is a world-wide view of server groups.
 
-![](/images/Image-2017-03-24-at-3.05.04-PM.png)
+![The Spinnaker Cluster view](/images/overview/cluster.png)
 
 ### Execution
 When a pipeline runs, the end result is called an execution.
 
-![](/images/Image-2017-03-24-at-3.06.50-PM.png)
+![The Spinnaker Executions view](/images/overview/execution.png)
 
 ### Pipeline
 A pipeline in Spinnaker is a series of stages linked together that can be executed serially or in parallel. All pipelines are defined in the context of an application. A typical pipeline will contain stages for “creating images”, “testing”, and “deploying”. The process of “creating images” is also commonly referred to as a “bake”.
 
-![](/images/Image-2017-03-24-at-3.06.29-PM.png)
+![The Spinnaker Pipeline view](/images/overview/pipeline.png)
 
 ### Project
 A project inside Spinnaker is a logical grouping of applications. For example, we might create a project called “Spinnaker” and its applications would be “Deck”, “Orca”, “Clouddriver”, etc. Spinnaker provides a helpful dashboard view for each project to visualize its applications and status of each application contained within it.
 
-![](/images/Image-2017-03-24-at-3.08.23-PM.png)
+![The Spinnaker Project Dashboard](/images/overview/project-dashboard.png)
 
 ### Server Group
 From an Amazon Web Service (AWS) point of view, a server group is represented by an auto-scaling group (ASGs). All applications that are deployed by Spinnaker are deployed to server groups.
 
-![](/images/Image-2017-03-24-at-3.05.04-PM.png)
+![](/images/overview/cluster.png)
 
 ### Stage
 Within a pipeline, the tasks that pipeline performs are called stages.
 
-![](/images/Image-2017-03-24-at-3.06.29-PM.png)
+![](/images/overview/pipeline.png)
 
 ### Trigger
 A trigger is the entry point to a pipeline.
 
-![](/images/Image-2017-03-24-at-3.06.29-PM.png)
+![](/images/overview/trigger.png)
 
 
 ## Spinnaker Naming Conventions
 
 Spinnaker has very specific naming conventions that help it identify resources in your cloud account.
 
-Clusters and server groups follow the convention `application_name``-``stack``-``detail``-``infrastructure_version`  
+Clusters and server groups follow the convention `application_name-stack-detail-infrastructure_version`  
 
 
 ### Application
