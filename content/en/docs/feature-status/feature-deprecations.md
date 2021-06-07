@@ -13,9 +13,9 @@ To continually improve the Armory customer experience, we will occasionally depr
 
 The following clarifies what we mean when a feature is deprecated or reaches end of support:
 
-* **Deprecated**: When a feature enters the end of support cycle and no new development is done except for bug and security CVE fixes specific to the feature.
+* **Deprecated**: When a feature enters the end of support cycle and no new development is done except for critical (P0/1) bugs and security CVE fixes specific to the feature. 
 
-* **End of Support**: When a feature is no longer available for customer or technical support, including bug and security CVE fixes specific to the feature.
+* **End of Support**: When a feature is no longer available for customer or technical support, including critical (P0/1) bugs and security CVE fixes specific to the feature.   
 
 ## FAQ
 
@@ -23,24 +23,25 @@ The following clarifies what we mean when a feature is deprecated or reaches end
 
 Our goal is to deprecate all features for at least 6 months prior to reaching End of Support, and we’ll begin communicating this as soon as a feature is officially deprecated.  For features that require significant support to gracefully migrate away from, our goal is to deprecate for at least 12 months to ensure plenty of lead time for adjustments.
 
-A list of feature deprecations and related information will be maintained on https://docs.armory.io/deprecation-policy, and you will be notified with various different methods in order to limit any surprises for your teams.
+A list of feature deprecations and related information will be maintained on https://docs.armory.io/deprecations and you will be notified with various different methods in order to limit any surprises for your teams.
 
 There are situations in which the deprecation timeline may be accelerated due to special circumstances. In all cases, we provide as much advance notification as possible. These situations include but are not limited to the following:
 
-Essential changes, such as those needed to maintain the integrity and stability of the platform for all customers.
-When third party software leveraged by Armory is changed or no longer available.
-When changes are needed to protect data security and comply with any legal requirements.
+- Essential changes, such as those needed to maintain the integrity and stability of the platform for all customers.
+- When third party software leveraged by Armory is changed or no longer available.
+- When changes are needed to protect data security and comply with any legal requirements.
 
 #### How will Armory announce feature deprecations?
 
 To ensure you have ample time to prepare for these planned changes, we’ll communicate in the following ways:
 
-* **[docs.armory.io]({{< ref "feature-deprecations" >}})** - Each deprecated feature will be outlined within this Deprecation Policy document. There will also be a separate document that includes a detailed overview of the status, important dates leading up to the deprecation of the feature, what each phase of the deprecation includes, how it impacts you as the customer, and the transition process.
+* **[docs.armory.io]({{< ref "feature-deprecations" >}})** - Each deprecated feature will be outlined within this Deprecation Policy and Status document. There will also be a separate document that includes a detailed overview of the status, important dates leading up to the deprecation of the feature, what each phase of the deprecation includes, how it impacts you as the customer, and the transition process.
 
-* **Email Communication** - Armory will send a series of emails leading up to the deprecation to ensure that you have taken or have plans to take complete any required actions to ensure a smooth transition Additionally, any deprecations will be noted in the Armory newsletter.
+* **Email Communication** - Armory will send a series of emails leading up to the deprecation to ensure that you have taken or have plans to take complete any required actions to ensure a smooth transition.  Additionally, any deprecations will be noted in the Armory newsletter.
+
 
 * **In-Person Communication** - Armory customers who have an assigned Technical Account Manager and/or an Account Executive will receive a direct communication in addition to general email notifications. 
 
 #### Who do I contact with any questions or concerns?
 
-For customers who have an assigned Technical Account Manager and/or Account Executive, these are your first and best resources. For others, you can direct questions to info@armory.io.
+For customers who have an assigned Technical Account Manager and/or Account Executive, these are your first and best resource. For others you can reach our Customer Care team at [support@armory.io](mailto:support@armory.io) or visit the Help Center to submit a case.
