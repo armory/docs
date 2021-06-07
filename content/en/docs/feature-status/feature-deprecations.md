@@ -23,7 +23,7 @@ The following clarifies what we mean when a feature is deprecated or reaches end
 
 Our goal is to deprecate all features for at least 6 months prior to reaching End of Support, and we’ll begin communicating this as soon as a feature is officially deprecated.  For features that require significant support to gracefully migrate away from, our goal is to deprecate for at least 12 months to ensure plenty of lead time for adjustments.
 
-A list of feature deprecations and related information will be maintained on https://docs.armory.io/deprecations and you will be notified with various different methods in order to limit any surprises for your teams.
+A list of feature deprecations and related information will be maintained on [https://docs.armory.io/deprecations](https://docs.armory.io/deprecations), and you will be notified with various different methods in order to limit any surprises for your teams.
 
 There are situations in which the deprecation timeline may be accelerated due to special circumstances. In all cases, we provide as much advance notification as possible. These situations include but are not limited to the following:
 
@@ -44,4 +44,4 @@ To ensure you have ample time to prepare for these planned changes, we’ll comm
 
 #### Who do I contact with any questions or concerns?
 
-For customers who have an assigned Technical Account Manager and/or Account Executive, these are your first and best resource. For others you can reach our Customer Care team at [support@armory.io](mailto:support@armory.io) or visit the Help Center to submit a case.
+For customers who have an assigned Technical Account Manager and/or Account Executive, these are your first and best resource. For others you can reach our Customer Care team at [support@armory.io](mailto:support@armory.io) or visit the [Help Center](https://support.armory.io/) to submit a case.
