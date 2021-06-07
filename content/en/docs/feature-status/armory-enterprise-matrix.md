@@ -1,10 +1,10 @@
 ---
 title: Armory Enterprise Compatibility Matrix
 linkTitle: Armory Compatibility Matrix
-weight: 100
-description: "Information about support and compatibility for Armory Enterprise."
+description: "Information about support and compatibility for Armory Enterprise and the products and platforms that it integrates with."
 aliases:
   - /docs/armory-platform-matrix/
+  - /docs/armory-enterprise-matrix/
 ---
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables#
