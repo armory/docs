@@ -83,7 +83,7 @@ In this example, we create a pipeline that takes the Debian package produced by 
 
    **Note:** If we want to reorganize the order that the stages execute in the pipeline, we can add or remove precursor stages in the Depends On category.
 
-1. In the Deploy Configuration, click on the “Add server group” button. Pick your provider, if more than one is configured. For our example it will be AWS.
+1. In the **Deploy Configuration** section, click on the “Add server group” button. Pick your provider, if more than one is configured. This example uses AWS.
 
 1. Because this is a new application, do not choose to copy a configuration from a template. Press the **Continue without a template** button.
 
