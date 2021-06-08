@@ -5,6 +5,7 @@ description: Updates on what features are deprecated, links to relevant informat
 aliases:
   - /deprecations/
   - /docs/deprecations
+no_list: true
 ---
 
 ## Overview
@@ -16,6 +17,11 @@ The following clarifies what we mean when a feature is deprecated or reaches end
 * **Deprecated**: When a feature enters the end of support cycle and no new development is done except for critical (P0/1) bugs and security CVE fixes specific to the feature. 
 
 * **End of Support**: When a feature is no longer available for customer or technical support, including critical (P0/1) bugs and security CVE fixes specific to the feature.   
+
+| Feature          | Deprecated | End of Support |
+|------------------|------------|----------------|
+| [Pipelines as CRD]({{< ref "pacrd-deprecation.md" >}}) | 2021/08/01 | 2021/11/01     |
+
 
 ## FAQ
 

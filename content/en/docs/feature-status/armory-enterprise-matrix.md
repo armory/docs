@@ -143,18 +143,7 @@ You can find the latest version on [Docker Hub](https://hub.docker.com/r/armory/
 
 ### Pipelines as CRD
 
-[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) ![Proprietary](/images/proprietary.svg)
-
-[PaCRD]({{< ref "pacrd" >}}) gives you the ability to manage your pipelines as
-Kubernetes custom resources.
-
-The following table lists the PaCRD features and their supported versions:
-
-| Feature                                             | Armory                         | Notes                                                      |
-| --------------------------------------------------- | ------------------------------ | ---------------------------------------------------------- |
-| Create, modify, and delete pipeline manifests       | All supported versions         | Working within the same cluster Spinnaker is installed in. |
-| Create, modify, and delete application manifests    | All supported versions         | Working within the same cluster Spinnaker is installed in. |
-| Define all stages supported by Spinnaker and Armory | PaCRD version 0.10.x and later | Validation support does not exist for all stages.          |
+This feature is being deprecated. For more information, see [Pipelines as CRD Deprecation]({{< ref "pacrd-deprecation.md" >}}).
 
 ### Terraform Integration
 
