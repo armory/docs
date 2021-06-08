@@ -1560,7 +1560,7 @@ weight: 10
     required_annotations:=["app","owner"]
     deny["Manifest is missing a required annotation"] {
         metadata :=input.stage.context.manifests[_].metadata
-        annotations := object.get(metadata,"annotations",[])
+        annotations := object.get(metadata,"annotations",{})
         # Use object.get to check if data exists
         object.get(annotations,required_annotations[_],null)==null
     }
