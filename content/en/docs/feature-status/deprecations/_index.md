@@ -7,6 +7,9 @@ aliases:
   - /docs/deprecations
   - /docs/feature-status/feature-deprecations/
 no_list: true
+toc_hide: true
+hidden: true
+exclude_search: true
 ---
 
 ## Overview
