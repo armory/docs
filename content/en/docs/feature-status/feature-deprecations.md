@@ -5,6 +5,9 @@ description: Updates on what features are deprecated, links to relevant informat
 aliases:
   - /deprecations/
   - /docs/deprecations
+toc_hide: true
+hidden: true
+exclude_search: true
 ---
 
 ## Overview
