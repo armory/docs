@@ -91,9 +91,12 @@ package = "@netlify/plugin-sitemap"
 
   [plugins.inputs]
   buildDir = "public"
+  # make sure you add a comma after each entry in the exclude list except on the last one
   exclude =[
     './public/docs/plugin-guide/plugin-appname/',
-    './public/docs/plugin-guide/plugin-policy-engine/'
+    './public/docs/plugin-guide/plugin-policy-engine/',
+    './public/docs/feature-status/deprecations/pacrd-deprecation/',
+    './public/docs/feature-status/deprecations/'
   ]
   # append missing trailing slash to prettyURL
   trailingSlash = true
