@@ -42,7 +42,7 @@ There are situations in which the deprecation timeline may be accelerated due to
 
 To ensure you have ample time to prepare for these planned changes, we’ll communicate in the following ways:
 
-* **[docs.armory.io]({{< ref "feature-deprecations" >}})** - Each deprecated feature will be outlined within this Deprecation Policy and Status document. There will also be a separate document that includes a detailed overview of the status, important dates leading up to the deprecation of the feature, what each phase of the deprecation includes, how it impacts you as the customer, and the transition process.
+* **[docs.armory.io]({{< ref "deprecations" >}})** - Each deprecated feature will be outlined within this Deprecation Policy and Status document. There will also be a separate document that includes a detailed overview of the status, important dates leading up to the deprecation of the feature, what each phase of the deprecation includes, how it impacts you as the customer, and the transition process.
 
 * **Email Communication** - Armory will send a series of emails leading up to the deprecation to ensure that you have taken or have plans to take complete any required actions to ensure a smooth transition.  Additionally, any deprecations will be noted in the Armory newsletter.
 
