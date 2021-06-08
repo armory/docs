@@ -3,6 +3,7 @@ title: Pipelines as CRD (PaCRD) Deprecation
 description: Armory will be discontinuing support for Pipelines as CRD (PaCRD). This article explains why Armory is doing this and how it impacts your company.
 toc_hide: true
 hidden: true
+exclude_search: true
 ---
 
 ## What does this mean?
@@ -27,7 +28,7 @@ To assure the best user-experience possible, we recommend the following options:
  
 - Migrate to using our more mature Pipelines as Code feature
 
- ## What Happens if I don't act in time?
+ ## What happens if I don't act in time?
 
 If your company uses PaCRD, it will no longer be guaranteed to function as part of Armory Enterprise releases after 2021/11/01. Any workflows that utilize PaCRD may break when you upgrade Armory Enterprise to a new release after that date.
  
