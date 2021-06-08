@@ -1564,7 +1564,7 @@ weight: 10
         # Use object.get to check if data exists
         object.get(annotations,required_annotations[_],null)==null
     }{
-        metadata :=input.stage.context.manifests[_].spec.templates.metadata
+        metadata :=input.stage.context.manifests[_].spec.template.metadata
         annotations := object.get(metadata,"annotations",{})
         # Use object.get to check if data exists
         object.get(annotations,required_annotations[_],null)==null
