@@ -110,7 +110,7 @@ CA_PASSWORD="password"
 TRUSTSTORE_PASSWORD=$(newPassword)
 JAVA_SVCS=("clouddriver" "orca" "echo" "fiat" "igor" "rosco" "front50" "kayenta" "gate")
 # JAVA_SVCS=("clouddriver-rw" "clouddriver-caching" "clouddriver-ro" "clouddriver-ro-deck" "orca" "echo-scheduler" "echo-worker" "fiat" "igor" "rosco" "front50" "kayenta" "gate")
-GOLANG_SVCS=("dinghy" "terraformer")
+GOLANG_SVCS=("dinghy" "terraformer" "pacrd")
 
 echo "Cleaning up..."
 rm -rf services/*
