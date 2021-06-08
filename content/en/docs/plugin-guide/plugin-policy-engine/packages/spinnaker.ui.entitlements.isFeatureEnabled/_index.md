@@ -92,7 +92,7 @@ This object provides information about the user performing the action. This can 
 
 The following table provides a summary of the values to check in the policy to enable/disable different UI elements.
 
-| UI Element                       | input.path.    | input.method | input.body.job[].type |
+| UI Element                       | input.path.    | input.method | input.body.job[].type  |
 | -------------------------------- | -------------- | ------------ | ---------------------- |
 | Create Application Button        | `["tasks"]`    | POST         | createApplication      |
 | Application Configuration Button | `["tasks"]`    | POST         | updateApplication      |
