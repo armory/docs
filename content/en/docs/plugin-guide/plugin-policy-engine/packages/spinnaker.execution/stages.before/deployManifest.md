@@ -1556,16 +1556,14 @@ weight: 10
 - This policy requires that a set of annotations have been applied to any manifests that are being deployed. Specifically the annotations 'app' and 'owner' must have been applied.
 
   {{< prism lang="rego" line-numbers="true" >}}
-  package spinnaker.execution.stages.before.deployManifest
-
-  required_annotations:=["app","owner"]
-
-  deny["Manifest is missing a required annotation"] {
-      annotations :=input.stage.context.manifests[_].metadata 
-
-      # Use object.get to check if data exists
-      object.get(annotations,required_annotations[_],null)==null
-  }
+    package spinnaker.execution.stages.before.deployManifest
+    required_annotations:=["app","owner"]
+    deny["Manifest is missing a required annotation"] {
+        metadata :=input.stage.context.manifests[_].metadata
+        annotations := object.get(metadata,"annotations",[])
+        # Use object.get to check if data exists
+        object.get(annotations,required_annotations[_],null)==null
+    }
   {{< /prism >}}
 
 <br/>
