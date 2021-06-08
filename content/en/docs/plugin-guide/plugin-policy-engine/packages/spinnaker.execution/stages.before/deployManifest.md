@@ -1573,21 +1573,21 @@ weight: 10
 - This policy requires prevents exposing a set of ports that are unencrypted buy have encrypted alternatives. Specifically this policy prevents exposing HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, and SMTP from a pod, deployment, or replicaset.
 
   {{< prism lang="rego" line-numbers="true" >}}
-  package spinnaker.deployment.tasks.before.deployManifest
+  package spinnaker.execution.stages.before.deployManifest
 
   blockedPorts := [20,21,23,80,110,119,143,389,587,8080,8088,8888]
 
   deny["A port typically used by an unencrypted protocol was detected."] {
       #Check for service
-      ports := input.deploy.manifests[_].spec.ports[_]
+      ports := input.stage.context.manifests[_].spec.ports[_]
       any([object.get(ports,"port",null) == blockedPorts[_], 
             object.get(ports,"targetPort",null) == blockedPorts[_]])
   }{ 
       #Check for pod
-      input.deploy.manifests[_].spec.containers[_].ports[_].containerPort=blockedPorts[_]
+      input.stage.context.manifests[_].spec.containers[_].ports[_].containerPort=blockedPorts[_]
   } { 
       #Check for pod template
-      input.deploy.manifests[_].spec.template.spec.containers[_].ports[_].containerPort=blockedPorts[_]
+      input.stage.context.manifests[_].spec.template.spec.containers[_].ports[_].containerPort=blockedPorts[_]
       }
   {{< /prism >}}
 
@@ -1596,19 +1596,19 @@ weight: 10
 - This policy checks whether or not the image being approved is on a list of imaged that are approved for deployment. The list of what images are approved must seperately be uploaded to the OPA data document
 
   {{< prism lang="rego" line-numbers="true" >}}
-  package spinnaker.deployment.tasks.before.deployManifest
+  package spinnaker.execution.stages.before.deployManifest
 
   deny["Manifest creates a pod from an image that is not approved by the security scanning process."] {
   #Check pod templates
-      isImageUnApproved(input.deploy.manifests[_].spec.template.spec.containers[_].image)
+      isImageUnApproved(input.stage.context.manifests[_].spec.template.spec.containers[_].image)
   } {#check pods
-      isImageUnApproved(input.deploy.manifests[_].spec.containers[_].image)
+      isImageUnApproved(input.stage.context.manifests[_].spec.containers[_].image)
   }
   {#check pod template initContainers
-      isImageUnApproved(input.deploy.manifests[_].spec.template.spec.initContainers[_].image)
+      isImageUnApproved(input.stage.context.manifests[_].spec.template.spec.initContainers[_].image)
   }
   {#check pod initContainers
-      isImageUnApproved(input.deploy.manifests[_].spec.initContainers[_].image)
+      isImageUnApproved(input.stage.context.manifests[_].spec.initContainers[_].image)
   }
 
   isImageUnApproved(image){    not isImageApproved(image) }
