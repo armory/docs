@@ -5,6 +5,7 @@ description: Updates on what features are deprecated, links to relevant informat
 aliases:
   - /deprecations/
   - /docs/deprecations
+  - /docs/feature-status/feature-deprecations/
 no_list: true
 ---
 
