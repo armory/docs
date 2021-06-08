@@ -4,9 +4,6 @@ linkTitle: Example CRDs
 description: >
   Custom Resource Definition examples for testing PaCRD pipelines
 ---
-
-{{< include "deprecations/pacrd.html" >}}
-
 ![Proprietary](/images/proprietary.svg)
 ## Application example
 
