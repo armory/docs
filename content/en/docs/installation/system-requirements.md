@@ -6,7 +6,7 @@ description: >
   Armory Enterprise is a collection of services that run in a Kubernetes cluster. In addition to the cluster, other requirements, such as storage, need to be met to run Armory Enterprise for production environments.
 ---
 
-The requirements described on this page are meant as a minimum starting point for installing Armory Enterprise. You may need to increase the resources based on the number of applications, pipelines, and executions.
+The requirements described on this page are meant as a minimum starting point for installing Armory Enterprise. You may need to increase the resources based on the number of applications, pipelines, and executions. Work with your IT organization to make sure that the requirements are met.
 
 ## Installation targets
 
