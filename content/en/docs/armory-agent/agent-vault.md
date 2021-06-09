@@ -1,5 +1,5 @@
 ---
-title: "Configure Vault Integration
+title: "Configure Vault Integration"
 linkTitle: "Configure with Vault"
 weight: 41
 description: >
