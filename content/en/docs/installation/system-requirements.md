@@ -20,7 +20,7 @@ Armory Enterprise can be installed on any [certified Kubernetes cluster](https:/
 
 You install Armory Enterprise using the Armory Operator (a Kubernetes operator), which has the following requirements:
 
-- You must be able to apply Kubernetes manifests, either directly using `kubectl` commands from your machine or another method.
+- You must be able to apply Kubernetes manifests and CRDs, either directly using `kubectl` commands from your machine or another method.
 - By default, the Operator pulls images from a public registry. If you cannot pull images from public registries, see {{< linkWithTitle "ag-operator.md" >}}.
 
 Note that Armory does not produce marketplace specific images that can be used by different certified Kubernetes offerings. 
