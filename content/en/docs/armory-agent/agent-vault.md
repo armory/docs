@@ -56,7 +56,15 @@ vault kv put secret/kubernetes account01=@kubeconfig.yaml
 
 ### Configuration template
 
+We will replace the configuration files and `kubeconfig` files from the [Quick Start Installation Guide](https://docs.armory.io/docs/armory-agent/armory-agent-quick/) and use a vault template instead.
+
+Save the following as `armory-agent-vault-patch.yaml`.
+
 ```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spin-kubesvc
 spec:
   template:
     metadata:
@@ -85,10 +93,37 @@ spec:
           clouddriver:
             insecure: true
     spec:
-      volumes: []
+      volumes:
+        - $patch: delete
+          name: volume-kubesvc-config
+        - $patch: delete
+          name: volume-kubesvc-kubeconfigs
       containers:
         - name: kubesvc
-          volumeMounts: []
+          volumeMounts:
+            - $patch: delete
+              name: volume-kubesvc-config
+              mountPath: /opt/spinnaker/config
+            - $patch: delete
+              name: volume-kubesvc-kubeconfigs
+              mounthPath:
+              mountPath: /kubeconfigfiles
+```
+
+And refer to it in your `kustomization.yaml`:
+
+```
+# ./kustomization.yaml
+# Pre-existing SpinnakerService resource (may be different)
+namespace: spinnaker
+resources:
+  - spinnakerservice.yaml
+bases:
+# Armory agent deployment
+  - https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-0.5.11-kustomize.tar.gz
+
+patchesStrategicMerge:
+  - armory-agent-vault-patch.yaml
 ```
 
 Considerations:
