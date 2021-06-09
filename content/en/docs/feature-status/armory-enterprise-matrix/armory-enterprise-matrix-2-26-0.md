@@ -1,9 +1,9 @@
 ---
-title: v2.26.x Armory Enterprise Compatibility Matrix 
-linkTitle: v2.26.x Compatibility Matrix
-description: "Information about support and compatibility for Armory Enterprise and the products and platforms that it integrates with."
-version: 02.26.00
+title: v2.26.0 Armory Enterprise Compatability Matrix
 toc_hide: true
+version: 02.26.00
+description: >
+  Information about support and compatibility for Armory Enterprise 2.26.x and the products and platforms that it integrates with.
 ---
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables#
