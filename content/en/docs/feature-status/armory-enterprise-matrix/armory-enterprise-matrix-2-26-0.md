@@ -1,5 +1,5 @@
 ---
-title: Armory Enterprise Compatibility Matrix 2.26.x
+title: v2.26.x Armory Enterprise Compatibility Matrix 
 linkTitle: v2.26.x Compatibility Matrix
 description: "Information about support and compatibility for Armory Enterprise and the products and platforms that it integrates with."
 version: 02.26.00

@@ -3,7 +3,7 @@
   {{ $pagesReverse := $pages.Reverse }}
   {{ $parent := .Page }}
 
-  <div>Armory supports the three most recent minor versions:</div>
+  <div>Information for the current supported versions:</div>
 
   <ul>
     {{ $semverActiveMajor := 10000 }}
@@ -29,27 +29,8 @@
       {{end}}
     {{ end }}
   </ul>
-  <div>Versions listed below will soon be deprecated:</div>
-  <ul>
 
-    {{$displayedMinoredVersions := 0}}
 
-    {{ range $pagesReverse }}
-      {{ if and (eq .Parent $parent) (not (in $displayedTitles .Title)) }}
-
-        {{/* this will pickout the first {major}.{minor}.{patch} numbers */}}
-        {{ $semverSlice := findRE "[0-9]+" .Title }}
-
-        {{ if and (ge (len $semverSlice) 3)  (lt $displayedMinoredVersions 1) }}
-          {{if ge (index $semverSlice 1) $semverActiveMinor }}
-            {{ $displayedTitles = $displayedTitles | append .Title }}
-            <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
-          {{end}}
-        {{end}}
-      {{end}}
-    {{ end }}
-  </ul>
-
-  <div>Versions older than the last 3 minor versions can be found in the <a href="archive">Armory Release Notes Archive</a>.</div>
+  <div>Information for older releases can be found in the <a href="archive">archive</a>.</div>
 
 </div>
