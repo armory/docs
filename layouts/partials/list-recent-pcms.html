@@ -1,0 +1,35 @@
+<div class="section-index">
+  {{ $pages := (where .Site.Pages "Section" .Section).ByParam "version" }}
+  {{ $pagesReverse := $pages.Reverse }}
+  {{ $parent := .Page }}
+
+  <div>Product compatibility information for currently supported versions of Armory Enterprise:</div>
+
+  <ul>
+    {{ $semverActiveMajor := 10000 }}
+    {{ $semverActiveMinor := 10000 }}
+    {{ $semverActivePatch := 10000 }}
+
+    {{$displayedTitles := slice }}
+
+    {{ range $pagesReverse }}
+      {{ if eq .Parent $parent }}
+
+        {{/* this will pickout the first {major}.{minor}.{patch} numbers */}}
+        {{ $semverSlice := findRE "[0-9]+" .Title }}
+        {{ if and (ge (len $semverSlice) 3) (lt (len $displayedTitles) 3) }}
+          {{if and (le ( index $semverSlice 0 ) $semverActiveMajor) (lt ( index $semverSlice 1 ) $semverActiveMinor)  }}
+            {{ $semverActiveMajor = index $semverSlice 1 }}
+            {{ $semverActiveMinor = index $semverSlice 1 }}
+            {{ $semverActivePatch = index $semverSlice 2 }}
+            {{ $displayedTitles = $displayedTitles | append .Title }}
+            <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+          {{end}}
+        {{end}}
+      {{end}}
+    {{ end }}
+  </ul>
+
+  <div>Information for older versions can be found in the <a href="archive">archive</a>.</div>
+
+</div>

@@ -1,10 +1,8 @@
 ---
-title: Armory Enterprise Compatibility Matrix
-linkTitle: Armory Compatibility Matrix
+title: Armory Enterprise Compatibility Matrix 2.25.x
+linkTitle: v2.25.x Compatibility Matrix
 description: "Information about support and compatibility for Armory Enterprise and the products and platforms that it integrates with."
-aliases:
-  - /docs/armory-platform-matrix/
-  - /docs/armory-enterprise-matrix/
+version: 02.25.00
 ---
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables#
