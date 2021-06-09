@@ -58,8 +58,10 @@ Armory recommends a minimum of 3 nodes that match the following profile:
 
 ## kubectl
 
-To install and manage Armory Enterprise, any actively maintained version of `kubectl` is supported unless you want to use the [Armory Kustomize Repo](https://github.com/armory/spinnaker-kustomize-patches). The Kustomize Repo is a collection of Kustomize files that help you configure Armory Enterprise. The repo supports the following versions of `kubectl`: 1.16 to 1.19.
+To install and manage Armory Enterprise, Armory recommends using the [Armory Kustomize Repo](https://github.com/armory/spinnaker-kustomize-patches) and tailoring the Kustomize files to meet the requirements of your instance and environment. The repo supports the following versions of `kubectl`: 1.16 to 1.19.
 <!-- this is cause of the go-yaml bug: https://github.com/kubernetes-sigs/kustomize/issues/3605 -->
+
+It is possible to use the Operator to install Armory Enterprise without the Kustomize repo. In that case, any actively maintained version of `kubectl` is supported.
 
 ## Networking
 
