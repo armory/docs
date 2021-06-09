@@ -14,11 +14,11 @@ description: >
 
 ## Authenticate Agent with Vault
 
-Agent is compatible with properties Spinnaker uses for [Storing Secrets in HashiCorp Vault](https://docs.armory.io/docs/armory-admin/secrets/secrets-vault/)
+Agent is compatible with properties Spinnaker uses for [Storing Secrets in HashiCorp Vault]({{< ref "secrets-vault" >}})
 under `secrets.vault.*` in its `kubesvc.yaml` configuration file.
-You can also refer to vault secrets with the [same syntax as spinnaker](https://docs.armory.io/docs/armory-admin/secrets/secrets-vault/#referencing-secrets)
+You can also refer to vault secrets with the [same syntax as spinnaker]({{< ref "secrets-vault#referencing-secrets" >}})
 
-This is an example of how the [Kubernetes service account](https://docs.armory.io/docs/armory-admin/secrets/secrets-vault/#1-kubernetes-service-account-recommended) configuration looks like in Agent
+This is an example of how the [Kubernetes service account]({{< ref "secrets-vault#1-kubernetes-service-account-recommended" >}}) configuration looks like in Agent
 And using an `encryptedFile:` reference for `kubeconfigFile`.
 
 ```yaml
@@ -54,7 +54,7 @@ vault kv put secret/kubernetes account01=@kubeconfig.yaml
 
 ### Configuration template
 
-We will replace the configuration files and `kubeconfig` files from the [Quick Start Installation Guide](https://docs.armory.io/docs/armory-agent/armory-agent-quick/)
+We will replace the configuration files and `kubeconfig` files from the [Quick Start Installation Guide]({{< ref "armory-agent-quick" >}})
 and use [Vault Injector Annotations](https://www.vaultproject.io/docs/platform/k8s/injector/annotations) to provide a template instead.
 
 {{< prism lang="yaml" line="13-23" >}}
@@ -110,9 +110,9 @@ spec:
 
 Considerations:
  * Make sure to include the required [Vault Injector Annotations](https://www.vaultproject.io/docs/platform/k8s/injector/annotations) like [`vault.hashicorp.com/role` or `vault.hashicorp.com/agent-configmap`](https://www.vaultproject.io/docs/platform/k8s/injector/annotations#vault-hashicorp-com-role) correspond to your environment
- * Be aware of the version of Vault's KV engine currently in your environment. If you are using [KV version 2](https://www.vaultproject.io/docs/secrets/kv/kv-v2), you will need to modify the template to use `{{ range $k, $v := .Data }}` instead. See [this link](https://github.com/hashicorp/consul-template/blob/master/docs/templating-language.md#versioned-read) for more information
+ * Be aware of the version of Vault's KV engine currently in your environment. This guide assumes you have the secret engine [KV version 2](https://www.vaultproject.io/docs/secrets/kv/kv-v2). For you KV version 1, will need to modify the template to use `{{ range $k, $v := .Data }}` instead. See [this link](https://github.com/hashicorp/consul-template/blob/master/docs/templating-language.md#versioned-read) for more information
  * This template expects `secret/kubernets` to hold the kubeconfig file: Make sure to replace both line 16 and 18 in case that's not the case in your environment
- * Make sure to include all other [Agent Options](https://docs.armory.io/docs/armory-agent/agent-options/) that you might required in your environment
+ * Make sure to include all other [Agent Options]({{< ref "agent-options/#options" >}}) that you might required in your environment
 
 After taking those considerations, save the template as `armory-agent-vault-patch.yaml`, and refer to it in your `kustomization.yaml`:
 
@@ -147,7 +147,7 @@ patchesStrategicMerge:
  * Agent is in Crash loop back off
  * * Check for logs of kubesvc with the following command `kubectl logs deploy/spin-kubesvc -c kubesvc`
  * * Error message: `Error registering vault config: vault configuration error`
- * * * Make sure to update the template above to include the properties [`secrets.vault.*`](https://docs.armory.io/docs/armory-admin/secrets/secrets-vault/) that correspond to your environment
+ * * * Make sure to update the template above to include the properties [`secrets.vault.*`]({{< ref "secrets-vault" >}}) that correspond to your environment
  * * Error message `failed to load configuration: error fetching key \"data\"`
  * * * Your vault KV engine is using version 2. Make sure the template in `armory-agent-vault-patch.yaml` above is using `{{ range $k, $v := .Data.data }}` in line 17
 
