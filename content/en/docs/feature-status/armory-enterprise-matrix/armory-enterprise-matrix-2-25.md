@@ -3,6 +3,7 @@ title: Armory Enterprise Compatibility Matrix 2.25.x
 linkTitle: v2.25.x Compatibility Matrix
 description: "Information about support and compatibility for Armory Enterprise and the products and platforms that it integrates with."
 version: 02.25.00
+toc_hide: true
 ---
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables#
