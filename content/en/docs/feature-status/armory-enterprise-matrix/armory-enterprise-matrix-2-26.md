@@ -1,7 +1,7 @@
 ---
-title: Armory Enterprise Compatibility Matrix
-linkTitle: Armory Compatibility Matrix
+title: v2.26 Armory Enterprise Compatibility Matrix
 description: "Information about support and compatibility for Armory Enterprise and the products and platforms that it integrates with."
+toc_hide: true
 aliases:
   - /docs/armory-platform-matrix/
   - /docs/armory-enterprise-matrix/
