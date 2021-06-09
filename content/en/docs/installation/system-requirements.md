@@ -12,12 +12,18 @@ The requirements described on this page are meant as a minimum starting point fo
 
 > This section defines where you can run Armory Enterprise, not where you can deploy your applications. For information about where you can deploy applications to, see the [Product Compatibility Matrix]({{< ref "armory-enterprise-matrix#deployment-targets" >}}).
 
-Armory Enterprise can be installed on any [certified Kubernetes cluster](https://www.cncf.io/certification/software-conformance/). Armory does not produce marketplace specific images that can be used by different certified Kubernetes offerings. The cluster needs to run one of the following supported versions:
+Armory Enterprise can be installed on any [certified Kubernetes cluster](https://www.cncf.io/certification/software-conformance/) that meets the following version requirements:
 
 * **Minimum version**: 1.16
 * **Maximum version**: 1.20
 <!-- track EKS versions -->
-To install Armory Enterprise, use the Armory Operator (a Kubernetes operator). Note that you must be able to apply Kubernetes manifests, either directly using `kubectl` commands from your machine or another method.
+
+You install Armory Enterprise using the Armory Operator (a Kubernetes operator), which has the following requirements:
+
+- You must be able to apply Kubernetes manifests, either directly using `kubectl` commands from your machine or another method.
+- By default, the Operator pulls images from a public registry. If you cannot pull images from public registries, see {{< linkWithTitle "ag-operator.md" >}}.
+
+Note that Armory does not produce marketplace specific images that can be used by different certified Kubernetes offerings. 
 
 ## Browsers
 
@@ -57,7 +63,9 @@ To install and manage Armory Enterprise, any actively maintained version of `kub
 
 ## Networking
 
-The ports for the API gateway (the Gate service) and the UI (the Deck service) need to be exposed. All interactions with Armory Enterprise go through these two services.
+Pods in your Kubernetes cluster must be able to communicate with each other without restrictions.
+
+Additionally, the ports for the API gateway (the Gate service) and the UI (the Deck service) need to be exposed. All interactions with Armory Enterprise go through these two services.
 
 **Gate ports**
 
@@ -67,8 +75,6 @@ The ports for the API gateway (the Gate service) and the UI (the Deck service) n
 **Deck port**
 
 * 9000
-
-Additionally, pods in your Kubernetes cluster must be able to communicate with each other without restrictions.
 
 ## Security
 
