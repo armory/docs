@@ -22,7 +22,7 @@ The Agent consists of a service deployed as a Kubernetes `Deployment` and a plug
 
 ## Networking requirements
 
-Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between Clouddriver and the Agent.  
+Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between Clouddriver and the Agent.
 
 ## Kubernetes permissions needed by the Agent
 
@@ -46,7 +46,7 @@ rules:
   resources:
   - pods
   - pods/log
-  - pods/finalizers  
+  - pods/finalizers
   verbs:
   - get
   - list
@@ -70,7 +70,7 @@ rules:
   resources:
   - pods
   - pods/log
-  - pods/finalizers  
+  - pods/finalizers
   verbs:
   - get
   - list
@@ -101,26 +101,19 @@ curl https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/agent-plugin-$
 
 Then include the manifests in your current kustomization:
 
-```yaml
+{{< prism lang="yaml" line="6-11" >}}
 # Existing kustomization.yaml
 namespace: spinnaker  #   could be different
 resources:
-  # Pre-existing SpinnakerService resource (may have a different name)
   - spinnakerservice.yaml
 
 bases:
-  # Add the agent service
   - agent-service
 
 patchesStrategicMerge:
-  # Include plugin configuration
   - agent-plugin/config.yaml
-  # Change plugin version as well the name of your SpinnakerService in this manifest
   - agent-plugin/clouddriver-plugin.yaml
-  # Alternatively you can include this remote manifest
-#  - https://armory.jfrog.io/artifactory/manifests/kubesvc-plugin/clouddriver-plugin-<AGENT_PLUGIN_VERSION>.yaml
-
-```
+{{</ prism >}}
 
 You can then set the [plugin options]({{< ref "agent-plugin-options" >}}) in `agent-plugin/config.yaml`.
 
@@ -152,79 +145,112 @@ If you are not using Kustomize, you can still use the same manifests.
 
 ## Step 2: Agent installation
 
-### Kustomize
+Now lets deploy the Armory Agent itself. Armory provides a kustomize directory which already includes a basic configuration.
+You can download it by running these commands:
 
-Create the directory structure described below with `kustomization.yaml`, `kubesvc.yaml`, and `kubecfg/` containing the [kubeconfig files]({{< ref "manual-service-account" >}}) required to access target deployment clusters:
+```bash
+mkdir armory-agent
+curl https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-{{<param kubesvc-version>}}-kustomize.tar.gz | tar -xJvf - -C armory-agent
+```
 
-```
-.
-├── kustomization.yaml
-├── kubesvc.yaml
-├── kubecfgs/
-│   ├── kubecfg-01.yaml
-│   ├── kubecfg-02.yaml
-│   ├── ...
-│   └── kubecfg-nn.yaml
-```
+You will have these files:
+
+ * `kustomization.yaml` is kustomize entrypoint, refers and overrides the two other files.
+ * `kubesvc.yaml`  contains the [Agent options]({{< ref "agent-options" >}}):
+   * For installations without gRPC TLS connections, you should include `clouddriver.insecure: true` in the Agent options.
+   * For HA, make sure to set `clouddriver.grpc: clouddriver-ha-grpc-service.yaml:9091`
+ * `deployment.yaml` is the basic deployment maifest for Armory Agent
+
+If you already have a kustomization directory for your SpinnakerService manifest,
+you can include this `armory-agent` directory as a kustomize base:
+
+{{< prism lang="yaml" line="8" >}}
+# Existing kustomization.yaml
+namespace: spinnaker
+resources:
+  - spinnakerservice.yaml
+
+bases:
+  - agent-service
+  - armory-agent
+
+patchesStrategicMerge:
+  - agent-plugin/config.yaml
+  - agent-plugin/clouddriver-plugin.yaml
+{{</ prism >}}
+
+### Configuring accounts
+
+Accounts are part of the [Agent Options]({{< ref "agent-options" >}}) which can be modified in `kubesvc.yaml` file
 
 ```yaml
-# ./kustomization.yaml
+# ./kubesvc.yaml
+kubernetes:
+  accounts:
+  - name: account01
+    kubeconfigFile: /kubeconfigfiles/kubecfg-account01.yaml
+```
 
-# Namespace where you want to deploy the agent
+By default, agent mounts a secret named `kubeconfigs-secret` under its directory `/kubeconfigfiles`,
+which in this example we will configure in our existing main `kustomization.yaml`:
+
+{{< prism lang="yaml" line="14-17" >}}
+# Existing kustomization.yaml
 namespace: spinnaker
-bases:
-  - https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-{{<param kubesvc-version>}}-kustomize.tar.gz
+resources:
+  - spinnakerservice.yaml
 
-configMapGenerator:
-  - name: kubesvc-config
-    behavior: merge
-    files:
-      - kubesvc.yaml
+bases:
+  - agent-service
+  - armory-agent
+
+patchesStrategicMerge:
+  - agent-plugin/config.yaml
+  - agent-plugin/clouddriver-plugin.yaml
 
 secretGenerator:
   - name: kubeconfigs-secret
     files:
-    # a list of all needed kubeconfigs
-    - kubecfgs/kubecfg-account01.yaml
-    - ...
-    - kubecfgs/kubecfg-account1000.yaml
+    - kubeconfigfiles/kubecfg-account01.yaml
+{{</ prism >}}
+
+ * Note: If you prefer not to include this secrets under the main kustomize directory. You can 
+   instead use `encryptedFile` for referring to [S3 secrets]() [Vault Secrets]() and leave the 
+   `kubeconfigs-secret` file list as empty in the main kustomization file:
+
+  ```
+  secretGenerator:
+    - name: kubeconfigs-secret
+      files: []
+  ```
+
+Finally, we can now include the actual `kubeconfig` for kubectl in our main kustomize directory under a new subfolder named `./kubeconfigfiles/`.
+The finall folder structure now should look similar to this:
+
 ```
-
-`kubesvc.yaml`  contains the [Agent options]({{< ref "agent-options" >}}):
-```yaml
-# ./kubesvc.yaml
-
-kubernetes:
-  accounts:
-  - name: account01
-    # /kubeconfigfiles/ is the path to the config files
-    # as mounted from the `kubeconfigs-secret` Kubernetes secret
-    kubeconfigFile: /kubeconfigfiles/kubecfg-account01.yaml
-    ...
-  - ...
-...
+.                                        # Main kustomize folder
+├── kustomization.yml                    # Main kustomization file
+├── agent-service                        # New kubernetes Services for Agent
+│   ├── clouddriver-grpc-service.yaml
+│   ├── clouddriver-ha-grpc-service.yaml
+│   └── kustomization.yaml               ## Kustomization file for new Services
+├── armory-agent                         # Armory Agent deployment
+│   ├── deployment.yaml
+│   ├── kubesvc.yaml
+│   └── kustomization.yaml               ## Armory Agent kustomization file
+├── agent-plugin                         # Armory Agent plugin for Clouddriver
+│   ├── clouddriver-plugin.yaml
+│   └── config.yaml
+├── kubeconfigfiles
+│   └── kubecfg-account01.yaml           # Kubeconfig file with access to your cluster
+└── spinnakerservice.yaml                # SpinnakerService manifest
 ```
-
-* For installations without gRPC TLS connections, you should include `clouddriver.insecure: true` in the Agent options.
-* For HA, make sure to set `clouddriver.grpc: clouddriver-ha-grpc-service.yaml:9091`
 
 With the directory structure in place, deploy the Agent service:
 
 ```bash
 kustomize build </path/to/directory> | kubectl apply -f -
 ```
-
-### Managing kustomization locally
-
-If you prefer to manage manifests directly, download all the manifests:
-
-```bash
-AGENT_VERSION={{<param kubesvc-version>}} && curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-$AGENT_VERSION-kustomize.tar.gz | tar -xJvf -
-```
-
-- Change the version of the Agent in `kustomization.yaml`
-- Modify [Agent options]({{< ref "agent-options" >}}) in `kubesvc.yaml`
-
 
 ## {{% heading "nextSteps" %}}
 
