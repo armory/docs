@@ -125,7 +125,7 @@ resources:
   - spinnakerservice.yaml
 bases:
 # Armory agent deployment
-  - https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-0.5.11-kustomize.tar.gz
+  - https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-{{<param kubesvc-version>}}-kustomize.tar.gz
 
 patchesStrategicMerge:
   - armory-agent-vault-patch.yaml
