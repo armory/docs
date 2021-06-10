@@ -122,7 +122,7 @@ You can then set the [plugin options]({{< ref "agent-plugin-options" >}}) in `ag
 * When running Spinnaker in [HA](https://spinnaker.io/reference/halyard/high-availability/), make sure to modify the following files:
 
   * `agent-service/kustomization.yaml` according to its comments
-  * `agent-plugin/clouddriver-plugin.yaml` and `agent-plugin/config.yaml` references to Clouddriver should be to HA versions (i.e: -rw, -ro, etc)
+  * `agent-plugin/clouddriver-plugin.yaml` and `agent-plugin/config.yaml` references to Clouddriver should be to HA versions (i.e: `-rw`, `-ro`, etc)
 
 When you're ready, deploy with:
 
@@ -214,7 +214,7 @@ secretGenerator:
     - kubeconfigfiles/kubecfg-account01.yaml
 {{</ prism >}}
 
- * Note: If you prefer not to include this secrets under the main kustomize directory. You can
+ * Note: if you prefer not to include this secrets under the main kustomize directory. You can
    instead use `encryptedFile` for referring to [S3 secrets]({{< ref "secrets-s3#referencing-secrets" >}}) or [Vault Secrets]({{< ref "secrets-vault#referencing-secrets"  >}}) and leave the
    `kubeconfigs-secret` file list as empty in the main kustomization file:
 
@@ -256,4 +256,4 @@ kustomize build </path/to/directory> | kubectl apply -f -
 
 * {{< linkWithTitle "agent-mtls.md" >}}
 * {{< linkWithTitle "agent-troubleshooting.md" >}} page if you run into issues.
-* {{< linkWithTitle "agent-monitoring.md" >}} page for how to monitor agents running on an Armory platform. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
+* {{< linkWithTitle "agent-monitoring.md" >}} page for how to monitor agents running on an Armory platform. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Agent is monitoring. The gRPC buffer consumes about 4 MB of memory.
