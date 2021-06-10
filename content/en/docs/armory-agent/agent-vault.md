@@ -42,7 +42,7 @@ secrets:
 * The following requires [Vault Injector Sidecar](https://www.vaultproject.io/docs/platform/k8s/injector/installation) to be installed and running
 
 Agent is able to pickup changes in the configuration file, and start managing any new accounts it finds. That makes it possible to use a sidecar for
-onboarding and offboarding dynamic accounts, instead of a static `ConfigMap`. The current guide presents one example using vault.
+adding and removing accounts dynamically instead of having static `ConfigMap`. The current guide presents one example using vault.
 
 ```
 vault kv put secret/kubernetes account01=@kubeconfig.yaml
