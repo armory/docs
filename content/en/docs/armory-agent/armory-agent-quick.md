@@ -214,8 +214,8 @@ secretGenerator:
     - kubeconfigfiles/kubecfg-account01.yaml
 {{</ prism >}}
 
- * Note: If you prefer not to include this secrets under the main kustomize directory. You can 
-   instead use `encryptedFile` for referring to [S3 secrets]() [Vault Secrets]() and leave the 
+ * Note: If you prefer not to include this secrets under the main kustomize directory. You can
+   instead use `encryptedFile` for referring to [S3 secrets]({{< ref "secrets-s3#referencing-secrets" >}}) or [Vault Secrets]({{< ref "secrets-vault#referencing-secrets"  >}}) and leave the
    `kubeconfigs-secret` file list as empty in the main kustomization file:
 
   ```
