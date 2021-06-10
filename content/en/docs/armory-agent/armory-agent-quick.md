@@ -157,23 +157,36 @@ If you are not using Kustomize, you can still use the same manifests.
 Create the directory structure described below with `kustomization.yaml`, `kubesvc.yaml`, and `kubecfg/` containing the [kubeconfig files]({{< ref "manual-service-account" >}}) required to access target deployment clusters:
 
 ```
-.
+./armory-agent
+├── kubesvc-agent
 ├── kustomization.yaml
 ├── kubesvc.yaml
 ├── kubecfgs/
-│   ├── kubecfg-01.yaml
-│   ├── kubecfg-02.yaml
+│   ├── kubecfg-account01.yaml
+│   ├── kubecfg-account02.yaml
 │   ├── ...
-│   └── kubecfg-nn.yaml
+│   └── kubecfg-accountnn.yaml
 ```
 
 ```yaml
-# ./kustomization.yaml
+
+To install the agent, download the additional manifests into the `armory-agent/kubesvc` directory created in the structure shown above:
+
+```bash
+# AGENT_PLUGIN_VERSION is found in the compatibility matrix above
+curl https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-{{<param kubesvc-version>}}-kustomize.tar.gz | tar -xJvf -
+```
+
+Then include the manifests in the current kustomization file:
+
+```yaml
+
+# ./armory-agent/kustomization.yaml
 
 # Namespace where you want to deploy the agent
 namespace: spinnaker
 bases:
-  - https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-{{<param kubesvc-version>}}-kustomize.tar.gz
+  - kubesvc-agent
 
 configMapGenerator:
   - name: kubesvc-config
@@ -190,7 +203,8 @@ secretGenerator:
     - kubecfgs/kubecfg-account1000.yaml
 ```
 
-`kubesvc.yaml`  contains the [Agent options]({{< ref "agent-options" >}}):
+The `kubesvc.yaml` will need to contain the [Agent options]({{< ref "agent-options" >}}):
+
 ```yaml
 # ./kubesvc.yaml
 
@@ -214,17 +228,7 @@ With the directory structure in place, deploy the Agent service:
 kustomize build </path/to/directory> | kubectl apply -f -
 ```
 
-### Managing kustomization locally
-
-If you prefer to manage manifests directly, download all the manifests:
-
-```bash
-AGENT_VERSION={{<param kubesvc-version>}} && curl -s https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-$AGENT_VERSION-kustomize.tar.gz | tar -xJvf -
-```
-
-- Change the version of the Agent in `kustomization.yaml`
-- Modify [Agent options]({{< ref "agent-options" >}}) in `kubesvc.yaml`
-
+You could alternatively add the `armory-agent` to the `bases` section of the `kustomization.yaml` file where your `spinnakerservice.yaml` is referenced to deploy the services all together.
 
 ## {{% heading "nextSteps" %}}
 
