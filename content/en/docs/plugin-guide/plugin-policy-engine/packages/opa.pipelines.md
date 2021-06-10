@@ -216,7 +216,8 @@ weight: 10
       stage := input.pipeline.stages[i]
       stage.type=="manualJudgment"
       stage.selectedStageRoles[0]==role; count(stage.selectedStageRoles)==1
-      reachable := graph.reachable(stage_graph, {idx})[_]==i
+      reachable := graph.reachable(stage_graph, {idx})[_]
+      reachable ==i
   }
   lacksEarlierApprovalBy(role,idx) {
       not hasEarlierApprovalBy(role,idx) 
