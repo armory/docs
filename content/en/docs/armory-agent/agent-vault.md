@@ -154,5 +154,5 @@ patchesStrategicMerge:
  * Agent registers with 0 servers
  * * Check for logs of vault injector with the following command: `kubectl logs -f deploy/spin-kubesvc -c vault-agent`
  * * Error message `missing dependency: vault.read(secret/kubernetes)`
- * * * Your vault KV engine is using version 1. Make sure the template in `armory-agent-vault-patch.yaml` above is using `{{ range $k, $v := .Data.data }} ` in line 17
+ * * * Your vault KV engine is using version 1. Make sure the template in `armory-agent-vault-patch.yaml` above is using `{{ range $k, $v := .Data }} ` in line 17
 
