@@ -132,27 +132,32 @@ patchesStrategicMerge:
 {{</ prism >}}
 
 ### Troubleshooting
- * Agent deployment is to appearing / There are no spin-kubesvc pods:
- * * Check the following commands for any error or warning message:
- * * * `kubectl describe desploy spin-kubesvc | sed -ne '/^Events:$/,$p'`
- * * * `kubectl describe rs -l cluster=spin-kubesvc | sed -ne '/^Events:$/,$p'`
- * * Error message: `Error creating: admission webhook "vault.hashicorp.com" denied the request: error validating agent configuration: no Vault role found`
- * * * Make sure that the annotations [`vault.hashicorp.com/role` or `vault.hashicorp.com/agent-configmap`](https://www.vaultproject.io/docs/platform/k8s/injector/annotations#vault-hashicorp-com-role) are set and they correspond to your environment
 
- * Agent gets stuck in status Init
- * * Check for logs of the injector with the following command: `kubectl logs deploy/spin-kubesvc -c vault-agent-init`
- * * Error message: `[WARN] (view) vault.read(secret/kubernetes): no secret exists at secret/data/kubernetes (retry attempt 1 after "250ms")`
- * * * Make sure to update the reference in the template above (ln 16 and 18) to a secret that is accesible in your environment
+Agent deployment is to appearing / There are no spin-kubesvc pods:
 
- * Agent is in Crash loop back off
- * * Check for logs of kubesvc with the following command `kubectl logs deploy/spin-kubesvc -c kubesvc`
- * * Error message: `Error registering vault config: vault configuration error`
- * * * Make sure to update the template above to include the properties [`secrets.vault.*`]({{< ref "secrets-vault" >}}) that correspond to your environment
- * * Error message `failed to load configuration: error fetching key \"data\"`
- * * * Your vault KV engine is using version 2. Make sure the template in `armory-agent-vault-patch.yaml` above is using `{{ range $k, $v := .Data.data }}` in line 17
+ * Check the following commands for any error or warning message:
+ * * `kubectl describe desploy spin-kubesvc | sed -ne '/^Events:$/,$p'`
+ * * `kubectl describe rs -l cluster=spin-kubesvc | sed -ne '/^Events:$/,$p'`
+ * Error message: `Error creating: admission webhook "vault.hashicorp.com" denied the request: error validating agent configuration: no Vault role found`
+   * Make sure that the annotations [`vault.hashicorp.com/role` or `vault.hashicorp.com/agent-configmap`](https://www.vaultproject.io/docs/platform/k8s/injector/annotations#vault-hashicorp-com-role) are set and they correspond to your environment
 
- * Agent registers with 0 servers
- * * Check for logs of vault injector with the following command: `kubectl logs -f deploy/spin-kubesvc -c vault-agent`
- * * Error message `missing dependency: vault.read(secret/kubernetes)`
- * * * Your vault KV engine is using version 1. Make sure the template in `armory-agent-vault-patch.yaml` above is using `{{ range $k, $v := .Data }} ` in line 17
+Agent gets stuck in status Init
+
+ * Check for logs of the injector with the following command: `kubectl logs deploy/spin-kubesvc -c vault-agent-init`
+ * Error message: `[WARN] (view) vault.read(secret/kubernetes): no secret exists at secret/data/kubernetes (retry attempt 1 after "250ms")`
+   * Make sure to update the reference in the template above (ln 16 and 18) to a secret that is accesible in your environment
+
+Agent is in Crash loop back off
+
+ * Check for logs of kubesvc with the following command `kubectl logs deploy/spin-kubesvc -c kubesvc`
+ * Error message: `Error registering vault config: vault configuration error`
+ * * Make sure to update the template above to include the properties [`secrets.vault.*`]({{< ref "secrets-vault" >}}) that correspond to your environment
+ * Error message `failed to load configuration: error fetching key \"data\"`
+   * Your vault KV engine is using version 2. Make sure the template in `armory-agent-vault-patch.yaml` above is using `{{ range $k, $v := .Data.data }}` in line 17
+
+Agent registers with 0 servers
+
+ * Check for logs of vault injector with the following command: `kubectl logs -f deploy/spin-kubesvc -c vault-agent`
+ * Error message `missing dependency: vault.read(secret/kubernetes)`
+   * Your vault KV engine is using version 1. Make sure the template in `armory-agent-vault-patch.yaml` above is using `{{ range $k, $v := .Data }} ` in line 17
 
