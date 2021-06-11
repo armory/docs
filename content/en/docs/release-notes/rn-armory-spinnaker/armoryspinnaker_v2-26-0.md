@@ -10,8 +10,6 @@ description: >
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-For information about what Armory supports for this version, see the [Armory Enterprise Compatibility Matrix]({{ ref "armory-enterprise-matrix-2-26.md" }}).
-
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.26.0, use one of the following tools:
