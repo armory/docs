@@ -294,7 +294,7 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.pipeline.endTime`                          |           |                                                                                                                                                   |
 | `input.pipeline.endTime`                          | `number`  |                                                                                                                                                   |
 | `input.pipeline.id`                               | `string`  | The unique ID of the pipeline.                                                                                                                    |
-| `input.pipeline.keepWaitingPipelines`             | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
+| `input.pipeline.keepWaitingPipelines`             | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue gets canceled when the next execution starts. |
 | `input.pipeline.limitConcurrent`                  | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                  |
 | `input.pipeline.name`                             | `string`  | The name of this pipeline.                                                                                                                        |
 | `input.pipeline.origin`                           | `string`  |                                                                                                                                                   |
@@ -304,7 +304,7 @@ Parameters related to the stage against which the policy is executing can be fou
 | `input.pipeline.source`                           |           |                                                                                                                                                   |
 | `input.pipeline.spelEvaluator`                    | `string`  | Which version of spring expression language is being used to evaluate SpEL.                                                                       |
 | `input.pipeline.stages[]`                         | `[array]` | An array of the stages in the pipeline. Typically if you are writing a policy that examines multiple pipeline stages, it is better to write that policy against either the `opa.pipelines package`, or the `spinnaker.execution.pipelines.before` package. |
-| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline will expire.                                                                                                |
+| `input.pipeline.startTimeExpiry`                  | `date `   | Unix epoch date at which the pipeline expires.                                                                                                |
 | `input.pipeline.startTime`                        | `number`  | Timestamp from when the pipeline was started.                                                                                                     |
 | `input.pipeline.status`                           | `string`  |                                                                                                                                                   |
 | `input.pipeline.templateVariables`                |           |                                                                                                                                                   |
@@ -322,10 +322,10 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 | Key                                                   | Type     | Description                                                                                          |
 | ----------------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------- |
-| `input.stage.context.cloudProviderType`               | `string` | The type of the cloud provider that will execute the stage.                                          |
-| `input.stage.context.cloudProvider`                   | `string` | The name of the cloud provider that will execute the stage.                                          |
-| `input.stage.context.credentials`                     | `string` | The account/credential set that will be used to execute this stage.                                  |
-| `input.stage.context.regions[]`                       | `string` | The region(s) in which the auto scaling group runs.                                            |
+| `input.stage.context.cloudProviderType`               | `string` | The type of the cloud provider that executes the stage.                                              |
+| `input.stage.context.cloudProvider`                   | `string` | The name of the cloud provider that executes the stage.                                              |
+| `input.stage.context.credentials`                     | `string` | The account/credential set that's used to execute this stage.                                        |
+| `input.stage.context.regions[]`                       | `string` | The region(s) in which the auto scaling group runs.                                                  |
 | `input.stage.context.targetHealthyRollbackPercentage` | `number` | What percentage of instances need to reach a healthy state for rollback to be considered successful. |
 
 ### input.user

@@ -78,11 +78,11 @@ Disables the **Configure Application**, **Create Application**, and **Create Pro
 
 ## Keys
 
-| Key                     | Type     | Description                                                                                                      |
-| ----------------------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
-| `input.body.job[].type` | `string` | Only available if `input.path=[tasks].` Contains the type of the task being performed.                           |
-| `input.method`          | `string` | The method of the API call for which we are hiding UI elements. This will be 'HTTP Get' to hide the projects UI. |
-| `input.path[]`          | `string` | The path to the API call that UI elements will be hiden for. This is "Projects".                                 |
+| Key                     | Type     | Description                                                                                                 |
+| ----------------------- | -------- | ----------------------------------------------------------------------------------------------------------- |
+| `input.body.job[].type` | `string` | Only available if `input.path=[tasks].` Contains the type of the task being performed.                      |
+| `input.method`          | `string` | The method of the API call for which we are hiding UI elements. This is 'HTTP Get' to hide the projects UI. |
+| `input.path[]`          | `string` | The path to the API call that UI elements are hiden for. This is "Projects".                                |
 
 ### input.user
 

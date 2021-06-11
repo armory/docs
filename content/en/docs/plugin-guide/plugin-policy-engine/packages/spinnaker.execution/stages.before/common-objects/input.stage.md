@@ -7,7 +7,7 @@ weight: 10
 
 | Key                                     | Type       | Description                                                                                               |
 | --------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------- |
-| `input.stage.endTime`                   |            | The time at which the stage finished executing. This will be blank since the stage has not yet completed. |
+| `input.stage.endTime`                   |            | The time at which the stage finished executing. This is blank since the stage has not yet completed.      |
 | `input.stage.id`                        | `string`   | The unique ID for the stage.                                                                              |
 | `input.stage.lastModified`              |            | When the stage was last modified.                                                                         |
 | `input.stage.name`                      | `string`   | The name of the stage.                                                                                    |
@@ -17,14 +17,14 @@ weight: 10
 | `input.stage.scheduledTime`             | `number`   |                                                                                                           |
 | `input.stage.startTime`                 | `number`   | The timestamp at which the stage started                                                                  |
 | `input.stage.startTimeExpiry`           |            |                                                                                                           |
-| `input.stage.status`                    | `string`   | The stages status, this will typically be 'running' when this policy is evaluated.                        |
+| `input.stage.status`                    | `string`   | The stages status, this is typically 'running' when this policy is evaluated.                             |
 | `input.stage.syntheticStageOwner`       | `string`   |                                                                                                           |
 | `input.stage.tasks[].endTime`           | `number`   | The time at which the task finished executing.                                                            |
 | `input.stage.tasks[].id`                | `string`   |                                                                                                           |
 | `input.stage.tasks[].implementingClass` | `string`   | The name of the spinnaker class that implements this task.                                                |
 | `input.stage.tasks[].loopEnd`           | `boolean`  |                                                                                                           |
 | `input.stage.tasks[].loopStart`         | `boolean`  |                                                                                                           |
-| `input.stage.tasks[].name`              | `string`   | The name of the task being executed. Each stage will execute multiple tasks to accomplish its goals.      |
+| `input.stage.tasks[].name`              | `string`   | The name of the task being executed. Each stage executes multiple tasks to accomplish its goals.          |
 | `input.stage.tasks[].stageEnd`          | `boolean`  |                                                                                                           |
 | `input.stage.tasks[].stageStart`        | `boolean`  |                                                                                                           |
 | `input.stage.tasks[].startTime`         | `number`   | The time at which the task started exeucting.                                                             |

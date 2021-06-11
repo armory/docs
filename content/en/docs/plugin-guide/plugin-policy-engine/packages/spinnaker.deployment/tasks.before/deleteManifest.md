@@ -44,7 +44,7 @@ If your policy is for controlling manual deletion triggers from within the spinn
 </details>
 
 ## Example Policy
-This example policy will prevent deleteManifest tasks from running unless they provide a grace period of 30 seconds or more.
+This example policy prevents deleteManifest tasks from running unless they provide a grace period of 30 seconds or more.
 
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.deployment.tasks.before.deleteManifest
@@ -65,7 +65,7 @@ deny["A minimum 30 second grace period must be given when deleting a kubernetes 
 | `input.deploy.location`                   | `string`  | The name of the namespace from which the manifest is being deleted.                                                                       |
 | `input.deploy.manifestName`               | `string`  | The name of the manifest being deleted.                                                                                                   |
 | `input.deploy.options.apiVersion`         | `string`  | The API version in which the manifest's kind is defined.                                                                                  |
-| `input.deploy.options.dryRun`             | `boolean` | If true then the manifest will not actually be deleted. if false it will be.                                                              |
+| `input.deploy.options.dryRun`             | `boolean` | If true then the manifest is not actually deleted. if false it is.                                                                        |
 | `input.deploy.options.gracePeriodSeconds` | `number`  | How many seconds should the resource being deleted be given to shut down gracefully before being forcefully shut down.                    |
 | `input.deploy.options.kind`               | `string`  | What is the kind of manifest that is being deleted.                                                                                       |
 | `input.deploy.options.orphanDependents`   | `boolean` | When set, delete all resources managed by this resource as well (all pods owned by a replica set). When unset, this may orphan resources. |

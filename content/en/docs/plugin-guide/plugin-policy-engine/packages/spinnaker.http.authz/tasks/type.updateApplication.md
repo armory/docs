@@ -116,8 +116,8 @@ createsTaskOfType(tasktype){
 | `input.body.job[].application.name`                  | `string`  | The name of the application being created.                                                      |
 | `input.body.job[].type`                              | `string`  | The type of task being run, in this case "createApplication".                                   |
 | `input.body.job[].user`                              | `string`  | The ID of the user to run the job as.                                                           |
-| `input.method`                                       | `string`  | The HTTP method by which the API is being called. When creating a task this will be `POST`      |
-| `input.path[]`                                       | `string`  | The API path of the job. When creating a new task this will be the array `["tasks"]`            |
+| `input.method`                                       | `string`  | The HTTP method by which the API is being called. When creating a task this is `POST`           |
+| `input.path[]`                                       | `string`  | The API path of the job. When creating a new task this is the array `["tasks"]`                 |
 | `input.user.isAdmin`                                 | `boolean` |                                                                                                 |
 | `input.user.roles[].name`                            | `string`  |                                                                                                 |
 | `input.user.roles[].source`                          | `string`  |                                                                                                 |

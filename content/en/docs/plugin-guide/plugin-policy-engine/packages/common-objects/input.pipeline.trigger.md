@@ -41,9 +41,9 @@ description: "Fields relating to external triggers that start a pipeline."
 | `input.pipeline.triggers[].expectedArtifactIds[]`          | `string`  |                                                                                          |
 | `input.pipeline.triggers[].id`                             | `string`  |                                                                                          |
 | `input.pipeline.triggers[].preferred`                      | `boolean` |                                                                                          |
-| `input.pipeline.triggers[].project`                        | `string`  | A change in what project will trigger this pipeline.                                     |
+| `input.pipeline.triggers[].project`                        | `string`  | A change in what project triggers this pipeline.                                         |
 | `input.pipeline.triggers[].rebake`                         | `boolean` | True if all baked artifacts should be rebaked, even if their inputs have not changed.    |
 | `input.pipeline.triggers[].secret`                         | `string`  | The secret that the trigger uses to authenticate with Spinnaker.                         |
-| `input.pipeline.triggers[].slug`                           | `string`  | The trigger's slug. For example, with a GitHub trigger this will be the project name.    |
+| `input.pipeline.triggers[].slug`                           | `string`  | The trigger's slug. For example, with a GitHub trigger this is the project name.         |
 | `input.pipeline.triggers[].source`                         | `string`  | The type of the source for the trigger. For some trigger types this can be used to disambiguate amongst multiple trigger invokers. |
 | `input.pipeline.triggers[].type`                           | `string`  | The configured type of the trigger.                                                      |

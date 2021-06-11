@@ -39,7 +39,7 @@ description: "A policy call is made for this type anytime a user attmpts to crea
                 }
               ]
             },
-            "email": "stephen.atwell@armory.io",
+            "email": "myUser@company.com",
             "name": "testProjectName"
           },
           "type": "upsertProject",

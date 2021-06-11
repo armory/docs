@@ -94,21 +94,21 @@ createsTaskOfType(tasktype){
 
 ## Keys
 
-| Key                                           | Type      | Description                                                                                                                        |
-| :-------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `input.body.application`                      | `string`  | The name of the application that deployed the manifest being deleted.                                                              |
-| `input.body.description`                      | `string`  | The phrase "Delete Manifest".                                                                                                      |
-| `input.body.job[].account`                    | `string`  | The spinnaker account that will delete the manifest.                                                                               |
-| `input.body.job[].cloudProvider`              | `string`  | The cloud provider running the manifest, typically "kubernetes".                                                                   |
-| `input.body.job[].location`                   | `string`  | The namespace from which the manifest will be deleted.                                                                             |
-| `input.body.job[].manifestName`               | `string`  | The name of the manifest to delete.                                                                                                |
-| `input.body.job[].options.gracePeriodSeconds` | `number`  | How many seconds the resource identified by the manifest will be given to shut down gracefully before being forcefully terminated. |
-| `input.body.job[].options.orphanDependants`   | `boolean` | If `false` dependant kubernetes resources will also be deleted, if `true` they will be orphaned.                                   |
-| `input.body.job[].reason`                     |           |                                                                                                                                    |
-| `input.body.job[].type`                       | `string`  | "deleteManifest"                                                                                                                   |
-| `input.body.job[].user`                       | `string`  | The ID of the user who started the job. More information is available under the `input.user` fields.                               |
-| `input.method`                                | `string`  | `POST`                                                                                                                             |
-| `input.path[]`                                | `string`  | `[tasks]`                                                                                                                          |
+| Key                                           | Type      | Description                                                                                                                   |
+| :-------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `input.body.application`                      | `string`  | The name of the application that deployed the manifest being deleted.                                                         |
+| `input.body.description`                      | `string`  | The phrase "Delete Manifest".                                                                                                 |
+| `input.body.job[].account`                    | `string`  | The spinnaker account that will delete the manifest.                                                                          |
+| `input.body.job[].cloudProvider`              | `string`  | The cloud provider running the manifest, typically "kubernetes".                                                              |
+| `input.body.job[].location`                   | `string`  | The namespace from which the manifest is deleted.                                                                             |
+| `input.body.job[].manifestName`               | `string`  | The name of the manifest to delete.                                                                                           |
+| `input.body.job[].options.gracePeriodSeconds` | `number`  | How many seconds the resource identified by the manifest is given to shut down gracefully before being forcefully terminated. |
+| `input.body.job[].options.orphanDependants`   | `boolean` | If `false` dependant kubernetes resources will also be deleted, if `true` they are orphaned.                                  |
+| `input.body.job[].reason`                     |           |                                                                                                                               |
+| `input.body.job[].type`                       | `string`  | "deleteManifest"                                                                                                              |
+| `input.body.job[].user`                       | `string`  | The ID of the user who started the job. More information is available under the `input.user` fields.                          |
+| `input.method`                                | `string`  | `POST`                                                                                                                        |
+| `input.path[]`                                | `string`  | `[tasks]`                                                                                                                     |
 
 ### input.user
 

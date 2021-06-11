@@ -68,7 +68,7 @@ deny["deletions in production accounts must allow a minimum of 2 minutes for gra
 | `input.deploy.location`                   | `string`  | The name of the namespace from which the manifest is being deleted.                                                                       |
 | `input.deploy.manifestName`               | `string`  | The name of the manifest being deleted.                                                                                                   |
 | `input.deploy.options.apiVersion`         | `string`  | The API version in which the manifest's kind is defined.                                                                                  |
-| `input.deploy.options.dryRun`             | `boolean` | If true then the manifest will not actually be deleted. if false it will be.                                                              |
+| `input.deploy.options.dryRun`             | `boolean` | If true then the manifest is not actually deleted. if false it is.                                                                        |
 | `input.deploy.options.gracePeriodSeconds` | `number`  | How many seconds the resource being deleted is given to shut down gracefully before being forcefully shut down.                           |
 | `input.deploy.options.kind`               | `string`  | What is the kind of manifest that is being deleted.                                                                                       |
 | `input.deploy.options.orphanDependents`   |           | When set, delete all resources managed by this resource as well (all pods owned by a replica set). When unset, this may orphan resources. |

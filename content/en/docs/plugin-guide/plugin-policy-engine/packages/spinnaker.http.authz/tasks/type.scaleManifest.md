@@ -105,20 +105,20 @@ s
 
 ## Keys
 
-| Key                              | Type      | Description                                                                                              |
-| -------------------------------- | --------- | -------------------------------------------------------------------------------------------------------- |
-| `input.body.application`         | `string`  | The name of the application for which the manifest is being scaled.                                      |
-| `input.body.description`         | `string`  | Always "Scale Manifest".                                                                                 |
-| `input.body.job[].account`       | `string`  | The name of the account in which the manifest will be scaled.                                            |
-| `input.body.job[].cloudProvider` | `string`  | The name of the cloud provider in which the manifest is being scaled.                                    |
-| `input.body.job[].location`      | `string`  | The namespace of the manifest beign scaled.                                                              |
-| `input.body.job[].manifestName`  | `string`  | The name of the manifest being scaled.                                                                   |
-| `input.body.job[].reason`        | `string`  | The reason the user entered to explain the change.                                                       |
-| `input.body.job[].replicas`      | `string`  | The desired number of running pods after scaling.                                                        |
-| `input.body.job[].type`          | `string`  | Always "scaleManifest"                                                                                   |
-| `input.body.job[].user`          | `string`  | The username of the user starting the task. It is reccomended to write rules using `input.user` instead. |
-| `input.method`                   | `string`  | `POST`                                                                                                   |
-| `input.path[]`                   | `string`  | `["tasks"]`                                                                                              |
+| Key                              | Type     | Description                                                                                              |
+| -------------------------------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| `input.body.application`         | `string` | The name of the application for which the manifest is being scaled.                                      |
+| `input.body.description`         | `string` | Always "Scale Manifest".                                                                                 |
+| `input.body.job[].account`       | `string` | The name of the account in which the manifest is scaled.                                                 |
+| `input.body.job[].cloudProvider` | `string` | The name of the cloud provider in which the manifest is being scaled.                                    |
+| `input.body.job[].location`      | `string` | The namespace of the manifest beign scaled.                                                              |
+| `input.body.job[].manifestName`  | `string` | The name of the manifest being scaled.                                                                   |
+| `input.body.job[].reason`        | `string` | The reason the user entered to explain the change.                                                       |
+| `input.body.job[].replicas`      | `string` | The desired number of running pods after scaling.                                                        |
+| `input.body.job[].type`          | `string` | Always "scaleManifest"                                                                                   |
+| `input.body.job[].user`          | `string` | The username of the user starting the task. It is reccomended to write rules using `input.user` instead. |
+| `input.method`                   | `string` | `POST`                                                                                                   |
+| `input.path[]`                   | `string` | `["tasks"]`                                                                                              |
 
 ### input.user
 

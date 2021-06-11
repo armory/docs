@@ -240,7 +240,7 @@ deny ["scaling can only be run in pipelines that are triggered by monitoring, no
 | `input.pipeline.buildTime`                         | `number`  |                                                                                                                                                   |
 | `input.pipeline.description`                       | `string`  | Description of the pipeline defined in the UI.                                                                                                    |
 | `input.pipeline.id`                                | `string`  | The unique ID of the pipeline.                                                                                                                    |
-| `input.pipeline.keepWaitingPipelines`              | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue will get canceled when the next execution starts. |
+| `input.pipeline.keepWaitingPipelines`              | `boolean` | If false and concurrent pipeline execution is disabled, then the pipelines in the waiting queue gets canceled when the next execution starts. |
 | `input.pipeline.limitConcurrent`                   | `boolean` | True if only 1 concurrent execution of this pipeline is allowed.                                                                                  |
 | `input.pipeline.name`                              | `string`  | The name of this pipeline.                                                                                                                        |
 | `input.pipeline.origin`                            | `string`  |                                                                                                                                                   |
@@ -266,7 +266,7 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 
 | Key                                                                   | Type      | Description                                                           |
 | --------------------------------------------------------------------- | --------- | --------------------------------------------------------------------- |
-| `input.stage.context.account`                                         | `string`  | The name of the account containing the manifest that will be scaled.  |
+| `input.stage.context.account`                                         | `string`  | The name of the account containing the manifest that's scaled.        |
 | `input.stage.context.cloudProvider`                                   | `string`  | The cloud provider of the account.                                    |
 | `input.stage.context.kato.last.task.id.id`                            | `string`  |                                                                       |
 | `input.stage.context.kato.result.expected`                            | `boolean` |                                                                       |
@@ -281,13 +281,13 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 | `input.stage.context.kato.tasks.[].status.failed`                     | `boolean` |                                                                       |
 | `input.stage.context.kato.tasks.[].status.retryable`                  | `boolean` |                                                                       |
 | `input.stage.context.location`                                        | `string`  | The namespace in which to scale the manifest.                         |
-| `input.stage.context.manifest.account.name`                           | `string`  | The name of the account containing the manifest that will be scaled.  |
+| `input.stage.context.manifest.account.name`                           | `string`  | The name of the account containing the manifest that's scaled.        |
 | `input.stage.context.manifest.location`                               | `string`  | The namespace in which to scale the manifest.                         |
 | `input.stage.context.manifest.name`                                   | `string`  | The type and name of the manifest to be scaled. This is the best field from which to reference the manifest name and namespace. |
 | `input.stage.context.manifestName`                                    | `string`  | The type and name of the manifest to be scaled.                       |
 | `input.stage.context.outputs.manifestNamesByNamespace.<manespace>.[]` | `string`  | The name and type of the output manifest.                             |
 | `input.stage.context.replicas`                                        | `string`  | The number of pods desired to be running following the scaling event. |
-| `input.stage.context.user`                                            | `string`  | The ID of the user as whom the stage runs.                      |
+| `input.stage.context.user`                                            | `string`  | The ID of the user as whom the stage runs.                            |
 
 ### input.stage
 
