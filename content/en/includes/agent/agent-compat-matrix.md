@@ -1,4 +1,4 @@
-> The Armory Agent is in early access. For more information, [contact us](https://www.armory.io/contact-us/).
+> The Armory Agent is in early access. For more information about using this feature, [contact us](https://www.armory.io/contact-us/).
 
 The Armory Agent is compatible with Armory Enterprise and open source Spinnaker. It consists of a lightweight service that you deploy on Kubernetes and a plugin that you install into Spinnaker. Your Clouddriver service must use a MySQL-compatible database. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions.
 
