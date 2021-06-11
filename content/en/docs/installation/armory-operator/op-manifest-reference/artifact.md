@@ -13,13 +13,14 @@ aliases:
 artifacts:
   bitbucket:
   gcs:
-  oracle:
   github:
   gitlab:
-  http:
+  gitrepo:
   helm:
-  s3:
+  http:
   maven:
+  oracle:
+  s3:  
   templates:
 ```
 ## Bitbucket
