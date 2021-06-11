@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.deployManifest"
 linktitle: "deployManifest"
-description: "A policy targeting this object is run before executing each task in a deployManifest stage."
+description: "A policy targeting this object runs before executing each task in a deployManifest stage."
 weight: 10
 ---
  See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifest-based-stages" >}}) for more information on this stage.
@@ -1650,7 +1650,7 @@ Parameters related to the stage against which the policy is executing can be fou
 | Key                                               | Type      | Description                                                                                                                                                          |
 | ------------------------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `input.pipeline.application`                      | `string`  | The name of the application to which this pipeline belongs.                                                                                                          |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                                          |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage runs as has access.                                                                                          |
 | `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                                            |
 | `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                                      |
 | `input.pipeline.description`                      | `string`  | Description of the pipeline defined in the UI.                                                                                                                       |
@@ -1709,7 +1709,7 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 | `input.stage.context.source`                         | `string`   | Specifies whether the manifest is coming from an artifact or was directly specified in the pipeline as text.                                                                         |
 | `input.stage.context.stableManifests[].location`     | `string`   | The namespace of the stable manifest.                                                                                                                                                |
 | `input.stage.context.stableManifests[].manifestName` | `string`   | The manifests name.                                                                                                                                                                  |
-| `input.stage.context.user`                           | `string`   | the ID of the user that the stage is running as.                                                                                                                                     |
+| `input.stage.context.user`                           | `string`   | the ID of the user that the stage runs as.                                                                                                                                     |
 
 ### input.user
 

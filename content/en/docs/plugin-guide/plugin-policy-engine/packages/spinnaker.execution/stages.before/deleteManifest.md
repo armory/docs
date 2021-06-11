@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.deleteManifest"
 linktitle: "deleteManifest"
-description: "A policy targeting this object is run before executing each task in a deleteManifest stage."
+description: "A policy targeting this object runs before executing each task in a deleteManifest stage."
 weight: 10
 ---
 

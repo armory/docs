@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.determineTargetServerGroup"
 linktitle: "determineTargetServerGroup"
-description: "A policy targeting this object is run before executing each task in a determineTargetServerGroup stage."
+description: "A policy targeting this object runs before executing each task in a determineTargetServerGroup stage."
 weight: 10
 ---
 
@@ -3310,7 +3310,7 @@ Parameters related to the stage against which the policy is executing can be fou
 | Key                                               | Type      | Description                                                                                                                                       |
 | ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                             |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                       |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage runs as has access.                                                                       |
 | `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                         |
 | `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                   |
 | `input.pipeline.canceled`                         | `boolean` |                                                                                                                                                   |

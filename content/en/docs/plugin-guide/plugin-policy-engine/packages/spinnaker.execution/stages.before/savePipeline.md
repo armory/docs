@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.savePipeline"
 linktitle: "savePipeline"
-description: "A policy targeting this object is run before executing each task in a savePipeline stage."
+description: "A policy targeting this object runs before executing each task in a savePipeline stage."
 weight: 10
 ---
 

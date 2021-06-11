@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.scaleManifest"
 linktitle: "scaleManifest"
-description: "A policy targeting this object is run before executing each task in a scaleManifest stage."
+description: "A policy targeting this object runs before executing each task in a scaleManifest stage."
 weight: 10
 ---
 
@@ -287,7 +287,7 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 | `input.stage.context.manifestName`                                    | `string`  | The type and name of the manifest to be scaled.                       |
 | `input.stage.context.outputs.manifestNamesByNamespace.<manespace>.[]` | `string`  | The name and type of the output manifest.                             |
 | `input.stage.context.replicas`                                        | `string`  | The number of pods desired to be running following the scaling event. |
-| `input.stage.context.user`                                            | `string`  | The ID of the user as whom the stage is running.                      |
+| `input.stage.context.user`                                            | `string`  | The ID of the user as whom the stage runs.                      |
 
 ### input.stage
 

@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.scaleDownCluster"
 linktitle: "scaleDownCluster"
-description: "A policy targeting this object is run before executing each task in a Scale Down Cluster stage."
+description: "A policy targeting this object runs before executing each task in a Scale Down Cluster stage."
 weight: 10
 ---
 
@@ -346,7 +346,7 @@ weight: 10
 | Key                                               | Type      | Description                                                                                                                                                          |
 | ------------------------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `input.pipeline.application`                      | `string`  | The name of the application to which this pipeline belongs.                                                                                                          |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                                          |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage runs as has access.                                                                                          |
 | `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                                            |
 | `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                                      |
 | `input.pipeline.canceledBy`                       |           |                                                                                                                                                                      |

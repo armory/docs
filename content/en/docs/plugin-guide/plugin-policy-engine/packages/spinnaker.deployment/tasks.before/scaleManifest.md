@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.deployment.tasks.before.scaleManifest"
 linkTitle: "scaleManifest"
-description: "A policy that is run before executing each task in a Scale Manifest stage."
+description: "A policy that runs before executing each task in a Scale Manifest stage."
 
 ---
 

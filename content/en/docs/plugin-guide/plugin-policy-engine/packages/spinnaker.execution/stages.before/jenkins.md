@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.jenkins"
 linktitle: "jenkins"
-description: "A policy targeting this object is run before executing each task in a jenkins stage."
+description: "A policy targeting this object runs before executing each task in a jenkins stage."
 weight: 10
 ---
 
@@ -3102,7 +3102,7 @@ weight: 10
 | Key                                               | Type      | Description                                                                                                                                       |
 | ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                             |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                       |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage runs as has access.                                                                       |
 | `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                         |
 | `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                   |
 | `input.pipeline.canceled`                         | `boolean` |                                                                                                                                                   |

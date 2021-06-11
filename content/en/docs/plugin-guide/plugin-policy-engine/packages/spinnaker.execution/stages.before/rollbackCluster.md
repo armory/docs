@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.execution.stages.before.rollbackCluster"
 linktitle: "rollbackCluster"
-description: "A policy targeting this object is run before executing each task in a rollbackCluster stage."
+description: "A policy targeting this object runs before executing each task in a rollbackCluster stage."
 weight: 10
 ---
 
@@ -284,7 +284,7 @@ Parameters related to the stage against which the policy is executing can be fou
 | Key                                               | Type      | Description                                                                                                                                       |
 | ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                             |
-| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage is running as has access.                                                                       |
+| `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage runs as has access.                                                                       |
 | `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                         |
 | `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                   |
 | `input.pipeline.canceledBy`                       |           |                                                                                                                                                   |
@@ -325,7 +325,7 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 | `input.stage.context.cloudProviderType`               | `string` | The type of the cloud provider that will execute the stage.                                          |
 | `input.stage.context.cloudProvider`                   | `string` | The name of the cloud provider that will execute the stage.                                          |
 | `input.stage.context.credentials`                     | `string` | The account/credential set that will be used to execute this stage.                                  |
-| `input.stage.context.regions[]`                       | `string` | The region(s) in which the auto scaling group is running.                                            |
+| `input.stage.context.regions[]`                       | `string` | The region(s) in which the auto scaling group runs.                                            |
 | `input.stage.context.targetHealthyRollbackPercentage` | `number` | What percentage of instances need to reach a healthy state for rollback to be considered successful. |
 
 ### input.user
