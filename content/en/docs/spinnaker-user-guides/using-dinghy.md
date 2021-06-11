@@ -60,8 +60,35 @@ Here is an example Dinghyfile:
 ```json
 {
   "application": "helloworldapp",
-  "appmetadata": {
-    "canaryConfigs": "true"
+  "globals": {
+    "save_app_on_update": true
+  },
+  "spec": {
+    "appmetadata": {
+      "dataSources": {
+        "enabled": [
+          "securityGroups",
+          "loadBalancers",
+          "executions",
+          "serverGroups"
+        ],
+        "disabled": [
+          "canaryConfigs"
+        ]
+      },
+      "cloudProviders": [
+        "kubernetes",
+        "aws"
+      ],
+      "customBanners": [
+        {
+          "backgroundColor": "var(--color-alert)",
+          "enabled": true,
+          "text": "Your custom banner text",
+          "textColor": "var(--color-text-on-dark)"
+        }
+      ]
+    }
   },
   "pipelines": [
     {
@@ -82,7 +109,13 @@ Here is an example Dinghyfile:
 Make sure you specify the following fields so that the Dinghyfile can create a pipeline with stages:
 
 * `.application`: The name of the application where pipelines will be created or updated.  If the application does not exist, it will be created.
-* `appmetadata`: Key/value pairs where you can define application metadata, such as whether Canary analysis is enabled (`"canaryConfigs": "true"`). You can retrieve a list of potential configs by opening the developer console for your browser when viewing the **Config** page of an application. Look for the possible parameters under the `spinnaker.application.attributes` key. Note that no validation is done for this field. 
+* `.globals`: Configuration used to define top-level variables. See [top-level variables](#top-level-variables) for more information.
+* `.globals.save_app_on_update`:  Flag that allows updates to application properties. Ssee [see Application updates](#application-updates) for more information.
+* `.appmetadata`: Key/value pairs where you can define application metadata, such as whether Canary analysis is enabled. You can retrieve a list of potential configs by opening the developer console for your browser when viewing the **Config** page of an application. Look for the possible parameters under the `spinnaker.application.attributes` key. Note that no validation is done for this field.
+* `.appmetadata.dataSources.enabled`:  An array of features that will be displayed on Spinnaker
+* `.appmetadata.dataSources.disabled`: An array of features that will not be displayed on Spinnaker
+* `.appmetadata.customBanners[*]`: An array of banners that will be displayed on Spinnaker, must only have one item checked as enabled
+* `.appmetadata.cloudProviders[*]`: An array of cloud providers for the application```
 * `.pipelines`: An array of pipelines; each item defines a pipeline within the pipeline. You can have zero, one, or more pipelines in a Dinghyfile.
 * `.pipelines[*].application`: The name of the application where pipelines will be created or updated.  It must match the top-level `.application` field.
 * `.pipelines[*].name`: The name of the pipeline.
