@@ -13,13 +13,14 @@ aliases:
 artifacts:
   bitbucket:
   gcs:
-  oracle:
   github:
   gitlab:
-  http:
+  gitrepo:
   helm:
-  s3:
+  http:
   maven:
+  oracle:
+  s3:  
   templates:
 ```
 ## Bitbucket
@@ -221,6 +222,8 @@ Note: supply `username` and `password` OR `usernamePasswordFile`
 
 ## Oracle
 
+ **spec.spinnakerConfig.config.artifacts.oracle**
+
 ```yaml
 oracle:
   enabled:
@@ -248,6 +251,8 @@ oracle:
 - `tenancyId`: Provide the OCID of the Oracle Tenancy to use.
 
 ## S3
+
+ **spec.spinnakerConfig.config.artifacts.s3**
 
 ```yaml
 s3:

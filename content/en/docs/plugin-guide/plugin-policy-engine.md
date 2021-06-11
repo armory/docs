@@ -54,20 +54,21 @@ metadata:
 spec:
   spinnakerConfig:
     profiles:
-      # the spinnaker profile will be applied to all services
+      # Configs in the spinnaker profile get applied to all services
       spinnaker:
         armory:
           policyEngine:
             opa:
-              # this should be replaced with the actual URL to your Open Policy Agent deployment
+              # Replace with the actual URL to your Open Policy Agent deployment
               baseUrl: https://opa.url:8181/v1/data
-
+              # Optional. The number of seconds that the Policy Engine will wait for a response from the OPA server. Default is 10 seconds if omitted.
+              # timeoutSeconds: <integer> 
         spinnaker:
           extensibility:
             repositories:
               policyEngine:
                 enabled: true
-                # the init container will install plugins.json to this path.
+                # The init container will install plugins.json to this path.
                 url: file:///opt/spinnaker/lib/local-plugins/policy-engine/plugins.json
       gate:
         spinnaker:
@@ -75,6 +76,12 @@ spec:
             plugins:
               Armory.PolicyEngine:
                 enabled: true
+            deck-proxy:
+              enabled: true
+              plugins:
+                Armory.PolicyEngine:
+                  enabled: true
+                  version: <PLUGIN_VERSION>
 
       orca:
         spinnaker:
@@ -199,6 +206,11 @@ spec:
                       emptyDir: {}
 ```
 
+### Optional settings
+#### Timeout settings
+
+You can configure the amount of time that the Policy Engine waits for a response from your OPA server. If you have network or latency issues, increasing the timeout can make Policy Engine more resilient. Use the following config to set the timeout in seconds:  `spec.spinnakerConfig.profiles.spinnaker.armory.policyEngine.opa.timeoutSeconds`. The default timeout is 10 seconds if you omit the config.
+
 {{% /tab %}}
 
 {{% tab name="Halyard" %}}
@@ -209,7 +221,7 @@ spec:
    armory:
      policyEngine:
        opa:
-         # Should be replaced with the  URL to your OPA deployment   
+         # Replace with the  URL to your OPA deployment   
          baseUrl: http://opa.server:8181/v1/data
    spinnaker:
      extensibility:
@@ -618,7 +630,9 @@ Open your browser's console and see if there are SSL exceptions. If there are, c
 
 ## Release notes
 
-* v0.1.2  - Added support for writing policies against the package `spinnaker.ui.entitlements.isFeatureEnabled` to show/hide the following UI buttons:
+* v0.1.4 - Adds the `opa.timeoutSeconds` property, which allows you to configure how long the Policy Engine waits for a response from the OPA server.
+* v0.1.3 - Fixes an issue introduced in v0.1.2 where the **Project Configuration** button's name was changing when Policy Engine is enabled.
+* v0.1.2  - Adds support for writing policies against the package `spinnaker.ui.entitlements.isFeatureEnabled` to show/hide the following UI buttons:
   * Create Application
   * Application Config
   * Create Project
