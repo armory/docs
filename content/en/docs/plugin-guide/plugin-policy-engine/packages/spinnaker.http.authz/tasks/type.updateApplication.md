@@ -80,7 +80,7 @@ description: "A policy call is made for this type anytime a user attmpts to edit
 ## Example Policy
 This policy disables the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions.
 
-**Note:** The Spinnaker UI is not currently able to display an error message when this policy denies the action.
+> **Note:** The UI is not currently able to display an error message when this policy denies the action.
 
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.http.authz

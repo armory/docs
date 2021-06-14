@@ -1,11 +1,11 @@
 ---
 title: spinnaker.ui.entitlements.isFeatureEnabled
 linkTitle: spinnaker.ui.entitlements.isFeatureEnabled
-Description: Allows UI elements to be hidden from the Spinnaker UI entirely.
+Description: Allows UI elements to be hidden from the UI entirely.
 weight: 10
 ---
 
->**Note:** This package is only available if you are running policy engine version 0.1.2 or later.
+> **Note:** This package is only available if you are running policy engine version 0.1.2 or later.
 
 When hiding an element from the UI via this package, Armory reccomends also disabling it in `spinnaker.http.authz`, which will prevent the same users from invoking it via API. `spinnaker.http.authz` can access the same fields as this package, but also contains more keys.
 
@@ -50,7 +50,7 @@ Note: this package only allows hiding functionality entirely. If you instead wan
 
 ## Example Policy
 
-Disables the **Configure Application**, **Create Application**, and **Create Project** buttons in the Spinnaker UI for non-admin users unless they have a particular role.
+Disables the **Configure Application**, **Create Application**, and **Create Project** buttons in the UI for non-admin users unless they have a particular role.
 
 {{< prism lang="rego" line-numbers="true" >}}
     package spinnaker.ui.entitlements.isFeatureEnabled
