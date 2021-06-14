@@ -70,7 +70,7 @@ This setting must be applied in order for policy to conditionally allow this fun
 
 ## Example Policy
 
-This example will prevent users from deleting deployed manifests from production accounts on the 'Clusters' tab of the spinnaker UI.
+This example prevents users from deleting deployed manifests from production accounts on the 'Clusters' tab of the spinnaker UI.
 
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.http.authz

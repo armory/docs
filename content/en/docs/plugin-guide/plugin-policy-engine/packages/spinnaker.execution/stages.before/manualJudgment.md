@@ -435,7 +435,7 @@ weight: 10
 
 ## Example Policy
 
-This example policy will prevent execution of any manual judgement stage that can be approved by multiple roles, or for which the approving role is not on a whitelist of approving roles.
+This example policy prevents execution of any manual judgement stage that can be approved by multiple roles, or for which the approving role is not on a whitelist of approving roles.
 
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.manualJudgment

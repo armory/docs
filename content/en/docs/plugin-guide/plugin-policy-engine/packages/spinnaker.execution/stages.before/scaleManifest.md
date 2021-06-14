@@ -216,7 +216,7 @@ See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifes
 
 ## Example Policy
 
-This policy will prevent scaleManifest stages from running in a pipeline unless it is triggered by a webhook with a source of 'prometheus'
+This policy prevents scaleManifest stages from running in a pipeline unless it is triggered by a webhook with a source of 'prometheus'
 
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.scaleManifest

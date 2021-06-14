@@ -2,7 +2,7 @@
 title: Policy Engine Packages
 linkTitle: Packages
 description: >
-  Customize policy enforcement around Spinnaker actions.
+  Customize policy enforcement around Armory Enterprise actions.
 ---
 
 ## Packages

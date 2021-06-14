@@ -288,7 +288,7 @@ weight: 10
 
 ## Example Policy
 
-This policy will prevent a pipeline from starting execution of other pipelines unless it waits for them to complete before continuing.
+This policy prevents a pipeline from starting execution of other pipelines unless it waits for them to complete before continuing.
 
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.pipeline
