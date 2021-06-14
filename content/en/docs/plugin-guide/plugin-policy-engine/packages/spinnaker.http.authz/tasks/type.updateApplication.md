@@ -78,7 +78,7 @@ description: "A policy call is made for this type anytime a user attmpts to edit
 </details>
 
 ## Example Policy
-This policy will disable the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions.
+This policy disables the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions.
 
 **Note:** The Spinnaker UI is not currently able to display an error message when this policy denies the action.
 

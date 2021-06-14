@@ -48,9 +48,9 @@ Description: This page collects and indexes all the example poplicies in the Pol
 
 - This policy simply grants all users access to all APIs. It is a good policy to enable on `spinnaker.http.authz` if you do not need a more complicated policy. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/_index.md" >}} )
 
-- This policy will disable the ability to create new applications for non-admin users unless their role is 'applicationCreators' ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/tasks/type.createApplication.md" >}} )
+- This policy disables the ability to create new applications for non-admin users unless their role is 'applicationCreators' ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/tasks/type.createApplication.md" >}} )
 
-- This policy will disable the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/tasks/type.createApplication.md" >}} )
+- This policy disables the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/tasks/type.createApplication.md" >}} )
 
 - This example will prevent users from deleting deployed manifests from production accounts on the 'Clusters' tab of the spinnaker UI. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/tasks/type.deleteManifest.md" >}} )
 
@@ -58,7 +58,7 @@ Description: This page collects and indexes all the example poplicies in the Pol
 
 - This policy prevents non-admin users from initiating a scaleManifest from the 'clusters' tab of an application. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/tasks/type.scaleManifest.md" >}} )
 
-- This policy will disable the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/tasks/type.updateApplication.md" >}} )
+- This policy disables the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/tasks/type.updateApplication.md" >}} )
 
 - Prevents editing manifests from outside of a pipeline on production accounts. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/tasks/type.deployManifest.md" >}} )
 
