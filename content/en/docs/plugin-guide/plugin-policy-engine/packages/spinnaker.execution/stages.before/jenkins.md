@@ -3101,7 +3101,7 @@ weight: 10
 
 | Key                                               | Type      | Description                                                                                                                                       |
 | ------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `input.pipeline.application`                      | `string`  | The name of the Spinnaker application to which this pipeline belongs.                                                                             |
+| `input.pipeline.application`                      | `string`  | The name of the application to which this pipeline belongs.                                                                             |
 | `input.pipeline.authentication.allowedAccounts[]` | `string`  | The list of accounts to which the user this stage runs as has access.                                                                       |
 | `input.pipeline.authentication.user`              | `string`  | The Spinnaker user initiating the change.                                                                                                         |
 | `input.pipeline.buildTime`                        | `number`  |                                                                                                                                                   |
