@@ -1,10 +1,8 @@
 ---
 title: "input.user"
 linkTitle: "input.user"
-description: "The `input.user` object is present in most packages."
+description: "The `input.user` object is present in most packages. This object provides information about the user performing the action. This can be used to restrict actions by role."
 ---
-
-This object provides information about the user performing the action. This can be used to restrict actions by role.
 
 The following function can be used in your policies to determine if a user has a particular role assigned to it:
 
