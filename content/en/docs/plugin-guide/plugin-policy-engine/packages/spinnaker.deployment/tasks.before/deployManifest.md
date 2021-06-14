@@ -196,5 +196,5 @@ deny["Manifest is missing a required annotation"] {
 | `input.deploy.namespaceOverride` |           | The namespace the job should deploy to                                                                         |
 | `input.deploy.services`          |           | The services that are having their traffic managed, if any.                                                    |
 | `input.deploy.source`            | `string`  |                                                                                                                |
-| `input.deploy.strategy`          |           | The rollout strategy tells Spinnaker what to do with the previous version(s) of the ReplicaSet in the cluster. |
+| `input.deploy.strategy`          |           | The rollout strategy tells Armory Enterprise what to do with the previous version(s) of the ReplicaSet in the cluster. |
 | `input.deploy.versioned`         |           |                                                                                                                |
