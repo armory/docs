@@ -32,7 +32,7 @@ Description: This page collects and indexes all the example poplicies in the Pol
 
 - This example prevents patchManifest stages from running unless they require recording the patch annotation. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.execution/stages.before/patchManifest.md" >}} )
 
-- Disables the **Configure Application**, **Create Application**, and **Create Project** buttons in the Spinnaker UI for non-admin users unless they have a particular role. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.ui.entitlements.isFeatureEnabled/_index.md" >}} )
+- Disables the **Configure Application**, **Create Application**, and **Create Project** buttons in the UI for non-admin users unless they have a particular role. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.ui.entitlements.isFeatureEnabled/_index.md" >}} )
 
 - Requires a manual approval by the `qa` role, and a manual approval by the `infosec` role happen earlier in a pipeline than any deployment to a production account. Production accounts must have been loaded into the OPA data document in an array named `production_accounts`: ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/opa.pipelines.md" >}} )
 
