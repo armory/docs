@@ -44,7 +44,7 @@ See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifes
 
 ## Example Policy
 
-This example policy requires delete manifest stages to provide a minimum 2 minute grace period when run in production.
+This example policy requires Delete Manifest stages to provide a minimum 2 minute grace period when run in production.
 
 {{< prism lang="rego" line-numbers="true" >}}
 package spinnaker.execution.stages.before.deleteManifest
