@@ -49,7 +49,7 @@ You can use the sample configuration to install the plugin, but keep the followi
 
 - Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use without the `v` prefix. For a list of versions, see [Release notes](#release-notes).
 
-- This configuration must go into `spinnakerservice.yml`, it cannot be patched in by `kustomization.yml`.
+- This configuration must go into `spinnakerservice.yml`. It cannot be patched in through Kustomize.
 
 
 <details><summary>Show the manifest</summary>
