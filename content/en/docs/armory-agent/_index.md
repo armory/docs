@@ -86,8 +86,7 @@ What Spinnaker can do in the target cluster is limited by what it is running as:
 
 Communications are secured with TLS and optionally mTLS.
 
-Furthermore, in [Agent mode](#agent-mode), Spinnaker never gets credentials and account registration is dynamic.
-
+Furthermore, in [Agent mode](#agent-mode), Armory Enterprise never gets credentials and account registration is dynamic.
 
 ## Scalability
 
