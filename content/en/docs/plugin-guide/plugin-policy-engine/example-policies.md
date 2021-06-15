@@ -18,7 +18,7 @@ Description: This page collects and indexes all the example poplicies in the Pol
 
 - This policy requires that a set of annotations have been applied to any manifests that are being deployed. Specifically the annotations 'app' and 'owner' must have been applied. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.execution/stages.before/deployManifest.md" >}} )
 
-- This policy requires prevents exposing a set of ports that are unencrypted buy have encrypted alternatives. Specifically this policy prevents exposing HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, and SMTP from a pod, deployment, or replicaset. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.execution/stages.before/deployManifest.md" >}} )
+- This policy prevents exposing a set of ports that are unencrypted buy have encrypted alternatives. Specifically this policy prevents exposing HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, and SMTP from a pod, deployment, or replicaset. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.execution/stages.before/deployManifest.md" >}} )
 
 - This policy checks whether or not the image being approved is on a list of imaged that are approved for deployment. The list of what images are approved must seperately be uploaded to the OPA data document ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.execution/stages.before/deployManifest.md" >}} )
 
@@ -61,4 +61,3 @@ Description: This page collects and indexes all the example poplicies in the Pol
 - This policy disables the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/tasks/type.updateApplication.md" >}} )
 
 - Prevents editing manifests from outside of a pipeline on production accounts. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/tasks/type.deployManifest.md" >}} )
-
