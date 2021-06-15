@@ -41,7 +41,7 @@ spec:
   expose:
     type: service
     service:
-      type: loadbalancer
+      type: LoadBalancer
 ```
 
 Save and apply the configuration. After some time, you can see the LoadBalancer CNAMEs that were created:
