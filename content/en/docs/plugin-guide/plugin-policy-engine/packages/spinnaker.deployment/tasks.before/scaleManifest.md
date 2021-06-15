@@ -44,7 +44,7 @@ deny["production accounts require >1 replicas to avoid a single point of failure
 
 | Key                         | Type     | Description                                                   |
 | --------------------------- | -------- | ------------------------------------------------------------- |
-| `input.deploy.account`      | `string` | The spinnaker account being deployed to.                      |
+| `input.deploy.account`      | `string` | The account being deployed to.                      |
 | `input.deploy.credentials`  | `string` | The credentials used to access the account.                   |
 | `input.deploy.location`     | `string` | The name of the namespace the manifest is being deleted from. |
 | `input.deploy.manifestName` | `string` | The name of the manifest being deleted.                       |

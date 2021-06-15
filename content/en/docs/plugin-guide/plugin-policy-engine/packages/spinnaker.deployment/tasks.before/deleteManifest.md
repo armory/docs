@@ -58,7 +58,7 @@ deny["A minimum 30 second grace period must be given when deleting a kubernetes 
 
 | Key                                       | Type      | Description                                                                                                                               |
 | ----------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `input.deploy.account`                    | `string`  | The spinnaker account being deployed to.                                                                                                  |
+| `input.deploy.account`                    | `string`  | The account being deployed to.                                                                                                  |
 | `input.deploy.credentials`                | `string`  | The credentials to use to access the account.                                                                                             |
 | `input.deploy.labelSelectors.empty`       | `boolean` |                                                                                                                                           |
 | `input.deploy.labelSelectors.notEmpty`    | `boolean` |                                                                                                                                           |

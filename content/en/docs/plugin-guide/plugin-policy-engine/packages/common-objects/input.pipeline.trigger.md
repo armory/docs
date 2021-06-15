@@ -33,7 +33,7 @@ description: "Fields relating to external triggers that start a pipeline."
 | `input.pipeline.trigger.preferred`                         | `boolean` |                                                                                          |
 | `input.pipeline.trigger.rebake`                            | `boolean` |                                                                                          |
 | `input.pipeline.trigger.resolvedExpectedArtifacts[]`       | `[array]` | See [artifacts]({{< ref "artifacts.md" >}}) for more information.                        |
-| `input.pipeline.trigger.type`                              | `string`  | The type of trigger.                                                                     |
+| `input.pipeline.trigger.type`                              | `string`  | The type of trigger. See [Triggering Pipelines - Overview](https://spinnaker.io/guides/user/pipeline/triggers-with-artifactsrewrite/) for more information. |
 | `input.pipeline.trigger.user`                              | `string`  | For triggers of type `git`, the user or organization associated with the git repository. |
 | `input.pipeline.triggers[].branch`                         | `string`  | Which branch of the git repository triggers this pipeline.                               |
 | `input.pipeline.triggers[].dryRun`                         | `boolean` |                                                                                          |

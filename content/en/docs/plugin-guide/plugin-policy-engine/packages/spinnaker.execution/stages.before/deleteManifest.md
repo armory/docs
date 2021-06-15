@@ -61,7 +61,7 @@ deny["deletions in production accounts must allow a minimum of 2 minutes for gra
 
 | Key                                       | Type      | Description                                                                                                                               |
 | ----------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `input.deploy.account`                    | `string`  | The spinnaker account being deployed to.                                                                                                  |
+| `input.deploy.account`                    | `string`  | The account being deployed to.                                                                                                  |
 | `input.deploy.credentials`                | `string`  | The credentials to use to access the account.                                                                                             |
 | `input.deploy.labelSelectors.empty`       | `boolean` |                                                                                                                                           |
 | `input.deploy.labelSelectors.notEmpty`    | `boolean` |                                                                                                                                           |

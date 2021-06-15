@@ -182,7 +182,7 @@ deny["Manifest is missing a required annotation"] {
 
 | Key                              | Type      | Description                                                                                                    |
 | -------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------- |
-| `input.deploy.account`           | `string`  | The spinnaker account being deployed to.                                                                       |
+| `input.deploy.account`           | `string`  | The account being deployed to.                                                                       |
 | `input.deploy.credentials`       | `string`  | The credentials to use to access the account.                                                                  |
 | `input.deploy.enableTraffic`     | `boolean` | Allow Armory Enterprise to associate each ReplicaSet deployed in this stage with one or more services and manage traffic based on your selected rollout strategy options. |
 | `input.deploy.manifest`          | `[array]` | An array of the manifests being deployed                                                                       |

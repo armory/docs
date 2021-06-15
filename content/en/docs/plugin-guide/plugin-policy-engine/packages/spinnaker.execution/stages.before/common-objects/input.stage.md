@@ -1,9 +1,11 @@
 ---
 title: "input.stage"
 linkTitle: "input.stage"
-description: "The `input.stage` object is present in most `spinnaker.execution.stages.before` packages."
+description: "The `input.stage` object is present in most `spinnaker.execution.stages.before` packages, and contains stage metadata."
 weight: 10
 ---
+
+Since most policies are written to be stage specific, the values in `input.stage` are less likely to be useful when creating policy scripts.
 
 | Key                                     | Type       | Description                                                                                               |
 | --------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------- |
