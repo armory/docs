@@ -5,6 +5,8 @@ description: "Enable the Policy Engine and configure an OPA server. When enabled
 ---
 ![Proprietary](/images/proprietary.svg)
 
+> If you are enabling the Policy Engine for the first time, Armory recommends using the [Policy Engine Plugin]({{< ref "policy-engine-plug-enable.md" >}}) instead. The plugin has additional features not available in the extension.
+
 ## Enabling the Policy Engine
 
 The steps to enable the Policy Engine vary based on whether you use the [Operator](#enabling-policy-engine-using-operator) or [Halyard](#enabling-policy-engine-using-halyard).

@@ -4,7 +4,7 @@ linkTitle: Example Policies
 Description: This page collects and indexes all the example poplicies in the Policy Engine package documentation.
 ---
 
-- Requires a reason to be provided for any rollback. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.execution/stages.before/undoRolloutManifest.md" >}} )
+- Requires a reason to be provided for any rollback. ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.execution/stages.before/undoRolloutManifest.md" >}})
 
 - This policy will prevent scaleManifest stages from running in a pipeline unless it is triggered by a webhook with a source of 'prometheus' ({{< linkWithTitle "docs/plugin-guide/plugin-policy-engine/packages/spinnaker.execution/stages.before/scaleManifest.md" >}} )
 

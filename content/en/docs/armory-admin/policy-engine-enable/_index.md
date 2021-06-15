@@ -1,18 +1,21 @@
 ---
-title: Policy Engine 
+title: Policy Engine for Armory Enterprise
+linkTitle: Policy Engine
 description: >
-  Enable Policy Engine to enforce policies on your Armory Enterprise pipelines. Policies are written in OPA and run against pipelines either at save time or runtime.
+  Enable the Policy Engine to enforce policies on your Armory Enterprise instance. Policies are written in OPA and can help you make sure that best practices are followed.
+aliases:
+  - /docs/plugin-guide/plugin-policy-engine/
 ---
 
 ![Proprietary](/images/proprietary.svg)
 
 ## Overview
 
-The Armory Policy Engine is designed to allow enterprises more complete control of their software delivery process by providing them with the hooks necessary to perform more extensive verification of their pipelines and processes in Spinnaker. This policy engine is backed by [Open Policy Agent](https://www.openpolicyagent.org/)(OPA) and uses input style documents to perform validations:
+The Armory Policy Engin is a proprietary feature for Armory Enterprise that is designed to allow you more complete control over the software delivery process. The Policy Engine provides the hooks necessary to perform  extensive verification of pipelines and processes in Armory Enterprise. The Policy Engine uses the [Open Policy Agent](https://www.openpolicyagent.org/)(OPA) and input style documents to perform validations on the following:
 
 * **Save time validation** - Validate pipelines as they're created/modified. This validation operates on all pipelines using a fail closed model. This means that if you have the Policy Engine enabled but no policies configured, the Policy Engine prevents you from creating or updating any pipeline.
 * **Runtime validation** - Validate deployments as a pipeline is executing. This validation only operates on tasks that you have explicitly created policies for. Tasks with no policies are not validated.
-* **Entitlements**: Control what actions can be taken based on a user's role. (Only available as part of the plugin.)
+* **Entitlements using API Authorization** - Control what actions can be taken based on a user's role. (Only available as part of the plugin.)
 
 The Policy Engine exists as a plugin, which is its newer iteration, and as an extension of Armory Enterprise. The plugin has additional features that are not present in the extension. If you are getting started with the Policy Engine, Armory recommends using the plugin version of the Policy Engine. If you want to migrate from the extension to the plugin, see [Migrating to the Policy Engine Plugin](#migrating-to-the-policy-engine-plugin).
 
@@ -168,10 +171,37 @@ spec:
 
 ## Migrating to the Policy Engine Plugin
 
-To migrate to the Policy Engine Plugin from the extension, you need to do the following:
+To migrate to the Policy Engine Plugin from the extension, perform the following steps:
 
-1. Disable the Policy Engine extension.
-2. Enable the plugin
-3. Deploy Armory Enterprise to apply your changes.
+1. Disable the Policy Engine extension. You cannot run both the extension and plugin at the same time. You must disable the extension project and then enable the plugin.
+   * **Halyard**: Remove the following snippet from `.hal/default/profiles/spinnaker-local.yml`:
+   ```yaml
+   armory:
+     opa:
+       enabled: true
+       url: <OPA Server URL>:<port>/v1
+   ```
+   * **Operator**:  Remove the `opa` blocks from the Front50 and Clouddriver sections of your `SpinnakerService` manifest:
+   ```yaml
+   apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+   kind: SpinnakerService
+   metadata:
+     name: spinnaker
+   spec:
+     spinnakerConfig:
+       profiles:
+         front50: #Enables Save time validation of policies
+           armory:
+             opa:
+               enabled: true
+               url: <OPA Server URL>:<port>/v1
+         clouddriver: #Enables Runtime validation of policies
+           armory:
+             opa:
+               enabled: true
+               url: <OPA Server URL>:<port>/v1
+   ```
 
-You do not need to create a new OPA server or migrate your policies. When enabling the plugin, provide the information for your existing OPA server.
+   > If you redeploy Armory Enterprise and apply these changes before you enable the Policy Engine Plugin, no policies will get enforced.
+
+2. Enable the [Policy Engine Plugin]({{< ref "policy-engine-plug-enable" >}}).  If you have an existing OPA server with policies configured that you want to use, you can provide that OPA server in the plugin configuration. You do not need to create a new OPA server or migrate your policies. 

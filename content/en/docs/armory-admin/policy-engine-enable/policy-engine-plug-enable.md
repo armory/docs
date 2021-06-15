@@ -4,207 +4,315 @@ linkTitle: Enable Policy Engine Plugin
 description: "Enable the Policy Engine and configure an OPA server. When enabled, the Policy Engine can perform save time or runtime validation on your Spinnaker pipelines."
 ---
 
-## Enabling the Policy Engine
+## Setup
 
-The steps to enable the Policy Engine vary based on whether you use the [Operator](#enabling-policy-engine-using-operator) or [Halyard](#enabling-policy-engine-using-halyard).
+The Policy Engine Plugin can be enabled using one of the following methods:
 
-### Enabling Policy Engine using Operator
+1. Docker image as an init container on each affected service
 
-Add the following section to `SpinnakerService` manifest:
+1. Using a remote plugin repository
+
+In addition to the plugin, you need access to an Open Policy Agent (OPA) deployment. If you have not deployed OPA before, see [Deploy an OPA server]({{< ref "policy-engine-enable#deploy-an-opa-server" >}}).
+
+### Docker image as init container
+
+{{< tabs name="enable-plugin" >}}
+{{% tab name="Operator" %}}
+
+You can use the sample configuration to install the plugin, but keep the following in mind:
+
+- The `patchesStrategicMerge` section for each service is unique. Do not reuse the snippet from one service for the other services.
+
+- Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use without the `v` prefix. For a list of versions, see [Release notes](#release-notes).
+
+- This configuration must go into `spinnakerservice.yml`. It cannot be patched in through Kustomize.
+
+
+<details><summary>Show the manifest</summary>
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+apiVersion: spinnaker.armory.io/v1alpha2
 kind: SpinnakerService
 metadata:
   name: spinnaker
 spec:
   spinnakerConfig:
     profiles:
-      front50: #Enables Save time validation of policies
+      # Configs in the spinnaker profile get applied to all services
+      spinnaker:
         armory:
-          opa:
-            enabled: true
-            url: <OPA Server URL>:<port>/v1
-      clouddriver: #Enables Runtime validation of policies
-        armory:
-          opa:
-            enabled: true
-            url: <OPA Server URL>:<port>/v1
+          policyEngine:
+            opa:
+              # Replace with the actual URL to your Open Policy Agent deployment
+              baseUrl: https://opa.url:8181/v1/data
+              # Optional. The number of seconds that the Policy Engine will wait for a response from the OPA server. Default is 10 seconds if omitted.
+              # timeoutSeconds: <integer> 
+        spinnaker:
+          extensibility:
+            repositories:
+              policyEngine:
+                enabled: true
+                # The init container will install plugins.json to this path.
+                url: file:///opt/spinnaker/lib/local-plugins/policy-engine/plugins.json
+      gate:
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.PolicyEngine:
+                enabled: true
+            deck-proxy:
+              enabled: true
+              plugins:
+                Armory.PolicyEngine:
+                  enabled: true
+                  version: <PLUGIN_VERSION>
+
+      orca:
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.PolicyEngine:
+                enabled: true
+
+      front50:
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.PolicyEngine:
+                enabled: true
+
+      clouddriver:
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.PolicyEngine:
+                enabled: true
+  kustomize:
+    front50:
+      deployment:
+        patchesStrategicMerge:
+          - |
+            spec:
+              template:
+                spec:
+                  initContainers:
+                    - name: policy-engine-install
+                      image: armory/policy-engine-plugin:<PLUGIN_VERSION>
+                      imagePullPolicy: Always
+                      args:
+                        - -install-path
+                        - /opt/policy-engine-plugin/target
+                      volumeMounts:
+                        - mountPath: /opt/policy-engine-plugin/target
+                          name: policy-engine-plugin-vol
+                  containers:
+                    - name: front50
+                      volumeMounts:
+                        - mountPath: /opt/spinnaker/lib/local-plugins
+                          name: policy-engine-plugin-vol
+                  volumes:
+                    - name: policy-engine-plugin-vol
+                      emptyDir: {}
+    orca:
+      deployment:
+        patchesStrategicMerge:
+          - |
+            spec:
+              template:
+                spec:
+                  initContainers:
+                    - name: policy-engine-install
+                      image: armory/policy-engine-plugin:<PLUGIN_VERSION>
+                      imagePullPolicy: Always
+                      args:
+                        - -install-path
+                        - /opt/policy-engine-plugin/target
+                      volumeMounts:
+                        - mountPath: /opt/policy-engine-plugin/target
+                          name: policy-engine-plugin-vol
+                  containers:
+                    - name: orca
+                      volumeMounts:
+                        - mountPath: /opt/spinnaker/lib/local-plugins
+                          name: policy-engine-plugin-vol
+                  volumes:
+                    - name: policy-engine-plugin-vol
+                      emptyDir: {}
+    gate:
+      deployment:
+        patchesStrategicMerge:
+          - |
+            spec:
+              template:
+                spec:
+                  initContainers:
+                    - name: policy-engine-install
+                      image: armory/policy-engine-plugin:<PLUGIN_VERSION>
+                      imagePullPolicy: Always
+                      args:
+                        - -install-path
+                        - /opt/policy-engine-plugin/target
+                      volumeMounts:
+                        - mountPath: /opt/policy-engine-plugin/target
+                          name: policy-engine-plugin-vol
+                  containers:
+                    - name: gate
+                      volumeMounts:
+                        - mountPath: /opt/spinnaker/lib/local-plugins
+                          name: policy-engine-plugin-vol
+                  volumes:
+                    - name: policy-engine-plugin-vol
+                      emptyDir: {}
+    clouddriver:
+      deployment:
+        patchesStrategicMerge:
+          - |
+            spec:
+              template:
+                spec:
+                  initContainers:
+                    - name: policy-engine-install
+                      image: armory/policy-engine-plugin:<PLUGIN_VERSION>
+                      imagePullPolicy: Always
+                      args:
+                        - -install-path
+                        - /opt/policy-engine-plugin/target
+                      volumeMounts:
+                        - mountPath: /opt/policy-engine-plugin/target
+                          name: policy-engine-plugin-vol
+                  containers:
+                    - name: clouddriver
+                      volumeMounts:
+                        - mountPath: /opt/spinnaker/lib/local-plugins
+                          name: policy-engine-plugin-vol
+                  volumes:
+                    - name: policy-engine-plugin-vol
+                      emptyDir: {}
 ```
 
-*Note: There must be a trailing /v1 on the URL. This extension is only compatible with OPA's v1 API.*
+### Optional settings
+#### Timeout settings
 
-If you are using an in-cluster OPA instance (such as one set up with the instructions below), Spinnaker can access OPA via the Kubernetes service DNS name. The following example configures Spinnaker to connect with an OPA server at `http://opa.opa:8181`:
+You can configure the amount of time that the Policy Engine waits for a response from your OPA server. If you have network or latency issues, increasing the timeout can make Policy Engine more resilient. Use the following config to set the timeout in seconds:  `spec.spinnakerConfig.profiles.spinnaker.armory.policyEngine.opa.timeoutSeconds`. The default timeout is 10 seconds if you omit the config.
+
+</details>
+
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
+
+1. Add the following to `profiles/spinnaker-local.yml`:
+
+   ```yaml
+   armory:
+     policyEngine:
+       opa:
+         # Replace with the  URL to your OPA deployment   
+         baseUrl: http://opa.server:8181/v1/data
+   spinnaker:
+     extensibility:
+       repositories:
+         policyEngine:
+           enabled: true
+           url: file:///opt/spinnaker/lib/local-plugins/policy-engine/plugins.json
+   ```
+
+1. For each service you want to enable the plugin for, add the following snippet to its local profile. For example, add it to the file `profiles/gate-local.yml` for Gate.
+
+   ```yaml
+   spinnaker:
+     extensibility:
+       plugins:
+           Armory.PolicyEngine:
+               enabled: true
+   ```
+
+1. Add the following to `service-settings/gate.yml`, `service-settings/orca.yml`, `service-settings/clouddriver.yml` and `service-settings/front50.yml`:
+
+   ```yaml
+   kubernetes:
+     volumes:
+     - id: policy-engine-install
+       type: emptyDir
+       mountPath: /opt/spinnaker/lib/local-plugins
+   ```
+
+1. Configure Halyard by updating your `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use without the `v` prefix: 
+
+   ```yaml
+   deploymentConfigurations:
+     - name: default
+       deploymentEnvironment:
+         initContainers:
+           front50:
+             - name: policy-engine-install
+               image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
+               args:
+                 - -install-path
+                 - /opt/policy-engine-plugin/target
+               volumeMounts:
+                 - mountPath: /opt/policy-engine-plugin/target
+                   name: policy-engine-install
+           clouddriver:
+             - name: policy-engine-install
+               image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
+               args:
+                 - -install-path
+                 - /opt/policy-engine-plugin/target
+               volumeMounts:
+                 - mountPath: /opt/policy-engine-plugin/target
+                   name: policy-engine-install
+           gate:
+             - name: policy-engine-install
+               image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
+               args:
+                 - -install-path
+                 - /opt/policy-engine-plugin/target
+               volumeMounts:
+                 - mountPath: /opt/policy-engine-plugin/target
+                   name: policy-engine-install
+           orca:
+             - name: policy-engine-install
+               image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
+               args:
+                 - -install-path
+                 - /opt/policy-engine-plugin/target
+               volumeMounts:
+                 - mountPath: /opt/policy-engine-plugin/target
+                   name: policy-engine-install
+   ```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+### Remote plugin repository
+
+The configuration is mostly identical to the Docker image method but omits all volumes and init container configurations. Additionally, replace all occurrences of the following:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      front50: #Enables Save time validation of policies
-        armory:
-          opa:
-            enabled: true
-            url: http://opa.opa:8181/v1
-      clouddriver: #Enables Runtime validation of policies
-        armory:
-          opa:
-            enabled: true
-            url: http://opa.opa:8181/v1
+url: file:///opt/spinnaker/lib/local-plugins/policy-engine/plugins.json
 ```
 
-Deploy the changes (assuming that Spinnaker lives in the: `spinnaker` namespace and the manifest file is named `spinnakerservice.yml`:
-
-```bash
-kubectl -n spinnaker apply -f spinnakerservice.yml
-```
-
-### Enabling Policy Engine using Halyard
-
-Add the following configuration to `.hal/default/profiles/spinnaker-local.yml`:
+with:
 
 ```yaml
-armory:
-  opa:
-    enabled: true
-    url: <OPA Server URL>:<port>/v1
+url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
 ```
 
-*Note: There must be a trailing `/v1` on the URL. The Policy Engine is only compatible with OPA's v1 API.*
+If you do not omit the `volume` and `initContainers` configurations for the `patchesStrategicMerge` section, the pods for Armory may not start.
 
-If you only want to perform a certain type of validation, you can add the corresponding configuration to the following files instead:
+### Finish the setup
 
-| Feature                 | File                                          |
-|-------------------------|-----------------------------------------------|
-| Save time Validation     | `.hal/default/profiles/front50-local.yml`     |
-| Runtime Validation      | `.hal/default/profiles/clouddriver-local.yml` |
+Once Policy Engine is enabled, you must authorize API calls in order to use the Armory (or OSS Spinnaker) UI. To do this, you need to load a policy into the Policy Engine that is similar to the following:  
 
-You must also connect Spinnaker to an OPA server. This can be in a separate Kubernetes cluster or an in-cluster OPA server (such as one set up with the instructions below). For in-cluster OPA servers, Spinnaker can access OPA via the Kubernetes service DNS name. For example, add the following configuration to `spinnaker-local.yml` to allow Spinnaker to connect to an OPA server at `http://opa.opa:8181`:
-
-```yaml
-armory:
-  opa:
-    enabled: true
-    url: http://opa.opa:8181/v1
+```rego
+package spinnaker.http.authz
+default allow = true
+allow {
+    input.user.isAdmin == true
+}
 ```
 
-After you enable the Policy Engine, deploy your changes:
+This basic policy allows all API calls. For information about constructing a more restrictive policy, see [API authorization](#api-authorization).
 
-```bash
-hal deploy apply
-```
-
-Once Spinnaker finishes redeploying, Policy Engine can evaluate pipelines based on your policies.
-
-## Troubleshooting
-
-**Debugging runtime validation**
-
-You can make debugging issues with runtime validation for your pipelines easier by adjusting the logging level to `DEBUG`. Add the following snippet to `hal/default/profiles/spinnaker-local.yml`:
-
-```yaml
-logging:
-  level:
-    com.netflix.spinnaker.clouddriver.kubernetes.OpaDeployDescriptionValidator: DEBUG
-    io.armory.spinnaker.front50.validator.validator.OpenPolicyAgentValidator: INFO
-```
-
-Once the logging level is set to `DEBUG`, you can start seeing information similar to the following in the logs:
-
-```
-2020-03-03 21:42:05.131 DEBUG 1 --- [.0-7002-exec-10] c.n.s.c.k.OpaDeployDescriptionValidator  : Passing {"input":{"deploy":{"credentials":"EKS-WEST","manifest":null,"manifests":[{"metadata":{"labels":{"app":"nginx"},"name":"policyapp","namespace":"dev"},"apiVersion":"apps/v1","kind":"Deployment","spec":{"replicas":1,"selector":{"matchLabels":{"app":"nginx"}},"template":{"metadata":{"labels":{"app":"nginx"}},"spec":{"containers":[{"image":"away168/nginx:latest","name":"nginx","ports":[{"containerPort":80}]}]}}}},{"metadata":{"name":"policyapp-service","namespace":"dev"},"apiVersion":"v1","kind":"Service","spec":{"ports":[{"port":80,"protocol":"TCP","targetPort":80}],"selector":{"app":"nginx"},"type":"LoadBalancer"}}],"moniker":{"app":"policyapp","cluster":null,"detail":null,"stack":null,"sequence":null},"requiredArtifacts":[],"optionalArtifacts":[],"versioned":null,"source":"text","manifestArtifact":null,"namespaceOverride":null,"enableTraffic":true,"services":null,"strategy":null,"events":[],"account":"EKS-WEST"}}} to OPA
-```
-
-From this information, you can extract the exact JSON being enforced. You can use it to help you understand how to build policies.
-
-Note: The following ConfigMap is missing some annotations that Spinnaker adds later.
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  annotations:
-    artifact.spinnaker.io/location: dev
-    artifact.spinnaker.io/name: policyapp
-    artifact.spinnaker.io/type: kubernetes/deployment
-    deployment.kubernetes.io/revision: '4'
-    kubectl.kubernetes.io/last-applied-configuration: >
-      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"artifact.spinnaker.io/location":"dev","artifact.spinnaker.io/name":"policyapp","artifact.spinnaker.io/type":"kubernetes/deployment","moniker.spinnaker.io/application":"policyapp","moniker.spinnaker.io/cluster":"deployment
-      policyapp"},"labels":{"app":"nginx","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"policyapp"},"name":"policyapp","namespace":"dev"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"nginx"}},"template":{"metadata":{"annotations":{"artifact.spinnaker.io/location":"dev","artifact.spinnaker.io/name":"policyapp","artifact.spinnaker.io/type":"kubernetes/deployment","moniker.spinnaker.io/application":"policyapp","moniker.spinnaker.io/cluster":"deployment
-      policyapp"},"labels":{"app":"nginx","app.kubernetes.io/managed-by":"spinnaker","app.kubernetes.io/name":"policyapp"}},"spec":{"containers":[{"image":"away168/nginx:latest","name":"nginx","ports":[{"containerPort":80}]}]}}}}
-    moniker.spinnaker.io/application: policyapp
-    moniker.spinnaker.io/cluster: deployment policyapp
-  creationTimestamp: '2020-03-03T18:40:23Z'
-  generation: 4
-  labels:
-    app: nginx
-    app.kubernetes.io/managed-by: spinnaker
-    app.kubernetes.io/name: policyapp
-  name: policyapp
-  namespace: dev
-  resourceVersion: '947262'
-  selfLink: /apis/extensions/v1beta1/namespaces/dev/deployments/policyapp
-  uid: 711a1e92-5d7e-11ea-9dde-067e9dc02856
-spec:
-  progressDeadlineSeconds: 600
-  replicas: 1
-  revisionHistoryLimit: 10
-  selector:
-    matchLabels:
-      app: nginx
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
-  template:
-    metadata:
-      annotations:
-        artifact.spinnaker.io/location: dev
-        artifact.spinnaker.io/name: policyapp
-        artifact.spinnaker.io/type: kubernetes/deployment
-        moniker.spinnaker.io/application: policyapp
-        moniker.spinnaker.io/cluster: deployment policyapp
-      labels:
-        app: nginx
-        app.kubernetes.io/managed-by: spinnaker
-        app.kubernetes.io/name: policyapp
-    spec:
-      containers:
-        - image: 'away168/nginx:latest'
-          imagePullPolicy: Always
-          name: nginx
-          ports:
-            - containerPort: 80
-              protocol: TCP
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
-status:
-  availableReplicas: 1
-  conditions:
-    - lastTransitionTime: '2020-03-03T20:46:21Z'
-      lastUpdateTime: '2020-03-03T20:46:21Z'
-      message: Deployment has minimum availability.
-      reason: MinimumReplicasAvailable
-      status: 'True'
-      type: Available
-    - lastTransitionTime: '2020-03-03T20:42:46Z'
-      lastUpdateTime: '2020-03-03T21:26:43Z'
-      message: ReplicaSet "policyapp-597c756868" has successfully progressed.
-      reason: NewReplicaSetAvailable
-      status: 'True'
-      type: Progressing
-  observedGeneration: 4
-  readyReplicas: 1
-  replicas: 1
-  updatedReplicas: 1
-  ```
+For information about loading a policy, see [Using the Policy Engine]({{< ref "policy-engine-use#step-2-add-policies-to-opa" >}}).
