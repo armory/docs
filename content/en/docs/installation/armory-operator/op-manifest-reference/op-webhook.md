@@ -5,6 +5,7 @@ description: >
   This page describes `spec.spinnakerConfig.config.webhook`.
 aliases:
   - /operator_reference/webhook/
+  - /docs/installation/armory-operator/op-manifest/webhook/
 ---
 
 

@@ -1,12 +1,13 @@
 ---
 title: Policy Engine Plugin
-toc_hide: true
-exclude_search: true
 description: >
   The Policy Engine plugin is the next iteration of Armory's Policy Engine for Spinnaker™.
 ---
-<!-- This plugin is the next iteration of our Policy Engine extension and is not ready for public consumption. This unlisted page is to satisfy an auditing requirement that one of our customers has. It is also hidden via robots.txt and the netlify sitemap plugin. -->
+
 ![Proprietary](/images/proprietary.svg)
+
+{{< include "early-access-feature.html" >}}
+
 ## Overview
 
 Armory's Policy Engine plugin is the next iteration of the Policy Engine feature that ships with the Armory Enterprise for Spinnaker. Not only does it include support for existing features like applying policy to pipelines as they're being saved, it also introduces policy hooks into other services like Gate (the API gateway) and Orca (the orchestrator). 
@@ -32,7 +33,8 @@ TODO - figure out if there are any limitations
 The plugin can be delivered using two different methods:
 
 1. Docker image as an init container on each affected service
-2. Using a remote plugin repository
+
+1. Using a remote plugin repository
 
 In addition to the plugin, you need access to an Open Policy Agent (OPA) deployment. If you have not deployed OPA before, see [Deploy an OPA server](https://docs.armory.io/docs/armory-admin/policy-engine-enable/#deploy-an-opa-server).
 
@@ -44,7 +46,13 @@ In addition to the plugin, you need access to an Open Policy Agent (OPA) deploym
 You can use the sample configuration to install the plugin, but keep the following in mind:
 
 - The `patchesStrategicMerge` section for each service is unique. Do not reuse the snippet from one service for the other services.
+
 - Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use without the `v` prefix. For a list of versions, see [Release notes](#release-notes).
+
+- This configuration must go into `spinnakerservice.yml`. It cannot be patched in through Kustomize.
+
+
+<details><summary>Show the manifest</summary>
 
 ```yaml
 apiVersion: spinnaker.armory.io/v1alpha2
@@ -211,6 +219,8 @@ spec:
 
 You can configure the amount of time that the Policy Engine waits for a response from your OPA server. If you have network or latency issues, increasing the timeout can make Policy Engine more resilient. Use the following config to set the timeout in seconds:  `spec.spinnakerConfig.profiles.spinnaker.armory.policyEngine.opa.timeoutSeconds`. The default timeout is 10 seconds if you omit the config.
 
+</details>
+
 {{% /tab %}}
 
 {{% tab name="Halyard" %}}
@@ -231,7 +241,7 @@ You can configure the amount of time that the Policy Engine waits for a response
            url: file:///opt/spinnaker/lib/local-plugins/policy-engine/plugins.json
    ```
 
-2. For each service you want to enable the plugin for, add the following snippet to its local profile. For example, add it to the file `profiles/gate-local.yml` for Gate.
+1. For each service you want to enable the plugin for, add the following snippet to its local profile. For example, add it to the file `profiles/gate-local.yml` for Gate.
 
    ```yaml
    spinnaker:
@@ -241,7 +251,7 @@ You can configure the amount of time that the Policy Engine waits for a response
                enabled: true
    ```
 
-3. Add the following to `service-settings/gate.yml`, `service-settings/orca.yml`, `service-settings/clouddriver.yml` and `service-settings/front50.yml`:
+1. Add the following to `service-settings/gate.yml`, `service-settings/orca.yml`, `service-settings/clouddriver.yml` and `service-settings/front50.yml`:
 
    ```yaml
    kubernetes:
@@ -251,7 +261,7 @@ You can configure the amount of time that the Policy Engine waits for a response
        mountPath: /opt/spinnaker/lib/local-plugins
    ```
 
-4. Configure Halyard by updating your `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use without the `v` prefix: 
+1. Configure Halyard by updating your `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use without the `v` prefix: 
 
    ```yaml
    deploymentConfigurations:

@@ -125,7 +125,7 @@ spec:
 * [repository]({{< ref "repository" >}})
 * [security]({{< ref "security" >}})
 * [stats]({{< ref "stats" >}})
-* [webhook]({{< ref "webhook" >}})
+* [webhook]({{< ref "op-webhook" >}})
 
 ### spec.spinnakerConfig.profiles
 
