@@ -12,113 +12,115 @@ The pipeline is the key deployment management construct in Spinnaker™. It cons
 
 You can start a pipeline manually, or you can configure it to be automatically triggered by an event, such as a Jenkins job completing, a new Docker image appearing in your registry, a CRON schedule, or a stage in another pipeline.
 
-## Prerequisites:
+## {{% heading "prereq" %}}
+
+This page assumes your application stack includes:
 
 - A Jenkins Master configured by your administrator
 - A Jenkins job that archives a Debian package
 - A security group within AWS with appropriate permissions
-- A Load Balancer
+- A [Load Balancer]({{< ref "load-balancers" >}})
 
-## How to Create a Pipeline
+## How to create a pipeline
 
-In this example we will create a pipeline that takes the Debian package produced by a Jenkins job and uses it to create an [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) before deploying that image to a server group.
+This example creates a pipeline that takes the Debian package produced by a Jenkins job and uses it to create an [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) before deploying that image to a server group.
 
+1. After selecting your Application, click the Pipelines category.
 
+   ![An empty Pipelines view](/images/overview/your-first-pipeline/empty-pipelines.png)
 
+1. On this page, click **Configure a new pipeline**.
 
-Step 1: After selecting your Application, click the Pipelines category.
+1. Provide a name for your new pipeline and click **{{< icon "check-circle" >}} Create**.
 
-![](/images/Image-2017-03-24-at-3.42.34-PM.png)
+1. On the Pipeline page you should see:
 
-Step 2: On this page, click the “+” icon.
+   - A visual representation of your pipeline and its stages (you should only have configurations at the beginning)
+   - Execution Options
+   - Automated Triggers
+   - Parameters
+   - Notifications
+   - Description
 
+   ![A new pipeline](/images/overview/your-first-pipeline/first-pipeline-view.png)
 
-Step 3: Decide upon a name for your new pipeline
+### Add a trigger
 
-Note: Strategy will be covered in a separate guide.
+1. Define how your pipeline is triggered. Scroll down to the **Automated Triggers** section and click **{{< icon "plus-circle" >}} Add Trigger**. This section enables you to select a **Type**:
 
-Step 4: On this page you will see
+   ![Automated Trigger Types](/images/overview/your-first-pipeline/automated-trigger-types.png)
 
-- A visual representation of your pipeline and its stages (you should only have configurations at the beginning)
-- Concurrent Executions
-- Automated Triggers
-- Parameters
-- Notifications
-- Description
+1. For this example, select Jenkins. By adding a trigger, you are defining how your pipeline is initialized.
 
-![](/images/Image-2017-03-24-at-3.45.55-PM.png)
+   ![A new Jenkins trigger](/images/overview/your-first-pipeline/jenkins-trigger.png)
 
-Step 5: The first thing you should do is set up how your pipeline will be triggered. Scroll down to the Automated Triggers sub section. This section will allow you to select a Type first, looking like this.
+   **Note:** **Property File** is an important topic that will be covered in a [separate guide]({{< ref "working-with-jenkins#property-file" >}}).
 
-![](/images/Image-2017-03-24-at-3.49.39-PM.png)
+1. Before you test your pipeline, you may want to consider enabling or disabling the trigger via the checkbox at the bottom.
 
-Step 6: For this example we will select Jenkins. By adding a trigger we are defining how our pipeline will be initiated.
+### Add a Bake stage
 
-![](/images/Image-2017-03-24-at-3.50.27-PM.png)
+1. Now add your first stage: Baking an AMI. Click the **{{< icon "plus-circle" >}} Add stage** button in the visual representations section:
 
-Note: The Property File is an important topic that will be covered in a [separate guide]({{< ref "working-with-jenkins#property-file" >}}).
+   ![Pipeline visual representation, with only a config added](/images/overview/your-first-pipeline/pipeline-config-only.png)
 
-Step 7: Before you test your pipeline, you may want to consider enabling or disabling the trigger via the checklist at the bottom.
+1. Select **Bake** from the **Types** drop down list.
 
-Step 8: Now we add our first stage: Baking an AMI. Click the add stage button in the visual representations section.
+   ![The stage type menu, selecting "Bake"](/images/overview/your-first-pipeline/add-bake-stage.png)
 
-![](/images/Image-2017-03-24-at-4.19.38-PM.png)
+1. If you have multiple providers configured, select **Amazon** from the **Provider** drop down list. Next select the region or regions you want to bake in. In the **Package** field, enter the name of the package that your Jenkins job archived.
 
-Step 9: Select Bake from the different Types category.
+   - The package name should not include any version numbers. For example, if your build produces a deb file named “myapp_1.27-h343”, you would enter “myapp” here.
+   - If you configure your own Base AMI under the Advanced Options, the Base OS configuration is ignored.
 
-![](/images/Image-2017-03-24-at-4.20.02-PM.png)
+   ![Bake configuration for an AMI image](/images/overview/your-first-pipeline/bake-ami-config.png)
 
-Step 10: Select Amazon from the Provider list, then the region you want to bake in. Enter the name of the package that was archived by the Jenkins job.
+### Add a Deploy stage
 
-Note: The package name should not include any version numbers. (e.g.: If your build produces a deb file named “myapp_1.27-h343”, you would want to enter “myapp” here.)
-Note 2: If you would like to configure your own Base AMI under the Advanced Options, the Base OS configuration will be ignored.
+1. Now add a Deploy stage by clicking **{{< icon "plus-circle" >}} Add stage** again. Select **Deploy** In the **Type** drop down list. Deploy’s configuration settings should pop up on the screen.
 
-![](/images/Image-2017-03-24-at-4.26.08-PM.png)
+   ![Add a Deploy stage to the Pipeline](/images/overview/your-first-pipeline/add-deploy-stage.png)
 
-Step 11: Now add a Deploy stage by clicking Add Stage again. In the Type category select Deploy. Deploy’s configuration settings should pop up on the screen.
+   **Note:** If you want to reorganize the order that the stages execute in the pipeline, you can add or remove precursor stages in the **Depends On** field.
 
-![](/images/Image-2017-03-24-at-4.27.55-PM.png)
+1. In the **Deploy Configuration** section, click on the “Add server group” button. Pick your provider, if more than one is configured. This example uses AWS.
 
-Note: If we want to reorganize the order that the stages execute in the pipeline, we can add or remove precursor stages in the Depends On category.
+1. Because this is a new application, do not choose to copy a configuration from a template. Press the **Continue without a template** button.
 
-Step 12: In the Deploy Configuration, click on the “Add server group” button. Pick your provider. For our example it will be AWS.
+   ![Template selection for deployment server group](/images/overview/your-first-pipeline/continue-without-template.png)
 
-Step 13: Because this is a new application we will not choose to copy a configuration from a template. Select “Continue without a template”.
+1. It's important to set up the correct Deploy Strategy for your use case. Use the Highlander strategy for this example, which will ensure that only one server group for your application exists at a time.
 
-![](/images/Image-2017-03-24-at-4.32.05-PM.png)
+   ![The Highlander method under Strategy](/images/overview/your-first-pipeline/deploy-strategy.png)
 
-Step 14: The first important thing is to set up the Deploy Strategy. We will use the Highlander strategy for this example, which will ensure that only one server group for our application exists at a time.
+1. In the **Load Balancers** section, select the load balancer you created before you began this tutorial. 
 
-![](/images/Image-2017-03-24-at-4.35.23-PM.png)
+1. Select a security group that you are comfortable with, which will define the access rights to your resource.
 
-Note: Different deployment strategies are important and there will be a separate guide for those (hyper link here).
+1. Select Instance Type as Micro Utility, then set the size as “small”.
 
-Step 15: From the Load Balancer list, select one that we’ve created beforehand.
+1. For Capacity, select how many instances you want in your server group. For our example, we will set it at 1.
 
-Step 16: Select a security group that you are comfortable with, which will define the access rights to your resource.
+   ![Capacity options](/images/overview/your-first-pipeline/deploy-capacity.png)
 
-Step 17: Select Instance Type as Micro Utility, then set the size as “small”.
+1. Click “add”. You will be brought back to your Application and see a new Deploy Configuration. Press “Save Changes” at the bottom right of your window.
 
-Step 18: For Capacity, select how many instances you want in your server group. For our example, we will set it at 1.
+   ![An overview of a newly configured Deployment stage](/images/overview/your-first-pipeline/new-deployment-overview.png)
 
-![](/images/Image-2017-03-24-at-4.39.12-PM.png)
+## Execute the Pipeline
 
-Step 19: Click “add”. You will be brought back to your Application and see a new Deploy Configuration. Press “Save Changes” at the bottom right of your window.
+1. Click on the Pipelines option. You should see your new pipeline. Click on **{{< icon "play" >}} Start Manual Execution**.
 
-![](/images/Image-2017-03-24-at-4.42.09-PM.png)
+   ![Highlighting the Start Manual Execution option](/images/overview/your-first-pipeline/start-manual-execution.png)
 
-Step 20: Now click on the Pipelines option. You should see your new pipeline. Click on “Start Manual Execution”.
+1. You will be able to select a Build for your Jenkins job from a drop down menu. By default, Spinnaker will not recreate an AMI unless the underlying package has changed. If you would like to force it, you may use the checkbox for “Rebake”.
 
-![](/images/Image-2017-03-24-at-4.43.15-PM.png)
+   ![Selecting a build for manual deployment](/images/overview/your-first-pipeline/select-build.png)
 
-Step 21: You will be able to select a Build for your Jenkins job from a drop down menu. By default, Spinnaker will not recreate an AMI unless the underlying package has changed. If you would like to force it, you may use the checkbox for “Rebake”.
+1. Press “Run”, and you should see a progress bar where blue represents running and green represents complete. Gray represents not ran or canceled, which is not in our example picture.
 
-![](/images/Image-2017-03-24-at-4.44.32-PM.png)
+   ![A manual execution in progress](/images/overview/your-first-pipeline/job-in-progress.png)
 
-Step 22: Press “Run”, and you should see a progress bar where blue represents running and green represents complete. Gray represents not ran or canceled, which is not in our example picture.
+   If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "pipelines#troubleshooting" >}}), [baking]({{< ref "aws-baking-images#troubleshooting" >}}), or [deploying]({{< ref "aws-deploy#common-errors-and-troubleshooting" >}}) guides.
 
-![](/images/Image-2017-03-24-at-4.45.33-PM.png)
-
-If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "pipelines#troubleshooting" >}}), [baking]({{< ref "aws-baking-images#troubleshooting" >}}), or [deploying]({{< ref "aws-deploy#common-errors-and-troubleshooting" >}}) guides.
-
-Note: Always remember to save your changes by clicking the button in the bottom right of the window.
+> Note: Always remember to save your changes by clicking the button in the bottom right of the window.

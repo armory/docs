@@ -13,6 +13,7 @@ description: >
 | `kubesvc.loadBalancer`  | string | none | Pick a different account load balancing algorithm. Only implementation so far is the “MN algorithm” that does hides Agent connections from other clouddriver instances and assigns account to the least busy connected Clouddriver while never unassigning an account from a still connected instance unless it dies or stops being connected to that account. |
 | `kubesvc.cache.cacheStreamingPoolCoreSize`<br>`kubesvc.cache.cacheStreamingPoolMaxSize` | integer | 10/100 | Thread pool sizing to write to cache. Each thread handles events for a single account at a time. It doesn't need to be greater than the number of agents. More threads means faster response. If Kubernetes accounts are very busy, you can set max size to `number of Kubernetes accounts / number of Clouddriver instances`. |
 | `kubesvc.cache.onDemandQuickWaitMs` | integer | 10000 | How long to wait for a recache operation. |
+| `kubesvc.cache.operationWaitMs` | integer | 30000 | How long to wait for a Kubernetes operation like deploy, scale, delete, or others |
 | `kubesvc.cache.eventsCleanupFrequencySeconds` | integer | 7200 (2h) | How long to keep Kubernetes events cached for. |
 | `kubesvc.cache.accountCleanupFrequencySeconds` | integer | 600 (10m) | How long to keep accounts that are no longer connected to any Agent |
 | `kubesvc.cache.cleanDataWithUnusedAccounts` | boolean | true | When cleaning an old account, also clean its associated data |
