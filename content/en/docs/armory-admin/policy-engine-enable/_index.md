@@ -2,7 +2,7 @@
 title: Policy Engine for Armory Enterprise
 linkTitle: Policy Engine
 description: >
-  Enable the Policy Engine to enforce policies on your Armory Enterprise instance. Policies are written in OPA and can help you make sure that best practices are followed.
+  Enable the Policy Engine to enforce policies on your Armory Enterprise instance. Policiescan help you make sure that best practices are followed by preventing pipelines from being saved or running if they do not meet requirements that you outline. This page includes how to deploy and configure an OPA sever, which the Policy Engine requires.
 aliases:
   - /docs/plugin-guide/plugin-policy-engine/
 ---
@@ -31,23 +31,22 @@ Make sure you can meet the following version requirements for the Policy Engine:
 
 ## Before You Start
 
-The Policy Engine requires an OPA server. You can either [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/#running-opa) or use the example on this page to deploy a server in the same Kubernetes cluster as Spinnaker.
+The Policy Engine requires an OPA server. You can either use the example on this page to deploy a server in the same Kubernetes cluster as Armory Enterprise or see the OPA documentation for information about how to [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/#running-opa).
 
 ### Deploy an OPA server
 
 The Policy Engine supports the following OPA server deployments:
 
 * An OPA server deployed in the same Kubernetes cluster as an Armory Spinnaker deployment. The [Using ConfigMaps for OPA policies](#using-configmaps-for-opa-policies) section contains a ConfigMap you can use.
-* An OPA cluster that is **not** in the same Kubernetes cluster as an Armory Spinnaker deployment . See the [OPA documentation](https://www.openpolicyagent.org/docs/latest/) for more information about installing an OPA cluster.
+* An OPA cluster that is **not** in the same Kubernetes cluster as an Armory Spinnaker deployment . See the [OPA documentation](https://www.openpolicyagent.org/docs/latest/) for more information about installing an OPA server in a separate cluster.
 
 #### Using ConfigMaps for OPA Policies
 
 If you want to use ConfigMaps for OPA policies, you can use the below manifest as a starting point. This example manifest deploys an OPA server and applies the configuration for things like rolebinding and a static DNS.
-
 When using the below example, keep the following guidelines in mind:
 * The manifest does not configure any authorization requirements for the OPA server it deploys. This means that anyone can add a policy.
 * The manifest deploys the OPA server to a namespace called `opa`.
-* The OPA server uses the following config: `"--require-policy-label=true"`. This configures the OPA server to look for a specific label so that it does not check all configmaps for new policies. For information about how to apply the relevant label to your policy configmaps, see [Creating a policy]({{< ref "policy-engine-use#step-2-add-policies-to-opa" >}}).
+* The OPA server uses the following config: `"--require-policy-label=true"`. This configures the OPA server to look for a specific label so that it does not check all configmaps for new policies. For information about how to apply the relevant label to your policy configmaps, see [Creating a policy]({{< ref "policy-engine-use#step-2-add-the-policy-to-your-opa-server" >}}).
 
 <details><summary>Show the manifest</summary>
 <code><pre>
