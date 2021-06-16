@@ -168,6 +168,10 @@ spec:
 </pre></code>
 </details>
 
+## Enabling the Policy Engine
+
+Armory recommends using the [plugin]({{< ref "policy-engine-plug-enable.md" >}}). To migrate to the plugin from the extension, see [Migrating to the Policy Engine Plugin](#migrating-to-the-policy-engine-plugin). For information about making configuration changes to a Policy Engine Extension instance that already exists, see the [extension page]({{< ref "policy-engine-ext-enable.md" >}}).
+
 ## Migrating to the Policy Engine Plugin
 
 To migrate to the Policy Engine Plugin from the extension, perform the following steps:
