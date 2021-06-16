@@ -242,7 +242,7 @@ If you want additional block devices or a larger root partition you'll need to
 add an a new list to the pipeline JSON.  Unfortunately at this time there is no
 UI to add block devices.
 
-1.  [Edit]({{< ref "pipelines#pipeline-json" >}}) your pipeline's JSON
+1.  [Edit]({{< ref "spin-pipelines#pipeline-json" >}}) your pipeline's JSON
 2.  Find your deployment dictionary.  You'll need to add the object of pairs for each cluster definition.
 3.  Add your custom block devices for launch under the key `blockDevices`.
 4.  Make sure that `AMI Block Device Mappings` is set to `Defaults for selected instance type `.

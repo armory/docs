@@ -538,8 +538,8 @@ clouddriver:
   retry:
     enabled: true
     minWait: 4s # must be a duration, such as 4s for 4 seconds
-  maxWait: 8s # must be a duration, such as 8s for 8 seconds
-  maxRetries: 5
+    maxWait: 8s # must be a duration, such as 8s for 8 seconds
+    maxRetries: 5
 ```
 
 The preceding example enables retries and sets the minimum wait between attempts to 4 seconds, the maximum wait between attempts to 8s, and the maximum number of retries to 5.

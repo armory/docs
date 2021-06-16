@@ -130,4 +130,4 @@ You should see a progress bar where blue represents running and green represents
 
 ![A manual execution in progress](/images/overview/your-first-pipeline/job-in-progress.png)
 
-If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "pipelines#troubleshooting" >}}), [baking]({{< ref "aws-baking-images#troubleshooting" >}}), or [deploying]({{< ref "aws-deploy#common-errors-and-troubleshooting" >}}) guides.
+If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "spin-pipelines#troubleshooting" >}}), [baking]({{< ref "aws-baking-images#troubleshooting" >}}), or [deploying]({{< ref "aws-deploy#common-errors-and-troubleshooting" >}}) guides.

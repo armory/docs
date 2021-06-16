@@ -121,6 +121,6 @@ This example creates a pipeline that takes the Debian package produced by a Jenk
 
    ![A manual execution in progress](/images/overview/your-first-pipeline/job-in-progress.png)
 
-   If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "pipelines#troubleshooting" >}}), [baking]({{< ref "aws-baking-images#troubleshooting" >}}), or [deploying]({{< ref "aws-deploy#common-errors-and-troubleshooting" >}}) guides.
+   If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "spin-pipelines#troubleshooting" >}}), [baking]({{< ref "aws-baking-images#troubleshooting" >}}), or [deploying]({{< ref "aws-deploy#common-errors-and-troubleshooting" >}}) guides.
 
 > Note: Always remember to save your changes by clicking the button in the bottom right of the window.
