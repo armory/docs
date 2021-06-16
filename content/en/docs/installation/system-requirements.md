@@ -18,7 +18,7 @@ Armory Enterprise can be installed on any [certified Kubernetes cluster](https:/
 * **Maximum version**: 1.20
 <!-- track EKS versions -->
 
-You install Armory Enterprise using the Armory Operator (a Kubernetes operator), which has the following requirements:
+You install Armory Enterprise using the [Armory Operator]({{< ref "armory-operator" >}}) (a Kubernetes operator), which has the following requirements:
 
 - You must be able to apply Kubernetes manifests and CRDs, either directly using `kubectl` commands from your machine or another method.
 - By default, the Operator pulls images from a public registry. If you cannot pull images from public registries, see {{< linkWithTitle "ag-operator.md" >}}.
@@ -47,7 +47,7 @@ Depending on the service, Armory Enterprise also uses either Redis, MySQL, or Po
 | MySQL    | MySQL 5.7 (or Aurora)  | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
 | PostgreSQL    | PostgreSQL 10.0 or later  | 2.24.0 or later | Clouddriver                          |                                                                                                                            |
 
-Armory recommends using MySQL or PostgreSQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Spinnaker.
+Armory recommends using MySQL or PostgreSQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Armory Enterprise.
 
 ## Hardware requirements
 
@@ -58,10 +58,10 @@ Armory recommends a minimum of 3 nodes that match the following profile:
 
 ## kubectl
 
-To install and manage Armory Enterprise, Armory recommends using the [Armory Kustomize Repo](https://github.com/armory/spinnaker-kustomize-patches) and tailoring the Kustomize files to meet the requirements of your instance and environment. The repo supports the following versions of `kubectl`: 1.16 to 1.19.
+To install and manage Armory Enterprise, Armory recommends using the [Armory Operator with Kustomize]({{< ref "op-config-kustomize" >)}} and tailoring the Kustomize files to meet the requirements of your instance and environment. This installation method supports the following versions of `kubectl`: 1.16 to 1.19.
 <!-- this is cause of the go-yaml bug: https://github.com/kubernetes-sigs/kustomize/issues/3605 -->
 
-It is possible to use the Operator to install Armory Enterprise without the Kustomize repo. In that case, any actively maintained version of `kubectl` is supported.
+It is possible to use the Operator to [install Armory Enterprise without the Kustomize repo]({{< ref "op-config-manifest" >}}). In that case, any actively maintained version of `kubectl` is supported.
 
 ## Networking
 
