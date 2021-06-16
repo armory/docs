@@ -1,7 +1,7 @@
 ---
 title: Enable Policy Engine Plugin in Armory Enterprise
 linkTitle: Enable Policy Engine Plugin
-description: "Enable the Policy Engine Plugi and connect it to your OPA server. When enabled, you can write policies that the Policy Engine enforces during save time, runtime validation, or when a user interacts with Armory Enterprise.."
+description: "Enable the Policy Engine Plugin and connect it to your OPA server. When enabled, you can write policies that the Policy Engine enforces during save time, runtime validation, or when a user interacts with Armory Enterprise.."
 ---
 
 ## Before you start

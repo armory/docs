@@ -29,7 +29,7 @@ These policies are evaluated against the packages that Armory Enterprise service
 Knowing the following information will help you use the Policy Engine:
 
 * Policies are writtne using OPA's [rego syntax](https://www.openpolicyagent.org/docs/latest/policy-language/). Although Armory provides some example policies, becoming more familiar with the syntax will help you write policies tailored to your requirements.
-* Whether your OPA server is configured to receive policies through its API or as config maps. If the server is configured to use config maps, you need to know the namespace where the server lives and if the OPA server is configured to use a specific label.
+* Whether your OPA server is configured to receive policies through config maps. If the server is configured to use config maps, you need to know the namespace where the server lives and if the OPA server is configured to look for a specific label. Alternatively, policies can be added to the server through the OPA API.
 
 If you do not have an OPA server configured for the Policy Engine, you can find information about how to deploy an OPA server [here]({{< ref "policy-engine-enable" >}}).
 
