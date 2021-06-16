@@ -41,13 +41,13 @@ You need an S3-compatible object store, such as an S3 bucket or Minio, for persi
 
 Depending on the service, Armory Enterprise also uses either Redis, MySQL, or Postgres as a backing store. The following table lists the supported database and the  service:
 
-| Database | DB version             | Armory                 | Spinnaker services                                  | Note                                                                                                                       |
+| Database | DB version             | Armory                 | Services                                  | Note                                                                                                                       |
 | -------- | ---------------------- | ---------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Redis    | All supported versions | All supported versions | All Spinnaker services that require a backing store | The DB versions refer to external Redis instances. Supported only for services that still require Redis for a feature, such as Gate sessions. Redis is not supported as a core persistent storage engine. Although Spinnaker deploys internal Redis instances, do not use these instances for production deployments. Armory recommends only using them for testing and proof-of-concept deployments. |
-| MySQL    | MySQL 5.7 (or Aurora)  | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
-| PostgreSQL    | PostgreSQL 10.0 or later  | 2.24.0 or later | Clouddriver                          |                                                                                                                            |
+| Redis    | All supported versions | All supported versions | All Armory Enterprise services that require a backing store | The DB versions refer to external Redis instances. Supported only for services that still require Redis for a feature, such as Gate sessions. Redis is not supported as a core persistent storage engine. Although Armory Enterprise deploys internal Redis instances, do not use these instances for production deployments. Armory recommends only using them for testing and proof-of-concept deployments. |
+| MySQL    | {{< param mysql-version >}}  | All supported versions | Clouddriver, Front50, Orca                          |                                                                                                                            |
+| PostgreSQL    | {{< param postgresql-version >}}  | 2.24.0 or later | Clouddriver                          |                                                                                                                            |
 
-Armory recommends using MySQL or PostgreSQL as the backing store when possible for production instances of Spinnaker. For other services, use an external Redis instance for production instances of Armory Enterprise.
+Armory recommends using MySQL or PostgreSQL as the backing store when possible for production instances of Armory Enterprise. For other services, use an external Redis instance for production instances of Armory Enterprise.
 
 ## Hardware requirements
 
@@ -58,7 +58,7 @@ Armory recommends a minimum of 3 nodes that match the following profile:
 
 ## kubectl
 
-To install and manage Armory Enterprise, Armory recommends using the [Armory Operator with Kustomize]({{< ref "op-config-kustomize" >)}} and tailoring the Kustomize files to meet the requirements of your instance and environment. This installation method supports the following versions of `kubectl`: 1.16 to 1.19.
+To install and manage Armory Enterprise, Armory recommends using the [Armory Operator with Kustomize]({{< ref "op-config-kustomize" >}}) and tailoring the Kustomize files to meet the requirements of your instance and environment. This installation method supports the following versions of `kubectl`: 1.16 to 1.19.
 <!-- this is cause of the go-yaml bug: https://github.com/kubernetes-sigs/kustomize/issues/3605 -->
 
 It is possible to use the Operator to [install Armory Enterprise without the Kustomize repo]({{< ref "op-config-manifest" >}}). In that case, any actively maintained version of `kubectl` is supported.
