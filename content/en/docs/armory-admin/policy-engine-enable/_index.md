@@ -2,7 +2,7 @@
 title: Policy Engine for Armory Enterprise
 linkTitle: Policy Engine
 description: >
-  Enable the Policy Engine to enforce policies on your Armory Enterprise instance. Policiescan help you make sure that best practices are followed by preventing pipelines from being saved or running if they do not meet requirements that you outline. This page includes how to deploy and configure an OPA sever, which the Policy Engine requires.
+  Enable the Policy Engine to enforce policies on your Armory Enterprise instance. Policies can help you make sure that best practices are followed by preventing pipelines from being saved or running if they do not meet requirements that you outline. This page includes how to deploy and configure an OPA sever, which the Policy Engine requires.
 aliases:
   - /docs/plugin-guide/plugin-policy-engine/
 ---
@@ -15,7 +15,7 @@ The Armory Policy Engin is a proprietary feature for Armory Enterprise that is d
 
 * **Save time validation** - Validate pipelines as they're created/modified. This validation operates on all pipelines using a fail closed model. This means that if you have the Policy Engine enabled but no policies configured, the Policy Engine prevents you from creating or updating any pipeline.
 * **Runtime validation** - Validate deployments as a pipeline is executing. This validation only operates on tasks that you have explicitly created policies for. Tasks with no policies are not validated.
-* **Entitlements using API Authorization** - Control what actions can be taken based on a user's role. (Only available as part of the plugin.)
+* **Entitlements using API Authorization** - Control what actions can be taken based on a user's role. (Requires the Policy Engine plugin.)
 
 The Policy Engine exists as a plugin, which is its newer iteration, and as an extension of Armory Enterprise. The plugin has additional features that are not present in the extension. If you are getting started with the Policy Engine, Armory recommends using the plugin version of the Policy Engine. If you want to migrate from the extension to the plugin, see [Migrating to the Policy Engine Plugin](#migrating-to-the-policy-engine-plugin).
 
@@ -172,7 +172,7 @@ spec:
 
 To migrate to the Policy Engine Plugin from the extension, perform the following steps:
 
-1. Disable the Policy Engine extension. You cannot run both the extension and plugin at the same time. You must disable the extension project and then enable the plugin.
+1. Turn off the Policy Engine extension. You cannot run both the extension and plugin at the same time. You must disable the extension project and then enable the plugin.
    * **Halyard**: Remove the following snippet from `.hal/default/profiles/spinnaker-local.yml`:
    ```yaml
    armory:

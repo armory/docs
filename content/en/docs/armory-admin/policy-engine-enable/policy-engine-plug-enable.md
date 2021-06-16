@@ -4,6 +4,10 @@ linkTitle: Enable Policy Engine Plugin
 description: "Enable the Policy Engine and configure an OPA server. When enabled, the Policy Engine can perform save time or runtime validation on your Spinnaker pipelines."
 ---
 
+## Before you start
+
+If you are [migrating from the Policy Engine Extension]({{< ref "policy-engine-enable#migrating-to-the-policy-engine-plugin" >}}), make sure you have turned off the extension.
+
 ## Setup
 
 The Policy Engine Plugin can be enabled using one of the following methods:

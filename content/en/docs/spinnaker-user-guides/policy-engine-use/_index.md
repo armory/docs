@@ -2,7 +2,7 @@
 title: Introduction to Using the Policy Engine
 linkTitle: Use Policy Engine
 description: >
-  Learn how to add policies to your Open Policy Agent (OPA) server for Armory Enterprise to use when it performs validations to make sure your pipelines and users follow policy requirements. This page includes information about what goes into a policy and some basic policies for you to try. There are examples forsave time validation, runtime validation, and entitlements.
+  Learn how to add policies to your Open Policy Agent (OPA) server for Armory Enterprise to use when it performs validations to make sure your pipelines and users follow policy requirements. This page includes information about what goes into a policy and some basic policies for you to try. There are examples for save time validation, runtime validation, and entitlements.
 aliases:
   - /docs/spinnaker/policy-engine-use/
 ---
