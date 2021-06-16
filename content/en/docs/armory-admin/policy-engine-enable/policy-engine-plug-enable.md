@@ -322,3 +322,15 @@ allow {
 This basic policy allows all API calls. For information about constructing a more restrictive policy, see [API authorization](#api-authorization).
 
 For information about loading a policy, see [Using the Policy Engine]({{< ref "policy-engine-use#step-2-add-policies-to-opa" >}}).
+
+## Release notes
+
+* v0.1.4 - Adds the `opa.timeoutSeconds` property, which allows you to configure how long the Policy Engine waits for a response from the OPA server.
+* v0.1.3 - Fixes an issue introduced in v0.1.2 where the **Project Configuration** button's name was changing when Policy Engine is enabled.
+* v0.1.2  - Adds support for writing policies against the package `spinnaker.ui.entitlements.isFeatureEnabled` to show/hide the following UI buttons:
+  * Create Application
+  * Application Config
+  * Create Project
+* v0.0.25 - Fixes an unsatisfied dependency error in the API (Gate) when using SAML and x509 certificates. This fix requires Armory Enterprise 2.26.0 later.
+* v0.0.19 - Adds forced authentication feature and fixes NPE bug
+* v0.0.17 - Initial plugin release
