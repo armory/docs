@@ -1,12 +1,16 @@
 ---
 title: Enable Policy Engine Plugin in Armory Enterprise
 linkTitle: Enable Policy Engine Plugin
-description: "Enable the Policy Engine and configure an OPA server. When enabled, the Policy Engine can perform save time or runtime validation on your Spinnaker pipelines."
+description: "Enable the Policy Engine Plugi and connect it to your OPA server. When enabled, you can write policies that the Policy Engine enforces during save time, runtime validation, or when a user interacts with Armory Enterprise.."
 ---
 
 ## Before you start
 
-If you are [migrating from the Policy Engine Extension]({{< ref "policy-engine-enable#migrating-to-the-policy-engine-plugin" >}}), make sure you have turned off the extension.
+Make sure the following requirements are met:
+
+* If you are [migrating from the Policy Engine Extension]({{< ref "policy-engine-enable#migrating-to-the-policy-engine-plugin" >}}), make sure you have turned off the extension. 
+* You have an OPA server available. For more information, see [Deploy an OPA server]({{< ref "policy-engine-enable#deploy-an-opa-server" >}}). 
+* Access to the internet to download the plugin.
 
 ## Setup
 
@@ -15,8 +19,6 @@ The Policy Engine Plugin can be enabled using one of the following methods:
 1. Docker image as an init container on each affected service
 
 1. Using a remote plugin repository
-
-In addition to the plugin, you need access to an Open Policy Agent (OPA) deployment. If you have not deployed OPA before, see [Deploy an OPA server]({{< ref "policy-engine-enable#deploy-an-opa-server" >}}).
 
 ### Docker image as init container
 

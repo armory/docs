@@ -1,7 +1,7 @@
 ---
 title: Enable Policy Engine Extension in Armory Enterprise
 linkTitle: Enable Policy Engine Extension
-description: "Enable the Policy Engine and configure an OPA server. When enabled, the Policy Engine can perform save time or runtime validation on your Spinnaker pipelines."
+description: "Enable the Policy Engine Extension and connect to an OPA server. When enabled, the Policy Engine can perform save time or runtime validation on your Armory Enterprise pipelines."
 ---
 ![Proprietary](/images/proprietary.svg)
 
