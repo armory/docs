@@ -322,7 +322,7 @@ spec:
     spec:
       serviceAccount: spin-sa
       containers:
-      - image: armory/kubesvc
+      - image: armory/kubesvc:<version> # must be compatible with your Armory Enterprise version
         imagePullPolicy: IfNotPresent
         name: kubesvc
         ports:
