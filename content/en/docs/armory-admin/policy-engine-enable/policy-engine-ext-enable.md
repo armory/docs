@@ -1,11 +1,12 @@
 ---
-title: Enable Policy Engine Extension in Armory Enterprise
-linkTitle: Enable Policy Engine Extension
+title: Deprecated - Enable Policy Engine Extension in Armory Enterprise
+linkTitle: Deprecated - Enable Policy Engine Extension
 description: "Enable the Policy Engine Extension and connect to an OPA server. When enabled, the Policy Engine can perform save time or runtime validation on your Armory Enterprise pipelines."
+weight: 10
 ---
 ![Proprietary](/images/proprietary.svg)
 
-> If you are enabling the Policy Engine for the first time, Armory recommends using the [Policy Engine Plugin]({{< ref "policy-engine-plug-enable.md" >}}) instead. The plugin has additional features not available in the extension.
+> If you are enabling the Policy Engine for the first time, Armory recommends using the [Policy Engine Plugin]({{< ref "policy-engine-plug-enable.md" >}}) instead. The plugin has additional features not available in the extension. For information about migrating to the plugin, see [Migrating to the Policy Engine Plugin]({{< ref "policy-engine-enable#migrating-to-the-policy-engine-plugin" >}}).
 
 ## Enabling the Policy Engine
 
