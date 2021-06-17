@@ -85,5 +85,5 @@ Use the Armory Operator if you want to deploy Armory Enterprise and use its prop
 {{% include "armory-operator/op-feature-compare.md" %}}
 
 ## {{% heading "nextSteps" %}}
-
+* {{< linkWithTitle "system-requirements.md" >}}
 * {{< linkWithTitle "op-quickstart.md" >}}
