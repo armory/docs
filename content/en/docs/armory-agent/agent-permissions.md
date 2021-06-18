@@ -7,6 +7,8 @@ weight: 35
 ---
 ![Proprietary](/images/proprietary.svg)
 
+{{< include "early-access-feature.html" >}}
+
 ## Permissions
 
 The Agent can use a `kubeconfig` file loaded as a Kubernetes secret when deploying to a remote cluster. Also, you can configure Agent permissions using a Kubernetes Service Account when deploying to the cluster the Agent resides in.
