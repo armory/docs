@@ -18,7 +18,7 @@ Installing Armory consists of the following:
 1. [Deploy Armory](#deploy-armory)
 1. [Expose Armory](#expose-armory)
 
-## Prerequisites for installing Armory
+## {{% heading "prereq" %}}
 
 1. You have an active [Red Hat Marketplace account](https://marketplace.redhat.com/en-us/documentation/account-management).
 1. You have a Red Hat Marketplace `Cluster Admin` [role](https://marketplace.redhat.com/en-us/documentation/user-roles), which enables you to install Operators from the Red Hat Marketplace.
@@ -193,7 +193,7 @@ The Armory URL is the `spec.host` value you configured in your `spin-deck` route
 
 {{< figure src="/images/installation/guide/redhat/armory-url.png" width="85%" height="85%" >}}
 
-## Next steps
+## {{% heading "nextSteps" %}}
 
 Now that Armory is running, here are potential next steps:
 
