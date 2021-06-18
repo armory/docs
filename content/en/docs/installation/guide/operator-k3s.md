@@ -12,7 +12,7 @@ description: >
 
 This guide walks you through using the [Armory Operator]({{< ref "armory-operator" >}}) to install Armory Enterprise in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
 
-See the [Install on Kubernetes]({{< ref "install-on-k8s" >}}) guide for how to install Armory using the Armory Operator in a regular Kubernetes installation.
+See the [Armory Operator Quickstart]({{< ref "op-quickstart" >}}) guide for how to install Armory Enterprise using the Armory Operator in a regular Kubernetes environment.
 
 If you want to install open source Spinnaker<sup>TM</sup>, use the open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) instead of the Armory Operator.
 
