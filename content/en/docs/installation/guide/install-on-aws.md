@@ -1,6 +1,7 @@
 ---
 title: Install Armory Enterprise for Spinnaker in Amazon Web Services (AWS)
 linkTitle: "Install in AWS"
+draft: true
 weight: 5
 aliases:
   - /spinnaker_install_admin_guides/install_on_eks/
@@ -36,73 +37,21 @@ This document currently does not fully cover the following (see [Next Steps](#ne
 
 Before you install Armory on AWS, it is essential that you familiarize yourself with [relevant AWS services]({{< ref "resources-aws" >}}).
 
-## Prerequisites for installing Armory
+## {{% heading "prereq" %}}
 
-This document assumes the following:
+* You have reviewed and met the Armory Enterprise [system requirements]({{< ref "system-requirements.md" >}}).
+* You have a machine (referred to as the `workstation machine` in this document) configured to use the `aws` CLI tool and an [appropriate version]({{< ref "system-requirements#kubectl" >}}) of `kubectl`.
+* You have a running Kubernetes cluster and can access the Kubernetes API. If using EKS, either your user/role created the EKS cluster or your user/role has been added to the `aws-auth` configmap in the EKS cluster. See the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html) for more details.
+* You have access to an IAM role or user with access to the S3 bucket or can create an IAM role or user with access to the S3 bucket.
 
-- You have a Kubernetes cluster up and running, with the following:
-
-  - You can access the Kubernetes API. If using EKS, either your user/role created the EKS cluster or your user/role has been added to the `aws-auth` configmap in the EKS cluster. See the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html) for more details.
-  - At least 2x worker nodes, each with at least 2 vCPUs and 4 GiB of memory. This is the bare minimum to install and run Armory. If you're deploying more intermittent test workloads you will likely need more).
-
-- You have access to an S3 bucket or access to create an S3 bucket
-
-- You have access to an IAM role or user with access to the S3 bucket or can create an IAM role or user with access to the S3 bucket.
-
-This document is written with the following workflow in mind:
-
-- You have a machine (referred to as the `workstation machine` in this document) configured to use the `aws` CLI tool and a recent version of `kubectl` tool
-- You have a machine (referred to as the `Halyard machine` in this document) with the Docker daemon installed, and can run Docker containers on it
-- You can transfer files created on the `workstation machine` to the `Halyard machine` (to a directory mounted on a running Docker container)
-- These two machines can be the same machine
-
-Furthermore:
-
-On the `Halyard machine`:
-
-- Halyard (the tool used to install and manage Armory) is run in a Docker container on the `Halyard machine`
-- The Halyard container on the `Halyard machine` will be configured with the following volume mounts, which should be persisted or preserved to manage your Armory cluster
-
-  - `.hal` directory (mounted to `/home/spinnaker/.hal`) - stores all Halyard Armory configurations in a `.hal/config` YAML file and assorted subdirectories
-  - `.secret` directory (mounted to `/home/spinnaker/.secret`) stores all external secret keys and files used by Halyard
-  - `resources` directory (mounted to `/home/spinnaker/resources`) stores all Kubernetes manifests and other resources that help create Kubernetes resources
-
-- You will create `kubeconfig` files that will be added to the `.secret` directory
-
-Note: If you are not using the Halyard Docker container, but sure to install `kubectl` before you install Halyard. Otherwise you will have to restart the Halyard daemon in order for `hal` to find `kubectl` in your `$PATH`. Execute `hal shutdown` and then any `hal` command to start the daemon.
-
-On the `workstation machine`:
-
-- If using EKS, you can use the `aws` CLI tool to interact with the AWS API and configure/communicate with the following:
-
-  - EKS clusters (or, alternately, have a EKS cluster already built)
-  - S3 buckets (or, alternately, have an S3 bucket already built)
-
-- You have the `kubectl` (Kubernetes CLI tool) installed and are able to use it to interact with your Kubernetes cluster
-
-- You have a persistent working directory in which to work in. One option here is `~/aws-spinnaker`
-
-- You will create AWS resources, such as service accounts, that will be permanently associated with your Armory cluster
 
 ## Installation summary
 
-In order to install Armory, this document covers the following:
+In order to install Armory Enterprise, this document covers the following:
 
 - Generating a `kubeconfig` file, which is a Kubernetes credential file that Halyard and Armory will use to communicate with the Kubernetes cluster where Armory will be installed
-- Creating an S3 bucket for Armory to store persistent configuration in
-- Creating an IAM user that Armory will use to access the S3 bucket
-- Running the Halyard daemon in a Docker container
-
-  - Persistent configuration directories from the workstation/host will be mounted into the container
-
-- Running the `hal` client interactively in the same Docker container, to:
-
-  - Build out the halconfig YAML file (`.hal/config`)
-  - Configure Armory/Halyard to use `kubeconfig` to install Armory
-  - Configure Armory with the IAM credentials and bucket information
-  - Turn on other recommended settings (artifacts and http artifact provider)
-  - Install Armory
-  - Expose Armory
+- Creating an S3 bucket for Armory Enteprise to store persistent configuration in
+- Creating an IAM user that Armory Enterprise will use to access the S3 bucket
 
 ## Connect to the Kubernetes cluster
 

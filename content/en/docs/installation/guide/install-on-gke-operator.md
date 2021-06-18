@@ -24,6 +24,7 @@ Installing Armory using the Armory Operator consists of the following steps:
 
 ## {{% heading "prereq" %}}
 
+* You have reviewed and met the Armory Enterprise [system requirements]({{< ref "system-requirements.md" >}}).
 * You know how to [install the Armory Operator in `cluster` mode]({{< ref "op-quickstart#install-the-operator" >}}).
 * You know how to [configure Armory Enterprise using Kustomize patches]({{< ref "op-config-kustomize.md" >}}) from the `spinnaker-kustomize-patches` repo.
 * You know how to use the Armory Operator to [deploy Armory Enterprise using Kustomize patches]({{< ref "op-config-kustomize#deploy-spinnaker" >}}).

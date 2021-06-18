@@ -38,7 +38,6 @@ Based on your environment, use one of the following guides to help you install A
 | [Air Gapped]({{< ref "air-gapped" >}})                                | Air-gapped environments that use the Armory Operator | Learn how to host your own Bill of Materials for deploying Armory Enterprise in an air-gapped environment.                     |
 | [AWS Marketplace]({{< ref "aws-container-marketplace" >}})            | AWS                            | One-click install from the AWS marketplace.      |
 | [RedHat Marketplace]({{< ref "install-redhat-marketplace" >}}) | OpenShift | Use the Armory Operator from the Red Hat Marketplace to deploy Armory Enterprise in your OpenShift cluster. |
-| [Install on AWS]({{< ref "install-on-aws" >}})                        | AWS, Halyard                   | Installation steps for AWS, including IAM configuration |
 | [Install on AWS EC2 with Operator]({{< ref "operator-k3s" >}})        | AWS EC2, Operator              | Installation steps for using Armory Operator to install Armory  Enterprise in a Lightweight Kubernetes (K3s) instance for a Proof of Concept.
 | [Install on GKE with Operator]({{< ref "install-on-gke-operator" >}}) | GKE, Operator                  | Installation steps for Google Kubernetes Engine using Operator                    |
 | [Configuring Halyard]({{< ref "configure-halyard" >}})                | Halyard                        | Description of Armory-extended Halyard configurations              |
