@@ -23,6 +23,7 @@ The following clarifies what we mean when a feature is deprecated or reaches end
 | Feature          | Deprecated | End of Support |
 |------------------|------------|----------------|
 | [Pipelines as CRD]({{< ref "pacrd-deprecation.md" >}}) | 2021/08/01 | 2021/11/01     |
+| [Halyard]({{< ref "halyard-deprecation.md" >}})        | 2021/09/01 | 2021/12/30     |
 
 
 ## FAQ
