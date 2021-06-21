@@ -37,16 +37,16 @@ Note that all Terraform stages within a Pipeline that affect state must use the 
   * GitHub
   * BitBucket
   * HTTP artifact
-
-Although not required, Armory recommends an external Redis instance for the Terraform Integration. For more information, see [Redis](#redis).
+* Dedicated external Redis instance
+  * Armory requires configuring a dedicated external Redis instance for production usage of the Terraform Integration. This is to ensure that you do not encounter scaling or stability issues in production. For more information [Redis](#redis).
 
 ### Redis
 
-The Terraform Integration uses Redis to store Terraform logs and plans. An external Redis instance is highly recommended for production use.
+The Terraform Integration uses Redis to store Terraform logs and plans. 
 
 **Note:** The Terraform Integration can only be configured to use a password with the default Redis user.
 
-To set/override the Spinnaker Redis settings do the following:
+To set/override the Armory Enterprise Redis settings do the following:
 
 **Operator**
 
