@@ -308,24 +308,13 @@ url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/mas
 
 If you do not omit the `volume` and `initContainers` configurations for the `patchesStrategicMerge` section, the pods for Armory may not start.
 
-### Finish the setup
-
-Once Policy Engine is enabled, you must authorize API calls in order to use the Armory (or OSS Spinnaker) UI. To do this, you need to load a policy into the Policy Engine that is similar to the following:  
-
-```rego
-package spinnaker.http.authz
-default allow = true
-allow {
-    input.user.isAdmin == true
-}
-```
-
-This basic policy allows all API calls. For information about constructing a more restrictive policy, see [API authorization](#api-authorization).
-
 For information about loading a policy, see [Using the Policy Engine]({{< ref "policy-engine-use#step-2-add-policies-to-opa" >}}).
 
 ## Release notes
 
+* v0.1.6 - The Policy Engine Plugin is now generally available. 
+  * If you are new to using the Policy Engine, use the plugin instead of the extension project.
+  * Entitlements using API Authorization no longer requires at least one policy. Previously, if you had no policies set, Policy Engine prevented any action from being taken. Now, Entitlements for Policy Engine allows any action to be taken if there are no policies set.
 * v0.1.4 - Adds the `opa.timeoutSeconds` property, which allows you to configure how long the Policy Engine waits for a response from the OPA server.
 * v0.1.3 - Fixes an issue introduced in v0.1.2 where the **Project Configuration** button's name was changing when Policy Engine is enabled.
 * v0.1.2  - Adds support for writing policies against the package `spinnaker.ui.entitlements.isFeatureEnabled` to show/hide the following UI buttons:

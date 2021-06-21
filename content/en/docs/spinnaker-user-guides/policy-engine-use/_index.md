@@ -178,8 +178,6 @@ allow {
 }
 ```
 
-If you do not add a policy that allows users to perform actions, Gate rejects all API calls to the Armory Enterprise instance and prevents users from performing any action. See the next section for how to craft a policy that only allows users from certain groups to perform actions.
-
 ### Create a policy for the API
 
 All requests made to the `spinnaker.http.authz` package include the following:
