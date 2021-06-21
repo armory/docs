@@ -27,7 +27,8 @@ Before you install Armory on AWS, it is essential that you familiarize yourself 
 
 To use the Marketplace's Armory offering, make sure you meet the following requirements:
 
-* You have access to an EKS cluster (Kubernetes 1.16 or above) configured with [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
+* You have reviewed and met the Armory Enterprise [system requirements]({{< ref "system-requirements.md" >}}).
+* You have access to an EKS cluster configured with [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 * You have an ingress controller for your EKS cluster. This document assumes the EKS cluster is using the NGINX Ingress Controller.
 * You have `cluster-admin` access on the EKS cluster.
 * You have An AWS S3 bucket to store Armory application and pipeline configuration.
