@@ -17,6 +17,8 @@ The Armory Policy Engine is designed to allow enterprises more complete control 
 * **Runtime validation** - Validate deployments as a pipeline is executing. This validation only operates on tasks that you have explicitly created policies for. Tasks with no policies are not validated.
 * **Entitlements using API authorization** - Requires the Policy Engine Plugin. Enforce restrictions on who can perform certain actions in Armory Enterprise. Note that if you enable policies for API authorization, you must configure who can make API calls or else the API service (Gate) rejects all API calls. 
 
+> If no policies are configured for these policy checks, all actions are allowed.
+
 At a high level, adding policies for the Policy Engine to use is a two-step process:
 
 1. Create the policies and save them to a `.rego` file.

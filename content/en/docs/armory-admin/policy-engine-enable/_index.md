@@ -17,6 +17,8 @@ The Armory Policy Engin is a proprietary feature for Armory Enterprise that is d
 * **Runtime validation** - Validate deployments as a pipeline is executing. This validation only operates on tasks that you have explicitly created policies for. Tasks with no policies are not validated.
 * **Entitlements using API Authorization** - Control what actions can be taken based on a user's role. (Requires the Policy Engine plugin.)
 
+> If no policies are configured for these policy checks, all actions are allowed.
+
 The Policy Engine exists as a plugin, which is its newer iteration, and as an extension of Armory Enterprise. The plugin has additional features that are not present in the extension. If you are getting started with the Policy Engine, Armory recommends using the plugin version of the Policy Engine. If you want to migrate from the extension to the plugin, see [Migrating to the Policy Engine Plugin](#migrating-to-the-policy-engine-plugin).
 
 For information about how to use the Policy Engine, see [Using the Policy Engine]({{< ref "policy-engine-use" >}}).

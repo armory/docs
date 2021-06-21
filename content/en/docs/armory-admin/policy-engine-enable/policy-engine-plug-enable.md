@@ -30,7 +30,7 @@ You can use the sample configuration to install the plugin, but keep the followi
 
 - The `patchesStrategicMerge` section for each service is unique. Do not reuse the snippet from one service for the other services.
 
-- Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use without the `v` prefix. For a list of versions, see [Release notes](#release-notes).
+- Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use. For a list of versions, see [Release notes](#release-notes).
 
 - This configuration must go into `spinnakerservice.yml`. It cannot be patched in through Kustomize.
 
@@ -312,15 +312,15 @@ For information about loading a policy, see [Using the Policy Engine]({{< ref "p
 
 ## Release notes
 
-* v0.1.6 - The Policy Engine Plugin is now generally available. 
+* 0.1.6 - The Policy Engine Plugin is now generally available. 
   * If you are new to using the Policy Engine, use the plugin instead of the extension project.
   * Entitlements using API Authorization no longer requires at least one policy. Previously, if you had no policies set, Policy Engine prevented any action from being taken. Now, Entitlements for Policy Engine allows any action to be taken if there are no policies set.
-* v0.1.4 - Adds the `opa.timeoutSeconds` property, which allows you to configure how long the Policy Engine waits for a response from the OPA server.
-* v0.1.3 - Fixes an issue introduced in v0.1.2 where the **Project Configuration** button's name was changing when Policy Engine is enabled.
-* v0.1.2  - Adds support for writing policies against the package `spinnaker.ui.entitlements.isFeatureEnabled` to show/hide the following UI buttons:
+* 0.1.4 - Adds the `opa.timeoutSeconds` property, which allows you to configure how long the Policy Engine waits for a response from the OPA server.
+* 0.1.3 - Fixes an issue introduced in v0.1.2 where the **Project Configuration** button's name was changing when Policy Engine is enabled.
+* 0.1.2  - Adds support for writing policies against the package `spinnaker.ui.entitlements.isFeatureEnabled` to show/hide the following UI buttons:
   * Create Application
   * Application Config
   * Create Project
-* v0.0.25 - Fixes an unsatisfied dependency error in the API (Gate) when using SAML and x509 certificates. This fix requires Armory Enterprise 2.26.0 later.
-* v0.0.19 - Adds forced authentication feature and fixes NPE bug
-* v0.0.17 - Initial plugin release
+* 0.0.25 - Fixes an unsatisfied dependency error in the API (Gate) when using SAML and x509 certificates. This fix requires Armory Enterprise 2.26.0 later.
+* 0.0.19 - Adds forced authentication feature and fixes NPE bug
+* 0.0.17 - Initial plugin release
