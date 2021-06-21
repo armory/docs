@@ -1,7 +1,7 @@
 ---
 title: Deploy Armory Enterprise or Spinnaker Using Kubernetes Operators
 linkTitle: Armory Operators
-weight: 1
+weight: 2
 no_list: true
 description: >
   Armory provides Kubernetes Operators that make it easy to install, deploy, and upgrade Armory Enterprise or Spinnaker. This section covers advantages, configuration, deployment, and migration from Halyard to the Operator.

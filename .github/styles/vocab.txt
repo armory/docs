@@ -50,12 +50,14 @@ Kustomize
 kustomize
 kustomization
 .md
+Minio
 Minnaker
 MySQL
 namespace
 namespaces
 OpenShift
 Orca
+Postgres
 rawdata
 Redis
 Release Notes

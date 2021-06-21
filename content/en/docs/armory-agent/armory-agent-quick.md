@@ -7,6 +7,8 @@ weight: 30
 ---
 ![Proprietary](/images/proprietary.svg)
 
+{{< include "early-access-feature.html" >}}
+
 ## Overview
 
 The Agent consists of a service deployed as a Kubernetes `Deployment` and a plugin to the Clouddriver service. You can review the architecture in the Armory Agent [overview]({{< ref "armory-agent#deployment-topologieshug" >}}).
@@ -322,7 +324,7 @@ spec:
     spec:
       serviceAccount: spin-sa
       containers:
-      - image: armory/kubesvc
+      - image: armory/kubesvc:<version> # must be compatible with your Armory Enterprise version
         imagePullPolicy: IfNotPresent
         name: kubesvc
         ports:
