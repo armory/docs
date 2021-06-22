@@ -1,5 +1,5 @@
 ---
-title: Deploy Armory Enterprise for Spinnaker in GKE
+title: Deploy Armory Enterprise in GKE
 linkTitle: "Install in GKE using Operator"
 weight: 5
 aliases:
