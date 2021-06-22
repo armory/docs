@@ -226,7 +226,7 @@ The following table lists the supported image bakeries:
 | -------- | ---------------------- | -------------------------- |
 | AWS      | All supported versions |                            |
 | GCE      | All supported versions |                            |
-| Packer   | All supported versions | The following lists the included Packer versions: <ul><li> Armory 2.22.x includes Packer 1.4.4</li><li>Armory 2.23.x and 2.24.x include Packer 1.6.4</li></ul> |
+| Packer   | All supported versions | The following lists the included Packer versions: <ul><li> Armory 2.22.x includes Packer 1.4.4</li><li>Armory 2.23.x and later include Packer 1.6.4</li></ul> |
 
 ## Baking Kubernetes manifests
 
@@ -265,7 +265,7 @@ Armory Enterprise includes custom stages that you can use to extend the capabili
 
 Armory supports various deployment targets.
 
-Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#service_comparisons) to help categorize the different targets.
+Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#service_comparisons) to help you understand how the different deployment targets are categorized. 
 
 ### Compute as a Service
 
@@ -292,7 +292,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 
 | Provider                    | Deployment strategies                      | Armory         | Notes |
 | --------------------------- | ------------------------------------------ | ---------------------- | ----- |
-| Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |       |
+| Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 
 ### Container as a Service Platforms
 
@@ -307,8 +307,7 @@ These are providers that are manifest based, so Armory applies the manifest and 
 
 | Provider       | Deployment strategies                      | Armory         | Notes |
 | -------------- | ------------------------------------------ | ---------------------- | ----- |
-| Amazon AWS ECS | <ul><li>Red/Black aka Blue/Green</li></ul> | All supported versions |       |
-
+| Amazon AWS ECS | <ul><li>Red/Black aka Blue/Green</li></ul> | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 
 
 ### Platform as a Service
@@ -348,7 +347,7 @@ You write the function and use Armory to manage the rollout of iterative version
 
 | Provider          | Deployment strategies                        | Armory         | Notes |
 | ----------------- | -------------------------------------------- | ---------------------- | ----- |
-| Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |       |
+| Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 
 ## Dynamic accounts
 
@@ -458,6 +457,6 @@ The following table lists the supported secret stores for referencing secrets in
 | [AWS Secrets Manager]({{< ref "secrets-aws-sm" >}})    | All supported versions |                                      |
 | [Encrypted GCS Bucket]({{< ref "secrets-gcs" >}})      | All supported versions |                                      |
 | [Encrypted S3 Bucket]({{< ref "secrets-s3" >}})        | All supported versions |                                      |
-| [Kubernetes secrets]({{< ref "secrets-kubernetes" >}}) | All supported versions | Spinnaker Operator based deployments |
-| [Vault]({{< ref "secrets-vault" >}})                   | All supported versions | Armory only                          |
+| [Kubernetes secrets]({{< ref "secrets-kubernetes" >}}) | All supported versions | Armory Operator based deployments |
+| [Vault]({{< ref "secrets-vault" >}})                   | All supported versions | Proprietary feature                          |
 
