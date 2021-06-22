@@ -43,7 +43,7 @@ Application metrics can be ingested by Kayenta to perform Canary Analysis or Aut
 | Dynatrace      | All supported versions | Yes | 2.23.0 or later        |      |
 | Graphite       | All supported versions | Yes | All supported versions |      |
 | New Relic      | All supported versions | Yes | All supported versions |      |
-| Prometheus     | All supported versions | Yes | All supported versions | Authentication using a bearer token is supported.     |
+| Prometheus (Open Source)    | All supported versions | Yes | All supported versions | Authentication using a bearer token is supported.     |
 | SignalFx       | All supported versions | Yes | All supported versions |      |
 | Stackdriver    | All supported versions | Yes | All supported versions |      |
 
@@ -401,7 +401,7 @@ The following table lists the supported observabilty providers:
 | Provider   | Version                | Armory                 | Note                        |
 | ---------- | ---------------------- | ---------------------- | --------------------------- |
 | New Relic  | All supported versions | All supported versions |                             |
-| Prometheus | All supported versions | All supported versions | Use Grafana for dashboards. |
+| Prometheus (Open Source) | All supported versions | All supported versions | Use Grafana for dashboards. |
 
 ## Persistent storage
 
