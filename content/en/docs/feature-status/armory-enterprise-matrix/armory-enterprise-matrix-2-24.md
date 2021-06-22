@@ -229,7 +229,7 @@ The following table lists the supported CI systems:
 
 Armory supports various deployment targets.
 
-Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#service_comparisons) to help categorize the different targets.
+Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#service_comparisons) to help you understand how the different deployment targets are categorized. 
 
 ### Compute as a Service
 
@@ -256,7 +256,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 
 | Provider                    | Deployment strategies                      | Armory Versions        | Notes |
 | --------------------------- | ------------------------------------------ | ---------------------- | ----- |
-| Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |       |
+| Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 | Google Cloud Compute Engine | {{< caas-gce-deploy-strategies.inline />}} | All supported versions |       |
 
 
@@ -268,14 +268,14 @@ These are providers that are manifest based, so Armory applies the manifest and 
 | Provider           | Supported Versions | Armory Versions        | Notes |
 | -----------------  | ------------------ | ---------------------- | ----- |
 | Kubernetes         | All versions       | All supported versions |       |
-| Amazon AWS EKS     | All versions       | All supported versions |       |
+| Amazon AWS EKS     | All versions       | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 | Google GKE         | All versions       | All supported versions |       |
 | VMware/Pivotal PKS | All versions       | All supported versions |       |
 
 
 | Provider       | Deployment strategies                      | Armory Versions        | Notes |
 | -------------- | ------------------------------------------ | ---------------------- | ----- |
-| Amazon AWS ECS | <ul><li>Red/Black aka Blue/Green</li></ul> | All supported versions |       |
+| Amazon AWS ECS | <ul><li>Red/Black aka Blue/Green</li></ul> | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 
 
 
@@ -318,7 +318,7 @@ You write the function and use Armory to manage the rollout of iterative version
 
 | Provider          | Deployment strategies                        | Armory Versions        | Notes |
 | ----------------- | -------------------------------------------- | ---------------------- | ----- |
-| Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |       |
+| Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 
 
 
