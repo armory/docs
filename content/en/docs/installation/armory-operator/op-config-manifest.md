@@ -14,7 +14,7 @@ description: >
 ## {{% heading "prereq" %}}
 
 * This guide assumes you want to expand the manifest file used in the Quickstart.
-* You know how to deploy Armory Enterprise or Spinnaker using a Kubernetes manifest file. See the Quickstart's [Single manifest file section]({{< ref "op-quickstart#single-manifest-file-option">}}).
+* You know how to deploy Armory Enterprise using a Kubernetes manifest file. See the Quickstart's [Single manifest file section]({{< ref "op-quickstart#single-manifest-file-option">}}).
 
 ## Kubernetes manifest file
 

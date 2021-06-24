@@ -10,9 +10,7 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-The goal of this guide is to deploy Armory Enterprise or Spinnaker with bare minimum configuration. The [What's next](#whats-next) section contains links to advanced configuration guides.
-
-Ensure you meet the following requirements:
+The goal of this guide is to deploy Armory Enterprise with bare minimum configuration. The [What's next](#whats-next) section contains links to advanced configuration guides.
 
 {{% include "armory-operator/k8s-reqs.md" %}}
 

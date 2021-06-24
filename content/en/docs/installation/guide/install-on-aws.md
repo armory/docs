@@ -1,5 +1,5 @@
 ---
-title: Install Armory Enterprise for Spinnaker in Amazon Web Services (AWS)
+title: Install Armory Enterprise in Amazon Web Services (AWS)
 linkTitle: "Install in AWS"
 weight: 5
 aliases:
@@ -12,16 +12,16 @@ aliases:
   - /spinnaker_install_admin_guides/install-on-aws/
   - /spinnaker-install-admin-guides/install-on-aws/
 description: >
-  Use Armory-extended Halyard to deploy Armory Enterprise for Spinnaker in an AWS Kubernetes cluster or in an on-prem Kubernetes cluster with access to Amazon Secure Storage Service (S3).
+  Use Armory-extended Halyard to deploy Armory Enterprise in an AWS Kubernetes cluster or in an on-prem Kubernetes cluster with access to Amazon Secure Storage Service (S3).
 ---
 
 {{< include "armory-license.md" >}}
 
 ## Overview of installing Armory in AWS
 
-- A Kubernetes cluster running on Amazon Web Services (AWS). EKS is a good way to get a Kubernetes cluster up on AWS - see the AWS documentation for this.
-- An Amazon S3 (Simple Storage Service) bucket. You can use an existing one or create a new one.
-- An NGINX Ingress controller in your AWS cluster.
+- A running [AWS EKS](https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html) cluster.
+- An [Amazon S3 (Simple Storage Service) bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html). You can use an existing one or create a new one.
+- An NGINX Ingress controller in your EKS cluster.
 
 This document currently does not fully cover the following (see [Next Steps](#next-steps) for some links to achieve these)
 
@@ -30,23 +30,15 @@ This document currently does not fully cover the following (see [Next Steps](#ne
 - Add K8s accounts to deploy to
 - Add cloud accounts to deploy to
 
-> This document is focused on Armory, but it can be adapted to install Open Source Spinnaker<sup>TM</sup> by using a different Halyard container and a corresponding different Spinnaker version.
-
 ## AWS Resources
 
 Before you install Armory on AWS, it is essential that you familiarize yourself with [relevant AWS services]({{< ref "resources-aws" >}}).
 
-## Prerequisites for installing Armory
+## {{% heading "prereq" %}}
 
-This document assumes the following:
-
-- You have a Kubernetes cluster up and running, with the following:
-
-  - You can access the Kubernetes API. If using EKS, either your user/role created the EKS cluster or your user/role has been added to the `aws-auth` configmap in the EKS cluster. See the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html) for more details.
-  - At least 2x worker nodes, each with at least 2 vCPUs and 4 GiB of memory. This is the bare minimum to install and run Armory. If you're deploying more intermittent test workloads you will likely need more).
-
-- You have access to an S3 bucket or access to create an S3 bucket
-
+- You have reviewed and met the Armory Enterprise [system requirements]({{< ref "system-requirements.md" >}}).
+- You have a running EKS and can access the Kubernetes API. Either your user/role created the EKS cluster or your user/role has been added to the `aws-auth` configmap in the EKS cluster. See the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html) for more details.
+- You have access to an S3 bucket or access to create an S3 bucket.
 - You have access to an IAM role or user with access to the S3 bucket or can create an IAM role or user with access to the S3 bucket.
 
 This document is written with the following workflow in mind:
@@ -498,9 +490,9 @@ Now that your Halconfig is completely configured for the initial Armory deployme
 hal deploy apply
 ```
 
-Once this is complete, congratulations! Armory is installed. Now, we have to access and expose it.
+Once this is complete, congratulations! Armory Enterprise is installed. Now, we have to access and expose it.
 
-## Connect to Armory using `kubectl port-forward`
+## Connect to Armory Enterprise using `kubectl port-forward`
 
 If you have kubectl on a local machine with access to your Kubernetes cluster, you can test connecting to it with the following:
 

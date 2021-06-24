@@ -1,6 +1,7 @@
 ---
 title: Install Armory Enterprise for Spinnaker in the Google Kubernetes Engine (GKE)
 linkTitle: "Install in GKE"
+draft: true
 weight: 5
 aliases:
   - /spinnaker_install_admin_guides/install_on_gke/
