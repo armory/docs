@@ -557,7 +557,7 @@ logging:
     customerId: someCustomer123 # Your Armory Customer ID
 metrics: 
   enabled: true
-  frequency: <Seconds> # Replace with an integer value for seconds based on frequently you want metrics to be scraped 
+  frequency: <Seconds> # Replace with an integer value for seconds based on how frequently you want metrics to be scraped 
   prometheus:
     enabled: true
     commonTags: # The following tags are examples. Use tags that are relevant for your environment
