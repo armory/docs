@@ -544,6 +544,28 @@ clouddriver:
 
 The preceding example enables retries and sets the minimum wait between attempts to 4 seconds, the maximum wait between attempts to 8s, and the maximum number of retries to 5.
 
+## Logging and metrics
+
+You can enable logging and metrics for Prometheus by adding the following configuration to the `terraformer-local.yml` or the `spec.spinnakerConfig.config.armory.terraform` block in your `SpinnakerService` manifest:
+
+```yaml
+logging:
+  remote:
+    enabled: true
+    endpoint: <TheLoggingEndPoint> # For example, https://debug.armory.io
+    version: 1.2.3
+    customerId: someCustomer123 # Your Armory Customer ID
+metrics: 
+  enabled: true
+  frequency: <Seconds> # Replace with an integer value for seconds based on frequently you want metrics to be scraped 
+  prometheus:
+    enabled: true
+    commonTags: # The following tags are examples. Use tags that are relevant for your environment
+      # env: dev
+      # nf_app: exampleApp
+      # nf_region: us-west-1
+```
+
 ## Submit feedback
 
 Let us know what you think at [go.armory.io/ideas](https://go.armory.io/ideas) or [feedback.armory.io](https://feedback.armory.io). We're constantly iterating on customer feedback to ensure that the features we build make your life easier!
