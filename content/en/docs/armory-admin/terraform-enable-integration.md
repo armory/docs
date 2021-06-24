@@ -549,21 +549,23 @@ The preceding example enables retries and sets the minimum wait between attempts
 You can enable logging and metrics for Prometheus by adding the following configuration to the `spec.spinnakerConfig.config.armory.terraform` block in your `SpinnakerService` manifest (Operator) or the `terraformer-local.yml` file (Halyard):
 
 ```yaml
-logging:
-  remote:
-    enabled: true
-    endpoint: <TheLoggingEndPoint> # For example, https://debug.armory.io
-    version: 1.2.3
-    customerId: someCustomer123 # Your Armory Customer ID
-metrics: 
-  enabled: true
-  frequency: <Seconds> # Replace with an integer value for seconds based on how frequently you want metrics to be scraped 
-  prometheus:
-    enabled: true
-    commonTags: # The following tags are examples. Use tags that are relevant for your environment
-      # env: dev
-      # nf_app: exampleApp
-      # nf_region: us-west-1
+armory:
+  terraform:
+    logging:
+      remote:
+        enabled: true
+        endpoint: <TheLoggingEndPoint> # For example, https://debug.armory.io
+        version: 1.2.3
+        customerId: someCustomer123 # Your Armory Customer ID
+      metrics: 
+        enabled: true
+        frequency: <Seconds> # Replace with an integer value for seconds based on how frequently you want metrics to be scraped 
+        prometheus:
+          enabled: true
+          commonTags: # The following tags are examples. Use tags that are relevant for your environment
+            # env: dev
+            # nf_app: exampleApp
+            # nf_region: us-west-1
 ```
 
 ## Submit feedback
