@@ -6,7 +6,7 @@ draft: false
 ![Proprietary](/images/proprietary.svg)
 
 
-## Uninstall the plugion
+## Uninstall the plugin
 
 Remove the Agent plugin manifest file entry from your `kustomization` file.
 
@@ -25,4 +25,4 @@ Then execute:
 
 ## Uninstall the Agent
 
-You can use `kubectl` to delete all Agent `Deployment` objects and their accompanying `ConfigMap` and `Secret`. 
+You can use `kubectl` to delete all Agent `Deployment` objects and their accompanying `ConfigMap` and `Secret`.
