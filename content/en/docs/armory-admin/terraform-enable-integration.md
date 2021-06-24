@@ -546,7 +546,7 @@ The preceding example enables retries and sets the minimum wait between attempts
 
 ## Logging and metrics
 
-You can enable logging and metrics for Prometheus by adding the following configuration to the `terraformer-local.yml` or the `spec.spinnakerConfig.config.armory.terraform` block in your `SpinnakerService` manifest:
+You can enable logging and metrics for Prometheus by adding the following configuration to the `spec.spinnakerConfig.config.armory.terraform` block in your `SpinnakerService` manifest (Operator) or the `terraformer-local.yml` file (Halyard):
 
 ```yaml
 logging:
