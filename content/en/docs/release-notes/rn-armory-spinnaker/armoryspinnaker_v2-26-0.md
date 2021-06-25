@@ -121,7 +121,7 @@ The following changes to the Plugin Framework may affect you if you are developi
 ###  Spinnaker Community Contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
-[Spinnaker v1.26.3](https://www.spinnaker.io/community/releases/versions/1-26-3-changelog) changelog for details.
+[Spinnaker v1.26.3](https://spinnaker.io/changelogs/1.26.3-changelog/) changelog for details.
 
 ## Detailed updates
 
