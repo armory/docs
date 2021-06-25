@@ -121,7 +121,7 @@ Armory now supports the following for SpEL expressions:
 ###  Spinnaker Community Contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
-[Spinnaker v1.25.3](https://www.spinnaker.io/community/releases/versions/1-25-3-changelog) changelog for details.
+[Spinnaker v1.25.3](https://spinnaker.io/changelogs/1.25.3-changelog/) changelog for details.
 
 ## Detailed updates
 
