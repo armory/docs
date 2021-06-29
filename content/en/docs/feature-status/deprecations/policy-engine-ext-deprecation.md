@@ -12,7 +12,7 @@ On 2021/06/21, Policy Engine Extension will be deprecated with an End of Support
 
 ## Why is Armory removing support?
 
-To better meet customer needs, we’ve released Policy Engine Plugin, which handles all Policy Engine Extension use cases and includes additional functionality. To stay focused on our customer needs, we do not intend to support both Policy Engine Plugin and Policy Engine Extension. Please [migrating to the Policy Engine Plugin]({{< ref "policy-engine-enable#migrating-to-the-policy-engine-plugin" >}}) to ensure uninterrupted support.
+To better meet customer needs, we’ve released Policy Engine Plugin, which handles all Policy Engine Extension use cases and includes additional functionality. To stay focused on our customer needs, we do not intend to support both Policy Engine Plugin and Policy Engine Extension. Please [migrate to the Policy Engine Plugin]({{< ref "policy-engine-enable#migrating-to-the-policy-engine-plugin" >}}) to ensure uninterrupted support.
 
 We understand that this decision may be disruptive to you, so we are giving as much advance notice as possible. For more information about how Armory handles feature and technology deprecation, please see [https://docs.armory.io/deprecations](https://docs.armory.io/deprecations).
 
