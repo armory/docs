@@ -8,7 +8,7 @@ exclude_search: true
 
 ## What does this mean?
 
-On 2021/06/21,  Policy Engine Extension will be deprecated with an End of Support date of 2021/09/31. This means that after 2021/06/30, no new development is done specific to the feature except for critical (P0/1) bugs and security CVE fixes. Support for critical (P0/1) bugs and security CVE fixes will end on 2021/09/31. The final Armory Enterprise release that includes the Policy Engine Extension is 2.26.
+On 2021/06/21,  Policy Engine Extension will be deprecated with an End of Support date of 2021/09/31. This means that after 2021/06/21, no new development is done specific to the feature except for critical (P0/1) bugs and security CVE fixes. Support for critical (P0/1) bugs and security CVE fixes will end on 2021/09/31. The final Armory Enterprise release that includes the Policy Engine Extension is 2.26.
 
 ## Why is Armory removing support?
 
