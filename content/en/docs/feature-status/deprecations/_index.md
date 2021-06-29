@@ -20,9 +20,10 @@ The following clarifies what we mean when a feature is deprecated or reaches end
 
 * **End of Support**: When a feature is no longer available for customer or technical support, including critical (P0/1) bugs and security CVE fixes specific to the feature.   
 
-| Feature          | Deprecated | End of Support |
-|------------------|------------|----------------|
-| [Pipelines as CRD]({{< ref "pacrd-deprecation.md" >}}) | 2021/08/01 | 2021/11/01     |
+| Feature                                                | Deprecated | End of Support | Last compatible Armory Enterprise release |
+|--------------------------------------------------------|------------|----------------|-------------------------------------------|
+| [Pipelines as CRD]({{< ref "pacrd-deprecation.md" >}}) | 2021/08/01 | 2021/11/01     | Not applicable                            |
+| [Halyard]({{< ref "halyard-deprecation.md" >}})        | 2021/09/01 | 2021/12/30     | 2.26.x                                    |
 
 
 ## FAQ
