@@ -1,6 +1,6 @@
 ---
 title: Armory Agent Configuration Options
-linkTitle: Agent Options
+linkTitle: Agent Config
 weight: 50
 description: >
   Learn how to configure the Armory Agent based on installation mode and environment restrictions. This guide contains a detailed list of configuration options.
@@ -11,37 +11,42 @@ description: >
 
 ## Where to configure the Agent
 
-Set these options at the agent level in the `kubesvc.yaml` configuration file. If deploying as a non-Spinnaker<sup>TM</sup> service, you need to specify a `clouddriver.grpc` endpoint (e.g. `grpc.spinnaker.example.com:443`).
+On Kubernetes, configure the Agent using a `ConfigMap`. See the Quickstart's [Configure the Agent]({{< ref "armory-agent-quick#configure-the-agent" >}}) section for an example.
+
+If deploying as a non-Armory-Enterprise service, you need to specify a `clouddriver.grpc` endpoint (e.g. `grpc.spinnaker.example.com:443`) in your `kubesvc.yaml` file.
 
 ## Kubernetes account
 
-At a minimum you need to add an account, give it a name, and set its Spinnaker permissions.
+At a minimum you need to add an account, give it a name, and set its Armory Enterprise permissions.
 
 ### Spinnaker Service and Infrastructure modes
 
-In these modes, you set up multiple accounts per agent. Your configuration should look like:
+In these modes, you set up multiple accounts per Agent. Your configuration should look like this:
 
-```yaml
+{{< prism lang="yaml" >}}
 kubernetes:
   accounts:
     - name: account-01
       kubeconfigFile: /kubeconfigfiles/kubecfg-account01.yaml
+    - name: account-02
+      kubeconfigFile: /kubeconfigfiles/kubecfg-account02.yaml
     - ...  
-```
+{{< /prism >}}
 
 > If you are migrating accounts from Clouddriver, you can just copy the same block of configuration here. Unused properties are ignored.
 
 
 ### Agent mode
 
-In agent mode, your configuration should look like:
+In Agent mode, your configuration should look like:
 
-```yaml
+{{< prism lang="yaml" >}}
 kubernetes:
   accounts:
     - name: account-01
       serviceAccount: true
-```
+      ...
+{{< /prism >}}
 
 
 ## Options
