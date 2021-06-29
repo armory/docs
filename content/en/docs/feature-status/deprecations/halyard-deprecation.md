@@ -9,10 +9,10 @@ exclude_search: true
  
 ## What does this mean?
 
-On 2021/09/01, Armory-extended Halyard, Armory's proprietary extension of Armory-extended Halyard, will be deprecated with an and End of Support date of 2021/12/30. This means that after 2021/09/01, no new development is done specific to the feature except for critical (P0/1) bugs and security CVE fixes. Support for critical (P0/1) bugs and security CVE fixes will end on 2021/12/30. 
+On 2021/09/01, Armory-extended Halyard, Armory's proprietary extension of Halyard, will be deprecated with an and End of Support date of 2021/12/30. This means that after 2021/09/01, no new development is done specific to the feature except for critical (P0/1) bugs and security CVE fixes. Support for critical (P0/1) bugs and security CVE fixes will end on 2021/12/30. 
 
-Releases after 2.26 require the Armory Operator. Any workflow that uses Armory-extended Halyard may break
-if you try to upgrade to a release that comes out after 2.26. We encourage all Armory-extended Halyard users to [migrate to the Armory Operator]({{< ref "hal-op-migration.md" >}}), the only supported method of installing and configuring Armory’s products beyond the 2.26 release.
+Additionally, releases after 2.26 require you to use the Armory Operator. Any current workflows that use Armory-extended Halyard may break
+if you try to upgrade to a release that is later than 2.26. We encourage all Armory-extended Halyard users to [migrate to the Armory Operator]({{< ref "hal-op-migration.md" >}}), the only supported method of installing and configuring Armory’s products beyond the 2.26 release.
  
 ## Why is Armory removing support?
 
@@ -31,8 +31,7 @@ feature and technology deprecation, please see
 ## Am I affected?
 
 If your company currently uses Armory-extended Halyard, then yes. You can still access Armory-extended Halyard
-until 2021/12/30; however, Armory is unable to support issues solely
-related to Armory-extended Halyard you may experience after 2021/09/01.
+until 2021/12/30; however, Armory is unable to support issues solely related to Armory-extended Halyard you may experience after 2021/09/01.
  
 ## What do I need to do?
 
@@ -47,5 +46,5 @@ As mentioned above, if your company uses Armory-extended Halyard, you will not b
  
 ## Who should I contact if I have questions or need further assistance?
 
-For customers who have an assigned Technical Account Manager and/or Account Executive, they are your first and best resource. For others you can reach our Customer Care team at [support@armory.io](mailto:support@armory.io) or visit the [Help Center](https://support.armory.io/) to submit a case.
+For customers who have an assigned Technical Account Manager and/or Account Executive, they are your first and best resource. For others, you can reach our Customer Care team at [support@armory.io](mailto:support@armory.io) or visit the [Help Center](https://support.armory.io/) to submit a case.
 
