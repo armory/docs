@@ -1,5 +1,5 @@
 ---
-title: Upgrade Spinnaker to Armory Enterprise for Spinnaker
+title: Upgrade Spinnaker to Armory Enterprise
 weight: 10
 aliases:
   - /spinnaker-install-admin-guides/upgrade-oss-to-armory/
@@ -9,7 +9,7 @@ description: >
 
 {{< include "armory-license.md" >}}
 
-## Overview of upgrading Spinnaker to Armory Enterprise for Spinnaker
+## Overview of upgrading Spinnaker to Armory Enterprise
 
 Armory Enterprise for Spinnaker is installed with Armory-extended Halyard, very similarly to the way Open Source Spinnaker<sup>TM</sup> is installed with Open Source Halyard. These are the key differences:
 

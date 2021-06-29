@@ -1,6 +1,7 @@
 ---
 title: Install Armory Enterprise for Spinnaker in the Azure Kubernetes Service (AKS)
 linkTitle: "Install in AKS"
+draft: true
 weight: 5
 aliases:
   - /spinnaker_install_admin_guides/install_on_aks/

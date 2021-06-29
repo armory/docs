@@ -18,9 +18,9 @@ There are several methods to install Armory Enterprise or open source Spinnaker:
 
 | Method                             | Environment           | Description                                                          | Benefits                                                            |
 |------------------------------------|-----------------------|----------------------------------------------------------------------|-----------------------------------------------------------------|
-| [Armory Operator]({{< ref "armory-operator" >}})   |  Kubernetes Operator that enables you to configure Armory Enterprise declaratively | GitOps friendly and ready for production use                                 |
-| [Armory Halyard]({{< ref "armory-halyard" >}}) | Kubernetes            | Versatile command line interface to configure and deploy Armory Enterprise   | Quick Setup                                                     |
-| [Minnaker]({{< ref "minnaker" >}})             | MacOS, Linux, Windows | Spin up a whole environment on top of Rancher K3s to deploy Armory  Enterprise or Spinnaker    | This is ideal if you do not have a Kubernetes cluster available and want to try out Armory Enterprise or Spinnaker |
+| [Armory Operator]({{< ref "armory-operator" >}})   |  Kubernetes Operator that enables you to configure and manage Armory Enterprise declaratively | GitOps friendly and ready for production use                                 |
+| [Armory Halyard]({{< ref "armory-halyard" >}}) | Kubernetes            | Versatile command line interface to configure and deploy Armory Enterprise   | Quick setup                                                     |
+| [Minnaker]({{< ref "minnaker" >}})             | MacOS, Linux, Windows | Spin up a whole environment on top of Rancher K3s to deploy Armory Enterprise or Spinnaker    | This is ideal if you do not have a Kubernetes cluster available and want to try Armory Enterprise |
 | [Operator]({{< ref "armory-operator" >}}) | Kubernetes            | An open source Kubernetes Operator that installs open source Spinnaker | GitOps friendly and ready for production use                                 |
 
 
@@ -32,14 +32,14 @@ All the preceding methods share similar configurations, and you can migrate betw
 
 Based on your environment, use one of the following guides to help you install Armory Enterprise:
 
-| Guide                                                                 | Environment                    | Description                               |
-|-----------------------------------------------------------------------|--------------------------------|-------------------------------------------|
-| [Air Gapped]({{< ref "air-gapped" >}})                                | Air-gapped environments that use Halyard or Operator | Learn how to host your own Bill of Materials to install Armory Enterprise in air-gapped environments.                     |
-| [AWS Marketplace]({{< ref "aws-container-marketplace" >}})            | AWS                            | One-click install from the AWS marketplace.      |
-| [Install on Kubernetes]({{< ref "install-on-k8s" >}})                 | Halyard, Operator              | General workflow for installing Armory Enterprise on Kubernetes                    |
-| [Install on AWS]({{< ref "install-on-aws" >}})                        | AWS, Halyard                   | Installation steps for AWS, including IAM configuration |
-| [Install on AWS EC2 with Operator]({{< ref "operator-k3s" >}})        | AWS EC2, Operator              | Installation steps for using Armory Operator to install Armory  Enterprise in a Lightweight Kubernetes (K3s) instance for POCs
-| [Install on AKS]({{< ref "install-on-aks" >}})                        | AKS, Halyard                   | Installation steps for Azure Kubernetes Service                   |
-| [Install on GKE]({{< ref "install-on-gke" >}})                        | GKE, Halyard                   | Installation steps for Google Kubernetes Engine                    |
-| [Install on GKE with Operator]({{< ref "install-on-gke-operator" >}}) | GKE, Operator                  | Installation steps for Google Kubernetes Engine using Operator                    |
+| Guide                                                     | Environment                                          | Description                                                                                                                            |
+|-----------------------------------------------------------|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| [Armory Operator Quickstart]({{< ref "op-quickstart" >}}) | Kubernetes, Armory Operator                          | Install the Armory Operator, create a Kubernetes manifest for Armory Enterprise, and then deploy and manage using the Armory Operator. |
+| [Air Gapped]({{< ref "air-gapped" >}})                    | Air-gapped environments that use the Armory Operator | Learn how to host your own Bill of Materials for deploying Armory Enterprise in an air-gapped environment.                             |
+| [AWS Marketplace]({{< ref "aws-container-marketplace" >}}) | AWS, Armory Operator | Use the Armory Operator from the AWS Container Marketplace to deploy Armory Enterprise in your Amazon Kubernetes (EKS) cluster. |
+| [Armory Enterprise on AWS workshop](https://armory.awsworkshop.io/) | AWS |  Use AWS CloudFormation to create infrastructure and deploy Armory Enterprise from the AWS Marketplace. |
+| Install on AWS EKS | AWS EKS, Halyard | Use Armory-extended Halyard to deploy Armory Enterprise in an AWS EKS cluster. |
+| [RedHat Marketplace]({{< ref "install-redhat-marketplace" >}}) | OpenShift | Use the Armory Operator from the Red Hat Marketplace to deploy Armory Enterprise in your OpenShift cluster. |
+| [Install on AWS EC2 with Operator]({{< ref "operator-k3s" >}})        | AWS EC2, Armory Operator              | Installation steps for using Armory Operator to install Armory  Enterprise in a Lightweight Kubernetes (K3s) instance for a Proof of Concept.
+| [Install on GKE with Operator]({{< ref "install-on-gke-operator" >}}) | GKE, ARmory Operator                  | Installation steps for Google Kubernetes Engine using Operator                    |
 | [Configuring Halyard]({{< ref "configure-halyard" >}})                | Halyard                        | Description of Armory-extended Halyard configurations              |

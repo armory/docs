@@ -114,7 +114,7 @@ Nested pipelines now have a breadcrumb trail that shows parent executions, makin
 ###  Spinnaker Community Contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
-[Spinnaker v1.24.2](https://www.spinnaker.io/community/releases/versions/1-24-2-changelog) changelog for details.
+[Spinnaker v1.24.2](https://spinnaker.io/changelogs/1.24.2-changelog/) changelog for details.
 
 ## Detailed updates
 

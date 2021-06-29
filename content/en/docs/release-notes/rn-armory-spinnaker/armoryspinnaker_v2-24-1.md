@@ -67,7 +67,7 @@ Named Profiles for static type credentials now support using key/value pairs in 
 ###  Spinnaker Community Contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
-[Spinnaker v1.24.4](https://www.spinnaker.io/community/releases/versions/1-24-4-changelog) changelog for details.
+[Spinnaker v1.24.4](https://spinnaker.io/changelogs/1.24.4-changelog/) changelog for details.
 
 ## Detailed updates
 

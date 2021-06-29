@@ -23,7 +23,16 @@ You install Armory Enterprise using the [Armory Operator]({{< ref "armory-operat
 - You must be able to apply Kubernetes manifests and CRDs, either directly using `kubectl` commands from your machine or another method.
 - By default, the Operator pulls images from a public registry. If you cannot pull images from public registries, see {{< linkWithTitle "ag-operator.md" >}}.
 
-Note that Armory does not produce marketplace specific images that can be used by different certified Kubernetes offerings. 
+Note that Armory does not produce marketplace specific images that can be used by different certified Kubernetes offerings.
+
+The Kubernetes cluster itself must meet the following requirements:
+
+* You have administrator rights to install the Custom Resource Definition (CRD) for the Armory Operator.
+* If you are managing your own Kubernetes cluster (**not** EKS or OpenShift), be sure:
+   * You have enabled admission controllers in Kubernetes (`-enable-admission-plugins`).
+   * You have `ValidatingAdmissionWebhook` enabled in `kube-apiserver`. Alternatively, you can pass the `--disable-admission-controller` parameter to the to the `deployment.yaml` file that deploys the Operator.
+
+If you do not have a cluster already, consult guides for [Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html)or the equivalent for your Kubernetes provider.
 
 ## Browsers
 

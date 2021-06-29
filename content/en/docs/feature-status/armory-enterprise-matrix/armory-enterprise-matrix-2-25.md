@@ -53,7 +53,7 @@ The following table lists supported app metric providers:
 | [Dynatrace]({{< ref "kayenta-canary-dynatrace.md" >}})      | All supported versions | Yes | 2.23.0 or later        |      |
 | Graphite       | All supported versions | Yes | All supported versions |      |
 | New Relic      | All supported versions | Yes | All supported versions |      |
-| Prometheus     | All supported versions | Yes | All supported versions | Authentication using a bearer token is supported.     |
+| Prometheus (Open Source)    | All supported versions | Yes | All supported versions | Authentication using a bearer token is supported.     |
 | SignalFx       | All supported versions | Yes | All supported versions |      |
 | Stackdriver    | All supported versions | Yes | All supported versions |      |
 
@@ -197,7 +197,7 @@ The following table lists the supported image bakeries:
 | -------- | ---------------------- | -------------------------- |
 | AWS      | All supported versions |                            |
 | GCE      | All supported versions |                            |
-| Packer   | All supported versions | The following lists the included Packer versions: <ul><li> Armory 2.22.x includes Packer 1.4.4</li><li>Armory 2.23.x and 2.24.x include Packer 1.6.4</li></ul> |
+| Packer   | All supported versions | The following lists the included Packer versions: <ul><li> Armory 2.22.x includes Packer 1.4.4</li><li>Armory 2.23.x and later include Packer 1.6.4</li></ul> |
 
 ## Baking Kubernetes manifests
 
@@ -259,7 +259,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 
 | Provider                    | Deployment strategies                      | Armory Versions        | Notes |
 | --------------------------- | ------------------------------------------ | ---------------------- | ----- |
-| Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |       |
+| Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 
 
 
@@ -270,13 +270,13 @@ These are providers that are manifest based, so Armory applies the manifest and 
 | Provider           | Supported Versions | Armory Versions        | Notes |
 | -----------------  | ------------------ | ---------------------- | ----- |
 | Kubernetes         | 1.16 or later       | All supported versions |       |
-| Amazon AWS EKS     | All versions       | All supported versions |       |
+| Amazon AWS EKS     | All versions       | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 | Google GKE         | All versions       | All supported versions |       |
 
 
 | Provider       | Deployment strategies                      | Armory Versions        | Notes |
 | -------------- | ------------------------------------------ | ---------------------- | ----- |
-| Amazon AWS ECS | <ul><li>Red/Black aka Blue/Green</li></ul> | All supported versions |       |
+| Amazon AWS ECS | <ul><li>Red/Black aka Blue/Green</li></ul> | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 
 
 
@@ -319,7 +319,7 @@ You write the function and use Armory to manage the rollout of iterative version
 
 | Provider          | Deployment strategies                        | Armory Versions        | Notes |
 | ----------------- | -------------------------------------------- | ---------------------- | ----- |
-| Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |       |
+| Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 
 
 
@@ -394,7 +394,7 @@ The following table lists the supported observabilty providers:
 | Provider   | Version                | Armory                 | Note                        |
 | ---------- | ---------------------- | ---------------------- | --------------------------- |
 | New Relic  | All supported versions | All supported versions |                             |
-| Prometheus | All supported versions | All supported versions | Use Grafana for dashboards. |
+| Prometheus (Open Source) | All supported versions | All supported versions | Use Grafana for dashboards. |
 
 
 ## Pipeline triggers
