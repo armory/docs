@@ -15,9 +15,23 @@ On Kubernetes, configure the Agent using a `ConfigMap`. See the Quickstart's [Co
 
 If deploying as a non-Armory-Enterprise service, you need to specify a `clouddriver.grpc` endpoint (e.g. `grpc.spinnaker.example.com:443`) in your `kubesvc.yaml` file.
 
-## Kubernetes account
+## Configure Kubernetes accounts
 
-At a minimum you need to add an account, give it a name, and set its Armory Enterprise permissions.
+Kubernetes V2 provider accounts can be configured in multiple places:
+
+* Clouddriver files
+* Spring Cloud Config Server reading accounts from Git, Vault, or another supported backend
+* Plugins
+
+To avoid potential conflicts, Armory recommends migrating to the Agent all Kubernetes accounts other than those defined in a plugin.
+
+Behavior when reading Kubernetes account configuration from multiple sources:
+
+* In the case of different accounts defined in Agent and Kubernetes V2 provider configuration, Agent does a merge of both sources.
+* If an account with the same name is defined in the Agent as well as Clouddriver or Spring Cloud Config Server backends, the Agent account configuration always overrides the V2 provider configuration.
+* If an account with the same name is defined in the Agent configuration as well as in a plugin backend, the account that is used depends on the order of precedence defined in the plugin's `CredentialsDefinitionSource` interface. The Agent has an order precedence of 1000. Check with your plugin provider for the plugin's order of precedence.
+  * If the plugin has a higher precedence than the Agent, the plugin's account is used. For example, if the plugin's precedence is 500, the plugin's account is used.
+  * If the plugin has no precedence defined or a lower precedence than the Agent, the account defined in the Agent is used.
 
 ### Spinnaker Service and Infrastructure modes
 
@@ -33,7 +47,7 @@ kubernetes:
     - ...  
 {{< /prism >}}
 
-> If you are migrating accounts from Clouddriver, you can just copy the same block of configuration here. Unused properties are ignored.
+> When you migrate accounts from Clouddriver, copy the same block of configuration here. Unused properties are ignored.
 
 
 ### Agent mode
@@ -48,6 +62,7 @@ kubernetes:
       ...
 {{< /prism >}}
 
+###
 
 ## Options
 
