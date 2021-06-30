@@ -8,6 +8,7 @@ aliases:
 toc_hide: true
 hidden: true
 exclude_search: true
+no_list: true
 ---
 
 ## Overview
