@@ -314,7 +314,7 @@ data:
       insecure: true
     kubernetes:
      accounts:
-     - name:
+     - name: 
        kubeconfigFile:
        insecure:
        context:

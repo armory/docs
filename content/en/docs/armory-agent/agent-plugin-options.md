@@ -1,5 +1,5 @@
 ---
-title: Plugin Configuration Options
+title: Plugin Configuration
 linkTitle: Plugin Config
 weight: 60
 description: >

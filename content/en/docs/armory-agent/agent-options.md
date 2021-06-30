@@ -1,5 +1,5 @@
 ---
-title: Armory Agent Configuration Options
+title: Armory Agent Configuration
 linkTitle: Agent Config
 weight: 50
 description: >
@@ -21,7 +21,7 @@ At a minimum you need to add an account, give it a name, and set its Armory Ente
 
 ### Spinnaker Service and Infrastructure modes
 
-In these modes, you set up multiple accounts per Agent. Your configuration should look like this:
+You set up multiple accounts per Agent in these modes. Your configuration should look like this:
 
 {{< prism lang="yaml" >}}
 kubernetes:
