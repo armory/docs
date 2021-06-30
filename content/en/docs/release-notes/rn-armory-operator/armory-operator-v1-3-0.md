@@ -31,4 +31,3 @@ This feature requires you to have diagnostics enabled within your `SpinnakerServ
 ### Armory Operator
 
 * feat(debug): send debug information when reconcile spinsvc
-* feat(operator): integrate OSS operator 
