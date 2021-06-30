@@ -5,9 +5,6 @@ description: Updates on what features are deprecated, links to relevant informat
 aliases:
   - /deprecations/
   - /docs/deprecations
-toc_hide: true
-hidden: true
-exclude_search: true
 no_list: true
 ---
 
@@ -24,7 +21,6 @@ The following clarifies what we mean when a feature is deprecated or reaches end
 | Feature                                                | Deprecated | End of Support | Last compatible Armory Enterprise release |
 |--------------------------------------------------------|------------|----------------|-------------------------------------------|
 | [Pipelines as CRD]({{< ref "pacrd-deprecation.md" >}}) | 2021/08/01 | 2021/11/01     | Not applicable                            |
-| [Halyard]({{< ref "halyard-deprecation.md" >}})        | 2021/09/01 | 2021/12/30     | 2.26.x                                    |
 | [Policy Engine Extension]({{< ref "policy-engine-ext-deprecation.md" >}})        | 2021/06/21 | 2021/09/31     | 2.26.x                                    |
 
 
