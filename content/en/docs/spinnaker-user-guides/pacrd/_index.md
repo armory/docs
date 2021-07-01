@@ -8,6 +8,8 @@ aliases:
   - /docs/spinnaker-user-guides/pacrd
 ---
 
+{{< include "deprecations/pacrd.html" >}}
+
 ![Proprietary](/images/proprietary.svg)
 
 ## Overview

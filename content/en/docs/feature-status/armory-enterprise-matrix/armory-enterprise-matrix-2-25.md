@@ -116,7 +116,7 @@ You can find the latest version on [Docker Hub](https://hub.docker.com/r/armory/
 
 ### Pipelines as CRD
 
-[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) ![Armory](/images/armory.svg)
+> This feature is deprecated. For more information, see [PaCRD Deprecation]{{< ref "pacrd-deprecation.md" >}}.
 
 [PaCRD]({{< ref "pacrd" >}}) gives you the ability to manage your pipelines as
 Kubernetes custom resources.
