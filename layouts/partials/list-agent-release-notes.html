@@ -3,7 +3,7 @@
   {{ $pagesReverse := $pages.Reverse }}
   {{ $parent := .Page }}
 
-  <div>Agent for Clouddriver:</div>
+  <div>Clouddriver Agent:</div>
 
   <ul>
     {{ range $pagesReverse }}
@@ -16,7 +16,7 @@
       {{end}}
     {{ end }}
   </ul>
-  <div>Agent for Hub:</div>
+  <div>Agent Hub:</div>
   <ul>
     {{ range $pagesReverse }}
       {{ if eq .Parent $parent }}
