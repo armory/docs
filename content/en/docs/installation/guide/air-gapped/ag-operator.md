@@ -3,6 +3,8 @@ title: Air-Gapped with the Armory Operator
 weight: 2
 description: >
   Guide for hosting the Armory Enterprise BOM and Docker images in an air-gapped environment.
+categories: ["install"]
+tags: ["Operator", "air-gapped"]
 ---
 
 ## Overview

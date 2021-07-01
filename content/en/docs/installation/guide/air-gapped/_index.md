@@ -5,9 +5,8 @@ weight: 1
 no_list: true
 description: >
   Options for deploying Armory Enterprise in an environment that is isolated from the internet.
-aliases:
-  - /spinnaker-user-guides/plugin-creators/
-  - /docs/spinnaker-user-guides/plugin-creators/
+categories: ["install"]
+tags: ["air-gapped"]
 ---
 
 {{< include "armory-license.md" >}}

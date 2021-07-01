@@ -3,6 +3,8 @@ title: Air-Gapped with Halyard
 weight: 3
 description: >
   Options for deploying Armory Enterprise using Armory Halyard in an air-gapped environment.
+categories: ["install"]
+tags: ["Halyard", "air-gapped"]
 ---
 
 ## Overview
