@@ -329,6 +329,8 @@ You write the function and use Armory to manage the rollout of iterative version
 
 Dynamic accounts (external account configurations) for Spinnaker allow you to manage account configuration outside of Spinnaker, including secrets.
 
+> Note that Armory does not support using dynamic account configuration with Spring Cloud Config Server.
+
 **Backend provider**
 
 The following table lists the supported backends:
