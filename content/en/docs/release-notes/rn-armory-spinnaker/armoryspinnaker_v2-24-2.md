@@ -1,7 +1,7 @@
 ---
 title: v2.24.2 Armory Release (OSS Spinnaker™ v1.24.6)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.24.02
 description: >
   Release notes for Armory Enterprise v2.24.2 
 ---
@@ -9,12 +9,13 @@ description: >
 ## 2021/07/20 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.24.2, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.10 or later
+- Armory Operator 1.2.1 or later
 
 ## Security
 
@@ -22,9 +23,19 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
+{{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
+
+<!-- Moved this to Breaking changes instead of KI. Didn't bother renaming it. -->
+{{< include "known-issues/ki-orca-zombie-execution.md" >}}
+
+{{< include "breaking-changes/bc-orca-forcecacherefresh.md" >}}
+
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+{{< include "known-issues/ki-bake-var-file.md" >}}
+{{< include "known-issues/ki-lambda-ui-caching.md" >}}
+{{< include "known-issues/ki-dinghy-modules.md" >}}
 
 ## Highlighted updates
 
@@ -33,9 +44,13 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+### AWS Lambda
 
+Health status fields are now part of the function cache so that corresponding tasks can continue as expected.
 
+### Terraform Integration
 
+Terraform versions 13.6 to 14.10 are now available in the Terraform Integration stage.
 
 ###  Spinnaker Community Contributions
 
@@ -105,8 +120,6 @@ artifactSources:
 
 
 #### Armory Front50 - 2.24.12...2.24.14
-
-  - chore(gha): disable integration tests for now (#286)
 
 #### Terraformer™ - 2.24.4...2.24.7
 
