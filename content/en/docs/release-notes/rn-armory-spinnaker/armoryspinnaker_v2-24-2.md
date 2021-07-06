@@ -6,7 +6,7 @@ description: >
   Release notes for Armory Enterprise v2.24.2 
 ---
 
-## 2021/07/20 Release Notes
+## 2021/07/06 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
