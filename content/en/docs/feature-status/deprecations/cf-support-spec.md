@@ -36,10 +36,10 @@ This section outlines the types of Cloud Foundry resources that Armory Enterpris
         - [Environment Variables](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html#env-block)
         - [Services](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html#services-block)
         - [Routes](https://docs.cloudfoundry.org/devguide/deploy-apps/routes-domains.html) 
-- [Services](https://docs.cloudfoundry.org/devguide/services/))
+- [Services](https://docs.cloudfoundry.org/devguide/services/)
     - User Provided
     - Managed
-- [Routes (Loadbalancers)](https://docs.cloudfoundry.org/devguide/deploy-apps/routes-domains.html))
+- [Routes (Loadbalancers)](https://docs.cloudfoundry.org/devguide/deploy-apps/routes-domains.html)
 
 
 
