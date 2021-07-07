@@ -5,6 +5,8 @@ weight: 1
 description: "Enable the Policy Engine Plugin and connect it to your OPA server. When enabled, you can write policies that the Policy Engine enforces during save time, runtime validation, or when a user interacts with Armory Enterprise."
 ---
 
+![Proprietary](/images/proprietary.svg)
+
 ## Before you start
 
 Make sure the following requirements are met:

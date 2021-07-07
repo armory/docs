@@ -19,6 +19,7 @@ dinghyfile
 Docsy
 Echo
 env:
+etcd
 Fiat
 Front50
 Gate
@@ -68,6 +69,7 @@ ServiceNow
 Spinnaker
 SpinnakerService
 spinnakerservice
+spinsvc
 SQL
 .yml
 yml
