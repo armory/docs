@@ -1,7 +1,5 @@
 {{- $sep := .Get 0 -}}
 {{- $url := .Get 1 -}}
-
-<h2>Dynamically generated headers and body rows</h2>
 <table>
 {{ range $index, $row := getCSV $sep $url }}
 
@@ -9,7 +7,7 @@
   <thead>
   <tr>
   {{ range $row }}
-  <th>{{ . }}</th>
+  <th>{{ . | safeHTML }}</th>
   {{ end }}
   </tr>
   </thead>
@@ -18,7 +16,7 @@
   {{ else }}
   <tr>
   {{ range  $row }}
-  <td>{{ . }}</td>
+  <td>{{ . | safeHTML }}</td>
   {{ end }}
   </tr>
   {{ end }}

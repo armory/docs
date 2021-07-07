@@ -11,3 +11,7 @@ Shortcode reads a CSV and displays the contents in an HTML table.
 Pass in delimiter and URL (either local file system or remote URL).
 
 {{% csv-table ";" "/static/csv/test.csv" %}}
+
+### CSV with embedded HTML
+
+{{% csv-table ";" "/static/csv/test2.csv" %}}

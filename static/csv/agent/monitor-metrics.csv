@@ -1,0 +1,34 @@
+Name;Type;Description
+go_gc_duration_seconds;summary;Amount of time spent in garbage collection
+go_goroutines;gauge;Number of go routines 
+go_memstats_alloc_bytes;gauge;Amount of memory allocation used by Go
+go_memstats_alloc_bytes;gauge;Number of bytes allocated and still in use
+go_memstats_alloc_bytes_total;counter;Total number of bytes allocated, even if freed.
+go_memstats_buck_hash_sys_bytes;gauge;Number of bytes used by the profiling bucket hash table.
+go_memstats_frees_total;counter;Total number of frees.
+go_memstats_gc_cpu_fraction;gauge;The fraction of this program's available CPU time used by the GC since the program started.
+go_memstats_gc_sys_bytes;gauge;Number of bytes used for garbage collection system metadata.
+go_memstats_heap_alloc_bytes;gauge;Number of heap bytes allocated and still in use.
+go_memstats_heap_idle_bytes;gauge;Number of heap bytes waiting to be used.
+go_memstats_heap_inuse_bytes;gauge;Number of heap bytes that are in use.
+go_memstats_heap_objects;gauge;Number of allocated objects.
+go_memstats_heap_released_bytes;gauge;Number of heap bytes released to OS.
+go_memstats_heap_sys_bytes;gauge;Number of heap bytes obtained from system.
+go_memstats_last_gc_time_seconds;gauge;Number of seconds since 1970 of last garbage collection.
+go_memstats_lookups_total;counter;Total number of pointer lookups.
+go_memstats_mallocs_total;counter;Total number of mallocs.
+go_memstats_next_gc_bytes;gauge;Number of heap bytes when next garbage collection will take place.
+go_memstats_sys_bytes;gauge;Number of bytes obtained from system.
+go_threads;gauge;Number of Go threads
+kubesvc_connection_count;counter;Number of connections
+kubesvc_disconnection_total;counter;Number of disconnections
+kubesvc_events_bytes_sent_total;counter;Amount of data sent by caching events
+kubesvc_events_sent_total;counter;Number of caching events sent
+kubesvc_resource_agent_total;counter;Number of watched/polled resources
+process_cpu_seconds_total;counter;Total user and system CPU time spent in seconds.
+process_max_fds;gauge;Maximum number of open file descriptors.
+process_open_fds;gauge;Number of open file descriptors.
+process_resident_memory_bytes;gauge;Resident memory size in bytes.
+process_start_time_seconds;gauge;Start time of the process since unix epoch in seconds.
+process_virtual_memory_bytes;gauge;Virtual memory size in bytes.
+process_virtual_memory_max_bytes;gauge;Maximum amount of virtual memory available in bytes.
