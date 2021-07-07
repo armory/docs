@@ -1,0 +1,28 @@
+{{- $sep := .Get 0 -}}
+{{- $url := .Get 1 -}}
+
+<h2>Dynamically generated headers and body rows</h2>
+<table>
+{{ range $index, $row := getCSV $sep $url }}
+
+  {{ if eq $index 0 }}
+  <thead>
+  <tr>
+  {{ range $row }}
+  <th>{{ . }}</th>
+  {{ end }}
+  </tr>
+  </thead>
+
+  <tbody>
+  {{ else }}
+  <tr>
+  {{ range  $row }}
+  <td>{{ . }}</td>
+  {{ end }}
+  </tr>
+  {{ end }}
+  {{ end }}
+  </tbody>
+</table>
+
