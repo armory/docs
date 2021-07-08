@@ -40,7 +40,7 @@ Communication from the Agent to Clouddriver occurs over gRPC port 9091. Communic
 
 ### Create the plugin manifest
 
-Add the following manifest to your Kustomize patches directory. Then include the file under the `patchesStrategicMerge` section of your `kustomization` file.
+Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to your new `armory-agent` directory.
 
 * Change the value for `name` if your Armory Enterprise service is called something other than "spinnaker".
 * Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix](#compatibility-matrix).
@@ -96,6 +96,15 @@ spec:
                   volumes:
                   - name: kubesvc-plugin-vol
                     emptyDir: {}
+{{< /prism >}}
+
+Then include the file under the `patchesStrategicMerge` section of your `kustomization` file.
+
+{{< prism lang="yaml" line="4" >}}
+bases:
+  - agent-service
+patchesStrategicMerge:
+  - armory-agent/agent-config.yaml
 {{< /prism >}}
 
 ### Expose Clouddriver as a LoadBalancer
@@ -314,7 +323,7 @@ data:
       insecure: true
     kubernetes:
      accounts:
-     - name: 
+     - name:
        kubeconfigFile:
        insecure:
        context:

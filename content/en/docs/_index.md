@@ -20,8 +20,7 @@ Armory helps software teams ship better software, faster. Armory Enterprise is a
 - [Pipelines as Code (Dinghy)]({{< ref "using-dinghy" >}}) allows you to store Spinnaker pipelines in Github and manage them like you would manage code, including version control, templatization, and modularization. Spinnaker pipelines are flexible and customizable series of deployment stages. Combine all these to rapidly and repeatably scale pipelines in your Spinnaker deployment.
 - [Policy Engine]({{< ref "policy-engine-enable" >}}) helps you meet compliance requirements based on custom policies you set. You can configure the Policy Engine to verify that your pipelines meet certain requirements at save time or at runtime.
 - [Terraform integration]({{< ref "terraform-use-integration" >}}) allows you to use your existing Terraform scripts to plan and create infrastructure as part a Spinnaker pipeline. You can deploy your application and infrastructure all in a single pipeline.
-- [Pipelines as CRD (PaCRD)]({{< ref "pacrd" >}}) is a Kubernetes controller that manages the lifecycle of Armory applications and pipelines as objects within your cluster. PaCRD extends Kubernetes functionality to support Spinnaker Application and Pipeline objects that can be observed for changes through a mature lifecycle management API. (Experimental feature).
-
+  
 ## Additional Armory products
 
 ### Kubernetes Operators for installation

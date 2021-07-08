@@ -12,6 +12,7 @@ clouddriver
 Clouddriver
 Cloud Foundry
 config
+.csv
 Debian
 Deck
 Dinghy
@@ -19,6 +20,7 @@ dinghyfile
 Docsy
 Echo
 env:
+etcd
 Fiat
 Front50
 Gate
@@ -58,6 +60,7 @@ namespaces
 OpenShift
 Orca
 Postgres
+Prometheus
 rawdata
 Redis
 Release Notes
@@ -65,9 +68,12 @@ repo
 REST
 Rosco
 ServiceNow
+Shortcode
+shortcode
 Spinnaker
 SpinnakerService
 spinnakerservice
+spinsvc
 SQL
 .yml
 yml
