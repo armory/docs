@@ -20,8 +20,8 @@ The following clarifies what we mean when a feature is deprecated or reaches end
 
 | Feature                                                | Deprecated | End of Support | Last compatible Armory Enterprise release |
 |--------------------------------------------------------|------------|----------------|-------------------------------------------|
-| [Pipelines as CRD]({{< ref "pacrd-deprecation.md" >}}) | 2021/08/01 | 2021/11/01     | Not applicable                            |
-| [Policy Engine Extension]({{< ref "policy-engine-ext-deprecation.md" >}})        | 2021/06/21 | 2021/09/31     | 2.26.x                                    |
+| [Pipelines as CRD]({{< ref "pacrd-deprecation.md" >}}) | 2021 Aug 01 | 2021 Nov 01     | Not applicable                            |
+| [Policy Engine Extension]({{< ref "policy-engine-ext-deprecation.md" >}})        | 2021 June 21 | 2021 Sept 31     | 2.26.x                                    |
 
 
 ## FAQ
