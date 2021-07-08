@@ -284,7 +284,7 @@ metadata:
   name: kubesvc-config
   namespace: spin-agent
 data:
-  kubesvc.yaml: |  
+  kubesvc.yml: |  
   server:
     port: 8082
 {{< /prism >}}

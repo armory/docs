@@ -13,8 +13,6 @@ description: >
 
 On Kubernetes, configure the Agent using a `ConfigMap`. See the Quickstart's [Configure the Agent]({{< ref "armory-agent-quick#configure-the-agent" >}}) section for an example.
 
-If deploying as a non-Armory-Enterprise service, you need to specify a `clouddriver.grpc` endpoint (e.g. `grpc.spinnaker.example.com:443`) in your `kubesvc.yaml` file.
-
 ## Configure Kubernetes accounts
 
 You can configure Kubernetes accounts in Armory Enterprise in multiple places:
@@ -31,26 +29,15 @@ Behavior when reading Kubernetes account configuration from multiple sources:
   * If the plugin has a higher precedence than the Agent, the plugin's account is used. For example, if the plugin's precedence is 500, the plugin's account is used.
   * If the plugin has no precedence defined or a lower precedence than the Agent, the account defined in the Agent is used.
 
-### Spinnaker Service and Infrastructure modes
+### Migrate accounts from Clouddriver to Agent
 
-You set up multiple accounts per Agent in these modes. Your configuration should look like this:
+Copy the account definition from its original source, such as Clouddriver, to Agent's configuration. Depending on how you installed Agent, this configuration could be in the `kubesvc.yml` data section of a `ConfigMap` or in the `kubesvc.yml` file in the Agent pod.
 
-{{< prism lang="yaml" >}}
-kubernetes:
-  accounts:
-    - name: account-01
-      kubeconfigFile: /kubeconfigfiles/kubecfg-account01.yaml
-    - name: account-02
-      kubeconfigFile: /kubeconfigfiles/kubecfg-account02.yaml
-    - ...  
-{{< /prism >}}
+Agent may not use all the properties you copy from the original source definition. Unused properties are ignored.
 
-> When you migrate accounts from Clouddriver, copy the same block of configuration here. Unused properties are ignored.
+#### Agent mode
 
-
-### Agent mode
-
-In Agent mode, your configuration should look like:
+In Agent mode, your configuration should look similar to this:
 
 {{< prism lang="yaml" >}}
 kubernetes:
@@ -60,10 +47,30 @@ kubernetes:
       ...
 {{< /prism >}}
 
+#### Spinnaker Service and Infrastructure modes
+
+You set up multiple accounts per Agent in these modes. Your configuration should look similar to this:
+
+{{< prism lang="yaml" >}}
+kubernetes:
+  accounts:
+    - name: account-name-01
+      kubeconfigFile: /kubeconfigfiles/kubecfg-account01.yaml
+    - name: account-name-02
+      kubeconfigFile: /kubeconfigfiles/kubecfg-account02.yaml
+    - ...  
+{{< /prism >}}
+
+### Migrate accounts from Agent to Clouddriver
+
+Follow these steps to migrate accounts from Agent to Clouddriver:
+
+* Delete the account definition from your Agent configuration. Depending on how you installed Agent, this configuration could be in the `kubesvc.yml` data section of a `ConfigMap` or in the `kubesvc.yml` file in the Agent pod.
+* Add the account definition to the source that Clouddriver uses.
 
 ## Permissions format
 
-Permissions for the Agent use a format that is slightly different than the format that Clouddriver uses for permissions:
+Permissions for the Agent use a format that is slightly different than the format that Clouddriver uses for permissions. Define your permissions like this:
 
 ```
 kubernetes:
