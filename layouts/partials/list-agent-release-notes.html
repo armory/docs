@@ -3,30 +3,11 @@
   {{ $pagesReverse := $pages.Reverse }}
   {{ $parent := .Page }}
 
-  <div>Clouddriver Agent:</div>
-
   <ul>
     {{ range $pagesReverse }}
       {{ if eq .Parent $parent }}
-
-        {{ if in .Title "Clouddriver" }}
-          <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
-        {{end}}
+      <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+      {{end}}
 
       {{end}}
-    {{ end }}
-  </ul>
-  <div>Agent Hub:</div>
-  <ul>
-    {{ range $pagesReverse }}
-      {{ if eq .Parent $parent }}
-
-        {{ if in .Title "Hub" }}
-        <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
-        {{end}}
-
-      {{end}}
-    {{ end }}
-  </ul>
-
-</div>
+      <br>
