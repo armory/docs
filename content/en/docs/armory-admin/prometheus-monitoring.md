@@ -1,5 +1,6 @@
 ---
 title: Monitor Armory Enterprise with Prometheus
+linkTitle: Monitor with Prometheus
 description: >
   Monitor Armory Enterprise using Prometheus and Grafana.
 aliases:
@@ -11,7 +12,7 @@ aliases:
 Armory recommends monitoring the health of Armory Enterprise in every
 production instance. This document describes how to set up a basic
 [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) stack
-as well as enabling monitoring for the Armory Enterprise services.
+as well as enable monitoring for the Armory Enterprise services.
 
 Additional Prometheus and Grafana configuration is necessary to make them
 production-grade, and this configuration is not a part of this document. Also
@@ -275,7 +276,7 @@ Access the Grafana web interface via http://localhost:3000 and use the default G
 
 ## Add Armory dashboards to Grafana
 
-Armory provides some sample dashboards (in JSON format) that you can import into Grafana as a starting point for metrics to graph for monitoring. Armory has additional dashboards that are availabe to Armory customers. You can skip this section if you are a Grafana expert.
+Armory provides some sample dashboards (in JSON format) that you can import into Grafana as a starting point for metrics to graph for monitoring. Armory has additional dashboards that are available to Armory customers. You can skip this section if you are a Grafana expert.
 
 To import the sample dashboards, perform the following steps:
 
