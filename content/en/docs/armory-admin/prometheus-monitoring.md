@@ -288,3 +288,18 @@ To import the sample dashboards, perform the following steps:
 After importing the dashboards, you can explore graphs for each service by clicking on **Dashboards > Manage > Spinnaker Kubernetes Details**.
 
 ![Grafana Dashboard](/images/grafana-2.png)
+
+
+## Available metrics by service
+
+### Clouddriver
+
+{{% csv-table "|" "/static/csv/metrics/metrics-clouddriver.csv" %}}
+
+### Echo
+
+{{% csv-table "|" "/static/csv/metrics/metrics-echo.csv" %}}
+
+### Orca
+
+{{% csv-table "|" "/static/csv/metrics/metrics-orca.csv" %}}
