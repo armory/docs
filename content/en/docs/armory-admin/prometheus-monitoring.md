@@ -293,6 +293,8 @@ After importing the dashboards, you can explore graphs for each service by click
 
 ## Available metrics by service
 
+>Disclaimer: the following tables may not contain every available metric for each service.
+
 ### Clouddriver
 
 {{% csv-table "|" "/static/csv/metrics/metrics-clouddriver.csv" %}}
