@@ -40,7 +40,7 @@ In this mode, the Agent is installed as a new Spinnaker service (`spin-kubesvc`)
 
 ![Spinnaker service mode](/images/armory-agent/in-cluster-mode.png)
 
-If you provision clusters automatically, the Agent can dynamically reload accounts when `kubesvc.yaml` changes. You could, for example, configure accounts in a `configMap` mounting to `/opt/spinnaker/config/kubesvc-local.yaml`.  The Agent reflects `configMap` within seconds after [etcd](https://etcd.io/) sync.
+If you provision clusters automatically, the Agent can dynamically reload accounts when `kubesvc.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/spinnaker/config/kubesvc-local.yaml`.  The Agent reflects `ConfigMap` within seconds after [etcd](https://etcd.io/) sync.
 
 ### Infrastructure mode
 

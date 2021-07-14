@@ -273,9 +273,25 @@ roleRef:
   name: spin-cluster-role
 {{< /prism >}}
 
-### Configure Agent for the Clouddriver LoadBalancer
+### Configure the Agent
 
-Configure the Agent using a `ConfigMap`. In the following manifest, replace **[LoadBalancer Exposed Address]** with the IP address you obtained in the [Get the LoadBalancer IP address section](#get-the-loadbalancer-ip-address).
+Configure the Agent using a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/). Define `kubesvc.yml` in the `data` section:
+
+{{< prism lang="yaml" line="7" >}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubesvc-config
+  namespace: spin-agent
+data:
+  kubesvc.yml: |  
+  server:
+    port: 8082
+{{< /prism >}}
+
+**Clouddriver LoadBalancer**
+
+Replace **[LoadBalancer Exposed Address]** with the IP address you obtained in the [Get the LoadBalancer IP address section](#get-the-loadbalancer-ip-address).
 
 {{< prism lang="yaml" line="18" >}}
 apiVersion: v1
@@ -285,21 +301,50 @@ metadata:
   namespace: spin-agent
 data:
   kubesvc.yaml: |
-    kubernetes:
-      accounts:
-      - name: remote1 # Change this name for each remote cluster
-        serviceAccount: true
-        serviceAccountName: spin-sa
-        metrics: false
-        # /kubeconfigfiles/ is the path to the config files
-        # as mounted from the `kubeconfigs-secret` Kubernetes secret
-        #kubeconfigFile: /kubeconfigfiles/kubecfg-account01.yaml
     clouddriver:
-      grpc: [LoadBalancer Exposed Address]:9091 # For Agent or Infrastructure mode, change this to your exposed lb address
-      insecure: true #Set this to true if TLS between spinnaker services is not enabled
-    server:
-      port: 8082
+      grpc: [LoadBalancer Exposed Address]:9091
+      insecure: true
 {{< /prism >}}
+
+**Kubernetes account**
+
+In this quickstart, you deploy the Agent in [Agent mode]({{< ref "armory-agent#agent-mode" >}}); in other words, you deploy it to your target cluster. Add your Kubernetes account configuration for your cluster:
+
+{{< prism lang="yaml" line="11-30" >}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubesvc-config
+  namespace: spin-agent
+data:
+  kubesvc.yaml: |
+    clouddriver:
+      grpc: [LoadBalancer Exposed Address]:9091
+      insecure: true
+    kubernetes:
+     accounts:
+     - name:
+       kubeconfigFile:
+       insecure:
+       context:
+       oAuthScopes:
+       serviceAccount: true
+       serviceAccountName: spin-sa
+       namespaces: []
+       omitNamespaces: []
+       onlyNamespacedResources:
+       kinds: []
+       omitKinds: []
+       customResourceDefinitions: [{kind:}]
+       metrics:
+       permissions: []
+       maxResumableResourceAgeMs:
+       onlySpinnakerManaged:
+       noProxy:
+{{< /prism >}}
+
+See the [Agent options]({{< ref "agent-options#options">}}) for field explanations.
+
 
 Apply the manifest to your `spin-agent` namespace.
 

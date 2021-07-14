@@ -3,7 +3,7 @@ title: "Kubernetes Permissions for the Armory Agent"
 linkTitle: "Permissions"
 description: >
   Kubernetes permissions required by the Armory Agent.
-weight: 35
+weight: 65
 ---
 ![Proprietary](/images/proprietary.svg)
 
