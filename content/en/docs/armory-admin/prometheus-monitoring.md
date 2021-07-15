@@ -311,6 +311,14 @@ After importing the dashboards, you can explore graphs for each service by click
 
 {{% csv-table "|" "/static/csv/metrics/metrics-front50.csv" %}}
 
+### Gate
+
+{{% csv-table "|" "/static/csv/metrics/metrics-gate.csv" %}}
+
+### Igor
+
+{{% csv-table "|" "/static/csv/metrics/metrics-igor.csv" %}}
+
 ### Orca
 
 {{% csv-table "|" "/static/csv/metrics/metrics-orca.csv" %}}
