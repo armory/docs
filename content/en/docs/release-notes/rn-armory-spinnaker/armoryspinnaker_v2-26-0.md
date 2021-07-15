@@ -48,7 +48,7 @@ There is a known issue where Pipelines as Code fails to parse modules.
 
 **Affected version**: 2.26.0
 
-**Workaround**: There is currently no workaround. If you use Pipelines as Code, do not upgrade to 2.26.0.
+**Workaround**: there is currently no workaround. If you use Pipelines as Code, do not upgrade to 2.26.0.
 
 
 ## Fixed issues
