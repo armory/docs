@@ -303,6 +303,10 @@ After importing the dashboards, you can explore graphs for each service by click
 
 {{% csv-table "|" "/static/csv/metrics/metrics-echo.csv" %}}
 
+### Fiat
+
+{{% csv-table "|" "/static/csv/metrics/metrics-fiat.csv" %}}
+
 ### Orca
 
 {{% csv-table "|" "/static/csv/metrics/metrics-orca.csv" %}}
