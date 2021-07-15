@@ -319,6 +319,10 @@ After importing the dashboards, you can explore graphs for each service by click
 
 {{% csv-table "|" "/static/csv/metrics/metrics-igor.csv" %}}
 
+### Kayenta
+
+{{% csv-table "|" "/static/csv/metrics/metrics-kayenta.csv" %}}
+
 ### Orca
 
 {{% csv-table "|" "/static/csv/metrics/metrics-orca.csv" %}}
