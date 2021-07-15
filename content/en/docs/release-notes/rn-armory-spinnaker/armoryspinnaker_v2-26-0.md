@@ -42,6 +42,15 @@ To continue adding a random suffix to jobs created by the Kubernetes Run Job sta
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
 
+#### Pipelines as Code module rendering
+<!-- BOB-30287 -->
+There is a known issue where Pipelines as Code fails to parse modules. 
+
+**Affected version**: 2.26.0
+
+**Workaround**: There is currently no workaround. If you use Pipelines as Code, do not upgrade to 2.26.0.
+
+
 ## Fixed issues
 
 * Fixed an issue where you could not edit AWS server groups with the **Edit** button in the UI. The edit window closed immediately after you opened it.
