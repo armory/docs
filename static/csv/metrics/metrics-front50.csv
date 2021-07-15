@@ -1,0 +1,77 @@
+Metric Name|Base Unit|Description
+aws.request.clientExecuteTime|milliseconds|
+aws.request.credentialsRequestTime|milliseconds|
+aws.request.httpClientGetConnectionTime|milliseconds|
+aws.request.httpClientReceiveResponseTime|milliseconds|
+aws.request.httpClientSendRequestTime|milliseconds|
+aws.request.httpRequestTime|milliseconds|
+aws.request.requestCount||
+aws.request.requestSigningTime|milliseconds|
+aws.request.responseProcessingTime|milliseconds|
+aws.request.retryPauseTime|milliseconds|
+controller.invocations||
+controller.invocations.contentLength||
+controller.invocations.contentLength.summary||
+fiat.enabled||
+fiat.getPermission||
+fiat.legacyFallback.enabled||
+fiat.permissionsCache.evictions||
+fiat.permissionsCache.evictions-weight||
+fiat.permissionsCache.hits||
+fiat.permissionsCache.loads|milliseconds|
+fiat.permissionsCache.loads-failure||
+fiat.permissionsCache.loads-success||
+fiat.permissionsCache.misses||
+http.server.requests|milliseconds|
+jvm.buffer.count|buffers|An estimate of the number of buffers in the pool
+jvm.buffer.memory.used|bytes|An estimate of the memory that the Java virtual machine is using for this buffer pool
+jvm.buffer.total.capacity|bytes|An estimate of the total capacity of the buffers in this pool
+jvm.classes.loaded|classes|The number of classes that are currently loaded in the Java virtual machine
+jvm.classes.unloaded|classes|The total number of classes unloaded since the Java virtual machine has started execution
+jvm.gc.allocationRate||
+jvm.gc.live.data.size|bytes|Size of old generation memory pool after a full GC
+jvm.gc.liveDataSize||
+jvm.gc.max.data.size|bytes|Max size of old generation memory pool
+jvm.gc.maxDataSize||
+jvm.gc.memory.allocated|bytes|Incremented for an increase in the size of the young generation memory pool after one GC to before the next
+jvm.gc.memory.promoted|bytes|Count of positive increases in the size of the old generation memory pool before GC to after GC
+jvm.gc.pause|milliseconds|Time spent in GC pause
+jvm.gc.promotionRate||
+jvm.memory.committed|bytes|The amount of memory in bytes that is committed for the Java virtual machine to use
+jvm.memory.max|bytes|The maximum amount of memory in bytes that can be used for memory management
+jvm.memory.used|bytes|The amount of used memory
+jvm.threads.daemon|threads|The current number of live daemon threads
+jvm.threads.live|threads|The current number of live threads including both daemon and non-daemon threads
+jvm.threads.peak|threads|The peak live thread count since the Java virtual machine started or peak was reset
+jvm.threads.states|threads|The current number of threads having WAITING state
+logback.events|events|Number of error level events that made it to the logs
+okhttp.requests|milliseconds|
+process.cpu.usage||The recent cpu usage for the Java Virtual Machine process
+process.files.max|files|The maximum file descriptor count
+process.files.open|files|The open file descriptor count
+process.start.time|milliseconds|Start time of the process since unix epoch.
+process.uptime|milliseconds|The uptime of the Java virtual machine
+resilience4j.circuitbreaker.buffered.calls||
+resilience4j.circuitbreaker.calls|milliseconds|
+resilience4j.circuitbreaker.failure.rate||The failure rate of the circuit breaker
+resilience4j.circuitbreaker.slow.call.rate||The slow call of the circuit breaker
+resilience4j.circuitbreaker.slow.calls||The number of slow failed calls which were slower than a certain threshold
+resilience4j.circuitbreaker.state||The states of the circuit breaker
+storageServiceSupport.autoRefreshTime|milliseconds|
+storageServiceSupport.cacheAge||
+storageServiceSupport.cacheRefreshTime|milliseconds|
+storageServiceSupport.cacheSize||
+storageServiceSupport.mismatchedIds||
+storageServiceSupport.numAdded||
+storageServiceSupport.numRemoved||
+storageServiceSupport.numUpdated||
+storageServiceSupport.scheduledRefreshTime|milliseconds|
+system.cpu.count||The number of processors available to the Java virtual machine
+system.cpu.usage||The recent cpu usage for the whole system
+system.load.average.1m||The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time
+tomcat.sessions.active.current|sessions|
+tomcat.sessions.active.max|sessions|
+tomcat.sessions.alive.max|milliseconds|
+tomcat.sessions.created|sessions|
+tomcat.sessions.expired|sessions|
+tomcat.sessions.rejected|sessions|

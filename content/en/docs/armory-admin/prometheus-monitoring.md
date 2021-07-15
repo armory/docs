@@ -28,7 +28,7 @@ later. If you are using one of those versions, see this page for
 and earlier.
 {{% /alert %}}
 
-## Assumptions
+## {{% heading "prereq" %}}
 
 * You are familiar with Prometheus and Grafana
 * Armory Enterprise is deployed in the `spinnaker` namespace
@@ -306,6 +306,10 @@ After importing the dashboards, you can explore graphs for each service by click
 ### Fiat
 
 {{% csv-table "|" "/static/csv/metrics/metrics-fiat.csv" %}}
+
+### Front50
+
+{{% csv-table "|" "/static/csv/metrics/metrics-front50.csv" %}}
 
 ### Orca
 
