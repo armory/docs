@@ -326,3 +326,7 @@ After importing the dashboards, you can explore graphs for each service by click
 ### Orca
 
 {{% csv-table "|" "/static/csv/metrics/metrics-orca.csv" %}}
+
+### Rosco
+
+{{% csv-table "|" "/static/csv/metrics/metrics-rosco.csv" %}}
