@@ -25,7 +25,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
-> Breaking changes are maintained in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list until the 2.24.x releases. It would not appear on 2.25.x release notes.
+> Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
 
 {{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
