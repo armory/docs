@@ -279,7 +279,7 @@ Armory provides some sample dashboards (in JSON format) that you can import into
 
 To import the sample dashboards, perform the following steps:
 
-1. Git clone this repo to your local workstation: (https://gitlab.com/uneeq-oss/spinnaker-mixin)
+1. Git clone this repo to your local workstation: (https://github.com/uneeq-oss/spinnaker-mixin)
 2. Access the Grafana web interface (as shown above)
 3. Navigate to Dashboards then Manage
 4. Click on the _Import_ button
