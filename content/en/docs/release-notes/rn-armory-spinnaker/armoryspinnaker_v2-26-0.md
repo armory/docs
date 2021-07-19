@@ -42,14 +42,9 @@ To continue adding a random suffix to jobs created by the Kubernetes Run Job sta
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
 
-#### Pipelines as Code module rendering
-<!-- BOB-30287 -->
-There is a known issue where Pipelines as Code fails to parse modules. 
-
-**Affected version**: 2.26.0
-
-**Workaround**: there is currently no workaround. If you use Pipelines as Code, do not upgrade to 2.26.0.
-
+#### Pipelines as Code 
+<!-- maybe: BOB-30287 yes:BOB-30274 PUX-405-->
+If you experiencing issues with Pipelines as Code after upgrading to 2.26.0, upgrade to 2.26.1 when it is available.
 
 ## Fixed issues
 
