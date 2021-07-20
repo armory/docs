@@ -88,7 +88,6 @@ armory.cloud:
     port: 443
 ```
 
-Save the file and run the following command: `hal deploy apply`.
-
+Save the file and apply the changes with the following command: `hal deploy apply`. Applying the config changes redeploys Armory Enterprise.
 {{% /tab %}}
 {{< /tabs >}}
