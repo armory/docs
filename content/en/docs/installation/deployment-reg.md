@@ -29,9 +29,9 @@ As part of the configuration process, you need to register your instance with Ar
 ## Register your instance
 
 In your Operator manifest (such as `spinnakerService.yml`) or `spinnaker-local` file (Halyard), configure the following parameters:
-  - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.tokenIssueUrl`: Set this value to `https://auth.cloud.armory.io/oauth/token`.
-  - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientID`: Set this value to **Client ID** that you received from [Get your registration information](#get-your-registration-information)
-  - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientSecret`: Set this value to the **Secret** that you received from [Get your registration information](#get-your-registration-information).
+  - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.tokenIssueUrl`: set this value to `https://auth.cloud.armory.io/oauth/token`.
+  - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientID`: set this value to **Client ID** that you received from [Get your registration information](#get-your-registration-information)
+  - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientSecret`: set this value to the **Secret** that you received from [Get your registration information](#get-your-registration-information).
 
 {{< tabs name="Configure Armory Enterprise" >}}
 {{% tab name="Operator" %}}
