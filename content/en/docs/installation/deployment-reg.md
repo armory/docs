@@ -11,49 +11,87 @@ toc_hide: true
 - go.armory.io/UIdocs-deploy-reg points to the top of this page
 - go.armory.io/UIdocs-deploy-reg-troubleshooting points to Troubleshooting
 - go.armory.io/UIdocs-deploy-reg-manual-id points to the Operator fails to generate an instance ID section
-
+-->
 
 ## Overview
 
-As part of the configuration process for Armory Enterprise, you need to register your instance with Armory. Registration helps ensure that your usage of Armory's features is in compliance with Armory's licensing terms and allows Armory Support Engineers to help you troubleshoot more effectively.
+As part of the configuration process, you need to register your instance with Armory. 
 
-You will be prompted to do this when you launch the Armory Enterprise UI.
+## Get your registration information
 
-## Register your instance
-
-1. Follow the instructions in the Armory Enterprise UI. The UI provides the following information that you need to continue:
+1. Navigate to the URL provided by Armory and follow the instructions to create an account.
+2. Make note of the following information:
   - Instance ID
   - Client ID
   - Secret
-  > This is the only time you are shown the secret value. Store it somewhere safe.
-2. In your Operator manifest, such as `spinnakerService.yml`, configure the following parameters:
-  - spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.tokenIssueUrl: Set this value to `https://auth.cloud.armory.io/oauth/token`.
-  - spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientID: Set this value to **Client ID** from step 1.
-  - spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientSecret: Set this value to the **Secret** from step 1.
-  
-  <details>
-    <summary>Show me an example</summary>
-    
-  ```yaml
-  spec
-    spinnakerConfig:
-      profiles:
-        spinnaker:
-          armory.cloud:
-            iam:
-              tokenIssueUrl: `https://auth.cloud.armory.io/oauth/token`
-              clientID: <Client ID you received when registering>
-              clientSecret: <Secret you received when registering> # Do not enter this in plain text. Use your secret store.
-  ```
-  </details><br>
+   > This is the only time you are shown the secret value. Store it somewhere safe.
 
-3. Save the file and apply the manifest.
-   Applying the config changes redeploys Armory Enterprise.
+## Register your instance
 
-## Troubleshooting
+In your Operator manifest (such as `spinnakerService.yml`) or `spinnaker-local` file (Halyard), configure the following parameters:
+  - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.tokenIssueUrl`: Set this value to `https://auth.cloud.armory.io/oauth/token`.
+  - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientID`: Set this value to **Client ID** that you received from [Get your registration information](#get-your-registration-information)
+  - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientSecret`: Set this value to the **Secret** that you received from [Get your registration information](#get-your-registration-information).
 
-### Operator fails to generate an instance ID
+{{< tabs name="Configure Armory Enterprise" >}}
+{{% tab name="Operator" %}}
 
-The Armory Operator generates an instance ID and applies it to your Armory Enterprise instance. If it fails to do so, you can deploy Armory Enterprise to let the Operator attempt to do so again, or you can manually configure an instance ID.
+```yaml
+spec:
+  spinnakerConfig:
+    profiles:
+      # Global Settings
+      spinnaker:
+        armory.cloud:
+          enabled: true
+          iam:
+            tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
+            clientId: <clientId>
+            clientSecret: <clientSecret>
+          api:
+            baseUrl: https://api.cloud.armory.io
+          hub:
+            baseUrl: https://api.cloud.armory.io/agents
+            grpc:
+              host: agents.cloud.armory.io
+              port: 443
+              tls:
+                insecureSkipVerify: true
+          deployEngineGrpc:
+            host: grpc.deploy.cloud.armory.io
+            port: 443
+```
 
--->
+Save the file and apply the manifest. Applying the config changes redeploys Armory Enterprise.
+
+{{% /tab %}}
+
+{{% tab name="Halyard" %}}
+
+```yaml
+
+#spinnaker-local
+armory.cloud:
+  enabled: true
+  iam:
+    tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
+    clientId: <clientId>
+    clientSecret:<clientSecret>
+  api:
+    baseUrl: https://api.cloud.armory.io
+  hub:
+    baseUrl: https://api.cloud.armory.io/agents
+    grpc:
+      host: agents.cloud.armory.io
+      port: 443
+      tls:
+        insecureSkipVerify: true
+  deployEngineGrpc:
+    host: grpc.deploy.cloud.armory.io
+    port: 443
+```
+
+Save the file and run the following command: `hal deploy apply`.
+
+{{% /tab %}}
+{{< /tabs >}}
