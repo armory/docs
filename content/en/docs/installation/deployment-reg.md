@@ -1,6 +1,6 @@
 ---
 title: Deployment Registration
-description: Registering your deployment is the final step to installing and configuring Armory Enterprise. 
+description: Register your Armory Enterprise deployment so that it can communicate with Armory services. 
 exclude_search: true
 toc_hide: true
 ---
@@ -12,7 +12,7 @@ toc_hide: true
 
 ## Overview
 
-As part of the configuration process, you need to register your instance with Armory. 
+As part of the configuration process, you need to register your instance with Armory.
 
 ## Get your registration information
 
