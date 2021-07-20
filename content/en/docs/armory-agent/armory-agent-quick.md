@@ -1,6 +1,6 @@
 ---
-title: "Armory Agent for Kubernetes Quickstart Installation"
-linkTitle: "Quickstart"
+title: "Armory Agent for Kubernetes Installation"
+linkTitle: "Installation"
 description: >
   Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
 weight: 30
@@ -9,16 +9,7 @@ weight: 30
 
 {{< include "early-access-feature.html" >}}
 
-## Overview
-
-The Agent consists of a service deployed as a Kubernetes `Deployment` and a plugin to the Clouddriver service. You can review the architecture in the Armory Agent [overview]({{< ref "armory-agent#deployment-topologieshug" >}}).
-
-Deploying the Agent consists of the following:
-
-1. [Install the Clouddriver plugin](#install-the-clouddriver-plugin). You do this in the cluster where you are running Armory Enterprise. You add the plugin and expose it as type `LoadBalancer` on gRPC port `9091`.
-1. [Install the Agent](#install-the-agent) in the deployment target cluster. Configure it to communicate with Clouddriver. Configure Agent permissions with a Kubernetes `ServiceAccount`.
-
->This installation does not include [mTLS configuration]({{< ref "agent-mtls" >}}). The Agent uses insecure config for connecting to Clouddriver.
+>This installation guide is designed for installing the Agent in a test environment. It does not include [mTLS configuration]({{< ref "agent-mtls" >}}), so the Agent service and plugin do not communicate securely.
 
 ## {{% heading "prereq" %}}
 
@@ -26,15 +17,34 @@ Deploying the Agent consists of the following:
 * You have configured Clouddriver to use MySQL or PostgreSQL. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions.
 * You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
 * If you are running multiple Clouddriver instances, you have a running Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
-* You have an additional cluster to serve as your deployment target cluster.
+* You have an additional Kubernetes cluster to serve as your deployment target cluster.
 
 ### Networking requirements
 
-Communication from the Agent to Clouddriver occurs over gRPC port 9091. Communication between the Agent and Clouddriver must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between the Agent and Clouddriver.  
+Communication from the Agent service to the Clouddriver plugin occurs over gRPC port 9091. Communication between the service and the plugin must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between the Agent service and Clouddriver plugin.  
 
 ### Compatibility matrix
 
 {{< include "agent/agent-compat-matrix.md" >}}
+
+## Installation overview
+
+In this guide, you deploy the Agent service to your target cluster.
+
+Installation steps:
+
+1. [Install the Clouddriver plugin](#install-the-clouddriver-plugin). You do this in the cluster where you are running Armory Enterprise.
+
+   1. [Create the plugin manifest as a Kustomize patch](#create-the-plugin-manifest).
+   1. [Create a LoadBalancer service Kustomize patch](#expose-clouddriver-as-a-loadbalancer) to expose the plugin on gRPC port `9091`.
+   1. [Apply the manifests](#apply-the-manifests).
+
+1. [Install the Agent service](#install-the-agent-service) in the deployment target cluster.
+
+   1. [Create a namespace](#create-a-namespace).
+   1. [Create Kubernetes accounts](#configure-permissions).
+   1. [Create a ConfigMap](#configure-the-agent) to configure the Agent service.
+   1. [Deploy the Agent service](#deploy-the-agent-service).
 
 ## Install the Clouddriver plugin
 
@@ -146,11 +156,11 @@ Use `kubectl get svc spin-agent-cloud-driver -n spinnaker` to make note of the L
 Use `netcat` to confirm Clouddriver is listening on port 9091 by executing `nc -zv [LB address] 9091`. Perform this check from a node in your
 Armory Enterprise cluster and one in your target cluster.
 
-## Install the Agent
+## Install the Agent service
 
 ### Create a namespace
 
-In the deployment target cluster, execute `kubectl create ns spin-agent` to create a namespace for the Agent.
+In the deployment target cluster, execute `kubectl create ns spin-agent` to create a namespace for the Agent service.
 
 ### Configure permissions
 
@@ -273,9 +283,9 @@ roleRef:
   name: spin-cluster-role
 {{< /prism >}}
 
-### Configure the Agent
+### Configure the Agent service
 
-Configure the Agent using a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/). Define `kubesvc.yml` in the `data` section:
+Configure the Agent service using a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/). Define `kubesvc.yml` in the `data` section:
 
 {{< prism lang="yaml" line="7" >}}
 apiVersion: v1
@@ -289,7 +299,7 @@ data:
     port: 8082
 {{< /prism >}}
 
-**Clouddriver LoadBalancer**
+**Clouddriver plugin LoadBalancer**
 
 Replace **[LoadBalancer Exposed Address]** with the IP address you obtained in the [Get the LoadBalancer IP address section](#get-the-loadbalancer-ip-address).
 
@@ -308,7 +318,7 @@ data:
 
 **Kubernetes account**
 
-In this quickstart, you deploy the Agent in [Agent mode]({{< ref "armory-agent#agent-mode" >}}); in other words, you deploy it to your target cluster. Add your Kubernetes account configuration for your cluster:
+Add your Kubernetes account configuration for your cluster:
 
 {{< prism lang="yaml" line="11-30" >}}
 apiVersion: v1
@@ -345,10 +355,9 @@ data:
 
 See the [Agent options]({{< ref "agent-options#options">}}) for field explanations.
 
-
 Apply the manifest to your `spin-agent` namespace.
 
-### Deploy the Agent
+### Deploy the Agent service
 
 Apply the following Agent deployment manifest in your `spin-agent` namespace:
 
