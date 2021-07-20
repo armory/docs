@@ -4,9 +4,6 @@ description: Registering your deployment is the final step to installing and con
 exclude_search: true
 toc_hide: true
 ---
-
-:wave:
-
 <!--Several shortlinks point to this page from Deck:
 - go.armory.io/UIdocs-deploy-reg points to the top of this page
 - go.armory.io/UIdocs-deploy-reg-troubleshooting points to Troubleshooting
