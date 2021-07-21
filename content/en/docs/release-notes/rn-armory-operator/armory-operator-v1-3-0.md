@@ -17,8 +17,7 @@ No known issues.
 ## Breaking changes
 
 ### Spinnaker Accounts CRD
-The `spinnakeraccounts.spinnaker.io` CRD is not longer supported by this release, now you need to install `armoryaccounts.spinnaker.armory.io` CRD and rename your existing accounts. 
-
+The `spinnakeraccounts.spinnaker.io` CRD is not longer supported by this release, now you need to install `armoryaccounts.spinnaker.armory.io` CRD and rename your existing accounts.
 
 ## Highlighted updates
 
