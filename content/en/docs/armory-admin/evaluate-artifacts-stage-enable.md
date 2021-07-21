@@ -39,9 +39,9 @@ Add the following snippet to your Spinnaker manifest, such as `spinnakerservice.
                   Armory.EvaluateArtifactsPlugin:
                     enabled: true
                     version: <PLUGIN_VERSION> # Replace with the version you want to use. For example, use 0.1.0.
-              repositories:
-                evaluateArtifacts:
-                  url: https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
+                repositories:
+                  evaluateArtifacts:
+                    url: https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
           gate:
             spinnaker:
               extensibility:
