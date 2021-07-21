@@ -1,9 +1,9 @@
 ---
-title: v2.26.1-rc.3 Armory Release (OSS Spinnaker™ v1.26.6)
+title: v2.26.1 Armory Release (OSS Spinnaker™ v1.26.6)
 toc_hide: true
 version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
 description: >
-  Release notes for Armory Enterprise v2.26.1-rc.3 
+  Release notes for Armory Enterprise v2.26.1
 ---
 
 ## 2021/07/40 Release Notes
@@ -11,7 +11,7 @@ description: >
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
 
-To install, upgrade, or configure Armory 2.26.1-rc.3, use one of the following tools:
+To install, upgrade, or configure Armory 2.26.1, use one of the following tools:
 
 - Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
 - Armory Operator <PUT IN A VERSION NUMBER> or later
@@ -49,7 +49,7 @@ There have also been numerous enhancements, fixes, and features across all of Sp
 Here's the BOM for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
-<code>version: 2.26.1-rc.3
+<code>version: 2.26.1
 timestamp: "2021-07-20 19:04:54"
 services:
     clouddriver:
