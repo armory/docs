@@ -14,6 +14,13 @@ Armory scans the codebase as we develop and release software. For information ab
 ## Known issues
 No known issues.
 
+## Highlighted updates
+
+### New registrationId label for SpinnakerService Status
+This release adds the new `registrationId` label under the status section on the `spinnakerservices.spinnaker.armory.io` CRD, You will need to install the latest CRD in order to see this feature working.
+
+In order to visualize the new label, you can use the following command `kubectl -n spinnaker get spinsvc`.
+
 ### Armory Operator
 
 * feat(validators): add prometheus canary validator
