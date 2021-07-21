@@ -5,34 +5,34 @@ exclude_search: true
 toc_hide: true
 ---
 
-## What is Armory Deployments
-The goal of Armory Deployments is help our customers deploy their software with easy, and confidence. 
+## What is Armory deployments for Spinnaker
+The goal of Armory Deployments is help organizations deploy their software with easy, and confidence. 
 Our first initiative is to provide an easy way to release new version of your software using progressive Canaries in your Kubernetes clusters. 
 This will be a new stage inside your Spinnaker environment available as a plugin. 
 This stage will enable you to progressively send a certain percentage of your traffic  to the new version (v2) of your software.
 For instance, send 10% of the traffic to v2, and then send then send 30%, and so on.
 This will help you to control the blast radius of any issue in the new release, as you can catch any potential issue during the first step where you might have specified to send only 10% of the traffic.
 
-## Min Supported Spinnaker Versions
+## Minimum supported Spinnaker versions
 Armory Deployment for Spinnaker requires one of the following:
 
 - Armory Enterprise’s Supported Spinnaker: 2.24.+
 - OSS Spinnaker 1.24.+
 
-## Networking Requirements
+## Networking requirements
 
 Ensure that your Spinnaker instance and Armory Kubernetes agents will have the following networking access:
 
-| Protocal                    | DNS                                                                    | Port | Used By           | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Protocol                    | DNS                                                                    | Port | Used By           | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | --------------------------- | ---------------------------------------------------------------------- | ---- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | HTTPS                       | [api.cloud.armory.io](http://api.cloud.armory.io)                      | 443  | Spinnaker         | **Armory Cloud REST API**<br><br>Used fetch information from the Kubernetes Cache                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| TLS enabled gRPC over HTTP2 | [agents.cloud.armory.io](http://agents.cloud.armory.io)                | 443  | Spinnaker, Agents | **Armory Cloud Agent-Hub**<br><br>Used to connect agents to the agent-hub via a encrypted long lived gRPC HTTP2 connections to broker bi-directional communication between Spinnaker or Armory Cloud Services and Target Kubernetes clusters.<br><br>This allows the Armory Cloud Services to interact with a customers private kubernetes APIs and orchestrate deployments and cache data for Spinnaker with out needing direct network access to a customer Kubernetes API from Armorys Networks.<br><br>Customer installed agents send data about deployment, replica-sets, etc to Armory Clouds Agent Cache to power its infrastructure management user experiences such as the Armory Deployments Spinnaker plugin. |
+| TLS enabled gRPC over HTTP2 | [agents.cloud.armory.io](http://agents.cloud.armory.io)                | 443  | Spinnaker, Agents | **Armory Cloud Agent-Hub**<br><br>Used to connect agents to the agent-hub via a encrypted long lived gRPC HTTP2 connections to broker bi-directional communication between Spinnaker or Armory Cloud Services and Target Kubernetes clusters.<br><br>This allows the Armory Cloud Services to interact with a customers private kubernetes APIs and orchestrate deployments and cache data for Spinnaker with out needing direct network access to a customer Kubernetes API from Armory's Networks.<br><br>Customer installed agents send data about deployment, replica-sets, etc to Armory Clouds Agent Cache to power its infrastructure management user experiences such as the Armory Deployments Spinnaker plugin. |
 | HTTPS                       | [auth.cloud.armory.io](http://auth.cloud.armory.io)                    | 443  | Spinnaker, Agents | **Armory’s OIDC authorization server**<br><br>Used to exchange client id and secret for JWT to prove customer identity                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | TLS enabled gRPC over HTTP2 | [grpc.deploy.cloud.armory.io](http://grpc.deploy.cloud.armory.io:443/) | 443  | Spinnaker         | **Armory Cloud Deploy Engine gRPC Service**<br><br>Used to orchestrate deployments in target Kubernetes Clusters through the agents via gRPC.<br><br>Spinnaker calls this during the Armory Kubernetes Progressive Delivery Stage.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | HTTPS                       | [github.com](http://github.com)                                        | 443  | Spinnaker         | **Github**<br><br>Used to download official Armory plugins at Spinnaker startup time.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 
-## Before you get started confirm the following:
+## Before you get started confirm the following
 - [ ] You have confirmed that you meet the minimum Spinnaker version
 - [ ] You use Halyard or Operator to manage your Spinnaker Installation
 - [ ] You’ve confirmed you will have the network access as defined in the networking requirements section
@@ -41,7 +41,7 @@ Ensure that your Spinnaker instance and Armory Kubernetes agents will have the f
 - [ ] If you are running multiple Clouddriver instances, you have a running Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
 - [ ] You have an additional cluster to serve as your deployment target cluster.
 
-## Register your Spinnaker Instance
+## Register your Spinnaker instance
 Register your Armory Enterprise deployment so that it can communicate with Armory services.
 
 1. Get your registration link from Armory
@@ -63,7 +63,7 @@ Register your Armory Enterprise deployment so that it can communicate with Armor
 
 ## Install Armory Agent for Kubernetes
 
-Here we will install the agent for kubernetes accounts and enable communication with Armory Cloud.
+Here we will install the agent for Kubernetes accounts and enable communication with Armory Cloud.
 
 The [Armory Agent](https://deploy-preview-750--armory-docs.netlify.app/docs/armory-agent/) is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker’s Clouddriver service.
 
@@ -192,7 +192,7 @@ roleRef:
   name: spin-cluster-role
 ```
 
-### Configure the Agent
+### Configure the agent
 
 Configure the Agent using a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/). Define `kubesvc.yml` in the `data` section and add your Kubernetes account configuration for your cluster:
 
@@ -240,7 +240,7 @@ data:
        noProxy:
 ```
 
-### Deploy the Agent
+### Deploy the agent
 
 Apply the following Agent deployment manifest in your `spin-agent` namespace:
 
@@ -498,7 +498,7 @@ deploymentEnvironment:
           name: kubesvc-plugin-vol
 ```
 
-## Install Armory Deployment Plugin
+## Install Armory Deployment plugin
 
 Create a new file  in your Kustomize patches directory. Add the following **patch-plugin-deployment.yml** manifest
 
@@ -584,7 +584,7 @@ After you have configured all the manifests, apply the updates.
 
 First check that all the services are up and running.
 
-Then check that you can see the new stage, create new pipeline → create new stage → on type field select k8s Progressive
+Then check that you can see the new stage, create new pipeline → create new stage → on type field select Kubernetes Progressive
 
 ![](https://paper-attachments.dropbox.com/s_F545B87D4B405D60F3CA7E44FA79199B7C3D654B6D445EBE400240663409EB75_1626460093709_image.png)
 
@@ -593,20 +593,23 @@ Also verify that you can see the accounts from kubesvc on the account dropdown
 
 ![](https://paper-attachments.dropbox.com/s_F545B87D4B405D60F3CA7E44FA79199B7C3D654B6D445EBE400240663409EB75_1626460242910_image.png)
 
-
-### Deploy something!
+## Wrapping up
+Deploy Something!
 
 ## Troubleshooting
-### Kubernetes Agent
+### Kubernetes agent
 
-if you’re getting this error `Method not found: ops.Operations/GetOps` on the kubernetes agent.
+if you’re getting this error `Method not found: ops.Operations/GetOps` on the Kubernetes agent.
 
-    time="2021-07-21T18:55:54Z" level=error msg="error receiving from ops from server: rpc error: code = Unimplemented desc = Method not found: ops.Operations/GetOps" error="rpc error: code = Unimplemented desc = Method not found: ops.Operations/GetOps"
-    time="2021-07-21T18:55:54Z" level=info msg="stopping all tasks"
+```
+time="2021-07-21T18:55:54Z" level=error msg="error receiving from ops from server: rpc error: code = Unimplemented desc = Method not found: ops.Operations/GetOps" error="rpc error: code = Unimplemented desc = Method not found: ops.Operations/GetOps"
+time="2021-07-21T18:55:54Z" level=info msg="stopping all tasks"
+```
 
 check that you added the env variable ARMORY_HUB on the Kubernetes Agent deployment manifest.
 
-    env:
-    - name: ARMORY_HUB
-      value: "true"
-
+```yaml
+env:
+- name: ARMORY_HUB
+  value: "true"
+```
