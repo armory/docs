@@ -93,7 +93,7 @@ spec:
         jsonValidationDisabled: <boolean> # 
 ```
 
-The config is optional. If omitted, strict validation is off by default.
+The config is optional. If omitted, strict validation is on by default.
 
 > Turning strict validation on may cause existing pipelines to fail if any JSON is invalid.
 
