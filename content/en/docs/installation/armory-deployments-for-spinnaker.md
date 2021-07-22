@@ -5,14 +5,6 @@ exclude_search: true
 toc_hide: true
 ---
 
-## What is Armory deployments for Spinnaker
-The goal of Armory Deployments is help organizations deploy their software with easy, and confidence. 
-Our first initiative is to provide an easy way to release new version of your software using progressive Canaries in your Kubernetes clusters. 
-This will be a new stage inside your Spinnaker environment available as a plugin. 
-This stage will enable you to progressively send a certain percentage of your traffic  to the new version (v2) of your software.
-For instance, send 10% of the traffic to v2, and then send then send 30%, and so on.
-This will help you to control the blast radius of any issue in the new release, as you can catch any potential issue during the first step where you might have specified to send only 10% of the traffic.
-
 ## Minimum supported Spinnaker versions
 Armory Deployment for Spinnaker requires one of the following:
 
@@ -33,13 +25,13 @@ Ensure that your Spinnaker instance and Armory Kubernetes agents will have the f
 
 
 ## Before you get started confirm the following
-- [ ] You have confirmed that you meet the minimum Spinnaker version
-- [ ] You use Halyard or Operator to manage your Spinnaker Installation
-- [ ] You’ve confirmed you will have the network access as defined in the networking requirements section
-- [ ] You have configured Clouddriver to use MySQL or PostgreSQL. See the Configure Clouddriver to use a SQL Database guide for instructions.
-- [ ] You have read the Armory Deployments for Spinnaker overview [Coming Soon]
-- [ ] If you are running multiple Clouddriver instances, you have a running Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
-- [ ] You have an additional cluster to serve as your deployment target cluster.
+1. You have confirmed that you meet the [minimum Spinnaker version](https://paper.dropbox.com/doc/Draft-Armory-Deployments-Getting-Started-Guide-for-Spinnaker-Users--BO~tKjqDfysiW0Ptwmplk3bRAg-IVzQFFhJLXe79sG7iIHUw#:uid=012397694540457298285747&h2=Min-Supported-Spinnaker-Versio)
+2. You use [Halyard](https://docs.armory.io/docs/installation/armory-halyard/) or [Operator](https://docs.armory.io/docs/installation/armory-operator/#what-are-kubernetes-operators-for-spinnaker) to manage your Spinnaker Installation
+3. You’ve confirmed you will have the network access as defined in the [networking requirements section](https://paper.dropbox.com/doc/Draft-Armory-Deployments-Getting-Started-Guide-for-Spinnaker-Users--BO~tKjqDfysiW0Ptwmplk3bRAg-IVzQFFhJLXe79sG7iIHUw#:uid=211114387169358494505255&h2=Networking)
+4. You have configured Clouddriver to use MySQL or PostgreSQL. See the [Configure Clouddriver to use a SQL Database](https://docs.armory.io/docs/armory-admin/clouddriver-sql-configure/) guide for instructions.
+5. You have read the Armory Deployments for Spinnaker overview [Coming Soon]
+6. If you are running multiple Clouddriver instances, you have a running Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
+7. You have an additional cluster to serve as your deployment target cluster.
 
 ## Register your Spinnaker instance
 Register your Armory Enterprise deployment so that it can communicate with Armory services.
