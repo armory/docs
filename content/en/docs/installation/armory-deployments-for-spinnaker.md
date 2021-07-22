@@ -1,49 +1,65 @@
 ---
-title: Armory Deployments Getting Started Guide for Spinnaker Users
-description: A detailed self-service process for using Armory’s EAP deployment engine via our new Spinnaker plugin.
+title: Armory Deployments Getting Started Guide 
+description: Use this self-service guide to prepare your environment and then install the Armory Deployments Plugin, which allows you to deploy apps incrementally based on criteria you set.
 exclude_search: true
 toc_hide: true
 ---
 
-## Minimum supported Spinnaker versions
-Armory Deployment for Spinnaker requires one of the following:
+{{< include "early-access-feature.html" >}}
 
-- Armory Enterprise’s Supported Spinnaker: 2.24.+
-- OSS Spinnaker 1.24.+
+## Overview
 
-## Networking requirements
+The Armory Deployments Plugin provides a single stage solution (called K8s Progressive in the UI)for deploying an app using a Canary Deployment Strategy to your Kubernetes clusters. For example, you can configure a new deployment to serve 10% of the traffic initially and then increment from there. The deployment can only progress if the criteria you set are met, either a wait time or manually approval. These criteria give you a chance to evaluate the state of the deployment to make sure things are working as intended.
 
-Ensure that your Spinnaker instance and Armory Kubernetes agents will have the following networking access:
+## Requirements
 
-| Protocol                    | DNS                                                                    | Port | Used By           | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| --------------------------- | ---------------------------------------------------------------------- | ---- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| HTTPS                       | [api.cloud.armory.io](http://api.cloud.armory.io)                      | 443  | Spinnaker         | **Armory Cloud REST API**<br><br>Used fetch information from the Kubernetes Cache                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| TLS enabled gRPC over HTTP2 | [agents.cloud.armory.io](http://agents.cloud.armory.io)                | 443  | Spinnaker, Agents | **Armory Cloud Agent-Hub**<br><br>Used to connect agents to the agent-hub via a encrypted long lived gRPC HTTP2 connections to broker bi-directional communication between Spinnaker or Armory Cloud Services and Target Kubernetes clusters.<br><br>This allows the Armory Cloud Services to interact with a customers private kubernetes APIs and orchestrate deployments and cache data for Spinnaker with out needing direct network access to a customer Kubernetes API from Armory's Networks.<br><br>Customer installed agents send data about deployment, replica-sets, etc to Armory Clouds Agent Cache to power its infrastructure management user experiences such as the Armory Deployments Spinnaker plugin. |
-| HTTPS                       | [auth.cloud.armory.io](http://auth.cloud.armory.io)                    | 443  | Spinnaker, Agents | **Armory’s OIDC authorization server**<br><br>Used to exchange client id and secret for JWT to prove customer identity                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| TLS enabled gRPC over HTTP2 | [grpc.deploy.cloud.armory.io](http://grpc.deploy.cloud.armory.io:443/) | 443  | Spinnaker         | **Armory Cloud Deploy Engine gRPC Service**<br><br>Used to orchestrate deployments in target Kubernetes Clusters through the agents via gRPC.<br><br>Spinnaker calls this during the Armory Kubernetes Progressive Delivery Stage.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| HTTPS                       | [github.com](http://github.com)                                        | 443  | Spinnaker         | **Github**<br><br>Used to download official Armory plugins at Spinnaker startup time.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+Verify that you meet or can meet these requirements before getting started.
+
+### Armory Enterprise (Spinnaker)
+
+Your Armory Enterprise or OSS Spinnaker instance must meet the following requirements:
+
+- Version 2.24 or later (or OSS 1.24 or later)
+- The Armory Agent Plugin installed in your instance. The Agent has requirements of its own, which have been included on this page. For more information about the Agent requirements, see [Armory Agent for Kubernetes Quickstart Installation]({{< ref "armory-agent-quick#before-you-begin" >}}).
+- A supported Operator or Halyard version. For information about what version of Halyard or Operator is supported, see the [release notes]({{< ref "rn-armory-spinnaker" >}}) for your version.
+
+### Networking
+
+Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents have the following networking access:
+
+| Protocol                    | DNS                                                                    | Port | Used By           | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|-----------------------------|------------------------------------------------------------------------|------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| HTTPS                       | api.cloud.armory.io                      | 443  | Spinnaker         | **Armory Cloud REST API**<br><br>Used fetch information from the Kubernetes cache                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| TLS enabled gRPC over HTTP2 | agents.cloud.armory.io                | 443  | Spinnaker, Agents | **Armory Cloud Agent-Hub**<br><br>Used to connect agents to the Agent Hub through encrypted long-lived gRPC HTTP2 connections. The connections are used for for bi-directional communication between Armory Enterprise or Armory Cloud Services and any target Kubernetes clusters.<br><br>This is needed so that Armory Cloud Services can interact with a your private Kubernetes APIs, orchestrate deployments, and cache data for Armory Enterprise without direct network access to your Kubernetes APIs.<br><br>Agents send data about deployments, replica-sets, and related data to Armory Cloud's Agent Cache to power infrastructure management experiences, such as the Armory Deployments Plugin. |
+| HTTPS                       | auth.cloud.armory.io                    | 443  | Spinnaker, Agents | **Armory’s OIDC authorization server**<br><br>Used to exchange the client ID and secret for a Java Web Token () to verify identity.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| TLS enabled gRPC over HTTP2 | grpc.deploy.cloud.armory.io | 443  | Spinnaker         | **Armory Cloud Deploy Engine gRPC Service**<br><br>Used to orchestrate deployments in target Kubernetes clusters through agents using gRPC.<br><br>Armory Enterprise calls this during the Armory Kubernetes Progressive Delivery Stage.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| HTTPS                       | github.com                                        | 443  | Spinnaker         | **Github**<br><br>Used to download official Armory plugins at startup time.
 
 
-## Before you get started confirm the following
-1. You have confirmed that you meet the [minimum Spinnaker version](#minimum-supported-spinnaker-versions)
-2. You use [Halyard](https://docs.armory.io/docs/installation/armory-halyard/) or [Operator](https://docs.armory.io/docs/installation/armory-operator/#what-are-kubernetes-operators-for-spinnaker) to manage your Spinnaker Installation
-3. You’ve confirmed you will have the network access as defined in the [networking requirements section](#networking-requirements)
-4. You have configured Clouddriver to use MySQL or PostgreSQL. See the [Configure Clouddriver to use a SQL Database](https://docs.armory.io/docs/armory-admin/clouddriver-sql-configure/) guide for instructions.
-5. You have read the Armory Deployments for Spinnaker overview [Coming Soon]
-6. If you are running multiple Clouddriver instances, you have a running Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
-7. You have an additional cluster to serve as your deployment target cluster.
+### Database 
 
-## Register your Spinnaker instance
+You must be using either MySQL or PostgreSQL for your Clouddriver service as well as Redis because the Armory Agent requires both. For information about MySQL, see [Configure Clouddriver to use a SQL Database]({{< ref "clouddriver-sql-configure.md" >}}).
+
+### Deployment target
+
+You must have at least one Kubernetes cluster to use as the deployment target for your app. The target cluster must also have the following installed:
+
+- Armory Agent service
+- Argo Rollout 1.x or later. For information about how to install Argo Rollout, see [Controller Installation](https://argoproj.github.io/argo-rollouts/installation/#controller-installation) in the Argo documentation.
+
+
+## Register your Armory Enterprise instance
+
 Register your Armory Enterprise deployment so that it can communicate with Armory services.
 
 1. Get your registration link from Armory
 2. [Follow the registration guide here](https://docs.armory.io/docs/installation/deployment-reg)
 
-## Create Client Credentials for your Agents
-1. Log into the cloud console: https://console.cloud.armory.io/
-2. If you have more than one registered environment ensure the proper env is selected in the user context menu
+## Create client credentials for your Agents
+1. Log into the Armory Cloud Console: https://console.cloud.armory.io/
+2. If you have more than one registered environment ensure the proper env is selected in the user context menu:
    
-![](https://paper-attachments.dropbox.com/s_E08DEB2438E1FE549FA4A46A4E24D61421AFC189C01FBDC3C6FAE177EE0DA240_1626889902900_image.png)
+{{< figure src="/images/deploy-engine/cloud-env-context.png" alt="The upper right of the window shows what environment you are currently in." >}}
 
 3. In the left navigation menu select ***Client Credentials*** under the ***Access Management*** section.
 4. Click the ***New Credential*** in the upper right corner
