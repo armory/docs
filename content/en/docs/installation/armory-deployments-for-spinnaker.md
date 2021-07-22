@@ -25,9 +25,9 @@ Ensure that your Spinnaker instance and Armory Kubernetes agents will have the f
 
 
 ## Before you get started confirm the following
-1. You have confirmed that you meet the [minimum Spinnaker version](https://paper.dropbox.com/doc/Draft-Armory-Deployments-Getting-Started-Guide-for-Spinnaker-Users--BO~tKjqDfysiW0Ptwmplk3bRAg-IVzQFFhJLXe79sG7iIHUw#:uid=012397694540457298285747&h2=Min-Supported-Spinnaker-Versio)
+1. You have confirmed that you meet the [minimum Spinnaker version](#minimum-supported-spinnaker-versions)
 2. You use [Halyard](https://docs.armory.io/docs/installation/armory-halyard/) or [Operator](https://docs.armory.io/docs/installation/armory-operator/#what-are-kubernetes-operators-for-spinnaker) to manage your Spinnaker Installation
-3. You’ve confirmed you will have the network access as defined in the [networking requirements section](https://paper.dropbox.com/doc/Draft-Armory-Deployments-Getting-Started-Guide-for-Spinnaker-Users--BO~tKjqDfysiW0Ptwmplk3bRAg-IVzQFFhJLXe79sG7iIHUw#:uid=211114387169358494505255&h2=Networking)
+3. You’ve confirmed you will have the network access as defined in the [networking requirements section](#networking-requirements)
 4. You have configured Clouddriver to use MySQL or PostgreSQL. See the [Configure Clouddriver to use a SQL Database](https://docs.armory.io/docs/armory-admin/clouddriver-sql-configure/) guide for instructions.
 5. You have read the Armory Deployments for Spinnaker overview [Coming Soon]
 6. If you are running multiple Clouddriver instances, you have a running Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
