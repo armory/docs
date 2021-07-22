@@ -5,6 +5,8 @@ description: >
   Armory-extended Halyard is a versatile command line interface (CLI) to configure and deploy Armory Enterprise for Spinnaker in Kubernetes or any cloud environment. 
 ---
 
+{{< include "deprecations/hal-depr.html" >}}
+
 {{< include "halyard-note.md" >}}
 
 ## Running in Docker
