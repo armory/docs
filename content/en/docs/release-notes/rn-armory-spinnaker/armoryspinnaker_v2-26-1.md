@@ -59,9 +59,9 @@ kayenta:
       - name: monitoring
         region: <your-region>
         iamRoleArn: <your-role-ARN> # For example arn:aws:iam::042225624470:role/theRole
-        iamRoleExternalId: 12345
+        # iamRoleExternalId: Optional. For example 12345
         iamRoleArnTarget: <your-role-ARN-target> # For example arn:aws:iam::042225624470:role/targetcloudwatchaccount
-        iamRoleExternalIdTarget: <your-ExternalID> # For example 84475
+        # iamRoleExternalIdTarget: <your-ExternalID> # Optional. For example 84475
         supportedTypes:
           - METRICS_STORE        
 ```
