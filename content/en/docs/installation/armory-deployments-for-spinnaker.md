@@ -316,6 +316,9 @@ time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kub
 
 On this step we will establish communication from all spinnaker services and plugins with Armory Cloud.
 
+{{< tabs name="DeploymentStrategy" >}}
+{{% tab name="Operator" %}}
+
 Create a new file in your Kustomize patches directory. Add the following **patch-cloud-config.yml** manifest.
 
 Here you will make use of Spinnaker creds that was created on the Register your Spinnaker Instance step
@@ -359,9 +362,8 @@ bases:
 patchesStrategicMerge:
   - patches/patch-cloud-config.yml
 ```  
-
-
-### Halyard version
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 Add a new file named `spinnaker-local.yml` under your **profiles** directory, and add the next configuration, if you already have an `spinnaker-local.yml` just add the config to the existing file
 
@@ -386,8 +388,13 @@ armory.cloud:
     host: grpc.deploy.cloud.armory.io
     port: 443
 ```
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Install Kubesvc Plugin into Clouddriver
+
+{{< tabs name="KubesvcPlugin" >}}
+{{% tab name="Operator" %}}
 
 Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to your new `armory-agent` directory.
 
@@ -448,7 +455,8 @@ patchesStrategicMerge:
   - armory-agent/agent-config.yml
 ```      
 
-### Halyard version
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 Add a new file named `clouddriver-local.yml` under your **profiles** directory, and add the next configuration, if you already have an `clouddriver-local.yml` just add the config to the existing file.
 
@@ -477,7 +485,7 @@ kubernetes:
     mountPath: /opt/clouddriver/lib/plugins
 ```        
 
-Add a the next configuration under **deploymentEnvironment**  on your config file.
+Add the next configuration under **deploymentEnvironment**  on your config file.
 
 ```yaml
 deploymentEnvironment:
@@ -489,9 +497,13 @@ deploymentEnvironment:
         - mountPath: /opt/plugin/target
           name: kubesvc-plugin-vol
 ```
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Install Armory Deployment plugin
 
+{{< tabs name="DeploymentPlugin" >}}
+{{% tab name="Operator" %}}
 Create a new file  in your Kustomize patches directory. Add the following **patch-plugin-deployment.yml** manifest
 
 here you can check the latest version: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
@@ -548,7 +560,8 @@ patchesStrategicMerge:
   - patches/patch-plugin-deployment.yml
 ```      
 
-### Halyard version
+{{% /tab %}}
+{{% tab name="Halyard" %}}
 
 Add a new file named `spinnaker-local.yml` under your **profiles** directory, and add the next configuration, if you already have an `spinnaker-local.yml` just add the config to the existing file.
 
@@ -567,6 +580,8 @@ spinnaker:
       armory-deployment-plugin-releases:
         url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
 ```        
+{{% /tab %}}
+{{< /tabs >}}
 
 ### Apply the manifests
 
