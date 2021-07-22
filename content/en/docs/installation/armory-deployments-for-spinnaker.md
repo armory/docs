@@ -17,11 +17,11 @@ Verify that you meet or can meet these requirements before getting started.
 
 ### Armory Enterprise (Spinnaker)
 
-Your Armory Enterprise or OSS Spinnaker instance must meet the following requirements:
+Your Armory Enterprise (or OSS Spinnaker) instance must meet the following requirements:
 
 - Version 2.24 or later (or OSS 1.24 or later)
 - The Armory Agent Plugin installed in your instance. The Agent has requirements of its own, which have been included on this page. For more information about the Agent requirements, see [Armory Agent for Kubernetes Quickstart Installation]({{< ref "armory-agent-quick#before-you-begin" >}}).
-- A supported Operator or Halyard version. For information about what version of Halyard or Operator is supported, see the [release notes]({{< ref "rn-armory-spinnaker" >}}) for your version.
+- A supported Operator or Halyard version. For information about what version of Halyard or Operator is supported, see the [release notes]({{< ref "rn-armory-spinnaker" >}}) for your Armory Enterprise version.
 
 ### Networking
 
@@ -53,7 +53,7 @@ You must have at least one Kubernetes cluster to use as the deployment target fo
 Register your Armory Enterprise deployment so that it can communicate with Armory services.
 
 1. Get your registration link from Armory
-2. [Follow the registration guide here](https://docs.armory.io/docs/installation/deployment-reg)
+2. [Follow the registration guide here]({{< ref "deployment-reg" >}})
 
 ## Create client credentials for your Agents
 1. Log into the Armory Cloud Console: https://console.cloud.armory.io/
@@ -73,7 +73,7 @@ Register your Armory Enterprise deployment so that it can communicate with Armor
 
 Here we will install the agent for Kubernetes accounts and enable communication with Armory Cloud.
 
-The [Armory Agent](https://deploy-preview-750--armory-docs.netlify.app/docs/armory-agent/) is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker’s Clouddriver service.
+The [Armory Agent]({{< ref "armory-agent" >}}) is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker’s Clouddriver service.
 
 ### Create a namespace
 
@@ -415,7 +415,7 @@ armory.cloud:
 Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to your new `armory-agent` directory.
 
 - Change the value for `name` if your Armory Enterprise service is called something other than “spinnaker”.
-- Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix](https://docs.armory.io/docs/armory-agent/armory-agent-quick/#compatibility-matrix).
+- Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix]({{< ref "armory-agent-quick#compatibility-matrix" >}}).
 
 ```yaml
 #agent-config.yml
@@ -609,12 +609,12 @@ First check that all the services are up and running.
 
 Then check that you can see the new stage, create new pipeline → create new stage → on type field select Kubernetes Progressive
 
-![](https://paper-attachments.dropbox.com/s_F545B87D4B405D60F3CA7E44FA79199B7C3D654B6D445EBE400240663409EB75_1626460093709_image.png)
+{{< figure src="/images/deploy-engine/deploy-engine-stage-UI.png" alt="The K8s Progressive stage appears in the stage dropdown when you search for it." >}}
 
 
 Also verify that you can see the accounts from kubesvc on the account dropdown
 
-![](https://paper-attachments.dropbox.com/s_F545B87D4B405D60F3CA7E44FA79199B7C3D654B6D445EBE400240663409EB75_1626460242910_image.png)
+{{< figure src="/images/deploy-engine/deploy-engine-accounts.png" alt="If the plugin is configured properly, you should see the target deployment account in the Account dropdown." >}}
 
 ## Wrapping up
 Deploy Something!
