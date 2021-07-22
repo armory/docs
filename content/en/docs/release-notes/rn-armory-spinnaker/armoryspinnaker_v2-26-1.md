@@ -1,7 +1,7 @@
 ---
 title: v2.26.1 Armory Release (OSS Spinnaker™ v1.26.6)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.26.01
 description: >
   Release notes for Armory Enterprise v2.26.1
 ---
@@ -9,12 +9,15 @@ description: >
 ## 2021/07/40 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+
+For information about what Armory supports for this version, see the [Armory Enterprise Compatibility Matrix]({{< ref "armory-enterprise-matrix-2-26.md" >}}).
+
 ## Required Halyard or Operator version
 
-To install, upgrade, or configure Armory 2.26.1, use one of the following tools:
+To install, upgrade, or configure Armory 2.26.0, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.12 or later
+- Armory Operator 1.2.6 or later
 
 ## Security
 
@@ -23,19 +26,76 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
+> Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
+
+#### Suffixes for the Kubernetes Run Job stage
+
+The `kubernetes.jobs.append-suffix` parameter no longer works. The removal of this parameter was previously announced as part of a [breaking change](https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v2-22-0/#suffix-no-longer-added-to-jobs-created-by-kubernetes-run-job-stage) in Armory 2.22.
+
+To continue adding a random suffix to jobs created by the Kubernetes Run Job stage, use the `metadata.generateName` field in your Kubernetes job manifests. For more information, see [Generated values](https://kubernetes.io/docs/reference/using-api/api-concepts/#generated-values).
+
+{{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
+
+{{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+{{< include "known-issues/ki-bake-var-file.md" >}}
+{{< include "known-issues/ki-lambda-ui-caching.md" >}}
+
+
 ## Highlighted updates
 
-<!--
-Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
-- Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
-- Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
--->
+### AWS Cloudwatch
+
+You can now configure the Kayenta service to assume a role when connecting to AWS Cloudwatch:
+
+```yaml
+kayenta:
+  aws:
+    enabled: true
+    accounts:
+      - name: monitoring
+        region: <your-region>
+        iamRoleArn: <your-role-ARN> # For example arn:aws:iam::042225624470:role/theRole
+        iamRoleExternalId: 12345
+        iamRoleArnTarget: <your-role-ARN-target> # For example arn:aws:iam::042225624470:role/targetcloudwatchaccount
+        iamRoleExternalIdTarget: <your-ExternalID> # For example 84475
+        supportedTypes:
+          - METRICS_STORE        
+```
+
+### Pipelines as Code
+
+#### Ignore file
+
+Pipelines as Code now supports using an ignore file for GitHub repos to ignore certain files in a repo that it watches. To use this feature, create a file named `.dinghyignore` in the root directory of the repo.
+
+You can add specific filenames, filepaths, or glob-style paths. For example, the following `.dinghyignore` file ignores the file named `README.md`, all the files in the `milton` directory, and all `.pdf` files:
+
+```
+README.md
+milton/
+*.pdf
+```
+
+#### JSON validation
+
+In 2.26.0, strict JSON validation was on by default. In 2.26.1, it is now configurable as a boolean in `spec.spinnakerConfig.profiles.dinghy.jsonValidationDisabled`:
 
 
+```yaml
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        jsonValidationDisabled: <boolean> # 
+```
 
+The config is optional. If omitted, strict validation is off by default.
+
+> Turning strict validation on may cause existing pipelines to fail if any JSON is invalid.
 
 ###  Spinnaker Community Contributions
 
@@ -106,42 +166,28 @@ artifactSources:
 
 #### Armory Echo - 2.26.5...2.26.9
 
-  - [create-pull-request] automated change (#342) (#345)
-  - chore(cd): add GitHub actions for new release process (#343)
+
 
 #### Armory Rosco - 2.26.8...2.26.13
 
-  - Update gradle.yml
-  - chore(build): disable legacy integration tests (#271)
-  - [create-pull-request] automated change (#268) (#273)
 
 #### Armory Clouddriver - 2.26.6...2.26.12
 
-  - chore(build): Autobump armory-commons: 3.9.5 (backport #342) (#344)
-  - chore(cd): add GitHub actions for new release process (#343)
-  - fix(dependencies): fix gradle.properties (#374)
 
 #### Armory Deck - 2.26.5...2.26.7
 
 
 #### Armory Gate - 2.26.5...2.26.9
 
-  - chore(cd): add GitHub actions for new release process (#295)
-  - chore(build): Autobump armory-commons: 3.9.5 (backport #294) (#298)
-
 #### Armory Kayenta - 2.26.5...2.26.10
 
-  - chore(cd): add GitHub actions for new release process (#260)
-  - chore(build): Autobump armory-commons: 3.9.5 (backport #259) (#261)
   - feat(cloudwatch): add assume role feat and cleanup dependencies (#233) (#270)
 
 #### Armory Igor - 2.26.6...2.26.9
 
-  - chore(cd): add GitHub actions for new release process (#231)
 
 #### Dinghy™ - 2.26.1...2.26.6
 
-  - feat(use_gate): Configures the yeti source provider to generate a pla… (#422) (#433)
   - fix(local_modules_not_working_in_template_repo): updating internal bu… (backport #429) (#430)
   - fix(parsing_errors_when_using_yaml): upgrade to version of OSS dinghy that includes this fix BOB-30150 (#436) (#438)
   - feat(add_dinghyignore): upgrade oss dinghy version (#439) (#440)
@@ -149,23 +195,11 @@ artifactSources:
 
 #### Armory Fiat - 2.26.6...2.26.10
 
-  - chore(cd): add GitHub actions for new release process (#223)
-  - chore(build): Autobump armory-commons: 3.9.5 (backport #222) (#224)
 
 #### Armory Front50 - 2.26.7...2.26.11
 
-  - chore(cd): add GitHub actions for new release process (#272)
-  - chore(build): Autobump armory-commons: 3.9.5 (backport #266) (#274)
 
 #### Armory Orca - 2.26.12...2.26.15
 
-  - [create-pull-request] automated change (#323) (#325)
 
 #### Terraformer™ - 2.26.3...2.26.9
-
-  - chore(tests): retrieve secrets from s3, not vault (#418) (#420)
-  - task(tf_versions): update tf bundled versions script to use new key-server (#417) (#419)
-  - feat(tf): New TF versions support (#412) (#426)
-  - task(tf_versions): update tf bundled versions script to use new key (#428) (#429)
-  - feat(cd): add workflow for building cd images (#408)
-
