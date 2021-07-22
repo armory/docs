@@ -488,7 +488,7 @@ spinnaker:
         extensions:
           armory.kubesvc:
             enabled: true
-```            
+```
 
 Add a new file named `clouddriver.yml` under your **service-settings** directory, and add the next configuration, if you already have an `clouddriver.yml` just add the config to the existing file.
 
@@ -591,11 +591,34 @@ spinnaker:
         config:
           deployEngine:
             baseUrl: https://deploy-engine.cloud.armory.io
-        version: 0.15.3
+        version: <latest-version>
     repositories:
       armory-deployment-plugin-releases:
         url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
-```        
+```
+
+Add a new file named `gate-local.yml` under your **profiles** directory, and add the next configuration, if you already have an `gate-local.yml` just add the config to the existing file.
+
+```yaml
+#gate-local.yml
+spinnaker:
+  extensibility:
+    # This snippet is necessary so that Gate can serve your plugin code to Deck
+    deck-proxy:
+      enabled: true
+      plugins:
+        Armory.Deployments:
+          enabled: true
+          config:
+            deployEngine:
+              baseUrl: https://deploy-engine.cloud.armory.io
+          version: <latest-version>
+    repositories:
+      armory-deployment-plugin-releases:
+        enabled: true
+        url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 
