@@ -35,7 +35,7 @@ Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents hav
 
 ### Database 
 
-You must be using either MySQL or PostgreSQL for your Clouddriver service, not Redis. For information, see [Configure Clouddriver to use a SQL Database]({{< ref "clouddriver-sql-configure.md" >}}).
+You must be using either MySQL or PostgreSQL for your Clouddriver service as well as Redis because the Armory Agent requires both. For information about MySQL, see [Configure Clouddriver to use a SQL Database]({{< ref "clouddriver-sql-configure.md" >}}).
 
 ### Deployment target
 
