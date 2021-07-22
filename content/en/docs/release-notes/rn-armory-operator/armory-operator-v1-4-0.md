@@ -17,7 +17,7 @@ No known issues.
 ## Highlighted updates
 
 ### New `registrationId` label for SpinnakerService status
-This release adds the new `registrationId` label under the status section on the `spinnakerservices.spinnaker.armory.io` CRD. You need to install the latest CRD in order to see this feature working.
+This release adds the new `registrationId` label, used for identifying your Armory Enterprise cluster, under the status section on the `spinnakerservices.spinnaker.armory.io` CRD. You need to install the latest CRD in order to see this feature working.
 
 Execute `kubectl -n spinnaker get spinsvc` to see the new label after you have installed the latest CRD.
 
