@@ -90,12 +90,12 @@ spec:
   spinnakerConfig:
     profiles:
       dinghy:
-        jsonValidationDisabled: <boolean> # 
+        jsonValidationDisabled: <boolean> 
 ```
 
 The config is optional. If omitted, strict validation is on by default.
 
-> Turning strict validation on may cause existing pipelines to fail if any JSON is invalid.
+> When strict validation is on, existing pipelines may fail if any JSON is invalid.
 
 ###  Spinnaker Community Contributions
 
