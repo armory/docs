@@ -503,6 +503,8 @@ kubernetes:
 
 Add the next configuration under **deploymentEnvironment**  on your config file.
 
+- Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix]({{< ref "armory-agent-quick#compatibility-matrix" >}}).
+
 ```yaml
 deploymentEnvironment:
   initContainers:
