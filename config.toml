@@ -156,7 +156,7 @@ agent_plug_latest-2="0.7.19"
 agent_plug_latest_spin-2="2.24.x (1.24.x)"
 agent_plug_latest-1="0.8.18"
 agent_plug_latest_spin-1="2.25.x (1.25.x)"
-agent_plug_latest="0.9.10"
+agent_plug_latest="0.9.11"
 agent_plug_latest_spin="2.26.x (1.26.x)"
 
 # User interface configuration
