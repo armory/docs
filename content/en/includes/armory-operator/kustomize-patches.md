@@ -51,5 +51,5 @@ spec:
       version: {{< param armory-version >}}
 ```
 
-See [the full format]({{% ref "operator-reference" %}}) for more configuration
+See [the full format]({{% ref "op-manifest-reference" %}}) for more configuration
 options.
