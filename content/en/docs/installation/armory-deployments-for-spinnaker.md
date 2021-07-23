@@ -626,7 +626,7 @@ spinnaker:
 
 After you have configured all the manifests, apply the updates.
 
-## Test that everything works
+## Test that plugin is configured
 
 First check that all the services are up and running.
 
@@ -634,13 +634,54 @@ Then check that you can see the new stage, create new pipeline → create new st
 
 {{< figure src="/images/deploy-engine/deploy-engine-stage-UI.png" alt="The K8s Progressive stage appears in the stage dropdown when you search for it." >}}
 
-
 Also verify that you can see the accounts from kubesvc on the account dropdown
 
 {{< figure src="/images/deploy-engine/deploy-engine-accounts.png" alt="If the plugin is configured properly, you should see the target deployment account in the Account dropdown." >}}
 
-## Wrapping up
-Deploy Something!
+## Deploy the hello-world 
+
+Create a new pipeline with a single stage (`Kubernetes Progressive`).
+
+Paste the following in the manifest text block.
+
+```yaml
+# a simple nginx deployment with an init container that makes initialization take longer for dramatic effect
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        - env:
+            - name: TEST_ID
+              value: __TEST_ID_VALUE__
+          image: 'nginx:1.14.1'
+          name: demo-app
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+      initContainers:
+        - command:
+            - sh
+            - '-c'
+            - sleep 10
+          image: 'busybox:stable'
+          name: sleep
+```
+
+Configure some canary steps, save the pipeline and trigger a manual execution.
+
+You should be able to watch the pipeline execute the canary rollout.
 
 ## Troubleshooting
 ### Kubernetes agent
