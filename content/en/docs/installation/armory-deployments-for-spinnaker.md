@@ -488,6 +488,8 @@ spinnaker:
         extensions:
           armory.kubesvc:
             enabled: true
+redis:
+  enabled: true
 ```
 
 Add a new file named `clouddriver.yml` under your **service-settings** directory, and add the next configuration, if you already have an `clouddriver.yml` just add the config to the existing file.
