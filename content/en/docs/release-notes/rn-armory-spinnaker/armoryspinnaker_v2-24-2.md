@@ -1,17 +1,18 @@
 ---
-title: v2.23.4 Armory Release (OSS Spinnaker™ v1.23.6)
+title: v2.24.2 Armory Release (OSS Spinnaker™ v1.24.6)
 toc_hide: true
-version: 02.23.04
+version: 02.24.02
 description: >
-  Release notes for Armory Enterprise v2.23.4
+  Release notes for Armory Enterprise v2.24.2 
 ---
 
-## 2021/02/04 Release Notes
+## 2021/07/06 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+
 ## Required Halyard or Operator version
 
-To install, upgrade, or configure Armory 2.23.4, use one of the following tools:
+To install, upgrade, or configure Armory 2.24.2, use one of the following tools:
 
 - Armory-extended Halyard 1.10 or later
 - Armory Operator 1.2.1 or later
@@ -26,23 +27,17 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
 
+<!-- Moved this to Breaking changes instead of KI. Didn't bother renaming it. -->
+{{< include "known-issues/ki-orca-zombie-execution.md" >}}
+
 {{< include "breaking-changes/bc-orca-forcecacherefresh.md" >}}
 
-{{< include "known-issues/ki-orca-zombie-execution.md" >}}
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
-
 {{< include "known-issues/ki-bake-var-file.md" >}}
-
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
-{{< include "known-issues/ki-healthchecks-dynamicAccounts.md" >}}
 {{< include "known-issues/ki-dinghy-modules.md" >}}
-
-
-### Fixed issues
-
-* Fixed an issue where Clouddriver fails to cache images that belong to the first account (alphabetically) for each region.  
 
 ## Highlighted updates
 
@@ -51,14 +46,18 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+### AWS Lambda
 
-This release includes various improvements to security and performance.
+Health status fields are now part of the function cache so that corresponding tasks can continue as expected.
 
+### Terraform Integration
+
+Terraform versions 13.6 to 14.10 are now available in the Terraform Integration stage.
 
 ###  Spinnaker Community Contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
-[Spinnaker v1.23.6](https://www.spinnaker.io/community/releases/versions/1-23-6-changelog) changelog for details.
+[Spinnaker v1.24.6](https://www.spinnaker.io/changelogs/1.24.6-changelog/) changelog for details.
 
 ## Detailed updates
 
@@ -67,49 +66,49 @@ There have also been numerous enhancements, fixes, and features across all of Sp
 Here's the BOM for this version.
 <details><summary>Expand</summary>
 <pre class="highlight">
-<code>version: 2.23.4
-timestamp: "2021-02-03 15:52:32"
+<code>version: 2.24.2
+timestamp: "2021-07-06 14:37:34"
 services:
     clouddriver:
-        commit: 7b2a33c8
-        version: 2.23.36
+        commit: eed137c5
+        version: 2.24.24
     deck:
-        commit: ccf47bbb
-        version: 2.23.19
+        commit: 5cb89f5a
+        version: 2.24.4
     dinghy:
-        commit: 41fde564
-        version: 2.23.9
+        commit: eaa25737
+        version: 2.24.11
     echo:
-        commit: e7ef217c
-        version: 2.23.14
+        commit: 44a92c44
+        version: 2.24.12
     fiat:
-        commit: 7124416c
-        version: 2.23.11
+        commit: 40f20536
+        version: 2.24.13
     front50:
-        commit: 95b3ff9c
-        version: 2.23.14
+        commit: 33170b40
+        version: 2.24.14
     gate:
-        commit: dee95e1f
-        version: 2.23.13
+        commit: 62ffcfcb
+        version: 2.24.15
     igor:
-        commit: c932b693
-        version: 2.23.13
+        commit: f981a107
+        version: 2.24.10
     kayenta:
-        commit: ac7147d0
-        version: 2.23.17
+        commit: a828efe7
+        version: 2.24.16
     monitoring-daemon:
-        version: 2.23.0
+        version: 2.24.0
     monitoring-third-party:
-        version: 2.23.0
+        version: 2.24.0
     orca:
-        commit: fe3d069a
-        version: 2.23.21
+        commit: 5325cf8c
+        version: 2.24.14
     rosco:
-        commit: 296e82dc
-        version: 2.23.18
+        commit: bd1646b6
+        version: 2.24.15
     terraformer:
-        commit: 7710fd96
-        version: 2.23.9
+        commit: 449494d2
+        version: 2.24.7
 dependencies:
     redis:
         version: 2:2.8.4-2
@@ -122,50 +121,45 @@ artifactSources:
 ### Armory
 
 
-#### Armory Gate - 2.23.5...2.23.13
+#### Armory Front50 - 2.24.12...2.24.14
 
-  - chore(build): use armory BOM (#219)
+#### Terraformer™ - 2.24.4...2.24.7
 
-#### Armory Igor - 2.23.5...2.23.13
+  - chore(versions): add terraform 13.6 through 14.10 (bp #376) (#378)
+  - security(versions): secure terraform binaries (backport #390) (#392)
+  - chore(versions): update tf installer to use new hashi keys (#396) (#399)
 
-  - chore(build): use armory commons bom (#177) (#179)
-
-#### Armory Deck - 2.23.15...2.23.19
-
-  - chore(deps): bump to new OSS 1.23.6 bom (#728)
-
-#### Armory Clouddriver - 2.23.28...2.23.36
-
-  - fix(build): Dependencies for Spring cloud config + Vault (#266)
-  - fix(build): Remove explicit guava - get from armory-commons (#267)
-
-#### Armory Fiat - 2.23.5...2.23.11
-
-  - chore(build): use armory commons BOM (#156) (#158)
-
-#### Armory Front50 - 2.23.6...2.23.14
-
-  - chore(build): use armory commons BOM (#202) (#204)
-
-#### Armory Kayenta - 2.23.8...2.23.17
-
-  - chore(build): use armory commons BOM (#183) (#185)
-
-#### Armory Rosco - 2.23.10...2.23.18
-
-  - chore(build): use armory commons bom  (#185) (#187)
-
-#### Dinghy™ - 2.23.8...2.23.9
+#### Armory Fiat - 2.24.12...2.24.13
 
 
-#### Armory Echo - 2.23.6...2.23.14
+#### Dinghy™ - 2.24.10...2.24.11
 
-  - fix(build): use armory commons BOM (#279)
+  - fix(config): bit more err checking on initial config load (#378)
 
-#### Armory Orca - 2.23.12...2.23.21
+#### Armory Echo - 2.24.11...2.24.12
 
-  - fix(build): use armory commons BOM as platform (#205)
 
-#### Terraformer™ - 2.23.6...2.23.9
+#### Armory Clouddriver - 2.24.23...2.24.24
+
+
+#### Armory Orca - 2.24.13...2.24.14
+
+
+#### Armory Igor - 2.24.9...2.24.10
+
+
+#### Armory Deck - 2.24.3...2.24.4
+
+
+#### Armory Kayenta - 2.24.14...2.24.16
+
+  - feat(dynatrace): adding support for resolution parameter (#224) (#228)
+
+#### Armory Rosco - 2.24.12...2.24.15
+
+  - Update gradle.yml
+  - fix(inttest): fixing vpc and subnets because recreation (backport #230) (#278)
+
+#### Armory Gate - 2.24.14...2.24.15
 
 

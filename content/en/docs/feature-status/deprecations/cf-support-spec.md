@@ -57,8 +57,6 @@ Armory Enterprise supports the following Cloud Foundry related stages in applica
   - Destroy CF Service
   - Create CF Service Key
   - Delete CF Service Key
-  - Share CF Service
-  - Unshare CF Service
   - Create CF Service Bindings
   - Delete CF Service Bindings
   - Map CF Loadbalancer

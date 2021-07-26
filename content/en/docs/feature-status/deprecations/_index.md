@@ -14,14 +14,15 @@ To continually improve the Armory customer experience, we will occasionally depr
 
 The following clarifies what we mean when a feature is deprecated or reaches end of support:
 
-* **Deprecated**: When a feature enters the end of support cycle and no new development is done except for critical (P0/1) bugs and security CVE fixes specific to the feature. 
+* **Deprecated**: when a feature enters the end of support cycle and no new development is done except for critical (P0/1) bugs and security CVE fixes specific to the feature. 
 
-* **End of Support**: When a feature is no longer available for customer or technical support, including critical (P0/1) bugs and security CVE fixes specific to the feature.   
+* **End of Support**: when a feature is no longer available for customer or technical support, including critical (P0/1) bugs and security CVE fixes specific to the feature.   
 
 | Feature                                                | Deprecated | End of Support | Last compatible Armory Enterprise release |
 |--------------------------------------------------------|------------|----------------|-------------------------------------------|
-| [Pipelines as CRD]({{< ref "pacrd-deprecation.md" >}}) | 2021/08/01 | 2021/11/01     | Not applicable                            |
-| [Policy Engine Extension]({{< ref "policy-engine-ext-deprecation.md" >}})        | 2021/06/21 | 2021/09/31     | 2.26.x                                    |
+| [Pipelines as CRD]({{< ref "pacrd-deprecation.md" >}}) | 2021 Aug 01 | 2021 Nov 01     | Not applicable                            |
+| [Policy Engine Extension]({{< ref "policy-engine-ext-deprecation.md" >}})        | 2021 June 21 | 2021 Sept 31     | 2.26.x                                    |
+| [Halyard]({{< ref "halyard-deprecation.md" >}}) | 2021 Sept 01 | 2021 Dec 30 | 2.26.x |
 
 
 ## FAQ

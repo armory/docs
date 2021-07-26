@@ -11,7 +11,7 @@ aliases:
 
 ## Overview
 
-The Armory Policy Engin is a proprietary feature for Armory Enterprise that is designed to allow you more complete control over the software delivery process. The Policy Engine provides the hooks necessary to perform  extensive verification of pipelines and processes in Armory Enterprise. The Policy Engine uses the [Open Policy Agent](https://www.openpolicyagent.org/)(OPA) and input style documents to perform validations on the following:
+The Armory Policy Engine is a proprietary feature for Armory Enterprise that is designed to allow you more complete control over the software delivery process. The Policy Engine provides the hooks necessary to perform  extensive verification of pipelines and processes in Armory Enterprise. The Policy Engine uses the [Open Policy Agent](https://www.openpolicyagent.org/) (OPA) and input style documents to perform validations on the following:
 
 * **Save time validation** - Validate pipelines as they're created or modified. 
 * **Runtime validation** - Validate deployments as a pipeline is executing. This validation only operates on tasks that you have explicitly created policies for. Tasks with no policies are not validated.

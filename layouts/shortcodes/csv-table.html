@@ -1,0 +1,26 @@
+{{- $sep := .Get 0 -}}
+{{- $url := .Get 1 -}}
+<table>
+{{ range $index, $row := getCSV $sep $url }}
+
+  {{ if eq $index 0 }}
+  <thead>
+  <tr>
+  {{ range $row }}
+  <th>{{ . | safeHTML }}</th>
+  {{ end }}
+  </tr>
+  </thead>
+
+  <tbody>
+  {{ else }}
+  <tr>
+  {{ range  $row }}
+  <td>{{ . | safeHTML }}</td>
+  {{ end }}
+  </tr>
+  {{ end }}
+  {{ end }}
+  </tbody>
+</table>
+

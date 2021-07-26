@@ -18,7 +18,7 @@ defaultContentLanguageInSubdir = false
 # Useful when translating.
 enableMissingTranslationPlaceholders = true
 
-disableKinds = ["taxonomy", "taxonomyTerm"]
+#disableKinds = ["taxonomy", "taxonomyTerm"]
 
 # Highlighting config
 pygmentsCodeFences = true
@@ -100,7 +100,7 @@ postgresql-version="10+"
 #used in the Operator docs
 armory-version-exact = "2.26.0"
 halyard-armory-version = "1.12.0"
-kubesvc-version="0.5.19"
+kubesvc-version="0.5.20"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
@@ -152,17 +152,19 @@ prism_syntax_highlighting = true
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]
-agent_plug_latest-2="0.7.18"
+agent_plug_latest-2="0.7.20"
 agent_plug_latest_spin-2="2.24.x (1.24.x)"
-agent_plug_latest-1="0.8.17"
+agent_plug_latest-1="0.8.19"
 agent_plug_latest_spin-1="2.25.x (1.25.x)"
-agent_plug_latest="0.9.9"
+agent_plug_latest="0.9.11"
 agent_plug_latest_spin="2.26.x (1.26.x)"
 
 # User interface configuration
 [params.ui]
 # Enable to show the side bar menu in its compact state.
 sidebar_menu_compact = true
+sidebar_menu_foldable= true
+sidebar_cache_limit = 10
 #  Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
 #  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)

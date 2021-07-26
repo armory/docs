@@ -9,7 +9,7 @@ exclude_search: true
  
 ## What does this mean?
 
-On 2021/09/01, Armory-extended Halyard, Armory's proprietary extension of Halyard, will be deprecated with an and End of Support date of 2021/12/30. This means that after 2021/09/01, no new development is done specific to the feature except for critical (P0/1) bugs and security CVE fixes. Support for critical (P0/1) bugs and security CVE fixes will end on 2021/12/30. 
+On 2021 Sept 01, Armory-extended Halyard, Armory's proprietary extension of Halyard, will be deprecated with an and End of Support date of 2021 Dec 30. This means that after 2021 Sept 01, no new development is done specific to the feature except for critical (P0/1) bugs and security CVE fixes. Support for critical (P0/1) bugs and security CVE fixes will end on 2021 Dec 30. 
 
 Additionally, releases after 2.26 require you to use the Armory Operator. Any current workflows that use Armory-extended Halyard may break
 if you try to upgrade to a release that is later than 2.26. We encourage all Armory-extended Halyard users to [migrate to the Armory Operator]({{< ref "hal-op-migration.md" >}}), the only supported method of installing and configuring Armory’s products beyond the 2.26 release.
@@ -31,7 +31,7 @@ feature and technology deprecation, please see
 ## Am I affected?
 
 If your company currently uses Armory-extended Halyard, then yes. You can still access Armory-extended Halyard
-until 2021/12/30; however, Armory is unable to support issues solely related to Armory-extended Halyard you may experience after 2021/09/01.
+until 2021 Dec 30; however, Armory is unable to support issues solely related to Armory-extended Halyard you may experience after 2021 Sept 01.
  
 ## What do I need to do?
 
@@ -42,7 +42,7 @@ We have instructions for migrating to the Operator on this page:
  
  ## What happens if I don't act in time?
 
-As mentioned above, if your company uses Armory-extended Halyard, you will not be able to install any releases beyond 2.26 unless you migrate to the Armory Operator. Additionally, after 2021/12/30, Armory cannot guarantee the availability of Armory-extended Halyard.
+As mentioned above, if your company uses Armory-extended Halyard, you will not be able to install any releases beyond 2.26 unless you migrate to the Armory Operator. Additionally, after 2021 Dec 30, Armory cannot guarantee the availability of Armory-extended Halyard.
  
 ## Who should I contact if I have questions or need further assistance?
 
