@@ -13,6 +13,8 @@ description: >
   Release notes for Armory-extended Halyard, an extended version of Halyard that deploys Armory features
 ---
 
+{{< include "deprecations/hal-depr.html" >}}
+
 > You can find [Armory's releases notes here]({{< ref "rn-armory-spinnaker" >}}).
 
 ## How to find your Spinnaker version using Halyard

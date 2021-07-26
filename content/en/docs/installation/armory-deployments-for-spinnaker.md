@@ -488,7 +488,9 @@ spinnaker:
         extensions:
           armory.kubesvc:
             enabled: true
-```            
+redis:
+  enabled: true
+```
 
 Add a new file named `clouddriver.yml` under your **service-settings** directory, and add the next configuration, if you already have an `clouddriver.yml` just add the config to the existing file.
 
@@ -502,6 +504,8 @@ kubernetes:
 ```        
 
 Add the next configuration under **deploymentEnvironment**  on your config file.
+
+- Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix]({{< ref "armory-agent-quick#compatibility-matrix" >}}).
 
 ```yaml
 deploymentEnvironment:
@@ -591,11 +595,34 @@ spinnaker:
         config:
           deployEngine:
             baseUrl: https://deploy-engine.cloud.armory.io
-        version: 0.15.3
+        version: <latest-version>
     repositories:
       armory-deployment-plugin-releases:
         url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
-```        
+```
+
+Add a new file named `gate-local.yml` under your **profiles** directory, and add the next configuration, if you already have an `gate-local.yml` just add the config to the existing file.
+
+```yaml
+#gate-local.yml
+spinnaker:
+  extensibility:
+    # This snippet is necessary so that Gate can serve your plugin code to Deck
+    deck-proxy:
+      enabled: true
+      plugins:
+        Armory.Deployments:
+          enabled: true
+          config:
+            deployEngine:
+              baseUrl: https://deploy-engine.cloud.armory.io
+          version: <latest-version>
+    repositories:
+      armory-deployment-plugin-releases:
+        enabled: true
+        url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -603,7 +630,7 @@ spinnaker:
 
 After you have configured all the manifests, apply the updates.
 
-## Test that everything works
+## Test that plugin is configured
 
 First check that all the services are up and running.
 
@@ -611,13 +638,54 @@ Then check that you can see the new stage, create new pipeline → create new st
 
 {{< figure src="/images/deploy-engine/deploy-engine-stage-UI.png" alt="The K8s Progressive stage appears in the stage dropdown when you search for it." >}}
 
-
 Also verify that you can see the accounts from kubesvc on the account dropdown
 
 {{< figure src="/images/deploy-engine/deploy-engine-accounts.png" alt="If the plugin is configured properly, you should see the target deployment account in the Account dropdown." >}}
 
-## Wrapping up
-Deploy Something!
+## Deploy the hello-world 
+
+Create a new pipeline with a single stage (`Kubernetes Progressive`).
+
+Paste the following in the manifest text block.
+
+```yaml
+# a simple nginx deployment with an init container that makes initialization take longer for dramatic effect
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        - env:
+            - name: TEST_ID
+              value: __TEST_ID_VALUE__
+          image: 'nginx:1.14.1'
+          name: demo-app
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+      initContainers:
+        - command:
+            - sh
+            - '-c'
+            - sleep 10
+          image: 'busybox:stable'
+          name: sleep
+```
+
+Configure some canary steps, save the pipeline and trigger a manual execution.
+
+You should be able to watch the pipeline execute the canary rollout.
 
 ## Troubleshooting
 ### Kubernetes agent

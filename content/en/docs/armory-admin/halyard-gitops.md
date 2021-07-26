@@ -6,6 +6,8 @@ description: >
   Create a workflow to store Spinnaker configuration files in GitOps and automate deployment.
 ---
 
+{{< include "deprecations/hal-depr.html" >}}
+
 ## Spinnaker GitOps workflow
 
 This approach enables the following workflow:
