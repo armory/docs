@@ -30,7 +30,7 @@ In your Operator manifest (such as `spinnakerService.yml`) or `spinnaker-local` 
   - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientID`: set this value to **Client ID** that you received from [Get your registration information](#get-your-registration-information)
   - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientSecret`: set this value to the **Secret** that you received from [Get your registration information](#get-your-registration-information).
 
-Once you apply the registration information to your environment, communication between your Armory Enterprise environment and Armory Cloud is enabled. The communication allows certain Armory Enterprise features, such as the K8s Progressive Deployments plugin, to function.
+Once you apply the registration information to your environment, communication between your Armory Enterprise environment and Armory Cloud is enabled. The communication allows certain Armory Enterprise features, such as the Armory Deployments plugin, to function.
 
 {{< tabs name="Configure Armory Enterprise" >}}
 {{% tab name="Operator" %}}
