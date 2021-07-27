@@ -14,7 +14,7 @@ toc_hide: true
 
 As part of the configuration process, you need to register your instance with Armory.
 
-## Get your registration information
+## Register your environment
 
 1. Navigate to the URL provided by Armory and follow the instructions to create an account.
 2. Make note of the following information:
@@ -23,12 +23,14 @@ As part of the configuration process, you need to register your instance with Ar
   - Secret
    > This is the only time you are shown the secret value. Store it somewhere safe.
 
-## Register your instance
+## Apply the registration information
 
 In your Operator manifest (such as `spinnakerService.yml`) or `spinnaker-local` file (Halyard), configure the following parameters:
   - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.tokenIssueUrl`: set this value to `https://auth.cloud.armory.io/oauth/token`.
   - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientID`: set this value to **Client ID** that you received from [Get your registration information](#get-your-registration-information)
   - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientSecret`: set this value to the **Secret** that you received from [Get your registration information](#get-your-registration-information).
+
+Once you apply the registration information to your environment, communication between your Armory Enterprise environment and Armory Cloud is enabled. The communication allows certain Armory Enterprise features, such as the K8s Progressive Deployments plugin, to function.
 
 {{< tabs name="Configure Armory Enterprise" >}}
 {{% tab name="Operator" %}}
