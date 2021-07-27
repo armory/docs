@@ -2,7 +2,7 @@
 title: Armory Deployments Getting Started Guide 
 description: Use this self-service guide to prepare your environment and then install the Armory Deployments Plugin, which allows you to deploy apps incrementally based on criteria you set.
 exclude_search: true
-# toc_hide: true
+toc_hide: true
 ---
 
 {{< include "early-access-feature.html" >}}
