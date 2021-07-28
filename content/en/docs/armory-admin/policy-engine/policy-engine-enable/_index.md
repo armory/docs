@@ -1,27 +1,14 @@
 ---
-title: Policy Engine for Armory Enterprise
-linkTitle: Policy Engine
+title: Enable the Policy Engine for Armory Enterprise
+linkTitle: Enable the Policy Engine
 description: >
-  Enable the Policy Engine to enforce policies on your Armory Enterprise instance. Policies can help you make sure that best practices are followed by preventing pipelines from being saved or running if they do not meet requirements that you outline. This page includes how to deploy and configure an OPA server, which the Policy Engine requires.
+  Enable the Policy Engine to enforce policies on your Armory Enterprise instance. This page includes informatino about how to deploy and configure an OPA server, which the Policy Engine requires.
 aliases:
   - /docs/plugin-guide/plugin-policy-engine/
+  - /docs/armory-admin/policy-engine-enable/
 ---
 
 ![Proprietary](/images/proprietary.svg)
-
-## Overview
-
-The Armory Policy Engine is a proprietary feature for Armory Enterprise that is designed to allow you more complete control over the software delivery process. The Policy Engine provides the hooks necessary to perform  extensive verification of pipelines and processes in Armory Enterprise. The Policy Engine uses the [Open Policy Agent](https://www.openpolicyagent.org/) (OPA) and input style documents to perform validations on the following:
-
-* **Save time validation** - Validate pipelines as they're created or modified. 
-* **Runtime validation** - Validate deployments as a pipeline is executing. This validation only operates on tasks that you have explicitly created policies for. Tasks with no policies are not validated.
-* **Entitlements using API Authorization** - Control what actions can be taken based on a user's role. (Requires the Policy Engine plugin.)
-
-> If no policies are configured for these policy checks, all actions are allowed.
-
-The Policy Engine exists as a plugin, which is its newer iteration, and as an extension of Armory Enterprise. The plugin has additional features that are not present in the extension. If you are getting started with the Policy Engine, Armory recommends using the plugin version of the Policy Engine. If you want to migrate from the extension to the plugin, see [Migrating to the Policy Engine Plugin](#migrating-to-the-policy-engine-plugin).
-
-For information about how to use the Policy Engine, see [Using the Policy Engine]({{< ref "policy-engine-use" >}}).
 
 ## Requirements for using the Policy Engine
 
