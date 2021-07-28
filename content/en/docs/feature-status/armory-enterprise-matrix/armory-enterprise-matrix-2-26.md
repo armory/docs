@@ -400,7 +400,7 @@ The following table lists the supported observability providers:
 | Provider   | Version                | Armory                 | Note                        |
 | ---------- | ---------------------- | ---------------------- | --------------------------- |
 | New Relic  | All supported versions | All supported versions |                             |
-| Prometheus (Open Source) | All supported versions | All supported versions | Use Grafana for dashboards. |
+| Prometheus | All supported versions | All supported versions | Use Grafana for dashboards. Armory supports offerings that are proprietary versions of Prometheus, such as Cortex, to the extent that the offering overlaps with open source Prometheus. That is, Armory guarantees functionality that is compatible with open source Prometheus. Compatibility between open source Prometheus and the proprietary version is the responsibility of that vendor, not Armory. |
 
 
 ## Pipeline triggers
