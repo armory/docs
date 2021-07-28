@@ -1,0 +1,13 @@
+<div class="section-index">
+  {{ $pages := (where .Site.Pages "Section" .Section).ByParam "version" }}
+  {{ $pagesReverse := $pages.Reverse }}
+  {{ $parent := .Page }}
+
+  <ul>
+    {{ range $pagesReverse }}
+      {{ if eq .Parent $parent }}
+      <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+      {{end}}
+
+      {{end}}
+      <br>
