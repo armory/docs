@@ -18,9 +18,9 @@ The open source Spinnaker documentation has a good overview of how to
 configure Kayenta using Halyard at
 [Set up canary support](https://www.spinnaker.io/setup/canary/).
 
-For Operator, the following example is an equivalent `SpinnakerService` manifest. The example config uses Data Dog as the metrics provider and stores canary configs and analysis in a GCS bucket:
+For Operator, the following example is an equivalent `SpinnakerService` manifest. The example config uses Datadog as the metrics provider and stores canary configs and analysis in a GCS bucket:
 
-> For information about how to configure other providers see [Canary Config]({{< ref "canary-op-config" >}}) unless you use Dynatrace or Cloudwatch. If you use one of those as the metrics provider, see [Use Canary Analysis with Dynatrace]({{< ref "kayenta-canary-dynatrace" >}}) or [Use Canary Analysis with AWS Cloudwatch]({{< ref "kayenta-canary-cloudwatch" >}}).
+> For information about how to configure other providers see [Canary Config]({{< ref "canary-op-config" >}}) unless you use Dynatrace or AWS CloudWatch. If you use one of those as the metrics provider, see [Use Canary Analysis with Dynatrace]({{< ref "kayenta-canary-dynatrace" >}}) or [Use Canary Analysis with AWS CloudWatch]({{< ref "kayenta-canary-cloudwatch" >}}).
 
 ```yaml
 apiversion: spinnaker.io/{{< param operator-extended-crd-version >}}
