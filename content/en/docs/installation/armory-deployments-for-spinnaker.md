@@ -583,7 +583,7 @@ spec:
                   config:
                     deployEngine:
                       baseUrl: https://deploy-engine.cloud.armory.io
-                  version: {{< param "deploy-engine-plugin-version" >}} # You can substitute this value with a different version if needed: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
+                  version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
             repositories:
               armory-deployment-plugin-releases:
                 enabled: true
@@ -598,7 +598,7 @@ spec:
                 config:
                   deployEngine:
                     baseUrl: https://deploy-engine.cloud.armory.io
-                version: {{< param "deploy-engine-plugin-version" >}} # You can substitute this value with a different version if needed: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
+                version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
             repositories:
               armory-deployment-plugin-releases:
                 url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
@@ -630,7 +630,7 @@ spinnaker:
         config:
           deployEngine:
             baseUrl: https://deploy-engine.cloud.armory.io
-        version: {{< param "deploy-engine-plugin-version" >}} # You can substitute this value with a different version if needed: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
+        version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
     repositories:
       armory-deployment-plugin-releases:
         url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
@@ -651,7 +651,7 @@ spinnaker:
           config:
             deployEngine:
               baseUrl: https://deploy-engine.cloud.armory.io
-          version: {{< param "deploy-engine-plugin-version" >}} # You can substitute this value with a different version if needed: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
+          version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
     repositories:
       armory-deployment-plugin-releases:
         enabled: true
