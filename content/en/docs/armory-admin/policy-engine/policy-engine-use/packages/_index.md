@@ -3,6 +3,8 @@ title: Policy Engine Packages
 linkTitle: Packages
 description: >
   Customize policy enforcement around Armory Enterprise actions.
+aliases:
+  - /docs/spinnaker-user-guides/policy-engine-use/packages/
 ---
 
 ## Packages
