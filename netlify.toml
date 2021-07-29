@@ -84,6 +84,9 @@
   to = "/docs/armory-admin/armory-agent/"
   force = true
 
+[[redirects]]
+  from ="/docs/spinnaker-user-guides/policy-engine-use/packages/*"
+  to = "/docs/armory-admin/policy-engine/policy-engine-use/packages/:splat"
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
