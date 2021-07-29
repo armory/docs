@@ -232,7 +232,7 @@ Use a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) 
 
 <details><summary>Show me the ConfigMap</summary>
 
-For information about adding accounts, see  the [kubernetes.accounts[] options in the Agent Options documentation](https://docs.armory.io/docs/armory-agent/agent-options/#options).
+For information about adding accounts, see  the [kubernetes.accounts[] options in the Agent Options documentation]({{< ref "agent-options#options" >}}).
 
 ```yaml
 apiVersion: v1
