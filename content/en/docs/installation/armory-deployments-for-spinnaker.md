@@ -1,5 +1,5 @@
 ---
-title: Armory Deployments Getting Started Guide 
+title: Get Started with Armory Deployments for Spinnaker 
 description: Use this self-service guide to prepare your environment and then install the Armory Deployments Plugin, which allows you to deploy apps incrementally based on criteria you set.
 exclude_search: true
 toc_hide: true
@@ -232,6 +232,8 @@ Use a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) 
 
 <details><summary>Show me the ConfigMap</summary>
 
+For information about adding accounts, see  the [kubernetes.accounts[] options in the Agent Options documentation](https://docs.armory.io/docs/armory-agent/agent-options/#options).
+
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -243,8 +245,6 @@ data:
     hub:
       connection:
         grpc: agents.cloud.armory.io:443
-        tls:
-          insecureSkipVerify: true
       auth:
         armory:
           clientId: <Armory K8s Agent ClientId>
@@ -253,25 +253,7 @@ data:
           audience: https://api.cloud.armory.io
           verify: true
     kubernetes:
-     accounts:
-     - name:
-       kubeconfigFile:
-       insecure:
-       context:
-       oAuthScopes:
-       serviceAccount: true
-       serviceAccountName: spin-sa
-       namespaces: []
-       omitNamespaces: []
-       onlyNamespacedResources:
-       kinds: []
-       omitKinds: []
-       customResourceDefinitions: [{kind:}]
-       metrics:
-       permissions: []
-       maxResumableResourceAgeMs:
-       onlySpinnakerManaged:
-       noProxy:
+     accounts: [] 
 ```
 
 </details>
@@ -442,8 +424,6 @@ armory.cloud:
     grpc:
       host: agents.cloud.armory.io
       port: 443
-      tls:
-        insecureSkipVerify: true
   deployEngineGrpc:
     host: grpc.deploy.cloud.armory.io
     port: 443
