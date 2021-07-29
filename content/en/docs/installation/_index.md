@@ -8,6 +8,7 @@ aliases:
   - /install_guide/install/
   - /install-guide/getting_started/
   - /docs/spinnaker/install/
+no_list: true
 ---
 
 {{< include "armory-license.md" >}}
