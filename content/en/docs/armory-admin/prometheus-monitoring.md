@@ -1,17 +1,18 @@
 ---
-title: Monitor Spinnaker with Prometheus
+title: Monitor Armory Enterprise with Prometheus
+linkTitle: Monitor with Prometheus
 description: >
-  Monitor Spinnaker using Prometheus and Grafana.
+  Monitor Armory Enterprise using Prometheus and Grafana.
 aliases:
   - /docs/spinnaker-install-admin-guides/prometheus-monitoring/
 ---
 
 ## Overview
 
-Armory recommends monitoring the health of Spinnaker in every
+Armory recommends monitoring the health of Armory Enterprise in every
 production instance. This document describes how to set up a basic
 [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) stack
-as well as enabling monitoring for the Spinnaker services.
+as well as enable monitoring for the Armory Enterprise services.
 
 Additional Prometheus and Grafana configuration is necessary to make them
 production-grade, and this configuration is not a part of this document. Also
@@ -27,10 +28,10 @@ later. If you are using one of those versions, see this page for
 and earlier.
 {{% /alert %}}
 
-## Assumptions
+## {{% heading "prereq" %}}
 
 * You are familiar with Prometheus and Grafana
-* Spinnaker is deployed in the `spinnaker` namespace
+* Armory Enterprise is deployed in the `spinnaker` namespace
 * Prometheus and Grafana are deployed in the `monitoring` namespace
 
 ## Use `kube-prometheus` to create a monitoring stack
@@ -70,10 +71,10 @@ Navigate to `http://localhost:9090/targets`.
 
 ## Grant Prometheus RBAC permissions
 
-There are two steps to configure Prometheus to monitor Spinnaker:
+There are two steps to configure Prometheus to monitor Armory Enterprise:
 
 - Add permissions for Prometheus to talk to the Spinnaker namespace
-- Configure Prometheus to discover the Spinnaker endpoints
+- Configure Prometheus to discover the Armory Enterprise endpoints
 
 Add permissions for Prometheus by applying the following configuration to your cluster. You can learn more about this process on the
 [Prometheus Operator homepage](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/rbac.md).  
@@ -140,9 +141,9 @@ For more information on Spring actuators, see the [Monitoring and Management](ht
 <!-- Spinnaker issue discussing management endpoints: https://github.com/spinnaker/spinnaker/issues/3883-->
 {{% /alert %}}
 
-Armory recommends that you monitor your systems by using the [Armory Observabililty Plugin](https://github.com/armory-plugins/armory-observability-plugin/). This is an open source solution for monitoring Spinnaker. The plugin supports the following:
+Armory recommends that you monitor your systems by using the [Armory Observabililty Plugin](https://github.com/armory-plugins/armory-observability-plugin/). This is an open source solution for monitoring Armory Enterprise. The plugin supports the following:
 
-* Adding Prometheus (OpenMetrics) endpoints to Spinnaker pods (explained below).
+* Adding Prometheus (OpenMetrics) endpoints to Armory Enterprise pods (explained below).
 * Sending data to NewRelic (documented on the plugin page).
 
 The Observability Plugin removes the service name from the metric. This is incompatible with the behavior of the open source Spinnaker Monitoring daemon system, which was the default monitoring solution in versions earlier than 2.20 and is now deprecated.
@@ -257,9 +258,9 @@ spec:
     tlsConfig:
       insecureSkipVerify: true
 ```
-## Check for Spinnaker targets in Prometheus
+## Check for Armory Enterprise targets in Prometheus
 
-After applying these changes, you should be able to see  Spinnaker targets in Prometheus. It may take 3 to 5 minutes for this to show up depending on where Prometheus is in its config polling interval.
+After applying these changes, you should be able to see  Armory Enterprise targets in Prometheus. It may take 3 to 5 minutes for this to show up depending on where Prometheus is in its config polling interval.
 
 ![Prometheus Targets](/images/prometheus-2.png)
 
@@ -275,7 +276,7 @@ Access the Grafana web interface via http://localhost:3000 and use the default G
 
 ## Add Armory dashboards to Grafana
 
-Armory provides some sample dashboards (in JSON format) that you can import into Grafana as a starting point for metrics to graph for monitoring. Armory has additional dashboards that are availabe to Armory customers. You can skip this section if you are a Grafana expert.
+Armory provides some sample dashboards (in JSON format) that you can import into Grafana as a starting point for metrics to graph for monitoring. Armory has additional dashboards that are available to Armory customers. You can skip this section if you are a Grafana expert.
 
 To import the sample dashboards, perform the following steps:
 
@@ -288,3 +289,44 @@ To import the sample dashboards, perform the following steps:
 After importing the dashboards, you can explore graphs for each service by clicking on **Dashboards > Manage > Spinnaker Kubernetes Details**.
 
 ![Grafana Dashboard](/images/grafana-2.png)
+
+
+## Available metrics by service
+
+>Disclaimer: the following tables may not contain every available metric for each service.
+
+### Clouddriver
+
+{{% csv-table "|" "/static/csv/metrics/metrics-clouddriver.csv" %}}
+
+### Echo
+
+{{% csv-table "|" "/static/csv/metrics/metrics-echo.csv" %}}
+
+### Fiat
+
+{{% csv-table "|" "/static/csv/metrics/metrics-fiat.csv" %}}
+
+### Front50
+
+{{% csv-table "|" "/static/csv/metrics/metrics-front50.csv" %}}
+
+### Gate
+
+{{% csv-table "|" "/static/csv/metrics/metrics-gate.csv" %}}
+
+### Igor
+
+{{% csv-table "|" "/static/csv/metrics/metrics-igor.csv" %}}
+
+### Kayenta
+
+{{% csv-table "|" "/static/csv/metrics/metrics-kayenta.csv" %}}
+
+### Orca
+
+{{% csv-table "|" "/static/csv/metrics/metrics-orca.csv" %}}
+
+### Rosco
+
+{{% csv-table "|" "/static/csv/metrics/metrics-rosco.csv" %}}

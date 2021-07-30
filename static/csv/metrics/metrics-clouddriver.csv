@@ -1,0 +1,74 @@
+Metric Name|Base Unit|Description
+amazonClientProvider.rateLimitDelayMillis||
+authorization||
+aws.request.clientExecuteTime|milliseconds|
+aws.request.credentialsRequestTime|milliseconds|
+aws.request.httpClientReceiveResponseTime|milliseconds|
+aws.request.httpClientSendRequestTime|milliseconds|
+aws.request.httpRequestTime|milliseconds|
+aws.request.requestCount||
+aws.request.requestMarshallTime|milliseconds|
+aws.request.requestSigningTime|milliseconds|
+aws.request.responseProcessingTime|milliseconds|
+aws.request.retryPauseTime|milliseconds|
+aws.request.throttling||
+awsSdkClientSupplier.averageLoadPenalty||
+awsSdkClientSupplier.hitCount||
+awsSdkClientSupplier.loadExceptionCount||
+awsSdkClientSupplier.missRate||
+cats.sqlCache.evict.deleteOperations||
+cats.sqlCache.evict.itemCount||
+cats.sqlCache.evict.itemsDeleted||
+cats.sqlCache.get.itemCount||
+cats.sqlCache.get.relationshipsRequested||
+cats.sqlCache.get.requestedSize||
+cats.sqlCache.get.selectOperations||
+cats.sqlCache.merge.deleteOperations||
+cats.sqlCache.merge.itemCount||
+cats.sqlCache.merge.itemsStored||
+cats.sqlCache.merge.relationshipCount||
+cats.sqlCache.merge.relationshipsStored||
+cats.sqlCache.merge.selectOperations||
+cats.sqlCache.merge.writeOperations||
+cf.okhttp.requests|milliseconds|Timer of OkHttp operation
+controller.invocations||
+controller.invocations.contentLength||
+controller.invocations.contentLength.summary||
+executionTime|milliseconds|
+health.kubernetes.errors||
+http.server.requests|milliseconds|
+jvm.buffer.count|buffers|An estimate of the number of buffers in the pool
+jvm.gc.pause|milliseconds|Time spent in GC pause
+jvm.memory.committed|bytes|The amount of memory in bytes that is committed for the Java virtual machine to use
+jvm.memory.max|bytes|The maximum amount of memory in bytes that can be used for memory management
+jvm.threads.daemon|threads|The current number of live daemon threads
+jvm.threads.peak|threads|The peak live thread count since the Java virtual machine started or peak was reset
+jvm.threads.states|threads|The current number of threads having BLOCKED state
+kubernetes.api|milliseconds|
+logback.events|events|Number of debug level events that made it to the logs
+onDemand_cache|milliseconds|
+onDemand_count||
+onDemand_error||
+onDemand_evict|milliseconds|
+onDemand_read|milliseconds|
+onDemand_store|milliseconds|
+onDemand_total|milliseconds|
+onDemand_transform|milliseconds|
+operations|milliseconds|
+orchestrations|milliseconds|
+process.files.max|files|The maximum file descriptor count
+reservedInstances.surplusByAccountClassic||
+reservedInstances.surplusByAccountVpc||
+reservedInstances.surplusOverall||
+resilience4j.retry.calls||The number of failed calls after a retry attempt
+sql.cacheCleanupAgent.dataTypeCleanupDuration|milliseconds|
+sql.cacheCleanupAgent.dataTypeRecordsDeleted||
+sql.healthProvider.invocations||
+sql.taskCleanupAgent.deleted||
+sql.taskCleanupAgent.timing|milliseconds|
+system.load.average.1m||The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time
+tasks||
+tasks||
+tomcat.sessions.active.current|sessions|
+tomcat.sessions.expired|sessions|
+tomcat.sessions.rejected|sessions|
