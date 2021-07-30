@@ -24,13 +24,6 @@ enableMissingTranslationPlaceholders = true
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
 
-## Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
-[blackfriday]
-plainIDAnchors = true
-hrefTargetBlank = true
-angledQuotes = false
-latexDashes = true
-
 # Image processing configuration.
 [imaging]
 resampleFilter = "CatmullRom"
@@ -76,6 +69,9 @@ weight = 1
 # Everything below this are Site Params
 
 [params]
+# Enable syntax highlighting and copy buttons on code blocks with Prism
+#prism_syntax_highlighting = true
+
 armory-version = "2.26.x"
 #used in air-gapped
 matching-oss-version-exact = "1.26.3"
@@ -132,8 +128,7 @@ algolia_docsearch = false
 # Enable Lunr.js offline search
 offlineSearch = true
 
-# Enable syntax highlighting and copy buttons on code blocks with Prism
-prism_syntax_highlighting = true
+
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]

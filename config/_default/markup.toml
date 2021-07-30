@@ -31,7 +31,7 @@ defaultMarkdownHandler = "goldmark"
   lineNos = false
   lineNumbersInTable = true
   noClasses = true
-  style = "monokai"
+  style = "fruity"
   tabWidth = 4
 
 # Specify which level of headings to show in the right-side TOC
