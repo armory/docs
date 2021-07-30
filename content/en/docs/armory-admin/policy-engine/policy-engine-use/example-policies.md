@@ -3,7 +3,7 @@ title: Example Policies
 linkTitle: Example Policies
 description: This page collects and indexes all the example poplicies in the Policy Engine package documentation.
 aliases: 
-  - /docs/armory-admin/policy-engine/policy-engine-use/example-policies/
+  - /docs/spinnaker-user-guides/policy-engine-use/example-policies/
 ---
 
 - Requires a reason to be provided for any rollback. ({{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/spinnaker.execution/stages.before/undoRolloutManifest.md" >}} )
