@@ -5,26 +5,12 @@ description: >
   Learn how to add policies to your Open Policy Agent (OPA) server for Armory Enterprise to use when it performs validations to make sure your pipelines and users follow policy requirements. This page includes information about what goes into a policy and some basic policies for you to try. There are examples for save time validation, runtime validation, and entitlements.
 aliases:
   - /docs/spinnaker/policy-engine-use/
+  - /docs/spinnaker-user-guides/policy-engine-use/
 ---
 ![Proprietary](/images/proprietary.svg)
-## Overview of the Armory Policy Engine
 
 > For information about how to set up the Policy Engine, see [Enabling the Policy Engine]({{< ref "policy-engine-enable" >}}).
 
-The Armory Policy Engine is designed to allow enterprises more complete control of their software delivery process by providing you with the hooks necessary to perform more extensive verification of their pipelines and processes in Armory Enterprise. The Policy Engine uses the [Open Policy Agent](https://www.openpolicyagent.org/)(OPA) and input style documents to perform validation on actions your users might take:
-
-* **Save time validation** - Validate pipelines as they're created/modified. This validation operates on all pipelines using a fail closed model. This means that if you have the Policy Engine enabled but no policies configured, the Policy Engine prevents you from creating or updating any pipeline.
-* **Runtime validation** - Validate deployments as a pipeline is executing. This validation only operates on tasks that you have explicitly created policies for. Tasks with no policies are not validated.
-* **Entitlements using API authorization** - Requires the Policy Engine Plugin. Enforce restrictions on who can perform certain actions in Armory Enterprise. Note that if you enable policies for API authorization, you must configure who can make API calls or else the API service (Gate) rejects all API calls. 
-
-> If no policies are configured for these policy checks, all actions are allowed.
-
-At a high level, adding policies for the Policy Engine to use is a two-step process:
-
-1. Create the policies and save them to a `.rego` file.
-2. Add the policies to the OPA server with a ConfigMap or API request.
-
-These policies are evaluated against the packages that Armory Enterprise services sends between its services. For list of packages that you can write policies against, see [Policy Engine Packages]({{< ref "packages.md" >}}), and for example policies that use those packages, see [Example Policies]({{< ref "example-policies.md" >}})
 
 ## Before you start
 

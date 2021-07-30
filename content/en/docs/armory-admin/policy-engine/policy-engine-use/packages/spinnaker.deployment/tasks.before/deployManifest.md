@@ -1,7 +1,7 @@
 ---
 title: "spinnaker.deployment.tasks.before.deployManifest"
 linkTitle: "deployManifest"
-description: "Policy checks that run immediately before a task deploys a spinnaker manifest."
+description: "Policy checks that run immediately before a task deploys a Spinnaker manifest."
 ---
 
 
@@ -187,7 +187,7 @@ deny["Manifest is missing a required annotation"] {
 | `input.deploy.enableTraffic`     | `boolean` | Allow Armory Enterprise to associate each ReplicaSet deployed in this stage with one or more services and manage traffic based on your selected rollout strategy options. |
 | `input.deploy.manifest`          | `[array]` | An array of the manifests being deployed                                                                       |
 | `input.deploy.manifestArtifact`  |           | The name of the artifact from which the manifest should be read.                                               |
-| `input.deploy.manifests[].*`     | `*`       | The entire Kubernetest manifest to be deployed.                                                                |
+| `input.deploy.manifests[].*`     | `*`       | The entire Kubernetes  manifest to be deployed.                                                                |
 | `input.deploy.moniker.app`       | `string`  | The name of the application being deployed                                                                     |
 | `input.deploy.moniker.cluster`   | `string`  | The name of the cluster you are deploying to.                                                                  |
 | `input.deploy.moniker.detail`    |           |                                                                                                                |

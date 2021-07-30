@@ -1,5 +1,5 @@
 ---
-title: Armory Deployments Getting Started Guide 
+title: Get Started with Armory Deployments for Spinnaker 
 description: Use this self-service guide to prepare your environment and then install the Armory Deployments Plugin, which allows you to deploy apps incrementally based on criteria you set.
 exclude_search: true
 toc_hide: true
@@ -9,7 +9,15 @@ toc_hide: true
 
 ## Overview
 
-The Armory Deployments Plugin provides a single stage solution (called K8s Progressive in the UI)for deploying an app using a Canary Deployment Strategy to your Kubernetes clusters. For example, you can configure a new deployment to serve 10% of the traffic initially and then increment from there. The deployment can only progress if the criteria you set are met, either a wait time or manually approval. These criteria give you a chance to evaluate the state of the deployment to make sure things are working as intended.
+The Armory Deployments Plugin provides a single stage solution (called Kubernetes Progressive in the UI)for deploying an app using a Canary Deployment Strategy to your Kubernetes clusters. For example, you can configure a new deployment to serve 10% of the traffic initially and then increment from there. The deployment can only progress if the criteria you set are met, either a wait time or manually approval. These criteria give you a chance to evaluate the state of the deployment to make sure things are working as intended.
+
+This guide walks you through the following:
+
+- Registering your Armory Enterprise environment
+- Installing the Armory Agent, which is required for Armory Deployments
+- Connecting to Armory Cloud services
+- Installing the Armory Deployments plugin
+- Deploying a "hello world" manifest
 
 ## Requirements
 
@@ -20,7 +28,7 @@ Verify that you meet or can meet these requirements before getting started.
 Your Armory Enterprise (or OSS Spinnaker) instance must meet the following requirements:
 
 - Version 2.24 or later (or OSS 1.24 or later)
-- The Armory Agent Plugin installed in your instance. The Agent has requirements of its own, which have been included on this page. For more information about the Agent requirements, see [Armory Agent for Kubernetes Quickstart Installation]({{< ref "armory-agent-quick#before-you-begin" >}}).
+- The Armory Agent Plugin installed in your instance. The Agent has requirements of its own, which have been included on this page as well as instructions for a proof-of-concept installation of the Agent. For more information about the Agent, see [Armory Agent for Kubernetes Quickstart Installation]({{< ref "armory-agent" >}}).
 - A supported Operator or Halyard version. For information about what version of Halyard or Operator is supported, see the [release notes]({{< ref "rn-armory-spinnaker" >}}) for your Armory Enterprise version.
 
 ### Networking
@@ -48,40 +56,56 @@ You must have at least one Kubernetes cluster to use as the deployment target fo
 - Argo Rollout 1.x or later. For information about how to install Argo Rollout, see [Controller Installation](https://argoproj.github.io/argo-rollouts/installation/#controller-installation) in the Argo documentation.
 
 
-## Register your Armory Enterprise instance
+## Register your Armory Enterprise environment
 
-Register your Armory Enterprise deployment so that it can communicate with Armory services.
+Register your Armory Enterprise environment so that it can communicate with Armory services. Each environment needs to get registered if you, for example, have production and development environments.
 
 1. Get your registration link from Armory
-2. [Follow the registration guide here]({{< ref "deployment-reg" >}})
+2. Complete the [deployment registration]({{< ref "deployment-reg" >}}) for your Armory Enterprise environment.
 
 ## Create client credentials for your Agents
-1. Log into the Armory Cloud Console: https://console.cloud.armory.io/
-2. If you have more than one registered environment ensure the proper env is selected in the user context menu:
-   
-{{< figure src="/images/deploy-engine/cloud-env-context.png" alt="The upper right of the window shows what environment you are currently in." >}}
 
-3. In the left navigation menu select ***Client Credentials*** under the ***Access Management*** section.
-4. Click the ***New Credential*** in the upper right corner
-5. For Name use `Armory K8s Agent` or anything you’d like here
-6. Select the following scopes:
+1. Log in to the Armory Cloud Console: https://console.cloud.armory.io/.
+2. If you have more than one registered environment, ensure the proper env is selected in the user context menu:
+
+{{< figure src="/images/deploy-engine/cloud-env-context.png" alt="The upper right section of the window shows what environment you are currently in." >}}
+
+3. In the left navigation menu, select **Access Management > Client Credentials** under the  section.
+4. In the upper right corner, select **New Credential**.
+5. Create a credential for the Armory Agent. Use a descriptive name for the credential, such as `Armory K8s Agent`
+6. Set the permission scope to the following:
+
   - `write:infra:data`
   - `get:infra:op`
-7. Take note of the `Client ID` and `Client Secret` as you will need these later when configuring the agent.
 
-## Install Armory Agent for Kubernetes
+  > This is the minimum set of required permissions for the Armory Agent.
+7. Note both the `Client ID` and `Client Secret`. You need these values when configuring the Agent.
 
-Here we will install the agent for Kubernetes accounts and enable communication with Armory Cloud.
+## Install Armory Agent for Kubernetes Service
 
-The [Armory Agent]({{< ref "armory-agent" >}}) is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker’s Clouddriver service.
+The Armory Agent is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to the Clouddriver service. Install and configure the Agent. As part of the configuration process, you enable communication with Armory Cloud, which is required for the Armory Deployments plugin.
+
+This section describes how to install the Agent Service in the Kubernetes cluster where you want to deploy applications to. The service is one half of the Agent. A subsequent section describes how to install the other half, the [Armory Agent Plugin for Clouddriver](#install-armory-agent-plugin-for-clouddriver).
+
+> These instructions are meant for a proof-of-concept installation of the Armory Agent. For information about using the Agent for production workloads (including features such as mTLS), see the Armory Agent]({{< ref "armory-agent" >}}) documentation.
+
 
 ### Create a namespace
 
-In the deployment target cluster, execute `kubectl create ns spin-agent` to create a namespace for the Agent.
+In the target cluster where you want to deploy apps, create a namespace for the agent:
+
+```bash
+kubectl create ns spin-agent
+```
+
+> The examples on this page assume you are using a namespace called spin-agent for the Agent. Replace the namespace in the examples if you are using a different namespace.
 
 ### Configure permissions
 
-Create a `ClusterRole`, `ServiceAccount`, and `ClusterRoleBinding` for the Agent by applying the following manifest in your `spin-agent` namespace:
+Create a `ClusterRole`, `ServiceAccount`, and `ClusterRoleBinding` for the Agent by applying the following manifest to your `spin-agent` namespace:
+
+<details>
+  <summary>Show me the manifest</summary>
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -200,11 +224,15 @@ roleRef:
   name: spin-cluster-role
 ```
 
-### Configure the agent
+</details>
 
-Configure the Agent using a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/). Define `kubesvc.yml` in the `data` section and add your Kubernetes account configuration for your cluster:
+### Configure the Agent
 
-Here you will make use of `Armory K8s Agent` creds that was created on the Create client credentials for your agents step
+Use a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) to configure the Agent. In the `data` block, define `kubesvc.yml` and add your Kubernetes account configuration for your cluster. This YAML file is where you provide the Client ID and Secret that you received when you [create client credentials for your agents](#create-client-credentials-for-your-agents).
+
+<details><summary>Show me the ConfigMap</summary>
+
+For information about adding accounts, see  the [kubernetes.accounts[] options in the Agent Options documentation]({{< ref "agent-options#options" >}}).
 
 ```yaml
 apiVersion: v1
@@ -217,8 +245,6 @@ data:
     hub:
       connection:
         grpc: agents.cloud.armory.io:443
-        tls:
-          insecureSkipVerify: true
       auth:
         armory:
           clientId: <Armory K8s Agent ClientId>
@@ -227,30 +253,17 @@ data:
           audience: https://api.cloud.armory.io
           verify: true
     kubernetes:
-     accounts:
-     - name:
-       kubeconfigFile:
-       insecure:
-       context:
-       oAuthScopes:
-       serviceAccount: true
-       serviceAccountName: spin-sa
-       namespaces: []
-       omitNamespaces: []
-       onlyNamespacedResources:
-       kinds: []
-       omitKinds: []
-       customResourceDefinitions: [{kind:}]
-       metrics:
-       permissions: []
-       maxResumableResourceAgeMs:
-       onlySpinnakerManaged:
-       noProxy:
+     accounts: [] 
 ```
 
-### Deploy the agent
+</details>
 
-Apply the following Agent deployment manifest in your `spin-agent` namespace:
+
+### Deploy the Agent
+
+Apply the following Agent deployment manifest to the namespace you created on the target cluster for the Agent (`spin-agent` for the examples on this page):
+
+<details><summary>Show me the manifest</summary>
 
 ```yaml
 apiVersion: apps/v1
@@ -317,9 +330,14 @@ spec:
       #     secretName: kubeconfigs-secret
 ```
 
-### Confirm success
+</details>
 
-Check the agent logs you should be able to see the id registration and your accounts getting register by Armory Cloud Hub
+
+### Verify the Agent deployment
+
+In the target deployment cluster, examine the Agent logs.
+
+You should see messages similar to the following that show your client ID and your account getting registered in the Armory Cloud Hub:
 
 ```
 time="2021-07-16T17:41:45Z" level=info msg="registering with uuid: f69daec0-0a32-4ded-b3ed-dc84bc0e93d0"
@@ -328,16 +346,21 @@ time="2021-07-16T17:48:30Z" level=info msg="handling registration 01FAR6Y7EDJW1B
 time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kubernetes\" name:\"account-test\""
 ```
 
-## Enable communication between Spinnaker services and Armory Cloud
+## Enable communication between Armory Enterprise services and Armory Cloud
 
-On this step we will establish communication from all spinnaker services and plugins with Armory Cloud.
+This step establishes communication between all Armory Enterprise services, plugins, and Armory Cloud.
 
 {{< tabs name="DeploymentStrategy" >}}
 {{% tab name="Operator" %}}
 
-Create a new file in your Kustomize patches directory. Add the following **patch-cloud-config.yml** manifest.
+> Note that the following instructions assume that you are using Kustomize to manage your Operator config files.
 
-Here you will make use of Spinnaker creds that was created on the Register your Spinnaker Instance step
+If you completed all the steps described in [Deployment Registration]({{< ref "deployment-reg.md" >}}), you can skip this section.
+
+In your Kustomize patches directory, create a file named **patch-cloud-config.yml**. This manifest includes the Client ID and Secret from when you [registered your environment](#register-your-armory-enterprise-instance).
+
+<details>
+<summary>Show me the manifest</summary>
 
 ```yaml
 #patch-cloud-config.yml
@@ -368,9 +391,11 @@ spec:
           deployEngineGrpc:
             host: grpc.deploy.cloud.armory.io
             port: 443
-```            
+```
 
-Then include the file under the `patchesStrategicMerge` section of your `kustomization` file.
+</details>
+
+After you create the manifest, include it under the `patchesStrategicMerge` section of your `kustomization` file:
 
 ```yaml
 bases:
@@ -378,10 +403,11 @@ bases:
 patchesStrategicMerge:
   - patches/patch-cloud-config.yml
 ```  
+
 {{% /tab %}}
 {{% tab name="Halyard" %}}
 
-Add a new file named `spinnaker-local.yml` under your **profiles** directory, and add the next configuration, if you already have an `spinnaker-local.yml` just add the config to the existing file
+If `spinnaker-local.yml` does not exist in your `.hal/default/profiles/` directory, create it. Then, add the following configuration to it:
 
 ```yaml
 #spinnaker-local.yml
@@ -398,8 +424,6 @@ armory.cloud:
     grpc:
       host: agents.cloud.armory.io
       port: 443
-      tls:
-        insecureSkipVerify: true
   deployEngineGrpc:
     host: grpc.deploy.cloud.armory.io
     port: 443
@@ -407,15 +431,21 @@ armory.cloud:
 {{% /tab %}}
 {{< /tabs >}}
 
-## Install Kubesvc Plugin into Clouddriver
+## Install Armory Agent Plugin for Clouddriver
+
+The Agent Plugin for Clouddriver is the other half of the Armory Agent. You install it within your Armory Enterprise cluster and it runs alongside the Clouddriver service, facilitating communication between Armory Enterprise and the Kubernetes cluster that is your deployment target.
 
 {{< tabs name="KubesvcPlugin" >}}
 {{% tab name="Operator" %}}
 
-Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to your new `armory-agent` directory.
+> Note that the following instructions assume that you are using Kustomize to manage your Operator config files.
 
-- Change the value for `name` if your Armory Enterprise service is called something other than “spinnaker”.
-- Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix]({{< ref "armory-agent-quick#compatibility-matrix" >}}).
+Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to the `armory-agent` directory:
+
+- Change the value for `name` if your Armory Enterprise service is called something other than `spinnaker`.
+- Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. For more information, see the [Agent compatibility matrix]({{< ref "armory-agent-quick#compatibility-matrix" >}}).
+
+<details><summary>Show me the Kustomize file</summary>
 
 ```yaml
 #agent-config.yml
@@ -462,7 +492,9 @@ spec:
                     emptyDir: {}
 ```                    
 
-Then include the file under the `patchesStrategicMerge` section of your `kustomization` file.
+</details>
+
+Then, include the file under the `patchesStrategicMerge` section of your `kustomization` file:
 
 ```yaml
 bases:
@@ -474,7 +506,7 @@ patchesStrategicMerge:
 {{% /tab %}}
 {{% tab name="Halyard" %}}
 
-Add a new file named `clouddriver-local.yml` under your **profiles** directory, and add the next configuration, if you already have an `clouddriver-local.yml` just add the config to the existing file.
+In the `.hal/default/profiles/` directory, create a file named `clouddriver-local.yml` if one does not already exist. Add the following configuration to it:
 
 ```yaml
 kubesvc:
@@ -492,7 +524,7 @@ redis:
   enabled: true
 ```
 
-Add a new file named `clouddriver.yml` under your **service-settings** directory, and add the next configuration, if you already have an `clouddriver.yml` just add the config to the existing file.
+In the `.hal/default/service-settings` directory, create a file named `clouddriver.yml`  if one does not already exist. Add the following configuration to it:
 
 ```yaml
 #clouddriver
@@ -503,7 +535,7 @@ kubernetes:
     mountPath: /opt/clouddriver/lib/plugins
 ```        
 
-Add the next configuration under **deploymentEnvironment**  on your config file.
+Add the next configuration under **deploymentEnvironment**  in your config file.
 
 - Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix]({{< ref "armory-agent-quick#compatibility-matrix" >}}).
 
@@ -520,13 +552,14 @@ deploymentEnvironment:
 {{% /tab %}}
 {{< /tabs >}}
 
-## Install Armory Deployment plugin
+## Install the Armory Deployment Plugin
 
 {{< tabs name="DeploymentPlugin" >}}
 {{% tab name="Operator" %}}
-Create a new file  in your Kustomize patches directory. Add the following **patch-plugin-deployment.yml** manifest
 
-here you can check the latest version: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
+In your Kustomize patches directory, create a file named **patch-plugin-deployment.yml** and add the following manifest to it:
+
+<details><summary>Show me the Kustomize file</summary>
 
 ```yaml
 #patch-plugin-deployment.yml
@@ -550,7 +583,7 @@ spec:
                   config:
                     deployEngine:
                       baseUrl: https://deploy-engine.cloud.armory.io
-                  version: <latest-version>
+                  version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
             repositories:
               armory-deployment-plugin-releases:
                 enabled: true
@@ -565,13 +598,15 @@ spec:
                 config:
                   deployEngine:
                     baseUrl: https://deploy-engine.cloud.armory.io
-                version: <latest-version>
+                version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
             repositories:
               armory-deployment-plugin-releases:
                 url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
-```                    
+```
 
-Then include the file under the `patchesStrategicMerge` section of your `kustomization` file.
+</details>
+
+Then, include the file under the `patchesStrategicMerge` section of your `kustomization` file:
 
 ```yaml
 bases:
@@ -595,7 +630,7 @@ spinnaker:
         config:
           deployEngine:
             baseUrl: https://deploy-engine.cloud.armory.io
-        version: <latest-version>
+        version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
     repositories:
       armory-deployment-plugin-releases:
         url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
@@ -616,7 +651,7 @@ spinnaker:
           config:
             deployEngine:
               baseUrl: https://deploy-engine.cloud.armory.io
-          version: <latest-version>
+          version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
     repositories:
       armory-deployment-plugin-releases:
         enabled: true
@@ -626,30 +661,62 @@ spinnaker:
 {{% /tab %}}
 {{< /tabs >}}
 
-### Apply the manifests
+## Apply the changes to Armory Enterprise
 
-After you have configured all the manifests, apply the updates.
+Apply the changes to your Armory Enterprise instance after you complete the sections:
+- [Enable communication between Armory Enterprise and Armory Cloud](#enable-communication-between-armory-enterprise-services-and-armory-cloud)
+- [Install Armory Agent Plugin for Clouddriver](#install-armory-agent-plugin-for-clouddriver)
+- [Install the Armory Deployment Plugin](#install-the-armory-deployment-plugin)
 
-## Test that plugin is configured
+Run the following command:
 
-First check that all the services are up and running.
+{{< tabs name="ApplyChanges" >}}
+{{% tab name="Operator" %}}
 
-Then check that you can see the new stage, create new pipeline → create new stage → on type field select Kubernetes Progressive
+```bash
+kubectl apply -k <path-to-kustomize-file>.yml
+```
 
-{{< figure src="/images/deploy-engine/deploy-engine-stage-UI.png" alt="The K8s Progressive stage appears in the stage dropdown when you search for it." >}}
+{{% /tab %}}
+{{% tab name ="Halyard" %}}
 
-Also verify that you can see the accounts from kubesvc on the account dropdown
+```bash
+hal deploy apply
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+This applies your changes and redeploys Armory Enterprise.
+
+## Verify that the plugin is configured
+
+1. Check that all the services are up and running:
+
+  ```bash
+  kubectl -n <Armory-Enterprise-namespace> get pods
+  ```
+
+2. Navigate to the UI.
+3. In a new or existing application, create a new pipeline.
+4. In this pipeline, select **Add stage** and search for "Kubernetes Progressive." The stage should appear if the plugin is properly configured.
+
+{{< figure src="/images/deploy-engine/deploy-engine-stage-UI.jpg" alt="The Kubernetes Progressive stage appears in the Type dropdown when you search for it." >}}
+
+1. In the **Basic Settings** section, verify that you can see the target deployment account in the **Account** dropdown.
 
 {{< figure src="/images/deploy-engine/deploy-engine-accounts.png" alt="If the plugin is configured properly, you should see the target deployment account in the Account dropdown." >}}
 
-## Deploy the hello-world 
+## Deploy the hello-world manifest
 
-Create a new pipeline with a single stage (`Kubernetes Progressive`).
+You can try out the **Kubernetes Progressive** stage using the `hello-world` sample manifest.
 
-Paste the following in the manifest text block.
+1. Create a new pipeline with a single **Kubernetes Progressive** stage.
+2. In the **What to Deploy** section, paste the following in the manifest text block:
+
+<details><summary>Show me the manifest</summary>
 
 ```yaml
-# a simple nginx deployment with an init container that makes initialization take longer for dramatic effect
+# A simple nginx deployment with an init container that causes deployment to take longer than usual
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -683,21 +750,25 @@ spec:
           name: sleep
 ```
 
-Configure some canary steps, save the pipeline and trigger a manual execution.
+</details>
 
-You should be able to watch the pipeline execute the canary rollout.
+3. In the **How to Deploy** section, configure your canary steps. You can set percentage thresholds for how widely an app should get rolled out before it either waits for a manual approval or a set amount of time.
+4. Save the pipeline and trigger a manual execution.
+
+Watch the pipeline execute the canary rollout!
 
 ## Troubleshooting
+
 ### Kubernetes agent
 
-if you’re getting this error `Method not found: ops.Operations/GetOps` on the Kubernetes agent.
+If you get a `Method not found: ops.Operations/GetOps` error on the Kubernetes agent similar to the following:
 
 ```
 time="2021-07-21T18:55:54Z" level=error msg="error receiving from ops from server: rpc error: code = Unimplemented desc = Method not found: ops.Operations/GetOps" error="rpc error: code = Unimplemented desc = Method not found: ops.Operations/GetOps"
 time="2021-07-21T18:55:54Z" level=info msg="stopping all tasks"
 ```
 
-check that you added the env variable ARMORY_HUB on the Kubernetes Agent deployment manifest.
+Check that you added the env `variable ARMORY_HUB` on the [Kubernetes Agent deployment manifest](#deploy-the-agent) for the target cluster:
 
 ```yaml
 env:
