@@ -253,6 +253,8 @@ The following table lists the supported CI systems:
 
 ## Custom stages
 
+![Proprietary](/images/proprietary.svg)
+
 Armory Enterprise includes custom stages that you can use to extend the capabilities of Armory Enterprise. Some of these stages are available out of the box while others are available as plugins to Armory Enterprise.
 
 | Stage              | Armory           | Notes                 |
