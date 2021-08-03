@@ -40,6 +40,8 @@ aliases:
 
 - Only allows applications to deploy to namespaces that are on a whitelist. ({{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/opa.pipelines.md" >}} )
 
+- Prevents users from saving pipelines that deploy to production unless the pipeline includes a time frame where the execution cannot run.  ({{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/opa.pipelines#example-policy-2" >}} )
+
 - This policy prevents scaling a deployment or replicaset in a production account to have <2 replicas. ({{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/spinnaker.deployment/tasks.before/scaleManifest.md" >}} )
 
 - This example policy will prevent deleteManifest tasks from running unless they provide a grace period of 30 seconds or more. ({{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/spinnaker.deployment/tasks.before/deleteManifest.md" >}} )
