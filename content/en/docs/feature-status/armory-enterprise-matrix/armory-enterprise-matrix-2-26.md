@@ -82,7 +82,7 @@ The following table lists supported app metric providers:
 
 Artifacts are  deployable resources.
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported artifact stores:
 
@@ -189,7 +189,7 @@ The following table lists the Terraform Integration features and their supported
 
 ## Authentication
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported authentication protocols:
 
@@ -203,7 +203,7 @@ The following table lists the supported authentication protocols:
 
 ## Authorization
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported authorization methods:
 
@@ -218,7 +218,7 @@ The following table lists the supported authorization methods:
 
 ## Baking machine images
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported image bakeries:
 
@@ -230,7 +230,7 @@ The following table lists the supported image bakeries:
 
 ## Baking Kubernetes manifests
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) 
 
 The following table lists the supported manifest templating engines:
 
@@ -242,7 +242,7 @@ The following table lists the supported manifest templating engines:
 
 ## Build systems
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) 
 
 The following table lists the supported CI systems:
 
@@ -252,6 +252,8 @@ The following table lists the supported CI systems:
 | Jenkins            | All supported versions | All supported versions |                     |
 
 ## Custom stages
+
+![Proprietary](/images/proprietary.svg)
 
 Armory Enterprise includes custom stages that you can use to extend the capabilities of Armory Enterprise. Some of these stages are available out of the box while others are available as plugins to Armory Enterprise.
 
@@ -351,7 +353,7 @@ You write the function and use Armory to manage the rollout of iterative version
 
 ## Dynamic accounts
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 Dynamic accounts (external account configurations) for Spinnaker allow you to manage account configuration outside of Spinnaker, including secrets.
 
@@ -379,7 +381,7 @@ The following table lists the services that support dynamic accounts:
 
 ## Notifications
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported notification systems:
 
@@ -393,7 +395,7 @@ The following table lists the supported notification systems:
 
 ## Observability
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported observability providers:
 
@@ -405,7 +407,7 @@ The following table lists the supported observability providers:
 
 ## Pipeline triggers
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported pipeline triggers:
 
