@@ -36,11 +36,11 @@ aliases:
 
 - Disables the **Configure Application**, **Create Application**, and **Create Project** buttons in the UI for non-admin users unless they have a particular role. ({{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/spinnaker.ui.entitlements.isFeatureEnabled/_index.md" >}} )
 
-- Requires a manual approval by the `qa` role, and a manual approval by the `infosec` role happen earlier in a pipeline than any deployment to a production account. Production accounts must have been loaded into the OPA data document in an array named `production_accounts`: ({{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/opa.pipelines.md" >}} )
+- Requires a manual approval by the `qa` role, and a manual approval by the `infosec` role happen earlier in a pipeline than any deployment to a production account. Production accounts must have been loaded into the OPA data document in an array named `production_accounts`. ([ opa.pipelines ]({{< ref "opa.pipelines.md#manual-approval-by-role" >}}))
 
-- Only allows applications to deploy to namespaces that are on a whitelist. ({{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/opa.pipelines.md" >}} )
+- Only allows applications to deploy to namespaces that are on an allow list. ([ opa.pipelines ]({{< ref "opa.pipelines.md#allow-list-for-target-namespaces" >}}))
 
-- Prevents users from saving pipelines that deploy to production unless the pipeline includes a time frame where the execution cannot run.  ({{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/opa.pipelines#example-policy-2" >}} )
+- Prevents users from saving pipelines that deploy to production unless the pipeline includes a deployment window. Executions outside of that window are not allowed.  ([ opa.pipelines ]({{< ref "opa.pipelines.md#deployment-window" >}}))
 
 - This policy prevents scaling a deployment or replicaset in a production account to have <2 replicas. ({{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/spinnaker.deployment/tasks.before/scaleManifest.md" >}} )
 
