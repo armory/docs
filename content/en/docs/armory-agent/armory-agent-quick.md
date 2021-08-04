@@ -14,7 +14,8 @@ weight: 30
 ## {{% heading "prereq" %}}
 
 * You deployed Armory Enterprise using the [Armory Operator and Kustomize patches]({{< ref "op-config-kustomize" >}}).
-* You have configured Clouddriver to use MySQL or PostgreSQL. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions.
+* You have configured Clouddriver to use MySQL or PostgreSQL. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions. The Agent plugin uses the SQL database to store cache data.
+* You have a running Redis instance. The Agent plugin uses Redis to coordinate between Clouddriver replicas. Note: you need Redis even if you only have one Clouddriver instance.
 * You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
 * If you are running multiple Clouddriver instances, you have a running Redis instance. The Agent uses Redis to coordinate between Clouddriver replicas.
 * You have an additional Kubernetes cluster to serve as your deployment target cluster.
