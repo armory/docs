@@ -53,7 +53,7 @@ Artifacts are  deployable resources.
 
 ### Stores
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) 
 
 The following table lists the supported artifact stores:
 
@@ -162,7 +162,7 @@ The following table lists the Terraform Integration features and their supported
 
 ## Authentication
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported authentication protocols:
 
@@ -178,7 +178,7 @@ The following table lists the supported authentication protocols:
 
 ## Authorization
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported authorization methods:
 
@@ -193,7 +193,7 @@ The following table lists the supported authorization methods:
 
 ## Baking Images
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported image bakeries:
 
@@ -210,7 +210,7 @@ Spinnaker's UI (Deck) works with most modern browsers.
 
 ## Build systems
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported CI systems:
 
@@ -324,7 +324,7 @@ You write the function and use Armory to manage the rollout of iterative version
 
 ## Dynamic accounts
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 Dynamic accounts (external account configurations) for Spinnaker allow you to manage account configuration outside of Spinnaker, including secrets. 
 
@@ -352,7 +352,7 @@ The following table lists the services that support dynamic accounts:
 
 ## External storage
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 Spinnaker requires an external storage provider for persisting app settings and pipelines. The following table lists the supported storage solutions:
 
@@ -366,7 +366,7 @@ Spinnaker requires an external storage provider for persisting app settings and 
 
 ## Manifest templating
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported manifest templating engines:
 
@@ -378,7 +378,7 @@ The following table lists the supported manifest templating engines:
 
 ## Notifications
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported notification systems:
 
@@ -396,7 +396,7 @@ The following table lists the supported notification systems:
 
 ## Observability
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported observabilty providers:
 
@@ -407,7 +407,7 @@ The following table lists the supported observabilty providers:
 
 ## Persistent storage
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 Depending on the service, Spinnaker can use either Redis or MySQL as the backing store. The following table lists the supported database and the Spinnaker service:
 
@@ -420,7 +420,7 @@ Armory recommends using MySQL as the backing store when possible for production 
 
 ## Pipeline triggers
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported pipeline triggers:
 
