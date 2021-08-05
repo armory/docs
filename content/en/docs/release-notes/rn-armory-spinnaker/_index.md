@@ -1,20 +1,16 @@
 ---
 title: Armory Enterprise for Spinnaker Release Notes
-linkTitle: Armory Enterprise Release Notes
-aliases:
-  - /releases/
-  - /release/
-  - /version/
-  - /versions/
-  - /release-notes/
+linkTitle: (Archive) Armory Enterprise Release Notes
 layout: release-notes-recent
+weight: 10
 semver_list: true
-description: >
-  Release cadence, versioning explained, relation to Spinnaker releases, release types, and links to release notes for Armory Enterprise
+description: > 
+  The information on this page describes the versioning scheme for Armory Enterprise 2.26.x and earlier. Newer Armory Enterprise releases follow a different model. For more information, see 
+
 ---
 
 <!-- the release-notes-recent.html layout inserts the section index list at the top of the page -->
-
+Release cadence, versioning explained, relation to Spinnaker releases, release types, and links to release notes for Armory Enterprise
 
 ## Different Armory Release Types
 

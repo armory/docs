@@ -7,7 +7,8 @@ aliases:
   - /halyard-versions/
   - /halyard-version/
   - /halyard-release-notes/
-layout: release-notes-all
+layout: release-notes-recent
+weight: 20
 semver_list: true
 description: >
   Release notes for Armory-extended Halyard, an extended version of Halyard that deploys Armory features
