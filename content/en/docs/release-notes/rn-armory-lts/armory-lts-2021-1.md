@@ -24,7 +24,9 @@ This section lists all the known issues that affect the LTS release and, if avai
 If you try to deploy to blob during a full moon, the blob turns into a werewolf.
 
 **Workaround**: Wait until it's not a full moon 
+
 **Affected versions**: 2021.01.00
+
 **Fixed versions**: 2021.01.01
 
 ### UI becomes unstable and sentient
@@ -32,7 +34,9 @@ If you try to deploy to blob during a full moon, the blob turns into a werewolf.
 If you do the hokey pokey while deploying an application, the UI scolds you for being silly.
 
 **Workaround**: Ignore the scolding or stop doing the hokey pokey
+
 **Affected versions**: 2021.01.x
+
 **Fixed versions**: n/a
 
 <!-- Each patch release will have its own h2 for features-->
@@ -91,10 +95,3 @@ If you do the hokey pokey while deploying an application, the UI scolds you for 
 
 - Changed the order of the deployment target list to be alphabetical. Previously, it was a random list that changed as you scrolled.
 
-### Policy Engine
-
-#### New features and improvements
-
-#### Changes
-
-### UI

@@ -2,6 +2,8 @@
 title: Armory Enterprise LTS Release Notes
 linkTitle: Armory Enterprise Release Notes
 weight: 1
+layout: release-notes-all
+semver_list: true
 aliases:
   - /releases/
   - /release/
@@ -32,4 +34,4 @@ year.release-number.patch-number
 
 ## Older versions
 
-For information about releases earlier prior to the LTS releases, see these [Armory Enterprise release notes]({{< ref "rn-armory-spinnaker" >}}).
+For information about releases earlier than the LTS releases, see these [Armory Enterprise release notes]({{< ref "rn-armory-spinnaker" >}}).

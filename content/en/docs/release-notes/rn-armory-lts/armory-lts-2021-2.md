@@ -28,25 +28,30 @@ This section lists all the known issues that affect the LTS release and, if avai
 <details><summary>Show me the known issues</summary>
 <br>
 
-### Deploying to blob fails
+#### Deploying to blob fails
 
 If you try to deploy to blob during a full moon, the blob turns into a werewolf.
 
 **Workaround**: Wait until it's not a full moon 
+
 **Affected versions**: 2021.1.x, 2021.2.0
+
 **Fixed versions**: 2021.2.1
 
-### UI becomes unstable and sentient
+#### UI becomes unstable and sentient
 
 If you do the hokey pokey while deploying an application, the UI scolds you for being silly.
 
 **Workaround**: Ignore the scolding or stop doing the hokey pokey
+
 **Affected versions**: 2021.01.x
+
 **Fixed versions**: n/a
 
 </details>
 
 <!-- Each patch release will have its own h2 for features-->
+
 
 ## 2021.1.1
 
@@ -71,11 +76,6 @@ If you do the hokey pokey while deploying an application, the UI scolds you for 
 
 - Changed the order of the deployment target list to be alphabetical. Previously, it was a random list that changed as you scrolled.
 
-### Policy Engine
-
-#### New features and improvements
-
-#### Changes
 
 ### UI
 
@@ -101,11 +101,3 @@ If you do the hokey pokey while deploying an application, the UI scolds you for 
 #### Changes
 
 - Changed the order of the deployment target list to be alphabetical. Previously, it was a random list that changed as you scrolled.
-
-### Policy Engine
-
-#### New features and improvements
-
-#### Changes
-
-### UI
