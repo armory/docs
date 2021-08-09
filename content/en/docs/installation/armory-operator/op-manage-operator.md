@@ -9,7 +9,7 @@ description: >
 {{< include "armory-operator/os-operator-blurb.md" >}}
 ## Upgrade the Operator
 
->Do not manually change the Operator's Docker image tag in your existing manifest files. Operator computes the compatible Halyard version, so manually updating image tags in your existing manifest may causes issues and is an **unsupported** method for upgrading the Operator.
+>Do not manually change Docker image tags in your existing manifest files. Operator computes the compatible Halyard version, so manually updating image tags is an **unsupported** upgrade method and may cause issues.
 
 Use the `kubectl replace` command to replace your Operator deployment. See the `kubectl replace` [docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#replace) for an explanation of this command.
 
