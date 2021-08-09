@@ -2,7 +2,7 @@
 title: Armory Enterprise LTS Release Notes
 linkTitle: Armory Enterprise Release Notes
 weight: 1
-layout: release-notes-all
+layout: release-notes-lts
 semver_list: true
 aliases:
   - /releases/
@@ -10,13 +10,11 @@ aliases:
   - /version/
   - /versions/
   - /release-notes/
-description: > 
+description: >
   Armory Enterprise releases are based on a Long Term Stable (LTS) release system where each stable release version may receive patches that include updates and fixes.
 ---
 
 > Note that you must use the Armory Operator to install, upgrade, and configure LTS releases. For more information, see the [Operator documentation]({{< ref "armory-operator" >}}).
-
-## Release notes
 
 
 ## Version scheme

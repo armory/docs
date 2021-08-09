@@ -1,7 +1,7 @@
 ---
 title: v2021.01 Armory Enterprise Release Notes
 toc_hide: true
-version: 21.01.00
+version: 2021.01.00
 ---
 
 ## Requirements
@@ -23,7 +23,7 @@ This section lists all the known issues that affect the LTS release and, if avai
 
 If you try to deploy to blob during a full moon, the blob turns into a werewolf.
 
-**Workaround**: Wait until it's not a full moon 
+**Workaround**: Wait until it's not a full moon
 
 **Affected versions**: 2021.01.00
 

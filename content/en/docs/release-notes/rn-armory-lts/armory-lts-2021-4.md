@@ -1,7 +1,7 @@
 ---
-title: v2021.02 Armory Enterprise Release Notes
+title: v2021.04 Armory Enterprise Release Notes
 toc_hide: true
-version: 2021.02.00
+version: 2021.04.00
 ---
 
 ## Requirements
