@@ -12,7 +12,7 @@ toc_hide: true
 
 ## Overview
 
-As part of the configuration process, you need to register your Armory Enterprise instance. If you maintain several instance, such as development, staging, and production instances, you must register each one.
+As part of the configuration process, you need to register your Armory Enterprise instance. If you maintain several instances, such as development, staging, and production instances, you must register each one.
 
 ## Register your environment
 
