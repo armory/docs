@@ -61,7 +61,7 @@ spec:
           lambda:
             enabled: true
             retry:              
-              timeout: 10  # Timeout in minutes for each request to the Lambda client
+              timeout: 10  
             concurrency:                   
-              threads: 5  # Max concurrent threads to use for calls to the Lambda client. 
+              threads: 5  
 ```
