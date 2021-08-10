@@ -31,7 +31,7 @@ Configure the following properties in your Operator manifest (`spinnakerservice.
 For example:
 
 ```yaml
-
+# This example only shows the location of the properties. The rest of the manifest is omitted for brevity.
 spec:
   spinnakerConfig:
     profiles:
