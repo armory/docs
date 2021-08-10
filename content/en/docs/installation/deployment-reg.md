@@ -23,7 +23,7 @@ As part of the configuration process, you need to register your Armory Enterpris
    - Client ID
    - Secret
    
-   >This is the only time you are shown the secret value. Store it somewhere safe.
+   **This is the only time you are shown the secret value. Store it somewhere safe.**
 
 ## Apply the registration information
 
