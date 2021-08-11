@@ -46,7 +46,7 @@ spec:
 `spec.spinnakerConfig.profiles.clouddriver.aws.lambda.`:
 
 - `retry.timeout`: Integer. The time (in minutes) that Clouddriver will wait before timing out when attempting to connect to the Lambda client. (Defaults to 15 minutes.)
-- `concurrency.threads`: Integer. The maximum number of threads to use for calls to the Lambda client. (Defaults to 10 threads.) At a minimum, Armory recommends setting the number of threads to double the rate limit. For information about rate limits, see [Fine-grained rate limits]({{< ref "rate-limit#fine-grained-rate-limits" >}}).
+- `concurrency.threads`: Integer. The maximum number of threads to use for calls to the Lambda client. (Defaults to 10 threads.) 
 
 For example:
 
