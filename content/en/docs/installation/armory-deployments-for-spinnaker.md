@@ -28,7 +28,6 @@ Verify that you meet or can meet these requirements before getting started.
 Your Armory Enterprise (or OSS Spinnaker) instance must meet the following requirements:
 
 - Version 2.24 or later (or OSS 1.24 or later)
-- The Armory Agent Plugin installed in your instance. The Agent has requirements of its own, which have been included on this page as well as instructions for a proof-of-concept installation of the Agent. For more information about the Agent, see [Armory Agent for Kubernetes Quickstart Installation]({{< ref "armory-agent" >}}).
 - A supported Operator or Halyard version. For information about what version of Halyard or Operator is supported, see the [release notes]({{< ref "rn-armory-spinnaker" >}}) for your Armory Enterprise version.
 
 ### Networking
@@ -48,7 +47,6 @@ Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents hav
 
 You must have at least one Kubernetes cluster to use as the deployment target for your app. The target cluster must also have the following installed:
 
-- Armory Agent service
 - Argo Rollout 1.x or later. For information about how to install Argo Rollout, see [Controller Installation](https://argoproj.github.io/argo-rollouts/installation/#controller-installation) in the Argo documentation.
 
 
@@ -342,91 +340,6 @@ time="2021-07-16T17:48:30Z" level=info msg="handling registration 01FAR6Y7EDJW1B
 time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kubernetes\" name:\"account-test\""
 ```
 
-## Enable communication between Armory Enterprise services and Armory Cloud
-
-This step establishes communication between all Armory Enterprise services, plugins, and Armory Cloud.
-
-{{< tabs name="DeploymentStrategy" >}}
-{{% tab name="Operator" %}}
-
-> Note that the following instructions assume that you are using Kustomize to manage your Operator config files.
-
-If you completed all the steps described in [Deployment Registration]({{< ref "deployment-reg.md" >}}), you can skip this section.
-
-In your Kustomize patches directory, create a file named **patch-cloud-config.yml**. This manifest includes the Client ID and Secret from when you [registered your environment](#register-your-armory-enterprise-instance).
-
-<details>
-<summary>Show me the manifest</summary>
-
-```yaml
-#patch-cloud-config.yml
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      # Global Settings
-      spinnaker:
-        armory.cloud:
-          enabled: true
-          iam:
-            tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
-            clientId: <clientId>
-            clientSecret: <clientSecret>
-          api:
-            baseUrl: https://api.cloud.armory.io
-          hub:
-            baseUrl: https://api.cloud.armory.io/agents
-            grpc:
-              host: agents.cloud.armory.io
-              port: 443
-              tls:
-                insecureSkipVerify: true
-          deployEngineGrpc:
-            host: grpc.deploy.cloud.armory.io
-            port: 443
-```
-
-</details>
-
-After you create the manifest, include it under the `patchesStrategicMerge` section of your `kustomization` file:
-
-```yaml
-bases:
-  - spinnaker.yml
-patchesStrategicMerge:
-  - patches/patch-cloud-config.yml
-```  
-
-{{% /tab %}}
-{{% tab name="Halyard" %}}
-
-If `spinnaker-local.yml` does not exist in your `.hal/default/profiles/` directory, create it. Then, add the following configuration to it:
-
-```yaml
-#spinnaker-local.yml
-armory.cloud:
-  enabled: true
-  iam:
-    tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
-    clientId: <clientId>
-    clientSecret:<clientSecret>
-  api:
-    baseUrl: https://api.cloud.armory.io
-  hub:
-    baseUrl: https://api.cloud.armory.io/agents
-    grpc:
-      host: agents.cloud.armory.io
-      port: 443
-  deployEngineGrpc:
-    host: grpc.deploy.cloud.armory.io
-    port: 443
-```
-{{% /tab %}}
-{{< /tabs >}}
-
 ## Install the Armory Deployment Plugin
 
 {{< tabs name="DeploymentPlugin" >}}
@@ -466,6 +379,24 @@ spec:
       # Global Settings
       spinnaker:
         spinnaker:
+          armory.cloud:
+            enabled: true
+            iam:
+              tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
+              clientId: <clientId>
+              clientSecret: <clientSecret>
+            api:
+              baseUrl: https://api.cloud.armory.io
+            hub:
+              baseUrl: https://api.cloud.armory.io/agents
+              grpc:
+                host: agents.cloud.armory.io
+                port: 443
+                tls:
+                  insecureSkipVerify: true
+            deployEngineGrpc:
+              host: grpc.deploy.cloud.armory.io
+              port: 443
           extensibility:
             plugins:
               Armory.Deployments:
@@ -498,6 +429,24 @@ Add a new file named `spinnaker-local.yml` under your **profiles** directory, an
 ```yaml
 #spinnaker-local.yml
 spinnaker:
+  armory.cloud:
+    enabled: true
+    iam:
+      tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
+      clientId: <clientId>
+      clientSecret: <clientSecret>
+    api:
+      baseUrl: https://api.cloud.armory.io
+    hub:
+      baseUrl: https://api.cloud.armory.io/agents
+      grpc:
+        host: agents.cloud.armory.io
+        port: 443
+        tls:
+          insecureSkipVerify: true
+    deployEngineGrpc:
+      host: grpc.deploy.cloud.armory.io
+      port: 443
   extensibility:
     # This snippet is necessary so that Gate can serve your plugin code to Deck
     deck-proxy:
