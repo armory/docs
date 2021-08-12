@@ -44,10 +44,6 @@ Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents hav
 | HTTPS                       | github.com                                        | 443  | Spinnaker         | **Github**<br><br>Used to download official Armory plugins at startup time.
 
 
-### Database 
-
-You must be using either MySQL or PostgreSQL for your Clouddriver service as well as Redis because the Armory Agent requires both. For information about MySQL, see [Configure Clouddriver to use a SQL Database]({{< ref "clouddriver-sql-configure.md" >}}).
-
 ### Deployment target
 
 You must have at least one Kubernetes cluster to use as the deployment target for your app. The target cluster must also have the following installed:
@@ -431,127 +427,6 @@ armory.cloud:
 {{% /tab %}}
 {{< /tabs >}}
 
-## Install Armory Agent Plugin for Clouddriver
-
-The Agent Plugin for Clouddriver is the other half of the Armory Agent. You install it within your Armory Enterprise cluster and it runs alongside the Clouddriver service, facilitating communication between Armory Enterprise and the Kubernetes cluster that is your deployment target.
-
-{{< tabs name="KubesvcPlugin" >}}
-{{% tab name="Operator" %}}
-
-> Note that the following instructions assume that you are using Kustomize to manage your Operator config files.
-
-Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to the `armory-agent` directory:
-
-- Change the value for `name` if your Armory Enterprise service is called something other than `spinnaker`.
-- Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. For more information, see the [Agent compatibility matrix]({{< ref "armory-agent-quick#compatibility-matrix" >}}).
-
-<details><summary>Show me the Kustomize file</summary>
-
-```yaml
-#agent-config.yml
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      clouddriver:
-        kubesvc:
-          cluster: redis
-        spinnaker:
-          extensibility:
-            pluginsRootPath: /opt/clouddriver/lib/plugins
-            plugins:
-              Armory.Kubesvc:
-                enabled: true
-                extensions:
-                  armory.kubesvc:
-                    enabled: true
-  kustomize:
-    clouddriver:
-      deployment:
-        patchesStrategicMerge:
-          - |
-            spec:
-              template:
-                spec:
-                  initContainers:
-                  - name: kubesvc-plugin
-                    image: docker.io/armory/kubesvc-plugin:<version>
-                    volumeMounts:
-                      - mountPath: /opt/plugin/target
-                        name: kubesvc-plugin-vol
-                  containers:
-                  - name: clouddriver
-                    volumeMounts:
-                      - mountPath: /opt/clouddriver/lib/plugins
-                        name: kubesvc-plugin-vol
-                  volumes:
-                  - name: kubesvc-plugin-vol
-                    emptyDir: {}
-```                    
-
-</details>
-
-Then, include the file under the `patchesStrategicMerge` section of your `kustomization` file:
-
-```yaml
-bases:
-  - spinnaker.yml
-patchesStrategicMerge:
-  - armory-agent/agent-config.yml
-```      
-
-{{% /tab %}}
-{{% tab name="Halyard" %}}
-
-In the `.hal/default/profiles/` directory, create a file named `clouddriver-local.yml` if one does not already exist. Add the following configuration to it:
-
-```yaml
-kubesvc:
-  cluster: redis
-spinnaker:
-  extensibility:
-    pluginsRootPath: /opt/clouddriver/lib/plugins
-    plugins:
-      Armory.Kubesvc:
-        enabled: true
-        extensions:
-          armory.kubesvc:
-            enabled: true
-redis:
-  enabled: true
-```
-
-In the `.hal/default/service-settings` directory, create a file named `clouddriver.yml`  if one does not already exist. Add the following configuration to it:
-
-```yaml
-#clouddriver
-kubernetes:
-  volumes:
-  - id: kubesvc-plugin-vol
-    type: emptyDir
-    mountPath: /opt/clouddriver/lib/plugins
-```        
-
-Add the next configuration under **deploymentEnvironment**  in your config file.
-
-- Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix]({{< ref "armory-agent-quick#compatibility-matrix" >}}).
-
-```yaml
-deploymentEnvironment:
-  initContainers:
-    spin-clouddriver:
-    - name: kubesvc-plugin
-      image: docker.io/armory/kubesvc-plugin:<version>
-      volumeMounts:
-        - mountPath: /opt/plugin/target
-          name: kubesvc-plugin-vol
-```
-{{% /tab %}}
-{{< /tabs >}}
-
 ## Install the Armory Deployment Plugin
 
 {{< tabs name="DeploymentPlugin" >}}
@@ -624,6 +499,9 @@ Add a new file named `spinnaker-local.yml` under your **profiles** directory, an
 #spinnaker-local.yml
 spinnaker:
   extensibility:
+    # This snippet is necessary so that Gate can serve your plugin code to Deck
+    deck-proxy:
+      enabled: true
     plugins:
       Armory.Deployments:
         enabled: true
@@ -636,28 +514,6 @@ spinnaker:
         url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
 ```
 
-Add a new file named `gate-local.yml` under your **profiles** directory, and add the next configuration, if you already have an `gate-local.yml` just add the config to the existing file.
-
-```yaml
-#gate-local.yml
-spinnaker:
-  extensibility:
-    # This snippet is necessary so that Gate can serve your plugin code to Deck
-    deck-proxy:
-      enabled: true
-      plugins:
-        Armory.Deployments:
-          enabled: true
-          config:
-            deployEngine:
-              baseUrl: https://deploy-engine.cloud.armory.io
-          version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
-    repositories:
-      armory-deployment-plugin-releases:
-        enabled: true
-        url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
-```
-
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -665,7 +521,6 @@ spinnaker:
 
 Apply the changes to your Armory Enterprise instance after you complete the sections:
 - [Enable communication between Armory Enterprise and Armory Cloud](#enable-communication-between-armory-enterprise-services-and-armory-cloud)
-- [Install Armory Agent Plugin for Clouddriver](#install-armory-agent-plugin-for-clouddriver)
 - [Install the Armory Deployment Plugin](#install-the-armory-deployment-plugin)
 
 Run the following command:
