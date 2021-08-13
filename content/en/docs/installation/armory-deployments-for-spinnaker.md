@@ -9,7 +9,7 @@ toc_hide: true
 
 ## Overview
 
-The Armory Deployments Plugin provides a single stage solution (called Kubernetes Progressive in the UI)for deploying an app using a Canary Deployment Strategy to your Kubernetes clusters. For example, you can configure a new deployment to serve 10% of the traffic initially and then increment from there. The deployment can only progress if the criteria you set are met, either a wait time or manually approval. These criteria give you a chance to evaluate the state of the deployment to make sure things are working as intended.
+The Armory Deployments plugin for Spinnaker enables new Spinnaker stages that unlock the features of Armory Deployments cloud services.
 
 This guide walks you through the following:
 
@@ -77,26 +77,21 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 ## Install Armory Agent for Kubernetes Service
 
-The Armory Agent is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to the Clouddriver service. Install and configure the Agent. As part of the configuration process, you enable communication with Armory Cloud, which is required for the Armory Deployments plugin.
-
-This section describes how to install the Agent Service in the Kubernetes cluster where you want to deploy applications to. The service is one half of the Agent. A subsequent section describes how to install the other half, the [Armory Agent Plugin for Clouddriver](#install-armory-agent-plugin-for-clouddriver).
-
-> These instructions are meant for a proof-of-concept installation of the Armory Agent. For information about using the Agent for production workloads (including features such as mTLS), see the Armory Agent]({{< ref "armory-agent" >}}) documentation.
-
+The Armory Agent is a lightweight, scalable service that enables Armory Deployments to interact with your infrastructure.
 
 ### Create a namespace
 
 In the target cluster where you want to deploy apps, create a namespace for the agent:
 
 ```bash
-kubectl create ns spin-agent
+kubectl create ns armory-agent
 ```
 
-> The examples on this page assume you are using a namespace called spin-agent for the Agent. Replace the namespace in the examples if you are using a different namespace.
+> The examples on this page assume you are using a namespace called armory-agent for the Agent. Replace the namespace in the examples if you are using a different namespace.
 
 ### Configure permissions
 
-Create a `ClusterRole`, `ServiceAccount`, and `ClusterRoleBinding` for the Agent by applying the following manifest to your `spin-agent` namespace:
+Create a `ClusterRole`, `ServiceAccount`, and `ClusterRoleBinding` for the Agent by applying the following manifest to your `armory-agent` namespace:
 
 <details>
   <summary>Show me the manifest</summary>
@@ -201,7 +196,7 @@ rules:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  namespace: spin-agent
+  namespace: armory-agent
   name: spin-sa
 ---
 kind: ClusterRoleBinding
@@ -211,7 +206,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: spin-sa
-    namespace: spin-agent
+    namespace: armory-agent
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -233,7 +228,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: kubesvc-config
-  namespace: spin-agent
+  namespace: armory-agent
 data:
   kubesvc.yaml: |
     hub:
@@ -255,7 +250,7 @@ data:
 
 ### Deploy the Agent
 
-Apply the following Agent deployment manifest to the namespace you created on the target cluster for the Agent (`spin-agent` for the examples on this page):
+Apply the following Agent deployment manifest to the namespace you created on the target cluster for the Agent (`armory-agent` for the examples on this page):
 
 <details><summary>Show me the manifest</summary>
 
