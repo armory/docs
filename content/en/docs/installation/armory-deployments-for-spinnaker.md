@@ -62,7 +62,7 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 1. Log in to the Armory Cloud Console: https://console.cloud.armory.io/.
 2. If you have more than one registered environment, ensure the proper env is selected in the user context menu:
 
-{{< figure src="/images/deploy-engine/cloud-env-context.png" alt="The upper right section of the window shows what environment you are currently in." >}}
+   {{< figure src="/images/deploy-engine/cloud-env-context.png" alt="The upper right section of the window shows what environment you are currently in." >}}
 
 1. In the left navigation menu, select **Access Management > Client Credentials**.
 2. In the upper right corner, select **New Credential**.
@@ -490,19 +490,19 @@ This applies your changes and redeploys Armory Enterprise.
 
 1. Check that all the services are up and running:
 
-  ```bash
-  kubectl -n <Armory-Enterprise-namespace> get pods
-  ```
+   ```bash
+   kubectl -n <Armory-Enterprise-namespace> get pods
+   ```
 
 2. Navigate to the UI.
 3. In a new or existing application, create a new pipeline.
 4. In this pipeline, select **Add stage** and search for "Kubernetes Progressive." The stage should appear if the plugin is properly configured.
 
-{{< figure src="/images/deploy-engine/deploy-engine-stage-UI.jpg" alt="The Kubernetes Progressive stage appears in the Type dropdown when you search for it." >}}
+   {{< figure src="/images/deploy-engine/deploy-engine-stage-UI.jpg" alt="The Kubernetes Progressive stage appears in the Type dropdown when you search for it." >}}
 
 1. In the **Basic Settings** section, verify that you can see the target deployment account in the **Account** dropdown.
 
-{{< figure src="/images/deploy-engine/deploy-engine-accounts.png" alt="If the plugin is configured properly, you should see the target deployment account in the Account dropdown." >}}
+   {{< figure src="/images/deploy-engine/deploy-engine-accounts.png" alt="If the plugin is configured properly, you should see the target deployment account in the Account dropdown." >}}
 
 ## Deploy the hello-world manifest
 
@@ -512,41 +512,40 @@ You can try out the **Kubernetes Progressive** stage using the `hello-world` sam
 2. In the **What to Deploy** section, paste the following in the manifest text block:
 
 
-```yaml
-# A simple nginx deployment with an init container that causes deployment to take longer than usual
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: demo-app
-spec:
-  replicas: 10
-  selector:
-    matchLabels:
-      app: demo-app
-  template:
-    metadata:
-      labels:
-        app: demo-app
-    spec:
-      containers:
-        - env:
-            - name: TEST_ID
-              value: __TEST_ID_VALUE__
-          image: 'nginx:1.14.1'
-          name: demo-app
-          ports:
-            - containerPort: 80
-              name: http
-              protocol: TCP
-      initContainers:
-        - command:
-            - sh
-            - '-c'
-            - sleep 10
-          image: 'busybox:stable'
-          name: sleep
-```
-
+   ```yaml
+   # A simple nginx deployment with an init container that causes deployment to take longer than usual
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: demo-app
+   spec:
+     replicas: 10
+     selector:
+       matchLabels:
+         app: demo-app
+     template:
+       metadata:
+         labels:
+           app: demo-app
+       spec:
+         containers:
+           - env:
+               - name: TEST_ID
+                 value: __TEST_ID_VALUE__
+             image: 'nginx:1.14.1'
+             name: demo-app
+             ports:
+               - containerPort: 80
+                 name: http
+                 protocol: TCP
+         initContainers:
+           - command:
+               - sh
+               - '-c'
+               - sleep 10
+             image: 'busybox:stable'
+             name: sleep
+   ```
 
 
 1. In the **How to Deploy** section, configure your canary steps. You can set percentage thresholds for how widely an app should get rolled out before it either waits for a manual approval or a set amount of time.
