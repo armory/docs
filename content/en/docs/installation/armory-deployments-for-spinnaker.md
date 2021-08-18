@@ -42,14 +42,6 @@ Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents hav
 | TLS enabled gRPC over HTTP2 | grpc.deploy.cloud.armory.io | 443  | Spinnaker         | **Armory Cloud Deploy Engine gRPC Service**<br><br>Used to orchestrate deployments in target Kubernetes clusters through agents using gRPC.<br><br>Armory Enterprise calls this during the Armory Kubernetes Progressive Delivery Stage.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | HTTPS                       | github.com                                        | 443  | Spinnaker         | **Github**<br><br>Used to download official Armory plugins at startup time.
 
-
-### Deployment target
-
-You must have at least one Kubernetes cluster to use as the deployment target for your app. The target cluster must also have the following installed:
-
-- Argo Rollout 1.x or later. For information about how to install Argo Rollout, see [Controller Installation](https://argoproj.github.io/argo-rollouts/installation/#controller-installation) in the Argo documentation.
-
-
 ## Register your Armory Enterprise environment
 
 Register your Armory Enterprise environment so that it can communicate with Armory services. Each environment needs to get registered if you, for example, have production and development environments.
@@ -75,9 +67,15 @@ Register your Armory Enterprise environment so that it can communicate with Armo
   > This is the minimum set of required permissions for the Armory Agent.
 7. Note both the `Client ID` and `Client Secret`. You need these values when configuring the Agent.
 
-## Install Armory Agent for Kubernetes Service
+## Enable Armory Deployments in each Kubernetes Cluster that you want to use.
 
-The Armory Agent is a lightweight, scalable service that enables Armory Deployments to interact with your infrastructure.
+Armory Deployments is a separate product from Spinnaker and sources its accounts from agents that are deployed in your target Kubernetes clusters.
+
+You must install the Armory Kubernetes Agent and the Argo Rollouts Controller in each cluster that you want to show up in Armory Deployments as an account. 
+
+The Armory Kubernetes Agent is a lightweight, scalable service that enables Armory Deployments to interact with your infrastructure.
+
+Armory Deployments EAP utilizes the Argo Rollouts Controller to manage progressive deployments to your infrastructure.
 
 ### Create a namespace
 
@@ -236,8 +234,8 @@ data:
         grpc: agents.cloud.armory.io:443
       auth:
         armory:
-          clientId: <Armory K8s Agent ClientId>
-          secret: <Armory K8s Agent Secret>
+          clientId: <Armory K8s Agent ClientId for Agent from earlier>
+          secret: <Armory K8s Agent Secret for Agent from earlier>
           tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
           audience: https://api.cloud.armory.io
           verify: true
@@ -335,6 +333,12 @@ time="2021-07-16T17:48:30Z" level=info msg="handling registration 01FAR6Y7EDJW1B
 time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kubernetes\" name:\"account-test\""
 ```
 
+### Install the Argo Rollout Controller
+
+Armory Deployments requires that you install the Argo Rollouts controller 1.x or later, in each target Kubernetes cluster along with the Armory Agent.
+
+For information about how to install Argo Rollout, see [Controller Installation](https://argoproj.github.io/argo-rollouts/installation/#controller-installation) in the Argo documentation.
+
 ## Install the Armory Deployment Plugin
 
 {{< tabs name="DeploymentPlugin" >}}
@@ -363,9 +367,6 @@ spec:
               plugins:
                 Armory.Deployments:
                   enabled: true
-                  config:
-                    deployEngine:
-                      baseUrl: https://deploy-engine.cloud.armory.io
                   version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
             repositories:
               armory-deployment-plugin-releases:
@@ -378,8 +379,8 @@ spec:
             enabled: true
             iam:
               tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
-              clientId: <clientId>
-              clientSecret: <clientSecret>
+              clientId: <clientId for Spinnaker from earlier>
+              clientSecret: <clientSecret for Spinnaker from earlier>
             api:
               baseUrl: https://api.cloud.armory.io
             hub:
@@ -396,9 +397,6 @@ spec:
             plugins:
               Armory.Deployments:
                 enabled: true
-                config:
-                  deployEngine:
-                    baseUrl: https://deploy-engine.cloud.armory.io
                 version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
             repositories:
               armory-deployment-plugin-releases:
@@ -428,8 +426,8 @@ spinnaker:
     enabled: true
     iam:
       tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
-      clientId: <clientId>
-      clientSecret: <clientSecret>
+      clientId: <clientId for Spinnaker from earlier>
+      clientSecret: <clientSecret for Spinnaker from earlier>
     api:
       baseUrl: https://api.cloud.armory.io
     hub:
@@ -443,18 +441,31 @@ spinnaker:
       host: grpc.deploy.cloud.armory.io
       port: 443
   extensibility:
-    # This snippet is necessary so that Gate can serve your plugin code to Deck
-    deck-proxy:
-      enabled: true
     plugins:
       Armory.Deployments:
         enabled: true
-        config:
-          deployEngine:
-            baseUrl: https://deploy-engine.cloud.armory.io
         version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
     repositories:
       armory-deployment-plugin-releases:
+        url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
+```
+
+Add a new file named `gate-local.yml` under your **profiles** directory, and add the next configuration, if you already have an `gate-local.yml` just add the config to the existing file.
+
+```yaml
+#gate-local.yml
+spinnaker:
+  extensibility:
+    # This snippet is necessary so that Gate can serve your plugin code to Deck
+    deck-proxy:
+      enabled: true
+      plugins:
+        Armory.Deployments:
+          enabled: true
+          version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
+    repositories:
+      armory-deployment-plugin-releases:
+        enabled: true
         url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
 ```
 
