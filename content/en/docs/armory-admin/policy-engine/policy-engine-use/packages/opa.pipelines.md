@@ -191,9 +191,9 @@ weight: 10
 ```
 </details>
 
-## Example Policy
+## Manual approval by role
 
-- Requires a manual approval by the `qa` role, and a manual approval by the `infosec` role happen earlier in a pipeline than any deployment to a production account. Production accounts must have been loaded into the OPA data document in an array named `production_accounts`:
+Requires a manual approval by the `qa` role, and a manual approval by the `infosec` role happen earlier in a pipeline than any deployment to a production account. Production accounts must have been loaded into the OPA data document in an array named `production_accounts`:
 
   {{< prism lang="rego" line-numbers="true" >}}
   package opa.pipelines
@@ -224,9 +224,9 @@ weight: 10
   }
   {{< /prism >}}
 
-<br/>
+## Allow list for target namespaces
 
-- Only allows applications to deploy to namespaces that are on a whitelist.
+Only allows applications to deploy to namespaces that are on an allow list.
 
   {{< prism lang="rego" line-numbers="true" >}}
   package opa.pipelines
@@ -234,7 +234,7 @@ weight: 10
   allowedNamespaces:=[{"app":"app1","ns": ["ns1","ns2"]},
                                       {"app":"app2", "ns":["ns3"]}]
 
-  deny["stage deploys to a namespace to which this application lacks access"]{
+  deny["Stage deploys to a namespace to which this application lacks access"]{
       ns :=object.get(input.stage.context.manifests[_].metadata,"namespace","default")
       application := input.pipeline.application
       not canDeploy(ns, application)
@@ -246,6 +246,53 @@ weight: 10
       allowedNamespaces[i].ns[_]==namespace
   }
   {{< /prism >}}
+
+## Deployment window
+
+The policy prevents a user from saving a pipeline that deploys to production accounts unless the first stage of the pipeline specifies a schedule that prevents it from starting executions between 2pm and 7pm Pacific Standard Time (PST). 
+
+  {{< prism lang="rego" line-numbers="true" >}}
+  package opa.pipelines
+  
+  productionAccounts:=["spinnaker"]
+  
+  deny ["Your first stage must configure a blackout window that prevents an execution from starting between 2pm and 7pm PST."] {
+  # Restrict to just one app in my demo environment
+  some i
+  # Check whether or not this stage is at the beginning of the pipeline by verifying if it it depends on a  stage
+      count(input.pipeline.stages[i].requisiteStageRefIds)==0
+      input.pipeline.stages[_].account==productionAccounts[_]
+      
+      executionWindow := object.get(input.pipeline.stages[i],"restrictedExecutionWindow",null)
+      
+      # If no execution windoe is defined, or if a prohibited one is defined, then prevent execution.
+      any([executionWindow ==null,
+           isExecutionProhibitedDuringWindow(executionWindow)])
+  }
+  
+  # Prevent the stage from executing between 2PM/14:00 and 7PM/19:00 PST by defining a window of time when deployments are allowed
+      isExecutionProhibitedDuringWindow(window){
+        some i
+        # Window overlaps the start of the blackout window.
+        window.whitelist[i].startHour<13
+        window.whitelist[i].endHour>13
+      }{
+        some i
+        # Window overlaps the end of the blackout window.
+        window.whitelist[i].startHour<19
+        window.whitelist[i].endHour>19
+      }{ # Window overlaps the start of the blackout window starting on a prior day.
+        window.whitelist[i].endHour<window.whitelist[i].startHour
+        window.whitelist[i].endHour>13
+      }{ # Window overlaps the start of the blackout window starting on a prior day.
+        window.whitelist[i].endHour<window.whitelist[i].startHour
+        window.whitelist[i].startHour<19
+      }
+      {
+        count(window.whitelist)==0
+      }
+  {{< /prism >}}
+
 
 ## Keys
 
@@ -291,6 +338,8 @@ weight: 10
 | `input.pipeline.stages[].trafficManagement.options.enableTraffic` | `boolean` | Only applicable to the `deploy manifest` stage.<br/> Sends client requests to new pods when traffic management is enabled.                                                                                              |
 | `input.pipeline.stages[].type`                                    | `string`  | The type of the stage.                                                                                                                                                                                                  |
 | `input.pipeline.updateTs`                                         | `string`  | The timestamp of the pipeline's last modification.                                                                                                                                                                      |
+
+
 
 ### input.pipeline.trigger
 
