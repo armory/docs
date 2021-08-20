@@ -34,7 +34,7 @@ Indicates how long it takes for each HTTP controller to respond.
 
 
 
-![](https://paper.dropbox.com/ep/redirect/image?url=https%3A%2F%2Fpaper-attachments.dropbox.com%2Fs_F3370D1FA76E1F96016D2105E14ECC81229EF19F17062AFF1170FC3927E13E63_1584545219406_image.png&hmac=1Zc9dUcNVjd%2BDDz0LOiNo4sG%2FCHg0CzocCD8HQs1iaU%3D&width=1490)
+![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/pBSCZRoLFiLX6rNZa5gTlFGx.png)
 
 
 
