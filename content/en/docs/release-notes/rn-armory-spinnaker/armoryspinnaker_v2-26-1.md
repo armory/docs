@@ -21,6 +21,8 @@ To install, upgrade, or configure Armory 2.26.0, use one of the following tools:
 
 - Armory Operator 1.2.6 or later
 
+   For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}).
+
 ## Security
 
 Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
