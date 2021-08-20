@@ -1,20 +1,21 @@
 ---
 title: Spinnaker Monitoring and Metrics
+toc_hide: true
+hide_summary: true
+description: Service Level Indicators that you can monitor to determine the health of your Armory Enterprise instance.
 ---
 
-# Common Metrics - All Services
+## Common Metrics - All Services
 
-## Service Level Indicators
+### Service Level Indicators (SLI)
 
-
-
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/8dzV1Vg_PHiWPmwXlHq7oB7H.png)
+{{< figure src="/images/monitoring-and-metrics/service-to-service.png" >}}
 
 For all java based services, Spinnaker exposes common metrics like HTTP and JVM ones.
 
 
 
-### SLI: Controller latency
+### Controller latency
 
 ```
 sum(rate($service:controller:invocations__totalTime_total[1m])) by 
@@ -31,22 +32,14 @@ totalTime query / 1000000 / count query
 ```
 
 Indicates how long it takes for each HTTP controller to respond.
+{{< figure src="/images/monitoring-and-metrics/gate-controller-latency.png" >}}
 
 
-
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/pBSCZRoLFiLX6rNZa5gTlFGx.png)
-
-
-
-**SLO**: Average rate below 10 seconds.
+**Service Level Objective (SLO)**: Average rate below 10 seconds.
 
 **Troubleshoot**: Determine if slowness is caused by downstream, external services or by the affected service itself, by looking at other metrics.
 
-
-
-### SLI: Outgoing requests latency
-
-
+### Outgoing requests latency
 
 ```
 sum(rate($service:okhttp:requests__totalTime_total[1m])) by (requestHost) / sum(rate($service:okhttp:requests__count_total[1m])) by (requestHost) 
@@ -62,7 +55,7 @@ totalTime query / 1000000 / count query
 
 Shows how long it takes for downstream Spinnaker services to respond.
 
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/__M14J7fiGUHi5Js8l92kLOs.png)
+{{< figure src="/images/monitoring-and-metrics/outgoing-gate-requests.png" >}}
 
 **SLO**: Average rate below 10 seconds.
 
@@ -70,7 +63,7 @@ Shows how long it takes for downstream Spinnaker services to respond.
 
 
 
-### SLI: 5xx errors sent
+### 5xx errors sent
 
 ```
 sum(rate($service:controller:invocations__count_total{status="5xx"}[1m])) by 
@@ -79,7 +72,8 @@ sum(rate($service:controller:invocations__count_total{status="5xx"}[1m])) by
 
 Indicates the number of 5xx errors produced by the service.
 
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/8A6PaIUjTShcdSM5-NdPiGtN.png)
+{{< figure src="/images/monitoring-and-metrics/gate-500-errors-sent.png" >}}
+
 
 **SLO**: Average rate below 0.25 errors per second.
 
@@ -87,7 +81,7 @@ Indicates the number of 5xx errors produced by the service.
 
 
 
-### SLI: 5xx errors received
+### 5xx errors received
 
 ```
 sum(rate($service:okhttp:requests__count_total{status="5xx"}[1m])) by 
@@ -96,13 +90,14 @@ sum(rate($service:okhttp:requests__count_total{status="5xx"}[1m])) by
 
 Shows the number of errors received from other Spinnaker services.
 
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/wOcfzV9l72xC9A8C2hL3HT2C.png)
+{{< figure src="/images/monitoring-and-metrics/gate-500-errors-received.png" >}}
+
 
 **SLO**: Average rate below 0.25 errors per second.
 
 **Troubleshoot**: Look at logs and metrics of the service throwing the errors.
 
-### SLI: Hystrix fallbacks
+### Hystrix fallbacks
 
 ```
 sum(rate($service:hystrix:countFallbackSuccess[1m])) by (metricGroup, metricType)
@@ -116,13 +111,15 @@ sum(rate($service:hystrix:isCircuitBreakerOpen[1m])) by (metricGroup, metricType
 
 Not all services have Hystrix. It is a disaster recovery library, meaning that if the original request to an external service fails, Hystrix will execute a “Plan B” to produce an acceptable response. If errors accumulate and the downstream service is still not healthy, Hystrix circuit breaker opens and errors start to flow upstream.
 
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/7Dzd_t5DsM6G0ZyBbbeJwbez.png)
+
+
+{{< figure src="/images/monitoring-and-metrics/gate-hysterix-fallbacks.png" >}}
 
 **SLO**: Average rate below 0.10 Hystrix events per second.
 
 **Troubleshoot**: Investigate log files of affected service, it’s possible that downstream external services are either failing or are too slow to respond. Look at “Outgoing requests latency” metric.
 
-### SLI: JVM memory usage
+### JVM memory usage
 
 ```
 sum($service:jvm:memory:used{memtype="HEAP"}) by (instance)
@@ -130,7 +127,7 @@ sum($service:jvm:memory:used{memtype="HEAP"}) by (instance)
 
 Shows memory consumption of a java based service.
 
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/JTBFRxKaM1kMWflpTFQiDT7P.png)
+{{< figure src="/images/monitoring-and-metrics/gate-jvm-usage.png" >}}
 
 **SLO**: No pods restarting due to OutOfMemory errors.
 
@@ -138,13 +135,13 @@ Shows memory consumption of a java based service.
 
 
 
-## Configurations affecting performance
+### Configurations affecting performance
 
 
 
-### OkHttp client timeout
+#### OkHttp client timeout
 
-Put in profiles/&lt;service&gt;-local.yml to change the default timeout of the OkHttp client. This can be a temporal, quick workaround to fix increased 5xx errors and Hystrix fallbacks.
+Add the following config to `profiles/<service>-local.yml` (such as `clouddriver-local.yml`) to change the default timeout of the OkHttp client. This can be a temporary, quick workaround to fix increased 5xx errors and Hystrix fallbacks.
 
 ```
 ok-http-client:
@@ -154,7 +151,7 @@ ok-http-client:
 
 
 
-### JVM memory requests/limits
+#### JVM memory requests/limits
 
 Example in main hal config:
 
@@ -168,17 +165,9 @@ deploymentEnvironment:
      memory: 8Gi
 ```
 
+## Clouddriver Metrics
 
-
-
-
-
-
-# Clouddriver Metrics
-
-
-
-### SLI: Average caching agent time
+### Average caching agent time
 
 ```
 avg(label_replace(
@@ -188,7 +177,7 @@ avg(label_replace(
 
 Indicates how long it takes for clouddriver caching agents to complete a caching cycle.
 
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/rjpFbRgSFH3Gu4QKUdGr6WmC.png)
+{{< figure src="/images/monitoring-and-metrics/clouddriver-avg-cache.png" >}}
 
 **SLO**: Max time below 1 minute.
 
@@ -209,7 +198,7 @@ providers:
 
 Also using SQL instead of Redis may improve caching agent times. When this metric is too high, it can cause “Deploy (Manifest)” stage to last 12 “Force Cache Refresh task during deployments taking up to 12 minutes to complete. Long Cloudddriver startup times if it checks for permissions on startup (more than 30 minutes). 500 timeouts on UI during deployments.
 
-### SLI: Number of caching agents
+### Number of caching agents
 
 ```
 count(label_replace(
@@ -220,15 +209,14 @@ count(label_replace(
 
 Shows how many caching agents are running in clouddriver.
 
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/ah_12dfDhc9WaErtumkUXNZR.png)
+{{< figure src="/images/monitoring-and-metrics/clouddriver-number-of-cache-agents.png" >}}
 
 **SLO**: No deviation in time, the number of agents should stay constant.
 
 **Troubleshoot**: When this metric varies it typically means a pod was killed.
 
-### 
 
-### SLI: Kubernetes, kubectl latency
+### Kubernetes, kubectl latency
 
 ```
 sum(rate(clouddriver:kubernetes:api__totalTime_total{success="true"}[1m])) by 
@@ -241,8 +229,7 @@ sum(rate(clouddriver:kubernetes:api__totalTime_total{success="true"}[1m])) by
 To get seconds: `totalTime query / 1000000000 / count query`
 
 Shows how long kubectl takes for completing requests like kubectl get.
-
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/jo5oDlMkiQ3knWbODbF30cuN.png)
+{{< figure src="/images/monitoring-and-metrics/clouddriver-kube-latency.png" >}}
 
 **SLO**: This metric is impacted by the target Kubernetes cluster and is not directly responsibility of Spinnaker, but a latency below 5 seconds average is good.
 
@@ -254,15 +241,13 @@ PID USER  TIME COMMAND
 17103 spinnake 0:00 kubectl --kubeconfig=/Users/german/.hal/default/staging/dependencies/1062698630-kubecfg-german --namespace=istio-system -o json get configMap,controllerRevision,cronJob,daemonSet,deployment,event,horizontalpodautoscaler,ingress,job,limitRange,networkPolicy,persistentVolumeClaim,pod,podDisruptionBudget,replicaSet,role,roleBinding,secret,service,serviceAccount,statefulSet
 ```
 
-
-
 If you repeat this command with `--v=10` flag, you’ll get all requests, responses and internal cache hits done by the command. From there, you can know where’s spending most of the time. `kubectl` has an internal cache expiring every 10 minutes or so in `~/.kube`.
 
-Output of the `kubectl --v=10 get xxx` command can be analyzed with [this script](https://github.com/armory/troubleshooting-toolbox/blob/master/scripts/analyze-kubectl.sh)
+Output of the `kubectl --v=10 get xxx` command can be analyzed with [this script](https://github.com/armory/troubleshooting-toolbox/blob/master/scripts/analyze-kubectl.sh).
 
 
 
-### SLI: AWS failed requests
+### AWS failed requests
 
 ```
 sum(rate(clouddriver:aws:request:requestCount_total{error="true"}[1m])) by (AWSErrorCode, requestType)
@@ -270,19 +255,13 @@ sum(rate(clouddriver:aws:request:requestCount_total{error="true"}[1m])) by (AWSE
 
 Indicates the amount of failed requests from Spinnaker to AWS infrastructure.
 
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/YmbmEsj2DA63Ov5xtTpvL7kQ.png)
+{{< figure src="/images/monitoring-and-metrics/clouddriver-failed-requests.png" >}}
 
 **SLO**: Average rate below 0.10 errors per second.
 
-**Troubleshoot**: Adjust cloudddriver rate limits: [https://docs.armory.io/spinnaker-install-admin-guides/rate-limit/](https://docs.armory.io/spinnaker-install-admin-guides/rate-limit/)
+**Troubleshoot**: Adjust Cloudddriver [rate limits]({{< ref "rate-limit" >}}).
 
-
-
-
-
-
-
-### SLI: SQL blocked connections
+### SQL blocked connections
 
 ```
 clouddriver:sql:pool:default:blocked{}
@@ -290,15 +269,14 @@ clouddriver:sql:pool:default:blocked{}
 
 Shows how many SQL connections are hanging waiting for processes to complete.
 
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/JfEcZkFtKlBhjVJFW0DROEll.png)
+{{< figure src="/images/monitoring-and-metrics/clouddriver-sql-default-connection.png" >}}
+
 
 **SLO**: Zero blocked connections.
 
 **Troubleshoot**: Take a look at database provider specific metrics to see if database is reaching maximum resource capacity, or maximum number of allowed concurrent active connections.
 
-### 
-
-### SLI: Redis latency
+### Redis latency
 
 ```
 sum(rate(clouddriver:redis:command:latency:sscan__count_total[1m])) / 
@@ -307,7 +285,8 @@ sum(rate(clouddriver:redis:command:latency:sscan__totalTime_total[1m]))
 
 There are around 10 different redis actions and each one has its own metric. This is the time it takes for a redis read or write operation to complete.
 
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/bmgMAMew-K6QnGbwgW_R50rW.png)
+{{< figure src="/images/monitoring-and-metrics/clouddriver-redis-latency.png" >}}
+
 
 **SLO**: Average rate below 100 milliseconds.
 
@@ -315,51 +294,51 @@ There are around 10 different redis actions and each one has its own metric. Thi
 
 
 
-## Configurations affecting performance
+### Configurations affecting performance
 
-### checkPermissionsOnStartup
+#### checkPermissionsOnStartup
 
 Kubernetes account level. When set to false, clouddriver startup time is much faster because permissions are checked on demand. Bad side effects: unknown.
 
 
 
-### liveManifestCalls
+#### liveManifestCalls
 
 Kubernetes account level. When set to true, “Force Cache Refresh” task during Deploy stage execution is reduced to zero, because Spinnaker will not try to refresh the cache to check if the manifest was deployed. Bad side effects: many more `kubectl` calls than needed during deployments. Ideally this flag should always be **false** (default).
 
 
 
-### cacheThreads
+#### cacheThreads
 
 Kubernetes account level. This should only be increased when the number of pods increases, it allows to spread the load of caching across different pods and threads.
 
 
 
-### metrics
+#### metrics
 
 Kubernetes account level. When set to false, Spinnaker will not try to constantly retrieve memory and cpu usage of each and every pod, reducing the caching cycle time of the metrics caching agent to almost zero. Side effects: on `Infrastructure`  screen, when you click a pod, on the right side panel there’s information about its cpu/memory usage. When this flag is set to false, those values show as `unknown`.
 
 
 
-### replicas
+#### replicas
 
 `deploymentEnvironment.customSizing.<service>.replicas`. Indicates the number of pods for each service.
 
 
 
-### cpu/memory requests/limits
+#### cpu/memory requests/limits
 
 `deploymentEnvironment.customSizing.<service>.requests.cpu`, `deploymentEnvironment.customSizing.<service>.limits.cpu`. Indicates the max value for cpu and memory usage for pods.
 
 
 
-### onDemandClusterThreshold
+#### onDemandClusterThreshold
 
 File: `default/profiles/settings-local.js setting`: `window.spinnakerSettings.onDemandClusterThreshold`. This is a Deck setting that controls the threshold at which the `Infrastructure` screen will change to not show all server groups at the same time, and instead show a dropdown to select the server group to show. This setting has a huge impact on improving performance because the get server groups call is usually one of the most expensive ones, and is done periodically as long as the UI is open.
 
 
 
-### max-concurrent-agents
+#### max-concurrent-agents
 
 File: `clouddriver-local.yml`
 
@@ -371,7 +350,7 @@ This is the maximum amount of caching agents running simultaneously. Limiting th
 
 
 
-### jobs.local.timeout-minutes
+#### jobs.local.timeout-minutes
 
 File: `clouddriver-local.yml`
 
