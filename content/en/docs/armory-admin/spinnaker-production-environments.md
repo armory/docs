@@ -6,10 +6,11 @@ title: Spinnaker Production Environments
 
 - Use MySQL compatible database engine
   - Managed services like Aurora provide cross-region replication
-- Kubernetes 1.13+ cluster
+- Kubernetes
+  - See [System Requirements](https://docs.armory.io/docs/installation/system-requirements/) for more information
 - Each service has at least 2 replicas to provide basic availability at the Kubernetes level
-- Monitoring is optional but strongly recommended.
-- Armory provides optional log Spinnaker aggregation for troubleshooting but we also recommend customers to have a log management solution in place.
+- Monitoring is optional but strongly recommended
+- Armory provides optional log Spinnaker aggregation for troubleshooting but we also recommend customers to have a log management solution in place
 
 ![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/5yZjTFpEY0VZT_UmU429EI4q.png)
 
