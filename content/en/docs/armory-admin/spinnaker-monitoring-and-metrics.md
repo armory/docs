@@ -2,6 +2,7 @@
 title: Spinnaker Monitoring and Metrics
 toc_hide: true
 hide_summary: true
+exclude_search: true
 description: Service Level Indicators that you can monitor to determine the health of your Armory Enterprise instance.
 ---
 

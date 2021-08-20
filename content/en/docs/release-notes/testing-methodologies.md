@@ -3,6 +3,7 @@ title: Testing Methodologies
 description: High level overview of how the Armory team tests releases
 toc_hide: true
 hide_summary: true
+exclude_search: true
 ---
 
 ## CI Process
