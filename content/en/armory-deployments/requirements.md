@@ -4,26 +4,21 @@ linkTitle: "System Requirements"
 exclude_search: true
 ---
 
-To use Armory Deployments, make sure you can meet the following requirements.
+To use Armory Deployments, make sure you meet the following requirements.
 
 ## Armory Agent
 
-Armory Deployments uses the Armory Agent to manage communication and operations between Armory Cloud and your Kubernetes infrastructure.
+Armory Deployments uses agents that run in target Kubernetes clusters to communicate with Armory Cloud services. Agents that run in your target clusters have the following requirements:
 
-The Armory Agent requires the following:
 
-* {{< include "db-compat.md" >}}
-
-* Agent version: {{<param kubesvc-version>}}
-* Redis
 
 ## Argo Rollout
 
-You must have Argo Rollout 1.x or later installed in any Kubernetes cluster you want to deploy to. For information about how to install Argo Rollout, see [Controller Installation in the Argo documentation](https://argoproj.github.io/argo-rollouts/installation/#controller-installation). Note that the Argo Rollout Controller is separate from Argo CD.
+You must have Argo Rollout 1.x or later installed in the Kubernetes cluster you want to deploy to. For information about how to install Argo Rollout, see [Controller Installation in the Argo documentation](https://argoproj.github.io/argo-rollouts/installation/#controller-installation). Note that the Argo Rollout Controller is separate from Argo CD.
 
 ## Kubernetes
 
-Armory Deployments supports deploying to clusters that run Kubernetes 1.16 or later.
+Deployment target clusters must run Kubernetes 1.16 or later.
 
 ## Networking
 
