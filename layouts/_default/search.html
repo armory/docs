@@ -23,12 +23,14 @@ s.parentNode.insertBefore(gcse, s);
 	//
 var ElasticAppSearch = require("@elastic/app-search-javascript");
 // this doesn't work - can't evaluate the fields
+var key = '{{ .Site.Params.elastic_appsearch_api_search_key }}';
+var endpoint = '{{ .Site.Params.elastic_appsearch_endpoint_base }}';
+var engine = '{{ .Site.Params.elastic_appsearch_engine_name }}';
 var client = ElasticAppSearch.createClient({
-  searchKey: '{{ .Site.Params.elastic_appsearch_api_search_key }}',
-  endpointBase: '{{ .Site.Params.elastic_appsearch_endpoint_base }}',
-  engineName: '{{ .Site.Params.elastic_appsearch_engine_name }}'
+  searchKey: key,
+  endpointBase: endpoint,
+  engineName: engine
 });
-
 
 })();
 </script>
