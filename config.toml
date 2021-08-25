@@ -146,7 +146,14 @@ github_repo = "https://github.com/armory/docs/"
 algolia_docsearch = false
 
 # Enable Lunr.js offline search
-offlineSearch = true
+offlineSearch = false
+
+
+# Enable search with Elastic App Search
+elastic_appsearch = true
+elastic_appsearch_api_search_key = "search-z3ds6mojn9me3sjeasaxebhr"
+elastic_appsearch_engine_name = "docs-site-search"
+elastic_appsearch_endpoint_base = "https://docs-team.ent.us-east-2.aws.elastic-cloud.com"
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = true
