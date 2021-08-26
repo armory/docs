@@ -121,10 +121,10 @@ The following network endpoints are used for communication into Armory Cloud:
 
 | DNS                              | PORT | **Protocol**                                                  | **Description**                                                                                 |
 | -------------------------------- | ---- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| agents.cloud.armory.io           | 443  | *TLS enabled gRPC over HTTP/2*<br>TLS version 1.1,1.2         | **Agent-Hub**<br>gRPC is used to provide bidirectional, on demand communication.                |
-| api.cloud.armory.io              | 443  | *HTTP over TLS (HTTPS)*<br>Supports TLS version 1.0, 1.1,1.2. | **Armory** **REST** **API**                                                                     |
-| auth.cloud.armory.io             | 443  | *HTTP over TLS (HTTPS)*<br>TLS version 1.0, 1.1,1.2.          | **O****IDC** **A****uthorization** **S****erv****ice**                                          |
-| console.cloud.armory.io          | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.0, 1.1,1.2.            | **Web UI**                                                                                      |
+| agents.cloud.armory.io           | 443  | *TLS enabled gRPC over HTTP/2*<br>TLS version 1.2         | **Agent-Hub**<br>gRPC is used to provide bidirectional, on demand communication.                |
+| api.cloud.armory.io              | 443  | *HTTP over TLS (HTTPS)*<br>Supports TLS version 1.2. | **Armory** **REST** **API**                                                                     |
+| auth.cloud.armory.io             | 443  | *HTTP over TLS (HTTPS)*<br>TLS version 1.2.          | **O****IDC** **A****uthorization** **S****erv****ice**                                          |
+| console.cloud.armory.io          | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2.            | **Web UI**                                                                                      |
 | grpc.deployments.cloud.armory.io | 443  | *TLS enabled gRPC over HTTP/2*<br>TLS version 1.2             | **Temporary Deployments API**<br>This API will be replaced with new calls in the REST API in the future. |
 
 ### Data encryption
