@@ -22,6 +22,8 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) The feature as a whole is generally available. There may be newer extended functionality that is in a different state.
 
+[Beta]({{< ref "release-definitions#beta" >}}) The feature is in Early Access. For more information about using this feature, [contact us](https://www.armory.io/contact-us/).
+
 [![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) The feature is in Early Access. For more information about using this feature, [contact us](https://www.armory.io/contact-us/).
 
 [![Experiment](/images/exp.svg)]({{< ref "release-definitions#experiment">}}) The feature is an Experiment. For more information about using this feature, [contact us](https://www.armory.io/contact-us/).
@@ -71,6 +73,7 @@ The following table lists supported app metric providers:
 | Provider       | Version                | ACA | Armory                 | Note |
 |----------------|------------------------|-----|------------------------|------|
 | [AWS Cloudwatch]({{< ref "kayenta-canary-cloudwatch.md" >}}) | All supported versions | Yes | 2.23.1 or later        |      |
+| Datadog      | All supported versions | Yes | 2.26.0 or later        | [Beta]({{< ref "release-definitions#beta" >}})     |
 | [Dynatrace]({{< ref "kayenta-canary-dynatrace.md" >}})      | All supported versions | Yes | 2.23.0 or later        |      |
 | Graphite       | All supported versions | Yes | All supported versions |      |
 | New Relic      | All supported versions | Yes | All supported versions |      |
