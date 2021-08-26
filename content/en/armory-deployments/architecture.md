@@ -18,9 +18,9 @@ The plugin enables you to use a single stage to perform a progressive deployment
 
 For information about enabling the stage, see [Get Started With Armory Deployments for Spinnaker]({{< ref "armory-deployments-for-spinnaker" >}}).
 
-### Armory Agent
+### Armory Cloud Agent
 
-The Armory Agent allows Armory Cloud Services to interact with your Kubernetes clusters and orchestrate deployments without direct network access to your clusters. The Armory Agent gets installed in every deployment target and connects those clusters to the Agent Hub in Armory Cloud. The connections are encrypted long-lived gRPC HTTP2 connections. The connections are used for bidirectional communication between Armory Cloud Services and Armory Agents. Armory Agent issues API calls to your Kubernetes Cluster based on requests from Armory Cloud.
+The Armory Cloud Agent allows Armory Cloud Services to interact with your Kubernetes clusters and orchestrate deployments without direct network access to your clusters. The Agent gets installed in every deployment target and connects those clusters to the Agent Hub in Armory Cloud. The connections are encrypted long-lived gRPC HTTP2 connections. The connections are used for bidirectional communication between Armory Cloud Services and Armory Cloud Agents. The Agent issues API calls to your Kubernetes Cluster based on requests from Armory Cloud.
 
 ### Armory Cloud
 
@@ -30,13 +30,11 @@ Several specific services in Armory Cloud are important for understanding how Ar
 
 #### Agent Hub
 
-Agent Hub routes deployment commands to the Armory Agent and caches data received from Armory Agent. Agent Hub does not require direct network access to Agent since Agent connects to Agent Hub through an encrypted long-lived gRPC HTTP2 connection. Agent Hub uses this connection to send deployment commands to the Agent for execution.
+Agent Hub routes deployment commands to Armory Cloud Agents and caches data received from them. Agent Hub does not require direct network access to the agents since they connect to Agent Hub through an encrypted long-lived gRPC HTTP2 connection. Agent Hub uses this connection to send deployment commands to the Agent for execution.
 
 #### OIDC auth service
 
-!!!! Ask stephen if it's authn or authz
-
-THe Open ID Connect (OIDC) service is used to authorize and authenticate machines and users. The Armory Agent, Armory Enterprise (Spinnaker) plugin, and other services all authenticate against this endpoint. The service provides an identity token that can be passed to the Armory API and Agent Hub.
+THe Open ID Connect (OIDC) service is used to authorize and authenticate machines and users. The Armory Cloud Agent, Armory Enterprise (Spinnaker) plugin, and other services all authenticate against this endpoint. The service provides an identity token that can be passed to the Armory API and Agent Hub.
 
 #### Rest API
 
@@ -58,9 +56,9 @@ Armory Deployments for Kubernetes uses the [Argo Rollouts](https://argoproj.gith
 
 Armory Deployments contains components that you manage and components that Armory manages in the cloud. The components you manage allow Armory’s cloud services to integrate with your existing infrastructure.
 
-{{< figure src="/images/armory-deploy-architecture/armory-deploy-k8s-overview.jpeg" alt="The Armory command line interface and its integrations connect to Armory Cloud. Armory Cloud uses the Agent Hub to connect to your Kubernetes cluster using a gRPC connection established between the Agent Hub and Armory Agent, which is installed in your cluster." >}}
+{{< figure src="/images/armory-deploy-architecture/armory-deploy-k8s-overview.jpeg" alt="The Armory command line interface and its integrations connect to Armory Cloud. Armory Cloud uses the Agent Hub to connect to your Kubernetes cluster using a gRPC connection established between the Agent Hub and Armory Cloud Agent, which is installed in your cluster." >}}
 
-You connect your Kubernetes clusters to Armory Cloud by installing the Armory Agent. The Agent version is installed separately from your Spinnaker cluster and does not directly talk to Spinnaker. The Agent establishes a bidirectional link with Armory Hub. Armory Hub uses this link to route communication from services within Armory Cloud to the Agent in your Kubernetes cluster. The Agent enables Armory Cloud to act as a control plane for your infrastructure.
+You connect your Kubernetes clusters to Armory Cloud by installing the Armory Cloud Agent. The Agent version is installed separately from your Spinnaker cluster and does not directly talk to Spinnaker. The Agent establishes a bidirectional link with Armory Hub. Armory Hub uses this link to route communication from services within Armory Cloud to the Agent in your Kubernetes cluster. The Agent enables Armory Cloud to act as a control plane for your infrastructure.
 
 ### How it works
 
@@ -94,7 +92,7 @@ The following concepts can help you when configuring access in the Cloud Console
 
 - **Environment**
 
-  A collection of accounts and their associated resources that you explicitly define. Environments are useful for separation and isolation, such as when you want to have distinct non-production and production collections. Accounts added to one environment are not accessible by machine credentials scoped to another environment.
+  A collection of accounts and their associated resources that you explicitly define. Environments are useful for separation and isolation, such as when you want to have distinct non-production and production environments. Accounts added to one environment are not accessible by machine credentials scoped to another environment.
 
 - **Tenant**
 
