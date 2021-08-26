@@ -58,7 +58,7 @@ Armory Deployments for Kubernetes uses the [Argo Rollouts](https://argoproj.gith
 
 Armory Deployments contains components that you manage and components that Armory manages in the cloud. The components you manage allow Armory’s cloud services to integrate with your existing infrastructure.
 
-![Armory Deployments Kubernetes Overview](https://paper-attachments.dropbox.com/s_33EDE3346903E41FB8823F7B8079DB9F753BA579C9AAB71976E08DFAB1B4DD7E_1629669172933_file.jpeg)
+{{< figure src="/images/armory-deploy-architecture/armory-deploy-k8s-overview.jpeg" alt="The Armory command line interface and its integrations connect to Armory Cloud. Armory Cloud uses the Agent Hub to connect to your Kubernetes cluster using a gRPC connection established between the Agent Hub and Armory Agent, which is installed in your cluster." >}}
 
 You connect your Kubernetes clusters to Armory Cloud by installing the Armory Agent. The Agent version is installed separately from your Spinnaker cluster and does not directly talk to Spinnaker. The Agent establishes a bidirectional link with Armory Hub. Armory Hub uses this link to route communication from services within Armory Cloud to the Agent in your Kubernetes cluster. The Agent enables Armory Cloud to act as a control plane for your infrastructure.
 
@@ -66,7 +66,7 @@ You connect your Kubernetes clusters to Armory Cloud by installing the Armory Ag
 
 Armory Deployments uses [Argo Rollouts](https://argoproj.github.io/argo-rollouts/) to power deployments in Kubernetes clusters. The Argo Rollouts controller is a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) and set of [Custom Resource Definitions (CRDs)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
-![How Armory Deployments uses Argo](https://paper-attachments.dropbox.com/s_33EDE3346903E41FB8823F7B8079DB9F753BA579C9AAB71976E08DFAB1B4DD7E_1629740553878_file.jpeg)
+{{< figure src="/images/armory-deploy-architecture/armory-deploy-argo-overview.jpeg" alt="In your Kubernetes cluster, the Armory Agent enables communication with Armory Cloud services through the Agent Hub. The Argo Rollout controller performs the deployments in the Kubernetes cluster." >}}
 
 When you start a deployment, Armory Deployments processes your deployment request and generates [Argo Rollout](https://argoproj.github.io/argo-rollouts/) manifest(s) to execute the deployment. Armory Deployments then triggers Kubernetes infrastructure changes using Armory Cloud’s bidirectional link with the Agent.  The Agent creates the generated CRDs in your Kubernetes cluster to trigger actions from Argo. Users do not need to create or manage the Argo Rollout CRDs. Armory Deployments manages these automatically.
 
