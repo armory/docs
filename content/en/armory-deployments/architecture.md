@@ -34,7 +34,7 @@ Agent Hub routes deployment commands to Armory Cloud Agents and caches data rece
 
 #### OIDC auth service
 
-THe Open ID Connect (OIDC) service is used to authorize and authenticate machines and users. The Armory Cloud Agent, Armory Enterprise (Spinnaker) plugin, and other services all authenticate against this endpoint. The service provides an identity token that can be passed to the Armory API and Agent Hub.
+The Open ID Connect (OIDC) service is used to authorize and authenticate machines and users. The Armory Cloud Agent, Armory Enterprise (Spinnaker) plugin, and other services all authenticate against this endpoint. The service provides an identity token that can be passed to the Armory API and Agent Hub.
 
 #### Rest API
 
@@ -119,13 +119,13 @@ The following concepts can help you when configuring access in the Cloud Console
 All network traffic is secured and encrypted with TLS end-to-end.
 The following network endpoints are used for communication into Armory Cloud:
 
-| DNS                              | PORT | **Protocol**                                                  | **Description**                                                                                 |
-| -------------------------------- | ---- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| agents.cloud.armory.io           | 443  | *TLS enabled gRPC over HTTP/2*<br>TLS version 1.2         | **Agent-Hub**<br>gRPC is used to provide bidirectional, on demand communication.                |
-| api.cloud.armory.io              | 443  | *HTTP over TLS (HTTPS)*<br>Supports TLS version 1.2. | **Armory** **REST** **API**                                                                     |
-| auth.cloud.armory.io             | 443  | *HTTP over TLS (HTTPS)*<br>TLS version 1.2.          | **O****IDC** **A****uthorization** **S****erv****ice**                                          |
-| console.cloud.armory.io          | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2.            | **Web UI**                                                                                      |
-| grpc.deployments.cloud.armory.io | 443  | *TLS enabled gRPC over HTTP/2*<br>TLS version 1.2             | **Temporary Deployments API**<br>This API will be replaced with new calls in the REST API in the future. |
+| DNS                    | Port | Protocol                                         | Description                                 |
+|------------------------|------|------------------------------------------------------|----------------------------------------------------------------------------|
+| agents.cloud.armory.io | 443  | TLS enabled gRPC over HTTP/2<br>TLS version 1.2    | Agent Hub connection. gRPC is used to provide bidirectional, on demand communication. |
+| api.cloud.armory.io    | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2 | Armory REST API     |
+| auth.cloud.armory.io             | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2          | OIDC Service
+| console.cloud.armory.io          | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2           | Web UI    |
+| grpc.deployments.cloud.armory.io | 443  | TLS enabled gRPC over HTTP/2<br>TLS version 1.2             | Temporary Deployments API. This API will be replaced with new calls in the REST API in the future. |
 
 ### Data encryption
 
