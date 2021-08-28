@@ -34,7 +34,7 @@ Agent Hub routes deployment commands to Armory Cloud Agents and caches data rece
 
 #### OIDC auth service
 
-THe Open ID Connect (OIDC) service is used to authorize and authenticate machines and users. The Armory Cloud Agent, Armory Enterprise (Spinnaker) plugin, and other services all authenticate against this endpoint. The service provides an identity token that can be passed to the Armory API and Agent Hub.
+The Open ID Connect (OIDC) service is used to authorize and authenticate machines and users. The Armory Cloud Agent, Armory Enterprise (Spinnaker) plugin, and other services all authenticate against this endpoint. The service provides an identity token that can be passed to the Armory API and Agent Hub.
 
 #### Rest API
 
