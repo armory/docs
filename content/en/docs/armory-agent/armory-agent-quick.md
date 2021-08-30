@@ -54,7 +54,7 @@ Installation steps:
 Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to your new `armory-agent` directory.
 
 * Change the value for `name` if your Armory Enterprise service is called something other than "spinnaker".
-* Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix](#compatibility-matrix).
+* Update the `agent-kube-spinplug` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix](#compatibility-matrix).
 
 {{< prism lang="yaml" line="4, 39" >}}
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
@@ -95,7 +95,7 @@ spec:
                 spec:
                   initContainers:
                   - name: kubesvc-plugin
-                    image: docker.io/armory/kubesvc-plugin:<version> # must be compatible with your Armory Enterprise version
+                    image: docker.io/armory/agent-kube-spinplug:<version> # must be compatible with your Armory Enterprise version
                     volumeMounts:
                       - mountPath: /opt/plugin/target
                         name: kubesvc-plugin-vol
