@@ -107,7 +107,7 @@ helm repo update
 helm install armory-agent \
     --set accountName=my-k8s-cluster \
     --set clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
-    --set secret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
+    --set clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
     --namespace armory-agent \
     --create-namespace \
     armory-charts/agents-k8s
