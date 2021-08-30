@@ -95,7 +95,7 @@ Set the client_secret value to be a secret token, instead of the plain text valu
 {{< tabs name="AgentInstall" >}}
 {{% tab name="Helm (recommended)" %}}
 
-Installing the Armory Kubernetes agent with helm is simple
+Installing the Armory Kubernetes agent with helm is simple.
 
 ```bash
 # Add the armory helm repo
@@ -103,6 +103,7 @@ helm repo add armory-charts http://armory.jfrog.io/artifactory/charts
 # Refresh your repo cache
 helm repo update
 # Install the agent, omit --create-namespace if installing into existing namespace
+# the accountName opt, is what this cluster will show up as in the Spinnaker Stage and Armory Cloud APIs
 helm install armory-agent \
     --set accountName=my-k8s-cluster \
     --set clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
