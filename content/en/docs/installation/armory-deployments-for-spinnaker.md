@@ -91,7 +91,7 @@ For information about how to install Argo Rollout, see [Controller Installation]
 A quick note on secrets you can configure agent secrets as outline in the [Secrets Guide]({{< ref "secrets" >}})
 
 {{< tabs name="AgentInstall" >}}
-{{% tab name="helm (recommended)" %}}
+{{% tab name="Helm (recommended)" %}}
 
 Installing the Armory Kubnerenetes agent with helm is simple
 
