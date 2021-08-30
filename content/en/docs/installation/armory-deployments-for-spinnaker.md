@@ -88,8 +88,9 @@ For information about how to install Argo Rollout, see [Controller Installation]
 
 ### Install the agent
 
-A quick note on secrets you can configure agent secrets as outline in the [Secrets Guide]({{< ref "secrets" >}})
-Just set the client_secret value to be a secret token, instead of the plain text value.
+A quick note on secrets you can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}})
+
+Set the client_secret value to be a secret token, instead of the plain text value.
 
 {{< tabs name="AgentInstall" >}}
 {{% tab name="Helm (recommended)" %}}
@@ -359,6 +360,10 @@ time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kub
 ```
 
 ## Install the Armory Deployment Plugin
+
+A quick note on secrets you can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}})
+
+Set the client_secret value to be a secret token, instead of the plain text value.
 
 {{< tabs name="DeploymentPlugin" >}}
 {{% tab name="Operator" %}}
