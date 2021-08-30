@@ -86,7 +86,7 @@ Armory Deployments requires that you install the Argo Rollouts controller 1.x or
 
 For information about how to install Argo Rollout, see [Controller Installation](https://argoproj.github.io/argo-rollouts/installation/#controller-installation) in the Argo documentation.
 
-### Install the agent
+### Install the Agent
 
 A quick note on secrets you can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}})
 
@@ -435,6 +435,12 @@ patchesStrategicMerge:
   - patches/patch-plugin-deployment.yml
 ```      
 
+Apply the changes to your Armory Enterprise instance.
+
+```bash
+kubectl apply -k <path-to-kustomize-file>.yml
+```
+
 {{% /tab %}}
 {{% tab name="Halyard" %}}
 
@@ -490,26 +496,7 @@ spinnaker:
         url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
 ```
 
-{{% /tab %}}
-{{< /tabs >}}
-
-## Apply the changes to Armory Enterprise
-
-Apply the changes to your Armory Enterprise instance after you complete the sections:
-- [Enable communication between Armory Enterprise and Armory Cloud](#enable-communication-between-armory-enterprise-services-and-armory-cloud)
-- [Install the Armory Deployment Plugin](#install-the-armory-deployment-plugin)
-
-Run the following command:
-
-{{< tabs name="ApplyChanges" >}}
-{{% tab name="Operator" %}}
-
-```bash
-kubectl apply -k <path-to-kustomize-file>.yml
-```
-
-{{% /tab %}}
-{{% tab name ="Halyard" %}}
+Apply the changes to your Armory Enterprise instance.
 
 ```bash
 hal deploy apply
@@ -517,7 +504,6 @@ hal deploy apply
 
 {{% /tab %}}
 {{< /tabs >}}
-This applies your changes and redeploys Armory Enterprise.
 
 ## Verify that the plugin is configured
 
