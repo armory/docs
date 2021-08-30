@@ -212,7 +212,7 @@ roleRef:
 
 ### Configure the Agent
 
-Use a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) to configure the Agent. In the `data` block, define `kubesvc.yml` and add your Kubernetes account configuration for your cluster. This YAML file is where you provide the Client ID and Secret that you received when you [create client credentials for your agents](#create-client-credentials-for-your-agents).
+Use a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) to configure the Agent. In the `data` block, define `armory-agent.yml` and add your Kubernetes account configuration for your cluster. This YAML file is where you provide the Client ID and Secret that you received when you [create client credentials for your agents](#create-client-credentials-for-your-agents).
 
 For information about adding accounts, see  the [kubernetes.accounts[] options in the Agent Options documentation]({{< ref "agent-options#options" >}}).
 
@@ -220,10 +220,10 @@ For information about adding accounts, see  the [kubernetes.accounts[] options i
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: kubesvc-config
+  name: armory-agent-config
   namespace: armory-agent
 data:
-  kubesvc.yaml: |
+  armory-agent.yaml: |
     hub:
       connection:
         grpc: agents.cloud.armory.io:443
@@ -250,29 +250,29 @@ kind: Deployment
 metadata:
   labels:
     app: spin
-    app.kubernetes.io/name: kubesvc
+    app.kubernetes.io/name: armory-agent
     app.kubernetes.io/part-of: spinnaker
-    cluster: spin-kubesvc
-  name: spin-kubesvc
+    cluster: spin-armory-agent
+  name: spin-armory-agent
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: spin
-      cluster: spin-kubesvc
+      cluster: spin-armory-agent
   template:
     metadata:
       labels:
         app: spin
-        app.kubernetes.io/name: kubesvc
+        app.kubernetes.io/name: armory-agent
         app.kubernetes.io/part-of: spinnaker
-        cluster: spin-kubesvc
+        cluster: spin-armory-agent
     spec:
       serviceAccount: spin-sa
       containers:
       - image: armory/agent-kubernetes:0.1.3
         imagePullPolicy: IfNotPresent
-        name: kubesvc
+        name: armory-agent
         env:
         - name: ARMORY_HUB
           value: "true"
@@ -295,15 +295,15 @@ spec:
         terminationMessagePolicy: File
         volumeMounts:
         - mountPath: /opt/spinnaker/config
-          name: volume-kubesvc-config
+          name: volume-armory-agent-config
         # - mountPath: /kubeconfigfiles
-        #   name: volume-kubesvc-kubeconfigs
+        #   name: volume-armory-agent-kubeconfigs
       restartPolicy: Always
       volumes:
-      - name: volume-kubesvc-config
+      - name: volume-armory-agent-config
         configMap:
-          name: kubesvc-config
-      # - name: volume-kubesvc-kubeconfigs
+          name: armory-agent-config
+      # - name: volume-armory-agent-kubeconfigs
       #   secret:
       #     defaultMode: 420
       #     secretName: kubeconfigs-secret
