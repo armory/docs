@@ -95,7 +95,7 @@ Set the client_secret value to be a secret token, instead of the plain text valu
 {{< tabs name="AgentInstall" >}}
 {{% tab name="Helm (recommended)" %}}
 
-Installing the Armory Kubnerenetes agent with helm is simple
+Installing the Armory Kubernetes agent with helm is simple
 
 ```bash
 # Add the armory helm repo
