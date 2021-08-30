@@ -571,22 +571,3 @@ You can try out the **Kubernetes Progressive** stage using the `hello-world` sam
 2. Save the pipeline and trigger a manual execution.
 
 Watch the pipeline execute the canary rollout!
-
-## Troubleshooting
-
-### Kubernetes agent
-
-If you get a `Method not found: ops.Operations/GetOps` error on the Kubernetes agent similar to the following:
-
-```
-time="2021-07-21T18:55:54Z" level=error msg="error receiving from ops from server: rpc error: code = Unimplemented desc = Method not found: ops.Operations/GetOps" error="rpc error: code = Unimplemented desc = Method not found: ops.Operations/GetOps"
-time="2021-07-21T18:55:54Z" level=info msg="stopping all tasks"
-```
-
-Check that you added the env `variable ARMORY_HUB` on the [Kubernetes Agent deployment manifest](#deploy-the-agent) for the target cluster:
-
-```yaml
-env:
-- name: ARMORY_HUB
-  value: "true"
-```
