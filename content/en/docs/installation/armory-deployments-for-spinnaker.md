@@ -80,7 +80,7 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 This section walks you through installing the Armory Agent for Kubernetes and the Argo Rollouts Controller, which are both required for Armory Deployments.
 
-## Install the Argo Rollout Controller
+### Install the Argo Rollout Controller
 
 Armory Deployments requires that you install the Argo Rollouts controller 1.x or later, in each target Kubernetes cluster along with the Armory Agent.
 
