@@ -10,7 +10,7 @@ exclude_search: true
 
 The Armory Deployments plugin for Spinnaker enables new Spinnaker stages that unlock the features of Armory Deployments cloud services.
 
-See [Armory Deployments Architecture]({{< ref "architecture" >}}) for an overview of Armory Deployments and how it fits in with Spinnaker.
+See [Armory Deployments Architecture]({{< ref "armory-deployments/architecture" >}}) for an overview of Armory Deployments and how it fits in with Spinnaker.
 
 This guide walks you through the following:
 
