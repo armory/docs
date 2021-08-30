@@ -340,6 +340,7 @@ spec:
 ```
 
 {{% /tab %}}
+{{< /tabs >}}
 
 ### Verify the Agent deployment
 
