@@ -89,6 +89,7 @@ For information about how to install Argo Rollout, see [Controller Installation]
 ### Install the agent
 
 A quick note on secrets you can configure agent secrets as outline in the [Secrets Guide]({{< ref "secrets" >}})
+Just set the client_secret value to be a secret token, instead of the plain text value.
 
 {{< tabs name="AgentInstall" >}}
 {{% tab name="Helm (recommended)" %}}
@@ -96,9 +97,11 @@ A quick note on secrets you can configure agent secrets as outline in the [Secre
 Installing the Armory Kubnerenetes agent with helm is simple
 
 ```bash
+# Add the armory helm repo
 helm repo add armory-charts http://armory.jfrog.io/artifactory/charts
+# Refresh your repo cache
 helm repo update
-helm search repo agent
+# Install the agent, omit --create-namespace if installing into existing namespace
 helm install armory-agent \
     --set accountName=my-k8s-cluster \
     --set clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
