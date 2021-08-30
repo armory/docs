@@ -99,7 +99,7 @@ Installing the Armory Kubernetes agent with helm is simple.
 
 ```bash
 # Add the armory helm repo
-helm repo add armory-charts http://armory.jfrog.io/artifactory/charts
+helm repo add armory-charts https://armory.jfrog.io/artifactory/charts
 # Refresh your repo cache
 helm repo update
 # Install the agent, omit --create-namespace if installing into existing namespace
@@ -110,7 +110,7 @@ helm install armory-agent \
     --set secret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
     --namespace armory-agent \
     --create-namespace \
-    armory-charts/kubesvc-beta
+    armory-charts/agents-k8s
 ```
 
 {{% /tab %}}
