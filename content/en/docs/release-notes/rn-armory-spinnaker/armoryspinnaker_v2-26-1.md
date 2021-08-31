@@ -27,6 +27,10 @@ To install, upgrade, or configure Armory 2.26.0, use one of the following tools:
 
 Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
 
+## Upcoming potential breaking change
+
+{{< include "breaking-changes/bc-java-tls-mysql.md" >}}
+
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
@@ -94,7 +98,7 @@ spec:
   spinnakerConfig:
     profiles:
       dinghy:
-        jsonValidationDisabled: <boolean> 
+        jsonValidationDisabled: <boolean>
 ```
 
 The config is optional. If omitted, strict validation is on by default.

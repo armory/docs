@@ -47,6 +47,8 @@ Then we'll grant authorization to the `clouddriver_service` and `clouddriver_mig
 
 This configuration grants authorization from any host. You can restrict it to the cluster in which Spinnaker runs by replacing the `%` with the IP address of Clouddriver pods from MySQL.
 
+> Depending on your TLS settings, you may need to configure TLS 1.2. For more information, see the Knowledge Base articles [Disabling TLS 1.1 in Spinnaker and Specifying the Protocols to be used](https://support.armory.io/support?sys_kb_id=6d38e4bfdba47c1079f53ec8f49619c2&id=kb_article_view&sysparm_rank=2&sysparm_tsqueryId=f93349771b3d385013d4fe6fdc4bcb35) and [How to fix TLS error "Reason: extension (5) should not be presented in certificate_request"](https://support.armory.io/support?sys_kb_id=e06335f11b202c1013d4fe6fdc4bcbf8&id=kb_article_view&sysparm_rank=1&sysparm_tsqueryId=3b0341771b3d385013d4fe6fdc4bcb6a).
+
 ## Deployment
 
 You have two options for deploying Clouddriver with MySQL: a simpler deployment, which involves downtime, or a three-step method that avoids downtime. Pick the method that best fits your requirements.
