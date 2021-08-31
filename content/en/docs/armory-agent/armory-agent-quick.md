@@ -161,7 +161,7 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
    ```bash
    helm repo add armory-charts http://armory.jfrog.io/artifactory/charts
    ```
-2. Create a namespace in the Kubernetes cluster where you are installing the Agent Service. This is the same cluster as the deployment target for your app for Agent mode.
+2. Create a namespace in the Kubernetes cluster where you are installing the Agent Service. In Agent mode, this is the same cluster as the deployment target for your app.
    
    ```bash
    kubectl create namespace <agent-namespace>
