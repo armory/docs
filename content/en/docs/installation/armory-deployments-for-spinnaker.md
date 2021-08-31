@@ -110,7 +110,7 @@ helm install armory-agent \
     --set clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
     --namespace armory-agent \
     --create-namespace \
-    armory-charts/agents-k8s
+    armory-charts/agent-k8s
 ```
 
 {{% /tab %}}
