@@ -110,7 +110,7 @@ helm install armory-agent \
     --set clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
     --namespace armory-agent \
     --create-namespace \
-    armory-charts/agents-k8s
+    armory-charts/agent-k8s
 ```
 
 {{% /tab %}}
@@ -400,21 +400,10 @@ spec:
         armory.cloud:
           enabled: true
           iam:
-            tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
             clientId: <clientId for Spinnaker from earlier>
             clientSecret: <clientSecret for Spinnaker from earlier>
           api:
             baseUrl: https://api.cloud.armory.io
-          hub:
-            baseUrl: https://api.cloud.armory.io/agents
-            grpc:
-              host: agents.cloud.armory.io
-              port: 443
-              tls:
-                insecureSkipVerify: true
-          deployEngineGrpc:
-            host: grpc.deploy.cloud.armory.io
-            port: 443
         spinnaker:
           extensibility:
             plugins:
@@ -452,21 +441,10 @@ In the `/.hal/default/profiles` directory, add the following configuration to `s
 armory.cloud:
   enabled: true
   iam:
-    tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
     clientId: <clientId for Spinnaker from earlier>
     clientSecret: <clientSecret for Spinnaker from earlier>
   api:
     baseUrl: https://api.cloud.armory.io
-  hub:
-    baseUrl: https://api.cloud.armory.io/agents
-    grpc:
-      host: agents.cloud.armory.io
-      port: 443
-      tls:
-        insecureSkipVerify: true
-  deployEngineGrpc:
-    host: grpc.deploy.cloud.armory.io
-    port: 443
 spinnaker:
   extensibility:
     plugins:
