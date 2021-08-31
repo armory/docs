@@ -188,7 +188,7 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
    --set grpcUrl=localhost:9090
    
    # Required if you want to use Armory Cloud services. clientID and clientSecret are provided by Armory. Omit these if you do not use Armory Cloud services. If you omit these, you must set `cloudEnabled=false` and `grpcUrl=localhost:9090`.
-   --set clientId=<your-clientId> #  
+   --set clientId=<your-clientId>  
    --set clientSecret=<your-Armory-Cloud-secret> 
    
    # Custom config options for Kubernetes
