@@ -172,16 +172,27 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
 3. Run one of the following Helm commands:
 
    **Install with default configs in Agent mode:**
+   
+   ```bash
+   helm install armory-agent armory-charts/kubesvc-beta \
+   --set accountName=<my-k8s-cluster> \
+   --set mode=agent \
+   --namespace=<agent-namespace> 
+   ```
+
+   Depending on your environment and usage, set one or more of the following parameters:
 
    ```bash
-   helm install armory-agent  \
-   --set mode=agent \
-   --set cloudEnabled=false \ # Required if you do not have a clientID and secret and do not want to use Armory Cloud services. Omit this if you are providing a clientId and secret.   
-   --set grpcUrl=localhost:9090 \ # Required if you do not have a clientID and secret and do not want to use Armory Cloud services. Omit this if you are providing a clientId and secret.
-   # --set clientId=<your-clientId> # Required if you want to use Armory Cloud services. Client ID provided by Armory. 
-   # --set secret=<your-Armory-Cloud-secret> # Required if you want to use Armory Cloud services. Secret to access Armory Cloud services. 
-   # --set kubernetes=<kubernetes-options> # Optional 
-   --namespace=<agent-namespace> # Namespace where you want to install the Agent.
+   # Controls whether or not Agent attempts to connect to Armory Cloud services. Required if you do not have a clientID and clientSsecret and do not want to use Armory Cloud services. Omit these if you are providing a clientId and clientSecret.
+   --set cloudEnabled=false    
+   --set grpcUrl=localhost:9090
+   
+   # Required if you want to use Armory Cloud services. clientID and clientSecret are provided by Armory. Omit these if you do not use Armory Cloud services. If you omit these, you must set `cloudEnabled=false` and `grpcUrl=localhost:9090`.
+   --set clientId=<your-clientId> #  
+   --set clientSecret=<your-Armory-Cloud-secret> 
+   
+   # Custom config options for Kubernetes
+   --set kubernetes=<kubernetes-options> 
    ```
 
    For information about the Kubernetes options, see the [Agent config options for the kubernetes parameter]({{< ref "agent-options#configuration-options" >}}).
@@ -189,12 +200,24 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
    **Install with default configs in Infrastructure mode:**
 
    ```bash
-   helm install armory-agent \
-   --set cloudEnabled=false \ # Required if you do not have a clientID and secret and do not want to use Armory Cloud services. Omit this if you are providing a clientId and secret.   
-   --set grpcUrl=localhost:9090 \ # Required if you do not have a clientID and secret and do not want to use Armory Cloud services. Omit this if you are providing a clientId and secret.
-   # --set clientId=<your-clientId> # Required if you want to use Armory Cloud services. Client ID provided by Armory. 
-   # --set secret=<your-Armory-Cloud-secret> # Required if you want to use Armory Cloud services. Secret to access Armory Cloud services. 
+   helm install armory-agent armory-charts/kubesvc-beta \
+   --set accountName=<my-k8s-cluster> \ # Provide a descriptive name 
    --namespace=<agent-namespace> # Namespace where you want to install the Agent.
+   ```
+
+   Depending on your environment and usage, set one or more of the following parameters:
+
+   ```bash
+   # Controls whether or not Agent attempts to connect to Armory Cloud services. Required if you do not have a clientID and clientSsecret and do not want to use Armory Cloud services. Omit these if you are providing a clientId and clientSecret.
+   --set cloudEnabled=false    
+   --set grpcUrl=localhost:9090
+   
+   # Required if you want to use Armory Cloud services. clientID and clientSecret are provided by Armory. Omit these if you do not use Armory Cloud services. If you omit these, you must set `cloudEnabled=false` and `grpcUrl=localhost:9090`.
+   --set clientId=<your-clientId> 
+   --set clientSecret=<your-Armory-Cloud-secret> 
+   
+   # Custom config options for Kubernetes
+   --set kubernetes=<kubernetes-options> 
    ```
 
    For information about the Kubernetes options, see the [Agent config options for the kubernetes parameter]({{< ref "agent-options#configuration-options" >}}).
