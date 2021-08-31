@@ -58,11 +58,11 @@ In infrastructure mode, multiple Agent service deployments handle different grou
 
 ### Spinnaker service mode
 
-In this mode, the Agent is installed as a new Spinnaker service (`spin-kubesvc`) and can be configured like other services.
+In this mode, the Agent is installed as a new Spinnaker service (`spin-armory-agent`) and can be configured like other services.
 
 ![Spinnaker service mode](/images/armory-agent/in-cluster-mode.png)
 
-If you provision clusters automatically, the Agent service can dynamically reload accounts when `kubesvc.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/spinnaker/config/kubesvc-local.yaml`.  The Agent service reflects `ConfigMap` changes within seconds after [etcd](https://etcd.io/) sync.
+If you provision clusters automatically, the Agent service can dynamically reload accounts when `armory-agent.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/spinnaker/config/armory-agent-local.yaml`.  The Agent service reflects `ConfigMap` changes within seconds after [etcd](https://etcd.io/) sync.
 
 
 ## Communication with Clouddriver
