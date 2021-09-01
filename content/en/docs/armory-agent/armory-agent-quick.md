@@ -154,6 +154,291 @@ Armory Enterprise cluster and one in your target cluster.
 
 ## Install the Agent service
 
+You can either install the Agent service manually using `kubectl` or with a Helm chart that Armory provides. Note that the Helm chart currently points to the latest image, which is not necessarily a stable release.
+
+{{< tabs name="agent-install" >}}
+{{% tab name="kubectl" %}}
+
+### Create a namespace
+
+In the deployment target cluster, execute `kubectl create ns spin-agent` to create a namespace for the Agent service.
+
+### Configure permissions
+
+Create a `ClusterRole`, `ServiceAccount`, and `ClusterRoleBinding` for the Agent by applying the following manifest in your `spin-agent` namespace:
+
+<details><summary>Show me the manifest</summary>
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: spin-cluster-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - pods/log
+  - ingresses/status
+  - endpoints
+  verbs:
+  - get
+  - list
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - services
+  - services/finalizers
+  - events
+  - configmaps
+  - secrets
+  - namespaces
+  - ingresses
+  - jobs
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
+  - patch
+  - delete
+- apiGroups:
+  - batch
+  resources:
+  - jobs
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
+  - patch
+- apiGroups:
+  - apps
+  - extensions
+  resources:
+  - deployments
+  - deployments/finalizers
+  - deployments/scale
+  - daemonsets
+  - replicasets
+  - replicasets/finalizers
+  - replicasets/scale
+  - statefulsets
+  - statefulsets/finalizers
+  - statefulsets/scale
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
+  - patch
+  - delete
+- apiGroups:
+  - monitoring.coreos.com
+  resources:
+  - servicemonitors
+  verbs:
+  - get
+  - create
+- apiGroups:
+  - spinnaker.armory.io
+  resources:
+  - '*'
+  - spinnakerservices
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
+  - patch
+- apiGroups:
+  - admissionregistration.k8s.io
+  resources:
+  - validatingwebhookconfigurations
+  verbs:
+  - '*'
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: spin-agent
+  name: spin-sa
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: spin-cluster-role-binding
+subjects:
+  - kind: ServiceAccount
+    name: spin-sa
+    namespace: spin-agent
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: spin-cluster-role
+```
+
+</details>
+
+### Configure the Agent service
+
+Configure the Agent service using a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/). Define `armory-agent.yml` in the `data` section:
+
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: armory-agent-config
+  namespace: spin-agent
+data:
+  armory-agent.yml: |  
+  server:
+    port: 8082
+```
+
+**Clouddriver plugin LoadBalancer**
+
+Replace **[LoadBalancer Exposed Address]** with the IP address you obtained in the [Get the LoadBalancer IP address section](#get-the-loadbalancer-ip-address).
+
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: armory-agent-config
+  namespace: spin-agent
+data:
+  armory-agent.yaml: |
+    clouddriver:
+      grpc: [LoadBalancer Exposed Address]:9091
+      insecure: true
+```
+
+
+**Kubernetes account**
+
+Add your Kubernetes account configuration for your cluster:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubesvc-config
+  namespace: spin-agent
+data:
+  armory-agent.yaml: |
+    clouddriver:
+      grpc: <LoadBalancer Exposed Address>:9091
+      insecure: true
+    kubernetes:
+     accounts:
+     - name:
+       kubeconfigFile:
+       insecure:
+       context:
+       oAuthScopes:
+       serviceAccount: true
+       serviceAccountName: spin-sa
+       namespaces: []
+       omitNamespaces: []
+       onlyNamespacedResources:
+       kinds: []
+       omitKinds: []
+       customResourceDefinitions: [{kind:}]
+       metrics:
+       permissions: []
+       maxResumableResourceAgeMs:
+       onlySpinnakerManaged:
+       noProxy:
+```
+
+See the [Agent options]({{< ref "agent-options#options">}}) for field explanations.
+
+Apply the manifest to your `spin-agent` namespace.
+
+### Deploy the Agent service
+
+Apply the following Agent deployment manifest in your `spin-agent` namespace:
+
+<details><summary>Show me the manifest</summary>
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: spin
+    app.kubernetes.io/name: armory-agent
+    app.kubernetes.io/part-of: spinnaker
+    cluster: spin-armory-agent
+  name: spin-armory-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spin
+      cluster: spin-armory-agent
+  template:
+    metadata:
+      labels:
+        app: spin
+        app.kubernetes.io/name: armory-agent
+        app.kubernetes.io/part-of: spinnaker
+        cluster: spin-armory-agent
+    spec:
+      serviceAccount: spin-sa
+      containers:
+      - image: armory/kubesvc:<version> # must be compatible with your Armory Enterprise version
+        imagePullPolicy: IfNotPresent
+        name: armory-agent
+        ports:
+          - name: health
+            containerPort: 8082
+            protocol: TCP
+          - name: metrics
+            containerPort: 8008
+            protocol: TCP
+        readinessProbe:
+          httpGet:
+            port: health
+            path: /health
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /opt/spinnaker/config
+          name: volume-armory-agent-config
+        # - mountPath: /kubeconfigfiles
+        #   name: volume-armory-agent-kubeconfigs
+      restartPolicy: Always
+      volumes:
+      - name: volume-armory-agent-config
+        configMap:
+          name: armory-agent-config
+      # - name: volume-armory-agent-kubeconfigs
+      #   secret:
+      #     defaultMode: 420
+      #     secretName: kubeconfigs-secret
+```
+
+</details>
+
+{{% /tab %}}
+
+{{% tab name="Helm" %}}
+
 On the Kubernetes cluster where you want to install the Agent Service, perform the following steps:
 
 1. Add the Armory charts repo:
@@ -161,6 +446,14 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
    ```bash
    helm repo add armory-charts http://armory.jfrog.io/artifactory/charts
    ```
+
+   If you have previously added the chart repo, update it with the following commands:
+
+   ```bash
+   helm repo update 
+   helm upgrade armory-agent armory-charts/agent-k8s
+   ```
+
 2. Create a namespace in the Kubernetes cluster where you are installing the Agent Service. In Agent mode, this is the same cluster as the deployment target for your app.
    
    ```bash
@@ -169,13 +462,28 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
 
    > If you plan to run the Agent in something other than Agent mode, such as Infrastructure mode, you need to create a kubeconfig file that grants access to the deployment target cluster. For example, run the following command if you use Amazon EKS: `aws eks update-kubeconfig --name <target-cluster> `.
 
-3. Run one of the following Helm commands:
+3. Decide whether or not you want to connect to Armory Cloud services. Armory Cloud services is required for some features to function and affects how you configure the Agent service installation. You must either disable the connection or provide credentials.
+
+   If you do not want to connect to Armory Cloud services, you must include the following parameters when running the `helm` command to install the Agent service:
+   - `--set cloudEnabled=false`
+   - `--set grpcUrl=localhost:9090`
+
+   These parameters control whether or not Agent attempts to connect to Armory Cloud services. They are required if you do not have a clientID and clientSecret and do not want to use Armory Cloud services. 
+
+   If you want to connect to Armory Cloud services, you must include the following parameters with the values that Armory provided when  running the `helm` command to install the Agent service:
+
+   - `--set clientId`
+   - `--set clientSecret`
+
+   These are parameters are used to authenticate you to Armory Cloud services.
+
+4. Run one of the following Helm commands:
 
    **Install with default configs in Agent mode:**
    
    ```bash
-   helm install armory-agent armory-charts/kubesvc-beta \
-   --set accountName=<my-k8s-cluster> \ # Provide a descriptive name 
+   helm install armory-agent armory-charts/agent-k8s \
+   --set accountName=<my-k8s-cluster> \ # Provide a descriptive name. This name gets used in the UI and Armory Cloud API. 
    --set mode=agent \
    --namespace=<agent-namespace> # Namespace where you want to install the Agent.
    ```
@@ -183,11 +491,11 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
    Depending on your environment and usage, set one or more of the following parameters:
 
    ```bash
-   # Controls whether or not Agent attempts to connect to Armory Cloud services. Required if you do not have a clientID and clientSsecret and do not want to use Armory Cloud services. Omit these if you are providing a clientId and clientSecret.
+   # Disable the connection to Armory Cloud 
    --set cloudEnabled=false    
    --set grpcUrl=localhost:9090
    
-   # Required if you want to use Armory Cloud services. clientID and clientSecret are provided by Armory. Omit these if you do not use Armory Cloud services. If you omit these, you must set `cloudEnabled=false` and `grpcUrl=localhost:9090`.
+   # Authenticate to Armory Cloud
    --set clientId=<your-clientId>  
    --set clientSecret=<your-Armory-Cloud-secret> 
    
@@ -200,19 +508,19 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
    **Install with default configs in Infrastructure mode:**
 
    ```bash
-   helm install armory-agent armory-charts/kubesvc-beta \
-   --set accountName=<my-k8s-cluster> \ # Provide a descriptive name 
+   helm install armory-agent armory-charts/agent-k8s \
+   --set accountName=<my-k8s-cluster> \ # Provide a descriptive name. This name gets used in the UI and Armory Cloud API. 
    --namespace=<agent-namespace> # Namespace where you want to install the Agent.
    ```
 
    Depending on your environment and usage, set one or more of the following parameters:
 
    ```bash
-   # Controls whether or not Agent attempts to connect to Armory Cloud services. Required if you do not have a clientID and clientSsecret and do not want to use Armory Cloud services. Omit these if you are providing a clientId and clientSecret.
+   # Disable the connection to Armory Cloud 
    --set cloudEnabled=false    
    --set grpcUrl=localhost:9090
    
-   # Required if you want to use Armory Cloud services. clientID and clientSecret are provided by Armory. Omit these if you do not use Armory Cloud services. If you omit these, you must set `cloudEnabled=false` and `grpcUrl=localhost:9090`.
+   # Authenticate to Armory Cloud
    --set clientId=<your-clientId> 
    --set clientSecret=<your-Armory-Cloud-secret> 
    
@@ -227,8 +535,8 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
 
    1. Use `helm template` to generate a manifest. 
       ```bash
-      helm template armory-agent armory-charts/kubesvc-beta \
-      --set-file kubeconfig=<path-to-your-kubeconfig>,armoryagentyml=<path-to-agent-options>.yml \ 
+      helm template armory-agent armory-charts/agent-k8s \
+      --set-file kubeconfig=<path-to-your-kubeconfig>,armoryagent.yml=<path-to-agent-options>.yml \ 
       --namespace=<agent-namespace> # Namespace where you want to install the Agent.
       ```
    
@@ -238,6 +546,11 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
        ```bash
        helm install armory-agent <local-helm-chart-name>
        ```
+
+
+{{< /tab >}}
+{{< /tabs >}}
+
 
 ## Confirm success
 
