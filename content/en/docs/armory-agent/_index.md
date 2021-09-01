@@ -1,6 +1,5 @@
 ---
-title: "Armory Agent for Kubernetes"
-linkTitle: "Armory Agent for Kubernetes"
+title: "Armory Agent for Spinnaker™"
 weight: 20
 no_list: true
 description: >
@@ -11,11 +10,11 @@ description: >
 ## What is the Armory Agent?
 {{< include "early-access-feature.html" >}}
 
-The Armory Agent for Kubernetes consists of a lightweight Agent service that you deploy on Kubernetes and a plugin that you install into Clouddriver. 
+The Armory Agent for Spinnaker consists of a lightweight Agent service that you deploy on Kubernetes and a plugin that you install into Clouddriver. 
 
 The Armory Agent is compatible with Armory Enterprise and open source Spinnaker.
 
-### Advantages of using the Armory Agent for Kubernetes
+### Advantages of using the Armory Agent for Spinnaker
 
 * Scalability
   * Caching and deployment scales to thousands of Kubernetes clusters for your largest applications.

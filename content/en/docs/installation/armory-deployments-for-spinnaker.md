@@ -44,7 +44,7 @@ Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents hav
 
 ### Target Kubernetes cluster
 
-Armory Deployments is a separate product from Armory Enterprise (Spinnaker). It does not use Clouddriver to source its accounts. Instead, it uses the Armory Agents that are deployed in your target Kubernetes clusters. The Armory Agent is a lightweight, scalable service that enables Armory Deployments to interact with your infrastructure. You must install the Armory Agent for Kubernetes in every target cluster. 
+Armory Deployments is a separate product from Armory Enterprise (Spinnaker). It does not use Clouddriver to source its accounts. Instead, it uses the Armory Agents that are deployed in your target Kubernetes clusters. The Armory Agent is a lightweight, scalable service that enables Armory Deployments to interact with your infrastructure. You must install the Armory Cloud Agent in every target cluster. 
 
 Additionally, Armory Deployments uses the Argo Rollouts Controller to manage progressive deployments to your infrastructure.
 

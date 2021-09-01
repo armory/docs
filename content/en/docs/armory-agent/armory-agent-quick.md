@@ -1,5 +1,5 @@
 ---
-title: "Armory Agent for Kubernetes Installation"
+title: "Armory Agent for Spinnaker™ Installation"
 linkTitle: "Installation"
 description: >
   Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
