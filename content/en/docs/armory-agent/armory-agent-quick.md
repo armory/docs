@@ -500,16 +500,42 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
    --set clientSecret=<your-Armory-Cloud-secret> 
    
    # Custom config options for Kubernetes
-   --set kubernetes=<kubernetes-options> 
+   --set kubernetes=<kubernetes-options>
+
+   # If TLS is disabled in your environment
+   --set insecure=true
+
+   # If you are pulling from a private registry
+   --set imagePullSecrets=<secret>    
    ```
 
-   For information about the Kubernetes options, see the [Agent config options for the kubernetes parameter]({{< ref "agent-options#configuration-options" >}}).
+   For information about additional options, see the [Agent config options]({{< ref "agent-options#configuration-options" >}}).
+
+   <details><summary>Show me an example</summary>
+   
+   The following examples use the `imagePullSecrets` and `insecure` parameters, which may or may not be needed depending on your environment.
+
+   This example installs Agent service without a connection to Armory Cloud:
+
+   ```bash
+   helm install armory-agent --set accountName=demo-account,imagePullSecrets=regcred,grpcUrl=spin-clouddriver-grpc:9091,insecure=true,cloudEnabled=false --namespace dev armory-charts/agent-k8s
+   ```
+
+   This example installs Agent service with a connection to Armory Cloud:
+
+   ```bash
+   helm install armory-agent --set accountName=hubaccount1,imagePullSecrets=regcred,grpcUrl=agents.staging.cloud.armory.io:443,audience=https://api.cloud.armory.io,tokenIssuerUrl=https://auth.cloud.armory.io/oauth/token,clientId=************,clientSecret=************ --namespace dev armory-charts/agent-k8s
+   ```
+
+   </details>
+
 
    **Install with default configs in Infrastructure mode:**
 
    ```bash
    helm install armory-agent armory-charts/agent-k8s \
    --set accountName=<my-k8s-cluster> \ # Provide a descriptive name. This name gets used in the UI and Armory Cloud API. 
+   --set mode=infrastructure \
    --namespace=<agent-namespace> # Namespace where you want to install the Agent.
    ```
 
@@ -526,9 +552,33 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
    
    # Custom config options for Kubernetes
    --set kubernetes=<kubernetes-options> 
+
+   # If TLS is disabled in your environment
+   --set insecure=true
+
+   # If you are pulling from a private registry
+   --set imagePullSecrets=<secret>
    ```
 
-   For information about the Kubernetes options, see the [Agent config options for the kubernetes parameter]({{< ref "agent-options#configuration-options" >}}).
+   For information about additional options, see the [Agent config options]({{< ref "agent-options#configuration-options" >}}).
+
+   <details><summary>Show me an example</summary>
+   
+   The following examples use the `imagePullSecrets` and `insecure` parameters, which may or may not be needed depending on your environment.
+
+   This example installs Agent service without a connection to Armory Cloud:
+
+   ```bash
+   helm install armory-agent --set mode=infrastructure,accountName=demo-account,imagePullSecrets=regcred,grpcUrl=spin-clouddriver-grpc:9091,insecure=true,cloudEnabled=false --set-file kubeconfig=$HOME/.kube/config --namespace dev armory-charts/agent-k8s
+   ```
+   
+   This example installs Agent service with a connection to Armory Cloud:
+
+   ```bash
+   helm install armory-agent --set accountName=hubaccount1,imagePullSecrets=regcred,grpcUrl=agents.staging.cloud.armory.io:443,audience=https://api.cloud.armory.io,tokenIssuerUrl=https://auth.cloud.armory.io/oauth/token,clientId==************,clientSecret=************ --namespace dev armory-charts/agent-k8s
+   ```
+
+   </details>
 
 
    **Install with custom settings:**
