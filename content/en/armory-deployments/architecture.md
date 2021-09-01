@@ -44,9 +44,6 @@ This endpoint receives API calls from clients outside of Armory Cloud (such as t
 
 The Armory Cloud Console provides a UI to configure authentication and authorization and to create tokens.
 
-#### Temporary Deployments API
-
-The current Armory Enterprise (Spinnaker) plugin uses a temporary API to invoke Armory Deployments. These API calls are in the process of being migrated to the REST API to simplify the overall architecture. This temporary API is expected to be removed during 2021.
 
 ### Argo Rollouts
 
@@ -125,7 +122,6 @@ The following network endpoints are used for communication into Armory Cloud:
 | api.cloud.armory.io    | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2 | Armory REST API     |
 | auth.cloud.armory.io             | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2          | OIDC Service
 | console.cloud.armory.io          | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2           | Web UI    |
-| grpc.deployments.cloud.armory.io | 443  | TLS enabled gRPC over HTTP/2<br>TLS version 1.2             | Temporary Deployments API. This API will be replaced with new calls in the REST API in the future. |
 
 ### Data encryption
 
