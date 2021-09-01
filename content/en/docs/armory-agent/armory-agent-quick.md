@@ -175,9 +175,9 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
    
    ```bash
    helm install armory-agent armory-charts/kubesvc-beta \
-   --set accountName=<my-k8s-cluster> \
+   --set accountName=<my-k8s-cluster> \ # Provide a descriptive name 
    --set mode=agent \
-   --namespace=<agent-namespace> 
+   --namespace=<agent-namespace> # Namespace where you want to install the Agent.
    ```
 
    Depending on your environment and usage, set one or more of the following parameters:
