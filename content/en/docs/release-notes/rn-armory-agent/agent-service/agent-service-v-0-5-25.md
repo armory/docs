@@ -6,5 +6,6 @@ version: 00.05.25
 ---
 
 ## New
-* Updated base image to Debian 10.10
-* Some release notes automation
+
+* Updated the base image to Debian 10.10
+* Added release notes automation for Armory documentation. Previously, the release notes were only available on the GitHub release page.
