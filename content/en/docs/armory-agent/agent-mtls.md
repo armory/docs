@@ -2,7 +2,7 @@
 title: "Configure Mutual TLS Authentication"
 linkTitle: "Configure mTLS"
 weight: 40
-tags: ["Kubernetes", "Spinnaker", "Configuration"]
+tags: ["Kubernetes", "Spinnaker", "Configuration", "mTLS"]
 categories: ["Agent"]
 description: >
   Configure mTLS authentication in the Armory Agent plugin and service.

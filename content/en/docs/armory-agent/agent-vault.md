@@ -1,7 +1,7 @@
 ---
 title: "Configure Vault Integration"
 linkTitle: "Configure Vault"
-tags: ["Kubernetes", "Spinnaker", "Agent Configuration"]
+tags: ["Kubernetes", "Spinnaker", "Configuration", "Vault"]
 categories: ["Agent"]
 weight: 41
 description: >

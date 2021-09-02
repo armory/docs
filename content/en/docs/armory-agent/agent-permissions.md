@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Permissions for the Armory Agent"
 linkTitle: "Permissions"
-tags: ["Kubernetes", "Spinnaker", "Agent Configuration"]
+tags: ["Kubernetes", "Spinnaker", "Configuration", "Permissions"]
 categories: ["Agent"]
 description: >
   Kubernetes permissions required by the Armory Agent.

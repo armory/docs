@@ -2,7 +2,7 @@
 title: Plugin Configuration
 linkTitle: Plugin Config
 weight: 60
-tags: ["Kubernetes", "Spinnaker", "Agent Configuration"]
+tags: ["Kubernetes", "Spinnaker", "Configuration", "Plugin"]
 categories: ["Agent"]
 description: >
   This guide contains a detailed list of Armory Agent plugin configuration options for Clouddriver.
