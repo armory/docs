@@ -6,17 +6,6 @@
 {{ $pageCategories := (delimit .Params.categories ", ") }}
 <meta class="elastic" name="categories" content="{{ $pageCategories }}">
 {{ end }}
-{{ if .Params.keywords }}
-{{ $keywords := (delimit .Params.keywords ", ") }}
-<meta name="keywords" content="{{ $keywords }}">
-{{ end }}
-{{ $tags := .Params.tags }}
-{{ $cats := .Params.categories }}
-{{ $tags := $tags | append $cats}}
-{{ if $tags   }}
-{{ $keywords := (delimit $tags ", ") }}
-<meta name="keywords" content="{{ $keywords }}">
-{{ end }}
 
 <script type="text/javascript">
   (function(){
