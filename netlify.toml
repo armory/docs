@@ -98,7 +98,7 @@ package = "@netlify/plugin-sitemap"
   exclude =[
     './public/docs/plugin-guide/plugin-appname/',
     './public/docs/feature-status/deprecations/pacrd-deprecation/',
-    './public/docs/installation/deployment-reg/',
+    './public/docs/installation/ae-environment-reg/',
     './public/docs/installation/armory-deployments-for-spinnaker/',
     './public/armory-deployments/'
     
