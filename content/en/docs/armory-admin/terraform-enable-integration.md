@@ -362,8 +362,6 @@ You can also configure a profile that grants access to resources, like AWS.
 
 ## Named Profiles
 
-{{% alert title="New feature" %}}Named Profiles is a new feature in Armory 2.20. Previously, you needed to mount a sidecar that contained your credentials. If you are on an earlier version, see the v.2.0-2.19 version of this [page](https://archive.docs.armory.io/docs/spinnaker/terraform-enable-integration/#configure-terraform-for-your-cloud-provider) to learn more about mounting a sidecar. {{% /alert %}}
-
 A Named Profile gives users the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. The supported credentials are described in [Types of credentials](#types-of-credentials).
 
 ### Types of credentials
@@ -546,29 +544,34 @@ The preceding example enables retries and sets the minimum wait between attempts
 
 ## Logging and metrics
 
-You can enable logging and metrics for Prometheus by adding the following configuration to the `spec.spinnakerConfig.config.armory.terraform` block in your `SpinnakerService` manifest (Operator) or the `terraformer-local.yml` file (Halyard):
+> If the logging URL is not responsive, the Terraform Integration may not process deploys until the URL can be reached.
+
+You can enable logging and metrics for Prometheus by adding the following configuration to the `spec.spinnakerConfig.profiles.terraformer.logging.remote` block in your `SpinnakerService` manifest (Operator) or the `terraformer-local.yml` file (Halyard):
 
 {{< tabs name="Logging and metrics" >}}
 {{% tab name="Operator" %}}
 
 ```yaml
-armory:
-  terraform:
-    logging:
-      remote:
-        enabled: true
-        endpoint: <TheLoggingEndPoint> # For example, https://debug.armory.io
-        version: 1.2.3
-        customerId: someCustomer123 # Your Armory Customer ID
-      metrics: 
-        enabled: true
-        frequency: <Seconds> # Replace with an integer value for seconds based on how frequently you want metrics to be scraped 
-        prometheus:
-          enabled: true
-          commonTags: # The following tags are examples. Use tags that are relevant for your environment
-            # env: dev
-            # nf_app: exampleApp
-            # nf_region: us-west-1
+spec:
+  spinnakerConfig:
+    profiles:
+      terraformer:
+        logging:
+          remote:
+            enabled: true
+            endpoint: <TheLoggingEndPoint> # For example, https://debug.armory.io
+            version: 1.2.3
+            customerId: someCustomer123 # Your Armory Customer ID
+          metrics: 
+            enabled: true
+            frequency: <Seconds> # Replace with an integer value for seconds based on how frequently you want metrics to be scraped 
+            prometheus:
+              enabled: true
+              commonTags: # The following tags are examples. Use tags that are relevant for your environment
+                # env: dev
+                # nf_app: exampleApp
+                # nf_region: us-west-1
+        
 ```
 
 

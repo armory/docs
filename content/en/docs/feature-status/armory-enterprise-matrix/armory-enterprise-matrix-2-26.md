@@ -14,13 +14,15 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 This page describes the features and capabilities that Armory supports. Note that although Spinnaker™ is part of Armory Enterprise, what Open Source Spinnaker supports and what Armory supports is not a one-to-one relationship.
 
-For information about the system requirements to install Armory Enterprise, see {{< linkWithTitle "system-requirements" >}}.
+> For information about the system requirements to install Armory Enterprise, see {{< linkWithTitle "system-requirements" >}}. Previously, some of that information, such as storage requirements, was listed on this page.
 
 ## Legend
 <!-- Copy and paste the below badges that apply to your area -->
 **Feature status** describes what state the feature is in and where you should install it. For more information, see [Release Definitions]({{< ref "release-definitions" >}}). You can also click on the feature status badge directly.
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) The feature as a whole is generally available. There may be newer extended functionality that is in a different state.
+
+[Beta]({{< ref "release-definitions#beta" >}}) The feature is in Early Access. For more information about using this feature, [contact us](https://www.armory.io/contact-us/).
 
 [![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) The feature is in Early Access. For more information about using this feature, [contact us](https://www.armory.io/contact-us/).
 
@@ -71,10 +73,11 @@ The following table lists supported app metric providers:
 | Provider       | Version                | ACA | Armory                 | Note |
 |----------------|------------------------|-----|------------------------|------|
 | [AWS Cloudwatch]({{< ref "kayenta-canary-cloudwatch.md" >}}) | All supported versions | Yes | 2.23.1 or later        |      |
+| Datadog      | All supported versions | Yes | 2.26.0 or later        | [Beta]({{< ref "release-definitions#beta" >}})     |
 | [Dynatrace]({{< ref "kayenta-canary-dynatrace.md" >}})      | All supported versions | Yes | 2.23.0 or later        |      |
 | Graphite       | All supported versions | Yes | All supported versions |      |
 | New Relic      | All supported versions | Yes | All supported versions |      |
-| Prometheus (Open Source)    | All supported versions | Yes | All supported versions | Authentication using a bearer token is supported.     |
+| Prometheus | All supported versions | Yes | All supported versions | Authentication using a bearer token is supported. Armory supports offerings that are proprietary versions of Prometheus, such as Cortex, to the extent that the offering overlaps with open source Prometheus. That is, Armory guarantees functionality that is compatible with open source Prometheus. Compatibility between open source Prometheus and the proprietary version is the responsibility of that vendor, not Armory.    |
 | SignalFx       | All supported versions | Yes | All supported versions |      |
 | Stackdriver    | All supported versions | Yes | All supported versions |      |
 
@@ -82,7 +85,7 @@ The following table lists supported app metric providers:
 
 Artifacts are  deployable resources.
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported artifact stores:
 
@@ -189,7 +192,7 @@ The following table lists the Terraform Integration features and their supported
 
 ## Authentication
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported authentication protocols:
 
@@ -203,7 +206,7 @@ The following table lists the supported authentication protocols:
 
 ## Authorization
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported authorization methods:
 
@@ -218,7 +221,7 @@ The following table lists the supported authorization methods:
 
 ## Baking machine images
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported image bakeries:
 
@@ -230,7 +233,7 @@ The following table lists the supported image bakeries:
 
 ## Baking Kubernetes manifests
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) 
 
 The following table lists the supported manifest templating engines:
 
@@ -242,7 +245,7 @@ The following table lists the supported manifest templating engines:
 
 ## Build systems
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) 
 
 The following table lists the supported CI systems:
 
@@ -253,11 +256,13 @@ The following table lists the supported CI systems:
 
 ## Custom stages
 
+![Proprietary](/images/proprietary.svg)
+
 Armory Enterprise includes custom stages that you can use to extend the capabilities of Armory Enterprise. Some of these stages are available out of the box while others are available as plugins to Armory Enterprise.
 
 | Stage              | Armory           | Notes                 |
 |--------------------|------------------|-----------------------|
-| [Evaluate Artifacts]({{< ref "evaluate-artifacts-stage-enable.md" >}}) | 2.24.0 and later | Available as a plugin |
+| [Evaluate Artifacts]({{< ref "evaluate-artifacts-stage-enable.md" >}}) | 2.24.0 and later | [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) Available as a plugin |
 
 ## Deployment targets
 
@@ -327,7 +332,7 @@ These are providers that are manifest based, so Armory applies the manifest and 
 | Provider                | Version                   | Deployment strategies                      | Armory         | Notes                    |
 | ----------------------- | ------------------------------------ | ------------------------------------------ | ---------------------- | ------------------------ |
 | Google Cloud App Engine |                                      | <ul><li>Custom</li></ul>                   | All supported versions |                          |
-| Cloud Foundry           | CC API Version: 2.103.0+ and 3.38.0+ | {{< caas-cf-deploy-strategies.inline />}}  | All supported versions |                          |
+| Cloud Foundry           | CC API Version: 2.103.0+ and 3.38.0+ | {{< caas-cf-deploy-strategies.inline />}}  | All supported versions | Support for the Cloud Foundry provider is based  on your license agreement with Armory. If you have questions, contact your assigned Technical Account Manager and/or Account Executive. Alternatively, you can reach our Customer Care team at [support@armory.io](mailto:support@armory.io) or visit the [Help Center](https://support.armory.io/) to submit a case. |
 
 ### Serverless
 
@@ -351,9 +356,11 @@ You write the function and use Armory to manage the rollout of iterative version
 
 ## Dynamic accounts
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 Dynamic accounts (external account configurations) for Spinnaker allow you to manage account configuration outside of Spinnaker, including secrets.
+
+> Note that Armory does not support using dynamic account configuration with Spring Cloud Config Server.
 
 **Backend provider**
 
@@ -377,7 +384,7 @@ The following table lists the services that support dynamic accounts:
 
 ## Notifications
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported notification systems:
 
@@ -391,19 +398,19 @@ The following table lists the supported notification systems:
 
 ## Observability
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported observability providers:
 
 | Provider   | Version                | Armory                 | Note                        |
 | ---------- | ---------------------- | ---------------------- | --------------------------- |
 | New Relic  | All supported versions | All supported versions |                             |
-| Prometheus (Open Source) | All supported versions | All supported versions | Use Grafana for dashboards. |
+| Prometheus | All supported versions | All supported versions | Use Grafana for dashboards. Armory supports offerings that are proprietary versions of Prometheus, such as Cortex, to the extent that the offering overlaps with open source Prometheus. That is, Armory guarantees functionality that is compatible with open source Prometheus. Compatibility between open source Prometheus and the proprietary version is the responsibility of that vendor, not Armory. |
 
 
 ## Pipeline triggers
 
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
 The following table lists the supported pipeline triggers:
 

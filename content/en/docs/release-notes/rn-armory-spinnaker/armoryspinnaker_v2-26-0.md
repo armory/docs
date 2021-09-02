@@ -17,6 +17,7 @@ For information about what Armory supports for this version, see the [Armory Ent
 To install, upgrade, or configure Armory 2.26.0, use one of the following tools:
 
 - Armory-extended Halyard 1.12 or later
+  - 2.26.x is the last minor release that you can use Halyard to install or manage. Future releases require the Armory Operator. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
 - Armory Operator 1.2.6 or later
 
 ## Security
@@ -25,6 +26,8 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
+
+> Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
 #### Suffixes for the Kubernetes Run Job stage
 
@@ -41,6 +44,10 @@ To continue adding a random suffix to jobs created by the Kubernetes Run Job sta
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
+
+#### Pipelines as Code 
+<!-- maybe: BOB-30287 yes:BOB-30274 PUX-405-->
+If you experiencing issues with Pipelines as Code after upgrading to 2.26.0, upgrade to 2.26.1 when it is available.
 
 ## Fixed issues
 

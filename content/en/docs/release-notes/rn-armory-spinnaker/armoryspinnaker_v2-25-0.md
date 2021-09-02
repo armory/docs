@@ -18,12 +18,16 @@ To install, upgrade, or configure Armory 2.25.0, use one of the following tools:
 - Armory-extended Halyard 1.12 or later
 - Armory Operator 1.2.6 or later
 
+   For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}).
+
 ## Security
 
 Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
+> Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
+
 
 {{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
 
