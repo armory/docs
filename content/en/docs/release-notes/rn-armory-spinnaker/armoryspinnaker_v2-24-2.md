@@ -16,6 +16,7 @@ To install, upgrade, or configure Armory 2.24.2, use one of the following tools:
 
 - Armory-extended Halyard 1.10 or later
 - Armory Operator 1.2.1 or later
+   For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}).
 
 ## Security
 

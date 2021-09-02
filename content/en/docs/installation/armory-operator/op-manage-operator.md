@@ -7,6 +7,31 @@ description: >
 ---
 
 {{< include "armory-operator/os-operator-blurb.md" >}}
+## Upgrade the Operator
+
+>Do not manually change Docker image tags in your existing manifest files. Operator computes the compatible Halyard version, so manually updating image tags is an **unsupported** upgrade method and may cause issues.
+
+Use the `kubectl replace` command to replace your Operator deployment. See the `kubectl replace` [docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#replace) for an explanation of this command.
+
+1. Download the Operator version you want to upgrade to:
+
+   In the following command, replace `<version>` with the specific version or "latest" for the most recent version.
+
+   ```bash
+   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/<version>/download/manifests.tgz | tar -xz'
+   ```
+
+1. Update CRDs across the cluster:
+
+   ```bash
+   kubectl replace -f deploy/crds/
+   ```
+
+1. Update the Operator:
+
+   ```bash
+   kubectl -n spinnaker-operator replace -f deploy/operator/cluster
+   ```
 
 ## Uninstall the Operator
 
