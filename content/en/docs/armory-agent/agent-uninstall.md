@@ -1,6 +1,8 @@
 ---
 title: Uninstall the Agent
 weight: 90
+tags: ["Kubernetes", "Spinnaker", "Installation"]
+categories: ["Agent"]
 draft: false
 ---
 ![Proprietary](/images/proprietary.svg)

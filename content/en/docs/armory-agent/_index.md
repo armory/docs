@@ -3,6 +3,8 @@ title: "Armory Agent for Kubernetes"
 linkTitle: "Armory Agent for Kubernetes"
 weight: 20
 no_list: true
+tags: ["Kubernetes", "Spinnaker"]
+categories: ["Agent"]
 description: >
   The Armory Agent is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker's Clouddriver service.
 ---

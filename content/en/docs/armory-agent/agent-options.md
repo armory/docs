@@ -2,6 +2,8 @@
 title: Armory Agent Configuration
 linkTitle: Agent Config
 weight: 50
+tags: ["Kubernetes", "Spinnaker", "Agent Configuration"]
+categories: ["Agent"]
 description: >
   Learn how to configure the Armory Agent based on installation mode and environment restrictions. This guide contains a detailed list of configuration options.
 ---

@@ -1,6 +1,8 @@
 ---
 title: "Armory Agent for Kubernetes Installation"
 linkTitle: "Installation"
+tags: ["Kubernetes", "Spinnaker", "Agent Installation"]
+categories: ["Agent"]
 description: >
   Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
 weight: 30

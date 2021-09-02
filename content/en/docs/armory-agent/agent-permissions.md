@@ -1,6 +1,8 @@
 ---
 title: "Kubernetes Permissions for the Armory Agent"
 linkTitle: "Permissions"
+tags: ["Kubernetes", "Spinnaker", "Agent Configuration"]
+categories: ["Agent"]
 description: >
   Kubernetes permissions required by the Armory Agent.
 weight: 65

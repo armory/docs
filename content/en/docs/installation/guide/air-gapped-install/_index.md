@@ -5,8 +5,8 @@ weight: 1
 no_list: true
 description: >
   Options for deploying Armory Enterprise in an environment that is isolated from the internet.
-categories: ["install"]
-tags: ["air-gapped"]
+categories: ["Installation"]
+tags: ["Air-Gapped"]
 ---
 
 {{< include "armory-license.md" >}}
