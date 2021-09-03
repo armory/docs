@@ -72,3 +72,33 @@ spec:
             concurrency:                   
               threads: 5  
 ```
+
+## Pipelines as Code
+
+### Strict JSON Validation
+
+Pipelines as Code (PaC) will now attempt a strict JSON validation of template modules and pipelines to catch certain syntactical errors sooner. This behavior may break existing users that make heavy use of template language constructs. If you find that behavior has changed, and would like to revert to previous parsing behavior, add the `jsonValidationDisabled` config to your PaC profile as in the following example:
+
+```yaml
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        jsonValidationDisabled: true
+```
+
+### Ignore Files for Processing
+
+PaC will now look for the presence of a `.dinghyignore` file in the root of a git repository before processing. The format of this file accepts regex patterns, one rule per line, that will omit files for processing if matched. For example, to ignore all Markdown files in a repository, define the ignore file like so:
+
+```
+*.md
+```
+
+If a `.dinghyignore` file is not found, then all modified files in a Dinghy event will be processed.
+
+No configuration is needed to enable this feature, it is turned on by default.
+
+### Event Notifications Honor Global Config
+
+PaC will now honor configurations that define a self-hosted GitHub Enterprise instance when sending GitHub notifications. No configuration change is necessary for this fix to take effect.
