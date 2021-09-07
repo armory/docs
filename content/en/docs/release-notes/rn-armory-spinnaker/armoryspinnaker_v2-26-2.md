@@ -55,9 +55,11 @@ This release includes the following improvements for git-based artifact provider
 * The GitRepo artifact provider now supports token files. Use the `tokenFile:` (Operator) or `--token-file` (Halyard) parameters to specify a token file.
 * The GitHub, GitLab, and GitRepo artifact providers now support token files that are dynamically updated. The token file is automatically reloaded when Armory Enterprise makes a request.
 
-### AWS Lambda 
+### AWS ECS
 
-<!--https://github.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/commit/7f7391855057daa34f03bd40796572eab2c9f51a#diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5 -->
+Resolved an issue where the subnets and server groups were not being cached.
+
+### AWS Lambda 
 
 > These improvements require version 1.0.8 of the AWS Lambda Plugin in addition to Armory Enterprise 2.24.3.
 This release includes the following new features and improvements for the Lambda provider:
