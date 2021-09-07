@@ -99,7 +99,7 @@ The SLI and SLO described in the [Managed Customer: Spinnaker monitoring metrics
 
 Armory Managed Services guarantees **99.9%** uptime. This is measured through synthetic checks and does not included any scheduled maintenance windows coordinated in advance with the customer.
 
-Due to the shared responsibility model, there are cases where Armory cannot guarantee uptimes. If there is a failure to provide adequate compute resources or timely response to outages in supporting services that are not owned by Armory, Armory's ability to maintain uptime promises cannot be guaranteed.
+Due to the shared responsibility model, there are cases where Armory cannot guarantee uptime. If there is a failure to provide adequate compute resources or timely response to outages in supporting services that are not owned by Armory, Armory's ability to maintain uptime promises cannot be guaranteed.
 
 ## Support and escalation process
 
