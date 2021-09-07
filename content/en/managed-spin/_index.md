@@ -2,6 +2,7 @@
 title: "Armory Enterprise Managed Services"
 linkTitle: "Managed Services"
 weight: 10
+exclude_search: true
 type: docs
 description: An overview of the benefits that come with using Armory Enterprise Managed Services.
 ---
@@ -74,7 +75,7 @@ Armory SREs are not able to support third-party software solutions or integratio
 
 ### Usage metrics and dashboards
 
-While Armory does monitor your environment, no monitoring dashboards or usage metrics are available to customers as an offering.
+While Armory does monitor your environment, no monitoring dashboards or usage metrics are available to customers as a product offering.
 
 ## Shared responsibility
 
