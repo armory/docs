@@ -7,9 +7,9 @@ type: docs
 description: An overview of the benefits that come with using Armory Enterprise Managed Services.
 ---
 
-Focus on building apps and not managing Spinnaker™. Armory experts take over Spinnaker operations, upgrades and break-fix efforts in your environment.
+Focus on building apps and not managing Spinnaker™. Armory experts take over Spinnaker operations, upgrades, and break-fix efforts in your environment.
 
-With Armory experts managing Spinnaker using our proven methodology and best practices, your Engineering team is free to focus on enabling the digital transformation required to move the business forward. This gives you a competitive edge by accelerating innovation through the delivery of new applications and services that are faster and better than those of your competitors.
+With Armory experts managing Spinnaker using proven methodology and best practices, your Engineering team is free to focus on enabling the digital transformation required to move the business forward. This gives you a competitive edge by accelerating innovation through the delivery of new applications and services that are faster and better than those of your competitors.
 
 ## What is included
 
@@ -17,9 +17,9 @@ Here is everything included in the Armory Managed Services offering.
 
 ### Armory Enterprise for Spinnaker
 
-Armory Site Reliability Engineers (SREs) install, configure, and operate Armory's Enterprise distribution of Spinnaker in the customer's cloud environment. Currently, Armory supports running Spinnaker in AWS and GCP. Armory will support any integrations listed on the [Armory Enterprise Compatibility Matrix](https://docs.armory.io/docs/feature-status/armory-enterprise-matrix/).
+Armory Site Reliability Engineers (SREs) install, configure, and operate Armory's Enterprise distribution of Spinnaker in the customer's cloud environment. Currently, Armory supports running Spinnaker in AWS and GCP. Armory supports any integrations listed on the [Armory Enterprise Compatibility Matrix](https://docs.armory.io/docs/feature-status/armory-enterprise-matrix/).
 
-Armory provides two environments for you to use: 
+Armory provides two environments for you to use:
 
 - **Red Zone**: Red Zone Spinnaker is not monitored and not production grade. It is used by Armory to prove out upgrades and new configurations. It can also be used by the customer as a test bed to try out new concepts. It should not be used to run any pipelines that are critical to your business.
 - **Green Zone:** Green Zone Spinnaker is monitored and has uptime guarantees. It is used to run any applications and pipelines that are critical to your business.
@@ -28,12 +28,12 @@ Armory provides two environments for you to use:
 
 Armory SREs take care of migrations from any existing Spinnaker instance. Armory's Managed offering uses Operator, and the team can migrate from other configuration/deploy tools, such as Halyard. Armory offers two types of migration:
 
-- **Rolling**: Armory sets up a new Spinnaker alongside your existing Spinnaker. The customer can migrate at will as teams are ready.
-- **Scheduled**: Armory sets up your new Spinnaker at a temporary location and migrates your configurations. There will be a cutover date where the following occurs:
+- **At-will migration**: Armory sets up a new Spinnaker alongside your existing Spinnaker. The customer can migrate as teams are ready.
+- **Scheduled migration**: Armory sets up your new Spinnaker at a temporary location and migrates your configurations. There is a scheduled cutover date where the following occurs:
 
-  - Your current Spinnaker instance will be disabled, 
+  - The current Spinnaker instance gets disabled
   - A final migration of configurations and data
-  - A CNAME swap to the new Spinnaker.
+  - A CNAME swap to the new Spinnaker
 
 ### Upgrades and patches
 
@@ -65,7 +65,7 @@ Armory operated resources are limited to resources that are necessary for core S
 
 ### Application and user onboarding
 
-The customer is responsible for building out the applications and pipelines needed to support their use cases. This includes troubleshooting pipeline executions and the third-party software that Spinnaker integrates will. Our SREs provide support for any Spinnaker configuration changes needed.
+The customer is responsible for building out the applications and pipelines needed to support their use cases. This includes troubleshooting pipeline executions and the third-party software that Spinnaker integrates with. Armory SREs provide support for any Spinnaker configuration changes needed.
 
 The customer is also responsible for onboarding users to the system. Armory SREs can help setup integrations with any authentication and authorization system listed in the [Armory Enterprise Compatibility Matrix](https://docs.armory.io/docs/feature-status/armory-enterprise-matrix/), such as Okta or LDAP.
 
@@ -90,7 +90,7 @@ Armory monitors Spinnaker 24x7 using a own monitoring system and proactively res
 | **Priority** | **Response SLA** | **Definition** |
 | --- | --- | --- |
 | P-0 | 1 hour 24x7 | The Armory production instance is severely impacted and no workaround exist. Includes security issues. |
-| P-1 | 1 business day | In production clusters: A non-critical feature is not working correctly and is blocking partial use of the platform, while other functionality is working correctly. In non-production clusters: An issue that blocks the promotion of changes to a production cluster |
+| P-1 | 1 business day | **In production clusters:** A non-critical feature is not working correctly and is blocking partial use of the platform, while other functionality is working correctly. **In non-production clusters:** An issue that blocks the promotion of changes to a production cluster |
 | P-2 | 4 business days | Any issue affecting non-production clusters which is noncritical and non-time-sensitive |
 
 The SLI and SLO described in the [Managed Customer: Spinnaker monitoring metrics](https://go.armory.io/managed-spinnaker-monitoring-metrics)  document help Armory measure the state of the system and are the foundation for the SLAs above.
@@ -105,17 +105,17 @@ Due to the shared responsibility model, there are cases where Armory cannot guar
 
 As part of Armory’s Managed Spinnaker offering, Armory SREs proactively monitor your Spinnaker instances. Additionally, the designated Technical Account Manager provides ongoing touch points around support issues, feature requests, and roadmap items while also holding quarterly service level reviews. You can expect responses based on the response time SLAs described here.
 
-- For cases where issues were not detected by Armory or new feature requests, support tickets should be filed through the [Armory Support Portal](http://go.armory.io/support). They will be triaged and handled based on priority and SLA as Support Cases. All communication about the issue will occur in comments within the support ticket.
-    - In some cases, Armory engineers may reach out through Slack to uncover more information about the issue. Armory updates the support ticket after the realtime chat is complete.
-- For cases where an issue is discovered by Armory, Armory will open a support ticket on your behalf in the Armory Support Portal. You will be notified through email and Slack. All communication about the ticket will occur in comments within the support ticket.
-    - In cases where Armory discovers a critical issue, Armory SREs will reach out and send updates through Slack. Armory updates the support ticket after the real-time chat is completed.
+- For cases where issues were not detected by Armory or new feature requests, support tickets should be filed through the [Armory Support Portal](http://go.armory.io/support). They are be triaged and handled based on priority and SLA as Support Cases. All communication about the issue occurs in comments within the support ticket.
+    - In some cases, Armory engineers may reach out through Slack to uncover more information about the issue. Armory updates the support ticket after the real-time chat is complete.
+- For cases where an issue is discovered by Armory, Armory opens a support ticket on your behalf in the Armory Support Portal. You will be notified through email and Slack. All communication about the ticket occurs in comments within the support ticket.
+    - In cases where Armory discovers a critical issue, Armory SREs reach out and send updates through Slack. Armory updates the support ticket after the real-time chat is completed.
 
 ## Managed Spinnaker configuration changes
 
 Depending on the customer's level of comfort, Spinnaker configuration changes can be handled in two ways:
 
 1. Change requests filed through the [Armory Support Portal](http://go.armory.io/support) and applied by Armory SREs to dev and production environments. All communication about changes occurs in comments within the support ticket.
-    - In some cases, Armory SREs will reach out through Slack to get more information about the desired configuration state. We will update the support ticket after the real-time chat is completed.
+    - In some cases, Armory SREs reach out through Slack to get more information about the desired configuration state. Armory updates the support ticket after the real-time chat is completed.
 2. Because all Spinnaker configurations are stored in source control, customers can initiate a configuration change themselves. The changes get reviewed by Armory SREs and automatically applied to dev and then production clusters.
 
 ## Auditing Spinnaker events
@@ -126,6 +126,6 @@ Events, metrics and logging can be acquired by the customer for auditing purpose
 
 ## Architecture
 
-Armory Enterprise Spinnaker runs in the customer's cloud. To successfully manage your environment, there are a few shared services that will be accessed by both Armory and the customer's VPC. All network traffic is encrypted.
+Armory Enterprise Spinnaker runs in the customer's cloud. To successfully manage your environment, there are a few shared services that are be accessed by both Armory and the customer's VPC. All network traffic is encrypted.
 
 {{< figure src="/images/managed/managed-architecture.png">}}
