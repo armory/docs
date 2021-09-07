@@ -1,0 +1,65 @@
+<div class="section-index">
+  {{ $pages := (where .Site.Pages "Section" .Section).ByParam "version" }}
+  <!-- $pagesReverse holds the full list of all plugin version pages, ordered by version (desc) -->
+  {{ $pagesReverse := $pages.Reverse }}
+  {{ $parent := .Page }}
+
+  <!-- List of plugin versions grouped by spinnaker release -->
+
+  <!-- Latest spinnaker release -->
+  {{ $.Param "kubesvc-plugin.agent_plug_latest_spin" }}
+  <ul>
+    <!-- Split version numbers into an array -->
+    {{ $prevVersionParts := split ($.Param "kubesvc-plugin.agent_plug_latest-1") "." }}
+    <!-- Normalize version to two digit zero padding parts -->
+    {{ $prevVersionPadded := printf "%02d.%02d.%02d" (int (index $prevVersionParts 0)) (int (index $prevVersionParts 1)) (int (index $prevVersionParts 2)) }}
+    <!-- Filter the full list of pages by desired version range -->
+    {{ $pagesByVersion := where $pagesReverse ".Params.version" ">" $prevVersionPadded }}
+    {{ range $pagesByVersion }}
+      {{ if eq .Parent $parent }}
+      <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+      {{end}}
+
+      {{end}}
+      <br>
+  </ul>
+
+  <!-- Spinnaker release minus 1 -->
+  {{ $.Param "kubesvc-plugin.agent_plug_latest_spin-1" }}
+  <ul>
+    <!-- Split version numbers into an array -->
+    {{ $prevVersionParts = split ($.Param "kubesvc-plugin.agent_plug_latest-2") "." }}
+    {{ $currentVersionParts := split ($.Param "kubesvc-plugin.agent_plug_latest-1") "." }}
+    <!-- Normalize version to two digit zero padding parts -->
+    {{ $prevVersionPadded := printf "%02d.%02d.%02d" (int (index $prevVersionParts 0)) (int (index $prevVersionParts 1)) (int (index $prevVersionParts 2)) }}
+    {{ $currentVersionPadded := printf "%02d.%02d.%02d" (int (index $currentVersionParts 0)) (int (index $currentVersionParts 1)) (int (index $currentVersionParts 2)) }}
+    <!-- Filter the full list of pages by desired version range -->
+    {{ $highPages := where $pagesReverse ".Params.version" ">" $prevVersionPadded }}
+    {{ $lowPages := where $pagesReverse ".Params.version" "<=" $currentVersionPadded }}
+    {{ range $highPages | intersect $lowPages }}
+      {{ if eq .Parent $parent }}
+      <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+      {{end}}
+
+      {{end}}
+      <br>
+  </ul>
+
+  <!-- Spinnaker release minus 2 -->
+  {{ $.Param "kubesvc-plugin.agent_plug_latest_spin-2" }}
+  <ul>
+    <!-- Split version numbers into an array -->
+    {{ $currentVersionParts := split ($.Param "kubesvc-plugin.agent_plug_latest-2") "." }}
+    <!-- Normalize version to two digit zero padding parts -->
+    {{ $currentVersionPadded := printf "%02d.%02d.%02d" (int (index $currentVersionParts 0)) (int (index $currentVersionParts 1)) (int (index $currentVersionParts 2)) }}
+    <!-- Filter the full list of pages by desired version range -->
+    {{ $pagesByVersion := where $pagesReverse ".Params.version" "<=" $currentVersionPadded }}
+    {{ range $pagesByVersion }}
+      {{ if eq .Parent $parent }}
+      <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+      {{end}}
+
+      {{end}}
+      <br>
+  </ul>
+</div>
