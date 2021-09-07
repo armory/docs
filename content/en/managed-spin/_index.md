@@ -40,9 +40,9 @@ Armory SREs routinely upgrade and patch Spinnaker and all related services. Comm
 
 ### Supporting services
 
-Armory SREs can also install, configure, and operate all services needed to run Spinnaker in your cloud account, including the Kubernetes cluster, persistence stores, network configurations, load balancers, security groups, and anything else needed.
+Armory SREs can install, configure, and operate all services needed to run Spinnaker in your cloud environment, including the Kubernetes cluster, persistent storage, network configurations, load balancers, security groups, and anything else needed.
 
-This is limited to resources for core Spinnaker operations. Armory does not maintain or support batch/run jobs clusters, WAFs, IDS/IPS or other similar settings. Resources like these are the customer's responsibility.
+Note that this is limited to resources needed for core Spinnaker operations. Armory does not maintain or support batch/run jobs clusters, WAFs, IDS/IPS or other similar settings. Resources like these are the customer's responsibility.
 
 ### Monitoring and alerting
 
@@ -68,10 +68,6 @@ The customer is responsible for building out the applications and pipelines need
 
 The customer is also responsible for onboarding users to the system. Armory SREs can help setup integrations with any authentication and authorization system listed in the [Armory Enterprise Compatibility Matrix](https://docs.armory.io/docs/feature-status/armory-enterprise-matrix/), such as Okta or LDAP.
 
-### Spinnaker Training
-
-- [ ] need to add information about Spinnaker Training here.
-
 ### Third-party software support
 
 Armory SREs are not able to support third-party software solutions or integrations. They can provide logs and metrics on request that are related to Spinnaker.
@@ -88,7 +84,7 @@ There are minimum requirements, but Armory can own up to as much of the managing
 
 ## Monitoring and incident response
 
-Armory will monitor Spinnaker 24x7 using its own monitoring system and proactively respond to any detected issues. The following table describes Armory’s response times for each type of incident. The response time SLAs are the same for issues created by the customer or by Armory Engineers during proactive monitoring.
+Armory monitors Spinnaker 24x7 using a own monitoring system and proactively responds to any detected issues. The following table describes Armory’s response times for each type of incident. The response time SLAs are the same for issues created by the customer or by Armory Engineers during proactive monitoring.
 
 | **Priority** | **Response SLA** | **Definition** |
 | --- | --- | --- |
@@ -102,35 +98,33 @@ The SLI and SLO described in the [Managed Customer: Spinnaker monitoring metrics
 
 Armory Managed Services guarantees **99.9%** uptime. This is measured through synthetic checks and does not included any scheduled maintenance windows coordinated in advance with the customer.
 
-Due to the shared responsibility model, there are cases where Armory cannot guarantee uptimes. If there is a failure to provide adequate compute resources or timely response to outages in supporting services that are not owned by Armory's ability to guarantee uptime will be beyond our control.
+Due to the shared responsibility model, there are cases where Armory cannot guarantee uptimes. If there is a failure to provide adequate compute resources or timely response to outages in supporting services that are not owned by Armory, Armory's ability to maintain uptime promises cannot be guaranteed.
 
 ## Support and escalation process
 
-As part of Armory’s Managed Spinnaker offering, Armory Engineers proactively monitor your Spinnaker instances. Additionally, the designated Technical Account Manager provides ongoing touch points around support issues, feature requests, and roadmap items while also holding quarterly service level reviews. You can expect responses based on the response time SLAs described here.
+As part of Armory’s Managed Spinnaker offering, Armory SREs proactively monitor your Spinnaker instances. Additionally, the designated Technical Account Manager provides ongoing touch points around support issues, feature requests, and roadmap items while also holding quarterly service level reviews. You can expect responses based on the response time SLAs described here.
 
-- For cases where issues were not detected by Armory or new feature requests, support tickets should be filed through the [Armory support portal](http://go.armory.io/support). They will be triaged and handled based on priority and SLA as Support Cases. All communication about the issue will occur in comments within the support ticket.
-    - In some cases, Armory engineers may reach out via Slack to uncover more information about the issue. Armory updates the support ticket after the realtime chat is complete.
-- For cases where an issue is discovered by Armory, Armory will open a support ticket on your behalf within Armory support portal. You will be notified via email and Slack. All communication about the ticket will occur in comments within the support ticket.
-    - In cases where Armory discovers a critical issue, Armory engineers will reach out and send updates via Slack. Armory updates the support ticket after the real-time chat is completed.
+- For cases where issues were not detected by Armory or new feature requests, support tickets should be filed through the [Armory Support Portal](http://go.armory.io/support). They will be triaged and handled based on priority and SLA as Support Cases. All communication about the issue will occur in comments within the support ticket.
+    - In some cases, Armory engineers may reach out through Slack to uncover more information about the issue. Armory updates the support ticket after the realtime chat is complete.
+- For cases where an issue is discovered by Armory, Armory will open a support ticket on your behalf in the Armory Support Portal. You will be notified through email and Slack. All communication about the ticket will occur in comments within the support ticket.
+    - In cases where Armory discovers a critical issue, Armory SREs will reach out and send updates through Slack. Armory updates the support ticket after the real-time chat is completed.
 
-[Managed Team - Create ServiceNow Case for P0 Qualified Alerts](https://armory.slab.com/posts/kkin82f7)
-
-# Managed Spinnaker Configuration Changes
+## Managed Spinnaker configuration changes
 
 Depending on the customer's level of comfort, Spinnaker configuration changes can be handled in two ways:
 
-1. Change request filed through the [Armory support portal](http://go.armory.io/support) and applied by Armory Engineer to dev and production environments. All communication about the issue will occur in comments within the support ticket.
-    - In some cases, Armory Engineers will reach out via Slack to get more information about the desired configuration state. We will update the support ticket after the real-time chat is completed.
-1. Because all Spinnaker configurations are stored in source control, customers can initiate a configuration change themselves. The changes get reviewed by Armory Engineers and automatically applied to dev and then production clusters.
+1. Change requests filed through the [Armory Support Portal](http://go.armory.io/support) and applied by Armory SREs to dev and production environments. All communication about changes occurs in comments within the support ticket.
+    - In some cases, Armory SREs will reach out through Slack to get more information about the desired configuration state. We will update the support ticket after the real-time chat is completed.
+2. Because all Spinnaker configurations are stored in source control, customers can initiate a configuration change themselves. The changes get reviewed by Armory SREs and automatically applied to dev and then production clusters.
 
-# Auditing Spinnaker Events
+## Auditing Spinnaker events
 
-Monitoring and logging can be configured to emit key metrics and logs to the customers’ preferred monitoring and centralized logging system for auditing purposes. You need to ensure Spinnaker can reach these services and file a change request in the Armory support portal with access details to get this option enabled.
+Monitoring and logging can be configured to emit key metrics and logs to the customer's preferred monitoring and centralized logging system for auditing purposes. You need to ensure Spinnaker can reach these services and file a change request in the Armory Support Portal with access details to get this option enabled.
 
-Events, Metrics and logging can be acquired by the customer for auditing purposes. Implementation of this is customer specific. We expose Prometheus for metrics, webhooks for event notifications and logs are in standard Java log formats.
+Events, metrics and logging can be acquired by the customer for auditing purposes. Implementation of this is customer specific. Armory exposes Prometheus for metrics and webhooks for event notifications, and logs are in standard Java log formats.
 
-# Architecture
+## Architecture
 
 Armory Enterprise Spinnaker runs in the customer's cloud. To successfully manage your environment, there are a few shared services that will be accessed by both Armory and the customer's VPC. All network traffic is encrypted.
 
-![](https://static.slab.com/prod/uploads/n4300ziu/posts/images/6PL9nfRUUXlgYveqWgVr9N6v.png)
+{{< figure src="/images/managed/managed-architecture.png">}}
