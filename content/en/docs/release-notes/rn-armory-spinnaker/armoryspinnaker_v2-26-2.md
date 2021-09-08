@@ -39,7 +39,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
-{{< include "known-issues/ki-lambda-ui-caching.md" >}}
 
 ## Highlighted updates
 
@@ -61,9 +60,11 @@ Resolved an issue where the subnets and server groups were not being cached.
 
 ### AWS Lambda 
 
-> These improvements require version 1.0.8 of the AWS Lambda Plugin in addition to Armory Enterprise 2.24.3.
+> These improvements require version 1.0.8 of the AWS Lambda Plugin in addition to Armory Enterprise 2.26.2.
+
 This release includes the following new features and improvements for the Lambda provider:
 
+* Fixed an issue where a [UI bug](https://github.com/spinnaker/spinnaker/issues/6271) related to the caching agent prevented Lambda functions from being displayed in the UI when there are no other clusters associated with the Application.
 * Improved cache performance including fixes to cache issues found in 2.24.2
 * New configuration properties that give you greater control over how Armory Enterprise behaves when connection or cache issues occur.
 
