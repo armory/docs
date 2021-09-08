@@ -7,6 +7,8 @@ aliases:
   - /docs/spinnaker-install-admin-guides/dynamic-accounts/
 description: >
   Use Spinnaker's External Account Configuration feature to manage Kubernetes accounts.
+draft: true
+
 ---
 
 ## Overview of external account configuration
