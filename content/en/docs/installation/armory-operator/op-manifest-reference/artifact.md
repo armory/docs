@@ -90,7 +90,7 @@ github:
  - `password`: GitHub password. Supports encrypted value.
  - `usernamePasswordFile`: File containing "username:password" to use for GitHub authentication. File needs to be present on the machine running Spinnaker. Supports encrypted file.
  - `token`: GitHub token. Supports encrypted value.
- - `tokenFile`: File containing a GitHub authentication token. File needs to be present on the machine running Spinnaker. Supports encrypted file.
+ - `tokenFile`: File containing a GitHub authentication token. File needs to be present on the machine running Spinnaker. Supports encrypted file. This file can be dynamically updated because it is automatically reloaded each time Armory Enterprise makes a request.
 
 Note: supply `username` and `password` OR `usernamePasswordFile` or `token` or `tokenFile`
 
@@ -112,7 +112,7 @@ gitlab:
 ### Account parameters
 
  - `token`: Gitlab token. Supports encrypted value.
- - `tokenFile`: File containing a Gitlab authentication token. File needs to be present on the machine running Spinnaker. Supports encrypted file.
+ - `tokenFile`: File containing a Gitlab authentication token. File needs to be present on the machine running Spinnaker. Supports encrypted file. This file can be dynamically updated because it is automatically reloaded each time Armory Enterprise makes a request.
 
 Note: supply `token` or `tokenFile`
 
@@ -144,7 +144,7 @@ gitrepo:
 - `password`: Git password. Supports encrypted value.
 - `usernamePasswordFile`: File containing "username:password" to use for Git authentication. File needs to be present on the machine running Spinnaker. Supports encrypted file.
 - `token`:  Git token. Supports encrypted value.
-- `tokenFile`: File containing a Git authentication token. File needs to be present on the machine running Spinnaker. Supports encrypted file.
+- `tokenFile`: File containing a Git authentication token. File needs to be present on the machine running Spinnaker. Supports encrypted file. This file can be dynamically updated because it is automatically reloaded each time Armory Enterprise makes a request.
 - `sshPrivateKeyFilePath`: Path to the ssh private key in PEM format. File needs to be present on the machine running Spinnaker. Supports encrypted file.
 - `sshPrivateKeyPassphrase`: Passphrase for encrypted private key. Supports encrypted value.
 - `sshKnownHostsFilePath`: File containing the known and trusted SSH hosts. File needs to be present on the machine running Spinnaker. Supports encrypted file.
