@@ -1,6 +1,8 @@
 ---
 title: Troubleshoot the Armory Agent Service and Plugin
 linkTitle: Troubleshoot
+tags: ["Kubernetes", "Spinnaker", "Troubleshooting"]
+categories: ["Agent"]
 weight: 80
 description: >
   Successful installation and startup messages, common errors, tips, and gRPC endpoint testing.

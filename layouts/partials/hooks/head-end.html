@@ -1,3 +1,12 @@
+{{ if .Params.tags }}
+{{ $pageTags := (delimit .Params.tags ", ") }}
+<meta class="elastic" name="tags" content="{{ $pageTags }}">
+{{ end }}
+{{ if .Params.categories }}
+{{ $pageCategories := (delimit .Params.categories ", ") }}
+<meta class="elastic" name="categories" content="{{ $pageCategories }}">
+{{ end }}
+
 <script type="text/javascript">
   (function(){
     window.ldfdr = window.ldfdr || {};

@@ -5,7 +5,8 @@ aliases:
   - /docs/spinnaker-install-admin-guides/configure-halyard/
 description: >
   Configure Armory-extended Halyard profiles and storage.
-
+categories: ["install", "config"]
+tags: ["Halyard"]
 ---
 
 ## Overview of Armory Halyard

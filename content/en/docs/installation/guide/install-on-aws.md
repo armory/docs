@@ -13,6 +13,8 @@ aliases:
   - /spinnaker-install-admin-guides/install-on-aws/
 description: >
   Use Armory-extended Halyard to deploy Armory Enterprise in an AWS Kubernetes cluster or in an on-prem Kubernetes cluster with access to Amazon Secure Storage Service (S3).
+categories: ["install"]
+tags: ["AWS", "Halyard", "EKS"]
 ---
 
 {{< include "armory-license.md" >}}
