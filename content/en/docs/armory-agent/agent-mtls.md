@@ -6,8 +6,6 @@ description: >
   Configure mTLS authentication in the Armory Agent plugin and service.
 ---
 
-{{< include "early-access-feature.html" >}}
-
 ## {{% heading "prereq" %}}
 
 You need the following to configure mTLS:

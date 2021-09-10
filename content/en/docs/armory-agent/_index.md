@@ -9,7 +9,6 @@ description: >
 ![Proprietary](/images/proprietary.svg)
 
 ## What is the Armory Agent?
-{{< include "early-access-feature.html" >}}
 
 The Armory Agent for Kubernetes consists of a lightweight Agent service that you deploy on Kubernetes and a plugin that you install into Clouddriver. 
 

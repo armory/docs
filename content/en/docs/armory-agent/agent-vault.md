@@ -7,8 +7,6 @@ description: >
 ---
 ![Proprietary](/images/proprietary.svg)
 
-{{< include "early-access-feature.html" >}}
-
 ## {{% heading "prereq" %}}
 
 * This guide is for experienced Kubernetes and Armory Enterprise users.

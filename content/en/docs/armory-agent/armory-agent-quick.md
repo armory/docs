@@ -7,8 +7,6 @@ weight: 30
 ---
 ![Proprietary](/images/proprietary.svg)
 
-{{< include "early-access-feature.html" >}}
-
 >This installation guide is designed for installing the Agent in a test environment. It does not include [mTLS configuration]({{< ref "agent-mtls" >}}), so the Agent service and plugin do not communicate securely.
 
 ## {{% heading "prereq" %}}

@@ -7,8 +7,6 @@ description: >
 ---
 ![Proprietary](/images/proprietary.svg)
 
-{{< include "early-access-feature.html" >}}
-
 ## Where to configure the Agent
 
 On Kubernetes, configure the Agent using a `ConfigMap`. See the Quickstart's [Configure the Agent]({{< ref "armory-agent-quick#configure-the-agent" >}}) section for an example.
