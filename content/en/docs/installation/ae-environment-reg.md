@@ -4,6 +4,7 @@ linkTitle: Registration
 description: Register your Armory Enterprise instance so that it can communicate with Armory services. 
 exclude_search: true
 toc_hide: true
+hide_summary: true
 aliases:
   - /docs/installation/deployment-reg/
 ---
