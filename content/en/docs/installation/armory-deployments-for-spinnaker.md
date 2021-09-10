@@ -2,6 +2,8 @@
 title: Get Started with Armory Deployments for Spinnaker 
 description: Use this self-service guide to install the Armory Deployments for Spinnaker Plugin, which enables new Spinnaker stages that unlock the features of Armory cloud services.
 exclude_search: true
+hide_toc: true
+hide_summary: true
 ---
 
 {{< include "early-access-feature.html" >}}
