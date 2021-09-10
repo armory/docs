@@ -2,7 +2,7 @@
 title: "Guides for Installing Armory Enterprise for Spinnaker"
 linkTitle: "Guides"
 description: >
-   This section details deploying Armory Enterprise for Spinnaker in Kubernetes, OpenShift, Azure, Google Kubernetes Engine (GKE), and Amazon Web Sevices (AWS), including from the AWS or RedHat marketplaces. Instructions cover using Halyard, the Armory Operator, or the open source Operator for Kubernetes in local, cloud, and air-gapped environments.
+   This section details deploying Armory Enterprise for Spinnaker in Kubernetes, Azure, Google Kubernetes Engine (GKE), and Amazon Web Sevices (AWS), including from the AWS or RedHat marketplaces. Instructions cover using Halyard, the Armory Operator, or the open source Operator for Kubernetes in local, cloud, and air-gapped environments.
 weight: 5
 ---
 

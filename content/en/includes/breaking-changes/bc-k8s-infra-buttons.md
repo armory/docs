@@ -16,7 +16,9 @@ Whether or not these actions are available in the UI is controlled by the follow
 window.spinnakerSettings.kubernetesAdHocInfraWritesEnabled = <boolean>;
 ```
 
->If you use the Policy Engine to control which user roles can see the UI actions and be able to use them, you must set this property to `true`. Setting the value to `false` hides the buttons for all users regardless of whether you grant specific users access to the buttons through the Policy Engine.
+This setting does not completely prevent users from modifying Kubernetes infrastructure through Armory Enterprise. To do so, you must use the Policy Engine and write policies using the `spinnaker.http.authz` package.
+
+If you use the Policy Engine to control which user roles can see the UI actions and be able to use them, you must set this property to `true`. Setting the value to `false` hides the buttons for all users regardless of whether you grant specific users access to the buttons through the Policy Engine.
 
 This property affects Kubernetes infrastructure only. The behavior is slightly different depending on if the application has only the Kubernetes provider configured or Kubernetes and other providers, such as AWS.
 
