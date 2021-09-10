@@ -28,7 +28,7 @@ Note that Armory does not produce marketplace specific images that can be used b
 The Kubernetes cluster itself must meet the following requirements:
 
 * You have administrator rights to install the Custom Resource Definition (CRD) for the Armory Operator.
-* If you are managing your own Kubernetes cluster (**not** EKS or OpenShift), be sure:
+* If you are managing your own Kubernetes cluster (**not** EKS), be sure:
    * You have enabled admission controllers in Kubernetes (`-enable-admission-plugins`).
    * You have `ValidatingAdmissionWebhook` enabled in `kube-apiserver`. Alternatively, you can pass the `--disable-admission-controller` parameter to the to the `deployment.yaml` file that deploys the Operator.
 
