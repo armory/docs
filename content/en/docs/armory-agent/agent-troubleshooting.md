@@ -106,7 +106,7 @@ On a normal startup, the Agent will show the following messages:
 
 ```
 # This shows where the configuration is read. "no such file" is expected.
-time="2020-10-02T22:22:14Z" level=info msg="Config file /opt/spinnaker/config/armory-agent-local.yaml not present; falling back to default settings" error="stat /opt/spinnaker/config/armory-agent-local.yaml: no such file or directory"
+time="2020-10-02T22:22:14Z" level=info msg="Config file /opt/armory/config/armory-agent-local.yaml not present; falling back to default settings" error="stat /opt/armory/config/armory-agent-local.yaml: no such file or directory"
 ...
 
 # Where is the Agent connecting to?

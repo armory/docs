@@ -1,5 +1,5 @@
 ---
-title: "Armory Agent for Spinnaker™"
+title: "Armory Agent for Kubernetes"
 weight: 20
 no_list: true
 description: >
@@ -10,11 +10,11 @@ description: >
 ## What is the Armory Agent?
 {{< include "early-access-feature.html" >}}
 
-The Armory Agent for Spinnaker consists of a lightweight Agent service that you deploy on Kubernetes and a plugin that you install into Clouddriver. 
+The Armory Agent for Kubernetes consists of a lightweight Agent service that you deploy on Kubernetes and a plugin that you install into Clouddriver. 
 
 The Armory Agent is compatible with Armory Enterprise and open source Spinnaker.
 
-### Advantages of using the Armory Agent for Spinnaker
+### Advantages of using the Armory Agent for Kubernetes
 
 * Scalability
   * Caching and deployment scales to thousands of Kubernetes clusters for your largest applications.
@@ -61,7 +61,7 @@ In this mode, the Agent is installed as a new Spinnaker service (`spin-armory-ag
 
 ![Spinnaker service mode](/images/armory-agent/in-cluster-mode.png)
 
-If you provision clusters automatically, the Agent service can dynamically reload accounts when `armory-agent.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/spinnaker/config/armory-agent-local.yaml`.  The Agent service reflects `ConfigMap` changes within seconds after [etcd](https://etcd.io/) sync.
+If you provision clusters automatically, the Agent service can dynamically reload accounts when `armory-agent.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/armory/config/armory-agent-local.yaml`.  The Agent service reflects `ConfigMap` changes within seconds after [etcd](https://etcd.io/) sync.
 
 
 ## Communication with Clouddriver

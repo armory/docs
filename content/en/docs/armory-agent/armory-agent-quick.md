@@ -1,5 +1,5 @@
 ---
-title: "Armory Agent for Spinnaker™ Installation"
+title: "Armory Agent for Kubernetes Installation"
 linkTitle: "Installation"
 description: >
   Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
@@ -562,7 +562,7 @@ spec:
     spec:
       serviceAccount: spin-sa
       containers:
-      - image: armory/kubesvc:<version> # must be compatible with your Armory Enterprise version
+      - image: armory/agent-k8s:<version> # must be compatible with your Armory Enterprise version
         imagePullPolicy: IfNotPresent
         name: armory-agent
         ports:
@@ -583,7 +583,7 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /opt/spinnaker/config
+        - mountPath: /opt/armory/config
           name: volume-armory-agent-config
         # - mountPath: /kubeconfigfiles
         #   name: volume-armory-agent-kubeconfigs

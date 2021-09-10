@@ -66,7 +66,7 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/agent-inject-secret-armory-agent-local.yml: ""
-        vault.hashicorp.com/secret-volume-path-armory-agent-local.yml: '/opt/spinnaker/config'
+        vault.hashicorp.com/secret-volume-path-armory-agent-local.yml: '/opt/armory/config'
         vault.hashicorp.com/agent-inject-file-armory-agent-local.yml: 'armory-agent-local.yml'
         vault.hashicorp.com/agent-inject-template-armory-agent-local.yml: |
           kubernetes:
@@ -99,7 +99,7 @@ spec:
           volumeMounts:
             - $patch: delete
               name: volume-armory-agent-config
-              mountPath: /opt/spinnaker/config
+              mountPath: /opt/armory/config
             - $patch: delete
               name: volume-armory-agent-kubeconfigs
               mounthPath:
