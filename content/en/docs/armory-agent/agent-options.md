@@ -31,7 +31,7 @@ Behavior when reading Kubernetes account configuration from multiple sources:
 
 ### Migrate accounts from Clouddriver to Agent
 
-Copy the account definition from its original source, such as Clouddriver, to Agent's configuration. Depending on how you installed Agent, this configuration could be in the `kubesvc.yml` data section of a `ConfigMap` or in the `kubesvc.yml` file in the Agent pod.
+Copy the account definition from its original source, such as Clouddriver, to Agent's configuration. Depending on how you installed Agent, this configuration could be in the `armory-agent.yml` data section of a `ConfigMap` or in the `armory-agent.yml` file in the Agent pod.
 
 Agent may not use all the properties you copy from the original source definition. Unused properties are ignored.
 
@@ -65,7 +65,7 @@ kubernetes:
 
 Follow these steps to migrate accounts from Agent to Clouddriver:
 
-* Delete the account definition from your Agent configuration. Depending on how you installed Agent, this configuration could be in the `kubesvc.yml` data section of a `ConfigMap` or in the `kubesvc.yml` file in the Agent pod.
+* Delete the account definition from your Agent configuration. Depending on how you installed Agent, this configuration could be in the `armory-agent.yml` data section of a `ConfigMap` or in the `armory-agent.yml` file in the Agent pod.
 * Add the account definition to the source that Clouddriver uses.
 
 ## Permissions format
@@ -89,7 +89,6 @@ kubernetes:
 The Agent needs access to its control plane (Spinnaker) as well to the various Kubernetes clusters it is configured to monitor. You can control which traffic should go through an HTTP proxy via the usual `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables.
 
 A common case is to force the connection back to the control plane via a proxy but bypass it for Kubernetes clusters. In that case, define the environment variable `HTTPS_PROXY=https://my.corporate.proxy` and use the `kubernetes.noProxy: true` setting to not have to maintain the list of Kubernetes hosts in `NO_PROXY`.
-
 
 ### Kubernetes authorization
 

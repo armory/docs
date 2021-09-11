@@ -49,7 +49,7 @@ Installation steps:
 Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to your new `armory-agent` directory.
 
 * Change the value for `name` if your Armory Enterprise service is called something other than "spinnaker".
-* Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix](#compatibility-matrix).
+* Update the `agent-kube-spinplug` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix](#compatibility-matrix).
 
 {{< prism lang="yaml" line="4, 39" >}}
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
@@ -89,18 +89,18 @@ spec:
               template:
                 spec:
                   initContainers:
-                  - name: kubesvc-plugin
-                    image: docker.io/armory/kubesvc-plugin:<version> # must be compatible with your Armory Enterprise version
+                  - name: armory-agent-plugin
+                    image: docker.io/armory/agent-k8s-spinplug:<version> # must be compatible with your Armory Enterprise version
                     volumeMounts:
                       - mountPath: /opt/plugin/target
-                        name: kubesvc-plugin-vol
+                        name: armory-agent-plugin-vol
                   containers:
                   - name: clouddriver
                     volumeMounts:
                       - mountPath: /opt/clouddriver/lib/plugins
-                        name: kubesvc-plugin-vol
+                        name: armory-agent-plugin-vol
                   volumes:
-                  - name: kubesvc-plugin-vol
+                  - name: armory-agent-plugin-vol
                     emptyDir: {}
 {{< /prism >}}
 
@@ -562,7 +562,7 @@ spec:
     spec:
       serviceAccount: spin-sa
       containers:
-      - image: armory/kubesvc:<version> # must be compatible with your Armory Enterprise version
+      - image: armory/agent-k8s:<version> # must be compatible with your Armory Enterprise version
         imagePullPolicy: IfNotPresent
         name: armory-agent
         ports:
@@ -583,7 +583,7 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /opt/spinnaker/config
+        - mountPath: /opt/armory/config
           name: volume-armory-agent-config
         # - mountPath: /kubeconfigfiles
         #   name: volume-armory-agent-kubeconfigs
