@@ -1,5 +1,5 @@
 ---
-title: Spinnaker Architecture
+title: Spinnaker™ Architecture
 linkTitle: "Architecture"
 weight: 10
 description: "The services that work together in Spinnaker™"
@@ -60,7 +60,7 @@ Rosco is the "bakery" service. It is a wrapper around Hashicorp's Packer command
 ## Armory Enterprise proprietary microservices
 ![Proprietary](/images/proprietary.svg)
 
-### Armory Agent for Kubernetes
+### Armory Agent for Spinnaker
 
 The [Armory Agent]({{< ref "armory-agent" >}}) is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to the Clouddriver service.
 

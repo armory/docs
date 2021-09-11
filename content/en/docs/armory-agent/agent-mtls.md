@@ -106,7 +106,7 @@ kubectl create secret generic <agent-secret-name> \
 
 Modify the Agent's deployment configuration in `deployment.yaml` to mount the certs.
 
->The paths that files are mounted to in the `deployment.yaml` file should always match the corresponding location in the `kubesvc.yaml` configuration file. For example, the `mountPath` of the CA cert in the `deployment.yaml` file must match the `clouddriver.tls.clientCertFile` location in `kubesvc.yaml`.
+>The paths that files are mounted to in the `deployment.yaml` file should always match the corresponding location in the `armory-agent.yaml` configuration file. For example, the `mountPath` of the CA cert in the `deployment.yaml` file must match the `clouddriver.tls.clientCertFile` location in `armory-agent.yaml`.
 
 {{< prism lang="yaml" line="5-19" >}}
 spec:
@@ -114,9 +114,9 @@ spec:
     spec:
       containers:
         volumeMounts:
-        - mountPath: <path> # for example, /opt/kubesvc/cert
+        - mountPath: <path> # for example, /opt/armory-agent/cert
           name: armoryagentcert
-        - mountPath: <path> # for example, /opt/kubesvc/cacert
+        - mountPath: <path> # for example, /opt/armory-agent/cacert
           name: clouddrivercacert         
       volumes:
       - name: armoryagentcert
@@ -137,7 +137,7 @@ See the [Agent Options]({{< ref "agent-options#options" >}}) for configuration d
 
 ### Configure the service
 
-Add the certificate information in `kubesvc.yaml`. Note that `clientCertFile` and `clientKeyFile` values must in `file:///filepath/filename` format.
+Add the certificate information in `armory-agent.yaml`. Note that `clientCertFile` and `clientKeyFile` values must in `file:///filepath/filename` format.
 
 {{< prism lang="yaml" line="7-8">}}
 clouddriver:
