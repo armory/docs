@@ -89,18 +89,18 @@ spec:
               template:
                 spec:
                   initContainers:
-                  - name: kubesvc-plugin
-                    image: docker.io/armory/agent-kube-spinplug:<version> # must be compatible with your Armory Enterprise version
+                  - name: armory-agent-plugin
+                    image: docker.io/armory/agent-k8s-spinplug:<version> # must be compatible with your Armory Enterprise version
                     volumeMounts:
                       - mountPath: /opt/plugin/target
-                        name: kubesvc-plugin-vol
+                        name: armory-agent-plugin-vol
                   containers:
                   - name: clouddriver
                     volumeMounts:
                       - mountPath: /opt/clouddriver/lib/plugins
-                        name: kubesvc-plugin-vol
+                        name: armory-agent-plugin-vol
                   volumes:
-                  - name: kubesvc-plugin-vol
+                  - name: armory-agent-plugin-vol
                     emptyDir: {}
 {{< /prism >}}
 
