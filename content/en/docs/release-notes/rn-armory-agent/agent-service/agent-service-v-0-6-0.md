@@ -6,5 +6,6 @@ version: 00.06.00
 ---
 
 ## Breaking changes
-* The configuration file used by agent was renamed from `kubesvc.{yml|yaml}` to `armory-agent.{yml|yaml}`, and its location was moved from `/opt/spinnaker/config` to `/opt/armory/config`. The old config file is still used in case `armory-agent.{yml|yaml}` is not present, but users are encouraged to move to the new naming convention.
-* Agent docker images are now published to `armory/agent-k8s` on dockerhub instead of `armory/kubesvc`.
+
+* The configuration file for Agent has been renamed from `kubesvc.{yml|yaml}` to `armory-agent.{yml|yaml}`. Additionally, its location changed from `/opt/spinnaker/config` to `/opt/armory/config`. The old config file is still used if `armory-agent.{yml|yaml}` is not present, but users are encouraged to move to the new naming convention.
+* Agent docker images are now published to `armory/agent-k8s` on Docker Hub. Previously, the images were published to `armory/kubesvc`.
