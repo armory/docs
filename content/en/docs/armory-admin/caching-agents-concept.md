@@ -59,4 +59,4 @@ When using a cache store like Redis that works across multiple Clouddriver insta
 ## Next steps
 
 * {{< linkWithTitle "caching-agents-config.md" >}}
-* If you are using Kubernetes and would like to use a different method for cataloging your Kubernetes infrastructure, see the [Armory Agent for Kubernetes]({{< ref "armory-agent" >}}). It's a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Clouddriver.
+* If you are using Kubernetes and would like to use a different method for cataloging your Kubernetes infrastructure, see the [Armory Agent for Spinnaker]({{< ref "armory-agent" >}}). It's a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Clouddriver.

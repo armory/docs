@@ -16,7 +16,7 @@ The Agent can use a `kubeconfig` file loaded as a Kubernetes secret when deployi
 The Agent should have `ClusterRole` authorization if you need to deploy pods across your cluster or `Role` authorization if you deploy pods only to a single namespace.
 
 * If Agent is running in [Agent Mode]({{< ref "armory-agent#agent-mode" >}}), then the `ClusterRole` or `Role` is the one attached to the Kubernetes Service Account mounted by the Agent pod.
-* If Agent is running in any of the other modes, then the `ClusterRole` or `Role` is the one the `kubeconfigFile` uses to interact with the target cluster. `kubeconfigFile` is configured in `kubesvc.yml` of the Agent pod.
+* If Agent is running in any of the other modes, then the `ClusterRole` or `Role` is the one the `kubeconfigFile` uses to interact with the target cluster. `kubeconfigFile` is configured in `armory-agent.yml` of the Agent pod.
 
 Example configuration for deploying `Pod` manifests:
 

@@ -16,12 +16,12 @@ description: >
 
 ## Authenticate Agent with Vault
 
-The Armory Agent is compatible with properties Armory Enterprise uses for [storing secrets in HashiCorp Vault]({{< ref "secrets-vault" >}}). You put configuration in `kubesvc.yaml` in the `secrets.vault.*` section. You refer to Vault secrets using the same syntax you use in configuring secrets for Armory Enterprise. See the [Referencing Secrets section]({{< ref "secrets-vault#referencing-secrets" >}}) for details.
+The Armory Agent is compatible with properties Armory Enterprise uses for [storing secrets in HashiCorp Vault]({{< ref "secrets-vault" >}}). You put configuration in `armory-agent.yaml` in the `secrets.vault.*` section. You refer to Vault secrets using the same syntax you use in configuring secrets for Armory Enterprise. See the [Referencing Secrets section]({{< ref "secrets-vault#referencing-secrets" >}}) for details.
 
 This is an example of what the [Kubernetes service account]({{< ref "secrets-vault#1-kubernetes-service-account-recommended" >}}) configuration looks like in Agent, using an `encryptedFile:` reference for `kubeconfigFile`:
 
 {{< prism line="5" lang="yaml" >}}
-# ./kubesvc.yaml
+# ./armory-agent.yaml
 kubernetes:
   accounts:
     - name: account01
@@ -59,16 +59,16 @@ Replace the configuration files and `kubeconfig` files from the {{< linkWithTitl
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spin-kubesvc
+  name: spin-armory-agent
 spec:
   template:
     metadata:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/agent-inject-secret-kubesvc-local.yml: ""
-        vault.hashicorp.com/secret-volume-path-kubesvc-local.yml: '/opt/spinnaker/config'
-        vault.hashicorp.com/agent-inject-file-kubesvc-local.yml: 'kubesvc-local.yml'
-        vault.hashicorp.com/agent-inject-template-kubesvc-local.yml: |
+        vault.hashicorp.com/agent-inject-secret-armory-agent-local.yml: ""
+        vault.hashicorp.com/secret-volume-path-armory-agent-local.yml: '/opt/armory/config'
+        vault.hashicorp.com/agent-inject-file-armory-agent-local.yml: 'armory-agent-local.yml'
+        vault.hashicorp.com/agent-inject-template-armory-agent-local.yml: |
           kubernetes:
             accounts:
           {{- with secret "secret/kubernetes" -}}
@@ -91,17 +91,17 @@ spec:
     spec:
       volumes:
         - $patch: delete
-          name: volume-kubesvc-config
+          name: volume-armory-agent-config
         - $patch: delete
-          name: volume-kubesvc-kubeconfigs
+          name: volume-armory-agent-kubeconfigs
       containers:
-        - name: kubesvc
+        - name: armory-agent
           volumeMounts:
             - $patch: delete
-              name: volume-kubesvc-config
-              mountPath: /opt/spinnaker/config
+              name: volume-armory-agent-config
+              mountPath: /opt/armory/config
             - $patch: delete
-              name: volume-kubesvc-kubeconfigs
+              name: volume-armory-agent-kubeconfigs
               mounthPath:
               mountPath: /kubeconfigfiles
 {{</ prism >}}
@@ -130,23 +130,23 @@ patchesStrategicMerge:
 
 ## Troubleshooting
 
-**Agent deployment is to appearing / There are no spin-kubesvc pods**
+**Agent deployment is to appearing / There are no spin-armory-agent pods**
 
  * Check the following commands for any error or warning message:
-   * `kubectl describe desploy spin-kubesvc | sed -ne '/^Events:$/,$p'`
-   * `kubectl describe rs -l cluster=spin-kubesvc | sed -ne '/^Events:$/,$p'`
+   * `kubectl describe desploy spin-armory-agent | sed -ne '/^Events:$/,$p'`
+   * `kubectl describe rs -l cluster=spin-armory-agent | sed -ne '/^Events:$/,$p'`
  * Error message: `Error creating: admission webhook "vault.hashicorp.com" denied the request: error validating agent configuration: no Vault role found`:
    * Make sure that the annotations [`vault.hashicorp.com/role` or `vault.hashicorp.com/agent-configmap`](https://www.vaultproject.io/docs/platform/k8s/injector/annotations#vault-hashicorp-com-role) are set and they correspond to your environment
 
 **Agent gets stuck in status Init**
 
- * Check for logs of the injector with the following command: `kubectl logs deploy/spin-kubesvc -c vault-agent-init`.
+ * Check for logs of the injector with the following command: `kubectl logs deploy/spin-armory-agent -c vault-agent-init`.
  * Error message: `[WARN] (view) vault.read(secret/kubernetes): no secret exists at secret/data/kubernetes (retry attempt 1 after "250ms")`:
    * Make sure to update the reference in `armory-agent-vault-patch.yaml` to a secret that is accessible in your environment.
 
 **Agent is in Crash loop back off**
 
- * Check for logs of kubesvc with the following command `kubectl logs deploy/spin-kubesvc -c kubesvc`.
+ * Check for logs of armory-agent with the following command `kubectl logs deploy/spin-armory-agent -c armory-agent`.
  * Error message: `Error registering vault config: vault configuration error`:
    * Make sure to update `armory-agent-vault-patch.yaml` to include the properties [`secrets.vault.*`]({{< ref "secrets-vault" >}}) that correspond to your environment.
  * Error message `failed to load configuration: error fetching key \"data\"`:
@@ -154,7 +154,7 @@ patchesStrategicMerge:
 
 **Agent registers with 0 servers**
 
- * Check for logs of vault injector with the following command: `kubectl logs -f deploy/spin-kubesvc -c vault-agent`.
+ * Check for logs of vault injector with the following command: `kubectl logs -f deploy/spin-armory-agent -c vault-agent`.
  * Error message `missing dependency: vault.read(secret/kubernetes)`:
    * Your vault KV engine is using version 1. Make sure the template in `armory-agent-vault-patch.yaml` is using `{{ range $k, $v := .Data }} `.
 
