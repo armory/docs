@@ -6,5 +6,5 @@ version: 00.05.27
 ---
 
 ## New features and improvements
-* You can now control the format of the logs that agent prints to the console. Available log formats are `text` (default) and `json`, and this is configurable under  of the config file.
+* You can now control the format of the logs that agent prints to the console. Available log formats are `text` (default) and `json`, and this is configurable under `logging.format` of the config file.
 
