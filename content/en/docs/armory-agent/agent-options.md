@@ -132,6 +132,4 @@ kubernetes:
 
 ## Configuration options
 
-> Note that all of the `clouddriver.` configs are not supported in v 0.6.0 and later. Use the equivalent `hub.` config.
-
 {{% csv-table "|" "/static/csv/agent/agent-config-options.csv" %}}
