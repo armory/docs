@@ -198,9 +198,10 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
 
    These are parameters are used to authenticate you to Armory Cloud services.
 
+
 4. Run one of the following Helm commands:
 
-   **Install with default configs in Agent mode:**
+   <details><summary><strong>Install with default configs in Agent mode</strong></summary>
    
    ```bash
    helm install armory-agent armory-charts/agent-k8s \
@@ -209,7 +210,7 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
    --namespace=<agent-namespace> # Namespace where you want to install the Agent.
    ```
 
-   Depending on your environment and usage, set one or more of the following parameters:
+   Depending on your environment and usage, include one or more of the following parameters:
 
    ```bash
    # Disable the connection to Armory Cloud 
@@ -228,7 +229,32 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
 
    # If you are pulling from a private registry
    --set imagePullSecrets=<secret>    
+
+   # Proxy settings
+   # Set this if your Armory Enterprise instance is behind a HTTP proxy.
+   --set env[0].name=”HTTP_PROXY”,env[0].value="<hostname>:<port>" 
+   
+   # Set this if your Armory Enterprise instance is behind a HTTPS proxy.
+   --set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>" 
+
+   # No proxy
+   --set env[0].name=”NO_PROXY”,env[0].value="localhost,127.0.0.1,*.spinnaker"
    ```
+
+   The `env` parameters are optional and only need to be used if Armory Enterprise is behind a HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
+
+   Alternatively, you can create a `values.yaml` file to include the parameters:
+   
+   ```yaml
+   env:
+     - name: HTTP_PROXY
+       value: <hostname>:<port>
+     - name: HTTPS_PROXY
+       value: <hostname>:<port>
+     - name: NO_PROXY
+       value: localhost,127.0.0.1,*.spinnaker
+   ```
+   With the file, you can avoid setting individual `env` parameters in the `helm install` command. Instead    include the `--values` parameter as part of the Helm install command.
 
    For information about additional options, see the [Agent config options]({{< ref "agent-options#configuration-options" >}}).
 
@@ -249,9 +275,9 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
    ```
 
    </details>
+   </details>
 
-
-   **Install with default configs in Infrastructure mode:**
+   <details><summary><strong>Install with default configs in Infrastructure mode</strong></summary>
 
    ```bash
    helm install armory-agent armory-charts/agent-k8s \
@@ -279,7 +305,33 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
 
    # If you are pulling from a private registry
    --set imagePullSecrets=<secret>
+
+   # Proxy settings
+   # Set this if your Armory Enterprise instance is behind a HTTP proxy.
+   --set env[0].name=”HTTP_PROXY”,env[0].value="<hostname>:<port>" 
+   
+   # Set this if your Armory Enterprise instance is behind a HTTPS proxy.
+   --set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>" 
+
+   # No proxy
+   --set env[0].name=”NO_PROXY”,env[0].value="localhost,127.0.0.1,*.spinnaker"
    ```
+
+   The `env` parameters are optional and only need to be used if Armory Enterprise is behind a HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
+
+   Alternatively, you can create a `values.yaml` file to include the parameters:
+   
+   ```yaml
+   env:
+     - name: HTTP_PROXY
+       value: <hostname>:<port>
+     - name: HTTPS_PROXY
+       value: <hostname>:<port>
+     - name: NO_PROXY
+       value: localhost,127.0.0.1,*.spinnaker
+   ```
+
+   With the file, you can avoid setting individual `env` parameters in the `helm install` command. Instead    include the `--values` parameter as part of the Helm install command.
 
    For information about additional options, see the [Agent config options]({{< ref "agent-options#configuration-options" >}}).
 
@@ -300,9 +352,9 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
    ```
 
    </details>
+   </details>
 
-
-   **Install with custom settings:**
+   <details><summary><strong>Install with custom settings</strong></summary>
 
    1. Use `helm template` to generate a manifest. 
       ```bash
@@ -317,7 +369,28 @@ On the Kubernetes cluster where you want to install the Agent Service, perform t
        ```bash
        helm install armory-agent <local-helm-chart-name>
        ```
+   </details>
 
+#### Proxy settings
+
+The `env` parameters are optional and only need to be used if Armory Enterprise is behind a HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
+
+Alternatively, you can create a `values.yaml` file to include the parameters:
+
+```yaml
+env:
+  - name: HTTP_PROXY
+    value: <hostname>:<port>
+  - name: HTTPS_PROXY
+    value: <hostname>:<port>
+  - name: NO_PROXY
+    value: localhost,127.0.0.1,*.spinnaker
+```
+With the file, you can avoid setting individual `env` parameters in the `helm install` command. Instead include the `--values` parameter as part of the Helm install command:
+
+```
+--values=<path>/values.yaml
+```
 
 {{< /tab >}}
 
