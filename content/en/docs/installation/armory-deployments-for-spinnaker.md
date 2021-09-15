@@ -144,6 +144,8 @@ With the file, you can configure multiple configs in addition to the `env` confi
 --values=<path>/values.yaml
 ```
 
+</details>
+
 {{% /tab %}}
 {{% tab name="Manual" %}}
 
