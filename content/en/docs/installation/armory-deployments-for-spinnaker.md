@@ -97,23 +97,30 @@ Set the client_secret value to be a secret token, instead of the plain text valu
 {{< tabs name="AgentInstall" >}}
 {{% tab name="Helm (recommended)" %}}
 
-Installing the Armory Kubernetes agent with helm is simple.
+Installing the Armory Kubernetes agent with Helm is simple.
 
 ```bash
 # Add the armory helm repo
 helm repo add armory-charts https://armory.jfrog.io/artifactory/charts
 # Refresh your repo cache
 helm repo update
-# Install the agent, omit --create-namespace if installing into existing namespace
+# Install the Agent, omit --create-namespace if installing into existing namespace
 # the accountName opt, is what this cluster will show up as in the Spinnaker Stage and Armory Cloud APIs
 helm install armory-agent \
     --set accountName=my-k8s-cluster \
     --set clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
     --set clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
+    #--set env[0].name=”HTTP_PROXY”,env[0].value="<hostname>:<port>" # Set this if your Armory Enterprise instance is behind a HTTP proxy.
+    #--set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>" # Set this if your Armory Enterprise instance is behind a HTTPS proxy.
+    #--set env[0].name=”NO_PROXY”,env[0].value="localhost,127.0.0.1,*.spinnaker"
     --namespace armory-agent \
     --create-namespace \
     armory-charts/agent-k8s
 ```
+
+#### Proxy settings
+
+The `env` parameters are optional and only need to be used if Armory Enterprise is behind a HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
 
 {{% /tab %}}
 {{% tab name="Manual" %}}
