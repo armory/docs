@@ -122,6 +122,23 @@ helm install armory-agent \
 
 The `env` parameters are optional and only need to be used if Armory Enterprise is behind a HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
 
+Alternatively, you can create a `values.yaml` file to include the parameters:
+
+```yaml
+env:
+  - name: HTTP_PROXY
+    value: <hostname>:<port>
+  - name: HTTPS_PROXY
+    value: <hostname>:<port>
+  - name: NO_PROXY
+    value: localhost,127.0.0.1,*.spinnaker
+```
+With the file, you can avoid setting individual `env` parameters in the `helm install` command. Instead include the `--values` parameter as part of the Helm install command:
+
+```
+--values=<path>/values.yaml
+```
+
 {{% /tab %}}
 {{% tab name="Manual" %}}
 
