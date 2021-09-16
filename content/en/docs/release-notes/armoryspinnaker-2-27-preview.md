@@ -2,6 +2,7 @@
 title: v2.27.0 Armory Release
 toc_hide: true
 hide_summary: true
+exclude_search: true
 description: >
   Release preview for Armory Enterprise 2.27.0
 ---
