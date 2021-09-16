@@ -4,7 +4,7 @@ toc_hide: true
 hide_summary: true
 exclude_search: true
 description: >
-  Release preview for Armory Enterprise 2.27.0
+    Preview of the changes and enhancements coming in Armory Enterprise v2.27.0. Note that the actual contents of the release are subject to change and items may be added or removed from this preview without prior notice. 
 ---
 
 ## Required Operator version
