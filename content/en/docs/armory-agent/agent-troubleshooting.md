@@ -106,7 +106,7 @@ On a normal startup, the Agent will show the following messages:
 
 ```
 # This shows where the configuration is read. "no such file" is expected.
-time="2020-10-02T22:22:14Z" level=info msg="Config file /opt/spinnaker/config/kubesvc-local.yaml not present; falling back to default settings" error="stat /opt/spinnaker/config/kubesvc-local.yaml: no such file or directory"
+time="2020-10-02T22:22:14Z" level=info msg="Config file /opt/armory/config/armory-agent-local.yaml not present; falling back to default settings" error="stat /opt/armory/config/armory-agent-local.yaml: no such file or directory"
 ...
 
 # Where is the Agent connecting to?
@@ -141,14 +141,14 @@ Common errors:
 - `Parameter 2 of constructor in io.armory.kubesvc.agent.KubesvcCachingAgentDispatcher required a bean of type 'com.netflix.spinnaker.clouddriver.kubernetes.security.KubernetesCredentials$Factory' that could not be found.`
   Make sure `providers.kubernetes.enabled: true` is set.
 - `Failed to list *unstructured.Unstructured: statefulsets.apps is forbidden: User "system:serviceaccount:default:test" cannot list resource "statefulsets" in API group "apps" at the cluster scope`
-  Make sure the service account or user that corresponds to the `kubeconfig` file is bound to a cluster role or role with `watch` and `list` permissions to all resources. Alternatively, make sure to set `kubernetes.accounts[].kinds` in `kubesvc.yaml` file
+  Make sure the service account or user that corresponds to the `kubeconfig` file is bound to a cluster role or role with `watch` and `list` permissions to all resources. Alternatively, make sure to set `kubernetes.accounts[].kinds` in `armory-agent.yaml` file
 - `Assigning accounts to Kubesvc enabled Clouddrivers (caching)` multiple times in Clouddriver & `[..] is unreachable [..] getting credentials: exec: fork/exec /usr/local/bin/aws: exec format error`
   Currently only static tokens are available. Generate a kubeconfig that uses a token from a SA with permissions to the cluster instead.
 
   ```bash
-  kubectl create sa kubesvc -n default # replace default with a relevant namespace
-  kubectl create clusterrolebinding kubesvc --serviceaccount default:kubesvc --clusterrole cluster-admin # or make a proper rbac role
-  TOKEN_SECRET="$(kubectl get sa kubesvc -n default -o jsonpath='{.secrets.*.name}')"
+  kubectl create sa armory-agent -n default # replace default with a relevant namespace
+  kubectl create clusterrolebinding armory-agent --serviceaccount default:armory-agent --clusterrole cluster-admin # or make a proper rbac role
+  TOKEN_SECRET="$(kubectl get sa armory-agent -n default -o jsonpath='{.secrets.*.name}')"
   TOKEN="$(kubectl get secret "$TOKEN_SECRET" -n default -o jsonpath='{.data.token}' | base64 --decode)"
   # Replace your kubeconfig from
   # users:

@@ -2,6 +2,8 @@
 title: Get Started with Armory Deployments for Spinnaker 
 description: Use this self-service guide to install the Armory Deployments for Spinnaker Plugin, which enables new Spinnaker stages that unlock the features of Armory cloud services.
 exclude_search: true
+toc_hide: true
+hide_summary: true
 ---
 
 {{< include "early-access-feature.html" >}}
@@ -44,7 +46,7 @@ Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents hav
 
 ### Target Kubernetes cluster
 
-Armory Deployments is a separate product from Armory Enterprise (Spinnaker). It does not use Clouddriver to source its accounts. Instead, it uses the Armory Agents that are deployed in your target Kubernetes clusters. The Armory Agent is a lightweight, scalable service that enables Armory Deployments to interact with your infrastructure. You must install the Armory Agent for Kubernetes in every target cluster. 
+Armory Deployments is a separate product from Armory Enterprise (Spinnaker). It does not use Clouddriver to source its accounts. Instead, it uses the Armory Agents that are deployed in your target Kubernetes clusters. The Armory Agent is a lightweight, scalable service that enables Armory Deployments to interact with your infrastructure. You must install the Armory Cloud Agent in every target cluster. 
 
 Additionally, Armory Deployments uses the Argo Rollouts Controller to manage progressive deployments to your infrastructure.
 
@@ -95,14 +97,14 @@ Set the client_secret value to be a secret token, instead of the plain text valu
 {{< tabs name="AgentInstall" >}}
 {{% tab name="Helm (recommended)" %}}
 
-Installing the Armory Kubernetes agent with helm is simple.
+Installing the Armory Kubernetes agent with Helm is simple.
 
 ```bash
 # Add the armory helm repo
 helm repo add armory-charts https://armory.jfrog.io/artifactory/charts
 # Refresh your repo cache
 helm repo update
-# Install the agent, omit --create-namespace if installing into existing namespace
+# Install the Agent, omit --create-namespace if installing into existing namespace
 # the accountName opt, is what this cluster will show up as in the Spinnaker Stage and Armory Cloud APIs
 helm install armory-agent \
     --set accountName=my-k8s-cluster \
@@ -112,6 +114,37 @@ helm install armory-agent \
     --create-namespace \
     armory-charts/agent-k8s
 ```
+
+If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings. 
+
+<details><summary>Learn more</summary>
+
+To set an HTTPS proxy, use the following config:
+
+```yaml
+env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>"
+``` 
+
+You can include the following snippet in your `helm install` command:
+
+```yaml
+--set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>" 
+```
+
+Alternatively, you can create a `values.yaml` file to include the parameters:
+
+```yaml
+env:
+  - name: HTTPS_PROXY
+    value: <hostname>:<port>
+```
+With the file, you can configure multiple configs in addition to the `env` config in your `helm install` command. Instead of using `--set`, include the `--values` parameter as part of the Helm install command:
+
+```
+--values=<path>/values.yaml
+```
+
+</details>
 
 {{% /tab %}}
 {{% tab name="Manual" %}}
@@ -249,7 +282,7 @@ roleRef:
 
 #### Configure the Agent
 
-Use a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) to configure the Agent. In the `data` block, define `kubesvc.yml` and add your Kubernetes account configuration for your cluster. This YAML file is where you provide the Client ID and Secret that you received when you [create client credentials for your agents](#create-client-credentials-for-your-agents).
+Use a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) to configure the Agent. In the `data` block, define `armory-agent.yml` and add your Kubernetes account configuration for your cluster. This YAML file is where you provide the Client ID and Secret that you received when you [create client credentials for your agents](#create-client-credentials-for-your-agents).
 
 For information about adding accounts, see  the [kubernetes.accounts[] options in the Agent Options documentation]({{< ref "agent-options#options" >}}).
 
@@ -257,10 +290,10 @@ For information about adding accounts, see  the [kubernetes.accounts[] options i
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: kubesvc-config
+  name: armory-agent-config
   namespace: armory-agent
 data:
-  kubesvc.yaml: |
+  armory-agent.yaml: |
     hub:
       connection:
         grpc: agents.cloud.armory.io:443
@@ -285,29 +318,29 @@ kind: Deployment
 metadata:
   labels:
     app: spin
-    app.kubernetes.io/name: kubesvc
+    app.kubernetes.io/name: armory-agent
     app.kubernetes.io/part-of: spinnaker
-    cluster: spin-kubesvc
-  name: spin-kubesvc
+    cluster: spin-armory-agent
+  name: spin-armory-agent
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: spin
-      cluster: spin-kubesvc
+      cluster: spin-armory-agent
   template:
     metadata:
       labels:
         app: spin
-        app.kubernetes.io/name: kubesvc
+        app.kubernetes.io/name: armory-agent
         app.kubernetes.io/part-of: spinnaker
-        cluster: spin-kubesvc
+        cluster: spin-armory-agent
     spec:
       serviceAccount: spin-sa
       containers:
       - image: armory/agent-kubernetes:0.1.3
         imagePullPolicy: IfNotPresent
-        name: kubesvc
+        name: armory-agent
         env:
         - name: ARMORY_HUB
           value: "true"
@@ -330,15 +363,15 @@ spec:
         terminationMessagePolicy: File
         volumeMounts:
         - mountPath: /opt/spinnaker/config
-          name: volume-kubesvc-config
+          name: volume-armory-agent-config
         # - mountPath: /kubeconfigfiles
-        #   name: volume-kubesvc-kubeconfigs
+        #   name: volume-armory-agent-kubeconfigs
       restartPolicy: Always
       volumes:
-      - name: volume-kubesvc-config
+      - name: volume-armory-agent-config
         configMap:
-          name: kubesvc-config
-      # - name: volume-kubesvc-kubeconfigs
+          name: armory-agent-config
+      # - name: volume-armory-agent-kubeconfigs
       #   secret:
       #     defaultMode: 420
       #     secretName: kubeconfigs-secret

@@ -1,6 +1,5 @@
 ---
 title: "Armory Agent for Kubernetes"
-linkTitle: "Armory Agent for Kubernetes"
 weight: 20
 no_list: true
 description: >
@@ -46,11 +45,37 @@ In this mode, the Agent service acts as a piece of infrastructure. It authentica
 
 If the Clouddriver plugin is unable to communicate with the Agent service, the plugin attempts to reconnect during a defined grace period. If the plugin still can't communicate with the Agent service after the grace period has expired, the cluster associated with the Agent service is removed from Armory Enterprise.
 
+Keep the following pros and cons in mind when deciding if Agent mode fits your use case:
+
+**Pros**
+
+- Agent mode is scalable because each agent only manages one Kubernetes account.
+- Initial setup is easier because there's no need to create kubeconfig files.
+- Target clusters can remain private or in separate VPCs from the Armory Enterprise (Spinnaker) cluster because agents initiate the connection to Armory Enterprise (Spinnaker).
+
+**Cons**
+
+- It is difficult to get agent logs, upgrade Agent, or check configurations because agents (often) run in third-party clusters that the DevOps team operating Armory Enterprise (Spinnaker) doesn't have access.
+- There is no authentication/authorization, so any team can start an Agent and register itself with Armory Enterprise (Spinnaker). mTLS encryption can be used so that only agents with the right certificate can register. For information about how to configure mTLS, see [Configure Mutual TLS Authentication]({{< ref "agent-mtls.md" >}}).
+- You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
+
 ![Agent mode](/images/armory-agent/agent-mode.png)
 
 ### Infrastructure mode
 
 In infrastructure mode, multiple Agent service deployments handle different groups of Kubernetes clusters. Each service deployment is configured separately.
+
+Keep the following pros and cons in mind when deciding if Infrastructure mode fits your use case:
+
+**Pro**
+
+- Agent can be managed centrally, so it is easy to get logs or configs and upgrade.
+
+**Cons**
+
+- You need to create kubeconfig file for each account.
+- The API servers of the target clusters need to be accessible from the Agent cluster.
+- You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
 
 ![Infra mode](/images/armory-agent/agent-infra-mode.png)
 
@@ -58,11 +83,21 @@ In infrastructure mode, multiple Agent service deployments handle different grou
 
 ### Spinnaker service mode
 
-In this mode, the Agent is installed as a new Spinnaker service (`spin-kubesvc`) and can be configured like other services.
+In this mode, the Agent is installed as a new Spinnaker service (`spin-armory-agent`) and can be configured like other services.
 
 ![Spinnaker service mode](/images/armory-agent/in-cluster-mode.png)
 
-If you provision clusters automatically, the Agent service can dynamically reload accounts when `kubesvc.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/spinnaker/config/kubesvc-local.yaml`.  The Agent service reflects `ConfigMap` changes within seconds after [etcd](https://etcd.io/) sync.
+If you provision clusters automatically, the Agent service can dynamically reload accounts when `armory-agent.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/armory/config/armory-agent-local.yaml`.  The Agent service reflects `ConfigMap` changes within seconds after [etcd](https://etcd.io/) sync.
+
+**Pros**
+
+- You do not have to configure external Network/Application Load Balancers to expose the Clouddriver gRPC port.
+- Agent can be managed centrally, so it is easy to get logs or configs and upgrade.
+
+**Cons**
+
+- You need to create kubeconfig file for each account.
+- The API servers of the target clusters need to be accessible from the Armory Enterprise (Spinnaker) cluster.
 
 
 ## Communication with Clouddriver
