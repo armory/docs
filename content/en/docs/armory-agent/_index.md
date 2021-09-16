@@ -57,6 +57,7 @@ Keep the following pros and cons in mind when deciding if Agent mode fits your u
 
 - It is difficult to get agent logs, upgrade Agent, or check configurations because agents (often) run in third-party clusters that the DevOps team operating Armory Enterprise (Spinnaker) doesn't have access.
 - There is no authentication/authorization, so any team can start an Agent and register itself with Armory Enterprise (Spinnaker). mTLS encryption can be used so that only agents with the right certificate can register. For information about how to configure mTLS, see [Configure Mutual TLS Authentication]({{< ref "agent-mtls.md" >}}).
+- You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
 
 ![Agent mode](/images/armory-agent/agent-mode.png)
 
@@ -74,6 +75,7 @@ Keep the following pros and cons in mind when deciding if Infrastructure mode fi
 
 - You need to create kubeconfig file for each account.
 - The API servers of the target clusters need to be accessible from the Agent cluster.
+- You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
 
 ![Infra mode](/images/armory-agent/agent-infra-mode.png)
 
