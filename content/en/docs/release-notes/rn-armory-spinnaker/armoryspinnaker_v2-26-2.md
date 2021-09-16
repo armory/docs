@@ -3,7 +3,7 @@ title: v2.26.2 Armory Release (OSS Spinnaker™ v1.26.6)
 toc_hide: true
 version: 02.26.02
 description: >
-  Release notes for Armory Enterprise v2.26.2 
+  Preview of the changes and enhancements coming in Armory Enterprise v2.27.0. Note that the actual contents of the release are subject to change and items may be added or removed from this preview without prior notice. 
 ---
 
 ## 2021/09/03 Release Notes
