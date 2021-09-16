@@ -110,34 +110,41 @@ helm install armory-agent \
     --set accountName=my-k8s-cluster \
     --set clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
     --set clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
-    #--set env[0].name=”HTTP_PROXY”,env[0].value="<hostname>:<port>" # Set this if your Armory Enterprise instance is behind a HTTP proxy.
-    #--set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>" # Set this if your Armory Enterprise instance is behind a HTTPS proxy.
-    #--set env[0].name=”NO_PROXY”,env[0].value="localhost,127.0.0.1,*.spinnaker"
     --namespace armory-agent \
     --create-namespace \
     armory-charts/agent-k8s
 ```
 
-#### Proxy settings
+If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings. 
 
-The `env` parameters are optional and only need to be used if Armory Enterprise is behind a HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
+<details><summary>Learn more</summary>
+
+To set an HTTPS proxy, use the following config:
+
+```yaml
+env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>"
+``` 
+
+You can include the following snippet in your `helm install` command:
+
+```yaml
+--set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>" 
+```
 
 Alternatively, you can create a `values.yaml` file to include the parameters:
 
 ```yaml
 env:
-  - name: HTTP_PROXY
-    value: <hostname>:<port>
   - name: HTTPS_PROXY
     value: <hostname>:<port>
-  - name: NO_PROXY
-    value: localhost,127.0.0.1,*.spinnaker
 ```
-With the file, you can avoid setting individual `env` parameters in the `helm install` command. Instead include the `--values` parameter as part of the Helm install command:
+With the file, you can configure multiple configs in addition to the `env` config in your `helm install` command. Instead of using `--set`, include the `--values` parameter as part of the Helm install command:
 
 ```
 --values=<path>/values.yaml
 ```
+
+</details>
 
 {{% /tab %}}
 {{% tab name="Manual" %}}
