@@ -1,5 +1,5 @@
 ---
-title: v2.27.0 Armory Release
+title: v2.27.0 Armory Release Preview
 toc_hide: true
 hide_summary: true
 exclude_search: true
