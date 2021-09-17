@@ -39,10 +39,11 @@ Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents hav
 
 | Protocol                    | DNS                                                                    | Port | Used By           | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |-----------------------------|------------------------------------------------------------------------|------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| HTTPS                       | armory.jfrog.io                                        | 443  | Helm         | **Armory's Artifact Repository**<br><br>Used to download official Armory artifacts during installation, such as Helm charts. |
 | HTTPS                       | api.cloud.armory.io                      | 443  | Spinnaker         | **Armory Cloud REST API**<br><br>Used fetch information from the Kubernetes cache                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | TLS enabled gRPC over HTTP2 | agents.cloud.armory.io                | 443  | Spinnaker, Agents | **Armory Cloud Agent-Hub**<br><br>Used to connect agents to the Agent Hub through encrypted long-lived gRPC HTTP2 connections. The connections are used for bi-directional communication between Armory Enterprise or Armory Cloud Services and any target Kubernetes clusters.<br><br>This is needed so that Armory Cloud Services can interact with a your private Kubernetes APIs, orchestrate deployments, and cache data for Armory Enterprise without direct network access to your Kubernetes APIs.<br><br>Agents send data about deployments, replica-sets, and related data to Armory Cloud's Agent Cache to power infrastructure management experiences, such as the Armory Deployments Plugin. |
 | HTTPS                       | auth.cloud.armory.io                    | 443  | Spinnaker, Agents | **Armory’s OIDC authorization server**<br><br>Used to exchange the client ID and secret for a Java Web Token () to verify identity.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| HTTPS                       | github.com                                        | 443  | Spinnaker         | **Github**<br><br>Used to download official Armory plugins at startup time.
+| HTTPS                       | github.com                                        | 443  | Spinnaker         | **Github**<br><br>Used to download official Armory plugins at startup time. |
 
 ### Target Kubernetes cluster
 
@@ -82,37 +83,40 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 This section walks you through installing the Armory Agent for Kubernetes and the Argo Rollouts Controller, which are both required for Armory Deployments.
 
-### Install the Argo Rollout Controller
-
-Armory Deployments requires that you install the Argo Rollouts controller 1.x or later, in each target Kubernetes cluster along with the Armory Agent.
-
-For information about how to install Argo Rollout, see [Controller Installation](https://argoproj.github.io/argo-rollouts/installation/#controller-installation) in the Argo documentation.
-
-### Install the Agent
-
-A quick note on secrets you can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}})
-
-Set the client_secret value to be a secret token, instead of the plain text value.
+> Note: you can configure secrets using our [Secrets Guide]({{< ref "secrets" >}})
 
 {{< tabs name="AgentInstall" >}}
 {{% tab name="Helm (recommended)" %}}
 
-Installing the Armory Kubernetes agent with Helm is simple.
+Installing with Helm is simple.
 
 ```bash
-# Add the armory helm repo
-helm repo add armory-charts https://armory.jfrog.io/artifactory/charts
-# Refresh your repo cache
+# Add the Armory helm repo. This only needs to be done once.
+helm repo add armory https://armory.jfrog.io/artifactory/charts
+
+# Refresh your repo cache.
 helm repo update
-# Install the Agent, omit --create-namespace if installing into existing namespace
-# the accountName opt, is what this cluster will show up as in the Spinnaker Stage and Armory Cloud APIs
-helm install armory-agent \
-    --set accountName=my-k8s-cluster \
-    --set clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
-    --set clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
-    --namespace armory-agent \
+
+# The `accountName` opt, is what this cluster will render as in the
+# Spinnaker Stage and Armory Cloud APIs.
+helm install aurora \
+    --set agent-k8s.accountName=my-k8s-cluster \
+    --set agent-k8s.clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
+    --set agent-k8s.clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
+    --namespace armory \
+    # Omit --create-namespace if installing into existing namespace.
     --create-namespace \
-    armory-charts/agent-k8s
+    armory/aurora
+```
+
+If you already have Argo Rollouts configured in your environment you may disable
+installation by setting the `enabled` key as in the following example:
+
+```shell
+helm install aurora \
+    # ... other config options
+    --set argo-rollouts.enabled=false
+    # ... other config options
 ```
 
 If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings. 
@@ -158,6 +162,15 @@ kubectl create ns armory-agent
 ```
 
 > The examples on this page assume you are using a namespace called armory-agent for the Agent. Replace the namespace in the examples if you are using a different namespace.
+
+#### Install Argo Rollouts
+
+Armory Deployments requires that you install the Argo Rollouts controller 1.x
+or later, in each target Kubernetes cluster along with the Armory Agent.
+
+For information about how to install Argo Rollout, see [Controller
+Installation](https://argoproj.github.io/argo-rollouts/installation/#controller-installation)
+in the Argo documentation.
 
 #### Configure permissions
 
