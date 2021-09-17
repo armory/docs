@@ -1,0 +1,9 @@
+---
+title: v0.10.0 Armory Agent Clouddriver Plugin (2021-09-17)
+toc_hide: true
+version: 00.10.00
+
+---
+
+## New
+* First version of agent plugin for Spinnaker 2.27.x (1.27.x)
