@@ -115,7 +115,7 @@ helm install aurora \
 ```
 
 If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings. 
-[asdf]()
+
 <details><summary>Learn more</summary>
 
 To set an HTTPS proxy, use the following config:
