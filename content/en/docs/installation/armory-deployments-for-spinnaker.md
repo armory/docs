@@ -92,7 +92,7 @@ helm repo add armory https://armory.jfrog.io/artifactory/charts
 # Refresh your repo cache.
 helm repo update
 
-# The `accountName` opt, is what this cluster will render as in the
+# The `accountName` opt is what this cluster will render as in the
 # Spinnaker Stage and Armory Cloud APIs.
 helm install aurora \
     --set agent-k8s.accountName=my-k8s-cluster \
@@ -115,7 +115,7 @@ helm install aurora \
 ```
 
 If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings. 
-
+[asdf]()
 <details><summary>Learn more</summary>
 
 To set an HTTPS proxy, use the following config:
