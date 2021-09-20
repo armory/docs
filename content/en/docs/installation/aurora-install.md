@@ -1,9 +1,11 @@
 ---
-title: Get Started with Armory Deployments for Spinnaker 
-description: Use this self-service guide to install the Armory Deployments for Spinnaker Plugin, which enables new Spinnaker stages that unlock the features of Armory cloud services.
+title: Get Started with Project Aurora for Spinnaker 
+description: Use this self-service guide to install Project Aurora, which enables new Spinnaker stages that unlock the features of Armory cloud services.
 exclude_search: true
 toc_hide: true
 hide_summary: true
+aliases:
+  - /docs/installation/armory-deployments-for-spinnaker/#install-the-agent
 ---
 
 {{< include "early-access-feature.html" >}}
@@ -79,7 +81,7 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 5. Note both the `Client ID` and `Client Secret`. You need these values when configuring the Agent.
 
-## Enable Armory Deployments in target Kubernetes clusters
+## Enable Aurora in target Kubernetes clusters
 
 This section walks you through installing the Armory Agent for Kubernetes and the Argo Rollouts Controller, which are both required for Armory Deployments. The Helm chart that Armory provides installs both the Armory Cloud Agent and Argo Rollouts. If your target deployment cluster already has Argo Rollouts installed, you can disable that part of the installation.
 

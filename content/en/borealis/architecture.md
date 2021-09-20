@@ -18,7 +18,7 @@ The Armory Deployments Plugin for Armory Enterprise (Spinnaker™) provides the 
 
 The plugin enables you to use a single stage to perform a progressive deployment strategy. This strategy allows you to deploy a new version of your application, and route traffic to the new version incrementally. In between each scaling event, the stage can be configured to wait for an event, such as a manual approval, before continuing.
 
-For information about enabling the stage, see [Get Started With Armory Deployments for Spinnaker]({{< ref "armory-deployments-for-spinnaker" >}}).
+For information about enabling the stage, see [Get Started With Armory Deployments for Spinnaker]({{< ref "aurora-install" >}}).
 
 ### Armory Cloud Agent
 
