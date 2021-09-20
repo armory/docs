@@ -3,6 +3,8 @@ title: "Armory Deployments Architecture"
 linkTitle: "Architecture"
 exclude_search: true
 weight: 10
+aliases: 
+  - /armory-deployments/architecture/
 ---
 
 ## Key Components

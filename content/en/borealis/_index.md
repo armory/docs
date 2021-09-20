@@ -1,6 +1,8 @@
 ---
-title: "Armory Deployments"
+title: "Project Borealis"
 exclude_search: true
+aliases:
+  - /armory-deployments/
 ---
 {{< include "early-access-feature.html" >}}
 {{< include "armory-license.md" >}}

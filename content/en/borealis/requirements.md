@@ -3,6 +3,8 @@ title: "System Requirements for Armory Deployments"
 linkTitle: "System Requirements"
 exclude_search: true
 weight: 20
+aliases:
+  - /armory-deployments/architecture/
 ---
 
 To use Armory Deployments, make sure you meet the following requirements.
