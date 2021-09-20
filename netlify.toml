@@ -100,7 +100,6 @@ package = "@netlify/plugin-sitemap"
     './public/docs/feature-status/deprecations/pacrd-deprecation/',
     './public/docs/installation/deployment-reg/',
     './public/docs/installation/armory-deployments-for-spinnaker/',
-    './public/armory-deployments/'
     
   ]
   # append missing trailing slash to prettyURL
