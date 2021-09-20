@@ -11,7 +11,7 @@ To use Armory Deployments, make sure you meet the following requirements.
 
 Armory Deployments uses agents that run in target Kubernetes clusters to communicate with Armory Cloud services, specifically the Agent Hub. Make sure the [networking](#networking) requirements are met so that the Agent can communicate with the Agent Hub. 
 
-There are no additional requirements for installing the Agent to use with Armory Deployments. For information about how to install the Armory Cloud Agent, see [Enable Armory Deployments in target Kubernetes clusters]({{< ref "armory-deployments-for-spinnaker#enable-armory-deployments-in-target-kubernetes-clusters>}}).
+There are no additional requirements for installing the Agent to use with Armory Deployments. For information about how to install the Armory Cloud Agent, see [Enable Armory Deployments in target Kubernetes clusters]({{< ref "armory-deployments-for-spinnaker#enable-armory-deployments-in-target-kubernetes-clusters" >}}).
 
 > If you are using the Armory Agent for Kubernetes, that is a separate agent. It has its own requirements. For more information, see [those requirements]({{< ref "armory-agent-quick#before-you-begin" >}}).
 
@@ -19,7 +19,7 @@ There are no additional requirements for installing the Agent to use with Armory
 
 You must have Argo Rollouts 1.x or later installed in the Kubernetes cluster you want to deploy to. Note that the Argo Rollout Controller is separate from Argo CD.
 
-If you use the Helm chart described in [Enable Armory Deployments in target Kubernetes clusters]({{< ref "armory-deployments-for-spinnaker#enable-armory-deployments-in-target-kubernetes-clusters>}}), Argo Rollouts is installed as part of that Helm chart.
+If you use the Helm chart described in [Enable Armory Deployments in target Kubernetes clusters]({{< ref "armory-deployments-for-spinnaker#enable-armory-deployments-in-target-kubernetes-clusters" >}}), Argo Rollouts is installed as part of that Helm chart.
 
 If your target deployment cluster already has Argo Rollouts installed, you can turn off that part of the Helm chart.
 
