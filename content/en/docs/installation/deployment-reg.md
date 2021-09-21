@@ -58,9 +58,6 @@ spec:
               port: 443
               tls:
                 insecureSkipVerify: true
-          deployEngineGrpc:
-            host: grpc.deploy.cloud.armory.io
-            port: 443
 ```
 
 Save the file and apply the manifest. Applying the config changes redeploys Armory Enterprise.
@@ -87,9 +84,6 @@ armory.cloud:
       port: 443
       tls:
         insecureSkipVerify: true
-  deployEngineGrpc:
-    host: grpc.deploy.cloud.armory.io
-    port: 443
 ```
 
 Save the file and apply the changes with the following command: `hal deploy apply`. Applying the config changes redeploys Armory Enterprise.
