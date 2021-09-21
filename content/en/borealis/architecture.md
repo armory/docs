@@ -122,7 +122,6 @@ The following network endpoints are used for communication into Armory Cloud:
 
 | DNS                    | Port | Protocol                                         | Description                                 |
 |------------------------|------|------------------------------------------------------|----------------------------------------------------------------------------|
-| armory.jfrog.io                  | 443      | HTTPS                                           | Armory's Artifact Repository that is used to download official Armory artifacts during installation, such as Helm charts. |
 | agents.cloud.armory.io | 443  | TLS enabled gRPC over HTTP/2<br>TLS version 1.2    | Agent Hub connection. gRPC is used to provide bidirectional, on demand communication. |
 | api.cloud.armory.io    | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2 | Armory REST API     |
 | auth.cloud.armory.io             | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2          | OIDC Service
