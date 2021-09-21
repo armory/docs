@@ -1,25 +1,27 @@
 ---
-title: Get Started with Armory Deployments for Spinnaker 
-description: Use this self-service guide to install the Armory Deployments for Spinnaker Plugin, which enables new Spinnaker stages that unlock the features of Armory cloud services.
+title: Get Started with Project Aurora for Spinnaker™ 
+description: Use this self-service guide to install Project Aurora, which enables you to perform canary deployments in a single stage.
 exclude_search: true
 toc_hide: true
 hide_summary: true
+aliases:
+  - /docs/installation/armory-deployments-for-spinnaker/
 ---
 
 {{< include "early-access-feature.html" >}}
 
 ## Overview
 
-The Armory Deployments plugin for Spinnaker enables new Spinnaker stages that unlock the features of Armory Deployments cloud services.
+Project Aurora is plugin that adds a new stage to your Armory Enterprise (Spinnaker) instance. When you use this stage to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
 
-See [Armory Deployments Architecture]({{< ref "armory-deployments/architecture" >}}) for an overview of Armory Deployments and how it fits in with Spinnaker.
+See the [Architecture]({{< ref "borealis/architecture" >}}) page for an overview of Project Aurora and how it fits in with Spinnaker.
 
 This guide walks you through the following:
 
 - Registering your Armory Enterprise environment
-- Installing the Armory Agent and the Argo Rollouts Controller, which are required for Armory Deployments
+- Installing the Remonte Network Agent (RNA) and the Argo Rollouts Controller, which are both required for Project Aurora/Borealis
 - Connecting to Armory Cloud services
-- Installing the Armory Deployments plugin
+- Installing the Project Aurora plugin
 - Deploying a "hello world" manifest
 
 ## Requirements
@@ -41,17 +43,17 @@ Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents hav
 |-----------------------------|------------------------------------------------------------------------|------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | HTTPS                       | armory.jfrog.io                                        | 443  | Helm         | **Armory's Artifact Repository**<br><br>Used to download official Armory artifacts during installation, such as Helm charts. |
 | HTTPS                       | api.cloud.armory.io                      | 443  | Spinnaker         | **Armory Cloud REST API**<br><br>Used fetch information from the Kubernetes cache                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| TLS enabled gRPC over HTTP2 | agents.cloud.armory.io                | 443  | Spinnaker, Agents | **Armory Cloud Agent-Hub**<br><br>Used to connect agents to the Agent Hub through encrypted long-lived gRPC HTTP2 connections. The connections are used for bi-directional communication between Armory Enterprise or Armory Cloud Services and any target Kubernetes clusters.<br><br>This is needed so that Armory Cloud Services can interact with a your private Kubernetes APIs, orchestrate deployments, and cache data for Armory Enterprise without direct network access to your Kubernetes APIs.<br><br>Agents send data about deployments, replica-sets, and related data to Armory Cloud's Agent Cache to power infrastructure management experiences, such as the Armory Deployments Plugin. |
+| TLS enabled gRPC over HTTP2 | agents.cloud.armory.io                | 443  | Spinnaker, Agents | **Armory Cloud Agent-Hub**<br><br>Used to connect agents to the Agent Hub through encrypted long-lived gRPC HTTP2 connections. The connections are used for bi-directional communication between Armory Enterprise or Armory Cloud Services and any target Kubernetes clusters.<br><br>This is needed so that Armory Cloud Services can interact with a your private Kubernetes APIs, orchestrate deployments, and cache data for Armory Enterprise without direct network access to your Kubernetes APIs.<br><br>Agents send data about deployments, replica-sets, and related data to Armory Cloud's Agent Cache to power infrastructure management experiences, such as the Project Aurora Plugin. |
 | HTTPS                       | auth.cloud.armory.io                    | 443  | Spinnaker, Agents | **Armory’s OIDC authorization server**<br><br>Used to exchange the client ID and secret for a Java Web Token () to verify identity.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | HTTPS                       | github.com                                        | 443  | Spinnaker         | **Github**<br><br>Used to download official Armory plugins at startup time. |
 
 ### Target Kubernetes cluster
 
-Armory Deployments is a separate product from Armory Enterprise (Spinnaker). It does not use Clouddriver to source its accounts. Instead, it uses the Armory Agents that are deployed in your target Kubernetes clusters. The Armory Agent is a lightweight, scalable service that enables Armory Deployments to interact with your infrastructure. You must install the Armory Cloud Agent in every target cluster. 
+Project Aurora is a separate product from Armory Enterprise (Spinnaker). It does not use Clouddriver to source its accounts. Instead, it uses Remote Network Agents (RNAs) that are deployed in your target Kubernetes clusters. An RNA is a lightweight, scalable service that enables Project Aurora to interact with your infrastructure. You must install RNAs in every target cluster. 
 
-Additionally, Armory Deployments uses the Argo Rollouts Controller to manage progressive deployments to your infrastructure.
+Additionally, Project Aurora uses the Argo Rollouts Controller to manage progressive deployments to your infrastructure.
 
-Installing both of these requirements is discussed in [Enable Armory Deployments in target Kubernetes clusters](#enable-armory-deployments-in-target-kubernetes-clusters).
+The Helm chart described in [Enable Project Aurora in target Kubernetes clusters](#enable-aurora-in-target-kubernetes-clusters) manages the installation of both of these requirements for you.
 
 ## Register your Armory Enterprise environment
 
@@ -69,19 +71,19 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 1. In the left navigation menu, select **Access Management > Client Credentials**.
 2. In the upper right corner, select **New Credential**.
-3. Create a credential for the Armory Agent. Use a descriptive name for the credential, such as `Armory K8s Agent`
+3. Create a credential for the your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
 4. Set the permission scope to the following:
 
 - `write:infra:data`
 - `get:infra:op`
 
-> This is the minimum set of required permissions for the Armory Agent.
+> This is the minimum set of required permissions for a RNA.
 
 5. Note both the `Client ID` and `Client Secret`. You need these values when configuring the Agent.
 
-## Enable Armory Deployments in target Kubernetes clusters
+## Enable Aurora in target Kubernetes clusters
 
-This section walks you through installing the Armory Agent for Kubernetes and the Argo Rollouts Controller, which are both required for Armory Deployments. The Helm chart that Armory provides installs both the Armory Cloud Agent and Argo Rollouts. If your target deployment cluster already has Argo Rollouts installed, you can disable that part of the installation.
+This section walks you through installing the Remote Network Agent (RNA) and the Argo Rollouts Controller, which are both required for Project Aurora. The Helm chart that Armory provides installs both the Armory Cloud Agent and Argo Rollouts. If your target deployment cluster already has Argo Rollouts installed, you can disable that part of the installation.
 
 > Note: You can use encrypted secrets instead of providing plaintext values. For more information, see the [Secrets Guide]({{< ref "secrets" >}}).
 
