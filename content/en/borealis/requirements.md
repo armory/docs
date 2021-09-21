@@ -4,7 +4,7 @@ linkTitle: "System Requirements"
 exclude_search: true
 weight: 20
 aliases:
-  - /armory-deployments/architecture/
+  - /armory-deployments/requirements/
 ---
 
 To use Project Aurora/Borealis, make sure you meet the following requirements.
