@@ -30,6 +30,6 @@ The [Armory Operator]({{< ref "armory-operator" >}}) is a Kubernetes Operator th
 
 The open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) provides features to deploy and manage open source Spinnaker.
 
-### Armory Agent for Spinnaker
+### Armory Agent for Kubernetes
 
 The [Armory Agent]({{< ref "armory-agent" >}}) is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker's Clouddriver service.
