@@ -5,7 +5,7 @@ exclude_search: true
 toc_hide: true
 hide_summary: true
 aliases:
-  - /docs/installation/armory-deployments-for-spinnaker/#install-the-agent
+  - /docs/installation/armory-deployments-for-spinnaker/
 ---
 
 {{< include "early-access-feature.html" >}}
