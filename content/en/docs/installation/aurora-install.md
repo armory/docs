@@ -53,7 +53,7 @@ Armory Deployments is a separate product from Armory Enterprise (Spinnaker). It 
 
 Additionally, Armory Deployments uses the Argo Rollouts Controller to manage progressive deployments to your infrastructure.
 
-Installing both of these requirements is discussed in [Enable Armory Deployments in target Kubernetes clusters](#enable-armory-deployments-in-target-kubernetes-clusters).
+Installing both of these requirements is discussed in [Enable Armory Deployments in target Kubernetes clusters](#enable-aurora-in-target-kubernetes-clusters).
 
 ## Register your Armory Enterprise environment
 
