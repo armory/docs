@@ -60,7 +60,7 @@ Rosco is the "bakery" service. It is a wrapper around Hashicorp's Packer command
 ## Armory Enterprise proprietary microservices
 ![Proprietary](/images/proprietary.svg)
 
-### Armory Agent for Spinnaker
+### Armory Agent for Kubernetes
 
 The [Armory Agent]({{< ref "armory-agent" >}}) is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to the Clouddriver service.
 
