@@ -319,7 +319,7 @@ This is the deployment strategy you want to use to deploy your Kubernetes app. A
 These settings control how the your Kubernetes deployment behaves as Project Aurora deploys it. You can tune two separate but related chracteristics of the deployment:
 
 - **Rollout Ratio**: set the percentage thresholds (integer) for how widely an app should get rolled out before pausing.
-- **Then wait**: define what triggerse the rollout to continue. The trigger can either be a manul approval (**until approved**) or for a set amount of time, either seconds, minutes or hours.
+- **Then wait**: define what triggerse the rollout to continue. The trigger can either be a manul approval (**until approved**) or for a set amount of time, either seconds, minutes or hours (integer).
 
 ### Try out the stage
 
