@@ -7,7 +7,7 @@ version: 00.06.02
 
 ## New features and improvements
 
-* Released Helm chart for agent. You can now install the agent service with Helm:
+* You can now install the Agent service with Helm:
 
 ```
 helm repo add armory-charts http://armory.jfrog.io/artifactory/charts
@@ -15,4 +15,6 @@ helm install armory-agent armory-charts/agent-k8s-full \
     --set config.clouddriver.grpc=${CLOUDDRIVER_HOST_AND_PORT}
 ```
 
-All configuration options available in "armory-agent.yml" config file can be passed as values to helm under the "config" section.
+All configuration options available in the `armory-agent.yml` config file can be passed as values to Helm under the `config` section.
+
+For more information, see [Install the Agent servoce]({{< ref "armory-agent-quick#install-the-agent-service" >}}).
