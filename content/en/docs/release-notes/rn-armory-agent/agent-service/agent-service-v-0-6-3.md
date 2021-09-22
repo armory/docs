@@ -7,4 +7,4 @@ version: 00.06.03
 
 ## Fixes
 
-* Fixed the helm chart name to be "agent-k8s-full"
+* Fixed the Helm chart name. The chart is now named `agent-k8s-full`.
