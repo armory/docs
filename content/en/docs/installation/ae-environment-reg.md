@@ -1,7 +1,7 @@
 ---
 title: Environment Registration
 linkTitle: Registration
-description: Register your Armory Enterprise instance so that it can communicate with Armory services. 
+description: As part of the configuration process, you need to register your Armory Enterprise instance. If you maintain several instances, such as development, staging, and production instances, you must register each one.
 exclude_search: true
 toc_hide: true
 hide_summary: true
@@ -13,10 +13,6 @@ aliases:
 - go.armory.io/UIdocs-deploy-reg-troubleshooting points to Troubleshooting
 - go.armory.io/UIdocs-deploy-reg-manual-id points to the Operator fails to generate an instance ID section
 -->
-
-## Overview
-
-As part of the configuration process, you need to register your Armory Enterprise instance. If you maintain several instances, such as development, staging, and production instances, you must register each one.
 
 ## Register your environment
 
