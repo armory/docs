@@ -40,6 +40,10 @@ Armory scans the codebase as we develop and release software. For information ab
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
 
+#### Lambda icon missing
+
+In the left navigation of the UI, the icon for Lambda functions is missing.
+
 ## Highlighted updates
 
 <!--
