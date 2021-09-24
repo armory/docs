@@ -1,32 +1,43 @@
 ---
 title: v2.26.3 Armory Release (OSS Spinnaker™ v1.26.6)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.26.03
 description: >
   Release notes for Armory Enterprise v2.26.3 
 ---
 
-## 2021/09/120 Release Notes
+## 2021/09/24 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.26.3, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.12 or later
+  - 2.26.x is the last minor release that you can use Halyard to install or manage. Future releases require the Armory Operator. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
+
+- Armory Operator 1.2.6 or later
+
+   For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}).
+
 
 ## Security
 
-Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
+Armory scans the codebase as we develop and release software. For information about CVE scans for this release, see the [Support Portal](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010414). Note that you must be logged in to the portal to see the information.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
-> Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
+{{< include "breaking-changes/bc-java-tls-mysql.md" >}}
+
+{{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
+
+{{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
+{{< include "known-issues/ki-bake-var-file.md" >}}
 
 ## Highlighted updates
 
@@ -35,8 +46,9 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+### AWS Lambda
 
-
+* Fixed an issue where infrastructure for Lambda functions was not being displayed in the UI. This was related to Lambda functions and their event source mappings.
 
 
 ###  Spinnaker Community Contributions
