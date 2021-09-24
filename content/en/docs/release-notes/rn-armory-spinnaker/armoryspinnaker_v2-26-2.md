@@ -42,7 +42,7 @@ Armory scans the codebase as we develop and release software. For information ab
 
 #### Lambda icon missing
 
-In the left navigation of the UI, the icon for Lambda functions is missing.
+In the left navigation of the UI, the icon for Lambda functions is missing. This does not affect any functionality. 
 
 ## Highlighted updates
 
