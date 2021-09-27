@@ -90,7 +90,7 @@ spec:
                 spec:
                   initContainers:
                   - name: armory-agent-plugin
-                    image: docker.io/armory/agent-k8s-spinplug:<version> # must be compatible with your Armory Enterprise version
+                    image: docker.io/armory/kubesvc-plugin:<version> # must be compatible with your Armory Enterprise version
                     volumeMounts:
                       - mountPath: /opt/plugin/target
                         name: armory-agent-plugin-vol

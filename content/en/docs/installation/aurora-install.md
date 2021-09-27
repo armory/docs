@@ -1,25 +1,27 @@
 ---
-title: Get Started with Armory Deployments for Spinnaker 
-description: Use this self-service guide to install the Armory Deployments for Spinnaker Plugin, which enables new Spinnaker stages that unlock the features of Armory cloud services.
+title: Get Started with Project Aurora for Spinnaker™ 
+description: Use this self-service guide to install Project Aurora, which enables you to perform canary deployments in a single stage.
 exclude_search: true
 toc_hide: true
 hide_summary: true
+aliases:
+  - /docs/installation/armory-deployments-for-spinnaker/
 ---
 
 {{< include "early-access-feature.html" >}}
 
 ## Overview
 
-The Armory Deployments plugin for Spinnaker enables new Spinnaker stages that unlock the features of Armory Deployments cloud services.
+Project Aurora is plugin that adds a new stage to your Armory Enterprise (Spinnaker) instance. When you use this stage to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
 
-See [Armory Deployments Architecture]({{< ref "armory-deployments/architecture" >}}) for an overview of Armory Deployments and how it fits in with Spinnaker.
+See the [Architecture]({{< ref "borealis/architecture" >}}) page for an overview of Project Aurora and how it fits in with Spinnaker.
 
 This guide walks you through the following:
 
 - Registering your Armory Enterprise environment
-- Installing the Armory Agent and the Argo Rollouts Controller, which are required for Armory Deployments
+- Installing the Remonte Network Agent (RNA) and the Argo Rollouts Controller, which are both required for Project Aurora/Borealis
 - Connecting to Armory Cloud services
-- Installing the Armory Deployments plugin
+- Installing the Project Aurora plugin
 - Deploying a "hello world" manifest
 
 ## Requirements
@@ -39,25 +41,26 @@ Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents hav
 
 | Protocol                    | DNS                                                                    | Port | Used By           | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |-----------------------------|------------------------------------------------------------------------|------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| HTTPS                       | armory.jfrog.io                                        | 443  | Helm         | **Armory's Artifact Repository**<br><br>Used to download official Armory artifacts during installation, such as Helm charts. |
 | HTTPS                       | api.cloud.armory.io                      | 443  | Spinnaker         | **Armory Cloud REST API**<br><br>Used fetch information from the Kubernetes cache                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| TLS enabled gRPC over HTTP2 | agents.cloud.armory.io                | 443  | Spinnaker, Agents | **Armory Cloud Agent-Hub**<br><br>Used to connect agents to the Agent Hub through encrypted long-lived gRPC HTTP2 connections. The connections are used for bi-directional communication between Armory Enterprise or Armory Cloud Services and any target Kubernetes clusters.<br><br>This is needed so that Armory Cloud Services can interact with a your private Kubernetes APIs, orchestrate deployments, and cache data for Armory Enterprise without direct network access to your Kubernetes APIs.<br><br>Agents send data about deployments, replica-sets, and related data to Armory Cloud's Agent Cache to power infrastructure management experiences, such as the Armory Deployments Plugin. |
+| TLS enabled gRPC over HTTP2 | agents.cloud.armory.io                | 443  | Spinnaker, Agents | **Armory Cloud Agent-Hub**<br><br>Used to connect agents to the Agent Hub through encrypted long-lived gRPC HTTP2 connections. The connections are used for bi-directional communication between Armory Enterprise or Armory Cloud Services and any target Kubernetes clusters.<br><br>This is needed so that Armory Cloud Services can interact with a your private Kubernetes APIs, orchestrate deployments, and cache data for Armory Enterprise without direct network access to your Kubernetes APIs.<br><br>Agents send data about deployments, replica-sets, and related data to Armory Cloud's Agent Cache to power infrastructure management experiences, such as the Project Aurora Plugin. |
 | HTTPS                       | auth.cloud.armory.io                    | 443  | Spinnaker, Agents | **Armory’s OIDC authorization server**<br><br>Used to exchange the client ID and secret for a Java Web Token () to verify identity.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| HTTPS                       | github.com                                        | 443  | Spinnaker         | **Github**<br><br>Used to download official Armory plugins at startup time.
+| HTTPS                       | github.com                                        | 443  | Spinnaker         | **Github**<br><br>Used to download official Armory plugins at startup time. |
 
 ### Target Kubernetes cluster
 
-Armory Deployments is a separate product from Armory Enterprise (Spinnaker). It does not use Clouddriver to source its accounts. Instead, it uses the Armory Agents that are deployed in your target Kubernetes clusters. The Armory Agent is a lightweight, scalable service that enables Armory Deployments to interact with your infrastructure. You must install the Armory Cloud Agent in every target cluster. 
+Project Aurora is a separate product from Armory Enterprise (Spinnaker). It does not use Clouddriver to source its accounts. Instead, it uses Remote Network Agents (RNAs) that are deployed in your target Kubernetes clusters. An RNA is a lightweight, scalable service that enables Project Aurora to interact with your infrastructure. You must install RNAs in every target cluster. 
 
-Additionally, Armory Deployments uses the Argo Rollouts Controller to manage progressive deployments to your infrastructure.
+Additionally, Project Aurora uses the Argo Rollouts Controller to manage progressive deployments to your infrastructure.
 
-Installing both of these requirements is discussed in [Enable Armory Deployments in target Kubernetes clusters](#enable-armory-deployments-in-target-kubernetes-clusters).
+The Helm chart described in [Enable Project Aurora in target Kubernetes clusters](#enable-aurora-in-target-kubernetes-clusters) manages the installation of both of these requirements for you.
 
 ## Register your Armory Enterprise environment
 
 Register your Armory Enterprise environment so that it can communicate with Armory services. Each environment needs to get registered if you, for example, have production and development environments.
 
 1. Get your registration link from Armory.
-2. Complete the [deployment registration]({{< ref "deployment-reg" >}}) for your Armory Enterprise environment.
+2. Register your Armory Enterprise [environment]({{< ref "ae-environment-reg" >}}).
 
 ## Create client credentials for your Agents
 
@@ -68,51 +71,49 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 1. In the left navigation menu, select **Access Management > Client Credentials**.
 2. In the upper right corner, select **New Credential**.
-3. Create a credential for the Armory Agent. Use a descriptive name for the credential, such as `Armory K8s Agent`
+3. Create a credential for the your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
 4. Set the permission scope to the following:
 
 - `write:infra:data`
 - `get:infra:op`
 
-> This is the minimum set of required permissions for the Armory Agent.
+> This is the minimum set of required permissions for a RNA.
 
 5. Note both the `Client ID` and `Client Secret`. You need these values when configuring the Agent.
 
-## Enable Armory Deployments in target Kubernetes clusters
+## Enable Aurora in target Kubernetes clusters
 
-This section walks you through installing the Armory Agent for Kubernetes and the Argo Rollouts Controller, which are both required for Armory Deployments.
+This section walks you through installing the Remote Network Agent (RNA) and the Argo Rollouts Controller, which are both required for Project Aurora. The Helm chart that Armory provides installs both the Armory Cloud Agent and Argo Rollouts. If your target deployment cluster already has Argo Rollouts installed, you can disable that part of the installation.
 
-### Install the Argo Rollout Controller
-
-Armory Deployments requires that you install the Argo Rollouts controller 1.x or later, in each target Kubernetes cluster along with the Armory Agent.
-
-For information about how to install Argo Rollout, see [Controller Installation](https://argoproj.github.io/argo-rollouts/installation/#controller-installation) in the Argo documentation.
-
-### Install the Agent
-
-A quick note on secrets you can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}})
-
-Set the client_secret value to be a secret token, instead of the plain text value.
-
-{{< tabs name="AgentInstall" >}}
-{{% tab name="Helm (recommended)" %}}
-
-Installing the Armory Kubernetes agent with Helm is simple.
+> Note: You can use encrypted secrets instead of providing plaintext values. For more information, see the [Secrets Guide]({{< ref "secrets" >}}).
 
 ```bash
-# Add the armory helm repo
-helm repo add armory-charts https://armory.jfrog.io/artifactory/charts
-# Refresh your repo cache
+# Add the Armory helm repo. This only needs to be done once.
+helm repo add armory https://armory.jfrog.io/artifactory/charts
+
+# Refresh your repo cache.
 helm repo update
-# Install the Agent, omit --create-namespace if installing into existing namespace
-# the accountName opt, is what this cluster will show up as in the Spinnaker Stage and Armory Cloud APIs
-helm install armory-agent \
-    --set accountName=my-k8s-cluster \
-    --set clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
-    --set clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
-    --namespace armory-agent \
+
+# The `accountName` opt is what this cluster will render as in the
+# Spinnaker Stage and Armory Cloud APIs.
+helm install aurora \
+    --set agent-k8s.accountName=my-k8s-cluster \
+    --set agent-k8s.clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
+    --set agent-k8s.clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
+    --namespace armory \
+    # Omit --create-namespace if installing into existing namespace.
     --create-namespace \
-    armory-charts/agent-k8s
+    armory/aurora
+```
+
+If you already have Argo Rollouts configured in your environment you may disable
+that part of the Helm chart by setting the `enabled` key to false as in the following example:
+
+```shell
+helm install aurora \
+    # ... other config options
+    --set argo-rollouts.enabled=false
+    # ... other config options
 ```
 
 If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings. 
@@ -146,239 +147,7 @@ With the file, you can configure multiple configs in addition to the `env` confi
 
 </details>
 
-{{% /tab %}}
-{{% tab name="Manual" %}}
 
-#### Create a namespace
-
-In the target cluster where you want to deploy apps, create a namespace for the Agent:
-
-```bash
-kubectl create ns armory-agent
-```
-
-> The examples on this page assume you are using a namespace called armory-agent for the Agent. Replace the namespace in the examples if you are using a different namespace.
-
-#### Configure permissions
-
-Create a `ClusterRole`, `ServiceAccount`, and `ClusterRoleBinding` for the Agent by applying the following manifest to your `armory-agent` namespace:
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: spin-cluster-role
-rules:
-- apiGroups:
-  - ""
-  resources:
-  - pods
-  - pods/log
-  - ingresses/status
-  - endpoints
-  verbs:
-  - get
-  - list
-  - update
-  - patch
-  - delete
-- apiGroups:
-  - ""
-  resources:
-  - services
-  - services/finalizers
-  - events
-  - configmaps
-  - secrets
-  - namespaces
-  - ingresses
-  - jobs
-  verbs:
-  - create
-  - get
-  - list
-  - update
-  - watch
-  - patch
-  - delete
-- apiGroups:
-  - batch
-  resources:
-  - jobs
-  verbs:
-  - create
-  - get
-  - list
-  - update
-  - watch
-  - patch
-- apiGroups:
-  - apps
-  - extensions
-  resources:
-  - deployments
-  - deployments/finalizers
-  - deployments/scale
-  - daemonsets
-  - replicasets
-  - replicasets/finalizers
-  - replicasets/scale
-  - statefulsets
-  - statefulsets/finalizers
-  - statefulsets/scale
-  verbs:
-  - create
-  - get
-  - list
-  - update
-  - watch
-  - patch
-  - delete
-- apiGroups:
-  - monitoring.coreos.com
-  resources:
-  - servicemonitors
-  verbs:
-  - get
-  - create
-- apiGroups:
-  - spinnaker.armory.io
-  resources:
-  - '*'
-  - spinnakerservices
-  verbs:
-  - create
-  - get
-  - list
-  - update
-  - watch
-  - patch
-- apiGroups:
-  - admissionregistration.k8s.io
-  resources:
-  - validatingwebhookconfigurations
-  verbs:
-  - '*'
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  namespace: armory-agent
-  name: spin-sa
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: spin-cluster-role-binding
-subjects:
-  - kind: ServiceAccount
-    name: spin-sa
-    namespace: armory-agent
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: spin-cluster-role
-```
-
-#### Configure the Agent
-
-Use a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) to configure the Agent. In the `data` block, define `armory-agent.yml` and add your Kubernetes account configuration for your cluster. This YAML file is where you provide the Client ID and Secret that you received when you [create client credentials for your agents](#create-client-credentials-for-your-agents).
-
-For information about adding accounts, see  the [kubernetes.accounts[] options in the Agent Options documentation]({{< ref "agent-options#options" >}}).
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: armory-agent-config
-  namespace: armory-agent
-data:
-  armory-agent.yaml: |
-    hub:
-      connection:
-        grpc: agents.cloud.armory.io:443
-      auth:
-        armory:
-          clientId: <Armory K8s Agent ClientId for Agent from earlier>
-          secret: <Armory K8s Agent Secret for Agent from earlier>
-          tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
-          audience: https://api.cloud.armory.io
-          verify: true
-    kubernetes:
-     accounts: [] 
-```
-
-#### Deploy the Agent
-
-Apply the following Agent deployment manifest to the namespace you created on the target cluster for the Agent (`armory-agent` for the examples on this page):
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: spin
-    app.kubernetes.io/name: armory-agent
-    app.kubernetes.io/part-of: spinnaker
-    cluster: spin-armory-agent
-  name: spin-armory-agent
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: spin
-      cluster: spin-armory-agent
-  template:
-    metadata:
-      labels:
-        app: spin
-        app.kubernetes.io/name: armory-agent
-        app.kubernetes.io/part-of: spinnaker
-        cluster: spin-armory-agent
-    spec:
-      serviceAccount: spin-sa
-      containers:
-      - image: armory/agent-kubernetes:0.1.3
-        imagePullPolicy: IfNotPresent
-        name: armory-agent
-        env:
-        - name: ARMORY_HUB
-          value: "true"
-        ports:
-          - name: health
-            containerPort: 8082
-            protocol: TCP
-          - name: metrics
-            containerPort: 8008
-            protocol: TCP
-        readinessProbe:
-          httpGet:
-            port: health
-            path: /health
-          failureThreshold: 3
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        volumeMounts:
-        - mountPath: /opt/spinnaker/config
-          name: volume-armory-agent-config
-        # - mountPath: /kubeconfigfiles
-        #   name: volume-armory-agent-kubeconfigs
-      restartPolicy: Always
-      volumes:
-      - name: volume-armory-agent-config
-        configMap:
-          name: armory-agent-config
-      # - name: volume-armory-agent-kubeconfigs
-      #   secret:
-      #     defaultMode: 420
-      #     secretName: kubeconfigs-secret
-```
-
-{{% /tab %}}
-{{< /tabs >}}
 
 ### Verify the Agent deployment
 

@@ -24,7 +24,7 @@ To install, upgrade, or configure Armory 2.26.2, use one of the following tools:
 
 ## Security
 
-Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
+Armory scans the codebase as we develop and release software. For information about CVE scans for this release, see the [Support Portal](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010414). Note that you must be logged in to the portal to see the information.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
@@ -39,6 +39,10 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
+
+#### Lambda icon missing
+
+In the left navigation of the UI, the icon for Lambda functions is missing. This does not affect any functionality. 
 
 ## Highlighted updates
 
