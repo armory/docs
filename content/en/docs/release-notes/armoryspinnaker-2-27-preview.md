@@ -7,6 +7,11 @@ description: >
     Preview of the changes and enhancements coming in Armory Enterprise v2.27.0. Note that the actual contents of the release are subject to change. Items may be added or removed from this preview without prior notice. 
 ---
 
+
+## Disclaimer
+
+{{< include "lts-beta.md" >}}
+
 ## Required Operator version
 
 To install, upgrade, or configure Armory 2.27.0, use the following Operator version:
