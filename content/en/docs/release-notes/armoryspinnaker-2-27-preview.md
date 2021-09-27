@@ -1,10 +1,10 @@
 ---
-title: v2.27.0 Armory Release Preview
+title: v2.27.0 Beta for Armory Enterprise
 toc_hide: true
 hide_summary: true
 exclude_search: true
 description: >
-    Preview of the changes and enhancements coming in Armory Enterprise v2.27.0. Note that the actual contents of the release are subject to change. Items may be added or removed from this preview without prior notice. 
+    Armory Enterprise v2.27.0 is a beta release of Armory Enterprise and not meant for installation in production environments. 
 ---
 
 
