@@ -306,9 +306,9 @@ hal deploy apply
 
 ## Use Project Aurora
 
-In the Armory Enterprise UI, the stage for Project Aurora is called **Kubernetes Progressive**. If you have deployed Kubernetes apps before using Armory Enterprise, this page may look familiar. The key difference between a Kubernetes deployment using Armory Enterprise and Armory Enterprise with Project Aurora is the **How to Deploy** section. 
+In the Armory Enterprise UI, the stage for Project Aurora is called **Kubernetes Progressive**. If you have deployed Kubernetes apps before using Armory Enterprise, this page may look familiar. The key difference between a Kubernetes deployment using Armory Enterprise and Armory Enterprise with Project Aurora is in the **How to Deploy** section.
 
-The **How to Deploy** section consists of two parts:
+The **How to Deploy** section is where you define your progressive deployment and consists of two parts:
 
 **Strategy**
 
@@ -318,12 +318,14 @@ This is the deployment strategy you want to use to deploy your Kubernetes app. A
 
 These settings control how the your Kubernetes deployment behaves as Project Aurora deploys it. You can tune two separate but related chracteristics of the deployment:
 
-- **Rollout Ratio**: set the percentage thresholds (integer) for how widely an app should get rolled out before pausing.
+- **Rollout Ratio**: set the percentage threshold (integer) for how widely an app should get rolled out before pausing.
 - **Then wait**: define what triggerse the rollout to continue. The trigger can either be a manul approval (**until approved**) or for a set amount of time, either seconds, minutes or hours (integer).
+
+Create a step for each **Rollout Ratio** you want to define. For example, if you want a deployment to pause at 25%, 50%, and 75% of the app rollout, you need to define 3 steps, one for each of those thresholds. The steps have independent **Then wait** behaviors and can be set to all follow the same behavior or different ones.
 
 ### Try out the stage
 
-You can try out Project Aurora and the **Kubernetes Progressive** stage using either the `hello-world` sample manifest describeed below or an artifact that you already have.
+You can try out Project Aurora and the **Kubernetes Progressive** stage using either the `hello-world` sample manifest described below or an artifact that you have. The `hello-world` example deploys NGINX that intentionally takes longer than usual for demonstration purposes.
 
 Perform the following steps:
 
@@ -336,7 +338,7 @@ Perform the following steps:
 5. For **Manifest Source**, ensure that you select your manifest source. If you are using the `hello-world` sample manifest described later, select **Text**.
 6. **Using text as the manifest source:**
    
-   In the **Manifest** field, provide your manifest. If you are using the `hello-world` manifest, the manifest deploys NGINX, but the deployment intentionally takes longer than usual.
+   In the **Manifest** field, provide your manifest. If you are using the `hello-world` manifest, enter that manifesst.
 
    <details><summary>Show me the <code>hello-world</code> manifest</summary>
 
@@ -383,7 +385,7 @@ Perform the following steps:
 
 7. In the **How to Deploy** section, configure the **Rollout Ratio** and **Then wait** attributes for the deployment.
 
-   Add more steps to the canary deployment to set multiple thresholds. Each threshold can have its own **Then wait** behavior.
+   Optionally, add more steps to the deployment to configure the rollout behavior.
 
 8.  Save the pipeline.
 9.  Trigger a manual execution of the pipeline.
