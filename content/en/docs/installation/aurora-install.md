@@ -162,7 +162,7 @@ time="2021-07-16T17:48:30Z" level=info msg="handling registration 01FAR6Y7EDJW1B
 time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kubernetes\" name:\"account-test\""
 ```
 
-## Install the Armory Deployment Plugin
+## Install the Project Aurora Plugin
 
 A quick note on secrets you can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}})
 
