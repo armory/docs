@@ -71,7 +71,7 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 1. In the left navigation menu, select **Access Management > Client Credentials**.
 2. In the upper right corner, select **New Credential**.
-3. Create a credential for the your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
+3. Create a credential for your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
 4. Set the permission scope to the following:
 
 - `write:infra:data`
