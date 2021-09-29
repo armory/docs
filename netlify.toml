@@ -99,8 +99,10 @@ package = "@netlify/plugin-sitemap"
     './public/docs/plugin-guide/plugin-appname/',
     './public/docs/feature-status/deprecations/pacrd-deprecation/',
     './public/docs/installation/deployment-reg/',
-    './public/docs/installation/armory-deployments-for-spinnaker/',
-    './public/armory-deployments/'
+    './public/docs/installation/aurora-install/',
+    './public/borealis/',
+    './public/managed-spin'
+    
     
   ]
   # append missing trailing slash to prettyURL
