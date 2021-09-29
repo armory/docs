@@ -64,90 +64,13 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 ## Create client credentials for your Agents
 
-1. Log in to the Armory Cloud Console: https://console.cloud.armory.io/.
-2. If you have more than one registered environment, ensure the proper env is selected in the user context menu:
-
-   {{< figure src="/images/deploy-engine/cloud-env-context.png" alt="The upper right section of the window shows what environment you are currently in." >}}
-
-1. In the left navigation menu, select **Access Management > Client Credentials**.
-2. In the upper right corner, select **New Credential**.
-3. Create a credential for the your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
-4. Set the permission scope to the following:
-
-- `write:infra:data`
-- `get:infra:op`
-
-> This is the minimum set of required permissions for a RNA.
-
-5. Note both the `Client ID` and `Client Secret`. You need these values when configuring the Agent.
+{{< include "aurora-borealis/cloud-console-creds.md" >}}
 
 ## Enable Aurora in target Kubernetes clusters
 
 This section walks you through installing the Remote Network Agent (RNA) and the Argo Rollouts Controller, which are both required for Project Aurora. The Helm chart that Armory provides installs both the Armory Cloud Agent and Argo Rollouts. If your target deployment cluster already has Argo Rollouts installed, you can disable that part of the installation.
 
-> Note: You can use encrypted secrets instead of providing plaintext values. For more information, see the [Secrets Guide]({{< ref "secrets" >}}).
-
-```bash
-# Add the Armory helm repo. This only needs to be done once.
-helm repo add armory https://armory.jfrog.io/artifactory/charts
-
-# Refresh your repo cache.
-helm repo update
-
-# The `accountName` opt is what this cluster will render as in the
-# Spinnaker Stage and Armory Cloud APIs.
-helm install aurora \
-    --set agent-k8s.accountName=my-k8s-cluster \
-    --set agent-k8s.clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
-    --set agent-k8s.clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
-    --namespace armory \
-    # Omit --create-namespace if installing into existing namespace.
-    --create-namespace \
-    armory/aurora
-```
-
-If you already have Argo Rollouts configured in your environment you may disable
-that part of the Helm chart by setting the `enabled` key to false as in the following example:
-
-```shell
-helm install aurora \
-    # ... other config options
-    --set argo-rollouts.enabled=false
-    # ... other config options
-```
-
-If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings. 
-
-<details><summary>Learn more</summary>
-
-To set an HTTPS proxy, use the following config:
-
-```yaml
-env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>"
-``` 
-
-You can include the following snippet in your `helm install` command:
-
-```yaml
---set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>" 
-```
-
-Alternatively, you can create a `values.yaml` file to include the parameters:
-
-```yaml
-env:
-  - name: HTTPS_PROXY
-    value: <hostname>:<port>
-```
-With the file, you can configure multiple configs in addition to the `env` config in your `helm install` command. Instead of using `--set`, include the `--values` parameter as part of the Helm install command:
-
-```
---values=<path>/values.yaml
-```
-
-</details>
-
-
+{{< include "aurora-borealis/agent-argo-install.md" >}}
 
 ### Verify the Agent deployment
 
