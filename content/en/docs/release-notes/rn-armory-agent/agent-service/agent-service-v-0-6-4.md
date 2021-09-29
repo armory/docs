@@ -7,5 +7,5 @@ version: 00.06.04
 
 ### Fixes
 
-- Fixed error that prevented helm from installing when kubeconfig was not provided.
+- Fixed in issue that prevented Helm from installing when a kubeconfig is not provided.
 
