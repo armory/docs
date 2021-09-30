@@ -123,7 +123,7 @@ The following table lists the supported version control systems:
 | Feature          | Version                     | Armory version         | Notes           |
 | ---------------- | --------------------------- | ---------------------- | --------------- |
 | BitBucket Cloud  |                             | All supported versions |                 |
-| BitBucket Server | 4.x - 6.x |  All supported versions | BitBucket Server 7.x is not officially supported due to changes in webhook handling, and may not behave as expected. |
+| BitBucket Server | 4.x - 6.x |  All supported versions | BitBucket Server 7.x is not officially supported due to changes in webhook handling and may not behave as expected. |
 | GitHub           |                             | All supported versions | Hosted or cloud |
 
 **Features**
