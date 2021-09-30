@@ -204,6 +204,7 @@ spec:
           iam:
             clientId: <clientId for Spinnaker from earlier>
             clientSecret: <clientSecret for Spinnaker from earlier>
+            tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
           api:
             baseUrl: https://api.cloud.armory.io
         spinnaker:
@@ -245,6 +246,7 @@ armory.cloud:
   iam:
     clientId: <clientId for Spinnaker from earlier>
     clientSecret: <clientSecret for Spinnaker from earlier>
+    tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
   api:
     baseUrl: https://api.cloud.armory.io
 spinnaker:
