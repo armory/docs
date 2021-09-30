@@ -1,7 +1,10 @@
 ---
-title: v2.26 Armory Enterprise Compatibility Matrix
+title: v2.27 Armory Enterprise Compatibility Matrix
 description: "Information about support and compatibility for Armory Enterprise and the products and platforms that it integrates with."
 toc_hide: true
+aliases:
+  - /docs/armory-platform-matrix/
+  - /docs/armory-enterprise-matrix/
 ---
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables#
@@ -120,7 +123,7 @@ The following table lists the supported version control systems:
 | Feature          | Version                     | Armory version         | Notes           |
 | ---------------- | --------------------------- | ---------------------- | --------------- |
 | BitBucket Cloud  |                             | All supported versions |                 |
-| BitBucket Server | Previous two major versions | All supported versions |                 |
+| BitBucket Server | 4.x - 6.x |  All supported versions | BitBucket Server 7.x is not officially supported due to changes in webhook handling and may not behave as expected. |
 | GitHub           |                             | All supported versions | Hosted or cloud |
 
 **Features**
