@@ -37,6 +37,7 @@ Armory scans the codebase as we develop and release software. For information ab
 
 {{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
 
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
@@ -54,6 +55,10 @@ To resolve the issue, set the following property to `false` in your Operator man
 
 
 ## Highlighted updates
+
+### Armory Agent for Kubernetes
+
+Armory Enterprise 2.27.0 requires an updated version of the Agent Clouddriver Plugin. The minimum plugin version required is `v0.10.0`.
 
 ### Deployment targets
 
