@@ -42,6 +42,17 @@ Armory scans the codebase as we develop and release software. For information ab
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
 
+#### NullPointerException in Clouddriver
+
+The following NPE occurs in the Clouddriver service:
+
+```
+Error creating bean with name 'kubesvcCredentialsLoader': Invocation of init method failed; nested exception is java.lang.NullPointerException
+```
+
+To resolve the issue, set the following property to `false` in your Operator manifest: `spec.spinnakerConfig.profiles.clouddriver.armory.cloud.enabled`.
+
+
 ## Highlighted updates
 
 ### Deployment targets
