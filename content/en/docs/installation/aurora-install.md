@@ -60,7 +60,7 @@ The Helm chart described in [Enable Project Aurora in target Kubernetes clusters
 Register your Armory Enterprise environment so that it can communicate with Armory services. Each environment needs to get registered if you, for example, have production and development environments.
 
 1. Get your registration link from Armory.
-2. Complete the [deployment registration]({{< ref "deployment-reg" >}}) for your Armory Enterprise environment.
+2. Register your Armory Enterprise [environment]({{< ref "ae-environment-reg" >}}).
 
 ## Create client credentials for your Agents
 
@@ -71,7 +71,7 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 1. In the left navigation menu, select **Access Management > Client Credentials**.
 2. In the upper right corner, select **New Credential**.
-3. Create a credential for the your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
+3. Create a credential for your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
 4. Set the permission scope to the following:
 
 - `write:infra:data`
@@ -162,7 +162,7 @@ time="2021-07-16T17:48:30Z" level=info msg="handling registration 01FAR6Y7EDJW1B
 time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kubernetes\" name:\"account-test\""
 ```
 
-## Install the Armory Deployment Plugin
+## Install the Project Aurora Plugin
 
 A quick note on secrets you can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}})
 
@@ -204,6 +204,7 @@ spec:
           iam:
             clientId: <clientId for Spinnaker from earlier>
             clientSecret: <clientSecret for Spinnaker from earlier>
+            tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
           api:
             baseUrl: https://api.cloud.armory.io
         spinnaker:
@@ -245,6 +246,7 @@ armory.cloud:
   iam:
     clientId: <clientId for Spinnaker from earlier>
     clientSecret: <clientSecret for Spinnaker from earlier>
+    tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
   api:
     baseUrl: https://api.cloud.armory.io
 spinnaker:
@@ -294,23 +296,53 @@ hal deploy apply
    kubectl -n <Armory-Enterprise-namespace> get pods
    ```
 
-2. Navigate to the UI.
+2. Navigate to the Armory Enterprise UI.
 3. In a new or existing application, create a new pipeline.
-4. In this pipeline, select **Add stage** and search for "Kubernetes Progressive." The stage should appear if the plugin is properly configured.
+4. In this pipeline, select **Add stage** and search for **Kubernetes Progressive**. The stage should appear if the plugin is properly configured.
 
    {{< figure src="/images/deploy-engine/deploy-engine-stage-UI.jpg" alt="The Kubernetes Progressive stage appears in the Type dropdown when you search for it." >}}
 
-1. In the **Basic Settings** section, verify that you can see the target deployment account in the **Account** dropdown.
+5. In the **Basic Settings** section, verify that you can see the target deployment account in the **Account** dropdown.
 
-   {{< figure src="/images/deploy-engine/deploy-engine-accounts.png" alt="If the plugin is configured properly, you should see the target deployment account in the Account dropdown." >}}
+   {{< figure src="/images/deploy-engine/deploy-engine-accounts.png" alt="If the plugin is configured properly, you should see the target deployment account in the Account dropdown." >}}.
 
-## Deploy the hello-world manifest
+## Use Project Aurora
 
-You can try out the **Kubernetes Progressive** stage using the `hello-world` sample manifest.
+In the Armory Enterprise UI, the stage for Project Aurora is called **Kubernetes Progressive**. If you have deployed Kubernetes apps before using Armory Enterprise, this page may look familiar. The key difference between a Kubernetes deployment using Armory Enterprise and Armory Enterprise with Project Aurora is in the **How to Deploy** section.
 
-1. Create a new pipeline with a single **Kubernetes Progressive** stage.
-2. In the **What to Deploy** section, paste the following in the manifest text block:
+The **How to Deploy** section is where you define your progressive deployment and consists of two parts:
 
+**Strategy**
+
+This is the deployment strategy you want to use to deploy your Kubernetes app. As part of the early access program, the **Canary** strategy is available. Canary deployments allow you to roll out changes to a predefined percentage of your cluster and increment from there as you monitor the effects of your changes. If something doesn't look quite right, you can initiate a rollback to a previous known good state.
+
+**Steps**
+
+These settings control how the your Kubernetes deployment behaves as Project Aurora deploys it. You can tune two separate but related chracteristics of the deployment:
+
+- **Rollout Ratio**: set the percentage threshold (integer) for how widely an app should get rolled out before pausing.
+- **Then wait**: define what triggerse the rollout to continue. The trigger can either be a manul approval (**until approved**) or for a set amount of time, either seconds, minutes or hours (integer).
+
+Create a step for each **Rollout Ratio** you want to define. For example, if you want a deployment to pause at 25%, 50%, and 75% of the app rollout, you need to define 3 steps, one for each of those thresholds. The steps have independent **Then wait** behaviors and can be set to all follow the same behavior or different ones.
+
+### Try out the stage
+
+You can try out Project Aurora and the **Kubernetes Progressive** stage using either the `hello-world` sample manifest described below or an artifact that you have. The `hello-world` example deploys NGINX that intentionally takes longer than usual for demonstration purposes.
+
+Perform the following steps:
+
+1. In the Armory Enterprise UI, select an existing app or create a new one.
+2. Create a new pipeline.
+3. Add a stage to your pipeline with the following attributes:
+   - **Type**: select **Kubernetes Progressive**
+   - **Stage Name**: provide a descriptive name or use the autogenerated name.
+4. In the **Account** field, select the target Kubernetes cluster you want to deploy to. This is a cluster where the Remote Network Agent and Argo Rollout are installed.
+5. For **Manifest Source**, ensure that you select your manifest source. If you are using the `hello-world` sample manifest described later, select **Text**.
+6. **Using text as the manifest source:**
+   
+   In the **Manifest** field, provide your manifest. If you are using the `hello-world` manifest, enter that manifest.
+
+   <details><summary>Show me the <code>hello-world</code> manifest</summary>
 
    ```yaml
    # A simple nginx deployment with an init container that causes deployment to take longer than usual
@@ -347,8 +379,17 @@ You can try out the **Kubernetes Progressive** stage using the `hello-world` sam
              name: sleep
    ```
 
+   </details>
 
-1. In the **How to Deploy** section, configure your canary steps. You can set percentage thresholds for how widely an app should get rolled out before it either waits for a manual approval or a set amount of time.
-2. Save the pipeline and trigger a manual execution.
+   **Using an existing artifact**
 
-Watch the pipeline execute the canary rollout!
+   Select an existing artifact or define a new one as you would for a standard Kubernetes deployment in Armory Enterprise.
+
+7. In the **How to Deploy** section, configure the **Rollout Ratio** and **Then wait** attributes for the deployment.
+
+   Optionally, add more steps to the deployment to configure the rollout behavior. You do not need to create a step for 100% Rollout Ratio. Project Aurora automatically scales the deployment to 100% after the final step you configure.
+
+8.  Save the pipeline.
+9.  Trigger a manual execution of the pipeline.
+
+On the **Pipelines** page of the Armory Enterprise UI, select the pipeline and watch the deployment progress. If you set the **Then wait** behavior of any step to **until approved**, this is where you approve the rollout and allow it to continue. After completing the final step you configured, Project Aurora scales the deployment to 100% of the cluster if needed.

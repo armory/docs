@@ -1,18 +1,18 @@
 ---
-title: Registration
-description: Register your Armory Enterprise instance so that it can communicate with Armory services. 
+title: Environment Registration
+linkTitle: Registration
+description: As part of the configuration process, you need to register your Armory Enterprise instance. If you maintain several instances, such as development, staging, and production instances, you must register each one.
 exclude_search: true
 toc_hide: true
+hide_summary: true
+aliases:
+  - /docs/installation/deployment-reg/
 ---
 <!--Several shortlinks point to this page from Deck:
 - go.armory.io/UIdocs-deploy-reg points to the top of this page
 - go.armory.io/UIdocs-deploy-reg-troubleshooting points to Troubleshooting
 - go.armory.io/UIdocs-deploy-reg-manual-id points to the Operator fails to generate an instance ID section
 -->
-
-## Overview
-
-As part of the configuration process, you need to register your Armory Enterprise instance. If you maintain several instances, such as development, staging, and production instances, you must register each one.
 
 ## Register your environment
 
@@ -32,7 +32,7 @@ In your Operator manifest (such as `spinnakerService.yml`) or `spinnaker-local` 
   - `spec.spinnakerConfig.profiles.spinnaker.armory.cloud.iam.clientID`: set this value to **Client ID** that you received from [Register your environment](#register-your-environment).
   - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientSecret`: set this value to the **Secret** that you received from [Register your environment](#register-your-environment).
 
-Once you apply the registration information to your environment, communication between your Armory Enterprise environment and Armory Cloud is enabled. The communication allows certain Armory Enterprise features, such as the Armory Deployments plugin, to function.
+Once you apply the registration information to your environment, your Armory Enterprise environment is registered with Armory.
 
 {{< tabs name="Configure Armory Enterprise" >}}
 {{% tab name="Operator" %}}
@@ -41,8 +41,7 @@ Once you apply the registration information to your environment, communication b
 spec:
   spinnakerConfig:
     profiles:
-      # Global Settings
-      spinnaker:
+      gate:
         armory.cloud:
           enabled: true
           iam:
@@ -51,6 +50,7 @@ spec:
             clientSecret: <clientSecret>
           api:
             baseUrl: https://api.cloud.armory.io
+          # The following hub parameters are optional and only needed if you are using features that require Armory's hosted cloud services.
           hub:
             baseUrl: https://api.cloud.armory.io/agents
             grpc:
@@ -60,7 +60,7 @@ spec:
                 insecureSkipVerify: true
 ```
 
-Save the file and apply the manifest. Applying the config changes redeploys Armory Enterprise.
+Save the file and apply the manifest. This redeploys Armory Enterprise.
 
 {{% /tab %}}
 
@@ -68,7 +68,7 @@ Save the file and apply the manifest. Applying the config changes redeploys Armo
 
 ```yaml
 
-#spinnaker-local
+#gate-local
 armory.cloud:
   enabled: true
   iam:
@@ -77,6 +77,7 @@ armory.cloud:
     clientSecret:<clientSecret>
   api:
     baseUrl: https://api.cloud.armory.io
+  # The following hub parameters are optional and only needed if you are using features that require Armory's hosted cloud services.
   hub:
     baseUrl: https://api.cloud.armory.io/agents
     grpc:
