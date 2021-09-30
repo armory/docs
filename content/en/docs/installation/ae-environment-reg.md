@@ -50,6 +50,7 @@ spec:
             clientSecret: <clientSecret>
           api:
             baseUrl: https://api.cloud.armory.io
+          # The following hub parameters are optional and only needed if you are using features that require Armory's hosted cloud services.
           hub:
             baseUrl: https://api.cloud.armory.io/agents
             grpc:
@@ -76,6 +77,7 @@ armory.cloud:
     clientSecret:<clientSecret>
   api:
     baseUrl: https://api.cloud.armory.io
+  # The following hub parameters are optional and only needed if you are using features that require Armory's hosted cloud services.
   hub:
     baseUrl: https://api.cloud.armory.io/agents
     grpc:
