@@ -17,7 +17,7 @@ The whole process can be done through the Borealis CLI and a deploy file that yo
 
 ## Requirements
 
-For information about the requirements to use the Borealis CLI, see [Requirements]({{< ref "borealis-requirements.md" >}}). 
+For information about the requirements for using the Borealis CLI, see [Requirements]({{< ref "borealis-requirements.md" >}}). 
 
 ### Prepare your deployment target
 
@@ -33,16 +33,14 @@ To authenticate your CLI to Armory's hosted cloud services, you need to register
 2. Click **Sign Up** and complete the form.
 3. Complete the two-factor authentication configuration.
 
-These are the credentials you use to authenticate the Borealis CLI to Armory's hosted services, such as when you run the `login` command.
+These are the credentials you use to authenticate the Borealis CLI to Armory's hosted services, such as when you run the `login` command with the Borealis CLI.
 
 
 ### Create client credentials
 
-After you create an account, you can create client credentials that Borealis uses to authenticate with your deployment target.
+After you create an account, you can create client credentials that Borealis uses to authenticate with your deployment target. These are machine credentials used to authenticate with deployment targets.
 
 {{< include "aurora-borealis/cloud-console-creds.md" >}}
-
-
 
 
 ## Install the Borealis CLI
@@ -50,8 +48,8 @@ After you create an account, you can create client credentials that Borealis use
 1. Go to https://github.com/armory/armory-cli/releases to download the latest release for your operating system.
 2. Save the file in a directory that is on your `PATH`, such as `/usr/local/bin`.
 3. ename the download file to `armory`.
-4. Give the file executable permissions.
-   I DID 777 FOR THE FILE BUT OBVIOUSLY THAT SHOULD NOT BE IT.
+4. Give the file XYZ permissions.
+   I DID 777.
 5. Verfiy that you can run Borealis:
 
    ```bash
