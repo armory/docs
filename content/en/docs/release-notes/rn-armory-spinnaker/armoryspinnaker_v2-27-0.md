@@ -37,6 +37,9 @@ Armory scans the codebase as we develop and release software. For information ab
 
 {{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
 
+#### Halyard deprecation
+
+Halyard is no longer supported for installing Armory Enterprise 2.27.0 and later. Use the Operator. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
