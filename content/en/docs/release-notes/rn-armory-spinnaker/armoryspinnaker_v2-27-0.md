@@ -3,7 +3,7 @@ title: v2.27.0 Beta Armory Release (OSS Spinnaker™ v1.27.0)
 toc_hide: true
 version: 2.27.00 
 description: >
-  Release notes for Armory Enterprise v2.27.0 Beta. A beta release of Armory Enterprise and not meant for installation in production environments. 
+  Release notes for Armory Enterprise v2.27.0 Beta. A beta release is not meant for installation in production environments. 
 ---
 
 ## 2021/09/30 Release Notes
@@ -48,8 +48,9 @@ Armory scans the codebase as we develop and release software. For information ab
 
 #### AWS Lambda
 
-> Note that these updates also require v1.0.8 of the AWS Lambda plugin. 
-- Fixed an issue in the UI where a stack trace gets displayed when you try to view functions. Note that this also requires v1.0.8 of the AWS Lambda plugin. <!--BOB-30359-->
+> Note that these updates also require v1.0.8 of the AWS Lambda plugin.
+
+- Fixed an issue in the UI where a stack trace gets displayed when you try to view functions. <!--BOB-30359-->
 - Fixed an issue where the UI did not show functions for an application when there are no configured clusters. Functions now appear instead of a 404 error. <!--BOB-30260-->
 - Caching behavior and performance have been improved. The changes include fixes for the following issues:
   - The Lambda API returns request conflicts (HTTP status 409). 
