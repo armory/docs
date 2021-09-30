@@ -41,8 +41,7 @@ Once you apply the registration information to your environment, your Armory Ent
 spec:
   spinnakerConfig:
     profiles:
-      # Global Settings
-      spinnaker:
+      gate:
         armory.cloud:
           enabled: true
           iam:
@@ -68,7 +67,7 @@ Save the file and apply the manifest. This redeploys Armory Enterprise.
 
 ```yaml
 
-#spinnaker-local
+#gate-local
 armory.cloud:
   enabled: true
   iam:
