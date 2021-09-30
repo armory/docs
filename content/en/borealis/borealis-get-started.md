@@ -27,7 +27,18 @@ For information about the requirements to use the Borealis CLI, see [Requirement
 
 ## Register for Armory Cloud services
 
-To authenticate your CLI to Armory's hosted cloud services, you need to create client credentials.
+To authenticate your CLI to Armory's hosted cloud services, you need to register for Armory's hosted cloud services.
+
+1. Go to https://console.cloud.armory.io/.
+2. Click **Sign Up** and complete the form.
+3. Complete the two-factor authentication configuration.
+
+These are the credentials you use to authenticate the Borealis CLI to Armory's hosted services, such as when you run the `login` command.
+
+
+### Create client credentials
+
+After you create an account, you can create client credentials that Borealis uses to authenticate with your deployment target.
 
 {{< include "aurora-borealis/cloud-console-creds.md" >}}
 
@@ -49,7 +60,7 @@ To authenticate your CLI to Armory's hosted cloud services, you need to create c
 
    The command returns basic information about the Borealis CLI, including available commands.
 
-## Try out the Borealis CLI
+## Try out the Borealis CLI from your machine
 
 Before you can deploy, make sure that you have your client ID and secret available. These are used to authenticate your Borealis CLI to the Armory cloud services and to the target cluster.
 
@@ -57,12 +68,13 @@ Before you can deploy, make sure that you have your client ID and secret availab
    ```bash
    armory login
    ```
+   Provide your Armory hosted cloud services username and password as well as two-factor authentication code when prompted.
 2. Generate your deploy template.
 3. Customize your deploy file.
 4. Start the deployment.
 
 
-## Monitor your deployment
+### Monitor your deployment
 
 You can monitor the progress of your deployment and approve the steps either through the Borealis CLI itself or from the Status UI. The Status UI gives you a visual representation of a deployment's health and progress in addition to controls.
 
@@ -70,7 +82,7 @@ GIVE OVERVIEW OF THE UI
 
 ## Advanced use cases
 
-The Borealis CLI can be integrated with other tools that support invoking CLIs, such as GitHub Actions, Jenkins, and Tekton. The credentials used for 
+The Borealis CLI can be integrated with other tools that support invoking CLIs, such as GitHub Actions, Jenkins, and Tekton. 
 
 https://docs.github.com/en/actions/creating-actions -- either creating the action or getting and using the one Armory puts out depending on the timing
 
