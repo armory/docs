@@ -41,8 +41,7 @@ Once you apply the registration information to your environment, your Armory Ent
 spec:
   spinnakerConfig:
     profiles:
-      # Global Settings
-      spinnaker:
+      gate:
         armory.cloud:
           enabled: true
           iam:
@@ -51,6 +50,7 @@ spec:
             clientSecret: <clientSecret>
           api:
             baseUrl: https://api.cloud.armory.io
+          # The following hub parameters are optional and only needed if you are using features that require Armory's hosted cloud services.
           hub:
             baseUrl: https://api.cloud.armory.io/agents
             grpc:
@@ -68,7 +68,7 @@ Save the file and apply the manifest. This redeploys Armory Enterprise.
 
 ```yaml
 
-#spinnaker-local
+#gate-local
 armory.cloud:
   enabled: true
   iam:
@@ -77,6 +77,7 @@ armory.cloud:
     clientSecret:<clientSecret>
   api:
     baseUrl: https://api.cloud.armory.io
+  # The following hub parameters are optional and only needed if you are using features that require Armory's hosted cloud services.
   hub:
     baseUrl: https://api.cloud.armory.io/agents
     grpc:
