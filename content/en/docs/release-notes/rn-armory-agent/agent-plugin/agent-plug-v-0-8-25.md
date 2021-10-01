@@ -7,4 +7,4 @@ version: 00.08.25
 
 ### Fixes
 
-- Kubernetes kinds not accessible anymore for operations when first attempt resulted in failure
+- Fixed an issue where Kubernetes kinds are not accessible for operations if the first attempt resulted in failure.
