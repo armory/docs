@@ -2,9 +2,6 @@
 title: Environment Registration
 linkTitle: Registration
 description: As part of the configuration process, you need to register your Armory Enterprise instance. If you maintain several instances, such as development, staging, and production instances, you must register each one.
-exclude_search: true
-toc_hide: true
-hide_summary: true
 aliases:
   - /docs/installation/deployment-reg/
 ---
