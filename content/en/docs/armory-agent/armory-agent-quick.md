@@ -416,27 +416,23 @@ rules:
 - apiGroups:
   - ""
   resources:
+  - configmaps
+  - endpoints
+  - events
+  - ingresses
+  - ingresses/status
+  - jobs
+  - jobs/status
+  - namespaces
+  - namespaces/finalize
+  - namespaces/status
   - pods
   - pods/log
-  - ingresses/status
-  - endpoints
-  verbs:
-  - get
-  - list
-  - update
-  - patch
-  - delete
-- apiGroups:
-  - ""
-  resources:
-  - services
-  - services/finalizers
-  - events
-  - configmaps
+  - pods/status
   - secrets
-  - namespaces
-  - ingresses
-  - jobs
+  - services
+  - services/status
+  - services/finalizers
   verbs:
   - create
   - get
@@ -449,6 +445,7 @@ rules:
   - batch
   resources:
   - jobs
+  - jobs/status
   verbs:
   - create
   - get
@@ -456,20 +453,25 @@ rules:
   - update
   - watch
   - patch
+  - delete
 - apiGroups:
   - apps
   - extensions
   resources:
+  - daemonsets
+  - daemonsets/status
   - deployments
   - deployments/finalizers
   - deployments/scale
-  - daemonsets
+  - deployments/status
   - replicasets
   - replicasets/finalizers
   - replicasets/scale
+  - replicasets/status
   - statefulsets
   - statefulsets/finalizers
   - statefulsets/scale
+  - statefulsets/status
   verbs:
   - create
   - get
@@ -498,9 +500,21 @@ rules:
   - watch
   - patch
 - apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - '*'
+- apiGroups:
   - admissionregistration.k8s.io
   resources:
   - validatingwebhookconfigurations
+  verbs:
+  - '*'
+- apiGroups:
+  - argoproj.io
+  resources:
+  - '*'
   verbs:
   - '*'
 ---
