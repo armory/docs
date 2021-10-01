@@ -7,4 +7,4 @@ version: 00.06.05
 
 ### New
 
-- Resolve resource mapping for non discovered kinds during agent startup, this allows operations to complete even if there was a failure when reading a specific kind during startup provided the agent has permissions to read it.
+- Resolve resource mapping for non discovered kinds during agent startup. This allows operations to complete even if there is a failure when reading a specific kind during startup as long as the agent has permissions to read it.
