@@ -19,7 +19,7 @@ See the [Architecture]({{< ref "borealis/architecture" >}}) page for an overview
 This guide walks you through the following:
 
 - Registering your Armory Enterprise environment
-- Installing the Remonte Network Agent (RNA) and the Argo Rollouts Controller, which are both required for Project Aurora/Borealis
+- Installing the Remote Network Agent (RNA) and the Argo Rollouts Controller, which are both required for Project Aurora/Borealis
 - Connecting to Armory Cloud services
 - Installing the Project Aurora plugin
 - Deploying a "hello world" manifest
