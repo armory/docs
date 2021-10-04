@@ -227,9 +227,9 @@ enable = true
   url = "https://docs.armory.io/docs"
 
 [[params.versions]]
-  version = "v2.25"
-  githubbranch = "v2.25"
-  url = "https://v2-25.docs.armory.io/docs"
+  version = "v2.26"
+  githubbranch = "v2.26"
+  url = "https://v2-26.docs.armory.io/docs"
 
 [[params.versions]]
   version = "v2.25"
