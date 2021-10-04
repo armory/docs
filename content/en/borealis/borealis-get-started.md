@@ -19,12 +19,6 @@ The whole process can be done through the Borealis CLI and a deploy file that yo
 
 For information about the requirements for using the Borealis CLI, see [Requirements]({{< ref "borealis-requirements.md" >}}). 
 
-### Prepare your deployment target
-
- If you have not already done so, install both the RNA and Argo Rollouts. You can do that using the following Helm chart:
-
-{{< include "aurora-borealis/agent-argo-install.md" >}}
-
 ## Register for Armory Cloud services
 
 To authenticate your CLI to Armory's hosted cloud services, you need to register for Armory's hosted cloud services.
@@ -41,6 +35,12 @@ These are the credentials you use to authenticate the Borealis CLI to Armory's h
 After you create an account, you can create client credentials that Borealis uses to authenticate with your deployment target. These are machine credentials used to authenticate with deployment targets.
 
 {{< include "aurora-borealis/cloud-console-creds.md" >}}
+
+## Prepare your deployment target
+
+ If you have not already done so, install both the RNA and Argo Rollouts. You can do that using the following Helm chart:
+
+{{< include "aurora-borealis/agent-argo-install.md" >}}
 
 
 ## Install the Borealis CLI

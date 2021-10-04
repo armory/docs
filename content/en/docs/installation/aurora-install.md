@@ -64,32 +64,47 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 ## Create client credentials for your Agents
 
-<<<<<<< HEAD
 {{< include "aurora-borealis/cloud-console-creds.md" >}}
-=======
-1. Log in to the Armory Cloud Console: https://console.cloud.armory.io/.
-2. If you have more than one registered environment, ensure the proper env is selected in the user context menu:
-
-   {{< figure src="/images/deploy-engine/cloud-env-context.png" alt="The upper right section of the window shows what environment you are currently in." >}}
-
-1. In the left navigation menu, select **Access Management > Client Credentials**.
-2. In the upper right corner, select **New Credential**.
-3. Create a credential for your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
-4. Set the permission scope to the following:
-
-- `write:infra:data`
-- `get:infra:op`
-
-> This is the minimum set of required permissions for a RNA.
-
-5. Note both the `Client ID` and `Client Secret`. You need these values when configuring the Agent.
->>>>>>> master
 
 ## Enable Aurora in target Kubernetes clusters
 
 This section walks you through installing the Remote Network Agent (RNA) and the Argo Rollouts Controller, which are both required for Project Aurora. The Helm chart that Armory provides installs both the Armory Cloud Agent and Argo Rollouts. If your target deployment cluster already has Argo Rollouts installed, you can disable that part of the installation.
 
 {{< include "aurora-borealis/agent-argo-install.md" >}}
+
+If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings. 
+
+<details><summary>Learn more</summary>
+
+To set an HTTPS proxy, use the following config:
+
+```yaml
+env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>"
+``` 
+
+You can include the following snippet in your `helm install` command:
+
+```yaml
+--set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>" 
+```
+
+Alternatively, you can create a `values.yaml` file to include the parameters:
+
+```yaml
+env:
+  - name: HTTPS_PROXY
+    value: <hostname>:<port>
+```
+With the file, you can configure multiple configs in addition to the `env` config in your `helm install` command. Instead of using `--set`, include the `--values` parameter as part of the Helm install command:
+
+```
+--values=<path>/values.yaml
+```
+
+</details>
+
+
+
 
 ### Verify the Agent deployment
 
