@@ -101,7 +101,7 @@ postgresql-version="10+"
 #used in the Operator docs
 armory-version-exact = "2.26.0"
 halyard-armory-version = "1.12.0"
-kubesvc-version="0.6.3"
+kubesvc-version="0.6.5"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
@@ -153,13 +153,13 @@ prism_syntax_highlighting = true
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]
-agent_plug_latest-2="0.7.25"
-agent_plug_latest_spin-2="2.24.x (1.24.x)"
-agent_plug_latest-1="0.8.24"
-agent_plug_latest_spin-1="2.25.x (1.25.x)"
-agent_plug_latest="0.9.16"
-agent_plug_latest_spin="2.26.x (1.26.x)"
-
+agent_plug_latest-2="0.8.25"
+agent_plug_latest_spin-2="2.25.x (1.25.x)"
+agent_plug_latest-1="0.9.17"
+agent_plug_latest_spin-1="2.26.x (1.26.x)"
+agent_plug_latest="0.10.1"
+agent_plug_latest_spin="2.27.x (1.27.x)"
+ 
 # User interface configuration
 [params.ui]
 # Enable to show the side bar menu in its compact state.
@@ -225,6 +225,11 @@ enable = true
   version = "Latest"
   githubbranch = "master"
   url = "https://docs.armory.io/docs"
+
+[[params.versions]]
+  version = "v2.26"
+  githubbranch = "v2.26"
+  url = "https://v2-26.docs.armory.io/docs"
 
 [[params.versions]]
   version = "v2.25"
