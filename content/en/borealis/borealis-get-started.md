@@ -31,7 +31,7 @@ These are the credentials you use to authenticate the Borealis CLI to Armory's h
 
 ## Create client credentials 
 
-After you create an account, you can create client credentials for the various service accounts that you will need. These credentials are machine credentials that are meant for authentication when using Borealis programmatically. The credentials consist of a client ID and a client secret. Make sure to keep the secret somewhere safe. You cannot retrieve secrets that you lsoe accesss to. You would need to create a new set of credentials.
+After you create an account, you can create client credentials for the various service accounts that you will need. These credentials are machine credentials that are meant for authentication when using Borealis programmatically. The credentials consist of a client ID and a client secret. Make sure to keep the secret somewhere safe. You cannot retrieve secrets that you lose access to. You would need to create a new set of credentials.
 
 To get started, you need at least one service account to use for authentication between Borealis and your deployment target where an RNA is installed. Armory recommends creating separate credentials for each cluster or service. For example, if you wanted to run the Borealis CLI in a Jenkins pipeline, create credentials for the deployment target and for the Jenkins service account.
 

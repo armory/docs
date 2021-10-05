@@ -64,7 +64,24 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 ## Create client credentials for your Agents
 
-{{< include "aurora-borealis/cloud-console-creds.md" >}}
+1. Log in to the Armory Cloud Console: https://console.cloud.armory.io/.
+2. If you have more than one environment, ensure the proper environment is selected in the user context menu:
+
+   {{< figure src="/images/deploy-engine/cloud-env-context.png" alt="The upper right section of the window shows what environment you are currently in." >}}
+
+3. In the left navigation menu, select **Access Management > Client Credentials**.
+4. In the upper right corner, select **New Credential**.
+5. Create a credential for your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
+6. Set the permission scope by electing the preconfigured scope group **Custom Spinnaker**, which assigns the minimum required credentials for Aurora to work:
+
+   - `manage:deploy`
+   - `read:infra:data`
+   - `exec:infra:op`
+   - `read:artifacts:data`
+
+   > Note that removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
+
+7. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Borealis and Armory's hosted cloud services. Make sure to store the secret somewhere safe. You are not shown the value again.
 
 ## Enable Aurora in target Kubernetes clusters
 
