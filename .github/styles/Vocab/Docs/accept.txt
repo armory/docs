@@ -7,6 +7,7 @@ Artifactory
 Astra
 AWS
 Bitbucket
+Borealis
 CLI
 clouddriver
 Clouddriver
@@ -67,6 +68,7 @@ Redis
 Release Notes
 repo
 REST
+Rollouts
 Rosco
 ServiceNow
 Shortcode
