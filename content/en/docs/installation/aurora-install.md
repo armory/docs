@@ -64,22 +64,26 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 ## Create client credentials for your Agents
 
+Use client credentials for authentication and authorization for Armory's hosted cloud services. For example, RNAs use these credentials to authenticate itself to Armory's hosted cloud services.
+
 1. Log in to the Armory Cloud Console: https://console.cloud.armory.io/.
-2. If you have more than one registered environment, ensure the proper env is selected in the user context menu:
+2. If you have more than one environment, ensure the proper environment is selected in the user context menu:
 
    {{< figure src="/images/deploy-engine/cloud-env-context.png" alt="The upper right section of the window shows what environment you are currently in." >}}
 
-1. In the left navigation menu, select **Access Management > Client Credentials**.
-2. In the upper right corner, select **New Credential**.
-3. Create a credential for your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
-4. Set the permission scope to the following:
+3. In the left navigation menu, select **Access Management > Client Credentials**.
+4. In the upper right corner, select **New Credential**.
+5. Create a credential for your RNAs. Use a descriptive name for the credential, such as `RNA for TV App K8s`
+6. Set the permission scope by selecting the preconfigured scope group **Custom Spinnaker**, which assigns the minimum required credentials for Aurora to work:
 
-- `write:infra:data`
-- `get:infra:op`
+   - `manage:deploy`
+   - `read:infra:data`
+   - `exec:infra:op`
+   - `read:artifacts:data`
 
-> This is the minimum set of required permissions for a RNA.
+   > Note that removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
 
-5. Note both the `Client ID` and `Client Secret`. You need these values when configuring the Agent.
+7. Note both the **Client ID** and **Client Secret**. You need to provide both these values when installing Aurora.
 
 ## Enable Aurora in target Kubernetes clusters
 
