@@ -7,6 +7,7 @@ Artifactory
 Astra
 AWS
 Bitbucket
+Borealis
 CLI
 clouddriver
 Clouddriver
