@@ -1,12 +1,12 @@
 1. Log in to the Armory Cloud Console: https://console.cloud.armory.io/.
-2. If you have more than one registered environment, ensure the proper env is selected in the user context menu:
+2. If you have more than one environment, ensure the proper env is selected in the user context menu:
 
    {{< figure src="/images/deploy-engine/cloud-env-context.png" alt="The upper right section of the window shows what environment you are currently in." >}}
 
-1. In the left navigation menu, select **Access Management > Client Credentials**.
-2. In the upper right corner, select **New Credential**.
-3. Create a credential for your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
-4. Set the permission scope to the following:
+3. In the left navigation menu, select **Access Management > Client Credentials**.
+4. In the upper right corner, select **New Credential**.
+5. Create a credential for your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
+6. Set the permission scope to the following:
 
 - `write:infra:data`
 - `get:infra:op`
