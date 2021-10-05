@@ -29,11 +29,11 @@ To authenticate your CLI to Armory's hosted cloud services, you need to register
 
 These are the credentials you use to authenticate the Borealis CLI to Armory's hosted services, such as when you run the `login` command with the Borealis CLI. Every user who wants to deploy to your clusters using Borealis must register and create an account.
 
-## Create credentials for service accounts
+## Create client credentials 
 
-After you create an account, you can create client credentials that Borealis uses to authenticate with your deployment target. These are machine credentials used for authentication to and from Borealis. You need at least one service account to use for authentication between Borealis and your deployment target where an RNA is installed.  
+After you create an account, you can create client credentials for the various service accounts that you will need. These credentials are machine credentials that are meant for authentication when using Borealis programmatically. The credentials consist of a client ID and a client secret. Make sure to keep the secret somewhere safe. You cannot retrieve secrets that you lsoe accesss to. You would need to create a new set of credentials.
 
-Armory recommends creating separate credentials for each service or cluster. For example, if you wanted to run the Borealis CLI in a Jenkins pipeline, create credentials for the deployment target and for the Jenkins service account.
+To get started, you need at least one service account to use for authentication between Borealis and your deployment target where an RNA is installed. Armory recommends creating separate credentials for each cluster or service. For example, if you wanted to run the Borealis CLI in a Jenkins pipeline, create credentials for the deployment target and for the Jenkins service account.
 
 {{< include "aurora-borealis/cloud-console-creds.md" >}}
 
@@ -41,13 +41,11 @@ Armory recommends creating separate credentials for each service or cluster. For
 
 {{< include "aurora-borealis/agent-argo-install.md" >}}
 
-## Create 
-
 ## Install the Borealis CLI
 
 1. Go to https://github.com/armory/armory-cli/releases to download the latest release for your operating system.
 2. Save the file in a directory that is on your `PATH`, such as `/usr/local/bin`.
-3. ename the download file to `armory`.
+3. Rename the downloaded file to `armory`.
 4. Give the file XYZ permissions.
    I DID 777.
 5. Verfiy that you can run Borealis:
@@ -60,7 +58,7 @@ Armory recommends creating separate credentials for each service or cluster. For
 
 ## Try the Borealis CLI from your machine
 
-Before you can deploy, make sure that you have the client ID and secret for your deployment target available. These are used to authenticate Armory's hosted cloud services to the target cluster. Since you are using the Borealis CLI, you do not need to have a service account for authenicating your CLI to the cloud services. Instead, you will log in manually.
+Before you can deploy, make sure that you have the client ID and secret for your deployment target available. These are used to authenticate Armory's hosted cloud services to the target cluster. Since you are using the Borealis CLI, you do not need to have a service account for authenticating your CLI to the cloud services. Instead, you will log in manually.
 
 1. Log in to Armory's hosted cloud services from the CLI:
    
@@ -75,8 +73,19 @@ Before you can deploy, make sure that you have the client ID and secret for your
    armory template canary > canary.yaml
    ```
 
-  This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`.
-3. Customize the template your deployment file.
+   This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`.
+   <details><summary>Show me the template</summary>
+   
+   ```yaml
+   SOME YAML HERE
+   ```
+   </details><br>
+
+3. Customize the template your deployment file by setting the following parameters:
+   - weight
+   - duration
+   - blah 
+   - blah
 4. Start the deployment:
    
    ```bash
@@ -84,11 +93,11 @@ Before you can deploy, make sure that you have the client ID and secret for your
    ```
 
 
-### Monitor your deployment
+## Monitor your deployment
 
 You can monitor the progress of your deployment and approve the steps either through the Borealis CLI itself or from the Status UI. The Status UI gives you a visual representation of a deployment's health and progress in addition to controls.
 
-#### CLI 
+### CLI 
 
 You can monitor the status of your deployiement by running the following command:
 
@@ -96,9 +105,7 @@ You can monitor the status of your deployiement by running the following command
 armory deploy status -i <deployment-ID>
 ```
 
-#### Status UI
-
-
+### Status UI
 
 GIVE OVERVIEW OF THE UI
 
