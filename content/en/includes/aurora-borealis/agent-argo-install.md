@@ -1,9 +1,9 @@
 > Note: You can use encrypted secrets instead of providing plaintext values. For more information, see the [Secrets Guide]({{< ref "secrets" >}}).
 
-Each Kubernetes cluster that you install the RNA on should have a unique account name that you set using the `agent-k8s.accountName` parameter. You select the deployment target by specifying the account name when you run the `deploy` command.
+Each Kubernetes cluster that you install the RNA on should have a unique account name that you set using the `agent-k8s.accountName` parameter. This account name is used in the Status UI and in other places to identify the cluster.
 
 ```bash
-# Add the Armory helm repo. This only needs to be done once.
+# Add the Armory Helm repo. This only needs to be done once.
 helm repo add armory https://armory.jfrog.io/artifactory/charts
 
 # Refresh your repo cache.

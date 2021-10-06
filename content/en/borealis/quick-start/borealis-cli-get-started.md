@@ -1,0 +1,96 @@
+---
+title: Get Started with the CLI to Deploy Apps
+linktitle: Get Started - Borealis CLI
+description: >
+  The Borealis CLI is a CLI for interacting with Project Borealis. With the CLI, you can manually deploy apps directly from your command line.
+exlcude_search: true
+---
+
+Before you start, make sure that someone at your organization has completed the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}). That guide describes how to prepare your deployment target so that you can use the Borealis CLI to deploy apps to it.
+
+## Register for Armory Cloud services
+
+{{< include "aurora-borealis/borealis-login-creds" >}}
+
+## Install the Borealis CLI
+
+1. Download the latest release for your operating system: https://github.com/armory/armory-cli/releases.
+2. Save the file in a directory that is on your `PATH`, such as `/usr/local/bin`.
+3. Rename the downloaded file to `armory`.
+4. Give the file XYZ permissions.
+   I DID 777.
+5. Verfiy that you can run the Borealis CLI:
+
+   ```bash
+   armory 
+   ```
+
+   The command returns basic information about the CLI, including available commands.
+
+## Manually deploy apps using the CLI
+
+Before you can deploy, make sure that you have the client ID and secret for your deployment target available. These are used to authenticate Armory's hosted cloud services to the target cluster. The credentials were created and tied to your deployment target as part of the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}) guide.
+
+Since you are using the Borealis CLI, you do not need to have  service account credentials for authenticating your CLI to the cloud services. Instead, you will log in manually with your user account.
+
+1. Log in to Armory's hosted cloud services from the CLI:
+   
+   ```bash
+   armory login
+   ```
+
+   Provide your Armory hosted cloud services username and password as well as two-factor authentication code when prompted.
+2. Generate your deployment template and output it to a file:
+   
+   ```bash
+   armory template canary > canary.yaml
+   ```
+
+   This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`.
+   <details><summary>Show me the template</summary>
+   
+   ```yaml
+   SOME YAML HERE
+   ```
+   </details><br>
+
+3. Customize your deployment file by setting the following parameters:
+   - weight
+   - duration
+   - blah 
+   - blah
+4. Start the deployment:
+   
+   ```bash
+   armory deploy -c <clientID-for-target-cluster> -s <secret-for-target-cluster>  -f canary.yaml
+   ```
+
+## Monitor your deployment
+
+You can monitor the progress of your deployment and approve the steps either through the Borealis CLI itself or from the Status UI. The Status UI gives you a visual representation of a deployment's health and progress in addition to controls.
+
+You can monitor the status of your deployment by running the following command:
+
+```bash
+armory deploy status -i <deployment-ID>
+```
+
+In addition to monitoring the deployment in the CLI, you can view the status and approve the deployment in the [Status UI]({{< ref "borealis-status-ui" >}}).
+
+## Advanced use cases
+
+You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions.
+
+### Create service account credentials
+
+{{< include "aurora-borealis/borealis-client-creds.md" >}}
+
+###
+
+The Borealis CLI can be integrated with other tools that support invoking CLIs, such as GitHub Actions, Jenkins, and Tekton. 
+
+https://docs.github.com/en/actions/creating-actions -- either creating the action or getting and using the one Armory puts out depending on the timing
+
+Jenkins give example and link to Jenkins docs about invoking a command from a Jenkins pipeline
+
+Tekton
