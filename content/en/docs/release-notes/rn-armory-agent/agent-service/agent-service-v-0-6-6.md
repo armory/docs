@@ -6,4 +6,4 @@ version: 00.06.06
 ---
 
 ## Fixes
-* Watch kubernetes kinds where agent has both "list" and "watch" permissions. Previously only "list" permission was verified, which resulted in repeated errors like "Failed to watch *unstructured.Unstructured: unknown" if a kind had list permission but didn't have watch permission.
+*  Resolved an issue that occured when watching Kubernetes kinds. The Agent now checks for both `list` and `watch` permissions. Previously, the Agent only checked for `list` permission, which resulted in errors like the following not being filtered out: `Failed to watch *unstructured.Unstructured: unknown`.
