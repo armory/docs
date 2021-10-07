@@ -6,4 +6,4 @@ version: 00.08.26
 ---
 
 ## Changes
-* Removed support for connecting to Armory Cloud
+* Removed support for connecting to Armory's hosted cloud services
