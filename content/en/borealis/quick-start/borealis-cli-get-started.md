@@ -54,12 +54,20 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    ```
    </details><br>
 
-3. Customize your deployment file by setting the following parameters:
-   - weight
-   - duration
-   - blah 
-   - blah
-4. Start the deployment:
+3. Customize your deployment file by setting the following minimum set of parameters:
+
+   - `targets.<target-cluster>`: the name of the deployment target cluster. This is the name that was assigned using the `agent-k8s.accountName=my-k8s-cluster` parameter when you installed the RNA.
+   - `targets.<target-cluster>.strategy`: the name of the deployment strategy you want to use. You define the strategy in `strategies.<strategy-name>`.
+   - `manifests`: a map of manifest locations. This can be a directory of `yaml (yml)` files or a specific manifest. Each entry must use the following convention:  `- path: /path/to/directory-or-file`
+   - `strategies.<strategy-name>`: the list of your deployment strategies. Use one of these for `targets.<target-cluster>.strategy`. Each strategy in this section consists of a map of steps for your deployment strategy in the following format:
+ 
+   ```yaml
+   strategies:
+     my-demo-strat: # Name that you use for `targets.<target-cluster>.strategy
+     - canary
+        steps:
+
+5. Start the deployment:
    
    ```bash
    armory deploy -c <clientID-for-target-cluster> -s <secret-for-target-cluster>  -f canary.yaml

@@ -27,6 +27,6 @@ As a start, create the client credentials for the RNA on your deployment target:
 
 ## Prepare your deployment target
 
-Borealis uses the RNA on your deployment target to communicate with the deployment target and initiate the deployment.
+Borealis uses the RNA on your deployment target to communicate with the deployment target and initiate the deployment. Use the provided Helm command to install and configure the RNA and Argo Rollouts.
 
 {{< include "aurora-borealis/agent-argo-install.md" >}}
