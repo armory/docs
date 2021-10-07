@@ -1,6 +1,6 @@
 ---
 title: Get Started with the CLI to Deploy Apps
-linktitle: Get Started - Borealis CLI
+linktitle: Get Started - CLI
 description: >
   The Borealis CLI is a CLI for interacting with Project Borealis. With the CLI, you can manually deploy apps directly from your command line.
 exlcude_search: true
@@ -8,7 +8,7 @@ exlcude_search: true
 
 Before you start, make sure that someone at your organization has completed the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}). That guide describes how to prepare your deployment target so that you can use the Borealis CLI to deploy apps to it.
 
-## Register for Armory Cloud services
+## Register for Armory's hosted cloud services
 
 {{< include "aurora-borealis/borealis-login-creds" >}}
 
@@ -17,8 +17,12 @@ Before you start, make sure that someone at your organization has completed the 
 1. Download the latest release for your operating system: https://github.com/armory/armory-cli/releases.
 2. Save the file in a directory that is on your `PATH`, such as `/usr/local/bin`.
 3. Rename the downloaded file to `armory`.
-4. Give the file XYZ permissions.
-   I DID 777.
+4. Give the file execute permission:
+
+   ```
+   chmod +x /usr/local/bin/armory
+   ```
+
 5. Verfiy that you can run the Borealis CLI:
 
    ```bash
@@ -60,14 +64,26 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    - `targets.<target-cluster>.strategy`: the name of the deployment strategy you want to use. You define the strategy in `strategies.<strategy-name>`.
    - `manifests`: a map of manifest locations. This can be a directory of `yaml (yml)` files or a specific manifest. Each entry must use the following convention:  `- path: /path/to/directory-or-file`
    - `strategies.<strategy-name>`: the list of your deployment strategies. Use one of these for `targets.<target-cluster>.strategy`. Each strategy in this section consists of a map of steps for your deployment strategy in the following format:
- 
+
    ```yaml
    strategies:
      my-demo-strat: # Name that you use for `targets.<target-cluster>.strategy
-     - canary
+     - canary # The typoe of deployment strategy to use. Borealis supports `canary`.
         steps:
+          - setWeight: 
+              weight: <integer> # What percentage of the cluster to roll out the manifest to before pausing.
+          - pause:
+              duration: <integer> # How long to pause before deploying the manifest to the next threshold.
+              unit: <seconds|minutes|hours> # The unit of time for the duration.
+          - setWeight:
+              weight: <integer> # The next percentage threshold the manifest should get deployed to before pausing.
+          - pause:
+              untilApproved: true # Wait until a user provides a manual approval before deploying the manifest
+   ```
 
-5. Start the deployment:
+   Each step can have the same or different pause behaviors. Additionally, you can configure as many steps  as you want for the deployment strategy, but you do not need to create a step with a weight set to 100. Once Borealis completes the last step you configure, the manifest gets deployed to the whole cluster automatically.
+
+4. Start the deployment:
    
    ```bash
    armory deploy -c <clientID-for-target-cluster> -s <secret-for-target-cluster>  -f canary.yaml
@@ -87,18 +103,4 @@ In addition to monitoring the deployment in the CLI, you can view the status and
 
 ## Advanced use cases
 
-You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions.
-
-### Create service account credentials
-
-{{< include "aurora-borealis/borealis-client-creds.md" >}}
-
-###
-
-The Borealis CLI can be integrated with other tools that support invoking CLIs, such as GitHub Actions, Jenkins, and Tekton. 
-
-https://docs.github.com/en/actions/creating-actions -- either creating the action or getting and using the one Armory puts out depending on the timing
-
-Jenkins give example and link to Jenkins docs about invoking a command from a Jenkins pipeline
-
-Tekton
+You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis.
