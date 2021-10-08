@@ -40,6 +40,7 @@ Armory scans the codebase as we develop and release software. For information ab
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
+{{< include "known-issues/ki-artifact-binding-spel.md" >}}
 
 #### Lambda icon missing
 
