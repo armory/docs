@@ -13,8 +13,19 @@ description: >
   Release cadence, versioning explained, relation to Spinnaker releases, release types, and links to release notes for Armory Enterprise
 ---
 
+
+
 <!-- the release-notes-recent.html layout inserts the section index list at the top of the page -->
 
+## Minimum Operator version
+
+To install, upgrade, and configure Armory Enterprise, ensure that you are running at least the minimum Operator version for your release:
+
+| Armory Enterprise version | Minimum Operator version |
+| ----------------------- | ----------------------- |
+| 2.27.x | 1.4.0 |
+| 2.26.x | 1.2.6 |
+| 2.25.x | 1.2.6 |
 
 ## Different Armory Release Types
 
