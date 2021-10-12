@@ -14,12 +14,51 @@ Before you start, make sure that someone at your organization has completed the 
 
 ## Install the Borealis CLI
 
-1. Download the latest release for your operating system: https://github.com/armory/armory-cli/releases.
+The automated install involves installing an Armory Version Manager (AVM) that handles downloading, installing, and updating the Borealis CLI. Using this install method gives you  to way to keep the Borealis CLI updated as well as the ability to switch versions from the command line. The manual installation method involves downloading a specific release from GitHub and installing that release.
+
+{{< tabs name="borealis-cli-install" >}}
+
+{{% tab name="Automated" %}}
+
+1. Download the [AVM](https://github.com/armory/avm/releases/) for your operating system. 
+2. Give AVM execute permissions. For example (on macOS):
+   
+   ```bash
+   chmod +x avm-darwin-amd64
+   ```
+
+3. Move AVM to an on your `PATH`. For example (on macOS):
+   
+   ```bash
+   mv avm-darwin-amd64 /usr/local/bin/avm
+   ```
+
+4. Run the following command to install the Borealis CLI:
+   
+   ```bash
+   avm install
+   ```
+
+   The command installs the Borealis CLI and provides a directory that you need to add to your path, such as `/Users/milton/.avm/bin`. For information about the commands available as part of AVM, run `avm --help`.
+
+5. Run the following command to verify that the Borealis CLI is installed:
+   
+   ```bash
+   armory
+   ```
+
+   The command returns basic information about the  Borealis CLI, including available commands.
+
+{{% /tab %}}
+
+{{% tab name="Manual" %}}
+
+1. Download the [latest release](https://github.com/armory/armory-cli/releases) for your operating system.
 2. Save the file in a directory that is on your `PATH`, such as `/usr/local/bin`.
 3. Rename the downloaded file to `armory`.
 4. Give the file execute permission:
 
-   ```
+   ```bash
    chmod +x /usr/local/bin/armory
    ```
 
@@ -30,6 +69,10 @@ Before you start, make sure that someone at your organization has completed the 
    ```
 
    The command returns basic information about the CLI, including available commands.
+
+{{% /tab %}}
+
+{{< /tabs >}}
 
 ## Manually deploy apps using the CLI
 
@@ -56,6 +99,7 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    ```yaml
    SOME YAML HERE
    ```
+
    </details><br>
 
 3. Customize your deployment file by setting the following minimum set of parameters:
@@ -89,18 +133,20 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    armory deploy -c <clientID-for-target-cluster> -s <secret-for-target-cluster>  -f canary.yaml
    ```
 
+   The command starts your deployment and progresses until the first weight you set. It also returns a deployment ID that you can use to check the status of your deployment and a link to the Status UI page for your deployment.
+
 ## Monitor your deployment
 
-You can monitor the progress of your deployment and approve the steps either through the Borealis CLI itself or from the Status UI. The Status UI gives you a visual representation of a deployment's health and progress in addition to controls.
+You can monitor the progress of any deployment and approve the steps either through the Borealis CLI itself or from the Status UI. The Status UI gives you a visual representation of a deployment's health and progress in addition to controls.
 
-You can monitor the status of your deployment by running the following command:
+Run the following command to monitor your deployment through the Borealis CLI:
 
 ```bash
 armory deploy status -i <deployment-ID>
 ```
 
-In addition to monitoring the deployment in the CLI, you can view the status and approve the deployment in the [Status UI]({{< ref "borealis-status-ui" >}}).
+<!-- In addition to monitoring the deployment in the CLI, you can view the status and approve the deployment in the [Status UI]({{< ref "borealis-status-ui" >}}). -->
 
 ## Advanced use cases
 
-You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis.
+You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis. To get started, create [service accounts]({{< ref "borealis-integrate" >}}).
