@@ -30,4 +30,4 @@ Jenkins supports invoking a CLI as a step in a pipeline.
 
 ## Tekton
 
-Tekon supports invoking a CLI as a step in a pipeline.
+Tekton supports invoking a CLI as a step in a pipeline.
