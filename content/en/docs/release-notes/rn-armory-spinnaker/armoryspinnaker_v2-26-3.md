@@ -38,6 +38,7 @@ Armory scans the codebase as we develop and release software. For information ab
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
+{{< include "known-issues/ki-artifact-binding-spel.md" >}}
 
 ## Highlighted updates
 
