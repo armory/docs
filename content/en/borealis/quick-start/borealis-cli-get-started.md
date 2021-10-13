@@ -2,7 +2,7 @@
 title: Get Started with the CLI to Deploy Apps
 linktitle: Get Started - CLI
 description: >
-  The Borealis CLI is a CLI for interacting with Project Borealis. With the CLI, you can manually deploy apps directly from your command line.
+  The Borealis CLI is a CLI for interacting with Project Borealis. With the CLI, you can integrate into your existing CI/CD tooling.
 exlcude_search: true
 ---
 
@@ -27,7 +27,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
    chmod +x avm-darwin-amd64
    ```
 
-3. Move AVM to an on your `PATH`. For example (on macOS):
+3. Move AVM to a directory on your `PATH`. For example (on macOS):
    
    ```bash
    mv avm-darwin-amd64 /usr/local/bin/avm
@@ -62,7 +62,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
    chmod +x /usr/local/bin/armory
    ```
 
-5. Verfiy that you can run the Borealis CLI:
+5. Verify that you can run the Borealis CLI:
 
    ```bash
    armory 

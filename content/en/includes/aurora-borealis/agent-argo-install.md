@@ -11,14 +11,13 @@ helm repo update
 
 # The `accountName` opt is what this cluster will render as in the
 # Spinnaker Stage and Armory Cloud APIs.
-helm install aurora \
+helm install armory-rna armory/aurora \
     --set agent-k8s.accountName=my-k8s-cluster \
     --set agent-k8s.clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
     --set agent-k8s.clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
     --namespace armory \
     # Omit --create-namespace if installing into existing namespace.
-    --create-namespace \
-    armory/aurora
+    --create-namespace
 ```
 
 If you already have Argo Rollouts configured in your environment you may disable
