@@ -14,7 +14,7 @@ aliases:
 
 Project Aurora is plugin that adds a new stage to your Armory Enterprise (Spinnaker) instance. When you use this stage to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
 
-See the [Architecture]({{< ref "borealis/architecture" >}}) page for an overview of Project Aurora and how it fits in with Spinnaker.
+See the [Architecture]({{< ref "borealis/architecture-borealis" >}}) page for an overview of Project Aurora and how it fits in with Spinnaker.
 
 This guide walks you through the following:
 
@@ -71,8 +71,8 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 3. In the left navigation menu, select **Access Management > Client Credentials**.
 4. In the upper right corner, select **New Credential**.
-5. Create a credential for your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
-6. Set the permission scope by electing the preconfigured scope group **Custom Spinnaker**, which assigns the minimum required credentials for Aurora to work:
+5. Create a credential for your RNA. Use a descriptive name for the credential, such as `us-west RNA`
+6. Set the permission scope by selecting the preconfigured scope group **Custom Spinnaker**, which assigns the minimum required credentials for Aurora to work:
 
    - `manage:deploy`
    - `read:infra:data`
@@ -81,7 +81,7 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
    > Note that removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
 
-7. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Borealis and Armory's hosted cloud services. Make sure to store the secret somewhere safe. You are not shown the value again.
+7. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Aurora and Armory's hosted cloud services. Make sure to store the secret somewhere safe. You are not shown the value again.
 
 ## Enable Aurora in target Kubernetes clusters
 

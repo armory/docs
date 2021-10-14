@@ -6,13 +6,13 @@ description: >
 exlcude_search: true
 ---
 
-## Requirements
+## {{% heading "prereq" %}}
 
 Before you get started, ensure that the requirements listed on [Requirements]({{< ref "borealis-requirements" >}}) are met and that you can log in to the [Armory Cloud Console](https://console.cloud.armory.io/).
 
 ## Create service account credentials
 
-Service account credentials are machine-to-machine client credentials that you use to authenticate the Borealis CLI with Armory's hosted cloud services when the CLI is used as part of an automated workflow. These are passed through the `clientID` and `clientSecret` parameters.
+Service account credentials are machine-to-machine client credentials that the Borealis CLI uses to authenticate with Armory's hosted cloud services when you use the CLI as part of an automated workflow. These credentials are passed through the `clientID` and `clientSecret` parameters.
 
 To create service account credentials, perform the following steps:
 
