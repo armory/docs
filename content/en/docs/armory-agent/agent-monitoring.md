@@ -7,8 +7,6 @@ description: >
 ---
 ![Proprietary](/images/proprietary.svg)
 
-{{< include "early-access-feature.html" >}}
-
 ## Available metrics
 
 If `prometheus.enabled` is true in the Agent [configuration]({{< ref "agent-options" >}}), the Agent exposes metrics on port 8008 (`prometheus.port`) on path `/metrics` or `/prometheus_metrics` like other Armory Enterprise services. Both paths serve the same data.
