@@ -6,7 +6,7 @@ description: >
   Release notes for Armory Enterprise v2.27.1 Release Candidate (RC). A RC release is not meant for installation in production environments. 
 ---
 
-## 2021/09/30 Release Notes
+## 2021/10/15 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
