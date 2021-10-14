@@ -1,44 +1,48 @@
 ---
-title: "Armory Deployments Architecture"
+title: "Project Aurora and Borealis Architecture"
 linkTitle: "Architecture"
+description: >
+  "Project Aurora and Project Borealis (Aurora/Borealis) are comprised of multiple parts that exist in your infrastructure and within Armory's hosted cloud services."
 exclude_search: true
 weight: 10
+aliases: 
+  - /armory-deployments/architecture/
 ---
 
 ## Key Components
 
-### Armory Deployments Plugin 
+### Project Aurora Plugin 
 
-The Armory Deployments Plugin for Armory Enterprise (Spinnaker™) provides the Kubernetes Progressive Stage. This plugin connects to Armory Cloud services, which are hosted and managed by Armory, outside of your Armory Enterprise (Spinnaker) installation. These cloud services do the following: 
+The Project Aurora Plugin for Armory Enterprise (Spinnaker™) provides the Kubernetes Progressive Stage. This plugin connects to Armory Cloud services, which are hosted and managed by Armory, outside of your Armory Enterprise (Spinnaker) installation. These cloud services do the following: 
 
 - Provide information about what Kubernetes Accounts are available as deployment targets
 - Execute deployments
 
 The plugin enables you to use a single stage to perform a progressive deployment strategy. This strategy allows you to deploy a new version of your application, and route traffic to the new version incrementally. In between each scaling event, the stage can be configured to wait for an event, such as a manual approval, before continuing.
 
-For information about enabling the stage, see [Get Started With Armory Deployments for Spinnaker]({{< ref "armory-deployments-for-spinnaker" >}}).
+For information about enabling the stage, see [Get Started with Project Aurora for Spinnaker]({{< ref "aurora-install" >}}).
 
-### Armory Cloud Agent
+### Remote Network Agent (RNA)
 
-The Armory Cloud Agent allows Armory Cloud Services to interact with your Kubernetes clusters and orchestrate deployments without direct network access to your clusters. The Agent gets installed in every deployment target and connects those clusters to the Agent Hub in Armory Cloud. The connections are encrypted long-lived gRPC HTTP2 connections. The connections are used for bidirectional communication between Armory Cloud Services and Armory Cloud Agents. The Agent issues API calls to your Kubernetes Cluster based on requests from Armory Cloud.
+The RNA allows Armory Cloud Services to interact with your Kubernetes clusters and orchestrate deployments without direct network access to your clusters. RNAs gets installed in every deployment target and connects those clusters to the Agent Hub in Armory Cloud. The connections are encrypted long-lived gRPC HTTP2 connections. The connections are used for bidirectional communication between Armory Cloud Services and RNAs. The agent issues API calls to your Kubernetes Cluster based on requests from Armory Cloud.
 
 ### Armory Cloud
 
 Armory Cloud is a collection of cloud-based services that Armory operates. These services are used to provide capabilities beyond those that are native to Spinnaker. These services are provided as a cloud service to minimize operational complexity.
 
-Several specific services in Armory Cloud are important for understanding how Armory Deployments functions. These services have endpoints with which users and non-cloud services interact. Details of the external URLs for these services are covered in the [Networking](#networking).
+Several specific services in Armory Cloud are important for understanding how Project Aurora/Borealis function. These services have endpoints with which users and non-cloud services interact. Details of the external URLs for these services are covered in the [Networking](#networking).
 
 #### Agent Hub
 
-Agent Hub routes deployment commands to Armory Cloud Agents and caches data received from them. Agent Hub does not require direct network access to the agents since they connect to Agent Hub through an encrypted long-lived gRPC HTTP2 connection. Agent Hub uses this connection to send deployment commands to the Agent for execution.
+Agent Hub routes deployment commands to RNAs and caches data received from them. Agent Hub does not require direct network access to the agents since they connect to Agent Hub through an encrypted long-lived gRPC HTTP2 connection. Agent Hub uses this connection to send deployment commands to the RNA for execution.
 
 #### OIDC auth service
 
-The Open ID Connect (OIDC) service is used to authorize and authenticate machines and users. The Armory Cloud Agent, Armory Enterprise (Spinnaker) plugin, and other services all authenticate against this endpoint. The service provides an identity token that can be passed to the Armory API and Agent Hub.
+The Open ID Connect (OIDC) service is used to authorize and authenticate machines and users. The RNAs, Armory Enterprise (Spinnaker) plugin, and other services all authenticate against this endpoint. The service provides an identity token that can be passed to the Armory API and Agent Hub.
 
 #### Rest API
 
-This endpoint receives API calls from clients outside of Armory Cloud (such as the Deployments Plugin). Clients connect to these APIs to interact with Armory Deployments.
+This endpoint receives API calls from clients outside of Armory Cloud (such as the Project Aurora Plugin). Clients connect to these APIs to interact with Project Aurora/Borealis.
 
 #### Cloud Console
 
@@ -47,11 +51,11 @@ The Armory Cloud Console provides a UI to configure authentication and authoriza
 
 ### Argo Rollouts
 
-Armory Deployments for Kubernetes uses the [Argo Rollouts](https://argoproj.github.io/argo-rollouts/) controller in each target Kubernetes cluster to enable various deployment strategies.
+Project Aurora/Borealis use the [Argo Rollouts](https://argoproj.github.io/argo-rollouts/) controller in each target Kubernetes cluster to enable various deployment strategies.
 
 ## Architecture
 
-Armory Deployments contains components that you manage and components that Armory manages in the cloud. The components you manage allow Armory’s cloud services to integrate with your existing infrastructure.
+Project Aurora/Borealis contain components that you manage and components that Armory manages in the cloud. The components you manage allow Armory’s cloud services to integrate with your existing infrastructure.
 
 {{< figure src="/images/armory-deploy-architecture/armory-deploy-k8s-overview.jpeg" alt="The Armory command line interface and its integrations connect to Armory Cloud. Armory Cloud uses the Agent Hub to connect to your Kubernetes cluster using a gRPC connection established between the Agent Hub and Armory Cloud Agent, which is installed in your cluster." >}}
 
@@ -59,11 +63,11 @@ You connect your Kubernetes clusters to Armory Cloud by installing the Armory Cl
 
 ### How it works
 
-Armory Deployments uses [Argo Rollouts](https://argoproj.github.io/argo-rollouts/) to power deployments in Kubernetes clusters. The Argo Rollouts controller is a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) and set of [Custom Resource Definitions (CRDs)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
+Project Aurora/Borealis use [Argo Rollouts](https://argoproj.github.io/argo-rollouts/) to power deployments in Kubernetes clusters. The Argo Rollouts controller is a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) and set of [Custom Resource Definitions (CRDs)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
-{{< figure src="/images/armory-deploy-architecture/armory-deploy-argo-overview.jpeg" alt="In your Kubernetes cluster, the Armory Agent enables communication with Armory Cloud services through the Agent Hub. The Argo Rollout controller performs the deployments in the Kubernetes cluster." >}}
+{{< figure src="/images/armory-deploy-architecture/armory-deploy-argo-overview.jpeg" alt="In your Kubernetes cluster, the RNA enables communication with Armory Cloud services through the Agent Hub. The Argo Rollout controller performs the deployments in the Kubernetes cluster." >}}
 
-When you start a deployment, Armory Deployments processes your deployment request and generates [Argo Rollout](https://argoproj.github.io/argo-rollouts/) manifest(s) to execute the deployment. Armory Deployments then triggers Kubernetes infrastructure changes using Armory Cloud’s bidirectional link with the Agent.  The Agent creates the generated CRDs in your Kubernetes cluster to trigger actions from Argo. Users do not need to create or manage the Argo Rollout CRDs. Armory Deployments manages these automatically.
+When you start a deployment, Project Aurora/Borealis ts processes your deployment request and generates [Argo Rollout](https://argoproj.github.io/argo-rollouts/) manifest(s) to execute the deployment. Project Aurora/Borealisments then triggers Kubernetes infrastructure changes using Armory Cloud’s bidirectional link with the RNA.  The RNA creates the generated CRDs in your Kubernetes cluster to trigger actions from Argo. Users do not need to create or manage the Argo Rollout CRDs. Project Aurora/Borealis manages these automatically.
 
 You can track the status of a deployment in the Kubernetes Progressive stage for Spinnaker. This stage reaches out to Armory Cloud to determine the current status of the deployment.
 
@@ -105,7 +109,7 @@ The following concepts can help you when configuring access in the Cloud Console
 
 - **Scopes**
 
-  Scopes are individual permissions that grant access to certain actions. They can be assigned to Machine to Machine credentials. For example, the scope `read:infrastructure:data` allows a machine credential to fetch cached data about infrastructure and list accounts that are registered with the Agent.
+  Scopes are individual permissions that grant access to certain actions. They can be assigned to Machine to Machine credentials. For example, the scope `read:infrastructure:data` allows a machine credential to fetch cached data about infrastructure and list accounts that are registered with the RNA.
 
 - **Groups**
 

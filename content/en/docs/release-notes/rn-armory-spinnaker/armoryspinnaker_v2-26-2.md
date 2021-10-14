@@ -1,7 +1,7 @@
 ---
 title: v2.26.2 Armory Release (OSS Spinnaker™ v1.26.6)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.26.02
 description: >
   Release notes for Armory Enterprise v2.26.2 
 ---
@@ -24,7 +24,7 @@ To install, upgrade, or configure Armory 2.26.2, use one of the following tools:
 
 ## Security
 
-Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
+Armory scans the codebase as we develop and release software. For information about CVE scans for this release, see the [Support Portal](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010414). Note that you must be logged in to the portal to see the information.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
@@ -39,6 +39,12 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
+{{< include "known-issues/ki-lambda-ui-caching.md" >}}
+{{< include "known-issues/ki-artifact-binding-spel.md" >}}
+
+#### Lambda icon missing
+
+In the left navigation of the UI, the icon for Lambda functions is missing. This does not affect any functionality. 
 
 ## Highlighted updates
 
@@ -64,7 +70,6 @@ Resolved an issue where the subnets and server groups were not being cached.
 
 This release includes the following new features and improvements for the Lambda provider:
 
-* Fixed an issue where a [UI bug](https://github.com/spinnaker/spinnaker/issues/6271) related to the caching agent prevented Lambda functions from being displayed in the UI when there are no other clusters associated with the Application.
 * Improved cache performance including fixes to cache issues found in 2.24.2
 * New configuration properties that give you greater control over how Armory Enterprise behaves when connection or cache issues occur.
 

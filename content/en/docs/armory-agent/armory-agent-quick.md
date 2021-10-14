@@ -47,7 +47,7 @@ Installation steps:
 Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to your new `armory-agent` directory.
 
 * Change the value for `name` if your Armory Enterprise service is called something other than "spinnaker".
-* Update the `kubesvc-plugin` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix](#compatibility-matrix).
+* Update the `agent-kube-spinplug` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix](#compatibility-matrix).
 
 {{< prism lang="yaml" line="4, 39" >}}
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
@@ -87,18 +87,18 @@ spec:
               template:
                 spec:
                   initContainers:
-                  - name: kubesvc-plugin
+                  - name: armory-agent-plugin
                     image: docker.io/armory/kubesvc-plugin:<version> # must be compatible with your Armory Enterprise version
                     volumeMounts:
                       - mountPath: /opt/plugin/target
-                        name: kubesvc-plugin-vol
+                        name: armory-agent-plugin-vol
                   containers:
                   - name: clouddriver
                     volumeMounts:
                       - mountPath: /opt/clouddriver/lib/plugins
-                        name: kubesvc-plugin-vol
+                        name: armory-agent-plugin-vol
                   volumes:
-                  - name: kubesvc-plugin-vol
+                  - name: armory-agent-plugin-vol
                     emptyDir: {}
 {{< /prism >}}
 
@@ -152,9 +152,247 @@ Armory Enterprise cluster and one in your target cluster.
 
 ## Install the Agent service
 
-You can either install the Agent service manually using `kubectl` or with a Helm chart that Armory provides. Note that the Helm chart currently points to the latest image, which is not necessarily a stable release.
+You can either install the Agent service with a Helm chart that Armory provides or manually using `kubectl`. 
 
 {{< tabs name="agent-install" >}}
+
+{{% tab name="Helm" %}}
+
+On the Kubernetes cluster where you want to install the Agent Service, perform the following steps:
+
+1. Add the Armory charts repo:
+
+   ```bash
+   helm repo add armory-charts http://armory.jfrog.io/artifactory/charts
+   ```
+
+   If you have previously added the chart repo, update it with the following commands:
+
+   ```bash
+   helm repo update 
+   helm upgrade armory-agent armory-charts/agent-k8s
+   ```
+
+2. Create a namespace in the Kubernetes cluster where you are installing the Agent Service. In Agent mode, this is the same cluster as the deployment target for your app.
+   
+   ```bash
+   kubectl create namespace <agent-namespace>
+   ```
+
+   > If you plan to run the Agent in something other than Agent mode, such as Infrastructure mode, you need to create a kubeconfig file that grants access to the deployment target cluster. For example, run the following command if you use Amazon EKS: `aws eks update-kubeconfig --name <target-cluster> `.
+
+3. Decide whether or not you want to connect to Armory Cloud services. Armory Cloud services is required for some features to function and affects how you configure the Agent service installation. You must either disable the connection or provide credentials.
+
+   If you do not want to connect to Armory Cloud services, you must include the following parameters when running the `helm` command to install the Agent service:
+   - `--set cloudEnabled=false`
+   - `--set grpcUrl=localhost:9090`
+
+   These parameters control whether or not Agent attempts to connect to Armory Cloud services. They are required if you do not have a clientID and clientSecret and do not want to use Armory Cloud services. 
+
+   If you want to connect to Armory Cloud services, you must include the following parameters with the values that Armory provided when  running the `helm` command to install the Agent service:
+
+   - `--set clientId`
+   - `--set clientSecret`
+
+   These are parameters are used to authenticate you to Armory Cloud services.
+
+
+4. Run one of the following Helm commands:
+
+   <details><summary><strong>Install with default configs in Agent mode</strong></summary>
+   
+   ```bash
+   helm install armory-agent armory-charts/agent-k8s \
+   --set accountName=<my-k8s-cluster> \ # Provide a descriptive name. This name gets used in the UI and Armory Cloud API. 
+   --set mode=agent \
+   --namespace=<agent-namespace> # Namespace where you want to install the Agent.
+   ```
+
+   Depending on your environment and usage, include one or more of the following parameters:
+
+   ```bash
+   # Disable the connection to Armory Cloud 
+   --set cloudEnabled=false    
+   --set grpcUrl=localhost:9090
+   
+   # Authenticate to Armory Cloud
+   --set clientId=<your-clientId>  
+   --set clientSecret=<your-Armory-Cloud-secret> 
+   
+   # Custom config options for Kubernetes
+   --set kubernetes=<kubernetes-options>
+
+   # If TLS is disabled in your environment
+   --set insecure=true
+
+   # If you are pulling from a private registry
+   --set imagePullSecrets=<secret>    
+
+   # Proxy settings
+   # Set this if your Armory Enterprise instance is behind a HTTP proxy.
+   --set env[0].name=”HTTP_PROXY”,env[0].value="<hostname>:<port>" 
+   
+   # Set this if your Armory Enterprise instance is behind a HTTPS proxy.
+   --set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>" 
+
+   # No proxy
+   --set env[0].name=”NO_PROXY”,env[0].value="localhost,127.0.0.1,*.spinnaker"
+   ```
+
+   The `env` parameters are optional and only need to be used if Armory Enterprise is behind a HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
+
+   Alternatively, you can create a `values.yaml` file to include the parameters:
+   
+   ```yaml
+   env:
+     - name: HTTP_PROXY
+       value: <hostname>:<port>
+     - name: HTTPS_PROXY
+       value: <hostname>:<port>
+     - name: NO_PROXY
+       value: localhost,127.0.0.1,*.spinnaker
+   ```
+   With the file, you can avoid setting individual `env` parameters in the `helm install` command. Instead    include the `--values` parameter as part of the Helm install command.
+
+   For information about additional options, see the [Agent config options]({{< ref "agent-options#configuration-options" >}}).
+
+   <details><summary>Show me an example</summary>
+   
+   The following examples use the `imagePullSecrets` and `insecure` parameters, which may or may not be needed depending on your environment.
+
+   This example installs Agent service without a connection to Armory Cloud:
+
+   ```bash
+   helm install armory-agent --set accountName=demo-account,imagePullSecrets=regcred,grpcUrl=spin-clouddriver-grpc:9091,insecure=true,cloudEnabled=false --namespace dev armory-charts/agent-k8s
+   ```
+
+   This example installs Agent service with a connection to Armory Cloud:
+
+   ```bash
+   helm install armory-agent --set accountName=hubaccount1,imagePullSecrets=regcred,grpcUrl=agents.staging.cloud.armory.io:443,audience=https://api.cloud.armory.io,tokenIssuerUrl=https://auth.cloud.armory.io/oauth/token,clientId=************,clientSecret=************ --namespace dev armory-charts/agent-k8s
+   ```
+
+   </details>
+   </details>
+
+   <details><summary><strong>Install with default configs in Infrastructure mode</strong></summary>
+
+   ```bash
+   helm install armory-agent armory-charts/agent-k8s \
+   --set accountName=<my-k8s-cluster> \ # Provide a descriptive name. This name gets used in the UI and Armory Cloud API. 
+   --set mode=infrastructure \
+   --namespace=<agent-namespace> # Namespace where you want to install the Agent.
+   ```
+
+   Depending on your environment and usage, set one or more of the following parameters:
+
+   ```bash
+   # Disable the connection to Armory Cloud 
+   --set cloudEnabled=false    
+   --set grpcUrl=localhost:9090
+   
+   # Authenticate to Armory Cloud
+   --set clientId=<your-clientId> 
+   --set clientSecret=<your-Armory-Cloud-secret> 
+   
+   # Custom config options for Kubernetes
+   --set kubernetes=<kubernetes-options> 
+
+   # If TLS is disabled in your environment
+   --set insecure=true
+
+   # If you are pulling from a private registry
+   --set imagePullSecrets=<secret>
+
+   # Proxy settings
+   # Set this if your Armory Enterprise instance is behind a HTTP proxy.
+   --set env[0].name=”HTTP_PROXY”,env[0].value="<hostname>:<port>" 
+   
+   # Set this if your Armory Enterprise instance is behind a HTTPS proxy.
+   --set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>" 
+
+   # No proxy
+   --set env[0].name=”NO_PROXY”,env[0].value="localhost,127.0.0.1,*.spinnaker"
+   ```
+
+   The `env` parameters are optional and only need to be used if Armory Enterprise is behind a HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
+
+   Alternatively, you can create a `values.yaml` file to include the parameters:
+   
+   ```yaml
+   env:
+     - name: HTTP_PROXY
+       value: <hostname>:<port>
+     - name: HTTPS_PROXY
+       value: <hostname>:<port>
+     - name: NO_PROXY
+       value: localhost,127.0.0.1,*.spinnaker
+   ```
+
+   With the file, you can avoid setting individual `env` parameters in the `helm install` command. Instead    include the `--values` parameter as part of the Helm install command.
+
+   For information about additional options, see the [Agent config options]({{< ref "agent-options#configuration-options" >}}).
+
+   <details><summary>Show me an example</summary>
+   
+   The following examples use the `imagePullSecrets` and `insecure` parameters, which may or may not be needed depending on your environment.
+
+   This example installs Agent service without a connection to Armory Cloud:
+
+   ```bash
+   helm install armory-agent --set mode=infrastructure,accountName=demo-account,imagePullSecrets=regcred,grpcUrl=spin-clouddriver-grpc:9091,insecure=true,cloudEnabled=false --set-file kubeconfig=$HOME/.kube/config --namespace dev armory-charts/agent-k8s
+   ```
+   
+   This example installs Agent service with a connection to Armory Cloud:
+
+   ```bash
+   helm install armory-agent --set accountName=hubaccount1,imagePullSecrets=regcred,grpcUrl=agents.staging.cloud.armory.io:443,audience=https://api.cloud.armory.io,tokenIssuerUrl=https://auth.cloud.armory.io/oauth/token,clientId==************,clientSecret=************ --namespace dev armory-charts/agent-k8s
+   ```
+
+   </details>
+   </details>
+
+   <details><summary><strong>Install with custom settings</strong></summary>
+
+   1. Use `helm template` to generate a manifest. 
+      ```bash
+      helm template armory-agent armory-charts/agent-k8s \
+      --set-file kubeconfig=<path-to-your-kubeconfig>,armoryagent.yml=<path-to-agent-options>.yml \ 
+      --namespace=<agent-namespace> # Namespace where you want to install the Agent.
+      ```
+   
+      For `armoryagentyml`, create the file and customize it to meet your needs. For information about the options, see the [Agent config options]({{< ref "agent-options#configuration-options" >}}).
+    1. Install the helm chart using your template:
+   
+       ```bash
+       helm install armory-agent <local-helm-chart-name>
+       ```
+   </details>
+
+#### Proxy settings
+
+The `env` parameters are optional and only need to be used if Armory Enterprise is behind a HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
+
+Alternatively, you can create a `values.yaml` file to include the parameters:
+
+```yaml
+env:
+  - name: HTTP_PROXY
+    value: <hostname>:<port>
+  - name: HTTPS_PROXY
+    value: <hostname>:<port>
+  - name: NO_PROXY
+    value: localhost,127.0.0.1,*.spinnaker
+```
+With the file, you can avoid setting individual `env` parameters in the `helm install` command. Instead include the `--values` parameter as part of the Helm install command:
+
+```
+--values=<path>/values.yaml
+```
+
+{{< /tab >}}
+
+
 {{% tab name="kubectl" %}}
 
 ### Create a namespace
@@ -176,27 +414,23 @@ rules:
 - apiGroups:
   - ""
   resources:
+  - configmaps
+  - endpoints
+  - events
+  - ingresses
+  - ingresses/status
+  - jobs
+  - jobs/status
+  - namespaces
+  - namespaces/finalize
+  - namespaces/status
   - pods
   - pods/log
-  - ingresses/status
-  - endpoints
-  verbs:
-  - get
-  - list
-  - update
-  - patch
-  - delete
-- apiGroups:
-  - ""
-  resources:
-  - services
-  - services/finalizers
-  - events
-  - configmaps
+  - pods/status
   - secrets
-  - namespaces
-  - ingresses
-  - jobs
+  - services
+  - services/status
+  - services/finalizers
   verbs:
   - create
   - get
@@ -209,6 +443,7 @@ rules:
   - batch
   resources:
   - jobs
+  - jobs/status
   verbs:
   - create
   - get
@@ -216,20 +451,25 @@ rules:
   - update
   - watch
   - patch
+  - delete
 - apiGroups:
   - apps
   - extensions
   resources:
+  - daemonsets
+  - daemonsets/status
   - deployments
   - deployments/finalizers
   - deployments/scale
-  - daemonsets
+  - deployments/status
   - replicasets
   - replicasets/finalizers
   - replicasets/scale
+  - replicasets/status
   - statefulsets
   - statefulsets/finalizers
   - statefulsets/scale
+  - statefulsets/status
   verbs:
   - create
   - get
@@ -258,9 +498,21 @@ rules:
   - watch
   - patch
 - apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - '*'
+- apiGroups:
   - admissionregistration.k8s.io
   resources:
   - validatingwebhookconfigurations
+  verbs:
+  - '*'
+- apiGroups:
+  - argoproj.io
+  resources:
+  - '*'
   verbs:
   - '*'
 ---
@@ -395,7 +647,7 @@ spec:
     spec:
       serviceAccount: spin-sa
       containers:
-      - image: armory/kubesvc:<version> # must be compatible with your Armory Enterprise version
+      - image: armory/agent-k8s:<version> # must be compatible with your Armory Enterprise version
         imagePullPolicy: IfNotPresent
         name: armory-agent
         ports:
@@ -416,7 +668,7 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /opt/spinnaker/config
+        - mountPath: /opt/armory/config
           name: volume-armory-agent-config
         # - mountPath: /kubeconfigfiles
         #   name: volume-armory-agent-kubeconfigs
@@ -435,168 +687,6 @@ spec:
 
 {{% /tab %}}
 
-{{% tab name="Helm" %}}
-
-On the Kubernetes cluster where you want to install the Agent Service, perform the following steps:
-
-1. Add the Armory charts repo:
-
-   ```bash
-   helm repo add armory-charts http://armory.jfrog.io/artifactory/charts
-   ```
-
-   If you have previously added the chart repo, update it with the following commands:
-
-   ```bash
-   helm repo update 
-   helm upgrade armory-agent armory-charts/agent-k8s
-   ```
-
-2. Create a namespace in the Kubernetes cluster where you are installing the Agent Service. In Agent mode, this is the same cluster as the deployment target for your app.
-   
-   ```bash
-   kubectl create namespace <agent-namespace>
-   ```
-
-   > If you plan to run the Agent in something other than Agent mode, such as Infrastructure mode, you need to create a kubeconfig file that grants access to the deployment target cluster. For example, run the following command if you use Amazon EKS: `aws eks update-kubeconfig --name <target-cluster> `.
-
-3. Decide whether or not you want to connect to Armory Cloud services. Armory Cloud services is required for some features to function and affects how you configure the Agent service installation. You must either disable the connection or provide credentials.
-
-   If you do not want to connect to Armory Cloud services, you must include the following parameters when running the `helm` command to install the Agent service:
-   - `--set cloudEnabled=false`
-   - `--set grpcUrl=localhost:9090`
-
-   These parameters control whether or not Agent attempts to connect to Armory Cloud services. They are required if you do not have a clientID and clientSecret and do not want to use Armory Cloud services. 
-
-   If you want to connect to Armory Cloud services, you must include the following parameters with the values that Armory provided when  running the `helm` command to install the Agent service:
-
-   - `--set clientId`
-   - `--set clientSecret`
-
-   These are parameters are used to authenticate you to Armory Cloud services.
-
-4. Run one of the following Helm commands:
-
-   **Install with default configs in Agent mode:**
-   
-   ```bash
-   helm install armory-agent armory-charts/agent-k8s \
-   --set accountName=<my-k8s-cluster> \ # Provide a descriptive name. This name gets used in the UI and Armory Cloud API. 
-   --set mode=agent \
-   --namespace=<agent-namespace> # Namespace where you want to install the Agent.
-   ```
-
-   Depending on your environment and usage, set one or more of the following parameters:
-
-   ```bash
-   # Disable the connection to Armory Cloud 
-   --set cloudEnabled=false    
-   --set grpcUrl=localhost:9090
-   
-   # Authenticate to Armory Cloud
-   --set clientId=<your-clientId>  
-   --set clientSecret=<your-Armory-Cloud-secret> 
-   
-   # Custom config options for Kubernetes
-   --set kubernetes=<kubernetes-options>
-
-   # If TLS is disabled in your environment
-   --set insecure=true
-
-   # If you are pulling from a private registry
-   --set imagePullSecrets=<secret>    
-   ```
-
-   For information about additional options, see the [Agent config options]({{< ref "agent-options#configuration-options" >}}).
-
-   <details><summary>Show me an example</summary>
-   
-   The following examples use the `imagePullSecrets` and `insecure` parameters, which may or may not be needed depending on your environment.
-
-   This example installs Agent service without a connection to Armory Cloud:
-
-   ```bash
-   helm install armory-agent --set accountName=demo-account,imagePullSecrets=regcred,grpcUrl=spin-clouddriver-grpc:9091,insecure=true,cloudEnabled=false --namespace dev armory-charts/agent-k8s
-   ```
-
-   This example installs Agent service with a connection to Armory Cloud:
-
-   ```bash
-   helm install armory-agent --set accountName=hubaccount1,imagePullSecrets=regcred,grpcUrl=agents.staging.cloud.armory.io:443,audience=https://api.cloud.armory.io,tokenIssuerUrl=https://auth.cloud.armory.io/oauth/token,clientId=************,clientSecret=************ --namespace dev armory-charts/agent-k8s
-   ```
-
-   </details>
-
-
-   **Install with default configs in Infrastructure mode:**
-
-   ```bash
-   helm install armory-agent armory-charts/agent-k8s \
-   --set accountName=<my-k8s-cluster> \ # Provide a descriptive name. This name gets used in the UI and Armory Cloud API. 
-   --set mode=infrastructure \
-   --namespace=<agent-namespace> # Namespace where you want to install the Agent.
-   ```
-
-   Depending on your environment and usage, set one or more of the following parameters:
-
-   ```bash
-   # Disable the connection to Armory Cloud 
-   --set cloudEnabled=false    
-   --set grpcUrl=localhost:9090
-   
-   # Authenticate to Armory Cloud
-   --set clientId=<your-clientId> 
-   --set clientSecret=<your-Armory-Cloud-secret> 
-   
-   # Custom config options for Kubernetes
-   --set kubernetes=<kubernetes-options> 
-
-   # If TLS is disabled in your environment
-   --set insecure=true
-
-   # If you are pulling from a private registry
-   --set imagePullSecrets=<secret>
-   ```
-
-   For information about additional options, see the [Agent config options]({{< ref "agent-options#configuration-options" >}}).
-
-   <details><summary>Show me an example</summary>
-   
-   The following examples use the `imagePullSecrets` and `insecure` parameters, which may or may not be needed depending on your environment.
-
-   This example installs Agent service without a connection to Armory Cloud:
-
-   ```bash
-   helm install armory-agent --set mode=infrastructure,accountName=demo-account,imagePullSecrets=regcred,grpcUrl=spin-clouddriver-grpc:9091,insecure=true,cloudEnabled=false --set-file kubeconfig=$HOME/.kube/config --namespace dev armory-charts/agent-k8s
-   ```
-   
-   This example installs Agent service with a connection to Armory Cloud:
-
-   ```bash
-   helm install armory-agent --set accountName=hubaccount1,imagePullSecrets=regcred,grpcUrl=agents.staging.cloud.armory.io:443,audience=https://api.cloud.armory.io,tokenIssuerUrl=https://auth.cloud.armory.io/oauth/token,clientId==************,clientSecret=************ --namespace dev armory-charts/agent-k8s
-   ```
-
-   </details>
-
-
-   **Install with custom settings:**
-
-   1. Use `helm template` to generate a manifest. 
-      ```bash
-      helm template armory-agent armory-charts/agent-k8s \
-      --set-file kubeconfig=<path-to-your-kubeconfig>,armoryagent.yml=<path-to-agent-options>.yml \ 
-      --namespace=<agent-namespace> # Namespace where you want to install the Agent.
-      ```
-   
-      For `armoryagentyml`, create the file and customize it to meet your needs. For information about the options, see the [Agent config options]({{< ref "agent-options#configuration-options" >}}).
-    1. Install the helm chart using your template:
-   
-       ```bash
-       helm install armory-agent <local-helm-chart-name>
-       ```
-
-
-{{< /tab >}}
 {{< /tabs >}}
 
 

@@ -1,5 +1,5 @@
 ---
-title: Spinnaker Architecture
+title: Spinnaker™ Architecture
 linkTitle: "Architecture"
 weight: 10
 description: "The services that work together in Spinnaker™"
