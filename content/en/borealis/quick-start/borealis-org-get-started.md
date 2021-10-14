@@ -6,7 +6,7 @@ description: >
 exlcude_search: true
 ---
 
-## Requirements
+## {{% heading "prereq" %}}
 
 Review the requirements for using Borealis on the [Requirements]({{< ref "borealis-requirements.md" >}}) page.
 

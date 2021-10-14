@@ -16,4 +16,6 @@ Using Borealis involves two parts:
 1. Preparing your deployment target as described in [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}). This ony needs to be done once per deployment target.
 2. Using the Borealis CLI to deploy your app, either manually or programmatically.
 
+You can do the whole deployment process using the Borealis CLI directly while you are working on defining how you want to deploy apps. When you're ready to scale, integrate Borealis with your existing tools (such as GitHub or Jenkins) to deploy programmatically. 
+
 To start, review the [Requirements]{{< ref "borealis-requirements" >}}.
