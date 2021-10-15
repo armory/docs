@@ -7,8 +7,6 @@ description: >
 ---
 ![Proprietary](/images/proprietary.svg)
 
-{{< include "early-access-feature.html" >}}
-
 | Setting  | Type  | Default  | Description |
 | -------- | ----- | -------- | ----------- |
 | `kubesvc.cluster` | string | none | Type of clustering.<br>`local`: don’t try to coordinate with other Clouddriver instances<br>`redis`: use Redis to coordinate via pubsub. Use `redis` if you plan to use multiple Clouddriver instances.<br>`local` will be deprecated in a future release. |
