@@ -18,6 +18,8 @@ Before you start, make sure that someone at your organization has completed the 
 
 The automated install involves installing an Armory Version Manager (AVM) that handles downloading, installing, and updating the Borealis CLI. Using this install method gives you  to way to keep the Borealis CLI updated as well as the ability to switch versions from the command line. The manual installation method involves downloading a specific release from GitHub and installing that release.
 
+> Depending on your operating system, you may need to allow applications from unknown developers to install the CLI. See the documentation for your operating system, such as [macOS](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
+
 {{< tabs name="borealis-cli-install" >}}
 
 {{% tab name="Automated" %}}
@@ -35,7 +37,15 @@ The automated install involves installing an Armory Version Manager (AVM) that h
    mv avm-darwin-amd64 /usr/local/bin/avm
    ```
 
-4. Run the following command to install the Borealis CLI:
+5. Confirm that AVM is on your `PATH`:
+   
+   ```bash
+   echo $PATH
+   ```
+
+   The command returns your `PATH`, which should now include `/usr/local/bin/avm`.
+
+6. Run the following command to install the Borealis CLI:
    
    ```bash
    avm install
@@ -43,7 +53,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
    The command installs the Borealis CLI and provides a directory that you need to add to your path, such as `/Users/milton/.avm/bin`. For information about the commands available as part of AVM, run `avm --help`.
 
-5. Run the following command to verify that the Borealis CLI is installed:
+7. Run the following command to verify that the Borealis CLI is installed:
    
    ```bash
    armory
@@ -96,7 +106,7 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    ```
 
    This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`.
-   <details><summary>Show me the template</summary>
+   <details><summary>Show me an empty template</summary>
    
    ```yaml
    SOME YAML HERE
@@ -111,23 +121,31 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    - `manifests`: a map of manifest locations. This can be a directory of `yaml (yml)` files or a specific manifest. Each entry must use the following convention:  `- path: /path/to/directory-or-file`
    - `strategies.<strategy-name>`: the list of your deployment strategies. Use one of these for `targets.<target-cluster>.strategy`. Each strategy in this section consists of a map of steps for your deployment strategy in the following format:
 
-   ```yaml
-   strategies:
-     my-demo-strat: # Name that you use for `targets.<target-cluster>.strategy
-     - canary # The typoe of deployment strategy to use. Borealis supports `canary`.
-        steps:
-          - setWeight: 
-              weight: <integer> # What percentage of the cluster to roll out the manifest to before pausing.
-          - pause:
-              duration: <integer> # How long to pause before deploying the manifest to the next threshold.
-              unit: <seconds|minutes|hours> # The unit of time for the duration.
-          - setWeight:
-              weight: <integer> # The next percentage threshold the manifest should get deployed to before pausing.
-          - pause:
-              untilApproved: true # Wait until a user provides a manual approval before deploying the manifest
-   ```
+     ```yaml
+     strategies:
+       my-demo-strat: # Name that you use for `targets.<target-cluster>.strategy
+       - canary # The type of deployment strategy to use. Borealis supports `canary`.
+          steps:
+            - setWeight: 
+                weight: <integer> # What percentage of the cluster to roll out the manifest to before pausing.
+            - pause:
+                duration: <integer> # How long to pause before deploying the manifest to the next threshold.
+                unit: <seconds|minutes|hours> # The unit of time for the duration.
+            - setWeight:
+                weight: <integer> # The next percentage threshold the manifest should get deployed to before pausing.
+            - pause:
+                untilApproved: true # Wait until a user provides a manual approval before deploying the manifest
+     ```
 
    Each step can have the same or different pause behaviors. Additionally, you can configure as many steps  as you want for the deployment strategy, but you do not need to create a step with a weight set to 100. Once Borealis completes the last step you configure, the manifest gets deployed to the whole cluster automatically.
+
+   <details><summary>Show me an example deployment file</summary>
+
+    ```yaml
+    SOME YAML HERE
+    ```
+    
+    </details><br>
 
 4. Start the deployment:
    
