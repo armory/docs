@@ -102,7 +102,7 @@ Registration is required for certain features to work.
 
 Note that registration does not automatically turn on Armory Diagnostics. This means that registration does not send information about your apps and pipelines to Armory. If you are sending diagnostic information to Armory, registering your deployment ensures that Armory can know which logs are yours, improving Armory's ability to provide support.
 
-For more information, see [Environment Registration]({{< ref "ae-environment-reg" >}}).
+For more information, see [Environment Registration]({{< ref "ae-instance-reg" >}}).
 
 
 ###  Spinnaker Community Contributions
