@@ -92,14 +92,14 @@ weight = 1
 
 [params]
 deploy-engine-plugin-version = "0.16.8"
-armory-version = "2.26.x"
+armory-version = "2.27.x"
 #used in air-gapped
-matching-oss-version-exact = "1.26.3"
+matching-oss-version-exact = "1.27.0"
 # used in agent compat and system requirements
 mysql-version="5.7; AWS Aurora"
 postgresql-version="10+"
 #used in the Operator docs
-armory-version-exact = "2.26.0"
+armory-version-exact = "2.27.0"
 halyard-armory-version = "1.12.0"
 kubesvc-version="0.6.8"
 operator-extended-crd-version = "v1alpha2"
@@ -125,7 +125,7 @@ archived_version = false
 # The version number for the version of the docs represented in this doc set.
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
-version = "2.26"
+version = "2.27"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
