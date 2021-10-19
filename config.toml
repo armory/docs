@@ -1,4 +1,4 @@
-gbaseURL = "/"
+baseURL = "/"
 title = "Armory Docs"
 
 enableRobotsTXT = true
