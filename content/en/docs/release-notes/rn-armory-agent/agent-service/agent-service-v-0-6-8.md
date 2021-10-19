@@ -5,4 +5,6 @@ version: 00.06.08
 
 ---
 
-Added support for operations that don’t specify an apiGroup, the group is derived from existing groups of the given kind.
+## Feature
+
+Added support for operations that don’t specify an `apiGroup`. The group can now be derived from existing groups of the given kind.
