@@ -14,7 +14,7 @@ aliases:
 
 Project Aurora is plugin that adds a new stage to your Armory Enterprise (Spinnaker) instance. When you use this stage to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
 
-See the [Architecture]({{< ref "borealis/architecture" >}}) page for an overview of Project Aurora and how it fits in with Spinnaker.
+See the [Architecture]({{< ref "borealis/architecture-borealis" >}}) page for an overview of Project Aurora and how it fits in with Spinnaker.
 
 This guide walks you through the following:
 
@@ -65,56 +65,29 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 ## Create client credentials for your Agents
 
 1. Log in to the Armory Cloud Console: https://console.cloud.armory.io/.
-2. If you have more than one registered environment, ensure the proper env is selected in the user context menu:
+2. If you have more than one environment, ensure the proper environment is selected in the user context menu:
 
    {{< figure src="/images/deploy-engine/cloud-env-context.png" alt="The upper right section of the window shows what environment you are currently in." >}}
 
-1. In the left navigation menu, select **Access Management > Client Credentials**.
-2. In the upper right corner, select **New Credential**.
-3. Create a credential for your RNAs. Use a descriptive name for the credential, such as `Armory K8s Agent`
-4. Set the permission scope to the following:
+3. In the left navigation menu, select **Access Management > Client Credentials**.
+4. In the upper right corner, select **New Credential**.
+5. Create a credential for your RNA. Use a descriptive name for the credential, such as `us-west RNA`
+6. Set the permission scope by selecting the preconfigured scope group **Custom Spinnaker**, which assigns the minimum required credentials for Aurora to work:
 
-- `write:infra:data`
-- `get:infra:op`
+   - `manage:deploy`
+   - `read:infra:data`
+   - `exec:infra:op`
+   - `read:artifacts:data`
 
-> This is the minimum set of required permissions for a RNA.
+   > Note that removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
 
-5. Note both the `Client ID` and `Client Secret`. You need these values when configuring the Agent.
+7. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Aurora and Armory's hosted cloud services. Make sure to store the secret somewhere safe. You are not shown the value again.
 
 ## Enable Aurora in target Kubernetes clusters
 
 This section walks you through installing the Remote Network Agent (RNA) and the Argo Rollouts Controller, which are both required for Project Aurora. The Helm chart that Armory provides installs both the Armory Cloud Agent and Argo Rollouts. If your target deployment cluster already has Argo Rollouts installed, you can disable that part of the installation.
 
-> Note: You can use encrypted secrets instead of providing plaintext values. For more information, see the [Secrets Guide]({{< ref "secrets" >}}).
-
-```bash
-# Add the Armory helm repo. This only needs to be done once.
-helm repo add armory https://armory.jfrog.io/artifactory/charts
-
-# Refresh your repo cache.
-helm repo update
-
-# The `accountName` opt is what this cluster will render as in the
-# Spinnaker Stage and Armory Cloud APIs.
-helm install aurora \
-    --set agent-k8s.accountName=my-k8s-cluster \
-    --set agent-k8s.clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
-    --set agent-k8s.clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
-    --namespace armory \
-    # Omit --create-namespace if installing into existing namespace.
-    --create-namespace \
-    armory/aurora
-```
-
-If you already have Argo Rollouts configured in your environment you may disable
-that part of the Helm chart by setting the `enabled` key to false as in the following example:
-
-```shell
-helm install aurora \
-    # ... other config options
-    --set argo-rollouts.enabled=false
-    # ... other config options
-```
+{{< include "aurora-borealis/agent-argo-install.md" >}}
 
 If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings. 
 
@@ -146,6 +119,7 @@ With the file, you can configure multiple configs in addition to the `env` confi
 ```
 
 </details>
+
 
 
 
