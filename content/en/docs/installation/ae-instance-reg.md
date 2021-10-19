@@ -1,9 +1,10 @@
 ---
-title: Environment Registration
+title: Instance Registration
 linkTitle: Registration
 description: As part of the configuration process, you need to register your Armory Enterprise instance. If you maintain several instances, such as development, staging, and production instances, you must register each one.
 aliases:
   - /docs/installation/deployment-reg/
+  - /docs/ae-environment-reg/
 ---
 <!--Several shortlinks point to this page from Deck:
 - go.armory.io/UIdocs-deploy-reg points to the top of this page
@@ -11,7 +12,7 @@ aliases:
 - go.armory.io/UIdocs-deploy-reg-manual-id points to the Operator fails to generate an instance ID section
 -->
 
-## Register your environment
+## Register your instance
 
 1. Navigate to the URL provided by Armory and follow the instructions to create an account.
 2. Make note of the following information:
@@ -26,10 +27,10 @@ aliases:
 
 In your Operator manifest (such as `spinnakerService.yml`) or `spinnaker-local` file (Halyard), configure the following parameters:
   - `spec.spinnakerConfig.profiles.spinnaker.armory.cloud.iam.tokenIssueUrl`: set this value to `https://auth.cloud.armory.io/oauth/token`.
-  - `spec.spinnakerConfig.profiles.spinnaker.armory.cloud.iam.clientID`: set this value to **Client ID** that you received from [Register your environment](#register-your-environment).
-  - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientSecret`: set this value to the **Secret** that you received from [Register your environment](#register-your-environment).
+  - `spec.spinnakerConfig.profiles.spinnaker.armory.cloud.iam.clientID`: set this value to **Client ID** that you received from [Register your instance](#register-your-instance).
+  - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientSecret`: set this value to the **Secret** that you received from [Register your instance](#register-your-instance).
 
-Once you apply the registration information to your environment, your Armory Enterprise environment is registered with Armory.
+Once you apply the registration information to your instance, your Armory Enterprise instance is registered with Armory.
 
 {{< tabs name="Configure Armory Enterprise" >}}
 {{% tab name="Operator" %}}
