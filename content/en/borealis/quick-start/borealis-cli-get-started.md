@@ -109,8 +109,45 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    <details><summary>Show me an empty template</summary>
    
    ```yaml
-   SOME YAML HERE
+   version: v1
+   kind: kubernetes
+   application: <appName>
+   # Map of Deployment target
+   targets:
+     # Name of the deployment.
+     <name>:
+       # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
+       account: <accountName>
+       # Optionally, override the namespaces that are in the manifests
+       namespace:
+       # This is the key that references a strategy you define under the strategies section of the file.
+       strategy: <strategyName>
+   # The list of manifests sources
+   manifests:
+     # A directory containing multiple manifests. Instructs Borealis to read all yaml|yml files in the directory and deploy all manifests to the target defined in    `targets`.
+     - path: /path/to/manifest/directory
+     # This specifies a specific manifest file
+     - path: /path/to/specific/manifest.yaml
+   # The map of strategies that you can use to deploy your app.
+   strategies:
+     # The name for a strategy, which you use for the `strategy` key to select one to use.
+     <strategyName>:
+       # The deployment strategy type. As part of the early access program, Borealis supports `canary`.
+       canary:
+         # List of canary steps
+         steps:
+           # The map key is the step type. First configure `setWeight` for the weight (how much of the cluster the app should deploy to for a step).
+           - setWeight:
+               weight: <integer> # Deploy the app to <integer> percent of the cluster as part of the first step. `setWeight` is followed by a `pause`.
+           - pause: # `pause` can be set to a be a specific amount of time or to a manual judgment.
+               duration: <integer> # How long to wait before proceeding to the next step.
+               unit: seconds # Unit for duration. Can be seconds, minutes, or hours.
+           - setWeight:
+               weight: <integer> # Deploy the app to <integer> percent of the cluster as part of the second step
+           - pause:
+               untilApproved: true # Pause the deployment until a manual approval is given. You can approve the step through the CLI or Status UI.
    ```
+
 
    </details><br>
 
@@ -139,12 +176,49 @@ Since you are using the Borealis CLI, you do not need to have  service account c
 
    Each step can have the same or different pause behaviors. Additionally, you can configure as many steps  as you want for the deployment strategy, but you do not need to create a step with a weight set to 100. Once Borealis completes the last step you configure, the manifest gets deployed to the whole cluster automatically.
 
-   <details><summary>Show me an example deployment file</summary>
+   <details><summary>Show me a completed deployment file</summary>
 
-    ```yaml
-    SOME YAML HERE
-    ```
-    
+   ```yaml
+   version: v1
+   kind: kubernetes
+   application: ivan-nginx
+   # Map of deployment target
+   targets:
+     # Name of the deployment.
+     dev-west:
+       # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
+       account: cdf-dev
+       # Optionally, override the namespaces that are in the manifests
+       namespace: cdf-dev-agent
+       # This is the key that references a strategy you define under the strategies section of the file.
+       strategy: canary-wait-til-approved
+   # The list of manifests sources
+   manifests:
+     # A directory containing multiple manifests. Instructs Borealis to read all yaml|yml files in the directory and deploy all manifests to the target defined in    `targets`.
+     - path: /deployments/manifests/configmaps
+     # A specific manifest file that gets deployed to the target defined in `targets`.
+     - path: /deployments/manifests/deployment.yaml
+   # The map of strategies that you can use to deploy your app.
+   strategies:
+     # The name for a strategy, which you use for the `strategy` key to select one to use.
+     canary-wait-til-approved:
+       # The deployment strategy type. As part of the early access program, Borealis supports `canary`.
+       canary:
+         # List of canary steps
+         steps:
+         # The map key is the step type. First configure `setWeight` for the weight (how much of the cluster the app should deploy to for a step).
+         - setWeight:
+           - setWeight:
+               weight: 33 # Deploy the app to 33% of the cluster.
+           - pause: 
+               duration: 60 # Wait 60 seconds before starting the next step.
+               unit: seconds
+           - setWeight:
+               weight: 66 # Deploy the app to 66% of the cluster.
+           - pause:
+               untilApproved: true # Wait until approval is given through the Borealis CLI or Status UI.
+   ```
+
     </details><br>
 
 4. Start the deployment:
