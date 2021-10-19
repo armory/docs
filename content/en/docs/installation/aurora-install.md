@@ -60,7 +60,7 @@ The Helm chart described in [Enable Project Aurora in target Kubernetes clusters
 Register your Armory Enterprise environment so that it can communicate with Armory services. Each environment needs to get registered if you, for example, have production and development environments.
 
 1. Get your registration link from Armory.
-2. Register your Armory Enterprise [environment]({{< ref "ae-environment-reg" >}}).
+2. Register your Armory Enterprise [environment]({{< ref "ae-instance-reg" >}}).
 
 ## Create client credentials for your Agents
 
