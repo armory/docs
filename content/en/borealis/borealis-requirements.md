@@ -5,6 +5,7 @@ exclude_search: true
 weight: 20
 aliases:
   - /armory-deployments/requirements/
+  - /borealis/requirements/
 ---
 
 To use Project Aurora/Borealis, make sure you meet the following requirements.
