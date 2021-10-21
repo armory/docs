@@ -65,3 +65,5 @@ aliases:
 - This policy disables the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions. ({{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/spinnaker.http.authz/tasks/type.updateApplication.md" >}} )
 
 - Prevents editing manifests from outside of a pipeline on production accounts. ({{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/spinnaker.http.authz/tasks/type.deployManifest.md" >}} )
+
+- Restrict which named users can edit which pipelines for which applications. Any pipeline not explicitly specified in the policy is editable as usual. ( {{< linkWithTitle "docs/armory-admin/policy-engine/policy-engine-use/packages/spinnaker.execution/stages.before/savePipeline" >}} ) 
