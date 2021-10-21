@@ -14,6 +14,8 @@ Before you start, make sure that someone at your organization has completed the 
 
 Register for Armory's hosted cloud services by accepting the invitation. You should receive an email invite to Borealis from your organization's administrator.
 
+Note that you need a device that can support OTP two-factor authentication, such as a smartphone with the Google Authenticator app.
+
 ## Install the Borealis CLI
 
 The automated install involves installing an Armory Version Manager (AVM) that handles downloading, installing, and updating the Borealis CLI. Using this install method gives you  to way to keep the Borealis CLI updated as well as the ability to switch versions from the command line. The manual installation method involves downloading a specific release from GitHub and installing that release.

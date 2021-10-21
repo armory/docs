@@ -14,6 +14,8 @@ Review the requirements for using Borealis on the [Requirements]({{< ref "boreal
 
 {{< include "aurora-borealis/borealis-login-creds" >}}
 
+Every user who wants to deploy to your clusters using Borealis must have an account. For information about inviting users, see [Invite users](#invite-users).
+
 ## Create client credentials
 
 After you create an account, you can create machine-to-machine client credentials for the various service accounts that you will need. These credentials are machine credentials that are meant for authentication when using Borealis programmatically. The credentials consist of a client ID and a client secret. Make sure to keep the secret somewhere safe. You cannot retrieve secrets that you lose access to. You would need to create a new set of credentials and update any services that used the credentials that you are replacing.
@@ -34,10 +36,19 @@ Borealis uses the RNA on your deployment target to communicate with Armory's hos
 
 Note the account name that you assign to the deployment target. This account is used to reference the target when deploying your app.
 
-## Invite users
+## Next steps
 
-For your users to get access to Borealis, you must invite them to your organization.
+Now that Borealis is configured for your deployment target, you can either try out deploying a sample app or invite more users.
+
+### Deploy an app
+
+Use the [Borealis Quickstart CLI Guide]({{< ref "borealis-cli-get-started.md" >}}) to learn how to manually deploy an app using the Borealis CLI.
+
+### Invite users
+
+For your users to get access to Borealis, you must invite them to your organization. This grants them access to the Cloud Console and the Status UI.
 
 1. Navigate to the Cloud Console: https://console.cloud.armory.io.
-2. Go to **Users** and select **Invite User**.
+2. In the left navigation, go to **Users** and select **Invite User**.
 3. Provide the name and email address for the user you want to invite.
+4. Send the inviation.

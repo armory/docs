@@ -13,7 +13,7 @@ helm install armory-rna armory/aurora \
     --set agent-k8s.accountName=my-k8s-cluster \
     --set agent-k8s.clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
     --set agent-k8s.clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
-    --namespace armory \
+    --namespace armory-rna \
     # Omit --create-namespace if installing into existing namespace.
     --create-namespace
 ```
