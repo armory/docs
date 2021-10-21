@@ -241,6 +241,7 @@ spec:
 
 ## {{% heading "nextSteps" %}}
 
+* [Register your Armory Enterprise instance]({{< ref "ae-instance-reg" >}}).
 * Learn how to {{< linkWithTitle "op-manage-spinnaker.md" >}}.
 * See advanced manifest configuration in the  {{< linkWithTitle "op-config-manifest.md" >}} guide.
 * See advanced configuration using Kustomize in the {{< linkWithTitle "op-config-kustomize.md" >}} guide.

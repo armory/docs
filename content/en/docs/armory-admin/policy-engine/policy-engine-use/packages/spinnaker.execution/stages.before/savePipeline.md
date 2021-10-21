@@ -136,6 +136,37 @@ This package contains a subset of the functionality found in opa.pipelines. Armo
 ```
 </details>
 
+## Example policy
+
+This policy allows you to restrict which named users can edit which pipelines for which applications. Any pipeline not explicitly specified in the policy is editable as usual.
+
+```opa
+package spinnaker.execution.stages.before.savePipeline
+    
+    # This map specifies the name of the app, the name of the pipeline, and a list of users that can edit it.
+    allowed_editors:=[{"app":"myAppName","name": "myPipelineName","users":["myUsername"]},{"app":"app","name": "name1","users":[]}]
+    
+    deny["You do not have permission to edit this pipeline."]{
+       not canEdit(input.user.username)      
+    }   
+      
+    default allowedEditors=null
+    
+    allowedEditors = val{
+      pipeline := json.unmarshal(base64.decode(input.stage.context.pipeline))
+      some i
+      pipeline.name==allowed_editors[i].name
+      pipeline.application==allowed_editors[i].app
+      val=allowed_editors[i].users    
+    }
+        
+    canEdit(user){
+    	allowedEditors[_]==user
+    }{ #allow editing any apps/pipelines for which rules have not been defined.
+        allowedEditors==null
+    }
+```
+
 ## Keys
 
 Parameters related to the stage against which the policy is executing can be found in the [input.stage.context](#inputstagecontext) object.
@@ -193,3 +224,4 @@ See [`input.stage`]({{< ref "input.stage.md" >}}) for more information.
 ### input.user
 
 This object provides information about the user performing the action. This can be used to restrict actions by role. See [input.user]({{< ref "input.user.md" >}}) for more information.
+
