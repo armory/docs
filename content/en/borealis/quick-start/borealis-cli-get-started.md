@@ -12,7 +12,7 @@ Before you start, make sure that someone at your organization has completed the 
 
 ## Register for Armory's hosted cloud services
 
-{{< include "aurora-borealis/borealis-login-creds" >}}
+Register for Armory's hosted cloud services by accepting the invitation. You should receive an email invite to Borealis from your organization's administrator.
 
 ## Install the Borealis CLI
 
