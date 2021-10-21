@@ -485,7 +485,7 @@ For a complete listing of options check out the [Armory Halyard]({{< ref "armory
 
 As a new feature in Armory's release of 2.24.x+, Dinghy can now provide more robust information to GitHub about executed pipeline changes. This information appears as a comment in the PR.  
 
->Currently, as of 2.24.1 and 2.25.0, GitHub notifications are not supported with custom endpoints and should be disabled. See the KB article [Dinghy Crashing for Customers using 2.24+ when customers are using a Custom Endpoint](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290) for details.
+>When using versions below 2.26.2, GitHub notifications are not supported with custom endpoints and [should be disabled due to a known issue](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290). This issue has been resolved as of [2.26.2, Dinghy Change #447](https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v2-26-2/#dinghy---226622610).
 
 
 {{< tabs name="ghnotifications" >}}
