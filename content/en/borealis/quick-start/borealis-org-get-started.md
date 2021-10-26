@@ -34,8 +34,6 @@ Borealis uses the RNA on your deployment target to communicate with Armory's hos
 
 {{< include "aurora-borealis/agent-argo-install.md" >}}
 
-Note the account name that you assign to the deployment target. This account is used to reference the target when deploying your app.
-
 ## Next steps
 
 Now that Borealis is configured for your deployment target, you can either try out deploying a sample app or invite more users.

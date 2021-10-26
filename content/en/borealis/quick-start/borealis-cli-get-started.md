@@ -26,7 +26,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
 {{% tab name="Automated" %}}
 
-1. Download the [AVM](https://github.com/armory/avm/releases/) for your operating system. 
+1. Download the [AVM](https://github.com/armory/avm/releases/) for your operating system and CPU architecture. 
 2. Give AVM execute permissions. For example (on macOS):
    
    ```bash
@@ -226,7 +226,7 @@ Since you are using the Borealis CLI, you do not need to have  service account c
 4. Start the deployment:
    
    ```bash
-   armory deploy -c <clientID-for-target-cluster> -s <secret-for-target-cluster>  -f canary.yaml
+   armory deploy start -c <clientID-for-target-cluster> -s <secret-for-target-cluster>  -f canary.yaml
    ```
 
    The command starts your deployment and progresses until the first weight you set. It also returns a deployment ID that you can use to check the status of your deployment and a link to the Status UI page for your deployment.
@@ -246,3 +246,9 @@ armory deploy status -i <deployment-ID>
 ## Advanced use cases
 
 You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis. To get started, create [service accounts]({{< ref "borealis-integrate" >}}).
+
+## Troubleshooting
+
+### `bad CPU type in executable` error
+
+This issue occurs if the AVM version you downloaded does not match your operating system and CPU architecture. For example, if you try to run an `arm64` build on a sysem that is not ARM based. Verify that you have the correct AVM version for your system.
