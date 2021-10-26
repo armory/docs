@@ -20,8 +20,6 @@ Note that you need a device that can support OTP two-factor authentication, such
 
 The automated install involves installing an Armory Version Manager (AVM) that handles downloading, installing, and updating the Borealis CLI. Using this install method gives you  to way to keep the Borealis CLI updated as well as the ability to switch versions from the command line. The manual installation method involves downloading a specific release from GitHub and installing that release.
 
-> Depending on your operating system, you may need to allow applications from unknown developers to install the CLI. See the documentation for your operating system, such as [macOS](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
-
 {{< tabs name="borealis-cli-install" >}}
 
 {{% tab name="Automated" %}}
@@ -33,7 +31,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
    chmod +x avm-darwin-amd64
    ```
 
-3. Move AVM to a directory on your `PATH`. For example (on macOS):
+4. Move AVM to a directory on your `PATH`. For example (on macOS):
    
    ```bash
    mv avm-darwin-amd64 /usr/local/bin/avm
@@ -53,15 +51,49 @@ The automated install involves installing an Armory Version Manager (AVM) that h
    avm install
    ```
 
-   The command installs the Borealis CLI and provides a directory that you need to add to your path, such as `/Users/milton/.avm/bin`. For information about the commands available as part of AVM, run `avm --help`.
+   The command installs the Borealis CLI and provides a directory that you need to add to your path, such as `/Users/milton/.avm/bin`. 
 
-7. Run the following command to verify that the Borealis CLI is installed:
+   If you get an `developer  cannot be identified error` when trying to run AVM, you must allow AVM to run.
+
+   <details><summary>Show me how to allow AVM to run.</summary>
+
+   On macOS, go to **System Preferences > Security & Privacy > General** and click **Allow Anyway**. 
+   
+   For more information, see the macOS documentation about [how to open a Mac app from an unidentified developer](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
+
+   </details>
+
+7. Add the directory that AVM returns when you run `avm install` to your path.
+  
+   <details><summary>Show me how to add the directory.</summary>
+
+   1. Edit the resource file for your shell, such as `.bashrc` or .`zshrc`. For example:
+    
+      ```bash
+      vi ~/.bashrc
+      ```
+    
+    2. In the file, find the line for the `PATH` that your resource file exports. They follow the format `export PATH=$HOME/bin:/usr/local/bin:$PATH`.
+    3. Insert the path provided by AVM (such as `/Users/brianle/.avm/bin`)before the ending `$PATH`. The line should look similar to this:
+   
+       ```bash
+       export PATH=$HOME/bin:/usr/local/bin::/Users/milton/.avm/bin:$PATH
+       ```
+
+    4. Save the file.
+    5. Reload your terminal or open a new session.
+
+   </details>
+
+8. Run the following command to verify that the Borealis CLI is installed:
    
    ```bash
    armory
    ```
 
    The command returns basic information about the  Borealis CLI, including available commands.
+
+For AVM or the Borealis CLI, you can use the `--help` option for more information about specific commands.
 
 {{% /tab %}}
 
@@ -104,7 +136,7 @@ Since you are using the Borealis CLI, you do not need to have  service account c
 2. Generate your deployment template and output it to a file:
    
    ```bash
-   armory template canary > canary.yaml
+   armory template kubernetes canary > canary.yaml
    ```
 
    This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`.
@@ -245,10 +277,14 @@ armory deploy status -i <deployment-ID>
 
 ## Advanced use cases
 
-You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis. To get started, create [service accounts]({{< ref "borealis-integrate" >}}).
+You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis. To get started, create [service accounts]({{< ref "borealis-automate" >}}).
 
 ## Troubleshooting
 
+### Developer cannot be verified error when trying to run AVM
+
+Depending on your operating system settings, you may need to allow apps from an unidentified developer in order to use AVM. For macOS, go to **System Preferences > Security & Privacy > General** and click **Allow Anyway**. For more information, see the macOS documentation about [how to open a Mac app from an unidentified developer](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
+
 ### `bad CPU type in executable` error
 
-This issue occurs if the AVM version you downloaded does not match your operating system and CPU architecture. For example, if you try to run an `arm64` build on a system that is not ARM based. Verify that you have the correct AVM version for your system.
+This issue occurs if the AVM version you downloaded does not match your CPU architecture. For example, if you try to run an `arm64` build on a system that is not ARM based. Verify that you downloaded the correct AVM version for your system.
