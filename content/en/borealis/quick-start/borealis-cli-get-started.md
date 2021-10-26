@@ -3,7 +3,7 @@ title: Get Started with the CLI to Deploy Apps
 linktitle: Get Started - CLI
 description: >
   The Borealis CLI is a CLI for interacting with Project Borealis. With the CLI, you can integrate Borealis into your existing CI/CD tooling. Start by familiarizing yourself with the Borealis CLI and its workflow.
-exlcude_search: true
+exclude_search: true
 ---
 
 ## {{% heading "prereq" %}}
@@ -251,4 +251,4 @@ You can integrate Borealis with your existing tools, such as Jenkins or GitHub A
 
 ### `bad CPU type in executable` error
 
-This issue occurs if the AVM version you downloaded does not match your operating system and CPU architecture. For example, if you try to run an `arm64` build on a sysem that is not ARM based. Verify that you have the correct AVM version for your system.
+This issue occurs if the AVM version you downloaded does not match your operating system and CPU architecture. For example, if you try to run an `arm64` build on a system that is not ARM based. Verify that you have the correct AVM version for your system.
