@@ -3,7 +3,7 @@ title: Get Started with the CLI to Deploy Apps
 linktitle: Get Started - CLI
 description: >
   The Borealis CLI is a CLI for interacting with Project Borealis. With the CLI, you can integrate Borealis into your existing CI/CD tooling. Start by familiarizing yourself with the Borealis CLI and its workflow.
-exlcude_search: true
+exclude_search: true
 ---
 
 ## {{% heading "prereq" %}}
@@ -243,4 +243,4 @@ armory deploy status -i <deployment-ID>
 
 ## Advanced use cases
 
-You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis. To get started, create [service accounts]({{< ref "borealis-integrate" >}}).
+You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis. To get started, create [service accounts]({{< ref "borealis-automate" >}}).
