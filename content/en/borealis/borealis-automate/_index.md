@@ -22,7 +22,7 @@ Armory recommends that you store these credentials in a secret engine that is su
 
 ## GitHub Actions
 
-Armory has a GitHub action available on the marketplace for integrating Project Borealis with your GitHub repo. For more information, see TBD.
+Armory has a GitHub action available on the marketplace for integrating Project Borealis with your GitHub repo. For more information, see the [repo](https://github.com/armory/cli-deploy-action) or the [Borealis Deployment GitHub Action page]({{< ref "borealis-gh-action" >}}).
 
 ## Jenkins
 

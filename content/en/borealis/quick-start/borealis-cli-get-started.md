@@ -243,4 +243,4 @@ armory deploy status -i <deployment-ID>
 
 ## Advanced use cases
 
-You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis. To get started, create [service accounts]({{< ref "borealis-integrate" >}}).
+You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis. To get started, create [service accounts]({{< ref "borealis-automate" >}}).
