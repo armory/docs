@@ -20,7 +20,7 @@ To install, upgrade, or configure Armory 2.27.1 RC, use the following Operator v
 
 * Armory Operator 1.4.0 or later
 
-For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}). Using Halyard to install version 2.27.0 or later is not suported. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
+For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}). Using Halyard to install version 2.27.0 or later is not supported. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
 
 ## Security
 
@@ -37,9 +37,7 @@ Armory scans the codebase as we develop and release software. For information ab
 
 {{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
 
-#### Halyard deprecation
-
-Halyard is no longer supported for installing Armory Enterprise 2.27.0 and later. Use the Operator. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
+{{< include "breaking-changes/bc-hal-deprecation.md" >}}
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
@@ -47,20 +45,17 @@ Halyard is no longer supported for installing Armory Enterprise 2.27.0 and later
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-artifact-binding-spel.md" >}}
 
-#### NullPointerException in Clouddriver
-
-The following NPE occurs in the Clouddriver service:
-
-```
-Error creating bean with name 'kubesvcCredentialsLoader': Invocation of init method failed; nested exception is java.lang.NullPointerException
-```
-
-To resolve the issue, set the following property to `false` in your Operator manifest: `spec.spinnakerConfig.profiles.clouddriver.armory.cloud.enabled`.
-
 
 ## Highlighted updates
 
-### Clound Foundry
+### Clouddriver
+
+#### General fixes
+
+* Fixed an NPE related to the `kubesvcCredentialsLoader`.
+* Fixed an issue where new namespaces failed to get created as part of a Deploy Manifest Stage. This issue occurred because of a validation problem.
+
+#### Clound Foundry
 
 * Improved the resiliency of the Cloud Foundry provider. Invalid permissions for a caching agent, such as if permissions are missing for one region, no longer cause all deployments to that account to fail.
 * Improved the caching behavior for the provider. Previously, the cache on a dedicated caching pod (such as when cache sharding or HA is enabled) may not have been updated if a different pod performed an operation that modifies the cache. This led to situations where the Cloud Foundry provider to attempt actions for Server Groups that no longer existed. You can configure this behavior with the following properties in your Operator manifest:
