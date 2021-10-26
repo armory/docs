@@ -3,7 +3,7 @@ title: Get Started with Project Borealis
 linktitle: Get Started - Borealis
 description: >
   To use Borealis, you must register for Armory's hosted cloud service and connecting your deployment target to Armory cloud.
-exlcude_search: true
+exclude_search: true
 ---
 
 ## {{% heading "prereq" %}}

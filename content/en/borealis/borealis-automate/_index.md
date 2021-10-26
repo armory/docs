@@ -3,7 +3,7 @@ title: Integrate Borealis & Automate Deployments
 linktitle: Integrate & Automate
 description: >
   Project Borealis and the CLI can be integrated with any of your tools and scripts that support invoking a CLI as part of its workflow. This gives you the ability to automatically deploy apps using Borealis as part of existing workflows.
-exlcude_search: true
+exclude_search: true
 ---
 
 ## {{% heading "prereq" %}}
@@ -22,7 +22,7 @@ Armory recommends that you store these credentials in a secret engine that is su
 
 ## GitHub Actions
 
-Armory has a GitHub action available on the marketplace for integrating Project Borealis with your GitHub repo. For more information, see TBD.
+Armory has a GitHub action available on the marketplace for integrating Project Borealis with your GitHub repo. For more information, see the [repo](https://github.com/armory/cli-deploy-action) or the [Borealis Deployment GitHub Action page]({{< ref "borealis-gh-action" >}}).
 
 ## Jenkins
 
