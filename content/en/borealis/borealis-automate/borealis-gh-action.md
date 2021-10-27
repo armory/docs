@@ -25,7 +25,14 @@ You can also learn about this GitHub action by viewing the [repo](https://github
   - Create machine-to-machine client credentials for the Remote Network Agent (RNA), which gets installed on your deployment target.
   - Prepare your deployment target by installing the RNA.
   
-3. In the Cloud Console, create machine-to-machine client credentials to use for your GitHub Action service account. For more information, see [Integrate Borealis & Automate Deployments](https://docs.armory.io/borealis/quick-start/borealis-integrate/).
+3. In the Cloud Console, create machine-to-machine client credentials to use for your GitHub Action service account. You can select the pre-configured scope group **Deployments using Spinnaker** or manually select the following:
+
+   - `manage:deploy`
+   - `read:infra:data`
+   - `exec:infra:op`
+   - `read:artifacts:data`
+
+   For more information, see [Integrate Borealis & Automate Deployments](https://docs.armory.io/borealis/quick-start/borealis-integrate/).
 4. Encrypt the GitHub Action service account credentials so that you can use them securely in the action. For more information, see [Encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
 ## Configure the action
