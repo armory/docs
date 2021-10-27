@@ -24,18 +24,19 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
 {{% tab name="Automated" %}}
 
-1. Download the [AVM](https://github.com/armory/avm/releases/) for your operating system and CPU architecture. You can manually download it from the repo or use the following command:
+1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo]((https://github.com/armory/avm/releases/) or use the following command:
    
    ```bash
    wget https://github.com/armory/avm/releases/download/<version>/avm-<os>-<architecture>
    ```
 
-   For example, the following command downloads a version 1.0.1 of the AVM for macOS (darwin) running on amd64 based CPUs:
+   For example, the following command downloads version 1.0.1 of the AVM for macOS (darwin) running on AMD64-based CPUs:
 
    ```bash
    wget https://github.com/armory/avm/releases/download/v1.0.1/avm-darwin-amd64
    ```
 
+   You can see the full list of available releases in the [repo](https://github.com/armory/avm/releases/).
 2. Give AVM execute permissions. For example (on macOS):
    
    ```bash
