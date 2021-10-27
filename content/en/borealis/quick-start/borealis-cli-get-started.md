@@ -24,20 +24,31 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
 {{% tab name="Automated" %}}
 
-1. Download the [AVM](https://github.com/armory/avm/releases/) for your operating system and CPU architecture. 
+1. Download the [AVM](https://github.com/armory/avm/releases/) for your operating system and CPU architecture. You can manually download it from the repo or use the following command:
+   
+   ```bash
+   wget https://github.com/armory/avm/releases/download/<version>/avm-<os>-<architecture>
+   ```
+
+   For example, the following command downloads a version 1.0.1 of the AVM for macOS (darwin) running on amd64 based CPUs:
+
+   ```bash
+   wget https://github.com/armory/avm/releases/download/v1.0.1/avm-darwin-amd64
+   ```
+
 2. Give AVM execute permissions. For example (on macOS):
    
    ```bash
    chmod +x avm-darwin-amd64
    ```
 
-4. Move AVM to a directory on your `PATH`. For example (on macOS):
+3. Move AVM to a directory on your `PATH`. For example (on macOS):
    
    ```bash
    mv avm-darwin-amd64 /usr/local/bin/avm
    ```
 
-5. Confirm that AVM is on your `PATH`:
+4. Confirm that AVM is on your `PATH`:
    
    ```bash
    echo $PATH
@@ -45,7 +56,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
    The command returns your `PATH`, which should now include `/usr/local/bin/avm`.
 
-6. Run the following command to install the Borealis CLI:
+5. Run the following command to install the Borealis CLI:
    
    ```bash
    avm install
@@ -63,7 +74,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
    </details>
 
-7. Add the directory that AVM returns when you run `avm install` to your path.
+6. Add the directory that AVM returns when you run `avm install` to your path.
   
    <details><summary>Show me how to add the directory.</summary>
 
@@ -73,19 +84,19 @@ The automated install involves installing an Armory Version Manager (AVM) that h
       vi ~/.bashrc
       ```
     
-    2. In the file, find the line for the `PATH` that your resource file exports. They follow the format `export PATH=$HOME/bin:/usr/local/bin:$PATH`.
-    3. Insert the path provided by AVM (such as `/Users/brianle/.avm/bin`)before the ending `$PATH`. The line should look similar to this:
+    1. In the file, find the line for the `PATH` that your resource file exports. They follow the format `export PATH=$HOME/bin:/usr/local/bin:$PATH`.
+    2. Insert the path provided by AVM (such as `/Users/brianle/.avm/bin`)before the ending `$PATH`. The line should look similar to this:
    
        ```bash
        export PATH=$HOME/bin:/usr/local/bin::/Users/milton/.avm/bin:$PATH
        ```
 
-    4. Save the file.
-    5. Reload your terminal or open a new session.
+    3. Save the file.
+    4. Reload your terminal or open a new session.
 
    </details>
 
-8. Run the following command to verify that the Borealis CLI is installed:
+7. Run the following command to verify that the Borealis CLI is installed:
    
    ```bash
    armory
