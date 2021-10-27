@@ -143,9 +143,11 @@ time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kub
 {{< tabs name="DeploymentPlugin" >}}
 {{% tab name="Operator" %}}
 
-In your Kustomize patches directory, create a file named **patch-plugin-deployment.yml** and add the following manifest to it. 
-
 If you are running Armory Enterprise 2.26.3, `armory.cloud` block goes in a different location. Instead of `spec.spinnakerConfig.spinnaker`, the block needs to go under both `spec.spinnakerConfig.gate` and `spec.spinnakerConfig.orca`. For more information see [Known issues](#known-issues).
+
+The installation instructions using the Operator are the same except for where the `armory.cloud` block goes. 
+
+In your Kustomize patches directory, create a file named **patch-plugin-deployment.yml** and add the following manifest to it. 
 
 ```yaml
 #patch-plugin-deployment.yml
@@ -210,9 +212,9 @@ kubectl apply -k <path-to-kustomize-file>.yml
 {{% /tab %}}
 {{% tab name="Halyard" %}}
 
-In the `/.hal/default/profiles` directory, add the following configuration to `spinnaker-local.yml`. If the file does not exist, create it and add the configuration.
+If you are running Armory Enterprise 2.26.3, `armory.cloud` block needs to go in `gate-local.yml` and `orca-local.yml` instead of `spinnaker-local.yml`. For more information see [Known issues](#known-issues). Other than the change in location, the installation instructions remain the same.
 
-If you are running Armory Enterprise 2.26.3, `armory.cloud` block needs to go in `gate-local.yml` and `orca-local.yml` instead of `spinnaker-local.yml`. For more information see [Known issues](#known-issues).
+In the `/.hal/default/profiles` directory, add the following configuration to `spinnaker-local.yml`. If the file does not exist, create it and add the configuration.
 
 ```yaml
 #spinnaker-local.yml
@@ -377,6 +379,8 @@ In Armory Enterprise 2.26.3, the location of where you put the `armory.cloud` co
 
 {{< tabs name="KnownIssue" >}}
 {{% tab name="Operator" %}}
+
+
 
 Your Kustomize patch file should resemble the following where `armory.cloud` is a child of the `gate` and `orca` blocks instead of a `spinnaker` block:
 
