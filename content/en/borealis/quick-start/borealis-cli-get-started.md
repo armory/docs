@@ -132,7 +132,7 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    armory login
    ```
 
-   Provide your Armory hosted cloud services username and password as well as two-factor authentication code when prompted.
+   The CLI returns a `Device Code` and opens your default browser. To complete the log in process, confirm the code in your browser.
 2. Generate your deployment template and output it to a file:
    
    ```bash
