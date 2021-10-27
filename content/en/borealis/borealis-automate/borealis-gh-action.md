@@ -21,9 +21,9 @@ You can also learn about this GitHub action by viewing the [repo](https://github
 1. Review the full set of requirements for Borealis at [System Requirements](https://docs.armory.io/borealis/borealis-requirements/).
 2. Complete the [Get Started with Project Borealis](hhttps://docs.armory.io/borealis/quick-start/borealis-org-get-started/) tasks, which include the following:
 
-  - Register for an Armory hosted cloud services account. This is the account that you use to log in to the Armory Cloud Console and the Status UI.
-  - Create machine-to-machine client credentials for the Remote Network Agent (RNA), which gets installed on your deployment target.
-  - Prepare your deployment target by installing the RNA.
+   - Register for an Armory hosted cloud services account. This is the account that you use to log in  to the Armory Cloud Console and the Status UI.
+   - Create machine-to-machine client credentials for the Remote Network Agent (RNA), which gets  installed on your deployment target.
+   - Prepare your deployment target by installing the RNA.
   
 3. In the Cloud Console, create machine-to-machine client credentials to use for your GitHub Action service account. You can select the pre-configured scope group **Deployments using Spinnaker** or manually select the following:
 
