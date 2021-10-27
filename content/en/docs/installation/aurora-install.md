@@ -138,14 +138,14 @@ time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kub
 
 ## Install the Project Aurora Plugin
 
-A quick note on secrets you can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}})
-
-Set the client_secret value to be a secret token, instead of the plain text value.
+> You can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}}). This means you can set the clientSecret value to be a secret token instead of the plain text value.
 
 {{< tabs name="DeploymentPlugin" >}}
 {{% tab name="Operator" %}}
 
-In your Kustomize patches directory, create a file named **patch-plugin-deployment.yml** and add the following manifest to it:
+In your Kustomize patches directory, create a file named **patch-plugin-deployment.yml** and add the following manifest to it. 
+
+If you are running Armory Enterprise 2.26.3, `armory.cloud` block goes in a different location. Instead of `spec.spinnakerConfig.spinnaker`, the block needs to go under both `spec.spinnakerConfig.gate` and `spec.spinnakerConfig.orca`. For more information see [Known issues](#known-issues).
 
 ```yaml
 #patch-plugin-deployment.yml
@@ -192,8 +192,6 @@ spec:
                 url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
 ```
 
-> If you are running Armory Enterprise 2.26.3, `armory.cloud` block goes in a different location. Instead of `spec.spinnakerConfig.spinnaker`, the block needs to go under both `spec.spinnakerConfig.gate` and `spec.spinnakerConfig.orca`. For more information see [Known issues](#known-issues)
-
 Then, include the file under the `patchesStrategicMerge` section of your `kustomization` file:
 
 ```yaml
@@ -213,6 +211,8 @@ kubectl apply -k <path-to-kustomize-file>.yml
 {{% tab name="Halyard" %}}
 
 In the `/.hal/default/profiles` directory, add the following configuration to `spinnaker-local.yml`. If the file does not exist, create it and add the configuration.
+
+If you are running Armory Enterprise 2.26.3, `armory.cloud` block needs to go in `gate-local.yml` and `orca-local.yml` instead of `spinnaker-local.yml`. For more information see [Known issues](#known-issues).
 
 ```yaml
 #spinnaker-local.yml
@@ -234,8 +234,6 @@ spinnaker:
       armory-deployment-plugin-releases:
         url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
 ```
-
-> If you are running Armory Enterprise 2.26.3, `armory.cloud` block needs to go in `gate-local.yml` and `orca-local.yml` instead of `spinnaker-local.yml`. For more information see [Known issues](#known-issues).
 
 In the `/.hal/default/profiles` directory, add the following configuration to `gate-local.yml`. If the file does not exist, create it and add the configuration.
 
@@ -443,7 +441,6 @@ spec:
 
 Your `spinnaker-local.yml` file should not have the `armory.cloud` block anymore and only contain the block to install the Aurora plugin:
 
-```yaml
 ```yaml
 #spinnaker-local.yml
 spinnaker:
