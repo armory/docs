@@ -408,8 +408,7 @@ spec:
               armory-deployment-plugin-releases:
                 enabled: true
                 url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
-      # Note how armory.cloud is a child of gate and orca instead of spinnaker
-      gate:
+        # Note how armory.cloud is a child of gate instead of spinnaker
         armory.cloud:
           enabled: true
           iam:
@@ -418,6 +417,7 @@ spec:
             tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
           api:
             baseUrl: https://api.cloud.armory.io
+      # Note how armory.cloud is a child of orca instead of spinnaker
       orca:
         armory.cloud:
           enabled: true
