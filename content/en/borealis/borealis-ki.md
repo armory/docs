@@ -3,10 +3,16 @@ title: Known Issues and Limitations
 weight: 9999
 ---
 
-
 ## Manifest requirements
 
-Can I get a page called something like ‘Supported deployment manifests’ or ‘deployment manifest limitations’ added to the aurora+borealis documentation? We currently do not support:
-the manifest must contain exactly 1 kubernetes ‘Deployment’ object within a single deploy.yml (or project aurora spinnaker stage).
-we do not support deploying replicasets
-we do not support deploying pods.
+Project Aurora and Borealis have the following constraints when deploying a manifest:
+
+- The manifest must contain exactly 1 `Kubernetes Deployment` object within a single deployment file (Borealis) or Project Aurora Spinnaker Stage (Aurora).
+- Deploying ReplicaSets is not  supported.
+- Deploying Pods is not supported.
+
+## `armory.cloud` config block location
+
+In Armory Enterprise 2.26.3, the location of where you put the `armory.cloud` block when configuring the Project Aurora Plugin is different from other versions. This issue affects both Operator and Halyard based installations of Armory Enterprise.
+
+For more information, see the [known issues for Project Aurora]({{< ref "aurora-install#armorycloud-block-location" >}}).
