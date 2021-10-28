@@ -12,19 +12,31 @@ Before you start, make sure that someone at your organization has completed the 
 
 ## Register for Armory's hosted cloud services
 
-{{< include "aurora-borealis/borealis-login-creds" >}}
+Register for Armory's hosted cloud services by accepting the invitation. You should receive an email invite to Borealis from your organization's administrator.
+
+Note that you need a device that can support OTP two-factor authentication, such as a smartphone with the Google Authenticator app.
 
 ## Install the Borealis CLI
 
 The automated install involves installing an Armory Version Manager (AVM) that handles downloading, installing, and updating the Borealis CLI. Using this install method gives you  to way to keep the Borealis CLI updated as well as the ability to switch versions from the command line. The manual installation method involves downloading a specific release from GitHub and installing that release.
 
-> Depending on your operating system, you may need to allow applications from unknown developers to install the CLI. See the documentation for your operating system, such as [macOS](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
-
 {{< tabs name="borealis-cli-install" >}}
 
 {{% tab name="Automated" %}}
 
-1. Download the [AVM](https://github.com/armory/avm/releases/) for your operating system. 
+1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo]((https://github.com/armory/avm/releases/) or use the following command:
+   
+   ```bash
+   wget https://github.com/armory/avm/releases/download/<version>/avm-<os>-<architecture>
+   ```
+
+   For example, the following command downloads version 1.0.1 of the AVM for macOS (darwin) running on AMD64-based CPUs:
+
+   ```bash
+   wget https://github.com/armory/avm/releases/download/v1.0.1/avm-darwin-amd64
+   ```
+
+   You can see the full list of available releases in the [repo](https://github.com/armory/avm/releases/).
 2. Give AVM execute permissions. For example (on macOS):
    
    ```bash
@@ -37,7 +49,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
    mv avm-darwin-amd64 /usr/local/bin/avm
    ```
 
-5. Confirm that AVM is on your `PATH`:
+4. Confirm that AVM is on your `PATH`:
    
    ```bash
    echo $PATH
@@ -45,13 +57,45 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
    The command returns your `PATH`, which should now include `/usr/local/bin/avm`.
 
-6. Run the following command to install the Borealis CLI:
+5. Run the following command to install the Borealis CLI:
    
    ```bash
    avm install
    ```
 
-   The command installs the Borealis CLI and provides a directory that you need to add to your path, such as `/Users/milton/.avm/bin`. For information about the commands available as part of AVM, run `avm --help`.
+   The command installs the Borealis CLI and provides a directory that you need to add to your path, such as `/Users/milton/.avm/bin`. 
+
+   If you get an `developer  cannot be identified error` when trying to run AVM, you must allow AVM to run.
+
+   <details><summary>Show me how to allow AVM to run.</summary>
+
+   On macOS, go to **System Preferences > Security & Privacy > General** and click **Allow Anyway**. 
+   
+   For more information, see the macOS documentation about [how to open a Mac app from an unidentified developer](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
+
+   </details>
+
+6. Add the directory that AVM returns when you run `avm install` to your path.
+  
+   <details><summary>Show me how to add the directory.</summary>
+
+   1. Edit the resource file for your shell, such as `.bashrc` or .`zshrc`. For example:
+    
+      ```bash
+      vi ~/.bashrc
+      ```
+    
+    1. In the file, find the line for the `PATH` that your resource file exports. They follow the format `export PATH=$HOME/bin:/usr/local/bin:$PATH`.
+    2. Insert the path provided by AVM (such as `/Users/brianle/.avm/bin`)before the ending `$PATH`. The line should look similar to this:
+   
+       ```bash
+       export PATH=$HOME/bin:/usr/local/bin::/Users/milton/.avm/bin:$PATH
+       ```
+
+    3. Save the file.
+    4. Reload your terminal or open a new session.
+
+   </details>
 
 7. Run the following command to verify that the Borealis CLI is installed:
    
@@ -60,6 +104,8 @@ The automated install involves installing an Armory Version Manager (AVM) that h
    ```
 
    The command returns basic information about the  Borealis CLI, including available commands.
+
+For AVM or the Borealis CLI, you can use the `--help` option for more information about specific commands.
 
 {{% /tab %}}
 
@@ -98,11 +144,15 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    armory login
    ```
 
-   Provide your Armory hosted cloud services username and password as well as two-factor authentication code when prompted.
+   The CLI returns a `Device Code` and opens your default browser. To complete the log in process, confirm the code in your browser.
+
+   After you successfully authenticate, the CLI returns a list of environments.
+
+2. Select the environment you want to log in to.   
 2. Generate your deployment template and output it to a file:
    
    ```bash
-   armory template canary > canary.yaml
+   armory template kubernetes canary > canary.yaml
    ```
 
    This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`.
@@ -224,7 +274,7 @@ Since you are using the Borealis CLI, you do not need to have  service account c
 4. Start the deployment:
    
    ```bash
-   armory deploy -c <clientID-for-target-cluster> -s <secret-for-target-cluster>  -f canary.yaml
+   armory deploy start -c <clientID-for-target-cluster> -s <secret-for-target-cluster>  -f canary.yaml
    ```
 
    The command starts your deployment and progresses until the first weight you set. It also returns a deployment ID that you can use to check the status of your deployment and a link to the Status UI page for your deployment.
@@ -244,3 +294,13 @@ armory deploy status -i <deployment-ID>
 ## Advanced use cases
 
 You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis. To get started, create [service accounts]({{< ref "borealis-automate" >}}).
+
+## Troubleshooting
+
+### Developer cannot be verified error when trying to run AVM
+
+Depending on your operating system settings, you may need to allow apps from an unidentified developer in order to use AVM. For macOS, go to **System Preferences > Security & Privacy > General** and click **Allow Anyway**. For more information, see the macOS documentation about [how to open a Mac app from an unidentified developer](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
+
+### `bad CPU type in executable` error
+
+This issue occurs if the AVM version you downloaded does not match your CPU architecture. For example, if you try to run an `arm64` build on a system that is not ARM based. Verify that you downloaded the correct AVM version for your system.
