@@ -138,14 +138,16 @@ time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kub
 
 ## Install the Project Aurora Plugin
 
-A quick note on secrets you can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}})
-
-Set the client_secret value to be a secret token, instead of the plain text value.
+> You can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}}). This means you can set the clientSecret value to be a secret token instead of the plain text value.
 
 {{< tabs name="DeploymentPlugin" >}}
 {{% tab name="Operator" %}}
 
-In your Kustomize patches directory, create a file named **patch-plugin-deployment.yml** and add the following manifest to it:
+If you are running Armory Enterprise 2.26.3, `armory.cloud` block goes in a different location. Instead of `spec.spinnakerConfig.spinnaker`, the block needs to go under both `spec.spinnakerConfig.gate` and `spec.spinnakerConfig.orca`. For more information see [Known issues](#known-issues).
+
+The installation instructions using the Operator are the same except for where the `armory.cloud` block goes. 
+
+In your Kustomize patches directory, create a file named **patch-plugin-deployment.yml** and add the following manifest to it. 
 
 ```yaml
 #patch-plugin-deployment.yml
@@ -192,7 +194,6 @@ spec:
                 url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
 ```
 
-
 Then, include the file under the `patchesStrategicMerge` section of your `kustomization` file:
 
 ```yaml
@@ -210,6 +211,8 @@ kubectl apply -k <path-to-kustomize-file>.yml
 
 {{% /tab %}}
 {{% tab name="Halyard" %}}
+
+If you are running Armory Enterprise 2.26.3, `armory.cloud` block needs to go in `gate-local.yml` and `orca-local.yml` instead of `spinnaker-local.yml`. For more information see [Known issues](#known-issues). Other than the change in location, the installation instructions remain the same.
 
 In the `/.hal/default/profiles` directory, add the following configuration to `spinnaker-local.yml`. If the file does not exist, create it and add the configuration.
 
@@ -367,3 +370,134 @@ Perform the following steps:
 9.  Trigger a manual execution of the pipeline.
 
 On the **Pipelines** page of the Armory Enterprise UI, select the pipeline and watch the deployment progress. If you set the **Then wait** behavior of any step to **until approved**, this is where you approve the rollout and allow it to continue. After completing the final step you configured, Project Aurora scales the deployment to 100% of the cluster if needed.
+
+## Known issues
+
+### `armory.cloud` block location
+
+In Armory Enterprise 2.26.3, the location of where you put the `armory.cloud` config block is different from other versions.
+
+{{< tabs name="KnownIssue" >}}
+{{% tab name="Operator" %}}
+
+
+
+Your Kustomize patch file should resemble the following where `armory.cloud` is a child of the `gate` and `orca` blocks instead of a `spinnaker` block:
+
+```yaml
+#patch-plugin-deployment.yml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+  namespace: <namespace>
+spec:
+  spinnakerConfig:
+    profiles:
+      gate:
+        spinnaker:
+          extensibility:
+            # This snippet is necessary so that Gate can serve your plugin code to Deck
+            deck-proxy:
+              enabled: true
+              plugins:
+                Armory.Deployments:
+                  enabled: true
+                  version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
+            repositories:
+              armory-deployment-plugin-releases:
+                enabled: true
+                url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
+        # Note how armory.cloud is a child of gate instead of spinnaker
+        armory.cloud:
+          enabled: true
+          iam:
+            clientId: <clientId for Spinnaker from earlier>
+            clientSecret: <clientSecret for Spinnaker from earlier>
+            tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
+          api:
+            baseUrl: https://api.cloud.armory.io
+      # Note how armory.cloud is a child of orca instead of spinnaker
+      orca:
+        armory.cloud:
+          enabled: true
+          iam:
+            clientId: <clientId for Spinnaker from earlier>
+            clientSecret: <clientSecret for Spinnaker from earlier>
+            tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
+          api:
+            baseUrl: https://api.cloud.armory.io
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.Deployments:
+                enabled: true
+                version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
+            repositories:
+              armory-deployment-plugin-releases:
+                url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
+```
+
+
+
+{{% /tab %}}
+{{% tab name="Halyard" %}}
+
+Your `spinnaker-local.yml` file should not have the `armory.cloud` block anymore and only contain the block to install the Aurora plugin:
+
+```yaml
+#spinnaker-local.yml
+spinnaker:
+  extensibility:
+    plugins:
+      Armory.Deployments:
+        enabled: true
+        version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
+    repositories:
+      armory-deployment-plugin-releases:
+        url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
+```
+
+Your `gate-local.yml` file should include the `extensibility` and the `armory.cloud` configurations like the following example:
+
+```yaml
+#gate-local.yml
+spinnaker:
+  extensibility:
+    # This snippet is necessary so that Gate can serve your plugin code to Deck
+    deck-proxy:
+      enabled: true
+      plugins:
+        Armory.Deployments:
+          enabled: true
+          version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
+    repositories:
+      armory-deployment-plugin-releases:
+        enabled: true
+        url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
+armory.cloud:
+  enabled: true
+  iam:
+    clientId: <clientId for Spinnaker from earlier>
+    clientSecret: <clientSecret for Spinnaker from earlier>
+    tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
+  api:
+    baseUrl: https://api.cloud.armory.io
+```
+
+Your `orca-local.yml` file should include the `armory.cloud` configration like the following:
+
+```yaml
+#orca-local.yml
+armory.cloud:
+  enabled: true
+  iam:
+    clientId: <clientId for Spinnaker from earlier>
+    clientSecret: <clientSecret for Spinnaker from earlier>
+    tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
+  api:
+    baseUrl: https://api.cloud.armory.io
+```
+
+{{% /tab %}}
+{{< /tabs >}}
