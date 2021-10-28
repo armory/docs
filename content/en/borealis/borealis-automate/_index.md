@@ -6,6 +6,7 @@ description: >
 exclude_search: true
 aliases:
   - /borealis/quick-start/borealis-integrate/
+weight: 40
 ---
 
 ## {{% heading "prereq" %}}
