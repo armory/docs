@@ -39,7 +39,9 @@ Armory scans the codebase as we develop and release software. For information ab
 
 {{< include "breaking-changes/bc-hal-deprecation.md" >}}
 
-{{< include "breaking-changes/bc-pe-plug-version-req.md" >}}
+#### Plugin compatibility
+
+{{< include "breaking-changes/bc-plug-version-lts.md" >}}
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
@@ -64,6 +66,10 @@ Armory scans the codebase as we develop and release software. For information ab
    - `expireAfterWrite`: the amount of time (in seconds) to wait before expiring the cache after a write operation
    - `expireAfterAccess`: the amount of time (in seconds) to wait before expiring the cache after a access operation
 * Improved error handling when a caching agent has insufficient permissions. A RuntimeException no longer occurs.
+
+### Plugin compatibility
+
+{{< include "breaking-changes/bc-plug-version-lts.md" >}}
 
 ###  Spinnaker Community Contributions
 
