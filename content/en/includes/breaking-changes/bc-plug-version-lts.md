@@ -4,7 +4,7 @@ The following table lists the plugins and their required minimum version:
 
 |  Plugin |  Version  |
 |---------|-----------|
-| App Name | | 
+| App Name | 0.2.0 | 
 | [AWS Lambda](https://github.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker) |    |
 | [Evaluate Artifacts](https://github.com/armory-plugins/evaluate-artifacts-releases/) |  |
 | [External Accounts](https://github.com/armory-plugins/external-accounts/releases) |  |
