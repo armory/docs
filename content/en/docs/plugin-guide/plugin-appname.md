@@ -277,4 +277,5 @@ The `appStackDetailSeparator` is a separator character used to build server grou
 
 ## Release Notes
 
+* v0.2.0 Update plugin to be compatible with Armory Enterprise 2.27.0 and later - 10/29/2021
 * v0.1.0 Initial plugin release - 10/09/2020
