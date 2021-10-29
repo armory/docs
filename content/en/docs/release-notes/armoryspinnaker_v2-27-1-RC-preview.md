@@ -46,6 +46,7 @@ Halyard is no longer supported for installing Armory Enterprise 2.27.0 and later
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-artifact-binding-spel.md" >}}
+{{< include "known-issues/ki-dinghy-gh-notifications.md" >}}
 
 #### NullPointerException in Clouddriver
 
