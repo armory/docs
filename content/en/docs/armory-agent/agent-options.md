@@ -78,7 +78,7 @@ kubernetes:
         - READ: ['role1', 'role2']
         - WRITE: ['role3', 'role4']
 ```
-
+Please ensure that there are no whitespaces in the role configurations under the READ or WRITE tags. Having whitespaces in the configuration does not apply the permissions and all users will have access to the account. This is a known error and is being investigated.
 
 ## Restricted environments
 
