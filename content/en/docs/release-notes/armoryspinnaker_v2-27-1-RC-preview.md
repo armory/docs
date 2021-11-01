@@ -3,7 +3,7 @@ title: v2.27.1 RC Armory Release Preview (OSS Spinnaker™ v1.27.0)
 toc_hide: true
 version: 2.27.01 
 description: >
-  Release notes for Armory Enterprise v2.27.1 Release Candidate (RC). A RC release is not meant for installation in production environments. 
+  Release notes for Armory Enterprise v2.27.1 Release Candidate (RC). A RC release is not meant for installation in production environments. The release notes for 2.27.1 also include improvements and fixes from the 2.27.0 Beta release.
 ---
 
 ## 2021/10/15 Release Notes
@@ -52,12 +52,32 @@ Armory scans the codebase as we develop and release software. For information ab
 
 ## Highlighted updates
 
+### Armory Agent for Kubernetes
+
+Armory Enterprise 2.27.x requires an updated version of the Agent Clouddriver Plugin. The minimum plugin version required is `v0.10.0`.
+
 ### Clouddriver
 
 #### General fixes
 
 * Fixed an NPE related to the `kubesvcCredentialsLoader`.
 * Fixed an issue where new namespaces failed to get created as part of a Deploy Manifest Stage. This issue occurred because of a validation problem.
+* The Clouddriver service is now more resilient when starting. Previously, the service failed to start if an account that gets added has permission errors.
+
+#### AWS Lambda
+
+> Note that these updates also require v1.0.8 of the AWS Lambda plugin.
+
+- Fixed an issue in the UI where a stack trace gets displayed when you try to view functions. <!--BOB-30359-->
+- Fixed an issue where the UI did not show functions for an application when there are no configured clusters. Functions now appear instead of a 404 error. <!--BOB-30260-->
+- Caching behavior and performance have been improved. The changes include fixes for the following issues:
+  - The Lambda API returns request conflicts (HTTP status 409). 
+  - Event Source Mapping of ARNs fails after initially succeeding. This occured during the Lambda Event Configuration Task. 
+  - Underscores (_) in environment variable names caused validation errors.
+  - An exception related to event configs occurred intermittently during the Lambda Event Configuration Task. 
+  - Lambda function creation using the Deploy Lambda stage failed causing subsequent runs of the pipeline to encounter an error that states the function already exists.
+  - The Lambda Cache Refresh Task did not refresh the cache. This led to issues where downstream tasks referenced older versions.
+  - A permission issue  caused the Infrastructure view in the UI (Deck) to not display Lambda functions.
 
 #### Clound Foundry
 
@@ -66,6 +86,16 @@ Armory scans the codebase as we develop and release software. For information ab
    - `expireAfterWrite`: the amount of time (in seconds) to wait before expiring the cache after a write operation
    - `expireAfterAccess`: the amount of time (in seconds) to wait before expiring the cache after a access operation
 * Improved error handling when a caching agent has insufficient permissions. A RuntimeException no longer occurs.
+
+###  Instance registration
+
+When you log in to the UI, you will be prompted to register your environment. When you register an environment, Armory provides you with a client ID and client secret that you add to your Operator manifest.
+
+Registration is required for certain features to work.
+
+Note that registration does not automatically turn on Armory Diagnostics. This means that registration does not send information about your apps and pipelines to Armory. If you are sending diagnostic information to Armory, registering your deployment ensures that Armory can know which logs are yours, improving Armory's ability to provide support.
+
+For more information, see [Environment Registration]({{< ref "ae-instance-reg" >}}).
 
 ### Plugin compatibility
 
