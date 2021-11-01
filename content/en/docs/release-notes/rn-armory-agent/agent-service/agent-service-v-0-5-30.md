@@ -18,7 +18,3 @@ clouddriver:
 ```
 
 Note that the `kubesvc.cache.operationWaitMs` config for the Agent Plugin should be set so that it does not time out before the retries are complete.
-
-## Known Issues
-
-{{< include "release-notes/agent/ki-permissions-whitespace.md" >}}
