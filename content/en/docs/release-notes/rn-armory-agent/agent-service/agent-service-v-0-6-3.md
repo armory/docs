@@ -5,10 +5,6 @@ version: 00.06.03
 
 ---
 
-## Known Issues
-
-{{< include "release-notes/agent/ki-permissions-whitespace.md" >}}
-
 ## Fixes
 
 * Fixed the Helm chart name. The chart is now named `agent-k8s-full`.
