@@ -8,3 +8,7 @@ version: 00.06.01
 ## New features and improvements
 
 * The user that runs inside the Agent pod is now `armory`. Previously, the user was `spinnaker`.
+
+## Known Issues
+
+{{< include "release-notes/agent/ki-permissions-whitespace.md" >}}
