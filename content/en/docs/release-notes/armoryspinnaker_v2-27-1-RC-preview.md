@@ -52,10 +52,6 @@ Armory scans the codebase as we develop and release software. For information ab
 
 ## Highlighted updates
 
-### Armory Agent for Kubernetes
-
-Armory Enterprise 2.27.x requires an updated version of the Agent Clouddriver Plugin. The minimum plugin version required is `v0.10.0`.
-
 ### Clouddriver
 
 #### General fixes
