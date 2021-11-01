@@ -8,3 +8,7 @@ version: 00.05.27
 ## New features and improvements
 
 * You can now control the format of the logs that Agent prints to the console. In the Agent config file, set `logging.format` to either `text` (default) or `json`.
+
+## Known Issues
+
+{{< include "release-notes/agent/ki-permissions-whitespace.md" >}}

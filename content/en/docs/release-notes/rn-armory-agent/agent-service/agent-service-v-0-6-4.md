@@ -5,7 +5,11 @@ version: 00.06.04
 
 ---
 
-### Fixes
+## Known Issues
 
-- Fixed in issue that prevented Helm from installing when a kubeconfig is not provided.
+{{< include "release-notes/agent/ki-permissions-whitespace.md" >}}
+
+## Fixes
+
+- Fixed an issue that prevented Helm from installing when a kubeconfig is not provided.
 
