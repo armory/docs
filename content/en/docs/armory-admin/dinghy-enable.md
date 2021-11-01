@@ -481,11 +481,13 @@ For a complete listing of options check out the [Armory Halyard]({{< ref "armory
 ![Slack Notifications](/images/dinghy-slack-notifications.png)
 
 #### GitHub Notifications
-{{% alert title="New feature" %}}GitHub Notifications is a new feature in Armory 2.24.{{% /alert %}}
 
-As a new feature in Armory's release of 2.24.x+, Dinghy can now provide more robust information to GitHub about executed pipeline changes. This information appears as a comment in the PR.  
+Dinghy can provide more robust information to GitHub about executed pipeline changes. This information appears as a comment in the PR.  
 
->When using versions below 2.26.2, GitHub notifications are not supported with custom endpoints and [should be disabled due to a known issue](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290). This issue has been resolved as of [2.26.2, Dinghy Change #447](https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v2-26-2/#dinghy---226622610).
+Keep the following in mind when enabling GitHub Notifications:
+
+* When using versions below 2.26.2, GitHub notifications are not supported with custom endpoints and [should be disabled due to a known issue](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290). This issue has been resolved as of [2.26.2, Dinghy Change #447](https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v2-26-2/#dinghy---226622610).
+* Enabling this functionality may lead to a large number of comments on a Pull Request if, for example, you update a module that is used by multiple pipelines. This can lead to the GitHub UI not loading or GitHub rate limiting cause of related API calls. 
 
 
 {{< tabs name="ghnotifications" >}}
