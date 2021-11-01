@@ -146,20 +146,6 @@ The ARM CLI is a tool to render `dinghyfiles` and modules. Use it to help develo
 
 You can find the latest version on [Docker Hub](https://hub.docker.com/r/armory/arm-cli).
 
-### Pipelines as CRD
-
-> This feature is deprecated. For more information, see [PaCRD Deprecation]{{< ref "pacrd-deprecation.md" >}}.
-
-[PaCRD]({{< ref "pacrd" >}}) gives you the ability to manage your pipelines as
-Kubernetes custom resources.
-
-The following table lists the PaCRD features and their supported versions:
-
-| Feature                                             | Armory                         | Notes                                                      |
-| --------------------------------------------------- | ------------------------------ | ---------------------------------------------------------- |
-| Create, modify, and delete pipeline manifests       | All supported versions         | Working within the same cluster Spinnaker is installed in. |
-| Create, modify, and delete application manifests    | All supported versions         | Working within the same cluster Spinnaker is installed in. |
-| Define all stages supported by Spinnaker and Armory | PaCRD version 0.10.x and later | Validation support does not exist for all stages.          |
 
 ### Terraform Integration
 
