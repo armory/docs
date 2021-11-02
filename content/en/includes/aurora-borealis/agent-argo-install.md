@@ -20,7 +20,6 @@ Each Kubernetes cluster that you install the RNA on should have a unique account
 
    ```bash
    helm install armory-rna armory/aurora \
-       --set argo-rollouts.enabled=false \
        --set agent-k8s.accountName=my-k8s-cluster \
        --set agent-k8s.clientId=${CLIENT_ID_FOR_AGENT_FROM_ABOVE} \
        --set agent-k8s.clientSecret=${CLIENT_SECRET_FOR_AGENT_FROM_ABOVE} \
@@ -29,3 +28,13 @@ Each Kubernetes cluster that you install the RNA on should have a unique account
    ```
 
    > The `agent-k8s.accountName` option is the name that is used to refer to the deployment target cluster in the Status UI and other places, so use a descriptive name.
+
+   If you already have Argo Rollouts configured in your environment, you can disable
+   that part of the Helm chart by setting the `enabled` key to false as in the following example:
+   
+   ```shell
+   helm install aurora \
+       # ... other config options
+       --set argo-rollouts.enabled=false
+       # ... other config options
+   ```

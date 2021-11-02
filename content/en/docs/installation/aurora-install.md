@@ -88,17 +88,9 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 This section walks you through installing the Remote Network Agent (RNA) and the Argo Rollouts Controller, which are both required for Project Aurora. The Helm chart that Armory provides installs both the Armory Cloud Agent and Argo Rollouts. If your target deployment cluster already has Argo Rollouts installed, you can disable that part of the installation.
 
-{{< include "aurora-borealis/rna-install.md" >}}
+{{< include "aurora-borealis/agent-argo-install.md" >}}
 
-   If you already have Argo Rollouts configured in your environment, you can disable
-   that part of the Helm chart by setting the `enabled` key to false as in the following example:
-   
-   ```shell
-   helm install aurora \
-       # ... other config options
-       --set argo-rollouts.enabled=false
-       # ... other config options
-   ```
+
 
 
 If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings. 
