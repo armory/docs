@@ -18,14 +18,6 @@ There are no additional requirements for installing the agents that Project Auro
 
 > If you are using the Armory Agent for Kubernetes, that is a separate agent from the Remote Networking Agent. It has its own requirements. For more information, see [those requirements]({{< ref "armory-agent-quick#before-you-begin" >}}).
 
-## Argo Rollouts
-
-You must have Argo Rollouts 1.x or later installed in the Kubernetes cluster you want to deploy to. Note that the Argo Rollout Controller is separate from Argo CD.
-
-If you use the Helm chart described in [Enable Project Aurora in target Kubernetes clusters]({{< ref "aurora-install#enable-aurora-in-target-kubernetes-clusters" >}}), Argo Rollouts is installed as part of that Helm chart.
-
-If your target deployment cluster already has Argo Rollouts installed, you can turn off that part of the Helm chart.
-
 ## Kubernetes
 
 Deployment target clusters must run Kubernetes 1.16 or later.

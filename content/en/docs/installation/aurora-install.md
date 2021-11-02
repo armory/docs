@@ -47,6 +47,7 @@ Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents hav
 | HTTPS                       | auth.cloud.armory.io                    | 443  | Spinnaker, Agents | **Armory’s OIDC authorization server**<br><br>Used to exchange the client ID and secret for a Java Web Token () to verify identity.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | HTTPS                       | github.com                                        | 443  | Spinnaker         | **Github**<br><br>Used to download official Armory plugins at startup time. |
 
+
 ### Target Kubernetes cluster
 
 Project Aurora is a separate product from Armory Enterprise (Spinnaker). It does not use Clouddriver to source its accounts. Instead, it uses Remote Network Agents (RNAs) that are deployed in your target Kubernetes clusters. An RNA is a lightweight, scalable service that enables Project Aurora to interact with your infrastructure. You must install RNAs in every target cluster. 
@@ -87,7 +88,18 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 This section walks you through installing the Remote Network Agent (RNA) and the Argo Rollouts Controller, which are both required for Project Aurora. The Helm chart that Armory provides installs both the Armory Cloud Agent and Argo Rollouts. If your target deployment cluster already has Argo Rollouts installed, you can disable that part of the installation.
 
-{{< include "aurora-borealis/agent-argo-install.md" >}}
+{{< include "aurora-borealis/rna-install.md" >}}
+
+   If you already have Argo Rollouts configured in your environment, you can disable
+   that part of the Helm chart by setting the `enabled` key to false as in the following example:
+   
+   ```shell
+   helm install aurora \
+       # ... other config options
+       --set argo-rollouts.enabled=false
+       # ... other config options
+   ```
+
 
 If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings. 
 
