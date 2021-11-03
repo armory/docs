@@ -122,7 +122,7 @@ The following table lists specific features for Pipelines as Code and their supp
 
 ### Pipelines as CRD
 
-> Support for this feature has ended. For more information, see [PaCRD Deprecation]{{< ref "pacrd-deprecation.md" >}}.
+> Support for this feature has ended. For more information, see [PaCRD Deprecation]({{< ref "pacrd-deprecation.md" >}}).
 
 
 PaCRD gives you the ability to manage your pipelines as
