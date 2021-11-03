@@ -18,4 +18,4 @@ Using Borealis involves two parts:
 
 You can do the whole deployment process using the Borealis CLI directly while you are working on defining how you want to deploy apps. When you're ready to scale, integrate Borealis with your existing tools (such as GitHub or Jenkins) to deploy programmatically.
 
-To start, review the [Requirements]{{< ref "borealis-requirements" >}}.
+To start, review the [Requirements]({{< ref "borealis-requirements" >}}).
