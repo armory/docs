@@ -79,6 +79,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
   
    <details><summary>Show me how to add the directory.</summary>
 
+   You can either add the path directly to `/etc/paths` or add it to your shell profile. The following steps describe how to add it to your shell profile: 
    1. Edit the resource file for your shell, such as `.bashrc` or .`zshrc`. For example:
     
       ```bash
@@ -170,7 +171,7 @@ Since you are using the Borealis CLI, you do not need to have  service account c
        account: <accountName>
        # Optionally, override the namespaces that are in the manifests
        namespace:
-       # This is the key that references a strategy you define under the strategies section of the file.
+       # This is the key that references a strategy you define under in the `strategies.<strategyName>` section of the file.
        strategy: <strategyName>
    # The list of manifests sources
    manifests:
@@ -180,7 +181,7 @@ Since you are using the Borealis CLI, you do not need to have  service account c
      - path: /path/to/specific/manifest.yaml
    # The map of strategies that you can use to deploy your app.
    strategies:
-     # The name for a strategy, which you use for the `strategy` key to select one to use.
+     # The name for a strategy. You select one to use with the `targets.strategy` key.
      <strategyName>:
        # The deployment strategy type. As part of the early access program, Borealis supports `canary`.
        canary:
@@ -234,7 +235,7 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    application: ivan-nginx
    # Map of deployment target
    targets:
-     # Name of the deployment.
+     # Name of the environment you want to deploy to
      dev-west:
        # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
        account: cdf-dev
