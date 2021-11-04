@@ -156,11 +156,11 @@ This config block is where you define behavior and the actual steps to a deploym
 
 The name you assign to the strategy. Use this name for `targets.name.strategy`.
 
-### `stragies.<strategyName>.<strategy>`
+### `strategies.<strategyName>.<strategy>`
 
 What kind of deployment strategy this strategy uses. Borealis supports `canary`.
 
-### `stragies.<strategyName>.<strategy>.steps`
+### `strategies.<strategyName>.<strategy>.steps`
 
 Borealis progresses through all the steps you define as part of the deployment process. The process is sequential and steps can either be of the type `setWeight` or `pause`.
 
