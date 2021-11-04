@@ -1,6 +1,7 @@
 ---
 title: Known Issues and Limitations
 weight: 9999
+exclude_search: true
 ---
 
 ## Manifest requirements
