@@ -207,7 +207,15 @@ targets:
 ...
 ```
 
+### `strategies.<strategyName>.<strategy>`
+
 What kind of deployment strategy this strategy uses. Borealis supports `canary`.
+
+```yaml
+strategies:
+  <strategyName>
+    canary:
+```
 
 ### `strategies.<strategyName>.<strategy>.steps`
 
@@ -222,13 +230,32 @@ One scenario where this pairing sequence might not be used would be the followin
 You can add as many steps as you need but do not need to add a final step that deploys the app to 100% of the cluster. Borealis automatically does that after completing the final step you define.
 
 
+
 ### `strategies.<strategyName>.<strategy>.steps.setWeight.weight`
 
 This is an integer value and determines how much of the cluster the app gets deployed to. The value must be between 0 and 100 and the the `weight` for each `setWeight` step should increase as the deployment progresses. After hitting this threshold, Borealis  pauses the deployment based on the behavior you set for  the `strategies.<strategyName>.<strategy>.steps.pause` that follows.
 
+```yaml
+...
+steps:
+  - setWeight:
+      weight: <integer>
+```
+
 ### `strategies.<strategyName>.<strategy>.steps.pause`
 
 There are two base behaviors you can set for `pause`, either a set amount of time or until a manual judgment is made.
+
+```yaml
+steps:
+...
+  - pause: 
+      duration: <integer>
+      unit: <seconds|minutes|hours>
+...
+  - pause:
+      untilApproved: true 
+```
 
 #### Pause for a set amount of time
 
@@ -253,3 +280,4 @@ When you configure a manual judgment, the deployment waits when it hits the corr
 `strategies.<strategyName>.<strategy>.steps.pause.untilApproved: true`
 
 Set this to true.
+
