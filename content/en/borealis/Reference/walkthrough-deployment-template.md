@@ -1,5 +1,5 @@
 ---
-title: Deployment File Template
+title: Deployment File Reference
 linktitle: Deployment File
 description: 
 exclude_search: true
@@ -55,15 +55,26 @@ What kind of deployment strategy this strategy uses. Borealis supports `canary`.
 
 ### `stragies.<strategyName>.<strategy>.steps`
 
-Borealis progresses through all the steps you define as part of the deployment process. The process is sequential. For the most part, you want to configure `weight` portion and `pause` although you can start with a `pause` that has no corresponding weight. That is read as `0` weight, so the pause action is taken before any of the app is deployed. You can add as many steps as you want but do not need to add a final step that deploys the app to 100% of the cluster. Borealis automatically does that after completing the final step you define.
+Borealis progresses through all the steps you define as part of the deployment process. The process is sequential and steps can either be of the type `setWeight` or `pause`.
+
+Generally, you want to configure a `setWeight` step and have a `pause` step follow it although this is not necessarily required.
+
+Here are two scenarios where this pairing sequence might not be used:
+
+- You can start the sequence of steps with a `pause` that has no corresponding weight. That behaves as though the weight is `0` since it is as the start of the deployment. This results in the pause step happening before any of the app is deployed.
+- You can follow a `setWeight` step with two `pause` steps. For example, after hitting the weight threshold, you could add a `pause` that waits for a certain amount of time and a pause that waits for a manual judgment.
+
+You can add as many steps as you need but do not need to add a final step that deploys the app to 100% of the cluster. Borealis automatically does that after completing the final step you define.
 
 ### `stragies.<strategyName>.<strategy>.steps.setWeight.weight`
 
-This is an integer value and determines how much of the cluster the app gets be deployed to. The value must be between 0 and 100. After hitting this threshold, Borealis  pauses the deployment based on the behavior you set for `stragies.<strategyName>.<strategy>.steps.pause`.
+This is an integer value and determines how much of the cluster the app gets deployed to. The value must be between 0 and 100 and the the `weight` for each `setWeight` step should increase as the deployment progresses. After hitting this threshold, Borealis  pauses the deployment based on the behavior you set for `stragies.<strategyName>.<strategy>.steps.pause`.
 
 ### `stragies.<strategyName>.<strategy>.steps.pause`
 
-There are two base behaviors you can set for pause, either a specific duration or until a manual judgment is 
+There are two base behaviors you can set for `pause`, either a specific duration or until a manual judgment is made.
+
+
 
 #### Pause for a set amount of time
 
@@ -91,7 +102,7 @@ Set this to true.
 
 ## Blank template
 
-You can see this tempalte file by running the following command with the Borealis CLI:
+You can see this template file by running the following command with the Borealis CLI:
 
 ```bash
 armory template kubernetes canary
