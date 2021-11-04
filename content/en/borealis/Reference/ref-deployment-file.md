@@ -31,7 +31,7 @@ kind: kubernetes
 application: <appName>
 # Map of Deployment target
 targets:
-  # Name of the environment you want to deploy to..
+  # Name of the environment you want to deploy to.
   <name>:
     # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
     account: <accountName>
@@ -88,7 +88,7 @@ targets:
     strategy: canary-wait-til-approved
 # The list of manifests sources
 manifests:
-  # A directory containing multiple manifests. Borealis all yaml|yml files in the directory and deploy all manifests to the target defined in    `targets`.
+  # A directory containing multiple manifests. Borealis reads all yaml|yml files in the directory and deploy all manifests to the target defined in    `targets`.
   - path: /deployments/manifests/configmaps
   # A specific manifest file that gets deployed to the target defined in `targets`.
   - path: /deployments/manifests/deployment.yaml
