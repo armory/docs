@@ -18,7 +18,7 @@ The Project Aurora Plugin for Armory Enterprise (Spinnaker™) provides the Kube
 - Provide information about the Kubernetes Accounts are available as deployment targets
 - Execute deployments
 
-The plugin enables you to use a single stage to perform a progressive deployment strategy. The strategy allows you to deploy a new version of your application and route traffic to the new version incrementally. In between each scaling event, the stage can be configured to wait for an event, such as a manual approval, before continuing.
+The plugin enables you to use a single stage to perform a progressive deployment strategy. The strategy allows you to deploy a new version of your app and route traffic to the new version incrementally. In between each scaling event, the stage can be configured to wait for an event, such as a manual approval or a given duration, before continuing.
 
 For information about enabling the stage, see [Get Started with Project Aurora for Spinnaker]({{< ref "aurora-install" >}}).
 
@@ -28,7 +28,7 @@ The RNA allows Armory Cloud Services to interact with your Kubernetes clusters a
 
 ### Armory Cloud
 
-Armory Cloud is a collection of cloud-based services that Armory operates. These services are used to provide capabilities beyond those that are native to Spinnaker. These services are provided as a cloud service to minimize operational complexity.
+Armory Cloud is a collection of cloud-based services that Armory operates. These services are used to orchestrate deployments and monitor their progress. 
 
 Several specific services in Armory Cloud are important for understanding how Project Aurora and Borealis function. These services have endpoints that users and non-cloud services interact with. Details of the external URLs for these services are covered in the [Networking](#networking).
 
@@ -47,7 +47,6 @@ This endpoint receives API calls from clients outside of Armory Cloud (such as t
 #### Cloud Console
 
 The Armory Cloud Console provides a UI to perform administrative functions like inviting users and creating auth tokens.
-
 
 ### Argo Rollouts
 
@@ -71,7 +70,7 @@ You connect your Kubernetes clusters to Armory Cloud by installing the RNA. The 
 
 INSERT BOREALIS diagram. Same as Aurora minus Argo squid
 
-You connect your Kubernetes clusters to Armory Cloud by installing the RNA on each target cluster. The agent establishes a bidirectional link with Armory Hub. Armory Hub uses this link to route communication from services within Armory Cloud to the agent in your Kubernetes cluster. The agent enables Armory Cloud to act as a control plane for your infrastructure.
+You connect your Kubernetes clusters to Armory's hosted services by installing the RNA on each target cluster. The agent establishes a bidirectional link with Armory Hub. Armory Hub uses this link to route communication from services within Armory Cloud to the agent in your Kubernetes cluster. The agent enables Armory Cloud to act as a control plane for your infrastructure.
 
 {{% /tab %}}
 {{< /tabs >}}
