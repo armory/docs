@@ -127,7 +127,7 @@ This config block is where you define where and how you want to deploy an app.
 targets:
   <environmentName>:
     account: <accountName>
-    namespace:
+    namespace: <namespaceOverride>
     strategy: <strategyName>
 ```
 
@@ -139,19 +139,46 @@ The name of the environment you want to deploy to, such as `dev`. This correspon
 
 You also see a list when you are prompted to select an environment during the log in process for the Borealis CLI.
 
+For example, this snippet configures a deployment to an environment named `prod`:
+
+```yaml
+targets:
+  prod:
+...
+```
+
 #### `targets.<environmentName>.account`
 
 The account name that a target Kubernetes cluster got assigned when you installed the Remote Network Agent (RNA) on it. Specifically, it is the value for the `agent-k8s.accountName` parameter.
 
 This name must match an existing cluster because Borealis uses the account name to determine which cluster to deploy to.
 
+For example, this snippet configures a deployment the cluster named `prod-cluster-west` in the `prod` environment:
+
+```yaml
+targets:
+  prod:
+    account: prod-cluster-west
+...
+```
 #### `targets.<environmentName>.namespace`
 
 (Optional) The namespace on the target Kubernetes cluster that you want to deploy to. If you don't specify a namespace, Borealis uses the namespace defined in the manifest.
 
+For example, this snippet overrides the namespace in your manifest and deploys the app to a namespace called `overflow`:
+
+```yaml
+targets:
+  prod:
+    account: prod-cluster-west
+    namespace: overflow
+```
+
 #### `targets.<environmentName>.strategy`
 
 This is the name of the strategy that you want to use to deploy your app. You define the strategy and its behavior in the `strategies` block.
+
+Read more about how this config is defined and used in the [strategies.<strategyName>](#strategies.<strategyName>) section.
 
 ## `manifests.`
 
@@ -189,7 +216,9 @@ strategies:
 
 ### `strategies.<strategyName>`
 
-The name you assign to the strategy. Use this name for `targets.<environmentName>.strategy`. For example, if you used `canary-wait-til-approved` as the value:
+The name you assign to the strategy. Use this name for `targets.<environmentName>.strategy`. 
+
+For example, this snippet names the strategy `canary-wait-til-approved`:
 
 ```yaml
 strategies:
@@ -209,7 +238,7 @@ targets:
 
 ### `strategies.<strategyName>.<strategy>`
 
-What kind of deployment strategy this strategy uses. Borealis supports `canary`.
+The kind of deployment strategy this strategy uses. Borealis supports `canary`.
 
 ```yaml
 strategies:
@@ -229,17 +258,18 @@ One scenario where this pairing sequence might not be used would be the followin
 
 You can add as many steps as you need but do not need to add a final step that deploys the app to 100% of the cluster. Borealis automatically does that after completing the final step you define.
 
-
-
 ### `strategies.<strategyName>.<strategy>.steps.setWeight.weight`
 
 This is an integer value and determines how much of the cluster the app gets deployed to. The value must be between 0 and 100 and the the `weight` for each `setWeight` step should increase as the deployment progresses. After hitting this threshold, Borealis  pauses the deployment based on the behavior you set for  the `strategies.<strategyName>.<strategy>.steps.pause` that follows.
+
+
+For example, this snippet instructs Borealis to deploy the application to 33% of the cluster:
 
 ```yaml
 ...
 steps:
   - setWeight:
-      weight: <integer>
+      weight: 33
 ```
 
 ### `strategies.<strategyName>.<strategy>.steps.pause`
@@ -261,17 +291,20 @@ steps:
 
 If you want the deployment to pause for a certain amount of time after a weight is met, you must provide both the amount of time (duration) and the unit of time (unit).
 
-`strategies.<strategyName>.<strategy>.steps.pause.duration`
+- `strategies.<strategyName>.<strategy>.steps.pause.duration`
+  - Use an integer value for the amount of time. 
+- `strategies.<strategyName>.<strategy>.steps.pause.unit`
+  - Use `seconds`, `minutes` or `hours` for unit of time.
 
-Integer value for the amount of time to pause.
+For example, this snippet instructs Borealis to wait for 30 seconds:
 
-`strategies.<strategyName>.<strategy>.steps.pause.unit`
-
-Unit of time for the pause:
-
-- `seconds`
-- `minutes`
-- `hours`
+```yaml
+steps:
+...
+  - pause: 
+      duration: 30
+      unit: seconds
+```
 
 #### Pause until a manual judgment
 
@@ -279,5 +312,11 @@ When you configure a manual judgment, the deployment waits when it hits the corr
 
 `strategies.<strategyName>.<strategy>.steps.pause.untilApproved: true`
 
-Set this to true.
+For example: 
 
+```yaml
+steps:
+...
+  - pause:
+      untilApproved: true 
+```
