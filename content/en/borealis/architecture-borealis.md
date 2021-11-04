@@ -2,7 +2,7 @@
 title: "Project Aurora and Borealis Architecture"
 linkTitle: "Architecture"
 description: >
-  "Project Aurora and Project Borealis (Aurora/Borealis) are comprised of multiple parts that exist in your infrastructure and within Armory's hosted cloud services."
+  "Project Aurora and Project Borealis (Aurora/Borealis) are comprised of parts that exist in your infrastructure and within Armory's hosted cloud services. The parts that Armory hosts connect to your infrastructure and deployment target through the Remote Network Agent (RNA)."
 exclude_search: true
 weight: 10
 aliases: 
@@ -13,12 +13,12 @@ aliases:
 
 ### Project Aurora Plugin 
 
-The Project Aurora Plugin for Armory Enterprise (Spinnaker™) provides the Kubernetes Progressive Stage. This plugin connects to Armory Cloud services, which are hosted and managed by Armory. The services live outside of your Armory Enterprise (Spinnaker) installation. These cloud services do the following: 
+The Project Aurora Plugin for Armory Enterprise (Spinnaker™) provides the Kubernetes Progressive Stage, which is available in the Spinnaker UI. This plugin connects to Armory Cloud services, which are hosted and managed by Armory. The services live outside of your Armory Enterprise (Spinnaker) installation. These cloud services do the following: 
 
 - Provide information about the Kubernetes Accounts are available as deployment targets
 - Execute deployments
 
-The plugin enables you to use a single stage to perform a progressive deployment strategy. The strategy allows you to deploy a new version of your app and route traffic to the new version incrementally. In between each scaling event, the stage can be configured to wait for an event, such as a manual approval or a given duration, before continuing.
+The plugin enables you to use a single stage to perform a progressive deployment strategy. The strategy deploys a new version of your app and route traffic to the new version incrementally. In between each scaling event, the stage can be waits for a manual approval or a configurable amount of time before continuing.
 
 For information about enabling the stage, see [Get Started with Project Aurora for Spinnaker]({{< ref "aurora-install" >}}).
 
@@ -46,7 +46,7 @@ This endpoint receives API calls from clients outside of Armory Cloud (such as t
 
 #### Cloud Console
 
-The Armory Cloud Console provides a UI to perform administrative functions like inviting users and creating auth tokens.
+The Armory Cloud Console provides a UI to perform administrative functions like inviting users and creating auth tokens. It also includes the Status UI where you can monitor the progress of deployments and approve steps that require a manual judgment.
 
 ### Argo Rollouts
 
