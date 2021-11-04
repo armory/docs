@@ -147,7 +147,7 @@ targets:
 ...
 ```
 
-#### `targets.<environmentName>.account`
+### `targets.<environmentName>.account`
 
 The account name that a target Kubernetes cluster got assigned when you installed the Remote Network Agent (RNA) on it. Specifically, it is the value for the `agent-k8s.accountName` parameter.
 
@@ -161,7 +161,8 @@ targets:
     account: prod-cluster-west
 ...
 ```
-#### `targets.<environmentName>.namespace`
+
+### `targets.<environmentName>.namespace`
 
 (Optional) The namespace on the target Kubernetes cluster that you want to deploy to. If you don't specify a namespace, Borealis uses the namespace defined in the manifest.
 
