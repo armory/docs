@@ -175,7 +175,7 @@ targets:
     namespace: overflow
 ```
 
-#### `targets.<environmentName>.strategy`
+### `targets.<environmentName>.strategy`
 
 This is the name of the strategy that you want to use to deploy your app. You define the strategy and its behavior in the `strategies` block.
 
@@ -253,9 +253,10 @@ Borealis progresses through all the steps you define as part of the deployment p
 
 Generally, you want to configure a `setWeight` step and have a `pause` step follow it although this is not necessarily required.
 
-One scenario where this pairing sequence might not be used would be the following:
+Some scenarios where this pairing sequence might not be used would be the following:
 
-- You can start the sequence of steps with a `pause` that has no corresponding weight. That behaves as though the weight is `0` since it is as the start of the deployment. This results in the pause step happening before any of the app is deployed.
+- You can start the sequence of steps with a `pause` that has no corresponding weight. This behaves as though the weight is `0` since it is as the start of the deployment. This causes the deployment to pause at the start before any of the app is deployed.
+- You want to have two `pause` steps in a row, such as a `pause` for a set amount of time followed by a `pause` for a manual judgment.
 
 You can add as many steps as you need but do not need to add a final step that deploys the app to 100% of the cluster. Borealis automatically does that after completing the final step you define.
 
@@ -288,7 +289,7 @@ steps:
       untilApproved: true 
 ```
 
-#### Pause for a set amount of time
+### Pause for a set amount of time
 
 If you want the deployment to pause for a certain amount of time after a weight is met, you must provide both the amount of time (duration) and the unit of time (unit).
 
@@ -307,7 +308,7 @@ steps:
       unit: seconds
 ```
 
-#### Pause until a manual judgment
+### Pause until a manual judgment
 
 When you configure a manual judgment, the deployment waits when it hits the corresponding weight threshold. At that point, you can either approve the deployment so far and let it continue or roll the deployment back if something doesn't look right.
 
