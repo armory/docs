@@ -2,6 +2,8 @@
 title: v2.27.1 RC Armory Release Preview (OSS Spinnaker™ v1.27.0)
 toc_hide: true
 version: 2.27.01 
+exclude_search: true
+hide_summary: true
 description: >
   Release notes for Armory Enterprise v2.27.1 Release Candidate (RC). A RC release is not meant for installation in production environments. 
 ---

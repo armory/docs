@@ -26,9 +26,9 @@ If you use the Helm chart described in [Enable Project Aurora in target Kubernet
 
 If your target deployment cluster already has Argo Rollouts installed, you can turn off that part of the Helm chart.
 
-## Kubernetes
+## Deployment target
 
-Deployment target clusters must run Kubernetes 1.16 or later.
+You need a Kubernetes cluster to act as the deployment target for your app. The cluster must run Kubernetes 1.16 or later.
 
 ## Networking
 
