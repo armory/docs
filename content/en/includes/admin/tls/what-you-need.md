@@ -14,11 +14,9 @@ The following table lists the Armory and Spinnaker services, their type (Java or
 | Orca | Java | Yes | Yes |
 | Rosco | Java | Yes | Yes |
 | Terraformer* | Golang | Yes | Yes |
-| PaCRD* | Golang | Yes | Yes |
 
 * Dinghy is the service for Pipelines as Code.
 * Terraformer is the service for the Armory Terraform Integration.
-* PaCRD is the service for Pipelines as Code in the form of Kubernetes Custom Resource Definitions.
 
 **Note**: Gate may be handled differently if you already [terminating SSL at Gate]({{< ref "dns-and-ssl" >}}). If not, make sure the load balancer and ingress you are using supports self-signed certificates.
 

@@ -23,7 +23,7 @@ Some of the most common uses include:
 - Retrieving a user's manual judgement response
 
 
-Before we go into examples and troubleshooting, check out the guide on spinnaker.io for an detailed overview: [https://www.spinnaker.io/docs/pipeline-expressions-guide](https://www.spinnaker.io/docs/pipeline-expressions-guide)
+Take a look at the open source Spinnaker [Pipeline Expressions Guide](https://spinnaker.io/docs/guides/user/pipeline/expressions/) for a detailed overview of dynamically setting and accessing variables during pipeline execution.
 
 ## Common techniques
 

@@ -39,6 +39,7 @@ Armory scans the codebase as we develop and release software. For information ab
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-artifact-binding-spel.md" >}}
+{{< include "known-issues/ki-dinghy-gh-notifications.md" >}}
 
 ## Highlighted updates
 

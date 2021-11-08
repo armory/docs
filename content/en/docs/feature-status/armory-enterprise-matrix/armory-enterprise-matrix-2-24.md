@@ -122,9 +122,10 @@ The following table lists specific features for Pipelines as Code and their supp
 
 ### Pipelines as CRD
 
-> This feature is deprecated. For more information, see [PaCRD Deprecation]{{< ref "pacrd-deprecation.md" >}}.
+> Support for this feature has ended. For more information, see [PaCRD Deprecation]({{< ref "pacrd-deprecation.md" >}}).
 
-[PaCRD]({{< ref "pacrd" >}}) gives you the ability to manage your pipelines as
+
+PaCRD gives you the ability to manage your pipelines as
 Kubernetes custom resources.
 
 The following table lists the PaCRD features and their supported versions:

@@ -7,7 +7,7 @@ aliases:
 {{< include "early-access-feature.html" >}}
 {{< include "armory-license.md" >}}
 
-Project Borealis uses Armory's hosted cloud services to deploy Kubernetes applications to your clusters. When you use the Borealis CLI to deploy your application, the CLI sends the deployment request to Armory's hosted cloud services. In turn, the cloud services communicate with your Kubernetes cluster using Armory's Remote Network Agent (RNA) to initiate the deployment. On your target cluster, the RNA works with Argo Rollouts to perform the actual deployment. For a more in-depth look at Borealis, see [Architecture]{{< ref "architecture-borealis" >}}.
+Project Borealis uses Armory's hosted cloud services to deploy Kubernetes applications to your clusters. When you use the Borealis CLI to deploy your application, the CLI sends the deployment request to Armory's hosted cloud services. In turn, the cloud services communicate with your Kubernetes cluster using Armory's Remote Network Agent (RNA) to initiate the deployment. On your target cluster, the RNA works with Argo Rollouts to perform the actual deployment. For a more in-depth look at Borealis, see [Architecture]({{< ref "architecture-borealis" >}}).
 
 Borealis supports performing a canary deployment. The canary deployment feature deploys an app progressively to your cluster based on a set of steps that you configure. You set weights (percentage thresholds) for how the deployment should progress and a pause after each weight is met. Borealis works through these steps until your app is fully deployed. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This pause gives you time to assess the impact of your changes. From there, either continue the deployment to the next weight you set or roll back the deployment if you notice an issue.
 
@@ -18,4 +18,4 @@ Using Borealis involves two parts:
 
 You can do the whole deployment process using the Borealis CLI directly while you are working on defining how you want to deploy apps. When you're ready to scale, integrate Borealis with your existing tools (such as GitHub or Jenkins) to deploy programmatically.
 
-To start, review the [Requirements]{{< ref "borealis-requirements" >}}.
+To start, review the [Requirements]({{< ref "borealis-requirements" >}}).
