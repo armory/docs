@@ -9,10 +9,8 @@ description: >
 ![Proprietary](/images/proprietary.svg)
 ## Requirements
 
-This plugin requires either:
+For Armory Enterprise 2.27.x (OSS 1.27.x) and later, you must use version `0.2.0` or later of the plugin.
 
-- Armory 2.20.x or later
-- Spinnaker 1.20.x or later
 
 ## Limitations
 
