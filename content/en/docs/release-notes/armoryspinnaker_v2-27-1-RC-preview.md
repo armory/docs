@@ -5,24 +5,20 @@ version: 2.27.01
 exclude_search: true
 hide_summary: true
 description: >
-  Release notes for Armory Enterprise v2.27.1 Release Candidate (RC). A RC release is not meant for installation in production environments. The release notes for 2.27.1 also include improvements and fixes from the 2.27.0 Beta release.
+  Release notes for Armory Enterprise v2.27.1. The release notes for 2.27.1 also include improvements and fixes from the 2.27.0 Beta release.
 ---
 
 ## 2021/10/15 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-## Disclaimer
-
-{{< include "lts-beta.md" >}}
-
 ## Required Operator version
 
-To install, upgrade, or configure Armory 2.27.1 RC, use the following Operator version:
+To install, upgrade, or configure Armory 2.27.0, use the following Operator version:
 
 * Armory Operator 1.4.0 or later
 
-For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}). Using Halyard to install version 2.27.0 or later is not supported. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
+For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}). Using Halyard to install version 2.27.0 or later is not suported. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
 
 ## Security
 
@@ -60,15 +56,16 @@ Armory scans the codebase as we develop and release software. For information ab
 #### General fixes
 
 * Fixed an NPE related to the `kubesvcCredentialsLoader`.
-* Fixed an issue where new namespaces failed to get created as part of a Deploy Manifest Stage. This issue occurred because of a validation problem.
-* The Clouddriver service is now more resilient when starting. Previously, the service failed to start if an account that gets added has permission errors.
+* Fixed an issue where new namespaces failed to get created as part of a Deploy Manifest Stage. This issue occurred because of a validation problem. <!--BOB-30448-->
+* The Clouddriver service is now more resilient when starting. Previously, the service failed to start if an account that gets added has permission errors. 
+* Fixed an issue where a stage never completes if the manifest getting deployed is of the kind `CSIDriver`. <!-- BOB-30402-->
 
 #### AWS Lambda
 
 > Note that these updates also require v1.0.8 of the AWS Lambda plugin.
 
 - Fixed an issue in the UI where a stack trace gets displayed when you try to view functions. <!--BOB-30359-->
-- Fixed an issue where the UI did not show functions for an application when there are no configured clusters. Functions now appear instead of a 404 error. <!--BOB-30260-->
+- Fixed an issue where the UI did not show functions for an application if there are no configured clusters. Functions now appear instead of a 404 error. <!--BOB-30260-->
 - Caching behavior and performance have been improved. The changes include fixes for the following issues:
   - The Lambda API returns request conflicts (HTTP status 409). 
   - Event Source Mapping of ARNs fails after initially succeeding. This occured during the Lambda Event Configuration Task. 
@@ -80,15 +77,22 @@ Armory scans the codebase as we develop and release software. For information ab
 
 #### Clound Foundry
 
-* Improved the resiliency of the Cloud Foundry provider. Invalid permissions for a caching agent, such as if permissions are missing for one region, no longer cause all deployments to that account to fail.
-* Improved the caching behavior for the provider. Previously, the cache on a dedicated caching pod (such as when cache sharding or HA is enabled) may not have been updated if a different pod performed an operation that modifies the cache. This led to situations where the Cloud Foundry provider to attempt actions for Server Groups that no longer existed. You can configure this behavior with the following properties in your Operator manifest:
+* Improved the resiliency of the Cloud Foundry provider. Invalid permissions for a caching agent, such as if permissions are missing for one region, no longer cause all deployments to that account to fail. <!--BOB-304707 -->
+* Improved the caching behavior for the provider. Previously, the cache on a dedicated caching pod (such as when cache sharding or HA is enabled) may not have been updated if a different pod performed an operation that modifies the cache. This led to situations where the Cloud Foundry provider  attempts actions for Server Groups that no longer existed. You can configure this behavior with the following properties: <!--BOB-30408-->
    - `expireAfterWrite`: the amount of time (in seconds) to wait before expiring the cache after a write operation
    - `expireAfterAccess`: the amount of time (in seconds) to wait before expiring the cache after a access operation
-* Improved error handling when a caching agent has insufficient permissions. A RuntimeException no longer occurs.
+* Improved error handling when a caching agent has insufficient permissions. A `RuntimeException` no longer occurs.
+- Added an Unbind Service Stage to the Cloud Foundry provider. Services must be unbound before they can be deleted. Use this stage prior to a Destroy Service stage. Alternatively, you can unbind all services before they are deleted in the Destroy Service stage by selecting the checkbox in the stage to do this. <!--PIT-98 BOB-30233-->
+- Improved error handling when a Deploy Service stage fails <!--BOB-30273-->
+- The Cloud Foundry provider now supports the following manifest attributes:
+  - Processes Health
+  - Timeout
+  - Random route
+- Fixed an issue where attributes that involved `health-check-type` parameters were not respected. Armory Enterprise (Spinnaker) now allows single parameters, such as `timeout`, to be set. Note that Armory Enterprise does not perform validation on parameters, so you may encounter runtime exceptions for Cloud Foundry if you provide invalid parameters. <!--BOB-30473-->
 
 ###  Instance registration
 
-When you log in to the UI, you will be prompted to register your environment. When you register an environment, Armory provides you with a client ID and client secret that you add to your Operator manifest.
+When you log in to the UI, you are prompted to register your Armory Enterprise (Spinnaker) instance. When you register an instance, Armory provides you with a client ID and client secret that you add to your Operator manifest.
 
 Registration is required for certain features to work.
 
