@@ -41,7 +41,7 @@ targets:
     strategy: <strategyName>
 # The list of manifests sources
 manifests:
-  # A directory containing multiple manifests. Borealis all yaml|yml files in the directory and deploy all manifests to the target defined in    `targets`.
+  # A directory containing multiple manifests. Borealis reads all yaml|yml files in the directory and deploys the manifests to the target defined in `targets`.
   - path: /path/to/manifest/directory
   # This specifies a specific manifest file
   - path: /path/to/specific/manifest.yaml
