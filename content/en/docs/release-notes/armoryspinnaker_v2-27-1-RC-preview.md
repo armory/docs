@@ -22,7 +22,7 @@ To install, upgrade, or configure Armory 2.27.1 RC, use the following Operator v
 
 * Armory Operator 1.4.0 or later
 
-For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}). Using Halyard to install version 2.27.0 or later is not suported. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
+For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}). Using Halyard to install version 2.27.0 or later is not supported. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
 
 ## Security
 

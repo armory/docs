@@ -126,6 +126,7 @@ Perform the following steps to enable the plugin for the Evaluate Artifact stage
 
 ## Versions
 
+- 0.1.1 - Update plugin to be compatible with Armory Enterprise 2.27.0 and later
 - 0.1.0 - Improved the user experience. Execution errors for the stage now display in the UI.
 - 0.0.10 - Initial Release
 
