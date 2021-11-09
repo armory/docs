@@ -255,14 +255,14 @@ Generally, you want to configure a `setWeight` step and have a `pause` step foll
 
 Some scenarios where this pairing sequence might not be used would be the following:
 
-- You can start the sequence of steps with a `pause` that has no corresponding weight. This behaves as though the weight is `0` since it is as the start of the deployment. This causes the deployment to pause at the start before any of the app is deployed.
+- You can start the sequence of steps with a `pause` that has no corresponding weight. Borealis recognizes this as a weight of `0` since it is as the start of the deployment. This causes the deployment to pause at the start before any of the app is deployed.
 - You want to have two `pause` steps in a row, such as a `pause` for a set amount of time followed by a `pause` for a manual judgment.
 
 You can add as many steps as you need but do not need to add a final step that deploys the app to 100% of the cluster. Borealis automatically does that after completing the final step you define.
 
 ### `strategies.<strategyName>.<strategy>.steps.setWeight.weight`
 
-This is an integer value and determines how much of the cluster the app gets deployed to. The value must be between 0 and 100 and the the `weight` for each `setWeight` step should increase as the deployment progresses. After hitting this threshold, Borealis  pauses the deployment based on the behavior you set for  the `strategies.<strategyName>.<strategy>.steps.pause` that follows.
+This is an integer value and determines how much of the cluster the app gets deployed to. The value must be between 0 and 100 and the the `weight` for each `setWeight` step should increase as the deployment progresses. After hitting this threshold, Borealis pauses the deployment based on the behavior you set for  the `strategies.<strategyName>.<strategy>.steps.pause` that follows.
 
 
 For example, this snippet instructs Borealis to deploy the application to 33% of the cluster:
