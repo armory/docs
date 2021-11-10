@@ -7,7 +7,7 @@ version: 00.10.03
 
 ## Changes
 
-* When migrating from the Kubernetes V2 provider to the Agent, the cache for the V2 provider gets evicted now. You can tune this behavior with the following parameters:
+* When migrating from the Kubernetes V2 provider to the Agent, the cache for the V2 provider gets evicted now. The eviction happens in batches. You can tune this behavior with the following parameters:
 
   * `kubesvc.v2-cache-eviction.disable`: (Boolean) Set this to `true` if you want to disable the eviction of the V2 cache.
   * `kubesvc.v2-cache-eviction.batch-size`: (Integer) How many accounts to evict for each eviction event. (Default 5)
