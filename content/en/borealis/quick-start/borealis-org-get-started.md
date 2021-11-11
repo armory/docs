@@ -34,7 +34,7 @@ To start, create the client credentials for the RNA on your deployment target:
 
 Borealis uses the RNA on your deployment target to communicate with Armory's hosted cloud services and to initiate the deployment. Use the provided Helm command to install and configure the RNA.
 
-{{< include "aurora-borealis/agent-argo-install.md" >}}
+{{< include "aurora-borealis/rna-install.md" >}}
 
 ## Next steps
 

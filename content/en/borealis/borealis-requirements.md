@@ -20,7 +20,7 @@ There are no additional requirements for installing the agents that Project Auro
 
 ## Argo Rollouts
 
-You must have Argo Rollouts 1.x or later installed in the Kubernetes cluster you want to deploy to. Note that the Argo Rollout Controller is separate from Argo CD.
+Project Aurora requires Argo Rollouts 1.x or later installed in the Kubernetes cluster you want to deploy to. Note that the Argo Rollout Controller is separate from Argo CD.
 
 If you use the Helm chart described in [Enable Project Aurora in target Kubernetes clusters]({{< ref "aurora-install#enable-aurora-in-target-kubernetes-clusters" >}}), Argo Rollouts is installed as part of that Helm chart.
 
