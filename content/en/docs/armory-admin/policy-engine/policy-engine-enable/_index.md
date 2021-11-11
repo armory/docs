@@ -2,7 +2,7 @@
 title: Enable the Policy Engine for Armory Enterprise
 linkTitle: Enable the Policy Engine
 description: >
-  Enable the Policy Engine to enforce policies on your Armory Enterprise instance. This page includes informatino about how to deploy and configure an OPA server, which the Policy Engine requires.
+  Enable the Policy Engine to enforce policies on your Armory Enterprise instance. This page includes information about how to deploy and configure an OPA server, which the Policy Engine requires.
 aliases:
   - /docs/plugin-guide/plugin-policy-engine/
   - /docs/armory-admin/policy-engine-enable/
