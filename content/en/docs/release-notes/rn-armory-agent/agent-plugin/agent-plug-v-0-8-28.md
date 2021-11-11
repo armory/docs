@@ -5,5 +5,6 @@ version: 00.08.28
 
 ---
 
-Fixes
-* Fixed a problem where CRs were not able to be deployed when using onlyNamespacedResources: true
+## Fixes
+
+* Fixed an issue where custom resources were not able to be deployed when the parameter `onlyNamespacedResources` is set to `true`.
