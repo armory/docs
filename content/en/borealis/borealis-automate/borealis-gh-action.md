@@ -101,7 +101,7 @@ strategies:
         # The map key is the step type. First configure `setWeight` for the weight (how much of the cluster the app should deploy to for a step).
         - setWeight:
             weight: <integer> # Deploy the app to <integer> percent of the cluster as part of the first step. `setWeight` is followed by a `pause`.
-        - pause: # `pause` can be set to a be a specific amount of time or to a manual judgment.
+        - pause: # `pause` can be set to a be a specific amount of time or to a manual approval.
             duration: <integer> # How long to wait before proceeding to the next step.
             unit: seconds # Unit for duration. Can be seconds, minutes, or hours.
         - setWeight:
@@ -161,7 +161,7 @@ strategies:
 
 ## Deploy
 
-When the action runs, Borealis starts your deployment, and it progresses to the first weight you set. After completing the first step, what Borealis does next depends on the steps you defined in your deployment file. Borealis either waits a set amount of time or until you provide a manual judgment and approval. 
+When the action runs, Borealis starts your deployment, and it progresses to the first weight you set. After completing the first step, what Borealis does next depends on the steps you defined in your deployment file. Borealis either waits a set amount of time or until you provide a manual approval. 
 
 You can monitor the progress through the Borealis CLI or the Status UI by using the deployment ID. The GitHub Action provides both the deployment ID and a URL to the Status UI page for the deployment.
 
