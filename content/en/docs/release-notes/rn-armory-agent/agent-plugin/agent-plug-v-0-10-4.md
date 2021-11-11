@@ -1,0 +1,9 @@
+---
+title: v0.10.4 Armory Agent Clouddriver Plugin (2021-11-11)
+toc_hide: true
+version: 00.10.04
+
+---
+
+Fixes
+* Fixed a problem where CRs were not able to be deployed when using onlyNamespacedResources: true
