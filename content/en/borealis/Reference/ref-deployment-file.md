@@ -31,7 +31,7 @@ kind: kubernetes
 application: <appName>
 # Map of Deployment target
 targets:
-  # Name of the environment you want to deploy to.
+  # Provide a descriptive name for the deployment, such as the environment name.
   <name>:
     # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
     account: <accountName>
@@ -78,7 +78,7 @@ kind: kubernetes
 application: ivan-nginx
 # Map of deployment target
 targets:
-  # Name of the environment you want to deploy to
+  # Provide a descriptive name for the deployment, such as the environment name.
   dev-west:
     # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
     account: cdf-dev
@@ -125,21 +125,17 @@ This config block is where you define where and how you want to deploy an app.
 
 ```yaml
 targets:
-  <environmentName>:
+  <name>:
     account: <accountName>
     namespace: <namespaceOverride>
     strategy: <strategyName>
 ```
 
-### `targets.<environmentName>`
+### `targets.<name>`
 
-The name of the environment you want to deploy to, such as `dev`. This corresponds to an environment that you have in the Cloud Console. You can view the list of environments you have by going to the environment switcher in the top right of the Cloud Console:
+A descriptive name for this deployment, such as the name of the environment you want to deploy to. 
 
-{{< figure src="/images/borealis/UI-environment-list.jpg" alt="" >}}
-
-You also see a list when you are prompted to select an environment during the log in process for the Borealis CLI.
-
-For example, this snippet configures a deployment to an environment named `prod`:
+For example, this snippet configures a deployment with the name `prod`:
 
 ```yaml
 targets:
@@ -147,13 +143,13 @@ targets:
 ...
 ```
 
-### `targets.<environmentName>.account`
+### `targets.<name>.account`
 
 The account name that a target Kubernetes cluster got assigned when you installed the Remote Network Agent (RNA) on it. Specifically, it is the value for the `agent-k8s.accountName` parameter.
 
 This name must match an existing cluster because Borealis uses the account name to determine which cluster to deploy to.
 
-For example, this snippet configures a deployment the cluster named `prod-cluster-west` in the `prod` environment:
+For example, this snippet configures a deployment the cluster named `prod-cluster-west` in the deployment named `prod`:
 
 ```yaml
 targets:
@@ -162,7 +158,7 @@ targets:
 ...
 ```
 
-### `targets.<environmentName>.namespace`
+### `targets.<name>.namespace`
 
 (Optional) The namespace on the target Kubernetes cluster that you want to deploy to. If you don't specify a namespace, Borealis uses the namespace defined in the manifest.
 
@@ -175,7 +171,7 @@ targets:
     namespace: overflow
 ```
 
-### `targets.<environmentName>.strategy`
+### `targets.<name>.strategy`
 
 This is the name of the strategy that you want to use to deploy your app. You define the strategy and its behavior in the `strategies` block.
 
@@ -217,7 +213,7 @@ strategies:
 
 ### `strategies.<strategyName>`
 
-The name you assign to the strategy. Use this name for `targets.<environmentName>.strategy`. 
+The name you assign to the strategy. Use this name for `targets.<name>.strategy`. 
 
 For example, this snippet names the strategy `canary-wait-til-approved`:
 
@@ -226,12 +222,12 @@ strategies:
   canary-wait-til-approved:
 ```
 
-You would use `canary-wait-til-approved` as the value for `targets.<environmentName>.strategy` that is at the start of the file:
+You would use `canary-wait-til-approved` as the value for `targets.<name>.strategy` that is at the start of the file:
 
 ```yaml
 ...
 targets:
-  someEnvironment:
+  someName:
     ...
     strategy: canary-wait-till-approved
 ...
