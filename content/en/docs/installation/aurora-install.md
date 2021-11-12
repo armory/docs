@@ -377,7 +377,11 @@ Perform the following steps:
 
 On the **Pipelines** page of the Armory Enterprise UI, select the pipeline and watch the deployment progress. If you set the **Then wait** behavior of any step to **until approved**, this is where you approve the rollout and allow it to continue. After completing the final step you configured, Project Aurora scales the deployment to 100% of the cluster if needed.
 
-## Known issues
+## Known issues and limitations
+
+### Manifest limitations
+
+{{< include "known-issues/ki-borealis-manifest-limitation.md" >}}
 
 ### `armory.cloud` block location
 
