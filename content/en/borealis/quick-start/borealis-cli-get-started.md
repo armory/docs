@@ -190,7 +190,7 @@ Since you are using the Borealis CLI, you do not need to have  service account c
            # The map key is the step type. First configure `setWeight` for the weight (how much of the cluster the app should deploy to for a step).
            - setWeight:
                weight: <integer> # Deploy the app to <integer> percent of the cluster as part of the first step. `setWeight` is followed by a `pause`.
-           - pause: # `pause` can be set to a be a specific amount of time or to a manual judgment.
+           - pause: # `pause` can be set to a be a specific amount of time or to a manual approval.
                duration: <integer> # How long to wait before proceeding to the next step.
                unit: seconds # Unit for duration. Can be seconds, minutes, or hours.
            - setWeight:
