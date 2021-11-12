@@ -1,9 +1,6 @@
 ---
 title: v2.27.1 RC Armory Release Preview (OSS Spinnaker™ v1.27.0)
-toc_hide: true
 version: 2.27.01 
-exclude_search: true
-hide_summary: true
 description: >
   Release notes for Armory Enterprise v2.27.1 Release Candidate (RC). A RC release is not meant for installation in production environments. 
 ---
@@ -70,6 +67,10 @@ To resolve the issue, set the following property to `false` in your Operator man
    - `expireAfterWrite`: the amount of time (in seconds) to wait before expiring the cache after a write operation
    - `expireAfterAccess`: the amount of time (in seconds) to wait before expiring the cache after a access operation
 * Improved error handling when a caching agent has insufficient permissions. A RuntimeException no longer occurs.
+
+### Plugin compataibility
+
+{{< include "breaking-changes/bc-plug-version-lts-227.md" >}}
 
 ###  Spinnaker Community Contributions
 
