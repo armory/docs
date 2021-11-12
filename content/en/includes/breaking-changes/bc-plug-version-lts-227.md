@@ -9,5 +9,5 @@ The following table lists the plugins and their required minimum version:
 | [AWS Lambda](https://github.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/releases) |    |
 | [Evaluate Artifacts](https://github.com/armory-plugins/evaluate-artifacts-releases/releases) | 0.1.1 |
 | [External Accounts](https://github.com/armory-plugins/external-accounts/releases) | 0.2.0 |
-| [Observabilty Plugin](https://github.com/armory-plugins/armory-observability-plugin/releases) | 1.3.1 | 
+| [Observability Plugin](https://github.com/armory-plugins/armory-observability-plugin/releases) | 1.3.1 | 
 | [Policy Engine](https://github.com/armory-plugins/policy-engine-releases/releases) | |
