@@ -53,7 +53,7 @@ The Armory Cloud Console provides a UI to perform administrative functions like 
 Project Aurora/Borealis contain components that you manage in your environment and components that Armory manages in the cloud. The components you manage allow Armory’s cloud services to integrate with your existing infrastructure.
 
 
-{{< figure src="/images/borealis/borealis-overview.jpg" alt="The Armory command line interface and its integrations connect to Armory Cloud. Armory Cloud uses the Agent Hub to connect to your Kubernetes cluster using a gRPC connection established between the Agent Hub and Armory Cloud Agent, which is installed in your cluster." >}}
+{{< figure height=50% width=50% src="/images/borealis/borealis-overview.jpg" alt="The Armory command line interface and its integrations connect to Armory Cloud. Armory Cloud uses the Agent Hub to connect to your Kubernetes cluster using a gRPC connection established between the Agent Hub and Armory Cloud Agent, which is installed in your cluster." >}}
 
 You connect your Kubernetes clusters to Armory's hosted services by installing the RNA on each target cluster. The agent establishes a bidirectional link with Armory Hub. Armory Hub uses this link to route communication from services within Armory Cloud to the agent in your Kubernetes cluster. The agent enables Armory Cloud to act as a control plane for your infrastructure.
 
@@ -61,7 +61,7 @@ You connect your Kubernetes clusters to Armory's hosted services by installing t
 
 Project Aurora/Borealis uses Armory's hosted cloud services to power deployments in Kubernetes clusters.
 
-{{< figure src="/images/borealis/borealis-how-it-works.jpg" alt="In your Kubernetes cluster, the RNA enables communication with Armory Cloud services through the Agent Hub. " >}}
+{{< figure height=40% width=40% src="/images/borealis/borealis-how-it-works.jpg" alt="In your Kubernetes cluster, the RNA enables communication with Armory Cloud services through the Agent Hub. " >}}
 
 When you start a deployment, Project Borealis processes your deployment request and generates CRDs that then get used to execute the deployment. Project Borealis triggers Kubernetes infrastructure changes using Armory Cloud’s bidirectional link to the target cluster that the RNA maintains. The RNA creates the generated CRDs in your Kubernetes cluster for the changes.
 
