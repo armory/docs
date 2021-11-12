@@ -24,6 +24,10 @@ This guide walks you through the following:
 - Installing the Project Aurora plugin
 - Deploying a "hello world" manifest
 
+### Release notes
+
+For the Project Aurora release notes, see the [Armory Changelog](https://armory.releases.live/?labels=Armory+Deployments+Plugin).
+
 ## Requirements
 
 Verify that you meet or can meet these requirements before getting started.
@@ -503,3 +507,4 @@ armory.cloud:
 
 {{% /tab %}}
 {{< /tabs >}}
+
