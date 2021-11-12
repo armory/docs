@@ -141,7 +141,13 @@ Since you are using the Borealis CLI, you do not need to have  service account c
 
 If this is the first deployment of your app, Borealis automatically deploys the app to 100% of the cluster since there is no previous version. Subsequent deployments of this app follow the steps defined in your deployment file.
 
-1. Log in to Armory's hosted cloud services from the CLI:
+1. Create the directory where the CLI stores your credentials:
+
+   ```bash
+   mkdir ~/.armory/credentials
+   ```
+
+2. Log in to Armory's hosted cloud services from the CLI:
    
    ```bash
    armory login
@@ -151,8 +157,8 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 
    After you successfully authenticate, the CLI returns a list of environments.
 
-2. Select the environment you want to log in to.   
-2. Generate your deployment template and output it to a file:
+3. Select the environment you want to log in to.   
+4. Generate your deployment template and output it to a file:
    
    ```bash
    armory template kubernetes canary > canary.yaml
@@ -204,7 +210,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 
    </details><br>
 
-3. Customize your deployment file by setting the following minimum set of parameters:
+5. Customize your deployment file by setting the following minimum set of parameters:
 
    - `application`: The name of your app.
    - `targets.<deploymentName>`: A descriptive name for your deployment. Armory recommends using the environment name.
@@ -276,13 +282,14 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 
     </details><br>
 
-4. Start the deployment:
+6. Start the deployment:
    
    ```bash
    armory deploy start  -f canary.yaml
    ```
 
-   The command starts your deployment and progresses until the first weight you set. It also returns a deployment ID that you can use to check the status of your deployment and a link to the Status UI page for your deployment.
+   The command starts your deployment and progresses until the first weight and pause you set. It also returns a deployment ID that you can use to check the status of your deployment and a link to the Status UI page for your deployment.
+
 
 ## Monitor your deployment
 
@@ -293,7 +300,6 @@ Run the following command to monitor your deployment through the Borealis CLI:
 ```bash
 armory deploy status -i <deployment-ID>
 ```
-<!-- In addition to monitoring the deployment in the CLI, you can view the status and approve the deployment in the [Status UI]({{< ref "borealis-status-ui" >}}). -->
 
 ## Advanced use cases
 
@@ -308,3 +314,11 @@ Depending on your operating system settings, you may need to allow apps from an 
 ### `bad CPU type in executable` error
 
 This issue occurs if the AVM version you downloaded does not match your CPU architecture. For example, if you try to run an `arm64` build on a system that is not ARM based. Verify that you downloaded the correct AVM version for your system.
+
+### `error: Error: there was an error writing the credentials file. ` 
+
+This issue occurs because the the directory where the Borealis CLI stores your credentials after you run `armory login` does not exist. You can create the directory by running the following command:
+
+```bash
+mkdir ~/.armory/credentials
+```
