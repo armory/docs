@@ -107,7 +107,7 @@ The config is optional. If omitted, strict validation is on by default.
 
 #### pipelineID
 
-Fixed an issue where the `pipelineID` function did not work.
+Fixed an issue where the `pipelineID` function did not work, leading to situations where pipelines did not get updated after a change.
 
 ###  Spinnaker Community Contributions
 
