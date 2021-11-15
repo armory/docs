@@ -105,6 +105,10 @@ The config is optional. If omitted, strict validation is on by default.
 
 > When strict validation is on, existing pipelines may fail if any JSON is invalid.
 
+#### pipelineID
+
+Fixed an issue where the `pipelineID` function did not work.
+
 ###  Spinnaker Community Contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
