@@ -1,7 +1,7 @@
 ---
 title: v2.27.1 RC Armory Release Preview (OSS Spinnaker™ v1.27.0)
-toc_hide: true
 version: 2.27.01 
+toc_hide: true
 exclude_search: true
 hide_summary: true
 description: >
@@ -22,7 +22,7 @@ To install, upgrade, or configure Armory 2.27.1 RC, use the following Operator v
 
 * Armory Operator 1.4.0 or later
 
-For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}). Using Halyard to install version 2.27.0 or later is not suported. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
+For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}). Using Halyard to install version 2.27.0 or later is not supported. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
 
 ## Security
 
@@ -70,6 +70,10 @@ To resolve the issue, set the following property to `false` in your Operator man
    - `expireAfterWrite`: the amount of time (in seconds) to wait before expiring the cache after a write operation
    - `expireAfterAccess`: the amount of time (in seconds) to wait before expiring the cache after a access operation
 * Improved error handling when a caching agent has insufficient permissions. A RuntimeException no longer occurs.
+
+### Plugin compataibility
+
+{{< include "breaking-changes/bc-plug-version-lts-227.md" >}}
 
 ###  Spinnaker Community Contributions
 
