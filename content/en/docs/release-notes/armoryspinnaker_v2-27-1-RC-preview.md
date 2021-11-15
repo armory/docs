@@ -14,7 +14,7 @@ description: >
 
 ## Required Operator version
 
-To install, upgrade, or configure Armory 2.27.0, use the following Operator version:
+To install, upgrade, or configure Armory 2.27.1, use the following Operator version:
 
 * Armory Operator 1.4.0 or later
 
@@ -39,7 +39,7 @@ Armory scans the codebase as we develop and release software. For information ab
 
 #### Plugin compatibility
 
-{{< include "breaking-changes/bc-plug-version-lts.md" >}}
+{{< include "breaking-changes/bc-plug-version-lts-227.md" >}}
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
@@ -102,11 +102,8 @@ For more information, see [Environment Registration]({{< ref "ae-instance-reg" >
 
 ### Plugin compatibility
 
-{{< include "breaking-changes/bc-plug-version-lts.md" >}}
-
-### Plugin compataibility
-
 {{< include "breaking-changes/bc-plug-version-lts-227.md" >}}
+
 
 ###  Spinnaker Community Contributions
 
