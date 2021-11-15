@@ -45,6 +45,7 @@ To continue adding a random suffix to jobs created by the Kubernetes Run Job sta
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
 {{< include "known-issues/ki-artifact-binding-spel.md" >}}
+{{< include "known-issues/ki-dinghy-pipelineID.md" >}}
 
 #### Pipelines as Code 
 <!-- maybe: BOB-30287 yes:BOB-30274 PUX-405-->
