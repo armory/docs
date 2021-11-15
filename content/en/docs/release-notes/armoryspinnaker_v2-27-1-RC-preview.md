@@ -1,7 +1,7 @@
 ---
 title: v2.27.1 RC Armory Release Preview (OSS Spinnaker™ v1.27.0)
-toc_hide: true
 version: 2.27.01 
+toc_hide: true
 exclude_search: true
 hide_summary: true
 description: >
@@ -18,7 +18,7 @@ To install, upgrade, or configure Armory 2.27.0, use the following Operator vers
 
 * Armory Operator 1.4.0 or later
 
-For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}). Using Halyard to install version 2.27.0 or later is not suported. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
+For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}). Using Halyard to install version 2.27.0 or later is not supported. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
 
 ## Security
 
@@ -103,6 +103,10 @@ For more information, see [Environment Registration]({{< ref "ae-instance-reg" >
 ### Plugin compatibility
 
 {{< include "breaking-changes/bc-plug-version-lts.md" >}}
+
+### Plugin compataibility
+
+{{< include "breaking-changes/bc-plug-version-lts-227.md" >}}
 
 ###  Spinnaker Community Contributions
 

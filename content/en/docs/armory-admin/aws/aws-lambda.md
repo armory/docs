@@ -54,7 +54,7 @@ spec:
 
 {{% tab name="Halyard" %}}
 
-Enabling Lambda support using Halyard requires two configuration changes, one in `clouddrver-local.yml` and one in `settings-local.js`:
+Enabling Lambda support using Halyard requires two configuration changes, one in `clouddriver-local.yml` and one in `settings-local.js`:
 
 `.hal/default/profiles/clouddriver-local.yml`:
 
