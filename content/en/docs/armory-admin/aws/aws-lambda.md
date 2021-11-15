@@ -1,5 +1,5 @@
 ---
-title: Configure AWS Lambda for Armory Enteprise
+title: Configure AWS Lambda for Armory Enterprise
 linkTitle: Configure AWS Lambda
 description: >
   Configure Armory Enterprise or Spinnaker to deploy apps to AWS Lambda.
