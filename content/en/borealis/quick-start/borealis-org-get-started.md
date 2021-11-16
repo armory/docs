@@ -22,13 +22,15 @@ After you create an account, you can create machine-to-machine client credential
 
 > Armory recommends creating separate credentials for each cluster or service.
 
-To get started, you need at least one service account to use for authentication between Borealis and your deployment target where a Remote Network Agent (RNA) is installed.  For example, if you want to run the Borealis CLI in a Jenkins pipeline, create credentials for the deployment target and for the service account that you use with Jenkins.
+To get started, you need at least one service account to use for authentication between Borealis and your deployment target where a Remote Network Agent (RNA) is installed. For example, if you want to run the Borealis CLI in a Jenkins pipeline, create credentials for the deployment target and for the service account that you use with Jenkins.
 
 To start, create the client credentials for the RNA on your deployment target:
 
 {{< include "aurora-borealis/borealis-client-creds.md" >}}
 
 ## Prepare your deployment target
+
+> Note that this step requires Helm.
 
 Borealis uses the RNA on your deployment target to communicate with Armory's hosted cloud services and to initiate the deployment. Use the provided Helm command to install and configure the RNA.
 
