@@ -314,6 +314,7 @@ For information about loading a policy, see [Using the Policy Engine]({{< ref "p
 
 ## Release notes
 
+* 0.2.0 - Update plugin to be compatible with Armory Enterprise 2.27.0 and later.
 * 0.1.6 - The Policy Engine Plugin is now generally available. 
   * If you are new to using the Policy Engine, use the plugin instead of the extension project.
   * Entitlements using API Authorization no longer requires at least one policy. Previously, if you had no policies set, Policy Engine prevented any action from being taken. Now, Entitlements for Policy Engine allows any action to be taken if there are no policies set.

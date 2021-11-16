@@ -48,61 +48,25 @@ This endpoint receives API calls from clients outside of Armory Cloud (such as t
 
 The Armory Cloud Console provides a UI to perform administrative functions like inviting users and creating auth tokens. It also includes the Status UI where you can monitor the progress of deployments and approve steps that require a manual judgment.
 
-### Argo Rollouts
-
-Project Aurora uses the [Argo Rollouts](https://argoproj.github.io/argo-rollouts/) controller in each target Kubernetes cluster to enable various deployment strategies.
-
 ## Architecture
 
 Project Aurora/Borealis contain components that you manage in your environment and components that Armory manages in the cloud. The components you manage allow Armory’s cloud services to integrate with your existing infrastructure.
 
-{{< tabs name="architecture" >}}
 
-{{% tab name="Aurora" %}}
-
-{{< figure src="/images/armory-deploy-architecture/armory-deploy-k8s-overview.jpeg" alt="The Armory command line interface and its integrations connect to Armory Cloud. Armory Cloud uses the Agent Hub to connect to your Kubernetes cluster using a gRPC connection established between the Agent Hub and Armory Cloud Agent, which is installed in your cluster." >}}
-
-You connect your Kubernetes clusters to Armory Cloud by installing the RNA. The RNA is installed separately from your Spinnaker cluster and does not directly talk to Spinnaker. The Agent establishes a bidirectional link with Armory Hub. Armory Hub uses this link to route communication from services within Armory Cloud to the agent in your Kubernetes cluster. The agent enables Armory Cloud to act as a control plane for your infrastructure.
-
-{{% /tab %}}
-
-{{% tab name="Borealis" %}}
-
-{{< figure src="/images/borealis/borealis-overview.jpg" alt="The Armory command line interface and its integrations connect to Armory Cloud. Armory Cloud uses the Agent Hub to connect to your Kubernetes cluster using a gRPC connection established between the Agent Hub and Armory Cloud Agent, which is installed in your cluster." >}}
+{{< figure height=50% width=50% src="/images/borealis/borealis-overview.jpg" alt="The Armory command line interface and its integrations connect to Armory Cloud. Armory Cloud uses the Agent Hub to connect to your Kubernetes cluster using a gRPC connection established between the Agent Hub and Armory Cloud Agent, which is installed in your cluster." >}}
 
 You connect your Kubernetes clusters to Armory's hosted services by installing the RNA on each target cluster. The agent establishes a bidirectional link with Armory Hub. Armory Hub uses this link to route communication from services within Armory Cloud to the agent in your Kubernetes cluster. The agent enables Armory Cloud to act as a control plane for your infrastructure.
 
-{{% /tab %}}
-{{< /tabs >}}
-
 ### How it works
 
-{{< tabs name="workflow" >}}
+Project Aurora/Borealis uses Armory's hosted cloud services to power deployments in Kubernetes clusters.
 
-{{% tab name="Aurora" %}}
-
-Project Aurora use [Argo Rollouts](https://argoproj.github.io/argo-rollouts/) to power deployments in Kubernetes clusters. The Argo Rollouts controller is a [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/) and set of [Custom Resource Definitions (CRDs)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
-
-{{< figure src="/images/armory-deploy-architecture/armory-deploy-argo-overview.jpeg" alt="In your Kubernetes cluster, the RNA enables communication with Armory Cloud services through the Agent Hub. The Argo Rollout controller performs the deployments in the Kubernetes cluster." >}}
-
-When you start a deployment, Project Aurora processes your deployment request and generates [Argo Rollout](https://argoproj.github.io/argo-rollouts/) manifests to execute the deployment. Project Aurora then triggers Kubernetes infrastructure changes using Armory Cloud’s bidirectional link with the RNA.  The RNA creates the generated CRDs in your Kubernetes cluster to trigger actions from Argo. Users do not need to create or manage the Argo Rollout CRDs. Project Aurora/Borealis manages these automatically.
-
-You can track the status of a deployment in the Kubernetes Progressive stage for Spinnaker. This stage reaches out to Armory Cloud to determine the current status of the deployment.
-
-{{% /tab %}}
-
-{{% tab name="Borealis" %}}
-
-Project Borealis uses Armory's hosted cloud services to power deployments in Kubernetes clusters.
-
-{{< figure src="/images/borealis/borealis-how-it-works.jpg" alt="In your Kubernetes cluster, the RNA enables communication with Armory Cloud services through the Agent Hub. " >}}
+{{< figure height=40% width=40% src="/images/borealis/borealis-how-it-works.jpg" alt="In your Kubernetes cluster, the RNA enables communication with Armory Cloud services through the Agent Hub. " >}}
 
 When you start a deployment, Project Borealis processes your deployment request and generates CRDs that then get used to execute the deployment. Project Borealis triggers Kubernetes infrastructure changes using Armory Cloud’s bidirectional link to the target cluster that the RNA maintains. The RNA creates the generated CRDs in your Kubernetes cluster for the changes.
 
 You can track the status of a deployment in the Borealis CLI or the Status UI.
 
-{{% /tab %}}
-{{< /tabs >}}
 
 ## Security
 

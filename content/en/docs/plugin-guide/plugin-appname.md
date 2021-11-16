@@ -9,10 +9,8 @@ description: >
 ![Proprietary](/images/proprietary.svg)
 ## Requirements
 
-This plugin requires either:
+For Armory Enterprise 2.27.x (OSS 1.27.x) and later, you must use version `0.2.0` or later of the plugin.
 
-- Armory 2.20.x or later
-- Spinnaker 1.20.x or later
 
 ## Limitations
 
@@ -277,4 +275,5 @@ The `appStackDetailSeparator` is a separator character used to build server grou
 
 ## Release Notes
 
+* v0.2.0 Update plugin to be compatible with Armory Enterprise 2.27.0 and later - 10/29/2021
 * v0.1.0 Initial plugin release - 10/09/2020
