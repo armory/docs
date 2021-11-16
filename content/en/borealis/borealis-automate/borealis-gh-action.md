@@ -18,6 +18,8 @@ You can also learn about this GitHub action by viewing the [repo](https://github
 
 ## Prerequisites
 
+If you have previously configured Borealis for your deployment target, you can skip to step 3 for the prerequisites.
+
 1. Review the full set of requirements for Borealis at [System Requirements](https://docs.armory.io/borealis/borealis-requirements/).
 2. If you have already prepared a deployment target for Borealis, skip this step. If you have not, complete the [Get Started with Project Borealis](hhttps://docs.armory.io/borealis/quick-start/borealis-org-get-started/) tasks, which include the following:
 
