@@ -41,6 +41,18 @@ You can also learn about this GitHub action by viewing the [repo](https://github
  
 Save the following YAML file to your `.github/workflows` directory:
 
+
+Note that the path you provide for the `path-to-file` parameter is relative to where your GitHub action YAML is stored (`.github/workflows`). For example, if your directory looks like this:
+
+```
+.github/workflows
+deployments
+--deployment.yaml
+```
+
+Then `path-to-file` should be `/deployments/deployment.yaml`.
+
+
 ```yaml
 name: <Descriptive Name>
 
@@ -51,7 +63,7 @@ on:
 
 jobs:
   build:
-    name: <Descriptive Name>
+    name: <Descriptive Name> # This name appears on the Actions tab in the GitHub UI.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -68,7 +80,20 @@ jobs:
 
 ## Create a deployment file
 
-The deployment file is a YAML file that defines what to deploy and how Borealis deploys it. 
+The deployment file is a YAML file that defines what to deploy and how Borealis deploys it. Save this file to the directory you specified in the GitHub Action YAML with the `path-to-file` parameter.
+
+Note that the path you provide for the `manifests` block is relative to where your GitHub Action YAML is stored (`.github/workflows`). For example, if your directory looks like this:
+
+```
+.github/workflows
+deployments
+--manifests
+----sample-app.yaml
+```
+
+Then, the value for `path` should be `/deployments/manifests/sample-app.yaml`
+
+Deployment file: 
 
 ```yaml
 version: v1
@@ -164,6 +189,13 @@ strategies:
 When the action runs, Borealis starts your deployment, and it progresses to the first weight you set. After completing the first step, what Borealis does next depends on the steps you defined in your deployment file. Borealis either waits a set amount of time or until you provide a manual approval. 
 
 You can monitor the progress through the Borealis CLI or the Status UI by using the deployment ID. The GitHub Action provides both the deployment ID and a URL to the Status UI page for the deployment.
+
+To see the deployment ID and the Status UI link, perform the following steps:
+
+1. In your repo, go to the **Actions** tab.
+2. Select the workflow run that corresponds to the deployment.
+3. Select the GitHub Action. This is the `name` parameter you used in the `jobs` block.
+4. In the **Deployment** section, you can find the **Deployment ID** and a link to the **deployment status UI**.
 
 **Borealis CLI**:
 
