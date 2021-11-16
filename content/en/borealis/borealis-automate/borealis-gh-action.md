@@ -42,7 +42,7 @@ You can also learn about this GitHub action by viewing the [repo](https://github
 Save the following YAML file to your `.github/workflows` directory:
 
 
-Note that the path you provide for the `path-to-file` parameter is relative to where your GitHub action YAML is stored (`.github/workflows`). For example, if your directory looks like this:
+Note that the path you provide for the `path-to-file` parameter is relative to where your GitHub action YAML is stored (`.github/workflows`). For example, if your repo looks like this:
 
 ```
 .github/workflows
@@ -82,7 +82,7 @@ jobs:
 
 The deployment file is a YAML file that defines what to deploy and how Borealis deploys it. Save this file to the directory you specified in the GitHub Action YAML with the `path-to-file` parameter.
 
-Note that the path you provide for the `manifests` block is relative to where your GitHub Action YAML is stored (`.github/workflows`). For example, if your directory looks like this:
+Note that the path you provide for the `manifests` block is relative to where your GitHub Action YAML is stored (`.github/workflows`). For example, if your repo looks like this:
 
 ```
 .github/workflows
