@@ -69,7 +69,17 @@ Then, the value you use for `path` in the deployment file should be `/deployment
 
 The deployment file is a YAML file that defines what to deploy and how Borealis deploys it. Save this file to a directory in your repo. You use this path later when you create the GitHub Action for the `path-to-file` parameter.
 
-Deployment file:
+You can generate the deployment file with the Borealis CLI if you have it installed or manually create it.
+
+#### Generate using the CLI
+
+Generate a deployment file with the following command:
+
+```
+armory template kubernetes canary > deployment.yaml
+```
+
+#### Manually create
 
 ```yaml
 version: v1
@@ -197,8 +207,8 @@ jobs:
       - name: Deployment
         uses: armory/cli-deploy-action@main
         with:
-          clientId: "${{ secrets.CLIENTID }}" # Encrypted client ID that you created in the Armory Cloud Console that has been encrypted with GitHub's encrypted secrets. Replace CLIENTD with the name you gave your encrypted secret.
-          clientSecret:  "${{ secrets.CLIENTSECRET }}" #Client secret that you created in the Armory Cloud Console that has been encrypted with GitHub's encrypted secrets. Replace CLIENTSECRET with the name you gave your encrypted secret.
+          clientId: "${{ secrets.<CLIENTID> }}" # Encrypted client ID that you created in the Armory Cloud Console that has been encrypted with GitHub's encrypted secrets. Replace <CLIENTD> with the name you gave your encrypted secret.
+          clientSecret:  "${{ secrets.<CLIENTSECRET> }}" # Client secret that you created in the Armory Cloud Console that has been encrypted with GitHub's encrypted secrets. Replace <CLIENTSECRET> with the name you gave your encrypted secret.
           path-to-file: "/path/to/deployment.yaml" # Path to the deployment file. For more information, see the Create a deployment file section.
 ```
 
