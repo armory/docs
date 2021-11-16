@@ -14,7 +14,7 @@ Borealis supports performing a canary deployment to deploy an app progressively 
 
 All this logic is defined in a deployment file that you create and store in GitHub.
 
-You can also learn about this GitHub action by viewing the [repo](https://github.com/armory/cli-deploy-action).
+You can also learn about this GitHub Action by viewing the [repo](https://github.com/armory/cli-deploy-action).
 
 ## Prerequisites
 
@@ -124,7 +124,7 @@ strategies:
 
 Note that you do not need to configure a `setWeight` step for `100`. Borealis automatically rolls out the deployment to the whole cluster after completing the final step you configure.
 
-### Example deployment file
+#### Example deployment file
 
 <details><summary>Show me an example deployment file</summary>
 
@@ -171,13 +171,13 @@ strategies:
 
 </details>
 
-## Configure the action
+### Configure the action
 
 > If you are new to using GitHub Actions, see [Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart) for information about setting up GitHub Actions.
 
 Before you start, you need the path to the deployment file you created earlier. This value is used for the `path-to-file` parameter.
 
-Note that the path you provide for the `path-to-file` parameter is relative to where your GitHub action YAML is stored (`.github/workflows`). For example, if your repo looks like this:
+Note that the path you provide for the `path-to-file` parameter is relative to where your GitHub Action YAML is stored (`.github/workflows`). For example, if your repo looks like this:
 
 ```
 .github/workflows
@@ -227,12 +227,12 @@ To see the deployment ID and the Status UI link, perform the following steps:
 3. Select the GitHub Action. This is the `name` parameter you used in the `jobs` block.
 4. In the **Deployment** section, you can find the **Deployment ID** and a link to the **deployment status UI**.
 
-**Borealis CLI**:
+### Borealis CLI
 
 ```bash
 armory deploy status -i <deployment-ID>
 ```
 
-**Status UI**
+### Status UI
 
 You need login credentials to access the Status UI, which is part of Armory's hosted cloud services. For the early access program, contact Armory for registration information.
