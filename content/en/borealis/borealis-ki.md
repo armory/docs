@@ -4,6 +4,14 @@ weight: 9999
 exclude_search: true
 ---
 
+## Deployment fails with a blank namespace error
+
+There is a known issue where deployments fail if you do not specify a namespace in `targets.<deploymentName>.namespace` in your deployment file even if your manifest specifies a namespace.
+
+**Workaround**:
+
+Define the namespace in your deployment file even if your manifest specifies a namespace.
+
 ## Manifest requirements
 
 {{< include "known-issues/ki-borealis-manifest-limitation.md" >}}
