@@ -18,11 +18,11 @@ Note that you need a device that can support OTP two-factor authentication, such
 
 ## Install the Borealis CLI
 
-The automated install involves installing an Armory Version Manager (AVM) that handles downloading, installing, and updating the Borealis CLI. Using this install method gives you  to way to keep the Borealis CLI updated as well as the ability to switch versions from the command line. The manual installation method involves downloading a specific release from GitHub and installing that release.
+The automated install involves installing an Armory Version Manager (AVM) that handles downloading, installing, and updating the Borealis CLI. Using this install method gives you  to way to keep the Borealis CLI updated as well as the ability to switch versions from the command line. The manual installation method involves downloading a specific release from GitHub and installing that release. Armory recommends using the automated install method.
 
 {{< tabs name="borealis-cli-install" >}}
 
-{{% tab name="Automated" %}}
+{{% tab name="Automated (Recommended)" %}}
 
 1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo]((https://github.com/armory/avm/releases/) or use the following command:
    
@@ -43,27 +43,27 @@ The automated install involves installing an Armory Version Manager (AVM) that h
    chmod +x avm-darwin-amd64
    ```
 
-3. Move AVM to a directory on your `PATH`. For example (on macOS):
-   
-   ```bash
-   mv avm-darwin-amd64 /usr/local/bin/avm
-   ```
-
-4. Confirm that AVM is on your `PATH`:
+4. Confirm that `/usr/local`/bin is on your `PATH`:
    
    ```bash
    echo $PATH
    ```
+   The command returns your `PATH`, which should now include `/usr/local/bin/`.
 
-   The command returns your `PATH`, which should now include `/usr/local/bin/avm`.
+5. Move AVM to `/usr/local/bin`, which is on your `PATH`. For example (on macOS):
+   
+   ```bash
+   # Moves AVM to /usr/local/bin, which is on your PATH
+   mv avm-darwin-amd64 /usr/local/bin/avm
+   ```
 
-5. Run the following command to install the Borealis CLI:
+6. Run the following command to install the Borealis CLI:
    
    ```bash
    avm install
    ```
 
-   The command installs the Borealis CLI and provides a directory that you need to add to your path, such as `/Users/milton/.avm/bin`. 
+   The command installs the Borealis CLI and returns a directory that you need to add to your path, such as `/Users/milton/.avm/bin`.
 
    If you get an `developer  cannot be identified error` when trying to run AVM, you must allow AVM to run.
 
@@ -73,9 +73,9 @@ The automated install involves installing an Armory Version Manager (AVM) that h
    
    For more information, see the macOS documentation about [how to open a Mac app from an unidentified developer](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
 
-   </details>
+   </details></br>
 
-6. Add the directory that AVM returns when you run `avm install` to your path.
+7. Add the directory that AVM returns when you run `avm install` to your path.
   
    <details><summary>Show me how to add the directory.</summary>
 
@@ -96,9 +96,9 @@ The automated install involves installing an Armory Version Manager (AVM) that h
     3. Save the file.
     4. Reload your terminal or open a new session.
 
-   </details>
+   </details></br>
 
-7. Run the following command to verify that the Borealis CLI is installed:
+8. Run the following command to verify that the Borealis CLI is installed:
    
    ```bash
    armory
@@ -139,7 +139,15 @@ Before you can deploy, make sure that you have the client ID and secret for your
 
 Since you are using the Borealis CLI, you do not need to have  service account credentials for authenticating your CLI to the cloud services. Instead, you will log in manually with your user account.
 
-1. Log in to Armory's hosted cloud services from the CLI:
+If this is the first deployment of your app, Borealis automatically deploys the app to 100% of the cluster since there is no previous version. Subsequent deployments of this app follow the steps defined in your deployment file.
+
+1. Create the directory where the CLI stores your credentials:
+
+   ```bash
+   mkdir ~/.armory/credentials
+   ```
+
+2. Log in to Armory's hosted cloud services from the CLI:
    
    ```bash
    armory login
@@ -149,8 +157,8 @@ Since you are using the Borealis CLI, you do not need to have  service account c
 
    After you successfully authenticate, the CLI returns a list of environments.
 
-2. Select the environment you want to log in to.   
-2. Generate your deployment template and output it to a file:
+3. Select the environment you want to log in to.   
+4. Generate your deployment template and output it to a file:
    
    ```bash
    armory template kubernetes canary > canary.yaml
@@ -165,8 +173,8 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    application: <appName>
    # Map of Deployment target
    targets:
-     # Name of the deployment.
-     <name>:
+    # A name for this deployment.
+     <deploymentName>: 
        # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
        account: <accountName>
        # Optionally, override the namespaces that are in the manifests
@@ -177,7 +185,7 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    manifests:
      # A directory containing multiple manifests. Instructs Borealis to read all yaml|yml files in the directory and deploy all manifests to the target defined in    `targets`.
      - path: /path/to/manifest/directory
-     # This specifies a specific manifest file
+     # A specific manifest file
      - path: /path/to/specific/manifest.yaml
    # The map of strategies that you can use to deploy your app.
    strategies:
@@ -202,16 +210,18 @@ Since you are using the Borealis CLI, you do not need to have  service account c
 
    </details><br>
 
-3. Customize your deployment file by setting the following minimum set of parameters:
+5. Customize your deployment file by setting the following minimum set of parameters:
 
-   - `targets.<target-cluster>`: the name of the deployment target cluster. This is the name that was assigned using the `agent-k8s.accountName=my-k8s-cluster` parameter when you installed the RNA.
-   - `targets.<target-cluster>.strategy`: the name of the deployment strategy you want to use. You define the strategy in `strategies.<strategy-name>`.
+   - `application`: The name of your app.
+   - `targets.<deploymentName>`: A descriptive name for your deployment. Armory recommends using the environment name.
+   - `targets.<deploymentName>.account`: The name of the deployment target cluster. This is the name that was assigned to the cluster using the `agent-k8s.accountName` parameter when you installed the RNA.
+   - `targets.<deploymentName>.strategy`: the name of the deployment strategy you want to use. You define the strategy in `strategies.<strategy-name>`.
    - `manifests`: a map of manifest locations. This can be a directory of `yaml (yml)` files or a specific manifest. Each entry must use the following convention:  `- path: /path/to/directory-or-file`
    - `strategies.<strategy-name>`: the list of your deployment strategies. Use one of these for `targets.<target-cluster>.strategy`. Each strategy in this section consists of a map of steps for your deployment strategy in the following format:
 
      ```yaml
      strategies:
-       my-demo-strat: # Name that you use for `targets.<target-cluster>.strategy
+       my-demo-strat: # Name that you use for `targets.<deploymentName>.strategy
        - canary # The type of deployment strategy to use. Borealis supports `canary`.
           steps:
             - setWeight: 
@@ -235,8 +245,8 @@ Since you are using the Borealis CLI, you do not need to have  service account c
    application: ivan-nginx
    # Map of deployment target
    targets:
-     # Name of the environment you want to deploy to
-     dev-west:
+     # A descriptive name for the deployment
+     dev-west: 
        # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
        account: cdf-dev
        # Optionally, override the namespaces that are in the manifests
@@ -272,25 +282,24 @@ Since you are using the Borealis CLI, you do not need to have  service account c
 
     </details><br>
 
-4. Start the deployment:
+6. Start the deployment:
    
    ```bash
-   armory deploy start -c <clientID-for-target-cluster> -s <secret-for-target-cluster>  -f canary.yaml
+   armory deploy start  -f canary.yaml
    ```
 
-   The command starts your deployment and progresses until the first weight you set. It also returns a deployment ID that you can use to check the status of your deployment and a link to the Status UI page for your deployment.
+   The command starts your deployment and progresses until the first weight and pause you set. It also returns a deployment ID that you can use to check the status of your deployment and a link to the Status UI page for your deployment.
+
 
 ## Monitor your deployment
 
-You can monitor the progress of any deployment and approve the steps either through the Borealis CLI itself or from the Status UI. The Status UI gives you a visual representation of a deployment's health and progress in addition to controls.
+You can monitor the progress of any deployment through the Borealis CLI itself or from the Status UI. The Status UI gives you a visual representation of a deployment's health and progress in addition to controls. If your deployment strategy includes a manual approval step, use the Status UI to approve the step and continue.
 
 Run the following command to monitor your deployment through the Borealis CLI:
 
 ```bash
 armory deploy status -i <deployment-ID>
 ```
-
-<!-- In addition to monitoring the deployment in the CLI, you can view the status and approve the deployment in the [Status UI]({{< ref "borealis-status-ui" >}}). -->
 
 ## Advanced use cases
 
@@ -305,3 +314,11 @@ Depending on your operating system settings, you may need to allow apps from an 
 ### `bad CPU type in executable` error
 
 This issue occurs if the AVM version you downloaded does not match your CPU architecture. For example, if you try to run an `arm64` build on a system that is not ARM based. Verify that you downloaded the correct AVM version for your system.
+
+### `error: Error: there was an error writing the credentials file. ` 
+
+This issue occurs because the the directory where the Borealis CLI stores your credentials after you run `armory login` does not exist. You can create the directory by running the following command:
+
+```bash
+mkdir ~/.armory/credentials
+```
