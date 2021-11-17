@@ -75,7 +75,7 @@ Armory scans the codebase as we develop and release software. For information ab
   - The Lambda Cache Refresh Task did not refresh the cache. This led to issues where downstream tasks referenced older versions.
   - A permission issue  caused the Infrastructure view in the UI (Deck) to not display Lambda functions.
 
-#### Clound Foundry
+#### Cloud Foundry
 
 * Improved the resiliency of the Cloud Foundry provider. Invalid permissions for a caching agent, such as if permissions are missing for one region, no longer cause all deployments to that account to fail. <!--BOB-304707 -->
 * Improved the caching behavior for the provider. Previously, the cache on a dedicated caching pod (such as when cache sharding or HA is enabled) may not have been updated if a different pod performed an operation that modifies the cache. This led to situations where the Cloud Foundry provider  attempts actions for Server Groups that no longer existed. You can configure this behavior with the following properties: <!--BOB-30408-->
