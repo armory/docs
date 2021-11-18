@@ -177,7 +177,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
      <deploymentName>: 
        # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
        account: <accountName>
-       # Optionally, override the namespaces that are in the manifests
+       # (Recommended) Set the namespace that the app gets deployed to. Overrides the namespaces that are in your manifests
        namespace:
        # This is the key that references a strategy you define under in the `strategies.<strategyName>` section of the file.
        strategy: <strategyName>
@@ -249,7 +249,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
      dev-west: 
        # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
        account: cdf-dev
-       # Optionally, override the namespaces that are in the manifests
+       # (Recommended) Set the namespace that the app gets deployed to. Overrides the namespaces that are in your manifests
        namespace: cdf-dev-agent
        # This is the key that references a strategy you define under the strategies section of the file.
        strategy: canary-wait-til-approved
