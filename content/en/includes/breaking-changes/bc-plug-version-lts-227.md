@@ -5,7 +5,7 @@ The following table lists the plugins and their required minimum version:
 |  Plugin |  Version  |
 |---------|-----------|
 | [Armory Agent for Kubernetes Clouddriver Plugin](https://docs.armory.io/docs/release-notes/rn-armory-agent/agent-plugin/) | 0.10.0 | 
-| [App Name](https://docs.armory.io/docs/plugin-guide/plugin-appname/) | 0.2.0 | 
+| App Name | 0.2.0 |
 | [AWS Lambda](https://github.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/releases) | 1.0.9   |
 | [Evaluate Artifacts](https://github.com/armory-plugins/evaluate-artifacts-releases/releases) | 0.1.1 |
 | [External Accounts](https://github.com/armory-plugins/external-accounts/releases) | 0.2.0 |
