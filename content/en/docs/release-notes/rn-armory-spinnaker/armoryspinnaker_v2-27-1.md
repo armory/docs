@@ -214,8 +214,6 @@ artifactSources:
   - chore(cd): update base service version to clouddriver:2021.10.12.23.52.07.release-1.27.x (#463)
   - chore(cd): update base service version to clouddriver:2021.10.18.21.53.46.release-1.27.x (#466)
   - chore(cd): update base service version to clouddriver:2021.10.19.23.47.12.release-1.27.x (#467)
-  - chore(build): Autobump armory-commons: 3.9.7 (backport #472) (#473)
-  - chore(armory-commons): Revert armorry commons & gradle upgrade (#474)
   - chore(cd): update base service version to clouddriver:2021.11.01.21.19.09.release-1.27.x (#476)
   - chore(cd): update base service version to clouddriver:2021.11.02.19.30.35.release-1.27.x (#478)
   - chore(cd): update base service version to clouddriver:2021.11.03.20.45.14.release-1.27.x (#480)
@@ -236,7 +234,5 @@ artifactSources:
 #### Armory Fiat - 2.27.0...2.27.1
 
   - [create-pull-request] automated change (#232) (#256)
-  - chore(build): upgrade to gradle 7 (#258) (#259)
   - [create-pull-request] automated change (#261) (#262)
-  - chore(armory-commons): Revert gradle upgrade & armory commons (#263)
 
