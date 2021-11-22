@@ -5,4 +5,4 @@ version: 00.10.05
 
 ---
 
-minor change: synchronized grpc schema
+Minor change: synchronized gRPC schema.
