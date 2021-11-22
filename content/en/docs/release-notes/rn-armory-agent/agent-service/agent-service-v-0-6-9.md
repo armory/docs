@@ -5,8 +5,9 @@ version: 00.06.09
 
 ---
 
-Add grpc keep alive message, configurable by  property;
-1. When it  is not set then by default keep alive message will be send every 60 seconds
-2. When it is set to 0 keep alive message will be not send
-3. Any value greater than 0 (lets call it n) the message will be send every n seconds
+Fixes `clouddriver.keepAliveHeartbeatSeconds` property:
+
+1. Not set: by default the keep alive message is sent every 60 seconds.
+1. Set to 0: the keep alive message is not sent.
+1. Any `n` value greater than 0: the message is sent every `n` seconds.
 
