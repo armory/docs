@@ -5,4 +5,4 @@ version: 00.09.21
 
 ---
 
-Minor change: synchronized grpc schema.
+Minor change: synchronized gRPC schema.
