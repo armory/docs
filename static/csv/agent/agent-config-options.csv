@@ -1,6 +1,6 @@
 Settings|Type|Default|Description
 <code>clouddriver.grpc</code>|string (hostname)|<code>spin-clouddriver-grpc:9091</code>|Hostname of the Clouddriver or gRPC proxy endpoint.
-<code>clouddriver.keepAliveHeartbeatSeconds</code>|integer|none|How often is the grpc ping sent.
+<code>clouddriver.keepAliveHeartbeatSeconds</code>|integer|none|<span class='badge badge-primary'>0.6.9+</span>Optional. How often the gPRC keep alive message is sent.<br>- Not set: (default) sent every 60 seconds.<br>- 0: not sent.<br>- Any <code>n</code> value greater than 0: sent every <code>n</code> seconds. 
 <code>clouddriver.keepAliveTimeOutSeconds</code>|integer|none|Timeout before closing the grpc connection.
 <code>clouddriver.insecure</code>|boolean|false|If true, you are connecting to a non TLS server.
 <code>clouddriver.responseRetries.enabled</code><br><code>clouddriver.responseRetries.maxRetries</code><br><code>clouddriver.responseRetries.backOffMs</code><br>|boolean<br>integer<br>integer|true<br>1200<br>3000<br>|<span class='badge badge-primary'>0.6.7+</span>Enables or disables retries.<br><span class='badge badge-primary'>0.6.7+</span>How many times to retry sending the response to Clouddriver.<br><span class='badge badge-primary'>0.6.7+</span>How much time to wait between retries in milliseconds.<br>Note that Agent Plugin config option <code>kubesvc.cache.operationWaitMs</code> should be set so that it does not time out before the retries are complete.
