@@ -5,4 +5,6 @@ version: 00.08.30
 
 ---
 
-Remove the use of bintray repo; since it is no longer working
+## Changes
+
+- Remove references to the Bintray repo since it is no longer being used.
