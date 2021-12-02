@@ -131,7 +131,7 @@ spec:
 If you use a custom CA, you can install it on the Agent pod. The default location on that image, which uses the Alpine base, is `/etc/ssl/cert.pem`, so you can either append your CA cert to the trust store, which is `/etc/ssl/cert.pem`, or you can mount the file anywhere and configure the
 `clouddriver.tls.cacertFile` property in your YAML to point to that location.
 
-See the [Agent Options]({{< ref "agent-options#options" >}}) for configuration details.
+See the [Agent Options]({{< ref "agent-options#configuration-options" >}}) for configuration details.
 
 ### Configure the service
 
@@ -149,7 +149,7 @@ clouddriver:
     #clientKeyPassword:
 {{< /prism >}}
 
-See the [Agent Options]({{< ref "agent-options#options" >}}) for configuration details.
+See the [Agent Options]({{< ref "agent-options#configuration-options" >}}) for configuration details.
 
 ## x509 certificate subject filtering
 

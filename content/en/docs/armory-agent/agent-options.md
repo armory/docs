@@ -9,7 +9,8 @@ description: >
 
 ## Where to configure the Agent
 
-On Kubernetes, configure the Agent using a `ConfigMap`. See the Quickstart's [Configure the Agent]({{< ref "armory-agent-quick#configure-the-agent" >}}) section for an example.
+- If you install the Agent service using `kubectl`, configure the Agent using a `ConfigMap`. See the `kubectl` installation instruction's [Configure the Agent]({{< ref "install-agent-service-kubectl#configure-the-agent" >}}) section for an example.
+- If you install the Agent service using Helm, see the [Helm chart installation instructions]({{< ref "install-agent-service-helm" >}})
 
 ## Configure Kubernetes accounts
 

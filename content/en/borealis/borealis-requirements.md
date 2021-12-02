@@ -12,11 +12,11 @@ To use Project Aurora/Borealis, make sure you meet the following requirements.
 
 ## Armory Remote Network Agent
 
-Project Aurora/Borealis uses agents that run in target Kubernetes clusters to communicate with Armory hosted cloud services, specifically the Agent Hub. Make sure your environment meets the [networking](#networking) requirements so that the agents can communicate with the Agent Hub. 
+Project Aurora/Borealis uses agents that run in target Kubernetes clusters to communicate with Armory hosted cloud services, specifically the Agent Hub. Make sure your environment meets the [networking](#networking) requirements so that the agents can communicate with the Agent Hub.
 
 There are no additional requirements for installing the agents that Project Aurora/Borealis use. For information about how to install these agents, see [Enable Project Aurora in target Kubernetes clusters]({{< ref "aurora-install#enable-aurora-in-target-kubernetes-clusters" >}}) or [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}).
 
-> If you are using the Armory Agent for Kubernetes, that is a separate agent from the Remote Networking Agent. It has its own requirements. For more information, see [those requirements]({{< ref "armory-agent-quick#before-you-begin" >}}).
+> If you are using the Armory Agent for Kubernetes, that is a separate agent from the Remote Networking Agent. It has its own requirements. For more information, see [those requirements]({{< ref "armory-agent-install#before-you-begin" >}}).
 
 ## Deployment target
 
