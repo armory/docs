@@ -5,4 +5,6 @@ version: 00.08.31
 
 ---
 
-Fix search kubernetes kind resources 
+## Fixes
+
+Fixed an issue where the Kubernetes objects for accounts added using the Agent did not show up in the UI.
