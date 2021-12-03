@@ -90,7 +90,7 @@ Here's an example situation:
 ### Spinnaker configuration examples
 
 {{< tabs name="configure" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Here's a sample `SpinnakerService` manifest block that supports the above:
 
@@ -147,9 +147,9 @@ Here's a sample `SpinnakerService` manifest block that supports the above:
                iamRole: BaseIAMRole
    ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 
 Here's a sample halconfig `aws` YAML block that supports the above:
@@ -198,7 +198,7 @@ Here's a sample halconfig `aws` YAML block that supports the above:
          defaults:
            iamRole: BaseIAMRole
    ```
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Configuring Armory to use AWS IAM Instance Roles
@@ -381,7 +381,7 @@ For each account you want to deploy to, perform the following:
 The Clouddriver pod(s) should be now able to assume each of the Managed Roles (Target Roles) in each of your Deployment Target accounts.  We need to configure Armory to be aware of the accounts and roles its allowed to consume.
 
 {{< tabs name="managed" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 For each of the Managed (Target) accounts you want to deploy to, add a new entry to the `accounts` array in `SpinnakerService` manifest as follows:
 
@@ -420,9 +420,9 @@ spinnakerConfig:
 
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 For each of the Managed (Target) accounts you want to deploy to, perform the following from your Halyard instance:
 
@@ -450,13 +450,13 @@ For each of the Managed (Target) accounts you want to deploy to, perform the fol
       --regions us-east-1,us-west-2
    ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ### Instance Role Part 7: Adding/Enabling the AWS CloudProvider configuration to Armory
 
 {{< tabs name="enable" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Apply the changes done in `Spinnakerservice` manifest:
 
@@ -464,9 +464,9 @@ Apply the changes done in `Spinnakerservice` manifest:
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest file>
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 Once you've added all of the Managed (Target) accounts, run these commands to set up and enable the AWS CloudProvider setting as whole (this can be run multiple times with no ill effects):
 
@@ -483,5 +483,5 @@ Once you've added all of the Managed (Target) accounts, run these commands to se
    hal deploy apply
    ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}

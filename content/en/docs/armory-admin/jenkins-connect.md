@@ -10,7 +10,7 @@ description: >
 ## Enable Jenkins in Spinnaker
 
 {{< tabs name="enable" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Add the following snippet to your `SpinnakerService` manifest:
 
@@ -27,8 +27,8 @@ spec:
           enabled: true
 ```
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 Enable Jenkins using the Halyard command:
 
@@ -36,7 +36,7 @@ Enable Jenkins using the Halyard command:
 hal config ci jenkins enable
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Create a User API Token in Jenkins
@@ -58,7 +58,7 @@ available jobs and display them in the UI for triggers and stages.
 Add the Jenkins master to Spinnaker:
 
 {{< tabs name="add" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Add the following snippet to your `SpinnakerService` manifest:
 
@@ -86,8 +86,8 @@ Don't forget to apply your changes:
 kubectl -n >spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 
 ```bash
@@ -99,7 +99,7 @@ hal config ci jenkins master add <jenkins-master-name> \
 
 Apply your changes using `hal deploy apply`.
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Troubleshooting Authentication / Connectivity

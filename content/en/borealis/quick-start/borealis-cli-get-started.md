@@ -22,7 +22,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
 {{< tabs name="borealis-cli-install" >}}
 
-{{% tab name="Automated (Recommended)" %}}
+{{% tabbody name="Automated (Recommended)" %}}
 
 1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo]((https://github.com/armory/avm/releases/) or use the following command:
    
@@ -108,9 +108,9 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
 For AVM or the Borealis CLI, you can use the `--help` option for more information about specific commands.
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Manual" %}}
+{{% tabbody name="Manual" %}}
 
 1. Download the [latest release](https://github.com/armory/armory-cli/releases) for your operating system.
 2. Save the file in a directory that is on your `PATH`, such as `/usr/local/bin`.
@@ -129,7 +129,7 @@ For AVM or the Borealis CLI, you can use the `--help` option for more informatio
 
    The command returns basic information about the CLI, including available commands.
 
-{{% /tab %}}
+{{% /tabbody %}}
 
 {{< /tabs >}}
 

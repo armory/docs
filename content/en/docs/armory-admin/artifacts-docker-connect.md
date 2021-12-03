@@ -15,7 +15,7 @@ a look at the [Halyard command reference](https://www.spinnaker.io/reference/hal
 If you've just installed Armory or Open Source Spinnaker<sup>TM</sup>, you need to enable Docker registry providers.
 
 {{< tabs name="enableDocker" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Add the following snippet to `SpinnakerService` manifest:
 
@@ -32,14 +32,14 @@ spec:
           enabled: true
 ```
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 ```bash
 hal config provider docker-registry enable
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ### Add a Docker registry and repositories to Spinnaker
@@ -52,7 +52,7 @@ authentication credentials will be required, so the options are shown here
 as an example.
 
 {{< tabs name="addDocker" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Add the following snippet to `SpinnakerService` manifest:
 
@@ -92,8 +92,8 @@ spec:
             # environment: dev # The environment name for the account. Many accounts can share the same environmen(e.g. dev, test, prod)
 ```
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 
 ```bash
@@ -107,7 +107,7 @@ hal config provider docker-registry account add my-docker-registry \
 
 Detailed information on all command line options can be found [here](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-docker-registry-account-add)
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 >Some registries, like Docker Hub, require you to identify the

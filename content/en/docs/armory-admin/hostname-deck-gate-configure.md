@@ -33,7 +33,7 @@ at a sub-path. We recommend configuring the Gate microservice so that it is serv
 ## Configure Spinnaker
 
 {{< tabs name="approach">}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 1. Set Gate's server servlet to be aware of its context path at `/api/v1` in your `SpinnakerService` config.
 
@@ -75,8 +75,8 @@ at a sub-path. We recommend configuring the Gate microservice so that it is serv
 
 1. Deploy your `SpinnakerService` config using either `kubectl` or `kustomize` command syntax
 
-{{< /tab >}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 1. Set Gate's server servlet to be aware of its context path at `/api/v1` by creating a file named `gate-local.yml`
 in the `profiles` directory.
@@ -129,5 +129,5 @@ in the `profiles` directory.
    hal deploy apply
    ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
