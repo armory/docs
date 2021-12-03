@@ -5,6 +5,4 @@ version: 00.08.31
 
 ---
 
-## Fixes
-
 Fixed an issue where the Kubernetes objects for accounts added using the Agent did not show up in the UI.
