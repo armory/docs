@@ -27,7 +27,7 @@ See [Next Steps](#next-steps) for information related to these topics.
 There are two recommended ways of installing Armory Enterprise: using the [Armory Operator]({{< ref "armory-operator" >}}) or using [Armory-extended Halyard]({{< ref "armory-halyard" >}}).
 
 {{< tabs name="install-methods" >}}
-{{% tab name="Armory Operator" %}}
+{{% tabbody name="Armory Operator" %}}
 
 The _Armory Operator_ is the newest installation and configuration method for Armory Enterprise. Using the Operator, you can entirely manage Armory Enterprise using only Kubernetes manifest files. You treat Armory Enterprise like any other Kubernetes application, running standard tools like `kubectl`, `helm`, and `kustomize`. You can even use an Armory Enterprise pipeline to roll out configuration changes to itself. The Operator runs a few "hot" validations before accepting a manifest into the cluster, preventing some configuration problems from affecting a running Armory Enterprise installation.
 
@@ -47,8 +47,8 @@ The _Armory Operator_ is the newest installation and configuration method for Ar
 * Create a Kubernetes namespace for Armory Enterprise.
 * Install Armory Enterprise in that namespace.
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 Halyard is the former installation method for Armory Enterprise. It has been around the longest and is the first one supporting new Armory Enterprise features. Operator uses a customized version of Halyard that is constantly updated to incorporate changes from base Halyard.
 
@@ -76,7 +76,7 @@ Halyard is the former installation method for Armory Enterprise. It has been aro
   * Install Armory Enterprise
   * Expose Armory Enterprise
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Prerequisites for installing Armory Enterprise
@@ -264,7 +264,7 @@ The command returns the namespaces in the EKS cluster.
 ## Install Armory Enterprise
 
 {{< tabs name="install-steps" >}}
-{{% tab name="Armory Operator" %}}
+{{% tabbody name="Armory Operator" %}}
 
 ### Install Armory Operator
 
@@ -483,8 +483,8 @@ Deploy the manifest with the following command:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 ### Start the Halyard StatefulSet
 
@@ -801,7 +801,7 @@ the containers may not be available yet. Either wait
 or check the status of all of the containers using the command for our cloud provider
 (such as `kubectl get pods --namespace spinnaker`).
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Ingress

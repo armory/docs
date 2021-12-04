@@ -1,5 +1,5 @@
 ---
-title: Get Started with Project Aurora for Spinnaker™ 
+title: Get Started with Project Aurora for Spinnaker™
 description: Use this self-service guide to install Project Aurora, which enables you to perform canary deployments in a single stage.
 exclude_search: true
 toc_hide: true
@@ -54,7 +54,7 @@ Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents hav
 
 ### Target Kubernetes cluster
 
-Project Aurora is a separate product from Armory Enterprise (Spinnaker). It does not use Clouddriver to source its accounts. Instead, it uses Remote Network Agents (RNAs) that are deployed in your target Kubernetes clusters. An RNA is a lightweight, scalable service that enables Project Aurora to interact with your infrastructure. You must install RNAs in every target cluster. 
+Project Aurora is a separate product from Armory Enterprise (Spinnaker). It does not use Clouddriver to source its accounts. Instead, it uses Remote Network Agents (RNAs) that are deployed in your target Kubernetes clusters. An RNA is a lightweight, scalable service that enables Project Aurora to interact with your infrastructure. You must install RNAs in every target cluster.
 
 The Helm chart described in [Enable Project Aurora in target Kubernetes clusters](#enable-aurora-in-target-kubernetes-clusters) manages the installation of both of these requirements for you.
 
@@ -95,7 +95,7 @@ This section walks you through installing the Remote Network Agent (RNA) using a
 
 
 
-If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings. 
+If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings.
 
 <details><summary>Learn more</summary>
 
@@ -103,12 +103,12 @@ To set an HTTPS proxy, use the following config:
 
 ```yaml
 env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>"
-``` 
+```
 
 You can include the following snippet in your `helm install` command:
 
 ```yaml
---set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>" 
+--set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>"
 ```
 
 Alternatively, you can create a `values.yaml` file to include the parameters:
@@ -147,13 +147,13 @@ time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kub
 > You can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}}). This means you can set the clientSecret value to be a secret token instead of the plain text value.
 
 {{< tabs name="DeploymentPlugin" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 If you are running Armory Enterprise 2.26.3, `armory.cloud` block goes in a different location. Instead of `spec.spinnakerConfig.spinnaker`, the block needs to go under both `spec.spinnakerConfig.gate` and `spec.spinnakerConfig.orca`. For more information see [Known issues](#known-issues).
 
-The installation instructions using the Operator are the same except for where the `armory.cloud` block goes. 
+The installation instructions using the Operator are the same except for where the `armory.cloud` block goes.
 
-In your Kustomize patches directory, create a file named **patch-plugin-deployment.yml** and add the following manifest to it. 
+In your Kustomize patches directory, create a file named **patch-plugin-deployment.yml** and add the following manifest to it.
 
 ```yaml
 #patch-plugin-deployment.yml
@@ -215,8 +215,8 @@ Apply the changes to your Armory Enterprise instance.
 kubectl apply -k <path-to-kustomize-file>.yml
 ```
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 If you are running Armory Enterprise 2.26.3, `armory.cloud` block needs to go in `gate-local.yml` and `orca-local.yml` instead of `spinnaker-local.yml`. For more information see [Known issues](#known-issues). Other than the change in location, the installation instructions remain the same.
 
@@ -268,7 +268,7 @@ Apply the changes to your Armory Enterprise instance.
 hal deploy apply
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Verify that the plugin is configured
@@ -322,7 +322,7 @@ Perform the following steps:
 4. In the **Account** field, select the target Kubernetes cluster you want to deploy to. This is a cluster where the Remote Network Agent is installed
 5. For **Manifest Source**, ensure that you select your manifest source. If you are using the `hello-world` sample manifest described later, select **Text**.
 6. **Using text as the manifest source:**
-   
+
    In the **Manifest** field, provide your manifest. If you are using the `hello-world` manifest, enter that manifest.
 
    <details><summary>Show me the <code>hello-world</code> manifest</summary>
@@ -388,7 +388,7 @@ On the **Pipelines** page of the Armory Enterprise UI, select the pipeline and w
 In Armory Enterprise 2.26.3, the location of where you put the `armory.cloud` config block is different from other versions.
 
 {{< tabs name="KnownIssue" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 
 
@@ -450,8 +450,8 @@ spec:
 
 
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 Your `spinnaker-local.yml` file should not have the `armory.cloud` block anymore and only contain the block to install the Aurora plugin:
 
@@ -509,6 +509,6 @@ armory.cloud:
     baseUrl: https://api.cloud.armory.io
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 

@@ -19,7 +19,7 @@ The Agent should have `ClusterRole` authorization if you need to deploy pods acr
 Example configuration for deploying `Pod` manifests:
 
 {{< tabs name="agent-permissions" >}}
-{{% tab name="ClusterRole" %}}
+{{% tabbody name="ClusterRole" %}}
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -42,8 +42,8 @@ rules:
   - delete
 ```
 
-{{% /tab %}}
-{{% tab name="Role" %}}
+{{% /tabbody %}}
+{{% tabbody name="Role" %}}
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -66,7 +66,7 @@ rules:
   - delete
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 See the {{< linkWithTitle "install-agent-service-kubectl.md" >}} for a complete example that uses `ClusterRole`, `ClusterRoleBinding`, and `ServiceAccount`.

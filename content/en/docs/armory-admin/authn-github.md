@@ -23,7 +23,7 @@ description: >
 ## Configuring GitHub OAuth in Spinnaker
 
 {{< tabs name="config" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Add the following snippet to your `SpinnakerService` manifest under the `spec.spinnakerConfig.config.security.authn` level:
 
@@ -40,8 +40,8 @@ oauth2:
 
 For additional configuration options review the [Spinnaker Manifest Configuration Reference]({{< ref "op-manifest-reference" >}})
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 Run the following commands in Halyard with your Client ID and Client Secret.
 
@@ -60,7 +60,7 @@ hal config security authn oauth2 edit \
 hal config security authn oauth2 enable
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Additional OAuth resources

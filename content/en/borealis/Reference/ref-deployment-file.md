@@ -160,7 +160,7 @@ targets:
 
 ### `targets.<name>.namespace`
 
-(Optional) The namespace on the target Kubernetes cluster that you want to deploy to. If you don't specify a namespace, Borealis uses the namespace defined in the manifest.
+(Recommended) The namespace on the target Kubernetes cluster that you want to deploy to. This field overrides any namespaces defined in your manifests.
 
 For example, this snippet overrides the namespace in your manifest and deploys the app to a namespace called `overflow`:
 

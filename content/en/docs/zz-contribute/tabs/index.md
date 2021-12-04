@@ -15,7 +15,7 @@ The `tabs` shortcode takes these parameters:
 * `name`: The name as shown on the tab.
 * `codelang`: If you provide inner content to the `tab` shortcode, you can tell Hugo what code language to use for highlighting.
 * `include`: The file to include in the tab. If the tab lives in a Hugo [leaf bundle](https://gohugo.io/content-management/page-bundles/#leaf-bundles), the file -- which can be any MIME type supported by Hugo -- is looked up in the bundle itself. If not, the content page that needs to be included is looked up relative to the current page. Note that with the `include`, you do not have any shortcode inner content and must use the self-closing syntax. For example, <code>{{</* tab name="Content File #1" include="example1" /*/>}}</code>. The language needs to be specified under `codelang` or the language is taken based on the file name. Non-content files are code-highlighted by default.
-* If your inner content is markdown, you must use the `%`-delimiter to surround the tab. For example, `{{%/* tab name="Tab 1" %}}This is **markdown**{{% /tab */%}}`
+* If your inner content is markdown, you must use the `%`-delimiter to surround the tab. For example, `{{%/* tab name="Tab 1" %}}This is **markdown**{{% /tabbody */%}}`
 * You can combine the variations mentioned above inside a tab set.
 
 Below is a demo of the tabs shortcode.
@@ -28,80 +28,80 @@ The tab **name** in a `tabs` definition must be unique within a content page.
 
 ```go-text-template
 {{</* tabs name="tab_with_code" >}}
-{{{< tab name="Tab 1" codelang="bash" >}}
+{{{< tabbody name="Tab 1" codelang="bash" >}}
 echo "This is tab 1."
-{{< /tab >}}
-{{< tab name="Tab 2" codelang="go" >}}
-println "This is tab 2."
-{{< /tab >}}}
+{{< /tabbody >}}
+{{< tabbody name="Tab 2" codelang="go" >}}
+println "This is tabbody 2."
+{{< /tabbody >}}}
 {{< /tabs */>}}
 ```
 
 Renders to:
 
 {{< tabs name="tab_with_code" >}}
-{{< tab name="Tab 1" codelang="bash" >}}
-echo "This is tab 1."
-{{< /tab >}}
-{{< tab name="Tab 2" codelang="go" >}}
-println "This is tab 2."
-{{< /tab >}}
+{{< tabbody name="Tab 1" codelang="bash" >}}
+echo "This is tabbody 1."
+{{< /tabbody >}}
+{{< tabbody name="Tab 2" codelang="go" >}}
+println "This is tabbody 2."
+{{< /tabbody >}}
 {{< /tabs >}}
 
 ### Tabs demo: Inline Markdown and HTML
 
 ```go-html-template
 {{</* tabs name="tab_with_md" >}}
-{{% tab name="Markdown" %}}
+{{% tabbody name="Markdown" %}}
 This is **some markdown.**
 {{% alert title="Warning" color="warning" %}}
 It can even contain shortcodes.
 {{% /alert %}}
-{{% /tab %}}
-{{< tab name="HTML" >}}
+{{% /tabbody %}}
+{{< tabbody name="HTML" >}}
 <div>
 	<h3>Plain HTML</h3>
 	<p>This is some <i>plain</i> HTML.</p>
 </div>
-{{< /tab >}}
+{{< /tabbody >}}
 {{< /tabs */>}}
 ```
 
 Renders to:
 
 {{< tabs name="tab_with_md" >}}
-{{% tab name="Markdown" %}}
+{{% tabbody name="Markdown" %}}
 This is **some markdown.**
 
 {{% alert title="Warning" color="warning" %}}
 It can even contain shortcodes.
 {{% /alert %}}
 
-{{% /tab %}}
-{{< tab name="HTML" >}}
+{{% /tabbody %}}
+{{< tabbody name="HTML" >}}
 <div>
 	<h3>Plain HTML</h3>
 	<p>This is some <i>plain</i> HTML.</p>
 </div>
-{{< /tab >}}
+{{< /tabbody >}}
 {{< /tabs >}}
 
 ### Tabs demo: File include
 
 ```go-html-template
 {{</* tabs name="tab_with_file_include" */>}}
-{{</* tab name="Content File #1" include="example1" */>}}
-{{</* tab name="Content File #2" include="example2" */>}}
-{{</* tab name="JSON File" include="podtemplate" */>}}
+{{</* tabbody name="Content File #1" include="example1" */>}}
+{{</* tabbody name="Content File #2" include="example2" */>}}
+{{</* tabbody name="JSON File" include="podtemplate" */>}}
 {{</* /tabs */>}}
 ```
 
 Renders to:
 
 {{< tabs name="tab_with_file_include" >}}
-{{< tab name="Content File #1" include="example1" />}}
-{{< tab name="Content File #2" include="example2" />}}
-{{< tab name="JSON File" include="podtemplate.json" />}}
+{{< tabbody name="Content File #1" include="example1" />}}
+{{< tabbody name="Content File #2" include="example2" />}}
+{{< tabbody name="JSON File" include="podtemplate.json" />}}
 {{< /tabs >}}
 
 
@@ -133,16 +133,18 @@ See the {{< linkWithTitle pacrd-crd-docs.md >}} for an example.
 
 Hugo doesn't render the tabs shortcodes when they are embedded in file in the `includes` directory.
 
+>All the examples below are supposed to render incorrectly
+
 {{% include "include-tabs.md" %}}
 
 ## Tabs in a file in the leaf bundle
 
-{{< tabs name="tab_with_file_include" >}}
+{{< tabs name="tab_with_file_include2" >}}
 
-{{< tab name="Content File #1" include="example1" />}}
-{{< tab name="Content File #2" include="example2" />}}
-{{< tab name="JSON File" include="podtemplate.json" />}}
-{{< tab name="File with Tabs" include="file-with-tabs.md" />}}
+{{< tabbody name="Content File #1" include="example1" />}}
+{{< tabbody name="Content File #2" include="example2" />}}
+{{< tabbody name="JSON File" include="podtemplate.json" />}}
+{{< tabbody name="File with Tabs" include="file-with-tabs.md" />}}
 
 {{< /tabs >}}
 

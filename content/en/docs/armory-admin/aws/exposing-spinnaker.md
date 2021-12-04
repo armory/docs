@@ -27,7 +27,7 @@ service (the API).
 While there are many ways to expose Armory, we find the method described in this post to be the easiest way to get started. If your organization has other requirements, this post may be helpful as you start working through the process.
 
 {{< tabs name="create" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Update your `SpinnakerService` manifest with the following example `expose` configuration, which will automatically create one Kubernetes service LoadBalancer for the API (Gate) and one for the UI (Deck):
 
@@ -52,9 +52,9 @@ API_URL=$(kubectl -n $NAMESPACE get spinsvc spinnaker -o jsonpath='{.status.apiU
 UI_URL=$(kubectl -n $NAMESPACE get spinsvc spinnaker -o jsonpath='{.status.uiUrl}')
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 First, we’ll start by creating LoadBalancer Services which will expose the API (Gate) and the UI (Deck) via a Load Balancer in your cloud provider. We’ll do this by running the commands below and creating the spin-gate-public and spin-deck-public Services.
 
@@ -99,7 +99,7 @@ spinnaker-gate.armory.io CNAME --> (spin-gate-public dns) aaaaa-1111.us-west-2.e
 spinnaker.armory.io      CNAME --> (spin-deck-public dns) aaaaa-2222.us-west-2.elb.amazonaws.com
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ### Secure with SSL on EKS
@@ -107,7 +107,7 @@ spinnaker.armory.io      CNAME --> (spin-deck-public dns) aaaaa-2222.us-west-2.e
 This tutorial presumes you've already created a certificate in the [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/).
 
 {{< tabs name="secure" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Update and apply the `SpinnakerService` manifest to specify the DNS names for Gate and Deck, and to provide annotations specific for EKS LoadBalancers:
 
@@ -141,9 +141,9 @@ Assuming that Armory is installed in `spinnaker` namespace:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 > Note: If you created the services with port 8084 and 9000, you will need to edit them to make SSL work. To do so, run `kubectl -n spinnaker edit service spin-gate-public` and `kubectl -n spinnaker edit service spin-deck-public`. Change the public port to 443.
 
@@ -172,7 +172,7 @@ hal config security ui edit --override-base-url https://demo.armory.io
 hal deploy apply
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ### Enabling sticky sessions
@@ -195,7 +195,7 @@ In this option the goal is to use AWS ALB's of type `internal` for exposing Armo
 A `NodePort` Kubernetes service opens the same port (automatically chosen) on all EKS worker nodes, and forwards requests to internal pods. In this case we'll be creating two services: one for Deck (Armory's UI) and one for Gate (Armory's API).
 
 {{< tabs name="enable-s3-artifacts" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 ```yaml
 apiversion: spinnaker.io/{{< param operator-extended-crd-version >}}
@@ -224,9 +224,9 @@ DECK_PORT=$(kubectl get service spin-deck -o jsonpath='{.spec.ports[0].nodePort}
 GATE_PORT=$(kubectl get service spin-gate -o jsonpath='{.spec.ports[0].nodePort}')
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 Replace the namespace by the one where spinnaker is installed:
 
@@ -250,7 +250,7 @@ DECK_PORT=$(kubectl get service spin-deck-nodeport -o jsonpath='{.spec.ports[0].
 GATE_PORT=$(kubectl get service spin-gate-nodeport -o jsonpath='{.spec.ports[0].nodePort}')
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ### Step 2: Create AWS internal load balancers
@@ -298,7 +298,7 @@ Finally repeat the same steps for creating Gate Load balancer.
 Armory needs to know which url's are used to access it. After you have updated your DNS with the Load Balancers CNAME's created in the previous step, the next step is to update Armory configuration:
 
 {{< tabs name="update-config" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Update and apply the `SpinnakerService` manifest:
 
@@ -325,9 +325,9 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 ```bash
 hal config security api edit --override-base-url https://${GATE_DNS_NAME}
@@ -335,7 +335,7 @@ hal config security ui edit --override-base-url https://${DECK_DNS_NAME}
 hal deploy apply
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Exposing Armory on GKE with Ingress
@@ -389,7 +389,7 @@ You need to update your DNS records to have the demo.armory.io host point to the
 Now tell Armory about its external endpoints:
 
 {{< tabs name="endpoints" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Update and apply the `SpinnakerService` manifest:
 
@@ -415,9 +415,9 @@ Assuming that Armory is installed in `spinnaker` namespace:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 ```bash
 hal config security api edit --override-base-url https://gate.demo.armory.io
@@ -425,7 +425,7 @@ hal config security ui edit --override-base-url https://demo.armory.io
 hal deploy apply
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 After doing that you can visit http://demo.armory.io/ to view Armory.
@@ -444,7 +444,7 @@ You must enable HTTP/HTTPS redirects when your Armory deployment fits the follow
 To enable redirects, complete the following steps:
 
 {{< tabs name="enable" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Update the `SpinnakerService` manifest with the following:
 
@@ -472,9 +472,9 @@ Assuming that Armory is installed in `spinnaker` namespace:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 Add the following entry to your `.hal/<deployment-name>/profiles/gate-local.yml`:
 
@@ -488,7 +488,7 @@ server:
 ```
 Next, run the following command: `hal deploy apply`.
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 Finally, clear your cache.

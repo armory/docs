@@ -31,7 +31,7 @@ If you haven't done this yet (for example, if you've just installed Armory
 Spinnaker fresh), you'll need to enable GitHub as an artifact source:
 
 {{< tabs name="enable" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Add the following snippet to `SpinnakerService` manifest:
 
@@ -50,15 +50,15 @@ spec:
           enabled: true
 ```
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 ```bash
 hal config features edit --artifacts true
 hal config artifact github enable
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ### Add a GitHub credential
@@ -75,7 +75,7 @@ this:
 *Replace the account name `github_user` with the string you want to use to identify this GitHub credential.*
 
 {{< tabs name="add" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Add the following snippet to `SpinnakerService` manifest:
 
@@ -109,8 +109,8 @@ Don't forget to apply your changes:
 kubectl -n >spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 ```bash
 GITHUB_ACCOUNT_NAME=github_user
@@ -122,7 +122,7 @@ Detailed information on all command line options can be found [here](https://www
 
 Don't forget to run `hal deploy apply` to apply your changes.
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Using the GitHub credential
