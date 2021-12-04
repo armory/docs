@@ -25,7 +25,7 @@ This guide includes:
 _Dinghy_ is the microservice for Pipelines as Code. You need to enable it to use Pipelines as Code.
 
 {{< tabs name="enable" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 
 In `SpinnakerService` manifest:
@@ -50,15 +50,15 @@ Assuming Spinnaker lives in the `spinnaker` namespace:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 ```bash
 hal armory dinghy enable
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 
@@ -69,7 +69,7 @@ hal armory dinghy enable
 The Dinghy service can use MySQL to store relationships between pipeline templates and pipeline Dinghy files. An external MySQL instance is highly recommended for production use because it can provide more durability for Pipelines as Code. If MySQL becomes unavailable, Dinghy files will need to be updated in order to repopulate MySQL with the relationships.
 
 {{< tabs name="MySQL" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 In `SpinnakerService` manifest:
 
@@ -94,9 +94,9 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 Edit the `~/.hal/default/profiles/dinghy-local.yml` file and add the following:
 
@@ -110,7 +110,7 @@ sql:
 ```
 
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 
@@ -140,7 +140,7 @@ Dinghy can use Redis to store relationships between pipeline templates and pipel
 To set/override the Spinnaker Redis settings do the following:
 
 {{< tabs name="redis" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 In `SpinnakerService` manifest:
 
@@ -162,9 +162,9 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 Edit the `~/.hal/default/profiles/dinghy-local.yml` file and add the following:
 
@@ -175,7 +175,7 @@ redis:
 ```
 
 Then run `hal deploy apply` to deploy the changes.
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Configuring Pipelines as Code
@@ -187,7 +187,7 @@ Then run `hal deploy apply` to deploy the changes.
 ### GitHub
 
 {{< tabs name="github" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -211,9 +211,9 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 ```bash
 hal armory dinghy edit \
@@ -225,7 +225,7 @@ hal armory dinghy edit \
 hal deploy apply
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 #### Configuring GitHub webhooks
@@ -269,7 +269,7 @@ The following screenshot shows what your GitHub settings should resemble:
 Bitbucket has both cloud and server offerings. See the Atlassian [docs](https://confluence.atlassian.com/bitbucketserver/bitbucket-rebrand-faq-779298912.html) for more on the name change from Stash to Bitbucket Server. Consult your company's Bitbucket support desk if you need help determining what flavor and version of Bitbucket you are using.
 
 {{< tabs name="bitbucket" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -294,9 +294,9 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 ```bash
 hal armory dinghy edit \
@@ -307,7 +307,7 @@ hal armory dinghy edit \
   --stash-endpoint "https://your-endpoint-here.com"  
 hal deploy apply
 ```
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 > If you're using Bitbucket Server, update the endpoint to include the api, e.g. `--stash-endpoint https://your-endpoint-here.com/rest/api/1.0`
@@ -317,7 +317,7 @@ You need to set up webhooks for each project that has the `dinghyfile` or module
 ### GitLab
 
 {{< tabs name="gitlab" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 
 ```yaml
@@ -342,9 +342,9 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 > GitLab with Pipelines as Code requires Halyard 1.7.2 or later.
 
@@ -359,7 +359,7 @@ hal armory dinghy edit \
 hal deploy apply
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 Under "Settings -> Integrations"  on your project page, point your webhooks
@@ -384,7 +384,7 @@ All providers available in Dinghy are supported. Please refer to the list below 
 * `bitbucket-server`
 
 {{< tabs name="custom" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -405,9 +405,9 @@ spec:
           ... # Rest of config omitted for brevity
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 This configuration goes inside your `profiles/dinghy-local.yml` file:
 ```yaml
@@ -420,7 +420,7 @@ repoConfig:
   repo: my-github-repository
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ### Other Options
@@ -444,7 +444,7 @@ If you want to disable lock pipelines in the UI before overwriting changes, add 
 If you [configured]({{< ref "notifications-slack-configure" >}}) Armory to send Slack notifications for pipeline events, you can configure Dinghy to send pipeline update results to Slack.
 
 {{< tabs name="slack" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -464,9 +464,9 @@ spec:
               ... # Rest of config omitted for brevity
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 
 ```bash
@@ -475,7 +475,7 @@ $ hal armory dinghy slack enable --channel my-channel
 
 For a complete listing of options check out the [Armory Halyard]({{< ref "armory-halyard#hal-armory-dinghy-edit" >}}) documentation.
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ![Slack Notifications](/images/dinghy-slack-notifications.png)
@@ -487,11 +487,11 @@ Dinghy can provide more robust information to GitHub about executed pipeline cha
 Keep the following in mind when enabling GitHub Notifications:
 
 * When using versions below 2.26.2, GitHub notifications are not supported with custom endpoints and [should be disabled due to a known issue](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290). This issue has been resolved as of [2.26.2, Dinghy Change #447](https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v2-26-2/#dinghy---226622610).
-* Enabling this functionality may lead to a large number of comments on a Pull Request if, for example, you update a module that is used by multiple pipelines. This can lead to the GitHub UI not loading or GitHub rate limiting cause of related API calls. 
+* Enabling this functionality may lead to a large number of comments on a Pull Request if, for example, you update a module that is used by multiple pipelines. This can lead to the GitHub UI not loading or GitHub rate limiting cause of related API calls.
 
 
 {{< tabs name="ghnotifications" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -509,9 +509,9 @@ spec:
               enabled: true       # Whether or not github notifications are enabled for Dinghy events
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 
 In your hal config profiles directory e.g. (`~/.hal/default/profiles/`), update the `dinghy-local.yml` file to include the following:
@@ -522,7 +522,7 @@ notifiers:
     enabled: true
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ![GitHub Notifications](/images/armory-admin/dinghy-enable/dinghy-github-notifications.jpg)
@@ -545,7 +545,7 @@ You need to configure `parserFormat` with one of the parsers:
 * `hcl`
 
 {{< tabs name="other" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -560,9 +560,9 @@ spec:
         ... # Rest of config omitted for brevity
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 Add the following config to `~/.hal/default/profiles/dinghy-local.yml`:
 
@@ -570,7 +570,7 @@ Add the following config to `~/.hal/default/profiles/dinghy-local.yml`:
 parserFormat: hcl
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Known Issues
@@ -586,7 +586,7 @@ msg="failed to load configuration: 1 error(s) decoding:\n\n* 'Logging.Level' exp
 You probably configured global logging levels with `spinnaker-local.yml`. The work around is to override Dinghy's logging levels:
 
 {{< tabs name="issues" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -602,9 +602,9 @@ spec:
           ... # Rest of config omitted for brevity
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 Create `.hal/default/profiles/dinghy-local.yml` with the following config:
 
@@ -613,5 +613,5 @@ Logging:
   Level: INFO
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}

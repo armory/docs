@@ -42,7 +42,7 @@ Note that all Terraform stages within a Pipeline that affect state must use the 
 
 ### Redis
 
-The Terraform Integration uses Redis to store Terraform logs and plans. 
+The Terraform Integration uses Redis to store Terraform logs and plans.
 
 **Note:** The Terraform Integration can only be configured to use a password with the default Redis user.
 
@@ -549,7 +549,7 @@ The preceding example enables retries and sets the minimum wait between attempts
 You can enable logging and metrics for Prometheus by adding the following configuration to the `spec.spinnakerConfig.profiles.terraformer.logging.remote` block in your `SpinnakerService` manifest (Operator) or the `terraformer-local.yml` file (Halyard):
 
 {{< tabs name="Logging and metrics" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 ```yaml
 spec:
@@ -562,21 +562,21 @@ spec:
             endpoint: <TheLoggingEndPoint> # For example, https://debug.armory.io
             version: 1.2.3
             customerId: someCustomer123 # Your Armory Customer ID
-          metrics: 
+          metrics:
             enabled: true
-            frequency: <Seconds> # Replace with an integer value for seconds based on how frequently you want metrics to be scraped 
+            frequency: <Seconds> # Replace with an integer value for seconds based on how frequently you want metrics to be scraped
             prometheus:
               enabled: true
               commonTags: # The following tags are examples. Use tags that are relevant for your environment
                 # env: dev
                 # nf_app: exampleApp
                 # nf_region: us-west-1
-        
+
 ```
 
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 ```yaml
 logging:
@@ -585,9 +585,9 @@ logging:
     endpoint: <TheLoggingEndPoint> # For example, https://debug.armory.io
     version: 1.2.3
     customerId: someCustomer123 # Your Armory Customer ID
-  metrics: 
+  metrics:
     enabled: true
-    frequency: <Seconds> # Replace with an integer value for seconds based on how frequently you want metrics to be scraped 
+    frequency: <Seconds> # Replace with an integer value for seconds based on how frequently you want metrics to be scraped
     prometheus:
       enabled: true
       commonTags: # The following tags are examples. Use tags that are relevant for your environment
@@ -596,7 +596,7 @@ logging:
         # nf_region: us-west-1
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Submit feedback
