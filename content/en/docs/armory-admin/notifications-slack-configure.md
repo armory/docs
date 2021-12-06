@@ -40,7 +40,7 @@ Spinnaker only requires publishing on a channel to interact with Slack. All you 
 You are now ready to configure Spinnaker with the bot you’ve just registered.
 
 {{< tabs name="register" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Add the following snippet to the `SpinnakerService` manifest:
 
@@ -65,8 +65,8 @@ Apply the changes:
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 Start by setting the variables below:
 
@@ -94,7 +94,7 @@ Redeploy the configuration:
 $ hal deploy apply
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Test Spinnaker

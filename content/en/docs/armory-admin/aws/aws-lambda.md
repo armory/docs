@@ -22,7 +22,7 @@ If you are using the [Armory Operator](https://docs.armory.io/docs/installation/
 First, enable Lambda as a deployment target for your apps by updating the settings for Clouddriver and the UI (Deck).
 
 {{< tabs name="enable" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 
 In the `spinnakerservice` manifest, update the `spinnakerConfig` section to include the properties for Lambda:
@@ -50,9 +50,9 @@ spec:
             assumeRole: role/spinnaker   # (Required)
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 Enabling Lambda support using Halyard requires two configuration changes, one in `clouddriver-local.yml` and one in `settings-local.js`:
 
@@ -78,7 +78,7 @@ window.spinnakerSettings.feature.functions = true
 
 After you make the two changes, run `hal deploy apply` to apply the changes.
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 
@@ -87,7 +87,7 @@ After you make the two changes, run `hal deploy apply` to apply the changes.
 Next, add the Lambda Plugin to include the Lambda stages (Delete, Deploy, Invoke, and Route) in the UI.
 
 {{< tabs name="enable-plugin">}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 ```
 #-----------------------------------------------------------------------------------------------------------------
@@ -130,9 +130,9 @@ spec:
                 url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 `.hal/default/profiles/gate-local.yml`:
 
@@ -168,7 +168,7 @@ spinnaker:
         url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{% /tabs %}}
 
 ### Applying config updates
@@ -176,22 +176,22 @@ spinnaker:
 Once you make the required config changes, apply them by running the command for either Operator or Halyard:
 
 {{< tabs name="apply-changes">}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Assuming the Armory instance lives in the `spinnaker` namespace, run the following command to apply the changes:
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 ```bash
 hal deploy apply
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{% /tabs %}}
 
 ## Known issues

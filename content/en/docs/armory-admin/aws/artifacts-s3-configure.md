@@ -23,7 +23,7 @@ This is a quick walkthrough of how to configure Spinnaker<sup>TM</sup> and Armor
 If you've just installed Spinnaker or Armory, you need to enable S3 as an artifact source.
 
 {{< tabs name="enable-s3-artifacts" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 Add the following snippet to `SpinnakerService` manifest:
 
 ```yaml
@@ -41,16 +41,16 @@ spec:
           enabled: true
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 ```bash
 hal config features edit --artifacts true
 hal config artifact s3 enable
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Add S3 account
@@ -59,7 +59,7 @@ You only need to configure the S3 credentials as an account -- all buckets
 that account has access to can be referenced after that.
 
 {{< tabs name="add-s3-artifacts" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -83,9 +83,9 @@ spec:
 
 Apply your changes with `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>`.
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 ```bash
 hal config artifact s3 account add my-s3-account \
@@ -99,7 +99,7 @@ Apply your changes with `hal deploy apply`.
 You can find detailed information on all command line options in the Halyard  [reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-artifact-s3-account-add)
 
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 

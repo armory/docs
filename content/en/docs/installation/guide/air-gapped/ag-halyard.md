@@ -138,17 +138,17 @@ Upload the files you just downloaded to your storage bucket. Make sure they are 
 For example:
 
 {{< tabs name="copyBOM" >}}
-{{% tab name="AWS" %}}
+{{% tabbody name="AWS" %}}
 
 ```bash
 $ aws s3 cp --recursive halconfig s3://halconfig
 ```           
-{{% /tab %}}
-{{% tab name="GCS" %}}
+{{% /tabbody %}}
+{{% tabbody name="GCS" %}}
 ```bash
 $ gsutil cp -m -r ...
 ```
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Use a custom Docker registry
