@@ -188,24 +188,14 @@ helm install armory-agent --set accountName=hubaccount1,imagePullSecrets=regcred
    ```
 </details>
 
-### Proxy settings
 
-The `env` parameters are optional and only need to be used if Armory Enterprise is behind a HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
 
-Alternatively, you can create a `values.yaml` file to include the parameters:
 
-```yaml
-env:
-  - name: HTTP_PROXY
-    value: <hostname>:<port>
-  - name: HTTPS_PROXY
-    value: <hostname>:<port>
-  - name: NO_PROXY
-    value: localhost,127.0.0.1,*.spinnaker
-```
-With the file, you can avoid setting individual `env` parameters in the `helm install` command. Instead include the `--values` parameter as part of the Helm install command:
+## Uninstall
 
-```
---values=<path>/values.yaml
-```
+## {{% heading "nextSteps" %}}
 
+* {{< linkWithTitle "agent-troubleshooting.md" >}} page if you run into issues.
+* Learn how to {{< linkWithTitle "agent-monitoring.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
+* {{< linkWithTitle "agent-mtls.md" >}}
+* Read about {{< linkWithTitle "agent-permissions.md" >}}
