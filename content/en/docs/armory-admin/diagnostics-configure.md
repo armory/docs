@@ -16,7 +16,7 @@ When you engage Armory Support, the support team might ask you about enabling Ar
 ## Turning on Armory Diagnostics
 
 {{< tabs name="enable" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Generate a unique UUID before adding the information.  You can do this at a number of 3rd party websites that you can find via a Google search.
 
@@ -42,8 +42,8 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 You can find a description of diagnostic parameters in the "Diagnostics Parameters" section of the Operator [`armory` reference]({{< ref "armory#diagnostics-parameters" >}}).
 
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 Here's the Halyard command to enable this feature:
 
@@ -61,7 +61,7 @@ hal armory diagnostics edit --logging-enabled=false
 
 You need to  to run `hal deploy apply` after enabling or disabling the diagnostics.
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Migrating Diagnostics to Operator from Halyard

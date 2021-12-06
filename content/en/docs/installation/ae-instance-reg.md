@@ -20,7 +20,7 @@ aliases:
    - Instance ID
    - Client ID
    - Secret
-   
+
    **This is the only time you are shown the secret value. Store it somewhere safe.**
 
 ## Apply the registration information
@@ -33,7 +33,7 @@ In your Operator manifest (such as `spinnakerService.yml`) or `spinnaker-local` 
 Once you apply the registration information to your instance, your Armory Enterprise instance is registered with Armory.
 
 {{< tabs name="Configure Armory Enterprise" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 ```yaml
 spec:
@@ -60,9 +60,9 @@ spec:
 
 Save the file and apply the manifest. This redeploys Armory Enterprise.
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 ```yaml
 
@@ -86,7 +86,7 @@ armory.cloud:
 ```
 
 Save the file and apply the changes with the following command: `hal deploy apply`. Applying the config changes redeploys Armory Enterprise.
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Troubleshooting
@@ -101,7 +101,7 @@ This issue can occur if Operator failed to generate a UUID for your Armory Enter
 To manually apply a registration ID, perform the following steps:
 
 1. In your Operator manifest (`spinnakerservice.yml` by default), check if there is a value for `spec.spinnakerConfig.config.armory.diagnostics.uuid`.
-  
+
    If there is a value, use that value for the next step.
 
    If there is no value, generate a UUID and add it to `spec.spinnakerConfig.config.armory.diagnostics.uuid` field.

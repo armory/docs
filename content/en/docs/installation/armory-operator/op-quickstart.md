@@ -32,12 +32,12 @@ The Operator has `basic` and `cluster` installation modes. The option you use de
 ## {{% heading "installOperator" %}}
 
 {{< tabs name="install-operator" >}}
-{{% tab name="Cluster Mode"%}}
+{{% tabbody name="Cluster Mode"%}}
 {{% include "armory-operator/op-install-cluster.md" %}}
-{{% /tab %}}
-{{% tab name="Basic Mode"%}}
+{{% /tabbody %}}
+{{% tabbody name="Basic Mode"%}}
 {{% include "armory-operator/op-install-basic.md" %}}
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Deploy an Armory Enterprise instance
@@ -46,7 +46,7 @@ The Operator has `basic` and `cluster` installation modes. The option you use de
 
 {{< tabs name="deploy-spinnaker-manifest" >}}
 
-{{% tab name="Armory Enterprise"%}}
+{{% tabbody name="Armory Enterprise"%}}
 
 ![Proprietary](/images/proprietary.svg)
 
@@ -86,8 +86,8 @@ Deploy using `kubectl`:
 kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/SpinnakerService.yml
 ```
 
-{{% /tab %}}
-{{% tab name="Spinnaker"%}}
+{{% /tabbody %}}
+{{% tabbody name="Spinnaker"%}}
 
 You can find the basic `spinnakerservice.yml` manifest file in `/spinnaker-operator/deploy/spinnaker/basic/`.
 
@@ -122,7 +122,7 @@ Deploy using `kubectl`:
 kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/spinnakerservice.yml
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 You can watch the installation progress by executing:
@@ -156,7 +156,7 @@ The following example uses an AWS S3 bucket. You can find configuration for othe
 
 {{< tabs name="deploy-spinnaker-kustomize" >}}
 
-{{% tab name="Armory Enterprise"%}}
+{{% tabbody name="Armory Enterprise"%}}
 ![Proprietary](/images/proprietary.svg)
 
 You can see the list of Armory Enterprise versions on the [Release Notes]({{< ref "rn-armory-spinnaker" >}}) page.
@@ -182,8 +182,8 @@ spec:
 The Armory Operator uses Halyard to deploy Armory Enterprise.
 See [Custom Halyard Configuration]({{< ref "op-advanced-config.md" >}}) if you need to modify Halyard so you can use Armory Enterprise features.
 
-{{% /tab %}}
-{{% tab name="Spinnaker"%}}
+{{% /tabbody %}}
+{{% tabbody name="Spinnaker"%}}
 
 You can see the list of Spinnaker versions on the Spinnaker [Versions](https://spinnaker.io/community/releases/versions/) page.
 
@@ -205,7 +205,7 @@ spec:
           rootFolder: front50
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 1. If you want to verify the contents of the manifest file, execute from the `/spinnaker-operator/deploy/spinnaker/kustomize/` directory:

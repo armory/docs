@@ -15,7 +15,7 @@ In many environments, Spinnaker<sup>TM</sup> runs under a different AWS account 
 ## Spinnaker configuration for sharing baked AMIs
 
 {{< tabs name="config" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 You can add the following snippet to your `SpinnakerService` manifest and apply it after replacing the example values with ones that correspond to your environment. The example adds an AWS account and configures the baking service (Rosco) with default values:
 
@@ -55,8 +55,8 @@ spec:
           ... # Config omitted for brevity
 ```
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 First, add the AWS provider account with [Halyard](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-aws-account-add). Next, make sure to enable the AWS provider:
 
@@ -74,7 +74,7 @@ env:
 
 `SPINNAKER_AWS_DEFAULT_ACCOUNT` is the target account ID.
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Spinnaker pipeline Bake stage configuration

@@ -24,7 +24,7 @@ For information about how to use the stage, see {{< linkWithTitle "evaluate-arti
 
 {{< tabs name="enable-plugin" >}}
 
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Add the following snippet to your Spinnaker manifest, such as `spinnakerservice.yml`:
 
@@ -53,7 +53,7 @@ Add the following snippet to your Spinnaker manifest, such as `spinnakerservice.
                       version: <PLUGIN_VERSION> # Replace with the version you want to use. For example, use 0.1.0.
    ```
 
-Keep the following in mind when using this configuration snippet: 
+Keep the following in mind when using this configuration snippet:
 
 * Make sure to include the nested `spinnaker` parameter. Both are required because of how Armory Enterprise consumes plugin configurations.
 * Replace `<PLUGIN_VERSION>` on lines 10 and 22 with the version of the plugin that you want to use. Plugin versions can be found [here](#versions).
@@ -62,9 +62,9 @@ Then, deploy your updated Armory Enterprise configuration using one of the follo
 
 - If you are using a single manifest file: `kubectl -n <namespace> apply -f <path-to-manifest-file>`
 - If you are using Kustomize patches like the ones in the [Armory kustomize repo](https://github.com/armory/spinnaker-kustomize-patches), you need to apply the kustomization. Depending on how you have Kustomize installed (either directly or as part of `kubectl`), use one of the following commands:
-   
+
    Kustomize is installed separately from `kubectl`:
-   
+
    ```bash
    # The namespace is declared in kustomization.yml
    # Run this from the same directory as your kustomization.yml file
@@ -72,14 +72,14 @@ Then, deploy your updated Armory Enterprise configuration using one of the follo
    ```
 
    Kustomize is bundled with `kubectl`:
-   
+
    ```bash
    kubctl -n <namespace> apply -k <path-to-kustomize-directory>
    ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 > The following method adds the plugin repository as part of the service profile for Orca, the orchestrator service. The benefit of this method is that it minimizes the downtime for your Armory instance. It is possible to add and manage plugin repositories in a separate file. For more information, see [Add a plugin repository using Halyard](https://spinnaker.io/guides/user/plugins/#add-a-plugin-repository-using-halyard).
 
@@ -121,7 +121,7 @@ Perform the following steps to enable the plugin for the Evaluate Artifact stage
 
 3. Run `hal deploy apply` to apply the changes to your Armory Enterprise instance.
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs>}}
 
 ## Versions
