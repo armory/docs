@@ -11,9 +11,9 @@ weight: 30
 
 - Exposes all settings for installing the Agent service.
 - Enables you to easily deploy the Agent service with default configuration using a single command.
-- Ability to customize the service settings in a file or via the command line.
+- Gives you the ability to customize the service settings in a file or via the command line.
 
-Connecting to Armory Cloud services is enabled by default. Armory Cloud services is required for some features to function and affects how you configure the Agent service installation. If you want to connect to Armory Cloud services, you must include your Armory Cloud client ID and secret. You can disable connecting to Armory Cloud services by setting a gPRC URL instead of providing your Armory Cloud services credentials.
+>**Connecting to Armory Cloud services is enabled by default.** Armory Cloud services is required for some features to function and affects how you configure the Agent service installation. If you want to connect to Armory Cloud services, you must include your Armory Cloud client ID and secret. You can disable connecting to Armory Cloud services by setting a gPRC URL instead of providing your Armory Cloud services credentials.
 
 
 ## {{% heading "prereq" %}}
@@ -239,3 +239,12 @@ helm uninstall <release-name> --namespace=<agent-namespace>
 
 - `<release-name>`: (Reqired) the Armory Agent service release, such as {{<param kubesvc-version>}}.
 - `<agent-namespace>`: (Required) The namespace where you installed the Agent.
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "agent-troubleshooting.md" >}} page if you run into issues.
+* Learn how to {{< linkWithTitle "agent-monitoring.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
+* {{< linkWithTitle "agent-mtls.md" >}}
+* Read about {{< linkWithTitle "agent-permissions.md" >}}
+</br>
+</br>
