@@ -18,13 +18,13 @@ Run one of the following commands:
 
 1. If you don't want to connect to Armory Cloud services:
 
-   You must include your gPRC endpoint.
+   You must include your gPRC endpoint, such as `localhost:9090`.
 
    {{< prism lang="bash" line="4" >}}
    helm install armory-agent armory-charts/agent-k8s-full \
    --create-namespace \
    --namespace=<agent-namespace> \
-   --set config.clouddriver.grpc=localhost:9090
+   --set config.clouddriver.grpc=<endpoint>
    {{< /prism >}}
 
 
