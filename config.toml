@@ -74,14 +74,9 @@ weight = 1
   url = "https://www.armory.io"
 
 [[menu.main]]
-  name = "Armory Enterprise"
+  name = "Case Studies"
   weight= 6
-  url = "/ae/"
-
-[[menu.main]]
-  name = "Borealis"
-  weight= 7
-  url = "/borealis/"
+  url = "https://www.armory.io/learn/customer-success-stories/"
 
 [[menu.main]]
   name = "KB"
@@ -137,7 +132,7 @@ version = "2.27"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
-url_latest_version = "https://docs.armory.io/"
+url_latest_version = "https://docs.armory.io/docs/"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/armory/docs/"
