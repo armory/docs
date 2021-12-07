@@ -6,11 +6,6 @@ description: >
 exclude_search: true
 ---
 
-{{< alert title="Early Access" color="primary" >}}
-{{% include "aurora-borealis/borealis-ea-banner.md" %}}
-{{< /alert >}}
-
-
 ## {{% heading "prereq" %}}
 
 Before you start, make sure that someone at your organization has completed the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}). That guide describes how to prepare your deployment target so that you can use the Borealis CLI to deploy apps to it.
