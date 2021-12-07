@@ -1,6 +1,5 @@
 ---
-title: "Armory Docs"
-linkTitle: "Docs"
+title: "Armory Enterprise Docs"
 weight: 10
 menu:
   main:
@@ -22,6 +21,7 @@ Armory helps software teams ship better software, faster. Armory Enterprise is a
 ### What is Spinnaker?
 
 [Spinnaker™](https://www.spinnaker.io) is an open source, multi-cloud Continuous Delivery and Deployment platform that provides a single pane of glass with visibility across your deployment for deployment status, infrastructure, security and compliance, and metrics. By using pipelines, flexible and customizable series of deployment stages, Spinnaker can fit a variety of deployment needs. Spinnaker can deploy to and manage clusters across Amazon Web Services (AWS), Kubernetes, and Google Cloud Platform (GCP). Spinnaker not only enables businesses to move to the cloud but makes it easier for them to adopt the cloud's advantages.
+
 ## Additional Armory products
 
 ### Kubernetes Operators for installation
