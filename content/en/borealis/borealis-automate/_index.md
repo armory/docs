@@ -9,9 +9,6 @@ aliases:
 weight: 40
 ---
 
-{{< alert title="Early Access" color="primary" >}}
-{{% include "aurora-borealis/borealis-ea-banner.md" %}}
-{{< /alert >}}
 
 
 ## {{% heading "prereq" %}}

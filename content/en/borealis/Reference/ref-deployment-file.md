@@ -5,9 +5,6 @@ description:
 exclude_search: true
 ---
 
-{{< alert title="Early Access" color="primary" >}}
-{{% include "aurora-borealis/borealis-ea-banner.md" %}}
-{{< /alert >}}
 
 
 The deployment file is what you use to define how and where your app gets deployed to.
