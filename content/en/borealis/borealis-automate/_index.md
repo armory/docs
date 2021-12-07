@@ -9,6 +9,8 @@ aliases:
 weight: 40
 ---
 
+
+
 ## {{% heading "prereq" %}}
 
 Before you get started, ensure that the requirements listed on [Requirements]({{< ref "borealis-requirements" >}}) are met and that you can log in to the [Armory Cloud Console](https://console.cloud.armory.io/).
