@@ -1,9 +1,6 @@
 ---
 title: "Armory Enterprise Docs"
 weight: 10
-menu:
-  main:
-    weight: 10
 description: >
   Guides and release notes for Armory products, including Armory Enterprise, Armory Operator, Armory Agent, Pipelines as Code, and Policy Engine.
 ---
