@@ -3,13 +3,17 @@ title: Known Issues and Limitations
 exclude_search: true
 ---
 
+## Deployment fails with a blank namespace error
+
+There is a known issue where deployments fail if you do not specify a namespace in `targets.<deploymentName>.namespace` in your deployment file even if your manifest specifies a namespace.
+
+**Workaround**:
+
+Define the namespace in your deployment file even if your manifest specifies a namespace.
+
 ## Manifest requirements
 
-Project Aurora and Borealis have the following constraints when deploying a manifest:
-
-- The manifest must contain exactly 1 `Kubernetes Deployment` object within a single deployment file (Borealis) or Project Aurora Spinnaker Stage (Aurora).
-- Deploying ReplicaSets is not  supported.
-- Deploying Pods is not supported.
+{{< include "known-issues/ki-borealis-manifest-limitation.md" >}}
 
 ## `armory.cloud` config block location
 

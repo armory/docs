@@ -41,6 +41,8 @@ Armory scans the codebase as we develop and release software. For information ab
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}
+{{< include "known-issues/ki-dinghy-pipelineID.md" >}}
+
 
 #### Git repo artifact provider cannot checkout SHAs
 
@@ -51,6 +53,7 @@ Only branches are currently supported. For more information, see [6363](https://
 There is a known issue where you cannot edit AWS server groups with the **Edit** button in the UI. The edit window closes immediately after you open it.
 
 **Workaround**: To make changes to your server groups, edit the stage JSON directly by clicking on the **Edit stage as JSON** button.
+
 
 ### Fixed issues
 

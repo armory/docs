@@ -80,7 +80,7 @@ keytool -genkey -v -keystore $KEYSTORE_PATH -alias saml -keyalg RSA -keysize 204
 > Note: The value you enter for `issuerId` must match the value entered in "Audience URI (SP Entity ID)" when configuring the app in Okta
 
 {{< tabs name="configure" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Add the following snippet to `SpinnakerService` manifest. This references secrets stored in a Kubernetes secrets in the same namespace as Spinnaker, but secrets can be stored in any of the supported [secret engines](/docs/armory-admin/Secrets):
 
@@ -119,8 +119,8 @@ Apply the changes of `SpinnakerService` manifest:
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 ```bash
 KEYSTORE_PATH=/Users/armory/.hal/saml/saml.jks
@@ -141,7 +141,7 @@ hal config security authn saml enable
 hal deploy apply
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Troubleshooting

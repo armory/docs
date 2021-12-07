@@ -149,7 +149,7 @@ export TARGET_NAMESPACES_COMMA_SEPARATED=dev-1,dev-2
 ## Add the kubeconfig and cloud provider to Spinnaker
 
 {{< tabs name="add" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 Add the following configuration to the `SpinnakerServce` manifest, replacing values as needed:
 
@@ -195,8 +195,8 @@ Finally, apply the changes
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest file>
 ```
 
-{{% /tab %}}
-{{% tab name="Halyard" %}}
+{{% /tabbody %}}
+{{% tabbody name="Halyard" %}}
 
 You should copy the kubeconfig to a place accessible to halyard; this choice is left to the reader, but one option is `~/.secret/`, which can be mounted into your halyard container
 
@@ -249,7 +249,7 @@ Apply your changes:
 hal deploy apply
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Verify the Kubernetes account appears in the Spinnaker UI

@@ -31,20 +31,20 @@ Consult the `kubectl` [docs](https://kubernetes.io/docs/reference/kubectl/) for 
 ## Deploy Armory Enterprise
 
 {{< tabs name="deploy" >}}
-{{% tab name="Manifest" %}}
+{{% tabbody name="Manifest" %}}
 
 ```bash
 kubectl -n <namespace> apply -f <path-to-manifest-file>
 ```
 
-{{% /tab %}}
-{{% tab name="Kustomize" %}}
+{{% /tabbody %}}
+{{% tabbody name="Kustomize" %}}
 
 ```bash
 kubctl -n <namespace> apply -k <path-to-kustomize-directory>
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 You can watch the installation progress by executing:
@@ -62,7 +62,7 @@ You can verify pod status by executing:
 ## Upgrade Armory Enterprise
 
 {{< tabs name="upgrade" >}}
-{{% tab name="Manifest" %}}
+{{% tabbody name="Manifest" %}}
 
 Change the `version` field in your manifest file to the target version for the upgrade:
 
@@ -82,8 +82,8 @@ Apply the updated manifest:
 kubectl -n <namespace> apply -f <path-to-manifest-file>
 ```
 
-{{% /tab %}}
-{{% tab name="Kustomize" %}}
+{{% /tabbody %}}
+{{% tabbody name="Kustomize" %}}
 
 Change the `version` field in your Kustomize patch to the target version for the upgrade.
 
@@ -93,7 +93,7 @@ Apply the update:
 kubctl -n <namespace> apply -k <path-to-kustomize-directory>
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 You can view the upgraded services starting up by executing `describe`:

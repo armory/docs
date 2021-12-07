@@ -9,10 +9,8 @@ description: >
 ![Proprietary](/images/proprietary.svg)
 ## Requirements
 
-This plugin requires either:
+For Armory Enterprise 2.27.x (OSS 1.27.x) and later, you must use version `0.2.0` or later of the plugin.
 
-- Armory 2.20.x or later
-- Spinnaker 1.20.x or later
 
 ## Limitations
 
@@ -34,7 +32,7 @@ The plugin can be delivered using two different methods:
 ### Docker image as init container
 
 {{< tabs name="enable-plugin" >}}
-{{% tab name="Operator" %}}
+{{% tabbody name="Operator" %}}
 
 This is a sample configuration to use with the Spinnaker operator:
 
@@ -155,9 +153,9 @@ spec:
                     emptyDir: {}
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 
-{{% tab name="Halyard" %}}
+{{% tabbody name="Halyard" %}}
 
 Add the following to `profiles/spinnaker-local.yml`:
 ```yaml
@@ -236,7 +234,7 @@ deploymentConfigurations:
                 name: appname-plugin-vol
 ```
 
-{{% /tab %}}
+{{% /tabbody %}}
 {{< /tabs >}}
 
 ### Remote plugin repository
@@ -277,4 +275,5 @@ The `appStackDetailSeparator` is a separator character used to build server grou
 
 ## Release Notes
 
+* v0.2.0 Update plugin to be compatible with Armory Enterprise 2.27.0 and later - 10/29/2021
 * v0.1.0 Initial plugin release - 10/09/2020
