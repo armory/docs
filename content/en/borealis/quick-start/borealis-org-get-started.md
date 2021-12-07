@@ -6,6 +6,11 @@ description: >
 exclude_search: true
 ---
 
+{{< alert title="Early Access" color="primary" >}}
+{{% include "aurora-borealis/borealis-ea-banner.md" %}}
+{{< /alert >}}
+
+
 ## {{% heading "prereq" %}}
 
 Review the requirements for using Borealis on the [Requirements]({{< ref "borealis-requirements.md" >}}) page.

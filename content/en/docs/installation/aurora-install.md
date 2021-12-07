@@ -8,7 +8,10 @@ aliases:
   - /docs/installation/armory-deployments-for-spinnaker/
 ---
 
-{{< include "early-access-feature.html" >}}
+{{< alert title="Early Access" color="primary" >}}
+{{% include "aurora-borealis/borealis-ea-banner.md" %}}
+{{< /alert >}}
+
 
 ## Overview
 
@@ -512,3 +515,4 @@ armory.cloud:
 {{% /tabbody %}}
 {{< /tabs >}}
 
+> This product documentation page is Armory confidential information.

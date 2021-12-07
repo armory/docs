@@ -4,6 +4,11 @@ linktitle: GitHub Action
 exclude_search: true
 ---
 
+{{< alert title="Early Access" color="primary" >}}
+{{% include "aurora-borealis/borealis-ea-banner.md" %}}
+{{< /alert >}}
+
+
 ## Overview
 
 <!-- update the GHA readme or docs.armory.io page when making changes to one or the other -->

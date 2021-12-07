@@ -9,6 +9,11 @@ aliases:
   - /armory-deployments/architecture/
 ---
 
+{{< alert title="Early Access" color="primary" >}}
+{{% include "aurora-borealis/borealis-ea-banner.md" %}}
+{{< /alert >}}
+
+
 ## Key Components
 
 ### Project Aurora Plugin 

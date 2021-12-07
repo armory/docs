@@ -8,6 +8,11 @@ aliases:
   - /borealis/requirements/
 ---
 
+{{< alert title="Early Access" color="primary" >}}
+{{% include "aurora-borealis/borealis-ea-banner.md" %}}
+{{< /alert >}}
+
+
 To use Project Aurora/Borealis, make sure you meet the following requirements.
 
 ## Armory Remote Network Agent
