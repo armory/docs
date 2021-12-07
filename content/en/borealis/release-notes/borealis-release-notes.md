@@ -10,3 +10,5 @@ description: >
   labels="Armory CLI">
   <a class="menu-item" href="javascript:void(0)">Changelog</a>
 </makelog-dialog>
+
+<iframe width=100% height=1088 src="https://armory.releases.live/embed/?labels=Armory+CLI" title="Borealis Changelog"></iframe> 
