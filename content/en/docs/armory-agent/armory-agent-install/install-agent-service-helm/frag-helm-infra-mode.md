@@ -25,7 +25,7 @@ Run one of the following commands:
 
    You must set your Armory Cloud **clientId** and **clientSecret** credentials.
 
-   You must set your **kubeconfig** file and secret.
+   You must set your **kubeconfig** file and secret. `<kubeconfig>` is the name of the file you used when you created the secret. If you used `--from-file=<path>/.kube/config`, the value of `<kubeconfig>` is `config`.
 
    {{< prism lang="bash" line="4" >}}
    helm install armory-agent armory-charts/agent-k8s-full \
@@ -42,7 +42,7 @@ Run one of the following commands:
 
    You must include your gPRC endpoint, such as `localhost:9090`.
 
-   You must set your **kubeconfig** file and secret.
+   You must set your **kubeconfig** file and secret. `<kubeconfig>` is the name of the file you used when you created the secret. If you used `--from-file=<path>/.kube/config`, the value of `<kubeconfig>` is `config`.
 
    {{< prism lang="bash" line="4" >}}
    helm install armory-agent armory-charts/agent-k8s-full \
@@ -52,7 +52,6 @@ Run one of the following commands:
    ,kubeconfigs.<account-name>.file=<kubeconfig> \
    ,kubeconfigs.<account-name>.secret=<secret>
    {{< /prism >}}
-
 
 Command options:
 
