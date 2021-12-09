@@ -9,7 +9,7 @@ description: >
 
 ## What is the Armory Agent?
 
-The Armory Agent for Kubernetes consists of a lightweight Agent service that you deploy on Kubernetes and a plugin that you install into Clouddriver. 
+The Armory Agent for Kubernetes consists of a lightweight Agent service that you deploy on Kubernetes and a plugin that you install into Clouddriver.
 
 The Armory Agent is compatible with Armory Enterprise and open source Spinnaker.
 
@@ -33,7 +33,7 @@ The Armory Agent is compatible with Armory Enterprise and open source Spinnaker.
   * Use YAML, a HELM chart, or a Kustomize template to inject the Agent into newly provisioned Kubernetes clusters, and immediately make those clusters software deployment targets.
   * Use the Agent with little operational overhead or changes in the way you currently manage Armory Enterprise.
 
-Check out the installation [guide]({{< ref "armory-agent-quick" >}}) for how to deploy the Agent components in Armory Enterprise and in your Kubernetes infrastructure.
+Check out the installation [guide]({{< ref "armory-agent-install" >}}) for how to deploy the Agent components in Armory Enterprise and in your Kubernetes infrastructure.
 
 ## Deployment modes
 
@@ -133,7 +133,7 @@ Furthermore, in [Agent mode](#agent-mode), Armory Enterprise never gets credenti
 
 ## Scalability
 
-Each Agent can scale to hundreds of Kubernetes clusters. The more types of Kubernetes objects the Agent has to watch, the more memory it uses. Memory usage is bursty. You can control burst with `budget`. See [Agent options]({{< ref "agent-options/#options" >}})) for configuration information.
+Each Agent can scale to hundreds of Kubernetes clusters. The more types of Kubernetes objects the Agent has to watch, the more memory it uses. Memory usage is bursty. You can control burst with `budget`. See [Agent options]({{< ref "agent-options#configuration-options" >}})) for configuration information.
 
 Scaling the Agent can mean:
 
@@ -154,6 +154,7 @@ You can find a full list of previous releases in the [artifactory](https://armor
 
 ## {{% heading "nextSteps" %}}
 
-{{< linkWithTitle "armory-agent-quick.md" >}}
+[Install the Armory Agent for Kubernetes]({{< ref "armory-agent-install" >}})
+
 </br>
 </br>

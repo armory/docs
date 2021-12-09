@@ -17,7 +17,7 @@ helm install armory-agent armory-charts/agent-k8s-full \
 
 All configuration options available in the `armory-agent.yml` config file can be passed as values to Helm under the `config` section.
 
-For more information, see [Install the Agent service]({{< ref "armory-agent-quick#install-the-agent-service" >}}).
+For more information, see {{< linkWithTitle "install-agent-service-helm.md" >}}.
 
 ## Known Issues
 
