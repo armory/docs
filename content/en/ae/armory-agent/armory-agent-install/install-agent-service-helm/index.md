@@ -9,6 +9,8 @@ weight: 30
 
 ## Chart overview
 
+This Helm chart replaces installing the Agent using `kubectl`. The chart:
+
 - Exposes all settings for installing the Agent service.
 - Enables you to easily deploy the Agent service with default configuration using a single command.
 - Gives you the ability to customize the service settings in a file or via the command line.
@@ -17,6 +19,8 @@ weight: 30
 
 
 ## {{% heading "prereq" %}}
+
+Ensure you have completed the following steps before you install the Agent using the Helm chart:
 
 1. You have [installed the Clouddriver plugin]({{< ref "install-agent-plugin" >}}).
 1. You are familiar with [Helm](https://helm.sh/) and have installed v3.6.3+.
