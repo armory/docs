@@ -152,9 +152,9 @@ time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kub
 {{< tabs name="DeploymentPlugin" >}}
 {{% tabbody name="Operator" %}}
 
-If you are running Armory Enterprise 2.26.3, `armory.cloud` block goes in a different location. Instead of `spec.spinnakerConfig.spinnaker`, the block needs to go under both `spec.spinnakerConfig.gate` and `spec.spinnakerConfig.orca`. For more information see [Known issues](#known-issues).
+If you are running Armory Enterprise 2.26.3, `armory.cloud` block goes in a different location. Instead of `spec.spinnakerConfig.spinnaker`, the block needs to go under both `spec.spinnakerConfig.gate` and `spec.spinnakerConfig.orca`. For more information see [Known issues](#known-issues). Additionally there is a `plugins` block that needs to be added.
 
-The installation instructions using the Operator are the same except for where the `armory.cloud` block goes.
+The installation instructions using the Operator are the same except for where the `armory.cloud` and this `plugins` block go.
 
 In your Kustomize patches directory, create a file named **patch-plugin-deployment.yml** and add the following manifest to it.
 
@@ -388,12 +388,10 @@ On the **Pipelines** page of the Armory Enterprise UI, select the pipeline and w
 
 ### `armory.cloud` block location
 
-In Armory Enterprise 2.26.3, the location of where you put the `armory.cloud` config block is different from other versions.
+In Armory Enterprise 2.26.3, the location of where you put the `armory.cloud` config block is different from other versions. Additionally, there is an additional config block for `spec.spinnakerConfig.profiles.gate.spinnaker.extensibility` that contains information for the plugin named `plugins`.
 
 {{< tabs name="KnownIssue" >}}
 {{% tabbody name="Operator" %}}
-
-
 
 Your Kustomize patch file should resemble the following where `armory.cloud` is a child of the `gate` and `orca` blocks instead of a `spinnaker` block:
 
@@ -417,6 +415,10 @@ spec:
                 Armory.Deployments:
                   enabled: true
                   version: <Latest-version> # Replace this with the latest version from: https://github.com/armory-plugins/armory-deployment-plugin-releases/releases/
+            plugins:
+              Armory.Deployments:
+                enabled: true
+                version: <Latest-version> # Replace this with the latest version
             repositories:
               armory-deployment-plugin-releases:
                 enabled: true
@@ -477,6 +479,10 @@ Your `gate-local.yml` file should include the `extensibility` and the `armory.cl
 #gate-local.yml
 spinnaker:
   extensibility:
+    plugins:
+      Armory.Deployments:
+        enabled: true
+        version: <Latest-version> # Replace this with the latest version
     # This snippet is necessary so that Gate can serve your plugin code to Deck
     deck-proxy:
       enabled: true
