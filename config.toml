@@ -67,6 +67,10 @@ weight = 1
     [markup.goldmark.renderer]
       unsafe = true
 
+[[menu.main]]
+  name = "Docs"
+  weight = 4
+  url = "/ae"
 
 [[menu.main]]
   name = "Armory.io"
