@@ -87,7 +87,7 @@ With the file, you can avoid setting individual `env` parameters in the `helm in
 If you need to download the Armory Agent image from a different registry, you can specify that repository using the following settings:
 
 {{< prism lang="bash">}}
---set image.respository=<repo-name>,image.imagePullPolicy=IfNotPresent, /
+--set image.repository=<repo-name>,image.imagePullPolicy=IfNotPresent, /
 image.imagePullSecrets=<secret>
 {{< /prism>}}
 
@@ -97,7 +97,7 @@ Alternatively, you can create a `values.yaml` file to include the settings:
 image:
   repository: <repo-name>
   imagePullPolicy: IfNotPresent
-  imagePullSecrets: <secret>  
+  imagePullSecrets: <secret>
 {{< /prism >}}
 
 Include the `--values` parameter as part of the Helm install command:
