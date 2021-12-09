@@ -88,6 +88,11 @@
   from ="/docs/spinnaker-user-guides/policy-engine-use/packages/*"
   to = "/docs/armory-admin/policy-engine/policy-engine-use/packages/:splat"
 
+[[redirects]]
+  from ="/docs/*"
+  to = "/ae/:splat"
+
+
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
 package = "@netlify/plugin-sitemap"

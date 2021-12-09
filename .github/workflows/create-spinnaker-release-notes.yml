@@ -1,0 +1,48 @@
+name: Create Spinnaker Release Notes
+
+on:
+  repository_dispatch:
+    types: CreateSpinnakerReleaseNotes
+
+jobs:
+  create_spinnaker_release_notes:
+    runs-on: ubuntu-latest
+    container:
+      image: hairyhenderson/gomplate:alpine
+    env:
+      ARMORY_VERSION: ${{ github.event.client_payload.armoryVersion }}
+      OUTPUT_BASE_FILE: 'content/en/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v%s.md'
+    steps:
+      - name: Install dependencies
+        run: apk --no-cache add git
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: build output file path
+        id: build_output
+        run: |
+          versionWithDash=$(echo $ARMORY_VERSION | tr '.' '-')
+          outputPath=$(printf $OUTPUT_BASE_FILE $versionWithDash)
+          echo "##[set-output name=path;]$outputPath"
+
+      - name: generate template rendered
+        run: echo '${{ toJson(github.event.client_payload) }}' | gomplate -d payload=stdin:///in.json --file templates/spinnaker-release-notes.tmpl --out ${{ steps.build_output.outputs.path }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3.10.1
+        with:
+          token: ${{ secrets.ASTROLABE_GITHUB_TOKEN }}
+          commit-message: "chore(release): add release notes for ${{ env.ARMORY_VERSION}}"
+          branch: "release-notes-${{ env.ARMORY_VERSION}}"
+          branch-suffix: timestamp
+          base: master
+          title: "chore(release): add release notes for ${{ env.ARMORY_VERSION}}"
+          labels: |
+            releaseNotesUpdate
+            ${{ github.event.client_payload.armoryVersion }}
+          body: |
+            Event
+            ```
+            ${{ toJson(github.event.client_payload) }}
+            ```
