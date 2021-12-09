@@ -155,7 +155,7 @@ helm install armory-agent armory-charts/agent-k8s-full \
 
 You can use both files. For example:
 
-{{< prism lang="bash" line="3-4">}}
+{{< prism lang="bash" line="4-5">}}
 helm install armory-agent armory-charts/agent-k8s-full \
 --create-namespace \
 --namespace=<agent-namespace> \
