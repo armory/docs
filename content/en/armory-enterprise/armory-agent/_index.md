@@ -6,6 +6,7 @@ description: >
   The Armory Agent is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker's Clouddriver service.
 aliases:
   - /armory-enterprise/armory-agent/armory-agent-quick/
+  - /docs/armory-agent/armory-agent-quick/
 ---
 ![Proprietary](/images/proprietary.svg)
 
