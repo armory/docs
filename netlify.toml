@@ -90,7 +90,11 @@
 
 [[redirects]]
   from ="/docs/*"
-  to = "/ae/:splat"
+  to = "/armory-enterprise/:splat"
+
+  [[redirects]]
+    from ="/ae/*"
+    to = "/armory-enterprise/:splat"
 
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
