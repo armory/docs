@@ -5,6 +5,8 @@ description: >
   Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
 weight: 30
 no_list: true
+aliases:
+  - /armory-agent/armory-agent-quick/
 ---
 ![Proprietary](/images/proprietary.svg)
 
