@@ -210,7 +210,7 @@ You can configure the amount of time that the Policy Engine waits for a response
 
 {{% tabbody name="Halyard" %}}
 
-> If you are using the Policy Engine Plugin with open source Spinnaker, additional configuration is required in addition to what is described below. For more information, see [Policy Engine: PluginRuntimeException: Failed to write file 'plugins/Armory.PolicyEngine-policy-engine-vX.X.X' to plugins folder](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010518)
+> If you are using the Policy Engine Plugin with open source Spinnaker, configuration in addition to what is described below is required. For more information, see [Policy Engine: PluginRuntimeException: Failed to write file 'plugins/Armory.PolicyEngine-policy-engine-vX.X.X' to plugins folder](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010518).
 
 1. Add the following to `profiles/spinnaker-local.yml`:
 
