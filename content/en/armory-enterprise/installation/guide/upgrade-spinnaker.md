@@ -1,11 +1,14 @@
 ---
-title: Upgrade or Downgrade Armory Enterprise Version
+title: Upgrade or Downgrade Armory Enterprise Version with Halyard
+linkTitle: Upgrade or Downgrade Armory Enterprise 
 weight: 10
 aliases:
   - /docs/spinnaker-install-admin-guides/upgrade-spinnaker/
 description: >
   Update or rollback your Armory Enterprise for Spinnaker version deployed with Armory-extended Halyard.
 ---
+
+> For information about how to upgrade Armory Enterprise if you are using the Operator, see [Upgrade Armory Enterprise using the Operator]({{< ref "op-manage-spinnaker#upgrade-armory-enterprise" >}}).
 
 ## Determining the target version
 
