@@ -10,12 +10,13 @@ aliases:
 layout: release-notes-recent
 semver_list: true
 description: >
-  Release cadence, versioning explained, relation to Spinnaker releases, release types, and links to release notes for Armory Enterprise
+  Armory Enterprise releases, long term stable releases and patches.
 ---
 
 
-
 <!-- the release-notes-recent.html layout inserts the section index list at the top of the page -->
+
+
 
 ## Minimum Operator version
 
@@ -26,6 +27,14 @@ To install, upgrade, and configure Armory Enterprise, ensure that you are runnin
 | 2.27.x | 1.4.0 |
 | 2.26.x | 1.2.6 |
 | 2.25.x | 1.2.6 |
+
+## LTS releases
+
+Starting with version 2.27.1, Armory Enterprise follows a Long Term Stable (LTS) release model where there are two LTS releases per year. Each LTS is supported for 1 year. 
+
+Major features and changes are packaged into an LTS release. During the supported lifetime of an LTS release, Armory ships patch releases for the LTS that include improvements like CVE remediation, bug fixes, and performance improvements.
+
+<!--
 
 ## Different Armory Release Types
 
@@ -95,7 +104,6 @@ An **rc** release reflects the latest from Armory and OSS release branches.
 - A **next rc** will be created from OSS `1.10.*`
   + This version has not been tested at Armory, only built and served.
   + A few customers may be using it, but we do not recommend using it in production.
--->
 
 
 **RC**s also follow semantic versioning with the format like `1.2.3-rc202`.
@@ -142,4 +150,4 @@ $ hal config version edit --version 2.3.0
 ```
 See [Halyard reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-version-edit) for additional information.
 
-
+-->

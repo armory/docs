@@ -1,9 +1,9 @@
 ---
-title: v2.27.1 Armory Release (OSS Spinnaker™ v1.27.0)
+title: v2.27.1 Armory Release LTS (OSS Spinnaker™ v1.27.0)
 toc_hide: true
 version: 2.27.01
 description: >
-  Release notes for Armory Enterprise v2.27.1 . The release notes for 2.27.1 also include improvements and fixes from the 2.27.0 Beta release.
+  Release notes for Armory Enterprise v2.27.1, a long term stable release. The release notes for 2.27.1 include improvements and fixes from the 2.27.0 Beta release.
 ---
 
 ## 2021/11/18 Release Notes
