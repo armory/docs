@@ -12,7 +12,7 @@ weight: 30
 - You have read the Installation [overview]({{< ref "armory-agent-install" >}}).
 - You have a running Redis instance.
 
-## Configure Clouddrive to use a SQL database
+## Configure Clouddriver to use a SQL database
 
 Follow the [Configure Clouddriver to use a SQL Database guide]({{< ref "clouddriver-sql-configure" >}}), but skip the step that removes Redis. You need to make sure Redis is enabled:
 
