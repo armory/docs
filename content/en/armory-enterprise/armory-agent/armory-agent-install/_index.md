@@ -47,6 +47,6 @@ Installation steps:
 
 ## {{% heading "nextSteps" %}}
 
-{{< linkWithTitle "install-agent-plugin.md" >}}
+Install the Clouddriver plugin [using kubectl]({{< ref "install-agent-plugin" >}}) or [using Halyard]({{< ref "install-agent-plugin-halyard" >}}).
 </br>
 </br>

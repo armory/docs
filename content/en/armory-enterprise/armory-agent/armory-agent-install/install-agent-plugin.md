@@ -1,8 +1,8 @@
 ---
-title: "Armory Agent Plugin Installation"
-linkTitle: "Install Plugin"
+title: "Armory Agent Plugin Installation Using kubectl"
+linkTitle: "Install Plugin - kubectl"
 description: >
-  Install the Armory Agent Clouddriver plugin in your Kubernetes and Armory Enterprise environments.
+  Install the Armory Agent Clouddriver plugin using kubectl in your Kubernetes and Armory Enterprise environments.
 weight: 30
 ---
 ![Proprietary](/images/proprietary.svg)
