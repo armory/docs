@@ -30,9 +30,9 @@ To install, upgrade, and configure Armory Enterprise, ensure that you are runnin
 
 ## LTS releases
 
-Starting with version 2.27.1, Armory Enterprise follows a Long Term Stable (LTS) release model where there are two LTS releases per year. Each LTS is supported for 1 year. 
+Starting with version 2.27.1, Armory Enterprise follows a Long Term Stable (LTS) release model where there are two LTS releases per year. Major features and changes are packaged into an LTS release. 
 
-Major features and changes are packaged into an LTS release. During the supported lifetime of an LTS release, Armory ships patch releases for the LTS that include improvements like CVE remediation, bug fixes, and performance improvements.
+Each LTS is supported for 1 year from its release date. During the supported lifetime of an LTS release, Armory ships patch releases for the LTS that include improvements like CVE remediation, bug fixes, and performance improvements.
 
 <!--
 
