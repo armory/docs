@@ -20,6 +20,8 @@ To install, upgrade, or configure Armory 2.27.2, use the following Operator vers
 
 Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
 
+This release includes a security fix. For more information, see the Critical Notification that Armory's Support Team sent out on 14 December 2021, contact your Armory account rep, or see this (login required) Support article: https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010520.
+
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
@@ -47,7 +49,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Highlighted updates
 
-This release includes a security fix. For more information, see the Critical Notification that Armory's Support Team sent out on 14 December 2021.
+This release includes a security fix. For more information, see the Critical Notification that Armory's Support Team sent out on 14 December 2021, contact your Armory account rep, or see this (login required) Support article: https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010520.
 
 
 ###  Spinnaker Community Contributions
