@@ -1,20 +1,20 @@
 ---
 title: v2.27.2 Armory Release (OSS Spinnaker™ v1.27.0)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.27.02
 description: >
   Release notes for Armory Enterprise v2.27.2 
 ---
 
-## 2021/12/70 Release Notes
+## 2021/12/14 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-## Required Halyard or Operator version
 
-To install, upgrade, or configure Armory 2.27.2, use one of the following tools:
+## Required Operator version
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+To install, upgrade, or configure Armory 2.27.1, use the following Operator version:
+
+* Armory Operator 1.4.0 or later
 
 ## Security
 
@@ -22,19 +22,32 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
+> Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
+
+{{< include "breaking-changes/bc-java-tls-mysql.md" >}}
+
+{{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
+
+{{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
+
+{{< include "breaking-changes/bc-hal-deprecation.md" >}}
+
+#### Plugin compatibility
+
+{{< include "breaking-changes/bc-plug-version-lts-227.md" >}}
+
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+{{< include "known-issues/ki-bake-var-file.md" >}}
+{{< include "known-issues/ki-artifact-binding-spel.md" >}}
+{{< include "known-issues/ki-dinghy-gh-notifications.md" >}}
+
+
 ## Highlighted updates
 
-<!--
-Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
-- Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
-- Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
--->
-
-
+This release includes a security fix. For more information, see the Critical Notification that Armory's Support Team sent out on 14 December 2021.
 
 
 ###  Spinnaker Community Contributions
