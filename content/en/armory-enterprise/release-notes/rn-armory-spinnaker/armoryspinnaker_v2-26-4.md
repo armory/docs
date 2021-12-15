@@ -155,7 +155,6 @@ artifactSources:
 #### Armory Rosco - 2.26.15...2.26.18
 
   - chore(build): Autobump armory-commons: 3.9.6 (backport #286) (#310)
-  - fix(tests): remove tests intended for Spinnaker Cloud (#314) (#323)
 
 #### Armory Fiat - 2.26.12...2.26.13
 
