@@ -146,7 +146,6 @@ artifactSources:
 #### Armory Gate - 2.26.11...2.26.12
 
   - chore(build): Autobump armory-commons: 3.9.6 (backport #305) (#329)
-  - feat(gradle): Add stack trace to gradle build (backport #359) (#361)
   - chore(cd): update base service version to gate:2021.12.14.23.45.08.release-1.26.x (#356)
 
 #### Dinghy™ - 2.26.11...2.26.12
