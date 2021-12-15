@@ -12,7 +12,7 @@ description: >
 
 ## Required Operator version
 
-To install, upgrade, or configure Armory 2.27.1, use the following Operator version:
+To install, upgrade, or configure Armory 2.27.2, use the following Operator version:
 
 * Armory Operator 1.4.0 or later
 
