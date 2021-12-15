@@ -1,9 +1,9 @@
 ---
-title: v2.27.2 LTS Armory Release (OSS Spinnaker™ v1.27.0)
+title: v2.27.2 Armory Release LTS (OSS Spinnaker™ v1.27.0)
 toc_hide: true
 version: 02.27.02
 description: >
-  Release notes for Armory Enterprise v2.27.2 
+  Release notes for Armory Enterprise v2.27.2 LTS
 ---
 
 ## 2021/12/14 Release Notes
