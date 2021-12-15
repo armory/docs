@@ -1,5 +1,5 @@
 ---
-title: v2.24.3 Armory Release (OSS Spinnaker™ v1.24.6)
+title: v2.24.3 Armory Release
 toc_hide: true
 version: 02.24.03
 description: >
