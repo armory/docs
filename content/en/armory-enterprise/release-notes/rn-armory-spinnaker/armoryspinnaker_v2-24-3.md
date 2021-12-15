@@ -44,4 +44,4 @@ Armory scans the codebase as we develop and release software. For information ab
 
 ## Highlighted updates
 
-This release includes a security update. For more information, see the Critical Notification that Armory's Support Team sent out on 14 December 2021: FavExploit: Spinnaker RCE Vulnerability in Gate. 
+This release includes a security update. For more information, see the Critical Notification that Armory's Support Team sent out on 14 December 2021.
