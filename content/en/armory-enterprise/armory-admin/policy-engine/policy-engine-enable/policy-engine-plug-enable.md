@@ -17,13 +17,8 @@ Make sure the following requirements are met:
 
 ## Setup
 
-The Policy Engine Plugin can be enabled using one of the following methods:
+The Policy Engine Plugin can be enabled using the Armory Operator or Halyard.
 
-1. Docker image as an init container on each affected service
-
-1. Using a remote plugin repository
-
-### Docker image as init container
 
 {{< tabs name="enable-plugin" >}}
 {{% tabbody name="Operator" %}}
@@ -36,6 +31,8 @@ You can use the sample configuration to install the plugin, but keep the followi
 
 
 <details><summary>Show the manifest</summary>
+
+This manifest is in the [`spinnaker-kustomize-patches` repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml).
 
 {{< github repo="armory/spinnaker-kustomize-patches" file="/armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
 
@@ -137,23 +134,7 @@ You can configure the amount of time that the Policy Engine waits for a response
 {{% /tabbody %}}
 {{< /tabs >}}
 
-### Remote plugin repository
 
-The configuration is mostly identical to the Docker image method but omits all volumes and init container configurations. Additionally, replace all occurrences of the following:
-
-```yaml
-url: file:///opt/spinnaker/lib/local-plugins/policy-engine/plugins.json
-```
-
-with:
-
-```yaml
-url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
-```
-
-If you do not omit the `volume` and `initContainers` configurations for the `patchesStrategicMerge` section, the pods for Armory may not start.
-
-For information about loading a policy, see [Using the Policy Engine]({{< ref "policy-engine-use#step-2-add-policies-to-opa" >}}).
 
 ## Release notes
 
