@@ -25,7 +25,7 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 ![OSS](/images/oss.svg) The feature or parts of it are available in Open Source Spinnaker.
 
-![Armory](/images/armory.svg) The feature or parts of it are available only as part of Armory Enterprise for Spinnaker.
+![Armory](/images/armory.svg) The feature or parts of it are available only as part of Armory Enterprise for Spinnaker.[^1]
 
 **Versions**
 
@@ -33,7 +33,7 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 ## Agent
 
-[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})![Armory](/images/armory.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})![Armory](/images/armory.svg)
 
 {{< include "agent/agent-compat-matrix.md" >}}
 
@@ -56,6 +56,8 @@ The following table lists supported app metric providers:
 | Prometheus (Open Source)    | All supported versions | Yes | All supported versions | Authentication using a bearer token is supported.     |
 | SignalFx       | All supported versions | Yes | All supported versions |      |
 | Stackdriver    | All supported versions | Yes | All supported versions |      |
+
+[^1]: Some of Armory's features are proprietary and require a license for use. For more information, see the [Terms of Service](https://www.armory.io/terms-of-service/) and [Terms & Conditions](https://www.armory.io/terms-and-conditions/).
 
 ## Artifacts
 
