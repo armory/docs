@@ -1,5 +1,3 @@
-> The Armory Agent is in early access. For more information about using this feature, [contact us](https://www.armory.io/contact-us/).
-
 | Armory Enterprise (Spinnaker) Version | Armory Agent Plugin Version    | Armory Agent Version |
 |:-------------------------- |:------------------------------ |:---------------------------- |
 | {{<param kubesvc-plugin.agent_plug_latest_spin-2>}} | {{<param kubesvc-plugin.agent_plug_latest-2>}} | {{<param kubesvc-version>}} |
