@@ -5,7 +5,7 @@ version: 01.05.01
 description: Release notes for Armory Operator v1.5.1
 ---
 
-## 2021/07/21 Release Notes
+## 2021/12/21 Release Notes
 
 ## Security
 
