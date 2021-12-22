@@ -13,20 +13,7 @@ Armory scans the codebase as we develop and release software. For information ab
 
 ## Known issues
 
-When canary validators are enabled and users add `metadataCachingIntervalMS` to the canary configuration, deployment fails with the following error message in the Operator logs:
-
-```text
-json: cannot unmarshal number into Go struct field PrometheusCanaryServiceIntegration.metadataCachingIntervalMS of type bool
-```
-
-**Workaround**
-
-None.
-
-**Affected versions:** Armory Operator 1.4.1, Halyard 1.12
-
-**Fixed versions:** Armory Operator 1.5.1
-
+{{% include "release-notes/operator/canary-deploy-fail.md" %}}
 
 ## Highlighted updates
 
