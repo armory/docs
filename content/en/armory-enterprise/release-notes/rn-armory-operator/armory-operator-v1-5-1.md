@@ -16,17 +16,15 @@ No known issues.
 
 ## Highlighted updates
 
-This release adds two fixes with respect to canary validators
+This release fixes the canary validator issue that caused the Armory Enterprise deployment to fail when  `metadataCachingIntervalMS` was in the canary configuration. The deployment failed with the following error message in the Operator logs:
 
-1. Overcoming the canary validator issue while deploying spinnaker with canary configurations enabled. With previous operator versions, if `metadataCachingIntervalMS` is added to the canary configurations, users may notice the below error message on the operator logs causing the spinnaker service deployment to fail
+```text
+json: cannot unmarshal number into Go struct field PrometheusCanaryServiceIntegration.metadataCachingIntervalMS of type bool
+```
 
-`json: cannot unmarshal number into Go struct field PrometheusCanaryServiceIntegration.metadataCachingIntervalMS of type bool`
-
-With this release, users shall no longer notice this message and the deployment shall not be affected.
-
-2. Users may also choose to disable the canary validators by adding `spec.validation.providers.canary: false`
+Users may choose to disable the canary validators by adding `spec.validation.providers.canary: false` to the Operator configuration.
 
 ### Armory Operator
 
 * fix(canary/validator): Errors on MetadataCachingIntervalMS
-* fix(canary/validator) : Enable or disable canary validation
+* fix(canary/validator): Enable or disable canary validation
