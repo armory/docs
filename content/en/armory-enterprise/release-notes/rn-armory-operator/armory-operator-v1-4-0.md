@@ -12,7 +12,8 @@ description: Release notes for Armory Operator v1.4.0
 Armory scans the codebase as we develop and release software. For information about CVE scans for this release, contact your Armory account representative.
 
 ## Known issues
-No known issues.
+
+{{% include "release-notes/operator/canary-deploy-fail.md" %}}
 
 ## Highlighted updates
 
