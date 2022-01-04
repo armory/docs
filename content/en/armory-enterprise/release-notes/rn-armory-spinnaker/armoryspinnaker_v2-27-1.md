@@ -1,9 +1,9 @@
 ---
-title: v2.27.1 Armory Release (OSS Spinnaker™ v1.27.0)
+title: v2.27.1 Armory Release LTS (OSS Spinnaker™ v1.27.0)
 toc_hide: true
-version: 2.27.01
+version: 02.27.01
 description: >
-  Release notes for Armory Enterprise v2.27.1 . The release notes for 2.27.1 also include improvements and fixes from the 2.27.0 Beta release.
+  Release notes for Armory Enterprise v2.27.1, a long term stable release. The release notes for 2.27.1 include improvements and fixes from the 2.27.0 Beta release.
 ---
 
 ## 2021/11/18 Release Notes
@@ -59,7 +59,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 * Fixed an NPE related to the `kubesvcCredentialsLoader`.
 * Fixed an issue where new namespaces failed to get created as part of a Deploy Manifest Stage. This issue occurred because of a validation problem. <!--BOB-30448-->
-* The Clouddriver service is now more resilient when starting. Previously, the service failed to start if an account that gets added has permission errors. 
+* The Clouddriver service is now more resilient when starting. Previously, the service failed to start if an account that gets added has permission errors.
 * Fixed an issue where a stage never completes if the manifest getting deployed is of the kind `CSIDriver`. <!-- BOB-30402-->
 
 #### AWS Lambda
@@ -69,10 +69,10 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixed an issue in the UI where a stack trace gets displayed when you try to view functions. <!--BOB-30359-->
 - Fixed an issue where the UI did not show functions for an application if there are no configured clusters. Functions now appear instead of a 404 error. <!--BOB-30260-->
 - Caching behavior and performance have been improved. The changes include fixes for the following issues:
-  - The Lambda API returns request conflicts (HTTP status 409). 
-  - Event Source Mapping of ARNs fails after initially succeeding. This occured during the Lambda Event Configuration Task. 
+  - The Lambda API returns request conflicts (HTTP status 409).
+  - Event Source Mapping of ARNs fails after initially succeeding. This occured during the Lambda Event Configuration Task.
   - Underscores (_) in environment variable names caused validation errors.
-  - An exception related to event configs occurred intermittently during the Lambda Event Configuration Task. 
+  - An exception related to event configs occurred intermittently during the Lambda Event Configuration Task.
   - Lambda function creation using the Deploy Lambda stage failed causing subsequent runs of the pipeline to encounter an error that states the function already exists.
   - The Lambda Cache Refresh Task did not refresh the cache. This led to issues where downstream tasks referenced older versions.
   - A permission issue  caused the Infrastructure view in the UI (Deck) to not display Lambda functions.
@@ -81,15 +81,15 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 * Improved the resiliency of the Cloud Foundry provider. Invalid permissions for a caching agent, such as if permissions are missing for one region, no longer cause all deployments to that account to fail. <!--BOB-304707 -->
 * Improved the caching behavior for the provider. Previously, the cache on a dedicated caching pod (such as when cache sharding or HA is enabled) may not have been updated if a different pod performed an operation that modifies the cache. This led to situations where the Cloud Foundry provider  attempts actions for Server Groups that no longer existed. You can configure this behavior with the following properties: <!--BOB-30408-->
-  
+
    - `expireAfterWrite`: the amount of time (in seconds) to wait before expiring the cache after a write operation
    - `expireAfterAccess`: the amount of time (in seconds) to wait before expiring the cache after a access operation
-  
+
 * Improved error handling when a caching agent has insufficient permissions. A `RuntimeException` no longer occurs.
 - Added an Unbind Service Stage to the Cloud Foundry provider. Services must be unbound before they can be deleted. Use this stage prior to a Destroy Service stage. Alternatively, you can unbind all services before they are deleted in the Destroy Service stage by selecting the checkbox in the stage to do this. <!--PIT-98 BOB-30233-->
 - Improved error handling when a Deploy Service stage fails <!--BOB-30273-->
 - The Cloud Foundry provider now supports the following manifest attributes:
-  
+
   - Processes Health
   - Timeout
   - Random route

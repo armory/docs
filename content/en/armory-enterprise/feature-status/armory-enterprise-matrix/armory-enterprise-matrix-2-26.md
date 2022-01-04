@@ -37,7 +37,7 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 ## Armory Agent
 
-[![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})![Proprietary](/images/proprietary.svg)
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})![Proprietary](/images/proprietary.svg)
 
 {{< include "agent/agent-compat-matrix.md" >}}
 

@@ -11,7 +11,7 @@ jobs:
       image: hairyhenderson/gomplate:alpine
     env:
       ARMORY_VERSION: ${{ github.event.client_payload.armoryVersion }}
-      OUTPUT_BASE_FILE: 'content/en/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v%s.md'
+      OUTPUT_BASE_FILE: 'content/en/armory-enterprise/release-notes/rn-armory-spinnaker/armoryspinnaker_v%s.md'
     steps:
       - name: Install dependencies
         run: apk --no-cache add git

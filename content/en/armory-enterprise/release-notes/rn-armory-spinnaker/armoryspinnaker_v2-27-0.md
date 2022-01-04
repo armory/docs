@@ -1,9 +1,9 @@
 ---
 title: v2.27.0 Beta Armory Release (OSS Spinnaker™ v1.27.0)
 toc_hide: true
-version: 2.27.00 
+version: 02.27.00 
 description: >
-  Release notes for Armory Enterprise v2.27.0 Beta. A beta release is not meant for installation in production environments. 
+  Release notes for Armory Enterprise v2.27.0 Beta. A beta release is not meant for installation in production environments.
 ---
 
 ## 2021/09/30 Release Notes
@@ -74,10 +74,10 @@ Armory Enterprise 2.27.0 requires an updated version of the Agent Clouddriver Pl
 - Fixed an issue in the UI where a stack trace gets displayed when you try to view functions. <!--BOB-30359-->
 - Fixed an issue where the UI did not show functions for an application when there are no configured clusters. Functions now appear instead of a 404 error. <!--BOB-30260-->
 - Caching behavior and performance have been improved. The changes include fixes for the following issues:
-  - The Lambda API returns request conflicts (HTTP status 409). 
-  - Event Source Mapping of ARNs fails after initially succeeding. This occured during the Lambda Event Configuration Task. 
+  - The Lambda API returns request conflicts (HTTP status 409).
+  - Event Source Mapping of ARNs fails after initially succeeding. This occured during the Lambda Event Configuration Task.
   - Underscores (_) in environment variable names caused validation errors.
-  - An exception related to event configs occurred intermittently during the Lambda Event Configuration Task. 
+  - An exception related to event configs occurred intermittently during the Lambda Event Configuration Task.
   - Lambda function creation using the Deploy Lambda stage failed causing subsequent runs of the pipeline to encounter an error that states the function already exists.
   - The Lambda Cache Refresh Task did not refresh the cache. This led to issues where downstream tasks referenced older versions.
   - A permission issue  caused the Infrastructure view in the UI (Deck) to not display Lambda functions.
