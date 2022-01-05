@@ -60,7 +60,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 6. Run the following command to install the Borealis CLI:
    
    ```bash
-   avm install v0.10.0
+   avm install
    ```
 
    The command installs the Borealis CLI and returns a directory that you need to add to your path, such as `/Users/milton/.avm/bin`.
@@ -75,7 +75,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
    </details></br>
 
-7. Add the directory that AVM returns when you run `avm install` to your path.
+7. Add the directory that AVM returned when you ran `avm install` to your path.
   
    <details><summary>Show me how to add the directory.</summary>
 
