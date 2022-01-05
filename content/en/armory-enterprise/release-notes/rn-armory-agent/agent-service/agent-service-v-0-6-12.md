@@ -6,3 +6,4 @@ version: 00.06.12
 ---
 
 Maintenance to update the directory where the agent releases notes has been store
+
