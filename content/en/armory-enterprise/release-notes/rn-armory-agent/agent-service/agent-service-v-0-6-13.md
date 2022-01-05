@@ -7,4 +7,4 @@ version: 00.06.13
 
 ## Improvements
 
-Updated the Debian base image in the docker file. This resolves several CVEs that were present.
+Updated the Debian base image in the docker file. This resolves several CVEs.
