@@ -5,4 +5,6 @@ version: 00.06.13
 
 ---
 
-Addresses CVE-2019-18276, CVE-2019-9923, CVE-2021-20193 vulnerabilities by updating the Debian base image in the docker file.
+## Improvements
+
+Updated the Debian base image in the docker file. This resolves several CVEs that were present.
