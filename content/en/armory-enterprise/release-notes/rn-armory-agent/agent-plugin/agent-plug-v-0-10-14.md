@@ -5,4 +5,7 @@ version: 00.10.14
 
 ---
 
-Maintenance to update the directory where the agent releases notes has been store
+## Changes
+
+- Update the directory where the Agent releases notes are stored.
+
