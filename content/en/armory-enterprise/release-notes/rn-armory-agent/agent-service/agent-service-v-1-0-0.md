@@ -14,7 +14,7 @@ There are new REST endpoints to help you better troubleshoot Agent:
 * GET `/accounts`: Returns the list of accounts loaded by Agent, together with their discovered kinds
 * GET `/operations`: Returns the list of currently executing operations, such as list and deploy.
 * GET `/watches`: Returns the list of watches, grouped by account and watch state.
-* GET `/debug/pprof`: Returns information exported by Golang to diagnose Go applications, like stack traces of all Go routines and heap allocations.
+* GET `/debug/pprof`: Returns information exported by Golang to diagnose Go applications, like stack traces of all goroutines and heap allocations.
 
 ### Structured logging
 
