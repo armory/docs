@@ -4,12 +4,14 @@ linkTitle: "Install Plugin - Halyard"
 description: >
   Install the Armory Agent Clouddriver plugin using Halyard in your Kubernetes and Armory Enterprise environments.
 weight: 30
+toc_hide: true
+exclude_search: true
 ---
 ![Proprietary](/images/proprietary.svg)
 
 ## {{% heading "prereq" %}}
 
-- You have read the Installation [overview]({{< ref "armory-agent-install" >}}).
+- You have read the Armory Agent [installation overview]({{< ref "armory-agent-install" >}}).
 - You have a running Redis instance.
 
 ## Configure Clouddriver to use a SQL database
