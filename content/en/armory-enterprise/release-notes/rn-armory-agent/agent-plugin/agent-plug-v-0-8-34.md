@@ -4,7 +4,8 @@ toc_hide: true
 version: 00.08.34
 ---
 
-Make Namespaces and CustomResourceDefinitions cacheable 
-despite the use of `kubesvc.runtime.defaults.onlySpinnakerManaged` 
-configuration set to true; in this way the Spinnaker UI could show the
-information without matter of the value of that configuration.
+## Improvements
+
+Namespaces and CustomResourceDefinitions are now cacheable even when
+ `kubesvc.runtime.defaults.onlySpinnakerManaged` is set to `true`. This change allows the UI to show that information consistently regardless of how that property is configured.
+
