@@ -4,10 +4,13 @@ toc_hide: true
 version: 00.06.10
 ---
 
-Add support to read values of a map yaml configuration when they are not specified as string values.
-For example before when you add permission to agent like this : 
+## Improvements
 
-```
+Added support for reading values in a map (in config files) when they are not specified as string values. You no longer have to enclose the map values in quotes.
+
+Previously, when you added permissions to the Agent like the following:
+
+```yaml
 permissions:
   READ:
     - 123567
@@ -16,8 +19,8 @@ permissions:
     - 123567
     - 891234
 ```
-The permissions will be not load and it is because the values was expected to be strings not numbers;
-a quick solution to this was surround the values with quotes as following:
+
+The permissions did not load because the Agent expected strings and not numbers. You had surround the values with quotes like the following:
 ```
 permissions:
   READ:
