@@ -4,6 +4,6 @@ toc_hide: true
 version: 00.10.12
 ---
 
-### Fixes
+## Fixes
 
-* FIxed an issue that made initial agent registration took minutes to complete when using more than one redis node.
+Fixed an issue where the initial Agent registration longer than expected to complete when using more than one Redis node.
