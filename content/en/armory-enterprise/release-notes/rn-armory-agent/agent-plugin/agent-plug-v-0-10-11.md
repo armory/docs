@@ -6,5 +6,5 @@ version: 00.10.11
 
 ### Fixes
 
-* Fixed an issue where old agent connection information was not properly released after the agent reconnected again, potentially leading to stale agents.
-* Fixed an issue where the pub/sub subscription between clouddriver and redis sometimes couldn't be properly restored after a disconnection from Redis.
+* Fixed an issue where old Agent connection information was not released after the Agent reconnected, potentially leading to stale agents.
+* Fixed an issue where the pub/sub subscription between Clouddriver and Redis sometimes couldn't be restored after a disconnection from Redis.
