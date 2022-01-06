@@ -4,4 +4,7 @@ toc_hide: true
 version: 00.08.32
 ---
 
-Added store support for resourceVersion in kubernetes kinds.
+## New features
+
+Added store support for `resourceVersion` in Kubernetes kinds.
+
