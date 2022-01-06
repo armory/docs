@@ -6,4 +6,4 @@ version: 00.09.24
 
 ## Improvements
 
-Added support for reading `resourceVersion` in Manifest events.
+Added store support for `resourceVersion` in Kubernetes kinds.
