@@ -6,4 +6,4 @@ version: 00.08.36
 
 ### Fixes
 
-* FIxed an issue that made initial agent registration took minutes to complete when using more than one redis node.
+* Fixed an issue where initial Agent registration took longer than expected when using more than one Redis node.
