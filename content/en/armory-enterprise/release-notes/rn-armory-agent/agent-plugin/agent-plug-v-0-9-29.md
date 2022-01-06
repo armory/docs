@@ -4,4 +4,6 @@ toc_hide: true
 version: 00.09.29
 ---
 
-Maintenance to Mergify tool, for removing the deprecate use of strict mode on the merge action
+## Improvements
+
+Improved how the Agent is updated when a code change occurs. This is a backend infrastructure change for Armory and does not affect users.
