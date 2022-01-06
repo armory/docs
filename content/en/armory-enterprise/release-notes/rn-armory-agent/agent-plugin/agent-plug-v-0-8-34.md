@@ -6,6 +6,5 @@ version: 00.08.34
 
 ## Improvements
 
-Namespaces and CustomResourceDefinitions are now cacheable even when
- `kubesvc.runtime.defaults.onlySpinnakerManaged` is set to `true`. This change allows the UI to show that information consistently regardless of how that property is configured.
+Namespaces and CustomResourceDefinitions are now cacheable even when `kubesvc.runtime.defaults.onlySpinnakerManaged` is set to `true`. This change allows the UI to show that information consistently regardless of how that property is configured.
 
