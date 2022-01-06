@@ -4,4 +4,7 @@ toc_hide: true
 version: 00.08.33
 ---
 
-Added support for reading resourceVersion in Manifest events as well.
+## Improvements
+
+Added support for reading `resourceVersion` in Manifest events.
+
