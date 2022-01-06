@@ -6,7 +6,7 @@ version: 00.06.10
 
 ## Improvements
 
-Added support for reading values in a map (in config files) when they are not specified as string values. You no longer have to enclose the map values in quotes.
+Added support for reading values in a map (in config files) when they are not specified as string values. You no longer have to enclose the map values in quotes although you still can.
 
 Previously, when you added permissions to the Agent like the following:
 
