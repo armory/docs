@@ -144,7 +144,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 1. Create the directory where the CLI stores your credentials:
 
    ```bash
-   mkdir ~/.armory/credentials
+   mkdir ~/.armory
    ```
 
 2. Log in to Armory's hosted cloud services from the CLI:
