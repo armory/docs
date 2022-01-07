@@ -25,9 +25,8 @@ The Policy Engine Plugin can be enabled using the Armory Operator or Halyard.
 
 You can use the sample configuration to install the plugin, but keep the following in mind:
 
-- Make sure to replace the version number listed after `&version` with the version of the plugin you want to use. For a list of versions, see [Release notes](#release-notes).
+- Make sure to replace the version number listed after `&version` with the version of the plugin you want to use. For a list of supported versions for each Enterprise release, see [Release notes](#release-notes).
 
-- This configuration must go into `spinnakerservice.yml`. It cannot be patched in through Kustomize.
 
 
 <details><summary>Show the manifest</summary>
