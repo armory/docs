@@ -5,4 +5,6 @@ version: 01.00.01
 
 ---
 
-Uses podname as agentId.
+## Changes
+
+The Agent Service now uses `agentID` for the pod name. This can help with troubleshooting when trying to associate log messages with pods.
