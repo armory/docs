@@ -17,192 +17,29 @@ Make sure the following requirements are met:
 
 ## Setup
 
-The Policy Engine Plugin can be enabled using one of the following methods:
+The Policy Engine Plugin can be enabled using the Armory Operator or Halyard.
 
-1. Docker image as an init container on each affected service
-
-1. Using a remote plugin repository
-
-### Docker image as init container
 
 {{< tabs name="enable-plugin" >}}
 {{% tabbody name="Operator" %}}
 
 You can use the sample configuration to install the plugin, but keep the following in mind:
 
-- The `patchesStrategicMerge` section for each service is unique. Do not reuse the snippet from one service for the other services.
+- Make sure to replace the version number listed after `&version` with the version of the plugin you want to use. For a list of supported versions for each Enterprise release, see [Release notes](#release-notes).
 
-- Make sure to replace `<PLUGIN_VERSION>` with the version of the plugin you want to use. For a list of versions, see [Release notes](#release-notes).
-
-- This configuration must go into `spinnakerservice.yml`. It cannot be patched in through Kustomize.
 
 
 <details><summary>Show the manifest</summary>
 
-```yaml
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      # Configs in the spinnaker profile get applied to all services
-      spinnaker:
-        armory:
-          policyEngine:
-            opa:
-              # Replace with the actual URL to your Open Policy Agent deployment
-              baseUrl: https://opa.url:8181/v1/data
-              # Optional. The number of seconds that the Policy Engine will wait for a response from the OPA server. Default is 10 seconds if omitted.
-              # timeoutSeconds: <integer>
-        spinnaker:
-          extensibility:
-            repositories:
-              policyEngine:
-                enabled: true
-                # The init container will install plugins.json to this path.
-                url: file:///opt/spinnaker/lib/local-plugins/policy-engine/plugins.json
-      gate:
-        spinnaker:
-          extensibility:
-            plugins:
-              Armory.PolicyEngine:
-                enabled: true
-            deck-proxy:
-              enabled: true
-              plugins:
-                Armory.PolicyEngine:
-                  enabled: true
-                  version: <PLUGIN_VERSION>
+This manifest is in the [`spinnaker-kustomize-patches` repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml).
 
-      orca:
-        spinnaker:
-          extensibility:
-            plugins:
-              Armory.PolicyEngine:
-                enabled: true
+{{< github repo="armory/spinnaker-kustomize-patches" file="/armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
 
-      front50:
-        spinnaker:
-          extensibility:
-            plugins:
-              Armory.PolicyEngine:
-                enabled: true
-
-      clouddriver:
-        spinnaker:
-          extensibility:
-            plugins:
-              Armory.PolicyEngine:
-                enabled: true
-  kustomize:
-    front50:
-      deployment:
-        patchesStrategicMerge:
-          - |
-            spec:
-              template:
-                spec:
-                  initContainers:
-                    - name: policy-engine-install
-                      image: armory/policy-engine-plugin:<PLUGIN_VERSION>
-                      imagePullPolicy: Always
-                      args:
-                        - -install-path
-                        - /opt/policy-engine-plugin/target
-                      volumeMounts:
-                        - mountPath: /opt/policy-engine-plugin/target
-                          name: policy-engine-plugin-vol
-                  containers:
-                    - name: front50
-                      volumeMounts:
-                        - mountPath: /opt/spinnaker/lib/local-plugins
-                          name: policy-engine-plugin-vol
-                  volumes:
-                    - name: policy-engine-plugin-vol
-                      emptyDir: {}
-    orca:
-      deployment:
-        patchesStrategicMerge:
-          - |
-            spec:
-              template:
-                spec:
-                  initContainers:
-                    - name: policy-engine-install
-                      image: armory/policy-engine-plugin:<PLUGIN_VERSION>
-                      imagePullPolicy: Always
-                      args:
-                        - -install-path
-                        - /opt/policy-engine-plugin/target
-                      volumeMounts:
-                        - mountPath: /opt/policy-engine-plugin/target
-                          name: policy-engine-plugin-vol
-                  containers:
-                    - name: orca
-                      volumeMounts:
-                        - mountPath: /opt/spinnaker/lib/local-plugins
-                          name: policy-engine-plugin-vol
-                  volumes:
-                    - name: policy-engine-plugin-vol
-                      emptyDir: {}
-    gate:
-      deployment:
-        patchesStrategicMerge:
-          - |
-            spec:
-              template:
-                spec:
-                  initContainers:
-                    - name: policy-engine-install
-                      image: armory/policy-engine-plugin:<PLUGIN_VERSION>
-                      imagePullPolicy: Always
-                      args:
-                        - -install-path
-                        - /opt/policy-engine-plugin/target
-                      volumeMounts:
-                        - mountPath: /opt/policy-engine-plugin/target
-                          name: policy-engine-plugin-vol
-                  containers:
-                    - name: gate
-                      volumeMounts:
-                        - mountPath: /opt/spinnaker/lib/local-plugins
-                          name: policy-engine-plugin-vol
-                  volumes:
-                    - name: policy-engine-plugin-vol
-                      emptyDir: {}
-    clouddriver:
-      deployment:
-        patchesStrategicMerge:
-          - |
-            spec:
-              template:
-                spec:
-                  initContainers:
-                    - name: policy-engine-install
-                      image: armory/policy-engine-plugin:<PLUGIN_VERSION>
-                      imagePullPolicy: Always
-                      args:
-                        - -install-path
-                        - /opt/policy-engine-plugin/target
-                      volumeMounts:
-                        - mountPath: /opt/policy-engine-plugin/target
-                          name: policy-engine-plugin-vol
-                  containers:
-                    - name: clouddriver
-                      volumeMounts:
-                        - mountPath: /opt/spinnaker/lib/local-plugins
-                          name: policy-engine-plugin-vol
-                  volumes:
-                    - name: policy-engine-plugin-vol
-                      emptyDir: {}
-```
 
 ### Optional settings
 #### Timeout settings
 
-You can configure the amount of time that the Policy Engine waits for a response from your OPA server. If you have network or latency issues, increasing the timeout can make Policy Engine more resilient. Use the following config to set the timeout in seconds:  `spec.spinnakerConfig.profiles.spinnaker.armory.policyEngine.opa.timeoutSeconds`. The default timeout is 10 seconds if you omit the config.
+You can configure the amount of time that the Policy Engine waits for a response from your OPA server. If you have network or latency issues, increasing the timeout can make Policy Engine more resilient. Use the following config to set the timeout in seconds: `spec.spinnakerConfig.profiles.spinnaker.armory.policyEngine.opa.timeoutSeconds`. The default timeout is 10 seconds if you omit the config.
 
 </details>
 
@@ -296,23 +133,7 @@ You can configure the amount of time that the Policy Engine waits for a response
 {{% /tabbody %}}
 {{< /tabs >}}
 
-### Remote plugin repository
 
-The configuration is mostly identical to the Docker image method but omits all volumes and init container configurations. Additionally, replace all occurrences of the following:
-
-```yaml
-url: file:///opt/spinnaker/lib/local-plugins/policy-engine/plugins.json
-```
-
-with:
-
-```yaml
-url: https://raw.githubusercontent.com/armory-plugins/policy-engine-releases/master/repositories.json
-```
-
-If you do not omit the `volume` and `initContainers` configurations for the `patchesStrategicMerge` section, the pods for Armory may not start.
-
-For information about loading a policy, see [Using the Policy Engine]({{< ref "policy-engine-use#step-2-add-policies-to-opa" >}}).
 
 ## Release notes
 
