@@ -1,7 +1,7 @@
 ---
-title: v0.10.15 Armory Agent Clouddriver Plugin (2022-01-11)
+title: v0.9.31 Armory Agent Clouddriver Plugin (2022-01-11)
 toc_hide: true
-version: 00.10.15
+version: 00.09.31
 
 ---
 
@@ -11,7 +11,7 @@ version: 00.10.15
 
 ## Fixes
 
-* Fixed an issue where `Timeout exceeded for operation` errors occurred when running pipelines. This was caused by the Agent Clouddriver Plugin not subscribing to the Redis pub/sub channel in which operation requests are published. The issue was introduced in plugin version 0.10.11.
+* Fixed an issue where `Timeout exceeded for operation` errors occurred when running pipelines. This was caused by the Agent Clouddriver Plugin not subscribing to the Redis pub/sub channel in which operation requests are published. The issue was introduced in plugin version 0.9.27.
 
 ## Known issues
 
