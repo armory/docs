@@ -5,20 +5,25 @@ version: 00.08.39
 
 ---
 
-## New
+## New features 
 
-* The clouddriver identifier used in logs and database that uniquely identifies a replica is now the pod name instead of a UUID. This facilitates correlating logs across different replicas to the right instance.
+* You can now correlate information across different logs more easily. The Clouddriver identifier used in logs and the database that identify a replica is now the pod name. Previously, a UUID was used.
 
 ## Fixes
 
-* This release fixes "Timeout exceeded for operation" errors seeing when running pipelines, which was caused by cloudriver plugin not subscribing to the redis pubsub channel in which operation requests are published. This bug was introduced in plugin version 0.8.35.
+* Fixed an issue where `Timeout exceeded for operation` errors occurred when running pipelines. This was caused by the Agent Clouddriver Plugin not subscribing to the Redis pub/sub channel in which operation requests are published. The issue was introduced in plugin version 0.8.35.
 
 ## Known issues
 
-After clouddriver restarts the following intermittent errors may happen when running pipelines, which get healed after a few minutes:
-* "Timeout exceeded for operation": The cause is different from the cause fixed in this release.
-* "Credentials not found"
+### Errors after a restart
 
+After Clouddriver restarts, the following intermittent errors may happen when running pipelines:
 
-This error also happens intermittently but is not healed automatically, instead a clouddriver or agent restart can fix it:
-* "Access denied to account"
+* `Timeout exceeded for operation`: The cause of this instance of the error is different from the issue fixed in this release.
+* `Credentials not found`
+
+Both of these issues resolve themselves after a few minutes.
+
+### Access denied error
+
+You may encounter the following error intermittently: `Access denied to account`. To resolve the issue, restart CLouddriver or the Agent.
