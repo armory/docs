@@ -15,15 +15,10 @@ version: 00.08.39
 
 ## Known issues
 
-### Errors after a restart
+## Known issues
 
-After Clouddriver restarts, the following intermittent errors may happen when running pipelines:
+{{< include "known-issues/ki-agent-restart.md" >}}
 
-* `Timeout exceeded for operation`: The cause of this instance of the error is different from the issue fixed in this release.
-* `Credentials not found`
+{{< include "known-issues/ki-agent-access-denied.md" >}}
 
-Both of these issues resolve themselves after a few minutes.
-
-### Access denied error
-
-You may encounter the following error intermittently: `Access denied to account`. To resolve the issue, restart CLouddriver or the Agent.
+{{< include "known-issues/ki-agent-redis-scheduler.md" >}}
