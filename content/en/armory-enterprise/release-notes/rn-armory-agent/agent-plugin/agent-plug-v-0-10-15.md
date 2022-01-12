@@ -27,3 +27,10 @@ Both of these issues resolve themselves after a few minutes.
 ### Access denied error
 
 You may encounter the following error intermittently: `Access denied to account`. To resolve the issue, restart CLouddriver or the Agent.
+
+### Redis scheduler errors
+
+If you use the Redis scheduler, you may encounter the following errors under certain race conditions:
+
+- `ERR wrong number of arguments for 'subscribe' command`
+- `ERR only (P)SUBSCRIBE / (P)UNSUBSCRIBE / PING / QUIT allowed in this context`
