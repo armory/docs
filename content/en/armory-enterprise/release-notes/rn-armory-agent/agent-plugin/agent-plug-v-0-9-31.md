@@ -15,22 +15,8 @@ version: 00.09.31
 
 ## Known issues
 
-### Errors after a restart
+{{< include "known-issues/ki-agent-restart.md" >}}
 
-After Clouddriver restarts, the following intermittent errors may happen when running pipelines:
+{{< include "known-issues/ki-agent-access-denied.md" >}}
 
-* `Timeout exceeded for operation`: The cause of this instance of the error is different from the issue fixed in this release.
-* `Credentials not found`
-
-Both of these issues resolve themselves after a few minutes.
-
-### Access denied error
-
-You may encounter the following error intermittently: `Access denied to account`. To resolve the issue, restart CLouddriver or the Agent.
-
-### Redis scheduler errors
-
-If you use the Redis scheduler, you may encounter the following errors under certain race conditions:
-
-- `ERR wrong number of arguments for 'subscribe' command`
-- `ERR only (P)SUBSCRIBE / (P)UNSUBSCRIBE / PING / QUIT allowed in this context`
+{{< include "known-issues/ki-agent-redis-scheduler.md" >}}
