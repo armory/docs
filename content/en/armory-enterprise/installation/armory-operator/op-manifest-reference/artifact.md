@@ -35,6 +35,8 @@ artifacts:
     - name:
       username:
       password:
+      token:
+      tokenFile:
       usernamePasswordFile:
 ```
 
@@ -45,6 +47,8 @@ artifacts:
 - `username`: Bitbucket username
 - `password`: Bitbucket password. Supports encrypted value.
 - `usernamePasswordFile`: File containing "username:password" to use for Bitbucket authentication. File needs to be present on the machine running Spinnaker. Supports encrypted file.
+- `token`: Bitbucket Server token. Supports encrypted value.
+- `tokenFile`: File containing a Bitbucket Server authentication token. File needs to be present on the machine running Spinnaker. Supports encrypted file. This file can be dynamically updated because it is automatically reloaded each time Armory Enterprise makes a request.
 
 Note: supply `username` and `password` OR `usernamePasswordFile`
 
