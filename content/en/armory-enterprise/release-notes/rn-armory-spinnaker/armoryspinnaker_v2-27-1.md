@@ -111,12 +111,6 @@ For more information, see [Instance Registration]({{< ref "ae-instance-reg" >}})
 {{< include "breaking-changes/bc-plug-version-lts-227.md" >}}
 
 
-
-###  Spinnaker Community Contributions
-
-There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
-[Spinnaker v1.27.0](https://www.spinnaker.io/changelogs/1.27.0-changelog/) changelog for details.
-
 ## Detailed updates
 
 ### Bill Of Materials (BOM)

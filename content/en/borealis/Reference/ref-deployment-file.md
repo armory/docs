@@ -9,7 +9,7 @@ exclude_search: true
 
 The deployment file is what you use to define how and where your app gets deployed to.
 
-You can see what a blank deployment file looks like in the [Tempalte file](#template-file) section. To see a filled out example, see [Example file](#example-file).
+You can see what a blank deployment file looks like in the [Template file](#template-file) section. To see a filled out example, see [Example file](#example-file).
 
 ## Blank template
 
@@ -35,74 +35,7 @@ armory template kubernetes canary > deployment-template.yaml
 
 <details><summary>Show me a completed deployment file</summary>
 
-```yaml
-version: v1
-kind: kubernetes
-application: stream-app
-# Map of deployment target
-targets:
-  # Provide a descriptive name for the deployment, such as the environment name.
-  dev-west:
-    # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
-    account: cdf-dev
-    # Optionally, override the namespaces that are in the manifests
-    namespace: cdf-dev-agent
-    # This is the key that references a strategy you define under the strategies section of the file.
-    strategy: canary-wait-til-approved
-    # Note that there is no constraints block. This is the initial deployment to the dev environment.
-  prod-west:
-    # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
-    account: cdf-prod
-    # Optionally, override the namespaces that are in the manifests
-    namespace: cdf-prod-agent
-    # This is the key that references a strategy you define under the strategies section of the file.
-    strategy: prod-canary
-    # Constraints are conditions that need to be satisfied before deployment to this target begins. Omitting constraints causes a deployment to start immediately. You can specify multiple conditions.
-    constraints:
-      # The deployment that must finish before this deployment can begin.
-      dependsOn:["dev-west"]
-      beforeDeployment:
-        - pause: # Wait until the child action is taken.
-            untilApproved: true # Wait for a manual judgment to start deploying to this target.
-# The list of manifests sources
-manifests:
-  # A directory containing multiple manifests. Borealis reads all yaml|yml files in the directory and deploy all manifests to the target defined in`targets`.
-  - path: /deployments/manifests/configmaps
-    targets: ["dev-west"]
-  # A specific manifest file that gets deployed to the target defined in `targets`.
-  - path: /deployments/manifests/deployment.yaml
-    targets: ["prod-west"]
-# The map of strategies that you can use to deploy your app.
-strategies:
-  # The name for a strategy, which you use for the `strategy` key to select one to use.
-  canary-wait-til-approved:
-    # The deployment strategy type. Borealis supports `canary`.
-    canary:
-      # List of canary steps
-      steps:
-      # The map key is the step type. First configure `setWeight` for the weight (how much of the cluster the app should deploy to for a step).
-        - setWeight:
-            weight: 33 # Deploy the app to 33% of the cluster.
-        - pause: 
-            duration: 60 # Wait 60 seconds before starting the next step.
-            unit: seconds
-        - setWeight:
-            weight: 66 # Deploy the app to 66% of the cluster.
-        - pause:
-            untilApproved: true # Wait until approval is given through the Borealis CLI or Status UI.
-  prod-canary:
-    # The deployment strategy type. Borealis supports `canary`.
-    canary:
-      # List of canary steps
-      steps:
-      # The map key is the step type. First configure `setWeight` for the weight (how much of the cluster the app should deploy to for a step).
-        - setWeight:
-            weight: 50 # Deploy the app to 50% of the cluster.
-        - pause:
-            untilApproved: true # Wait until approval is given through the Borealis CLI or Status UI.
-            unit: seconds
-
-```
+{{< include "aurora-borealis/borealis-yaml-example.md" >}}
 
 </details><br>
 
@@ -113,7 +46,7 @@ Provide a descriptive name for your application so that you can identify it when
 
 ## `targets.`
 
-This config block is where you define where and how you want to deploy an app. You can specify multiple targets. Provide unique descriptive names for them.
+This config block is where you define where and how you want to deploy an app. You can specify multiple targets. Provide unique descriptive names for each environment to which you are deploying.
 
 ```yaml
 targets:
@@ -144,7 +77,7 @@ The account name that a target Kubernetes cluster got assigned when you installe
 
 This name must match an existing cluster because Borealis uses the account name to determine which cluster to deploy to.
 
-For example, this snippet configures a deployment to a cluster named `prod-cluster-west` in the deployment named `prod`:
+For example, this snippet configures a deployment to an environment named `prod` that is hosted on a cluster named `prod-cluster-west`:
 
 ```yaml
 targets:
@@ -206,7 +139,7 @@ targets:
 
 #### `targets.<targetName>.constraints.dependsOn`
 
-A comma-separated list of deployments that must finish before this deployment can start. You can use this option to sequence deployments. For example, you cna make it so that a deployment to prod cannot happen until a staging deployment finishes successfully.
+A comma-separated list of deployments that must finish before this deployment can start. You can use this option to sequence deployments. For example, you can make it so that a deployment to prod cannot happen until a staging deployment finishes successfully.
 
 The following example shows a deployment to `prod-west` that cannot start until the `dev-west` target finishes:
 
@@ -282,7 +215,7 @@ The path to a manifest file that you want to deploy or the directory where your 
 
 ### `manifests.path.targets`
 
-A comma-separated list of deployment targets that you want to deploy the manifests to. Make sure to enclose each target in quotes. Use the name you defined in `targets.<targetName>` to refer to a deployment target.
+(Optional). If you omit this option, the manifests are deployed to all targets listed in the deployment file. A comma-separated list of deployment targets that you want to deploy the manifests to. Make sure to enclose each target in quotes. Use the name you defined in `targets.<targetName>` to refer to a deployment target. 
 
 ## `strategies.`
 

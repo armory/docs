@@ -106,10 +106,6 @@ Note that registration does not automatically turn on Armory Diagnostics. This m
 For more information, see [Environment Registration]({{< ref "ae-instance-reg" >}}).
 
 
-###  Spinnaker Community Contributions
-
-There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
-[Spinnaker v1.27.0](https://www.spinnaker.io/changelogs/1.27.0-changelog/) changelog for details.
 
 ## Detailed updates
 

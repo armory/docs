@@ -51,12 +51,6 @@ This release includes a security fix. For more information, see the Critical Not
 
 This release includes a security fix. For more information, see the Critical Notification that Armory's Support Team sent out on 14 December 2021, contact your Armory account rep, or see this (login required) Support article: https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010520.
 
-
-###  Spinnaker Community Contributions
-
-There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
-[Spinnaker v1.27.0](https://www.spinnaker.io/changelogs/1.27.0-changelog/) changelog for details.
-
 ## Detailed updates
 
 ### Bill Of Materials (BOM)
