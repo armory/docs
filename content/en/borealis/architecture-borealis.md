@@ -128,7 +128,7 @@ The following network endpoints are used for communication into Armory Cloud:
 
 #### Encryption in transit
 
-All data is encrypted in transit between Clients and Armory Cloud. 
+All data is encrypted using end-to-end encryption while in transit.
 
 Encryption in transit is over HTTPS using TLS encryption. When using Armory-provided software for both the client and server, these connections are secured by TLS 1.2. Certain APIs support older TLS versions for clients that do not support 1.2.
 
