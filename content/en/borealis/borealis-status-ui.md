@@ -53,4 +53,4 @@ To invite a user, you need their name and email. Note that the email domain must
 
 ### Secrets
 
-Manage the secrets that you use for the Remote Network Agent (RNA). 
+Manage the secrets that you use for the Remote Network Agent (RNA) and to grant programmatic access to Borealis, such as when you configure the GitHub Action.
