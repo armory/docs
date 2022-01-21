@@ -1,20 +1,24 @@
 ---
 title: v2.26.5 Armory Release (OSS Spinnaker™ v1.26.6)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping --> 
+version: 02.26.05
 description: >
   Release notes for Armory Enterprise v2.26.5 
 ---
 
-## 2022/01/80 Release Notes
+## 2022/01/21 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.26.5, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+To install, upgrade, or configure Armory 2.26.4, use one of the following tools:
+​
+- Armory-extended Halyard 1.12 or later
+  - 2.26.x is the last minor release that you can use Halyard to install or manage. Future releases require the Armory Operator. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
+​
+- Armory Operator 1.2.6 or later
 
 ## Security
 
@@ -25,8 +29,18 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
+{{< include "breaking-changes/bc-java-tls-mysql.md" >}}
+​
+{{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
+​
+{{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
+{{< include "known-issues/ki-bake-var-file.md" >}}
+{{< include "known-issues/ki-artifact-binding-spel.md" >}}
+{{< include "known-issues/ki-dinghy-gh-notifications.md" >}}
 
 ## Highlighted updates
 
@@ -36,7 +50,11 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
+### Terraform Show stage 
 
+There is a new Terraform Show stage available as part of the Terraform Integration. This stage is the equivalent of running the `terraform show` command with Terraform. The JSON output from your `planfile` can be used in subsequent stages.
+
+To use the stage, select it from the stage configuration UI. Note that the Show stage depends on your Plan stage. For more information, see the [Show Stage section in the Terraform Integration docs]({{< ref "terraform-use-integration" >}}).
 
 
 ###  Spinnaker Community Contributions
