@@ -51,6 +51,28 @@ For this stage, configure the following:
 
 The output of this stage, the embedded artifact named `planfile`, can get consumed by subsequent stages in this pipeline. In this example, this occurs during the final stage of the pipeline. Additionally, more complex use cases that involve parent-child pipelines can also use plan files.
 
+**Show stage**
+
+The Show stage performs the same action as running the `terraform show` command.
+You can then use the JSON output from your `planfile` in subsequent stages.
+
+The Show stage depends on the Plan stage. For the Show stage, configure the following:
+
+- For the **Terraform version**, pick the same version as you did you for the Plan stage.
+- For the **Action**, choose **Show**.
+- For **Main Terraform Artifact**
+  - Select **Expected Artifact > Artifact from execution context**
+    - Select **Account > <YourGitRepo>**. This is the Git repo that was configured when you enabled the Terraform Integration and houses your Terraform code.
+    - In **URL**, add the URL to the Git repo that houses your Terraform code.
+    - In **Branch**, add the branch your code is in.
+- For **Terraform Plan**, add the `planfile` from the dropdown. This is the artifact you created in the Plan stage.
+- All other fields can be left blank or with their default values for this example.
+
+You can add an Evaluate Variables stage to get the output from the `planfile` JSON created by the Show stage and use it in subsequent stages.
+
+- **Variable Name**: `planfile_json`
+- **Variable Value**: `${#stage('Show').outputs.status.outputs.show.planfile_json}`
+
 **Manual Judgment stage**
 
 You can use the default values for this stage. Manual judgment stages ask the user to approve or fail a pipeline. Having a Manual Judgment stage between a Plan and Apply stage gives you a chance to confirm that the Terraform code is doing what you expect it to do.
