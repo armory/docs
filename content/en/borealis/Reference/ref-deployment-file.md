@@ -139,7 +139,7 @@ targets:
 
 #### `targets.<targetName>.constraints.dependsOn`
 
-A comma-separated list of deployments that must finish before this deployment can start. You can use this option to sequence deployments. For example, you can make it so that a deployment to prod cannot happen until a staging deployment finishes successfully.
+A comma-separated list of deployments that must finish before this deployment can start. You can use this option to sequence deployments. Deployments with the same `dependsOn` criteria execute in parallel. For example, you can make it so that a deployment to prod cannot happen until a staging deployment finishes successfully.
 
 The following example shows a deployment to `prod-west` that cannot start until the `dev-west` target finishes:
 
@@ -239,7 +239,7 @@ strategies:
 
 ### `strategies.<strategyName>`
 
-The name you assign to the strategy. Use this name for `targets.<targetName>.strategy`. You can define multiple stragies, so make sure to use a unique descriptive name for each.
+The name you assign to the strategy. Use this name for `targets.<targetName>.strategy`. You can define multiple strategies, so make sure to use a unique descriptive name for each.
 
 For example, this snippet names the strategy `canary-wait-til-approved`:
 
