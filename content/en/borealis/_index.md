@@ -13,7 +13,7 @@ Borealis supports performing canary deployments. The canary deployment strategy 
 
 To help you understand how Borealis works, familiarize yourself with the following terms:
 
-- **Environment**: environments are used in two ways for Borealis depending on the context.
+- **Environment**: environments are used in two ways for Borealis, depending on the context.
   - **Cloud Console**: the Borealis backend and Cloud Console UI uses environments to isolate users and secrets. Users and secrets for one environment do not have access to other environments. That means a user in environment A cannot access secrets or deployments in environment B.
   - **Deployments**: for deployments, the environment consists of the  target Kubernetes cluster, namespace, deployment strategy, and constraints (dependencies).
 - **Deployment/deploy file**: the deployment file is a YAML file that you use to define where you want to deploy to (the environments), what  you want to deploy (the manifests), and how you want to deploy (the strategy). You can generate a template for the file using the Borealis CLI. For more information, see the [Deployment File Reference]({{< ref "ref-deployment-file" >}}).
