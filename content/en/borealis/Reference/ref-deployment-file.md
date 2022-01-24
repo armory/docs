@@ -73,9 +73,9 @@ targets:
 
 ### `targets.<targetName>.account`
 
-The account name that a target Kubernetes cluster got assigned when you installed the Remote Network Agent (RNA) on it. Specifically, it is the value for the `agent-k8s.accountName` parameter.
+The account name that a target Kubernetes cluster got assigned when you installed the Remote Network Agent (RNA) on it. Specifically, it is the value for the `agentIdentifier` parameter. Note that older versions of the RNA used the `agent-k8s.accountName` parameter.
 
-This name must match an existing cluster because Borealis uses the account name to determine which cluster to deploy to.
+This name must match an existing cluster because Borealis uses the identifier to determine which cluster to deploy to.
 
 For example, this snippet configures a deployment to an environment named `prod` that is hosted on a cluster named `prod-cluster-west`:
 

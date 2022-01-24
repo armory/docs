@@ -6,6 +6,8 @@ description: >
 exclude_search: true
 ---
 
+> If you installed an older version of the Remote Network Agent (RNA) using the Helm chart in `armory/aurora`, migrate to the new version by updating the Helm chart that is used. For more information, see [Migrate to the new RNA](#migrate-to-the-new-rna).
+
 ## {{% heading "prereq" %}}
 
 Review the requirements for using Borealis on the [Requirements]({{< ref "borealis-requirements.md" >}}) page.
@@ -30,9 +32,8 @@ To start, create the client credentials for the RNA on your deployment target:
 
 ## Prepare your deployment target
 
-> Note that this step requires Helm.
+Borealis uses the RNA on your deployment target to communicate with Armory's hosted cloud services and to initiate the deployment. If your Kubernetes cluster is publicly accessible, 
 
-Borealis uses the RNA on your deployment target to communicate with Armory's hosted cloud services and to initiate the deployment. Use the provided Helm command to install and configure the RNA.
 
 {{< include "aurora-borealis/rna-install.md" >}}
 
@@ -52,3 +53,27 @@ For your users to get access to Borealis, you must invite them to your organizat
 2. In the left navigation, go to **Users** and select **Invite User**.
 3. Provide the name and email address for the user you want to invite.
 4. Send the inviation.
+
+## Migrate to the new RNA
+
+You do not need to do this if you are installing the RNA for the first time.
+
+
+1. Navigate to the [Machine to Machine Client Credentials](https://console.cloud.armory.io/configuration/credentials) page in the Cloud Console.
+2. Verify the permissions for the RNA you are using for your deployment targets. They must have the `connect:agentHub` scope. This permission is used to connect the RNA endpoint.
+3. Verify that you are in the correct Kubernetes context. The context should be for the deployment target cluster.
+4. Change the Helm chart that is being used.
+
+   If you installed the RNA by providing your `clientID` and `clientSecret` in plain text, now is a good time to update those values to use a secret engine.
+
+     * If you use a secret engine, pass the encrypted value for the parameter in the command, such as `'encrypted:k8s!n:rna-client-credentials!k:client-secret'`. Armory supports the following secret engines: Vault, Kubernetes secrets, encrypted GCS buckets, encrypted S3 buckets, and AWS Secrets Manager. See the documentation for your secrets engine for the format of the encrypted value.
+     * The values for `clientId` and `clientSecret` can be passed as secrets by using environment variables. Instead of supplying the plaintext value, use an environment variable such as `${RNA_CLIENT_ID}` and `${RNA_CLIENT_SECRET}`. Then, attach environment variables with the same names to the pod. For more information, see the [Kubernetes documentation on using secrets as environment variables](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/).
+
+   ```bash
+   helm repo update
+   helm upgrade armory-rna armory/remote-network-agent \
+     --set agent-k8s.clientId='encrypted:k8s!n:rna-client-credentials!k:client-id' \
+     --set agent-k8s.clientSecret='encrypted:k8s!n:rna-client-credentials!k:client-secret'
+    ```
+
+    Omit the two `set` options if you are already using a secret engine.
