@@ -1,8 +1,8 @@
 ---
-title: Include file changes
+title: Fake page to watch changes
 linkTitle: 
 weight: 99999
-summary: Draft file I use to update include files so that they render
+summary: "This is not a real page. It's a draft file I use to update include files so that they render in builds dynamically."
 draft: true
 ---
 
@@ -67,7 +67,7 @@ If you installed an older version of the RNA that used the Helm chart stored in 
 3. Verify that you are in the correct Kubernetes context. The context should be for the deployment target cluster.
 4. Change the Helm chart that is being used.
 
-   If you installed the RNA by providing your `clientID` and `clientSecret` in plain text, now is a good time to update those values to use a secret engine.
+   If you installed the RNA by providing your `clientID` and `clientSecret` in plaintext, now is a good time to update those values to use a secret engine.
 
      * If you use a secret engine, pass the encrypted value for the parameter in the command, such as `'encrypted:k8s!n:rna-client-credentials!k:client-secret'`. Armory supports the following secret engines: Vault, Kubernetes secrets, encrypted GCS buckets, encrypted S3 buckets, and AWS Secrets Manager. See the documentation for your secrets engine for the format of the encrypted value.
      * The values for `clientId` and `clientSecret` can be passed as secrets by using environment variables. Instead of supplying the plaintext value, use an environment variable such as `${RNA_CLIENT_ID}` and `${RNA_CLIENT_SECRET}`. Then, attach environment variables with the same names to the pod. For more information, see the [Kubernetes documentation on using secrets as environment variables](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/).
