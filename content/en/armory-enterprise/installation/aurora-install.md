@@ -12,6 +12,7 @@ aliases:
 {{% include "aurora-borealis/borealis-ea-banner.md" %}}
 {{< /alert >}}
 
+> If you installed an older version of the Remote Network Agent (RNA) using the Helm chart in `armory/aurora`, migrate to the new version by updating the Helm chart that is used. For more information, see [Migrate to the new RNA](#migrate-to-the-new-rna).
 
 ## Overview
 
@@ -84,6 +85,7 @@ Register your Armory Enterprise environment so that it can communicate with Armo
    - `read:infra:data`
    - `exec:infra:op`
    - `read:artifacts:data`
+   - `connect:agentHub`
 
    > Note that removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
 
@@ -94,9 +96,6 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 This section walks you through installing the Remote Network Agent (RNA) using a Helm chart.
 
 {{< include "aurora-borealis/rna-install.md" >}}
-
-
-
 
 If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings.
 
@@ -129,8 +128,11 @@ With the file, you can configure multiple configs in addition to the `env` confi
 
 </details>
 
+### Migrate to the new RNA 
 
+You do not need to do this migration if you are installing the RNA for the first time.
 
+{{< include "aurora-borealis/borealis-rna-wormhole-migrate.md" >}}
 
 ### Verify the Agent deployment
 
