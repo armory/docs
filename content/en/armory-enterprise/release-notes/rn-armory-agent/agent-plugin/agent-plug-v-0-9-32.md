@@ -5,10 +5,14 @@ version: 00.09.32
 
 ---
 
-### Fixes
-* Fixed a race condition where accounts onboarded by agent were not available in clouddriver, which occured when an internal load balancing process ran exactly at the same time as the initial agent registration.
-* Redis errors like "ERR wrong number of arguments for 'subscribe' command" or "class java.util.ArrayList cannot be cast to class java.lang.Long" don't appear anymore after separating redis pools from agent and redis scheduler.
+## Fixes
 
-### New
-* Clouddriver REST endpoint "/armory/agents" outputs information about all registered agents, which accounts they have and to which clouddriver instance they are connected.
-* Clouddriver REST endpoint "/armory/agent/operations/{opId}" outputs details about which pods processed the operation in question and at which times.
+* Fixed a race condition where accounts onboarded by the Agent were not available in Clouddriver. This occured when an internal load balancing process ran exactly at the same time as the initial Agent registration.
+* Redis errors like "ERR wrong number of arguments for 'subscribe' command" or "class java.util.ArrayList cannot be cast to class java.lang.Long" no longer appear. The Redis pools from Agent and the Redis scheduler have been separated.
+
+## New features
+
+There are two new Clouddriver REST endpoints:
+
+* `/armory/agents` returns information about all registered agents, which accounts they have and to which clouddriver instance they are connected.
+* `/armory/agent/operations/{opId}` returns details about which pods processed the operation in question and at which times.
