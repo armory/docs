@@ -1,15 +1,9 @@
 ---
-title: Borealis UI Overview
-linkTitle: Borealis UI
+title: Status UI
 description: >
-  The Borealis UI has two main uses. You can monitor the status of your deployments and perform administrative tasks such as user and secrets management.
+  Monitor the status of your deployments and approve or rollback deployments.
 exclude_search: true
-weight: 40
 ---
-
-The [**Deployment Status** UI](#deployment-status-ui) provides an overview of all the deployments you have access to and their status at a glance. When you select a deployment, you're shown more granular details, such as when the deployment started and who started it.
-
-The [**Configuration** UI](#configuration-ui) is where you perform actions such as managing users and secrets.
 
 
 ## Deployment Status UI
@@ -42,15 +36,3 @@ Clicking on a specific environment brings up a status pane with basic informatio
 The **Full Details** page for a single environment is where you monitor the progress of the deployment to that environment. If the strategy you specified involves user input, such as a manual approval, this is the page where you can approve or rollback the deployment.
 
 {{< figure src="/images/borealis/borealis-ui-fulldetails.jpg" >}}
-
-## Configuration UI
-
-In the Configuration UI, you can invite users and manage secrets.
-
-### Invite users
-
-To invite a user, you need their name and email. Note that the email domain must match your organization's format. For example, users that work for Acme (which uses `username@acme.com`) must have `@acme.com` email addresses. They are automatically added to your organization once they accept the invite and complete the sign up.
-
-### Secrets
-
-Manage the secrets that you use for the Remote Network Agent (RNA) and to grant programmatic access to Borealis, such as when you configure the GitHub Action.
