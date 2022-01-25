@@ -16,7 +16,7 @@ Review the requirements for using Borealis on the [Requirements]({{< ref "boreal
 
 {{< include "aurora-borealis/borealis-login-creds" >}}
 
-Every user who wants to deploy to your clusters using Borealis must have an account. For information about inviting users, see [Invite users](#invite-users).
+Every user who wants to deploy to your clusters using Borealis must have an account. For information about inviting users, see [Invite users]({{< ref "borealis-configuration-ui#invite-users" >}}).
 
 
 
@@ -66,8 +66,8 @@ If your cluster is accessible through the public internet, start here. If your c
 
 1. Navigate to the [**Deployment Targets > Kubernetes**](https://console.cloud.armory.io/configuration/accounts/kubernetes) page in the **Configuration UI**.
 2. Add a new Kubernetes account and supply the following information:
-   
-   - **Account Name**: (Required) This is how the account is labeled in the **Configuration** and **Armory Deployments Status UI**. Use a descriptive name. It is the equivalent of the `identifier` parameter for clusters that are connected manually. If you manually installed the RNA on a cluster, make sure you use the same name.
+
+   - **Account Name**: (Required) This is how the account is labeled in the **Configuration** and **Armory Deployments Status UI**. Use a descriptive name. It is the equivalent of the `agentIdentifier`, so use the same value for clusters that are connected manually by installing an RNA. 
    - **Kubeconfig**: (Optional) The kubeconfig used to access the cluster. Provide this if you did not install the RNA manually and want Borealis to use the kubeconfig to access the cluster.
    - **Context**: (Optional) The context used to access the cluster. When no context is configured for an account the current-context in your kubeconfig is assumed. For more information, see [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-cluster-api/configure-access-multiple-clusters/).
    - **Remote Network Agent**: (Optional) The RNA that is installed on the cluster. This is required if the cluster is not accessible through the public internet.
@@ -80,15 +80,6 @@ Now that Borealis is configured for your deployment target, you can either try o
 ### Deploy an app
 
 Use the [Borealis Quickstart CLI Guide]({{< ref "borealis-cli-get-started.md" >}}) to learn how to manually deploy an app using the Borealis CLI.
-
-### Invite users
-
-For your users to get access to Borealis, you must invite them to your organization. This grants them access to the Cloud Console and the Status UI.
-
-1. Navigate to the Cloud Console: https://console.cloud.armory.io.
-2. In the left navigation, go to **Users** and select **Invite User**.
-3. Provide the name and email address for the user you want to invite.
-4. Send the inviation.
 
 ## Migrate to the new RNA
 
