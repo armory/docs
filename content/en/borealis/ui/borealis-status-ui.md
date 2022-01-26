@@ -1,5 +1,6 @@
 ---
-title: Status UI
+title: Armory Deployments Status UI
+linkTitle: Status UI
 description: >
   Monitor the status of your deployments and approve or rollback deployments.
 exclude_search: true
@@ -27,7 +28,7 @@ On this page, you can see all the environments that are being deployed to in a s
 
 More specifically, this view shows you how deployments are supposed to progress through different environments based on the constraints that are defined in the deploy file. An environment that is waiting for one or more constraints to be satisfied is connected to the preceding deployment by a dotted line and is greyed out.
 
-{{< figure src="/images'borealis/borealis-ui-constraints.jpg" alt="The staging-west environment has constraints that prevent it from starting until they are satisfied." >}}
+{{< figure src="/images/borealis/borealis-ui-constraints.jpg" alt="The staging-west environment has constraints that prevent it from starting until they are satisfied." >}}
 
 Clicking on a specific environment brings up a status pane with basic information about that environment. From here, you can see the **Full Details** for that single environment where you can take additional action.
 

@@ -34,10 +34,12 @@ If your deployment target is not accessible, you need to complete the following 
 
 ### Create client credentials
 
+Skip this section if your Kubernetes cluster is accessible through the public internet. Go to [Add the cluster to Borealis](#add-the-cluster-to-borealis).
+
 <details><summary>Show me how to get client credentials</summary>
 <br>
 
-Skip this section if your Kubernetes cluster is accessible through the public internet.
+
 
 Create machine-to-machine client credentials for the various service accounts that you will need. These credentials are machine credentials that are meant for authentication when using Borealis programmatically. The credentials consist of a client ID and a client secret. Make sure to keep the secret somewhere safe. You cannot retrieve secrets that you lose access to. You would need to create a new set of credentials and update any services that used the credentials that you are replacing.
 
@@ -53,9 +55,10 @@ To start, create the client credentials for the RNA on your deployment target:
 
 ### Install the RNA
 
+Skip this section if your Kubernetes cluster is accessible through the public internet. Go to [Add the cluster to Borealis](#add-the-cluster-to-borealis).
+
 <details><summary>Show me how to install the RNA</summary>
-<br>
-Skip this section if your Kubernetes cluster is accessible through the public internet.
+
 {{< include "aurora-borealis/rna-install.md" >}}
 
 </details>
