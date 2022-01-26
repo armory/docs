@@ -12,7 +12,10 @@
    helm repo update
    helm upgrade armory-rna armory/remote-network-agent \
      --set agent-k8s.clientId='encrypted:k8s!n:rna-client-credentials!k:client-id' \
-     --set agent-k8s.clientSecret='encrypted:k8s!n:rna-client-credentials!k:client-secret'
+     --set agent-k8s.clientSecret='encrypted:k8s!n:rna-client-credentials!k:client-secret' \
+     --namespace armory-rna
     ```
 
     Omit the two `set` options if you are already using a secret engine.
+
+    If you encounter the following error, make sure you specify the namespace in your Helm command: `Error: UPGRADE FAILED: "armory-rna" has no deployed releases.`

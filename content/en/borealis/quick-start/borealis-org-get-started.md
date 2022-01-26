@@ -18,8 +18,6 @@ Review the requirements for using Borealis on the [Requirements]({{< ref "boreal
 
 Every user who wants to deploy to your clusters using Borealis must have an account. For information about inviting users, see [Invite users]({{< ref "borealis-configuration-ui#invite-users" >}}).
 
-
-
 ## Prepare your deployment target
 
 There are two ways to add a deployment target to Borealis. If the Kubernetes cluster is accessible through the public internet, you can use the **Configuration UI** to add the target. If the cluster is not accessible, you need to manually install the Remote Network Agent (RNA) on the cluster. Borealis uses the RNA on your deployment target to communicate with Armory's hosted cloud services and to initiate the deployment. 
