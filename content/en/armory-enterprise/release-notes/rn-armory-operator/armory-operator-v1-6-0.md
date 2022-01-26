@@ -17,7 +17,7 @@ No known issues.
 
 ## Highlighted updates
 
-This release improves configuration options for Sidecars with support for `resources` as well as `readinessProbe` and `startupProbe`.
+Operator now supports the following configuration options for sidecars: `resources`,`readinessProbe`,  and `startupProbe`.
 
 ### Armory Operator
 
