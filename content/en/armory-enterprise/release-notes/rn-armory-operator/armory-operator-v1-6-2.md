@@ -23,4 +23,3 @@ Operator now supports the following configuration options for sidecars: `resourc
 
 * feat(sidecars): Support resources and startup|readiness probes
 * feat(artifacts/bitbucket): Support token credentials
-* chore(halyard) Update halyard version
