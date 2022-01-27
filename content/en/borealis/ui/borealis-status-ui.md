@@ -20,9 +20,11 @@ On the **All Deployments** page, you can select a specific app to get more detai
  
 Select **See Full Details** from the status pane on the **All Deployments**, you arrive on the **All Environments** page, which shows all the environments that are part of that deploy file. If a deploy file only contains one environment, you'll only see one on this page.   
 
+You can watch a [demo](https://s.armory.io/BludOJBo) of how the All Deployments page and the details page for a single environment work together to walk you through progressing your deployment.
+
 ### All environments
 
-On this page, you can see all the environments that are being deployed to in a single deploy file. If you click the link that the CLI returns when you trigger the deployment, this is the page you are linked to. It can give you a general idea of the state of the deployment and what environment is currently being deployed to.
+The **All Deployments** page shows you all environments that are being deployed to in a single deploy file. If you click the link that the CLI returns when you trigger the deployment, this is the page you are linked to. It can give you a general idea of the state of the deployment and what environment is currently being deployed to.
 
 {{< figure src="/images/borealis/borealis-multitarget-deploy.jpg" alt="The deployment starts in a dev environment. It then progresses to infosec and staging environments simultaneously. It finishes by deploying to a prod-west environment." >}}
 
