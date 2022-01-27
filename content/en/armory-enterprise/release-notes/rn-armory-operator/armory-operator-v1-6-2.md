@@ -1,8 +1,8 @@
 ---
-title: v1.6.1 Armory Operator
+title: v1.6.2 Armory Operator
 toc_hide: true
-version: 01.06.01
-description: Release notes for Armory Operator v1.6.1
+version: 01.06.02
+description: Release notes for Armory Operator v1.6.2
 ---
 
 ## 2022/01/27 Release Notes
