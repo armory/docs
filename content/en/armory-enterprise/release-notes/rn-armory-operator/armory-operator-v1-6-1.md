@@ -1,11 +1,11 @@
 ---
-title: v1.6.0 Armory Operator
+title: v1.6.1 Armory Operator
 toc_hide: true
-version: 01.06.00
-description: Release notes for Armory Operator v1.6.0
+version: 01.06.01
+description: Release notes for Armory Operator v1.6.1
 ---
 
-## 2022/01/26 Release Notes
+## 2022/01/27 Release Notes
 
 ## Security
 
@@ -22,3 +22,5 @@ Operator now supports the following configuration options for sidecars: `resourc
 ### Armory Operator
 
 * feat(sidecars): Support resources and startup|readiness probes
+* feat(artifacts/bitbucket): Support token credentials
+* chore(halyard) Update halyard version
