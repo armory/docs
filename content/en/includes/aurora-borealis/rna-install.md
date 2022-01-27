@@ -34,10 +34,10 @@ Each Kubernetes cluster that you install the RNA on should have a unique name th
 
     ```bash
     helm upgrade --install armory-rna armory/remote-network-agent \
-        --set agentIdentifier=<target-cluster-name> \
         --set clientId=<clientID-for-rna> \
         --set clientSecret=<clientSecret-for-rna> \
         --set kubernetes.enableClusterAccountMode=<false|true> \
+        --set agentIdentifier=<target-cluster-name> \
         --namespace armory-rna \
         --create-namespace 
     ```
@@ -47,3 +47,5 @@ Each Kubernetes cluster that you install the RNA on should have a unique name th
    ```bash
    --set podAnnotations.<annotationName>="<annotation>" \
    --set podLabels.<labelName>="<label>"
+
+   
