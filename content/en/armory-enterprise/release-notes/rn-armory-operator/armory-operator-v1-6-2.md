@@ -17,9 +17,8 @@ No known issues.
 
 ## Highlighted updates
 
-Operator now supports the following configuration options for sidecars: `resources`,`readinessProbe`,  and `startupProbe`.
+Bitbucket artifact accounts now support authentication with tokens.
 
 ### Armory Operator
 
-* feat(sidecars): Support resources and startup|readiness probes
 * feat(artifacts/bitbucket): Support token credentials
