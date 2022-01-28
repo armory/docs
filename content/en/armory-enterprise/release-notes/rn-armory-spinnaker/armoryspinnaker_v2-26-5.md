@@ -13,8 +13,6 @@ description: >
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.26.5, use one of the following tools:
-
-To install, upgrade, or configure Armory 2.26.4, use one of the following tools:
 ​
 - Armory-extended Halyard 1.12 or later
   - 2.26.x is the last minor release that you can use Halyard to install or manage. Future releases require the Armory Operator. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
