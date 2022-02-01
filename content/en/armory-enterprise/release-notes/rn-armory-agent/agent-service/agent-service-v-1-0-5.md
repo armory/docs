@@ -1,0 +1,9 @@
+---
+title: v1.0.5 Armory Agent Service (2022-02-01)
+toc_hide: true
+version: 01.00.05
+
+---
+
+### Fixes
+* Fixed a concurrency issue where agent sometimes took about 10 minutes to register with clouddriver after clouddriver was restarted, leading to timeout errors when running pipelines during that timeframe.
