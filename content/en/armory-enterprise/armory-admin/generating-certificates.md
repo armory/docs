@@ -9,7 +9,7 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-* Make sure you are using the same version of Java that Armory Enterprise is using
+* Make sure you are using the same version of Java that Armory Enterprise is using.
 * You need a recent version of OpenSSL.
 
 ## Generating self-signed certificate authority
