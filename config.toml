@@ -166,7 +166,7 @@ agent_plug_latest-1="0.9.34"
 agent_plug_latest_spin-1="2.26.x (1.26.x)"
 agent_plug_latest="0.10.18"
 agent_plug_latest_spin="2.27.x (1.27.x)"
- 
+
 # User interface configuration
 [params.ui]
 # Enable to show the side bar menu in its compact state.
@@ -213,7 +213,12 @@ enable = true
 	name ="Twitter"
 	url = "https://twitter.com/cloudarmory"
 	icon = "fab fa-twitter"
-        desc = "Follow us on Twitter to get the latest news!"
+  desc = "Follow us on Twitter to get the latest news!"
+[[params.links.user]]
+	name ="RSS"
+	url = "https://docs.armory.io/index.xml"
+	icon = "fas fa-rss"
+  desc = "Follow us on RSS to get the latest docs updates!"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
 	name = "GitHub"
