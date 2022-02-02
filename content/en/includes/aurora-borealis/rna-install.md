@@ -47,5 +47,4 @@ Each Kubernetes cluster that you install the RNA on should have a unique name th
    ```bash
    --set podAnnotations.<annotationName>="<annotation>" \
    --set podLabels.<labelName>="<label>"
-
-   
+   ```
