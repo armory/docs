@@ -158,7 +158,7 @@ You can use [New Relic Insights](https://newrelic.com/products/insights) to find
 
 ## Filter templates
 
-Please refer to the [Spinnaker Kayenta documentation](https://www.spinnaker.io/guides/user/canary/config/filter_templates/) for information on configuring
+Please refer to the [Spinnaker Kayenta documentation](https://spinnaker.io/docs/guides/user/canary/config/filter-templates/) for information on configuring
 Filter Templates.  They are completely optional and may not be necessary for
 your application.
 
