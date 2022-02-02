@@ -50,3 +50,6 @@ For information about how to add a deployment target, see [Prepare your deployme
 
 The Agents page shows you the list of client credentials with the scope `connect:agentHub` and the deployment targets associated with those credentials.
 
+> Note that you may see a "No Data message" when first loading the Agent page.
+
+{{< figure src="/images/borealis/borealis-ui-rna-status.jpg" alt="The Connected Remote Network Agents page shows connected agents and the following information: Agent Identifier, Agent Version, Connection Time when the connection was established, Last Heartbeat time, Client ID, and IP Address." >}}
