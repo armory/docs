@@ -5,5 +5,6 @@ version: 01.00.06
 
 ---
 
-### Fixes
-* Issue in which non namespaced resources had "default" instead of an empty one, this was preventing operations on them or related to those kinds such as deploying "CustomResources".
+## Fixes
+
+* Fixed an issue where non-namespaced resources had `default` instead of an empty one. This prevented operations on them or related to those kinds, such as deploying `CustomResources`.
