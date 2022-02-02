@@ -6,5 +6,6 @@ version: 00.09.36
 ---
 
 ### Fixes
-* Fixed an issue where under some circumstances, deployment pipelines timed out in the "WaitForManifestStable" task, which was caused by a stale cache. Now the status of the manifest is always read from a live call to the cluster.
-* Fixed an issue where pod metrics, if available, were not shown in spinnaker UI when clicking on a pod in the clusters screen.
+
+* Fixed an issue where some deployment pipelines timed out on the "WaitForManifestStable" task, which was caused by a stale cache. The status of the manifest is now read from a live call to the cluster.
+* Fixed an issue where pod metrics, if available, were not shown in the UI when clicking on a pod on the **Clusters** page.
