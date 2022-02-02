@@ -8,7 +8,7 @@ description: >
 ---
 
 {{% alert title="Limited Support" color="warning" %}}
-The Armory Splunk App is no longer under active development or support. Customers interested in Splunk integration should contact their Technical Account Manager to discuss requirements and next steps.
+The Armory Splunk App is no longer under active development. Support is limited. Customers interested in Splunk integration should contact their Technical Account Manager to discuss requirements and next steps.
 {{% /alert %}}
 
 ## Overview of Splunk integration
