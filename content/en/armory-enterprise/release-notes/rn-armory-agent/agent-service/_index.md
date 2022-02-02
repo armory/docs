@@ -8,5 +8,5 @@ description: Release notes for the Armory Agent, which runs as a service and kee
 {{< include "agent/agent-compat-matrix.md" >}}
 
 ## Release Notes
-### <a class="fas fa-rss" target="_blank" href="https://docs.armory.io/armory-enterprise/release-notes/rn-armory-agent/agent-service/index.xml"></a>
+<h3><a class="fas fa-rss" target="_blank" href="https://docs.armory.io/armory-enterprise/release-notes/rn-armory-agent/agent-service/index.xml"></a></h3>
 

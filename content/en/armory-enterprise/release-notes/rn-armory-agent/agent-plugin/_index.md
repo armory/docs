@@ -9,4 +9,4 @@ description: Release notes for the Agent Clouddriver Plugin. The plugin runs as 
 {{< include "agent/agent-compat-matrix.md" >}}
 
 ## Release Notes
-### <a class="fas fa-rss" target="_blank" href="https://docs.armory.io/armory-enterprise/release-notes/rn-armory-agent/agent-plugin/index.xml"></a>
+<h3><a class="fas fa-rss" target="_blank" href="https://docs.armory.io/armory-enterprise/release-notes/rn-armory-agent/agent-plugin/index.xml"></a></h3>

@@ -11,4 +11,4 @@ For information about upgrading, Operator, see [Upgrade the Operator]({{< ref "o
 
 
 ## Release Notes
-### <a class="fas fa-rss" target="_blank" href="https://docs.armory.io/armory-enterprise/release-notes/rn-armory-operator/index.xml"></a>
+<h3><a class="fas fa-rss" target="_blank" href="https://docs.armory.io/armory-enterprise/release-notes/rn-armory-operator/index.xml"></a></h3>
