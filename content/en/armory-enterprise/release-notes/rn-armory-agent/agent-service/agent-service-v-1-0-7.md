@@ -8,7 +8,7 @@ version: 01.00.07
 
 ## New feature
 
-The Agent can now wait for the deletion of a resource. Based on the received delete options, the Agent decides if it will wait or not for the resource deletion to be completed.
+The Agent can now wait for the deletion of a resource. Based on the received delete options, the Agent decides if it waits or not for the resource deletion to be completed.
 
 Before this change, the Agent did not wait for a resource to be deleted when a delete operation was attended to by the Agent. Instead, it sent the delete operation to Kubernetes and returns immediately.
 
