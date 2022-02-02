@@ -30,7 +30,7 @@ You need their name and email. Note that the email domain must match your organi
 
 They can access the UI after completing the signup process.
 
-## Deployment targets
+<!--## Deployment targets
 
 ### Add a Kubernetes deployment target
 
@@ -41,7 +41,7 @@ For a deployment target to be available, it needs to be added to Borealis. Note 
 How you add a deployment target depends on whether or not the Kubernetes cluster is accessible from the public internet. If it is, you add it through the **Configuration UI**, and no additional steps are needed. If it is not, you must first install a Remote Network Agent (RNA) on it and then add it through the **Configuration UI**.
 
 For information about how to add a deployment target, see [Prepare your deployment target]({{< ref "borealis-org-get-started#prepare-your-deployment-target" >}}).
-
+-->
 ## Networking
 
 ### Monitor connected agents

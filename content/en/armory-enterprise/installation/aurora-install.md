@@ -136,7 +136,9 @@ You do not need to do this migration if you are installing the RNA for the first
 
 ### Verify the Agent deployment
 
-In the target deployment cluster, examine the Agent logs.
+Go to the [Agents page in the Cloud Console](https://console.cloud.armory.io/configuration/agents) and verify the connection. If you do not see your cluster, verify that you are in the correct Armory Cloud environment.
+
+You can also check the RNA logs in the target deployment cluster.
 
 You should see messages similar to the following that show your client ID and your account getting registered in the Armory Cloud Hub:
 

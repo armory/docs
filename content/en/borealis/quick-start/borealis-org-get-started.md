@@ -20,24 +20,13 @@ Every user who wants to deploy to your clusters using Borealis must have an acco
 
 ## Prepare your deployment target
 
-There are two ways to add a deployment target to Borealis. If the Kubernetes cluster is accessible through the public internet, you can use the **Configuration UI** to add the target. If the cluster is not accessible, you need to manually install the Remote Network Agent (RNA) on the cluster. Borealis uses the RNA on your deployment target to communicate with Armory's hosted cloud services and to initiate the deployment. 
+<!--There are two ways to add a deployment target to Borealis. If your deployment target is accessible through the public internet, you can use the **Configuration UI** to [add the target to Borealis](#add-the-cluster-to-borealis) If the cluster is not accessible, -->
 
-If your deployment target is accessible through the public internet, you can use the **Configuration UI** to [add the target to Borealis](#add-the-cluster-to-borealis)
-
-If your deployment target is not accessible, you need to complete the following steps:
-
-  1. [Create client credentials](#create-client-credentials).
-  1. [Install the Remote Network Agent (RNA) on your deployment target](#install-the-rna).
-  2. [Add the target to Borealis](#add-the-cluster-to-borealis).
+You need to manually install the Remote Network Agent (RNA) to the target deployment cluster. Borealis uses the RNA on your deployment target to communicate with Armory's hosted cloud services and to initiate the deployment. 
 
 ### Create client credentials
 
-Skip this section if your Kubernetes cluster is accessible through the public internet. Go to [Add the cluster to Borealis](#add-the-cluster-to-borealis).
-
-<details><summary>Show me how to get client credentials</summary>
-<br>
-
-
+<!--Skip this section if your Kubernetes cluster is accessible through the public internet. Go to [Add the cluster to Borealis](#add-the-cluster-to-borealis).-->
 
 Create machine-to-machine client credentials for the various service accounts that you will need. These credentials are machine credentials that are meant for authentication when using Borealis programmatically. The credentials consist of a client ID and a client secret. Make sure to keep the secret somewhere safe. You cannot retrieve secrets that you lose access to. You would need to create a new set of credentials and update any services that used the credentials that you are replacing.
 
@@ -45,7 +34,7 @@ Create machine-to-machine client credentials for the various service accounts th
 
 To get started, you need at least one service account to use for authentication between Borealis and your deployment target where a Remote Network Agent (RNA) is installed.
 
-To start, create the client credentials for the RNA on your deployment target:
+Create the client credentials for the RNA on your deployment target:
 
 {{< include "aurora-borealis/borealis-client-creds.md" >}}
 
@@ -53,15 +42,14 @@ To start, create the client credentials for the RNA on your deployment target:
 
 ### Install the RNA
 
-Skip this section if your Kubernetes cluster is accessible through the public internet. Go to [Add the cluster to Borealis](#add-the-cluster-to-borealis).
+<!--Skip this section if your Kubernetes cluster is accessible through the public internet. Go to [Add the cluster to Borealis](#add-the-cluster-to-borealis).
 
-<details><summary>Show me how to install the RNA</summary>
+<details><summary>Show me how to install the RNA</summary> -->
 
 {{< include "aurora-borealis/rna-install.md" >}}
 
-</details>
 
-### Add the cluster to Borealis
+<!--### Add the cluster to Borealis
 
 If your cluster is accessible through the public internet, start here. If your cluster is not accessible through the public internet, make sure that you have [created the client credentials](#create-client-credentials) and [installed the Remote Network Agent (RNA)](#install-the-rna) on your deployment target.
 
@@ -73,6 +61,8 @@ If your cluster is accessible through the public internet, start here. If your c
    - **Context**: (Optional) The context used to access the cluster. When no context is configured for an account the current-context in your kubeconfig is assumed. For more information, see [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-cluster-api/configure-access-multiple-clusters/).
    - **Remote Network Agent**: (Optional) The RNA that is installed on the cluster. This is required if the cluster is not accessible through the public internet.
 3. Save your changes.
+
+-->
 
 ## Next steps
 
