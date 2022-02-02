@@ -12,5 +12,4 @@ version: 00.09.35
 The Agent now has a default grace period of 30 seconds for when Kubernetes resources are deleted. Previously, if you did not specify a grace period in the UI, the default was 0. The Agent now waits for the resource to be deleted before returning or up to the configured grace period.
 
 Before this change, the default value was 0 seconds, and the Agent did not wait for the deletion to be completed.
-With this change if the gracePeriod is not specified on spinnaker ui the agent will not send this data to kubernetes while deleting  the resource and will wait for the deletion to be completed.
 
