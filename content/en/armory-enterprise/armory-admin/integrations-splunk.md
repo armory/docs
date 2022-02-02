@@ -7,13 +7,13 @@ description: >
   (Legacy) Learn how to configure the Armory Splunk application so you can display your SDLC data in Splunk dashboards.
 ---
 
-{{< include "unsupported-feature.html" >}}
+{{% alert title="Limited Support" color="warning" %}}
+The Armory Splunk App is no longer under active development or support. Customers interested in Splunk integration should contact their Technical Account Manager to discuss requirements and next steps.
+{{% /alert %}}
 
 ## Overview of Splunk integration
 
 The Armory Splunk App brings all the SDLC information your organization has into a digestible and familiar format, Splunk dashboards. Connect Splunk to Armory Enterprise with the Armory Splunk App. See information like your top deployment artifacts and user information in Splunk. If you would like more information about the data that Armory Enterprise feeds into Splunk, watch the [video walkthrough](#video-walkthrough) at the bottom of this page.
-
->The Armory Splunk App is no longer under active development. Use at your own risk.
 
 ## Install the Armory Splunk App for Spinnaker
 
