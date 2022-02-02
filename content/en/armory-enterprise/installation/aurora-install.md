@@ -138,7 +138,13 @@ You do not need to do this migration if you are installing the RNA for the first
 
 Go to the [Agents page in the Cloud Console](https://console.cloud.armory.io/configuration/agents) and verify the connection. If you do not see your cluster, verify that you are in the correct Armory Cloud environment.
 
-You can also check the RNA logs in the target deployment cluster.
+> Note that you may see a "No Data message" when first loading the Agent page.
+
+{{< figure src="/images/borealis/borealis-ui-rna-status.jpg" alt="The Connected Remote Network Agents page shows connected agents and the following information: Agent Identifier, Agent Version, Connection Time when the connection was established, Last Heartbeat time, Client ID, and IP Address." >}}
+
+
+
+If you do not see the RNA for your target deployment cluster, verify that you are in the correct Armory cloud environment. Additionally, check the logs for the target deployment cluster to see if the RNA is up and running.
 
 You should see messages similar to the following that show your client ID and your account getting registered in the Armory Cloud Hub:
 

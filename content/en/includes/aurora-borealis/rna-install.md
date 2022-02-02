@@ -48,3 +48,13 @@ Each Kubernetes cluster that you install the RNA on should have a unique name th
    --set podAnnotations.<annotationName>="<annotation>" \
    --set podLabels.<labelName>="<label>"
    ```
+
+5. Verify the RNA connection. Go to the [Agents page](https://console.cloud.armory.io/configuration/agents) in the Status UI, and look for the Agent identifier you assigned to your target deployment cluster. You should see it along with some basic information:
+
+   > Note that you may see a "No Data message" when first loading the Agent page.
+
+   {{< figure src="/images/borealis/borealis-ui-rna-status.jpg" alt="The Connected Remote Network Agents page shows connected agents and the following information: Agent Identifier, Agent Version, Connection Time when the connection was established, Last Heartbeat time, Client ID, and IP Address." >}}
+
+
+
+   If you do not see the RNA for your target deployment cluster, verify that you are in the correct Armory cloud environment. Additionally, check the logs for the target deployment cluster to see if the RNA is up and running.
