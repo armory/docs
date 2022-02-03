@@ -16,40 +16,37 @@ Each Kubernetes cluster that you install the RNA on should have a unique name th
    helm repo update
    ```
 
-4. Install the Helm chart. Keep the following in mind when you install the RNA:
+4. Create the namespace where the RNA gets installed:
 
-   * You can create the `armory-rna` namespace before running the `helm upgrade --install` command or include the `--create-namespace` option.
+   ```bash
+   kubectl create ns armory-rna
+   ```
 
-   * The `agentIdentifier` option is the name that is used to refer to the deployment target cluster in the Status UI, your deployment file, and other places, so use a descriptive name.
+5. Create secrets from your client ID and client secret:
+   
+   ```bash
+   kubectl --namespace armory-rna create secret generic rna-client-credentials --type=string --from-literal=client-secret=<your-client-secret> --from-literal=client-id=<your-client-id>
+   ```
 
-   * Armory recommends storing and using the values for`clientID` and `clientSecret` as secrets. You can use either a secret engine directly or environment variables to store and pass the encrypted values.
+   The examples use Kubernetes secrets to encrypt the value. You supply the encrypted values in the Helm command to install the RNA. 
 
-     * If you use a secret engine, pass the encrypted value for the parameter in the command, such as `'encrypted:k8s!n:rna-client-credentials!k:client-secret'`. Armory supports the following secret engines: Vault, Kubernetes secrets, encrypted GCS buckets, encrypted S3 buckets, and AWS Secrets Manager. See the documentation for your secrets engine for the format of the encrypted value.
-     * The values for `clientId` and `clientSecret` can be passed as secrets by using environment variables. Instead of supplying the plaintext value, use an environment variable such as `${RNA_CLIENT_ID}` and `${RNA_CLIENT_SECRET}`. Then, attach environment variables with the same names to the pod. For more information, see the [Kubernetes documentation on using secrets as environment variables](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/).
+6. Install the Helm chart. Keep the following in mind when you install the RNA:
 
-   *  If you set `kubernetes.enableClusterAccountMode` to true, the RNA creates a service account, cluster role, and cluster role binding. These are applied to the RNA, and the RNA registers itself as a target deployment cluster for Project Borealis.
-
-
-    The following example includes the `--create-namespace` option:
+   * The `agentIdentifier` option is the name that is used to refer to the deployment target cluster in the  UI, your deployment file, and other places, so use a descriptive name.
 
     ```bash
     helm upgrade --install armory-rna armory/remote-network-agent \
-        --set clientId=<clientID-for-rna> \
-        --set clientSecret=<clientSecret-for-rna> \
-        --set kubernetes.enableClusterAccountMode=<false|true> \
         --set agentIdentifier=<target-cluster-name> \
-        --namespace armory-rna \
-        --create-namespace 
+        --set clientId=encrypted:k8s!n:rna-client-credentials!k:client-id \
+        --set clientSecret=encrypted:k8s!n:rna-client-credentials!k:client-secret \
+        --namespace armory-rna 
     ```
 
-   Optionally, you can also add labels and annotations to the RNA install:
+    The encrypted values for `clientId` and `clientSecret` reference the Kubernetes secrets you generated in an earlier step.
 
-   ```bash
-   --set podAnnotations.<annotationName>="<annotation>" \
-   --set podLabels.<labelName>="<label>"
-   ```
+   For advanced use cases such as proxy configurations, custom annotations, labels, or environment variables, see the [`values.yaml` for the RNA](https://github.com/armory-io/remote-network-agent-helm-chart/blob/master/values.yaml?rgh-link-date=2022-02-02T22%3A38%3A35Z). For information about using a `values file`, see the [Helm documentation](https://helm.sh/docs/chart_template_guide/values_files/).
 
-5. Verify the RNA connection. Go to the [Agents page](https://console.cloud.armory.io/configuration/agents) in the Status UI, and look for the Agent identifier you assigned to your target deployment cluster. You should see it along with some basic information:
+7. Verify the RNA connection. Go to the [Agents page](https://console.cloud.armory.io/configuration/agents) in the Configuration UI, and look for the Agent identifier you assigned to your target deployment cluster. You should see it along with some basic information:
 
    > Note that you may see a "No Data message" when first loading the Agent page.
 
@@ -58,3 +55,4 @@ Each Kubernetes cluster that you install the RNA on should have a unique name th
 
 
    If you do not see the RNA for your target deployment cluster, verify that you are in the correct Armory cloud environment. Additionally, check the logs for the target deployment cluster to see if the RNA is up and running.
+

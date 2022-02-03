@@ -79,15 +79,9 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 3. In the left navigation menu, select **Access Management > Client Credentials**.
 4. In the upper right corner, select **New Credential**.
 5. Create a credential for your RNA. Use a descriptive name for the credential, such as `us-west RNA`
-6. Set the permission scope by selecting the preconfigured scope group **Custom Spinnaker**, which assigns the minimum required credentials for Aurora to work:
+6. Set the permission scope to `connect:agentHub`.
 
-   - `manage:deploy`
-   - `read:infra:data`
-   - `exec:infra:op`
-   - `read:artifacts:data`
-   - `connect:agentHub`
-
-   > Note that removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
+   > Removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
 
 7. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Aurora and Armory's hosted cloud services. Make sure to store the secret somewhere safe. You are not shown the value again.
 
@@ -136,7 +130,7 @@ You do not need to do this migration if you are installing the RNA for the first
 
 ### Verify the Agent deployment
 
-Go to the [Agents page in the Cloud Console](https://console.cloud.armory.io/configuration/agents) and verify the connection. If you do not see your cluster, verify that you are in the correct Armory Cloud environment.
+Go to the [Agents page in the Configuration UI](https://console.cloud.armory.io/configuration/agents) and verify the connection. If you do not see your cluster, verify that you are in the correct Armory Cloud environment.
 
 > Note that you may see a "No Data message" when first loading the Agent page.
 
