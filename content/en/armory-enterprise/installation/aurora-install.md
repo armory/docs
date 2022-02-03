@@ -91,37 +91,6 @@ This section walks you through installing the Remote Network Agent (RNA) using a
 
 {{< include "aurora-borealis/rna-install.md" >}}
 
-If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings.
-
-<details><summary>Learn more</summary>
-
-To set an HTTPS proxy, use the following config:
-
-```yaml
-env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>"
-```
-
-You can include the following snippet in your `helm install` command:
-
-```yaml
---set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>"
-```
-
-Alternatively, you can create a `values.yaml` file to include the parameters:
-
-```yaml
-env:
-  - name: HTTPS_PROXY
-    value: <hostname>:<port>
-```
-With the file, you can configure multiple configs in addition to the `env` config in your `helm install` command. Instead of using `--set`, include the `--values` parameter as part of the Helm install command:
-
-```
---values=<path>/values.yaml
-```
-
-</details>
-
 ### Migrate to the new RNA 
 
 You do not need to do this migration if you are installing the RNA for the first time.
