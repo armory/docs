@@ -12,6 +12,7 @@ aliases:
 {{% include "aurora-borealis/borealis-ea-banner.md" %}}
 {{< /alert >}}
 
+> If you installed an older version of the Remote Network Agent (RNA) using the Helm chart in `armory/aurora`, migrate to the new version by updating the Helm chart that is used. For more information, see [Migrate to the new RNA](#migrate-to-the-new-rna).
 
 ## Overview
 
@@ -78,14 +79,9 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 3. In the left navigation menu, select **Access Management > Client Credentials**.
 4. In the upper right corner, select **New Credential**.
 5. Create a credential for your RNA. Use a descriptive name for the credential, such as `us-west RNA`
-6. Set the permission scope by selecting the preconfigured scope group **Custom Spinnaker**, which assigns the minimum required credentials for Aurora to work:
+6. Set the permission scope to `connect:agentHub`.
 
-   - `manage:deploy`
-   - `read:infra:data`
-   - `exec:infra:op`
-   - `read:artifacts:data`
-
-   > Note that removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
+   > Removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
 
 7. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Aurora and Armory's hosted cloud services. Make sure to store the secret somewhere safe. You are not shown the value again.
 
@@ -95,46 +91,23 @@ This section walks you through installing the Remote Network Agent (RNA) using a
 
 {{< include "aurora-borealis/rna-install.md" >}}
 
+### Migrate to the new RNA 
 
+You do not need to do this migration if you are installing the RNA for the first time.
 
-
-If your Armory Enterprise (Spinnaker) environment is behind an HTTPS proxy, you need to configure HTTPS proxy settings.
-
-<details><summary>Learn more</summary>
-
-To set an HTTPS proxy, use the following config:
-
-```yaml
-env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>"
-```
-
-You can include the following snippet in your `helm install` command:
-
-```yaml
---set env[0].name=”HTTPS_PROXY”,env[0].value="<hostname>:<port>"
-```
-
-Alternatively, you can create a `values.yaml` file to include the parameters:
-
-```yaml
-env:
-  - name: HTTPS_PROXY
-    value: <hostname>:<port>
-```
-With the file, you can configure multiple configs in addition to the `env` config in your `helm install` command. Instead of using `--set`, include the `--values` parameter as part of the Helm install command:
-
-```
---values=<path>/values.yaml
-```
-
-</details>
-
-
-
+{{< include "aurora-borealis/borealis-rna-wormhole-migrate.md" >}}
 
 ### Verify the Agent deployment
 
-In the target deployment cluster, examine the Agent logs.
+Go to the [Agents page in the Configuration UI](https://console.cloud.armory.io/configuration/agents) and verify the connection. If you do not see your cluster, verify that you are in the correct Armory Cloud environment.
+
+> Note that you may see a "No Data message" when first loading the Agent page.
+
+{{< figure src="/images/borealis/borealis-ui-rna-status.jpg" alt="The Connected Remote Network Agents page shows connected agents and the following information: Agent Identifier, Agent Version, Connection Time when the connection was established, Last Heartbeat time, Client ID, and IP Address." >}}
+
+
+
+If you do not see the RNA for your target deployment cluster, check the logs for the target deployment cluster to see if the RNA is up and running.
 
 You should see messages similar to the following that show your client ID and your account getting registered in the Armory Cloud Hub:
 
