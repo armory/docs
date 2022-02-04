@@ -107,7 +107,7 @@ Go to the [Agents page in the Configuration UI](https://console.cloud.armory.io/
 
 
 
-If you do not see the RNA for your target deployment cluster, verify that you are in the correct Armory cloud environment. Additionally, check the logs for the target deployment cluster to see if the RNA is up and running.
+If you do not see the RNA for your target deployment cluster, check the logs for the target deployment cluster to see if the RNA is up and running.
 
 You should see messages similar to the following that show your client ID and your account getting registered in the Armory Cloud Hub:
 

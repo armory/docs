@@ -1,4 +1,4 @@
-Each Kubernetes cluster that you install the RNA on should have a unique name that you set using the `agentIdentifier` parameter. This identifier is used in the Status UI and in other places to identify the cluster. Note that older versions of the RNA used the `agent-k8s.accountName` parameter for this.
+Each Kubernetes cluster that you install the RNA on should have a unique name that you set using the `agentIdentifier` parameter. This identifier is used to identify the cluster. Note that older versions of the RNA used the `agent-k8s.accountName` parameter for this.
 
 1. Verify that you are in the correct Kubernetes context. The RNA is installed in the target deployment cluster.
 
@@ -32,7 +32,7 @@ Each Kubernetes cluster that you install the RNA on should have a unique name th
 
 6. Install the Helm chart. Keep the following in mind when you install the RNA:
 
-   * The `agentIdentifier` option is the name that is used to refer to the deployment target cluster in the  UI, your deployment file, and other places, so use a descriptive name.
+   * The `agentIdentifier` option is the name that is used to refer to the deployment target cluster, so use a descriptive name.
 
     ```bash
     helm upgrade --install armory-rna armory/remote-network-agent \
@@ -54,5 +54,5 @@ Each Kubernetes cluster that you install the RNA on should have a unique name th
 
 
 
-   If you do not see the RNA for your target deployment cluster, verify that you are in the correct Armory cloud environment. Additionally, check the logs for the target deployment cluster to see if the RNA is up and running.
+   If you do not see the RNA for your target deployment cluster, check the logs for the target deployment cluster to see if the RNA is up and running.
 
