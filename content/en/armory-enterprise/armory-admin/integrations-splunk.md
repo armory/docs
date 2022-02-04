@@ -1,15 +1,19 @@
 ---
-linkTitle: Configure the Armory Splunk App
-title: Configure the Armory Splunk App for Spinnaker
+linkTitle: Integrate Splunk with Armory Enterprise
+title: Integrate Splunk with Armory Enterprise
 aliases:
   - /docs/spinnaker-install-admin-guides/splunk-spinnaker/
 description: >
-  Learn how to configure the Armory Splunk application so you can display your SDLC data in Splunk dashboards.
+  (Legacy) Learn how to configure the Armory Splunk application so you can display your SDLC data in Splunk dashboards.
 ---
 
-## Advantages to using the Armory Splunk application
+{{% alert title="Limited Support" color="warning" %}}
+The Armory Splunk App is no longer under active development. Support is limited. Customers interested in Splunk integration should contact their Technical Account Manager to discuss requirements and next steps.
+{{% /alert %}}
 
-The Armory Splunk App for Spinnaker™ brings all the SDLC information your organization has into a digestible and familiar format, Splunk dashboards. Connect Splunk to Armory Enterprise for Spinnaker with the Armory Splunk App for Spinnaker. See information like your top deployment artifacts and user information in Splunk. If you would like more information about the data that Spinnaker feeds into Splunk, watch the [video walkthrough](#video-walkthrough) at the bottom of this page.
+## Overview of Splunk integration
+
+The Armory Splunk App brings all the SDLC information your organization has into a digestible and familiar format, Splunk dashboards. Connect Splunk to Armory Enterprise with the Armory Splunk App. See information like your top deployment artifacts and user information in Splunk. If you would like more information about the data that Armory Enterprise feeds into Splunk, watch the [video walkthrough](#video-walkthrough) at the bottom of this page.
 
 ## Install the Armory Splunk App for Spinnaker
 
@@ -18,9 +22,9 @@ The Armory Splunk App for Spinnaker™ brings all the SDLC information your orga
 3. Install the "Armory Splunk App for Spinnaker" on the Search Head, Indexer, or in the "/etc/master-apps/" directory on the master for Search Head Clustering.
 4. The TA can be installed on the Indexers, Heavy Forwarders, or all in one Splunk.  It's the data input, so install based on your Splunk architecture.
 
-## Configure Splunk HTTP Event Collector Endpoint to recieve data from Spinnaker
+## Configure Splunk HTTP Event Collector Endpoint to receive data from Spinnaker
 
-To start we'll configured Splunk to recieve authenticated data flow from Spinnaker.  This configuration is similar to any other HTTP Event Collector.
+To start, configure Splunk to receive authenticated data flow from Spinnaker.  This configuration is similar to any other HTTP Event Collector.
 
 Perform the following steps:
 

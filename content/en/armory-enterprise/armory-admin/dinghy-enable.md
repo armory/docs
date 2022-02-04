@@ -500,13 +500,11 @@ metadata:
   name: spinnaker
 spec:
   spinnakerConfig:
-    config:
-      armory:
-        dinghy:
-          enabled: true
-          notifiers:
-            github:
-              enabled: true       # Whether or not github notifications are enabled for Dinghy events
+    profiles:
+      dinghy:
+        notifiers:
+          github:
+            enabled: true       # Whether or not github notifications are enabled for Dinghy events
 ```
 
 {{% /tabbody %}}
