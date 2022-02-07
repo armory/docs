@@ -5,7 +5,13 @@ version: 01.00.08
 
 ---
 
-### Fixes
-* Issue that prevented CRDs from being listed when the flag  was enabled. An accurate definition of CRDs under  is needed for it to work properly when this flag is turned on. e.g.
+## Fixes
 
- If scope is unspecified it defaults to Cluster.
+* Fixed an issue that prevented CRDs from being listed when the `onlyNamespaceResources` parameter is set to `true`. You must provide an accurate definition of CRDs for the `customResourceDefinitions` parameter when `onlyNamespaceResources` is `true`. For example:
+
+```yaml
+kind: CronTab.stable.example.com
+scope: Namespaced
+```
+
+If scope is unspecified, it defaults to cluster.
