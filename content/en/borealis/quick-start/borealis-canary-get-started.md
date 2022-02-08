@@ -29,11 +29,16 @@ To complete this quick start, you need the following:
 
 1. In the **Configuration UI**, go to [**Canary Analysis > Integrations**](https://console.cloud.armory.io/configuration/metric-source-integrations/).
 2. Select **New Integration.
+   
+   The examples in this guide use Prometheus as the metrics provider.
+
 3. Complete the wizard:
   
    - **Type**: your metrics provider. This example uses Prometheus. The form options change based on your provider. For more information, see [Canary Analysis Integrations]({{< ref "borealis-configuration-ui#integrations" >}}).
    - **Name**: provide a descriptive name for your metrics provider, such as the environment it monitors. You use this name in places such as your deploy file when you want to configure canary analysis as part of your deployment strategy.
    - **Base URL**: the base URL for your Prometheus instance. This can be a private DNS if the RNA is installed in the Prometheus cluster.
+
+   The paramters you need to provide depend on the metrics provider you choose. For more information, see [Canary Analysis Integrations]({{< ref "borealis-configuration-ui#integrations" >}}).
 
 ## Deploy your app
 
@@ -94,6 +99,5 @@ Cmd to deploy the app w/ Borealis CLI
 
 1. Go to UI.
 2. Click on the deployment you just deployed.
-
 
 ### Go from manual to automated canary deployments
