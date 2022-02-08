@@ -7,9 +7,7 @@ weight: 10
 exclude_search: true
 ---
 
-Performing retrospective analysis on a deployment is a great way to understand how your app is performing over a pre-defined time period. It is the first step to enabling automatic canary analysis where you create queries that control how canary deployments for your apps react based on metrics you consider important.
-
-For this quick start, you can either use the demo app and Prometheus instance that is part of that setup process or your app and Prometheus instance. The examples on this page use the demo app and Prometheus instance.
+Performing retrospective analysis on a deployment is a great way to understand how your app is performing over a pre-defined time period. It is the first step to enabling automatic canary analysis where you create queries that control how canary deployments react based on metrics you consider important.
 
 ## {{% heading "prereq" %}}
 
@@ -17,11 +15,14 @@ This quick start assumes that you completed the prior two quick starts that taug
 
 To complete this quick start, you need the following:
 
-- Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA) and Prometheus. This cluster also acts as the deployment target for the sample app.
-- Client ID and a client secret for the Remote Network Agent. Generate the credentials in the [**Client Credentials** page](https://console.cloud.armory.io/configuration/credentials).
-- Prometheus installed on your target deployment clusters. For information about how to install Prometheus, see the the [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/installation/). Make sure that your Prometheus instance ues the default configuration where pod annotations get scraped.
+- Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA) and Prometheus. This cluster acts as the deployment target for the sample app. You can reuse the clusters from the previous quick starts if you want. Or stand up new ones.
+- Prometheus instance set up to monitor your Kubernetes clusters. Make sure your Prometheus instance meets the following requirements:
+  - It scrapes pod annotations. (This is the default behavior.)
+  - It is either accessible by the public internet or you have installed the Remote Network Agent on the cluster where it runs.
 
-You can reuse the clusters from the previous quick starts if you want. Or stand up new ones.
+   - For information about how to install Prometheus, see the the [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/installation/). 
+
+
 
 
 ## Add your metrics provider
@@ -36,17 +37,21 @@ You can reuse the clusters from the previous quick starts if you want. Or stand 
 
 ## Deploy your app
 
-Use the Borealis CLI to deploy your app. Like you did in the Get Started with the Borealis CLI Guide, use the link that the CLI returns to navigate to your deployment and monitor it.
+Use the Borealis CLI to deploy your app. 
+Like you did in the [Get Started with the Borealis CLI Guide]({{< ref "borealis-cli-get-started" >}}), use the link that the CLI returns to navigate to your deployment and approve any manual judgment steps.
+
 
 ## Perform a retrospective analysis
 
 1. In the **Configuration UI**, go to [**Canary Analysis > Retrospective Analysis**](https://console.cloud.armory.io/configuration/metric-source-integrations/).
 2. Select the metric provider you just configured.
-3. Add **Query Template**. Use the following example:
+3. Add a **Query Template**. Use the following example:
 
    ```sql
    example query
    ```
+   
+   The query contains substitutable variables
 
 4. Add **Key Value (KV) Pair** for the **Context**.
 5. Run analysis
@@ -58,7 +63,7 @@ Use the Borealis CLI to deploy your app. Like you did in the Get Started with th
   
 ### Export a query
 
-The Retrospective Analysis can take the query you provide and generate the YAML for it so that you can use it in your deploy file.
+The Retrospective Analysis can take the query you provide and generate the YAML equivalent that you can use it in your deploy file.
 
 1. Click **Export Queries for Armory Deployments**.
 2. Copy the YAML.
@@ -81,4 +86,8 @@ Cmd to deploy the app w/ Borealis CLI
 
 ## Monitor your manual canary deployment
 
-Go to the Armory Deployments Status UI.
+1. Go to UI.
+2. Click on the deployment you just deployed.
+
+
+## Go from manual to automated canary deployments

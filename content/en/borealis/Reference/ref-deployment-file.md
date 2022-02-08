@@ -235,6 +235,17 @@ strategies:
             weight: <integer>
         - pause:
             untilApproved: true
+        - analysis:
+            interval: <integer>
+            unit: <seconds|minutes|hours>
+            numberOfJudgmentRuns: <integer>
+            rollBackMode: <manual|automatic>
+            rollForwardMode: <manual|automatic>
+            queries:
+              - <queryName>
+              - <queryName>
+        - setWeight:
+            weight: <integer>
 ```
 
 ### `strategies.<strategyName>`
@@ -344,3 +355,37 @@ steps:
   - pause:
       untilApproved: true 
 ```
+
+### `strategies.<strategyName>.<strategy>.steps.analysis`
+
+```yaml
+steps:
+...
+        - analysis:
+            interval: <integer>
+            unit: <seconds|minutes|hours>
+            numberOfJudgmentRuns: <integer>
+            rollBackMode: <manual|automatic>
+            rollForwardMode: <manual|automatic>
+            queries:
+              - <queryName>
+              - <queryName>
+        - setWeight:
+            weight: <integer>
+```
+
+## `analysis`
+
+### `analysis.defaultAccount`
+
+### `analysis.defaultType`
+
+### `analysis.queries`
+
+#### `analysis.queries.name`
+
+#### `analysis.queries.upperLimit`
+
+#### `analysis.queries.lowerLimit`
+
+#### `analysis.queries.queryTemplate`
