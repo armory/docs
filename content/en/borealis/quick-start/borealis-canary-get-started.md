@@ -15,12 +15,12 @@ This quick start assumes that you completed the prior two quick starts that taug
 
 To complete this quick start, you need the following:
 
-- Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA) and Prometheus. This cluster acts as the deployment target for the sample app. You can reuse the clusters from the previous quick starts if you want. Or stand up new ones.
+- Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app. You can reuse the clusters from the previous quick starts if you want. Or stand up new ones.
 - Prometheus instance set up to monitor your Kubernetes clusters. Make sure your Prometheus instance meets the following requirements:
+
   - It scrapes pod annotations. (This is the default behavior.)
   - It is either accessible by the public internet or you have installed the Remote Network Agent on the cluster where it runs.
-
-   - For information about how to install Prometheus, see the the [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/installation/). 
+  - For information about how to install Prometheus, see the the [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/installation/). 
 
 
 
