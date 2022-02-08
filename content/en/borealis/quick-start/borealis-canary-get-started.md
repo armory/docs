@@ -70,24 +70,30 @@ The Retrospective Analysis can take the query you provide and generate the YAML 
 3. Go to your deploy file.
 4. Paste the YAML
 
-## Add the canary analysis to your deploy file
+## Add canary analysis to your deployment
 
-### Update your `strategy`
+Boreals supports manual and automated canary analysis. Armory recommends performing manual canary analysis until you have confidence that your queries are capturing what you want them to capture. When you hit that point, switch to automated canary analysis
+
+Adding canary analysis to your deployment involves updating your deploy file to include the following:
+
+- steps in your `strategy` block that perform canary analysis and define how it behaves
+- an `analysis` block that describes what queries to use and how they are run. The YAML for the queries is what you can export from the UI.
+
+
+### Update the `strategy` block
 
 ### Add `analysis` block
 
-Adding manual or automated canary analysis to your deployment involves
 
-Armory recommends performing manual canary analysis until you have confidence that your queries are capturing what you want them to capture. When you hit that point, switch to automated canary analysis
 
-### Redeploy your app
+## Redeploy your app
 
 Cmd to deploy the app w/ Borealis CLI
 
-## Monitor your manual canary deployment
+### Monitor your manual canary deployment
 
 1. Go to UI.
 2. Click on the deployment you just deployed.
 
 
-## Go from manual to automated canary deployments
+### Go from manual to automated canary deployments
