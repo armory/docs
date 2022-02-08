@@ -282,9 +282,9 @@ strategies:
 
 ### `strategies.<strategyName>.<strategy>.steps`
 
-Borealis progresses through all the steps you define as part of the deployment process. The process is sequential and steps can either be of the type `setWeight` or `pause`.
+Borealis progresses through all the steps you define as part of the deployment process. The process is sequential and steps can be of the types, `analysis`, `setWeight` or `pause`.
 
-Generally, you want to configure a `setWeight` step and have a `pause` step follow it although this is not necessarily required.
+Generally, you want to configure a `setWeight` step and have a `analysis` or `pause` step follow it although this is not necessarily required. This gives you the oppurtunity to see how the deployment is doing either manually or automatically before the deployment progresses.
 
 Some scenarios where this pairing sequence might not be used would be the following:
 
@@ -322,7 +322,7 @@ steps:
       untilApproved: true 
 ```
 
-### Pause for a set amount of time
+#### Pause for a set amount of time
 
 If you want the deployment to pause for a certain amount of time after a weight is met, you must provide both the amount of time (duration) and the unit of time (unit).
 
@@ -341,7 +341,7 @@ steps:
       unit: seconds
 ```
 
-### Pause until a manual judgment
+#### Pause until a manual judgment
 
 When you configure a manual judgment, the deployment waits when it hits the corresponding weight threshold. At that point, you can either approve the deployment so far and let it continue or roll the deployment back if something doesn't look right.
 

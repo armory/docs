@@ -1,5 +1,5 @@
 ---
-title: Use Canary Analysis on your Deployment
+title: Get Started with Canary Analysis
 linktitle: Canary Analysis
 description: > 
   This guide walks you through deploying an app and Prometheus to the same Kubernetes cluster. Then, you perform a retrospective analysis on the performance of the app that you can then use to create canary analysis queries for subsequent deployments.s
