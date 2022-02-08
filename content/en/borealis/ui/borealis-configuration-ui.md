@@ -30,6 +30,50 @@ You need their name and email. Note that the email domain must match your organi
 
 They can access the UI after completing the signup process.
 
+## Canary Analysis
+
+### Integrations
+
+[**Canary Analysis > Integrations**](https://console.cloud.armory.io/canary-analysis/integrations)
+
+Integrate your metrics provider with Borealis so that you can perform retrospective analysis of your deployment performance or use canary analysis as part of your deployment strategy.
+
+Armory supports the following metrics providers:
+
+- DataDog
+- New Relic
+- Prometheus
+
+To configure one of them, select **New Integration** and complete the form. The information you need depends on the metrics provider.
+
+#### Datadog
+
+To configure DataDog, you need the following:
+
+- **Base URL**
+- **API Key**
+- **Application Key**
+
+#### New Relic
+
+To configure New Relic, you need the following:
+
+- **Base URL**
+- **API Key**
+- **Account ID**
+
+#### Prometheus
+
+To configure Prometheus, you need the following:
+
+- **Base URL**: this can be a private DNS if it is resolvable through the RNA
+- **Remote Network Agent**: RNA that is installed on the Prometheus cluster if the cluster is not publicly accessible.
+- **Authentication Type**: username/password or bearer token if authentication is used.
+
+### Retrospective Analysis
+
+Use the **Retrospective Analysis** page to help you construct queries that you can use for canary analysis or to examine previous deployments.
+
 <!--## Deployment targets
 
 ### Add a Kubernetes deployment target

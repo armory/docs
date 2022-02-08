@@ -1,9 +1,10 @@
 ---
 title: Get Started with Project Borealis
-linktitle: Get Started - Borealis
+linktitle: Borealis
 description: >
   To use Borealis, you must register for Armory's hosted cloud service and connect your deployment target to Armory cloud.
 exclude_search: true
+weight: 1
 ---
 
 > If you installed an older version of the Remote Network Agent (RNA) using the Helm chart in `armory/aurora`, migrate to the new version by updating the Helm chart that is used. For more information, see [Migrate to the new RNA](#migrate-to-the-new-rna).

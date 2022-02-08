@@ -1,9 +1,10 @@
 ---
 title: Get Started with the CLI to Deploy Apps
-linktitle: Get Started - CLI
+linktitle: CLI
 description: >
   The Borealis CLI is a CLI for interacting with Project Borealis. With the CLI, you can integrate Borealis into your existing CI/CD tooling. Start by familiarizing yourself with the Borealis CLI and its workflow.
 exclude_search: true
+weight: 5
 ---
 
 ## {{% heading "prereq" %}}
