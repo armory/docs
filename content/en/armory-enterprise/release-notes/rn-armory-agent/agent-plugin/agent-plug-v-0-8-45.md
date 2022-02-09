@@ -5,11 +5,15 @@ version: 00.08.45
 
 ---
 
-This new feature apply only if Fiat is enable.
+## Changes
 
-Before this when a new agent connection/disconnection happens and it brings the additions or deletion of accounts it never notify Fiat to sync its accounts, and because of it we could present "Access denied" or "Time out" errors while trying to perform an operation using one of the accounts that has been added or deleted.
+> This change only affects instances where Fiat is enabled.
 
-With this feature each time that:
--  new agent connection is made and the plugin register new accounts
--  an agent get disconnected and the plugin delete the associated accounts
-after it will notify Fiat to sync its accounts. It  improve to have zero downtime 
+Agent now notifies Fiat to sync accounts when one of the following occurs:
+
+- A new agent connection is made, and the plugin registers new accounts
+- An agent gets disconnected, and the plugin deletes the associated accounts
+
+This reduces downtime.
+
+Prior to this change, Agent did not notify Fiat to sync accounts when a new agent connects (adding an account) or an existing agent disconnects (deleting an account). This led to situations where an `Access denied` or `Time out` error occurred while trying to perform an operation using one of the accounts that had been added or deleted.
