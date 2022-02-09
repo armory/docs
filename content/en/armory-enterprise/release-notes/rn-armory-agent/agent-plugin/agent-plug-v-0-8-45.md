@@ -11,8 +11,8 @@ version: 00.08.45
 
 Agent now notifies Fiat to sync accounts when one of the following occurs:
 
-- A new agent connection is made, and the plugin registers new accounts
-- An agent gets disconnected, and the plugin deletes the associated accounts
+- A new agent connects, and the plugin registers new accounts.
+- An agent disconnects, and the plugin deletes the associated accounts.
 
 This reduces downtime.
 
