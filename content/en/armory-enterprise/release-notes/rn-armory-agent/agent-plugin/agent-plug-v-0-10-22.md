@@ -5,5 +5,6 @@ version: 00.10.22
 
 ---
 
-### Fixes
-* An issue in which CRD exceptions were cached preventing further calls to the agent related to the same Kind.
+## Fixes
+
+* Fixed an issue where CRD exceptions were cached, which prevented calls to the Agent related to the same Kind.
