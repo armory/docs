@@ -5,7 +5,8 @@ version: 01.00.09
 
 ---
 
-### Fixes
-*  using cluster scope by default when declared in the configuration. The default value now is **Namespaced**
+## Changes
+
+* The `kubernetes.accounts[].customResourceDefinitions[].scope` parameter now defaults to `Namespaced`. Previously, it used `Cluster`.
 
 
