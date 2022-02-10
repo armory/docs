@@ -95,6 +95,8 @@ This section walks you through installing the Remote Network Agent (RNA) using a
 
 You do not need to do this migration if you are installing the RNA for the first time.
 
+Before you start the migration process, make sure that you are running version 0.29.2 or later of the Project Aurora plugin. This is set in the `version` field of the YAML file you use to install the plugin.
+
 {{< include "aurora-borealis/borealis-rna-wormhole-migrate.md" >}}
 
 ### Verify the Agent deployment
