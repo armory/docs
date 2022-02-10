@@ -40,9 +40,9 @@ Integrate your metrics provider with Borealis so that you can perform retrospect
 
 Armory supports the following metrics providers:
 
-- DataDog
-- New Relic
-- Prometheus
+- [Datadog](#datadog)
+- [New Relic](#new-relic)
+- [Prometheus](#prometheus)
 
 To configure one of them, select **New Integration** and complete the form. The information you need depends on the metrics provider.
 
@@ -50,29 +50,33 @@ To configure one of them, select **New Integration** and complete the form. The 
 
 To configure DataDog, you need the following:
 
-- **Base URL**
-- **API Key**
-- **Application Key**
+- **Base URL**: For example, `https://api.datadoghq.com/`.
+- **API Key**: The key that your Datadog Agent uses to Datadog Agent to submit metrics and events to Datadog.
+- **Application Key**: The key that grants permission for programmatic access to the Datadog API.
+
+For information about how to get the API Key and Application Key, see [DataDog documentation](https://docs.datadoghq.com/account_management/api-app-keys/).
 
 #### New Relic
 
 To configure New Relic, you need the following:
 
-- **Base URL**
-- **API Key**
-- **Account ID**
+- **Base URL**: For example, `https://api.newrelic.com/graphql/`.
+- **API Key**: The metrics integration requires access to Graph QL, so provide the User Key API key. For more information, see [User Key in the New Relic documentation](https://docs.newrelic.com/docs/apis/accounts-api/new-relic-user-key-api-key/).
+- **Account ID**: Your New Relic account ID. For information about how to get this ID, see [Account ID in the New Relic documentation](https://docs.newrelic.com/docs/apis/accounts-api/new-relic-account-id/).
+
+https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/
 
 #### Prometheus
 
 To configure Prometheus, you need the following:
 
-- **Base URL**: this can be a private DNS if it is resolvable through the RNA
-- **Remote Network Agent**: RNA that is installed on the Prometheus cluster if the cluster is not publicly accessible.
-- **Authentication Type**: username/password or bearer token if authentication is used.
+- **Base URL**: If Prometheus runs in the same cluster as the RNA and is exposed using HTTP on port 9090 through a service named `prometheus` in the namespace `prometheus`, then the URL would be `http://prometheus.prometheus:9090`.
+- **Remote Network Agent**: The RNA that is installed on the Prometheus cluster if the cluster is not publicly accessible.
+- **Authentication Type**: The username/password or bearer token if authentication is used.
 
 ### Retrospective Analysis
 
-Use the **Retrospective Analysis** page to help you construct queries that you can use for canary analysis or to examine previous deployments.
+Use the **Retrospective Analysis** page to help you construct queries that you use for Canary Analysis by running test queries against previous deployments. Once you've created a query that meets your needs, export it to generate YAML that can be used in your deploy file.
 
 <!--## Deployment targets
 
