@@ -74,9 +74,15 @@ To configure Prometheus, you need the following:
 - **Remote Network Agent**: The RNA that is installed on the Prometheus cluster if the cluster is not publicly accessible.
 - **Authentication Type**: The username/password or bearer token if authentication is used.
 
+Additional, make sure that the following settings are set for your Prometheus instance:
+
+  # Note that the example queries require Prometheus to have 
+  # "kube-state-metrics.metricAnnotationsAllowList[0]=pods=[*]" set and for your applications pods to have the annotation "prometheus.io/scrape": "true"
+
 ### Retrospective Analysis
 
 Use the **Retrospective Analysis** page to help you construct queries that you use for Canary Analysis by running test queries against previous deployments. Once you've created a query that meets your needs, export it to generate YAML that can be used in your deploy file.
+
 
 <!--## Deployment targets
 

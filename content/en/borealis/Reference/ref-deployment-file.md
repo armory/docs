@@ -370,22 +370,113 @@ steps:
             queries:
               - <queryName>
               - <queryName>
-        - setWeight:
-            weight: <integer>
 ```
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.interval`
+
+An integer value that defines the time interval between each judgment run of the queries you choose.
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.unit`
+
+The unit of time for the interval. Use `seconds`, `minutes` or `hours`.
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.numberOfJudgmentRuns`
+
+The number of times that each query runs as part of the analysis.
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.rollBackMode`
+
+Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omitted.
+
+How a rollback is approved if the analysis step determines that the deployment should be rolled back. The thresholds for a rollback are set in `lowerLimit` and `upperLimit` in the `analysis` block of the deployment file. This block is separate from the `analysis` step that this parameter is part of.
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.rollForwardMode`
+
+Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omitted.
+
+How a rollback is approved if the analysis step determines that the deployment should proceed (or roll forward). The thresholds for a roll forward are any values that fall within the range you create when you set the `lowerLimit` and `upperLimit`values in the `analysis` block of the deployment file. This block is separate from the `analysis` step that this parameter is part of.
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.queries`
+
+A list of queries that you want to use as part of this `analysis` step. Provide the name of the query, which is set in the `analysis.queries.name` parameter.
+
+All the queries must pass for the step as a whole to be considered a success.
 
 ## `analysis`
 
-### `analysis.defaultAccount`
+This block defines the queries used to analyze a deployment for any `analysis` steps. In addition, you set upper and lower limits for the queries that define what is considered a failed deployment step or a successful deployment step.
 
-### `analysis.defaultType`
+You can define multiple queries in this block.
+
+```yaml
+analysis: # Define queries and thresholds used for automated analysis
+
+  queries:
+    - name: containerCPUSeconds
+      upperLimit: 100 # If the metric exceeds this value, the automated analysis fails.
+      lowerLimit: 0 # If the metric goes below this value, the automated analysis fails.
+      queryTemplate: >-
+        avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
+        sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
+        by (annotation_app, pod)) by (annotation_app)
+    - name: avgMemoryUsage 
+      upperLimit: 1  # If the metric exceeds this value, the automated analysis fails.
+      lowerLimit: 0 # If the metric goes below this value, the automated analysis fails.
+      queryTemplate: >-
+        avg (avg_over_time(container_memory_working_set_bytes{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
+        sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
+        by (annotation_app, pod)) by (annotation_app)
+```
+
+### `analysis.defaultAccountName`
+
+The name that you assigned to a metrics provider in the **Configuration UI**.
 
 ### `analysis.queries`
 
+This block is how you define the queries that you want to run.
+
 #### `analysis.queries.name`
+
+Used in `analysis` steps to specify the query that you want to use for the step. Specifically it's used for the list in `steps.analysis.queries`.
+
+Provide a unique and descriptive name for the query, such as `containerCPUSeconds` or `avgMemoryUsage`.
 
 #### `analysis.queries.upperLimit`
 
+The upper limit for the query. If the analysis returns a value that is above this range, the deployment is considered a failure, and a rollback is triggered. The rollback can happen either manually or automatically depending on how you configured `strategies.<strategyName>.<strategy>.steps.analysis.rollBackMode`.
+
+If the query returns a value that falls within the range between the `upperLimit` and `lowerLimit` after all the runs of the query complete, the query is considered a success.
+
 #### `analysis.queries.lowerLimit`
 
+The lower limit for the query. If the analysis returns a value that is below this range, the deployment is considered a failure, and a rollback is triggered. The rollback can happen either manually or automatically depending on how you configured `strategies.<strategyName>.<strategy>.steps.analysis.rollBackMode`.
+
+If the query returns a value that falls within the range between the `upperLimit` and `lowerLimit` after all the runs of the query, the query is considered a success.
+
 #### `analysis.queries.queryTemplate`
+
+The query you want to run. Use the **Retrospective Analysis** UI to build and test queries before including them in your deploy file.
+
+Armory supports the following variables out of the box:
+
+- `armory.startTimeIso8601`
+- `armory.startTimeEpochSeconds`
+- `armory.startTimeEpochMillis`
+- `armory.endTimeIso8601`
+- `armory.endTimeEpochSeconds`
+- `armory.endTimeEpochMillis`
+- `armory.intervalMillis`
+- `armory.intervalSeconds`
+- `armory.promQlStepInterval`
+- `armory.deploymentId`
+- `armory.applicationName`
+- `armory.environmentName`
+- `armory.replicaSetName`
+
+You can also supply your own variables in the context block of the config in the following format:
+
+```
+context:
+  <someName>
+```
