@@ -358,6 +358,8 @@ steps:
 
 ### `strategies.<strategyName>.<strategy>.steps.analysis`
 
+The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll foward or roll back.
+
 ```yaml
 steps:
 ...
