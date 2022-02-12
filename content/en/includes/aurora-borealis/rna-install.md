@@ -37,8 +37,8 @@ Each Kubernetes cluster that you install the RNA on should have a unique name th
     ```bash
     helm upgrade --install armory-rna armory/remote-network-agent \
         --set agentIdentifier=<target-cluster-name> \
-        --set clientId=encrypted:k8s!n:rna-client-credentials!k:client-id \
-        --set clientSecret=encrypted:k8s!n:rna-client-credentials!k:client-secret \
+        --set 'clientId=encrypted:k8s!n:rna-client-credentials!k:client-id' \
+        --set 'clientSecret=encrypted:k8s!n:rna-client-credentials!k:client-secret' \
         --namespace armory-rna 
     ```
 
