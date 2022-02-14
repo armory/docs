@@ -5,8 +5,9 @@ version: 01.00.10
 
 ---
 
-Fixes:
+## Fixes
 
-- Out of bounds index while performing operations (deploy, delete, ... etc manifest)
-- Wait to the kubernetes resource to be deleted when delete manifest operation is performed; it just apply when gracePeriod is not set or greater than 0
+- Fixed an issue where out of bounds index errors occurred while performing operations on manifests, such as deploy or delete.
+- Fixed an issue with how the Agent Service waits for Kubernetes resources to be deleted when a delete manifest operation is performed. The Agent Service now only waits until the manifest is deleted if the grace period is not set to a value greater than 0 in the UI.
+
 
