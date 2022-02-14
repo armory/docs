@@ -376,17 +376,53 @@ steps:
 
 #### `strategies.<strategyName>.<strategy>.steps.analysis.interval`
 
-An integer value that defines the time interval between each judgment run of the queries you choose.
+```yaml
+steps:
+...
+        - analysis:
+            interval: <integer>
+            unit: <seconds|minutes|hours>
+```
+
+How long each sample of the query gets summarized over.
+
+For example, the following snippet sets the interval to 30 seconds:
+
+```yaml
+steps:
+...
+        - analysis:
+            interval: 30
+            unit: seconds
+
+```
 
 #### `strategies.<strategyName>.<strategy>.steps.analysis.unit`
 
-The unit of time for the interval. Use `seconds`, `minutes` or `hours`.
+The unit of time for the interval. Use `seconds`, `minutes` or `hours`. See `strategies.<strategyName>.<strategy>.steps.analysis.interval` for more information.
 
 #### `strategies.<strategyName>.<strategy>.steps.analysis.numberOfJudgmentRuns`
 
-The number of times that each query runs as part of the analysis.
+```yaml
+steps:
+...
+        - analysis:
+            ...
+            numberOfJudgmentRuns: <integer>
+            ...
+```
+
+The number of times that each query runs as part of the analysis. Borealis takes the average of all the results of the judgment runs to determine whether the deployment falls within the acceptable range.
 
 #### `strategies.<strategyName>.<strategy>.steps.analysis.rollBackMode`
+
+steps:
+...
+        - analysis:
+            ...
+            rollBackMode: <manual|automatic>
+            ...
+```
 
 Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omitted.
 
@@ -394,13 +430,31 @@ How a rollback is approved if the analysis step determines that the deployment s
 
 #### `strategies.<strategyName>.<strategy>.steps.analysis.rollForwardMode`
 
+steps:
+...
+        - analysis:
+            ...
+            rollForwardMode: <manual|automatic>
+            ...
+```
+
 Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omitted.
 
 How a rollback is approved if the analysis step determines that the deployment should proceed (or roll forward). The thresholds for a roll forward are any values that fall within the range you create when you set the `lowerLimit` and `upperLimit`values in the `analysis` block of the deployment file. This block is separate from the `analysis` step that this parameter is part of.
 
 #### `strategies.<strategyName>.<strategy>.steps.analysis.queries`
 
-A list of queries that you want to use as part of this `analysis` step. Provide the name of the query, which is set in the `analysis.queries.name` parameter.
+```yaml
+steps:
+...
+        - analysis:
+            ...
+            queries:
+              - <queryName>
+              - <queryName>
+```
+
+A list of queries that you want to use as part of this `analysis` step. Provide the name of the query, which is set in the `analysis.queries.name` parameter. Note that thee `analysis` block is separate from the `analysis` step.
 
 All the queries must pass for the step as a whole to be considered a success.
 
@@ -408,29 +462,30 @@ All the queries must pass for the step as a whole to be considered a success.
 
 This block defines the queries used to analyze a deployment for any `analysis` steps. In addition, you set upper and lower limits for the queries that define what is considered a failed deployment step or a successful deployment step.
 
-You can define multiple queries in this block.
+You can provide multiple queries in this block. The following snippet includes two sample Prometheus queries. Note that these example queries require the following: 
+
+- `kube-state-metrics.metricAnnotationsAllowList[0]=pods=[*]` must be set 
+- Your applications pods need to have the annotation `"prometheus.io/scrape": "true"`
 
 ```yaml
 analysis: # Define queries and thresholds used for automated analysis
-
   queries:
-    - name: containerCPUSeconds
-      upperLimit: 100 # If the metric exceeds this value, the automated analysis fails.
-      lowerLimit: 0 # If the metric goes below this value, the automated analysis fails.
+    - name: <queryName>
+      upperLimit: <integer> # If the metric exceeds this value, the automated analysis fails.
+      lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
       queryTemplate: >-
-        avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
-        sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
-        by (annotation_app, pod)) by (annotation_app)
-    - name: avgMemoryUsage 
-      upperLimit: 1  # If the metric exceeds this value, the automated analysis fails.
-      lowerLimit: 0 # If the metric goes below this value, the automated analysis fails.
+        <some-metrics-query>
+    - name: <queryName>
+      upperLimit: <integer>  # If the metric exceeds this value, the automated analysis fails.
+      lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
+      context:
+        - <variableName>: <Variable>
+        - <variableName>: <Variable>
       queryTemplate: >-
-        avg (avg_over_time(container_memory_working_set_bytes{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
-        sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
-        by (annotation_app, pod)) by (annotation_app)
+        <some-metrics-query>
 ```
 
-### `analysis.defaultAccountName`
+### `analysis.defaultMetricProviderName`
 
 The name that you assigned to a metrics provider in the **Configuration UI**.
 
@@ -456,7 +511,37 @@ The lower limit for the query. If the analysis returns a value that is below thi
 
 If the query returns a value that falls within the range between the `upperLimit` and `lowerLimit` after all the runs of the query, the query is considered a success.
 
+#### `analysis.queries.context`
+
+```yaml
+analysis:
+  queries:
+    ...
+    context:
+    - <variableName>: <variable>
+```
+
+You can supply variables that you can then use in your query templates.
+
 #### `analysis.queries.queryTemplate`
+
+```yaml
+analysis: # Define queries and thresholds used for automated analysis
+  queries:
+    - name: <queryName>
+      upperLimit: <integer> # If the metric exceeds this value, the automated analysis fails.
+      lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
+      queryTemplate: >-
+        <some-metrics-query>
+    - name: <queryName>
+      upperLimit: <integer>  # If the metric exceeds this value, the automated analysis fails.
+      lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
+      context:
+        - <variableName>: <Variable>
+        - <variableName>: <Variable>
+      queryTemplate: >-
+        <some-metrics-query>
+```
 
 The query you want to run. Use the **Retrospective Analysis** UI to build and test queries before including them in your deploy file.
 
@@ -478,7 +563,3 @@ Armory supports the following variables out of the box:
 
 You can also supply your own variables in the context block of the config in the following format:
 
-```
-context:
-  <someName>
-```

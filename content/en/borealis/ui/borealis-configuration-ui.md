@@ -74,15 +74,38 @@ To configure Prometheus, you need the following:
 - **Remote Network Agent**: The RNA that is installed on the Prometheus cluster if the cluster is not publicly accessible.
 - **Authentication Type**: The username/password or bearer token if authentication is used.
 
-Additional, make sure that the following settings are set for your Prometheus instance:
-
-  # Note that the example queries require Prometheus to have 
-  # "kube-state-metrics.metricAnnotationsAllowList[0]=pods=[*]" set and for your applications pods to have the annotation "prometheus.io/scrape": "true"
-
 ### Retrospective Analysis
 
-Use the **Retrospective Analysis** page to help you construct queries that you use for Canary Analysis by running test queries against previous deployments. Once you've created a query that meets your needs, export it to generate YAML that can be used in your deploy file.
+Use the **Retrospective Analysis** page to help you construct queries that you can use for canary analysis by running them against previous deployments. Once you've created a query that meets your needs, export it to generate YAML that can be used in your deploy file.
 
+To perform retrospective analysis, you need to provide the following:
+
+- **Metrics Provider**: The metrics provider that you want to use. For information about adding a metrics provider, see Integrations[#integrations].
+- **Analysis Range**: The time range that you want to analyze.
+- **Queries**: One or more query templates to use for the analysis. For the query template, you need the following:
+   - Name: Provide a descpritive name
+   - Upper Limit:
+   - Lower Limit:
+   - Query Template
+- **Context**: Key/Value pair for the substitutable template variables in your query templates.
+
+Armory supports the following key/value pairs out of the box:
+
+- `armory.startTimeIso8601`
+- `armory.startTimeEpochSeconds`
+- `armory.startTimeEpochMillis`
+- `armory.endTimeIso8601`
+- `armory.endTimeEpochSeconds`
+- `armory.endTimeEpochMillis`
+- `armory.intervalMillis`
+- `armory.intervalSeconds`
+- `armory.promQlStepInterval`
+- `armory.deploymentId`
+- `armory.applicationName`
+- `armory.environmentName`
+- `armory.replicaSetName`
+
+You can also set your own.
 
 <!--## Deployment targets
 
