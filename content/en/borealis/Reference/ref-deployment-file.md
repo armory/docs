@@ -236,6 +236,9 @@ strategies:
         - pause:
             untilApproved: true
         - analysis:
+            context:
+              keyName: <value>
+              keyName: <value>
             interval: <integer>
             unit: <seconds|minutes|hours>
             numberOfJudgmentRuns: <integer>
