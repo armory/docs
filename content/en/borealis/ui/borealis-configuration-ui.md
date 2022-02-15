@@ -89,7 +89,7 @@ To perform retrospective analysis, you need to provide the following:
    - Query Template
 - **Context**: Key/Value pair for the substitutable template variables in your query templates.
 
-Armory supports the following key/value pairs out of the box:
+Armory supports the following time related variables out of the box:
 
 - `armory.startTimeIso8601`
 - `armory.startTimeEpochSeconds`
@@ -100,6 +100,9 @@ Armory supports the following key/value pairs out of the box:
 - `armory.intervalMillis`
 - `armory.intervalSeconds`
 - `armory.promQlStepInterval`
+
+There are additional special key/value pairs that can be used in the context. You must add these manually as part of the context when performing retrospective analysis, but they are automatically substituted in queries that are part of your deploy file.
+
 - `armory.deploymentId`
 - `armory.applicationName`
 - `armory.environmentName`

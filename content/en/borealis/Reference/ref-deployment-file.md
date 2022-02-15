@@ -364,6 +364,9 @@ The `analysis` step is used to run a set of queries against your deployment. Bas
 steps:
 ...
         - analysis:
+            context:
+              keyName: <value>
+              keyName: <value>
             interval: <integer>
             unit: <seconds|minutes|hours>
             numberOfJudgmentRuns: <integer>
@@ -373,6 +376,26 @@ steps:
               - <queryName>
               - <queryName>
 ```
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.context`
+
+Custom key/value pairs that are passed as substitutions for variables to the queries.
+
+Armory supports the following variables out of the box:
+
+- `armory.startTimeIso8601`
+- `armory.startTimeEpochSeconds`
+- `armory.startTimeEpochMillis`
+- `armory.endTimeIso8601`
+- `armory.endTimeEpochSeconds`
+- `armory.endTimeEpochMillis`
+- `armory.intervalMillis`
+- `armory.intervalSeconds`
+- `armory.promQlStepInterval`
+- `armory.deploymentId`
+- `armory.applicationName`
+- `armory.environmentName`
+- `armory.replicaSetName`
 
 #### `strategies.<strategyName>.<strategy>.steps.analysis.interval`
 
@@ -511,18 +534,6 @@ The lower limit for the query. If the analysis returns a value that is below thi
 
 If the query returns a value that falls within the range between the `upperLimit` and `lowerLimit` after all the runs of the query, the query is considered a success.
 
-#### `analysis.queries.context`
-
-```yaml
-analysis:
-  queries:
-    ...
-    context:
-    - <variableName>: <variable>
-```
-
-You can supply variables that you can then use in your query templates.
-
 #### `analysis.queries.queryTemplate`
 
 ```yaml
@@ -536,30 +547,11 @@ analysis: # Define queries and thresholds used for automated analysis
     - name: <queryName>
       upperLimit: <integer>  # If the metric exceeds this value, the automated analysis fails.
       lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
-      context:
-        - <variableName>: <Variable>
-        - <variableName>: <Variable>
       queryTemplate: >-
         <some-metrics-query>
 ```
 
 The query you want to run. Use the **Retrospective Analysis** UI to build and test queries before including them in your deploy file.
 
-Armory supports the following variables out of the box:
 
-- `armory.startTimeIso8601`
-- `armory.startTimeEpochSeconds`
-- `armory.startTimeEpochMillis`
-- `armory.endTimeIso8601`
-- `armory.endTimeEpochSeconds`
-- `armory.endTimeEpochMillis`
-- `armory.intervalMillis`
-- `armory.intervalSeconds`
-- `armory.promQlStepInterval`
-- `armory.deploymentId`
-- `armory.applicationName`
-- `armory.environmentName`
-- `armory.replicaSetName`
-
-You can also supply your own variables in the context block of the config in the following format:
 
