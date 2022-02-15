@@ -5,7 +5,10 @@ version: 00.10.23
 
 ---
 
-A default list of kubernetes kinds to be cached is sent to the agent on registration to save memory. The kinds list is:
+## Improvements
+
+The Agent Plugin now sends a list of Kubernetes kinds to get cached when the Agent registers itself to save memory. The default kinds list includes the following:
+
 - ReplicaSet
 - Service
 - Ingress
