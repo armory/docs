@@ -2,7 +2,7 @@
 title: Get Started with Canary Analysis
 linktitle: Canary Analysis
 description: > 
-  This guide walks you through using canary analysis on the app you deployed in the Get Started with the CLI to Deploy Apps guide. Yu perform a retrospective analysis on the performance of the app that you can create canary analysis queries for subsequent deployments.s
+  This guide walks you through using canary analysis on the app you deployed in the Get Started with the CLI to Deploy Apps guide. You perform a retrospective analysi on the app. Then, you use those queries to create canary analysis steps for subsequent deployments.
 weight: 10  
 exclude_search: true
 ---
@@ -84,7 +84,7 @@ Retrospective analysis is the starting point to creating queries so that you can
 
     **Value**: The name of the ReplicaSet that got created when you deployed the app in *Get Started with the CLI to Deploy Apps guide*.
 
-6. Run the analysis. If the results fall within the upper and lower limits you ste, the deployment is considered a success.
+6. Run the analysis. If the results fall within the upper and lower limits you set, the deployment is considered a success.
   
 ### Export and add a query to your deploy file
 
