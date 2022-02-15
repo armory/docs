@@ -186,4 +186,4 @@ Monitor the progress and approve the canary steps in the UI.
 
 ### Go from manual to automated 
 
-Once you have confidence in your queries, switching from manual approvals of canary steps to automatic approvals involves updating the `analysis` steps in your strategy. You can either comment out the 
+Once you have confidence in your queries, switching from manual approvals of canary steps to automatic approvals involves updating the `analysis` steps in your strategy. You can either comment out the `rollBackMode` and `rollForwardMode` fields or set them to `automatic`. Subsequent deployments using the updated deploy file will progress the deployment automatically if the canary analysis steps pass.
