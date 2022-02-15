@@ -101,14 +101,16 @@ Armory supports the following time related variables out of the box:
 - `armory.intervalSeconds`
 - `armory.promQlStepInterval`
 
-There are additional special key/value pairs that can be used in the context. You must add these manually as part of the context when performing retrospective analysis, but they are automatically substituted in queries that are part of your deploy file.
+You do not need to provide these variables in the context.
+
+In addition to these time related variables, there are a special set can be used. You must add these manually as part of the context when performing retrospective analysis, but they are automatically substituted in queries that are part of your deploy file.
 
 - `armory.deploymentId`
 - `armory.applicationName`
 - `armory.environmentName`
 - `armory.replicaSetName`
 
-You can also set your own.
+You can also add your own custom variables as key/value pairs. If you want to use these custom variables, you need to add them to [`strategies.<strategyName>.<strategy>.steps.analysis.context` section in your deployment file]({{< ref "ref-deployment-file#strategiesstrategynamestrategystepsanalysiscontext>}}
 
 <!--## Deployment targets
 
