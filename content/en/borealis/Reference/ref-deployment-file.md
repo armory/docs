@@ -442,6 +442,7 @@ The number of times that each query runs as part of the analysis. Borealis takes
 
 #### `strategies.<strategyName>.<strategy>.steps.analysis.rollBackMode`
 
+```yaml
 steps:
 ...
         - analysis:
@@ -456,6 +457,7 @@ How a rollback is approved if the analysis step determines that the deployment s
 
 #### `strategies.<strategyName>.<strategy>.steps.analysis.rollForwardMode`
 
+```yaml
 steps:
 ...
         - analysis:

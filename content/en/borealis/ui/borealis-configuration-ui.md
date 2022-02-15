@@ -110,7 +110,7 @@ In addition to these time related variables, there are a special set can be used
 - `armory.environmentName`
 - `armory.replicaSetName`
 
-You can also add your own custom variables as key/value pairs. If you want to use these custom variables, you need to add them to [`strategies.<strategyName>.<strategy>.steps.analysis.context` section in your deployment file]({{< ref "ref-deployment-file#strategiesstrategynamestrategystepsanalysiscontext>}}
+You can also add your own custom variables as key/value pairs. If you want to use these custom variables, you need to add them to [`strategies.<strategyName>.<strategy>.steps.analysis.context` section in your deployment file]({{< ref "ref-deployment-file#strategiesstrategynamestrategystepsanalysiscontext>}}.
 
 <!--## Deployment targets
 
