@@ -3,6 +3,7 @@ linkTitle: Integrate Splunk with Armory Enterprise
 title: Integrate Splunk with Armory Enterprise
 aliases:
   - /docs/spinnaker-install-admin-guides/splunk-spinnaker/
+  - /armory-enterprise/armory-admin/integrations-splunk/
 description: >
   (Legacy) Learn how to configure the Armory Splunk application so you can display your SDLC data in Splunk dashboards.
 ---

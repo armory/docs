@@ -5,6 +5,7 @@ description: >
   Monitor Armory Enterprise using Prometheus and Grafana.
 aliases:
   - /docs/spinnaker-install-admin-guides/prometheus-monitoring/
+  - /armory-enterprise/armory-admin/prometheus-monitoring/
 ---
 
 ## Overview
