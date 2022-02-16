@@ -70,7 +70,7 @@ https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/
 
 To configure Prometheus, you need the following:
 
-- **Base URL**: If Prometheus runs in the same cluster as the RNA and is exposed using HTTP on port 9090 through a service named `prometheus` in the namespace `prometheus`, then the URL would be `http://prometheus.prometheus:9090`.
+- **Base URL**: If Prometheus runs in the same cluster as the RNA and is exposed using HTTP on port 9090 through a service named `prometheus` in the namespace `prometheus-ns`, then the URL would be `http://prometheus.prometheus-ns:9090`.
 - **Remote Network Agent**: The RNA that is installed on the Prometheus cluster if the cluster is not publicly accessible.
 - **Authentication Type**: The username/password or bearer token if authentication is used.
 
