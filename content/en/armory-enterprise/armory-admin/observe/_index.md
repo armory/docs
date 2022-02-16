@@ -1,4 +1,4 @@
 ---
-title: Diagnostics, Logging, and Metrics
+title: Observability
 description: Diagnostics, logging, and metrics in your Armory Enterprise environment.
 ---

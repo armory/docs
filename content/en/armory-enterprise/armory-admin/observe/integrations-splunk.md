@@ -6,6 +6,7 @@ aliases:
   - /armory-enterprise/armory-admin/integrations-splunk/
 description: >
   (Legacy) Learn how to configure the Armory Splunk application so you can display your SDLC data in Splunk dashboards.
+draft: true
 ---
 
 {{% alert title="Limited Support" color="warning" %}}
