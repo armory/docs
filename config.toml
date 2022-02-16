@@ -68,24 +68,19 @@ weight = 1
       unsafe = true
 
 [[menu.main]]
-  name = "Docs"
-  weight = 4
-  url = "/armory-enterprise"
-
-[[menu.main]]
-  name = "Armory.io"
-  weight = 5
-  url = "https://www.armory.io"
-
-[[menu.main]]
   name = "Armory Enterprise"
-  weight= 6
-  url = "/ae/"
+  weight= 5
+  url = "/armory-enterprise/"
 
 [[menu.main]]
   name = "Borealis"
-  weight= 7
+  weight= 6
   url = "/borealis/"
+
+[[menu.main]]
+  name = "Armory.io"
+  weight = 7
+  url = "https://www.armory.io"
 
 [[menu.main]]
   name = "KB"
