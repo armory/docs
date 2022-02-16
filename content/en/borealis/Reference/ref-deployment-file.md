@@ -442,7 +442,6 @@ The number of times that each query runs as part of the analysis. Borealis takes
 
 #### `strategies.<strategyName>.<strategy>.steps.analysis.rollBackMode`
 
-
 ```yaml
 steps:
 ...
@@ -451,7 +450,6 @@ steps:
             rollBackMode: <manual|automatic>
             ...
 ```
-
 
 Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omitted.
 
