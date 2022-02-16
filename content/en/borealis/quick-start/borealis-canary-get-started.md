@@ -102,9 +102,9 @@ The Retrospective Analysis can take the query you provide and generate the YAML 
         lowerLimit: 1
         queryTemplate: >-
           avg
-          (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[${promQlStepInterval}])
+          (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[${armory.promQlStepInterval}])
           * on (pod)  group_left (annotation_app)
-          sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="${replicaSetName}"}) by (annotation_app, pod)) by (annotation_app)
+          sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="${armory.replicaSetName}"}) by (annotation_app, pod)) by (annotation_app)
    ```
 
 For a detailed explanation of these fields, see the [Deployment File Reference]({{< ref "ref-deployment-file#analysis" >}})
