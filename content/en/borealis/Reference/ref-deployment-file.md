@@ -556,7 +556,7 @@ analysis: # Define queries and thresholds used for automated analysis
         <some-metrics-query>
 ```
 
-The query you want to run. Use the [**Retrospective Analysis** UI]({{< ref "borealis-configuration-ui#retrospective-analysis>}}) to build and test queries before including them in your deploy file.
+The query you want to run. Use the [**Retrospective Analysis** UI]({{< ref "borealis-configuration-ui#retrospective-analysis" >}}) to build and test queries before including them in your deploy file.
 
 
 

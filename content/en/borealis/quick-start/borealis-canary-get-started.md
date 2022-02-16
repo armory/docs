@@ -20,7 +20,7 @@ To complete this quick start, you need the following:
 - Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app. You can reuse the clusters from the previous quick starts if you want. Or stand up new ones.
 - A Prometheus instance set up to monitor your Kubernetes clusters. Keep the following in mind:
 
-  - Armory recommends and the example queries require the flag `"prometheus.io/scrape": "true"`. (This is the default behavior.) This flag instructs Prometheus to collect all Kubernetes annotations, which allow you to reference the annotations that Borealis injects as part of your query.
+  - Armory recommends your Prometheus instance uses the following settings: `"prometheus.io/scrape": "true"` (on by default) and `kube-state-metrics.metricAnnotationsAllowList[0]=pods=[*]` (collect annotations). These  flags instruct Prometheus to collect all Kubernetes annotations, which allow you to reference the annotations that Borealis injects as part of your query.
    
    If you install Prometheus with Helm, this example command includes the required flag:
 
