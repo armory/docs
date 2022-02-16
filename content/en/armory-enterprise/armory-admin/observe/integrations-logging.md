@@ -19,9 +19,9 @@ You have set up a data aggregator with a unique endpoint. You need the endpoint 
 * [Datadog Log Collection](https://docs.datadoghq.com/logs/log_collection/?tab=tcp)
 * [Cloudwatch REST API Logging](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html)
 
-## Enable application logging data
+## Enable logging data
 
-The following configuration example shows how to configure Echo to send data to Splunk.  
+The following configuration example shows how to configure Echo to send data to Splunk.  If you are using another data aggregator, replace the `url` value with the endpoint for your aggregator.
 
 {{< tabs name="enable-logging" >}}
 {{< tabbody name="Operator" >}}
