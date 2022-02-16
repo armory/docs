@@ -15,4 +15,4 @@
 
   > Removing a pre-configured scope group does not unassign the permissions that a pre-configured scope group assigns. You must remove the permissions manually.
 
-7. Note both the `Client ID` and `Client Secret`. You need these values when configuring the RNA or any other service that you want to grant access to. Make sure to store the secret somewhere safe. You are not shown the value again.
+8. Note both the `Client ID` and `Client Secret`. You need these values when configuring the RNA or any other service that you want to grant access to. Make sure to store the secret somewhere safe. You are not shown the value again.

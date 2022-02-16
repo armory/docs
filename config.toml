@@ -67,6 +67,10 @@ weight = 1
     [markup.goldmark.renderer]
       unsafe = true
 
+[[menu.main]]
+  name = "Docs"
+  weight = 4
+  url = "/armory-enterprise"
 
 [[menu.main]]
   name = "Armory.io"
@@ -106,7 +110,7 @@ postgresql-version="10+"
 #used in the Operator docs
 armory-version-exact = "2.27.0"
 halyard-armory-version = "1.12.0"
-kubesvc-version="0.6.9"
+kubesvc-version="1.0.11"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
@@ -161,13 +165,13 @@ prism_syntax_highlighting = true
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]
-agent_plug_latest-2="0.8.31"
+agent_plug_latest-2="0.8.47"
 agent_plug_latest_spin-2="2.25.x (1.25.x)"
-agent_plug_latest-1="0.9.23"
+agent_plug_latest-1="0.9.39"
 agent_plug_latest_spin-1="2.26.x (1.26.x)"
-agent_plug_latest="0.10.7"
+agent_plug_latest="0.10.23"
 agent_plug_latest_spin="2.27.x (1.27.x)"
- 
+
 # User interface configuration
 [params.ui]
 # Enable to show the side bar menu in its compact state.
@@ -214,7 +218,12 @@ enable = true
 	name ="Twitter"
 	url = "https://twitter.com/cloudarmory"
 	icon = "fab fa-twitter"
-        desc = "Follow us on Twitter to get the latest news!"
+  desc = "Follow us on Twitter to get the latest news!"
+[[params.links.user]]
+	name ="RSS"
+	url = "https://docs.armory.io/index.xml"
+	icon = "fas fa-rss"
+  desc = "Follow us on RSS to get the latest docs updates!"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
 	name = "GitHub"

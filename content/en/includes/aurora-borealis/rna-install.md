@@ -1,4 +1,4 @@
-Each Kubernetes cluster that you install the RNA on should have a unique account name that you set using the `agent-k8s.accountName` parameter. This account name is used in the Status UI and in other places to identify the cluster.
+Each Kubernetes cluster that you install the RNA on should have a unique name that you set using the `agentIdentifier` parameter. This identifier is used to identify the cluster. Note that older versions of the RNA used the `agent-k8s.accountName` parameter for this.
 
 1. Verify that you are in the correct Kubernetes context. The RNA is installed in the target deployment cluster.
 
@@ -16,26 +16,43 @@ Each Kubernetes cluster that you install the RNA on should have a unique account
    helm repo update
    ```
 
-4. Install the Helm chart. Keep the following in mind when you install the RNA:
+4. Create the namespace where the RNA gets installed:
+
+   ```bash
+   kubectl create ns armory-rna
+   ```
+
+5. Create secrets from your client ID and client secret:
    
-   * You can create the `armory-rna` namespace before running the `helm install` command or include the `--create-namespace` option. 
-   * The `agent-k8s.accountName` option is the name that is used to refer to the deployment target cluster in the Status UI, your deployment file, and other places, so use a descriptive name.
-  
-   The following example includes the `--create-namespace` option:
+   ```bash
+   kubectl --namespace armory-rna create secret generic rna-client-credentials --type=string --from-literal=client-secret=<your-client-secret> --from-literal=client-id=<your-client-id>
+   ```
+
+   The examples use Kubernetes secrets to encrypt the value. You supply the encrypted values in the Helm command to install the RNA. 
+
+6. Install the Helm chart. Keep the following in mind when you install the RNA:
+
+   * The `agentIdentifier` option is the name that is used to refer to the deployment target cluster, so use a descriptive name.
 
     ```bash
-    helm install armory-rna armory/aurora \
-        --set agent-k8s.accountName=<target-cluster-name> \
-        --set agent-k8s.clientId=<clientID-for-rna> \
-        --set agent-k8s.clientSecret=<clientSecret-for-rna> \
-        --namespace armory-rna \
-        --create-namespace 
+    helm upgrade --install armory-rna armory/remote-network-agent \
+        --set agentIdentifier=<target-cluster-name> \
+        --set 'clientId=encrypted:k8s!n:rna-client-credentials!k:client-id' \
+        --set 'clientSecret=encrypted:k8s!n:rna-client-credentials!k:client-secret' \
+        --namespace armory-rna 
     ```
-    The values for `agent-k8s.clientId` and `agent-k8s.clientSecret` can be passed as secrets by using environment variables. Instead of supplying the plaintext value, use an environment variable such as `${RNA_CLIENT_ID}` and `${RNA_CLIENT_SECRET}`. Then, attach environment variables with the same names to the pod. For more information, see the [Kubernetes documentation on using secrets as environment variables](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/).
 
-    Optionally, you can also add labels and annotations to the RNA install:
+    The encrypted values for `clientId` and `clientSecret` reference the Kubernetes secrets you generated in an earlier step.
 
-    ```bash
-    --set agent-k8s.podAnnotations.<annotationName>="<annotation>" \
-    --set agent-k8s.podLabels.<labelName>="<label>"
-    ```
+   For advanced use cases such as proxy configurations, custom annotations, labels, or environment variables, see the [`values.yaml` for the RNA](https://github.com/armory-io/remote-network-agent-helm-chart/blob/master/values.yaml?rgh-link-date=2022-02-02T22%3A38%3A35Z). For information about using a `values file`, see the [Helm documentation](https://helm.sh/docs/chart_template_guide/values_files/).
+
+7. Verify the RNA connection. Go to the [Agents page](https://console.cloud.armory.io/configuration/agents) in the Configuration UI, and look for the Agent identifier you assigned to your target deployment cluster. You should see it along with some basic information:
+
+   > Note that you may see a "No Data message" when first loading the Agent page.
+
+   {{< figure src="/images/borealis/borealis-ui-rna-status.jpg" alt="The Connected Remote Network Agents page shows connected agents and the following information: Agent Identifier, Agent Version, Connection Time when the connection was established, Last Heartbeat time, Client ID, and IP Address." >}}
+
+
+
+   If you do not see the RNA for your target deployment cluster, check the logs for the target deployment cluster to see if the RNA is up and running.
+

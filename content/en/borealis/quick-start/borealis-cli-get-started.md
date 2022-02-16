@@ -27,13 +27,13 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo]((https://github.com/armory/avm/releases/) or use the following command:
    
    ```bash
-   wget https://github.com/armory/avm/releases/download/<version>/avm-<os>-<architecture>
+   wget https://github.com/armory/avm/releases/latest/download/avm-<os>-<architecture>
    ```
 
-   For example, the following command downloads version 1.0.1 of the AVM for macOS (darwin) running on AMD64-based CPUs:
+   For example, the following command downloads the latest version for macOS (Darwin):
 
    ```bash
-   wget https://github.com/armory/avm/releases/download/v1.0.1/avm-darwin-amd64
+   wget https://github.com/armory/avm/releases/latest/download/avm-darwin-amd64
    ```
 
    You can see the full list of available releases in the [repo](https://github.com/armory/avm/releases/).
@@ -75,7 +75,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
    </details></br>
 
-7. Add the directory that AVM returns when you run `avm install` to your path.
+7. Add the directory that AVM returned when you ran `avm install` to your path.
   
    <details><summary>Show me how to add the directory.</summary>
 
@@ -144,7 +144,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 1. Create the directory where the CLI stores your credentials:
 
    ```bash
-   mkdir ~/.armory/credentials
+   mkdir ~/.armory
    ```
 
 2. Log in to Armory's hosted cloud services from the CLI:
@@ -167,45 +167,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
    This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`.
    <details><summary>Show me an empty template</summary>
    
-   ```yaml
-   version: v1
-   kind: kubernetes
-   application: <appName>
-   # Map of Deployment target
-   targets:
-    # A name for this deployment.
-     <deploymentName>: 
-       # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
-       account: <accountName>
-       # (Recommended) Set the namespace that the app gets deployed to. Overrides the namespaces that are in your manifests
-       namespace:
-       # This is the key that references a strategy you define under in the `strategies.<strategyName>` section of the file.
-       strategy: <strategyName>
-   # The list of manifests sources
-   manifests:
-     # A directory containing multiple manifests. Instructs Borealis to read all yaml|yml files in the directory and deploy all manifests to the target defined in    `targets`.
-     - path: /path/to/manifest/directory
-     # A specific manifest file
-     - path: /path/to/specific/manifest.yaml
-   # The map of strategies that you can use to deploy your app.
-   strategies:
-     # The name for a strategy. You select one to use with the `targets.strategy` key.
-     <strategyName>:
-       # The deployment strategy type. As part of the early access program, Borealis supports `canary`.
-       canary:
-         # List of canary steps
-         steps:
-           # The map key is the step type. First configure `setWeight` for the weight (how much of the cluster the app should deploy to for a step).
-           - setWeight:
-               weight: <integer> # Deploy the app to <integer> percent of the cluster as part of the first step. `setWeight` is followed by a `pause`.
-           - pause: # `pause` can be set to a be a specific amount of time or to a manual approval.
-               duration: <integer> # How long to wait before proceeding to the next step.
-               unit: seconds # Unit for duration. Can be seconds, minutes, or hours.
-           - setWeight:
-               weight: <integer> # Deploy the app to <integer> percent of the cluster as part of the second step
-           - pause:
-               untilApproved: true # Pause the deployment until a manual approval is given. You can approve the step through the CLI or Status UI.
-   ```
+   {{< include "aurora-borealis/borealis-yaml.md" >}}
 
 
    </details><br>
@@ -214,7 +176,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 
    - `application`: The name of your app.
    - `targets.<deploymentName>`: A descriptive name for your deployment. Armory recommends using the environment name.
-   - `targets.<deploymentName>.account`: The name of the deployment target cluster. This is the name that was assigned to the cluster using the `agent-k8s.accountName` parameter when you installed the RNA.
+   - `targets.<deploymentName>.account`: The name of the deployment target cluster. This is the name that was assigned to the cluster using the `agentIdentifier` parameter when you installed the RNA. Note that older versions of the RNA used the `agent-k8s.accountName` parameter.
    - `targets.<deploymentName>.strategy`: the name of the deployment strategy you want to use. You define the strategy in `strategies.<strategy-name>`.
    - `manifests`: a map of manifest locations. This can be a directory of `yaml (yml)` files or a specific manifest. Each entry must use the following convention:  `- path: /path/to/directory-or-file`
    - `strategies.<strategy-name>`: the list of your deployment strategies. Use one of these for `targets.<target-cluster>.strategy`. Each strategy in this section consists of a map of steps for your deployment strategy in the following format:
@@ -239,46 +201,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 
    <details><summary>Show me a completed deployment file</summary>
 
-   ```yaml
-   version: v1
-   kind: kubernetes
-   application: ivan-nginx
-   # Map of deployment target
-   targets:
-     # A descriptive name for the deployment
-     dev-west: 
-       # The account name that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
-       account: cdf-dev
-       # (Recommended) Set the namespace that the app gets deployed to. Overrides the namespaces that are in your manifests
-       namespace: cdf-dev-agent
-       # This is the key that references a strategy you define under the strategies section of the file.
-       strategy: canary-wait-til-approved
-   # The list of manifests sources
-   manifests:
-     # A directory containing multiple manifests. Instructs Borealis to read all yaml|yml files in the directory and deploy all manifests to the target defined in    `targets`.
-     - path: /deployments/manifests/configmaps
-     # A specific manifest file that gets deployed to the target defined in `targets`.
-     - path: /deployments/manifests/deployment.yaml
-   # The map of strategies that you can use to deploy your app.
-   strategies:
-     # The name for a strategy, which you use for the `strategy` key to select one to use.
-     canary-wait-til-approved:
-       # The deployment strategy type. As part of the early access program, Borealis supports `canary`.
-       canary:
-         # List of canary steps
-         steps:
-         # The map key is the step type. First configure `setWeight` for the weight (how much of the cluster the app should deploy to for a step).
-         - setWeight:
-           - setWeight:
-               weight: 33 # Deploy the app to 33% of the cluster.
-           - pause: 
-               duration: 60 # Wait 60 seconds before starting the next step.
-               unit: seconds
-           - setWeight:
-               weight: 66 # Deploy the app to 66% of the cluster.
-           - pause:
-               untilApproved: true # Wait until approval is given through the Borealis CLI or Status UI.
-   ```
+   {{< include "aurora-borealis/borealis-yaml-example.md" >}}
 
     </details><br>
 
