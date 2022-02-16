@@ -1,6 +1,6 @@
 ---
-linkTitle: Enable Application Logging in Armory Enterprise
-title: App Logging
+title: Enable Logging in Armory Enterprise
+linkTitle: Enable Logging
 description: >
    Log data about what individual accounts and functions are doing within Armory Enterprise. Push data to the your chosen aggregator. Includes how to configure Armory Enterprise to send data to Splunk and contains example dashboards.
 ---
