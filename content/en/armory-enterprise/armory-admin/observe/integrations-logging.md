@@ -21,7 +21,7 @@ You have set up a data aggregator with a unique endpoint. You need the endpoint 
 
 ## Enable logging data
 
-The following configuration example shows how to configure Echo to send data to Splunk.  If you are using another data aggregator, replace the `url` value with the endpoint for your aggregator.
+The following configuration example shows how to configure Echo to send data to Splunk. If you are using another data aggregator, replace the `url` value with the endpoint for your aggregator.
 
 {{< tabs name="enable-logging" >}}
 {{< tabbody name="Operator" >}}
