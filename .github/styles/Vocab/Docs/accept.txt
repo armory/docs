@@ -75,6 +75,7 @@ Spinnaker
 SpinnakerService
 spinnakerservice
 spinsvc
+Splunk
 SQL
 tabbody
 .yml

@@ -3,8 +3,10 @@ title: Configure Support Diagnostics for Armory Enterprise
 linkTitle: Configure Support Diagnostics
 aliases:
   - /docs/spinnaker-install-admin-guides/admin-diagnostics/
+  - /armory-enterprise/armory-admin/diagnostics-configure/
 description: >
   Enable Armory Diagnostics so that Armory's Support team can better troubleshoot any issues you encounter.
+
 ---
 
 ## Advantages to enabling Armory Diagnostics

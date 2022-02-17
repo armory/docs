@@ -38,7 +38,7 @@ This shortcode is from https://github.com/haideralipunjabi/hugo-shortcodes/tree/
 
 <details><summary>Expand to see file</summary>
 
-{{< github repo="armory-io/spinnaker-operator" file="/deploy/spinnaker/basic/SpinnakerService.yml" lang="yaml" options="" >}}
+{{< github repo="armory-io/spinnaker-operator" file="/deploy/spinnaker/basic/SpinnakerService.yml" lang="yaml" options="linenos=table" >}}
 </details>
 
 

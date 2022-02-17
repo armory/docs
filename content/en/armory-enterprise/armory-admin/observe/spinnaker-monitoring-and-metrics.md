@@ -1,9 +1,11 @@
 ---
-title: Spinnaker Monitoring and Metrics
+title: Armory Enterprise Monitoring Indicators
 toc_hide: true
 hide_summary: true
 exclude_search: true
 description: Service Level Indicators that you can monitor to determine the health of your Armory Enterprise instance.
+aliases:
+  - /armory-enterprise/armory-admin/spinnaker-monitoring-and-metrics/
 ---
 
 ## Common Metrics - All Services
@@ -19,8 +21,8 @@ For all java based services, Spinnaker exposes common metrics like HTTP and JVM 
 ### Controller latency
 
 ```
-sum(rate($service:controller:invocations__totalTime_total[1m])) by 
-(controller, method) / sum(rate($service:controller:invocations__count_total[1m])) by 
+sum(rate($service:controller:invocations__totalTime_total[1m])) by
+(controller, method) / sum(rate($service:controller:invocations__count_total[1m])) by
 (controller, method)
 ```
 
@@ -43,7 +45,7 @@ Indicates how long it takes for each HTTP controller to respond.
 ### Outgoing requests latency
 
 ```
-sum(rate($service:okhttp:requests__totalTime_total[1m])) by (requestHost) / sum(rate($service:okhttp:requests__count_total[1m])) by (requestHost) 
+sum(rate($service:okhttp:requests__totalTime_total[1m])) by (requestHost) / sum(rate($service:okhttp:requests__count_total[1m])) by (requestHost)
 ```
 
 → Y axis is in nanoseconds.
@@ -67,7 +69,7 @@ Shows how long it takes for downstream Spinnaker services to respond.
 ### 5xx errors sent
 
 ```
-sum(rate($service:controller:invocations__count_total{status="5xx"}[1m])) by 
+sum(rate($service:controller:invocations__count_total{status="5xx"}[1m])) by
 (controller, method, statusCode)
 ```
 
@@ -85,7 +87,7 @@ Indicates the number of 5xx errors produced by the service.
 ### 5xx errors received
 
 ```
-sum(rate($service:okhttp:requests__count_total{status="5xx"}[1m])) by 
+sum(rate($service:okhttp:requests__count_total{status="5xx"}[1m])) by
 (requestHost)
 ```
 
@@ -220,8 +222,8 @@ Shows how many caching agents are running in clouddriver.
 ### Kubernetes, kubectl latency
 
 ```
-sum(rate(clouddriver:kubernetes:api__totalTime_total{success="true"}[1m])) by 
-(account, action) / sum(rate($service:kubernetes:api__count_total{success="true"}[1m])) by 
+sum(rate(clouddriver:kubernetes:api__totalTime_total{success="true"}[1m])) by
+(account, action) / sum(rate($service:kubernetes:api__count_total{success="true"}[1m])) by
 (account, action)
 ```
 
@@ -280,7 +282,7 @@ Shows how many SQL connections are hanging waiting for processes to complete.
 ### Redis latency
 
 ```
-sum(rate(clouddriver:redis:command:latency:sscan__count_total[1m])) / 
+sum(rate(clouddriver:redis:command:latency:sscan__count_total[1m])) /
 sum(rate(clouddriver:redis:command:latency:sscan__totalTime_total[1m]))
 ```
 
