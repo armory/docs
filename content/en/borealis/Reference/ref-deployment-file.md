@@ -9,7 +9,7 @@ exclude_search: true
 
 The deployment file is what you use to define how and where your app gets deployed to.
 
-You can see what a blank deployment file looks like in the [Template file](#template-file) section. To see a filled out example, see [Example file](#example-file).
+You can see what a blank deployment file looks like in the [Template file](#blank-template) section. To see a filled out example, see [Example file](#example).
 
 ## Blank template
 
@@ -25,17 +25,27 @@ Or you can output the template to a file and modify it to suit your needs:
 armory template kubernetes canary > deployment-template.yaml
 ```
 
-<details><summary>Show me the template</summary>
+<details><summary>Show me the basic template</summary>
 
-{{< include "aurora-borealis/borealis-yaml.md" >}}
+The basic template illustrates the structure of a deploy file using duration based pauses and manual approval pauses.
+
+{{< include "aurora-borealis/borealis-yaml-basic.md" >}}
+
+</details>
+<br>
+<details><summary>Show me the canary analysis template</summary>
 
 </details>
 
 ## Example
 
-<details><summary>Show me a completed deployment file</summary>
+<details><summary>Show me a completed basic deployment file</summary>
 
-{{< include "aurora-borealis/borealis-yaml-example.md" >}}
+{{< include "aurora-borealis/borealis-yaml-example-basic.md" >}}
+
+</details><br>
+
+<details><summary>Show me a completed canary deployment file</summary>
 
 </details><br>
 

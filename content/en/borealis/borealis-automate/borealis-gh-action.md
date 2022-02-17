@@ -85,7 +85,7 @@ armory template kubernetes canary > deployment.yaml
 
 <details><summary>Show me the template file</summary>
 
-{{< include "aurora-borealis/borealis-yaml.md" >}}
+{{< include "aurora-borealis/borealis-yaml-basic.md" >}}
 
 </details>
 
@@ -96,7 +96,7 @@ Note that you do not need to configure a `setWeight` step for `100`. Borealis au
 
 <details><summary>Show me an example deployment file</summary>
 
-{{< include "aurora-borealis/borealis-yaml-example.md" >}}
+{{< include "aurora-borealis/borealis-yaml-example-basic.md" >}}
 
 </details>
 
