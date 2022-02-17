@@ -2,7 +2,7 @@
 title: Enable Logging in Armory Enterprise
 linkTitle: Enable Logging
 description: >
-   Log data about what individual accounts and functions are doing within Armory Enterprise. Push data to the your chosen aggregator, including Splunk.
+   Log data about what individual accounts and functions are doing within Armory Enterprise. Push data to your chosen aggregator, including Splunk. Configure Splunk dashboards to display Armory Enterprise logging data.
 ---
 
 ## Metrics and logging overview
