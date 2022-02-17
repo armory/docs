@@ -5,6 +5,11 @@ version: 01.00.12
 
 ---
 
-1. Fixes a nil pointer exception condition that crashes the agent on rare ocasions
-2. Identifies a preferred resource mapping for the provided version on the deployment manifest stage.
+## Fixes
+
+- Fixed a nil pointer exception condition that caused the Agent to crash in certain conditions.
+
+## Improvements
+
+- Agent now identifies and uses a preferred resource mapping for the provided manifest version on a Deploy Manifest stage. This helps prevent mismatch errors between versions of a deployed manifest.
 
