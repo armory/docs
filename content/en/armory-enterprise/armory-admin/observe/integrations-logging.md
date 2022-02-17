@@ -74,7 +74,7 @@ rest:
 
 >The default port for Splunk's HTTP Event Collector (HEC) is either 8088 or 8089 depending on your Splunk version. This port is used if you **do not** configure a TCP listener. Any TCP listener config is a custom port assignment. See the [Metric data does not flow into Splunk despite setting up HEC Connection](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010554) KB article for more on Splunk HEC and ports.
 
-The `HOSTNAME:PORT` can be HTTPS, which would remove the need for the insecure `TOKEN`. Consult your specific data aggregator provider's documentation for how to configure an HTTPS endpoint.
+The `SERVICE_URL:PORT` can be HTTPS, which would remove the need for the insecure `TOKEN`. Consult your specific data aggregator provider's documentation for how to configure an HTTPS endpoint.
 
 ## Verify data flow to your aggregator
 
