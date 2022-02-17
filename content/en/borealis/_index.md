@@ -1,6 +1,5 @@
 ---
 title: "Project Borealis"
-exclude_search: true
 aliases:
   - /armory-deployments/
 ---

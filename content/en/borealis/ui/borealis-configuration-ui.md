@@ -2,7 +2,7 @@
 title: Configuration UI
 description: >
   Administer your Borealis instance, including inviting users, managing deployment targets, and generating secrets.
-exclude_search: true
+
 ---
 
 

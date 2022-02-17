@@ -1,6 +1,6 @@
 ---
 title: Known Issues and Limitations
-exclude_search: true
+
 ---
 
 ## Deployment fails with a blank namespace error

@@ -1,7 +1,6 @@
 ---
 title: "System Requirements for Project Aurora/Borealis"
 linkTitle: "System Requirements"
-exclude_search: true
 weight: 20
 aliases:
   - /armory-deployments/requirements/

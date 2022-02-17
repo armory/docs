@@ -2,7 +2,7 @@
 title: Deployment File Reference
 linktitle: Deployment File
 description: 
-exclude_search: true
+
 ---
 
 

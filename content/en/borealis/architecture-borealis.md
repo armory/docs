@@ -3,7 +3,7 @@ title: "Project Aurora and Borealis Architecture"
 linkTitle: "Architecture"
 description: >
   Project Aurora and Project Borealis (Aurora/Borealis) are comprised of parts that exist in your infrastructure and within Armory's hosted cloud services. The parts that Armory hosts connect to your infrastructure and deployment target through the Remote Network Agent (RNA).
-exclude_search: true
+
 weight: 10
 aliases: 
   - /armory-deployments/architecture/

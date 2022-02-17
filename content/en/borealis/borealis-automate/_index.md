@@ -3,7 +3,7 @@ title: Integrate Borealis & Automate Deployments
 linktitle: Integrate & Automate
 description: >
   Project Borealis and the CLI can be integrated with any of your tools and scripts that support invoking a CLI as part of its workflow. This gives you the ability to automatically deploy apps using Borealis as part of existing workflows.
-exclude_search: true
+
 aliases:
   - /borealis/quick-start/borealis-integrate/
 weight: 40

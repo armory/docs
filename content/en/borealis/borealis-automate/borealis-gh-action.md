@@ -1,7 +1,7 @@
 ---
 title: Borealis Deployment GitHub Action
 linktitle: GitHub Action
-exclude_search: true
+
 ---
 
 

@@ -3,7 +3,7 @@ title: Armory Deployments Status UI
 linkTitle: Status UI
 description: >
   Monitor the status of your deployments and approve or rollback deployments.
-exclude_search: true
+
 ---
 
 
