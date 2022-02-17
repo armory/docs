@@ -400,6 +400,8 @@ Armory supports the following variables out of the box:
 - `armory.environmentName`
 - `armory.replicaSetName`
 
+You can supply your own variables by adding them to this section. When you use them in your query, include the `context` prefix. For example, if you create a variable named `owner`, you would use `context.owner` in your query.
+
 #### `strategies.<strategyName>.<strategy>.steps.analysis.interval`
 
 ```yaml
@@ -490,7 +492,7 @@ All the queries must pass for the step as a whole to be considered a success.
 
 This block defines the queries used to analyze a deployment for any `analysis` steps. In addition, you set upper and lower limits for the queries that define what is considered a failed deployment step or a successful deployment step.
 
-You can provide multiple queries in this block. The following snippet includes two sample Prometheus queries. Note that these example queries require the following: 
+You can provide multiple queries in this block.  The following snippet includes a sample Prometheus query. Note that the example requires the following: 
 
 - `kube-state-metrics.metricAnnotationsAllowList[0]=pods=[*]` must be set 
 - Your applications pods need to have the annotation `"prometheus.io/scrape": "true"`
@@ -503,15 +505,19 @@ analysis: # Define queries and thresholds used for automated analysis
       lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
       queryTemplate: >-
         <some-metrics-query>
-    - name: <queryName>
-      upperLimit: <integer>  # If the metric exceeds this value, the automated analysis fails.
-      lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
-      context:
-        - <variableName>: <Variable>
-        - <variableName>: <Variable>
-      queryTemplate: >-
-        <some-metrics-query>
+     - name: containerCPUSeconds
+        upperLimit: 100
+        lowerLimit: 1
+        queryTemplate: >-
+          avg
+          (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[${armory.promQlStepInterval}])
+          * on (pod)  group_left (annotation_app)
+          sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="${armory.replicaSetName}"}) by (annotation_app, pod)) by (annotation_app)
 ```
+
+You can insert variables into your queries. Variables are inserted using the format `${key}`. The example query includes the variable `armory.replicaSetName`. Variables that Armory supports can be referenced by `${armory.VariableName}`. Custom defined variables can be referenced by `${context.VariableName}`.
+
+For more information, see the [`analysis.context` section](#strategiesstrategynamestrategystepsanalysiscontext).
 
 ### `analysis.defaultMetricProviderName`
 
