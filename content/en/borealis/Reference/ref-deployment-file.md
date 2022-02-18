@@ -1,7 +1,8 @@
 ---
 title: Deployment File Reference
 linktitle: Deployment File
-description: 
+description: >
+  The deployment (deploy) file is how you define how your app gets deployed by Borealis, including the targets and deployment strategies.
 exclude_search: true
 ---
 
@@ -427,6 +428,8 @@ Armory supports the following variables out of the box:
 
 You can supply your own variables by adding them to this section. When you use them in your query, include the `context` prefix. For example, if you create a variable named `owner`, you would use `context.owner` in your query.
 
+For information about writing queries, see the [Query Reference Guide]({{< ref "ref-queries.md" >}}).
+
 #### `strategies.<strategyName>.<strategy>.steps.analysis.interval`
 
 ```yaml
@@ -546,7 +549,7 @@ analysis: # Define queries and thresholds used for automated analysis
                 # note the time should actually be set to ${promQlStepInterval}
 ```
 
-You can insert variables into your queries. Variables are inserted using the format `${key}`. The example query includes the variable `armory.replicaSetName`. Variables that Armory supports can be referenced by `${armory.VariableName}`. Custom defined variables can be referenced by `${context.VariableName}`.
+You can insert variables into your queries. Variables are inserted using the format `{{key}}`. The example query includes the variable `armory.replicaSetName`. Variables that Armory supports can be referenced by `{{armory.VariableName}}`. Custom defined variables can be referenced by `{{context.VariableName}}`.
 
 For more information, see the [`analysis.context` section](#strategiesstrategynamestrategystepsanalysiscontext).
 
@@ -603,6 +606,8 @@ analysis: # Define queries and thresholds used for automated analysis
 
 The query you want to run. Use the [**Retrospective Analysis** UI]({{< ref "borealis-configuration-ui#retrospective-analysis" >}}) to build and test queries before including them in your deploy file.
 
+For information about writing queries, see the [Query Reference Guide]({{< ref "ref-queries.md" >}}).
+
 When writing queries, you can use key/value pairs that are passed as substitutions for variables to the queries.
 
 Armory supports the following variables out of the box:
@@ -621,4 +626,4 @@ Armory supports the following variables out of the box:
 - `armory.environmentName`
 - `armory.replicaSetName`
 
-You can supply your own variables by adding them to the `strategies.<strategyName>.<strategy>.steps.analysis.context`. When you use them in your query, include the `context` prefix. For example, if you create a variable named `owner`, you would use `context.owner` in your query.
+You can supply your own variables by adding them to the `strategies.<strategyName>.<strategy>.steps.analysis.context`. When you use them in your query, include the `context` prefix. For example, if you create a variable named `owner`, you would use `{{context.owner}}` in your query.
