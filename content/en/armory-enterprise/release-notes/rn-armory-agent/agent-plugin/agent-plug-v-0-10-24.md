@@ -5,46 +5,45 @@ version: 00.10.24
 
 ---
 
-### New features
+## New features
 
-Agent no longer needs redis. Communication between clouddrivers can now be through direct HTTP requests instead of using the redis pubusb, the plugin will watch changes to the kubernetes kind `Endpoint` where clouddriver pods are running, in order to know the IP address of each clouddriver replica.
+### Agent communication
 
-**Prerequisites**
-Clouddriver pods need to mount a service account with permissions to `list` and `watch` the kubernetes kind `Endpoint` in their current namespace.
+Agent no longer requires Redis. Communication between Clouddrivers can now be done direct HTTP requests instead of Redis pubsub. The plugin watches changes to the Kubernetes kind `Endpoint` where Clouddriver pods run to learn the IP address of each Clouddriver replica. This method of communication is more reliable than Redis pubsub. This change is optional.
 
-**Configuration**
-This is an opt-in change and can be enabled by changing in `clouddriver.yml` file this config:
+To use this change, make sure the following requirement is met:
 
-```
-kubesvc:
-  cluster: redis
-redis:
-  enabled: true
-```
+- Clouddriver pods need to mount a service account with permissions to `list` and `watch` the Kubernetes kind `Endpoint` in their current namespace.
 
-To this config:
+To configure this change, update your `clouddriver.yml` file with the following changes:
 
-```
+```yaml
 kubesvc:
   cluster: kubernetes
 redis:
-  enabled: false # Setting to false only if redis is not used by other processes, like caching agent scheduler or task repository
+  enabled: false 
 ```
 
-These are the full configuration options:
-```
+You should only set `redis.enabled` to `false` if no other processes use Redis, such as the Caching Agent Scheduler or the Task Repository.
+
+
+There are additional configuration options available:
+
+```yaml
 kubesvc:
   cluster-kubernetes:
-    kubeconfigFile # (Default: null) Use this kubeconfgFile to talk to the spinnaker cluster instead of the service account mounted in clouddriver pod
-    verifySsl # (Default: true) Verify kubernetes API server certificate
-    namespace #(Default: null) Watch endpoints on this namespace instead of the autodetected namespace where clouddriver is running
-    httpPortName # (Default: http) Name of the port in the clouddriver kubernetes Service selector for port 7002
-    clouddriverServiceNamePrefix # (Default: spin-clouddriver) Prefix of the kubernetes Service name that routes traffic to clouddriver http pods at port 7002
+    kubeconfigFile: path/to/kubeconfig # (Default: null) Agent uses this kubeconfgFile to communicate with the Armory Enterprise  cluster instead of the service account mounted in the Clouddriver pod.
+    verifySsl: <true|false> # (Default: true) Verify kubernetes API server certificate.
+    namespace: <namespace> #(Default: null) Agent watches endpoints on this namespace instead of the autodetected namespace where Clouddriver runs.
+    httpPortName: <portName> # (Default: http) Name of the port in the clouddriver Kubernetes Service selector for port 7002.
+    clouddriverServiceNamePrefix: <clouddriverPrefix> # (Default: spin-clouddriver) Prefix of the Kubernetes Service name that routes traffic to Clouddriver http pods at port 7002.
 ```
 
-**Troubleshooting**
-A new REST endpoint is available in clouddriver, which indicates all the discovered clouddriver pods, their IP addressess and status (ready/not ready):
-```
+### Clouddriver pod REST endpoint
+
+A new REST endpoint is available for Clouddriver, which lists all the discovered Clouddriver pods, their IP addresses and status (ready/not ready):
+
+```bash
 GET /armory/clouddrivers
 [
   {
