@@ -388,6 +388,7 @@ The `analysis` step is used to run a set of queries against your deployment. Bas
 steps:
 ...
         - analysis:
+            metricProviderName: <metricProviderName>
             context:
               keyName: <value>
               keyName: <value>
@@ -400,6 +401,9 @@ steps:
               - <queryName>
               - <queryName>
 ```
+#### `strategies.<strategyName>.<strategy>.steps.analysis.metricProviderName`
+
+Optional. The name of a configured metric provider. If you do not provide a metric provider name, Borealis uses the default metric provider defined in the `analysis.defaultMetricProviderName`. Use the **Configuration UI** to add a metric provider.
 
 #### `strategies.<strategyName>.<strategy>.steps.analysis.context`
 
@@ -520,20 +524,26 @@ You can provide multiple queries in this block.  The following snippet includes 
 
 ```yaml
 analysis: # Define queries and thresholds used for automated analysis
+  defaultMetricProviderName: <providerName> # The name that you assigned a metrics provider in the Configuration UI.
   queries:
     - name: <queryName>
       upperLimit: <integer> # If the metric exceeds this value, the automated analysis fails.
       lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
       queryTemplate: >-
         <some-metrics-query>
-     - name: containerCPUSeconds
+     - name: avgCPUUsage
         upperLimit: 100
         lowerLimit: 1
         queryTemplate: >-
-          avg
-          (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[${armory.promQlStepInterval}])
-          * on (pod)  group_left (annotation_app)
-          sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="${armory.replicaSetName}"}) by (annotation_app, pod)) by (annotation_app)
+          avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
+                  sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
+                  by (annotation_app, pod)) by (annotation_app)
+                #,annotation_deploy_armory_io_replica_set_name="${canaryReplicaSetName}"})
+                #${ARMORY_REPLICA_SET_NAME}
+                #,annotation_deploy_armory_io_replica_set_name="${ARMORY_REPLICA_SET_NAME}"
+                #${replicaSetName}
+                #${applicationName}
+                # note the time should actually be set to ${promQlStepInterval}
 ```
 
 You can insert variables into your queries. Variables are inserted using the format `${key}`. The example query includes the variable `armory.replicaSetName`. Variables that Armory supports can be referenced by `${armory.VariableName}`. Custom defined variables can be referenced by `${context.VariableName}`.
@@ -542,7 +552,7 @@ For more information, see the [`analysis.context` section](#strategiesstrategyna
 
 ### `analysis.defaultMetricProviderName`
 
-The name that you assigned to a metrics provider in the **Configuration UI**.
+The name that you assigned to a metrics provider in the **Configuration UI**. If the analysis step does not specify a metrics provider, the default metrics provider is used.
 
 ### `analysis.queries`
 
@@ -576,11 +586,19 @@ analysis: # Define queries and thresholds used for automated analysis
       lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
       queryTemplate: >-
         <some-metrics-query>
-    - name: <queryName>
-      upperLimit: <integer>  # If the metric exceeds this value, the automated analysis fails.
-      lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
-      queryTemplate: >-
-        <some-metrics-query>
+     - name: avgCPUUsage # example query
+        upperLimit: 100
+        lowerLimit: 1
+        queryTemplate: >-
+          avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
+                  sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
+                  by (annotation_app, pod)) by (annotation_app)
+                #,annotation_deploy_armory_io_replica_set_name="${canaryReplicaSetName}"})
+                #${ARMORY_REPLICA_SET_NAME}
+                #,annotation_deploy_armory_io_replica_set_name="${ARMORY_REPLICA_SET_NAME}"
+                #${replicaSetName}
+                #${applicationName}
+                # note the time should actually be set to ${promQlStepInterval}
 ```
 
 The query you want to run. Use the [**Retrospective Analysis** UI]({{< ref "borealis-configuration-ui#retrospective-analysis" >}}) to build and test queries before including them in your deploy file.

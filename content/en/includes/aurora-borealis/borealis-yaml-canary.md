@@ -46,19 +46,18 @@ strategies: # A map of named strategies that can be assigned to deployment targe
 analysis: # Define queries and thresholds used for automated analysis.
   # Note that the example queries require Prometheus to have 
   # "kube-state-metrics.metricAnnotationsAllowList[0]=pods=[*]" set and for your applications pods to have the annotation "prometheus.io/scrape": "true"
+  defaultMetricProviderName: <metricsProviderName> # The name of a metrics provider you configured in the Configuration UI. Analysis steps use this provider unless a different one is specified.
   queries:
     - name: <queryName> # Used in `strategies.<strategyName>.carny.steps.analysis` section to reference this particular query.
       upperLimit: <integer> # If the metric exceeds this value, the automated analysis fails.
       lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
       queryTemplate: >- # Example query.
         avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
-        sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
-        by (annotation_app, pod)) by (annotation_app)
-    - name: avgMemoryUsage 
-      upperLimit: 1  # If the metric exceeds this value, the automated analysis fails.
-      lowerLimit: 0 # If the metric goes below this value, the automated analysis fails.
-      queryTemplate: >- # Example query.
-        avg (avg_over_time(container_memory_working_set_bytes{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
-        sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
-        by (annotation_app, pod)) by (annotation_app)
-```
+                sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
+                by (annotation_app, pod)) by (annotation_app)
+              #,annotation_deploy_armory_io_replica_set_name="${canaryReplicaSetName}"})
+              #${ARMORY_REPLICA_SET_NAME}
+              #,annotation_deploy_armory_io_replica_set_name="${ARMORY_REPLICA_SET_NAME}"
+              #${replicaSetName}
+              #${applicationName}
+              # note the time should actually be set to ${promQlStepInterval}
