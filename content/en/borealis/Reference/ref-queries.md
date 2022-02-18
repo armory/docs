@@ -1,7 +1,9 @@
 ---
 title: Query Reference Guide
 linkTitle: Queries
-summary: "Borealis has different requirements for how queries are formatted and what kind of data gets returned based on the metrics provider you use for automated canary analysis. This guide provides basic information about what Borealis needs for each provider." 
+description: >
+  Borealis has different requirements for how queries are formatted and what kind of data can get returned based on the metrics provider you use for automated canary analysis. This guide provides basic information about what Borealis needs for each provider.
+exclude_search: true
 ---
 
 ## Overview

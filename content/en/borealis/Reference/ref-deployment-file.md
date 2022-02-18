@@ -1,7 +1,8 @@
 ---
 title: Deployment File Reference
 linktitle: Deployment File
-description: 
+description: >
+  The deployment (deploy) file is how you define how your app gets deployed by Borealis, including the targets and deployment strategies.
 exclude_search: true
 ---
 
