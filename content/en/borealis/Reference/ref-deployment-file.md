@@ -15,11 +15,18 @@ You can see what a blank deployment file looks like in the [Template file](#blan
 
 You can see this template file by running the following command with the Borealis CLI:
 
+Basic template:
 ```bash
 armory template kubernetes canary
 ```
 
-Or you can output the template to a file and modify it to suit your needs:
+Canary analysis template: 
+
+```bash
+armory template kubernetes canary 
+```
+
+To use the template, output it to a file and modify it to suit your needs:
 
 ```bash
 armory template kubernetes canary > deployment-template.yaml
@@ -35,6 +42,8 @@ The basic template illustrates the structure of a deploy file using duration bas
 <br>
 <details><summary>Show me the canary analysis template</summary>
 
+{{< include "aurora-borealis/borealis-yaml-canary.md" >}}
+
 </details>
 
 ## Example
@@ -46,6 +55,8 @@ The basic template illustrates the structure of a deploy file using duration bas
 </details><br>
 
 <details><summary>Show me a completed canary deployment file</summary>
+
+{{< include "aurora-borealis/borealis-yaml-example-canary.md" >}}
 
 </details><br>
 

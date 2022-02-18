@@ -16,7 +16,7 @@ targets: # Map of your deployment targets. Provide a descriptive name for the de
                     unit: SECONDS
                     # If set to true, the deployment waits until a manual approval to continue. Only set this to true if duration and unit are not set.
                     untilApproved: false
-            # Defines the deployments that must reach a successful state (defined as status == SUCCEEDED) before this deployment can start.Deployments with the same dependsOn criteria will execute in parallel.
+            # Defines the deployments that must reach succeed before this deployment can start. Deployments with the same dependsOn criteria execute in parallel.
             dependsOn: []
 # The list of manifest sources. Can be a directory or file.
 manifests:
@@ -35,7 +35,7 @@ strategies: # A map of named strategies that can be assigned to deployment targe
                     units: seconds # The unit for the interval: 'seconds', 'minutes' or 'hours'.
                     numberOfJudgmentRuns: 1 # How many times the queries get run.
                     # rollBackMode: manual # Optional Defaults to 'automatic' if omitted. Uncomment to require a manual review before rolling back if automated analysis detects an issue.
-                    # rollForwardMode: manual # Optional. Defaults to 'automatic' if omitted. Uncomment to require a manual review before continuing deployment if automated analysis determines the application is healthy.
+                    # rollForwardMode: manual # Optional. Defaults to 'automatic' if omitted. Uncomment to require a manual review before continuing deployment if automated analysis determines the app is healthy.
                     queries: # Specify a list of queries to run. Reference them by the name you assign in analysis.queries.
                     - containerCPUSeconds
                     - avgMemoryUsage

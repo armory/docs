@@ -7,7 +7,7 @@ targets:
   # You can specify multiple targets. This example has space for 3. Provide a descriptive name for the deployment, such as the environment name, so you can tell them apart.
   <targetName1>:
     # The agent identifier that a deployment target cluster got assigned when you installed the Remote Network Agent (RNA) on it.
-    account: <accountName>
+    account: <agentIdentifier>
    #  (Recommended) Set the namespace that the app gets deployed to. Overrides the namespaces that are in your manifests.
     namespace:
     # This is the key that references a strategy you define under the strategies section of the file.
