@@ -23,13 +23,13 @@ armory template kubernetes canary
 Automated canary analysis template: 
 
 ```bash
-armory template kubernetes canary 
+armory template kubernetes canary -f automated
 ```
 
 To use the template, output it to a file and modify it to suit your needs:
 
 ```bash
-armory template kubernetes canary > deployment-template.yaml
+armory template kubernetes canary -f automated > deployment-template.yaml
 ```
 
 <details><summary>Show me the basic template</summary>
