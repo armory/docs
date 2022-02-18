@@ -603,5 +603,22 @@ analysis: # Define queries and thresholds used for automated analysis
 
 The query you want to run. Use the [**Retrospective Analysis** UI]({{< ref "borealis-configuration-ui#retrospective-analysis" >}}) to build and test queries before including them in your deploy file.
 
+When writing queries, you can use key/value pairs that are passed as substitutions for variables to the queries.
 
+Armory supports the following variables out of the box:
 
+- `armory.startTimeIso8601`
+- `armory.startTimeEpochSeconds`
+- `armory.startTimeEpochMillis`
+- `armory.endTimeIso8601`
+- `armory.endTimeEpochSeconds`
+- `armory.endTimeEpochMillis`
+- `armory.intervalMillis`
+- `armory.intervalSeconds`
+- `armory.promQlStepInterval`
+- `armory.deploymentId`
+- `armory.applicationName`
+- `armory.environmentName`
+- `armory.replicaSetName`
+
+You can supply your own variables by adding them to the `strategies.<strategyName>.<strategy>.steps.analysis.context`. When you use them in your query, include the `context` prefix. For example, if you create a variable named `owner`, you would use `context.owner` in your query.
