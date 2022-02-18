@@ -64,8 +64,6 @@ To configure New Relic, you need the following:
 - **API Key**: The metrics integration requires access to Graph QL, so provide the User Key API key. For more information, see [User Key in the New Relic documentation](https://docs.newrelic.com/docs/apis/accounts-api/new-relic-user-key-api-key/).
 - **Account ID**: Your New Relic account ID. For information about how to get this ID, see [Account ID in the New Relic documentation](https://docs.newrelic.com/docs/apis/accounts-api/new-relic-account-id/).
 
-https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/
-
 #### Prometheus
 
 To configure Prometheus, you need the following:
@@ -110,7 +108,7 @@ In addition to these time related variables, there are a special set can be used
 - `armory.environmentName`
 - `armory.replicaSetName`
 
-You can also add your own custom variables as key/value pairs. If you want to use these custom variables, you need to add them to [`strategies.<strategyName>.<strategy>.steps.analysis.context` section in your deployment file]({{< ref "ref-deployment-file#strategiesstrategynamestrategystepsanalysiscontext" >}}.
+You can also add your own custom variables as key/value pairs. If you want to use these custom variables, you need to add them to [`strategies.<strategyName>.<strategy>.steps.analysis.context` section in your deployment file]({{< ref "ref-deployment-file#strategiesstrategynamestrategystepsanalysiscontext" >}}).
 
 <!--## Deployment targets
 
