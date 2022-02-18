@@ -79,7 +79,7 @@ Regardless of metrics provider, all queries require the following:
 
 Datadog queries cannot be a time-series query. This means that you need to include the `.rollup(method, {{armory.intervalSeconds}})` method in your query.
 
-For more information on Datadog queries, see [the DataDog documentation](https://docs.datadoghq.com/tracing/trace_explorer/query_syntax/). 
+For more information on Datadog queries, see [the Datadog documentation](https://docs.datadoghq.com/tracing/trace_explorer/query_syntax/). 
 
 #### Sample Datadog query
 
