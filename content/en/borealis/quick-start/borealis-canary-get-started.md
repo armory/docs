@@ -63,15 +63,21 @@ Retrospective analysis is the starting point to creating queries so that you can
 3. Select a time range that includes when you deployed your app.
 4. Add a **Query Template**. Use the following example:
 
-   - **Name**: containerCPUSeconds
+   - **Name**: avgCPUUsage
    - **Upper Limit**: The upper limit for the query. If the results exceed this value, the deployment is considered to be a failure. Set this to `10000`.
    - **Lower Limit**: The lower limit for the query. If the results fall below this value, the deployment is considered to be a failure. Set this to `0`.
    - **Query Template**:
 
    ```sql
-   avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[${armory.promQlStepInterval}]) * on (pod)  group_left (annotation_app)
-        sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="${armory.replicaSetName}"})
+        avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
+        sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
         by (annotation_app, pod)) by (annotation_app)
+      #,annotation_deploy_armory_io_replica_set_name="${canaryReplicaSetName}"})
+      #${ARMORY_REPLICA_SET_NAME}
+      #,annotation_deploy_armory_io_replica_set_name="${ARMORY_REPLICA_SET_NAME}"
+      #${replicaSetName}
+      #${applicationName}
+      # note the time should actually be set to ${promQlStepInterval}
    ```
 
    - The query contains variables that are automatically injected during canary analysis, but you must manually provide some of them during retrospective analysis. 
@@ -97,19 +103,24 @@ The Retrospective Analysis can take the query you provide and generate the YAML 
    ```yaml
    analysis:
      queries:
-      - name: containerCPUSeconds
-        upperLimit: 100
-        lowerLimit: 1
+      - name: avgCPUUsage
+        upperLimit: 10000
+        lowerLimit: 0
         queryTemplate: >-
-          avg
-          (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[${armory.promQlStepInterval}])
-          * on (pod)  group_left (annotation_app)
-          sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="${armory.replicaSetName}"}) by (annotation_app, pod)) by (annotation_app)
+          avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
+          sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
+          by (annotation_app, pod)) by (annotation_app)
+        #,annotation_deploy_armory_io_replica_set_name="${canaryReplicaSetName}"})
+        #${ARMORY_REPLICA_SET_NAME}
+        #,annotation_deploy_armory_io_replica_set_name="${ARMORY_REPLICA_SET_NAME}"
+        #${replicaSetName}
+        #${applicationName}
+        # note the time should actually be set to ${promQlStepInterval}
    ```
 
 For a detailed explanation of these fields, see the [Deployment File Reference]({{< ref "ref-deployment-file#analysis" >}})
 
-The `containerCPUSeconds` query is now available for you to use in the `steps` block of your deploy file to perform canary analysis.
+The `avgCPUUsage` query is now available for you to use in the `steps` block of your deploy file to perform canary analysis.
 
 ## Add canary analysis to your deployment
 
@@ -137,7 +148,7 @@ Adding canary analysis to your deployment involves updating your deploy file to 
               rollBackMode: manual
               rollForwardMode: manual
               queries: # The queries to run
-                - containerCPUSeconds
+                - avgCPUUsage
           - setWeight:
               weight: 75
           - analysis:
@@ -147,7 +158,7 @@ Adding canary analysis to your deployment involves updating your deploy file to 
               rollBackMode: manual
               rollForwardMode: manual
               queries:
-                - containerCPUSeconds
+                - avgCPUUsage
    ```
 
    For a detailed explanation of these fields, see the [Deployment File Reference]({{< ref "ref-deployment-file##strategiesstrategynamestrategystepsanalysis" >}})
