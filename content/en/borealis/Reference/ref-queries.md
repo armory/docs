@@ -80,13 +80,15 @@ Datadog queries cannot be a time-series query. This means that you need to inclu
 
 For more information on Datadog queries, see [the DataDog documentation](https://docs.datadoghq.com/tracing/trace_explorer/query_syntax/). 
 
-#### Sample DataDog Query
+#### Sample Datadog query
 
 ```sql
-avg:jvm.memory.used{name:{{armory.applicationName}} AND {{armory.replicaSetName}}}.rollup(avg, {{armory.intervalSeconds}}) / avg:jvm.memory.max{name:{{armory.applicationName}} AND {{armory.replicaSetName}}}.rollup(avg, {{armory.intervalSeconds}}) * 100
+avg:jvm.memory.used{name:{{armory.applicationName}} 
+  AND {{armory.replicaSetName}}}.rollup(avg, {{armory.intervalSeconds}}) / avg:jvm.memory.max{name:{{armory.applicationName}} 
+  AND {{armory.replicaSetName}}}.rollup(avg, {{armory.intervalSeconds}}) * 100
 ```
 
-### New Relic Queries
+### New Relic queries
 
 New Relic queries must meet the following requirements: 
 
@@ -96,17 +98,23 @@ New Relic queries must meet the following requirements:
 
 For information on New Relic’s Query Language, see the [New Relic documentation](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/introduction-nrql-new-relics-query-language/). 
 
-#### Sample New Relic Query
+#### Sample New Relic query
 
 ```sql
-SELECT average(jvm.memory.used) / average(jvm.memory.max) * 100 FROM Metric WHERE name = '{{armory.applicationName}}' AND replicaSetName = '{{armory.replicaSetName}}' SINCE '{{armory.startTimeIso8601}}' UNTIL '{{armory.endTimeIso8601}}
+SELECT average(jvm.memory.used) / average(jvm.memory.max) * 100 FROM Metric 
+  WHERE name = '{{armory.applicationName}}' AND replicaSetName = '{{armory.replicaSetName}}' 
+  SINCE '{{armory.startTimeIso8601}}' UNTIL '{{armory.endTimeIso8601}}
 ```
 
-### Prometheus Queries
+### Prometheus queries
 
 Prometheus queries must return results as a time stamp value pair. 
 
 For information on Prometheus queries, see [the Prometheus documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/). 
 
-##### Sample Prometheus Query
-`avg(avg_over_time(jvm_memory_used_bytes{app="{{armory.applicationName}}"}[{{armory.promQlStepInterval}}])) / avg(avg_over_time(jvm_memory_max_bytes{app="{{armory.applicationName}}"}[{{armory.promQlStepInterval}}])) * 100`
+##### Sample Prometheus query
+
+```sql
+avg(avg_over_time(jvm_memory_used_bytes{app="{{armory.applicationName}}"}[{{armory.promQlStepInterval}}])) / 
+  avg(avg_over_time(jvm_memory_max_bytes{app="{{armory.applicationName}}"}[{{armory.promQlStepInterval}}])) * 100
+```
