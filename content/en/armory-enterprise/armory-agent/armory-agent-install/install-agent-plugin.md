@@ -35,18 +35,7 @@ spec:
                 enabled: true
         # Plugin config
         kubesvc:
-          cluster: redis
-#          eventsCleanupFrequencySeconds: 7200
-#          localShortCircuit: false
-#          runtime:
-#            defaults:
-#              onlySpinnakerManaged: true
-#            accounts:
-#              account1:
-#                customResources:
-#                  - kubernetesKind: MyKind.mygroup.acme
-#                    versioned: true
-#                    deployPriority: "400"
+          cluster: kubernetes
   kustomize:
     clouddriver:
       deployment:
