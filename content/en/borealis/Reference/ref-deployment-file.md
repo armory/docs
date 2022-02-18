@@ -20,7 +20,7 @@ Basic template:
 armory template kubernetes canary
 ```
 
-Canary analysis template: 
+Automated canary analysis template: 
 
 ```bash
 armory template kubernetes canary 
@@ -40,7 +40,7 @@ The basic template illustrates the structure of a deploy file using duration bas
 
 </details>
 <br>
-<details><summary>Show me the canary analysis template</summary>
+<details><summary>Show me the automated canary analysis template</summary>
 
 {{< include "aurora-borealis/borealis-yaml-canary.md" >}}
 
@@ -54,9 +54,9 @@ The basic template illustrates the structure of a deploy file using duration bas
 
 </details><br>
 
-<details><summary>Show me a completed canary deployment file</summary>
+<details><summary>Show me a completed automated canary deployment file</summary>
 
-{{< include "aurora-borealis/borealis-yaml-example-canary.md" >}}
+{{< include "aurora-borealis/borealis-yaml-canary-example.md" >}}
 
 </details><br>
 
