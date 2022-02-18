@@ -93,7 +93,7 @@ avg:jvm.memory.used{name:{{armory.applicationName}}
 
 New Relic queries must meet the following requirements: 
 
-* Must include an `UNTIL`` clause in your query that specifies the start and end of the canary interval
+* Must include an `UNTIL` clause in your query that specifies the start and end of the canary interval
 	* For example, include a clause similar to the following clause: `SINCE '{{armory.startTimeIso8601}}' UNTIL '{{armory.endTimeIso8601}}`
 * Cannot contain the ‘TIMESERIES’ clause
 
@@ -104,7 +104,7 @@ For information on New Relic’s Query Language, see the [New Relic documentatio
 ```sql
 SELECT average(jvm.memory.used) / average(jvm.memory.max) * 100 FROM Metric 
   WHERE name = '{{armory.applicationName}}' AND replicaSetName = '{{armory.replicaSetName}}' 
-  SINCE '{{armory.startTimeIso8601}}' UNTIL '{{armory.endTimeIso8601}}
+  SINCE '{{armory.startTimeIso8601}}' UNTIL '{{armory.endTimeIso8601}}'
 ```
 
 ### Prometheus queries
