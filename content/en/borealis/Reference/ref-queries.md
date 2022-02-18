@@ -35,7 +35,6 @@ Armory provides the following variables:
 | deploymentId | `deploy.armory.io/deployment-id` | `ARMORY_DEPLOYMENT_ID` | Added as annotation resources and as environment variables on  pods* |
 | environmentName   | `deploy.armory.io/environment` | `ARMORY_ENVIRONMENT_NAME` | Added as annotation resources and as environment variables on  pods*|
 | replicaSetName   | `deploy.armory.io/replica-set-name` | `ARMORY_REPLICA_SET_NAME`  | Added as annotation resources and as environment variables on  pods* |
-| replicaSetIndex  | `deploy.armory.io/replica-set-index` | `ARMORY_REPLICA_SET_INDEX` | Added as annotation resources and as environment variables on  pods* |  
 | promQlStepInterval | - | - | Used to aggregate PromQL functions to a single value |
 | intervalSeconds | - | - | Length of the current query interval in seconds |
 | intervalMillis | - | - | Length of the current query interval in milliseconds |
