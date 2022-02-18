@@ -116,6 +116,6 @@ For information on Prometheus queries, see [the Prometheus documentation](https:
 ##### Sample Prometheus query
 
 ```sql
-avg(avg_over_time(jvm_memory_used_bytes{app="{{armory.applicationName}}"}[{{armory.promQlStepInterval}}])) / 
-  avg(avg_over_time(jvm_memory_max_bytes{app="{{armory.applicationName}}"}[{{armory.promQlStepInterval}}])) * 100
+avg(avg_over_time(jvm_memory_used_bytes{app="{{armory.applicationName}}",replicaSet="{{armory.replicaSetName}}"}[{{armory.promQlStepInterval}}])) / 
+  avg(avg_over_time(jvm_memory_max_bytes{app="{{armory.applicationName}}",replicaSet="{{armory.replicaSetName}}"}[{{armory.promQlStepInterval}}])) * 100
 ```
