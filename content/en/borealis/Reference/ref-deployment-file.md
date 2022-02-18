@@ -9,33 +9,54 @@ exclude_search: true
 
 The deployment file is what you use to define how and where your app gets deployed to.
 
-You can see what a blank deployment file looks like in the [Template file](#template-file) section. To see a filled out example, see [Example file](#example-file).
+You can see what a blank deployment file looks like in the [Template file](#blank-template) section. To see a filled out example, see [Example file](#example).
 
 ## Blank template
 
 You can see this template file by running the following command with the Borealis CLI:
 
+Basic template:
 ```bash
 armory template kubernetes canary
 ```
 
-Or you can output the template to a file and modify it to suit your needs:
+Automated canary analysis template: 
 
 ```bash
-armory template kubernetes canary > deployment-template.yaml
+armory template kubernetes canary -f automated
 ```
 
-<details><summary>Show me the template</summary>
+To use the template, output it to a file and modify it to suit your needs:
 
-{{< include "aurora-borealis/borealis-yaml.md" >}}
+```bash
+armory template kubernetes canary -f automated > deployment-template.yaml
+```
+
+<details><summary>Show me the basic template</summary>
+
+The basic template illustrates the structure of a deploy file using duration based pauses and manual approval pauses.
+
+{{< include "aurora-borealis/borealis-yaml-basic.md" >}}
+
+</details>
+<br>
+<details><summary>Show me the automated canary analysis template</summary>
+
+{{< include "aurora-borealis/borealis-yaml-canary.md" >}}
 
 </details>
 
 ## Example
 
-<details><summary>Show me a completed deployment file</summary>
+<details><summary>Show me a completed basic deployment file</summary>
 
-{{< include "aurora-borealis/borealis-yaml-example.md" >}}
+{{< include "aurora-borealis/borealis-yaml-example-basic.md" >}}
+
+</details><br>
+
+<details><summary>Show me a completed automated canary deployment file</summary>
+
+{{< include "aurora-borealis/borealis-yaml-canary-example.md" >}}
 
 </details><br>
 
@@ -235,6 +256,20 @@ strategies:
             weight: <integer>
         - pause:
             untilApproved: true
+        - analysis:
+            context:
+              keyName: <value>
+              keyName: <value>
+            interval: <integer>
+            unit: <seconds|minutes|hours>
+            numberOfJudgmentRuns: <integer>
+            rollBackMode: <manual|automatic>
+            rollForwardMode: <manual|automatic>
+            queries:
+              - <queryName>
+              - <queryName>
+        - setWeight:
+            weight: <integer>
 ```
 
 ### `strategies.<strategyName>`
@@ -271,9 +306,9 @@ strategies:
 
 ### `strategies.<strategyName>.<strategy>.steps`
 
-Borealis progresses through all the steps you define as part of the deployment process. The process is sequential and steps can either be of the type `setWeight` or `pause`.
+Borealis progresses through all the steps you define as part of the deployment process. The process is sequential and steps can be of the types, `analysis`, `setWeight` or `pause`.
 
-Generally, you want to configure a `setWeight` step and have a `pause` step follow it although this is not necessarily required.
+Generally, you want to configure a `setWeight` step and have a `analysis` or `pause` step follow it although this is not necessarily required. This gives you the oppurtunity to see how the deployment is doing either manually or automatically before the deployment progresses.
 
 Some scenarios where this pairing sequence might not be used would be the following:
 
@@ -311,7 +346,7 @@ steps:
       untilApproved: true 
 ```
 
-### Pause for a set amount of time
+#### Pause for a set amount of time
 
 If you want the deployment to pause for a certain amount of time after a weight is met, you must provide both the amount of time (duration) and the unit of time (unit).
 
@@ -330,7 +365,7 @@ steps:
       unit: seconds
 ```
 
-### Pause until a manual judgment
+#### Pause until a manual judgment
 
 When you configure a manual judgment, the deployment waits when it hits the corresponding weight threshold. At that point, you can either approve the deployment so far and let it continue or roll the deployment back if something doesn't look right.
 
@@ -344,3 +379,246 @@ steps:
   - pause:
       untilApproved: true 
 ```
+
+### `strategies.<strategyName>.<strategy>.steps.analysis`
+
+The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll foward or roll back.
+
+```yaml
+steps:
+...
+        - analysis:
+            metricProviderName: <metricProviderName>
+            context:
+              keyName: <value>
+              keyName: <value>
+            interval: <integer>
+            unit: <seconds|minutes|hours>
+            numberOfJudgmentRuns: <integer>
+            rollBackMode: <manual|automatic>
+            rollForwardMode: <manual|automatic>
+            queries:
+              - <queryName>
+              - <queryName>
+```
+#### `strategies.<strategyName>.<strategy>.steps.analysis.metricProviderName`
+
+Optional. The name of a configured metric provider. If you do not provide a metric provider name, Borealis uses the default metric provider defined in the `analysis.defaultMetricProviderName`. Use the **Configuration UI** to add a metric provider.
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.context`
+
+Custom key/value pairs that are passed as substitutions for variables to the queries.
+
+Armory supports the following variables out of the box:
+
+- `armory.startTimeIso8601`
+- `armory.startTimeEpochSeconds`
+- `armory.startTimeEpochMillis`
+- `armory.endTimeIso8601`
+- `armory.endTimeEpochSeconds`
+- `armory.endTimeEpochMillis`
+- `armory.intervalMillis`
+- `armory.intervalSeconds`
+- `armory.promQlStepInterval`
+- `armory.deploymentId`
+- `armory.applicationName`
+- `armory.environmentName`
+- `armory.replicaSetName`
+
+You can supply your own variables by adding them to this section. When you use them in your query, include the `context` prefix. For example, if you create a variable named `owner`, you would use `context.owner` in your query.
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.interval`
+
+```yaml
+steps:
+...
+        - analysis:
+            interval: <integer>
+            unit: <seconds|minutes|hours>
+```
+
+How long each sample of the query gets summarized over.
+
+For example, the following snippet sets the interval to 30 seconds:
+
+```yaml
+steps:
+...
+        - analysis:
+            interval: 30
+            unit: seconds
+
+```
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.unit`
+
+The unit of time for the interval. Use `seconds`, `minutes` or `hours`. See `strategies.<strategyName>.<strategy>.steps.analysis.interval` for more information.
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.numberOfJudgmentRuns`
+
+```yaml
+steps:
+...
+        - analysis:
+            ...
+            numberOfJudgmentRuns: <integer>
+            ...
+```
+
+The number of times that each query runs as part of the analysis. Borealis takes the average of all the results of the judgment runs to determine whether the deployment falls within the acceptable range.
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.rollBackMode`
+
+```yaml
+steps:
+...
+        - analysis:
+            ...
+            rollBackMode: <manual|automatic>
+            ...
+```
+
+Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omitted.
+
+How a rollback is approved if the analysis step determines that the deployment should be rolled back. The thresholds for a rollback are set in `lowerLimit` and `upperLimit` in the `analysis` block of the deployment file. This block is separate from the `analysis` step that this parameter is part of.
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.rollForwardMode`
+
+```yaml
+steps:
+...
+        - analysis:
+            ...
+            rollForwardMode: <manual|automatic>
+            ...
+```
+
+Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omitted.
+
+How a rollback is approved if the analysis step determines that the deployment should proceed (or roll forward). The thresholds for a roll forward are any values that fall within the range you create when you set the `lowerLimit` and `upperLimit`values in the `analysis` block of the deployment file. This block is separate from the `analysis` step that this parameter is part of.
+
+#### `strategies.<strategyName>.<strategy>.steps.analysis.queries`
+
+```yaml
+steps:
+...
+        - analysis:
+            ...
+            queries:
+              - <queryName>
+              - <queryName>
+```
+
+A list of queries that you want to use as part of this `analysis` step. Provide the name of the query, which is set in the `analysis.queries.name` parameter. Note that thee `analysis` block is separate from the `analysis` step.
+
+All the queries must pass for the step as a whole to be considered a success.
+
+## `analysis`
+
+This block defines the queries used to analyze a deployment for any `analysis` steps. In addition, you set upper and lower limits for the queries that define what is considered a failed deployment step or a successful deployment step.
+
+You can provide multiple queries in this block.  The following snippet includes a sample Prometheus query. Note that the example requires the following: 
+
+- `kube-state-metrics.metricAnnotationsAllowList[0]=pods=[*]` must be set 
+- Your applications pods need to have the annotation `"prometheus.io/scrape": "true"`
+
+```yaml
+analysis: # Define queries and thresholds used for automated analysis
+  defaultMetricProviderName: <providerName> # The name that you assigned a metrics provider in the Configuration UI.
+  queries:
+    - name: <queryName>
+      upperLimit: <integer> # If the metric exceeds this value, the automated analysis fails.
+      lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
+      queryTemplate: >-
+        <some-metrics-query>
+     - name: avgCPUUsage
+        upperLimit: 100
+        lowerLimit: 1
+        queryTemplate: >-
+          avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
+                  sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
+                  by (annotation_app, pod)) by (annotation_app)
+                #,annotation_deploy_armory_io_replica_set_name="${canaryReplicaSetName}"})
+                #${ARMORY_REPLICA_SET_NAME}
+                #,annotation_deploy_armory_io_replica_set_name="${ARMORY_REPLICA_SET_NAME}"
+                #${replicaSetName}
+                #${applicationName}
+                # note the time should actually be set to ${promQlStepInterval}
+```
+
+You can insert variables into your queries. Variables are inserted using the format `${key}`. The example query includes the variable `armory.replicaSetName`. Variables that Armory supports can be referenced by `${armory.VariableName}`. Custom defined variables can be referenced by `${context.VariableName}`.
+
+For more information, see the [`analysis.context` section](#strategiesstrategynamestrategystepsanalysiscontext).
+
+### `analysis.defaultMetricProviderName`
+
+The name that you assigned to a metrics provider in the **Configuration UI**. If the analysis step does not specify a metrics provider, the default metrics provider is used.
+
+### `analysis.queries`
+
+This block is how you define the queries that you want to run.
+
+#### `analysis.queries.name`
+
+Used in `analysis` steps to specify the query that you want to use for the step. Specifically it's used for the list in `steps.analysis.queries`.
+
+Provide a unique and descriptive name for the query, such as `containerCPUSeconds` or `avgMemoryUsage`.
+
+#### `analysis.queries.upperLimit`
+
+The upper limit for the query. If the analysis returns a value that is above this range, the deployment is considered a failure, and a rollback is triggered. The rollback can happen either manually or automatically depending on how you configured `strategies.<strategyName>.<strategy>.steps.analysis.rollBackMode`.
+
+If the query returns a value that falls within the range between the `upperLimit` and `lowerLimit` after all the runs of the query complete, the query is considered a success.
+
+#### `analysis.queries.lowerLimit`
+
+The lower limit for the query. If the analysis returns a value that is below this range, the deployment is considered a failure, and a rollback is triggered. The rollback can happen either manually or automatically depending on how you configured `strategies.<strategyName>.<strategy>.steps.analysis.rollBackMode`.
+
+If the query returns a value that falls within the range between the `upperLimit` and `lowerLimit` after all the runs of the query, the query is considered a success.
+
+#### `analysis.queries.queryTemplate`
+
+```yaml
+analysis: # Define queries and thresholds used for automated analysis
+  queries:
+    - name: <queryName>
+      upperLimit: <integer> # If the metric exceeds this value, the automated analysis fails.
+      lowerLimit: <integer> # If the metric goes below this value, the automated analysis fails.
+      queryTemplate: >-
+        <some-metrics-query>
+     - name: avgCPUUsage # example query
+        upperLimit: 100
+        lowerLimit: 1
+        queryTemplate: >-
+          avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
+                  sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
+                  by (annotation_app, pod)) by (annotation_app)
+                #,annotation_deploy_armory_io_replica_set_name="${canaryReplicaSetName}"})
+                #${ARMORY_REPLICA_SET_NAME}
+                #,annotation_deploy_armory_io_replica_set_name="${ARMORY_REPLICA_SET_NAME}"
+                #${replicaSetName}
+                #${applicationName}
+                # note the time should actually be set to ${promQlStepInterval}
+```
+
+The query you want to run. Use the [**Retrospective Analysis** UI]({{< ref "borealis-configuration-ui#retrospective-analysis" >}}) to build and test queries before including them in your deploy file.
+
+When writing queries, you can use key/value pairs that are passed as substitutions for variables to the queries.
+
+Armory supports the following variables out of the box:
+
+- `armory.startTimeIso8601`
+- `armory.startTimeEpochSeconds`
+- `armory.startTimeEpochMillis`
+- `armory.endTimeIso8601`
+- `armory.endTimeEpochSeconds`
+- `armory.endTimeEpochMillis`
+- `armory.intervalMillis`
+- `armory.intervalSeconds`
+- `armory.promQlStepInterval`
+- `armory.deploymentId`
+- `armory.applicationName`
+- `armory.environmentName`
+- `armory.replicaSetName`
+
+You can supply your own variables by adding them to the `strategies.<strategyName>.<strategy>.steps.analysis.context`. When you use them in your query, include the `context` prefix. For example, if you create a variable named `owner`, you would use `context.owner` in your query.

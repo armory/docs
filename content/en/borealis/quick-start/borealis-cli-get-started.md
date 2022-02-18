@@ -1,9 +1,10 @@
 ---
 title: Get Started with the CLI to Deploy Apps
-linktitle: Get Started - CLI
+linktitle: CLI
 description: >
   The Borealis CLI is a CLI for interacting with Project Borealis. With the CLI, you can integrate Borealis into your existing CI/CD tooling. Start by familiarizing yourself with the Borealis CLI and its workflow.
 exclude_search: true
+weight: 5
 ---
 
 ## {{% heading "prereq" %}}
@@ -167,7 +168,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
    This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`.
    <details><summary>Show me an empty template</summary>
    
-   {{< include "aurora-borealis/borealis-yaml.md" >}}
+   {{< include "aurora-borealis/borealis-yaml-basic.md" >}}
 
 
    </details><br>
@@ -201,7 +202,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 
    <details><summary>Show me a completed deployment file</summary>
 
-   {{< include "aurora-borealis/borealis-yaml-example.md" >}}
+   {{< include "aurora-borealis/borealis-yaml-example-basic.md" >}}
 
     </details><br>
 
