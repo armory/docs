@@ -11,9 +11,10 @@ version: 00.08.48
 
 Agent no longer requires Redis. Communication between Clouddrivers can now be done direct HTTP requests instead of Redis pubsub. The plugin watches changes to the Kubernetes kind `Endpoint` where Clouddriver pods run to learn the IP address of each Clouddriver replica. This method of communication is more reliable than Redis pubsub. This change is optional.
 
-To use this change, make sure the following requirement is met:
+To use this change, make sure the following requirements are met:
 
 - Clouddriver pods need to mount a service account with permissions to `list` and `watch` the Kubernetes kind `Endpoint` in their current namespace.
+- The Clouddriver service name that exposes the REST API on port 7002 must be `http`.
 
 To configure this change, update your `clouddriver.yml` file with the following changes:
 
