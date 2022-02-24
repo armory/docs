@@ -15,86 +15,92 @@
 # section redirects
 [[redirects]]
   from = "/overview/*"
-  to = "/docs/overview/:splat"
+  to = "/armory-enterprise/overview/:splat"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/install-guide/*"
+  to = "/armory-enterprise/installation/:splat"
   status = 301
   force = false
 
 [[redirects]]
   from = "/halyard-release-notes/*"
-  to = "/docs/release-notes/rn-armory-halyard/"
+  to = "/armory-enterprise/release-notes/rn-armory-halyard/"
   status = 301
   force = false
 
 [[redirects]]
   from = "/release-notes/*"
-  to = "/docs/release-notes/rn-armory-spinnaker/"
+  to = "/armory-enterprise/release-notes/rn-armory-spinnaker/"
   status = 301
   force = false
 
 [[redirects]]
   from = "/spinnaker/*"
-  to = "/docs/spinnaker/:splat"
+  to = "/armory-enterprise/spinnaker-user-guides/:splat"
   status = 301
   force = false
 
 [[redirects]]
   from = "/operator_reference/*"
-  to = "/docs/operator-reference/:splat"
+  to = "/armory-enterprise/installation/armory-operator/op-manifest-reference/:splat"
   status = 301
   force = false
 
 [[redirects]]
   from = "/spinnaker-user-guides/*"
-  to = "/docs/spinnaker-user-guides/:splat"
+  to = "/armory-enterprise/spinnaker-user-guides/:splat"
   status = 301
   force = false
 
 [[redirects]]
   from = "/spinnaker-install-admin-guides/*"
-  to = "/docs/spinnaker-install-admin-guides/:splat"
+  to = "/armory-enterprise/spinnaker-install-admin-guides/:splat"
   status = 301
   force = false
 
 [[redirects]]
   from = "/glossary/glossary"
-  to = "/docs/overview/glossary/"
+  to = "/armory-enterprise/overview/glossary/"
   status = 301
   force = false
 
 [[redirects]]
   from =  "/docs/spinnaker-install-admin-guides/installation/*"
-  to = "/docs/installation/guide/:splat"
+  to = "/armory-enterprise/installation/guide/:splat"
   status = 301
   force = false
 
 [[redirects]]
   from =  "/docs/operator-reference/*"
-  to = "/docs/installation/armory-operator/op-manifest-reference/:splat"
+  to = "/armory-enterprise/installation/armory-operator/op-manifest-reference/:splat"
   status = 301
   force = false
 
 [[redirects]]
   from =  "/docs/installation/operator-reference/*"
-  to = "/docs/installation/armory-operator/op-manifest-reference/:splat"
+  to = "/armory-enterprise/installation/armory-operator/op-manifest-reference/:splat"
   status = 301
   force = false
 
 [[redirects]]
   from = "/docs/installation/armory-agent/agent-options/"
-  to = "/docs/armory-admin/armory-agent/"
+  to = "/armory-enterprise/armory-admin/armory-agent/"
   force = true
 
 [[redirects]]
   from ="/docs/spinnaker-user-guides/policy-engine-use/packages/*"
-  to = "/docs/armory-admin/policy-engine/policy-engine-use/packages/:splat"
+  to = "/armory-enterprise/armory-admin/policy-engine/policy-engine-use/packages/:splat"
 
 [[redirects]]
   from ="/docs/*"
   to = "/armory-enterprise/:splat"
 
-  [[redirects]]
-    from ="/ae/*"
-    to = "/armory-enterprise/:splat"
+[[redirects]]
+  from ="/ae/*"
+  to = "/armory-enterprise/:splat"
 
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
@@ -111,8 +117,8 @@ package = "@netlify/plugin-sitemap"
     './public/docs/installation/aurora-install/',
     './public/borealis/',
     './public/managed-spin'
-    
-    
+
+
   ]
   # append missing trailing slash to prettyURL
   trailingSlash = true
