@@ -7,6 +7,7 @@ aliases:
   - /docs/plugin-guide/plugin-policy-engine/
   - /docs/armory-admin/policy-engine-enable/
   - /spinnaker/policy_engine/
+  - /armory-enterprise/spinnaker/policy_engine/
 ---
 
 ![Proprietary](/images/proprietary.svg)

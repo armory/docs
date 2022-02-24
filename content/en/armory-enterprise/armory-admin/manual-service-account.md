@@ -3,6 +3,7 @@ title: "Create Kubernetes Service Accounts and Kubeconfigs"
 linkTitle: Create Kubernetes Service Accounts
 aliases:
   - /docs/spinnaker-install-admin-guides/manual-service-accounts/
+  - /armory-enterprise/spinnaker-install-admin-guides/manual-service-account/
 description: >
   Manually create a Kubernetes Service Account to use with Spinnaker.
 ---
