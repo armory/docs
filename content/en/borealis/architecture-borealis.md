@@ -15,26 +15,26 @@ aliases:
 
 The Project Aurora Plugin for Armory Enterprise (Spinnaker™) provides the Kubernetes Progressive Stage, which is available in the Spinnaker UI. This plugin connects to Armory Cloud services, which are hosted and managed by Armory. The services live outside of your Armory Enterprise (Spinnaker) installation. These cloud services do the following: 
 
-- Provide information about the Kubernetes Accounts are available as deployment targets
-- Execute deployments
+- Provide information about the Kubernetes Accounts are available as deployment targets.
+- Execute deployments.
 
-The plugin enables you to use a single stage to perform a progressive deployment strategy. The strategy deploys a new version of your app and route traffic to the new version incrementally. In between each scaling event, the stage can be waits for a manual approval or a configurable amount of time before continuing.
+The plugin enables you to use a single stage to perform a progressive deployment strategy. The strategy deploys a new version of your app and routes traffic to the new version incrementally. In between each scaling event, the stage waits for a manual approval or a configurable amount of time before continuing.
 
 For information about enabling the stage, see [Get Started with Project Aurora for Spinnaker]({{< ref "aurora-install" >}}).
 
 ### Remote Network Agent (RNA)
 
-The RNA allows Armory Cloud Services to interact with your Kubernetes clusters and orchestrate deployments without direct network access to your clusters. RNAs gets installed in every deployment target and connects those clusters to the Agent Hub in Armory Cloud. The connections are encrypted long-lived gRPC HTTP2 connections. The connections are used for bidirectional communication between Armory Cloud Services and RNAs. The agent issues API calls to your Kubernetes Cluster based on requests from Armory Cloud.
+The RNA allows Armory Cloud Services to interact with your Kubernetes clusters and orchestrate deployments without direct network access to your clusters. RNAs get installed in every deployment target and connect those clusters to the Agent Hub in Armory Cloud. The connections are encrypted, long-lived gRPC HTTP2 connections. The connections are used for bidirectional communication between Armory Cloud Services and RNAs. The agent issues API calls to your Kubernetes Cluster based on requests from Armory Cloud.
 
 ### Armory Cloud
 
 Armory Cloud is a collection of cloud-based services that Armory operates. These services are used to orchestrate deployments and monitor their progress. 
 
-Several specific services in Armory Cloud are important for understanding how Project Aurora and Borealis function. These services have endpoints that users and non-cloud services interact with. Details of the external URLs for these services are covered in the [Networking](#networking).
+Several specific services in Armory Cloud are important for understanding how Project Aurora and Borealis function. These services have endpoints that users and non-cloud services interact with. Details of the external URLs for these services are covered in [Networking](#networking).
 
 #### Agent Hub
 
-Agent Hub routes deployment commands to RNAs and caches data received from them. Agent Hub does not require direct network access to the agents since they connect to Agent Hub through an encrypted long-lived gRPC HTTP2 connection. Agent Hub uses this connection to send deployment commands to the RNA for execution.
+Agent Hub routes deployment commands to RNAs and caches data received from them. Agent Hub does not require direct network access to the agents since they connect to Agent Hub through an encrypted, long-lived gRPC HTTP2 connection. Agent Hub uses this connection to send deployment commands to the RNA for execution.
 
 #### OIDC auth service
 
@@ -46,11 +46,11 @@ This endpoint receives API calls from clients outside of Armory Cloud (such as t
 
 #### Cloud Console
 
-The Armory Cloud Console provides a UI to perform administrative functions like inviting users and creating auth tokens. It also includes the Status UI where you can monitor the progress of deployments and approve steps that require a manual judgment.
+The Armory Cloud Console provides a UI to perform administrative functions like inviting users and creating auth tokens. It also includes the Status UI, where you can monitor the progress of deployments and approve steps that require a manual judgment.
 
 ## Architecture
 
-Project Aurora/Borealis contain components that you manage in your environment and components that Armory manages in the cloud. The components you manage allow Armory’s cloud services to integrate with your existing infrastructure.
+Project Aurora/Borealis contains components that you manage in your environment and components that Armory manages in the cloud. The components you manage allow Armory’s cloud services to integrate with your existing infrastructure.
 
 
 {{< figure height=50% width=50% src="/images/borealis/borealis-overview.jpg" alt="The Armory command line interface and its integrations connect to Armory Cloud. Armory Cloud uses the Agent Hub to connect to your Kubernetes cluster using a gRPC connection established between the Agent Hub and Armory Cloud Agent, which is installed in your cluster." >}}
@@ -79,7 +79,7 @@ The Armory Cloud API consumes these access tokens in order to validate that a re
 Use the the [Armory Cloud Console](https://console.cloud.armory.io/) to manage the following:
 
 - Ceate credentials for machines and scope them for specific permissions and use cases.
-- Invite and manage users
+- Invite and manage users.
 - Enable OIDC based external identity providers (IdP), such as Okta, Auth0, or OneLogin.
 
 The following concepts can help you when configuring access in the Cloud Console:
