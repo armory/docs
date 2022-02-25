@@ -503,8 +503,9 @@ spec:
     profiles:
       dinghy:
         notifiers:
+          enabled: true
           github:
-            enabled: true       # Whether or not github notifications are enabled for Dinghy events
+            enabled: true       # (Default: true) Whether or not github notifications are enabled for Dinghy events
 ```
 
 {{% /tabbody %}}
