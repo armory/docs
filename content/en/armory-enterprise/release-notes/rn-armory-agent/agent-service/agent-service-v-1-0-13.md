@@ -5,4 +5,6 @@ version: 01.00.13
 
 ---
 
-Match  and  agent properties functionality from  to 
+## Fixes
+
+- Fixed an issue where the `clouddriver.auth.token` and `clouddriver.auth.tokenCommand.command` properties didn't work.
