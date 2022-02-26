@@ -471,12 +471,17 @@ spec:
 
 {{% tabbody name="Halyard" %}}
 
+In your hal config profiles directory e.g. (`~/.hal/default/profiles/`), update the `dinghy-local.yml` file to include the following, replacing the `my-channel` definition with the Slack channel name
 
-```bash
-$ hal armory dinghy slack enable --channel my-channel
+```yaml
+notifiers:
+  enabled: true
+  slack:
+    enabled: true
+    channel: my-channel
+  github:
+    enabled: false
 ```
-
-For a complete listing of options check out the [Armory Halyard]({{< ref "armory-halyard#hal-armory-dinghy-edit" >}}) documentation.
 
 {{% /tabbody %}}
 {{< /tabs >}}
@@ -520,6 +525,7 @@ In your hal config profiles directory e.g. (`~/.hal/default/profiles/`), update 
 
 ```yaml
 notifiers:
+  enabled: true
   github:
     enabled: true
 ```
