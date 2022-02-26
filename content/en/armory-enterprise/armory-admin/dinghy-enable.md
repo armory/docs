@@ -458,9 +458,12 @@ spec:
         dinghy:
           enabled: true
           notifiers:
+            enabled: true         # Enable to allow any notifier type to occur
             slack:
               enabled: true       # Whether or not Slack notifications are enabled for dinghy events
               channel: my-channel # Slack channel where notifications will be sent to
+            github:
+              enabled: false       # (Default: true) Whether or not github notifications are enabled for Dinghy events, once spec.spinnakerConfig.prifles.dinghy.notifiers are enabled.  Only enable if you want both slack and github notifications at the same time
               ... # Rest of config omitted for brevity
 ```
 
@@ -505,7 +508,7 @@ spec:
         notifiers:
           enabled: true
           github:
-            enabled: true       # (Default: true) Whether or not github notifications are enabled for Dinghy events
+            enabled: true       # (Default: true) Whether or not github notifications are enabled for Dinghy events, once spec.spinnakerConfig.prifles.dinghy.notifiers are enabled
 ```
 
 {{% /tabbody %}}
