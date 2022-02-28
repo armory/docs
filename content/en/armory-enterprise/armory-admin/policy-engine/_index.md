@@ -2,10 +2,12 @@
 title: Policy Engine for Armory Enterprise
 linkTitle: Policy Engine
 description: >
-  The Policy Engine enforces policies on your Armory Enterprise instance. Policies can help you make sure that best practices are followed by preventing pipelines from being saved, stopping pipelines from running, or preventing certain users from taking certain actions. 
+  The Policy Engine enforces policies on your Armory Enterprise instance. Policies can help you make sure that best practices are followed by preventing pipelines from being saved, stopping pipelines from running, or preventing certain users from taking certain actions.
 aliases:
   - /docs/plugin-guide/plugin-policy-engine/
   - /docs/armory-admin/policy-engine-enable/
+  - /spinnaker/policy_engine/
+  - /armory-enterprise/spinnaker/policy_engine/
 ---
 
 ![Proprietary](/images/proprietary.svg)
@@ -16,7 +18,7 @@ The Armory Policy Engine is a proprietary feature for Armory Enterprise that is 
 
 * **Save time validation** - Validate pipelines as they're created or modified. Tasks with no policies are not validated.
 * **Runtime validation** - Validate deployments as a pipeline is executing. Tasks with no policies are not validated.
-* **Entitlements using API Authorization** - Requires the Policy Engine Plugin. Enforce restrictions on who can perform certain actions in Armory Enterprise. Note that if you enable policies for API authorization, you must configure who can make API calls or else the API service (Gate) rejects all API calls. 
+* **Entitlements using API Authorization** - Requires the Policy Engine Plugin. Enforce restrictions on who can perform certain actions in Armory Enterprise. Note that if you enable policies for API authorization, you must configure who can make API calls or else the API service (Gate) rejects all API calls.
 
 > If no policies are configured for these policy checks, all actions are allowed.
 
