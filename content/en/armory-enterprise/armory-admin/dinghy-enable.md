@@ -458,9 +458,12 @@ spec:
         dinghy:
           enabled: true
           notifiers:
+            enabled: true         # Enable to allow any notifier type to occur
             slack:
               enabled: true       # Whether or not Slack notifications are enabled for dinghy events
               channel: my-channel # Slack channel where notifications will be sent to
+            github:
+              enabled: false       # (Default: true) Whether or not github notifications are enabled for Dinghy events, once spec.spinnakerConfig.prifles.dinghy.notifiers are enabled.  Only enable if you want both slack and github notifications at the same time
               ... # Rest of config omitted for brevity
 ```
 
@@ -468,12 +471,17 @@ spec:
 
 {{% tabbody name="Halyard" %}}
 
+In your hal config profiles directory (`~/.hal/default/profiles/`), update the `dinghy-local.yml` file to include the following, replacing `my-channel` with your Slack channel name:
 
-```bash
-$ hal armory dinghy slack enable --channel my-channel
+```yaml
+notifiers:
+  enabled: true
+  slack:
+    enabled: true
+    channel: my-channel
+  github:
+    enabled: false
 ```
-
-For a complete listing of options check out the [Armory Halyard]({{< ref "armory-halyard#hal-armory-dinghy-edit" >}}) documentation.
 
 {{% /tabbody %}}
 {{< /tabs >}}
@@ -505,7 +513,7 @@ spec:
         notifiers:
           enabled: true
           github:
-            enabled: true       # (Default: true) Whether or not github notifications are enabled for Dinghy events
+            enabled: true       # (Default: true) Whether or not github notifications are enabled for Dinghy events, once spec.spinnakerConfig.profles.dinghy.notifiers are enabled
 ```
 
 {{% /tabbody %}}
@@ -513,10 +521,11 @@ spec:
 {{% tabbody name="Halyard" %}}
 
 
-In your hal config profiles directory e.g. (`~/.hal/default/profiles/`), update the `dinghy-local.yml` file to include the following:
+In your hal config profiles directory (`~/.hal/default/profiles/`), update the `dinghy-local.yml` file to include the following:
 
 ```yaml
 notifiers:
+  enabled: true
   github:
     enabled: true
 ```
