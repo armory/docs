@@ -471,7 +471,7 @@ spec:
 
 {{% tabbody name="Halyard" %}}
 
-In your hal config profiles directory e.g. (`~/.hal/default/profiles/`), update the `dinghy-local.yml` file to include the following, replacing the `my-channel` definition with the Slack channel name
+In your hal config profiles directory (`~/.hal/default/profiles/`), update the `dinghy-local.yml` file to include the following, replacing `my-channel` with your Slack channel name:
 
 ```yaml
 notifiers:
@@ -513,7 +513,7 @@ spec:
         notifiers:
           enabled: true
           github:
-            enabled: true       # (Default: true) Whether or not github notifications are enabled for Dinghy events, once spec.spinnakerConfig.prifles.dinghy.notifiers are enabled
+            enabled: true       # (Default: true) Whether or not github notifications are enabled for Dinghy events, once spec.spinnakerConfig.profles.dinghy.notifiers are enabled
 ```
 
 {{% /tabbody %}}
@@ -521,7 +521,7 @@ spec:
 {{% tabbody name="Halyard" %}}
 
 
-In your hal config profiles directory e.g. (`~/.hal/default/profiles/`), update the `dinghy-local.yml` file to include the following:
+In your hal config profiles directory (`~/.hal/default/profiles/`), update the `dinghy-local.yml` file to include the following:
 
 ```yaml
 notifiers:
