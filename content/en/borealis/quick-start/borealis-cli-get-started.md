@@ -81,7 +81,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
    <details><summary>Show me how to add the directory.</summary>
 
    You can either add the path directly to `/etc/paths` or add it to your shell profile. The following steps describe how to add it to your shell profile: 
-   1. Edit the resource file for your shell, such as `.bashrc` or .`zshrc`. For example:
+   1. Edit the resource file for your shell, such as `.bashrc`, `.bash_profile`, or .`zshrc`. For example:
     
       ```bash
       vi ~/.bashrc
@@ -95,7 +95,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
        ```
 
     3. Save the file.
-    4. Reload your terminal or open a new session.
+    4. Reload your terminal, open a new session, or `source` your terminal profile file (for example, `source .bash_profile`).
 
    </details></br>
 
