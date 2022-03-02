@@ -25,6 +25,6 @@ To complete this quick start, you need the following:
 
 - Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app. You can reuse the clusters from the previous quick starts if you want. Or stand up new ones.
 - You need to deploy a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) that sends traffic to your application. This is the `activeService` in YAML configuration and **Current Version** in the Borealis UI.
-- You should also create a `previewService` Kubernetes Service object so you can programmatically or manually observe the new version of your software before exposing it to traffic via the `activeService`. This `previewService` equats to **Next Version** in the Borealis UI.
+- You should also create a `previewService` Kubernetes Service object so you can programmatically or manually observe the new version of your software before exposing it to traffic via the `activeService`. This `previewService` equates to **Next Version** in the Borealis UI.
 
 

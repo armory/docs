@@ -327,7 +327,7 @@ targets:
 
 ### `strategies.<strategyName>.<strategy>`
 
-The kind of deployment strategy this strategy uses. Borealis supports `canary`.
+The kind of deployment strategy this strategy uses. Borealis supports `canary` and `blueGreen`.
 
 ```yaml
 strategies:
@@ -335,7 +335,97 @@ strategies:
     canary:
 ```
 
-### `strategies.<strategyName>.<strategy>.steps`
+### Blue/green fields
+
+#### `strategies.<strategyName>.blueGreen.activeService`
+
+The name of a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) that you created to route traffic to your application.
+
+```yaml
+strategies:
+  <strategy>:
+    blueGreen:
+      activeService: <active-service>
+```
+
+#### `strategies.<strategyName>.blueGreen.previewService`
+
+(Optional) The name of a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) you created to route traffic to the new version of your application so you can preview your updates.
+
+```yaml
+strategies:
+  <strategy>:
+    blueGreen:
+      previewService: <preview-service>
+```
+
+#### `strategies.<strategyName>.blueGreen.redirectTrafficAfter`
+
+The `redirectTrafficAfter` steps are conditions for exposing the new version to the `activeService`. The steps are executed in parallel.After each step completes, Borealis exposes the new version to the `activeService`.
+
+##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause`
+
+There are two base behaviors you can set for `pause`, either a set amount of time or until a manual judgment is made.
+
+```yaml
+redirectTrafficAfter:
+  - pause:
+      duration: <integer>
+      unit: <seconds|minutes|hours>
+```
+
+```yaml
+redirectTrafficAfter:
+  - pause:
+      untilApproved: true
+```
+
+**Pause for a set amount of time**
+
+If you want the deployment to pause for a certain amount of time, you must provide both the amount of time (duration) and the unit of time (unit).
+
+- `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.duration`
+  - Use an integer value for the amount of time.
+- `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.unit`
+  - Use `seconds`, `minutes` or `hours` for unit of time.
+
+For example, this snippet instructs Borealis to wait for 30 minutes:
+
+```yaml
+redirectTrafficAfter:
+  - pause:
+      duration: 30
+      unit: minutes
+```
+
+**Pause until a manual judgment**
+
+When you configure a manual judgment, the deployment waits for manual approval through the UI. You can either approve the deployment or roll the deployment back if something doesn't look right. Do not provide a `duration` or `unit` value when defining a judgment-based pause.
+
+`strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.untilApproved: true`
+
+For example:
+
+```yaml
+redirectTrafficAfter:
+  - pause:
+      untilApproved: true
+```
+
+
+#### `strategies.<strategyName>.blueGreen.shutdownOldVersionAfter`
+
+This step is a condition for deleting the old version of your software. Borealis executes the `shutDownOldVersion` steps in parallel. After each step completes, Borealis deletes the old version.
+
+```yaml
+shutdownOldVersionAfter:
+  - pause:
+      untilApproved: true
+```
+
+### Canary fields
+
+#### `strategies.<strategyName>.canary.steps`
 
 Borealis progresses through all the steps you define as part of the deployment process. The process is sequential and steps can be of the types, `analysis`, `setWeight` or `pause`.
 
@@ -348,7 +438,7 @@ Some scenarios where this pairing sequence might not be used would be the follow
 
 You can add as many steps as you need but do not need to add a final step that deploys the app to 100% of the cluster. Borealis automatically does that after completing the final step you define.
 
-### `strategies.<strategyName>.<strategy>.steps.setWeight.weight`
+#### `strategies.<strategyName>.canary.steps.setWeight.weight`
 
 This is an integer value and determines how much of the cluster the app gets deployed to. The value must be between 0 and 100 and the the `weight` for each `setWeight` step should increase as the deployment progresses. After hitting this threshold, Borealis pauses the deployment based on the behavior you set for  the `strategies.<strategyName>.<strategy>.steps.pause` that follows.
 
@@ -362,7 +452,7 @@ steps:
       weight: 33
 ```
 
-### `strategies.<strategyName>.<strategy>.steps.pause`
+#### `strategies.<strategyName>.canary.steps.pause`
 
 There are two base behaviors you can set for `pause`, either a set amount of time or until a manual judgment is made.
 
@@ -377,13 +467,13 @@ steps:
       untilApproved: true
 ```
 
-#### Pause for a set amount of time
+##### Pause for a set amount of time
 
 If you want the deployment to pause for a certain amount of time after a weight is met, you must provide both the amount of time (duration) and the unit of time (unit).
 
-- `strategies.<strategyName>.<strategy>.steps.pause.duration`
+- `strategies.<strategyName>.canary.steps.pause.duration`
   - Use an integer value for the amount of time.
-- `strategies.<strategyName>.<strategy>.steps.pause.unit`
+- `strategies.<strategyName>.canary.steps.pause.unit`
   - Use `seconds`, `minutes` or `hours` for unit of time.
 
 For example, this snippet instructs Borealis to wait for 30 seconds:
@@ -396,11 +486,11 @@ steps:
       unit: seconds
 ```
 
-#### Pause until a manual judgment
+##### Pause until a manual judgment
 
 When you configure a manual judgment, the deployment waits when it hits the corresponding weight threshold. At that point, you can either approve the deployment so far and let it continue or roll the deployment back if something doesn't look right.
 
-`strategies.<strategyName>.<strategy>.steps.pause.untilApproved: true`
+`strategies.<strategyName>.canary.steps.pause.untilApproved: true`
 
 For example:
 
@@ -411,7 +501,7 @@ steps:
       untilApproved: true
 ```
 
-### `strategies.<strategyName>.<strategy>.steps.analysis`
+#### `strategies.<strategyName>.canary.steps.analysis`
 
 The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll foward or roll back.
 
@@ -432,11 +522,11 @@ steps:
               - <queryName>
               - <queryName>
 ```
-#### `strategies.<strategyName>.<strategy>.steps.analysis.metricProviderName`
+##### `strategies.<strategyName>.canary.steps.analysis.metricProviderName`
 
 Optional. The name of a configured metric provider. If you do not provide a metric provider name, Borealis uses the default metric provider defined in the `analysis.defaultMetricProviderName`. Use the **Configuration UI** to add a metric provider.
 
-#### `strategies.<strategyName>.<strategy>.steps.analysis.context`
+##### `strategies.<strategyName>.canary.steps.analysis.context`
 
 Custom key/value pairs that are passed as substitutions for variables to the queries.
 
@@ -460,7 +550,7 @@ You can supply your own variables by adding them to this section. When you use t
 
 For information about writing queries, see the [Query Reference Guide]({{< ref "ref-queries.md" >}}).
 
-#### `strategies.<strategyName>.<strategy>.steps.analysis.interval`
+##### `strategies.<strategyName>.canary.steps.analysis.interval`
 
 ```yaml
 steps:
@@ -483,11 +573,11 @@ steps:
 
 ```
 
-#### `strategies.<strategyName>.<strategy>.steps.analysis.unit`
+##### `strategies.<strategyName>.canary.steps.analysis.unit`
 
 The unit of time for the interval. Use `seconds`, `minutes` or `hours`. See `strategies.<strategyName>.<strategy>.steps.analysis.interval` for more information.
 
-#### `strategies.<strategyName>.<strategy>.steps.analysis.numberOfJudgmentRuns`
+##### `strategies.<strategyName>.canary.steps.analysis.numberOfJudgmentRuns`
 
 ```yaml
 steps:
@@ -500,7 +590,7 @@ steps:
 
 The number of times that each query runs as part of the analysis. Borealis takes the average of all the results of the judgment runs to determine whether the deployment falls within the acceptable range.
 
-#### `strategies.<strategyName>.<strategy>.steps.analysis.rollBackMode`
+##### `strategies.<strategyName>.canary.steps.analysis.rollBackMode`
 
 ```yaml
 steps:
@@ -515,7 +605,7 @@ Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omit
 
 How a rollback is approved if the analysis step determines that the deployment should be rolled back. The thresholds for a rollback are set in `lowerLimit` and `upperLimit` in the `analysis` block of the deployment file. This block is separate from the `analysis` step that this parameter is part of.
 
-#### `strategies.<strategyName>.<strategy>.steps.analysis.rollForwardMode`
+##### `strategies.<strategyName>.canary.steps.analysis.rollForwardMode`
 
 ```yaml
 steps:
@@ -530,7 +620,7 @@ Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omit
 
 How a rollback is approved if the analysis step determines that the deployment should proceed (or roll forward). The thresholds for a roll forward are any values that fall within the range you create when you set the `lowerLimit` and `upperLimit`values in the `analysis` block of the deployment file. This block is separate from the `analysis` step that this parameter is part of.
 
-#### `strategies.<strategyName>.<strategy>.steps.analysis.queries`
+##### `strategies.<strategyName>.canary.steps.analysis.queries`
 
 ```yaml
 steps:
