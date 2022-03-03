@@ -5,4 +5,6 @@ version: 01.00.15
 
 ---
 
-Minor change: Update the account that create the releases versions.
+## Changes
+
+Updated release process. This change does not affect any end user functionality.
