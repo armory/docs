@@ -6,6 +6,7 @@ aliases:
   - /spinnaker_install_admin_guides/dns-and-ssl/
   - /spinnaker-install-admin-guides/dns_and_ssl/
   - /docs/spinnaker-install-admin-guides/dns-and-ssl/
+  - /install-guide/dns-and-ssl/
 description: >
   Configure your infrastructure so users can access your Spinnaker instance.   
 ---

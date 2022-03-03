@@ -8,6 +8,10 @@ aliases:
   - /install_guide/install/
   - /install-guide/getting_started/
   - /docs/spinnaker/install/
+  - /install-guide/adding_accounts/
+  - /armory-enterprise/spinnaker/operator/
+  - /install-guide/gettings_started/
+  - /install-guide/auth/
 no_list: true
 ---
 
