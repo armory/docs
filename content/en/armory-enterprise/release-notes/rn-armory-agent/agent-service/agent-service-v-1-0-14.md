@@ -8,4 +8,5 @@ version: 01.00.14
 Fixes:
 ## Fixes
 
-Fixed an issue that caused a delay for cancelling ongoing watches when an account disconnects or gets removed.
+Fixed an issue that delayed cancelling ongoing watches when an account disconnects or gets removed.
+
