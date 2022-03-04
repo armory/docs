@@ -5,4 +5,6 @@ version: 01.00.16
 
 ---
 
-Minor change: Update the account that create the releases versions while building it
+## Changes
+
+Update the account that creates the release versions while building them.
