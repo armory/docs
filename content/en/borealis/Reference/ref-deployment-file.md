@@ -335,94 +335,6 @@ strategies:
     canary:
 ```
 
-### Blue/green fields
-
-#### `strategies.<strategyName>.blueGreen.activeService`
-
-The name of a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) that you created to route traffic to your application.
-
-```yaml
-strategies:
-  <strategy>:
-    blueGreen:
-      activeService: <active-service>
-```
-
-#### `strategies.<strategyName>.blueGreen.previewService`
-
-(Optional) The name of a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) you created to route traffic to the new version of your application so you can preview your updates.
-
-```yaml
-strategies:
-  <strategy>:
-    blueGreen:
-      previewService: <preview-service>
-```
-
-#### `strategies.<strategyName>.blueGreen.redirectTrafficAfter`
-
-The `redirectTrafficAfter` steps are conditions for exposing the new version to the `activeService`. The steps are executed in parallel.After each step completes, Borealis exposes the new version to the `activeService`.
-
-##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause`
-
-There are two base behaviors you can set for `pause`, either a set amount of time or until a manual judgment is made.
-
-```yaml
-redirectTrafficAfter:
-  - pause:
-      duration: <integer>
-      unit: <seconds|minutes|hours>
-```
-
-```yaml
-redirectTrafficAfter:
-  - pause:
-      untilApproved: true
-```
-
-**Pause for a set amount of time**
-
-If you want the deployment to pause for a certain amount of time, you must provide both the amount of time (duration) and the unit of time (unit).
-
-- `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.duration`
-  - Use an integer value for the amount of time.
-- `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.unit`
-  - Use `seconds`, `minutes` or `hours` for unit of time.
-
-For example, this snippet instructs Borealis to wait for 30 minutes:
-
-```yaml
-redirectTrafficAfter:
-  - pause:
-      duration: 30
-      unit: minutes
-```
-
-**Pause until a manual judgment**
-
-When you configure a manual judgment, the deployment waits for manual approval through the UI. You can either approve the deployment or roll the deployment back if something doesn't look right. Do not provide a `duration` or `unit` value when defining a judgment-based pause.
-
-`strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.untilApproved: true`
-
-For example:
-
-```yaml
-redirectTrafficAfter:
-  - pause:
-      untilApproved: true
-```
-
-
-#### `strategies.<strategyName>.blueGreen.shutdownOldVersionAfter`
-
-This step is a condition for deleting the old version of your software. Borealis executes the `shutDownOldVersion` steps in parallel. After each step completes, Borealis deletes the old version.
-
-```yaml
-shutdownOldVersionAfter:
-  - pause:
-      untilApproved: true
-```
-
 ### Canary fields
 
 #### `strategies.<strategyName>.canary.steps`
@@ -467,7 +379,7 @@ steps:
       untilApproved: true
 ```
 
-##### Pause for a set amount of time
+**Pause for a set amount of time**
 
 If you want the deployment to pause for a certain amount of time after a weight is met, you must provide both the amount of time (duration) and the unit of time (unit).
 
@@ -486,7 +398,7 @@ steps:
       unit: seconds
 ```
 
-##### Pause until a manual judgment
+**Pause until a manual judgment**
 
 When you configure a manual judgment, the deployment waits when it hits the corresponding weight threshold. At that point, you can either approve the deployment so far and let it continue or roll the deployment back if something doesn't look right.
 
@@ -503,7 +415,7 @@ steps:
 
 #### `strategies.<strategyName>.canary.steps.analysis`
 
-The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll foward or roll back.
+The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll forward or roll back.
 
 ```yaml
 steps:
@@ -522,6 +434,7 @@ steps:
               - <queryName>
               - <queryName>
 ```
+
 ##### `strategies.<strategyName>.canary.steps.analysis.metricProviderName`
 
 Optional. The name of a configured metric provider. If you do not provide a metric provider name, Borealis uses the default metric provider defined in the `analysis.defaultMetricProviderName`. Use the **Configuration UI** to add a metric provider.
@@ -635,6 +548,135 @@ steps:
 A list of queries that you want to use as part of this `analysis` step. Provide the name of the query, which is set in the `analysis.queries.name` parameter. Note that thee `analysis` block is separate from the `analysis` step.
 
 All the queries must pass for the step as a whole to be considered a success.
+
+### Blue/green fields
+
+#### `strategies.<strategyName>.blueGreen.activeService`
+
+The name of a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) that you created to route traffic to your application.
+
+```yaml
+strategies:
+  <strategy>:
+    blueGreen:
+      activeService: <active-service>
+```
+
+#### `strategies.<strategyName>.blueGreen.previewService`
+
+(Optional) The name of a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) you created to route traffic to the new version of your application so you can preview your updates.
+
+```yaml
+strategies:
+  <strategy>:
+    blueGreen:
+      previewService: <preview-service>
+```
+
+#### `strategies.<strategyName>.blueGreen.redirectTrafficAfter`
+
+The `redirectTrafficAfter` steps are conditions for exposing the new version to the `activeService`. The steps are executed in parallel.After each step completes, Borealis exposes the new version to the `activeService`.
+
+##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause`
+
+There are two base behaviors you can set for `pause`, either a set amount of time or until a manual judgment is made.
+
+```yaml
+redirectTrafficAfter:
+  - pause:
+      duration: <integer>
+      unit: <seconds|minutes|hours>
+```
+
+```yaml
+redirectTrafficAfter:
+  - pause:
+      untilApproved: true
+```
+
+**Pause for a set amount of time**
+
+If you want the deployment to pause for a certain amount of time, you must provide both the amount of time (duration) and the unit of time (unit).
+
+- `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.duration`
+  - Use an integer value for the amount of time.
+- `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.unit`
+  - Use `seconds`, `minutes` or `hours` for unit of time.
+
+For example, this snippet instructs Borealis to wait for 30 minutes:
+
+```yaml
+redirectTrafficAfter:
+  - pause:
+      duration: 30
+      unit: minutes
+```
+
+**Pause until a manual judgment**
+
+When you configure a manual judgment, the deployment waits for manual approval through the UI. You can either approve the deployment or roll the deployment back if something doesn't look right. Do not provide a `duration` or `unit` value when defining a judgment-based pause.
+
+`strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.untilApproved: true`
+
+For example:
+
+```yaml
+redirectTrafficAfter:
+  - pause:
+      untilApproved: true
+```
+
+##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.analysis`
+
+The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll forward or roll back.
+
+```yaml
+redirectTrafficAfter:
+  - analysis:
+      metricProviderName: <metricProviderName>
+      context:
+        keyName: <value>
+        keyName: <value>
+      interval: <integer>
+      unit: <seconds|minutes|hours>
+      numberOfJudgmentRuns: <integer>
+      rollBackMode: <manual|automatic>
+      rollForwardMode: <manual|automatic>
+      queries:
+        - <queryName>
+        - <queryName>
+```
+
+#### `strategies.<strategyName>.blueGreen.shutdownOldVersionAfter`
+
+This step is a condition for deleting the old version of your software. Borealis executes the `shutDownOldVersion` steps in parallel. After each step completes, Borealis deletes the old version.
+
+```yaml
+shutdownOldVersionAfter:
+  - pause:
+      untilApproved: true
+```
+
+##### `strategies.<strategyName>.blueGreen.shutdownOldVersionAfter.analysis`
+
+The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll forward or roll back.
+
+```yaml
+shutdownOldVersionAfter:
+  - analysis:
+      metricProviderName: <metricProviderName>
+      context:
+        keyName: <value>
+        keyName: <value>
+      interval: <integer>
+      unit: <seconds|minutes|hours>
+      numberOfJudgmentRuns: <integer>
+      rollBackMode: <manual|automatic>
+      rollForwardMode: <manual|automatic>
+      queries:
+        - <queryName>
+        - <queryName>
+```
 
 ## `analysis`
 
