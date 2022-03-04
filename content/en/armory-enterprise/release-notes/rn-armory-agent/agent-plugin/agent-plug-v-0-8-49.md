@@ -5,4 +5,6 @@ version: 00.08.49
 
 ---
 
-Minor change: Update the account that create the releases versions
+## Changes
+
+Update the account that creates the release versions. This change does not impact end users.
