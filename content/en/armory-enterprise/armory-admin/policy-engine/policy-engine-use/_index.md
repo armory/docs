@@ -23,7 +23,7 @@ If you do not have an OPA server configured for the Policy Engine, you can find 
 
 ## Tutorial using save time validation
 
-The following steps walk you through the two-step process described previously with a basic save time validation that applies to all pipelines in your instance when they are saved. 
+The following steps walk you through the two-step process described previously with a basic save time validation that applies to all pipelines in your instance when they are saved.
 
 ### Step 1. Create a policy
 
@@ -56,7 +56,7 @@ deny["Every pipeline must have a Manual Judgment stage"] {
 
 ```
 
-Add the the policy to a file named `manual-judgment.rego`. 
+Add the the policy to a file named `manual-judgment.rego`.
 
 ### Step 2. Add the policy to your OPA server
 
@@ -170,7 +170,7 @@ allow {
 
 All requests made to the `spinnaker.http.authz` package include the following:
 
-1. The requesting user, their role information and admin status. 
+1. The requesting user, their role information and admin status.
 2. The HTTP request method, such as `PUT` or `GET`.
 3. The URI of the API call being made (as an array or list). For example, `/api/v1/tasks` would be `["api", "v1", "tasks"]`.
 4. For `PUT` or `POST` requests, the entire request body.
@@ -204,7 +204,7 @@ package spinnaker.http.authz
 
 default allow = false
 
-# other HTTP authz rules omitted for brevity 
+# other HTTP authz rules omitted for brevity
 
 allow {
     input.method = "POST"
@@ -214,8 +214,8 @@ allow {
 
     # have to make a list of all actions you can take from the infra tab here
     ["scaleManifest", "deployManifest"][_] = job.type
-    
-    
+
+
     job.account = "middleout-development"
     input.user.roles[_] = "middleout-eng"
 }
@@ -235,7 +235,7 @@ If a user attempts to perform an action that they are not allowed to, a window a
 
 The following example policy prevents the user `milton` from taking specific actions in the UI. Specifically, the user cannot use the  **Edit** or **Delete** buttons on the **Clusters** tab.
 
-**Example policy:** 
+**Example policy:**
 {{< prism lang="rego" line="2-8" >}}
 package spinnaker.http.authz
     default allow=false
@@ -255,7 +255,7 @@ package spinnaker.http.authz
           input.user.username="milton"
     }
     isDeleteManifest{
-      # Policy that prevents the user milton from manually deleting infrastructure 
+      # Policy that prevents the user milton from manually deleting infrastructure
       input.method="POST"
       input.path[_]="tasks"
       input.body.job[_].type="deleteManifest"
@@ -298,7 +298,7 @@ Note the `deployManifest` part of the package, which indicates what tasks this p
 
 Policies can be applied to pipeline before and during execution.
 
-Before a pipeline is executed, Policy Engine uses the package `spinnaker.execution.pipelines.before` to determine if the pipeline execution can even be started. This is can be useful for a variety of use cases. 
+Before a pipeline is executed, Policy Engine uses the package `spinnaker.execution.pipelines.before` to determine if the pipeline execution can even be started. This is can be useful for a variety of use cases.
 
 The following example shows the `rego` syntax for a policy that requires all pipeline executions include a secret when triggered by a push in GitHub:
 
@@ -321,9 +321,9 @@ response := {
 
 Build off this example if you want to create policies that get enforced on all pipelines before they execute.
 
-The other execution hook provided by Policy Engine is more granular. It can enforce policy before and after any stage task is executed. In Spinnaker, every stage is made up of a task. Tasks are the individual steps taken to carry out a stage. You can see the various tasks for a stage in the execution details panel of the UI. 
+The other execution hook provided by Policy Engine is more granular. It can enforce policy before and after any stage task is executed. In Spinnaker, every stage is made up of a task. Tasks are the individual steps taken to carry out a stage. You can see the various tasks for a stage in the execution details panel of the UI.
 
-Unlike the deployment hooks, this execution hook can apply policy to any task in a pipeline. Additionally, task policies can use the rest of a pipeline's execution to make policy decisions. For example, if you want to implement a policy that only allows deployments to Kubernetes _after_ a particular stage has been completed successfully, you can do so using this hook. 
+Unlike the deployment hooks, this execution hook can apply policy to any task in a pipeline. Additionally, task policies can use the rest of a pipeline's execution to make policy decisions. For example, if you want to implement a policy that only allows deployments to Kubernetes _after_ a particular stage has been completed successfully, you can do so using this hook.
 
 The following example shows the `rego` syntax for a policy that requires a `canDeploy` type stage to run before a `deployManifest` type stage:
 
@@ -343,7 +343,7 @@ The Policy Engine requires Armory and the OPA server to be connected. Once you h
 
 1. Log in to the Armory UI.
 2. Check the OPA pod logs:
-   
+
    ```bash
    kubectl -n <opaServerNamespace> logs <pod-name>
    ```
@@ -351,6 +351,18 @@ The Policy Engine requires Armory and the OPA server to be connected. Once you h
 
 
 ## Additional configuration
+
+### Ignore directories, files, or file types
+
+Pipelines as Code supports using an ignore file for GitHub repos to ignore certain files in a repo that it watches. To use this feature, create a file named `.dinghyignore` in the root directory of the repo.
+
+You can add specific filenames, file paths, or glob-style paths. For example, the following `.dinghyignore` file ignores the file named `README.md`, all the files in the `milton` directory, and all `.pdf` files:
+
+```
+README.md
+milton/
+*.pdf
+```
 
 ### Allow API routes by default
 
@@ -395,7 +407,7 @@ armory:
 ```
 
 The example configuration forces all webhook calls to provide authentication . If you depend on unauthenticated webhook calls,
-be more specific about the paths you want to force authentication on. 
+be more specific about the paths you want to force authentication on.
 
 ## Disabling an OPA policy
 
@@ -433,7 +445,7 @@ This may be due to an incorrect container name for a service in the init contain
 
 Problem:
 
-The Armory (or Spinnaker) UI fails to load after you enable Policy Engine. This may be due to an SSL exception. 
+The Armory (or Spinnaker) UI fails to load after you enable Policy Engine. This may be due to an SSL exception.
 
 Solution:
 
