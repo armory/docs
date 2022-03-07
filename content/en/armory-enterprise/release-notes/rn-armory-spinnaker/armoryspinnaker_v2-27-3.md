@@ -6,7 +6,7 @@ description: >
   Release notes for Armory Enterprise v2.27.3
 ---
 
-## 2022/03/04 Release Notes
+## 2022/03/11 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
@@ -53,10 +53,10 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
+### Cloud Foundry
 
-
-
-
+* Fixed an issue where Fiat crashed due to invalid Cloud Foundry accounts.
+* Performance optimization to reduce unnecessary api calls to Cloud Foundry during caching cycles.
 
 ## Detailed updates
 
