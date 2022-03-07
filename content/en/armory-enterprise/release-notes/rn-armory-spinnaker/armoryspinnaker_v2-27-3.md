@@ -1,7 +1,7 @@
 ---
 title: v2.27.3 Armory Release (OSS Spinnaker™ v1.27.0)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
+version: 02.27.03
 description: >
   Release notes for Armory Enterprise v2.27.3
 ---
@@ -9,12 +9,12 @@ description: >
 ## 2022/03/04 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-## Required Halyard or Operator version
+
+## Required Operator version
 
 To install, upgrade, or configure Armory 2.27.3, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory Operator 1.6.0 or later
 
 ## Security
 
@@ -25,8 +25,25 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
+{{< include "breaking-changes/bc-java-tls-mysql.md" >}}
+
+{{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
+
+{{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
+
+{{< include "breaking-changes/bc-hal-deprecation.md" >}}
+
+#### Plugin compatibility
+
+{{< include "breaking-changes/bc-plug-version-lts-227.md" >}}
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
+{{< include "known-issues/ki-deck-navbar.md" >}}
+{{< include "known-issues/ki-bake-var-file.md" >}}
+{{< include "known-issues/ki-artifact-binding-spel.md" >}}
+{{< include "known-issues/ki-dinghy-gh-notifications.md" >}}
 
 ## Highlighted updates
 
@@ -39,10 +56,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 
 
-###  Spinnaker Community Contributions
 
-There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
-[Spinnaker v1.27.0](https://www.spinnaker.io/changelogs/1.27.0-changelog/) changelog for details.
 
 ## Detailed updates
 
