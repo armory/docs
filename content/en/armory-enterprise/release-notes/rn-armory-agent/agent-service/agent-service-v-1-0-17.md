@@ -5,4 +5,6 @@ version: 01.00.17
 
 ---
 
-Update for a better response of delete operations that doesn’t have impact on functionality.
+### Changes
+
+* Delete operations processed by agent now return the names of all the Kubernetes objects that were deleted. This doesn’t have impact on existing functionality, and is used to better mimic how native clouddriver Kubernetes accounts work.
