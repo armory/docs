@@ -7,7 +7,7 @@ version: 00.09.42
 
 ### Changes
 
-* The kubrnetes kinds that Agent caches are now configurable in `clouddriver.yml` for all accounts:
+* The kubernetes kinds that Agent caches are now configurable in `clouddriver.yml` for all accounts:
 
 ```
 kubesvc:
