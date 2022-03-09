@@ -306,12 +306,12 @@ strategies:
       activeService: <active-service>
       previewService: <preview-service>
       redirectTrafficAfter:
-        pause:
-          duration: <integer>
-          unit: <seconds|minutes|hours>
+        - pause:
+            duration: <integer>
+            unit: <seconds|minutes|hours>
       shutDownOldVersionAfter:
-        pause:
-          untilApproved: true
+        - pause:
+            untilApproved: true
 ```
 
 ### `strategies.<strategyName>`

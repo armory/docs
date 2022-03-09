@@ -25,7 +25,7 @@ To complete this quick start, you need the following:
 
 - Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app. You can reuse the clusters from the previous quick starts if you want. Or stand up new ones.
 - You need to deploy a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) that sends traffic to the current version of your application. This is the `activeService` in the YAML configuration.
-- You should also create a `previewService` Kubernetes Service object so you can programmatically or manually observe the new version of your software before exposing it to traffic via the `activeService`. This step is optional but advised.
+- (Optional) You could also create a `previewService` Kubernetes Service object so you can programmatically or manually observe the new version of your software before exposing it to traffic via the `activeService`.
 
 ## Add blue/green to your deployment
 
@@ -39,11 +39,11 @@ To complete this quick start, you need the following:
         activeService: myAppActiveService
         previewService: myAppPreviewService
         redirectTrafficAfter:
-          pause:
-            untilApproved: true
+          - pause:
+              untilApproved: true
         shutDownOldVersionAfter:
-          pause:
-            untilApproved: true
+          - pause:
+              untilApproved: true
    ```
 
    See the [Deployment File Reference]({{< ref "ref-deployment-file#bluegreen-fields" >}} for an explanation of these fields.
