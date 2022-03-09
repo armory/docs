@@ -46,7 +46,7 @@ armory template kubernetes [template-type] > deployment-template.yaml
 
 The basic template illustrates the structure of a deploy file using duration based pauses and manual approval pauses.
 
-{{< include "aurora-borealis/borealis-yaml-basic.md" >}}
+{{< include "aurora-borealis/dep-file/borealis-yaml-basic.md" >}}
 
 </details>
 <br>
@@ -56,7 +56,7 @@ The basic template illustrates the structure of a deploy file using duration bas
 armory template kubernetes canary -f automated > auto-canary-deployment-template.yaml
 ```
 
-{{< include "aurora-borealis/borealis-yaml-canary.md" >}}
+{{< include "aurora-borealis/dep-file/borealis-yaml-canary.md" >}}
 
 </details>
 
@@ -67,7 +67,7 @@ armory template kubernetes canary -f automated > auto-canary-deployment-template
 armory template kubernetes bluegreen > bluegreen-deployment-template.yaml
 ```
 
-{{< include "aurora-borealis/borealis-yaml-template-blue-green.md" >}}
+{{< include "aurora-borealis/dep-file/borealis-yaml-template-blue-green.md" >}}
 
 </details>
 
@@ -75,19 +75,19 @@ armory template kubernetes bluegreen > bluegreen-deployment-template.yaml
 
 <details><summary>Show me a completed basic deployment file</summary>
 
-{{< include "aurora-borealis/borealis-yaml-example-basic.md" >}}
+{{< include "aurora-borealis/dep-file/borealis-yaml-example-basic.md" >}}
 
 </details><br>
 
 <details><summary>Show me a completed automated canary deployment file</summary>
 
-{{< include "aurora-borealis/borealis-yaml-canary-example.md" >}}
+{{< include "aurora-borealis/dep-file/borealis-yaml-canary-example.md" >}}
 
 </details><br>
 
 <details><summary>Show me a completed blue/green deployment file</summary>
 
-{{< include "aurora-borealis/borealis-yaml-example-blue-green.md" >}}
+{{< include "aurora-borealis/dep-file/borealis-yaml-example-blue-green.md" >}}
 
 </details><br>
 
@@ -301,6 +301,17 @@ strategies:
               - <queryName>
         - setWeight:
             weight: <integer>
+  <strategyName>
+    blueGreen:
+      activeService: <active-service>
+      previewService: <preview-service>
+      redirectTrafficAfter:
+        pause:
+          duration: <integer>
+          unit: <seconds|minutes|hours>
+      shutDownOldVersionAfter:
+        pause:
+          untilApproved: true
 ```
 
 ### `strategies.<strategyName>`

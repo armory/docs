@@ -168,7 +168,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
    This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`.
    <details><summary>Show me an empty template</summary>
 
-   {{< include "aurora-borealis/borealis-yaml-basic.md" >}}
+   {{< include "aurora-borealis/dep-file/borealis-yaml-basic.md" >}}
 
 
    </details><br>
@@ -202,7 +202,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 
    <details><summary>Show me a completed deployment file</summary>
 
-   {{< include "aurora-borealis/borealis-yaml-example-basic.md" >}}
+   {{< include "aurora-borealis/dep-file/borealis-yaml-example-basic.md" >}}
 
     </details><br>
 

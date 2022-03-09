@@ -24,7 +24,56 @@ This quick start assumes that you completed the prior two quick starts that taug
 To complete this quick start, you need the following:
 
 - Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app. You can reuse the clusters from the previous quick starts if you want. Or stand up new ones.
-- You need to deploy a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) that sends traffic to your application. This is the `activeService` in YAML configuration and **Current Version** in the Borealis UI.
-- You should also create a `previewService` Kubernetes Service object so you can programmatically or manually observe the new version of your software before exposing it to traffic via the `activeService`. This `previewService` equates to **Next Version** in the Borealis UI.
+- You need to deploy a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) that sends traffic to the current version of your application. This is the `activeService` in the YAML configuration.
+- You should also create a `previewService` Kubernetes Service object so you can programmatically or manually observe the new version of your software before exposing it to traffic via the `activeService`. This step is optional but advised.
+
+## Add blue/green to your deployment
+
+1. In your deploy file, go to the `strategies` section.
+1. Create a new strategy named `blue-green-deploy-strat` like the following:
+
+   ```yaml
+   strategies:
+    blue-green-deploy-strat
+      blueGreen:
+        activeService: myAppActiveService
+        previewService: myAppPreviewService
+        redirectTrafficAfter:
+          pause:
+            untilApproved: true
+        shutDownOldVersionAfter:
+          pause:
+            untilApproved: true
+   ```
+
+   See the [Deployment File Reference]({{< ref "ref-deployment-file#bluegreen-fields" >}} for an explanation of these fields.
+
+   The values for `activeService` and `previewService` must match the names of the Kubernetes Service objects you created to route traffic to the current and preview versions of your application.
+
+   This strategy is configured to pause for manual judgment before redirecting traffic to your new app version as well as before shutting down your old version. You could instead choose to pause for a duration of time.
+
+1. Change the value of targets.<targetName>.strategy for one or more of your deployment targets to `blue-green-deploy-strat`.
+
+   ```yaml
+   ...
+   targets:
+    <targetName>:
+      account: <agentIdentifier>
+      namespace: <namespace>
+      strategy: blue-green-deploy-strat
+    ...
+    ```
+1. Save the file
+
+## Redeploy your app
+
+Make a change to your app, such as the number of replicas, and redeploy it with the Borealis CLI:
+
+```bash
+armory deploy start  -f <your-deploy-file>.yaml
+```
+
+Monitor the progress and **Approve & Continue** or **Roll back** the blue/green deployment in the UI.
+
 
 

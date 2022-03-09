@@ -161,7 +161,7 @@ Adding canary analysis to your deployment involves updating your deploy file to 
                 - avgCPUUsage
    ```
 
-   For a detailed explanation of these fields, see the [Deployment File Reference]({{< ref "ref-deployment-file##strategiesstrategynamestrategystepsanalysis" >}})
+   For a detailed explanation of these fields, see the [Deployment File Reference]({{< ref "ref-deployment-file#strategies" >}})
 
    This strategy deploys the app to 50% of the cluster and then performs a canary analysis with the following characteristics:
 
