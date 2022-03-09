@@ -5,4 +5,6 @@ version: 00.08.51
 
 ---
 
-The change is returning a 404 on delete operations for objects that don’t exist; before it was returning a 200 with an empty manifest, which also doesn’t have any impact on functionality.
+### Changes
+
+* Clouddriver now returns 404 when requesting a non-existent manifest through agent, which matches the behavior of native Clouddriver accounts. Previously it was returning 200 with an empty response. This change doesn't have an impact in functionality because orca works on the returned object rather than on the response code.
