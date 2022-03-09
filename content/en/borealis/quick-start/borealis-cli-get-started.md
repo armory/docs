@@ -26,7 +26,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 {{% tabbody name="Automated (Recommended)" %}}
 
 1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo]((https://github.com/armory/avm/releases/) or use the following command:
-   
+
    ```bash
    wget https://github.com/armory/avm/releases/latest/download/avm-<os>-<architecture>
    ```
@@ -39,27 +39,27 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
    You can see the full list of available releases in the [repo](https://github.com/armory/avm/releases/).
 2. Give AVM execute permissions. For example (on macOS):
-   
+
    ```bash
    chmod +x avm-darwin-amd64
    ```
 
 4. Confirm that `/usr/local`/bin is on your `PATH`:
-   
+
    ```bash
    echo $PATH
    ```
    The command returns your `PATH`, which should now include `/usr/local/bin/`.
 
 5. Move AVM to `/usr/local/bin`, which is on your `PATH`. For example (on macOS):
-   
+
    ```bash
    # Moves AVM to /usr/local/bin, which is on your PATH
    mv avm-darwin-amd64 /usr/local/bin/avm
    ```
 
 6. Run the following command to install the Borealis CLI:
-   
+
    ```bash
    avm install
    ```
@@ -70,26 +70,26 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
    <details><summary>Show me how to allow AVM to run.</summary>
 
-   On macOS, go to **System Preferences > Security & Privacy > General** and click **Allow Anyway**. 
-   
+   On macOS, go to **System Preferences > Security & Privacy > General** and click **Allow Anyway**.
+
    For more information, see the macOS documentation about [how to open a Mac app from an unidentified developer](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
 
    </details></br>
 
 7. Add the directory that AVM returned when you ran `avm install` to your path.
-  
+
    <details><summary>Show me how to add the directory.</summary>
 
-   You can either add the path directly to `/etc/paths` or add it to your shell profile. The following steps describe how to add it to your shell profile: 
+   You can either add the path directly to `/etc/paths` or add it to your shell profile. The following steps describe how to add it to your shell profile:
    1. Edit the resource file for your shell, such as `.bashrc`, `.bash_profile`, or .`zshrc`. For example:
-    
+
       ```bash
       vi ~/.bashrc
       ```
-    
+
     1. In the file, find the line for the `PATH` that your resource file exports. They follow the format `export PATH=$HOME/bin:/usr/local/bin:$PATH`.
     2. Insert the path provided by AVM (such as `/Users/brianle/.avm/bin`)before the ending `$PATH`. The line should look similar to this:
-   
+
        ```bash
        export PATH=$HOME/bin:/usr/local/bin::/Users/milton/.avm/bin:$PATH
        ```
@@ -100,7 +100,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
    </details></br>
 
 8. Run the following command to verify that the Borealis CLI is installed:
-   
+
    ```bash
    armory
    ```
@@ -125,7 +125,7 @@ For AVM or the Borealis CLI, you can use the `--help` option for more informatio
 5. Verify that you can run the Borealis CLI:
 
    ```bash
-   armory 
+   armory
    ```
 
    The command returns basic information about the CLI, including available commands.
@@ -149,7 +149,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
    ```
 
 2. Log in to Armory's hosted cloud services from the CLI:
-   
+
    ```bash
    armory login
    ```
@@ -160,15 +160,15 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 
 3. Select the environment you want to log in to.   
 4. Generate your deployment template and output it to a file:
-   
+
    ```bash
    armory template kubernetes canary > canary.yaml
    ```
 
    This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`.
    <details><summary>Show me an empty template</summary>
-   
-   {{< include "aurora-borealis/borealis-yaml-basic.md" >}}
+
+   {{< include "aurora-borealis/dep-file/borealis-yaml-basic.md" >}}
 
 
    </details><br>
@@ -187,7 +187,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
        my-demo-strat: # Name that you use for `targets.<deploymentName>.strategy
        - canary # The type of deployment strategy to use. Borealis supports `canary`.
           steps:
-            - setWeight: 
+            - setWeight:
                 weight: <integer> # What percentage of the cluster to roll out the manifest to before pausing.
             - pause:
                 duration: <integer> # How long to pause before deploying the manifest to the next threshold.
@@ -202,12 +202,12 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 
    <details><summary>Show me a completed deployment file</summary>
 
-   {{< include "aurora-borealis/borealis-yaml-example-basic.md" >}}
+   {{< include "aurora-borealis/dep-file/borealis-yaml-example-basic.md" >}}
 
     </details><br>
 
 6. Start the deployment:
-   
+
    ```bash
    armory deploy start  -f canary.yaml
    ```
@@ -229,6 +229,14 @@ armory deploy status -i <deployment-ID>
 
 You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis. To get started, create [service accounts]({{< ref "borealis-automate" >}}).
 
+## Upgrade the CLI
+
+Run the following command to upgrade your existing CLI:
+
+```bash
+avm install
+```
+
 ## Troubleshooting
 
 ### Developer cannot be verified error when trying to run AVM
@@ -239,7 +247,7 @@ Depending on your operating system settings, you may need to allow apps from an 
 
 This issue occurs if the AVM version you downloaded does not match your CPU architecture. For example, if you try to run an `arm64` build on a system that is not ARM based. Verify that you downloaded the correct AVM version for your system.
 
-### `error: Error: there was an error writing the credentials file. ` 
+### `error: Error: there was an error writing the credentials file. `
 
 This issue occurs because the the directory where the Borealis CLI stores your credentials after you run `armory login` does not exist. You can create the directory by running the following command:
 

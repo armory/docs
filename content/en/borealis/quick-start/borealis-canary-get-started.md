@@ -1,7 +1,7 @@
 ---
 title: Get Started with Canary Analysis
 linktitle: Canary Analysis
-description: > 
+description: >
   This guide walks you through using canary analysis on the app you deployed in the Get Started with the CLI to Deploy Apps guide. You perform a retrospective analysis on the app. Then, you use those queries to create canary analysis steps for subsequent deployments.
 weight: 10  
 exclude_search: true
@@ -21,7 +21,7 @@ To complete this quick start, you need the following:
 - A Prometheus instance set up to monitor your Kubernetes clusters. Keep the following in mind:
 
   - Armory recommends your Prometheus instance uses the following settings: `"prometheus.io/scrape": "true"` (on by default) and `kube-state-metrics.metricAnnotationsAllowList[0]=pods=[*]` (collect annotations). These  flags instruct Prometheus to collect all Kubernetes annotations, which allow you to reference the annotations that Borealis injects as part of your query.
-   
+
    If you install Prometheus with Helm, this example command includes the required flag:
 
    ```yaml
@@ -30,7 +30,7 @@ To complete this quick start, you need the following:
 
   - It is either accessible by the public internet or you have installed the Remote Network Agent (RNA) in the same cluster.
 
-   For information about how to install Prometheus, see the the [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/installation/). 
+   For information about how to install Prometheus, see the the [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/installation/).
 
 
 ## Add your metrics provider
@@ -43,7 +43,7 @@ Borealis can run queries against metrics providers that you add. The results are
    The examples in this guide use Prometheus as the metrics provider.
 
 3. Complete the wizard:
-  
+
    The parameters you need to provide depend on the metrics provider you choose. For more information, see [Canary Analysis Integrations]({{< ref "borealis-configuration-ui#integrations" >}}).
 
    The following fields are for a Prometheus integration:
@@ -80,7 +80,7 @@ Retrospective analysis is the starting point to creating queries so that you can
       # note the time should actually be set to ${promQlStepInterval}
    ```
 
-   - The query contains variables that are automatically injected during canary analysis, but you must manually provide some of them during retrospective analysis. 
+   - The query contains variables that are automatically injected during canary analysis, but you must manually provide some of them during retrospective analysis.
      - Time related variables like `armory.promqlStepInterval` are automatically substituted by Borealis. For a full list, see [Retrospective Analysis]({{< ref "borealis-configuration-ui#retrospective-analysis" >}}).
      - `armory.replicaSetName` needs to be set to the name of the ReplicaSet that Borealis created for this app version. It's used to differentiate between the current and next version of the app. Do this in the next step where you add key/value pairs.
 
@@ -91,7 +91,7 @@ Retrospective analysis is the starting point to creating queries so that you can
     **Value**: The name of the ReplicaSet that got created when you deployed the app in *Get Started with the CLI to Deploy Apps guide*.
 
 6. Run the analysis. If the results fall within the upper and lower limits you set, the deployment is considered a success.
-  
+
 ### Export and add a query to your deploy file
 
 The Retrospective Analysis can take the query you provide and generate the YAML equivalent that you can use it in your deploy file.
@@ -124,7 +124,7 @@ The `avgCPUUsage` query is now available for you to use in the `steps` block of 
 
 ## Add canary analysis to your deployment
 
-Borealis supports manual and automated canary analysis. Manual canary analysis allows you to review the canary results until you have confidence that your queries are making good decisions around service health. 
+Borealis supports manual and automated canary analysis. Manual canary analysis allows you to review the canary results until you have confidence that your queries are making good decisions around service health.
 
 Adding canary analysis to your deployment involves updating your deploy file to include the following:
 
@@ -161,7 +161,7 @@ Adding canary analysis to your deployment involves updating your deploy file to 
                 - avgCPUUsage
    ```
 
-   For a detailed explanation of these fields, see the [Deployment File Reference]({{< ref "ref-deployment-file##strategiesstrategynamestrategystepsanalysis" >}})
+   For a detailed explanation of these fields, see the [Deployment File Reference]({{< ref "ref-deployment-file#strategies" >}})
 
    This strategy deploys the app to 50% of the cluster and then performs a canary analysis with the following characteristics:
 
@@ -195,6 +195,6 @@ armory deploy start  -f <your-deploy-file>.yaml
 
 Monitor the progress and approve the canary steps in the UI.
 
-### Go from manual to automated 
+### Go from manual to automated
 
 Once you have confidence in your queries, switching from manual approvals of canary steps to automatic approvals involves updating the `analysis` steps in your strategy. You can either comment out the `rollBackMode` and `rollForwardMode` fields or set them to `automatic`. Subsequent deployments using the updated deploy file will progress the deployment automatically if the canary analysis steps pass.
