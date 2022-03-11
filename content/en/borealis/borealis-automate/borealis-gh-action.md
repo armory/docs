@@ -28,7 +28,7 @@ If you have previously configured Borealis for your deployment target, you can s
    - Register for an Armory hosted cloud services account. This is the account that you use to log in  to the Armory Cloud Console and the Status UI.
    - Create machine-to-machine client credentials for the Remote Network Agent (RNA), which gets  installed on your deployment target.
    - Prepare your deployment target by installing the RNA.
-   
+
 
 3. In the Cloud Console, create machine-to-machine client credentials to use for your GitHub Action service account. You can select the pre-configured scope group **Deployments using Spinnaker** or manually select the following:
 
@@ -39,9 +39,9 @@ If you have previously configured Borealis for your deployment target, you can s
 
    For more information, see [Integrate Borealis & Automate Deployments](https://docs.armory.io/borealis/quick-start/borealis-integrate/).
 4. Encrypt the GitHub Action service account credentials so that you can use them securely in the action. Create a secret for the Client ID and a separate secret for the Client Secret.
-   
+
    Use descriptive name for these two values. You use the name to reference them in the GitHub Action.
-   
+
    For more information, see [Encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
 ## Configure the GitHub Action
@@ -85,7 +85,7 @@ armory template kubernetes canary > deployment.yaml
 
 <details><summary>Show me the template file</summary>
 
-{{< include "aurora-borealis/borealis-yaml-basic.md" >}}
+{{< include "aurora-borealis/dep-file/borealis-yaml-basic.md" >}}
 
 </details>
 
@@ -96,7 +96,7 @@ Note that you do not need to configure a `setWeight` step for `100`. Borealis au
 
 <details><summary>Show me an example deployment file</summary>
 
-{{< include "aurora-borealis/borealis-yaml-example-basic.md" >}}
+{{< include "aurora-borealis/dep-file/borealis-yaml-example-basic.md" >}}
 
 </details>
 
@@ -120,7 +120,7 @@ Save the following YAML file to your `.github/workflows` directory:
 ```yaml
 name: <Descriptive Name>
 
-on: 
+on:
   push: # What triggers a deployment. For example, `push`.
     branches:
       - <branchName> # What branch triggers a deployment. For example, `main`.
