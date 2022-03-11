@@ -6,4 +6,5 @@ version: 00.10.28
 ---
 
 ### Fixes
-Fixed an issue where new agents would not show under  endpoint.
+
+* Fixed an issue when having an agent deployment with more than one replica, where only the most recently connected agent was registered with clouddriver and the other replicas registration was lost. This can be verified in the clouddriver endpoint `/armory/agents`.
