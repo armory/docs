@@ -5,4 +5,6 @@ version: 01.00.18
 
 ---
 
-Adds logs for debugging the grpc keepalive routine.
+### Changes
+
+* More logs were added to the grpc keepalive logic in order to troubleshoot problems with the keepalive.
