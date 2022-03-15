@@ -7,4 +7,4 @@ version: 01.00.18
 
 ### Changes
 
-* More logs were added to the grpc keep alive logic in order to troubleshoot problems with the keepalive.
+* More logs were added to troubleshoot problems with the keep alive logic.
