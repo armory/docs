@@ -31,6 +31,88 @@ Clouddriver's log should have the following messages:
 2020-10-02 16:24:10.046  INFO 1 --- [           main] n.d.b.g.s.s.GrpcServerLifecycle          : gRPC Server started, listening on address: *, port: 9091
 ```
 
+### Kubernetes clustering
+
+If there are no errors, the log should look like this:
+
+```bash
+Watching kubernetes Endpoints on namespace {}
+```
+
+If there is any problem watching Endpoints, Clouddriver logs an exception beginning like this:
+
+```bash
+>>>>>>> Unable to list kubernetes Endpoints in namespace {} to discover clouddriver instances. Agent will NOT work if running more than one clouddriver replica!
+```
+
+If there are errors, run these commands inside Clouddriver pods. They should return yes:
+
+```bash
+kubectl auth can-i list endpoints
+
+kubectl auth can-i watch endpoints
+```
+
+The output of the REST request `GET /armory/clouddrivers` should return all existing Clouddriver pods. If there are missing pods, run this command inside each Clouddriver pod:
+
+```bash
+kubectl get endpoints
+```
+
+The result should be similar to:
+
+```
+NAME                       ENDPOINTS                                                      AGE
+spin-clouddriver           10.0.11.54:7002,10.0.11.88:7002,10.0.13.152:7002 + 5 more...   9d
+```
+
+Then execute:
+
+```
+kubectl describe endpoints spin-clouddriver
+```
+
+There should be one or more entries having `NAME` beginning with what is specified in the config setting `kubesvc.cluster-kubernetes.clouddriverServiceNamePrefix`, which defaults to `spin-clouddriver`. Also, the entry should have at least one port named like what is configured in `kubesvc.cluster-kubernetes.httpPortName`, which defaults to `http`. Your output should be similar to:
+
+```bash
+Name:         spin-clouddriver
+Namespace:    spinnaker
+Labels:       app=spin
+              cluster=spin-clouddriver
+Annotations:  endpoints.kubernetes.io/last-change-trigger-time: 2022-02-23T20:41:39Z
+Subsets:
+  Addresses:          10.0.11.54,10.0.11.88,10.0.13.152,10.0.15.176,10.0.15.246,10.0.5.200,10.0.5.39,10.0.7.150
+  NotReadyAddresses:  <none>
+  Ports:
+    Name  Port  Protocol
+    ----  ----  --------
+    http  7002  TCP
+
+Events:  <none>
+```
+
+The output of the REST request `GET /armory/agents` should return valid data regarding which Agents are connected to which Clouddrivers. The field `clouddriverAlive` must be true for active connections.
+
+Your reponse should be similar to:
+
+```json
+[
+  {
+    "accounts": [],
+    "agentId": "armory-agent-69c7ff7b46-jblql",
+    "caching": true,
+    "clouddriverAlive": true,
+    "clouddriverId": "spin-clouddriver-766c678c6c-4zzzf",
+    "lastConnection": "2022-02-23T22:18:54.725Z",
+    "type": "kubernetes"
+  }
+]
+```
+
+If one account/Agent is associated with more than one Clouddriver instance having `clouddriverAlive: true`, it's possible that the balancer Agent that runs every 30 seconds didn't flip the flag to false for dead connections. However, the plugin will just select the Clouddriver with the most recent `lastConnection` date.
+
+If no account/Agent is registered with a Clouddriver having `clouddriverAlive: true`, it's possible that the Agent is not connected yet to any Clouddriver.
+
 ## Testing gRPC endpoints
 
 In Infrastructure or Agent modes, you can test the gRPC endpoints with the
