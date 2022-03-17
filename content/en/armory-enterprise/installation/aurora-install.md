@@ -23,7 +23,7 @@ See the [Architecture]({{< ref "borealis/architecture-borealis" >}}) page for an
 This guide walks you through the following:
 
 - Registering your Armory Enterprise environment
-- Installing the Remote Network Agent (RNA) on your depoloyment target cluster
+- Installing the Remote Network Agent (RNA) on your deployment target cluster
 - Connecting to Armory Cloud services
 - Installing the Project Aurora plugin
 - Deploying a "hello world" manifest
