@@ -43,7 +43,7 @@ aliases:
 
 Communication from the Agent service to the Clouddriver plugin occurs over gRPC port 9091. Communication between the service and the plugin must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between the Agent service and Clouddriver plugin.  
 
-Consult the {{< linkWithTitle "agent-k8s-clustering.md" >}} page for details on how the Agent communicates with Clouddriver instances in Kubernetes.
+Consult the {{< linkWithTitle "agent-k8s-clustering.md" >}} page for details on how the Agent plugin communicates with Clouddriver instances in Kubernetes.
 
 ### Compatibility matrix
 
