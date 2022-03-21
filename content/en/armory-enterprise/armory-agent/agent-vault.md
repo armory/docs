@@ -1,9 +1,9 @@
 ---
-title: "Configure Vault Integration"
-linkTitle: "Configure Vault"
-weight: 41
+title: "Vault Integration"
+linkTitle: "Vault Integration"
+weight: 30
 description: >
-  Configure Armory Agent integration with Vault.
+  Integrate HashiCorp Vault with Armory Agent.
 ---
 ![Proprietary](/images/proprietary.svg)
 
@@ -107,7 +107,8 @@ spec:
  * Make sure to include the required [Vault injector annotations](https://www.vaultproject.io/docs/platform/k8s/injector/annotations) like [`vault.hashicorp.com/role` or `vault.hashicorp.com/agent-configmap`](https://www.vaultproject.io/docs/platform/k8s/injector/annotations#vault-hashicorp-com-role) that correspond to your environment.
  * Be aware of the version of Vault's KV engine currently in your environment. This guide assumes you have the secret engine [KV version 2](https://www.vaultproject.io/docs/secrets/kv/kv-v2). For KV version 1, you need to modify the template to use `{{ range $k, $v := .Data }}` instead. See the Templating Language's [Versioned Read](https://github.com/hashicorp/consul-template/blob/master/docs/templating-language.md#versioned-read) section for more information.
  * This template expects `secret/kubernets` to hold the `kubeconfig file`: Make sure to replace both line 16 and 18 in case that's not the case in your environment.
- * Make sure to include all other [Agent Options]({{< ref "agent-options/#configuration-options" >}}) that you require in your environment.
+ * Make sure to include all other
+    [Agent Options]({{< ref "agent-options#configuration-options" >}}) that you require in your environment.
 
 After addressing the preceding points, save the template as `armory-agent-vault-patch.yaml` and refer to it in your `kustomization.yaml`:
 

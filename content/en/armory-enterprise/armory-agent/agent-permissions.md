@@ -1,9 +1,9 @@
 ---
 title: "Kubernetes Permissions for the Armory Agent"
-linkTitle: "Permissions"
+linkTitle: "Kubernetes Permissions"
+weight: 50
 description: >
   Kubernetes permissions required by the Armory Agent.
-weight: 65
 ---
 ![Proprietary](/images/proprietary.svg)
 
