@@ -1,9 +1,11 @@
 ---
 title: "Configure Mutual TLS Authentication"
 linkTitle: "Configure mTLS"
-weight: 40
+weight: 2
 description: >
   Configure mTLS authentication in the Armory Agent plugin and service.
+aliases:
+  - /armory-enterprise/armory-agent/agent-mtls/
 ---
 
 ## {{% heading "prereq" %}}
