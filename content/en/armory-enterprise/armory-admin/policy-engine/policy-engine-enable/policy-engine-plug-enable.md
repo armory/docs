@@ -41,6 +41,23 @@ This manifest is in the [`spinnaker-kustomize-patches` repository](https://githu
 
 You can configure the amount of time that the Policy Engine waits for a response from your OPA server. If you have network or latency issues, increasing the timeout can make Policy Engine more resilient. Use the following config to set the timeout in seconds: `spec.spinnakerConfig.profiles.spinnaker.armory.policyEngine.opa.timeoutSeconds`. The default timeout is 10 seconds if you omit the config.
 
+#### JSON validation
+
+You can configure strict JSON validation as a boolean in `spec.spinnakerConfig.profiles.dinghy.jsonValidationDisabled`:
+
+
+```yaml
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        jsonValidationDisabled: <boolean>
+```
+
+The config is optional. If omitted, strict validation is on by default.
+
+> When strict validation is on, existing pipelines may fail if any JSON is invalid.
+
 </details>
 
 {{% /tabbody %}}
@@ -137,6 +154,7 @@ You can configure the amount of time that the Policy Engine waits for a response
 
 ## Release notes
 
+* 0.2.1 - Fixed bug with the projects tab on deck for Armory Enterprise 2.27.1 and later
 * 0.2.0 - Update plugin to be compatible with Armory Enterprise 2.27.0 and later.
 * 0.1.6 - The Policy Engine Plugin is now generally available.
   * If you are new to using the Policy Engine, use the plugin instead of the extension project.
