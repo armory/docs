@@ -5,4 +5,6 @@ version: 01.00.19
 
 ---
 
-Minor change: Run agent plugin integration tests before each agent release; this change doesn’t make any impact on functionality
+### Changes
+
+* Internal release automation changes 
