@@ -91,7 +91,7 @@ This section walks you through installing the Remote Network Agent (RNA) using a
 
 {{< include "aurora-borealis/rna-install.md" >}}
 
-### Migrate to the new RNA 
+### Migrate to the new RNA
 
 You do not need to do this migration if you are installing the RNA for the first time.
 
@@ -269,6 +269,12 @@ hal deploy apply
 
 ## Use Project Aurora
 
+
+### Progressive Deployment YAML stage
+
+
+### Kubernetes Progressive stage
+
 In the Armory Enterprise UI, the stage for Project Aurora is called **Kubernetes Progressive**. If you have deployed Kubernetes apps before using Armory Enterprise, this page may look familiar. The key difference between a Kubernetes deployment using Armory Enterprise and Armory Enterprise with Project Aurora is in the **How to Deploy** section.
 
 The **How to Deploy** section is where you define your progressive deployment and consists of two parts:
@@ -279,16 +285,16 @@ This is the deployment strategy you want to use to deploy your Kubernetes app. A
 
 **Steps**
 
-These settings control how the your Kubernetes deployment behaves as Project Aurora deploys it. You can tune two separate but related chracteristics of the deployment:
+These settings control how the your Kubernetes deployment behaves as Project Aurora deploys it. You can tune two separate but related characteristics of the deployment:
 
 - **Rollout Ratio**: set the percentage threshold (integer) for how widely an app should get rolled out before pausing.
-- **Then wait**: define what triggerse the rollout to continue. The trigger can either be a manul approval (**until approved**) or for a set amount of time, either seconds, minutes or hours (integer).
+- **Then wait**: define what triggers the rollout to continue. The trigger can either be a manual approval (**until approved**) or for a set amount of time, either seconds, minutes or hours (integer).
 
 Create a step for each **Rollout Ratio** you want to define. For example, if you want a deployment to pause at 25%, 50%, and 75% of the app rollout, you need to define 3 steps, one for each of those thresholds. The steps have independent **Then wait** behaviors and can be set to all follow the same behavior or different ones.
 
-### Try out the stage
+#### Try out the stage
 
-You can try out Project Aurora and the **Kubernetes Progressive** stage using either the `hello-world` sample manifest described below or an artifact that you have. The `hello-world` example deploys NGINX that intentionally takes longer than usual for demonstration purposes.
+You can try out the **Kubernetes Progressive** stage using either the `hello-world` sample manifest described below or an artifact that you have. The `hello-world` example deploys NGINX that intentionally takes longer than usual for demonstration purposes.
 
 Perform the following steps:
 
