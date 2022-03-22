@@ -35,7 +35,7 @@ aliases:
          - watch
     ```
 
-* Verify that there is a Kubernetes Service Account with prefix name `spin-clouddriver` (configurable) routing HTTP traffic to Clouddriver pods, having a port with name `http` (configurable). This Service Account is created automatically when installing Armory Enterprise using the Armory Operator.
+* Verify that there is a Kubernetes Service with prefix name `spin-clouddriver` (configurable) routing HTTP traffic to Clouddriver pods, having a port with name `http` (configurable). This Service is created automatically when installing Armory Enterprise using the Armory Operator.
 
 * You have an additional Kubernetes cluster to serve as your deployment target cluster.
 
