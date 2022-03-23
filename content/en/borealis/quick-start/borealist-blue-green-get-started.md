@@ -2,7 +2,7 @@
 title: Get Started with Blue/Green Deployment
 linktitle: Blue/Green Deployment
 description: >
-  This guide walks you through using canary analysis on the app you deployed in the Get Started with the CLI to Deploy Apps guide. You perform a retrospective analysi on the app. Then, you use those queries to create canary analysis steps for subsequent deployments.
+  This guide walks you through how to deploy using a blue/green strategy.
 weight: 10  
 exclude_search: true
 ---
