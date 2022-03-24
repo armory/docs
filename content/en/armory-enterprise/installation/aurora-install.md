@@ -1,6 +1,6 @@
 ---
 title: Get Started with Project Aurora for Spinnaker™
-description: Use this self-service guide to install Project Aurora, which enables you to perform canary deployments in a single stage.
+description: Use this self-service guide to install Project Aurora, which enables you to perform canary and blue/green deployments in a single stage.
 exclude_search: true
 toc_hide: true
 hide_summary: true
@@ -16,9 +16,9 @@ aliases:
 
 ## Overview
 
-Project Aurora is plugin that adds a new stage to your Armory Enterprise (Spinnaker) instance. When you use this stage to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
+Project Aurora is plugin that adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
 
-See the [Architecture]({{< ref "borealis/architecture-borealis" >}}) page for an overview of Project Aurora and how it fits in with Spinnaker.
+See the [Architecture]({{< ref "borealis/architecture-borealis" >}}) page for an overview of Project Aurora and how it fits in with Armory Enterprise.
 
 This guide walks you through the following:
 
@@ -269,13 +269,56 @@ hal deploy apply
 
 ## Use Project Aurora
 
+Project Aurora provides the following pipeline stages that you can use to deploy your app:
 
-### Progressive Deployment YAML stage
+* Borealis Progressive Deployment YAML - more options - explain
+* Kubernetes Progressive - WYSIWYG option (change this)
+
+### Borealis Progressive Deployment YAML stage
+
+This stage uses a YAML file to deploy your app. The YAML file that you create must be in the same format as the [Deployment File]({{< ref "ref-deployment-file" >}}) that you would use with the Borealis CLI.
+
+The **Deployment Configuration** section is where you define your Borealis progressive deployment and consists of the following parts:
+
+**Manifest Source**
+
+You have the following options for adding your Borealis deployment YAML configuration:
+
+1. **Text**: Choose this option if you want to create and store your deployment YAML within Armory Enterprise.
+1. **Artifact**: Choose this option if you want to store your deployment YAML in source control.
+
+{{< tabs name="BorealisDeploymentYAMLManifestSource" >}}
+{{% tabbody name="Text" %}}
+
+When you choose this option, you must paste your deployment file YAML into the **Deployment YAML** text box.
+
+{{% /tabbody %}}
+{{% tabbody name="Artifact" %}}
+
+
+{{% /tabbody %}}
+{{< /tabs >}}
+
+**Required Artifacts to Bind**
+
+For each manifest you list in the `manifests.path` section of your Borealis deployment file, you must add the specified YAML file as an artifact to bind.
+
+For example, if your deployment file specifies:
+
+```yaml
+application: potato-facts3
+kind: kubernetes
+manifests:
+  - path: manifests/potato-facts.yml
+  - path: manifests/potato-facts-db.yml
+```
+
+Then you must add `potato-facts.yml` and `potato-facts-db.yml` as required artifacts.
 
 
 ### Kubernetes Progressive stage
 
-In the Armory Enterprise UI, the stage for Project Aurora is called **Kubernetes Progressive**. If you have deployed Kubernetes apps before using Armory Enterprise, this page may look familiar. The key difference between a Kubernetes deployment using Armory Enterprise and Armory Enterprise with Project Aurora is in the **How to Deploy** section.
+If you have deployed Kubernetes apps before using Armory Enterprise, this page may look familiar. The key difference between a Kubernetes deployment using Armory Enterprise and Armory Enterprise with Project Aurora is in the **How to Deploy** section.
 
 The **How to Deploy** section is where you define your progressive deployment and consists of two parts:
 
