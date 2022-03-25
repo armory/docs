@@ -276,9 +276,8 @@ Project Aurora provides the following pipeline stages that you can use to deploy
 
 ### Borealis Progressive Deployment YAML stage
 
-{{< alert title="Early Access Caveats" color="primary" >}}
+{{< alert title="Limitations" color="primary" >}}
 * This stage only supports deploying to a single environment.
-* Use the Borealis UI to view the status of a running job.
 {{< /alert >}}
 
 This stage uses YAML deployment configuration to deploy your app. The YAML that you create must be in the same format as the [Deployment File]({{< ref "ref-deployment-file" >}}) that you would use with the Borealis CLI.
