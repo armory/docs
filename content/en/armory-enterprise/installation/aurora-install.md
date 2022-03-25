@@ -292,7 +292,6 @@ You have the following options for adding your Borealis deployment YAML configur
 1. Add the Kubernetes manifest for your app as a pipeline artifact in the Configuration section of your pipeline, or generate it using the 'Bake (Manifest)' stage, as you would for a standard Kubernetes deployment in Armory Enterprise.
 
 1. Prepare your Borealis deployment YAML. You can use the [Borealis CLI]({{< ref "borealis-cli-get-started#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template. In your deployment YAML `manifests.path` section, you have to specify the file name of the app's Kubernetes manifest artifact, which may vary from the **Display Name** on the **Expected Artifact** screen.
-   - If you store your Borealis deployment YAML as a file in source control, be sure to add that file as a pipeline artifact in your pipeline's **Configuration** section.
 
 #### Configure the stage
 
