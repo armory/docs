@@ -2,7 +2,7 @@
 title: Get Started with Blue/Green Deployment
 linktitle: Blue/Green Deployment
 description: >
-  This guide walks you through using canary analysis on the app you deployed in the Get Started with the CLI to Deploy Apps guide. You perform a retrospective analysi on the app. Then, you use those queries to create canary analysis steps for subsequent deployments.
+  This guide walks you through how to deploy using a blue/green strategy.
 weight: 10  
 exclude_search: true
 ---
@@ -46,7 +46,7 @@ To complete this quick start, you need the following:
               untilApproved: true
    ```
 
-   See the [Deployment File Reference]({{< ref "ref-deployment-file#bluegreen-fields" >}} for an explanation of these fields.
+   See the [Deployment File Reference]({{< ref "ref-deployment-file#bluegreen-fields" >}}) for an explanation of these fields.
 
    The values for `activeService` and `previewService` must match the names of the Kubernetes Service objects you created to route traffic to the current and preview versions of your application.
 

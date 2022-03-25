@@ -3,7 +3,7 @@ title: "Armory Agent for Kubernetes Installation"
 linkTitle: "Installation"
 description: >
   Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
-weight: 30
+weight: 1
 no_list: true
 aliases:
   - /armory-enterprise/armory-agent/armory-agent-quick/
@@ -15,15 +15,35 @@ aliases:
 
 ## {{% heading "prereq" %}}
 
+* You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
 * You deployed Armory Enterprise using the [Armory Operator and Kustomize patches]({{< ref "op-config-kustomize" >}}).
 * You have configured Clouddriver to use MySQL or PostgreSQL. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions. The Agent plugin uses the SQL database to store cache data.
-* For Clouddriver pods, you have mounted a service account with permissions to `list` and `watch` the Kubernetes kind `Endpoint` in their current namespace.
-* You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
+* For Clouddriver pods, you have mounted a service account with permissions to `list` and `watch` the Kubernetes kind `Endpoint` in namespace where Clouddriver is running.
+
+   ```yaml
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: Role
+   metadata:
+     name: spin-sa
+   rules:
+     - apiGroups:
+         - ""
+       resources:
+         - endpoints
+       verbs:
+         - list
+         - watch
+    ```
+
+* Verify that there is a Kubernetes Service with prefix name `spin-clouddriver` (configurable) routing HTTP traffic to Clouddriver pods, having a port with name `http` (configurable). This Service is created automatically when installing Armory Enterprise using the Armory Operator.
+
 * You have an additional Kubernetes cluster to serve as your deployment target cluster.
 
 ### Networking requirements
 
 Communication from the Agent service to the Clouddriver plugin occurs over gRPC port 9091. Communication between the service and the plugin must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between the Agent service and Clouddriver plugin.  
+
+Consult the {{< linkWithTitle "agent-k8s-clustering.md" >}} page for details on how the Agent plugin communicates with Clouddriver instances in Kubernetes.
 
 ### Compatibility matrix
 

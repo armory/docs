@@ -9,7 +9,7 @@ weight: 30
 
 ## {{% heading "prereq" %}}
 
-Make sure you have read the Installation [overview]({{< ref "armory-agent-install" >}}).
+* Make sure you have read the Installation [overview]({{< ref "armory-agent-install" >}}).
 
 ## Create the plugin manifest
 
@@ -36,6 +36,12 @@ spec:
         # Plugin config
         kubesvc:
           cluster: kubernetes
+          cluster-kubernetes:
+            kubeconfigFile: <path-to-file> # (Optional, default: null). If configured, the plugin uses this file to discover Endpoints. If not configured, it uses the service account mounted to the pod.
+            verifySsl: <true|false> # Optional, default: true). Whether to verify the Kubernetes API cert or not.
+            namespace: <string> # (Optional, default: null). If configured, the plugin watches Endpoints in this namespace. If null, it watches endpoints in the namespace indicated in the file "/var/run/secrets/kubernetes.io/serviceaccount/namespace".
+            httpPortName: <string> # (Optional, default: http). Name of the port configured in the Clouddriver Service that forwards traffic to the Clouddriver HTTP port for REST requests.
+            clouddriverServiceNamePrefix: <string> # (Optional, default: spin-clouddriver). Name prefix of the Kubernetes Service pointing to the Clouddriver standard HTTP port.
   kustomize:
     clouddriver:
       deployment:

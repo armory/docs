@@ -1,7 +1,7 @@
 ---
-title: v2.27.0 Beta Armory Release (OSS Spinnaker™ v1.27.0)
+title: v2.27.0 Armory Release (OSS Spinnaker™ v1.27.0)
 toc_hide: true
-version: 02.27.00 
+version: 02.27.00
 description: >
   Release notes for Armory Enterprise v2.27.0 Beta. A beta release is not meant for installation in production environments.
 ---
@@ -30,6 +30,8 @@ Armory scans the codebase as we develop and release software. For information ab
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
+
+{{< include "breaking-changes/bc-dinghy-slack.md" >}}
 
 {{< include "breaking-changes/bc-java-tls-mysql.md" >}}
 

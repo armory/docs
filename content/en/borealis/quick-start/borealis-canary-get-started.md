@@ -68,16 +68,10 @@ Retrospective analysis is the starting point to creating queries so that you can
    - **Lower Limit**: The lower limit for the query. If the results fall below this value, the deployment is considered to be a failure. Set this to `0`.
    - **Query Template**:
 
-   ```sql
+   ```yaml
         avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
         sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
         by (annotation_app, pod)) by (annotation_app)
-      #,annotation_deploy_armory_io_replica_set_name="${canaryReplicaSetName}"})
-      #${ARMORY_REPLICA_SET_NAME}
-      #,annotation_deploy_armory_io_replica_set_name="${ARMORY_REPLICA_SET_NAME}"
-      #${replicaSetName}
-      #${applicationName}
-      # note the time should actually be set to ${promQlStepInterval}
    ```
 
    - The query contains variables that are automatically injected during canary analysis, but you must manually provide some of them during retrospective analysis.
@@ -110,12 +104,6 @@ The Retrospective Analysis can take the query you provide and generate the YAML 
           avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
           sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
           by (annotation_app, pod)) by (annotation_app)
-        #,annotation_deploy_armory_io_replica_set_name="${canaryReplicaSetName}"})
-        #${ARMORY_REPLICA_SET_NAME}
-        #,annotation_deploy_armory_io_replica_set_name="${ARMORY_REPLICA_SET_NAME}"
-        #${replicaSetName}
-        #${applicationName}
-        # note the time should actually be set to ${promQlStepInterval}
    ```
 
 For a detailed explanation of these fields, see the [Deployment File Reference]({{< ref "ref-deployment-file#analysis" >}})

@@ -199,13 +199,15 @@ spec:
     config:
       armory:
         dinghy:
-          enabled: true                  # Whether or not Dinghy is enabled
-          templateOrg: my-org            # SCM organization or namespace where application and template repositories are located
+          enabled: true  # Whether or not Dinghy is enabled
+          templateOrg: my-org # SCM organization or namespace where application and template repositories are located
           templateRepo: dinghy-templates # SCM repository where module templates are located
-          githubToken: abc               #  GitHub token. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+          githubToken: abc  #  GitHub token.
           githubEndpoint: https://api.github.com # (Default: https://api.github.com) GitHub API endpoint. Useful if you’re using GitHub Enterprise
           ... # Rest of config omitted for brevity
 ```
+
+* `githubToken`: This field supports "encrypted" field references; see [Secrets]({{< ref "Secrets" >}}) for details.
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml

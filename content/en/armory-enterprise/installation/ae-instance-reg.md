@@ -48,14 +48,6 @@ spec:
             clientSecret: <clientSecret>
           api:
             baseUrl: https://api.cloud.armory.io
-          # The following hub parameters are optional and only needed if you are using features that require Armory's hosted cloud services.
-          hub:
-            baseUrl: https://api.cloud.armory.io/agents
-            grpc:
-              host: agents.cloud.armory.io
-              port: 443
-              tls:
-                insecureSkipVerify: true
 ```
 
 Save the file and apply the manifest. This redeploys Armory Enterprise.
@@ -75,14 +67,6 @@ armory.cloud:
     clientSecret:<clientSecret>
   api:
     baseUrl: https://api.cloud.armory.io
-  # The following hub parameters are optional and only needed if you are using features that require Armory's hosted cloud services.
-  hub:
-    baseUrl: https://api.cloud.armory.io/agents
-    grpc:
-      host: agents.cloud.armory.io
-      port: 443
-      tls:
-        insecureSkipVerify: true
 ```
 
 Save the file and apply the changes with the following command: `hal deploy apply`. Applying the config changes redeploys Armory Enterprise.

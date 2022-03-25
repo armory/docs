@@ -1,7 +1,8 @@
 ---
 title: Uninstall the Agent
-weight: 90
-draft: false
+weight: 99
+aliases:
+  - /armory-enterprise/armory-agent/agent-uninstall/
 ---
 ![Proprietary](/images/proprietary.svg)
 

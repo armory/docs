@@ -1,7 +1,7 @@
 ---
-title: Monitor the Armory Agent with Prometheus
-linkTitle: Monitor
-weight: 70
+title: Prometheus Integration
+linkTitle: Prometheus Integration
+weight: 30
 description: >
   Learn how to configure Prometheus to get metrics from the Armory Agent and display them in a Grafana dashboard.
 ---
