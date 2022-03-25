@@ -46,7 +46,7 @@ To complete this quick start, you need the following:
               untilApproved: true
    ```
 
-   See the [Deployment File Reference]({{< ref "ref-deployment-file#bluegreen-fields" >}} for an explanation of these fields.
+   See the [Deployment File Reference]({{< ref "ref-deployment-file#bluegreen-fields" >}}) for an explanation of these fields.
 
    The values for `activeService` and `previewService` must match the names of the Kubernetes Service objects you created to route traffic to the current and preview versions of your application.
 
