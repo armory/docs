@@ -117,12 +117,12 @@ The following concepts can help you when configuring access in the Cloud Console
 All network traffic is secured and encrypted with TLS end-to-end.
 The following network endpoints are used for communication into Armory Cloud:
 
-| DNS                    | Port | Protocol                                         | Description                                 |
-|------------------------|------|------------------------------------------------------|----------------------------------------------------------------------------|
-| agents.cloud.armory.io | 443  | TLS enabled gRPC over HTTP/2<br>TLS version 1.2    | Agent Hub connection. gRPC is used to provide bidirectional, on demand communication. |
-| api.cloud.armory.io    | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2 | Armory REST API     |
-| auth.cloud.armory.io             | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2          | OIDC Service
-| console.cloud.armory.io          | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2           | Web UI    |
+| DNS                       | Port | Protocol                                        | Description                                                                           |
+|---------------------------|------|-------------------------------------------------|---------------------------------------------------------------------------------------|
+| agent-hub.cloud.armory.io | 443  | TLS enabled gRPC over HTTP/2<br>TLS version 1.2 | Agent Hub connection. gRPC is used to provide bidirectional, on demand communication. |
+| api.cloud.armory.io       | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2        | Armory REST API                                                                       |
+| auth.cloud.armory.io      | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2        | OIDC Service                                                                          |
+| console.cloud.armory.io   | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2        | Web UI                                                                                |
 
 ### Data encryption
 
