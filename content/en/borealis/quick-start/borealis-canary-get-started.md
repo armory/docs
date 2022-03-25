@@ -68,7 +68,7 @@ Retrospective analysis is the starting point to creating queries so that you can
    - **Lower Limit**: The lower limit for the query. If the results fall below this value, the deployment is considered to be a failure. Set this to `0`.
    - **Query Template**:
 
-   ```
+   ```yaml
         avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
         sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
         by (annotation_app, pod)) by (annotation_app)
