@@ -271,50 +271,72 @@ hal deploy apply
 
 Project Aurora provides the following pipeline stages that you can use to deploy your app:
 
-* Borealis Progressive Deployment YAML - more options - explain
-* Kubernetes Progressive - WYSIWYG option (change this)
+* Borealis Progressive Deployment YAML: You create the Borealis deployment YAML configuration, so you have access to the full set of options for deploying your app to a single environment.
+* Kubernetes Progressive: This is a basic deployment stage with a limited set of options. Blue/green deployment is not supported in Early Access.
 
 ### Borealis Progressive Deployment YAML stage
 
-This stage uses a YAML file to deploy your app. The YAML file that you create must be in the same format as the [Deployment File]({{< ref "ref-deployment-file" >}}) that you would use with the Borealis CLI.
+{{< alert title="Early Access Caveats" color="primary" >}}
+* This stage only supports deploying to a single environment.
+* Use the Borealis UI to view the status of a running job.
+{{< /alert >}}
+
+This stage uses YAML deployment configuration to deploy your app. The YAML that you create must be in the same format as the [Deployment File]({{< ref "ref-deployment-file" >}}) that you would use with the Borealis CLI.
+
+You have the following options for adding your Borealis deployment YAML configuration:
+
+1. **Text**: You create and store your deployment YAML within Armory Enterprise.
+1. **Artifact**: You store your deployment YAML file in source control.
+
+#### {{% heading "prereq" %}}
+
+1. Add the Kubernetes manifest for your app as a pipeline artifact in the Configuration section of your pipeline, as you would for a standard Kubernetes deployment in Armory Enterprise. STEPHEN IS THIS RIGHT?
+
+1. Prepare your Borealis deployment YAML. You can use the [Borealis CLI]({{< ref "borealis-cli-get-started#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template. In your deployment YAML `manifests.path` section, you have to specify the file name of the app's Kubernetes manifest artifact, which may vary from the **Display Name** on the **Expected Artifact** screen.
+   - If you store your Borealis deployment YAML as a file in source control, be sure to add that file as a pipeline artifact in your pipeline's **Configuration** section.
+
+#### Configure the stage
 
 The **Deployment Configuration** section is where you define your Borealis progressive deployment and consists of the following parts:
 
 **Manifest Source**
 
-You have the following options for adding your Borealis deployment YAML configuration:
-
-1. **Text**: Choose this option if you want to create and store your deployment YAML within Armory Enterprise.
-1. **Artifact**: Choose this option if you want to store your deployment YAML in source control.
-
 {{< tabs name="BorealisDeploymentYAMLManifestSource" >}}
 {{% tabbody name="Text" %}}
 
-When you choose this option, you must paste your deployment file YAML into the **Deployment YAML** text box.
+Choose **Text** for the **Manifest Source**. Then you must paste your deployment file YAML into the **Deployment YAML** text box. For example:
+
+{{< figure src="/images/installation/aurora/borealis-prog-deploy-yaml.png" alt="Example of a deployment YAML file pasted into the Deployment YAML text box." >}}
 
 {{% /tabbody %}}
 {{% tabbody name="Artifact" %}}
 
+Before you select **Artifact**, make sure you have added your Borealis deployment file as a pipeline artifact.
+
+Select **Artifact** as the **Manifest Source**. Then select your Borealis deployment file from the **Manifest Artifact** drop down list.
+
+NEED SCREEN SHOT HERE
 
 {{% /tabbody %}}
 {{< /tabs >}}
-
+<br>
+<br>
 **Required Artifacts to Bind**
 
-For each manifest you list in the `manifests.path` section of your Borealis deployment file, you must add the specified YAML file as an artifact to bind.
+For each manifest you list in the `manifests.path` section of your Borealis deployment file, you must bind the artifact to the stage.
 
 For example, if your deployment file specifies:
 
 ```yaml
-application: potato-facts3
-kind: kubernetes
+...
 manifests:
   - path: manifests/potato-facts.yml
-  - path: manifests/potato-facts-db.yml
+...
 ```
 
-Then you must add `potato-facts.yml` and `potato-facts-db.yml` as required artifacts.
+Then you must bind `potato-facts.yml` as a required artifact:
 
+{{< figure src="/images/installation/aurora/req-artifact-to-bind.png" alt="Example of an artifact added to Required Artifacts to Bind" >}}
 
 ### Kubernetes Progressive stage
 
