@@ -271,8 +271,8 @@ hal deploy apply
 
 Project Aurora provides the following pipeline stages that you can use to deploy your app:
 
-* Borealis Progressive Deployment YAML: You create the Borealis deployment YAML configuration, so you have access to the full set of options for deploying your app to a single environment.
-* Kubernetes Progressive: This is a basic deployment stage with a limited set of options. Blue/green deployment is not supported in Early Access.
+* [Borealis Progressive Deployment YAML](#borealis-progressive-deployment-yaml-stage): You create the Borealis deployment YAML configuration, so you have access to the full set of options for deploying your app to a single environment.
+* [Kubernetes Progressive](#kubernetes-progressive-stage): This is a basic deployment stage with a limited set of options. Blue/green deployment is not supported in Early Access.
 
 ### Borealis Progressive Deployment YAML stage
 
@@ -302,7 +302,8 @@ The **Deployment Configuration** section is where you define your Borealis progr
 {{< tabs name="BorealisDeploymentYAMLManifestSource" >}}
 {{% tabbody name="Text" %}}
 
-Choose **Text** for the **Manifest Source**. Then you must paste your deployment file YAML into the **Deployment YAML** text box. For example:
+1. Choose **Text** for the **Manifest Source**.
+1. Paste your deployment file YAML into the **Deployment YAML** text box. For example:
 
 {{< figure src="/images/installation/aurora/borealis-prog-deploy-yaml.png" alt="Example of a deployment YAML file pasted into the Deployment YAML text box." >}}
 
@@ -311,9 +312,10 @@ Choose **Text** for the **Manifest Source**. Then you must paste your deployment
 
 Before you select **Artifact**, make sure you have added your Borealis deployment file as a pipeline artifact.
 
-Select **Artifact** as the **Manifest Source**. Then select your Borealis deployment file from the **Manifest Artifact** drop down list.
+1. Select **Artifact** as the **Manifest Source**.
+1. Select your Borealis deployment file from the **Manifest Artifact** drop down list.
 
-NEED SCREEN SHOT HERE
+{{< figure src="/images/installation/aurora/borealis-prog-deploy-artifact.png" alt="Example of a deployment YAML file attached as an artifact." >}}
 
 {{% /tabbody %}}
 {{< /tabs >}}
