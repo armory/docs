@@ -1,6 +1,6 @@
 ---
 title: Get Started with Project Aurora for Spinnaker™
-description: Use this self-service guide to install Project Aurora, which enables you to perform canary deployments in a single stage.
+description: Use this self-service guide to install Project Aurora, which enables you to perform canary and blue/green deployments in a single stage.
 exclude_search: true
 toc_hide: true
 hide_summary: true
@@ -16,9 +16,9 @@ aliases:
 
 ## Overview
 
-Project Aurora is plugin that adds a new stage to your Armory Enterprise (Spinnaker) instance. When you use this stage to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
+Project Aurora is plugin that adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
 
-See the [Architecture]({{< ref "borealis/architecture-borealis" >}}) page for an overview of Project Aurora and how it fits in with Spinnaker.
+See the [Architecture]({{< ref "borealis/architecture-borealis" >}}) page for an overview of Project Aurora and how it fits in with Armory Enterprise.
 
 This guide walks you through the following:
 
@@ -91,7 +91,7 @@ This section walks you through installing the Remote Network Agent (RNA) using a
 
 {{< include "aurora-borealis/rna-install.md" >}}
 
-### Migrate to the new RNA 
+### Migrate to the new RNA
 
 You do not need to do this migration if you are installing the RNA for the first time.
 
@@ -269,7 +269,78 @@ hal deploy apply
 
 ## Use Project Aurora
 
-In the Armory Enterprise UI, the stage for Project Aurora is called **Kubernetes Progressive**. If you have deployed Kubernetes apps before using Armory Enterprise, this page may look familiar. The key difference between a Kubernetes deployment using Armory Enterprise and Armory Enterprise with Project Aurora is in the **How to Deploy** section.
+Project Aurora provides the following pipeline stages that you can use to deploy your app:
+
+* [Borealis Progressive Deployment YAML](#borealis-progressive-deployment-yaml-stage): You create the Borealis deployment YAML configuration, so you have access to the full set of options for deploying your app to a single environment.
+* [Kubernetes Progressive](#kubernetes-progressive-stage): This is a basic deployment stage with a limited set of options. Blue/green deployment is not supported in Early Access.
+
+### Borealis Progressive Deployment YAML stage
+
+{{< alert title="Limitations" color="primary" >}}
+* This stage only supports deploying to a single environment.
+{{< /alert >}}
+
+This stage uses YAML deployment configuration to deploy your app. The YAML that you create must be in the same format as the [Deployment File]({{< ref "ref-deployment-file" >}}) that you would use with the Borealis CLI.
+
+You have the following options for adding your Borealis deployment YAML configuration:
+
+1. **Text**: You create and store your deployment YAML within Armory Enterprise.
+1. **Artifact**: You store your deployment YAML file in source control.
+
+#### {{% heading "prereq" %}}
+
+1. Add the Kubernetes manifest for your app as a pipeline artifact in the Configuration section of your pipeline. Or you can generate it using the 'Bake (Manifest)' stage, as you would for a standard Kubernetes deployment in Armory Enterprise.
+
+1. Prepare your Borealis deployment YAML. You can use the [Borealis CLI]({{< ref "borealis-cli-get-started#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template. In your deployment YAML `manifests.path` section, you have to specify the file name of the app's Kubernetes manifest artifact, which may vary from the **Display Name** on the **Expected Artifact** screen.
+
+#### Configure the stage
+
+The **Deployment Configuration** section is where you define your Borealis progressive deployment and consists of the following parts:
+
+**Manifest Source**
+
+{{< tabs name="BorealisDeploymentYAMLManifestSource" >}}
+{{% tabbody name="Text" %}}
+
+1. Choose **Text** for the **Manifest Source**.
+1. Paste your deployment file YAML into the **Deployment YAML** text box. For example:
+
+{{< figure src="/images/installation/aurora/borealis-prog-deploy-yaml.png" alt="Example of a deployment YAML file pasted into the Deployment YAML text box." >}}
+
+{{% /tabbody %}}
+{{% tabbody name="Artifact" %}}
+
+Before you select **Artifact**, make sure you have added your Borealis deployment file as a pipeline artifact.
+
+1. Select **Artifact** as the **Manifest Source**.
+1. Select your Borealis deployment file from the **Manifest Artifact** drop down list.
+
+{{< figure src="/images/installation/aurora/borealis-prog-deploy-artifact.png" alt="Example of a deployment YAML file attached as an artifact." >}}
+
+{{% /tabbody %}}
+{{< /tabs >}}
+<br>
+<br>
+**Required Artifacts to Bind**
+
+For each manifest you list in the `manifests.path` section of your Borealis deployment file, you must bind the artifact to the stage.
+
+For example, if your deployment file specifies:
+
+```yaml
+...
+manifests:
+  - path: manifests/potato-facts.yml
+...
+```
+
+Then you must bind `potato-facts.yml` as a required artifact:
+
+{{< figure src="/images/installation/aurora/req-artifact-to-bind.png" alt="Example of an artifact added to Required Artifacts to Bind" >}}
+
+### Kubernetes Progressive stage
+
+If you have deployed Kubernetes apps before using Armory Enterprise, this page may look familiar. The key difference between a Kubernetes deployment using Armory Enterprise and Armory Enterprise with Project Aurora is in the **How to Deploy** section.
 
 The **How to Deploy** section is where you define your progressive deployment and consists of two parts:
 
@@ -279,16 +350,16 @@ This is the deployment strategy you want to use to deploy your Kubernetes app. A
 
 **Steps**
 
-These settings control how the your Kubernetes deployment behaves as Project Aurora deploys it. You can tune two separate but related chracteristics of the deployment:
+These settings control how the your Kubernetes deployment behaves as Project Aurora deploys it. You can tune two separate but related characteristics of the deployment:
 
 - **Rollout Ratio**: set the percentage threshold (integer) for how widely an app should get rolled out before pausing.
-- **Then wait**: define what triggerse the rollout to continue. The trigger can either be a manul approval (**until approved**) or for a set amount of time, either seconds, minutes or hours (integer).
+- **Then wait**: define what triggers the rollout to continue. The trigger can either be a manual approval (**until approved**) or for a set amount of time, either seconds, minutes or hours (integer).
 
 Create a step for each **Rollout Ratio** you want to define. For example, if you want a deployment to pause at 25%, 50%, and 75% of the app rollout, you need to define 3 steps, one for each of those thresholds. The steps have independent **Then wait** behaviors and can be set to all follow the same behavior or different ones.
 
-### Try out the stage
+#### Try out the stage
 
-You can try out Project Aurora and the **Kubernetes Progressive** stage using either the `hello-world` sample manifest described below or an artifact that you have. The `hello-world` example deploys NGINX that intentionally takes longer than usual for demonstration purposes.
+You can try out the **Kubernetes Progressive** stage using either the `hello-world` sample manifest described below or an artifact that you have. The `hello-world` example deploys NGINX that intentionally takes longer than usual for demonstration purposes.
 
 Perform the following steps:
 
