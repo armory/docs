@@ -5,7 +5,6 @@ version: 00.08.54
 
 ---
 
-Remove the use of credentials cache, which was being updated according to the values under  properties.
-For example to active this cache refresh every 3 seconds could have:
+### Changes
 
-This change replace the cache functionality (the  properties are not useful anymore) by polling the information directly from database source. In this way we could have the credentials updated at time without waiting the poller to refresh it.
+* The clouddriver `/credentials` endpoint now reads agent accounts directly from the database. Previously, accounts were loaded in memory by a separate process running every 30 seconds, and then `/credentials` endpoint was reading from the in-memory cache. This change enables agent accounts to be available earlier, which fixes some `AccessDenied` errors happening when fiat is enabled and is out of sync with the latest list of accounts.
