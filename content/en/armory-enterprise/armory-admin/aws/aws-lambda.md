@@ -15,7 +15,7 @@ AWS Lambda support requires either Spinnaker 1.23+ or Armory 2.23+.
 
 ## Configuration
 
-If you are using the [Armory Operator](https://docs.armory.io/docs/installation/operator/), check out the [Spinnaker Kustomize Patches repo](https://github.com/armory/spinnaker-kustomize-patches/pull/70) for an example on how to easily add the configurations required to enable AWS Lambda.
+If you are using the [Armory Operator]({{< ref "armory-operator" >}}), check out the [Spinnaker Kustomize Patches repo](https://github.com/armory/spinnaker-kustomize-patches/pull/70) for an example on how to easily add the configurations required to enable AWS Lambda.
 
 ### Enabling AWS Lambda
 

@@ -70,12 +70,12 @@ weight = 1
 [[menu.main]]
   name = "Docs"
   weight = 4
-  url = "/armory-enterprise"
+  url = "/armory-enterprise/"
 
 [[menu.main]]
   name = "Armory.io"
   weight = 5
-  url = "https://www.armory.io"
+  url = "https://www.armory.io/"
 
 [[menu.main]]
   name = "Case Studies"
@@ -136,7 +136,7 @@ version = "2.27"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
-url_latest_version = "https://docs.armory.io/docs/"
+url_latest_version = "https://docs.armory.io/armory-enterprise/"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/armory/docs/"
@@ -222,7 +222,7 @@ enable = true
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
 	name = "GitHub"
-	url = "https://github.com/armory/docs"
+	url = "https://github.com/armory/docs/"
 	icon = "fab fa-github"
    desc = "Docs repository"
 [[params.links.developer]]
@@ -236,24 +236,24 @@ enable = true
 [[params.versions]]
   version = "Latest"
   githubbranch = "master"
-  url = "https://docs.armory.io/docs"
+  url = "https://docs.armory.io/armory-enterprise/"
 
 [[params.versions]]
   version = "v2.26"
   githubbranch = "v2.26"
-  url = "https://v2-26.docs.armory.io/docs"
+  url = "https://v2-26.docs.armory.io/docs/"
 
 [[params.versions]]
   version = "v2.25"
   githubbranch = "v2.25"
-  url = "https://v2-25.docs.armory.io/docs"
+  url = "https://v2-25.docs.armory.io/docs/"
 
 [[params.versions]]
   version = "v2.24"
   githubbranch = "v2.24"
-  url = "https://v2-24.docs.armory.io/docs"
+  url = "https://v2-24.docs.armory.io/docs/"
 
 [[params.versions]]
   version = "v2.23"
   githubbranch = "v2.23"
-  url = "https://v2-23.docs.armory.io/docs"
+  url = "https://v2-23.docs.armory.io/docs/"

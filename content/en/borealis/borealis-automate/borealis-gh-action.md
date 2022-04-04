@@ -22,8 +22,8 @@ You can also learn about this GitHub Action by viewing the [repo](https://github
 
 If you have previously configured Borealis for your deployment target, you can skip to step 3 for the prerequisites.
 
-1. Review the full set of requirements for Borealis at [System Requirements](https://docs.armory.io/borealis/borealis-requirements/).
-2. If you have already prepared a deployment target for Borealis, skip this step. If you have not, complete the [Get Started with Project Borealis](hhttps://docs.armory.io/borealis/quick-start/borealis-org-get-started/) tasks, which include the following:
+1. Review the full set of requirements for Borealis at [System Requirements]({{< ref "borealis-requirements" >}}").
+2. If you have already prepared a deployment target for Borealis, skip this step. If you have not, complete the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}) tasks, which include the following:
 
    - Register for an Armory hosted cloud services account. This is the account that you use to log in  to the Armory Cloud Console and the Status UI.
    - Create machine-to-machine client credentials for the Remote Network Agent (RNA), which gets  installed on your deployment target.
@@ -37,7 +37,7 @@ If you have previously configured Borealis for your deployment target, you can s
    - `exec:infra:op`
    - `read:artifacts:data`
 
-   For more information, see [Integrate Borealis & Automate Deployments](https://docs.armory.io/borealis/quick-start/borealis-integrate/).
+   For more information, see [Integrate Borealis & Automate Deployments]({{< ref "borealis-automate" >}}").
 4. Encrypt the GitHub Action service account credentials so that you can use them securely in the action. Create a secret for the Client ID and a separate secret for the Client Secret.
 
    Use descriptive name for these two values. You use the name to reference them in the GitHub Action.
