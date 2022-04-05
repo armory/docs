@@ -13,20 +13,18 @@ aliases:
 
 This compatibility matrix details what is supported in the latest Armory Enterprise release. Compatibility is for all minor version of a major release version. For example, the information for 2.27 applies to all versions of 2.27.x, such as 2.27.0 and 2.27.1.  Note that although Spinnaker™ is part of Armory Enterprise, what Open Source Spinnaker supports and what Armory supports is not a one-to-one relationship.
 
-You can find the compatibility release matrix for previous Armory Enterprise versions in the docs version for the release you are using:
+You can find the compatibility matrix for previous Armory Enterprise releases in the docs version for the release you are using:
 
 * [Armory Enterprise v2.26 compatibility matrix](https://v2-26.docs.armory.io/docs/feature-status/armory-enterprise-matrix/)
 * [Armory Enterprise v2.25 compatibility matrix](https://v2-25.docs.armory.io/docs/armory-enterprise-matrix/)
 * [Armory Enterprise v2.24 compatibility matrix](https://v2-24.docs.armory.io/docs/armory-platform-matrix/)   
 
+>See {{< linkWithTitle "system-requirements" >}} for information about the system requirements you need to install Armory Enterprise.
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables#
 Or you can write raw HTML :shrug: You might want to do that if you need to do bulleted lists etc inside of the table
 Or a mixture of html + markdown. ## Deployment targets has an example of what this might look like
 -->
-
-
-> For information about the system requirements to install Armory Enterprise, see {{< linkWithTitle "system-requirements" >}}. Previously, some of that information, such as storage requirements, was listed on this page.
 
 ## Legend
 <!-- Copy and paste the below badges that apply to your area -->
