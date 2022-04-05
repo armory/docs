@@ -1,20 +1,20 @@
 ---
 title: v2.25.2 Armory Release (OSS Spinnaker™ v1.25.8)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
+version: 02.25.02
 description: >
   Release notes for Armory Enterprise v2.25.2
 ---
 
-## 2022/04/05 Release Notes
+## 2022/04/06 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.25.2, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory-extended Halyard 1.12
+- Armory Operator 1.2.6
 
 ## Security
 
@@ -25,8 +25,15 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
+{{< include "breaking-changes/bc-k8s-job-suffix.md" >}}
+{{< include "known-issues/ki-orca-zombie-execution.md" >}}
+{{< include "breaking-changes/bc-orca-forcecacherefresh.md" >}}
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+{{< include "known-issues/ki-bake-var-file.md" >}}
+{{< include "known-issues/ki-lambda-ui-caching.md" >}}
+{{< include "known-issues/ki-dinghy-pipelineID.md" >}}
 
 ## Highlighted updates
 
@@ -35,8 +42,9 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+Fixed a dependency issue that caused an Oauth2 error in Gate on startup.
 
-
+Addressed the Github Deprecated Teams API Endpoint issue per the notice: https://github.blog/changelog/2022-02-22-sunset-notice-deprecated-teams-api-endpoints/.
 
 
 ###  Spinnaker Community Contributions
