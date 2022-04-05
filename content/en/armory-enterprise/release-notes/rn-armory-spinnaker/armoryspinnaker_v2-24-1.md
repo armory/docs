@@ -10,7 +10,7 @@ description: >
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-For information about what Armory supports for this version, see the [Armory Enterprise Compatibility Matrix]({{< ref "armory-enterprise-matrix-2-24.md" >}}).
+For information about what Armory supports for this version, see the [Armory Enterprise v2.24 compatibility matrix](https://v2-24.docs.armory.io/docs/armory-platform-matrix/).
 
 ## Required Halyard or Operator version
 
@@ -55,7 +55,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 ### Application metrics for Canary Analysis
 
-Improved how the Kayenta service handles data from Dynatrace. The integration now parses integer and null data points properly. 
+Improved how the Kayenta service handles data from Dynatrace. The integration now parses integer and null data points properly.
 
 ### Security
 
@@ -188,7 +188,7 @@ artifactSources:
 #### Armory Gate - 2.24.4...2.24.14
 
   - chore(dependencies): use armory commons bom (bp #223) (#226)
-  
+
 #### Armory Fiat - 2.24.4...2.24.12
 
   - chore(build): use armory commons BOM (#156) (#157)
