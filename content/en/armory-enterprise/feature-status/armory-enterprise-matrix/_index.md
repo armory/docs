@@ -1,12 +1,17 @@
 ---
 title: Armory Enterprise Compatibility Matrix
 linkTitle: Compatibility Matrix
-simple_list: true
+description: >
+  Information about support and compatibility for Armory Enterprise as well as the products and platforms with which it integrates.
+aliases:
+  - /docs/armory-platform-matrix/
+  - /docs/armory-enterprise-matrix/
+  - /armory-enterprise/armory-enterprise-matrix-2-27/
 ---
 
 ## Compatibility matrix overview
 
-This compatibility matrix details what is supported in the latest Armory Enterprise release. Compatibility is for all minor version of a major release version. For example, the information for 2.27 applies to all versions of 2.27.x, such as 2.27.0 and 2.27.1.
+This compatibility matrix details what is supported in the latest Armory Enterprise release. Compatibility is for all minor version of a major release version. For example, the information for 2.27 applies to all versions of 2.27.x, such as 2.27.0 and 2.27.1.  Note that although Spinnaker™ is part of Armory Enterprise, what Open Source Spinnaker supports and what Armory supports is not a one-to-one relationship.
 
 You can find the compatibility release matrix for previous Armory Enterprise versions in the docs version for the release you are using:
 
@@ -20,7 +25,6 @@ Or you can write raw HTML :shrug: You might want to do that if you need to do bu
 Or a mixture of html + markdown. ## Deployment targets has an example of what this might look like
 -->
 
-This page describes the features and capabilities that Armory supports. Note that although Spinnaker™ is part of Armory Enterprise, what Open Source Spinnaker supports and what Armory supports is not a one-to-one relationship.
 
 > For information about the system requirements to install Armory Enterprise, see {{< linkWithTitle "system-requirements" >}}. Previously, some of that information, such as storage requirements, was listed on this page.
 
@@ -36,7 +40,7 @@ This page describes the features and capabilities that Armory supports. Note tha
 
 [![Experiment](/images/exp.svg)]({{< ref "release-definitions#experiment">}}) The feature is an Experiment. For more information about using this feature, [contact us](https://www.armory.io/contact-us/).
 
-**Enterprise availablility**
+**Enterprise availability**
 
 ![OSS](/images/oss.svg) The feature or parts of it are available in open source Spinnaker.
 

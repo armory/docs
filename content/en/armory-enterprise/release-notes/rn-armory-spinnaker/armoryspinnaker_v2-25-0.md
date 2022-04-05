@@ -10,7 +10,7 @@ description: >
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-For information about what Armory supports for this version, see the [Armory Enterprise Compatibility Matrix]({{< ref "armory-enterprise-matrix-2-25.md" >}}).
+For information about what Armory supports for this version, see the  [Armory Enterprise v2.25 compatibility matrix](https://v2-25.docs.armory.io/docs/armory-enterprise-matrix/).
 
 ## Required Halyard or Operator version
 
@@ -85,7 +85,7 @@ This feature requires either Armory Operator 1.2.6 (or later) or Armory-extended
 
 ### Authz
 
-Access to a service account is now granted if any authorization predicate allows it. The previous behavior 
+Access to a service account is now granted if any authorization predicate allows it. The previous behavior
 
 ### Baking images
 
@@ -95,7 +95,7 @@ The Packer version that is bundled with Rosco, the baking service, has been upda
 
 #### Jenkins
 
-The integration between Armory and Jenkins has been improved: 
+The integration between Armory and Jenkins has been improved:
 
 * You can configure the orchestration service Orca so that it updates the description of a running Jenkins build and generates a backlink. For more information, see [Enabling Backlinks from Jenkins to Spinnaker](https://spinnaker.io/setup/ci/jenkins/#enabling-backlinks-from-jenkins-to-spinnaker).
 * You can now update the job description of a running or completed Jenkins job through the API.
@@ -110,9 +110,9 @@ Improved the performance of health checks for the Clouddriver pod by running the
 
 The following improvements have been made to the Cloud Foundry provider:
 
-* Armory now supports the ability to deploy Docker images to Cloud Foundry like any other application. 
+* Armory now supports the ability to deploy Docker images to Cloud Foundry like any other application.
 * There is a new stage that supports more granular service bindings. More specifically, if a service needs additional information in order to make a binding successful, you can now customize that information in the Service Binding Stage.
-* Applications during deployment will now bind to their services before completely building the droplet. This allows the deployments to avoid an additional costly restage operation. Not all applications require restages after binding, but this change improves performance for applications that do require restages. 
+* Applications during deployment will now bind to their services before completely building the droplet. This allows the deployments to avoid an additional costly restage operation. Not all applications require restages after binding, but this change improves performance for applications that do require restages.
 
 ### SpEL
 

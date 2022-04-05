@@ -10,7 +10,7 @@ description: >
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-For information about what Armory supports for this version, see the [Armory Enterprise Compatibility Matrix]({{< ref "armory-enterprise-matrix-2-26.md" >}}).
+For information about what Armory supports for this version, see the [Armory Enterprise v2.26 compatibility matrix](https://v2-26.docs.armory.io/docs/feature-status/armory-enterprise-matrix/).
 
 ## Required Halyard or Operator version
 
@@ -47,7 +47,7 @@ To continue adding a random suffix to jobs created by the Kubernetes Run Job sta
 {{< include "known-issues/ki-artifact-binding-spel.md" >}}
 {{< include "known-issues/ki-dinghy-pipelineID.md" >}}
 
-#### Pipelines as Code 
+#### Pipelines as Code
 <!-- maybe: BOB-30287 yes:BOB-30274 PUX-405-->
 If you experiencing issues with Pipelines as Code after upgrading to 2.26.0, upgrade to 2.26.1 when it is available.
 
@@ -58,7 +58,7 @@ If you experiencing issues with Pipelines as Code after upgrading to 2.26.0, upg
 * Fixed an issue where the first deployment of a manifest that used a blue/green strategy failed to find the service load balancer. This occurred if the service is in the same manifest as the workload getting deployed.
 * Fixed an issue where an error occurred when deleting a CRD through the UI.
 * Fixed an issue where some caching agents for the SQL agent scheduler never executed. This could lead to the UI not reflecting changes caused by pipelines or pipelines not running if they were configured to use a Docker trigger. This issue affected all cloud providers and Docker triggers.
-* Fixed an issue in the Deploy stage when the Docker container was selected and image was set, the artifact information was not saved in JSON format. Now the  artifact information is written to the `expectedArtifact` attribute. 
+* Fixed an issue in the Deploy stage when the Docker container was selected and image was set, the artifact information was not saved in JSON format. Now the  artifact information is written to the `expectedArtifact` attribute.
 
 ## Highlighted updates
 
