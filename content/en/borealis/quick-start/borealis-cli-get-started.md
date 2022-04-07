@@ -159,18 +159,16 @@ If this is the first deployment of your app, Borealis automatically deploys the 
    After you successfully authenticate, the CLI returns a list of environments.
 
 3. Select the environment you want to log in to.   
-4. Generate your deployment template and output it to a file:
+4. Generate your deployment template and output it to a file.
+
+   This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`:
 
    ```bash
    armory template kubernetes canary > canary.yaml
    ```
 
-   This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`.
    <details><summary>Show me an empty template</summary>
-
    {{< include "aurora-borealis/dep-file/borealis-yaml-basic.md" >}}
-
-
    </details><br>
 
 5. Customize your deployment file by setting the following minimum set of parameters:
