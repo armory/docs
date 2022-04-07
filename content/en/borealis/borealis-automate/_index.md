@@ -2,14 +2,15 @@
 title: Integrate Borealis & Automate Deployments
 linktitle: Integrate & Automate
 description: >
-  Project Borealis and the CLI can be integrated with any of your tools and scripts that support invoking a CLI as part of its workflow. This gives you the ability to automatically deploy apps using Borealis as part of existing workflows.
+  Integrate Project Borealis with secrets and GitHub actions.
 exclude_search: true
-aliases:
-  - /borealis/quick-start/borealis-integrate/
+no_list: true
 weight: 40
 ---
 
+## Overview of Borealis integrations
 
+Project Borealis and the CLI can be integrated with any of your tools and scripts that support invoking a CLI as part of its workflow. This gives you the ability to automatically deploy apps using Borealis as part of existing workflows.
 
 ## {{% heading "prereq" %}}
 
@@ -27,11 +28,11 @@ Armory recommends that you store these credentials in a secret engine that is su
 
 ## GitHub Actions
 
-Armory has a GitHub action available on the marketplace for integrating Project Borealis with your GitHub repo. For more information, see the [repo](https://github.com/armory/cli-deploy-action) or the [Borealis Deployment GitHub Action page]({{< ref "borealis-gh-action" >}}).
+You can use Armory's Project Borealis Deployment Action to integrate Project Borealis with your GitHub repo. For more information, see the [Project Borealis Deployment Action repo](https://github.com/armory/cli-deploy-action) or the {{< linkWithTitle "borealis-gh-action.md" >}} page.
 
 ## Jenkins
 
-Jenkins supports invoking a CLI as a step in a pipeline. 
+Jenkins supports invoking a CLI as a step in a pipeline.
 
 ## Tekton
 
