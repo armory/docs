@@ -14,5 +14,7 @@ version: 01.00.20
 
 * Fixed an issue causing agent to reconnect several times to clouddriver during transient disconnections.
 
+### Known Issues
 
+* Sometimes during reconnections, agents don't register again with clouddriver. The workaround is to restart the agent instance.
 
