@@ -30,7 +30,7 @@ This guide walks you through the following:
 
 ### Release notes
 
-For the Project Aurora release notes, see the [Armory Changelog](https://armory.releases.live/?labels=Armory+Deployments+Plugin).
+For the Project Aurora release notes, see the [Armory Deployments Plugin Changelog]({{< ref "aurora-release-notes" >}}).
 
 ## Requirements
 
