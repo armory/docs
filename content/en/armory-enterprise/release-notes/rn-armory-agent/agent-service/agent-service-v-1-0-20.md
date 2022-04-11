@@ -5,6 +5,12 @@ version: 01.00.20
 
 ---
 
+{{% alert title="Known Issue" color="warning" %}}
+
+* Sometimes during reconnections, agents don't register again with clouddriver. To avoid impacts to agent installations, this version was taken out of service.
+
+{{% /alert %}}
+
 ### Changes
 
 * Removed usage of native grpc keep alives in favor of existing agent specific keep alives, so there are not two different keep alive logics.
@@ -13,8 +19,3 @@ version: 01.00.20
 ### Fixes
 
 * Fixed an issue causing agent to reconnect several times to clouddriver during transient disconnections.
-
-### Known Issues
-
-* Sometimes during reconnections, agents don't register again with clouddriver. The workaround is to restart the agent instance.
-
