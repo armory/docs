@@ -12,4 +12,4 @@ version: 00.10.30
 ### Known Issues
 
 * `/credentials` endpoint hits the database twice per account. When having a large number of accounts this can become an issue.
-* Agent accounts are not visible in `/credentials` endpoint, preventing deployments to agent managed accounts.
+* Agent accounts are not always visible in `/credentials` endpoint, preventing deployments to agent managed accounts.
