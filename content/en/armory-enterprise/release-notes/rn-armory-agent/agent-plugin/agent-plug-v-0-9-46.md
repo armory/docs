@@ -9,6 +9,7 @@ version: 00.09.46
 
 * The clouddriver `/credentials` endpoint now reads agent accounts directly from the database. Previously, accounts were loaded in memory by a separate process running every 30 seconds, and then `/credentials` endpoint was reading from the in-memory cache. This change enables agent accounts to be available earlier, which fixes some `AccessDenied` errors happening when fiat is enabled and is out of sync with the latest list of accounts.
 
-### Reported Issues
+### Known Issues
 
-* Agent accounts are not visible in `/credentials` endpoint, preventing deployments to agent managed accounts.
+* `/credentials` endpoint hits the database twice per account. When having a large number of accounts this can become an issue.
+* Agent accounts are not always visible in `/credentials` endpoint, preventing deployments to agent managed accounts.
