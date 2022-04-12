@@ -1,5 +1,5 @@
 ---
-title: v2.24.3 Armory Release
+title: v2.24.3 Armory Enterprise Release
 toc_hide: true
 version: 02.24.03
 description: >

@@ -1,6 +1,6 @@
 ---
 title: Upgrade or Downgrade Armory Enterprise Version with Halyard
-linkTitle: Upgrade or Downgrade Armory Enterprise 
+linkTitle: Upgrade or Downgrade Armory Enterprise
 weight: 10
 aliases:
   - /docs/spinnaker-install-admin-guides/upgrade-spinnaker/
@@ -24,11 +24,11 @@ The command returns information similar to the following:
 + Get released versions
   Success
 + You are on version "1.14.209", and the following are available:
- - 1.14.209 (OSS Spinnaker v1.8.6):
+ - 1.14.209 (Open Source Spinnaker v1.8.6):
    Changelog: https://docs.armory.io/release-notes/armoryspinnaker_v1.14.209/
    Published: Thu Sep 13 18:42:49 EDT 2018
    (Requires Halyard >= 1.0.0)
- - 2.0.0 (OSS Release 1.9.5):
+ - 2.0.0 (Open Source Release 1.9.5):
    Changelog: https://docs.armory.io/release-notes/armoryspinnaker_v2.0.0/
    Published: Fri Nov 02 19:42:47 EDT 2018
    (Requires Halyard >= 1.2.0)

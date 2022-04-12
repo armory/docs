@@ -10,7 +10,7 @@ aliases:
 layout: release-notes-all
 semver_list: true
 description: >
-  Release notes for Armory-extended Halyard, an extended version of Halyard that deploys Armory features
+  Release notes for Armory-extended Halyard, an extended version of Halyard that deploys Armory Enterprise features
 ---
 
 {{< include "deprecations/hal-depr.html" >}}
@@ -19,7 +19,7 @@ description: >
 
 ## How to find your Spinnaker version using Halyard
 
- You can find the base Open Source Spinnaker version by executing the following command:
+ You can find the base open source Spinnaker version by executing the following command:
 
 ```bash
 > hal --version

@@ -52,7 +52,7 @@ latestHalyard: 1.10.1
 latestSpinnaker: 2.25.0
 versions:
     - version: 2.25.0
-      alias: OSS Release 1.25.3
+      alias: Spinnaker Release 1.25.3
       changelog: https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v2-25-0/
       minimumHalyardVersion: 1.10.1
       lastUpdate: "1616710502000"

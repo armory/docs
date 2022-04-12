@@ -14,7 +14,7 @@ aliases:
 
 ## Known Issues
 
-- `hal shutdown` returns an `Error 400` message. We will be submitting a PR to OSS Spinnaker to resolve this.
+- `hal shutdown` returns an `Error 400` message. We will be submitting a PR to Spinnaker to resolve this.
 
 ## Armory-extended Halyard
  - chore(gradle): move to gradle5 (#220)

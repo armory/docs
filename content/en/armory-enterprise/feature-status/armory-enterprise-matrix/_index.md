@@ -40,7 +40,7 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 **Enterprise availability**
 
-![OSS](/images/oss.svg) The feature or parts of it are available in open source Spinnaker.
+![OSS](/images/oss.svg) The feature or parts of it are available in open source Spinnaker (OSS).
 
 ![Proprietary](/images/proprietary.svg) The feature or parts of it are available only as part of Armory Enterprise for Spinnaker.[^1]
 
