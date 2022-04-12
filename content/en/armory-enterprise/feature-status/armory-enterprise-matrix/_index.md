@@ -11,7 +11,7 @@ aliases:
 
 ## Compatibility matrix overview
 
-This compatibility matrix details what is supported in the latest Armory Enterprise release. Compatibility is for all minor versions of a major release version. For example, the information for 2.27 applies to all versions of 2.27.x, such as 2.27.0 and 2.27.1.  Note that although Spinnaker™ is part of Armory Enterprise, what Open Source Spinnaker supports and what Armory supports is not a one-to-one relationship.
+This compatibility matrix details what is supported in the latest Armory Enterprise release. Compatibility is for all minor versions of a major release version. For example, the information for 2.27 applies to all versions of 2.27.x, such as 2.27.0 and 2.27.1.  Note that although Spinnaker™ is part of Armory Enterprise, what open source Spinnaker supports and what Armory Enterprise supports is not a one-to-one relationship.
 
 You can find the compatibility matrix for previous Armory Enterprise releases in the docs version for the release you are using:
 
@@ -62,7 +62,7 @@ For a full list of previous releases, see this [page](https://armory.jfrog.io/ar
 
 The [Armory Operator]({{< ref "armory-operator" >}}) and [Spinnaker Operator](https://github.com/armory/spinnaker-operator) provide you with the ability to install, update, and maintain your clusters via a Kubernetes operator.
 
-| Feature                                                                            | Version                | Armory Version         | Notes                                                                                                                                     |
+| Feature                                                                            | Version                | Armory Enterprise Version         | Notes                                                                                                                                     |
 | ---------------------------------------------------------------------------------- | ---------------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | Install, update, and maintain Spinnaker clusters                                   | All supported versions | All supported versions |                                                                                                                                           |
 | Automatically determine Deck/Gate URL configuration if Ingress objects are defined | 1.1.0 or later         | 1.1.1 or later         | Ingress objects must be defined in the same namespace where Spinnaker lives.                                                              |
@@ -80,7 +80,7 @@ Application metrics can be ingested by Kayenta to perform Canary Analysis or Aut
 
 The following table lists supported app metric providers:
 
-| Provider       | Version                | ACA | Armory                 | Note |
+| Provider       | Version                | ACA | Armory Enterprise Version                 | Note |
 |----------------|------------------------|-----|------------------------|------|
 | [AWS Cloudwatch]({{< ref "kayenta-canary-cloudwatch.md" >}}) | All supported versions | Yes | 2.23.1 or later        |      |
 | Datadog      | All supported versions | Yes | 2.26.0 or later        | [Beta]({{< ref "release-definitions#beta" >}})     |
@@ -99,7 +99,7 @@ Artifacts are  deployable resources.
 
 The following table lists the supported artifact stores:
 
-| Provider                                                          | Armory                 | Notes                                                               |
+| Provider                                                          | Armory Enterprise Version                 | Notes                                                               |
 | ----------------------------------------------------------------- | ---------------------- | ------------------------------------------------------------------- |
 | [Bitbucket](https://spinnaker.io/setup/artifacts/bitbucket/)      | All supported versions |                                                                     |
 | Container registries                                              | All supported versions | Docker Hub, ECR, and GCR                                                                     |
@@ -130,7 +130,7 @@ To create `dinghyfiles`, you can use one of the following templating languages:
 
 The following table lists the supported version control systems:
 
-| Feature          | Version                     | Armory version         | Notes           |
+| Feature          | Version                     | Armory Enterprise Version         | Notes           |
 | ---------------- | --------------------------- | ---------------------- | --------------- |
 | BitBucket Cloud  |                             | All supported versions |                 |
 | BitBucket Server | 4.x - 6.x |  All supported versions | BitBucket Server 7.x is not officially supported due to changes in webhook handling and may not behave as expected. |
@@ -140,7 +140,7 @@ The following table lists the supported version control systems:
 
 The following table lists specific features for Pipelines as Code and their supported versions:
 
-| Feature                                                                                | Armory                 | Notes                                                                 |
+| Feature                                                                                | Armory Enterprise Version                 | Notes                                                                 |
 | -------------------------------------------------------------------------------------- | ---------------------- | --------------------------------------------------------------------- |
 | [Fiat service account integration]({{< ref "dinghy-enable#fiat" >}})                   | All supported versions |                                                                       |
 | GitHub status notifications                                                            | All supported versions |                                                                       |
@@ -167,7 +167,7 @@ The Terraform Integration gives you the ability to use Terraform within your Spi
 
 The following table lists the supported Terraform versions:
 
-| Terraform Versions | Armory                 | Note |
+| Terraform Versions | Armory Enterprise Version                 | Note |
 | ------------------ | ---------------------- | ---- |
 | 0.11.10 - 0.11.14  | All supported versions |      |
 | 0.12.0 - 0.12.24   | All supported versions |      |
@@ -180,7 +180,7 @@ Although other Terraform versions may be usable with Armory and the Terraform In
 
 The following table lists the Terraform Integration features and their supported versions:
 
-| Feature                                                                                        | Armory                 | Notes |
+| Feature                                                                                        | Armory Enterprise Version                 | Notes |
 | ---------------------------------------------------------------------------------------------- | ---------------------- | ----- |
 | [Base Terraform Integration]({{< ref "terraform-enable-integration" >}})                       | All supported versions |       |
 | [Named Profiles with authorization]({{< ref "terraform-enable-integration#named-profiles" >}}) | All supported versions          |       |
@@ -192,7 +192,7 @@ The following table lists the Terraform Integration features and their supported
 
 The following table lists the supported authentication protocols:
 
-| Identity provider     | Armory                 | Note                                                                                                     |
+| Identity provider     | Armory Enterprise Version                 | Note                                                                                                     |
 | --------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------- |
 | None                  | All supported versions | Armory recommends having Armory Enterprise only accessible through a VPN if this is turned on.                     |
 | SAML                  | All supported versions |                                                                                                          |
@@ -206,7 +206,7 @@ The following table lists the supported authentication protocols:
 
 The following table lists the supported authorization methods:
 
-| Provider              | Armory                 | Note                                                                                 |
+| Provider              | Armory Enterprise Version                 | Note                                                                                 |
 | --------------------- | ---------------------- | ------------------------------------------------------------------------------------ |
 | None                  | All supported versions | Armory recommends having Armory Enterprise only accessible through a VPN if this is turned on. |
 | GitHub Teams          | All supported versions | Roles from GitHub are mapped to the Teams under a specific GitHub organization.      |
@@ -221,7 +221,7 @@ The following table lists the supported authorization methods:
 
 The following table lists the supported image bakeries:
 
-| Provider | Armory                 | Notes                      |
+| Provider | Armory Enterprise Version                 | Notes                      |
 | -------- | ---------------------- | -------------------------- |
 | AWS      | All supported versions |                            |
 | GCE      | All supported versions |                            |
@@ -233,7 +233,7 @@ The following table lists the supported image bakeries:
 
 The following table lists the supported manifest templating engines:
 
-| Provider  | Armory                 | Notes                                |
+| Provider  | Armory Enterprise Version                 | Notes                                |
 | --------- | ---------------------- | ------------------------------------ |
 | Helm 2    | All supported versions |                                      |
 | Helm 3    | 2.19.x or later        |                                      |
@@ -245,7 +245,7 @@ The following table lists the supported manifest templating engines:
 
 The following table lists the supported CI systems:
 
-| Provider           | Version                | Armory                 | Note                |
+| Provider           | Version                | Armory Enterprise Version                 | Note                |
 | ------------------ | ---------------------- | ---------------------- | ------------------- |
 | GitHub Actions     | n/a                    | All supported versions | Webhook integration |
 | Jenkins            | All supported versions | All supported versions |                     |
@@ -256,7 +256,7 @@ The following table lists the supported CI systems:
 
 Armory Enterprise includes custom stages that you can use to extend the capabilities of Armory Enterprise. Some of these stages are available out of the box while others are available as plugins to Armory Enterprise.
 
-| Stage              | Armory           | Notes                 |
+| Stage              | Armory Enterprise Version           | Notes                 |
 |--------------------|------------------|-----------------------|
 | [Evaluate Artifacts]({{< ref "evaluate-artifacts-stage-enable.md" >}}) | 2.24.0 and later | [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) Available as a plugin |
 
@@ -291,7 +291,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 {{</ caas-gce-deploy-strategies.inline >}}
 -->
 
-| Provider                    | Deployment strategies                      | Armory         | Notes |
+| Provider                    | Deployment strategies                      | Armory Enterprise Version         | Notes |
 | --------------------------- | ------------------------------------------ | ---------------------- | ----- |
 | Amazon AWS EC2              | {{< caas-ec2-deploy-strategies.inline />}} | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 
@@ -299,14 +299,14 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 
 These are providers that are manifest based, so Armory applies the manifest and leaves the rollout logic to the platform itself.
 
-| Provider           | Version | Armory         | Notes |
+| Provider           | Version | Armory Enterprise Version         | Notes |
 | -----------------  | ------------------ | ---------------------- | ----- |
 | Kubernetes         | 1.16 or later       | All supported versions |       |
 | Amazon AWS EKS     | All versions       | All supported versions |       |
 | Google GKE         | All versions       | All supported versions |       |
 
 
-| Provider       | Deployment strategies                      | Armory         | Notes |
+| Provider       | Deployment strategies                      | Armory Enterprise Version         | Notes |
 | -------------- | ------------------------------------------ | ---------------------- | ----- |
 | Amazon AWS ECS | <ul><li>Red/Black aka Blue/Green</li></ul> | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 
@@ -325,7 +325,7 @@ These are providers that are manifest based, so Armory applies the manifest and 
 {{</ caas-cf-deploy-strategies.inline >}}
 -->
 
-| Provider                | Version                   | Deployment strategies                      | Armory         | Notes                    |
+| Provider                | Version                   | Deployment strategies                      | Armory Enterprise Version         | Notes                    |
 | ----------------------- | ------------------------------------ | ------------------------------------------ | ---------------------- | ------------------------ |
 | Google Cloud App Engine |                                      | <ul><li>Custom</li></ul>                   | All supported versions |                          |
 | Cloud Foundry           | CC API Version: 2.103.0+ and 3.38.0+ | {{< caas-cf-deploy-strategies.inline />}}  | All supported versions | Support for the Cloud Foundry provider is based  on your license agreement with Armory. If you have questions, contact your assigned Technical Account Manager and/or Account Executive. Alternatively, you can reach our Customer Care team at [support@armory.io](mailto:support@armory.io) or visit the [Help Center](https://support.armory.io/) to submit a case. |
@@ -346,7 +346,7 @@ You write the function and use Armory to manage the rollout of iterative version
 -->
 
 
-| Provider          | Deployment strategies                        | Armory         | Notes |
+| Provider          | Deployment strategies                        | Armory Enterprise Version         | Notes |
 | ----------------- | -------------------------------------------- | ---------------------- | ----- |
 | Amazon AWS Lambda | {{< aws-lambda-deploy-strategies.inline />}} | All supported versions |  AWS Public Cloud only. Armory does not support GovCloud.     |
 
@@ -362,7 +362,7 @@ Dynamic accounts (external account configurations) for Spinnaker allow you to ma
 
 The following table lists the supported backends:
 
-| Provider | Version                | Armory                 | Notes |
+| Provider | Version                | Armory Enterprise Version                 | Notes |
 | -------- | ---------------------- | ---------------------- | ----- |
 | Git      | All supported versions | All supported versions |       |
 | S3       | n/a                    | All supported versions |       |
@@ -384,7 +384,7 @@ The following table lists the services that support dynamic accounts:
 
 The following table lists the supported notification systems:
 
-| Provider   | Armory                 | Notes |
+| Provider   | Armory Enterprise Version                 | Notes |
 | ---------- | ---------------------- | ----- |
 | Email      | All supported versions |       |
 | GitHub     | All supported versions |       |
@@ -398,7 +398,7 @@ The following table lists the supported notification systems:
 
 The following table lists the supported observability providers:
 
-| Provider   | Version                | Armory                 | Note                        |
+| Provider   | Version                | Armory Enterprise Version                 | Note                        |
 | ---------- | ---------------------- | ---------------------- | --------------------------- |
 | New Relic  | All supported versions | All supported versions |                             |
 | Prometheus | All supported versions | All supported versions | Use Grafana for dashboards. Armory supports offerings that are proprietary versions of Prometheus, such as Cortex, to the extent that the offering overlaps with open source Prometheus. That is, Armory guarantees functionality that is compatible with open source Prometheus. Compatibility between open source Prometheus and the proprietary version is the responsibility of that vendor, not Armory. |
@@ -410,7 +410,7 @@ The following table lists the supported observability providers:
 
 The following table lists the supported pipeline triggers:
 
-| Provider           | Armory                 | Notes |
+| Provider           | Armory Enterprise Version                 | Notes |
 | ------------------ | ---------------------- | ----- |
 | AWS Pub/Sub        | All supported versions |       |
 | Cron               | All supported versions |       |
@@ -442,7 +442,7 @@ The following table lists the requirements:
 
 **Supported validations**
 
-| Validation           | Armory                 | Note                                                                                                             |
+| Validation           | Armory Enterprise Version                 | Note                                                                                                             |
 | -------------------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | Save time validation | All supported versions | If no policies are set, you cannot save any pipelines until you set any policy or turn off save time validation. |
 | Runtime validation   | All supported versions | If no policies are set, no policy enforcement occurs and pipelines run as they do normally.                      |
@@ -455,7 +455,7 @@ The following table lists the requirements:
 
 The following table lists the supported secret stores for referencing secrets in config files securely:
 
-| Provider                                               | Armory                 | Notes                                |
+| Provider                                               | Armory Enterprise Version                 | Notes                                |
 | ------------------------------------------------------ | ---------------------- | ------------------------------------ |
 | [AWS Secrets Manager]({{< ref "secrets-aws-sm" >}})    | All supported versions |                                      |
 | [Encrypted GCS Bucket]({{< ref "secrets-gcs" >}})      | All supported versions |                                      |
