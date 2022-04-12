@@ -46,7 +46,7 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 **Versions**
 
-**All supported versions** for the Armory version refers to the current minor release and the two previous minor releases. For example, if the current version is 2.21.x, all supported versions include 2.19.x, 2.20.x, and 2.21.x. For third-party software, "all supported versions" refers to actively maintained versions by the provider.
+**All supported versions** for the Armory Enterprise version refers to the current minor release and the two previous minor releases. For example, if the current version is 2.21.x, all supported versions include 2.19.x, 2.20.x, and 2.21.x. For third-party software, "all supported versions" refers to actively maintained versions by the provider.
 
 ## Armory Agent
 
@@ -69,7 +69,7 @@ The [Armory Operator]({{< ref "armory-operator" >}}) and [Spinnaker Operator](ht
 | Support definition of all Halyard configuration options                            | All supported versions | All supported versions |                                                                                                                                           |
 | In cluster mode, validate configuration before apply                               | All supported versions | All supported versions | Does not work when installed in "basic" mode. Does not guarantee a valid configuration, but does check for most common misconfigurations. |
 
-[^1]: Some of Armory's features are proprietary and require a license for use. For more information, see the [Terms of Service](https://www.armory.io/terms-of-service/) and [Terms & Conditions](https://www.armory.io/terms-and-conditions/).
+[^1]: Some of Armory Enterprise's features are proprietary and require a license for use. For more information, see the [Terms of Service](https://www.armory.io/terms-of-service/) and [Terms & Conditions](https://www.armory.io/terms-and-conditions/).
 
 
 ## Application metrics for Canary Analysis
@@ -116,7 +116,7 @@ The following table lists the supported artifact stores:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
 
-[Pipelines as Code]({{< ref "dinghy-enable" >}}) gives you the ability to manage your pipelines and their templates in source control by creating and maintaining `dinghyfiles` that contain text representations of pipelines. These files are then ingested by Armory to generate pipelines that your app devs can use to deploy their apps.
+[Pipelines as Code]({{< ref "dinghy-enable" >}}) gives you the ability to manage your pipelines and their templates in source control by creating and maintaining `dinghyfiles` that contain text representations of pipelines. These files are then ingested by Armory Enterprise to generate pipelines that your app devs can use to deploy their apps.
 
 **Templating languages**
 
@@ -161,7 +161,7 @@ You can find the latest version on [Docker Hub](https://hub.docker.com/r/armory/
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
 
-The Terraform Integration gives you the ability to use Terraform within your Spinnaker pipelines to create your infrastructure as part of your software delivery pipeline.
+The Terraform Integration gives you the ability to use Terraform within your pipelines to create your infrastructure as part of your software delivery pipeline.
 
 **Supported Terraform versions**
 
@@ -174,7 +174,7 @@ The following table lists the supported Terraform versions:
 | 0.13.4 - 0.13.5   | 2.24.0 or later |      |
 | 0.14.0 - 0.14.2   | 2.24.0 or later |      |
 
-Although other Terraform versions may be usable with Armory and the Terraform Integration, only the versions listed here are supported.
+Although other Terraform versions may be usable with Armory Enterprise and the Terraform Integration, only the versions listed here are supported.
 
 **Features**
 
@@ -264,7 +264,7 @@ Armory Enterprise includes custom stages that you can use to extend the capabili
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
 
-Armory supports various deployment targets.
+Armory Enterprise supports various deployment targets.
 
 Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#service_comparisons) to help you understand how the different deployment targets are categorized.
 
@@ -297,7 +297,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 
 ### Container as a Service Platforms
 
-These are providers that are manifest based, so Armory applies the manifest and leaves the rollout logic to the platform itself.
+These are manifest-based providers. Armory Enterprise applies the manifest and leaves the rollout logic to the platform itself.
 
 | Provider           | Version | Armory Enterprise Version         | Notes |
 | -----------------  | ------------------ | ---------------------- | ----- |
@@ -332,7 +332,7 @@ These are providers that are manifest based, so Armory applies the manifest and 
 
 ### Serverless
 
-You write the function and use Armory to manage the rollout of iterative versions. These are usually hosted by Cloud Providers.
+You write the function and use Armory Enterprise to manage the rollout of iterative versions. These are usually hosted by Cloud Providers.
 
 
 <!--
@@ -354,9 +354,9 @@ You write the function and use Armory to manage the rollout of iterative version
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg)
 
-Dynamic accounts (external account configurations) for Spinnaker allow you to manage account configuration outside of Spinnaker, including secrets.
+Dynamic accounts (external account configurations) allow you to manage account configuration outside of Spinnaker, including secrets.
 
-> Note that Armory does not support using dynamic account configuration with Spring Cloud Config Server.
+> Note that Armory Enterprise does not support using dynamic account configuration with Spring Cloud Config Server.
 
 **Backend provider**
 
@@ -428,17 +428,17 @@ The following table lists the supported pipeline triggers:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
 
-The [Policy Engine]({{< ref "policy-engine-enable" >}}) gives you the ability to ensure any Spinnaker pipeline meets certain requirements you specify.
+The [Policy Engine]({{< ref "policy-engine-enable" >}}) gives you the ability to ensure any pipeline meets certain requirements that you specify.
 
 **OPA requirements**
 
-The Policy Engine requires an Open Policy Agent server. This can be deployed in the same cluster as Spinnaker or in an external cluster.
+The Policy Engine requires an Open Policy Agent server. This can be deployed in the same cluster as Armory Enterprise or in an external cluster.
 
 The following table lists the requirements:
 
 | Requirement | Version         | Note                                                                                                                                  |
 | ----------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| OPA Server  | 0.12.x or later | Specifically, the v1 API must be available. When you specify the OPA server URL in the Armory configs, include `v1` in the URL: `http://<your-opa-server>:<port>/v1`.                                                                                                                                      |
+| OPA Server  | 0.12.x or later | Specifically, the v1 API must be available. When you specify the OPA server URL in the Armory Enterprise configs, include `v1` in the URL: `http://<your-opa-server>:<port>/v1`.                                                                                                                                      |
 
 **Supported validations**
 
