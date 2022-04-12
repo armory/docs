@@ -1,8 +1,8 @@
 ---
-title: v1.2.5 OSS Operator
+title: v1.2.5 Operator for Spinnaker
 toc_hide: true
 version: 01.02.05
-description: Release notes for OSS Operator v1.2.5
+description: Release notes for open source Operator v1.2.5
 ---
 
 ## 2021/05/07 Release Notes

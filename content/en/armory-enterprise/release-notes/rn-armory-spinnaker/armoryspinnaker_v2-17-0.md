@@ -1,6 +1,6 @@
 ---
 
-title: v2.17.0 Armory Release (OSS Release 1.17.1)
+title: v2.17.0 Armory Enterprise Release (Spinnaker Release 1.17.1)
 toc_hide: true
 date: 2019-11-14
 version: 02.17.00

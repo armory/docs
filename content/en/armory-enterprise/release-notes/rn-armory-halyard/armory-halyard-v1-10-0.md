@@ -12,6 +12,6 @@ No known issues
 
 ## Armory-extended Halyard
 
-- Upgrade OSS Halyard to 1.40.0
+- Upgrade open source Halyard to 1.40.0
 - chore(cve): fix for CVE-2020-13757
 - fix(clouddriver/logging): we changed version numbers, so clouddriver

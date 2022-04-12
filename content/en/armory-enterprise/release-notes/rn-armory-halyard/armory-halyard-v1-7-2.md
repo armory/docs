@@ -30,7 +30,7 @@ Edit `/opt/spinnaker/config/halyard-local.yml` to set the following:
     spinnaker.config.input.bucket: BUCKET_NAME
 
 Note: **BUCKET_NAME** should be one of the following:
-* `halconfig` if you desire to deploy OSS Spinnaker releases
+* `halconfig` if you desire to deploy Spinnaker releases
 * some other name if you desire to deploy releases from a different GCS bucket (such as when managing Spinnaker in an airgapped environment)
 
 

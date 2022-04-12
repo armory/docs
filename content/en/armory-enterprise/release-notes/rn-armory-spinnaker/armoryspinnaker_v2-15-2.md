@@ -1,5 +1,5 @@
 ---
-title: v2.15.2 Armory Release (OSS Release 1.15.3)
+title: v2.15.2 Armory Enterprise Release (Spinnaker Release 1.15.3)
 toc_hide: true
 date: 2019-08-27
 version: 02.15.02

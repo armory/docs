@@ -1,5 +1,5 @@
 ---
-title: v2.19.9 Armory Release (OSS Release 1.19.11)
+title: v2.19.9 Armory Enterprise Release (Spinnaker Release 1.19.11)
 toc_hide: true
 date: 2020-06-05
 version: 02.19.09

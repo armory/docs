@@ -1,5 +1,5 @@
 ---
-title: v2.15.0 Armory Release (OSS Release 1.15.1)
+title: v2.15.0 Armory Enterprise Release (Spinnaker Release 1.15.1)
 toc_hide: true
 date: 2019-08-05
 version: 02.15.00
@@ -15,9 +15,9 @@ aliases:
 
 
 ## A Note on the `2.15.x` release name
-We have made the decision to bump the minor version of our releases to match the minor version of the OSS release. This is done with the intent of making it easier to track which version of OSS Spinnaker is included in a particular version of Armory.  
+We have made the decision to bump the minor version of our releases to match the minor version of the OSS release. This is done with the intent of making it easier to track which version of Spinnaker is included in a particular version of Armory.  
 
-As such, `Armory 2.15.x` tracks `OSS Release 1.15.x`.
+As such, `Armory 2.15.x` tracks `Spinnaker Release 1.15.x`.
 
 This decision has no effect on previous release names.
 

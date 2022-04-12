@@ -1,5 +1,5 @@
 ---
-title: v2.20.5 Armory Release (OSS Spinnaker v1.20.6)
+title: v2.20.5 Armory Enterprise Release (Spinnaker v1.20.6)
 toc_hide: true
 date: 2020-07-30
 version: 02.20.05
