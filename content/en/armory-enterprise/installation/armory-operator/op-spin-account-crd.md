@@ -78,7 +78,7 @@ Auth options for Kubernetes account type. Pick only one of the options below:
 
 #### `spec.kubernetes.kubeconfigFile`
 
-References a file loaded either out of band to Clouddriver or (more likely) [stored in a secret](./managing-spinnaker.md).
+References a file loaded either out of band to Clouddriver or (more likely) stored in a secret.
 
 #### `spec.kubernetes.kubeconfigSecret`
 
