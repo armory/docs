@@ -75,7 +75,7 @@ weight = 1
 [[menu.main]]
   name = "Armory.io"
   weight = 5
-  url = "https://www.armory.io"
+  url = "https://www.armory.io/"
 
 [[menu.main]]
   name = "Case Studies"
@@ -222,7 +222,7 @@ enable = true
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
 	name = "GitHub"
-	url = "https://github.com/armory/docs"
+	url = "https://github.com/armory/docs/"
 	icon = "fab fa-github"
    desc = "Docs repository"
 [[params.links.developer]]
@@ -236,7 +236,6 @@ enable = true
 [[params.versions]]
   version = "Latest"
   githubbranch = "master"
-  url = "https://docs.armory.io/"
 
 [[params.versions]]
   version = "v2.26"

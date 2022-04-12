@@ -78,7 +78,7 @@ spec:
           - name: my-s3-account
             region: us-west-2 # S3 region
             awsAccessKeyId: ABCDEF01234... # Your AWS Access Key ID. If not provided, Spinnaker will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
-            awsSecretAccessKey: abc        # Your AWS Secret Key. This field supports "encrypted" secret references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+            awsSecretAccessKey: abc        # Your AWS Secret Key. This field supports "encrypted" secret references 
 ```
 
 Apply your changes with `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>`.

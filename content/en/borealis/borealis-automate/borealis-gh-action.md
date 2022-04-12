@@ -38,9 +38,8 @@ If you have previously configured Borealis for your deployment target, you can s
    - `exec:infra:op`
    - `read:artifacts:data`
 
-   For more information, see [Integrate Borealis & Automate Deployments]({{< ref "borealis-automate" >}})
-
-4. Encrypt the GitHub Action service account credentials so that you can use them securely in the Action. Create a secret for the Client ID and a separate secret for the Client Secret.
+   For more information, see [Integrate Borealis & Automate Deployments]({{< ref "borealis-automate" >}}").
+4. Encrypt the GitHub Action service account credentials so that you can use them securely in the action. Create a secret for the Client ID and a separate secret for the Client Secret.
 
    Use descriptive name for these two values. You use the name to reference them in the GitHub Action.
 

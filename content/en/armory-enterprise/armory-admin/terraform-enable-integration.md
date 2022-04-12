@@ -181,7 +181,7 @@ spec:
         github:
           accounts:
           - name: github-for-terraform
-            token: <Your GitHub PAT> # GitHub personal access token # PAT GitHub token. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+            token: <Your GitHub PAT> # GitHub personal access token # PAT GitHub token. This field supports "encrypted" field references
           enabled: true
 ```
 
@@ -227,7 +227,7 @@ spec:
           accounts:
           - name: bitbucket-for-terraform
             username: <Your Bitbucket username>
-            password: <Your Bitbucket password> # This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+            password: <Your Bitbucket password> # This field supports "encrypted" field references
 ```
 
 **Halyard**

@@ -20,15 +20,6 @@ production-grade, and this configuration is not a part of this document. Also
 note that monitoring the Pipelines as Code service (Dinghy) and the Terraform
 Integration service (Terraformer) are not discussed on this page.
 
-{{% alert title="Important" color="warning" %}}
-Armory Enterprise 2.20 (Spinnaker 1.20.x) introduced changes to metric names and the
-Monitoring Daemon. These changes mean that the monitoring solutions
-before 2.20 are incompatible with Armory Enterprise 2.20.x (Spinnaker 1.20.x) and
-later. If you are using one of those versions, see this page for
-[2.19.x](https://archive.docs.armory.io/docs/spinnaker-install-admin-guides/prometheus-monitoring/)
-and earlier.
-{{% /alert %}}
-
 ## {{% heading "prereq" %}}
 
 * You are familiar with Prometheus and Grafana

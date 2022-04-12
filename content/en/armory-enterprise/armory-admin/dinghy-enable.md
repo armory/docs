@@ -287,7 +287,7 @@ spec:
           templateOrg: my-org                # SCM organization or namespace where application and template repositories are located
           templateRepo: dinghy-templates     # SCM repository where module templates are located
           stashUsername: stash_user          # Stash username
-          stashToken: abc                    # Stash token. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+          stashToken: abc                    # Stash token. This field supports "encrypted" field references
           stashEndpoint: https://my-endpoint # Stash API endpoint. If you're using Bitbucket Server, update the endpoint to include the api e.g. https://your-endpoint-here.com/rest/api/1.0
           ... # Rest of config omitted for brevity
 ```
@@ -335,7 +335,7 @@ spec:
           enabled: true                       # Whether or not Dinghy is enabled
           templateOrg: my-org                 # SCM organization or namespace where application and template repositories are located
           templateRepo: dinghy-templates      # SCM repository where module templates are located
-          gitlabToken: abc                    # GitLab token. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+          gitlabToken: abc                    # GitLab token. This field supports "encrypted" field references
           gitlabEndpoint: https://my-endpoint # GitLab endpoint
           ... # Rest of config omitted for brevity
 ```
@@ -496,7 +496,7 @@ Dinghy can provide more robust information to GitHub about executed pipeline cha
 
 Keep the following in mind when enabling GitHub Notifications:
 
-* When using versions below 2.26.2, GitHub notifications are not supported with custom endpoints and [should be disabled due to a known issue](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290). This issue has been resolved as of [2.26.2, Dinghy Change #447](https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v2-26-2/#dinghy---226622610).
+* When using versions below 2.26.2, GitHub notifications are not supported with custom endpoints and [should be disabled due to a known issue](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290). This issue has been resolved as of [2.26.2, Dinghy Change #447]({{< ref "armoryspinnaker_v2-26-2#dinghy---226622610" >}}).
 * Enabling this functionality may lead to a large number of comments on a Pull Request if, for example, you update a module that is used by multiple pipelines. This can lead to the GitHub UI not loading or GitHub rate limiting cause of related API calls.
 
 
