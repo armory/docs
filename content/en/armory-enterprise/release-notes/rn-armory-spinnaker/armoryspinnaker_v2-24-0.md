@@ -1,5 +1,5 @@
 ---
-title: v2.24.0 Armory Release (OSS Spinnaker™ v1.24.2)
+title: v2.24.0 Armory Enterprise Release (Spinnaker™ v1.24.2)
 toc_hide: true
 version: 02.24.00
 description: >
@@ -10,7 +10,7 @@ description: >
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-For information about what Armory supports for this version, see the [Armory Enterprise Compatibility Matrix]({{< ref "armory-enterprise-matrix-2-24.md" >}}).
+For information about what Armory supports for this version, see the [Armory Enterprise v2.24 compatibility matrix](https://v2-24.docs.armory.io/docs/armory-platform-matrix/).
 
 ## Required Halyard or Operator version
 

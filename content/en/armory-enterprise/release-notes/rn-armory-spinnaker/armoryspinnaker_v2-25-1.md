@@ -1,5 +1,5 @@
 ---
-title: v2.25.1 Armory Release (OSS Spinnaker™ v1.25.3)
+title: v2.25.1 Armory Enterprise Release (Spinnaker™ v1.25.3)
 toc_hide: true
 version: 02.25.01
 description: >
@@ -10,7 +10,7 @@ description: >
 
 > Note: If you're experiencing production issues after upgrading Armory Enterprise, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-For information about what Armory supports for this version, see the [Armory Enterprise Compatibility Matrix]({{< ref "armory-enterprise-matrix-2-25.md" >}}).
+For information about what Armory supports for this version, see the [ [Armory Enterprise v2.25 compatibility matrix](https://v2-25.docs.armory.io/docs/armory-enterprise-matrix/).
 
 ## Required Halyard or Operator version
 ​

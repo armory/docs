@@ -17,9 +17,9 @@ Armory Enterprise for Spinnaker is installed with Armory-extended Halyard, very 
 * Armory versions are one major version ahead of Open Source. For example, Armory 2.18.x maps to Open Source Spinnaker 1.18.x.
 * Armory has an extra subcommand block `hal armory` (mapping to an `armory` block in your `.hal/config`), which controls Armory-specific features.
 
-This guide differentiates between the two by referring to them as Armory and OSS Spinnaker, respectively.
+This guide differentiates between the two by referring to them as Armory and open source Spinnaker, respectively.
 
-If you are currently on OSS Spinnaker and interested in upgrading to Armory, you can easily upgrade if you used Halyard to install your Spinnaker cluster.
+If you are currently on open source Spinnaker and interested in upgrading to Armory, you can easily upgrade if you used Halyard to install your Spinnaker cluster.
 
 This guide assumes the following:
 * Spinnaker is currently running in Kubernetes
@@ -31,9 +31,9 @@ This guide assumes the following:
 
 Depending on where Halyard is currently running, the detailed installation instructions will be slightly different, but the high level process is the same:
 
-1. Start Armory-extended Halyard in a Docker container with your OSS Halyard configuration directories available to Armory Halyard.
+1. Start Armory-extended Halyard in a Docker container with your open source Halyard configuration directories available to Armory Halyard.
 2. Enter the Armory-extended Halyard container.
-3. Update the Spinnaker version to use an Armory version. Recall that Armory  versions are ahead of OSS Spinnaker by one major version.
+3. Update the Spinnaker version to use an Armory version. Recall that Armory  versions are ahead of open source Spinnaker by one major version.
 4. Apply your changes.
 
 ## Halyard running locally on a workstation
@@ -96,7 +96,7 @@ If Halyard is already running in a Docker container in your Docker daemon, you c
 
 1. First, do a backup of your existing Halyard configuration. Exec into the Docker container, then run `hal backup create`.
 
-2. Stop the Halyard docker container, and re-start it with the Armory-extended Halyard image (`index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}`) instead of the OSS Halyard image (`gcr.io/spinnaker-marketplace/halyard:stable`). Also, change the user id for Armory-extended Halyard to be `1000`. For example, if you run the previous Docker image (OSS Halyard) like this:
+2. Stop the Halyard docker container, and re-start it with the Armory-extended Halyard image (`index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}`) instead of the open source Halyard image (`gcr.io/spinnaker-marketplace/halyard:stable`). Also, change the user id for Armory-extended Halyard to be `1000`. For example, if you run the previous Docker image (open source Halyard) like this:
 
    ```bash
    docker run --name halyard --rm \
@@ -142,7 +142,7 @@ If Halyard is already running in a Docker container in your Docker daemon, you c
 
 If Halyard is running in your Kubernetes cluster, either as a Kubernetes Deployment or a Kubernetes StatefulSet, then you can do an in-place upgrade:
 
-1. First, update the image for your Halyard Deployment / StatefulSet from the OSS Halyard image (`gcr.io/spinnaker-marketplace/halyard:stable`) to the Armory-extended Halyard image (`index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}`)
+1. First, update the image for your Halyard Deployment / StatefulSet from the open source Halyard image (`gcr.io/spinnaker-marketplace/halyard:stable`) to the Armory-extended Halyard image (`index.docker.io/armory/halyard-armory:{{< param halyard-armory-version >}}`)
 
 1. Wait for the pod to start up.
 
@@ -168,7 +168,7 @@ If Halyard is running in your Kubernetes cluster, either as a Kubernetes Deploym
 
 ## Revert back to Spinnaker
 
-If you want to go back to OSS Spinnaker, you can repeat the same process as above with OSS Halyard. Specifically, replace the Armory-extended Halyard image with the OSS Halyard image, update Spinnaker version (from 2.x to 1.x), and run `hal deploy apply`
+If you want to go back to open source Spinnaker, you can repeat the same process as above with open source Halyard. Specifically, replace the Armory-extended Halyard image with the open source Halyard image, update Spinnaker version (from 2.x to 1.x), and run `hal deploy apply`
 
 ## Troubleshooting
 

@@ -1,5 +1,5 @@
 ---
-title: Armory Release Definitions
+title: Armory Enterprise Release Definitions
 ---
 
 ## Definitions for different release states

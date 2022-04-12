@@ -1,5 +1,5 @@
 ---
-title: v2.23.3 Armory Release (OSS Spinnaker™ v1.23.5)
+title: v2.23.3 Armory Enterprise Release (Spinnaker™ v1.23.5)
 toc_hide: true
 version: 02.23.03
 description: >

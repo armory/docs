@@ -1,5 +1,5 @@
 ---
-title: v2.19.5 Armory Release (OSS Release 1.19.5)
+title: v2.19.5 Armory Enterprise Release (Spinnaker Release 1.19.5)
 toc_hide: true
 date: 2020-04-17
 version: 02.19.05
@@ -67,7 +67,7 @@ Fixed a recently discovered CVE that affects Igor: [`CVE-2020-11612`](https://nv
 
 **Managed Pipeline Templates v2 UI**
 
-Armory 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in OSS Spinnaker.
+Armory 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in Spinnaker.
 
 Armory recommends using Armory's Pipeline as Code feature instead of MPTv2 because it offers the following benefits:
 

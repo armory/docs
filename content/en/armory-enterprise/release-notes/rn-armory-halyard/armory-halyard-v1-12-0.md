@@ -25,4 +25,4 @@ This feature requires Armory Enterprise 2.25.0 or higher. For more information, 
 
 ## Armory-extended Halyard
 
-- chore(build): Upgrade OSS Halyard to 1.42.0
+- chore(build): Upgrade open source Halyard to 1.42.0

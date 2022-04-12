@@ -2,11 +2,12 @@
 title: Borealis Deployment GitHub Action
 linktitle: GitHub Action
 exclude_search: true
+weight: 1
+description: >
+  Use the Borealis Deployment Action to integrate your GitHub repo with Armory's Project Borealis.
 ---
 
-
-
-## Overview
+## Overview of Project Borealis deployment
 
 <!-- update the GHA readme or docs.armory.io page when making changes to one or the other -->
 
@@ -18,15 +19,15 @@ All this logic is defined in a deployment file that you create and store in GitH
 
 You can also learn about this GitHub Action by viewing the [repo](https://github.com/armory/cli-deploy-action).
 
-## Prerequisites
+## {{% heading "prereq" %}}
 
-If you have previously configured Borealis for your deployment target, you can skip to step 3 for the prerequisites.
+If you have previously configured Borealis for your deployment target, you can skip to step 3.
 
-1. Review the full set of requirements for Borealis at [System Requirements]({{< ref "borealis-requirements" >}}").
+1. Review the full set of requirements for Borealis at [System Requirements]({{< ref "borealis-requirements" >}}).
 2. If you have already prepared a deployment target for Borealis, skip this step. If you have not, complete the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}) tasks, which include the following:
 
    - Register for an Armory hosted cloud services account. This is the account that you use to log in  to the Armory Cloud Console and the Status UI.
-   - Create machine-to-machine client credentials for the Remote Network Agent (RNA), which gets  installed on your deployment target.
+   - Create machine-to-machine client credentials for the Remote Network Agent (RNA), which you install on your deployment target cluster.
    - Prepare your deployment target by installing the RNA.
 
 
@@ -42,15 +43,15 @@ If you have previously configured Borealis for your deployment target, you can s
 
    Use descriptive name for these two values. You use the name to reference them in the GitHub Action.
 
-   For more information, see [Encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
+   For more information, see GitHub's [Encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) guide.
 
 ## Configure the GitHub Action
 
-Configuring the GitHub Action is a two-part process:
+Configuring the GitHub Action is a multi-part process:
 
-- Get your manifest path
-- Define the deployment file
-- Create the action
+1. [Get your manifest path](#get-your-manifest-path)
+1. [Create a deployment file](#create-a-deployment-file)
+1. [Configure the action](#configure-the-action)
 
 ### Get your manifest path
 
@@ -69,40 +70,13 @@ Then, the value you use for `path` in the deployment file should be `/deployment
 
 ### Create a deployment file
 
-The deployment file is a YAML file that defines what to deploy and how Borealis deploys it. Save this file to a directory in your repo. You use this path later when you create the GitHub Action for the `path-to-file` parameter.
+The [deployment file]({{< ref "ref-deployment-file" >}}) is a YAML file that defines what app you want to deploy and how Borealis should deploy it. You can use the [Borealis CLI]({{< ref "borealis-cli-get-started#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template.
 
-You can generate the deployment file with the Borealis CLI if you have it installed or manually create it.
-
-#### Generate using the CLI
-
-Generate a deployment file with the following command:
-
-```
-armory template kubernetes canary > deployment.yaml
-```
-
-#### Manually create the file
-
-<details><summary>Show me the template file</summary>
-
-{{< include "aurora-borealis/dep-file/borealis-yaml-basic.md" >}}
-
-</details>
-
-
-Note that you do not need to configure a `setWeight` step for `100`. Borealis automatically rolls out the deployment to the whole cluster after completing the final step you configure.
-
-### Example deployment file
-
-<details><summary>Show me an example deployment file</summary>
-
-{{< include "aurora-borealis/dep-file/borealis-yaml-example-basic.md" >}}
-
-</details>
+Save your deployment file to a directory in your repo. You use this path later when you create the GitHub Action for the `path-to-file` parameter.
 
 ### Configure the action
 
-> If you are new to using GitHub Actions, see [Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart) for information about setting up GitHub Actions.
+> If you are new to using GitHub Actions, see [Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart) guide for information about setting up GitHub Actions.
 
 Before you start, you need the path to the deployment file you created earlier. This value is used for the `path-to-file` parameter.
 
@@ -143,7 +117,7 @@ jobs:
 
 ## Deploy
 
-Now, you can trigger a deployment based on what you defined in the action workflow, such as a `push` to the `main` branch.
+Now you can trigger a deployment based on what you defined in the action workflow, such as a `push` to the `main` branch.
 
 When the action runs, Borealis starts your deployment, and it progresses to the first weight you set. After completing the first step, what Borealis does next depends on the steps you defined in your deployment file. Borealis either waits a set amount of time or until you provide a manual approval.
 

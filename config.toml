@@ -136,7 +136,7 @@ version = "2.27"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
-url_latest_version = "https://docs.armory.io/armory-enterprise/"
+url_latest_version = "https://docs.armory.io/"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/armory/docs/"
@@ -160,11 +160,11 @@ prism_syntax_highlighting = true
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]
-agent_plug_latest-2="0.8.53"
+agent_plug_latest-2="0.8.52"
 agent_plug_latest_spin-2="2.25.x (1.25.x)"
-agent_plug_latest-1="0.9.45"
+agent_plug_latest-1="0.9.44"
 agent_plug_latest_spin-1="2.26.x (1.26.x)"
-agent_plug_latest="0.10.29"
+agent_plug_latest="0.10.28"
 agent_plug_latest_spin="2.27.x (1.27.x)"
 
 # User interface configuration
@@ -236,7 +236,6 @@ enable = true
 [[params.versions]]
   version = "Latest"
   githubbranch = "master"
-  url = "https://docs.armory.io/armory-enterprise/"
 
 [[params.versions]]
   version = "v2.26"
