@@ -13,4 +13,5 @@ version: 00.09.45
 
 ### Known Issues
 
+* The plugin makes a request to fiat `/sync/roles` endpoint every time an agent connects or accounts are deleted. This can become an issue when having a large number of agents connected to a clouddriver pod that is restarted.
 * `/credentials` endpoint hits the database twice per account. When having a large number of accounts this can become an issue.

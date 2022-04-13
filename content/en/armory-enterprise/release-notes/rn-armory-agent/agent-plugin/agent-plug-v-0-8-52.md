@@ -11,6 +11,7 @@ version: 00.08.52
 
 ### Known Issues
 
+* The plugin makes a request to fiat `/sync/roles` endpoint every time an agent connects or accounts are deleted. This can become an issue when having a large number of agents connected to a clouddriver pod that is restarted.
 * When using more than one agent replica, if one of the replicas is disconnected its association with clouddriver is never deleted.
 * When using more than one agent replica, the endpoint `/armory/agents` incorrectly shows all of them caching the infrastructure, while only one of them watches the cluster.
 * When using more than one agent replica, operations are sent to only the most recently registered replica.

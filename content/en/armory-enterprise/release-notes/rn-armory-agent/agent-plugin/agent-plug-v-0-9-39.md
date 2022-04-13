@@ -23,3 +23,7 @@ The Agent Plugin now sends a list of Kubernetes kinds to get cached when the Age
 - Event
 
 You can remove kinds from the list with `kubernetes.accounts[].omitKinds` in the Agent configs.
+
+## Known Issues
+
+* The plugin makes a request to fiat `/sync/roles` endpoint every time an agent connects or accounts are deleted. This can become an issue when having a large number of agents connected to a clouddriver pod that is restarted.
