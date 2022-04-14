@@ -136,9 +136,11 @@ For AVM or the Borealis CLI, you can use the `--help` option for more informatio
 
 ## Manually deploy apps using the CLI
 
+>Project Borealis manages your Kubernetes deployments using ReplicaSet resources. During the initial deployment of your application using Project Borealis, the underlying Kubernetes deployment object is deleted in a way that it leaves behind the ReplicaSet and pods so that there is no actual downtime for your application. These are later deleted when the deployment succeeds.
+
 Before you can deploy, make sure that you have the client ID and secret for your deployment target available. These are used to authenticate Armory's hosted deployment services with the target cluster. The credentials were created and tied to your deployment target as part of the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}) guide.
 
-Since you are using the Borealis CLI, you do not need to have  service account credentials for authenticating your CLI to the deployment services. Instead, you will log in manually with your user account.
+Since you are using the Borealis CLI, you do not need to have service account credentials for authenticating your CLI to the deployment services. Instead, you will log in manually with your user account.
 
 If this is the first deployment of your app, Borealis automatically deploys the app to 100% of the cluster since there is no previous version. Subsequent deployments of this app follow the steps defined in your deployment file.
 
@@ -216,6 +218,25 @@ Run the following command to monitor your deployment through the Borealis CLI:
 ```bash
 armory deploy status -i <deployment-ID>
 ```
+
+### Initial deployment failure
+
+If the initial deployment of your app using Project Borealis fails or is manually rolled back, the ReplicaSet is orphaned rather than deleted. In this situation, you should manually delete the orphaned ReplicaSet _only after the initial deployment runs successfully_.
+
+To delete the orphaned ReplicaSet:
+1. Get a list of ReplicaSet objects
+
+   ```bash
+   kubectl get rs -n <namespace>
+   ```
+
+1. Identify the ReplicaSet with the old version of your application. This is typically the ReplicaSet with the greater age.
+1. Delete the orphaned ReplicaSet:
+
+   ```bash
+   kubectl delete rs <ReplicaSet_name> -n <namespace>
+   ```
+
 
 ## Advanced use cases
 
