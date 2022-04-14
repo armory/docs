@@ -114,15 +114,15 @@ For AVM or the Borealis CLI, you can use the `--help` option for more informatio
 {{% tabbody name="Manual" %}}
 
 1. Download the [latest release](https://github.com/armory/armory-cli/releases) for your operating system.
-2. Save the file in a directory that is on your `PATH`, such as `/usr/local/bin`.
-3. Rename the downloaded file to `armory`.
-4. Give the file execute permission:
+1. Save the file in a directory that is on your `PATH`, such as `/usr/local/bin`.
+1. Rename the downloaded file to `armory`.
+1. Give the file execute permission:
 
    ```bash
    chmod +x /usr/local/bin/armory
    ```
 
-5. Verify that you can run the Borealis CLI:
+1. Verify that you can run the Borealis CLI:
 
    ```bash
    armory
@@ -136,19 +136,13 @@ For AVM or the Borealis CLI, you can use the `--help` option for more informatio
 
 ## Manually deploy apps using the CLI
 
-Before you can deploy, make sure that you have the client ID and secret for your deployment target available. These are used to authenticate Armory's hosted cloud services to the target cluster. The credentials were created and tied to your deployment target as part of the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}) guide.
+Before you can deploy, make sure that you have the client ID and secret for your deployment target available. These are used to authenticate Armory's hosted deployment services with the target cluster. The credentials were created and tied to your deployment target as part of the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}) guide.
 
-Since you are using the Borealis CLI, you do not need to have  service account credentials for authenticating your CLI to the cloud services. Instead, you will log in manually with your user account.
+Since you are using the Borealis CLI, you do not need to have  service account credentials for authenticating your CLI to the deployment services. Instead, you will log in manually with your user account.
 
 If this is the first deployment of your app, Borealis automatically deploys the app to 100% of the cluster since there is no previous version. Subsequent deployments of this app follow the steps defined in your deployment file.
 
-1. Create the directory where the CLI stores your credentials:
-
-   ```bash
-   mkdir ~/.armory
-   ```
-
-2. Log in to Armory's hosted cloud services from the CLI:
+1. Log in to Armory's hosted deployment services from the CLI:
 
    ```bash
    armory login
@@ -158,8 +152,8 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 
    After you successfully authenticate, the CLI returns a list of environments.
 
-3. Select the environment you want to log in to.   
-4. Generate your deployment template and output it to a file.
+1. Select the environment you want to log in to.   
+1. Generate your deployment template and output it to a file.
 
    This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`:
 
@@ -171,7 +165,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
    {{< include "aurora-borealis/dep-file/borealis-yaml-basic.md" >}}
    </details><br>
 
-5. Customize your deployment file by setting the following minimum set of parameters:
+1. Customize your deployment file by setting the following minimum set of parameters:
 
    - `application`: The name of your app.
    - `targets.<deploymentName>`: A descriptive name for your deployment. Armory recommends using the environment name.
@@ -204,7 +198,7 @@ If this is the first deployment of your app, Borealis automatically deploys the 
 
     </details><br>
 
-6. Start the deployment:
+1. Start the deployment:
 
    ```bash
    armory deploy start  -f canary.yaml
@@ -241,14 +235,20 @@ avm install
 
 Depending on your operating system settings, you may need to allow apps from an unidentified developer in order to use AVM. For macOS, go to **System Preferences > Security & Privacy > General** and click **Allow Anyway**. For more information, see the macOS documentation about [how to open a Mac app from an unidentified developer](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
 
-### `bad CPU type in executable` error
+### Bad CPU type
+
+`bad CPU type in executable`
 
 This issue occurs if the AVM version you downloaded does not match your CPU architecture. For example, if you try to run an `arm64` build on a system that is not ARM based. Verify that you downloaded the correct AVM version for your system.
 
-### `error: Error: there was an error writing the credentials file. `
+### Error writing credentials file
+
+`error: Error: there was an error writing the credentials file. `
 
 This issue occurs because the the directory where the Borealis CLI stores your credentials after you run `armory login` does not exist. You can create the directory by running the following command:
 
 ```bash
 mkdir ~/.armory/credentials
 ```
+
+Make sure you are running the lastest version of the CLI.
