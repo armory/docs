@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@master
       with:
         fetch-depth: 1
-    - uses: gaurav-nelson/github-action-markdown-link-check@1.0.7
+    - uses: gaurav-nelson/github-action-markdown-link-check@1.0.13
       with:
         use-quiet-mode: 'yes' # Specify yes to only show errors in output.#
         use-verbose-mode: 'yes' # Specify yes to show detailed HTTP status for checked links.#
