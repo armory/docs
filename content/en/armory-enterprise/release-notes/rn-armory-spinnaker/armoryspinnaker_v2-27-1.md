@@ -3,7 +3,7 @@ title: v2.27.1 Armory Enterprise Release LTS (Spinnaker™ v1.27.0)
 toc_hide: true
 version: 02.27.01
 description: >
-  Release notes for Armory Enterprise v2.27.1, a long term stable release. The release notes for 2.27.1 include improvements and fixes from the 2.27.0 Beta release.
+  Release notes for Armory Enterprise v2.27.1, a long term support release. The release notes for 2.27.1 include improvements and fixes from the 2.27.0 Beta release.
 ---
 
 ## 2021/11/18 Release Notes

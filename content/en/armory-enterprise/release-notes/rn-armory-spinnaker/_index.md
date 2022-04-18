@@ -10,7 +10,7 @@ aliases:
 layout: release-notes-recent
 semver_list: true
 description: >
-  Armory Enterprise releases, long term stable releases and patches.
+  Armory Enterprise releases, long term support releases and patches.
 ---
 
 <!-- the release-notes-recent.html layout inserts the section index list at the top of the page -->
@@ -29,7 +29,7 @@ To install, upgrade, and configure Armory Enterprise, ensure that you are runnin
 
 ## LTS releases
 
-Starting with version 2.27.1, Armory Enterprise follows a Long Term Stable (LTS) release model where there are two LTS releases per year. Major features and changes are packaged into an LTS release.
+Starting with version 2.27.1, Armory Enterprise follows a Long Term Support (LTS) release model where there are two LTS releases per year. Major features and changes are packaged into an LTS release.
 
 Each LTS is supported for 1 year from its release date. During the supported lifetime of an LTS release, Armory ships patch releases for the LTS that include improvements like CVE remediation, bug fixes, and performance improvements.
 
