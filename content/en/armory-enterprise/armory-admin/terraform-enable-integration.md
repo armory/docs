@@ -356,7 +356,7 @@ After you finish your Terraform integration configuration, perform the following
 
 ## Configure Terraform for your cloud provider
 
->Terraform Integration is cloud provider agnostic. Terraform commands execute against the `terraform` binary. All methods of configuring authentication are supported for your desired cloud provider.
+>The Terraform Integration is cloud provider agnostic. Terraform commands execute against the terraform binary. All methods of configuring authentication are supported as per Terraform's compatibility and capabilities.
 
 You can also configure a profile that grants access to resources such as AWS.
 

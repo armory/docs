@@ -186,7 +186,7 @@ The following table lists the Terraform Integration features and their supported
 | [Named Profiles with authorization]({{< ref "terraform-enable-integration#named-profiles" >}}) | All supported versions          |       |
 
 
-Support is limited to configuring Terraform Integration and using the stage within Armory Enterprise. Armory's Customer Care team does not troubleshoot Terraform script issues or infrastructure creation using Terraform. If you have questions, contact your assigned Technical Account Manager and/or Account Executive. Alternatively, you can reach our Customer Care team at support@armory.io or visit the Help Center to submit a case.
+Support is limited to configuring Terraform Integration and using the stage within Armory Enterprise. Armory's Customer Care team does not troubleshoot Terraform script issues or infrastructure creation using Terraform. If you have questions, contact your assigned Technical Account Manager and/or Account Executive. Alternatively, you can reach our Customer Care team by visiting the [Armory Support Portal](https://support.armory.io/) to [submit a case](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010136).
 
 ## Authentication
 
