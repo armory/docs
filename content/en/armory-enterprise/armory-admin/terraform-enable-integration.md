@@ -373,7 +373,7 @@ The Terraform integration supports multiple types of credentials for Named Profi
 * Static
 * Terraform remote backend
 
-If you’re not using AWS, you should configure one of the other credential types in your Named Profile. For example, If you don't see a credential that suits your use case, [let us know](https://feedback.armory.io/feature-requests)!
+If you’re not using AWS, you should configure one of the other credential types in your Named Profile. If you don't see a credential that suits your use case, [submit a feature request](https://feedback.armory.io/feature-requests).
 
 For information about how to configure a Profile, see [Configuring a profile](#configuring-a-named-profile).
 
