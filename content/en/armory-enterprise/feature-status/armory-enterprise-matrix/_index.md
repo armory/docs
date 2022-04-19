@@ -161,7 +161,7 @@ You can find the latest version on [Docker Hub](https://hub.docker.com/r/armory/
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
 
-The Terraform Integration gives you the ability to use Terraform within your pipelines to create your infrastructure as part of your software delivery pipeline.
+Terraform Integration gives you the ability to use Terraform within your pipelines to create your infrastructure as part of your software delivery pipeline.
 
 **Supported Terraform versions**
 
@@ -185,6 +185,8 @@ The following table lists the Terraform Integration features and their supported
 | [Base Terraform Integration]({{< ref "terraform-enable-integration" >}})                       | All supported versions |       |
 | [Named Profiles with authorization]({{< ref "terraform-enable-integration#named-profiles" >}}) | All supported versions          |       |
 
+
+Support is limited to configuring Terraform Integration and using the stage within Armory Enterprise. Armory's Customer Care team does not troubleshoot Terraform script issues or infrastructure creation using Terraform. If you have questions, contact your assigned Technical Account Manager and/or Account Executive. Alternatively, you can reach our Customer Care team by visiting the [Armory Support Portal](https://support.armory.io/) to [submit a case](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010136).
 
 ## Authentication
 
