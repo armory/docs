@@ -14,10 +14,6 @@
 
 # section redirects
 [[redirects]]
-  from = "/armory-enterprise/armory-cloud-preview/"
-  to = "/borealis/"
-
-[[redirects]]
   from = "/overview/*"
   to = "/armory-enterprise/overview/:splat"
   status = 301
