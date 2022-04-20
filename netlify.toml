@@ -14,9 +14,8 @@
 
 # section redirects
 [[redirects]]
-  from = "/armory-enterprise/armory-cloud-preview/*"
+  from = "/armory-enterprise/armory-cloud-preview/"
   to = "/borealis/"
-  force = "true"
 
 [[redirects]]
   from = "/overview/*"
@@ -92,7 +91,7 @@
 
 [[redirects]]
   from = "/docs/installation/armory-agent/agent-options/"
-  to = "/armory-enterprise/armory-admin/armory-agent/"
+  to = "/armory-enterprise/armory-agent/advanced-config/agent-options/"
   force = true
 
 [[redirects]]
