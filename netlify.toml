@@ -87,20 +87,21 @@
 
 [[redirects]]
   from = "/docs/installation/armory-agent/agent-options/"
-  to = "/armory-enterprise/armory-admin/armory-agent/"
+  to = "/armory-enterprise/armory-agent/advanced-config/agent-options/"
   force = true
 
 [[redirects]]
-  from ="/docs/spinnaker-user-guides/policy-engine-use/packages/*"
+  from = "/docs/spinnaker-user-guides/policy-engine-use/packages/*"
   to = "/armory-enterprise/armory-admin/policy-engine/policy-engine-use/packages/:splat"
 
 [[redirects]]
-  from ="/docs/*"
+  from = "/docs/*"
   to = "/armory-enterprise/:splat"
 
 [[redirects]]
-  from ="/ae/*"
+  from = "/ae/*"
   to = "/armory-enterprise/:splat"
+
 
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
@@ -111,14 +112,13 @@ package = "@netlify/plugin-sitemap"
   buildDir = "public"
   # make sure you add a comma after each entry in the exclude list except on the last one
   exclude =[
-    './public/docs/plugin-guide/plugin-appname/',
-    './public/docs/feature-status/deprecations/pacrd-deprecation/',
-    './public/docs/installation/deployment-reg/',
-    './public/docs/installation/aurora-install/',
+    './public/armory-enterprise/plugin-guide/plugin-appname/',
+    './public/armory-enterprise/feature-status/deprecations/pacrd-deprecation/',
+    './public/armory-enterprise/installation/deployment-reg/',
+    './public/armory-enterprise/installation/aurora-install/',
     './public/borealis/',
-    './public/managed-spin'
-
-
+    './public/managed-spin',
+    './public/armory-enterprise/armory-cloud-preview'
   ]
   # append missing trailing slash to prettyURL
   trailingSlash = true
