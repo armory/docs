@@ -19,7 +19,12 @@ Note that you need a device that can support OTP two-factor authentication, such
 
 ## Install the Borealis CLI
 
-The automated install involves installing an Armory Version Manager (AVM) that handles downloading, installing, and updating the Borealis CLI. Using this install method gives you  to way to keep the Borealis CLI updated as well as the ability to switch versions from the command line. The manual installation method involves downloading a specific release from GitHub and installing that release. Armory recommends using the automated install method.
+The CLI binary is called `armory`. You can install the CLI using the Armory Version Manager (AVM) or you can install the `armory` binary manually.
+
+Armory recommends installing the AVM because you can use it to quickly and easily download, install, and update the CLI. The AVM provides additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
+
+If you choose to install the CLI binary manually, you must download a specific release binary from GitHub and install that release. You have to repeat the installation process each time you upgrade the CLI version.
+
 
 {{< tabs name="borealis-cli-install" >}}
 
@@ -88,7 +93,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
       ```
 
     1. In the file, find the line for the `PATH` that your resource file exports. They follow the format `export PATH=$HOME/bin:/usr/local/bin:$PATH`.
-    2. Insert the path provided by AVM (such as `/Users/brianle/.avm/bin`)before the ending `$PATH`. The line should look similar to this:
+    2. Insert the path provided by AVM (such as `/Users/brianle/.avm/bin`) before the ending `$PATH`. The line should look similar to this:
 
        ```bash
        export PATH=$HOME/bin:/usr/local/bin::/Users/milton/.avm/bin:$PATH
@@ -133,6 +138,9 @@ For AVM or the Borealis CLI, you can use the `--help` option for more informatio
 {{% /tabbody %}}
 
 {{< /tabs >}}
+
+
+
 
 ## Manually deploy apps using the CLI
 

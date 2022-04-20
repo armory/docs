@@ -11,7 +11,7 @@ exclude_search: true
 
 The deployment file is what you use to define how and where Borealis deploys your app.
 
-You can see what a blank deployment file looks like in the [Template file](#blank-template) section. To see a filled out example, see [Example file](#example).
+You can see what a blank deployment file looks like in the [Blank templates](#blank-template) section. To see a filled out example, see [Complete examples](#complete-examples).
 
 ## Blank templates
 
@@ -71,7 +71,7 @@ armory template kubernetes bluegreen > bluegreen-deployment-template.yaml
 
 </details>
 
-## Example
+## Complete examples
 
 <details><summary>Show me a completed basic deployment file</summary>
 
@@ -91,12 +91,13 @@ armory template kubernetes bluegreen > bluegreen-deployment-template.yaml
 
 </details><br>
 
+## Sections
 
-## `application`
+### `application`
 
 Provide a descriptive name for your application so that you can identify it when viewing the status of your deployment in the Status UI and other locations.
 
-## `targets.`
+### `targets.`
 
 This config block is where you define where and how you want to deploy an app. You can specify multiple targets. Provide unique descriptive names for each environment to which you are deploying.
 
@@ -111,7 +112,7 @@ targets:
 
 
 
-### `targets.<targetName>`
+#### `targets.<targetName>`
 
 A descriptive name for this deployment, such as the name of the environment you want to deploy to.
 
@@ -123,7 +124,7 @@ targets:
 ...
 ```
 
-### `targets.<targetName>.account`
+#### `targets.<targetName>.account`
 
 The account name that a target Kubernetes cluster got assigned when you installed the Remote Network Agent (RNA) on it. Specifically, it is the value for the `agentIdentifier` parameter. Note that older versions of the RNA used the `agent-k8s.accountName` parameter.
 
@@ -138,7 +139,7 @@ targets:
 ...
 ```
 
-### `targets.<targetName>.namespace`
+#### `targets.<targetName>.namespace`
 
 (Recommended) The namespace on the target Kubernetes cluster that you want to deploy to. This field overrides any namespaces defined in your manifests.
 
@@ -151,7 +152,7 @@ targets:
     namespace: overflow
 ```
 
-### `targets.<targetName>.strategy`
+#### `targets.<targetName>.strategy`
 
 This is the name of the strategy that you want to use to deploy your app. You define the strategy and its behavior in the `strategies` block.
 
@@ -167,7 +168,7 @@ targets:
 
 Read more about how this config is defined and used in the [strategies.<strategyName>](#strategies.<strategyName>) section.
 
-### `targets.<targetName>.constraints`
+#### `targets.<targetName>.constraints`
 
 A map of conditions that must be met before a deployment starts. The constraints can be dependencies on previous deployments, such as requiring deployments to a test environment before staging, or a pause. If you omit the constraints section, the deployment starts immediately when it gets triggered.
 
@@ -189,7 +190,7 @@ targets:
             unit: <seconds|minutes|hours>
 ```
 
-#### `targets.<targetName>.constraints.dependsOn`
+##### `targets.<targetName>.constraints.dependsOn`
 
 A comma-separated list of deployments that must finish before this deployment can start. You can use this option to sequence deployments. Deployments with the same `dependsOn` criteria execute in parallel. For example, you can make it so that a deployment to prod cannot happen until a staging deployment finishes successfully.
 
@@ -205,7 +206,7 @@ targets:
       dependsOn: ["dev-west"]
 ```
 
-#### `targets.<targetName>.constraints.beforeDeployment`
+##### `targets.<targetName>.constraints.beforeDeployment`
 
 Conditions that must be met before the deployment can start. These are in addition to the deployments you define in `dependsOn` that must finish.
 
@@ -249,7 +250,7 @@ targets:
             unit: seconds
 ```
 
-## `manifests.`
+### `manifests.`
 
 ```yaml
 manifests:
@@ -261,15 +262,15 @@ manifests:
     targets: ["<targetName3>", "<targetName4>"]
 ```  
 
-### `manifests.path`
+#### `manifests.path`
 
 The path to a manifest file that you want to deploy or the directory where your manifests are stored. If you specify a directory, such as `/deployments/manifests/configmaps`, Borealis reads all the YAML files in the directory and deploys the manifests to the target you specified in `targets`.
 
-### `manifests.path.targets`
+#### `manifests.path.targets`
 
 (Optional). If you omit this option, the manifests are deployed to all targets listed in the deployment file. A comma-separated list of deployment targets that you want to deploy the manifests to. Make sure to enclose each target in quotes. Use the name you defined in `targets.<targetName>` to refer to a deployment target.
 
-## `strategies.`
+### `strategies.`
 
 This config block is where you define behavior and the actual steps to a deployment strategy.
 
@@ -314,7 +315,7 @@ strategies:
             untilApproved: true
 ```
 
-### `strategies.<strategyName>`
+#### `strategies.<strategyName>`
 
 The name you assign to the strategy. Use this name for `targets.<targetName>.strategy`. You can define multiple strategies, so make sure to use a unique descriptive name for each.
 
@@ -336,7 +337,7 @@ targets:
 ...
 ```
 
-### `strategies.<strategyName>.<strategy>`
+#### `strategies.<strategyName>.<strategy>`
 
 The kind of deployment strategy this strategy uses. Borealis supports `canary` and `blueGreen`.
 
@@ -346,9 +347,9 @@ strategies:
     canary:
 ```
 
-### Canary fields
+#### Canary fields
 
-#### `strategies.<strategyName>.canary.steps`
+##### `strategies.<strategyName>.canary.steps`
 
 Borealis progresses through all the steps you define as part of the deployment process. The process is sequential and steps can be of the types, `analysis`, `setWeight` or `pause`.
 
@@ -361,7 +362,7 @@ Some scenarios where this pairing sequence might not be used would be the follow
 
 You can add as many steps as you need but do not need to add a final step that deploys the app to 100% of the cluster. Borealis automatically does that after completing the final step you define.
 
-#### `strategies.<strategyName>.canary.steps.setWeight.weight`
+##### `strategies.<strategyName>.canary.steps.setWeight.weight`
 
 This is an integer value and determines how much of the cluster the app gets deployed to. The value must be between 0 and 100 and the the `weight` for each `setWeight` step should increase as the deployment progresses. After hitting this threshold, Borealis pauses the deployment based on the behavior you set for  the `strategies.<strategyName>.<strategy>.steps.pause` that follows.
 
@@ -375,7 +376,7 @@ steps:
       weight: 33
 ```
 
-#### `strategies.<strategyName>.canary.steps.pause`
+##### `strategies.<strategyName>.canary.steps.pause`
 
 There are two base behaviors you can set for `pause`, either a set amount of time or until a manual judgment is made.
 
@@ -424,7 +425,7 @@ steps:
       untilApproved: true
 ```
 
-#### `strategies.<strategyName>.canary.steps.analysis`
+##### `strategies.<strategyName>.canary.steps.analysis`
 
 The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll forward or roll back.
 
@@ -446,11 +447,11 @@ steps:
               - <queryName>
 ```
 
-##### `strategies.<strategyName>.canary.steps.analysis.metricProviderName`
+###### `strategies.<strategyName>.canary.steps.analysis.metricProviderName`
 
 Optional. The name of a configured metric provider. If you do not provide a metric provider name, Borealis uses the default metric provider defined in the `analysis.defaultMetricProviderName`. Use the **Configuration UI** to add a metric provider.
 
-##### `strategies.<strategyName>.canary.steps.analysis.context`
+###### `strategies.<strategyName>.canary.steps.analysis.context`
 
 Custom key/value pairs that are passed as substitutions for variables to the queries.
 
@@ -474,7 +475,7 @@ You can supply your own variables by adding them to this section. When you use t
 
 For information about writing queries, see the [Query Reference Guide]({{< ref "ref-queries.md" >}}).
 
-##### `strategies.<strategyName>.canary.steps.analysis.interval`
+###### `strategies.<strategyName>.canary.steps.analysis.interval`
 
 ```yaml
 steps:
@@ -497,11 +498,11 @@ steps:
 
 ```
 
-##### `strategies.<strategyName>.canary.steps.analysis.unit`
+###### `strategies.<strategyName>.canary.steps.analysis.unit`
 
 The unit of time for the interval. Use `seconds`, `minutes` or `hours`. See `strategies.<strategyName>.<strategy>.steps.analysis.interval` for more information.
 
-##### `strategies.<strategyName>.canary.steps.analysis.numberOfJudgmentRuns`
+###### `strategies.<strategyName>.canary.steps.analysis.numberOfJudgmentRuns`
 
 ```yaml
 steps:
@@ -514,7 +515,7 @@ steps:
 
 The number of times that each query runs as part of the analysis. Borealis takes the average of all the results of the judgment runs to determine whether the deployment falls within the acceptable range.
 
-##### `strategies.<strategyName>.canary.steps.analysis.rollBackMode`
+###### `strategies.<strategyName>.canary.steps.analysis.rollBackMode`
 
 ```yaml
 steps:
@@ -529,7 +530,7 @@ Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omit
 
 How a rollback is approved if the analysis step determines that the deployment should be rolled back. The thresholds for a rollback are set in `lowerLimit` and `upperLimit` in the `analysis` block of the deployment file. This block is separate from the `analysis` step that this parameter is part of.
 
-##### `strategies.<strategyName>.canary.steps.analysis.rollForwardMode`
+###### `strategies.<strategyName>.canary.steps.analysis.rollForwardMode`
 
 ```yaml
 steps:
@@ -544,7 +545,7 @@ Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omit
 
 How a rollback is approved if the analysis step determines that the deployment should proceed (or roll forward). The thresholds for a roll forward are any values that fall within the range you create when you set the `lowerLimit` and `upperLimit`values in the `analysis` block of the deployment file. This block is separate from the `analysis` step that this parameter is part of.
 
-##### `strategies.<strategyName>.canary.steps.analysis.queries`
+###### `strategies.<strategyName>.canary.steps.analysis.queries`
 
 ```yaml
 steps:
@@ -560,9 +561,9 @@ A list of queries that you want to use as part of this `analysis` step. Provide 
 
 All the queries must pass for the step as a whole to be considered a success.
 
-### Blue/green fields
+#### Blue/green fields
 
-#### `strategies.<strategyName>.blueGreen.activeService`
+##### `strategies.<strategyName>.blueGreen.activeService`
 
 The name of a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) that you created to route traffic to your application.
 
@@ -573,7 +574,7 @@ strategies:
       activeService: <active-service>
 ```
 
-#### `strategies.<strategyName>.blueGreen.previewService`
+##### `strategies.<strategyName>.blueGreen.previewService`
 
 (Optional) The name of a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) you created to route traffic to the new version of your application so you can preview your updates.
 
@@ -584,11 +585,11 @@ strategies:
       previewService: <preview-service>
 ```
 
-#### `strategies.<strategyName>.blueGreen.redirectTrafficAfter`
+##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter`
 
 The `redirectTrafficAfter` steps are conditions for exposing the new version to the `activeService`. The steps are executed in parallel.After each step completes, Borealis exposes the new version to the `activeService`.
 
-##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause`
+###### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause`
 
 There are two base behaviors you can set for `pause`, either a set amount of time or until a manual judgment is made.
 
@@ -637,7 +638,7 @@ redirectTrafficAfter:
       untilApproved: true
 ```
 
-##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.analysis`
+###### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.analysis`
 
 The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll forward or roll back.
 
@@ -658,7 +659,7 @@ redirectTrafficAfter:
         - <queryName>
 ```
 
-#### `strategies.<strategyName>.blueGreen.shutdownOldVersionAfter`
+##### `strategies.<strategyName>.blueGreen.shutdownOldVersionAfter`
 
 This step is a condition for deleting the old version of your software. Borealis executes the `shutDownOldVersion` steps in parallel. After each step completes, Borealis deletes the old version.
 
@@ -668,7 +669,7 @@ shutdownOldVersionAfter:
       untilApproved: true
 ```
 
-##### `strategies.<strategyName>.blueGreen.shutdownOldVersionAfter.analysis`
+###### `strategies.<strategyName>.blueGreen.shutdownOldVersionAfter.analysis`
 
 The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll forward or roll back.
 
@@ -689,7 +690,7 @@ shutdownOldVersionAfter:
         - <queryName>
 ```
 
-## `analysis`
+### `analysis.`
 
 This block defines the queries used to analyze a deployment for any `analysis` steps. In addition, you set upper and lower limits for the queries that define what is considered a failed deployment step or a successful deployment step.
 
@@ -726,33 +727,33 @@ You can insert variables into your queries. Variables are inserted using the for
 
 For more information, see the [`analysis.context` section](#strategiesstrategynamestrategystepsanalysiscontext).
 
-### `analysis.defaultMetricProviderName`
+#### `analysis.defaultMetricProviderName`
 
 The name that you assigned to a metrics provider in the **Configuration UI**. If the analysis step does not specify a metrics provider, the default metrics provider is used.
 
-### `analysis.queries`
+#### `analysis.queries`
 
 This block is how you define the queries that you want to run.
 
-#### `analysis.queries.name`
+##### `analysis.queries.name`
 
 Used in `analysis` steps to specify the query that you want to use for the step. Specifically it's used for the list in `steps.analysis.queries`.
 
 Provide a unique and descriptive name for the query, such as `containerCPUSeconds` or `avgMemoryUsage`.
 
-#### `analysis.queries.upperLimit`
+##### `analysis.queries.upperLimit`
 
 The upper limit for the query. If the analysis returns a value that is above this range, the deployment is considered a failure, and a rollback is triggered. The rollback can happen either manually or automatically depending on how you configured `strategies.<strategyName>.<strategy>.steps.analysis.rollBackMode`.
 
 If the query returns a value that falls within the range between the `upperLimit` and `lowerLimit` after all the runs of the query complete, the query is considered a success.
 
-#### `analysis.queries.lowerLimit`
+##### `analysis.queries.lowerLimit`
 
 The lower limit for the query. If the analysis returns a value that is below this range, the deployment is considered a failure, and a rollback is triggered. The rollback can happen either manually or automatically depending on how you configured `strategies.<strategyName>.<strategy>.steps.analysis.rollBackMode`.
 
 If the query returns a value that falls within the range between the `upperLimit` and `lowerLimit` after all the runs of the query, the query is considered a success.
 
-#### `analysis.queries.queryTemplate`
+##### `analysis.queries.queryTemplate`
 
 ```yaml
 analysis: # Define queries and thresholds used for automated analysis
