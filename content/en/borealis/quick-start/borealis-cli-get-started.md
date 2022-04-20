@@ -55,10 +55,9 @@ If you choose to install the CLI binary manually, you must download a specific r
    ```
    The command returns your `PATH`, which should now include `/usr/local/bin/`.
 
-5. Move AVM to `/usr/local/bin`, which is on your `PATH`. For example (on macOS):
+5. Rename the AVM binary to `avm` and move it to `/usr/local/bin`, which is on your `PATH`. For example (on macOS):
 
    ```bash
-   # Moves AVM to /usr/local/bin, which is on your PATH
    mv avm-darwin-amd64 /usr/local/bin/avm
    ```
 
