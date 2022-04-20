@@ -3,6 +3,7 @@ title: "Project Borealis"
 exclude_search: true
 aliases:
   - /armory-deployments/
+  - /armory-enterprise/armory-cloud-preview/
 ---
 
 Project Borealis uses Armory's hosted cloud services to deploy Kubernetes applications to your clusters. When you use the Borealis CLI to deploy your application, the CLI sends the deployment request to Armory's hosted cloud services. In turn, the cloud services communicate with your Kubernetes cluster using Armory's Remote Network Agent (RNA) to initiate the deployment. For a more in-depth look at Borealis, see [Architecture]({{< ref "architecture-borealis" >}}).
