@@ -5,5 +5,7 @@ version: 01.00.21
 
 ---
 
-- Fixes an increment in CPU when using tokenCommand setting for authenticating GRPC requests.
-- Fixes an error introduced in the previous version (1.0.20) that could cause an interrupted connection to not be able to recover.
+### Fixes
+
+* Fixes increased CPU usage when using the `tokenCommand` setting for authenticating GRPC requests.
+* Fixes an error introduced in the previous version (1.0.20) that could cause disconnections from clouddriver not able to recover under certain conditions.
