@@ -2,7 +2,7 @@
 title: Get Started with the CLI to Deploy Apps
 linktitle: CLI
 description: >
-  The Borealis CLI is a CLI for interacting with Project Borealis. With the CLI, you can integrate Borealis into your existing CI/CD tooling. Start by familiarizing yourself with the Borealis CLI and its workflow.
+  Use the Borealis CLI to interact with Project Borealis. You can integrate Borealis into your existing CI/CD tooling. Start by familiarizing yourself with the Borealis CLI and its workflow.
 exclude_search: true
 weight: 5
 ---
@@ -19,13 +19,17 @@ Note that you need a device that can support OTP two-factor authentication, such
 
 ## Install the Borealis CLI
 
-The automated install involves installing an Armory Version Manager (AVM) that handles downloading, installing, and updating the Borealis CLI. Using this install method gives you  to way to keep the Borealis CLI updated as well as the ability to switch versions from the command line. The manual installation method involves downloading a specific release from GitHub and installing that release. Armory recommends using the automated install method.
+The CLI binary is called `armory`. You can install the CLI using the Armory Version Manager (AVM) or you can install the `armory` binary manually.
+
+Armory recommends installing the AVM because you can use it to quickly and easily download, install, and update the CLI. The AVM provides additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
+
+If you choose to install the CLI binary manually, you must download a specific release binary from GitHub and install that release. You have to repeat the installation process each time you upgrade the CLI version.
 
 {{< tabs name="borealis-cli-install" >}}
 
 {{% tabbody name="Automated (Recommended)" %}}
 
-1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo]((https://github.com/armory/avm/releases/) or use the following command:
+1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo](https://github.com/armory/avm/releases/) or use the following command:
 
    ```bash
    wget https://github.com/armory/avm/releases/latest/download/avm-<os>-<architecture>
@@ -51,10 +55,9 @@ The automated install involves installing an Armory Version Manager (AVM) that h
    ```
    The command returns your `PATH`, which should now include `/usr/local/bin/`.
 
-5. Move AVM to `/usr/local/bin`, which is on your `PATH`. For example (on macOS):
+5. Rename the AVM binary to `avm` and move it to `/usr/local/bin`, which is on your `PATH`. For example (on macOS):
 
    ```bash
-   # Moves AVM to /usr/local/bin, which is on your PATH
    mv avm-darwin-amd64 /usr/local/bin/avm
    ```
 
@@ -88,7 +91,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
       ```
 
     1. In the file, find the line for the `PATH` that your resource file exports. They follow the format `export PATH=$HOME/bin:/usr/local/bin:$PATH`.
-    2. Insert the path provided by AVM (such as `/Users/brianle/.avm/bin`)before the ending `$PATH`. The line should look similar to this:
+    2. Insert the path provided by AVM (such as `/Users/brianle/.avm/bin`) before the ending `$PATH`. The line should look similar to this:
 
        ```bash
        export PATH=$HOME/bin:/usr/local/bin::/Users/milton/.avm/bin:$PATH
@@ -107,7 +110,7 @@ The automated install involves installing an Armory Version Manager (AVM) that h
 
    The command returns basic information about the  Borealis CLI, including available commands.
 
-For AVM or the Borealis CLI, you can use the `--help` option for more information about specific commands.
+For the AVM or the CLI, you can use the `-h` flag for more information about specific commands.
 
 {{% /tabbody %}}
 
@@ -134,15 +137,19 @@ For AVM or the Borealis CLI, you can use the `--help` option for more informatio
 
 {{< /tabs >}}
 
+
+See the {{< linkWithTitle "avm-cheat.md" >}} and {{< linkWithTitle "cli-cheat.md" >}} pages for more information on AVM and CLI commands.
+
+
 ## Manually deploy apps using the CLI
 
 >Project Borealis manages your Kubernetes deployments using ReplicaSet resources. During the initial deployment of your application using Project Borealis, the underlying Kubernetes deployment object is deleted in a way that it leaves behind the ReplicaSet and pods so that there is no actual downtime for your application. These are later deleted when the deployment succeeds.
 
-Before you can deploy, make sure that you have the client ID and secret for your deployment target available. These are used to authenticate Armory's hosted deployment services with the target cluster. The credentials were created and tied to your deployment target as part of the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}) guide.
+Before you can deploy, make sure that you have the Client ID and Client Secret for your deployment target available. These are used to authenticate Armory's hosted deployment services with the target cluster. The credentials were created and tied to your deployment target as part of the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}) guide.
 
-Since you are using the Borealis CLI, you do not need to have service account credentials for authenticating your CLI to the deployment services. Instead, you will log in manually with your user account.
+Since you are using the Borealis CLI, you do not need to have service account credentials for authenticating your CLI to the deployment services. Instead, you log in manually with your user account.
 
-If this is the first deployment of your app, Borealis automatically deploys the app to 100% of the cluster since there is no previous version. Subsequent deployments of this app follow the steps defined in your deployment file.
+**If this is the first deployment of your app, Borealis automatically deploys the app to 100% of the cluster since there is no previous version.** Subsequent deployments of this app follow the steps defined in your deployment file.
 
 1. Log in to Armory's hosted deployment services from the CLI:
 
