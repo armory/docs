@@ -29,7 +29,7 @@ If you choose to install the CLI binary manually, you must download a specific r
 
 {{% tabbody name="Automated (Recommended)" %}}
 
-1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo]((https://github.com/armory/avm/releases/) or use the following command:
+1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo](https://github.com/armory/avm/releases/) or use the following command:
 
    ```bash
    wget https://github.com/armory/avm/releases/latest/download/avm-<os>-<architecture>
