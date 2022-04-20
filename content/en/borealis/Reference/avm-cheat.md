@@ -58,7 +58,7 @@ Lists the available CLI versions.
 
 ## Install or update the CLI
 
-Install an Armory CLI version. If the version is omitted, the AVM installs the latest version and links to it as default.
+Install an Armory CLI version and create a symlink. If the version is omitted, the AVM installs the latest version.
 
 **Usage**
 
@@ -68,14 +68,55 @@ Install an Armory CLI version. If the version is omitted, the AVM installs the l
 
 - ` -d, --default`: Set version as default
 
-## Use the specified CLI version
+**Examples**
 
-Set the specified CLI version as default. This changes the symlink but does not update your path.
+To upgrade to a specific version:
+
+```bash
+avm install v0.24.0
+```
+
+To upgrade to the latest version:
+
+```bash
+avm install
+```
+
+## Set the default CLI version
+
+Set the specified CLI version as default. This command first checks to make sure the specified version has been installed. Then it updates the symlink.
 
 **Usage**
 
 `avm use [version] [flags]`
 
+**Example**
+
+Get a list of installed versions:
+
+```bash
+avm list
+```
+
+Output is similar to:
+
+```bash
+v0.19.0
+v0.19.1
+v0.25.1 [default]
+```
+
+Set version "v0.19.1" as default:
+
+```bash
+avm use v0.19.1
+```
+
+Output is similar to:
+
+```bash
+using version: v0.19.1
+```
 
 ## Get the AVM version
 

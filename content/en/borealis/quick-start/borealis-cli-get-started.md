@@ -2,7 +2,7 @@
 title: Get Started with the CLI to Deploy Apps
 linktitle: CLI
 description: >
-  The Borealis CLI is a CLI for interacting with Project Borealis. With the CLI, you can integrate Borealis into your existing CI/CD tooling. Start by familiarizing yourself with the Borealis CLI and its workflow.
+  Use the Borealis CLI to interact with Project Borealis. You can integrate Borealis into your existing CI/CD tooling. Start by familiarizing yourself with the Borealis CLI and its workflow.
 exclude_search: true
 weight: 5
 ---
@@ -24,7 +24,6 @@ The CLI binary is called `armory`. You can install the CLI using the Armory Vers
 Armory recommends installing the AVM because you can use it to quickly and easily download, install, and update the CLI. The AVM provides additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
 
 If you choose to install the CLI binary manually, you must download a specific release binary from GitHub and install that release. You have to repeat the installation process each time you upgrade the CLI version.
-
 
 {{< tabs name="borealis-cli-install" >}}
 
@@ -112,7 +111,7 @@ If you choose to install the CLI binary manually, you must download a specific r
 
    The command returns basic information about the  Borealis CLI, including available commands.
 
-For AVM or the Borealis CLI, you can use the `--help` option for more information about specific commands.
+For the AVM or the CLI, you can use the `--help` option for more information about specific commands.
 
 {{% /tabbody %}}
 
@@ -140,17 +139,18 @@ For AVM or the Borealis CLI, you can use the `--help` option for more informatio
 {{< /tabs >}}
 
 
+See the {{< linkWithTitle "avm-cheat.md" >}} and {{< linkWithTitle "cli-cheat.md" >}} pages for more information on AVM and CLI commands.
 
 
 ## Manually deploy apps using the CLI
 
 >Project Borealis manages your Kubernetes deployments using ReplicaSet resources. During the initial deployment of your application using Project Borealis, the underlying Kubernetes deployment object is deleted in a way that it leaves behind the ReplicaSet and pods so that there is no actual downtime for your application. These are later deleted when the deployment succeeds.
 
-Before you can deploy, make sure that you have the client ID and secret for your deployment target available. These are used to authenticate Armory's hosted deployment services with the target cluster. The credentials were created and tied to your deployment target as part of the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}) guide.
+Before you can deploy, make sure that you have the Client ID and Client Secret for your deployment target available. These are used to authenticate Armory's hosted deployment services with the target cluster. The credentials were created and tied to your deployment target as part of the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}) guide.
 
-Since you are using the Borealis CLI, you do not need to have service account credentials for authenticating your CLI to the deployment services. Instead, you will log in manually with your user account.
+Since you are using the Borealis CLI, you do not need to have service account credentials for authenticating your CLI to the deployment services. Instead, you log in manually with your user account.
 
-If this is the first deployment of your app, Borealis automatically deploys the app to 100% of the cluster since there is no previous version. Subsequent deployments of this app follow the steps defined in your deployment file.
+**If this is the first deployment of your app, Borealis automatically deploys the app to 100% of the cluster since there is no previous version.** Subsequent deployments of this app follow the steps defined in your deployment file.
 
 1. Log in to Armory's hosted deployment services from the CLI:
 
