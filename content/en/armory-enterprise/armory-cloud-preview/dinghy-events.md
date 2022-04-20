@@ -1,5 +1,6 @@
 ---
 title: Dinghy Events
+draft: true
 description: >
   Events provide end users access to runtime information about their pipelines-as-code configurations by adding a new tab to the Armory Cloud UI.
 ---

@@ -1,6 +1,7 @@
 ---
 title: Cloud Admin Quickstart  (Preview)
 description: If this is your first time using Armory Cloud Console, start here. It walks you through using the Armory Cloud Console, from first log in to granting your app developers access to Armory Cloud.
+draft: true
 aliases:
   - /docs/armory-cloud-admin/admin-cloud-quickstart/
 ---
