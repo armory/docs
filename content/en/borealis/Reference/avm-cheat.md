@@ -12,8 +12,8 @@ The Armory Version Manager (AVM) binary is `avm`. Usage is `avm [command]`. Run 
 
 **Global Flags**
 
-- `-h, --help`: Help.
-- `-v, --verbose`: Verbose output.
+- `-h, --help`: Help
+- `-v, --verbose`: Verbose output
 
 ## AVM autocomplete
 
@@ -25,12 +25,12 @@ Generate the autocompletion script for `avm` for the specified shell.
 
 **Available Commands**
 
-- bash
-- fish
-- powershell
-- zsh
+- `bash`
+- `fish`
+- `powershell`
+- `zsh`
 
-Use `avm completion [command] --help` for more information about a command.
+See each available command's help for details on how to use the generated script.
 
 ## AVM help
 
@@ -42,7 +42,7 @@ Lists the usage and available commands.
 
 ## List CLI versions
 
-### list
+### `list`
 
 Lists the installed CLI versions.
 
@@ -50,7 +50,7 @@ Lists the installed CLI versions.
 
 `avm list [flags]`
 
-### listall
+### `listall`
 
 Lists the available CLI versions.
 
@@ -120,6 +120,11 @@ using version: v0.19.1
 
 ## Get the AVM version
 
+This command returns the Armory Version Manager version. Use [`armory version`]({{< ref "cli-cheat#get-the-cli-version">}}) to determine the CLI version you are using.
+
 **Usage**
 
 `avm version [flags]`
+
+</br>
+</br>

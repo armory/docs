@@ -12,9 +12,9 @@ The CLI binary is `armory`. Usage is `armory [command]`. Run `armory help` to se
 
 **Global Flags**
 
-- `-h, --help`: Help.
+- `-h, --help`: Help
 - `-o, --output`: Set the output type. Available options are `json` and `yaml`. The default is plain text.
-- `-v, --verbose`: Verbose output.
+- `-v, --verbose`: Verbose output
 
 ## CLI autocomplete
 
@@ -26,12 +26,12 @@ Generate the autocompletion script for `armory` for the specified shell.
 
 **Available Commands**
 
-- bash
-- fish
-- powershell
-- zsh
+- `bash`
+- `fish`
+- `powershell`
+- `zsh`
 
-Use `armory completion [command] --help` for more information about a command.
+See each available command's help for details on how to use the generated script.
 
 ## CLI help
 
@@ -82,7 +82,7 @@ When you execute the `armory logout` command, a prompt appears for user confirma
 - `-a, --authToken`: (Optional) The authentication token to use rather than `clientId` and `clientSecret` or user login.
 - `-c, --clientId`: (Optional) The Client ID for connecting to Project Borealis.
 - `-f, --file`: (Required) The path to the deployment file.
-- `-n, --application`: (Optional) The application name for deployment.
+- `-n, --application`: (Optional) The app name for deployment.
 - `-s, --clientSecret`: (Optional) The Client Secret for connecting to Project Borealis.
 
 Use only one of the following ways to authenticate your deployment: `armory login` **or** `--clientId` and `--clientSecret` **or** `--authToken`.

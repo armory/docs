@@ -2,11 +2,13 @@ API
 Armory
 Armory Agent
 Armory Operator
+Armory Version Manager
 artifactory
 Artifactory
 Astra
 AWS
 Bitbucket
+Borealis
 CLI
 clouddriver
 Clouddriver
@@ -61,6 +63,8 @@ namespaces
 OpenShift
 Orca
 Postgres
+powershell
+Project Borealis
 Prometheus
 rawdata
 Redis
@@ -82,6 +86,7 @@ tabbody
 yml
 .yaml
 yaml
+zsh
 {{< heading "prereq" >}}
 {{% heading "prereq" %}}
 {{% heading "nextSteps" %}}

@@ -110,7 +110,7 @@ If you choose to install the CLI binary manually, you must download a specific r
 
    The command returns basic information about the  Borealis CLI, including available commands.
 
-For the AVM or the CLI, you can use the `--help` option for more information about specific commands.
+For the AVM or the CLI, you can use the `-h` flag for more information about specific commands.
 
 {{% /tabbody %}}
 

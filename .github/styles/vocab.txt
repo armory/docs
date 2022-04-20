@@ -2,6 +2,7 @@ API
 Armory
 Armory Agent
 Armory Operator
+Armory Version Manager
 artifactory
 Artifactory
 Astra
@@ -63,7 +64,9 @@ namespaces
 OpenShift
 Orca
 Postgres
+powershell
 Prometheus
+Project Borealis
 rawdata
 Redis
 Release Notes
@@ -85,6 +88,7 @@ tabbody
 yml
 .yaml
 yaml
+zsh
 {{< heading "prereq" >}}
 {{% heading "prereq" %}}
 {{% heading "nextSteps" %}}
