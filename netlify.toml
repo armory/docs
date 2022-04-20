@@ -14,6 +14,11 @@
 
 # section redirects
 [[redirects]]
+  from = "/armory-enterprise/armory-cloud-preview/*"
+  to = "/borealis/"
+  force = "true"
+
+[[redirects]]
   from = "/overview/*"
   to = "/armory-enterprise/overview/:splat"
   status = 301
@@ -102,9 +107,7 @@
   from = "/ae/*"
   to = "/armory-enterprise/:splat"
 
-[[redirects]]
-  from = "/armory-enterprise/armory-cloud-preview/*"
-  to = "/borealis/"
+
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
