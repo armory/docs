@@ -102,6 +102,9 @@
   from ="/ae/*"
   to = "/armory-enterprise/:splat"
 
+[[redirects]]
+  from ="/armory-enterprise/armory-cloud-preview/*"
+  to ="/borealis/"
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
