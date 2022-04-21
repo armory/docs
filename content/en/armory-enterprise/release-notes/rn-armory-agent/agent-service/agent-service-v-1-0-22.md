@@ -5,4 +5,5 @@ version: 01.00.22
 
 ---
 
-Fixes a nil pointer error that would cause Agent to restart if there was a disconnect and reconnect while agent startup hadn't finished.
+### Fixes
+* A nil pointer error that would cause Agent to restart if there was a disconnect and reconnect while agent startup hasn't finished.
