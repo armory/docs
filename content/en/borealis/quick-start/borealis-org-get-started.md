@@ -23,7 +23,7 @@ Every user who wants to deploy to your clusters using Borealis must have an acco
 
 <!--There are two ways to add a deployment target to Borealis. If your deployment target is accessible through the public internet, you can use the **Configuration UI** to [add the target to Borealis](#add-the-cluster-to-borealis) If the cluster is not accessible, -->
 
-You need to manually install the Remote Network Agent (RNA) to the target deployment cluster. Borealis uses the RNA on your deployment target to communicate with Armory's hosted cloud services and to initiate the deployment. 
+You need to manually install the Remote Network Agent (RNA) to the target deployment cluster. Borealis uses the RNA on your deployment target to communicate with Armory's hosted cloud services and to initiate the deployment.
 
 ### Create client credentials
 
@@ -57,7 +57,7 @@ If your cluster is accessible through the public internet, start here. If your c
 1. Navigate to the [**Deployment Targets > Kubernetes**](https://console.cloud.armory.io/configuration/accounts/kubernetes) page in the **Configuration UI**.
 2. Add a new Kubernetes account and supply the following information:
 
-   - **Account Name**: (Required) This is how the account is labeled in the **Configuration** and **Armory Deployments Status UI**. Use a descriptive name. It is the equivalent of the `agentIdentifier`, so use the same value for clusters that are connected manually by installing an RNA. 
+   - **Account Name**: (Required) This is how the account is labeled in the **Configuration** and **Armory Deployments Status UI**. Use a descriptive name. It is the equivalent of the `agentIdentifier`, so use the same value for clusters that are connected manually by installing an RNA.
    - **Kubeconfig**: (Optional) The kubeconfig used to access the cluster. Provide this if you did not install the RNA manually and want Borealis to use the kubeconfig to access the cluster.
    - **Context**: (Optional) The context used to access the cluster. When no context is configured for an account the current-context in your kubeconfig is assumed. For more information, see [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-cluster-api/configure-access-multiple-clusters/).
    - **Remote Network Agent**: (Optional) The RNA that is installed on the cluster. This is required if the cluster is not accessible through the public internet.
@@ -65,7 +65,7 @@ If your cluster is accessible through the public internet, start here. If your c
 
 -->
 
-## Next steps
+## {{%  heading "nextSteps" %}}
 
 Now that Borealis is configured for your deployment target, you can either try out deploying a sample app or invite more users.
 
