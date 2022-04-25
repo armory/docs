@@ -215,7 +215,7 @@ Deployment to production proceeds only if the `Run-Integration-Tests` callback s
 
 ### Blue/green strategy
 
-You created a webhook that runs a security scan and named it `security-scan`. You have a blue/green deployment strategy in which you want to run that security scan on the preview version of your app before switching traffic to it. You add the `runWebhook` section to the `redirectTrafficAfter` section in your blue/green strategy configuration.
+You created a `security-scan` webhook to scan your deployed app. You have a blue/green deployment strategy in which you want to run that security scan on the preview version of your app before switching traffic to it. You add the `runWebhook` section to the `redirectTrafficAfter` section in your blue/green strategy configuration.
 
 {{< prism lang="yaml" line-numbers="true" line="15-16" >}}
 strategies:
@@ -238,6 +238,20 @@ strategies:
 
 ### Canary strategy
 
+You created a `system-health` webhook and want to trigger it as part of your canary strategy. Add the `runWebhook` section to your `steps` configuration.
+
+{{< prism lang="yaml" line-numbers="true" line="15-16" >}}
+strategies:
+  canary-rolling:
+    canary:
+      steps:
+        - setWeight:
+            weight: 25
+        - runWebhook:
+            name: system-health
+            context:
+              environment: staging
+{{< /prism >}}
 
 
 ## {{% heading "nextSteps" %}}
