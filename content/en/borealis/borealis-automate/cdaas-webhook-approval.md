@@ -61,7 +61,33 @@ flowchart TB
 - If an `afterDeployment` webhook callback returns failure, deployment is canceled to all environments that depend on the current environment, _but the current environment is not rolled back_.
 {{% /alert %}}
 
-## How to configure a webhook
+## Requirements for your webhook and callback
+
+- The webhook must retrieve the callback URI from the payload or query parameters.
+- The callback must use Bearer authorization and include a success value and optional message in the body.
+
+**Retrieve an OAUTH token to use in your callback**
+
+```bash
+curl --request POST \
+  --url https://auth.cloud.armory.io/oauth/token \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data 'data=audience=https://api.cloud.armory.io&grant_type=client_credentials&client_id=$BOREALIS_CLIENT_ID&client_secret=$BOREALIS_CLIENT_SECRET'
+```
+
+**Callback format**
+
+```bash
+curl --request POST \
+  --url 'https://$CALLBACK_URI' \
+  --header 'Authorization: Bearer $OAUTH_TOKEN' \
+  --header 'Content-Type: application/json' \
+  --data '{"success": true, "mdMessage": "Webhook successful"}'
+```
+
+Your callback must send `success: true` or `success: false` in the body. Borealis looks for the `success` value to determine the webhook's success or failure. `mdMessage` should contain a user-friendly message that Borealis displays in the UI and writes to logs.
+
+## How to configure a webhook in your deployment file
 
 In your deployment file, you configure your webhook by adding a top-level `webhooks` section with the following information:
 
@@ -84,7 +110,7 @@ webhooks:
 
 - `name`: the unique name of your webhook
   - `method`: (Required) REST API method type of the webhook
-  - `uriTemplate`: (Required) webhook URL; supports placeholders that are replaced at runtime
+  - `uriTemplate`: (Required) webhook URL; templating is supported in the URI.
   - `networkMode`: (Required) `direct` or `remoteNetworkAgent`; `direct` means a direct connection to the internet; if your webhook is not internet-accessible, use the `remoteNetworkAgent` as a proxy.
   - `agentIdentifier`: (Optional) Use when `networkMode` is `remoteNetworkAgent`; the Remote Network Agent identifier to use as a proxy; the identifier must match the **Agent Identifier** value listed on the **Agents** UI screen; if not specified, Borealis uses the Remote Network Agent associated with the environment account.
   - `headers`: (Optional) Request headers; the `Authorization` header is required if your webhook requires authorization.
@@ -95,8 +121,6 @@ webhooks:
 **Callback URI**
 
 You must pass the callback URI as `{{armory.callbackUri}}/callback`. Borealis generates the value for `armory.callbackUri` and fills it in at runtime.
-
->Your callback must send `success: true` or `success: false` in its request body. Borealis looks for the `success` value to determine the webhook's success or failure.
 
 ### Configuration examples
 
