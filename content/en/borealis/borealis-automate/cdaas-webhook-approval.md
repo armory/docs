@@ -66,7 +66,9 @@ flowchart TB
 - The webhook must retrieve the callback URI from the payload or query parameters.
 - The callback must use Bearer authorization and include a success value and optional message in the body.
 
-**Retrieve an OAUTH token to use in your callback**
+### Retrieve an OAUTH token to use in your callback
+
+Request format:
 
 ```bash
 curl --request POST \
@@ -75,7 +77,18 @@ curl --request POST \
   --data 'data=audience=https://api.cloud.armory.io&grant_type=client_credentials&client_id=$BOREALIS_CLIENT_ID&client_secret=$BOREALIS_CLIENT_SECRET'
 ```
 
-**Callback format**
+Example response:
+
+```json
+{
+  "access_token": "<very long access token>",
+  "scope": "manage:deploy read:infra:data exec:infra:op read:artifacts:data",
+  "expires_in": 86400,
+  "token_type": "Bearer"
+}
+```
+
+### Callback format
 
 ```bash
 curl --request POST \

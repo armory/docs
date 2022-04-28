@@ -284,3 +284,10 @@ mkdir ~/.armory/credentials
 ```
 
 Make sure you are running the lastest version of the CLI.
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "deploy-demo-app.md" >}}
+
+
+<br>

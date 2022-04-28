@@ -91,6 +91,10 @@ You can run the `destroy.sh` script to uninstall Prometheus and the Remote Netwo
 
 ## Troubleshooting
 
+
+@TODO need to add where to look when a deployment fails - logs??
+
+
 ### Deployment times out
 
 Because Borealis deploys to 100% of nodes on initial deployment, you may run out of space. Increasing the number of nodes should solve the issue.
