@@ -85,7 +85,7 @@ curl --request POST \
   --data '{"success": true, "mdMessage": "Webhook successful"}'
 ```
 
-Your callback must send `success: true` or `success: false` in the body. Borealis looks for the `success` value to determine the webhook's success or failure. `mdMessage` should contain a user-friendly message that Borealis displays in the UI and writes to logs.
+Borealis looks for `success` value of `true` or `false` to determine the webhook's success or failure. `mdMessage` should contain a user-friendly message for Borealis to display in the UI and write to logs.
 
 ## How to configure a webhook in your deployment file
 
