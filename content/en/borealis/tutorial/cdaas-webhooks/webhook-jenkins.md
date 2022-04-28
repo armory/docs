@@ -1,5 +1,5 @@
 ---
-title: Jenkins Webhook Approval Tutorial
+title: Jenkins Webhook-Based Approvals Tutorial
 linktitle: Jenkins
 exclude_search: true
 description: >

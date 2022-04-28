@@ -1,13 +1,13 @@
 ---
-title: Webhook-Based Approval
-linktitle: Webhooks
+title: Webhook-Based Approvals
+linktitle: Webhook-Based Approvals
 exclude_search: true
 no_list: true
 description: >
-  Integrate webhook-based approval into your app deployment.
+  Integrate webhook-based approvals into your app deployment process.
 ---
 
-## When you should use webhook-based approval
+## When you should use webhook-based approvals
 
 You can think of webhook-based approvals as a generic extensibility layer that enables you to call any API in any internet-accessible system. You can use a webhook to obtain a decision from a process that is external to Borealis.  
 
@@ -106,7 +106,7 @@ The first example configures a GitHub webhook that uses token authorization, wit
 webhooks:
   - name: myWebhook
     method: POST
-    uriTemplate: https://api.github.com/repos/aimeeu/borealis-demo/dispatches
+    uriTemplate: https://api.github.com/repos/armory/docs-cdaas-demo/dispatches
     networkMode: direct
     headers:
       - key: Authorization
@@ -258,7 +258,7 @@ strategies:
 
 ## {{% heading "nextSteps" %}}
 
-For in-depth examples, see:
+For in-depth examples, see the following tutorials:
 
 * {{< linkWithTitle "webhook-github.md" >}}
 * {{< linkWithTitle "webhook-jenkins.md" >}}

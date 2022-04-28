@@ -1,5 +1,5 @@
 ---
-title: AWS Lambda Webhook Approval Tutorial
+title: AWS Lambda Webhook-Based Approvals Tutorial
 linktitle: AWS Lambda
 exclude_search: true
 description: >

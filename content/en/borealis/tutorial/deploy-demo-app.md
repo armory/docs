@@ -1,9 +1,9 @@
 ---
-title: Deploy a Demo App
+title: Deploy a Demo App Tutorial
 linktitle: Deploy a Demo App
 exclude_search: true
 description: >
-  Tutorial
+  Learn how to deploy a demo app to a Kubernetes cluster using Project Borealis.
 ---
 
 ## Objectives
@@ -17,9 +17,9 @@ In this tutorial, you configure your Kubernetes environment for the demo app and
 * You have [installed the `armory` CLI]({{< ref "borealis-cli-get-started" >}}) and [Helm](https://helm.sh/docs/intro/install/).
 * You have access to a GitHub account so you can fork the demo project.
 
-## 1. Clone the repo
+## 1. Fork and clone the repo
 
-Clone the [demo repo](https://github.com/armory/docs-cdaas-demo) to the machine where you installed `kubectl` and the `armory` CLI.
+Fork and then clone the [demo repo](https://github.com/armory/docs-cdaas-demo) to the machine where you installed `kubectl` and the `armory` CLI.
 
 The demo deploys the following:
 
@@ -94,5 +94,10 @@ You can run the `destroy.sh` script to uninstall Prometheus and the Remote Netwo
 ### Deployment times out
 
 Because Borealis deploys to 100% of nodes on initial deployment, you may run out of space. Increasing the number of nodes should solve the issue.
+
+## {{% heading "nextSteps" %}}
+
+* [Introductionto webhook-based approvals]({{< ref "cdaas-webhook-approval" >}})
+
 
 <br>
