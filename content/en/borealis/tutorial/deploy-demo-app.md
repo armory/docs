@@ -97,7 +97,7 @@ Because Borealis deploys to 100% of nodes on initial deployment, you may run out
 
 ## {{% heading "nextSteps" %}}
 
-* [Introductionto webhook-based approvals]({{< ref "cdaas-webhook-approval" >}})
+* [Introduction to webhook-based approvals]({{< ref "cdaas-webhook-approval" >}}) and [detailed tutorials]({{< ref "cdaas-webhooks" >}}).
 
 
 <br>
