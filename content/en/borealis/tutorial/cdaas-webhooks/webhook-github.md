@@ -32,7 +32,7 @@ You need to create credentials that enable GitHub and Borealis to connect to eac
 
    Replace `<github_token_value>` with your token value. You use this secret when configuring your webhook in your deployment file.
 
-1. Create a new Borealis credential for your webhook callback to use to authenticate to Borealis. In the Armory Cloud console, go to the **Access Management** > **Client Credentials** screen. Click the **New Credential** button. On the **Create New Client Credential** screen:
+1. Create a new Borealis credential for your webhook callback to use to authenticate to Borealis. In the Armory Cloud Console, go to the **Access Management** > **Client Credentials** screen. Click the **New Credential** button. On the **Create New Client Credential** screen:
 
    - **Name**: `github_webhooks`
    - **Preconfigured Scope Group**: select `Deployments using Spinnaker`
@@ -41,11 +41,11 @@ You need to create credentials that enable GitHub and Borealis to connect to eac
 
 1. Create two GitHub repo secrets in your fork of the `docs-cdaas-demo` repo. See the GitHub [Creating encrypted secrets for a repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) guide for instructions. Your webhook callback uses the value of these secrets to authenticate to Borealis. Create your repo secrets with the following names and values:
 
-    1. **Name**: BOREALIS_CLIENT_ID **Value**: `<github_webhooks_client_id>`
+    1. **Name**: CDAAS_CLIENT_ID **Value**: `<github_webhooks_client_id>`
 
        Replace `<github_webhooks_client_id>` with the value of the Client ID you created in the previous step.
 
-    1. **Name**: BOREALIS_CLIENT_SECRET **Value**: `<github_webhooks_client_secret>`
+    1. **Name**: CDAAS_CLIENT_SECRET **Value**: `<github_webhooks_client_secret>`
 
        Replace `<github_webhooks_client_secret>` with the value of the Client Secret you created in the previous step.
 
@@ -78,7 +78,7 @@ jobs:
           url: "https://auth.cloud.armory.io/oauth/token"
           method: "POST"
           customHeaders: '{ "Content-Type": "application/x-www-form-urlencoded" }'
-          data: 'audience=https://api.cloud.armory.io&grant_type=client_credentials&client_id=${{ secrets.BOREALIS_CLIENT_ID }}&client_secret=${{ secrets.BOREALIS_CLIENT_SECRET }}'
+          data: 'audience=https://api.cloud.armory.io&grant_type=client_credentials&client_id=${{ secrets.CDAAS_CLIENT_ID }}&client_secret=${{ secrets.CDAAS_CLIENT_SECRET }}'
       - name: callCallback
         id: callCallback
         uses: fjogeleit/http-request-action@master
@@ -97,7 +97,7 @@ Note:
 * `on.repository_dispatch.types`: User-supplied event type name. You use this name in the payload when you call this webhook event from Borealis.
 * The `getToken` step fetches an OAUTH token from Borealis. The format for this API call is defined in [Retrieve an OAUTH token to use in your callback]({{< ref "cdaas-webhook-approval#retrieve-an-oauth-token-to-use-in-your-callback">}}). The callback needs this OAUTH token to authenticate with Borealis.
 
-   - In the `data` payload, you use the `BOREALIS_CLIENT_ID` and `BOREALIS_CLIENT_SECRET` GitHub repo secrets you created in the [Create credentials](#create-credentials) section.
+   - In the `data` payload, you use the `CDAAS_CLIENT_ID` and `CDAAS_CLIENT_SECRET` GitHub repo secrets you created in the [Create credentials](#create-credentials) section.
 
 * The `callCallback` step sends request with workflow results to Borealis. The format for this API call is defined in [Callback format]({{< ref "cdaas-webhook-approval#callback-format">}}).
 
@@ -260,7 +260,7 @@ jobs:
           url: "https://auth.cloud.armory.io/oauth/token"
           method: "POST"
           customHeaders: '{ "Content-Type": "application/x-www-form-urlencoded" }'
-          data: 'audience=https://api.cloud.armory.io&grant_type=client_credentials&client_id=${{ secrets.BOREALIS_CLIENT_ID }}&client_secret=${{ secrets.BOREALIS_CLIENT_SECRET }}'
+          data: 'audience=https://api.cloud.armory.io&grant_type=client_credentials&client_id=${{ secrets.CDAAS_CLIENT_ID }}&client_secret=${{ secrets.CDAAS_CLIENT_SECRET }}'
       - name: callCallback
         id: callCallback
         uses: fjogeleit/http-request-action@master
@@ -284,7 +284,7 @@ Deploy by running `armory start deploy -f deploy-webhook.yml`. Then check deploy
 
 ## Troubleshooting
 
-@TODO need to add where to look when a webhook fails - GitHub Actions tab to see if GH got the call? What if GH didn't get the call? What if the issue is on Borealis end? 
+@TODO need to add where to look when a webhook fails - GitHub Actions tab to see if GH got the call? What if GH didn't get the call? What if the issue is on Borealis end?
 
 ### `404: Not Found`
 
