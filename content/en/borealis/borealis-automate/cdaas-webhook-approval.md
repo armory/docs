@@ -299,4 +299,3 @@ For in-depth examples, see the following tutorials:
 
 * {{< linkWithTitle "webhook-github.md" >}}
 * {{< linkWithTitle "webhook-jenkins.md" >}}
-* {{< linkWithTitle "webhook-lambda.md" >}}
