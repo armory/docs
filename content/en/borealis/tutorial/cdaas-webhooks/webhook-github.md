@@ -284,16 +284,51 @@ Deploy by running `armory start deploy -f deploy-webhook.yml`. Then check deploy
 
 ## Troubleshooting
 
-@TODO need to add where to look when a webhook fails - GitHub Actions tab to see if GH got the call? What if GH didn't get the call? What if the issue is on Borealis end?
+### Webhook process runs for a long time
 
-### `404: Not Found`
+Check your repo to see if the action is also still running.
+
+* If the action hasn't started, the call to your action wasn't successful. The UI should display an error message with a non-200 HTTP return code when the webhook process times out. In the meantime, check your deployment file to make sure the following fields have the correct values:
+
+   - `uriTemplate`
+   - `networkMode` and optionally `agentIdentifier`
+   - `event_type` in the inline body template
+
+   If you find an error, cancel your deployment before fixing and redeploying.
+
+* If your GitHub action workflow has completed, your workflow failed to trigger the callback to Borealis. Check GitHub's [Monitoring and troubleshooting workflows](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows) for troubleshooting suggestions.
+
+
+### 401 status code
+
+In the UI, you see a `Received non-200 status code: 401` error when you pass invalid credentials. Check that your GitHub access token is valid.
+
+### 404 status code
 
 ```
-404 Not Found: [{"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/repos#create-a-repository-dispatch-event"}]', type='org.springframework.web.client.HttpClientErrorException$NotFound', nonRetryable=false
+404 Not Found: [{"message":"Not Found","documentation_url":"https://docs.github.com/rest"}]
 ```
 
-This is a confusing error that occurs if the user is not authenticated. Make sure you include your GitHub access token in the request header.
+This is a confusing error that occurs when you do not send authorization credentials in the header. Make sure you include your GitHub token in the request header.
+
+{{< prism lang="yaml" >}}
+headers:
+- key: Authorization
+  value: token  {{secrets.github_webhook_token}}
+{{< /prism >}}
 
 
+
+
+
+
+
+
+
+
+
+
+
+<!-- do not delete these. Markdown links used in the content. -->
 
 [Create a repository dispatch event]: https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event
