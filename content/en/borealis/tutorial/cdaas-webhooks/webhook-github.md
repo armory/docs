@@ -13,10 +13,10 @@ This tutorial shows you how to configure webhook-based approvals using GitHub.
 
 ## {{% heading "prereq" %}}
 
-- You have read the webhook-based approvals [introductory page]({{< ref "cdaas-webhooks" >}}).
+- You have read the webhook-based approvals [introductory page]({{< ref "cdaas-webhook-approval" >}}).
 - You are familiar with workflows and webhooks in GitHub.
-  - [Webhooks and events](https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks)
-  - [Workflows]()
+  - [Workflows](https://docs.github.com/en/actions/using-workflows/)
+  - [Webhooks and events](https://docs.github.com/en/developers/webhooks-and-events/webhooks/)
 
 This tutorial assumes you have completed the {{< linkWithTitle "deploy-demo-app.md" >}} guide. You will use the same `docs-cdaas-demo` repo that you forked and cloned as part of that tutorial.
 
@@ -39,7 +39,7 @@ You need to create credentials that enable GitHub and Borealis to connect to eac
 
    Click **Create Credentials**. Copy the **Client ID** and **Client Secret** values for use in the next step.
 
-1. Create two GitHub repo secrets in your fork of the `docs-cdaas-demo` repo. See the GitHub [Creating encrypted secrets for a repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) guide for instructions. Your webhook callback uses the value of these secrets to authenticate to Borealis. Create your repo secrets with the following names and values:
+1. Create two GitHub repo secrets in your fork of the `docs-cdaas-demo` repo. See GitHub's [Creating encrypted secrets for a repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for instructions. Your webhook callback uses the value of these secrets to authenticate to Borealis. Create your repo secrets with the following names and values:
 
     1. **Name**: CDAAS_CLIENT_ID **Value**: `<github_webhooks_client_id>`
 
@@ -111,16 +111,16 @@ Note:
 
 The `docs-cdaas-demo` repo contains a second deployment file called `deploy-webhook.yml` in the root directory. The `webhooks` section is at the bottom of the file.
 
-The `uriTemplate` uses secrets instead of hardcoding the URI. In the Armory Cloud console, got to **Secrets** > **Secrets** and create two new secrets:
+The `uriTemplate` uses secrets instead of hardcoding the URI. If you don't want to create secrets, be sure to change to `uriTemplete` to use your GitHub org and repo. To create secrets using the Armory Cloud console, go to **Secrets** > **Secrets** and create two new secrets:
 
 1. **Name**: `github_org`; **Value**: the name of the GitHub org into which you forked the `docs-cdaas-demo` repo. This is either your business org, like 'armory', or your GitHub username.
 1. **Name**: `github_repo`; **Value**: the name of the GitHub repo into which you forked the `docs-cdaas-demo` repo. This is most likely `docs-cdaas-demo`.
 
-{{< prism lang="yaml" line-numbers="true" line="2, 4, 5, 9, 15-17" >}}
+{{< prism lang="yaml" line-numbers="true" line="2, 5-6, 8-10, 15-20" >}}
 webhooks:
   - name: basicPing
     method: POST
-    # replace this with the URI for your repo
+    # replace this with the URI for your repo if you don't create secrets
     uriTemplate: https://api.github.com/repos/{{secrets.github_org}}/{{secrets.github_repo}}/dispatches
     networkMode: direct
     headers:
@@ -143,10 +143,10 @@ webhooks:
 Note:
 
 * `name`: User-supplied name, in this tutorial `basicPing`; you use this name when you insert configuration to call this webhook.
-* `uriTemplate`: the format for this URI is in GitHub's [Create a repository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event). Since this is a template, you can insert secrets in place of hardcoding parts of the URI.
+* `uriTemplate`: the format for this URI is in GitHub's [Create a repository dispatch event]. Since this is a template, you can insert secrets in place of hardcoding parts of the URI.
 * `networkMode`: `direct` because the webhook endpoint is accessible via the internet
 * `headers`: For the `Authorization` value, use `token #{{secrets.github_webhook_token}}`. The secret name matches the name you used in the [Create credentials](#create-credentials) section.
-* `bodyTemplate.inline`: The format for this is defined in GitHub's [Create a repository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event).
+* `bodyTemplate.inline`: The format for this is defined in GitHub's [Create a repository dispatch event].
 
    - The `event_type` must match the `on.repository_dispatch.types` value in the `basicPing.yml` file.
    - The items in the `client_payload` dictionary depend on the functionality within the `basicPing.yml` file. The `basicPing` workflow looks for `callbackUri`. The `callbackUri` value is always `{{armory.callbackUri}}/callback`. Borealis dynamically generates and fills in `armory.callbackUri` at runtime.
@@ -296,3 +296,4 @@ This is a confusing error that occurs if the user is not authenticated. Make sur
 
 
 
+[Create a repository dispatch event]: https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event

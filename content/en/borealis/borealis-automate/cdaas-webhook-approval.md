@@ -18,7 +18,7 @@ You can think of webhook-based approvals as a generic extensibility layer that e
 - Upgrade a database schema
 - Custom approval process
 
-**Within your canary deployment strategy**
+**Within your deployment strategy**
 
 - Check logs and system health
 - Run custom tests
@@ -26,6 +26,7 @@ You can think of webhook-based approvals as a generic extensibility layer that e
 **After deployment**
 
 - Run integration tests in a staging environment
+- Perform metric tests
 - Run security scanners
 
 ## How webhook-based approval works
@@ -70,33 +71,33 @@ flowchart TB
 
 Request format:
 
-```bash
+{{< prism lang="bash"  line-numbers="true" >}}
 curl --request POST \
   --url https://auth.cloud.armory.io/oauth/token \
   --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data 'data=audience=https://api.cloud.armory.io&grant_type=client_credentials&client_id=$BOREALIS_CLIENT_ID&client_secret=$BOREALIS_CLIENT_SECRET'
-```
+  --data 'data=audience=https://api.cloud.armory.io&grant_type=client_credentials&client_id=$CDAAS_CLIENT_ID&client_secret=$CDAAS_CLIENT_SECRET'
+{{< /prism >}}
 
 Example response:
 
-```json
+{{< prism lang="json"  line-numbers="true" >}}
 {
   "access_token": "<very long access token>",
   "scope": "manage:deploy read:infra:data exec:infra:op read:artifacts:data",
   "expires_in": 86400,
   "token_type": "Bearer"
 }
-```
+{{< /prism >}}
 
 ### Callback format
 
-```bash
+{{< prism lang="bash"  line-numbers="true" >}}
 curl --request POST \
   --url 'https://$CALLBACK_URI' \
   --header 'Authorization: Bearer $OAUTH_TOKEN' \
   --header 'Content-Type: application/json' \
   --data '{"success": true, "mdMessage": "Webhook successful"}'
-```
+{{< /prism >}}
 
 Borealis looks for `success` value of `true` or `false` to determine the webhook's success or failure. `mdMessage` should contain a user-friendly message for Borealis to display in the UI and write to logs.
 
@@ -104,7 +105,7 @@ Borealis looks for `success` value of `true` or `false` to determine the webhook
 
 In your deployment file, you configure your webhook by adding a top-level `webhooks` section with the following information:
 
-{{< prism lang="yaml" >}}
+{{< prism lang="yaml"  line-numbers="true" >}}
 webhooks:
   - name: <webhook-name>
     method: <endpoint-method-type>
@@ -137,9 +138,9 @@ You must pass the callback URI as `{{armory.callbackUri}}/callback`. Borealis ge
 
 ### Configuration examples
 
-The first example configures a GitHub webhook that uses token authorization, with the token value configured as a Borealis secret. This webhook requires the callback URI be passed in the request body.
+The first example configures a GitHub webhook that uses token authorization, with the token value configured as a Borealis secret. This webhook requires the callback URI be passed in the request body. The payload also contains an `environment` context variable that you pass in when invoking the webhook in your deployment file.
 
-{{< prism lang="yaml" line-numbers="true" line="8, 16" >}}
+{{< prism lang="yaml" line-numbers="true" line="8, 16-17" >}}
 webhooks:
   - name: myWebhook
     method: POST
@@ -279,7 +280,7 @@ Since tasks in the `redirectTrafficAfter` section run in parallel, both tasks in
 
 In this example, there is a `system-health` webhook that you want to trigger as part of your canary strategy. Add the `runWebhook` section to your `steps` configuration.
 
-{{< prism lang="yaml" line-numbers="true" line="15-16" >}}
+{{< prism lang="yaml" line-numbers="true" line="7-10" >}}
 strategies:
   canary-rolling:
     canary:
@@ -298,4 +299,4 @@ strategies:
 For in-depth examples, see the following tutorials:
 
 * {{< linkWithTitle "webhook-github.md" >}}
-* {{< linkWithTitle "webhook-jenkins.md" >}}
+
