@@ -88,6 +88,8 @@ tabbody
 yml
 .yaml
 yaml
+YAML
+"yaml"
 zsh
 {{< heading "prereq" >}}
 {{% heading "prereq" %}}
