@@ -4,7 +4,7 @@ linktitle: Webhook-Based Approvals
 exclude_search: true
 no_list: true
 description: >
-  Integrate webhook-based approvals into your app deployment process.
+  Integrate webhook-based approvals into your Project Borealis app deployment process.
 ---
 
 ## When you should use webhook-based approvals
@@ -164,7 +164,7 @@ webhooks:
 {{< /prism >}}
 </br>
 
-The second examples configures a webhook that is not accessible from the internet. The `networkMode` is set to `remoteNetworkAgent` and the `agentIdentifier` specifies which Remote Network Agent to use. The `agentIdentifier` value must match the **Agent Identifier** value listed on the **Agents** UI screen. The Authorization Bearer value is configured as a Borealis secret. Note that in this example, the callback URI is passed in the header.
+The second example configures a webhook that is not accessible from the internet. The `networkMode` is set to `remoteNetworkAgent` and the `agentIdentifier` specifies which Remote Network Agent to use. The `agentIdentifier` value must match the **Agent Identifier** value listed on the **Agents** UI screen. The Authorization Bearer value is configured as a Borealis secret. Note that in this example, the callback URI is passed in the header.
 
 {{< prism lang="yaml" line-numbers="true" line="5-6, 9, 11" >}}
 webhooks:
@@ -253,7 +253,7 @@ Deployment to production proceeds only if the `Run-Integration-Tests` callback s
 
 ### Blue/green strategy
 
-In this example, this is a `security-scan` webhook that scans your deployed app. You have a blue/green deployment strategy in which you want to run that security scan on the preview version of your app before switching traffic to it. You add the `runWebhook` section to the `redirectTrafficAfter` section in your blue/green strategy configuration.
+In this example, there is a `security-scan` webhook that scans your deployed app. You have a blue/green deployment strategy in which you want to run that security scan on the preview version of your app before switching traffic to it. You add the `runWebhook` section to the `redirectTrafficAfter` section in your blue/green strategy configuration.
 
 {{< prism lang="yaml" line-numbers="true" line="15-16" >}}
 strategies:

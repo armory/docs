@@ -3,13 +3,14 @@ title: GitHub Webhook-Based Approvals Tutorial
 linktitle: GitHub
 exclude_search: true
 description: >
-  Learn how to configure webhook-based approvals using GitHub webhooks.
+  Learn how to configure GitHub webhook-based approvals in your Borealis app deployment process.
 ---
 
 ## Objectives
 
 This tutorial shows you how to configure webhook-based approvals using GitHub.
 
+This tutorial assumes you have completed the {{< linkWithTitle "deploy-demo-app.md" >}} guide. You will use the same `docs-cdaas-demo` repo that you forked and cloned as part of that tutorial.
 
 ## {{% heading "prereq" %}}
 
@@ -17,8 +18,6 @@ This tutorial shows you how to configure webhook-based approvals using GitHub.
 - You are familiar with workflows and webhooks in GitHub.
   - [Workflows](https://docs.github.com/en/actions/using-workflows/)
   - [Webhooks and events](https://docs.github.com/en/developers/webhooks-and-events/webhooks/)
-
-This tutorial assumes you have completed the {{< linkWithTitle "deploy-demo-app.md" >}} guide. You will use the same `docs-cdaas-demo` repo that you forked and cloned as part of that tutorial.
 
 ## Create credentials
 
@@ -59,7 +58,7 @@ You can create a `repository_dispatch` webhook event when you want to trigger a 
 
 The `docs-cdaas-demo` repo contains a webhook file called `basicPing.yml` in the `.github/workflows` directory. The workflow defined in the file is deliberately simple and for tutorial purposes only. It gets an OAUTH token, extracts the callback URI, and sends a POST request to that callback URI.
 
-{{< prism lang="yaml" line-numbers="true" line="5, 15-19, 23-28" >}}
+{{< prism lang="yaml" line-numbers="true" line="5, 16-19, 24-28" >}}
 name: Basic Ping
 
 on:
@@ -105,7 +104,7 @@ Note:
    - `method`: Rest API method is always `POST`
    - `bearerToken`:  GitHub extracts the `access_token` value from the `getToken` step's HTTP Response and inserts it here.
    - `customHeaders`: this is always `{ "Content-Type": "application/json" }`
-   - `data`: this JSON payload must contain a `"true"` or `"false"` value for `"success"`. `"mdMessage"` value should be user-friendly and meaningful.
+   - `data`: this JSON payload must contain a `"true"` or `"false"` value for `"success"`. The `"mdMessage"` value should be user-friendly and meaningful.
 
 ## Configure the webhook in your deployment file
 
@@ -137,7 +136,7 @@ webhooks:
             "callbackUri": "{{armory.callbackUri}}/callback"
             }
         }
-    retryCount: 3
+    retryCount: 0
 {{< /prism >}}
 <br>
 Note:
@@ -233,9 +232,9 @@ Output is similar to:
 [2022-04-28T18:09:31-05:00] See the deployment status UI: https://console.cloud.armory.io/deployments/pipeline/8c9e77fa-2543-4cdc-b12f-86c095974c7a?environmentId=a8906e61-2388-4daa-b38e-4339390b9447
 ```
 
-Deployment to `prod-us` requires manual approval but deployment to `prod-eu` is based on the result of the `basicPing` webhook.
-
 You can check deployment status by accessing the URL included in the output.
+
+Deployment to `prod-us` requires manual approval but deployment to `prod-eu` is based on the result of the `basicPing` webhook.
 
 {{< figure width="100%" height="100%" src="/images/borealis/tutorials/webhooks/webhook-success.png"  alt="BeforeDeployment webhook success"  caption="<center><i>The basicPing webhook succeeded so deployment continued.</i></center>">}}
 
@@ -280,7 +279,7 @@ Make sure to manually approve the `prod-us` deployment in the Armory Cloud conso
 
 Deploy by running `armory start deploy -f deploy-webhook.yml`. Then check deployment status by accessing the URL included in the output.
 
-{{< figure width="100%" height="100%" src="/images/borealis/tutorials/webhooks/webhook-fail.png"  alt="BeforeDeployment webhook failure"  caption="<center><i>The basicPing webhook failed so deployment was cancelled.</i></center>">}}
+{{< figure width="100%" height="100%" src="/images/borealis/tutorials/webhooks/webhook-fail.png"  alt="BeforeDeployment webhook failure"  caption="<center><i>The basicPing webhook failed.</i></center>">}}
 
 ## Troubleshooting
 

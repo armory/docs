@@ -8,7 +8,7 @@ description: >
 
 ## Objectives
 
-In this tutorial, you configure your Kubernetes environment for the demo app and then deploy using Borealis.
+In this tutorial, you configure your Kubernetes environment for the demo app and then deploy to multiple environments using Borealis.
 
 ## {{% heading "prereq" %}}
 
@@ -27,7 +27,7 @@ The demo deploys the following:
 - A Potato Facts load balancer
 - Prometheus
 
-In the `configuration` directory is a `setup.sh` script that sets up your Kubernetes infrastructure and connects it to Armory Cloud.
+In the `configuration` directory is a `setup.sh` script that sets up your Kubernetes infrastructure and connects it to Borealis.
 
 ## 2. Create credentials
 
@@ -44,7 +44,7 @@ Create a new set of credentials for the demo Remote Network Agents. Name the cre
    armory login --envName "<envName>"
    ```
 
-   `--envName <envName` is optional. Replace `<envName` with the name of your Borealis environment if you have access to multiple environments.
+   `--envName <envName` is optional. Replace `<envName>` with the name of your Borealis environment if you have access to multiple environments.
 
 1. Navigate to the `docs-cdaas-demo` directory and run the setup script using the "demo app" credentials you created for this tutorial.
 
@@ -52,11 +52,11 @@ Create a new set of credentials for the demo Remote Network Agents. Name the cre
    bash configuration/setup.sh <client-ID> <client-secret>
    ```
 
-   After the script completes successfully, you can view the connected Remote Network Agents on the Armory Cloud console's **Networking** > **Agents** screen.
+   After the script completes successfully, you can view the connected Remote Network Agents on the Armory Cloud Console's **Networking** > **Agents** screen.
 
 ## 4. Add Prometheus integration
 
-In the Armory Cloud console, navigate to **Configuration** > **Canary Analysis** > **Integrations**. Add a new Integration with the following information:
+In the Armory Cloud Console, navigate to **Configuration** > **Canary Analysis** > **Integrations**. Add a new Integration with the following information:
 
 * **Type**: `Prometheus`
 * **Name**: `Demo-Prometheus`
@@ -90,10 +90,6 @@ Deployment to `prod-us` and `prod-eu` requires manual approval, so be sure to ap
 You can run the `destroy.sh` script to uninstall Prometheus and the Remote Network Agents. This script also deletes the Kubernetes namespaces created by the `setup.sh` script.
 
 ## Troubleshooting
-
-
-@TODO need to add where to look when a deployment fails - logs??
-
 
 ### Deployment times out
 
