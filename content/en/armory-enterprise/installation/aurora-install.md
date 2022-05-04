@@ -12,8 +12,6 @@ aliases:
 {{% include "aurora-borealis/borealis-ea-banner.md" %}}
 {{< /alert >}}
 
-> If you installed an older version of the Remote Network Agent (RNA) using the Helm chart in `armory/aurora`, migrate to the new version by updating the Helm chart that is used. For more information, see [Migrate to the new RNA](#migrate-to-the-new-rna).
-
 ## Overview
 
 Project Aurora is plugin that adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
@@ -90,14 +88,6 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 This section walks you through installing the Remote Network Agent (RNA) using a Helm chart.
 
 {{< include "aurora-borealis/rna-install.md" >}}
-
-### Migrate to the new RNA
-
-You do not need to do this migration if you are installing the RNA for the first time.
-
-Before you start the migration process, make sure that you are running version 0.29.2 or later of the Project Aurora plugin. This is set in the `version` field of the YAML file you use to install the plugin.
-
-{{< include "aurora-borealis/borealis-rna-wormhole-migrate.md" >}}
 
 ### Verify the Agent deployment
 
