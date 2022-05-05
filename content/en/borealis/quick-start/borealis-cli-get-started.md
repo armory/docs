@@ -151,7 +151,7 @@ Since you are using the Borealis CLI, you do not need to have service account cr
 
 **If this is the first deployment of your app, Borealis automatically deploys the app to 100% of the cluster since there is no previous version.** Subsequent deployments of this app follow the steps defined in your deployment file.
 
-1. Log in to Armory's hosted deployment services from the CLI:
+1. Log in to Armory's hosted deployment services from the CLI.
 
    ```bash
    armory login
@@ -207,7 +207,11 @@ Since you are using the Borealis CLI, you do not need to have service account cr
 
     </details><br>
 
-1. Start the deployment:
+1. (Optional) Ensure there are no YAML issues with your deployment file.
+
+   Since a hidden tab in your YAML can cause your deployment to fail, it's a good idea to validate the struture and syntax in your deployment file. There are several online linters, IDE-based linters, and command line linters such as `yamllint` that you can use to validate your deployment file.
+
+1. Start the deployment.
 
    ```bash
    armory deploy start  -f canary.yaml
@@ -280,3 +284,10 @@ mkdir ~/.armory/credentials
 ```
 
 Make sure you are running the lastest version of the CLI.
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "deploy-demo-app.md" >}}
+
+
+<br>

@@ -63,7 +63,7 @@ If your cluster is accessible through the public internet, start here. If your c
 
 -->
 
-## Next steps
+## {{%  heading "nextSteps" %}}
 
 Now that Borealis is configured for your deployment target, you can either try out deploying a sample app or invite more users.
 

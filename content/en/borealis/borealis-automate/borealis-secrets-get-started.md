@@ -24,16 +24,16 @@ Borealis uses these credentials to deploy, scale, and cache Kubernetes resources
 ### GitHub actions
 
 You can store GitHub Personal Access Tokens (PATs) as secrets.
-You can configure a Borealis webhook to authenticate with a GitHub PAT to kick off GitHub Actions-based integration tests during a deployment.
+You can configure a webhook to authenticate with a GitHub PAT to kick off GitHub Actions-based integration tests during a deployment.
 
 ## Create a secret
 
 Follow these steps to create a secret:
 
 1. Log into the [Armory Cloud Console](https://console.cloud.armory.io).
-2. Click the `Secrets` tab.
-3. Click `New Secret`.
-4. Fill in the `Name` and `Value` fields. Use a descriptive name; you'll use the name to reference the secret later on.
+2. Click the **Secrets** tab.
+3. Click **New Secret**.
+4. Fill in the **Name** and **Value** fields. Use a descriptive name. You use the name to reference the secret in the Armory Cloud Console or in your app's deployment file.
 
 Once created, a secret's raw value cannot be retrieved through Armory's API, UI, or CLI.
 
