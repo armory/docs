@@ -1,6 +1,6 @@
 ---
-title: Webhook-Based Approvals
-linktitle: Webhook-Based Approvals
+title: Leverage External Automation
+linktitle: Leverage External Automation
 exclude_search: true
 no_list: true
 description: >
