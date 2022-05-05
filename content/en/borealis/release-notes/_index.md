@@ -1,7 +1,7 @@
 ---
-title: Project Aurora/Borealis Release Notes
+title: Release Notes
 exclude_search: true
-weight: 100
+weight: 999
 description: >
   Release notes for Armory Continuous Deployments-as-a-Service
 ---
