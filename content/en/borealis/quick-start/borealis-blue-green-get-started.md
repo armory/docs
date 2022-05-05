@@ -3,7 +3,7 @@ title: Get Started with Blue/Green Deployment
 linktitle: Blue/Green Deployment
 description: >
   This guide walks you through how to deploy using a blue/green strategy.
-weight: 10  
+weight: 40  
 exclude_search: true
 ---
 
