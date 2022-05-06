@@ -2,20 +2,12 @@
 title: Borealis Deployment GitHub Action
 linktitle: GitHub Action
 exclude_search: true
-weight: 1
+weight: 30
 description: >
   Use the Borealis Deployment Action to integrate your GitHub repo with Armory's Project Borealis.
 ---
 
 ## Overview of Project Borealis deployment
-
-<!-- update the GHA readme or docs.armory.io page when making changes to one or the other -->
-
-Project Borealis uses Armory's hosted cloud services to deploy Kubernetes applications to your clusters. When the GitHub Action triggers a deployment, the action sends a deployment request to Armory's hosted cloud services. In turn, the cloud services communicate with your Kubernetes cluster using Armory's Remote Network Agent (RNA) to initiate the deployment.
-
-Borealis supports performing a canary deployment to deploy an app progressively to your cluster by setting weights (percentage thresholds) for the deployment and a pause after each weight is met. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This pause gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
-
-All this logic is defined in a deployment file that you create and store in GitHub.
 
 You can also learn about this GitHub Action by viewing the [repo](https://github.com/armory/cli-deploy-action).
 
@@ -27,9 +19,8 @@ If you have previously configured Borealis for your deployment target, you can s
 2. If you have already prepared a deployment target for Borealis, skip this step. If you have not, complete the [Get Started with Project Borealis]({{< ref "borealis-org-get-started" >}}) tasks, which include the following:
 
    - Register for an Armory hosted cloud services account. This is the account that you use to log in  to the Armory Cloud Console and the Status UI.
-   - Create machine-to-machine client credentials for the Remote Network Agent (RNA), which you install on your deployment target cluster.
+   - [Create machine-to-machine client credentials]({{< ref "cdaas-client-creds" >}}) for the Remote Network Agent (RNA), which you install on your deployment target cluster.
    - Prepare your deployment target by installing the RNA.
-
 
 3. In the Cloud Console, create machine-to-machine client credentials to use for your GitHub Action service account. You can select the pre-configured scope group **Deployments using Spinnaker** or manually select the following:
 
@@ -38,7 +29,6 @@ If you have previously configured Borealis for your deployment target, you can s
    - `exec:infra:op`
    - `read:artifacts:data`
 
-   For more information, see [Integrate Borealis & Automate Deployments]({{< ref "borealis-automate" >}}").
 4. Encrypt the GitHub Action service account credentials so that you can use them securely in the action. Create a secret for the Client ID and a separate secret for the Client Secret.
 
    Use descriptive name for these two values. You use the name to reference them in the GitHub Action.

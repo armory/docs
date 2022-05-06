@@ -1,6 +1,6 @@
 ---
 title: GitHub Webhook-Based Approvals Tutorial
-linktitle: GitHub
+linktitle: GitHub Webhook
 exclude_search: true
 description: >
   Learn how to configure GitHub webhook-based approvals in your Borealis app deployment process.

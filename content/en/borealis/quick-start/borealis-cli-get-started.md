@@ -4,7 +4,7 @@ linktitle: CLI
 description: >
   Use the Borealis CLI to interact with Project Borealis. You can integrate Borealis into your existing CI/CD tooling. Start by familiarizing yourself with the Borealis CLI and its workflow.
 exclude_search: true
-weight: 5
+weight: 20
 ---
 
 ## {{% heading "prereq" %}}
@@ -248,11 +248,6 @@ To delete the orphaned ReplicaSet:
    kubectl delete rs <ReplicaSet_name> -n <namespace>
    ```
 
-
-## Advanced use cases
-
-You can integrate Borealis with your existing tools, such as Jenkins or GitHub Actions, to automate your deployment process with Borealis. To get started, create [service accounts]({{< ref "borealis-automate" >}}).
-
 ## Upgrade the CLI
 
 Run the following command to upgrade your existing CLI:
@@ -287,6 +282,7 @@ Make sure you are running the lastest version of the CLI.
 
 ## {{% heading "nextSteps" %}}
 
+* {{< linkWithTitle "borealis-gh-action.md" >}}
 * {{< linkWithTitle "deploy-demo-app.md" >}}
 
 

@@ -1,5 +1,5 @@
 ---
-title: Borealis Secrets
+title: Secrets
 linktitle: Secrets
 exclude_search: true
 weight: 2

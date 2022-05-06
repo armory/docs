@@ -1,8 +1,8 @@
 ---
 title: Getting Started with Project Borealis
-linktitle: Getting Started Guides
+linkTitle: Getting Started
 description: >
   Project Borealis is a software deployment tool that you can use to deploy Kubernetes applications.
 exclude_search: true
-weight: 30
+weight: 10
 ---
