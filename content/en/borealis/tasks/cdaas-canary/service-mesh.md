@@ -15,8 +15,8 @@ If you don't want to tie traffic weights to the number of running pods, you can 
 
 Using a service mesh with your canary strategy provides the following benefits:
 
-* **Granular traffic weights**: You can direct 1% of traffic to the new version of your software, regardless of the current number of running pods.
-* **Instantaneous weight shifts and rollbacks**: Since the traffic weights are implemented by the service mesh, you won't need to wait for pods to scale up or down during a traffic weight change or rollback.
+* **Granular traffic weights**: you can direct 1% of traffic to the new version of your software, regardless of the current number of running pods.
+* **Instantaneous weight shifts and rollbacks**: since the traffic weights are implemented by the service mesh, you won't need to wait for pods to scale up or down during a traffic weight change or rollback.
 
 ## {{% heading "prereq" %}}
 
