@@ -68,21 +68,21 @@ Retrospective analysis is the starting point to creating queries so that you can
    - **Lower Limit**: The lower limit for the query. If the results fall below this value, the deployment is considered to be a failure. Set this to `0`.
    - **Query Template**:
 
-   ```yaml
-        avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
-        sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
-        by (annotation_app, pod)) by (annotation_app)
-   ```
+      ```
+      avg(avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod) group_left (annotation_app)
+      sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"}) by (annotation_app, pod)) by (annotation_app)
+      ```
 
-   - The query contains variables that are automatically injected during canary analysis, but you must manually provide some of them during retrospective analysis.
-     - Time related variables like `armory.promqlStepInterval` are automatically substituted by Borealis. For a full list, see [Retrospective Analysis]({{< ref "borealis-configuration-ui#retrospective-analysis" >}}).
-     - `armory.replicaSetName` needs to be set to the name of the ReplicaSet that Borealis created for this app version. It's used to differentiate between the current and next version of the app. Do this in the next step where you add key/value pairs.
+      - **The query must return a single result**. Automated canary analysis does not support queries that return multiple values. See [Query template requirements]({{< ref "ref-queries#query-template-requirements" >}}) for restrictions and provider examples.
+      - The query contains variables that are automatically injected during canary analysis, but you must manually provide some of them during retrospective analysis.
+        - Time related variables like `armory.promqlStepInterval` are automatically substituted by Borealis. For a full list, see [Retrospective Analysis]({{< ref "borealis-configuration-ui#retrospective-analysis" >}}).
+        - `armory.replicaSetName` needs to be set to the name of the ReplicaSet that Borealis created for this app version. It's used to differentiate between the current and next version of the app. Do this in the next step where you add key/value pairs.
 
 5. Add **Key Value (KV) Pair** for the **Context**. The key value pairs for your  For the sample query, you need to add the following key value Pair:
 
   - **Key**: `replicaSetName`
 
-    **Value**: The name of the ReplicaSet that got created when you deployed the app in *Get Started with the CLI to Deploy Apps guide*.
+    **Value**: The name of the ReplicaSet that was created when you deployed the app in *Get Started with the CLI to Deploy Apps* guide.
 
 6. Run the analysis. If the results fall within the upper and lower limits you set, the deployment is considered a success.
 
