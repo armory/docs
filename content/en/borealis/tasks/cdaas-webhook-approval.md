@@ -1,6 +1,6 @@
 ---
-title: Leverage External Automation
-linktitle: Leverage External Automation
+title: External Automation
+linktitle: External Automation
 exclude_search: true
 no_list: true
 description: >
