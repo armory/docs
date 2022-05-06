@@ -6,14 +6,14 @@ description: >
 exclude_search: true
 ---
 
-## Overview
+## Automated canary analysis
 
-When Borealis performs automated canary analysis, Borealis runs queries against a metrics provider to either progress a deployment or roll it back based on thresholds you set. Armory supports the following metrics providers:
+When Borealis performs automated canary analysis, Borealis runs queries against a metrics provider to either progress a deployment or roll it back based on thresholds you set. Armory CDaaS supports the following metrics providers:
 
 - Datadog
 - New Relic
 - Prometheus
-  
+
 For information about using queries in your deploy file, see the following resources:
 
 - [Add queries to your deploy file]({{< ref "ref-deployment-file#analysisqueries" >}})
@@ -63,7 +63,7 @@ strategies:
             context:
               - <variableName>: <variableValue>
 ```
- 
+
 They need to be defined for each analysis step that uses a query referencing them.
 
 In query templates, you reference them with the following format: `{{context.<variableName>}}`. For example, if you created a variable called `owner`, you reference it in the query template with `{{context.owner}}`.
@@ -72,50 +72,50 @@ In query templates, you reference them with the following format: `{{context.<va
 
 Regardless of metrics provider, all queries require the following:
 
-- Must return a single result. Automated canary analysis does not support queries that return multiple values
-- Defined in `analysis.queries.queryTemplate`
+- **Must return a single result**. Automated canary analysis does not support queries that return multiple values
+- Must be defined in `analysis.queries.queryTemplate`
 
 ### Datadog queries
 
 Datadog queries cannot be a time-series query. This means that you need to include the `.rollup(method, {{armory.intervalSeconds}})` method in your query.
 
-For more information on Datadog queries, see [the Datadog documentation](https://docs.datadoghq.com/tracing/trace_explorer/query_syntax/). 
+For more information on Datadog queries, see [the Datadog documentation](https://docs.datadoghq.com/tracing/trace_explorer/query_syntax/).
 
 #### Sample Datadog query
 
 ```sql
-avg:jvm.memory.used{name:{{armory.applicationName}} 
-  AND {{armory.replicaSetName}}}.rollup(avg, {{armory.intervalSeconds}}) / avg:jvm.memory.max{name:{{armory.applicationName}} 
+avg:jvm.memory.used{name:{{armory.applicationName}}
+  AND {{armory.replicaSetName}}}.rollup(avg, {{armory.intervalSeconds}}) / avg:jvm.memory.max{name:{{armory.applicationName}}
   AND {{armory.replicaSetName}}}.rollup(avg, {{armory.intervalSeconds}}) * 100
 ```
 
 ### New Relic queries
 
-New Relic queries must meet the following requirements: 
+New Relic queries must meet the following requirements:
 
 * Must include an `UNTIL` clause in your query that specifies the start and end of the canary interval
 	* For example, include a clause similar to the following clause: `SINCE '{{armory.startTimeIso8601}}' UNTIL '{{armory.endTimeIso8601}}`
 * Cannot contain the ‘TIMESERIES’ clause
 
-For information on New Relic’s Query Language, see the [New Relic documentation](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/introduction-nrql-new-relics-query-language/). 
+For information on New Relic’s Query Language, see the [New Relic documentation](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/introduction-nrql-new-relics-query-language/).
 
 #### Sample New Relic query
 
 ```sql
-SELECT average(jvm.memory.used) / average(jvm.memory.max) * 100 FROM Metric 
-  WHERE name = '{{armory.applicationName}}' AND replicaSetName = '{{armory.replicaSetName}}' 
+SELECT average(jvm.memory.used) / average(jvm.memory.max) * 100 FROM Metric
+  WHERE name = '{{armory.applicationName}}' AND replicaSetName = '{{armory.replicaSetName}}'
   SINCE '{{armory.startTimeIso8601}}' UNTIL '{{armory.endTimeIso8601}}'
 ```
 
 ### Prometheus queries
 
-Prometheus queries must return results as a time stamp value pair. 
+Prometheus queries must return results as a time stamp value pair.
 
-For information on Prometheus queries, see [the Prometheus documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/). 
+For information on Prometheus queries, see [the Prometheus documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/).
 
 ##### Sample Prometheus query
 
 ```sql
-avg(avg_over_time(jvm_memory_used_bytes{app="{{armory.applicationName}}",replicaSet="{{armory.replicaSetName}}"}[{{armory.promQlStepInterval}}])) / 
+avg(avg_over_time(jvm_memory_used_bytes{app="{{armory.applicationName}}",replicaSet="{{armory.replicaSetName}}"}[{{armory.promQlStepInterval}}])) /
   avg(avg_over_time(jvm_memory_max_bytes{app="{{armory.applicationName}}",replicaSet="{{armory.replicaSetName}}"}[{{armory.promQlStepInterval}}])) * 100
 ```
