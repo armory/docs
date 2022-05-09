@@ -7,4 +7,4 @@ version: 00.09.51
 
 ### Fixes
 
-* Fixed an issue when an exception being thrown during Agent registration would cause that Agent instance to not be able to register again. It also allows Agent to register again in cases that a reconnection is issued such as when using  and the token expires.
+* Fixed an issue of an Agent instance being unable to register again when an exception was thrown during the first registration. It also allows Agent to register again in cases that a reconnection is issued such as when using `tokenCommand` and the token expires.
