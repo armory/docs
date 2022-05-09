@@ -5,4 +5,6 @@ version: 00.08.58
 
 ---
 
-Fix agent registration when using postgresql database
+### Fixes
+
+* Fixed a bug that prevents agent from registering when using PostgreSQL.
