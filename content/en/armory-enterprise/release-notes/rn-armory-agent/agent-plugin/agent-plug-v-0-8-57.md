@@ -7,6 +7,7 @@ version: 00.08.57
 
 ### Changes
 
+* Multiple Agent replicas are now supported for HA.
 * Improved agent reconnection time to start caching sooner the cluster infrastructure.
 * Accounts are now deleted after 10 minutes of not having any agent available to handle them. Previously, accounts were deleted within seconds after the communication between clouddrivers was failing.
 * The response of clouddriver endpoint "/armory/agents" only includes live, valid assignments. Previously, it also included old assignments no longer valid, by using the field "clouddriverAlive" to differentiate between them. 
