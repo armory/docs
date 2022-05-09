@@ -1,6 +1,7 @@
 ---
 title: "Project Borealis"
 exclude_search: true
+no_list: true
 aliases:
   - /armory-deployments/
   - /armory-enterprise/armory-cloud-preview/
