@@ -4,7 +4,7 @@ linktitle: Borealis
 description: >
   To use Borealis, you must register for Armory's hosted cloud service and connect your deployment target to Armory cloud.
 exclude_search: true
-weight: 1
+weight: 10
 ---
 
 ## {{% heading "prereq" %}}

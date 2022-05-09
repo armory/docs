@@ -20,7 +20,7 @@ Note that secrets are Armory Cloud environment specific.
 
 [**Access Management > Users**](https://console.cloud.armory.io/configuration/users)
 
-For your users to get access to Borealis, you must invite them to your organization. This grants them access to the  Borealis UI. Depending on their permissions, they may have access to the **Configuration UI** and the **Status UI**. 
+For your users to get access to Borealis, you must invite them to your organization. This grants them access to the  Borealis UI. Depending on their permissions, they may have access to the **Configuration UI** and the **Status UI**.
 
 You need their name and email. Note that the email domain must match your organization's format. For example, users that work for Acme (which uses `username@acme.com`) must have `@acme.com` email addresses. They are automatically added to your organization once they accept the invite and complete the sign up.
 
@@ -129,8 +129,6 @@ For information about how to add a deployment target, see [Prepare your deployme
 [**Networking > Agents**](https://console.cloud.armory.io/configuration/agents)
 
 The **Agents** page shows you the list of agents that are connected if the credentials they use have the `connect:agentHub` scope.
-
-If you have not migrated from the old agent that uses the `armory/aurora` Helm chart, your RNA connections do not show up on this page. For information about how upgrading to the new RNA, see [Migrate to the new RNA]({{< ref "borealis-org-get-started#migrate-to-the-new-rna" >}}).
 
 > Note that you may see a "No Data" message when first loading the **Agents** page even if there are successfully connected RNAs.
 
