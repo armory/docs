@@ -2,7 +2,7 @@
 title: Configure Service Mesh Traffic Management
 linktitle: Configure Traffic Management
 description: >
-  Configure canary strategy traffic management using a service mesh.
+  Configure service mesh traffic management for your canary strategy.
 exclude_search: true
 ---
 
