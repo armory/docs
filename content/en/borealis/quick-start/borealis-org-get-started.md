@@ -2,7 +2,7 @@
 title: Get Started with Project Borealis
 linktitle: Borealis
 description: >
-
+  Learn how to get started using Project Borealis to deploy apps to your Kubernetes clusters.
 exclude_search: true
 weight: 10
 ---
