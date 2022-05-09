@@ -123,7 +123,7 @@ spec:
 * [providers]({{< ref "providers" >}})
 * [pubsub]({{< ref "pubsub" >}})
 * [repository]({{< ref "repository" >}})
-* [security]({{< ref "security" >}})
+* [security]({{< ref "op-manifest-reference/security" >}})
 * [stats]({{< ref "stats" >}})
 * [webhook]({{< ref "op-webhook" >}})
 

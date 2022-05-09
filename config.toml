@@ -85,7 +85,7 @@ weight = 1
   url = "https://www.armory.io/learn/customer-success-stories/"
 
 [[menu.main]]
-  name = "KB"
+  name = "Support"
   weight = 8
   url = "https://support.armory.io/"
 

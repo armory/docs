@@ -24,7 +24,7 @@ The Armory Agent is compatible with Armory Enterprise and open source Spinnaker.
   * Keep your Kubernetes API servers private from Spinnaker.
   * Only the information Armory Enterprise needs leaves the cluster.
   * Decentralize your account management. Using Kubernetes Service Accounts, teams control what Spinnaker can do. Add or remove accounts in real time. and then use them without restarting Spinnaker.
-  * Use Kubernetes Service Accounts or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "secrets#supported-secret-engines" >}}), or provision them via the method of your choice as Kubernetes secrets.
+  * Use Kubernetes Service Accounts or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "armory-enterprise/armory-admin/secrets" >}}), or provision them via the method of your choice as Kubernetes secrets.
 
 
 * Usability
