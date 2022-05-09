@@ -10,7 +10,7 @@ exclude_search: true
 
 You are familiar with the [concept of using a service mesh to manage traffic in your canary strategy]({{< ref "traffic-mgmt.md" >}}).
 
-In your target Kubernetes cluster, you must install a service mesh that complies with the [Service Mesh Interface (SMI) spec](https://github.com/servicemeshinterface/smi-spec). See the list of [supported service mesh products](#supported-service-mesh-products) that have been tested with Armory CDaaS.
+In your target Kubernetes cluster, you must install a service mesh that complies with the [Service Mesh Interface (SMI) spec](https://github.com/servicemeshinterface/smi-spec). See the list of [supported service mesh products]({{< ref "traffig-mgmt#supported-service-mesh-products" >}}) that have been tested with Armory CDaaS.
 
 >CDaaS does not configure proxy sidecar injection.
 
@@ -28,7 +28,3 @@ trafficManagement:
 {{< /prism >}}
 
 {{% include "aurora-borealis/dep-file/traffic-mgmt-fields.md" %}}
-
-## Supported service mesh products
-
-* [Linkerd](https://linkerd.io/)

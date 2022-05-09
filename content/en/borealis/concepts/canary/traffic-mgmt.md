@@ -17,6 +17,11 @@ Using a service mesh with your canary strategy provides the following benefits:
 * **Granular traffic weights**: You can direct 1% of traffic to the new version of your software, regardless of the current number of running pods.
 * **Instantaneous weight shifts and rollbacks**: Since the traffic weights are implemented by the service mesh, you won't need to wait for pods to scale up or down during a traffic weight change or rollback.
 
+## Supported service mesh products
+
+* [Linkerd](https://linkerd.io/)
+
+
 ## {{%  heading "nextSteps" %}}
 
 Learn how to [configure service mesh traffic management for your canary strategy]({{< ref "service-mesh" >}}).
