@@ -1,7 +1,8 @@
 ---
 title: Tutorials
 linktitle: Tutorials
-description: Project Borealis tutorials
+description: >
+  Armory Continuous Deployments-as-a-Service tutorials show you a series of steps, or tasks, to achieve a goal. 
 exclude_search: true
 weight: 40
 ---
