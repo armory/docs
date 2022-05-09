@@ -2,16 +2,24 @@
 title: Get Started with Project Borealis
 linktitle: Borealis
 description: >
-  To use Borealis, you must register for Armory's hosted cloud service and connect your deployment target to Armory cloud.
+
 exclude_search: true
 weight: 10
 ---
+
+## How to get started using Project Borealis
+
+The following steps should take about 10 minutes to complete:
+
+1. [Register for Borealis](#register-for-borealis).
+1. [Create client credentials](#create-client-credentials).
+1. [Install the Remote Network Agent](#install-the-rna) in your target deployment cluster.
 
 ## {{% heading "prereq" %}}
 
 Review the requirements for using Borealis on the [Requirements]({{< ref "borealis-requirements.md" >}}) page.
 
-## Register for Armory Cloud services
+## Register for Borealis
 
 {{< include "aurora-borealis/borealis-login-creds" >}}
 
