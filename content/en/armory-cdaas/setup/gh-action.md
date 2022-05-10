@@ -131,3 +131,7 @@ armory deploy status -i <deployment-ID>
 ### Status UI
 
 You need login credentials to access the Status UI, which is part of Armory's hosted cloud services. For the early access program, contact Armory for registration information.
+
+
+## {{%  heading "nextSteps" %}}
+* {{< linkWithTitle "add-context-variables" >}}
