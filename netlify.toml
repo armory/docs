@@ -102,7 +102,9 @@
   from = "/ae/*"
   to = "/armory-enterprise/:splat"
 
-
+[[redirects]]
+  from = "/borealis/*"
+  to = "/armory-cdaas/"
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
@@ -116,7 +118,7 @@ package = "@netlify/plugin-sitemap"
     './public/armory-enterprise/feature-status/deprecations/pacrd-deprecation/',
     './public/armory-enterprise/installation/deployment-reg/',
     './public/armory-enterprise/installation/aurora-install/',
-    './public/borealis/',
+    './public/armory-cdaas/',
     './public/managed-spin',
     './public/armory-enterprise/armory-cloud-preview'
   ]

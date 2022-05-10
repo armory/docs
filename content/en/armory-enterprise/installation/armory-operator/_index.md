@@ -22,7 +22,7 @@ From the Kubernetes [Operator pattern docs](https://kubernetes.io/docs/concepts/
 
 * Use a Kubernetes manifest to deploy and manage Armory Enterprise or Spinnaker.
 * Use `kubectl` to deploy, manage, and access Armory Enterprise or Spinnaker like you would with any other app deployed on Kubernetes.
-* Store and reference configuration secrets in one of the [supported secrets engines]({{< ref "secrets" >}}).
+* Store and reference configuration secrets in one of the [supported secrets engines]({{< ref "armory-enterprise/armory-admin/secrets" >}}).
 * Store your configuration in `git` for an auditable and reversible GitOps workflow.
 
 ## How the Armory Operator and the Spinnaker Operator work

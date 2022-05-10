@@ -9,14 +9,14 @@ aliases:
 ---
 
 {{< alert title="Early Access" color="primary" >}}
-{{% include "aurora-borealis/borealis-ea-banner.md" %}}
+{{% include "cdaas/ea-banner.md" %}}
 {{< /alert >}}
 
 ## Overview
 
 Project Aurora is plugin that adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
 
-See the [Architecture]({{< ref "architecture-borealis" >}}) page for an overview of Project Aurora and how it fits in with Armory Enterprise.
+See the [Architecture]({{< ref "armory-cdaas/concepts/architecture" >}}) page for an overview of Project Aurora and how it fits in with Armory Enterprise.
 
 This guide walks you through the following:
 
@@ -87,7 +87,7 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 This section walks you through installing the Remote Network Agent (RNA) using a Helm chart.
 
-{{< include "aurora-borealis/rna-install.md" >}}
+{{< include "cdaas/rna-install.md" >}}
 
 ### Verify the Agent deployment
 
@@ -95,7 +95,7 @@ Go to the [Agents page in the Configuration UI](https://console.cloud.armory.io/
 
 > Note that you may see a "No Data message" when first loading the Agent page.
 
-{{< figure src="/images/borealis/borealis-ui-rna-status.jpg" alt="The Connected Remote Network Agents page shows connected agents and the following information: Agent Identifier, Agent Version, Connection Time when the connection was established, Last Heartbeat time, Client ID, and IP Address." >}}
+{{< figure src="/images/cdaas/ui-rna-status.jpg" alt="The Connected Remote Network Agents page shows connected agents and the following information: Agent Identifier, Agent Version, Connection Time when the connection was established, Last Heartbeat time, Client ID, and IP Address." >}}
 
 
 
@@ -112,7 +112,7 @@ time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kub
 
 ## Install the Project Aurora Plugin
 
-> You can configure secrets as outlined in the [Secrets Guide]({{< ref "secrets" >}}). This means you can set the clientSecret value to be a secret token instead of the plain text value.
+> You can configure secrets as outlined in the [Secrets Guide]({{< ref "armory-enterprise/armory-admin/secrets" >}}). This means you can set the clientSecret value to be a secret token instead of the plain text value.
 
 {{< tabs name="DeploymentPlugin" >}}
 {{% tabbody name="Operator" %}}
@@ -281,7 +281,7 @@ You have the following options for adding your Borealis deployment YAML configur
 
 1. Add the Kubernetes manifest for your app as a pipeline artifact in the Configuration section of your pipeline. Or you can generate it using the 'Bake (Manifest)' stage, as you would for a standard Kubernetes deployment in Armory Enterprise.
 
-1. Prepare your Borealis deployment YAML. You can use the [Borealis CLI]({{< ref "borealis-cli-get-started#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template. In your deployment YAML `manifests.path` section, you have to specify the file name of the app's Kubernetes manifest artifact, which may vary from the **Display Name** on the **Expected Artifact** screen.
+1. Prepare your Borealis deployment YAML. You can use the [Borealis CLI]({{< ref "armory-cdaas/setup/cli#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template. In your deployment YAML `manifests.path` section, you have to specify the file name of the app's Kubernetes manifest artifact, which may vary from the **Display Name** on the **Expected Artifact** screen.
 
 #### Configure the stage
 
