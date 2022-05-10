@@ -16,7 +16,7 @@ aliases:
 
 Project Aurora is plugin that adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
 
-See the [Architecture]({{< ref "architecture-cdaas" >}}) page for an overview of Project Aurora and how it fits in with Armory Enterprise.
+See the [Architecture]({{< ref "armory-cdaas/concepts/architecture" >}}) page for an overview of Project Aurora and how it fits in with Armory Enterprise.
 
 This guide walks you through the following:
 
@@ -281,7 +281,7 @@ You have the following options for adding your Borealis deployment YAML configur
 
 1. Add the Kubernetes manifest for your app as a pipeline artifact in the Configuration section of your pipeline. Or you can generate it using the 'Bake (Manifest)' stage, as you would for a standard Kubernetes deployment in Armory Enterprise.
 
-1. Prepare your Borealis deployment YAML. You can use the [Borealis CLI]({{< ref "get-started-cli#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template. In your deployment YAML `manifests.path` section, you have to specify the file name of the app's Kubernetes manifest artifact, which may vary from the **Display Name** on the **Expected Artifact** screen.
+1. Prepare your Borealis deployment YAML. You can use the [Borealis CLI]({{< ref "armory-cdaas/setup/cli#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template. In your deployment YAML `manifests.path` section, you have to specify the file name of the app's Kubernetes manifest artifact, which may vary from the **Display Name** on the **Expected Artifact** screen.
 
 #### Configure the stage
 

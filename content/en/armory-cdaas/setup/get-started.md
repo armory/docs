@@ -17,7 +17,7 @@ The following steps should take about 10 minutes to complete:
 
 ## {{% heading "prereq" %}}
 
-Review the requirements for using Borealis on the [Requirements]({{< ref "cdaas-requirements.md" >}}) page.
+Review the requirements for using Borealis on the [Requirements]({{< ref "requirements.md" >}}) page.
 
 ## Register for Borealis
 

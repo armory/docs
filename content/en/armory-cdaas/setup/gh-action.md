@@ -1,5 +1,5 @@
 ---
-title: Borealis Deployment GitHub Action
+title: Get Started with the GitHub Action
 linktitle: GitHub Action
 exclude_search: true
 weight: 30
@@ -15,8 +15,8 @@ You can also learn about this GitHub Action by viewing the [repo](https://github
 
 If you have previously configured Borealis for your deployment target, you can skip to step 3.
 
-1. Review the full set of requirements for Borealis at [System Requirements]({{< ref "cdaas-requirements" >}}).
-2. If you have already prepared a deployment target for Borealis, skip this step. If you have not, complete the [Get Started with Project Borealis]({{< ref "get-started-org" >}}) tasks, which include the following:
+1. Review the full set of requirements for Borealis at [System Requirements]({{< ref "requirements" >}}).
+2. If you have already prepared a deployment target for Borealis, skip this step. If you have not, complete the [Get Started with Project Borealis]({{< ref "get-started" >}}) tasks, which include the following:
 
    - Register for an Armory hosted cloud services account. This is the account that you use to log in  to the Armory Cloud Console and the Status UI.
    - [Create machine-to-machine client credentials]({{< ref "client-creds" >}}) for the Remote Network Agent (RNA), which you install on your deployment target cluster.
@@ -60,7 +60,7 @@ Then, the value you use for `path` in the deployment file should be `/deployment
 
 ### Create a deployment file
 
-The [deployment file]({{< ref "ref-deployment-file" >}}) is a YAML file that defines what app you want to deploy and how Borealis should deploy it. You can use the [Borealis CLI]({{< ref "get-started-cli#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template.
+The [deployment file]({{< ref "ref-deployment-file" >}}) is a YAML file that defines what app you want to deploy and how Borealis should deploy it. You can use the [Borealis CLI]({{< ref "cli#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template.
 
 Save your deployment file to a directory in your repo. You use this path later when you create the GitHub Action for the `path-to-file` parameter.
 

@@ -9,7 +9,7 @@ weight: 20
 
 ## {{% heading "prereq" %}}
 
-Before you start, make sure that someone at your organization has completed the [Get Started with Project Borealis]({{< ref "get-started-org" >}}). That guide describes how to prepare your deployment target so that you can use the Borealis CLI to deploy apps to it.
+Before you start, make sure that someone at your organization has completed the [Get Started with Project Borealis]({{< ref "get-started" >}}). That guide describes how to prepare your deployment target so that you can use the Borealis CLI to deploy apps to it.
 
 ## Register for Armory's hosted cloud services
 
@@ -145,7 +145,7 @@ See the {{< linkWithTitle "avm-cheat.md" >}} and {{< linkWithTitle "cli-cheat.md
 
 >Project Borealis manages your Kubernetes deployments using ReplicaSet resources. During the initial deployment of your application using Project Borealis, the underlying Kubernetes deployment object is deleted in a way that it leaves behind the ReplicaSet and pods so that there is no actual downtime for your application. These are later deleted when the deployment succeeds.
 
-Before you can deploy, make sure that you have the Client ID and Client Secret for your deployment target available. These are used to authenticate Armory's hosted deployment services with the target cluster. The credentials were created and tied to your deployment target as part of the [Get Started with Project Borealis]({{< ref "get-started-org" >}}) guide.
+Before you can deploy, make sure that you have the Client ID and Client Secret for your deployment target available. These are used to authenticate Armory's hosted deployment services with the target cluster. The credentials were created and tied to your deployment target as part of the [Get Started with Project Borealis]({{< ref "get-started" >}}) guide.
 
 Since you are using the Borealis CLI, you do not need to have service account credentials for authenticating your CLI to the deployment services. Instead, you log in manually with your user account.
 

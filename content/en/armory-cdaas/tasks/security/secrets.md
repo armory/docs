@@ -51,4 +51,4 @@ as `{{ secrets.prod-cluster-token }}`.
 
 ## Security
 
-Secrets are [encrypted in transit and at rest]({{< ref "architecture-cdaas#encryption-at-rest" >}}). They are additionally encrypted at rest with a per-tenant key using AES-256 encryption.
+Secrets are [encrypted in transit and at rest]({{< ref "armory-cdaas/concepts/architecture#encryption-at-rest" >}}). They are additionally encrypted at rest with a per-tenant key using AES-256 encryption.

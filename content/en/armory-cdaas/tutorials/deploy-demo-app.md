@@ -13,8 +13,8 @@ In this tutorial, you configure your Kubernetes environment for the demo app and
 ## {{% heading "prereq" %}}
 
 * You have access to a Kubernetes cluster and have installed `kubectl`. Your cluster should have at least 4 nodes available for the demo app.
-* You have [set up your Borealis account]({{< ref "get-started-org" >}}).
-* You have [installed the `armory` CLI]({{< ref "get-started-cli" >}}) and [Helm](https://helm.sh/docs/intro/install/).
+* You have [set up your Borealis account]({{< ref "get-started" >}}).
+* You have [installed the `armory` CLI]({{< ref "armory-cdaas/setup/cli" >}}) and [Helm](https://helm.sh/docs/intro/install/).
 * You have access to a GitHub account so you can fork the demo project.
 
 ## 1. Fork and clone the repo

@@ -81,7 +81,7 @@ To perform retrospective analysis, you need to provide the following:
 - **Metrics Provider**: The metrics provider that you want to use. For information about adding a metrics provider, see Integrations[#integrations].
 - **Analysis Range**: The time range that you want to analyze.
 - **Queries**: One or more query templates to use for the analysis. For the query template, you need the following:
-   - Name: Provide a descpritive name
+   - Name: Provide a descriptive name
    - Upper Limit:
    - Lower Limit:
    - Query Template
@@ -120,7 +120,7 @@ For a deployment target to be available, it needs to be added to Borealis. Note 
 
 How you add a deployment target depends on whether or not the Kubernetes cluster is accessible from the public internet. If it is, you add it through the **Configuration UI**, and no additional steps are needed. If it is not, you must first install a Remote Network Agent (RNA) on it and then add it through the **Configuration UI**.
 
-For information about how to add a deployment target, see [Prepare your deployment target]({{< ref "get-started-org#prepare-your-deployment-target" >}}).
+For information about how to add a deployment target, see [Prepare your deployment target]({{< ref "get-started#prepare-your-deployment-target" >}}).
 -->
 ## Networking
 
