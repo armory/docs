@@ -3,7 +3,7 @@ title: "Armory Continuous Deployment-as-a-Service"
 exclude_search: true
 no_list: true
 description: >
-  Use Armory Continuous Deployment-as-a-Service to continuously deliver your apps to your Kubernetes clusters. Armory Continuous Deployment-as-a-Service integrates with external automation so you can create your own CI/CD pipelines.
+  Use Armory Continuous Deployment-as-a-Service to continuously deliver your apps to your Kubernetes clusters. Armory Continuous Deployment-as-a-Service integrates with external automation so you can create your own Continuous Delivery pipelines.
 ---
 
 Project Borealis uses Armory's hosted cloud services to deploy Kubernetes applications to your clusters. When you use the Borealis CLI to deploy your application, the CLI sends the deployment request to Armory's hosted cloud services. In turn, the cloud services communicate with your Kubernetes cluster using Armory's Remote Network Agent (RNA) to initiate the deployment. For a more in-depth look at Borealis, see [Architecture]({{< ref "architecture-cdaas" >}}).
