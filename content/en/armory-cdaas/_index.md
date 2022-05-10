@@ -1,5 +1,6 @@
 ---
 title: "Armory Continuous Deployment-as-a-Service"
+linkTitle: Armory CD-as-a-Service
 exclude_search: true
 no_list: true
 description: >
