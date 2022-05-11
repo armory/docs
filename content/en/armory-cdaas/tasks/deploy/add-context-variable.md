@@ -6,6 +6,8 @@ description: >
 exclude_search: true
 ---
 
+## How to add new context variables
+
 You can add new context variables at deployment time by using the `--add-context` argument on the command line or from within your [Armory CDaaS GitHub Action]({{< ref "gh-action" >}}). Armory CDaaS adds the new context variables to webhook triggers and canary analysis steps in any deployment constraint.
 
 The value of the `--add-context` argument is a comma-delimited list of key=value pairs.
