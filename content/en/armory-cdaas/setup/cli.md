@@ -48,7 +48,7 @@ If you choose to install the CLI binary manually, you must download a specific r
    chmod +x avm-darwin-amd64
    ```
 
-4. Confirm that `/usr/local`/bin is on your `PATH`:
+4. Confirm that `/usr/local/bin` is on your `PATH`:
 
    ```bash
    echo $PATH
