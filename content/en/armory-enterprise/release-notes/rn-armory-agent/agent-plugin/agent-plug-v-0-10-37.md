@@ -5,5 +5,7 @@ version: 00.10.37
 
 ---
 
-Fix the missing  information for agent cluster accounts while calling 
+##Fixes
+
+* Fixes the missing `serverGroups` info for agent accounts while calling `GET /applications/{app}/clusters/{agentAccount}/{deployment}`. 
 
