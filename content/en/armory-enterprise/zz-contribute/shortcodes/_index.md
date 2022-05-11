@@ -22,7 +22,8 @@ alert, swaggerui, imgproc
 
 location:  `docs/layouts/shortcodes`
 
-## Heading
+
+### Heading
 This shortcode works in conjunction with the `i118n/en.toml` file, which contains key/value pairs for common headings.
 
 Usage:
@@ -68,6 +69,15 @@ Renders as:
 See the {{< linkWithTitle best-practices.md >}} page...
 
 See this page: {{< linkWithTitle agent-troubleshooting.md >}}.
+
+This shortcode throws an error if the file is not found.
+
+
+```markdown
+See the {{</* linkWithTitle bubba.md */>}} page...
+```
+
+See the {{< linkWithTitle bubba.md >}} page...
 
 ### Google suite shortcode
 

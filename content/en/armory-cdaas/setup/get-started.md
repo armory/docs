@@ -77,5 +77,4 @@ Now that Borealis is configured for your deployment target, you can either try o
 
 ### Deploy an app
 
-Use the [CLI get started guide]({{< ref "cli" >}}) to learn how to manually deploy an app using the Borealis CLI.
-
+Use the {{< linkWithTitle "armory-cdaas/setup/cli.md" >}} guide to learn how to manually deploy an app using the Borealis CLI.

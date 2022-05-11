@@ -11,7 +11,7 @@ draft: true
 
 ## Overview of the Armory Operator Red Hat Marketplace offering
 
-The {{< linkWithTitle "operator.md" >}} is a Kubernetes Operator that makes it easier to install, deploy, and upgrade Armory. You can get the Armory Operator from the [Red Hat Marketplace](https://marketplace.redhat.com/), which is available directly from your OpenShift web console. See the Red Hat Marketplace [docs](https://marketplace.redhat.com/en-us/documentation/) for how to use marketplace.
+The {{< linkWithTitle "armory-enterprise/installation/armory-operator/_index.md" >}} is a Kubernetes Operator that makes it easier to install, deploy, and upgrade Armory. You can get the Armory Operator from the [Red Hat Marketplace](https://marketplace.redhat.com/), which is available directly from your OpenShift web console. See the Red Hat Marketplace [docs](https://marketplace.redhat.com/en-us/documentation/) for how to use marketplace.
 
 Installing Armory consists of the following:
 
