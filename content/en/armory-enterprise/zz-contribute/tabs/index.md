@@ -127,7 +127,6 @@ Usage:
   </p>
 {{< /rawhtml >}}  
 
-See the {{< linkWithTitle pacrd-crd-docs.md >}} for an example.
 
 ## Includes with tabs
 

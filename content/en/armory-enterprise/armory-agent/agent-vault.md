@@ -51,7 +51,7 @@ vault kv put secret/kubernetes account01=@kubeconfig.yaml
 
 ### Configuration template
 
-Replace the configuration files and `kubeconfig` files from the {{< linkWithTitle "armory-agent-quick.md" >}} guide and instead use [Vault injector annotations](https://www.vaultproject.io/docs/platform/k8s/injector/annotations) to provide a template.
+Replace the configuration files and `kubeconfig` files with [Vault injector annotations](https://www.vaultproject.io/docs/platform/k8s/injector/annotations) to provide a template.
 
 {{< prism lang="yaml" line="13-23" >}}
 apiVersion: apps/v1

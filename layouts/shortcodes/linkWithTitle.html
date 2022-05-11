@@ -1,3 +1,8 @@
-{{- $fileName := .Get 0 -}}
-{{ with .Site.GetPage $fileName }}
-<a href="{{.Permalink}}"}>{{.Title}}</a>{{ end }}
+{{ $fileName := .Get 0 }}
+{{ $myPage := .Site.GetPage $fileName }}
+{{ if $myPage }}
+  {{ with $myPage }}
+    <a href="{{.Permalink}}"}>{{.Title}}</a>{{ end }}
+{{ else }}
+{{ errorf "linkWithTitle file not found: %s" $fileName }}
+{{ end }}
