@@ -15,7 +15,7 @@ Project Borealis and the CLI can be integrated with any of your tools and script
 
 ## {{% heading "prereq" %}}
 
-Before you get started, ensure that the requirements listed on [Requirements]({{< ref "cdaas-requirements" >}}) are met and that you can log in to the [Armory Cloud Console](https://console.cloud.armory.io/).
+Before you get started, ensure that the requirements listed on [Requirements]({{< ref "requirements" >}}) are met and that you can log in to the [Armory Cloud Console](https://console.cloud.armory.io/).
 
 ## Create service account credentials
 
@@ -29,7 +29,7 @@ Armory recommends that you store these credentials in a secret engine that is su
 
 ## GitHub Actions
 
-You can use Armory's Project Borealis Deployment Action to integrate Project Borealis with your GitHub repo. For more information, see the [Project Borealis Deployment Action repo](https://github.com/armory/cli-deploy-action) or the {{< linkWithTitle "get-started-gh-action.md" >}} page.
+You can use Armory's Project Borealis Deployment Action to integrate Project Borealis with your GitHub repo. For more information, see the [Project Borealis Deployment Action repo](https://github.com/armory/cli-deploy-action) or the {{< linkWithTitle "gh-action.md" >}} page.
 
 ## Jenkins
 

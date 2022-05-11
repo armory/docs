@@ -282,7 +282,7 @@ Make sure you are running the lastest version of the CLI.
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "get-started-gh-action.md" >}}
+* {{< linkWithTitle "gh-action.md" >}}
 * {{< linkWithTitle "deploy-demo-app.md" >}}
 
 

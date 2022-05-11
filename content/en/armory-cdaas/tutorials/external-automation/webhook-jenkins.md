@@ -13,7 +13,7 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-- You have read the webhook approval [introductory page]({{< ref "cdaas-webhooks" >}}).
+- You have read the webhook approval [introductory page]({{< ref "webhook-approval" >}}).
 
 
 
