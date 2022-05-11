@@ -7,4 +7,4 @@ version: 00.09.53
 
 ##Fixes
 
-* Fixes the missing `serverGroups` info for agent accounts while calling `GET /applications/{app}/clusters/{agentAccount}/{deployment}`.
+* Fixes the missing `serverGroups` info for agent accounts when calling `GET /applications/{app}/clusters/{agentAccount}/{deployment}`.
