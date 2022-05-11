@@ -134,4 +134,5 @@ You need login credentials to access the Status UI, which is part of Armory's ho
 
 
 ## {{%  heading "nextSteps" %}}
-* {{< linkWithTitle "add-context-variables" >}}
+
+* {{< linkWithTitle "add-context-variable.md" >}}

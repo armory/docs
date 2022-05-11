@@ -12,19 +12,20 @@ The value of the `--add-context` argument is a comma-delimited list of key=value
 
 For this example, you want to add the following new context variables:
 
-| Name        | Value |
-| ----------- | ----- |
-| smokeTest   | true  |
-| environment | prod  |
-| changeBy            |  jane-doe     |
+| Name        | Value      |
+| ----------- | ---------- |
+| smokeTest   | true       |
+| environment | prod       |
+| changeBy    | jane-smith |
 
-Your command line would look like this:
+<br>
+Your command line looks like this:
 
 {{< prism lang="bash" line-numbers="true" >}}
 armory deploy start -f deploy.yml --add-context=smokeTest=true,environment=prod,changeBy=jane-doe
 {{< /prism >}}
-
-In your GitHub Action, add an `addContext` key in your `Deployment` step.
+<br>
+In your GitHub Action, you add an `addContext` key in your `Deployment` step.
 
 {{< prism lang="yaml" line-numbers="true" line="22" >}}
 name: Deploy my latest version
@@ -51,3 +52,10 @@ jobs:
           addContext: "smokeTest=true,environment=prod,changeBy=jane-doe"
           applicationName: "potato-facts"
 {{< /prism >}}
+
+## Known issues
+
+Context variables are not added in the following situations:
+
+* An `analysis` step when used in an after deployment constraint
+* A step in a blue/green deployment strategy
