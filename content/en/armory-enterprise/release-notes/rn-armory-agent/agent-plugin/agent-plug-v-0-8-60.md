@@ -7,4 +7,4 @@ version: 00.08.60
 
 ### Changes
 
-* TLS support for operation forwarding between clouddriver instances when cluster = kubernetes in the configuration. It uses existing TLS settings (see https://docs.armory.io/armory-enterprise/armory-admin/tls-configure/#configuring-java-services).
+* TLS support for operation forwarding between clouddriver instances when `cluster = kubernetes` in the configuration. It uses existing TLS settings (see https://docs.armory.io/armory-enterprise/armory-admin/tls-configure/#configuring-java-services).
