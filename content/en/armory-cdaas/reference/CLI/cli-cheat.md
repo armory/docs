@@ -80,6 +80,8 @@ When you execute the `armory logout` command, a prompt appears for user confirma
 
 **Flags**
 - `-a, --authToken`: (Optional) The authentication token to use rather than `clientId` and `clientSecret` or user login.
+- `--add-context`: (Optional) Comma-delimited list of new context variables in  `name=value` format. These are added to your canary analysis and webhook triggers.
+- `-n, --application`: (Optional) The app name for deployment.
 - `-c, --clientId`: (Optional) The Client ID for connecting to Project Borealis.
 - `-f, --file`: (Required) The path to the deployment file.
 - `-n, --application`: (Optional) The app name for deployment.
@@ -88,11 +90,15 @@ When you execute the `armory logout` command, a prompt appears for user confirma
 Use only one of the following ways to authenticate your deployment: `armory login` **or** `--clientId` and `--clientSecret` **or** `--authToken`.
 
 
-**Example**
+**Examples**
 
 You are in the directory where your deployment file is located. To deploy your app, execute:
 
 `armory deploy start -f deploy.yaml`
+
+To deploy your app with new context variables:
+
+`armory deploy start -f deploy.yml --add-context=pr=myprnumber,jira=myjiranumber`
 
 ## Generate a blue/green deployment template
 
