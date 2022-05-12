@@ -124,7 +124,7 @@ borealis_banner = true
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
-version_menu = "Latest"
+version_menu = "Enterprise v2.27"
 
 # Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
@@ -134,7 +134,8 @@ archived_version = false
 # The version number for the version of the docs represented in this doc set.
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
-version = "2.27"
+# Also used in the PCM to highlight what version the PCM is for
+version = "2.27.3"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
@@ -236,25 +237,21 @@ enable = true
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
 [[params.versions]]
-  version = "Latest"
-  githubbranch = "master"
-
-[[params.versions]]
-  version = "v2.26"
+  version = "Enterprise v2.26"
   githubbranch = "v2.26"
   url = "https://v2-26.docs.armory.io/docs/"
 
 [[params.versions]]
-  version = "v2.25"
+  version = "Enterprise v2.25"
   githubbranch = "v2.25"
   url = "https://v2-25.docs.armory.io/docs/"
 
 [[params.versions]]
-  version = "v2.24"
+  version = "Enterprise v2.24"
   githubbranch = "v2.24"
   url = "https://v2-24.docs.armory.io/docs/"
 
 [[params.versions]]
-  version = "v2.23"
+  version = "Enterprise v2.23"
   githubbranch = "v2.23"
   url = "https://v2-23.docs.armory.io/docs/"
