@@ -1,8 +1,8 @@
 ---
-title: Get Started with Project Borealis
+title: Get Started with Armory CDaaS
 linkTitle: Get Started
 description: >
-  Project Borealis is a software deployment tool that you can use to deploy Kubernetes applications.
+  Armory CDaaS is a software deployment tool that you can use to deploy Kubernetes applications.
 exclude_search: true
 weight: 10
 ---

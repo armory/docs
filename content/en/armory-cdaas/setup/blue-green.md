@@ -9,17 +9,17 @@ exclude_search: true
 
 ## Blue/Green deployment overview
 
-A blue/green strategy shifts traffic from the running version of your software to a new version of your software. The Borealis blue/green strategy follows these steps:
+A blue/green strategy shifts traffic from the running version of your software to a new version of your software. The Armory CDaaS blue/green strategy follows these steps:
 
-1. Borealis deploys a new version of your software without exposing it to external traffic.
-1. Borealis executes one or more user-defined steps in parallel. These steps are pre-conditions for exposing the new version of your software to traffic. For example, you may want to run automated metric analysis or wait for manual approval.
-1. After all pre-conditions complete successfully, Borealis redirects all traffic to the new software version. At this stage of the deployment, the old version of your software is still running but is not receiving external traffic.
-1. Next, Borealis executes one or more user-defined steps in parallel. These steps are pre-conditions for tearing down the old version of your software. For example, you may want to pause for an hour or wait for an additional automated metric analysis.
-1. After all pre-conditions complete successfully, Borealis tears down the old version of your software.
+1. Armory CDaaS deploys a new version of your software without exposing it to external traffic.
+1. Armory CDaaS executes one or more user-defined steps in parallel. These steps are pre-conditions for exposing the new version of your software to traffic. For example, you may want to run automated metric analysis or wait for manual approval.
+1. After all pre-conditions complete successfully, Armory CDaaS redirects all traffic to the new software version. At this stage of the deployment, the old version of your software is still running but is not receiving external traffic.
+1. Next, Armory CDaaS executes one or more user-defined steps in parallel. These steps are pre-conditions for tearing down the old version of your software. For example, you may want to pause for an hour or wait for an additional automated metric analysis.
+1. After all pre-conditions complete successfully, Armory CDaaS tears down the old version of your software.
 
 ## {{% heading "prereq" %}}
 
-This quick start assumes that you completed the prior two quick starts that taught you how to register a cluster with Borealis and how to deploy an app with the CLI.
+This quick start assumes that you completed the prior two quick starts that taught you how to register a cluster with Armory CDaaS and how to deploy an app with the CLI.
 
 To complete this quick start, you need the following:
 
@@ -67,7 +67,7 @@ To complete this quick start, you need the following:
 
 ## Redeploy your app
 
-Make a change to your app, such as the number of replicas, and redeploy it with the Borealis CLI:
+Make a change to your app, such as the number of replicas, and redeploy it with the CLI:
 
 ```bash
 armory deploy start  -f <your-deploy-file>.yaml

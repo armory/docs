@@ -41,14 +41,14 @@ Lists the usage and available commands.
 
 `armory help`
 
-## Log into Project Borealis
+## Log into Armory CDaaS
 
 **Usage**
 
 `armory login [flags]`
 
 **Flags**
-- `-e, --envName`: (Optional) The name of your Borealis environment. Names with spaces must be enclosed in single or double quotes.
+- `-e, --envName`: (Optional) The name of your Armory CDaaS environment. Names with spaces must be enclosed in single or double quotes.
 
 **Example**
 
@@ -62,7 +62,7 @@ If your environment is named `dev team`, execute:
 
 If you don't include your environment, the command returns with a list of environments. You must select one to continue.
 
-## Log out of Project Borealis
+## Log out of Armory CDaaS
 
 **Usage**
 
@@ -82,10 +82,10 @@ When you execute the `armory logout` command, a prompt appears for user confirma
 - `-a, --authToken`: (Optional) The authentication token to use rather than `clientId` and `clientSecret` or user login.
 - `--add-context`: (Optional) Comma-delimited list of new context variables in  `name=value` format. These are added to your canary analysis and webhook triggers.
 - `-n, --application`: (Optional) The app name for deployment.
-- `-c, --clientId`: (Optional) The Client ID for connecting to Project Borealis.
+- `-c, --clientId`: (Optional) The Client ID for connecting to Armory CDaaS.
 - `-f, --file`: (Required) The path to the deployment file.
 - `-n, --application`: (Optional) The app name for deployment.
-- `-s, --clientSecret`: (Optional) The Client Secret for connecting to Project Borealis.
+- `-s, --clientSecret`: (Optional) The Client Secret for connecting to Armory CDaaS.
 
 Use only one of the following ways to authenticate your deployment: `armory login` **or** `--clientId` and `--clientSecret` **or** `--authToken`.
 

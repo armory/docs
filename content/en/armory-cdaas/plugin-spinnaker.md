@@ -1,11 +1,13 @@
 ---
-title: Get Started with Project Aurora for Spinnaker™
-description: Use this self-service guide to install Project Aurora, which enables you to perform canary and blue/green deployments in a single stage.
+title: Armory Enterprise and Spinnaker Plugin
+linkTitle: Spinnaker Plugin
+description: >
+  Use this guide to install the Armory Continuous Deployments-as-a-Service plugin for Spinnaker and Armory Enterprise. This plugin enables performing canary and blue/green deployments in a single stage.
 exclude_search: true
-toc_hide: true
-hide_summary: true
+weight: 500
 aliases:
   - /docs/installation/armory-deployments-for-spinnaker/
+  - /armory-enterprise/installation/aurora-install/
 ---
 
 {{< alert title="Early Access" color="primary" >}}
@@ -14,7 +16,7 @@ aliases:
 
 ## Overview
 
-Project Aurora is plugin that adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
+The Armory Continuous Deployments-as-a-Service Plugin for Spinnaker™ adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
 
 See the [Architecture]({{< ref "armory-cdaas/concepts/architecture" >}}) page for an overview of Project Aurora and how it fits in with Armory Enterprise.
 
@@ -22,15 +24,15 @@ This guide walks you through the following:
 
 - Registering your Armory Enterprise environment
 - Installing the Remote Network Agent (RNA) on your deployment target cluster
-- Connecting to Armory Cloud services
-- Installing the Project Aurora plugin
+- Connecting to Armory Continuous Deployments-as-a-Service
+- Installing the plugin
 - Deploying a "hello world" manifest
 
 ### Release notes
 
-For the Project Aurora release notes, see the [Armory Changelog](https://armory.releases.live/?labels=Armory+Deployments+Plugin).
+You can find the plugin release notes in the [Armory CDaaS release notes](https://armory.releases.live/ledger/embed/).
 
-## Requirements
+## {{% heading "prereq" %}}
 
 Verify that you meet or can meet these requirements before getting started.
 
@@ -83,7 +85,7 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
 7. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Aurora and Armory's hosted cloud services. Make sure to store the secret somewhere safe. You are not shown the value again.
 
-## Enable Aurora in target Kubernetes clusters
+## Enable the Armory CDaaS Remote Network Agent in target Kubernetes clusters
 
 This section walks you through installing the Remote Network Agent (RNA) using a Helm chart.
 
@@ -261,18 +263,18 @@ hal deploy apply
 
 Project Aurora provides the following pipeline stages that you can use to deploy your app:
 
-* [Borealis Progressive Deployment YAML](#borealis-progressive-deployment-yaml-stage): You create the Borealis deployment YAML configuration, so you have access to the full set of options for deploying your app to a single environment.
+* [Borealis Progressive Deployment YAML](#Armory CDaaS-progressive-deployment-yaml-stage): You create the Armory CDaaS deployment YAML configuration, so you have access to the full set of options for deploying your app to a single environment.
 * [Kubernetes Progressive](#kubernetes-progressive-stage): This is a basic deployment stage with a limited set of options. Blue/green deployment is not supported in Early Access.
 
-### Borealis Progressive Deployment YAML stage
+### Armory CDaaS Progressive Deployment YAML stage
 
 {{< alert title="Limitations" color="primary" >}}
 * This stage only supports deploying to a single environment.
 {{< /alert >}}
 
-This stage uses YAML deployment configuration to deploy your app. The YAML that you create must be in the same format as the [Deployment File]({{< ref "ref-deployment-file" >}}) that you would use with the Borealis CLI.
+This stage uses YAML deployment configuration to deploy your app. The YAML that you create must be in the same format as the [Deployment File]({{< ref "ref-deployment-file" >}}) that you would use with the Armory CDaaS CLI.
 
-You have the following options for adding your Borealis deployment YAML configuration:
+You have the following options for adding your Armory CDaaS deployment YAML configuration:
 
 1. **Text**: You create and store your deployment YAML within Armory Enterprise.
 1. **Artifact**: You store your deployment YAML file in source control.
@@ -281,21 +283,21 @@ You have the following options for adding your Borealis deployment YAML configur
 
 1. Add the Kubernetes manifest for your app as a pipeline artifact in the Configuration section of your pipeline. Or you can generate it using the 'Bake (Manifest)' stage, as you would for a standard Kubernetes deployment in Armory Enterprise.
 
-1. Prepare your Borealis deployment YAML. You can use the [Borealis CLI]({{< ref "armory-cdaas/setup/cli#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template. In your deployment YAML `manifests.path` section, you have to specify the file name of the app's Kubernetes manifest artifact, which may vary from the **Display Name** on the **Expected Artifact** screen.
+1. Prepare your Armory CDaaS deployment YAML. You can use the [Armory CDaaS CLI]({{< ref "armory-cdaas/setup/cli#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template. In your deployment YAML `manifests.path` section, you have to specify the file name of the app's Kubernetes manifest artifact, which may vary from the **Display Name** on the **Expected Artifact** screen.
 
 #### Configure the stage
 
-The **Deployment Configuration** section is where you define your Borealis progressive deployment and consists of the following parts:
+The **Deployment Configuration** section is where you define your Armory CDaaS progressive deployment and consists of the following parts:
 
 **Manifest Source**
 
-{{< tabs name="BorealisDeploymentYAMLManifestSource" >}}
+{{< tabs name="Armory CDaaSDeploymentYAMLManifestSource" >}}
 {{% tabbody name="Text" %}}
 
 1. Choose **Text** for the **Manifest Source**.
 1. Paste your deployment file YAML into the **Deployment YAML** text box. For example:
 
-{{< figure src="/images/installation/aurora/borealis-prog-deploy-yaml.png" alt="Example of a deployment YAML file pasted into the Deployment YAML text box." >}}
+{{< figure src="/images/cdaas/plugin/borealis-prog-deploy-yaml.png" alt="Example of a deployment YAML file pasted into the Deployment YAML text box." >}}
 
 {{% /tabbody %}}
 {{% tabbody name="Artifact" %}}

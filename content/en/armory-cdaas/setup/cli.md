@@ -2,22 +2,22 @@
 title: Get Started with the CLI to Deploy Apps
 linktitle: CLI
 description: >
-  Use the Borealis CLI to interact with Project Borealis. You can integrate Borealis into your existing CI/CD tooling. Start by familiarizing yourself with the Borealis CLI and its workflow.
+  Use the CLI to interact with Armory CDaaS. You can integrate Armory CDaaS into your existing CI/CD tooling. Start by familiarizing yourself with the CLI and its workflow.
 exclude_search: true
 weight: 20
 ---
 
 ## {{% heading "prereq" %}}
 
-Before you start, make sure that someone at your organization has completed the [Get Started with Project Borealis]({{< ref "get-started" >}}). That guide describes how to prepare your deployment target so that you can use the Borealis CLI to deploy apps to it.
+Before you start, make sure that someone at your organization has completed the onboarding steps in {{< linkWithTitle "get-started.md" >}}. That guide describes how to prepare your deployment target so that you can use the CLI to deploy apps to it.
 
 ## Register for Armory's hosted cloud services
 
-Register for Armory's hosted cloud services by accepting the invitation. You should receive an email invite to Borealis from your organization's administrator.
+Register for Armory's hosted cloud services by accepting the invitation. You should receive an email invite to Armory CDaaS from your organization's administrator.
 
 Note that you need a device that can support OTP two-factor authentication, such as a smartphone with the Google Authenticator app.
 
-## Install the Borealis CLI
+## Install the Armory CDaaS CLI
 
 The CLI binary is called `armory`. You can install the CLI using the Armory Version Manager (AVM) or you can install the `armory` binary manually.
 
@@ -25,7 +25,7 @@ Armory recommends installing the AVM because you can use it to quickly and easil
 
 If you choose to install the CLI binary manually, you must download a specific release binary from GitHub and install that release. You have to repeat the installation process each time you upgrade the CLI version.
 
-{{< tabs name="borealis-cli-install" >}}
+{{< tabs name="cdaas-cli-install" >}}
 
 {{% tabbody name="Automated (Recommended)" %}}
 
@@ -61,13 +61,13 @@ If you choose to install the CLI binary manually, you must download a specific r
    mv avm-darwin-amd64 /usr/local/bin/avm
    ```
 
-6. Run the following command to install the Borealis CLI:
+6. Run the following command to install the CLI:
 
    ```bash
    avm install
    ```
 
-   The command installs the Borealis CLI and returns a directory that you need to add to your path, such as `/Users/milton/.avm/bin`.
+   The command installs the CLI and returns a directory that you need to add to your path, such as `/Users/milton/.avm/bin`.
 
    If you get an `developer  cannot be identified error` when trying to run AVM, you must allow AVM to run.
 
@@ -102,13 +102,13 @@ If you choose to install the CLI binary manually, you must download a specific r
 
    </details></br>
 
-8. Run the following command to verify that the Borealis CLI is installed:
+8. Run the following command to verify that the CLI is installed:
 
    ```bash
    armory
    ```
 
-   The command returns basic information about the  Borealis CLI, including available commands.
+   The command returns basic information about the  CLI, including available commands.
 
 For the AVM or the CLI, you can use the `-h` flag for more information about specific commands.
 
@@ -125,7 +125,7 @@ For the AVM or the CLI, you can use the `-h` flag for more information about spe
    chmod +x /usr/local/bin/armory
    ```
 
-1. Verify that you can run the Borealis CLI:
+1. Verify that you can run the CLI:
 
    ```bash
    armory
@@ -143,13 +143,13 @@ See the {{< linkWithTitle "avm-cheat.md" >}} and {{< linkWithTitle "cli-cheat.md
 
 ## Manually deploy apps using the CLI
 
->Project Borealis manages your Kubernetes deployments using ReplicaSet resources. During the initial deployment of your application using Project Borealis, the underlying Kubernetes deployment object is deleted in a way that it leaves behind the ReplicaSet and pods so that there is no actual downtime for your application. These are later deleted when the deployment succeeds.
+>Armory CDaaS manages your Kubernetes deployments using ReplicaSet resources. During the initial deployment of your application using Armory CDaaS, the underlying Kubernetes deployment object is deleted in a way that it leaves behind the ReplicaSet and pods so that there is no actual downtime for your application. These are later deleted when the deployment succeeds.
 
-Before you can deploy, make sure that you have the Client ID and Client Secret for your deployment target available. These are used to authenticate Armory's hosted deployment services with the target cluster. The credentials were created and tied to your deployment target as part of the [Get Started with Project Borealis]({{< ref "get-started" >}}) guide.
+Before you can deploy, make sure that you have the Client ID and Client Secret for your deployment target available. These are used to authenticate Armory's hosted deployment services with the target cluster. The credentials were created and tied to your deployment target as part of the {{< linkWithTitle "get-started.md" >}} guide.
 
-Since you are using the Borealis CLI, you do not need to have service account credentials for authenticating your CLI to the deployment services. Instead, you log in manually with your user account.
+Since you are using the CLI, you do not need to have service account credentials for authenticating your CLI to the deployment services. Instead, you log in manually with your user account.
 
-**If this is the first deployment of your app, Borealis automatically deploys the app to 100% of the cluster since there is no previous version.** Subsequent deployments of this app follow the steps defined in your deployment file.
+**If this is the first deployment of your app, Armory CDaaS automatically deploys the app to 100% of the cluster since there is no previous version.** Subsequent deployments of this app follow the steps defined in your deployment file.
 
 1. Log in to Armory's hosted deployment services from the CLI.
 
@@ -186,7 +186,7 @@ Since you are using the Borealis CLI, you do not need to have service account cr
      ```yaml
      strategies:
        my-demo-strat: # Name that you use for `targets.<deploymentName>.strategy
-       - canary # The type of deployment strategy to use. Borealis supports `canary`.
+       - canary # The type of deployment strategy to use.
           steps:
             - setWeight:
                 weight: <integer> # What percentage of the cluster to roll out the manifest to before pausing.
@@ -199,7 +199,7 @@ Since you are using the Borealis CLI, you do not need to have service account cr
                 untilApproved: true # Wait until a user provides a manual approval before deploying the manifest
      ```
 
-   Each step can have the same or different pause behaviors. Additionally, you can configure as many steps  as you want for the deployment strategy, but you do not need to create a step with a weight set to 100. Once Borealis completes the last step you configure, the manifest gets deployed to the whole cluster automatically.
+   Each step can have the same or different pause behaviors. Additionally, you can configure as many steps  as you want for the deployment strategy, but you do not need to create a step with a weight set to 100. Once Armory CDaaS completes the last step you configure, the manifest gets deployed to the whole cluster automatically.
 
    <details><summary>Show me a completed deployment file</summary>
 
@@ -222,9 +222,9 @@ Since you are using the Borealis CLI, you do not need to have service account cr
 
 ## Monitor your deployment
 
-You can monitor the progress of any deployment through the Borealis CLI itself or from the Status UI. The Status UI gives you a visual representation of a deployment's health and progress in addition to controls. If your deployment strategy includes a manual approval step, use the Status UI to approve the step and continue.
+You can monitor the progress of any deployment through the CLI itself or from the Status UI. The Status UI gives you a visual representation of a deployment's health and progress in addition to controls. If your deployment strategy includes a manual approval step, use the Status UI to approve the step and continue.
 
-Run the following command to monitor your deployment through the Borealis CLI:
+Run the following command to monitor your deployment through the CLI:
 
 ```bash
 armory deploy status -i <deployment-ID>
@@ -232,7 +232,7 @@ armory deploy status -i <deployment-ID>
 
 ### Initial deployment failure
 
-If the initial deployment of your app using Project Borealis fails or is manually rolled back, the ReplicaSet is orphaned rather than deleted. In this situation, you should manually delete the orphaned ReplicaSet _only after the initial deployment runs successfully_.
+If the initial deployment of your app using Armory CDaaS fails or is manually rolled back, the ReplicaSet is orphaned rather than deleted. In this situation, you should manually delete the orphaned ReplicaSet _only after the initial deployment runs successfully_.
 
 To delete the orphaned ReplicaSet:
 1. Get a list of ReplicaSet objects
@@ -272,7 +272,7 @@ This issue occurs if the AVM version you downloaded does not match your CPU arch
 
 `error: Error: there was an error writing the credentials file. `
 
-This issue occurs because the the directory where the Borealis CLI stores your credentials after you run `armory login` does not exist. You can create the directory by running the following command:
+This issue occurs because the the directory where the CLI stores your credentials after you run `armory login` does not exist. You can create the directory by running the following command:
 
 ```bash
 mkdir ~/.armory/credentials

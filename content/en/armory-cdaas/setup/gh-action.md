@@ -4,19 +4,15 @@ linktitle: GitHub Action
 exclude_search: true
 weight: 30
 description: >
-  Use the Borealis Deployment Action to integrate your GitHub repo with Armory's Project Borealis.
+  Use the Armory CDaaS Deployment Action to integrate your GitHub repo with Armory CDaaS.
 ---
-
-## Overview of Project Borealis deployment
-
-You can also learn about this GitHub Action by viewing the [repo](https://github.com/armory/cli-deploy-action).
 
 ## {{% heading "prereq" %}}
 
-If you have previously configured Borealis for your deployment target, you can skip to step 3.
+If you have previously configured Armory CDaaS for your deployment target, you can skip to step 3.
 
-1. Review the full set of requirements for Borealis at [System Requirements]({{< ref "requirements" >}}).
-2. If you have already prepared a deployment target for Borealis, skip this step. If you have not, complete the [Get Started with Project Borealis]({{< ref "get-started" >}}) tasks, which include the following:
+1. Review the full set of requirements for Armory CDaaS at [System Requirements]({{< ref "requirements" >}}).
+2. If you have already prepared a deployment target for Armory CDaaS, skip this step. If you have not, complete the {{< linkWithTitle "get-started.md" >}} tasks, which include the following:
 
    - Register for an Armory hosted cloud services account. This is the account that you use to log in  to the Armory Cloud Console and the Status UI.
    - [Create machine-to-machine client credentials]({{< ref "client-creds" >}}) for the Remote Network Agent (RNA), which you install on your deployment target cluster.
@@ -60,7 +56,7 @@ Then, the value you use for `path` in the deployment file should be `/deployment
 
 ### Create a deployment file
 
-The [deployment file]({{< ref "ref-deployment-file" >}}) is a YAML file that defines what app you want to deploy and how Borealis should deploy it. You can use the [Borealis CLI]({{< ref "cli#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template.
+The [deployment file]({{< ref "ref-deployment-file" >}}) is a YAML file that defines what app you want to deploy and how Armory CDaaS should deploy it. You can use the [CLI]({{< ref "cli#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template.
 
 Save your deployment file to a directory in your repo. You use this path later when you create the GitHub Action for the `path-to-file` parameter.
 
@@ -109,9 +105,9 @@ jobs:
 
 Now you can trigger a deployment based on what you defined in the action workflow, such as a `push` to the `main` branch.
 
-When the action runs, Borealis starts your deployment, and it progresses to the first weight you set. After completing the first step, what Borealis does next depends on the steps you defined in your deployment file. Borealis either waits a set amount of time or until you provide a manual approval.
+When the action runs, Armory CDaaS starts your deployment, and it progresses to the first weight you set. After completing the first step, what Armory CDaaS does next depends on the steps you defined in your deployment file. Armory CDaaS either waits a set amount of time or until you provide a manual approval.
 
-You can monitor the progress through the Borealis CLI or the Status UI by using the deployment ID. The GitHub Action provides both the deployment ID and a URL to the Status UI page for the deployment.
+You can monitor the progress through the CLI or the Status UI by using the deployment ID. The GitHub Action provides both the deployment ID and a URL to the Status UI page for the deployment.
 
 To see the deployment ID and the Status UI link, perform the following steps:
 
@@ -122,7 +118,7 @@ To see the deployment ID and the Status UI link, perform the following steps:
 
 {{< figure src="/images/cdaas/gha-statusUI.jpg" alt="" >}}
 
-### Borealis CLI
+### Armory CDaaS CLI
 
 ```bash
 armory deploy status -i <deployment-ID>

@@ -4,14 +4,14 @@ linktitle: External Automation
 exclude_search: true
 no_list: true
 description: >
-  Integrate webhook-based approvals into your Project Borealis app deployment process.
+  Integrate webhook-based approvals into your Armory CDaaS app deployment process.
 aliases:
   - /borealis/borealis-automate/cdaas-webhook-approval/
 ---
 
 ## When you should use webhook-based approvals
 
-You can think of webhook-based approvals as a generic extensibility layer that enables you to call any API in any internet-accessible system. You can use a webhook to obtain a decision from a process that is external to Borealis.  
+You can think of webhook-based approvals as a generic extensibility layer that enables you to call any API in any internet-accessible system. You can use a webhook to obtain a decision from a process that is external to Armory CDaaS.  
 
 ### Webhook use cases
 
@@ -33,7 +33,7 @@ You can think of webhook-based approvals as a generic extensibility layer that e
 
 ## How webhook-based approval works
 
-In order to accommodate a long-running process, Borealis supports the asynchronous webhook with callback pattern. You define the webhook in your deployment file and add a webhook call in the `constraints` section of your deployment definition or in a canary step.
+In order to accommodate a long-running process, Armory CDaaS supports the asynchronous webhook with callback pattern. You define the webhook in your deployment file and add a webhook call in the `constraints` section of your deployment definition or in a canary step.
 
 **Basic flow**
 
@@ -60,7 +60,7 @@ flowchart TB
 
 {{% alert title="Important" color="Primary" %}}
 - If you have a manual approval in your deployment constraint and the webhook callback returns failure, the deployment rolls back without waiting for the manual approval.
-- If Borealis hasn't received the webhook callback within 24 hours, the process times out and deployment fails.
+- If Armory CDaaS hasn't received the webhook callback within 24 hours, the process times out and deployment fails.
 - If an `afterDeployment` webhook callback returns failure, deployment is canceled to all environments that depend on the current environment, _but the current environment is not rolled back_.
 {{% /alert %}}
 
@@ -101,7 +101,7 @@ curl --request POST \
   --data '{"success": true, "mdMessage": "Webhook successful"}'
 {{< /prism >}}
 
-Borealis looks for `success` value of `true` or `false` to determine the webhook's success or failure. `mdMessage` should contain a user-friendly message for Borealis to display in the UI and write to logs.
+Armory CDaaS looks for `success` value of `true` or `false` to determine the webhook's success or failure. `mdMessage` should contain a user-friendly message for Armory CDaaS to display in the UI and write to logs.
 
 ## How to configure a webhook in your deployment file
 
@@ -128,7 +128,7 @@ webhooks:
 
 ### Configuration examples
 
-The first example configures a GitHub webhook that uses token authorization, with the token value configured as a Borealis secret. This webhook requires the callback URI be passed in the request body. The payload also contains an `environment` context variable that you pass in when invoking the webhook in your deployment file.
+The first example configures a GitHub webhook that uses token authorization, with the token value configured as a Armory CDaaS secret. This webhook requires the callback URI be passed in the request body. The payload also contains an `environment` context variable that you pass in when invoking the webhook in your deployment file.
 
 {{< prism lang="yaml" line-numbers="true" line="8, 16-17" >}}
 webhooks:
@@ -154,7 +154,7 @@ webhooks:
 {{< /prism >}}
 </br>
 
-The second example configures a webhook that is not accessible from the internet. The `networkMode` is set to `remoteNetworkAgent` and the `agentIdentifier` specifies which Remote Network Agent to use. The `agentIdentifier` value must match the **Agent Identifier** value listed on the **Agents** UI screen. The Authorization Bearer value is configured as a Borealis secret. Note that in this example, the callback URI is passed in the header.
+The second example configures a webhook that is not accessible from the internet. The `networkMode` is set to `remoteNetworkAgent` and the `agentIdentifier` specifies which Remote Network Agent to use. The `agentIdentifier` value must match the **Agent Identifier** value listed on the **Agents** UI screen. The Authorization Bearer value is configured as a Armory CDaaS secret. Note that in this example, the callback URI is passed in the header.
 
 {{< prism lang="yaml" line-numbers="true" line="5-6, 9, 11" >}}
 webhooks:

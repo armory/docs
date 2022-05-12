@@ -2,20 +2,20 @@
 title: Deployment File Reference
 linktitle: Deployment File
 description: >
-  The deployment (deploy) file is how you define how your app gets deployed by Borealis, including the targets and deployment strategies.
+  The deployment (deploy) file is how you define how your app gets deployed by Armory CDaaS, including the targets and deployment strategies.
 exclude_search: true
 ---
 
 
 ## Deployment file reference overview
 
-The deployment file is what you use to define how and where Borealis deploys your app.
+The deployment file is what you use to define how and where Armory CDaaS deploys your app.
 
 You can see what a blank deployment file looks like in the [Blank templates](#blank-template) section. To see a filled out example, see [Complete examples](#complete-examples).
 
 ## Blank templates
 
-You can see this template file by running the following command with the Borealis CLI:
+You can see this template file by running the following command with the CLI:
 
 Basic template:
 ```bash
@@ -128,7 +128,7 @@ targets:
 
 The account name that a target Kubernetes cluster got assigned when you installed the Remote Network Agent (RNA) on it. Specifically, it is the value for the `agentIdentifier` parameter. Note that older versions of the RNA used the `agent-k8s.accountName` parameter.
 
-This name must match an existing cluster because Borealis uses the identifier to determine which cluster to deploy to.
+This name must match an existing cluster because Armory CDaaS uses the identifier to determine which cluster to deploy to.
 
 For example, this snippet configures a deployment to an environment named `prod` that is hosted on a cluster named `prod-cluster-west`:
 
@@ -264,7 +264,7 @@ manifests:
 
 #### `manifests.path`
 
-The path to a manifest file that you want to deploy or the directory where your manifests are stored. If you specify a directory, such as `/deployments/manifests/configmaps`, Borealis reads all the YAML files in the directory and deploys the manifests to the target you specified in `targets`.
+The path to a manifest file that you want to deploy or the directory where your manifests are stored. If you specify a directory, such as `/deployments/manifests/configmaps`, Armory CDaaS reads all the YAML files in the directory and deploys the manifests to the target you specified in `targets`.
 
 #### `manifests.path.targets`
 
@@ -339,7 +339,7 @@ targets:
 
 #### `strategies.<strategyName>.<strategy>`
 
-The kind of deployment strategy this strategy uses. Borealis supports `canary` and `blueGreen`.
+The kind of deployment strategy this strategy uses. Armory CDaaS supports `canary` and `blueGreen`.
 
 ```yaml
 strategies:
@@ -351,23 +351,23 @@ strategies:
 
 ##### `strategies.<strategyName>.canary.steps`
 
-Borealis progresses through all the steps you define as part of the deployment process. The process is sequential and steps can be of the types, `analysis`, `setWeight` or `pause`.
+Armory CDaaS progresses through all the steps you define as part of the deployment process. The process is sequential and steps can be of the types, `analysis`, `setWeight` or `pause`.
 
 Generally, you want to configure a `setWeight` step and have a `analysis` or `pause` step follow it although this is not necessarily required. This gives you the opportunity to see how the deployment is doing either manually or automatically before the deployment progresses.
 
 Some scenarios where this pairing sequence might not be used would be the following:
 
-- You can start the sequence of steps with a `pause` that has no corresponding weight. Borealis recognizes this as a weight of `0` since it is as the start of the deployment. This causes the deployment to pause at the start before any of the app is deployed.
+- You can start the sequence of steps with a `pause` that has no corresponding weight. Armory CDaaS recognizes this as a weight of `0` since it is as the start of the deployment. This causes the deployment to pause at the start before any of the app is deployed.
 - You want to have two `pause` steps in a row, such as a `pause` for a set amount of time followed by a `pause` for a manual judgment.
 
-You can add as many steps as you need but do not need to add a final step that deploys the app to 100% of the cluster. Borealis automatically does that after completing the final step you define.
+You can add as many steps as you need but do not need to add a final step that deploys the app to 100% of the cluster. Armory CDaaS automatically does that after completing the final step you define.
 
 ##### `strategies.<strategyName>.canary.steps.setWeight.weight`
 
-This is an integer value and determines how much of the cluster the app gets deployed to. The value must be between 0 and 100 and the the `weight` for each `setWeight` step should increase as the deployment progresses. After hitting this threshold, Borealis pauses the deployment based on the behavior you set for  the `strategies.<strategyName>.<strategy>.steps.pause` that follows.
+This is an integer value and determines how much of the cluster the app gets deployed to. The value must be between 0 and 100 and the the `weight` for each `setWeight` step should increase as the deployment progresses. After hitting this threshold, Armory CDaaS pauses the deployment based on the behavior you set for  the `strategies.<strategyName>.<strategy>.steps.pause` that follows.
 
 
-For example, this snippet instructs Borealis to deploy the app to 33% of the cluster:
+For example, this snippet instructs Armory CDaaS to deploy the app to 33% of the cluster:
 
 ```yaml
 ...
@@ -400,7 +400,7 @@ If you want the deployment to pause for a certain amount of time after a weight 
 - `strategies.<strategyName>.canary.steps.pause.unit`
   - Use `seconds`, `minutes` or `hours` for unit of time.
 
-For example, this snippet instructs Borealis to wait for 30 seconds:
+For example, this snippet instructs Armory CDaaS to wait for 30 seconds:
 
 ```yaml
 steps:
@@ -449,7 +449,7 @@ steps:
 
 ###### `strategies.<strategyName>.canary.steps.analysis.metricProviderName`
 
-Optional. The name of a configured metric provider. If you do not provide a metric provider name, Borealis uses the default metric provider defined in the `analysis.defaultMetricProviderName`. Use the **Configuration UI** to add a metric provider.
+Optional. The name of a configured metric provider. If you do not provide a metric provider name, Armory CDaaS uses the default metric provider defined in the `analysis.defaultMetricProviderName`. Use the **Configuration UI** to add a metric provider.
 
 ###### `strategies.<strategyName>.canary.steps.analysis.context`
 
@@ -513,7 +513,7 @@ steps:
             ...
 ```
 
-The number of times that each query runs as part of the analysis. Borealis takes the average of all the results of the judgment runs to determine whether the deployment falls within the acceptable range.
+The number of times that each query runs as part of the analysis. Armory CDaaS takes the average of all the results of the judgment runs to determine whether the deployment falls within the acceptable range.
 
 ###### `strategies.<strategyName>.canary.steps.analysis.rollBackMode`
 
@@ -587,7 +587,7 @@ strategies:
 
 ##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter`
 
-The `redirectTrafficAfter` steps are conditions for exposing the new version to the `activeService`. The steps are executed in parallel.After each step completes, Borealis exposes the new version to the `activeService`.
+The `redirectTrafficAfter` steps are conditions for exposing the new version to the `activeService`. The steps are executed in parallel.After each step completes, Armory CDaaS exposes the new version to the `activeService`.
 
 ###### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause`
 
@@ -615,7 +615,7 @@ If you want the deployment to pause for a certain amount of time, you must provi
 - `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.unit`
   - Use `seconds`, `minutes` or `hours` for unit of time.
 
-For example, this snippet instructs Borealis to wait for 30 minutes:
+For example, this snippet instructs Armory CDaaS to wait for 30 minutes:
 
 ```yaml
 redirectTrafficAfter:
@@ -661,7 +661,7 @@ redirectTrafficAfter:
 
 ##### `strategies.<strategyName>.blueGreen.shutdownOldVersionAfter`
 
-This step is a condition for deleting the old version of your software. Borealis executes the `shutDownOldVersion` steps in parallel. After each step completes, Borealis deletes the old version.
+This step is a condition for deleting the old version of your software. Armory CDaaS executes the `shutDownOldVersion` steps in parallel. After each step completes, Armory CDaaS deletes the old version.
 
 ```yaml
 shutdownOldVersionAfter:

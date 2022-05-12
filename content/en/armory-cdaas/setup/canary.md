@@ -13,14 +13,14 @@ The examples in this guide use Prometheus as the metrics provider.
 
 ## {{% heading "prereq" %}}
 
-This quick start assumes that you completed the prior two quick starts that taught you how to register a cluster with Borealis and how to deploy an app with the CLI.
+This quick start assumes that you completed the prior two quick starts that taught you how to register a cluster with Armory CDaaS and how to deploy an app with the CLI.
 
 To complete this quick start, you need the following:
 
 - Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app. You can reuse the clusters from the previous quick starts if you want. Or stand up new ones.
 - A Prometheus instance set up to monitor your Kubernetes clusters. Keep the following in mind:
 
-  - Armory recommends your Prometheus instance uses the following settings: `"prometheus.io/scrape": "true"` (on by default) and `kube-state-metrics.metricAnnotationsAllowList[0]=pods=[*]` (collect annotations). These  flags instruct Prometheus to collect all Kubernetes annotations, which allow you to reference the annotations that Borealis injects as part of your query.
+  - Armory recommends your Prometheus instance uses the following settings: `"prometheus.io/scrape": "true"` (on by default) and `kube-state-metrics.metricAnnotationsAllowList[0]=pods=[*]` (collect annotations). These  flags instruct Prometheus to collect all Kubernetes annotations, which allow you to reference the annotations that Armory CDaaS injects as part of your query.
 
    If you install Prometheus with Helm, this example command includes the required flag:
 
@@ -35,7 +35,7 @@ To complete this quick start, you need the following:
 
 ## Add your metrics provider
 
-Borealis can run queries against metrics providers that you add. The results are examined as part of canary analysis steps in the deploy file.
+Armory CDaaS can run queries against metrics providers that you add. The results are examined as part of canary analysis steps in the deploy file.
 
 1. In the **Configuration UI**, go to [**Canary Analysis > Integrations**](https://console.cloud.armory.io/configuration/metric-source-integrations/).
 2. Select **New Integration.
@@ -75,8 +75,8 @@ Retrospective analysis is the starting point to creating queries so that you can
 
       - **The query must return a single result**. Automated canary analysis does not support queries that return multiple values. See [Query template requirements]({{< ref "ref-queries#query-template-requirements" >}}) for restrictions and provider examples.
       - The query contains variables that are automatically injected during canary analysis, but you must manually provide some of them during retrospective analysis.
-        - Time related variables like `armory.promqlStepInterval` are automatically substituted by Borealis. For a full list, see [Retrospective Analysis]({{< ref "configuration-ui#retrospective-analysis" >}}).
-        - `armory.replicaSetName` needs to be set to the name of the ReplicaSet that Borealis created for this app version. It's used to differentiate between the current and next version of the app. Do this in the next step where you add key/value pairs.
+        - Time related variables like `armory.promqlStepInterval` are automatically substituted by Armory CDaaS. For a full list, see [Retrospective Analysis]({{< ref "configuration-ui#retrospective-analysis" >}}).
+        - `armory.replicaSetName` needs to be set to the name of the ReplicaSet that Armory CDaaS created for this app version. It's used to differentiate between the current and next version of the app. Do this in the next step where you add key/value pairs.
 
 5. Add **Key Value (KV) Pair** for the **Context**. The key value pairs for your  For the sample query, you need to add the following key value Pair:
 
@@ -112,7 +112,7 @@ The `avgCPUUsage` query is now available for you to use in the `steps` block of 
 
 ## Add canary analysis to your deployment
 
-Borealis supports manual and automated canary analysis. Manual canary analysis allows you to review the canary results until you have confidence that your queries are making good decisions around service health.
+Armory CDaaS supports manual and automated canary analysis. Manual canary analysis allows you to review the canary results until you have confidence that your queries are making good decisions around service health.
 
 Adding canary analysis to your deployment involves updating your deploy file to include the following:
 
@@ -158,7 +158,7 @@ Adding canary analysis to your deployment involves updating your deploy file to 
    - Rolling a deployment back or forward is done manually through the Armory Deployments Status UI.
    - It uses the query `containerCPUSeconds`.
 
-   The strategy then deploys the app to 75% of the cluster and then performs a canary analysis. After the roll forward is approved, Borealis deploys the app to 100% of the cluster.
+   The strategy then deploys the app to 75% of the cluster and then performs a canary analysis. After the roll forward is approved, Armory CDaaS deploys the app to 100% of the cluster.
 
 3. Change the value of  `targets.<targetName>.strategy` for one or more of your deployment targets to `canary-deploy-strat`.
 
@@ -175,7 +175,7 @@ Adding canary analysis to your deployment involves updating your deploy file to 
 
 ## Redeploy your app
 
-Make a change to your app, such as the number of replicas, and redeploy it with the Borealis CLI:
+Make a change to your app, such as the number of replicas, and redeploy it with the CLI:
 
 ```bash
 armory deploy start  -f <your-deploy-file>.yaml

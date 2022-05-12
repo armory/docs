@@ -1,7 +1,7 @@
 ---
 title: Configuration UI
 description: >
-  Administer your Borealis instance, including inviting users, managing deployment targets, and generating secrets.
+  Administer your Armory CDaaS instance, including inviting users, managing deployment targets, and generating secrets.
 exclude_search: true
 ---
 
@@ -12,15 +12,15 @@ exclude_search: true
 
 [**Access Management > Client Credentials**](https://console.cloud.armory.io/configuration/credentials)
 
-Manage the secrets that you use for the Remote Network Agent (RNA) and to grant programmatic access to Borealis, such as when you configure the GitHub Action.
+Manage the secrets that you use for the Remote Network Agent (RNA) and to grant programmatic access to Armory CDaaS, such as when you configure the GitHub Action.
 
-Note that secrets are Armory Cloud environment specific.
+Note that secrets are Armory CDaaS environment specific.
 
 ### Invite users
 
 [**Access Management > Users**](https://console.cloud.armory.io/configuration/users)
 
-For your users to get access to Borealis, you must invite them to your organization. This grants them access to the  Borealis UI. Depending on their permissions, they may have access to the **Configuration UI** and the **Status UI**.
+For your users to get access to Armory CDaaS, you must invite them to your organization. This grants them access to the  Armory CDaaS UI. Depending on their permissions, they may have access to the **Configuration UI** and the **Status UI**.
 
 You need their name and email. Note that the email domain must match your organization's format. For example, users that work for Acme (which uses `username@acme.com`) must have `@acme.com` email addresses. They are automatically added to your organization once they accept the invite and complete the sign up.
 
@@ -36,7 +36,7 @@ They can access the UI after completing the signup process.
 
 [**Canary Analysis > Integrations**](https://console.cloud.armory.io/canary-analysis/integrations)
 
-Integrate your metrics provider with Borealis so that you can perform retrospective analysis of your deployment performance or use canary analysis as part of your deployment strategy.
+Integrate your metrics provider with Armory CDaaS so that you can perform retrospective analysis of your deployment performance or use canary analysis as part of your deployment strategy.
 
 Armory supports the following metrics providers:
 
@@ -116,7 +116,7 @@ You can also add your own custom variables as key/value pairs. If you want to us
 
 [**Deployment Targets > Kubernetes**](https://console.cloud.armory.io/configuration/accounts/kubernetes)
 
-For a deployment target to be available, it needs to be added to Borealis. Note that deployment targets are Armory Cloud environment specific.
+For a deployment target to be available, you need to add it to Armory CDaaS. 
 
 How you add a deployment target depends on whether or not the Kubernetes cluster is accessible from the public internet. If it is, you add it through the **Configuration UI**, and no additional steps are needed. If it is not, you must first install a Remote Network Agent (RNA) on it and then add it through the **Configuration UI**.
 

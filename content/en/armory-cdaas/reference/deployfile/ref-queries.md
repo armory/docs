@@ -2,13 +2,13 @@
 title: Query Reference Guide
 linkTitle: Queries
 description: >
-  Borealis has different requirements for how queries are formatted and what kind of data can get returned based on the metrics provider you use for automated canary analysis. This guide provides basic information about what Borealis needs for each provider.
+  Armory CDaaS has different requirements for how queries are formatted and what kind of data can get returned based on the metrics provider you use for automated canary analysis. This guide provides basic information about what Armory CDaaS needs for each provider.
 exclude_search: true
 ---
 
 ## Automated canary analysis
 
-When Borealis performs automated canary analysis, Borealis runs queries against a metrics provider to either progress a deployment or roll it back based on thresholds you set. Armory CDaaS supports the following metrics providers:
+When Armory CDaaS performs automated canary analysis, Armory CDaaS runs queries against a metrics provider to either progress a deployment or roll it back based on thresholds you set. Armory CDaaS supports the following metrics providers:
 
 - Datadog
 - New Relic
