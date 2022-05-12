@@ -1,7 +1,7 @@
 {{- $id := .Get "term_id" -}}
 {{- $length := .Get "length" -}}
 {{- $prepend := .Get "prepend" -}}
-{{- $glossaryBundle := site.GetPage "page" "borealis/reference/glossary" -}}
+{{- $glossaryBundle := site.GetPage "page" "armory-cdaas/reference/glossary" -}}
 {{- $glossaryItems :=  $glossaryBundle.Resources.ByType "page" -}}
 {{- $term_info := $glossaryItems.GetMatch (printf "%s.md" $id ) -}}
 {{- $showFullDefinition := false -}}

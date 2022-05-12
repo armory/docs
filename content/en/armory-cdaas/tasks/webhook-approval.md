@@ -5,8 +5,6 @@ exclude_search: true
 no_list: true
 description: >
   Integrate webhook-based approvals into your Armory CDaaS app deployment process.
-aliases:
-  - /borealis/borealis-automate/cdaas-webhook-approval/
 ---
 
 ## When you should use webhook-based approvals

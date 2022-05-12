@@ -3,7 +3,7 @@ title: GitHub Webhook-Based Approvals Tutorial
 linktitle: GitHub Webhook
 exclude_search: true
 description: >
-  Learn how to configure GitHub webhook-based approvals in your Borealis app deployment process.
+  Learn how to configure GitHub webhook-based approvals in your Armory CDaaS app deployment process.
 ---
 
 ## Objectives
@@ -21,7 +21,7 @@ This tutorial assumes you have completed the {{< linkWithTitle "deploy-demo-app.
 
 ## Create credentials
 
-You need to create credentials that enable GitHub and Borealis to connect to each other.
+You need to create credentials that enable GitHub and Armory CDaaS to connect to each other.
 
 1. Create a personal access token in GitHub with **workflow** and **admin:repo_hook** permissions. See the GitHub [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) guide for instructions. Copy the token value for use in the next step.
 1. Create a new secrect in the Armory Cloud console for the GitHub token you just created. Go to the **Secrets** > **Secrets** screen. Click the **New Secret** button.
@@ -31,14 +31,14 @@ You need to create credentials that enable GitHub and Borealis to connect to eac
 
    Replace `<github_token_value>` with your token value. You use this secret when configuring your webhook in your deployment file.
 
-1. Create a new Borealis credential for your webhook callback to use to authenticate to Borealis. In the Armory Cloud Console, go to the **Access Management** > **Client Credentials** screen. Click the **New Credential** button. On the **Create New Client Credential** screen:
+1. Create a new Armory CDaaS credential for your webhook callback to use to authenticate to Armory CDaaS. In the Armory Cloud Console, go to the **Access Management** > **Client Credentials** screen. Click the **New Credential** button. On the **Create New Client Credential** screen:
 
    - **Name**: `github_webhooks`
    - **Preconfigured Scope Group**: select `Deployments using Spinnaker`
 
    Click **Create Credentials**. Copy the **Client ID** and **Client Secret** values for use in the next step.
 
-1. Create two GitHub repo secrets in your fork of the `docs-cdaas-demo` repo. See GitHub's [Creating encrypted secrets for a repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for instructions. Your webhook callback uses the value of these secrets to authenticate to Borealis. Create your repo secrets with the following names and values:
+1. Create two GitHub repo secrets in your fork of the `docs-cdaas-demo` repo. See GitHub's [Creating encrypted secrets for a repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for instructions. Your webhook callback uses the value of these secrets to authenticate to Armory CDaaS. Create your repo secrets with the following names and values:
 
     1. **Name**: CDAAS_CLIENT_ID **Value**: `<github_webhooks_client_id>`
 
@@ -93,14 +93,14 @@ jobs:
 <br>
 Note:
 
-* `on.repository_dispatch.types`: User-supplied event type name. You use this name in the payload when you call this webhook event from Borealis.
-* The `getToken` step fetches an OAUTH token from Borealis. The format for this API call is defined in [Retrieve an OAUTH token to use in your callback]({{< ref "webhook-approval#retrieve-an-oauth-token-to-use-in-your-callback">}}). The callback needs this OAUTH token to authenticate with Borealis.
+* `on.repository_dispatch.types`: User-supplied event type name. You use this name in the payload when you call this webhook event from Armory CDaaS.
+* The `getToken` step fetches an OAUTH token from Armory CDaaS. The format for this API call is defined in [Retrieve an OAUTH token to use in your callback]({{< ref "webhook-approval#retrieve-an-oauth-token-to-use-in-your-callback">}}). The callback needs this OAUTH token to authenticate with Armory CDaaS.
 
    - In the `data` payload, you use the `CDAAS_CLIENT_ID` and `CDAAS_CLIENT_SECRET` GitHub repo secrets you created in the [Create credentials](#create-credentials) section.
 
-* The `callCallback` step sends request with workflow results to Borealis. The format for this API call is defined in [Callback format]({{< ref "webhook-approval#callback-format">}}).
+* The `callCallback` step sends request with workflow results to Armory CDaaS. The format for this API call is defined in [Callback format]({{< ref "webhook-approval#callback-format">}}).
 
-   - `url`: GitHub extracts the `callbackUri` from the HTTP Request that Borealis sent.
+   - `url`: GitHub extracts the `callbackUri` from the HTTP Request that Armory CDaaS sent.
    - `method`: Rest API method is always `POST`
    - `bearerToken`:  GitHub extracts the `access_token` value from the `getToken` step's HTTP Response and inserts it here.
    - `customHeaders`: this is always `{ "Content-Type": "application/json" }`
@@ -124,7 +124,7 @@ webhooks:
     networkMode: direct
     headers:
       - key: Authorization
-        # The secret name must match the Borealis secret name for your GitHub access token
+        # The secret name must match the Armory CDaaS secret name for your GitHub access token
         value: token  {{secrets.github_webhook_token}}
       - key: Content-Type
         value: application/json
@@ -148,7 +148,7 @@ Note:
 * `bodyTemplate.inline`: The format for this is defined in GitHub's [Create a repository dispatch event].
 
    - The `event_type` must match the `on.repository_dispatch.types` value in the `basicPing.yml` file.
-   - The items in the `client_payload` dictionary depend on the functionality within the `basicPing.yml` file. The `basicPing` workflow looks for `callbackUri`. The `callbackUri` value is always `{{armory.callbackUri}}/callback`. Borealis dynamically generates and fills in `armory.callbackUri` at runtime.
+   - The items in the `client_payload` dictionary depend on the functionality within the `basicPing.yml` file. The `basicPing` workflow looks for `callbackUri`. The `callbackUri` value is always `{{armory.callbackUri}}/callback`. Armory CDaaS dynamically generates and fills in `armory.callbackUri` at runtime.
 
 ## Call the webhook in your deployment process
 
@@ -295,7 +295,7 @@ Check your repo to see if the action is also still running.
 
    If you find an error, cancel your deployment before fixing and redeploying.
 
-* If your GitHub action workflow has completed, your workflow failed to trigger the callback to Borealis. Check GitHub's [Monitoring and troubleshooting workflows](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows) for troubleshooting suggestions.
+* If your GitHub action workflow has completed, your workflow failed to trigger the callback to Armory CDaaS. Check GitHub's [Monitoring and troubleshooting workflows](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows) for troubleshooting suggestions.
 
 
 ### 401 status code

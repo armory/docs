@@ -29,7 +29,7 @@ targets:
             untilApproved: true # Wait for a manual judgment to start deploying to this target.
 # The list of manifests sources
 manifests:
-  # A directory containing multiple manifests. Borealis reads all yaml|yml files in the directory and deploy all manifests to the target defined in`targets`.
+  # A directory containing multiple manifests. Armory CDaaS reads all yaml|yml files in the directory and deploy all manifests to the target defined in`targets`.
   - path: /deployments/manifests/configmaps
     targets: ["dev-west"]
   # A specific manifest file that gets deployed to the target defined in `targets`.
@@ -39,22 +39,22 @@ manifests:
 strategies:
   # The name for a strategy, which you use for the `strategy` key to select one to use.
   canary-wait-til-approved:
-    # The deployment strategy type. Borealis supports `canary`.
+    # The deployment strategy type.
     canary:
       # List of canary steps
       steps:
       # The map key is the step type. First configure `setWeight` for the weight (how much of the cluster the app should deploy to for a step).
         - setWeight:
             weight: 33 # Deploy the app to 33% of the cluster.
-        - pause: 
+        - pause:
             duration: 60 # Wait 60 seconds before starting the next step.
             unit: seconds
         - setWeight:
             weight: 66 # Deploy the app to 66% of the cluster.
         - pause:
-            untilApproved: true # Wait until approval is given through the Borealis CLI or Status UI.
+            untilApproved: true # Wait until approval is given through the CLI or Status UI.
   prod-canary:
-    # The deployment strategy type. Borealis supports `canary`.
+    # The deployment strategy type.
     canary:
       # List of canary steps
       steps:
@@ -62,7 +62,7 @@ strategies:
         - setWeight:
             weight: 50 # Deploy the app to 50% of the cluster.
         - pause:
-            untilApproved: true # Wait until approval is given through the Borealis CLI or Status UI.
+            untilApproved: true # Wait until approval is given through the CLI or Status UI.
             unit: seconds
 
 ```

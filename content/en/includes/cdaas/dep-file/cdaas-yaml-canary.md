@@ -2,7 +2,7 @@
 version: v1
 kind: kubernetes
 application: <AppName> # The name of the application to deploy.
-targets: # Map of your deployment target, Borealis supports deploying to one target cluster.
+targets: # Map of your deployment target, Armory CDaaS supports deploying to one target cluster.
     <deploymentName>: # Name for your deployment. Use a descriptive value such as the environment name.
         account: <agentIdentifier> # The agent identifier name that was assigned to the deployment target when you installed the RNA.
         namespace: <namespace> # (Recommended) Set the namespace that the app gets deployed to. Overrides the namespaces that are in your manifests
@@ -44,7 +44,7 @@ strategies: # A map of named strategies that can be assigned to deployment targe
                   # The percentage of pods that should be running the canary version for this step. Set it to an integer between 0 and 100, inclusive.
                   weight: <integer>
 analysis: # Define queries and thresholds used for automated analysis.
-  # Note that the example queries require Prometheus to have 
+  # Note that the example queries require Prometheus to have
   # "kube-state-metrics.metricAnnotationsAllowList[0]=pods=[*]" set and for your applications pods to have the annotation "prometheus.io/scrape": "true"
   defaultMetricProviderName: <metricsProviderName> # The name of a metrics provider you configured in the Configuration UI. Analysis steps use this provider unless a different one is specified.
   queries:

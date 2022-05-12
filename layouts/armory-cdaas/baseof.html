@@ -20,13 +20,13 @@
           </aside>
           <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
             {{ partial "version-banner.html" . }}
-            {{ partial "borealis-banner.html" . }}
+            {{ partial "cdaas/cdaas-banner.html" . }}
             {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
             {{ block "main" . }}{{ end }}
           </main>
         </div>
       </div>
-      {{ partial "footer-borealis.html" . }}
+      {{ partial "cdaas/cdaas-footer.html" . }}
     </div>
     {{ partial "scripts.html" . }}
   </body>

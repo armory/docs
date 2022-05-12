@@ -3,16 +3,13 @@ title: Armory Continuous Deployment-as-a-Service System Requirements
 linkTitle: System Requirements
 exclude_search: true
 weight: 20
-aliases:
-  - /armory-deployments/requirements/
-  - /borealis/requirements/
 ---
 
 ## Remote Network Agent
 
 Armory CDaaS uses agents that run in target Kubernetes clusters to communicate with Armory services. Make sure your environment meets the [networking](#networking) requirements so that the agents can communicate with Armory CDaaS.
 
-There are no additional requirements for installing the agents that Armory CDaaS uses. For information about how to install these agents, see [Enable the Armory CDaaS Remote Network Agent in target Kubernetes clusters]({{< ref "plugin-spinnaker#enable-the-armory-cdaas-remote-network-agent-in-target-kubernetes-clusters" >}}) or [Get Started with Project Borealis]({{< ref "get-started" >}}).
+There are no additional requirements for installing the agents that Armory CDaaS uses. For information about how to install these agents, see [Enable the Armory CDaaS Remote Network Agent in target Kubernetes clusters]({{< ref "plugin-spinnaker#enable-the-armory-cdaas-remote-network-agent-in-target-kubernetes-clusters" >}}) or {{< linkWithTitle "get-started" >}}.
 
 > If you are using the Armory Agent for Kubernetes, that is a separate agent from the Remote Networking Agent. It has its own requirements. For more information, see [those requirements]({{< ref "armory-agent-install#before-you-begin" >}}).
 

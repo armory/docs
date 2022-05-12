@@ -297,17 +297,17 @@ The **Deployment Configuration** section is where you define your Armory CDaaS p
 1. Choose **Text** for the **Manifest Source**.
 1. Paste your deployment file YAML into the **Deployment YAML** text box. For example:
 
-{{< figure src="/images/cdaas/plugin/borealis-prog-deploy-yaml.png" alt="Example of a deployment YAML file pasted into the Deployment YAML text box." >}}
+{{< figure src="/images/cdaas/plugin/prog-deploy-yaml.png" alt="Example of a deployment YAML file pasted into the Deployment YAML text box." >}}
 
 {{% /tabbody %}}
 {{% tabbody name="Artifact" %}}
 
-Before you select **Artifact**, make sure you have added your Borealis deployment file as a pipeline artifact.
+Before you select **Artifact**, make sure you have added your Armory CDaaS deployment file as a pipeline artifact.
 
 1. Select **Artifact** as the **Manifest Source**.
-1. Select your Borealis deployment file from the **Manifest Artifact** drop down list.
+1. Select your Armory CDaaS deployment file from the **Manifest Artifact** drop down list.
 
-{{< figure src="/images/installation/aurora/borealis-prog-deploy-artifact.png" alt="Example of a deployment YAML file attached as an artifact." >}}
+{{< figure src="/images/cdaas/plugin/prog-deploy-artifact.png" alt="Example of a deployment YAML file attached as an artifact." >}}
 
 {{% /tabbody %}}
 {{< /tabs >}}
@@ -315,7 +315,7 @@ Before you select **Artifact**, make sure you have added your Borealis deploymen
 <br>
 **Required Artifacts to Bind**
 
-For each manifest you list in the `manifests.path` section of your Borealis deployment file, you must bind the artifact to the stage.
+For each manifest you list in the `manifests.path` section of your Armory CDaaS deployment file, you must bind the artifact to the stage.
 
 For example, if your deployment file specifies:
 
@@ -328,7 +328,7 @@ manifests:
 
 Then you must bind `potato-facts.yml` as a required artifact:
 
-{{< figure src="/images/installation/aurora/req-artifact-to-bind.png" alt="Example of an artifact added to Required Artifacts to Bind" >}}
+{{< figure src="/images/cdaas/plugin/req-artifact-to-bind.png" alt="Example of an artifact added to Required Artifacts to Bind" >}}
 
 ### Kubernetes Progressive stage
 
@@ -422,7 +422,7 @@ On the **Pipelines** page of the Armory Enterprise UI, select the pipeline and w
 
 ### Manifest limitations
 
-{{< include "known-issues/ki-borealis-manifest-limitation.md" >}}
+{{< include "cdaas/ki-manifest-limitation.md" >}}
 
 ### `armory.cloud` block location
 

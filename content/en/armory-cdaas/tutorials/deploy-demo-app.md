@@ -3,17 +3,17 @@ title: Deploy a Demo App Tutorial
 linktitle: Deploy a Demo App
 exclude_search: true
 description: >
-  Learn how to deploy a demo app to a Kubernetes cluster using Project Borealis.
+  Learn how to deploy a demo app to a Kubernetes cluster using Armory Continuous Deployments-as-a-Service.
 ---
 
 ## Objectives
 
-In this tutorial, you configure your Kubernetes environment for the demo app and then deploy to multiple environments using Borealis.
+In this tutorial, you configure your Kubernetes environment for the demo app and then deploy to multiple environments using Armory CDaaS.
 
 ## {{% heading "prereq" %}}
 
 * You have access to a Kubernetes cluster and have installed `kubectl`. Your cluster should have at least 4 nodes available for the demo app.
-* You have [set up your Borealis account]({{< ref "get-started" >}}).
+* You have [set up your Armory CDaaS account]({{< ref "get-started" >}}).
 * You have [installed the `armory` CLI]({{< ref "armory-cdaas/setup/cli" >}}) and [Helm](https://helm.sh/docs/intro/install/).
 * You have access to a GitHub account so you can fork the demo project.
 
@@ -27,7 +27,7 @@ The demo deploys the following:
 - A Potato Facts load balancer
 - Prometheus
 
-In the `configuration` directory is a `setup.sh` script that sets up your Kubernetes infrastructure and connects it to Borealis.
+In the `configuration` directory is a `setup.sh` script that sets up your Kubernetes infrastructure and connects it to Armory CDaaS.
 
 ## 2. Create credentials
 
@@ -38,13 +38,13 @@ Create a new set of credentials for the demo Remote Network Agents. Name the cre
 ## 3. Set up the demo environments in Kubernetes
 
 1. Make sure you are connected to the Kubernetes cluster you want to install the demo app on.
-1. Log into your Borealis environment using the CLI:
+1. Log into your Armory CDaaS environment using the CLI:
 
    ```bash
    armory login --envName "<envName>"
    ```
 
-   `--envName <envName` is optional. Replace `<envName>` with the name of your Borealis environment if you have access to multiple environments.
+   `--envName <envName` is optional. Replace `<envName>` with the name of your Armory CDaaS environment if you have access to multiple environments.
 
 1. Navigate to the `docs-cdaas-demo` directory and run the setup script using the "demo app" credentials you created for this tutorial.
 
@@ -93,7 +93,7 @@ You can run the `destroy.sh` script to uninstall Prometheus and the Remote Netwo
 
 ### Deployment times out
 
-Because Borealis deploys to 100% of nodes on initial deployment, you may run out of space. Increasing the number of nodes should solve the issue.
+Because Armory CDaaS deploys to 100% of nodes on initial deployment, you may run out of space. Increasing the number of nodes should solve the issue.
 
 ## {{% heading "nextSteps" %}}
 
