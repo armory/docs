@@ -2,7 +2,7 @@
 title: Armory Continuous Deployments-as-a-Service Architecture
 linkTitle: Architecture
 description: >
-  redo this
+  Armory Continuous Deployments-as-a-Service Architecture
 exclude_search: true
 weight: 10
 aliases:
@@ -10,8 +10,6 @@ aliases:
 ---
 
 ## Key Components
-
-
 
 ### Remote Network Agent (RNA)
 
