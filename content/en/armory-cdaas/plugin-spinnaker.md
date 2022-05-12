@@ -1,11 +1,14 @@
 ---
-title: Get Started with Project Aurora for Spinnaker™
-description: Use this self-service guide to install Project Aurora, which enables you to perform canary and blue/green deployments in a single stage.
+title: Armory Enterprise and Spinnaker Plugin
+linkTitle: Spinnaker Plugin
+description: >
+  Use this guide to install the Armory Continuous Deployments-as-a-Service plugin for Spinnaker and Armory Enterprise. This plugin enables performing canary and blue/green deployments in a single stage.
 exclude_search: true
 toc_hide: true
 hide_summary: true
 aliases:
   - /docs/installation/armory-deployments-for-spinnaker/
+  - /armory-enterprise/installation/aurora-install/
 ---
 
 {{< alert title="Early Access" color="primary" >}}
@@ -14,7 +17,7 @@ aliases:
 
 ## Overview
 
-Project Aurora is plugin that adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
+The Armory Continuous Deployments-as-a-Service Plugin for Spinnaker™ adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
 
 See the [Architecture]({{< ref "armory-cdaas/concepts/architecture" >}}) page for an overview of Project Aurora and how it fits in with Armory Enterprise.
 
@@ -22,15 +25,15 @@ This guide walks you through the following:
 
 - Registering your Armory Enterprise environment
 - Installing the Remote Network Agent (RNA) on your deployment target cluster
-- Connecting to Armory Cloud services
-- Installing the Project Aurora plugin
+- Connecting to Armory Continuous Deployments-as-a-Service
+- Installing the plugin
 - Deploying a "hello world" manifest
 
 ### Release notes
 
-For the Project Aurora release notes, see the [Armory Changelog](https://armory.releases.live/?labels=Armory+Deployments+Plugin).
+You can find the plugin release notes in the [Armory CDaaS release notes](https://armory.releases.live/ledger/embed/).
 
-## Requirements
+## {{% heading "prereq" %}}
 
 Verify that you meet or can meet these requirements before getting started.
 
