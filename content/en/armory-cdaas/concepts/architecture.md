@@ -19,7 +19,7 @@ The RNA allows Armory Cloud Services to interact with your Kubernetes clusters a
 
 Armory Cloud is a collection of cloud-based services that Armory operates. These services are used to orchestrate deployments and monitor their progress.
 
-Several specific services in Armory Cloud are important for understanding how Project Aurora and Armory CDaaS function. These services have endpoints that users and non-cloud services interact with. Details of the external URLs for these services are covered in [Networking](#networking).
+Several specific services in Armory Cloud are important for understanding how Armory CDaaS functions. These services have endpoints that users and non-cloud services interact with. Details of the external URLs for these services are covered in [Networking](#networking).
 
 #### Agent Hub
 

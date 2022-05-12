@@ -1,13 +1,10 @@
 ---
-title: Armory Enterprise and Spinnaker Plugin
+title: Armory CDaaS Plugin for Armory Enterprise and Spinnaker
 linkTitle: Spinnaker Plugin
 description: >
   Use this guide to install the Armory Continuous Deployments-as-a-Service plugin for Spinnaker and Armory Enterprise. This plugin enables performing canary and blue/green deployments in a single stage.
 exclude_search: true
 weight: 500
-aliases:
-  - /docs/installation/armory-deployments-for-spinnaker/
-  - /armory-enterprise/installation/aurora-install/
 ---
 
 {{< alert title="Early Access" color="primary" >}}
@@ -18,7 +15,7 @@ aliases:
 
 The Armory Continuous Deployments-as-a-Service Plugin for Spinnaker™ adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
 
-See the [Architecture]({{< ref "armory-cdaas/concepts/architecture" >}}) page for an overview of Project Aurora and how it fits in with Armory Enterprise.
+See the [Architecture]({{< ref "armory-cdaas/concepts/architecture" >}}) page for an overview of the Armory CDaaS Spinnaker plugin and how it fits in with Armory Enterprise.
 
 This guide walks you through the following:
 
@@ -58,9 +55,9 @@ Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents hav
 
 ### Target Kubernetes cluster
 
-Project Aurora is a separate product from Armory Enterprise (Spinnaker). It does not use Clouddriver to source its accounts. Instead, it uses Remote Network Agents (RNAs) that are deployed in your target Kubernetes clusters. An RNA is a lightweight, scalable service that enables Project Aurora to interact with your infrastructure. You must install RNAs in every target cluster.
+The Spinnaker plugin does not use Clouddriver to source its accounts. Instead, it uses Remote Network Agents (RNAs) that are deployed in your target Kubernetes clusters. An RNA is a lightweight, scalable service that enables the Spinnaker plugin to interact with your infrastructure. You must install RNAs in every target cluster.
 
-The Helm chart described in [Enable Project Aurora in target Kubernetes clusters](#enable-aurora-in-target-kubernetes-clusters) manages the installation of both of these requirements for you.
+The Helm chart described in [Enable the Armory CDaaS Remote Network Agent in target Kubernetes clusters](#enable-the-armory-cdaas-remote-network-agent-in-target-kubernetes-clusters) manages the installation of both of these requirements for you.
 
 ## Register your Armory Enterprise environment
 
@@ -83,7 +80,7 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 
    > Removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
 
-7. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Aurora and Armory's hosted cloud services. Make sure to store the secret somewhere safe. You are not shown the value again.
+7. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Armory CDaaS. Make sure to store the secret somewhere safe. You are not shown the value again.
 
 ## Enable the Armory CDaaS Remote Network Agent in target Kubernetes clusters
 
@@ -112,7 +109,7 @@ time="2021-07-16T17:48:30Z" level=info msg="handling registration 01FAR6Y7EDJW1B
 time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kubernetes\" name:\"account-test\""
 ```
 
-## Install the Project Aurora Plugin
+## Install the plugin
 
 > You can configure secrets as outlined in the [Secrets Guide]({{< ref "armory-enterprise/armory-admin/secrets" >}}). This means you can set the clientSecret value to be a secret token instead of the plain text value.
 
@@ -259,11 +256,11 @@ hal deploy apply
 
    {{< figure src="/images/deploy-engine/deploy-engine-accounts.png" alt="If the plugin is configured properly, you should see the target deployment account in the Account dropdown." >}}.
 
-## Use Project Aurora
+## Use the plugin
 
-Project Aurora provides the following pipeline stages that you can use to deploy your app:
+The plugin provides the following pipeline stages that you can use to deploy your app:
 
-* [Borealis Progressive Deployment YAML](#Armory CDaaS-progressive-deployment-yaml-stage): You create the Armory CDaaS deployment YAML configuration, so you have access to the full set of options for deploying your app to a single environment.
+* [Borealis Progressive Deployment YAML](#armory-cdaas-progressive-deployment-yaml-stage): You create the Armory CDaaS deployment YAML configuration, so you have access to the full set of options for deploying your app to a single environment.
 * [Kubernetes Progressive](#kubernetes-progressive-stage): This is a basic deployment stage with a limited set of options. Blue/green deployment is not supported in Early Access.
 
 ### Armory CDaaS Progressive Deployment YAML stage
@@ -332,7 +329,7 @@ Then you must bind `potato-facts.yml` as a required artifact:
 
 ### Kubernetes Progressive stage
 
-If you have deployed Kubernetes apps before using Armory Enterprise, this page may look familiar. The key difference between a Kubernetes deployment using Armory Enterprise and Armory Enterprise with Project Aurora is in the **How to Deploy** section.
+If you have deployed Kubernetes apps before using Armory Enterprise, this page may look familiar. The key difference between a Kubernetes deployment using Armory Enterprise and Armory Enterprise with the Armory CDaaS Spinnaker Plugin is in the **How to Deploy** section.
 
 The **How to Deploy** section is where you define your progressive deployment and consists of two parts:
 
@@ -342,7 +339,7 @@ This is the deployment strategy you want to use to deploy your Kubernetes app. A
 
 **Steps**
 
-These settings control how the your Kubernetes deployment behaves as Project Aurora deploys it. You can tune two separate but related characteristics of the deployment:
+These settings control how the your Kubernetes deployment behaves as Armory CDaaS deploys it. You can tune two separate but related characteristics of the deployment:
 
 - **Rollout Ratio**: set the percentage threshold (integer) for how widely an app should get rolled out before pausing.
 - **Then wait**: define what triggers the rollout to continue. The trigger can either be a manual approval (**until approved**) or for a set amount of time, either seconds, minutes or hours (integer).
@@ -411,12 +408,12 @@ Perform the following steps:
 
 7. In the **How to Deploy** section, configure the **Rollout Ratio** and **Then wait** attributes for the deployment.
 
-   Optionally, add more steps to the deployment to configure the rollout behavior. You do not need to create a step for 100% Rollout Ratio. Project Aurora automatically scales the deployment to 100% after the final step you configure.
+   Optionally, add more steps to the deployment to configure the rollout behavior. You do not need to create a step for 100% Rollout Ratio. Armory CDaaS automatically scales the deployment to 100% after the final step you configure.
 
 8.  Save the pipeline.
 9.  Trigger a manual execution of the pipeline.
 
-On the **Pipelines** page of the Armory Enterprise UI, select the pipeline and watch the deployment progress. If you set the **Then wait** behavior of any step to **until approved**, this is where you approve the rollout and allow it to continue. After completing the final step you configured, Project Aurora scales the deployment to 100% of the cluster if needed.
+On the **Pipelines** page of the Armory Enterprise UI, select the pipeline and watch the deployment progress. If you set the **Then wait** behavior of any step to **until approved**, this is where you approve the rollout and allow it to continue. After completing the final step you configured, Armory CDaaS scales the deployment to 100% of the cluster if needed.
 
 ## Known issues and limitations
 
@@ -496,7 +493,7 @@ spec:
 {{% /tabbody %}}
 {{% tabbody name="Halyard" %}}
 
-Your `spinnaker-local.yml` file should not have the `armory.cloud` block anymore and only contain the block to install the Aurora plugin:
+Your `spinnaker-local.yml` file should not have the `armory.cloud` block anymore and only contain the block to install the plugin:
 
 ```yaml
 #spinnaker-local.yml
