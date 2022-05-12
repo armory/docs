@@ -5,7 +5,7 @@
   {{ $latest_version := .Site.Params.url_latest_version }}
   {{ $current_version := .Site.Params.version }}
   <div class="alert alert-warning">
-    {{ with $current_version }}<p><font color="#ED6A5A"><b>You are viewing version {{ . | markdownify }} of the documentation, which is no longer maintained.  {{ with $latest_version }}For up-to-date documentation, see the
+    {{ with $current_version }}<p><font color="#ED6A5A"><b>You are viewing documentation for Armory Enterprise version {{ . | markdownify }}. This documentation is no longer maintained.  {{ with $latest_version }}For up-to-date documentation, see the
         <a href="{{ $latest_version | safeURL }}" target="_blank">latest version</a>.
 </b>
  </font>
