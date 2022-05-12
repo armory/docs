@@ -11,7 +11,7 @@ aliases:
 
 ## Compatibility matrix overview
 
-This compatibility matrix details what is supported in the **Armory Enterprise {{< param "version" >}} release**. Compatibility is for all minor versions of a major release version. Note that although Spinnaker™ is part of Armory Enterprise, what open source Spinnaker supports and what Armory Enterprise supports is not a one-to-one relationship.
+This compatibility matrix details what is supported in the **Armory Enterprise {{< param "version" >}}** release. Compatibility is for all minor versions of a major release version. Note that although Spinnaker™ is part of Armory Enterprise, what open source Spinnaker supports and what Armory Enterprise supports is not a one-to-one relationship.
 
 You can find the compatibility matrix for previous Armory Enterprise releases in the docs version for the release you are using:
 
