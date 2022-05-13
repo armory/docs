@@ -14,9 +14,9 @@ The goal of this guide is to deploy Armory Enterprise with bare minimum configur
 
 {{% include "armory-operator/k8s-reqs.md" %}}
 
-Depending on your Kubernetes version you may need to adjust the following
+Depending on your Kubernetes version, you may need to adjust the following
 instructions to use a support Operator version. The following table outlines
-the supported combinations of Kubernetes, Operator, and Armory Enterprise.
+the supported combinations of Kubernetes, Operator, and Armory Enterprise:
 
 {{< include "armory-operator/operator-compat-matrix.md" >}}
 

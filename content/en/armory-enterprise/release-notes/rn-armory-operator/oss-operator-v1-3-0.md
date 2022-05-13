@@ -22,8 +22,8 @@ table outlines compatible versions of Operator, Kubernetes, and Spinnaker.
 
 | Kubernetes Version         | Spinnaker Operator Version     | Spinnaker Version                |
 | :------------------------- | :----------------------------- | :------------------------------- |
-| < 1.21                     | <= 1.6.x                       | <= 1.28.0                        |
-| >= 1.21                    | >= 1.7.x                       | All Supported Spinnaker Versions |
+| < 1.21                     | <= 1.2.x                       | <= 1.27.0                        |
+| >= 1.21                    | >= 1.3.x                       | All Supported Spinnaker Versions |
 
 For guidance on upgrading the Operator, consult our {{< linkWithTitle "op-manage-operator.md" >}} guide.
 

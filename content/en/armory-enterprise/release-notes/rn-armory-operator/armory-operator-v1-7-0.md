@@ -19,7 +19,7 @@ No known issues.
 
 Operator now supports Kubernetes versions greater than 1.21. The following
 table outlines compatible versions of Operator, Kubernetes, and Armory
-Enterprise.
+Enterprise:
 
 {{< include "armory-operator/operator-compat-matrix.md" >}}
 
