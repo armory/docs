@@ -73,7 +73,7 @@ The [Armory Operator]({{< ref "armory-operator" >}}) and [Spinnaker Operator](ht
 
 Note that newer versions of the Armory Operator drop support for older
 Kubernetes versions. The following table outlines the supported combinations of
-Kubernetes, the Operator, and Armory Enterprise.
+Kubernetes, the Operator, and Armory Enterprise:
 
 {{< include "armory-operator/operator-compat-matrix.md" >}}
 
