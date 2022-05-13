@@ -104,7 +104,11 @@
 
 [[redirects]]
   from = "/borealis/*"
-  to = "/armory-cdaas/"
+  to = "/cd-as-a-service/"
+
+[[redirects]]
+  from = "/armory-cdaas/*"
+  to = "/cd-as-a-service/"
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
@@ -117,8 +121,8 @@ package = "@netlify/plugin-sitemap"
     './public/armory-enterprise/plugin-guide/plugin-appname/',
     './public/armory-enterprise/feature-status/deprecations/pacrd-deprecation/',
     './public/armory-enterprise/installation/deployment-reg/',
-    './public/armory-enterprise/installation/aurora-install/',
-    './public/armory-cdaas/',
+    './public/armory-enterprise/plugin-guide/cdaas-spinnaker/',
+    './public/cd-as-a-service/',
     './public/managed-spin',
     './public/armory-enterprise/armory-cloud-preview'
   ]
