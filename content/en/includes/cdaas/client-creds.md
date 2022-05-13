@@ -1,4 +1,4 @@
-1. Log in to the Armory Cloud Console: https://console.cloud.armory.io/.
+1. Log in to the CD-as-a-Service Console: https://console.cloud.armory.io/.
 2. Go to the **Configuration** tab.
 3. If you have more than one environment, ensure the proper environment is selected in the user context menu:
 

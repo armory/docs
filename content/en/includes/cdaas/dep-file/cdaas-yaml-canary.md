@@ -2,7 +2,7 @@
 version: v1
 kind: kubernetes
 application: <AppName> # The name of the application to deploy.
-targets: # Map of your deployment target, Armory CDaaS supports deploying to one target cluster.
+targets: # Map of your deployment target, Armory CD-as-a-Service supports deploying to one target cluster.
     <deploymentName>: # Name for your deployment. Use a descriptive value such as the environment name.
         account: <agentIdentifier> # The agent identifier name that was assigned to the deployment target when you installed the RNA.
         namespace: <namespace> # (Recommended) Set the namespace that the app gets deployed to. Overrides the namespaces that are in your manifests

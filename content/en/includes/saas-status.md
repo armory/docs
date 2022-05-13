@@ -1,1 +1,0 @@
-Armory Cloud is currently in Early Access and available to a limited number of design partners. If you're interested, request early access on the [Armory Cloud](https://www.armory.io/armory-cloud/) page.

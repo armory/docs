@@ -29,7 +29,7 @@ targets:
             untilApproved: true # Wait for a manual judgment to start deploying to this target.
 # The list of manifests sources
 manifests:
-  # A directory containing multiple manifests. Armory CDaaS reads all yaml|yml files in the directory and deploy all manifests to the target defined in`targets`.
+  # A directory containing multiple manifests. Armory CD-as-a-Service reads all yaml|yml files in the directory and deploy all manifests to the target defined in`targets`.
   - path: /deployments/manifests/configmaps
     targets: ["dev-west"]
   # A specific manifest file that gets deployed to the target defined in `targets`.
