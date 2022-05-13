@@ -18,7 +18,7 @@ If you have previously configured Armory CD-as-a-Service for your deployment tar
    - [Create machine-to-machine client credentials]({{< ref "client-creds" >}}) for the Remote Network Agent (RNA), which you install on your deployment target cluster.
    - Prepare your deployment target by installing the RNA.
 
-3. In the CD-as-a-Service Console, create machine-to-machine client credentials to use for your GitHub Action service account. You can select the pre-configured scope group **Deployments using Spinnaker** or manually select the following:
+3. In the CD-as-a-Service Console, create machine-to-machine client credentials to use for your GitHub Action service account. You can select the preconfigured scope group **Deployments using Spinnaker** or manually select the following:
 
    - `manage:deploy`
    - `read:infra:data`
