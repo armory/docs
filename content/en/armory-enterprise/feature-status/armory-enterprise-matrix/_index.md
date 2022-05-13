@@ -71,6 +71,11 @@ The [Armory Operator]({{< ref "armory-operator" >}}) and [Spinnaker Operator](ht
 
 [^1]: Some of Armory Enterprise's features are proprietary and require a license for use. For more information, see the [Terms of Service](https://www.armory.io/terms-of-service/) and [Terms & Conditions](https://www.armory.io/terms-and-conditions/).
 
+Note that newer versions of the Armory Operator drop support for older
+Kubernetes versions. The following table outlines the supported combinations of
+Kubernetes, the Operator, and Armory Enterprise:
+
+{{< include "armory-operator/operator-compat-matrix.md" >}}
 
 ## Application metrics for Canary Analysis
 
