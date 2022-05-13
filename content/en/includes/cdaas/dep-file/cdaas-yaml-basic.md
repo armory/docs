@@ -43,7 +43,7 @@ targets:
           - <resolution> # How the <action> resolves. For example if it's a pause, this is the duration of the pause or setting untilApproved to true for manual judgments
 # The list of manifests sources
 manifests:
-  # A directory containing multiple manifests. Borealis reads all yaml|yml files in the directory and deploys the manifests to the target defined in `targets`.
+  # A directory containing multiple manifests. Armory CD-as-a-Service reads all yaml|yml files in the directory and deploys the manifests to the target defined in `targets`.
   - path: /path/to/manifest/directory
     # Comma separated list of deployment targets to use for this manifest directory. Enclose each target in quotes.
     targets :["<targetName1>", "<targetName2>"]
@@ -55,7 +55,7 @@ manifests:
 strategies:
   # The name for a strategy, which you use for the `strategy` key to select one to use.
   <strategyName1>:
-    # The deployment strategy type. Borealis supports `canary`.
+    # The deployment strategy type. Armory CD-as-a-Service supports `canary`.
     canary:
       # List of canary steps
       steps:

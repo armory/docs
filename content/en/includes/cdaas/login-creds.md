@@ -1,4 +1,4 @@
-You use the login credentials when you run the Borealis CLI locally and need to authenticate yourself to Armory's hosted services, such as when you run the `login` command with the Borealis CLI. 
+You use the login credentials when you run the CLI locally and need to authenticate yourself to Armory's hosted services, such as when you run the `login` command with the CLI. 
 
 This is also your login for Armory's hosted cloud services UI (where you can perform tasks such as managing credentials) and the Status UI (where you can monitor the progress of your deployments).
 

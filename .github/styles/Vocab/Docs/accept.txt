@@ -8,7 +8,7 @@ Artifactory
 Astra
 AWS
 Bitbucket
-Borealis
+CDaaS
 CLI
 clouddriver
 Clouddriver
@@ -64,7 +64,6 @@ OpenShift
 Orca
 Postgres
 powershell
-Project Borealis
 Prometheus
 rawdata
 Redis
