@@ -14,8 +14,8 @@ The requirements described on this page are meant as a minimum starting point fo
 
 Armory Enterprise can be installed on any [certified Kubernetes cluster](https://www.cncf.io/certification/software-conformance/) that meets the following version requirements:
 
-* **Minimum version**: 1.16
-* **Maximum version**: 1.20
+* **Minimum version**: 1.20
+* **Maximum version**: 1.22
 <!-- track EKS versions -->
 
 You install Armory Enterprise using the [Armory Operator]({{< ref "armory-operator" >}}) (a Kubernetes operator), which has the following requirements:
