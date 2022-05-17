@@ -1,5 +1,5 @@
 ---
-title: Armory Continuous Deployments-as-a-Service Configuration UI
+title: Armory Continuous Deployment-as-a-Service Configuration UI
 linkTitle: Configuration UI
 description: >
   Administer your Armory CD-as-a-Service instance, including inviting users, managing deployment targets, and generating secrets.

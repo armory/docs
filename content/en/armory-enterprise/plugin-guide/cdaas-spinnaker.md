@@ -1,5 +1,5 @@
 ---
-title: Armory Continuous Deployments-as-a-Service Plugin for Armory Enterprise and Spinnaker
+title: Armory Continuous Deployment-as-a-Service Plugin for Armory Enterprise and Spinnaker
 linkTitle: Armory CD-as-a-Service Plugin
 manualLinkRelRef: "cd-as-a-service/plugin-spinnaker.md"
 description: >

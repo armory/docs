@@ -2,7 +2,7 @@
 title: Armory CD-as-a-Service Plugin for Armory Enterprise and Spinnaker
 linkTitle: Spinnaker Plugin
 description: >
-  Use this guide to install the Armory Continuous Deployments-as-a-Service plugin for Spinnaker and Armory Enterprise. This plugin enables performing canary and blue/green deployments in a single stage.
+  Use this guide to install the Armory Continuous Deployment-as-a-Service plugin for Spinnaker and Armory Enterprise. This plugin enables performing canary and blue/green deployments in a single stage.
 exclude_search: true
 weight: 500
 ---
@@ -13,7 +13,7 @@ weight: 500
 
 ## Overview
 
-The Armory Continuous Deployments-as-a-Service Plugin for Spinnaker™ adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
+The Armory Continuous Deployment-as-a-Service Plugin for Spinnaker™ adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
 
 See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture" >}}) page for an overview of the Armory CD-as-a-Service Spinnaker plugin and how it fits in with Armory Enterprise.
 
@@ -21,7 +21,7 @@ This guide walks you through the following:
 
 - Registering your Armory Enterprise environment
 - Installing the Remote Network Agent (RNA) on your deployment target cluster
-- Connecting to Armory Continuous Deployments-as-a-Service
+- Connecting to Armory Continuous Deployment-as-a-Service
 - Installing the plugin
 - Deploying a "hello world" manifest
 

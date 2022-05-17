@@ -3,7 +3,7 @@ title: Deploy a Demo App Tutorial
 linktitle: Deploy a Demo App
 exclude_search: true
 description: >
-  Learn how to deploy a demo app to a Kubernetes cluster using Armory Continuous Deployments-as-a-Service.
+  Learn how to deploy a demo app to a Kubernetes cluster using Armory Continuous Deployment-as-a-Service.
 ---
 
 ## Objectives
