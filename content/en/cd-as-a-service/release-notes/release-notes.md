@@ -1,8 +1,8 @@
 ---
-title: Armory Continuous Deployments-as-a-Service Release Notes
+title: Armory Continuous Deployment-as-a-Service Release Notes
 linkTitle: Release Notes
 description: >
-  Information about new features and changes, fixes, and improvements in Armory Continuous Deployments-as-a-Service.
+  Information about new features and changes, fixes, and improvements in Armory Continuous Deployment-as-a-Service.
 manualLink: "https://armory.releases.live/ledger/embed/"
 manualLinkTarget: "_blank"
 ---

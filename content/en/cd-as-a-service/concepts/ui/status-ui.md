@@ -1,5 +1,5 @@
 ---
-title: Armory Continuous Deployments-as-a-Service Status UI
+title: Armory Continuous Deployment-as-a-Service Status UI
 linkTitle: Status UI
 description: >
   Monitor the status of your deployments and approve or rollback deployments.

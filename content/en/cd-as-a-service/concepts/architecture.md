@@ -1,8 +1,8 @@
 ---
-title: Armory Continuous Deployments-as-a-Service Architecture
+title: Armory Continuous Deployment-as-a-Service Architecture
 linkTitle: Architecture
 description: >
-  Armory Continuous Deployments-as-a-Service Architecture
+  Armory Continuous Deployment-as-a-Service Architecture
 exclude_search: true
 weight: 10
 aliases:
