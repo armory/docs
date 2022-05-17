@@ -19,17 +19,7 @@ Note that secrets are Armory CD-as-a-Service environment specific.
 
 ### Invite users
 
-[**Access Management > Users**](https://console.cloud.armory.io/configuration/users)
 
-For your users to get access to Armory CD-as-a-Service, you must invite them to your organization. This grants them access to the  Armory CD-as-a-Service UI. Depending on their permissions, they may have access to the **Configuration UI** and the **Status UI**.
-
-You need their name and email. Note that the email domain must match your organization's format. For example, users that work for Acme (which uses `username@acme.com`) must have `@acme.com` email addresses. They are automatically added to your organization once they accept the invite and complete the sign up.
-
-1. Navigate to the CD-as-a-Service Console: https://console.cloud.armory.io/configuration/users.
-2. Provide the name and email address for the user you want to invite.
-3. Send the invitation.
-
-They can access the UI after completing the signup process.
 
 ## Canary Analysis
 
