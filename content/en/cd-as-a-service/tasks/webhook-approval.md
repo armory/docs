@@ -9,6 +9,7 @@ description: >
 
 ## {{% heading "prereq" %}}
 
+You have read the {{< linkWithTitle "cd-as-a-service/concepts/external-automation.md" >}} guide.
 
 ## How to configure a webhook in your deployment file
 
