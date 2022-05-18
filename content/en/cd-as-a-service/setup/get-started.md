@@ -31,7 +31,7 @@ You need to manually install the Remote Network Agent (RNA) to the target deploy
 
 ### Create client credentials
 
-Create machine to machine client credentials for the various service accounts that you will need. These credentials are machine credentials that are meant for authentication when using Armory CD-as-a-Service programmatically. The credentials consist of a client ID and a client secret. Make sure to keep the secret somewhere safe. You cannot retrieve secrets that you lose access to. You would need to create a new set of credentials and update any services that used the credentials that you are replacing.
+Create machine to machine client credentials for the various service accounts that you will need. These credentials are machine credentials that are meant for authentication when using Armory CD-as-a-Service programmatically. The credentials consist of a Client ID and a Client Secret. Make sure to keep the secret somewhere safe. You cannot retrieve secrets that you lose access to. You would need to create a new set of credentials and update any services that used the credentials that you are replacing.
 
 > Armory recommends creating separate credentials for each cluster or service.
 
