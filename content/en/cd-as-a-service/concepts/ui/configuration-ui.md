@@ -7,61 +7,15 @@ exclude_search: true
 ---
 
 
-## Access Management
-
-### Manage secrets
-
-[**Access Management > Client Credentials**](https://console.cloud.armory.io/configuration/credentials)
-
-Manage the secrets that you use for the Remote Network Agent (RNA) and to grant programmatic access to Armory CD-as-a-Service, such as when you configure the GitHub Action.
-
-Note that secrets are Armory CD-as-a-Service environment specific.
-
-### Invite users
 
 
 
-## Canary Analysis
 
-### Integrations
 
-[**Canary Analysis > Integrations**](https://console.cloud.armory.io/canary-analysis/integrations)
 
-Integrate your metrics provider with Armory CD-as-a-Service so that you can perform retrospective analysis of your deployment performance or use canary analysis as part of your deployment strategy.
 
-Armory supports the following metrics providers:
 
-- [Datadog](#datadog)
-- [New Relic](#new-relic)
-- [Prometheus](#prometheus)
 
-To configure one of them, select **New Integration** and complete the form. The information you need depends on the metrics provider.
-
-#### Datadog
-
-To configure DataDog, you need the following:
-
-- **Base URL**: For example, `https://api.datadoghq.com/`.
-- **API Key**: The key that your Datadog Agent uses to Datadog Agent to submit metrics and events to Datadog.
-- **Application Key**: The key that grants permission for programmatic access to the Datadog API.
-
-For information about how to get the API Key and Application Key, see [DataDog documentation](https://docs.datadoghq.com/account_management/api-app-keys/).
-
-#### New Relic
-
-To configure New Relic, you need the following:
-
-- **Base URL**: For example, `https://api.newrelic.com/graphql/`.
-- **API Key**: The metrics integration requires access to Graph QL, so provide the User Key API key. For more information, see [User Key in the New Relic documentation](https://docs.newrelic.com/docs/apis/accounts-api/new-relic-user-key-api-key/).
-- **Account ID**: Your New Relic account ID. For information about how to get this ID, see [Account ID in the New Relic documentation](https://docs.newrelic.com/docs/apis/accounts-api/new-relic-account-id/).
-
-#### Prometheus
-
-To configure Prometheus, you need the following:
-
-- **Base URL**: If Prometheus runs in the same cluster as the RNA and is exposed using HTTP on port 9090 through a service named `prometheus` in the namespace `prometheus-ns`, then the URL would be `http://prometheus.prometheus-ns:9090`.
-- **Remote Network Agent**: The RNA that is installed on the Prometheus cluster if the cluster is not publicly accessible.
-- **Authentication Type**: The username/password or bearer token if authentication is used.
 
 ### Retrospective Analysis
 

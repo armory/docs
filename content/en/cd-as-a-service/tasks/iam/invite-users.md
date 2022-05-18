@@ -8,7 +8,7 @@ description: >
 
 ## Overview
 
-For your users to get access to Armory CD-as-a-Service, you must invite them to your environment. This grants them access to the Armory CD-as-a-Service UI. Depending on their permissions, they may have access to the **Configuration UI** and the **Status UI**.
+For your users to get access to Armory CD-as-a-Service, you must invite them to your organization. This grants them access to the Armory CD-as-a-Service UI. Depending on their permissions, they may have access to the **Configuration UI** and the **Status UI**.
 
 ## {{% heading "prereq" %}}
 

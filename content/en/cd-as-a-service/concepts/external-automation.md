@@ -1,5 +1,5 @@
 ---
-title: External Automation
+title: External Automation Using Webhook-Based Approvals
 linktitle: External Automation
 exclude_search: true
 no_list: true
@@ -44,16 +44,26 @@ The deployment process:
    - Failure: deployment rolls back
 
 ```mermaid
-flowchart TB
-   A["Deployment Starts"] --> B["Webhook Call Triggered<br>Deployment Pauses"]
-   B --> C["External API"]
-   subgraph "External Process"
-   C["External API<br>Receives Request"] --> D
-   D["Process Runs"] --> E[Callback to Deployment]
+flowchart TB   
+   A --> B
+   B --> C
+   C --> D
+   D --> E
+   E --> F
+   F -- "Success: true" --> G
+   F -- "Success: false" --> H
+
+   A["Deployment Starts"]
+   B["Webhook Call Triggered<br>Deployment Pauses"]
+   F{"Did the external process<br>succeed or fail?"}
+   G["Deployment Continues"]
+   H["Deployment Rolls Back"]
+
+   subgraph exp [External Process]
+   C["External API<br>Receives Request"]
+   D["Process Runs"]
+   E[Callback to Deployment]
    end
-   E[Callback to Deployment] --> F{"Did the external process<br>succeed or fail?"}
-   F -- "Success: true" --> G["Deployment Continues"]
-   F -- "Success: false" --> H["Deployment Rolls Back"]
 ```
 
 {{% alert title="Important" color="Primary" %}}

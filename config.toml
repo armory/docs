@@ -204,6 +204,7 @@ enable = false
 # Enable Mermaid diagrams
 [params.mermaid]
 enable = true
+theme = "forest"
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.

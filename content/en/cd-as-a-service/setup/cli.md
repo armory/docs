@@ -9,13 +9,8 @@ weight: 20
 
 ## {{% heading "prereq" %}}
 
-Before you start, make sure that someone at your organization has completed the onboarding steps in {{< linkWithTitle "get-started.md" >}}. That guide describes how to prepare your deployment target so that you can use the CLI to deploy apps to it.
-
-## Register for Armory's hosted cloud services
-
-Register for Armory's hosted cloud services by accepting the invitation. You should receive an email invite to Armory CD-as-a-Service from your organization's administrator.
-
-Note that you need a device that can support OTP two-factor authentication, such as a smartphone with the Google Authenticator app.
+* Make sure that your organization has completed the onboarding steps in {{< linkWithTitle "get-started.md" >}}. That guide describes how to prepare your deployment target so that you can use the CLI to deploy apps to it.
+* You have login credentials for Armory CD-as-a-Service
 
 ## Install the Armory CD-as-a-Service CLI
 
@@ -159,7 +154,7 @@ Since you are using the CLI, you do not need to have service account credentials
 
    The CLI returns a `Device Code` and opens your default browser. To complete the log in process, confirm the code in your browser.
 
-   After you successfully authenticate, the CLI returns a list of environments.
+   After you successfully authenticate, the CLI returns a list of environments if you have access to more than one, which is rare.
 
 1. Select the environment you want to log in to.   
 1. Generate your deployment template and output it to a file.

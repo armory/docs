@@ -13,7 +13,7 @@ weight: 500
 
 ## Overview
 
-The Armory Continuous Deployment-as-a-Service Plugin for Spinnaker™ adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
+{{< include "cdaas/desc-plugin.md" >}}
 
 See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture" >}}) page for an overview of the Armory CD-as-a-Service Spinnaker plugin and how it fits in with Armory Enterprise.
 
