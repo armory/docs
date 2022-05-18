@@ -9,11 +9,29 @@ aliases:
   - /armory-deployments/architecture/
 ---
 
-## Armory CD-as-a-Service overview
+## Key Components
 
-Armory CD-as-a-Service is a platform of cloud-based services that Armory operates. These services are used to orchestrate deployments and monitor their progress. These services have API endpoints that users and non-cloud services interact with. Details of the external URLs that need to be whitelisted are covered in [Networking](#networking).
+### Remote Network Agent (RNA)
 
-Armory CD-as-a-Service contains components that you manage in your environment and components that Armory manages in its cloud. The components you manage enable Armory CD-as-a-Service to integrate with your existing infrastructure.
+The RNA allows Armory CD-as-a-Service to interact with your Kubernetes clusters and orchestrate deployments without direct network access to your clusters. The RNA that you install in your cluster engages in bidirectional communication with Armory CD-as-a-Service over encrypted, long-lived gRPC/HTTP2 connections. The RNA issues calls to your Kubernetes cluster based on requests from Armory CD-as-a-Service.
+
+### Command Line Interface (CLI)
+
+Users install the CLI locally. The CLI interacts with Armory CD-as-a-Service via REST API. To deploy an app, the user must either log in using the CLI or pass valid authorization credentials to the `deploy` command.
+
+### GitHub Action (GHA)
+
+You can use the `armory/cli-deploy-action` to trigger a deployment from your GitHub workflow. The GitHub Action interacts with Armory CD-as-a-Service via REST API. The Action requires a valid Client ID and Client Secret be passed to the deploy command.
+
+### Spinnaker plugin
+
+{{< include "cdaas/desc-plugin.md" >}}
+
+## How Armory CD-as-a-Service works
+
+Armory CD-as-a-Service is a platform of cloud-based services that orchestrate app deployments and monitor their progress. These services have API endpoints with which users and non-cloud services interact via HTTPS or gRPC/HTTP2. The [Networking](#networking) section contains details of the endpoints that need to be whitelisted.
+
+Armory CD-as-a-Service contains components that you manage: the CLI, the RNA, and the GHA. These components communicate with Armory CD-as-a-Service to deploy your apps to your existing infrastructure.
 
 ```mermaid
 flowchart LR
@@ -40,28 +58,9 @@ flowchart LR
    class outside ext
 ```
 
-When you start a deployment from the CLI or an automation tool, Armory CD-as-a-Service forwards your deployment request to the designated RNA in your Kubernetes cluster. The RNA generates Kubernetes Custom Resource Definitions that it then uses to execute the deployment.
+When you start a deployment from the CLI or the GHA, Armory CD-as-a-Service forwards your deployment request to the designated RNA in your Kubernetes cluster. The RNA generates Kubernetes Custom Resource Definitions that it then uses to execute the deployment.
 
 You can track the status of a deployment in the Armory CD-as-a-Service UI.
-
-## Key Components
-
-### Remote Network Agent (RNA)
-
-The RNA allows Armory CD-as-a-Service to interact with your Kubernetes clusters and orchestrate deployments without direct network access to your clusters. The RNA that you install in your cluster engages in bidirectional communication with Armory CD-as-a-Service over encrypted, long-lived gRPC HTTP2 connections. The RNA issues API calls to your Kubernetes cluster based on requests from Armory CD-as-a-Service.
-
-### CLI
-
-Users install the CLI locally. The CLI interacts with Armory CD-as-a-Service via REST API. To deploy an app, the user must either log in using the CLI or must pass valid authorization credentials to the `deploy` command.
-
-### GitHub Action
-
-You can use the `armory/cli-deploy-action` to trigger a deployment from your GitHub workflow. The GitHub Action interacts with Armory CD-as-a-Service via REST API. The Action requires a valid Client ID and Client Secret be passed to the deploy command.
-
-
-### Spinnaker plugin
-
-{{< include "cdaas/desc-plugin.md" >}}
 
 ## Networking
 

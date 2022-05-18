@@ -1,6 +1,6 @@
 ---
-title: Add Metrics Source Integrations
-linkTitle: Add Integrations
+title: Integrate a Metrics Provider
+linkTitle: Integrate Metrics Provider
 description: >
   Add metrics sources such as Prometheus, Data Dog, and New Relic for canary analysis in Armory Continuous Deployment-as-a-Service.
 exclude_search: true

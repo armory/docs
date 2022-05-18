@@ -44,11 +44,11 @@ Armory CD-as-a-Service can run queries against metrics providers that you add. T
 
 3. Complete the wizard:
 
-   The parameters you need to provide depend on the metrics provider you choose. For more information, see [Canary Analysis Integrations]({{< ref "configuration-ui#integrations" >}}).
+   The parameters you need to provide depend on the metrics provider you choose. For more information, see the {{< linkWithTitle "cd-as-a-service/tasks/canary/add-integrations.md" >}} guide.
 
    The following fields are for a Prometheus integration:
 
-   - **Type**: (Required) Your metrics provider. This example uses Prometheus. The form options change based on your provider. For more information, see [Canary Analysis Integrations]({{< ref "configuration-ui#integrations" >}}).
+   - **Type**: (Required) Your metrics provider. This example uses Prometheus. The form options change based on your provider.
    - **Name**: (Required) A descriptive name for your metrics provider, such as the environment it monitors. You use this name in places such as your deploy file when you want to configure canary analysis as part of your deployment strategy.
    - **Base URL**: (Required) The base URL for your Prometheus instance. If Prometheus runs in the same cluster as the RNA and is exposed using HTTP on port 9090 through a service named `prometheus` in the namespace `prometheus`, then use `http://prometheus.prometheus:9090`. (This can be a private DNS only if the RNA is installed in the same cluster as the Prometheus instance.)
    - **Remote Network Agent**: (Optional) The RNA that can access the Prometheus instance. Select the identifier for the RNA from the dropdown.
@@ -75,7 +75,7 @@ Retrospective analysis is the starting point to creating queries so that you can
 
       - **The query must return a single result**. Automated canary analysis does not support queries that return multiple values. See [Query template requirements]({{< ref "ref-queries#query-template-requirements" >}}) for restrictions and provider examples.
       - The query contains variables that are automatically injected during canary analysis, but you must manually provide some of them during retrospective analysis.
-        - Time related variables like `armory.promqlStepInterval` are automatically substituted by Armory CD-as-a-Service. For a full list, see [Retrospective Analysis]({{< ref "configuration-ui#retrospective-analysis" >}}).
+        - Time related variables like `armory.promqlStepInterval` are automatically substituted by Armory CD-as-a-Service. For a full list, see the {{< linkWithTitle "cd-as-a-service/tasks/canary/retro-analysis.md" >}} guide.
         - `armory.replicaSetName` needs to be set to the name of the ReplicaSet that Armory CD-as-a-Service created for this app version. It's used to differentiate between the current and next version of the app. Do this in the next step where you add key/value pairs.
 
 5. Add **Key Value (KV) Pair** for the **Context**. The key value pairs for your  For the sample query, you need to add the following key value Pair:
