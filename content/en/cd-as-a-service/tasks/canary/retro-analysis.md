@@ -15,6 +15,7 @@ Use the **Retrospective Analysis** UI to help you to construct queries. You can 
 You need to integrate your Metrics provider. See the {{< linkWithTitle "cd-as-a-service/tasks/canary/add-integrations.md" >}} guide for details.
 
 ## How to
+
 To perform retrospective analysis, you need to provide the following:
 
 - **Metrics Provider**: The metrics provider that you want to use.

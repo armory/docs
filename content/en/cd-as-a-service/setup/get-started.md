@@ -9,7 +9,7 @@ weight: 10
 
 ## How to get started using Armory CD-as-a-Service
 
-The following steps should take about 10 minutes to complete:
+The following steps should take less than 10 minutes to complete:
 
 1. [Register for Armory CD-as-a-Service](#register-for-armory-cd-as-a-service).
 1. [Create client credentials](#create-client-credentials).

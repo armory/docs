@@ -1,6 +1,6 @@
 ---
-title: Get Started with Canary Analysis
-linktitle: Canary Analysis
+title: Get Started with Canary Deployment
+linktitle: Canary Deployment
 description: >
   This guide walks you through using canary analysis on the app you deployed in the Get Started with the CLI to Deploy Apps guide. You perform a retrospective analysis on the app. Then, you use those queries to create canary analysis steps for subsequent deployments.
 weight: 40  

@@ -10,7 +10,7 @@ weight: 20
 ## {{% heading "prereq" %}}
 
 * Make sure that your organization has completed the onboarding steps in {{< linkWithTitle "get-started.md" >}}. That guide describes how to prepare your deployment target so that you can use the CLI to deploy apps to it.
-* You have login credentials for Armory CD-as-a-Service
+* You have login credentials for Armory CD-as-a-Service.
 
 ## Install the Armory CD-as-a-Service CLI
 
