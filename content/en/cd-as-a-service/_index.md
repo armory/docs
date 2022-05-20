@@ -20,19 +20,13 @@ For a full list of features and pricing, see the [Armory Continuous Deployment-a
 
 ## Start using Armory CD-as-a-Service
 
-The Get Started section contains guides that walk you through the core functionality. The first guide shows you how to complete registration, create machine credentials, and install the Remote Network Agent in your Kubernetes cluster. You can complete the process in under 10 minutes.
+The **Get Started** section contains guides that walk you through the core functionality. The {{< linkWithTitle "cd-as-a-service/setup/get-started.md" >}} guide shows you how to complete registration, create machine credentials, and install the Remote Network Agent in your Kubernetes cluster. You can complete the process in under 10 minutes.
 
-* {{< linkWithTitle "cd-as-a-service/setup/get-started.md" >}}
-
-Next, install the CLI and create a deployment file, which is all you need to deploy your first app.
-
-* {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}}
+When you have an app ready to deploy to Kubernetes, read the {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}} guide to learn how to install the CLI, create a deployment file, and deploy your app.
 
 After you've completed those guides, you can follow the {{< linkWithTitle "cd-as-a-service/tutorials/deploy-demo-app.md" >}}, in which you fork a demo app repo and deploy that app to your Kubernetes cluster.
 
-In addition to deployment using the CLI, you can start a deployment from your GitHub repo by integrating Armory CD-as-a-Service's GitHub Action into your workflow.
-
-* {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}}
+In addition to deployment using the CLI, you can start a deployment from your GitHub workflow. Read the {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}} guide to integrate Armory CD-as-a-Service's GitHub Action into your workflow.
 
 Learn how to configure deployment strategies with these guides:
 

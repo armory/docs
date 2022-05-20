@@ -173,7 +173,7 @@ Since you are using the CLI, you do not need to have service account credentials
 
    - `application`: The name of your app.
    - `targets.<deploymentName>`: A descriptive name for your deployment. Armory recommends using the environment name.
-   - `targets.<deploymentName>.account`: The name of the deployment target cluster. This is the name that was assigned to the cluster using the `agentIdentifier` parameter when you installed the RNA. Note that older versions of the RNA used the `agent-k8s.accountName` parameter.
+   - `targets.<deploymentName>.account`: The name of the deployment target cluster. This is the name that was assigned to the cluster using the `agentIdentifier` parameter when you installed the RNA.
    - `targets.<deploymentName>.strategy`: the name of the deployment strategy you want to use. You define the strategy in `strategies.<strategy-name>`.
    - `manifests`: a map of manifest locations. This can be a directory of `yaml (yml)` files or a specific manifest. Each entry must use the following convention:  `- path: /path/to/directory-or-file`
    - `strategies.<strategy-name>`: the list of your deployment strategies. Use one of these for `targets.<target-cluster>.strategy`. Each strategy in this section consists of a map of steps for your deployment strategy in the following format:
