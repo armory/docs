@@ -22,7 +22,7 @@ For a full list of features and pricing, see the [Armory Continuous Deployment-a
 
 The **Get Started** section contains guides that walk you through the core functionality. The {{< linkWithTitle "cd-as-a-service/setup/get-started.md" >}} guide shows you how to complete registration, create machine credentials, and install the Remote Network Agent in your Kubernetes cluster. You can complete the process in under 10 minutes.
 
-When you have an app ready to deploy to Kubernetes, read the {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}} guide to learn how to install the CLI, create a deployment file, and deploy your app.
+Read the {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}} guide to learn how to install the CLI, create a deployment file, and deploy your app.
 
 After you've completed those guides, you can follow the {{< linkWithTitle "cd-as-a-service/tutorials/deploy-demo-app.md" >}}, in which you fork a demo app repo and deploy that app to your Kubernetes cluster.
 
