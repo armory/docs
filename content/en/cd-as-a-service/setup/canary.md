@@ -7,7 +7,7 @@ weight: 40
 exclude_search: true
 ---
 
-Performing retrospective analysis on a deployment is a great way to understand how your app is performing over a pre-defined time period. It is the first step to enabling automatic canary analysis where you create queries that control how canary deployments react based on metrics you consider important.
+Performing retrospective analysis on a deployment is a great way to understand how your app is performing over a predefined time period. It is the first step to enabling automatic canary analysis where you create queries that control how canary deployments react based on metrics you consider important.
 
 The examples in this guide use Prometheus as the metrics provider.
 
