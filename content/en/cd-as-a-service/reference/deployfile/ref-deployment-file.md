@@ -778,9 +778,9 @@ analysis: # Define queries and thresholds used for automated analysis
                 # note the time should actually be set to ${promQlStepInterval}
 ```
 
-The query you want to run. Use the [**Retrospective Analysis** UI]({{< ref "configuration-ui#retrospective-analysis" >}}) to build and test queries before including them in your deploy file.
+The query you want to run. See the {{< linkWithTitle "cd-as-a-service/tasks/canary/retro-analysis.md" >}} guide for details on how to build and test queries using the UI.
 
-For information about writing queries, see the [Query Reference Guide]({{< ref "ref-queries.md" >}}).
+For information about writing queries, see the {{< linkWithTitle "ref-queries.md" >}}.
 
 When writing queries, you can use key/value pairs that are passed as substitutions for variables to the queries.
 

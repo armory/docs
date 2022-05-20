@@ -13,7 +13,7 @@ weight: 500
 
 ## Overview
 
-The Armory Continuous Deployment-as-a-Service Plugin for Spinnaker™ adds new stages to your Armory Enterprise (Spinnaker) instance. When you use one of these stages to deploy an app, you can configure how to deploy the stage incrementally by setting percentage thresholds for the deployment. For example, you can deploy the new version of your app to 25% of your target cluster and then wait for a manual judgement or a configurable amount of time. This wait gives you time to assess the impact of your changes. From there, either continue the deployment to the next threshold you set or roll back the deployment.
+{{< include "cdaas/desc-plugin.md" >}}
 
 See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture" >}}) page for an overview of the Armory CD-as-a-Service Spinnaker plugin and how it fits in with Armory Enterprise.
 
@@ -44,14 +44,9 @@ Your Armory Enterprise (or open source Spinnaker) instance must meet the followi
 
 Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents have the following networking access:
 
-| Protocol                    | DNS                       | Port | Used By           | Notes                                                                                                                                                                                                                                                                    |
-|-----------------------------|---------------------------|------|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| HTTPS                       | armory.jfrog.io           | 443  | Helm              | **Armory's Artifact Repository**<br><br>Used to download official Armory artifacts during installation, such as Helm charts.                                                                                                                                             |
-| HTTPS                       | api.cloud.armory.io       | 443  | Spinnaker         | **Armory CD-as-a-Service REST API**<br><br>Used fetch information from the Kubernetes cache                                                                                                                                                                                        |
-| TLS enabled gRPC over HTTP2 | agent-hub.cloud.armory.io | 443  | Spinnaker, Agents | **Armory CD-as-a-Service Agent-Hub**<br><br>Used to connect agents to the Agent Hub through encrypted long-lived gRPC HTTP2 connections. The connections are used for bi-directional communication between Armory Enterprise or Armory CD-as-a-Service and customer infrastructure. |
-| HTTPS                       | auth.cloud.armory.io      | 443  | Spinnaker, Agents | **Armory’s OIDC authorization server**<br><br>Used to exchange the client ID and secret for a Java Web Token () to verify identity.                                                                                                                                      |
-| HTTPS                       | github.com                | 443  | Spinnaker         | **Github**<br><br>Used to download official Armory plugins at startup time.                                                                                                                                                                                              |
+{{< include "cdaas/req-networking.md" >}}
 
+Additionally, your Armory Enterprise instance needs access to GitHub to download the plugin during installation.
 
 ### Target Kubernetes cluster
 

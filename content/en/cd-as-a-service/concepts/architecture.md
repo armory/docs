@@ -13,114 +13,39 @@ aliases:
 
 ### Remote Network Agent (RNA)
 
-The RNA allows Armory CD-as-a-Service to interact with your Kubernetes clusters and orchestrate deployments without direct network access to your clusters. RNAs get installed in every deployment target and connect those clusters to the Agent Hub in Armory CD-as-a-Service. The connections are encrypted, long-lived gRPC HTTP2 connections. The connections are used for bidirectional communication between Armory CD-as-a-Service and RNAs. The agent issues API calls to your Kubernetes Cluster based on requests from Armory CD-as-a-Service.
+The RNA allows Armory CD-as-a-Service to interact with your Kubernetes clusters and orchestrate deployments without direct network access to your clusters. The RNA that you install in your cluster engages in bidirectional communication with Armory CD-as-a-Service over encrypted, long-lived gRPC/HTTP2 connections. The RNA issues calls to your Kubernetes cluster based on requests from Armory CD-as-a-Service.
 
-### Armory CD-as-a-Service
+### Command Line Interface (CLI)
 
-Armory CD-as-a-Service is a collection of cloud-based services that Armory operates. These services are used to orchestrate deployments and monitor their progress.
+Users install the CLI locally. The CLI interacts with Armory CD-as-a-Service via REST API. To deploy an app, the user must either log in using the CLI or pass valid authorization credentials to the `deploy` command.
 
-Several specific services in Armory CD-as-a-Service are important for understanding how Armory CD-as-a-Service functions. These services have endpoints that users and non-cloud services interact with. Details of the external URLs for these services are covered in [Networking](#networking).
+### GitHub Action (GHA)
 
-#### Agent Hub
+You can use the `armory/cli-deploy-action` to trigger a deployment from your GitHub workflow. The GitHub Action interacts with Armory CD-as-a-Service via REST API. The Action requires a valid Client ID and Client Secret be passed to the deploy command.
 
-Agent Hub routes deployment commands to RNAs and caches data received from them. Agent Hub does not require direct network access to the agents since they connect to Agent Hub through an encrypted, long-lived gRPC HTTP2 connection. Agent Hub uses this connection to send deployment commands to the RNA for execution.
+### Spinnaker plugin
 
-#### OIDC auth service
+{{< include "cdaas/desc-plugin.md" >}}
 
-The Open ID Connect (OIDC) service is used to authorize and authenticate machines and users. The RNAs, Armory Enterprise (Spinnaker) plugin, and other services all authenticate against this endpoint. The service provides an identity token that can be passed to the Armory API and Agent Hub.
+## How Armory CD-as-a-Service works
 
-#### Rest API
+Armory CD-as-a-Service is a platform of cloud-based services that orchestrate app deployments and monitor their progress. These services have API endpoints with which users and non-cloud services interact via HTTPS or gRPC/HTTP2. The [Networking](#networking) section contains details of the endpoints that need to be whitelisted.
 
-Clients connect to these APIs to interact with Armory CD-as-a-Service.
+Armory CD-as-a-Service contains components that you manage: the CLI, the RNA, and the GHA. These components communicate with Armory CD-as-a-Service to deploy your apps to your existing infrastructure.
 
-#### CD-as-a-Service Console
+{{< include "cdaas/mermaid/how-it-works.md" >}}
 
-The CD-as-a-Service Console provides a UI to perform administrative functions like inviting users and creating auth tokens. It also includes the Status UI, where you can monitor the progress of deployments and approve steps that require a manual judgment.
+When you start a deployment from the CLI or the GHA, Armory CD-as-a-Service forwards your deployment request to the designated RNA in your Kubernetes cluster. The RNA generates Kubernetes Custom Resource Definitions that it then uses to execute the deployment.
 
-## Architecture
+You can track the status of a deployment in the Armory CD-as-a-Service UI.
 
-Armory CD-as-a-Service contains components that you manage in your environment and components that Armory manages in the cloud. The components you manage allow Armory’s cloud services to integrate with your existing infrastructure.
+## Networking
 
+{{< include "cdaas/req-networking.md" >}}
 
-{{< figure height=50% width=50% src="/images/cdaas/overview.jpg" alt="The Armory command line interface and its integrations connect to Armory CD-as-a-Service. Armory CD-as-a-Service uses the Agent Hub to connect to your Kubernetes cluster using a gRPC connection established between the Agent Hub and Remote Network Agent, which is installed in your cluster." >}}
+## {{% heading "nextSteps" %}}
 
-You connect your Kubernetes clusters to Armory CD-as-a-Service by installing the RNA on each target cluster. The agent establishes a bidirectional link with Armory Hub. Armory Hub uses this link to route communication from services within Armory CD-as-a-Service to the agent in your Kubernetes cluster. The agent enables Armory CD-as-a-Service to act as a control plane for your infrastructure.
+{{< linkWithTitle "cd-as-a-service/setup/get-started.md" >}}
 
-### How it works
-
-Armory CD-as-a-Service powers deployments to your Kubernetes clusters.
-
-{{< figure height=40% width=40% src="/images/cdaas/how-it-works.jpg" alt="In your Kubernetes cluster, the RNA enables communication with Armory CD-as-a-Service services through the Agent Hub. " >}}
-
-When you start a deployment, Armory CD-as-a-Service processes your deployment request and generates CRDs that then get used to execute the deployment. Armory CD-as-a-Service triggers Kubernetes infrastructure changes using a bidirectional link to the target cluster that the RNA maintains. The RNA creates the generated CRDs in your Kubernetes cluster for the changes.
-
-You can track the status of a deployment in the Armory CD-as-a-Service CLI or the Status UI.
-
-
-## Security
-
-### Armory CD-as-a-Service Identity and Access Management (IAM)
-
-Armory CD-as-a-Service uses OIDC to authenticate both user and machine principals and issue short-lived access tokens, which are signed JSON web tokens (JWTs).
-
-The Armory CD-as-a-Service API consumes these access tokens in order to validate that a request has authorization for a given tenant’s resources and operations.
-
-Use the the [CD-as-a-Service Console](https://console.cloud.armory.io/) to manage the following:
-
-- Ceate credentials for machines and scope them for specific permissions and use cases.
-- Invite and manage users.
-- Enable OIDC based external identity providers (IdP), such as Okta, Auth0, or OneLogin.
-
-The following concepts can help you when configuring access in the CD-as-a-Service Console:
-
-- **Organization**
-
-  A company like “Acme” or “Armory.”
-
-- **Environment**
-
-  A collection of accounts and their associated resources that you explicitly define. Environments are useful for separation and isolation, such as when you want to have distinct non-production and production environments. Accounts added to one environment are not accessible by machine credentials scoped to another environment.
-
-- **Tenant**
-
-  The combination of an Organization and Environment.
-
-- **Principals**
-
-  There are two types of principals:  a Machine or a User.
-
-  *Machine principals* are credentials that are created within the CD-as-a-Service Console with specific scopes. They are used by service accounts, such as for allowing Spinnaker to connect to Armory CD-as-a-Service.
-
-  *User principals* are users that are invited to an organization, either by being invited or logging in through a configured external (IdP) such as Okta or Auth0.
-
-- **Scopes**
-
-  Scopes are individual permissions that grant access to certain actions. They can be assigned to Machine to Machine credentials. For example, the scope `read:infrastructure:data` allows a machine credential to fetch cached data about infrastructure and list accounts that are registered with the RNA.
-
-- **Groups**
-
-  Groups are attached to user principals and sourced from an external IdP like Okta or LDAP. Note that they are not currently being used by the Armory CD-as-a-Service API.
-
-### Networking
-
-All network traffic is secured and encrypted with TLS end-to-end.
-The following network endpoints are used for communication into Armory CD-as-a-Service:
-
-| DNS                       | Port | Protocol                                        | Description                                                                           |
-|---------------------------|------|-------------------------------------------------|---------------------------------------------------------------------------------------|
-| agent-hub.cloud.armory.io | 443  | TLS enabled gRPC over HTTP/2<br>TLS version 1.2 | Agent Hub connection. gRPC is used to provide bidirectional, on demand communication. |
-| api.cloud.armory.io       | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2        | Armory REST API                                                                       |
-| auth.cloud.armory.io      | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2        | OIDC Service                                                                          |
-| console.cloud.armory.io   | 443  | HTTP over TLS (HTTPS)<br>TLS version 1.2        | Web UI                                                                                |
-
-### Data encryption
-
-#### Encryption in transit
-
-All data is encrypted using end-to-end encryption while in transit.
-
-Encryption in transit is over HTTPS using TLS encryption. When using Armory-provided software for both the client and server, these connections are secured by TLS 1.2. Certain APIs support older TLS versions for clients that do not support 1.2.
-
-#### Encryption at Rest
-
-Encryption at rest uses AES256 encryption.
+<br>
+<br>

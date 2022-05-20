@@ -1,21 +1,24 @@
 ---
-title: Get Started with Canary Analysis
-linktitle: Canary Analysis
+title: Get Started with Canary Deployment
+linktitle: Canary Deployment
 description: >
   This guide walks you through using canary analysis on the app you deployed in the Get Started with the CLI to Deploy Apps guide. You perform a retrospective analysis on the app. Then, you use those queries to create canary analysis steps for subsequent deployments.
 weight: 40  
 exclude_search: true
 ---
 
-Performing retrospective analysis on a deployment is a great way to understand how your app is performing over a pre-defined time period. It is the first step to enabling automatic canary analysis where you create queries that control how canary deployments react based on metrics you consider important.
+Performing retrospective analysis on a deployment is a great way to understand how your app is performing over a predefined time period. It is the first step to enabling automatic canary analysis where you create queries that control how canary deployments react based on metrics you consider important.
 
 The examples in this guide use Prometheus as the metrics provider.
 
 ## {{% heading "prereq" %}}
 
-This quick start assumes that you completed the prior two quick starts that taught you how to register a cluster with Armory CD-as-a-Service and how to deploy an app with the CLI.
+You have completed the following guides:
 
-To complete this quick start, you need the following:
+1. {{< linkWithTitle "cd-as-a-service/setup/get-started.md" >}}
+1. {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}}
+
+You need the following to work through this guide:
 
 - Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app. You can reuse the clusters from the previous quick starts if you want. Or stand up new ones.
 - A Prometheus instance set up to monitor your Kubernetes clusters. Keep the following in mind:
@@ -38,21 +41,24 @@ To complete this quick start, you need the following:
 Armory CD-as-a-Service can run queries against metrics providers that you add. The results are examined as part of canary analysis steps in the deploy file.
 
 1. In the **Configuration UI**, go to [**Canary Analysis > Integrations**](https://console.cloud.armory.io/configuration/metric-source-integrations/).
-2. Select **New Integration.
+2. Select **New Integration**.
 
    The examples in this guide use Prometheus as the metrics provider.
 
 3. Complete the wizard:
 
-   The parameters you need to provide depend on the metrics provider you choose. For more information, see [Canary Analysis Integrations]({{< ref "configuration-ui#integrations" >}}).
+   The parameters you need to provide depend on the metrics provider you choose. For more information, see the {{< linkWithTitle "cd-as-a-service/tasks/canary/add-integrations.md" >}} guide.
 
    The following fields are for a Prometheus integration:
 
-   - **Type**: (Required) Your metrics provider. This example uses Prometheus. The form options change based on your provider. For more information, see [Canary Analysis Integrations]({{< ref "configuration-ui#integrations" >}}).
+   - **Type**: (Required) Your metrics provider. This example uses Prometheus. The form options change based on your provider.
    - **Name**: (Required) A descriptive name for your metrics provider, such as the environment it monitors. You use this name in places such as your deploy file when you want to configure canary analysis as part of your deployment strategy.
    - **Base URL**: (Required) The base URL for your Prometheus instance. If Prometheus runs in the same cluster as the RNA and is exposed using HTTP on port 9090 through a service named `prometheus` in the namespace `prometheus`, then use `http://prometheus.prometheus:9090`. (This can be a private DNS only if the RNA is installed in the same cluster as the Prometheus instance.)
-   - **Remote Network Agent**: (Optional) The RNA that can access the Prometheus instance. Select the identifier for the RNA from the dropdown.
-   - **Authentication Type**: (Required) Either none, username/password, or bearer token.
+   - **Remote Network Agent**: (Optional) The RNA that is installed in the Prometheus cluster if the cluster is not publicly accessible. Select the identifier for the RNA from the dropdown.
+   - **Authentication Type**: (Required) Select **None**, **Username/Password**, or **Bearer Token**.
+
+      - If you selected **Username/Password**: Fill in the username for accessing Prometheus and select the password secret.
+      - If you selected **Bearer Token**: Select the token secret from the drop-down list.
 
 ## Perform a retrospective analysis
 
@@ -75,7 +81,7 @@ Retrospective analysis is the starting point to creating queries so that you can
 
       - **The query must return a single result**. Automated canary analysis does not support queries that return multiple values. See [Query template requirements]({{< ref "ref-queries#query-template-requirements" >}}) for restrictions and provider examples.
       - The query contains variables that are automatically injected during canary analysis, but you must manually provide some of them during retrospective analysis.
-        - Time related variables like `armory.promqlStepInterval` are automatically substituted by Armory CD-as-a-Service. For a full list, see [Retrospective Analysis]({{< ref "configuration-ui#retrospective-analysis" >}}).
+        - Time related variables like `armory.promqlStepInterval` are automatically substituted by Armory CD-as-a-Service. For a full list, see the {{< linkWithTitle "cd-as-a-service/tasks/canary/retro-analysis.md" >}} guide.
         - `armory.replicaSetName` needs to be set to the name of the ReplicaSet that Armory CD-as-a-Service created for this app version. It's used to differentiate between the current and next version of the app. Do this in the next step where you add key/value pairs.
 
 5. Add **Key Value (KV) Pair** for the **Context**. The key value pairs for your  For the sample query, you need to add the following key value Pair:
