@@ -13,9 +13,12 @@ The examples in this guide use Prometheus as the metrics provider.
 
 ## {{% heading "prereq" %}}
 
-This quick start assumes that you completed the prior two quick starts that taught you how to register a cluster with Armory CD-as-a-Service and how to deploy an app with the CLI.
+You have completed the following guides:
 
-To complete this quick start, you need the following:
+1. {{< linkWithTitle "cd-as-a-service/setup/get-started.md" >}}
+1. {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}}
+
+You need the following to work through this guide:
 
 - Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app. You can reuse the clusters from the previous quick starts if you want. Or stand up new ones.
 - A Prometheus instance set up to monitor your Kubernetes clusters. Keep the following in mind:
@@ -38,7 +41,7 @@ To complete this quick start, you need the following:
 Armory CD-as-a-Service can run queries against metrics providers that you add. The results are examined as part of canary analysis steps in the deploy file.
 
 1. In the **Configuration UI**, go to [**Canary Analysis > Integrations**](https://console.cloud.armory.io/configuration/metric-source-integrations/).
-2. Select **New Integration.
+2. Select **New Integration**.
 
    The examples in this guide use Prometheus as the metrics provider.
 
@@ -51,8 +54,11 @@ Armory CD-as-a-Service can run queries against metrics providers that you add. T
    - **Type**: (Required) Your metrics provider. This example uses Prometheus. The form options change based on your provider.
    - **Name**: (Required) A descriptive name for your metrics provider, such as the environment it monitors. You use this name in places such as your deploy file when you want to configure canary analysis as part of your deployment strategy.
    - **Base URL**: (Required) The base URL for your Prometheus instance. If Prometheus runs in the same cluster as the RNA and is exposed using HTTP on port 9090 through a service named `prometheus` in the namespace `prometheus`, then use `http://prometheus.prometheus:9090`. (This can be a private DNS only if the RNA is installed in the same cluster as the Prometheus instance.)
-   - **Remote Network Agent**: (Optional) The RNA that can access the Prometheus instance. Select the identifier for the RNA from the dropdown.
-   - **Authentication Type**: (Required) Either none, username/password, or bearer token.
+   - **Remote Network Agent**: (Optional) The RNA that is installed in the Prometheus cluster if the cluster is not publicly accessible. Select the identifier for the RNA from the dropdown.
+   - **Authentication Type**: (Required) Select **None**, **Username/Password**, or **Bearer Token**.
+
+      - If you selected **Username/Password**: Fill in the username for accessing Prometheus and select the password secret.
+      - If you selected **Bearer Token**: Select the token secret from the drop-down list.
 
 ## Perform a retrospective analysis
 
