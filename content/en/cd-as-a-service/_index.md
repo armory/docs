@@ -20,7 +20,7 @@ For a full list of features and pricing, see the [Armory Continuous Deployment-a
 
 ## Start using Armory CD-as-a-Service
 
-The {{< linkWithTitle "/cd-as-a-service/setup/_index.md" >}} section contains guides that walk you through the core functionality. The first guide shows you how to complete registration, create machine credentials, and install the Remote Network Agent in your Kubernetes cluster. You can complete the process in under 10 minutes.
+The Get Started section contains guides that walk you through the core functionality. The first guide shows you how to complete registration, create machine credentials, and install the Remote Network Agent in your Kubernetes cluster. You can complete the process in under 10 minutes.
 
 * {{< linkWithTitle "cd-as-a-service/setup/get-started.md" >}}
 
