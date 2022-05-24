@@ -18,7 +18,7 @@ The CLI binary is called `armory`. You can install the CLI using the Armory Vers
 
 Armory recommends installing the AVM because you can use it to quickly and easily download, install, and update the CLI. The AVM provides additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
 
-If you choose to install the CLI binary manually, you must download a specific release binary from GitHub and install that release. You have to repeat the installation process each time you upgrade the CLI version.
+If you choose to install the CLI binary manually, you must download a specific release binary from GitHub and install that release. You have to repeat the installation process each time you upgrade the CLI version. The Armory CLI is only currently supported on Linux and MacOSX.
 
 {{< tabs name="cdaas-cli-install" >}}
 
