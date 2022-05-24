@@ -1,8 +1,6 @@
-Each Kubernetes cluster that you install the RNA on should have a unique name that you set using the `agentIdentifier` parameter. This identifier is used to identify the cluster.
-
 1. Verify that you are in the correct Kubernetes context. You want to install the RNA in the cluster where you deploy your apps.
 
-2. Add the Armory Helm repo:
+1. Add the Armory Helm repo:
 
    ```bash
    helm repo add armory https://armory.jfrog.io/artifactory/charts
@@ -10,19 +8,19 @@ Each Kubernetes cluster that you install the RNA on should have a unique name th
 
    You only need to do this once.
 
-3. Refresh the repo cache:
+1. Refresh the repo cache:
 
    ```bash
    helm repo update
    ```
 
-4. Create the namespace where the RNA is installed:
+1. Create the namespace where the RNA is installed:
 
    ```bash
    kubectl create ns armory-rna
    ```
 
-5. Create secrets from your Client ID and Client Secret:
+1. Create secrets from your Client ID and Client Secret:
 
    ```bash
    kubectl --namespace armory-rna create secret generic rna-client-credentials --type=string --from-literal=client-secret=<your-client-secret> --from-literal=client-id=<your-client-id>
@@ -30,13 +28,13 @@ Each Kubernetes cluster that you install the RNA on should have a unique name th
 
    The examples use Kubernetes secrets to encrypt the value. You supply the encrypted values in the Helm command to install the RNA.
 
-6. Install the Helm chart. Keep the following in mind when you install the RNA:
+1. Install the Helm chart.
 
-   * The `agentIdentifier` option is the name that is used to refer to the deployment cluster, so use a descriptive name.
+    For most scenarios, you install one RNA per cluster. Use the `agentIdentifier` parameter to give each RNA a unique name. When you deploy your app, you specify which RNA to use, so Armory recommends creating a name that identifies the cluster.
 
     ```bash
     helm upgrade --install armory-rna armory/remote-network-agent \
-        --set agentIdentifier=<target-cluster-name> \
+        --set agentIdentifier=<rna-name> \
         --set 'clientId=encrypted:k8s!n:rna-client-credentials!k:client-id' \
         --set 'clientSecret=encrypted:k8s!n:rna-client-credentials!k:client-secret' \
         --namespace armory-rna
@@ -46,7 +44,7 @@ Each Kubernetes cluster that you install the RNA on should have a unique name th
 
    For advanced use cases such as proxy configurations, custom annotations, labels, or environment variables, see the [`values.yaml` for the RNA](https://github.com/armory-io/remote-network-agent-helm-chart/blob/master/values.yaml?rgh-link-date=2022-02-02T22%3A38%3A35Z). For information about using a `values file`, see the [Helm documentation](https://helm.sh/docs/chart_template_guide/values_files/).
 
-7. Verify the RNA connection. Go to the [Agents page](https://console.cloud.armory.io/configuration/agents) in the Configuration UI, and look for the Agent identifier you assigned to your target deployment cluster. You should see it along with some basic information:
+1. Verify the RNA connection. Go to the [Agents page](https://console.cloud.armory.io/configuration/agents) in the Configuration UI, and look for the Agent identifier you assigned to your target deployment cluster. You should see it along with some basic information:
 
    > Note that you may see a "No Data message" when first loading the Agent page.
 
