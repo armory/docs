@@ -12,6 +12,11 @@ weight: 20
 * Make sure that your organization has completed the onboarding steps in {{< linkWithTitle "get-started.md" >}}. That guide describes how to prepare your deployment target so that you can use the CLI to deploy apps to it.
 * You have login credentials for Armory CD-as-a-Service.
 
+{{% alert title="Supported Operating Systems" color="warning" %}}
+The Armory Version Manager and CLI are only supported on Linux and Mac OSX.<br>
+They do not run on Windows.
+{{% /alert %}}
+
 ## Install the Armory CD-as-a-Service CLI
 
 The CLI binary is called `armory`. You can install the CLI using the Armory Version Manager (AVM) or you can install the `armory` binary manually.
@@ -27,13 +32,13 @@ If you choose to install the CLI binary manually, you must download a specific r
 1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo](https://github.com/armory/avm/releases/) or use the following command:
 
    ```bash
-   wget https://github.com/armory/avm/releases/latest/download/avm-<os>-<architecture>
+   curl -O https://github.com/armory/avm/releases/latest/download/avm-<os>-<architecture>
    ```
 
    For example, the following command downloads the latest version for macOS (Darwin):
 
    ```bash
-   wget https://github.com/armory/avm/releases/latest/download/avm-darwin-amd64
+   curl -O https://github.com/armory/avm/releases/latest/download/avm-darwin-amd64
    ```
 
    You can see the full list of available releases in the [repo](https://github.com/armory/avm/releases/).
@@ -173,7 +178,7 @@ Since you are using the CLI, you do not need to have service account credentials
 
    - `application`: The name of your app.
    - `targets.<deploymentName>`: A descriptive name for your deployment. Armory recommends using the environment name.
-   - `targets.<deploymentName>.account`: The name of the deployment target cluster. This is the name that was assigned to the cluster using the `agentIdentifier` parameter when you installed the RNA.
+   - `targets.<deploymentName>.account`: This is the value that you assigned to the `agentIdentifier` parameter when you [installed the RNA]({{< ref "cd-as-a-service/setup/get-started#install-the-remote-network-agent" >}}).
    - `targets.<deploymentName>.strategy`: the name of the deployment strategy you want to use. You define the strategy in `strategies.<strategy-name>`.
    - `manifests`: a map of manifest locations. This can be a directory of `yaml (yml)` files or a specific manifest. Each entry must use the following convention:  `- path: /path/to/directory-or-file`
    - `strategies.<strategy-name>`: the list of your deployment strategies. Use one of these for `targets.<target-cluster>.strategy`. Each strategy in this section consists of a map of steps for your deployment strategy in the following format:
