@@ -8,3 +8,223 @@ $primary: #001321;
 $dark: #001321;
 $google_font_name: "Rubik";
 $google_font_family: "Rubik:300,300i,400,400i,700,700i";
+
+$light_grey: #F1F5F9;
+$light_blue: #4AC1E0;
+$medium_blue: #005491;
+$dark_blue: #001321;
+$border_grey: #D7DDE3;
+$container_spacing: 16px;
+
+// Override navbar transparency
+nav.td-navbar-cover {
+  background: $dark_blue !important;
+}
+
+// Namespacing homepage styles
+.td-home {
+  #td-cover-block-0 {
+    background-color: $light_grey;
+
+    &.td-overlay--dark::after {
+      background-color: transparent;
+    }
+  }
+
+  h1, h2, h3, h4, p, p.lead {
+    color: $medium_blue;
+  }
+
+  h1.display-1 {
+    font-size: 74px;
+    margin-bottom: 0;
+    padding-bottom: 1rem !important;
+  }
+  
+  h2 {
+    font-size: 60px;
+    font-weight: 700;
+    margin: 66px auto !important
+  }
+
+  p {
+    font-size: 15px;
+  }
+  
+  p.lead {
+    font-size: 26px;
+  }
+
+  .btn {
+    color: $dark_blue;
+    padding: 10px 20px;
+    border-radius: 36px;
+    font-weight: 700;
+
+    &.white {
+      color: $medium_blue;
+      background: white;
+      border: 0;
+      box-shadow: none;
+    }
+  }
+
+  .icon {
+    background: white;
+    border-radius: 50%;
+    border: 3px solid $medium_blue;
+    width: 82px;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.small-icon {
+      width: 40px;
+      height: 40px;
+      border: none;
+    }
+  }
+
+  .small-link {
+    color: #38B5D9;
+    
+    > * {
+      display: block;
+      float: left;
+    }
+
+    i {
+      margin-left: 5px;
+      margin-top: -2px;
+    }
+  }
+
+  .product-documentation .row {
+    margin: 0 $container_spacing;
+  
+    > div {
+      border: 2px solid $border_grey;
+      border-top: 10px solid $medium_blue;
+      border-radius: 6px;
+      margin: 0 $container_spacing;
+      padding: 54px;
+      display: flex;
+      background-color: white;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      
+      @media screen and (max-width: 1280px) {
+        margin-bottom: $container_spacing*3;
+      }
+      
+      > i {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      
+      h3 {
+        line-height: 31px;
+        margin-bottom: $container_spacing;
+      }
+      
+      p {
+        color: #606060;
+        line-height: 22px;
+        text-align: center;
+      }
+    }
+
+    .link-container {
+      margin-top: auto;
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .new-to-armory {
+    height: 298px;
+    background-color: $light_blue;
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-top: -58.5px;
+
+    @media screen and (max-width: 1280px) {
+      margin-top: -90px;
+    }
+
+    h3 {
+      color: white;
+      font-weight: 500;
+      font-size: 26px;
+      height: auto;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .btn-container {
+      a:first-child {
+        margin-right: $container_spacing;
+      }
+    }
+  }
+
+  .developer-resources {
+    .resource-container {
+      margin: 0 $container_spacing;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    
+      > div {
+        margin: 0 0 $container_spacing*3 12px;
+        padding: 34px $container_spacing*2;
+        border: 2px solid #D7DDE3;
+        display: flex;
+        flex-direction: column;
+        height: 284px;
+        position: relative;
+        width: calc(25% - 24px);
+
+        @media screen and (max-width: 1280px) {
+          width: calc(33% - 24px);
+        }
+
+        @media screen and (max-width: 1280px) {
+          width: calc(33.33% - 24px);
+        }
+
+        @media screen and (max-width: 980px) {
+          width: calc(50% - 24px);
+        }
+
+        @media screen and (max-width: 715px) {
+          width: calc(100% - 24px);
+        }
+
+        i {
+          background-color: $light_grey;
+          color: $medium_blue;
+          margin-bottom: $container_spacing;
+        }
+
+        a {
+          position: absolute;
+          bottom: $container_spacing*2;
+        }
+
+        p {
+          color: $dark_blue;
+          line-height: 18px;
+        }
+      }
+    }
+  }
+}
+
