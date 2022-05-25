@@ -18,16 +18,8 @@
 {{ errorf "[%s] %q not found in %q" site.Language.Lang $fileDir.File $bundlePath }}
 {{ end }}
 {{ with $.Scratch.Get "content" }}
-<div class="highlight">
-    <div class="copy-code-icon" style="text-align:right">
-    {{ with $ghlink }}<a href="{{ . }}" download="{{ $file }}">{{ end }}<code>{{ $file }}</code>
-    {{ if $ghlink }}</a>{{ end }}
-    <img src="{{ "images/copycode.svg" | relURL }}" style="max-height:24px; cursor: pointer" onclick="copyCode('{{ $file | anchorize }}')" title="Copy {{ $file }} to clipboard">
-    </img>
-    </div>
-    <div class="includecode" id="{{ $file | anchorize }}">
-    {{ highlight . $codelang "" }}
-    </div>
+<div class="includecode" id="{{ $file | anchorize }}">
+{{ highlight . $codelang "" }}
 </div>
 {{ end }}
 {{/* from kubernetes/website */}}
