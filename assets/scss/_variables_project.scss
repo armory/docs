@@ -12,9 +12,10 @@ $google_font_family: "Rubik:300,300i,400,400i,700,700i";
 $light_grey: #F1F5F9;
 $light_blue: #4AC1E0;
 $medium_blue: #005491;
-$dark_blue: #001321;
+$dark_blue: #253C5D;
 $border_grey: #D7DDE3;
 $container_spacing: 16px;
+$mustard_yellow: #F3B722;
 
 // Override navbar transparency
 nav.td-navbar-cover {
@@ -49,6 +50,7 @@ nav.td-navbar-cover {
 
   p {
     font-size: 15px;
+    line-height: 22px;
   }
   
   p.lead {
@@ -56,23 +58,27 @@ nav.td-navbar-cover {
   }
 
   .btn {
-    color: $dark_blue;
+    color: $medium_blue;
     padding: 10px 20px;
     border-radius: 36px;
     font-weight: 700;
+    border: 0;
 
     &.white {
-      color: $medium_blue;
       background: white;
-      border: 0;
+      border: 2px solid $mustard_yellow;
       box-shadow: none;
+
+      &:hover {
+        color: $medium_blue;
+      }
     }
   }
 
   .icon {
     background: white;
     border-radius: 50%;
-    border: 3px solid $medium_blue;
+    border: 2px solid $medium_blue;
     width: 82px;
     height: 82px;
     display: flex;
@@ -105,8 +111,8 @@ nav.td-navbar-cover {
   
     > div {
       border: 2px solid $border_grey;
-      border-top: 10px solid $medium_blue;
-      border-radius: 6px;
+      border-top: 20px solid $medium_blue;
+      border-radius: 12px;
       margin: 0 $container_spacing;
       padding: 54px;
       display: flex;
