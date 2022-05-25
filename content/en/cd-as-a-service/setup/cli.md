@@ -170,10 +170,6 @@ Since you are using the CLI, you do not need to have service account credentials
    armory template kubernetes canary > canary.yaml
    ```
 
-   <details><summary>Show me an empty template</summary>
-   {{< include "cdaas/dep-file/cdaas-yaml-basic.md" >}}
-   </details><br>
-
 1. Customize your deployment file by setting the following minimum set of parameters:
 
    - `application`: The name of your app.
@@ -203,13 +199,13 @@ Since you are using the CLI, you do not need to have service account credentials
 
    <details><summary>Show me a completed deployment file</summary>
 
-   {{< include "cdaas/dep-file/cdaas-yaml-example-basic.md" >}}
+   {{< codefile file="cdaas/deploy/deploy.yaml" >}}
 
     </details><br>
 
 1. (Optional) Ensure there are no YAML issues with your deployment file.
 
-   Since a hidden tab in your YAML can cause your deployment to fail, it's a good idea to validate the struture and syntax in your deployment file. There are several online linters, IDE-based linters, and command line linters such as `yamllint` that you can use to validate your deployment file.
+   Since a hidden tab in your YAML can cause your deployment to fail, it's a good idea to validate the structure and syntax in your deployment file. There are several online linters, IDE-based linters, and command line linters such as `yamllint` that you can use to validate your deployment file.
 
 1. Start the deployment.
 

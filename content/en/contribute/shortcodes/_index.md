@@ -70,14 +70,6 @@ See the {{< linkWithTitle best-practices.md >}} page...
 
 See this page: {{< linkWithTitle agent-troubleshooting.md >}}.
 
-This shortcode throws an error if the file is not found.
-
-
-```markdown
-See the {{</* linkWithTitle bubba.md */>}} page...
-```
-
-See the {{< linkWithTitle bubba.md >}} page...
 
 ### Google suite shortcode
 
