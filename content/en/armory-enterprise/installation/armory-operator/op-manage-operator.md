@@ -18,7 +18,7 @@ Use the `kubectl replace` command to replace your Operator deployment. See the `
    In the following command, replace `<version>` with the specific version or "latest" for the most recent version.
 
    ```bash
-   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/<version>/download/manifests.tgz | tar -xz'
+   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/download/<version>/manifests.tgz | tar -xz'
    ```
 
 1. Update CRDs across the cluster:
