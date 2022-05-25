@@ -144,7 +144,7 @@ You can commit and push many times before you create your PR.
 
 See the GitHub [docs](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork) for how to create a pull request from a fork.
 
-**On user-owned forks, if you want to allow anyone with push access to the upstream repository to make changes to your pull request, select _Allow edits from maintainers_.**
+**On user-owned forks, select _Allow edits from maintainers_ so maintainers can make changes to your pull request,**
 
 ## Troubleshooting
 
