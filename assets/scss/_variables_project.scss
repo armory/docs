@@ -6,8 +6,8 @@ https://www.docsy.dev/docs/adding-content/lookandfeel/#fonts
 
 $primary: #001321;
 $dark: #001321;
-$google_font_name: "Rubik";
-$google_font_family: "Rubik:300,300i,400,400i,700,700i";
+$google_font_name: "Open Sans";
+$google_font_family: "Open+Sans:300,300i,400,400i,700,700i";
 
 $light_grey: #F1F5F9;
 $light_blue: #4AC1E0;
@@ -16,6 +16,22 @@ $dark_blue: #253C5D;
 $border_grey: #D7DDE3;
 $container_spacing: 16px;
 $mustard_yellow: #F3B722;
+
+@mixin mobile {
+  @media (max-width: 500px) { @content; }
+}
+
+@mixin tablet {
+  @media (max-width: 715px) { @content; }
+}
+
+@mixin desktop {
+  @media (max-width: 915px) { @content; }
+}
+
+@mixin large-desktop {
+  @media (max-width: 1280px) { @content; }
+}
 
 // Override navbar transparency
 nav.td-navbar-cover {
@@ -40,12 +56,21 @@ nav.td-navbar-cover {
     font-size: 74px;
     margin-bottom: 0;
     padding-bottom: 1rem !important;
+    line-height: 100%;
+
+    @include mobile {
+      font-size: 60px;
+    }
   }
   
   h2 {
     font-size: 60px;
     font-weight: 700;
-    margin: 66px auto !important
+    margin: 66px auto !important;
+
+    @include mobile {
+      font-size: 38px;
+    }
   }
 
   p {
@@ -55,6 +80,7 @@ nav.td-navbar-cover {
   
   p.lead {
     font-size: 26px;
+    line-height: 34px;
   }
 
   .btn {
@@ -121,15 +147,20 @@ nav.td-navbar-cover {
       align-items: center;
       justify-content: space-between;
       
-      @media screen and (max-width: 1280px) {
+      @include large-desktop {
         margin-bottom: $container_spacing*3;
       }
       
       > i {
         position: absolute;
-        top: 0;
+        top: -10px;
         left: 50%;
         transform: translate(-50%, -50%);
+      
+        img {
+          width: 50px;
+          height: 50px;
+        }
       }
       
       h3 {
@@ -161,7 +192,7 @@ nav.td-navbar-cover {
     margin-right: -15px;
     margin-top: -58.5px;
 
-    @media screen and (max-width: 1280px) {
+    @include large-desktop {
       margin-top: -90px;
     }
 
@@ -177,6 +208,10 @@ nav.td-navbar-cover {
     .btn-container {
       a:first-child {
         margin-right: $container_spacing;
+
+        @include mobile {
+          margin-right: 5px;
+        }
       }
     }
   }
@@ -196,21 +231,17 @@ nav.td-navbar-cover {
         flex-direction: column;
         height: 284px;
         position: relative;
-        width: calc(25% - 24px);
+        width: calc(33% - 20px);
 
-        @media screen and (max-width: 1280px) {
+        @include large-desktop {
           width: calc(33% - 24px);
         }
 
-        @media screen and (max-width: 1280px) {
-          width: calc(33.33% - 24px);
-        }
-
-        @media screen and (max-width: 980px) {
+        @include desktop {
           width: calc(50% - 24px);
         }
 
-        @media screen and (max-width: 715px) {
+        @include tablet {
           width: calc(100% - 24px);
         }
 
