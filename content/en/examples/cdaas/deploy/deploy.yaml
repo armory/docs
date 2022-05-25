@@ -1,0 +1,110 @@
+---
+version: v1
+kind: kubernetes
+application: potato-facts
+targets:
+  dev:
+    account: demo-rna-dev-cluster
+    namespace: demo-dev
+    strategy: rolling
+  staging:
+    account: demo-rna-staging-cluster
+    namespace: demo-staging
+    strategy: rolling
+    constraints:
+      dependsOn: ["dev"]
+      beforeDeployment: []
+  prod-us:
+    account: demo-rna-prod-us-cluster
+    namespace: demo-prod-us
+    strategy: mycanary
+    constraints:
+      dependsOn: ["staging"]
+      beforeDeployment:
+        - pause:
+            untilApproved: true
+  prod-eu:
+    account: demo-rna-prod-eu-cluster
+    namespace: demo-prod-eu
+    strategy: myBlueGreen
+    constraints:
+      dependsOn: ["staging"]
+      beforeDeployment:
+        - pause:
+            untilApproved: true
+
+manifests:
+  - path: manifests/potato-facts.yml
+  - path: manifests/potato-facts-external-service.yml
+    targets: [prod-us, prod-eu]
+
+strategies:
+  mycanary:
+    canary:
+      steps:
+        # The map key is the step type
+        - setWeight:
+            weight: 25
+        - analysis:
+            interval: 7
+            units: seconds
+            numberOfJudgmentRuns: 1
+            rollBackMode: manual
+            rollForwardMode: automatic
+            queries:
+              - avgCPUUsage-pass
+        - setWeight:
+            weight: 50
+        - analysis:
+            interval: 7
+            units: seconds
+            numberOfJudgmentRuns: 3
+            rollBackMode: manual
+            rollForwardMode: manual
+            queries:
+              - avgCPUUsage-fail
+              - avgCPUUsage-pass
+        - setWeight:
+            weight: 100
+  rolling:
+    canary:
+      steps:
+        - setWeight:
+            weight: 100
+  myBlueGreen:
+    blueGreen:
+      activeService: potato-facts-external
+      redirectTrafficAfter:
+        - analysis:
+            interval: 7
+            units: seconds
+            numberOfJudgmentRuns: 1
+            rollBackMode: manual
+            rollForwardMode: automatic
+            queries:
+              - avgCPUUsage-pass
+      shutDownOldVersionAfter:
+        - pause:
+            untilApproved: true
+analysis:
+  defaultMetricProviderName: Demo-Prometheus
+  queries:
+    - name: avgCPUUsage-pass
+      upperLimit: 10000
+      lowerLimit: 0
+      queryTemplate: >-
+        avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
+        sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
+        by (annotation_app, pod)) by (annotation_app)
+    - name: invalidQuery
+      upperLimit: 10000
+      lowerLimit: 0
+      queryTemplate: >-
+        avg (avg_over_time(c
+    - name: avgCPUUsage-fail
+      upperLimit: 1
+      lowerLimit: 0
+      queryTemplate: >-
+        avg (avg_over_time(container_cpu_system_seconds_total{job="kubelet"}[{{armory.promQlStepInterval}}]) * on (pod)  group_left (annotation_app)
+        sum(kube_pod_annotations{job="kube-state-metrics",annotation_deploy_armory_io_replica_set_name="{{armory.replicaSetName}}"})
+        by (annotation_app, pod)) by (annotation_app)

@@ -13,9 +13,9 @@ The deployment file is what you use to define how and where Armory CD-as-a-Servi
 
 You can see what a blank deployment file looks like in the [Blank templates](#blank-template) section. To see a filled out example, see [Complete examples](#complete-examples).
 
-## Blank templates
+## Templates
 
-You can see this template file by running the following command with the CLI:
+You can generate a template file by running the following command with the CLI:
 
 Basic template:
 ```bash
@@ -42,52 +42,9 @@ To use a template, output it to a file and modify it to suit your needs:
 armory template kubernetes [template-type] > deployment-template.yaml
 ```
 
-<details><summary>Show me the basic template</summary>
+<details><summary>Show me an example deployment file</summary>
 
-The basic template illustrates the structure of a deploy file using duration based pauses and manual approval pauses.
-
-{{< include "cdaas/dep-file/cdaas-yaml-basic.md" >}}
-
-</details>
-<br>
-<details><summary>Show me the automated canary analysis template</summary>
-
-```bash
-armory template kubernetes canary -f automated > auto-canary-deployment-template.yaml
-```
-
-{{< include "cdaas/dep-file/cdaas-yaml-canary.md" >}}
-
-</details>
-
-<br>
-<details><summary>Show me the blue/green deployment template</summary>
-
-```bash
-armory template kubernetes bluegreen > bluegreen-deployment-template.yaml
-```
-
-{{< include "cdaas/dep-file/cdaas-yaml-template-blue-green.md" >}}
-
-</details>
-
-## Complete examples
-
-<details><summary>Show me a completed basic deployment file</summary>
-
-{{< include "cdaas/dep-file/cdaas-yaml-example-basic.md" >}}
-
-</details><br>
-
-<details><summary>Show me a completed automated canary deployment file</summary>
-
-{{< include "cdaas/dep-file/cdaas-yaml-canary-example.md" >}}
-
-</details><br>
-
-<details><summary>Show me a completed blue/green deployment file</summary>
-
-{{< include "cdaas/dep-file/cdaas-yaml-example-blue-green.md" >}}
+{{< codefile file="cdaas/deploy/deploy.yaml" >}}
 
 </details><br>
 
