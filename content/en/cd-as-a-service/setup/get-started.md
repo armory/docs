@@ -29,10 +29,10 @@ Access the [Registration screen](https://go.armory.io/signup/) to create an acco
 
 The **Welcome to Continuous Deployment-as-a-Service** [Configuration page](https://console.cloud.armory.io/configuration) lists the steps you need to complete to begin using Armory CD-as-a-Service.
 
-## Connect your Kubernetes cluster
+## Connect your Kubernetes Cluster
 
 1. In the CD-as-a-Service Console, navigate to the **Welcome to Continuous Deployment-as-a-Service** [Configuration page](https://console.cloud.armory.io/configuration).
-1. Click the **Connect your Kubernetes clusters** link.
+1. Click the **Connect your Kubernetes Cluster** link.
 1. In the **Add a New Remote Network Agent** pop-up window, enter a name for your Remote Network Agent (RNA) in the **Agent Identifier** field. You install this RNA in the cluster where you want to deploy your app, so create a meaningful name.
 1. Click **Continue**.
 1. The pop-up window displays options for installing the RNA.
