@@ -18,8 +18,8 @@ The following steps should take less than 10 minutes to complete:
 ## {{% heading "prereq" %}}
 
 * You have reviewed the system requirements for using Armory CD-as-a-Service on the [Requirements]({{< ref "requirements.md" >}}) page.
-* You have access to a Kubernetes cluster and have installed [kubectl]().
-* You have installed [Helm](), which is used to install the Remote Network Agent.
+* You have access to a Kubernetes cluster and have installed [kubectl](https://kubernetes.io/docs/tasks/tools/).
+* You have installed [Helm](https://helm.sh/), which is used to install the Remote Network Agent.
 
 
 ## Register for Armory CD-as-a-Service

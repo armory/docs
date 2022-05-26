@@ -1,3 +1,18 @@
+You need to manually install the Remote Network Agent (RNA) to the target deployment cluster. Armory CD-as-a-Service uses the RNA on your deployment target to communicate with Armory's hosted cloud services and to initiate the deployment.
+
+{{< tabs name="install-rna" >}}
+{{% tabbody name="Quick" %}}
+This is **some markdown.**
+
+{{% alert title="Warning" color="warning" %}}
+It can even contain shortcodes.
+{{% /alert %}}
+
+{{% /tabbody %}}
+{{% tabbody name="Manual" %}}
+
+
+
 1. Verify that you are in the correct Kubernetes context. You want to install the RNA in the cluster where you deploy your apps.
 
 1. Add the Armory Helm repo:
@@ -42,15 +57,11 @@
 
     The encrypted values for `clientId` and `clientSecret` reference the Kubernetes secrets you generated in an earlier step.
 
-   For advanced use cases such as proxy configurations, custom annotations, labels, or environment variables, see the [`values.yaml` for the RNA](https://github.com/armory-io/remote-network-agent-helm-chart/blob/master/values.yaml?rgh-link-date=2022-02-02T22%3A38%3A35Z). For information about using a `values file`, see the [Helm documentation](https://helm.sh/docs/chart_template_guide/values_files/).
-
-1. Verify the RNA connection. Go to the [Agents page](https://console.cloud.armory.io/configuration/agents) in the Configuration UI, and look for the Agent identifier you assigned to your target deployment cluster. You should see it along with some basic information:
-
-   > Note that you may see a "No Data message" when first loading the Agent page.
-
-   {{< figure src="/images/cdaas/ui-rna-status.jpg" alt="The Connected Remote Network Agents page shows connected agents and the following information: Agent Identifier, Agent Version, Connection Time when the connection was established, Last Heartbeat time, Client ID, and IP Address." >}}
+    For advanced use cases such as proxy configurations, custom annotations, labels, or environment variables, see the [`values.yaml` for the RNA](https://github.com/armory-io/remote-network-agent-helm-chart/blob/master/values.yaml?rgh-link-date=2022-02-02T22%3A38%3A35Z). For information about using a `values file`, see the [Helm documentation](https://helm.sh/docs/chart_template_guide/values_files/).
 
 
+{{% /tabbody %}}
+{{< /tabs >}}
 
-   If you do not see the RNA for your target deployment cluster, check the logs for the target deployment cluster to see if the RNA is up and running.
+You can go to the [Agents page](https://console.cloud.armory.io/configuration/agents) in the CD-as-a-Service Console verify that your RNA has been installed and is communicating with CD-as-a-Service. If you do not see the RNA, check the cluster logs to see if the RNA is running.
 
