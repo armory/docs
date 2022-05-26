@@ -4,6 +4,22 @@ Add styles or override variables from the theme here.
 https://www.docsy.dev/docs/adding-content/lookandfeel/#fonts
 */
 
+@font-face {
+  font-family: 'AmpleSoft Pro Bold';
+  src: url('/fonts/amplesoft_pro_bold-webfont.woff2') format('woff2'),
+       url('/fonts/amplesoft_pro_bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AmpleSoft Pro Medium';
+  src: url('/fonts/amplesoft_pro_medium-webfont.woff2') format('woff2'),
+       url('/fonts/amplesoft_pro_medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 $primary: #001321;
 $dark: #001321;
 $google_font_name: "Open Sans";
@@ -33,9 +49,13 @@ $mustard_yellow: #F3B722;
   @media (max-width: 1280px) { @content; }
 }
 
-// Override navbar transparency
+// Override navbar styles
 nav.td-navbar-cover {
   background: $dark_blue !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white !important;
 }
 
 // Namespacing homepage styles
@@ -46,6 +66,14 @@ nav.td-navbar-cover {
     &.td-overlay--dark::after {
       background-color: transparent;
     }
+  }
+
+  h1, h2, h3 {
+    font-family: 'AmpleSoft Pro Bold';
+  }
+
+  p.lead, h4, .new-to-armory h3 {
+    font-family: 'AmpleSoft Pro Medium';
   }
 
   h1, h2, h3, h4, p, p.lead {
@@ -137,7 +165,6 @@ nav.td-navbar-cover {
   
     > div {
       border: 2px solid $border_grey;
-      border-top: 20px solid $medium_blue;
       border-radius: 12px;
       margin: 0 $container_spacing;
       padding: 54px;
@@ -146,6 +173,18 @@ nav.td-navbar-cover {
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        width: calc(100% + 4px);
+        border-top: 20px solid $medium_blue;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+      }
       
       @include large-desktop {
         margin-bottom: $container_spacing*3;
@@ -153,7 +192,7 @@ nav.td-navbar-cover {
       
       > i {
         position: absolute;
-        top: -10px;
+        top: 5px;
         left: 50%;
         transform: translate(-50%, -50%);
       
