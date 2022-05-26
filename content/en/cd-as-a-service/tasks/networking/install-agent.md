@@ -5,7 +5,6 @@ exclude_search: true
 description: >
   Install a Remote Network Agent in your Kubernetes cluster.
 aliases:
-   - /cd-as-a-service/setup/get-started/#install-the-remote-network-agent
    - /cd-as-a-service/setup/get-started#install-the-remote-network-agent
 ---
 
