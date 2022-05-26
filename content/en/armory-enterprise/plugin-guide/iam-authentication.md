@@ -1,0 +1,329 @@
+---
+title: IAM Authentication Plugin
+toc_hide: true
+exclude_search: true
+description: >
+  The IAM Authentication Plugin allows Armory Enterprise to achieve MySQL connection for Orca, Clouddriver and Front50 services to AWS IAM to RDS Aurora Database.
+---
+![Proprietary](/images/proprietary.svg)
+## Overview
+
+Authenticates Mysql(Aurora) with RDS IAM-auth for Clouddriver, Orca, and Front50 services.
+
+The plugin can read aws credentials information from the plugin properties:
+
+```yaml
+armory:
+  iam-auth:
+    awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+    secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+    region: us-west-2
+```
+
+The plugin can read the sql connection information from the sql properties for `orca` and `clouddriver` services configuration:
+
+```yaml
+sql:
+  enabled: true
+  connectionPools:
+    default:
+      # additional connection pool parameters are available here,
+      # for more detail and to view defaults, see:
+      # https://github.com/spinnaker/kork/blob/master/kork-sql/src/main/kotlin/com/netflix/spinnaker/kork/sql/config/ConnectionPoolProperties.kt
+      default: true
+      user: <USER>_service
+      jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/<DATABASE>?acceptAwsProtocolOnly=true&useAwsIam=true
+  migration:
+    user: <USER>_migrate
+    jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/<DATABASE>?acceptAwsProtocolOnly=true&useAwsIam=true
+
+```
+
+The plugin will read the sql connection information from the sql properties for `front50` service configuration:
+
+```yaml
+sql:
+  connectionPools:
+    default:
+      default: true
+      jdbcUrl: jdbc:mysql://<RDSHOST>:<PORT>/front50?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
+      user: front50_service
+  enabled: true
+  migration:
+    jdbcUrl: jdbc:mysql://<RDSHOST>:<PORT>/front50?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
+    user: front50_migrate
+```
+
+> Please note the `jdbUrl` does not use `:aws:` portion compared to the `orca` and `clouddriver` services.
+
+## Compatibility
+
+| Min. version           | Notes                                   |
+|------------------------|-----------------------------------------|
+| Armory 2.28            |                                         |
+| MySQL 5.7              | AWS RDS Aurora                          |
+
+> The plugin is not actively tested in all compatible versions with all variants but is expected to work in the above.
+
+## IAM Authentication plugin configuration
+
+Make sure you meet the following prerequisites:
+- Your MySQL Aurora cluster/instance has the **IAM Database Authentication** enabled. For further details on how to enable IAM Database Authentication, please refer to the [Enabling and disabling IAM database authentication documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html).
+- The database users you are using for the `orca`, `clouddriver`, and `front50` services exists in AWS IAM and has the right permissions to acces to your RDS Aurora cluster/instance. For further details on how to configure the database users permissions on IAM, please refer to the [Creating and using an IAM policy for IAM database access documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html).
+- The database users you are using for the `orca`, `clouddriver`, and `front50` services have the **AWSAuthenticationPlugin** enabled and has the right permissions in their corresponding database. For further details on how to enable the AWSAuthenticationPlugin, please refer to the [Creating a database account using IAM authentication documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html). For more information on the permissions required for the `orca`, `clouddriver`, and `front50` users over the database, please refer to [Configure Spinnaker's Orca Service to Use SQL RDBMS documentation](https://docs.armory.io/armory-enterprise/armory-admin/orca-sql-configure), [Configure Clouddriver to use a SQL Database documentation](https://docs.armory.io/armory-enterprise/armory-admin/clouddriver-sql-configure/), and [Set up Front50 to use SQL documentation](https://spinnaker.io/docs/setup/productionize/persistence/front50-sql/).
+- The `orca`, `clouddriver`, and `front50` databases schema meet the requirements from the above references.
+
+Example configuration using the Spinnaker Operator for `clouddriver` service:
+
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      spinnaker:
+        armory:
+          iam-auth:
+            awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+            secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+            region: us-west-2
+        spinnaker:
+          extensibility:
+            repositories:
+              iamPlugin:
+                enabled: true
+                # The init container will install plugins.json to this path.
+                url: file:///opt/spinnaker/lib/local-plugins/iam/plugins.json
+
+      clouddriver:
+        spinnaker:
+          extensibility:
+              plugins:
+                Armory.IAM:
+                  enabled: true
+        sql:
+          enabled: true
+          taskRepository:
+            enabled: true
+          cache:
+            enabled: true
+            readBatchSize: 500
+            writeBatchSize: 300
+          scheduler:
+            enabled: true # Disabled for Google CloudSQL and Amazon Managed RDS SQL https://spinnaker.io/setup/productionize/persistence/clouddriver-sql/#agent-scheduling
+          connectionPools:
+            default:
+              # Additional connection pool parameters are available here,
+              # for more detail and to view defaults, see:
+              # https://github.com/spinnaker/kork/blob/master/kork-sql/src/main/kotlin/com/netflix/spinnaker/kork/sql/config/ConnectionPoolProperties.kt
+              default: true
+              user: clouddriver_service
+              jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/clouddriver?acceptAwsProtocolOnly=true&useAwsIam=true
+          migration:
+            user: clouddriver_migrate
+            jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/clouddriver?acceptAwsProtocolOnly=true&useAwsIam=true
+
+        redis:
+          enabled: false                  
+          cache:
+            enabled: false
+          scheduler:
+            enabled: false # enabled for Google CloudSQL and Amazon Managed RDS SQL https://spinnaker.io/setup/productionize/persistence/clouddriver-sql/#agent-scheduling
+          taskRepository:
+            enabled: false
+
+        # These parameters help throttle Spinnaker's API calls
+        # Default rate limit is 10 req/sec. Adjust and tune as necessary
+        # For more details see https://docs.armory.io/docs/armory-admin/rate-limit/
+        serviceLimits:
+          defaults:
+            rateLimit: 10.0
+          cloudProviderOverrides:
+            aws:
+              rateLimit: 10.0
+          implementationLimits:
+            AmazonAutoScaling:
+              defaults:
+                rateLimit: 10.0
+            AmazonElasticLoadBalancing:
+              defaults:
+                rateLimit: 10.0
+  kustomize:
+    clouddriver:
+      deployment:
+        patchesStrategicMerge:
+          - |
+            spec:
+              template:
+                spec:
+                  initContainers:
+                  - name: iam
+                    image: armory/iam-plugin:<PLUGIN_VERSION>
+                    imagePullPolicy: Always
+                    volumeMounts:
+                      - mountPath: /opt/iam/target
+                        name: iam-plugin
+                  containers:
+                  - name: clouddriver
+                    volumeMounts:
+                      - mountPath: /opt/spinnaker/lib/local-plugins
+                        name: iam-plugin
+                  volumes:
+                  - name: iam-plugin
+                    emptyDir: {}
+```
+
+Example configuration using the Spinnaker Operator for `orca` service:
+
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      spinnaker:
+        armory:
+          iam-auth:
+            awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+            secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+            region: us-west-2
+        spinnaker:
+          extensibility:
+            repositories:
+              iamPlugin:
+                enabled: true
+                # The init container will install plugins.json to this path.
+                url: file:///opt/spinnaker/lib/local-plugins/iam/plugins.json
+
+      orca:
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.IAM:
+                enabled: true
+        sql:
+          enabled: true
+          connectionPool:
+            jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/orca?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
+            user: orca_service
+            connectionTimeout: 5000
+            maxLifetime: 30000
+            # MariaDB-specific:
+            maxPoolSize: 50
+          migration:
+            jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/orca?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
+            user: orca_migrate
+
+        # Ensure we're only using SQL for accessing execution state
+        executionRepository:
+          sql:
+            enabled: true
+          redis:
+            enabled: false
+
+        # Reporting on active execution metrics will be handled by SQL
+        monitor:
+          activeExecutions:
+            redis: false
+
+  kustomize:
+    orca:
+      deployment:
+        patchesStrategicMerge:
+          - |
+            spec:
+              template:
+                spec:
+                  initContainers:
+                  - name: iam
+                    image: armory/iam-plugin:<PLUGIN_VERSION>
+                    imagePullPolicy: Always
+                    volumeMounts:
+                      - mountPath: /opt/iam/target
+                        name: iam-plugin
+                  containers:
+                  - name: orca
+                    volumeMounts:
+                      - mountPath: /opt/spinnaker/lib/local-plugins
+                        name: iam-plugin
+                  volumes:
+                  - name: iam-plugin
+                    emptyDir: {}
+```
+
+Example configuration using the Spinnaker Operator for `front50` service:
+
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      # Configs in the spinnaker profile get applied to all services
+      spinnaker:
+        armory:
+          iam-auth:
+            awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+            secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+            region: us-west-2
+        spinnaker:
+          extensibility:
+            repositories:
+              iamPlugin:
+                enabled: true
+                # The init container will install plugins.json to this path.
+                url: file:///opt/spinnaker/lib/local-plugins/iam/plugins.json
+        
+      front50:
+        spinnaker:
+          extensibility:
+              plugins:
+                Armory.IAM:
+                  enabled: true
+          s3:             # change this to the persistenStoreType you have defined below, s3/gcs/redis/aze for example
+            enabled: false # disable the use of persistentStoreType by front50 if no longer needed, after optional migration is complete
+        sql:
+          connectionPools:
+            default:
+              default: true
+              jdbcUrl: jdbc:mysql://<RDSHOST>:<PORT>/front50?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
+              user: front50_service
+          enabled: true
+          migration:
+            jdbcUrl: jdbc:mysql://<RDSHOST>:<PORT>/front50?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
+            user: front50_migrate
+
+  kustomize:
+    front50:
+      deployment:
+        patchesStrategicMerge:
+          - |
+            spec:
+              template:
+                spec:
+                  initContainers:
+                  - name: iam
+                    image: armory/iam-plugin:<PLUGIN_VERSION>
+                    imagePullPolicy: Always
+                    volumeMounts:
+                      - mountPath: /opt/iam/target
+                        name: iam-plugin
+                  containers:
+                  - name: front50
+                    volumeMounts:
+                      - mountPath: /opt/spinnaker/lib/local-plugins
+                        name: iam-plugin
+                  volumes:
+                  - name: iam-plugin
+                    emptyDir: {}
+```
+## Release Notes
+
+- v1.0.0 Initial plugin release (05/31/2022). Avialability to configure AWS IAM Auth for `clouddriver`, `orca` and `front50` Armory Spinnaker services.
+
