@@ -1,5 +1,5 @@
 ---
-title: Get Started with the GitHub Action
+title: Get Started with the GitHub Action to Deploy Apps
 linktitle: GitHub Action
 exclude_search: true
 weight: 30
