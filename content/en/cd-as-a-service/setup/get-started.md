@@ -17,7 +17,10 @@ The following steps should take less than 10 minutes to complete:
 
 ## {{% heading "prereq" %}}
 
-Review the requirements for using Armory CD-as-a-Service on the [Requirements]({{< ref "requirements.md" >}}) page.
+* You have reviewed the system requirements for using Armory CD-as-a-Service on the [Requirements]({{< ref "requirements.md" >}}) page.
+* You have access to a Kubernetes cluster and have installed [kubectl]().
+* You have installed [Helm](), which is used to install the Remote Network Agent.
+
 
 ## Register for Armory CD-as-a-Service
 
@@ -48,9 +51,5 @@ Create the client credentials for the RNA on your deployment target:
 {{< include "cdaas/rna-install.md" >}}
 
 ## {{%  heading "nextSteps" %}}
-
-Now that Armory CD-as-a-Service is configured for your deployment target, you can either try out deploying a sample app or invite more users.
-
-### Deploy an app
 
 Use the {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}} guide to learn how to manually deploy an app using the CLI.

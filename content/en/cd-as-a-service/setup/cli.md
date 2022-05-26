@@ -19,15 +19,32 @@ They do not run on Windows.
 
 ## Install the Armory CD-as-a-Service CLI
 
-The CLI binary is called `armory`. You can install the CLI using the Armory Version Manager (AVM) or you can install the `armory` binary manually.
+You can install the Armory Version Manager (AVM) and CLI using a one-line command or you can download the AVM manually.
 
-Armory recommends installing the AVM because you can use it to quickly and easily download, install, and update the CLI. The AVM provides additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
-
-If you choose to install the CLI binary manually, you must download a specific release binary from GitHub and install that release. You have to repeat the installation process each time you upgrade the CLI version. The Armory CLI is only currently supported on Linux and MacOSX.
+The AVM enables you to quickly and easily download, install, and update the CLI. The AVM includes additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
 
 {{< tabs name="cdaas-cli-install" >}}
 
-{{% tabbody name="Automated (Recommended)" %}}
+{{% tabbody name="Automated" %}}
+
+You can install the CLI with a one-line script that does the following:
+
+1. Fetches the correct Armory Version Manager binary (`avm`) for your Linux or Mac OSX operating system
+1. Installs the AVM binary
+1. Uses the AVM to install the CLI binary (`armory`)
+1. Adds the AVM and the CLI to the path in your bash or zsh profile
+
+Execute the following script on the machine that has access to your Kubernetes cluster:
+
+```bash
+curl -sL go.armory.io/get-cli | bash
+```
+
+After installation completes, you should start a new terminal session or source your profile.
+
+{{% /tabbody %}}
+
+{{% tabbody name="Manual" %}}
 
 1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo](https://github.com/armory/avm/releases/) or use the following command:
 
@@ -114,27 +131,6 @@ For the AVM or the CLI, you can use the `-h` flag for more information about spe
 
 {{% /tabbody %}}
 
-{{% tabbody name="Manual" %}}
-
-1. Download the [latest release](https://github.com/armory/armory-cli/releases) for your operating system.
-1. Save the file in a directory that is on your `PATH`, such as `/usr/local/bin`.
-1. Rename the downloaded file to `armory`.
-1. Give the file execute permission:
-
-   ```bash
-   chmod +x /usr/local/bin/armory
-   ```
-
-1. Verify that you can run the CLI:
-
-   ```bash
-   armory
-   ```
-
-   The command returns basic information about the CLI, including available commands.
-
-{{% /tabbody %}}
-
 {{< /tabs >}}
 
 
@@ -159,9 +155,9 @@ Since you are using the CLI, you do not need to have service account credentials
 
    The CLI returns a `Device Code` and opens your default browser. To complete the log in process, confirm the code in your browser.
 
-   After you successfully authenticate, the CLI returns a list of environments if you have access to more than one, which is rare.
+   After you successfully authenticate, the CLI returns a list of tenants if you have access to more than one, which is rare.
 
-1. Select the environment you want to log in to.   
+1. Select the tenant you want to log in to.   
 1. Generate your deployment template and output it to a file.
 
    This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`:
@@ -174,7 +170,7 @@ Since you are using the CLI, you do not need to have service account credentials
 
    - `application`: The name of your app.
    - `targets.<deploymentName>`: A descriptive name for your deployment. Armory recommends using the environment name.
-   - `targets.<deploymentName>.account`: This is the value that you assigned to the `agentIdentifier` parameter when you [installed the RNA]({{< ref "cd-as-a-service/setup/get-started#install-the-remote-network-agent" >}}).
+   - `targets.<deploymentName>.account`: This is the name of your RNA. If you installed the RNA manually, it is the value that you assigned to the `agentIdentifier` parameter.
    - `targets.<deploymentName>.strategy`: the name of the deployment strategy you want to use. You define the strategy in `strategies.<strategy-name>`.
    - `manifests`: a map of manifest locations. This can be a directory of `yaml (yml)` files or a specific manifest. Each entry must use the following convention:  `- path: /path/to/directory-or-file`
    - `strategies.<strategy-name>`: the list of your deployment strategies. Use one of these for `targets.<target-cluster>.strategy`. Each strategy in this section consists of a map of steps for your deployment strategy in the following format:
@@ -283,4 +279,4 @@ Make sure you are running the lastest version of the CLI.
 * {{< linkWithTitle "deploy-demo-app.md" >}}
 
 
-<br>
+
