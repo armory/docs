@@ -8,9 +8,9 @@ description: >
 ![Proprietary](/images/proprietary.svg)
 ## Overview
 
-Authenticates Mysql(Aurora) with RDS IAM-auth for Clouddriver, Orca, and Front50 services.
+Authenticates MySQL(Aurora) with RDS IAM-auth for Clouddriver, Orca, and Front50 services.
 
-The plugin can read aws credentials information from the plugin properties:
+The plugin can read AWS credentials information from the plugin properties:
 
 ```yaml
 armory:
@@ -20,7 +20,7 @@ armory:
     region: us-west-2
 ```
 
-The plugin can read the sql connection information from the sql properties for `orca` and `clouddriver` services configuration:
+The plugin can read the SQL connection information from the SQL properties for `orca` and `clouddriver` services configuration:
 
 ```yaml
 sql:
@@ -39,7 +39,7 @@ sql:
 
 ```
 
-The plugin will read the sql connection information from the sql properties for `front50` service configuration:
+The plugin can read the SQL connection information from the SQL properties for `front50` service configuration:
 
 ```yaml
 sql:
@@ -65,13 +65,13 @@ sql:
 
 > The plugin is not actively tested in all compatible versions with all variants but is expected to work in the above.
 
-## IAM Authentication plugin configuration
+## IAM Authentication Plugin Configuration
 
 Make sure you meet the following prerequisites:
 - Your MySQL Aurora cluster/instance has the **IAM Database Authentication** enabled. For further details on how to enable IAM Database Authentication, please refer to the [Enabling and disabling IAM database authentication documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html).
-- The database users you are using for the `orca`, `clouddriver`, and `front50` services exists in AWS IAM and has the right permissions to acces to your RDS Aurora cluster/instance. For further details on how to configure the database users permissions on IAM, please refer to the [Creating and using an IAM policy for IAM database access documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html).
+- The database users you are using for the `orca`, `clouddriver`, and `front50` services exists in AWS IAM and has the right permissions to access to your RDS Aurora cluster/instance. For further details on how to configure the database users permissions on IAM, please refer to the [Creating and using an IAM policy for IAM database access documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html).
 - The database users you are using for the `orca`, `clouddriver`, and `front50` services have the **AWSAuthenticationPlugin** enabled and has the right permissions in their corresponding database. For further details on how to enable the AWSAuthenticationPlugin, please refer to the [Creating a database account using IAM authentication documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html). For more information on the permissions required for the `orca`, `clouddriver`, and `front50` users over the database, please refer to [Configure Spinnaker's Orca Service to Use SQL RDBMS documentation](https://docs.armory.io/armory-enterprise/armory-admin/orca-sql-configure), [Configure Clouddriver to use a SQL Database documentation](https://docs.armory.io/armory-enterprise/armory-admin/clouddriver-sql-configure/), and [Set up Front50 to use SQL documentation](https://spinnaker.io/docs/setup/productionize/persistence/front50-sql/).
-- The `orca`, `clouddriver`, and `front50` databases schema meet the requirements from the above references.
+- The `orca`, `clouddriver`, and `front50` databases schema meet the requirements from the preceding references.
 
 Example configuration using the Spinnaker Operator for `clouddriver` service:
 
@@ -325,5 +325,5 @@ spec:
 ```
 ## Release Notes
 
-- v1.0.0 Initial plugin release (05/31/2022). Avialability to configure AWS IAM Auth for `clouddriver`, `orca` and `front50` Armory Spinnaker services.
+- v1.0.0 Initial plugin release May 31,2022. Availability to configure AWS IAM Auth for `clouddriver`, `orca` and `front50` Armory Spinnaker services.
 
