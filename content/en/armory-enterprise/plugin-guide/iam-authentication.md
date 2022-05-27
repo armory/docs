@@ -303,5 +303,5 @@ spec:
 ```
 ## Release Notes
 
-- v0.1.0 Initial plugin release May 31, 2022. Availability to configure AWS IAM Auth for `clouddriver`, `orca` and `front50` Armory Spinnaker services.
+- v1.0.0 Initial plugin release May 31, 2022. Availability to configure AWS IAM Auth for `clouddriver`, `orca`, and `front50` Armory Spinnaker services.
 
