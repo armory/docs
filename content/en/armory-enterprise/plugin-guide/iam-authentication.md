@@ -301,6 +301,41 @@ spec:
                   - name: iam-plugin
                     emptyDir: {}
 ```
+
+## Known Issues
+
+- ### software.aws.rds.jdbc.mysql.shading.com.mysql.cj.jdbc.exceptions.PacketTooBigException
+  The below error message could appear when using the plugin on `clouddriver`, `orca`, and/or `front50`:
+
+  ```shell
+  2022-05-27 05:29:51.951  WARN 1 --- [    handlers-19] c.n.s.o.e.DefaultExceptionHandler        : [] Error occurred during task bindProducedArtifacts
+  org.springframework.dao.TransientDataAccessResourceException: jOOQ; SQL [insert into pipeline_stages (id, legacy_id, execution_id, status, updated_at, body) values (?, ?, ?, ?, ?, ?) on duplicate key update status = ?, updated_at = ?, body = ? -- executionId: 01G41ZV8QSCH36JTXACPEEWRYD:01G41ZV8TB1S89R4AKEHGX0YS8:3 user: abgv]; Packet for query is too large (75,237 > 65,535). You can change this value on the server by setting the 'max_allowed_packet' variable.; nested exception is software.aws.rds.jdbc.mysql.shading.com.mysql.cj.jdbc.exceptions.PacketTooBigException: Packet for query is too large (75,237 > 65,535). You can change this value on the server by setting the 'max_allowed_packet' variable.
+  ```
+
+  The error is a bug on the `software.aws.rds.jdbc.mysql` jdbc library version [1.0.0](https://github.com/awslabs/aws-mysql-jdbc/releases/tag/1.0.0) used inside the plugin. The issue is already fixed, but the release date is unknown at the date of writing this document. You can find more details at the official repository on the following pull request:
+  https://github.com/awslabs/aws-mysql-jdbc/issues/191
+  https://github.com/awslabs/aws-mysql-jdbc/pull/211
+
+  ### Workaround
+
+  If you are facing the above issue, you can try to include the `maxAllowedPacket` parameter in your `jdbcUrl` in the following way and according to the database and service where you configure this plugin:
+
+  ```yaml
+  sql:
+    enabled: true
+    connectionPools:
+      default:
+        default: true
+        user: <USER>_service
+        jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/<DATABASE>?acceptAwsProtocolOnly=true&useAwsIam=true&maxAllowedPacket=<MAX_ALLOWED_PACKET>
+    migration:
+      user: <USER>_migrate
+      jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/<DATABASE>?acceptAwsProtocolOnly=true&useAwsIam=true&maxAllowedPacket=<MAX_ALLOWED_PACKET>
+  ```
+
+  Make sure you have set the `maxAllowedPacket` param in your MySQL Aurora instance/cluster and match the `MAX_ALLOWED_PACKET` values.
+  Once a new version of the jdbc library is released, a new version of this plugin will be released, and then this param will be safe to be removed, meanwhile this workaround should work.
+
 ## Release Notes
 
 - v1.0.0 Initial plugin release May 31, 2022. Availability to configure AWS IAM Auth for `clouddriver`, `orca`, and `front50` Armory Spinnaker services.
