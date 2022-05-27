@@ -28,3 +28,5 @@ trafficManagement:
 {{< /prism >}}
 
 {{% include "cdaas/dep-file/traffic-mgmt-fields.md" %}}
+
+{{% include "cdaas/dep-file/smi-traffic-mgmt-fields.md" %}}
