@@ -20,7 +20,7 @@ armory:
     region: us-west-2
 ```
 
-The plugin can read the SQL connection information from the SQL properties for `orca` and `clouddriver` services configuration:
+The plugin can read the SQL connection information for `orca`, `clouddriver`, and `front50` services from the SQL properties configuration:
 
 ```yaml
 sql:
@@ -38,23 +38,6 @@ sql:
     jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/<DATABASE>?acceptAwsProtocolOnly=true&useAwsIam=true
 
 ```
-
-The plugin can read the SQL connection information from the SQL properties for `front50` service configuration:
-
-```yaml
-sql:
-  connectionPools:
-    default:
-      default: true
-      jdbcUrl: jdbc:mysql://<RDSHOST>:<PORT>/front50?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
-      user: front50_service
-  enabled: true
-  migration:
-    jdbcUrl: jdbc:mysql://<RDSHOST>:<PORT>/front50?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
-    user: front50_migrate
-```
-
-> Please note the `jdbUrl` does not use `:aws:` portion compared to the `orca` and `clouddriver` services.
 
 ## Compatibility
 
