@@ -52,8 +52,8 @@ sql:
 
 Make sure you meet the following prerequisites:
 - Your MySQL Aurora cluster/instance has the **IAM Database Authentication** enabled. For further details on how to enable IAM Database Authentication, please refer to the [Enabling and disabling IAM database authentication documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html).
-- The database users you are using for the `orca`, `clouddriver`, and `front50` services exists in AWS IAM and has the right permissions to access to your RDS Aurora cluster/instance. For further details on how to configure the database users permissions on IAM, please refer to the [Creating and using an IAM policy for IAM database access documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html).
-- The database users you are using for the `orca`, `clouddriver`, and `front50` services have the **AWSAuthenticationPlugin** enabled and has the right permissions in their corresponding database. For further details on how to enable the AWSAuthenticationPlugin, please refer to the [Creating a database account using IAM authentication documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html). For more information on the permissions required for the `orca`, `clouddriver`, and `front50` users over the database, please refer to [Configure Spinnaker's Orca Service to Use SQL RDBMS documentation](https://docs.armory.io/armory-enterprise/armory-admin/orca-sql-configure), [Configure Clouddriver to use a SQL Database documentation](https://docs.armory.io/armory-enterprise/armory-admin/clouddriver-sql-configure/), and [Set up Front50 to use SQL documentation](https://spinnaker.io/docs/setup/productionize/persistence/front50-sql/).
+- The database users you are using for the `orca`, `clouddriver`, and `front50` services exist in AWS IAM and have the right permissions to access your RDS Aurora cluster/instance. For further details on how to configure the database users' permissions on IAM, please refer to the [Creating and using an IAM policy for IAM database access documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html).
+- The database users you are using for the `orca`, `clouddriver`, and `front50` services have the **AWSAuthenticationPlugin** enabled and have the right permissions in their corresponding database. For further details on how to enable the AWSAuthenticationPlugin, please refer to the [Creating a database account using IAM authentication documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html). For more information on the permissions required for the `orca`, `clouddriver`, and `front50` users over the database, please refer to [Configure Spinnaker's Orca Service to Use SQL RDBMS documentation](https://docs.armory.io/armory-enterprise/armory-admin/orca-sql-configure), [Configure Clouddriver to use a SQL Database documentation](https://docs.armory.io/armory-enterprise/armory-admin/clouddriver-sql-configure/), and [Set up Front50 to use SQL documentation](https://spinnaker.io/docs/setup/productionize/persistence/front50-sql/).
 - The `orca`, `clouddriver`, and `front50` databases schema meet the requirements from the preceding references.
 
 Example configuration using the Spinnaker Operator for `clouddriver` service:
@@ -72,20 +72,18 @@ spec:
             awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
             secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
             region: us-west-2
+
+      clouddriver:
         spinnaker:
           extensibility:
+            plugins:
+              Armory.IAM:
+                enabled: true
             repositories:
               iamPlugin:
                 enabled: true
                 # The init container will install plugins.json to this path.
                 url: file:///opt/spinnaker/lib/local-plugins/iam/plugins.json
-
-      clouddriver:
-        spinnaker:
-          extensibility:
-              plugins:
-                Armory.IAM:
-                  enabled: true
         sql:
           enabled: true
           taskRepository:
@@ -174,13 +172,6 @@ spec:
             awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
             secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
             region: us-west-2
-        spinnaker:
-          extensibility:
-            repositories:
-              iamPlugin:
-                enabled: true
-                # The init container will install plugins.json to this path.
-                url: file:///opt/spinnaker/lib/local-plugins/iam/plugins.json
 
       orca:
         spinnaker:
@@ -188,6 +179,12 @@ spec:
             plugins:
               Armory.IAM:
                 enabled: true
+            repositories:
+              iamPlugin:
+                enabled: true
+                # The init container will install plugins.json to this path.
+                url: file:///opt/spinnaker/lib/local-plugins/iam/plugins.json
+
         sql:
           enabled: true
           connectionPool:
@@ -255,20 +252,18 @@ spec:
             awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
             secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
             region: us-west-2
+        
+      front50:
         spinnaker:
           extensibility:
+            plugins:
+              Armory.IAM:
+                enabled: true
             repositories:
               iamPlugin:
                 enabled: true
                 # The init container will install plugins.json to this path.
                 url: file:///opt/spinnaker/lib/local-plugins/iam/plugins.json
-        
-      front50:
-        spinnaker:
-          extensibility:
-              plugins:
-                Armory.IAM:
-                  enabled: true
           s3:             # change this to the persistenStoreType you have defined below, s3/gcs/redis/aze for example
             enabled: false # disable the use of persistentStoreType by front50 if no longer needed, after optional migration is complete
         sql:
