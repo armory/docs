@@ -270,11 +270,11 @@ spec:
           connectionPools:
             default:
               default: true
-              jdbcUrl: jdbc:mysql://<RDSHOST>:<PORT>/front50?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
+              jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/front50?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
               user: front50_service
           enabled: true
           migration:
-            jdbcUrl: jdbc:mysql://<RDSHOST>:<PORT>/front50?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
+            jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/front50?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
             user: front50_migrate
 
   kustomize:
@@ -301,6 +301,20 @@ spec:
                   - name: iam-plugin
                     emptyDir: {}
 ```
+
+### Remote plugin repository
+
+The configuration is mostly the same as with the docker image method, but omitting all volumes and init container configurations, and replacing all occurrences of 
+
+```yaml
+url: file:///opt/spinnaker/lib/local-plugins/iam/plugins.json
+``` 
+
+ with:
+ 
+```yaml
+url: https://armory.jfrog.io/artifactory/plugins/iam/plugins.json
+``` 
 
 ## Known Issues
 
