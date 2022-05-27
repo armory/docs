@@ -137,7 +137,7 @@ Adding canary analysis to your deployment involves updating your deploy file to 
               weight: 50
           - analysis:
               interval: 10
-              unit: seconds
+              units: seconds
               numberOfJudgmentRuns: 3
               rollBackMode: manual
               rollForwardMode: manual
@@ -147,7 +147,7 @@ Adding canary analysis to your deployment involves updating your deploy file to 
               weight: 75
           - analysis:
               interval: 10
-              unit: seconds
+              units: seconds
               numberOfJudgmentRuns: 3
               rollBackMode: manual
               rollForwardMode: manual
