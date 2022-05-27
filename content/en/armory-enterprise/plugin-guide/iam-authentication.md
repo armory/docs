@@ -43,7 +43,7 @@ sql:
 
 | Min. version           | Notes                                   |
 |------------------------|-----------------------------------------|
-| Armory 2.27.2          |                                         |
+| Armory 2.28.x          |                                         |
 | MySQL 5.7              | AWS RDS Aurora                          |
 
 > The plugin is not actively tested in all compatible versions with all variants but is expected to work in the above.
