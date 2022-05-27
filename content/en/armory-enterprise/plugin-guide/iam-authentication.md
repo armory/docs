@@ -43,7 +43,7 @@ sql:
 
 | Min. version           | Notes                                   |
 |------------------------|-----------------------------------------|
-| Armory 2.28            |                                         |
+| Armory 2.27.2          |                                         |
 | MySQL 5.7              | AWS RDS Aurora                          |
 
 > The plugin is not actively tested in all compatible versions with all variants but is expected to work in the above.
@@ -308,5 +308,5 @@ spec:
 ```
 ## Release Notes
 
-- v1.0.0 Initial plugin release May 31,2022. Availability to configure AWS IAM Auth for `clouddriver`, `orca` and `front50` Armory Spinnaker services.
+- v0.1.0 Initial plugin release May 31, 2022. Availability to configure AWS IAM Auth for `clouddriver`, `orca` and `front50` Armory Spinnaker services.
 
