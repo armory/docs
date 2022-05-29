@@ -1,6 +1,6 @@
 ---
 title: Install a Remote Network Agent
-linktitle: Install Agent
+linktitle: Install RNA
 exclude_search: true
 description: >
   Install a Remote Network Agent in your Kubernetes cluster.
@@ -21,7 +21,10 @@ For information about how to add a deployment target, see [Prepare your deployme
 
 ## {{% heading "prereq" %}}
 
-You have created client credentials. See the {{< linkWithTitle "cd-as-a-service/tasks/iam/client-creds.md" >}} guide for instructions.
+* If you are coming to this guide from the **Add a New Remote Network Agent** page in the UI, you have your RNA name (**Agent Identifier**), **Client ID**, and **Client Secret**. _Do not close the pop-up window in the UI until you have completed RNA installation. The credentials in the pop-up window are deleted if you close the window before the RNA has connected._
+* You have created client credentials. See the {{< linkWithTitle "cd-as-a-service/tasks/iam/client-creds.md" >}} guide for instructions.
+* You have access to a Kubernetes cluster and have installed [kubectl](https://kubernetes.io/docs/tasks/tools/).
+* You have installed [Helm](https://helm.sh/)(v3), which is used to install the Remote Network Agent.
 
 ## Install the Remote Network Agent
 
