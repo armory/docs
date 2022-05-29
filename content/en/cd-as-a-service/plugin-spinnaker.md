@@ -3,7 +3,6 @@ title: Armory CD-as-a-Service Plugin for Armory Enterprise and Spinnaker
 linkTitle: Spinnaker Plugin
 description: >
   Use this guide to install the Armory Continuous Deployment-as-a-Service plugin for Spinnaker and Armory Enterprise. This plugin enables performing canary and blue/green deployments in a single stage.
-exclude_search: true
 weight: 500
 ---
 

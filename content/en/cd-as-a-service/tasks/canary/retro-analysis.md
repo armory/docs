@@ -3,7 +3,7 @@ title: Construct Retrospective Analysis Queries for Canary Analysis
 linktitle: Construct Queries
 description: >
   Learn how to construct retrospective analysis queries that you can then use for your canary strategy.
-exclude_search: true
+
 ---
 
 ## Overview

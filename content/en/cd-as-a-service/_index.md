@@ -1,7 +1,6 @@
 ---
 title: Armory Continuous Deployment-as-a-Service
 linkTitle: Armory CD-as-a-Service
-exclude_search: true
 no_list: true
 description: >
   Use Armory Continuous Deployment-as-a-Service to continuously deliver your apps to your Kubernetes clusters. Armory CD-as-a-Service integrates with external automation tools so you can create your own CI/CD pipelines.
