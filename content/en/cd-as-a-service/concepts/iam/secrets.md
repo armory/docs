@@ -1,7 +1,7 @@
 ---
 title: Secrets
 linktitle: Secrets
-exclude_search: true
+
 description: >
   Use secrets to integrate Armory CD-as-a-Service with external systems and tools.
 ---

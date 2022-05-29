@@ -1,7 +1,7 @@
 ---
 title: Create Client Credentials
 linktitle: Client Credentials
-exclude_search: true
+
 description: >
   Create machine-to-machine client credentials in Armory Continuous Deployment-as-a-Service
 ---

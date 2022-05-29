@@ -1,7 +1,7 @@
 ---
 title: GitHub Webhook-Based Approvals Tutorial
 linktitle: GitHub Webhook
-exclude_search: true
+
 description: >
   Learn how to configure GitHub webhook-based approvals in your Armory CD-as-a-Service app deployment process.
 ---

@@ -3,7 +3,7 @@ title: CLI Cheatsheet
 linktitle: CLI Cheatsheet
 description: >
   This page contains a list of commonly used CLI commands and flags.
-exclude_search: true
+
 ---
 
 ## CLI usage
@@ -120,17 +120,13 @@ Generate a customizable Kubernetes canary deployment template.
 
 **Usage**
 
-`armory template kubernetes canary [flags]`
-
-**Flags**
-
-- `-f, --features`: Features to include in the template. Available options are `manual`, `automated`, and `traffic`.
+`armory template kubernetes canary -f automated`
 
 **Example**
 
-To generate a canary traffic template and save the output to a file:
+To generate a canary template and save the output to a file:
 
-`armory template kubernetes canary -f traffic > deploy-canary-traffic.yaml`
+`armory template kubernetes canary -f automated > deploy-canary-traffic.yaml`
 
 ## Get the CLI version
 

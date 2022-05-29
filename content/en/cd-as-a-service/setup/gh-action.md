@@ -1,7 +1,7 @@
 ---
-title: Get Started with the GitHub Action
+title: Get Started with the GitHub Action to Deploy Apps
 linktitle: GitHub Action
-exclude_search: true
+
 weight: 30
 description: >
   Use the Armory CD-as-a-Service Deployment Action to integrate your GitHub repo with Armory CD-as-a-Service.

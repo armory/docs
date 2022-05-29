@@ -1,7 +1,7 @@
 ---
 title: Invite Users to Armory Continuous Deployment-as-a-Service
 linktitle: Invite Users
-exclude_search: true
+
 description: >
   Use the Armory CD-as-a-Service Console to invite users to your environment.
 ---

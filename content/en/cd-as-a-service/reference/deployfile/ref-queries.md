@@ -3,7 +3,7 @@ title: Query Reference Guide
 linkTitle: Queries
 description: >
   Armory CD-as-a-Service has different requirements for how queries are formatted and what kind of data can get returned based on the metrics provider you use for automated canary analysis. This guide provides basic information about what Armory CD-as-a-Service needs for each provider.
-exclude_search: true
+
 ---
 
 ## Automated canary analysis

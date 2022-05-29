@@ -1,7 +1,6 @@
 ---
 title: Armory Continuous Deployment-as-a-Service
 linkTitle: Armory CD-as-a-Service
-exclude_search: true
 no_list: true
 description: >
   Use Armory Continuous Deployment-as-a-Service to continuously deliver your apps to your Kubernetes clusters. Armory CD-as-a-Service integrates with external automation tools so you can create your own CI/CD pipelines.
@@ -20,7 +19,7 @@ For a full list of features and pricing, see the [Armory Continuous Deployment-a
 
 ## Start using Armory CD-as-a-Service
 
-The **Get Started** section contains guides that walk you through the core functionality. The {{< linkWithTitle "cd-as-a-service/setup/get-started.md" >}} guide shows you how to complete registration, create machine credentials, and install the Remote Network Agent in your Kubernetes cluster. You can complete the process in under 10 minutes.
+The **Get Started** section contains guides that walk you through the core functionality. The {{< linkWithTitle "cd-as-a-service/setup/get-started.md" >}} guide shows you how to sign up for an account and then connect to your Kubernetes cluster. You can complete the process in under 5 minutes.
 
 Read the {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}} guide to learn how to install the CLI, create a deployment file, and deploy your app.
 

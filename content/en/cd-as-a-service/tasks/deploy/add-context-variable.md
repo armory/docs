@@ -3,7 +3,7 @@ title: Add New Context Variables at Deploy Time
 linktitle: Add Context Variables at Deploy Time
 description: >
   Add new context variables from the command line or in your GitHub Action. These variables are injected into your canary analysis and webhook triggers.
-exclude_search: true
+
 ---
 
 ## How to add new context variables

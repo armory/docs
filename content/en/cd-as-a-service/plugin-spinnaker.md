@@ -3,7 +3,6 @@ title: Armory CD-as-a-Service Plugin for Armory Enterprise and Spinnaker
 linkTitle: Spinnaker Plugin
 description: >
   Use this guide to install the Armory Continuous Deployment-as-a-Service plugin for Spinnaker and Armory Enterprise. This plugin enables performing canary and blue/green deployments in a single stage.
-exclude_search: true
 weight: 500
 ---
 
@@ -58,24 +57,20 @@ The Helm chart described in [Enable the Armory CD-as-a-Service Remote Network Ag
 
 Register your Armory Enterprise environment so that it can communicate with Armory services. Each environment needs to get registered if you, for example, have production and development environments.
 
-1. Get your registration link from Armory.
-2. Register your Armory Enterprise [environment]({{< ref "ae-instance-reg" >}}).
+1. [Register](https://go.armory.io/signup/) to use Armory CD-as-a-Service.
+1. Register your Armory Enterprise [environment]({{< ref "ae-instance-reg" >}}).
 
 ## Create client credentials for your Agents
 
-1. Log in to the CD-as-a-Service Console: https://console.cloud.armory.io/.
-2. If you have more than one environment, ensure the proper environment is selected in the user context menu:
-
-   {{< figure src="/images/deploy-engine/cloud-env-context.png" alt="The upper right section of the window shows what environment you are currently in." >}}
-
-3. In the left navigation menu, select **Access Management > Client Credentials**.
-4. In the upper right corner, select **New Credential**.
-5. Create a credential for your RNA. Use a descriptive name for the credential, such as `us-west RNA`
-6. Set the permission scope to `connect:agentHub`.
+1. Log in to the [CD-as-a-Service Console](https://console.cloud.armory.io/).
+1. In the left navigation menu, select **Access Management > Client Credentials**.
+1. In the upper right corner, select **New Credential**.
+1. Create a credential for your RNA. Use a descriptive name for the credential, such as `us-west RNA`
+1. Set the permission scope to `connect:agentHub`.
 
    > Removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
 
-7. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Armory CD-as-a-Service. Make sure to store the secret somewhere safe. You are not shown the value again.
+1. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Armory CD-as-a-Service. Make sure to store the secret somewhere safe. You are not shown the value again.
 
 ## Enable the Armory CD-as-a-Service Remote Network Agent in target Kubernetes clusters
 

@@ -3,7 +3,7 @@ title: Armory Version Manager Cheatsheet
 linktitle: AVM Cheatsheet
 description: >
   This page contains a list of commonly used AVM commands and flags.
-exclude_search: true
+
 ---
 
 ## Armory Version Manager usage

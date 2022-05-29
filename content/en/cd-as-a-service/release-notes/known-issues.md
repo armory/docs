@@ -1,7 +1,11 @@
 ---
 title: Known Issues and Limitations
-exclude_search: true
+
 ---
+
+## Strategy to use with a HorizontalPodAutoscaler
+
+If you are using a `HorizontalPodAutoscaler`(HPA), Armory recommends using a canary strategy with traffic management and ensuring that the replicas specified in your manifest matches the minimum replicas of the HPA. Other strategies may encounter issues interacting with the replica scaling by the HPA. CD-as-a-Service is not yet HPA-aware, so you must ensure the HPA never attempts to scale the number of replicas to be smaller than the number that CD-as-a-Service has requested.
 
 ## Deployment fails with a blank namespace error
 
