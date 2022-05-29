@@ -3,9 +3,10 @@ title: IAM Authentication Plugin
 toc_hide: true
 exclude_search: true
 description: >
-  The IAM Authentication Plugin allows Armory Enterprise to achieve MySQL connection for Orca, Clouddriver and Front50 services to AWS IAM to RDS Aurora Database.
+  The IAM Authentication Plugin enables Armory Enterprise to use AWS IAM credentials to authenticate to an Aurora Database.
 ---
 ![Proprietary](/images/proprietary.svg)
+
 ## Overview
 
 Authenticates MySQL(Aurora) with RDS IAM-auth for Clouddriver, Orca, and Front50 services.
@@ -15,8 +16,8 @@ The plugin can read AWS credentials information from the plugin properties:
 ```yaml
 armory:
   iam-auth:
-    awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
-    secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+    awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin tries to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+    secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin tries to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
     region: us-west-2
 ```
 
@@ -48,13 +49,16 @@ sql:
 
 > The plugin is not actively tested in all compatible versions with all variants but is expected to work in the above.
 
-## IAM Authentication Plugin Configuration
+## {{% heading "prereq" %}}
 
 Make sure you meet the following prerequisites:
-- Your MySQL Aurora cluster/instance has the **IAM Database Authentication** enabled. For further details on how to enable IAM Database Authentication, please refer to the [Enabling and disabling IAM database authentication documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html).
-- The database users you are using for the `orca`, `clouddriver`, and `front50` services exist in AWS IAM and have the right permissions to access your RDS Aurora cluster/instance. For further details on how to configure the database users' permissions on IAM, please refer to the [Creating and using an IAM policy for IAM database access documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html).
-- The database users you are using for the `orca`, `clouddriver`, and `front50` services have the **AWSAuthenticationPlugin** enabled and have the right permissions in their corresponding database. For further details on how to enable the AWSAuthenticationPlugin, please refer to the [Creating a database account using IAM authentication documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html). For more information on the permissions required for the `orca`, `clouddriver`, and `front50` users over the database, please refer to [Configure Spinnaker's Orca Service to Use SQL RDBMS documentation](https://docs.armory.io/armory-enterprise/armory-admin/orca-sql-configure), [Configure Clouddriver to use a SQL Database documentation](https://docs.armory.io/armory-enterprise/armory-admin/clouddriver-sql-configure/), and [Set up Front50 to use SQL documentation](https://spinnaker.io/docs/setup/productionize/persistence/front50-sql/).
-- The `orca`, `clouddriver`, and `front50` databases schema meet the requirements from the preceding references.
+
+- Your MySQL Aurora cluster/instance has **IAM Database Authentication** enabled. For further details on how to enable IAM Database Authentication, refer to the [Enabling and disabling IAM database authentication documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html).
+- The database users you are using for the `orca`, `clouddriver`, and `front50` services exist in AWS IAM and have the right permissions to access your RDS Aurora cluster/instance. For further details on how to configure the database users' permissions on IAM, refer to the [Creating and using an IAM policy for IAM database access documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html).
+- The database users you are using for the `orca`, `clouddriver`, and `front50` services have the **AWSAuthenticationPlugin** enabled and have the right permissions in their corresponding database. For further details on how to enable the AWSAuthenticationPlugin, refer to the [Creating a database account using IAM authentication documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html). For more information on the permissions required for the `orca`, `clouddriver`, and `front50` users over the database, refer to [Configure Spinnaker's Orca Service to Use SQL RDBMS documentation](https://docs.armory.io/armory-enterprise/armory-admin/orca-sql-configure), [Configure Clouddriver to use a SQL Database documentation](https://docs.armory.io/armory-enterprise/armory-admin/clouddriver-sql-configure/), and [Set up Front50 to use SQL documentation](https://spinnaker.io/docs/setup/productionize/persistence/front50-sql/).
+- The `orca`, `clouddriver`, and `front50` database schemas meet the requirements from the preceding references.
+
+## Configuration
 
 Example configuration using the Spinnaker Operator for `clouddriver` service:
 
@@ -69,8 +73,8 @@ spec:
       spinnaker:
         armory:
           iam-auth:
-            awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
-            secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+            awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin tries to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+            secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin tries to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
             region: us-west-2
 
       clouddriver:
@@ -169,8 +173,8 @@ spec:
       spinnaker:
         armory:
           iam-auth:
-            awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
-            secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+            awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin tries to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+            secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin tries to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
             region: us-west-2
 
       orca:
@@ -249,10 +253,10 @@ spec:
       spinnaker:
         armory:
           iam-auth:
-            awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
-            secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+            awsAccessKeyId: encrypted:k8s!n:spin-secrets!k:awsAccessKeyId # Your AWS Access Key ID. If not provided, the plugin tries to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
+            secretAccessKey: encrypted:k8s!n:spin-secrets!k:secretAccessKey # Your AWS Secret Key. If not provided, the plugin tries to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
             region: us-west-2
-        
+
       front50:
         spinnaker:
           extensibility:
@@ -304,51 +308,53 @@ spec:
 
 ### Remote plugin repository
 
-The configuration is mostly the same as with the docker image method, but omitting all volumes and init container configurations, and replacing all occurrences of 
+The configuration is mostly the same as with the Docker image method, but omitting all volumes and init container configurations, and replacing all occurrences of:
 
 ```yaml
 url: file:///opt/spinnaker/lib/local-plugins/iam/plugins.json
-``` 
+```
 
  with:
- 
+
 ```yaml
 url: https://armory.jfrog.io/artifactory/plugins/iam/plugins.json
-``` 
+```
 
 ## Known Issues
 
-- ### software.aws.rds.jdbc.mysql.shading.com.mysql.cj.jdbc.exceptions.PacketTooBigException
-  The below error message could appear when using the plugin on `clouddriver`, `orca`, and/or `front50`:
+### PacketTooBigException
 
-  ```shell
-  2022-05-27 05:29:51.951  WARN 1 --- [    handlers-19] c.n.s.o.e.DefaultExceptionHandler        : [] Error occurred during task bindProducedArtifacts
-  org.springframework.dao.TransientDataAccessResourceException: jOOQ; SQL [insert into pipeline_stages (id, legacy_id, execution_id, status, updated_at, body) values (?, ?, ?, ?, ?, ?) on duplicate key update status = ?, updated_at = ?, body = ? -- executionId: 01G41ZV8QSCH36JTXACPEEWRYD:01G41ZV8TB1S89R4AKEHGX0YS8:3 user: abgv]; Packet for query is too large (75,237 > 65,535). You can change this value on the server by setting the 'max_allowed_packet' variable.; nested exception is software.aws.rds.jdbc.mysql.shading.com.mysql.cj.jdbc.exceptions.PacketTooBigException: Packet for query is too large (75,237 > 65,535). You can change this value on the server by setting the 'max_allowed_packet' variable.
-  ```
+software.aws.rds.jdbc.mysql.shading.com.mysql.cj.jdbc.exceptions.PacketTooBigException
 
-  The error is a bug on the `software.aws.rds.jdbc.mysql` jdbc library version [1.0.0](https://github.com/awslabs/aws-mysql-jdbc/releases/tag/1.0.0) used inside the plugin. The issue is already fixed, but the release date is unknown at the date of writing this document. You can find more details at the official repository on the following pull request:
-  https://github.com/awslabs/aws-mysql-jdbc/issues/191
-  https://github.com/awslabs/aws-mysql-jdbc/pull/211
+The following error message could appear when using the plugin on `clouddriver`, `orca`, and/or `front50`:
 
-  ### Workaround
+```shell
+2022-05-27 05:29:51.951  WARN 1 --- [    handlers-19] c.n.s.o.e.DefaultExceptionHandler        : [] Error occurred during task bindProducedArtifacts
+org.springframework.dao.TransientDataAccessResourceException: jOOQ; SQL [insert into pipeline_stages (id, legacy_id, execution_id, status, updated_at, body) values (?, ?, ?, ?, ?, ?) on duplicate key update status = ?, updated_at = ?, body = ? -- executionId: 01G41ZV8QSCH36JTXACPEEWRYD:01G41ZV8TB1S89R4AKEHGX0YS8:3 user: abgv]; Packet for query is too large (75,237 > 65,535). You can change this value on the server by setting the 'max_allowed_packet' variable.; nested exception is software.aws.rds.jdbc.mysql.shading.com.mysql.cj.jdbc.exceptions.PacketTooBigException: Packet for query is too large (75,237 > 65,535). You can change this value on the server by setting the 'max_allowed_packet' variable.
+```
 
-  If you are facing the above issue, you can try to include the `maxAllowedPacket` parameter in your `jdbcUrl` in the following way and according to the database and service where you configure this plugin:
+The error is a bug on the `software.aws.rds.jdbc.mysql` jdbc library version [1.0.0](https://github.com/awslabs/aws-mysql-jdbc/releases/tag/1.0.0) used inside the plugin. The issue is already fixed, but the release date is unknown at the date of writing this document. You can find more details at the official repository on the following pull request:
+https://github.com/awslabs/aws-mysql-jdbc/issues/191
+https://github.com/awslabs/aws-mysql-jdbc/pull/211
 
-  ```yaml
-  sql:
-    enabled: true
-    connectionPools:
-      default:
-        default: true
-        user: <USER>_service
-        jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/<DATABASE>?acceptAwsProtocolOnly=true&useAwsIam=true&maxAllowedPacket=<MAX_ALLOWED_PACKET>
-    migration:
-      user: <USER>_migrate
+**Workaround**
+
+You can try to include the `maxAllowedPacket` parameter in your `jdbcUrl` in the following way and according to the database and service where you configure this plugin:
+
+```yaml
+sql:
+  enabled: true
+  connectionPools:
+    default:
+      default: true
+      user: <USER>_service
       jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/<DATABASE>?acceptAwsProtocolOnly=true&useAwsIam=true&maxAllowedPacket=<MAX_ALLOWED_PACKET>
-  ```
+  migration:
+    user: <USER>_migrate
+    jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/<DATABASE>?acceptAwsProtocolOnly=true&useAwsIam=true&maxAllowedPacket=<MAX_ALLOWED_PACKET>
+```
 
-  Make sure you have set the `maxAllowedPacket` param in your MySQL Aurora instance/cluster and match the `MAX_ALLOWED_PACKET` values.
-  Once a new version of the jdbc library is released, a new version of this plugin will be released, and then this param will be safe to be removed, meanwhile this workaround should work.
+Make sure you have set the `maxAllowedPacket` param in your MySQL Aurora instance/cluster and match the `MAX_ALLOWED_PACKET` values.
 
 ## Release Notes
 
