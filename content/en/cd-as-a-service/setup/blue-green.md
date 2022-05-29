@@ -23,9 +23,9 @@ This quick start assumes that you completed the prior two quick starts that taug
 
 To complete this quick start, you need the following:
 
-- Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app. You can reuse the clusters from the previous quick starts if you want. Or stand up new ones.
-- You need to deploy a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) that sends traffic to the current version of your application. This is the `activeService` in the YAML configuration.
-- (Optional) You can also create a `previewService` Kubernetes Service object so you can programmatically or manually observe the new version of your software before exposing it to traffic via the `activeService`.
+- Access to a Kubernetes cluster where you can install the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app. You can reuse the cluster from the previous quick starts or create a new one.
+- You need to deploy a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) that sends traffic to the current version of your application. This is the `trafficManagement.kubernetes.activeService` field in the YAML configuration.
+- (Optional) You can also create a `previewService` Kubernetes Service object so you can programmatically or manually observe the new version of your software before exposing it to traffic via the `activeService`. This is the `trafficManagement.kubernetes.previewService` field in the YAML configuration.
 
 ## Add blue/green to your deployment
 
@@ -36,8 +36,6 @@ To complete this quick start, you need the following:
    strategies:
     blue-green-deploy-strat
       blueGreen:
-        activeService: myAppActiveService
-        previewService: myAppPreviewService
         redirectTrafficAfter:
           - pause:
               untilApproved: true
@@ -48,11 +46,9 @@ To complete this quick start, you need the following:
 
    See the [Deployment File Reference]({{< ref "ref-deployment-file#bluegreen-fields" >}}) for an explanation of these fields.
 
-   The values for `activeService` and `previewService` must match the names of the Kubernetes Service objects you created to route traffic to the current and preview versions of your application.
-
    This strategy is configured to pause for manual judgment before redirecting traffic to your new app version as well as before shutting down your old version. You could instead choose to pause for a duration of time.
 
-1. Change the value of targets.<targetName>.strategy for one or more of your deployment targets to `blue-green-deploy-strat`.
+1. Change the value of `targets.<targetName>.strategy` for one or more of your deployment targets to `blue-green-deploy-strat`.
 
    ```yaml
    ...
@@ -63,6 +59,20 @@ To complete this quick start, you need the following:
       strategy: blue-green-deploy-strat
     ...
     ```
+1. At the bottom of your file, create a top-level traffic management configuration for your `activeService` and `previewService`:
+
+   ```yaml
+   ...
+   trafficManagement:
+     - targets: ['<targetName>']
+       kubernetes:
+         - activeService: myAppActiveService
+           previewService: myAppPreviewService
+   ...
+   ```
+
+   The values for `activeService` and `previewService` must match the names of the Kubernetes Service objects you created to route traffic to the current and preview versions of your application. See the [Deployment File Reference]({{< ref "ref-deployment-file#traffic-managment" >}}) for an explanation of these fields.
+
 1. Save the file
 
 ## Redeploy your app

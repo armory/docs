@@ -790,6 +790,9 @@ trafficManagement:
       - rootServiceName: "<rootServiceName>"
         canaryServiceName: "<rootServiceName>-canary"
         trafficSplitName: "<rootServiceName>"
+    kubernetes:
+      - activeService: "<activeServiceName>"
+        previewService: "<previewServiceName>"
 ```
 
 {{% include "cdaas/dep-file/traffic-mgmt-fields.md" %}}
