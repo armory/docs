@@ -796,7 +796,3 @@ trafficManagement:
 ```
 
 {{% include "cdaas/dep-file/traffic-mgmt-fields.md" %}}
-
-{{% include "cdaas/dep-file/smi-traffic-mgmt-fields.md" %}}
-
-{{% include "cdaas/dep-file/kubernetes-traffic-mgmt-fields.md" %}}
