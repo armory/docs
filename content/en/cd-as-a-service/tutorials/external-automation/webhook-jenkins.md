@@ -1,7 +1,7 @@
 ---
 title: Jenkins Webhook-Based Approvals Tutorial
 linktitle: Jenkins
-exclude_search: true
+
 draft: true
 description: >
   Tutorial

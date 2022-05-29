@@ -1,7 +1,7 @@
 ---
 title: Install a Remote Network Agent
 linktitle: Install RNA
-exclude_search: true
+
 description: >
   Install a Remote Network Agent in your Kubernetes cluster.
 ---

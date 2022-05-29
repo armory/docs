@@ -3,7 +3,7 @@ title: Configure Traffic Management Using a Service Mesh
 linktitle: Configure Traffic Management
 description: >
   Configure service mesh traffic management for your deployment.
-exclude_search: true
+
 ---
 
 ## {{% heading "prereq" %}}

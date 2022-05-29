@@ -3,7 +3,7 @@ title: CLI Cheatsheet
 linktitle: CLI Cheatsheet
 description: >
   This page contains a list of commonly used CLI commands and flags.
-exclude_search: true
+
 ---
 
 ## CLI usage

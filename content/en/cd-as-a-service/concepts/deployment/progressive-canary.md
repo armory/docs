@@ -3,7 +3,7 @@ title: Progressive Canary Deployment
 linktitle: Progressive Canary
 description: >
   Learn about service mesh traffic management for your canary strategy.
-exclude_search: true
+
 ---
 
 ## {{% heading "prereq" %}}

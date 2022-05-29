@@ -1,7 +1,7 @@
 ---
 title: Monitor Installed Remote Network Agents
 linktitle: Montor Agents
-exclude_search: true
+
 description: >
   Monitor Remote Network Agents using the Armory CD-as-a-Service console.
 ---

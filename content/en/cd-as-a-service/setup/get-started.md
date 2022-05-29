@@ -3,7 +3,7 @@ title: Get Started with Armory CD-as-a-Service
 linktitle: Armory CD-as-a-Service
 description: >
   Learn how to get started using Armory CD-as-a-Service to deploy apps to your Kubernetes clusters.
-exclude_search: true
+
 weight: 10
 ---
 

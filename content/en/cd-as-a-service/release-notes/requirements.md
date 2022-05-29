@@ -1,7 +1,7 @@
 ---
 title: Armory Continuous Deployment-as-a-Service System Requirements
 linkTitle: System Requirements
-exclude_search: true
+
 weight: 20
 ---
 

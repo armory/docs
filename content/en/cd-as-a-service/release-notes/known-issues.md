@@ -1,6 +1,6 @@
 ---
 title: Known Issues and Limitations
-exclude_search: true
+
 ---
 
 ## Strategy to use with a HorizontalPodAutoscaler
