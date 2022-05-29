@@ -250,7 +250,7 @@ strategies:
               keyName: <value>
               keyName: <value>
             interval: <integer>
-            unit: <seconds|minutes|hours>
+            units: <seconds|minutes|hours>
             numberOfJudgmentRuns: <integer>
             rollBackMode: <manual|automatic>
             rollForwardMode: <manual|automatic>
@@ -395,7 +395,7 @@ steps:
               keyName: <value>
               keyName: <value>
             interval: <integer>
-            unit: <seconds|minutes|hours>
+            units: <seconds|minutes|hours>
             numberOfJudgmentRuns: <integer>
             rollBackMode: <manual|automatic>
             rollForwardMode: <manual|automatic>
@@ -439,7 +439,7 @@ steps:
 ...
         - analysis:
             interval: <integer>
-            unit: <seconds|minutes|hours>
+            units: <seconds|minutes|hours>
 ```
 
 How long each sample of the query gets summarized over.
@@ -451,11 +451,11 @@ steps:
 ...
         - analysis:
             interval: 30
-            unit: seconds
+            units: seconds
 
 ```
 
-###### `strategies.<strategyName>.canary.steps.analysis.unit`
+###### `strategies.<strategyName>.canary.steps.analysis.units`
 
 The unit of time for the interval. Use `seconds`, `minutes` or `hours`. See `strategies.<strategyName>.<strategy>.steps.analysis.interval` for more information.
 
@@ -638,7 +638,7 @@ shutdownOldVersionAfter:
         keyName: <value>
         keyName: <value>
       interval: <integer>
-      unit: <seconds|minutes|hours>
+      units: <seconds|minutes|hours>
       numberOfJudgmentRuns: <integer>
       rollBackMode: <manual|automatic>
       rollForwardMode: <manual|automatic>
