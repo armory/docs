@@ -1,15 +1,22 @@
 ---
-title: "Armory Enterprise Docs"
+title: Armory Continuous Deployment
 weight: 10
+no_list: true
 description: >
-  Guides and release notes for Armory products, including Armory Enterprise, Armory Operator, Armory Agent, Pipelines as Code, and Policy Engine.
+  Guides and release notes for Armory Continuous Deployment products including Armory Continuous Deployment Self-Hosted, Armory Operator, and Armory Scale Agent for Spinnaker and Kubernetes.
 ---
 
-## What is Armory Enterprise?
+## What is Armory Continuous Deployment?
+
+{{% alert title="Name Changes" color="warning" %}}
+Armory products are undergoing name changes. The new name for Armory Enterprise is Armory Continuous Deployment Self-Hosted, and Armory Agent for Kubernetes is now Armory Scale Agent for Spinnaker and Kubernetes.
+
+Please excuse our dust as we update the documentation over the coming weeks.
+{{% /alert %}}
 
 {{< include "armory-license.md" >}}
 
-Armory helps software teams ship better software, faster. Armory Enterprise is an enterprise-grade distribution of Spinnaker™ that runs in your Kubernetes cluster. Armory Enterprise is an extension of open source Spinnaker and includes all those benefits as well as the following:
+Armory helps software teams ship better software, faster. Armory Continuous Deployment (Armory CD) is an enterprise-grade distribution of Spinnaker™ that runs in your Kubernetes cluster. Armory CD is an extension of open source Spinnaker and includes all of those benefits as well as the following:
 
 - [Pipelines as Code (Dinghy)]({{< ref "using-dinghy" >}}) allows you to store Spinnaker pipelines in Github and manage them like you would manage code, including version control, templatization, and modularization. Spinnaker pipelines are flexible and customizable series of deployment stages. Combine all these to rapidly and repeatably scale pipelines in your Spinnaker deployment.
 - [Policy Engine]({{< ref "policy-engine-enable" >}}) helps you meet compliance requirements based on custom policies you set. You can configure the Policy Engine to verify that your pipelines meet certain requirements at save time or at runtime.
@@ -27,6 +34,6 @@ The [Armory Operator]({{< ref "armory-operator" >}}) is a Kubernetes Operator th
 
 The open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) provides features to deploy and manage open source Spinnaker.
 
-### Armory Agent for Kubernetes
+### Armory Scale Agent for Spinnaker and Kubernetes
 
 The [Armory Agent]({{< ref "armory-agent" >}}) is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker's Clouddriver service.

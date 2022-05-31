@@ -70,30 +70,29 @@ weight = 1
     guessSyntax = "false" #need for rendering mermaid
 
 [[menu.main]]
-  name = "Docs"
-  weight = 4
+  name = "CD-as-a-Service"
+  weight = 2
+  url = "/cd-as-a-service/"
+
+[[menu.main]]
+  name = "Armory CD"
+  weight = 3
   url = "/armory-enterprise/"
 
 [[menu.main]]
-  name = "Armory.io"
-  weight = 5
-  url = "https://www.armory.io/"
-
-[[menu.main]]
-  name = "Case Studies"
-  weight= 6
-  url = "https://www.armory.io/learn/customer-success-stories/"
-
-[[menu.main]]
   name = "Support"
-  weight = 8
+  weight = 4
   url = "https://support.armory.io/"
 
 [[menu.main]]
   name = "Blog"
-  weight = 9
+  weight = 5
   url = "https://www.armory.io/blog/"
 
+[[menu.main]]
+  name = "Armory.io"
+  weight = 9
+  url = "https://www.armory.io/"
 # Everything below this are Site Params
 
 [params]
@@ -116,15 +115,15 @@ privacy_policy = "https://www.armory.io/privacy-policy/"
 terms_of_service = "https://www.armory.io/terms-of-service/"
 terms_and_conditions = "https://www.armory.io/terms-and-conditions/"
 
-# Display the Armory CDaaS banner
-cdaas_banner = true
+# Display the Armory CDaaS NDA banner
+cdaas_banner = false
 
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
-version_menu = "Enterprise v2.27"
+version_menu = "Armory CD v2.27"
 
 # Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
@@ -137,8 +136,8 @@ archived_version = false
 # Also used in the PCM to highlight what version the PCM is for
 version = "2.27.3"
 
-# A link to latest version of the docs. Used in the "version-banner" partial to
-# point people to the main doc site.
+# A link to latest version of the Armory CD docs. Used in the "version-banner" partial to
+# point people to the main Armory CD docs site.
 url_latest_version = "https://docs.armory.io/armory-enterprise/"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
@@ -238,21 +237,21 @@ theme = "forest"
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
 [[params.versions]]
-  version = "Enterprise v2.26"
+  version = "Armory CD v2.26"
   githubbranch = "v2.26"
   url = "https://v2-26.docs.armory.io/docs/"
 
 [[params.versions]]
-  version = "Enterprise v2.25"
+  version = "Armory CD v2.25"
   githubbranch = "v2.25"
   url = "https://v2-25.docs.armory.io/docs/"
 
 [[params.versions]]
-  version = "Enterprise v2.24"
+  version = "Armory CD v2.24"
   githubbranch = "v2.24"
   url = "https://v2-24.docs.armory.io/docs/"
 
 [[params.versions]]
-  version = "Enterprise v2.23"
+  version = "Armory CD v2.23"
   githubbranch = "v2.23"
   url = "https://v2-23.docs.armory.io/docs/"
