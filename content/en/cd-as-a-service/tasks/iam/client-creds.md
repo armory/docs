@@ -1,7 +1,6 @@
 ---
 title: Create Client Credentials
-linktitle: Client Credentials
-
+linktitle: Create Client Credentials
 description: >
   Create machine-to-machine client credentials in Armory Continuous Deployment-as-a-Service
 ---
@@ -14,4 +13,4 @@ Client credentials are machine-to-machine credentials that the CLI uses to authe
 
 {{< include "cdaas/client-creds.md" >}}
 
-Armory recommends that you store these credentials in a secret engine that is supported by the tool you want to integrate Armory CD-as-a-Service with.
+Armory recommends that you store these credentials in a secret engine that is supported by the tool you want to integrate with Armory CD-as-a-Service.

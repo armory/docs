@@ -7,7 +7,7 @@ description: >
 ---
 
 
-## Monitor deployments using the Status UI
+## Monitor deployments using the Deployments UI
 
 When you navigate to the **Armory Deployments** tab of the UI, you land on the **All Deployments** page, which shows all the apps for a specific Armory CD-as-a-Service environment. If you don't see a deployment that you're expecting to see, refresh the list or verify the Armory CD-as-a-Service environment the app belongs to. You can switch environments in the top right menu by clicking on your username.
 

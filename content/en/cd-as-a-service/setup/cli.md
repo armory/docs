@@ -157,7 +157,7 @@ Since you are using the CLI, you do not need to have service account credentials
 
    After you successfully authenticate, the CLI returns a list of tenants if you have access to more than one, which is rare.
 
-1. Select the tenant you want to log in to.   
+1. Select the tenant you want to log in to. Note that most users only have access to one tenant.  
 1. Generate your deployment template and output it to a file.
 
    This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`:
@@ -209,14 +209,14 @@ Since you are using the CLI, you do not need to have service account credentials
    armory deploy start  -f canary.yaml
    ```
 
-   The command starts your deployment and progresses until the first weight and pause you set. It also returns a deployment ID that you can use to check the status of your deployment and a link to the Status UI page for your deployment.
+   The command starts your deployment and progresses until the first weight and pause you set. It also returns a deployment ID that you can use to check the status of your deployment and a link to the Deployments UI page for your deployment.
 
 
 ## Monitor your deployment
 
-You can monitor the progress of any deployment through the CLI itself or from the Status UI. The Status UI gives you a visual representation of a deployment's health and progress in addition to controls. If your deployment strategy includes a manual approval step, use the Status UI to approve the step and continue.
+You can monitor the progress of any deployment through the CLI itself or from the Deployments UI. The Deployments UI gives you a visual representation of a deployment's health and progress in addition to controls. If your deployment strategy includes a manual approval step, use the Deployments UI to approve the step and continue.
 
-Run the following command to monitor your deployment through the CLI:
+Run the following command to get a direct link to monitor your deployment using the Deployments UI:
 
 ```bash
 armory deploy status -i <deployment-ID>

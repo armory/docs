@@ -14,9 +14,9 @@ If you have previously configured Armory CD-as-a-Service for your deployment tar
 1. Review the full set of requirements for Armory CD-as-a-Service at [System Requirements]({{< ref "requirements" >}}).
 2. If you have already prepared a deployment target for Armory CD-as-a-Service, skip this step. If you have not, complete the {{< linkWithTitle "get-started.md" >}} tasks, which include the following:
 
-   - Register for an Armory hosted cloud services account. This is the account that you use to log in to the CD-as-a-Service Console and the Status UI.
+   - [Register for Armory CD-as-a-Service]({{< ref "cd-as-a-service/setup/get-started" >}}).
    - [Create machine-to-machine client credentials]({{< ref "client-creds" >}}) for the Remote Network Agent (RNA), which you install on your deployment target cluster.
-   - Prepare your deployment target by installing the RNA.
+   - Add a Kubernetes Cluster by installing the RNA.
 
 3. In the CD-as-a-Service Console, create machine-to-machine client credentials to use for your GitHub Action service account. You can select the preconfigured scope group **Deployments using Spinnaker** or manually select the following:
 
@@ -107,9 +107,9 @@ Now you can trigger a deployment based on what you defined in the action workflo
 
 When the action runs, Armory CD-as-a-Service starts your deployment, and it progresses to the first weight you set. After completing the first step, what Armory CD-as-a-Service does next depends on the steps you defined in your deployment file. Armory CD-as-a-Service either waits a set amount of time or until you provide a manual approval.
 
-You can monitor the progress through the CLI or the Status UI by using the deployment ID. The GitHub Action provides both the deployment ID and a URL to the Status UI page for the deployment.
+You can monitor the progress by using the Deployments UI. The GitHub Action provides both the deployment ID and a URL to the Deployments UI page for the deployment.
 
-To see the deployment ID and the Status UI link, perform the following steps:
+To see the deployment ID and the Deployments UI link, perform the following steps:
 
 1. In your repo, go to the **Actions** tab.
 2. Select the workflow run that corresponds to the deployment.
@@ -117,17 +117,6 @@ To see the deployment ID and the Status UI link, perform the following steps:
 4. In the **Deployment** section, you can find the **Deployment ID** and a link to the **deployment status UI**.
 
 {{< figure src="/images/cdaas/gha-statusUI.jpg" alt="" >}}
-
-### Armory CD-as-a-Service CLI
-
-```bash
-armory deploy status -i <deployment-ID>
-```
-
-### Status UI
-
-You need login credentials to access the Status UI, which is part of Armory's hosted cloud services. For the early access program, contact Armory for registration information.
-
 
 ## {{%  heading "nextSteps" %}}
 

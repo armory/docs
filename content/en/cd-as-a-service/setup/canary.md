@@ -161,7 +161,7 @@ Adding canary analysis to your deployment involves updating your deploy file to 
 
    - The interval for each run of the query is 10 seconds.
    - The number of runs of the query is 3.
-   - Rolling a deployment back or forward is done manually through the Armory Deployments Status UI.
+   - Rolling a deployment back or forward is done manually using the Deployments UI.
    - It uses the query `containerCPUSeconds`.
 
    The strategy then deploys the app to 75% of the cluster and then performs a canary analysis. After the roll forward is approved, Armory CD-as-a-Service deploys the app to 100% of the cluster.
