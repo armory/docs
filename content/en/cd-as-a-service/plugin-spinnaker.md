@@ -6,10 +6,6 @@ description: >
 weight: 500
 ---
 
-{{< alert title="Early Access" color="primary" >}}
-{{% include "cdaas/ea-banner.md" %}}
-{{< /alert >}}
-
 ## Overview
 
 {{< include "cdaas/desc-plugin.md" >}}

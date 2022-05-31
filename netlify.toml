@@ -119,12 +119,11 @@ package = "@netlify/plugin-sitemap"
   # make sure you add a comma after each entry in the exclude list except on the last one
   exclude =[
     './public/armory-enterprise/plugin-guide/plugin-appname/',
+    './public/armory-enterprise/plugin-guide/plugin-external-account/',
+    './public/armory-enterprise/plugin-guide/plugin-iam-authentication/',
     './public/armory-enterprise/feature-status/deprecations/pacrd-deprecation/',
     './public/armory-enterprise/installation/deployment-reg/',
-    './public/armory-enterprise/plugin-guide/cdaas-spinnaker/',
-    './public/cd-as-a-service/',
     './public/managed-spin',
-    './public/armory-enterprise/armory-cloud-preview',
     './public/contribute'
   ]
   # append missing trailing slash to prettyURL

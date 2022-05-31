@@ -8,8 +8,8 @@ description: >
 
 ## What is Armory Continuous Deployment?
 
-{{% alert title="Name Change" color="warning" %}}
-Armory products are undergoing name changes. Armory Enterprise is now Armory Continuous Deployment Self-Hosted and Armory Agent for Kubernetes is now Armory Scale Agent for Spinnaker and Kubernetes.
+{{% alert title="Name Changes" color="warning" %}}
+Armory products are undergoing name changes. The new name for Armory Enterprise is Armory Continuous Deployment Self-Hosted, and Armory Agent for Kubernetes is now Armory Scale Agent for Spinnaker and Kubernetes.
 
 Please excuse our dust as we update the documentation over the coming weeks.
 {{% /alert %}}

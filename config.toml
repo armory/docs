@@ -115,8 +115,8 @@ privacy_policy = "https://www.armory.io/privacy-policy/"
 terms_of_service = "https://www.armory.io/terms-of-service/"
 terms_and_conditions = "https://www.armory.io/terms-and-conditions/"
 
-# Display the Armory CDaaS banner
-cdaas_banner = true
+# Display the Armory CDaaS NDA banner
+cdaas_banner = false
 
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
