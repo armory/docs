@@ -10,9 +10,9 @@ description: >
 
 Secrets allow Armory CD-as-a-Service to authenticate with external systems and tools during a deployment.
 
-### Metric providers
+### Metrics providers
 
-You can store credentials for metric providers like New Relic, DataDog, or Prometheus as secrets. Armory CD-as-a-Service uses these credentials to authenticate with your metric provider when querying for application metrics during a canary analysis.
+You can store credentials for metrics providers like New Relic, DataDog, or Prometheus as secrets. Armory CD-as-a-Service uses these credentials to authenticate with your metric provider when querying for application metrics during a canary analysis.
 
 ### Kubernetes clusters
 

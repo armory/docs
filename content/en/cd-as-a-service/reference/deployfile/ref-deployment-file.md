@@ -52,7 +52,7 @@ armory template kubernetes [template-type] > deployment-template.yaml
 
 ### `application`
 
-Provide a descriptive name for your application so that you can identify it when viewing the status of your deployment in the Status UI and other locations.
+Provide a descriptive name for your application so that you can identify it when viewing the status of your deployment in the Deployments UI and other locations.
 
 ### `targets.`
 
