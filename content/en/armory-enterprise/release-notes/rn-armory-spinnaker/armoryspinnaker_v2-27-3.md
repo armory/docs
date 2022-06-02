@@ -45,6 +45,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-artifact-binding-spel.md" >}}
 {{< include "known-issues/ki-dinghy-gh-notifications.md" >}}
+{{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
 
 ## Highlighted updates
 
