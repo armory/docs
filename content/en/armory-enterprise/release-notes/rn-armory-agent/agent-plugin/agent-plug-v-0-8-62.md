@@ -6,4 +6,4 @@ version: 00.08.62
 ---
 
 ### Fixes
-- removed start dependency on kubernetesCredentialsInitializerSynchronizable, this allows overriding the standard credentials repository such as when using account.storage.enabled: true and account.storage.kubernetes.enabled: true.
+- Removed start dependency on `kubernetesCredentialsInitializerSynchronizable`, this allows overriding the standard credentials repository such as when using `account.storage.enabled: true` and `account.storage.kubernetes.enabled: true`.
