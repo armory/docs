@@ -107,10 +107,10 @@ spec:
           extensibility:
               deck-proxy:
                 enabled: true
-                plugins:
-                  Aws.LambdaDeploymentPlugin:
-                    enabled: true
-                    version: 1.0.1
+              plugins:
+                Aws.LambdaDeploymentPlugin:
+                  enabled: true
+                  version: 1.0.1
               repositories:
                 awsLambdaDeploymentPluginRepo:
                   url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json  
