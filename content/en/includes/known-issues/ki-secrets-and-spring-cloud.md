@@ -4,7 +4,7 @@ If you enable [Spring Cloud Config](https://spring.io/projects/spring-cloud-conf
 all the properties
 (e.g. [Docker](https://github.com/spinnaker/clouddriver/blob/1d442d40e1a1eac851288fd1d45e7f19177896f9/clouddriver-docker/src/main/java/com/netflix/spinnaker/config/DockerRegistryConfiguration.java#L58))
 using [Secrets]({{< ref "armory-enterprise/armory-admin/secrets" >}})
-will not be resolved when spring cloud tries to refresh.
+are not resolved when Spring Cloud tries to refresh.
 
 **Affected versions**:
 
