@@ -18,4 +18,4 @@ will not be resolved when spring cloud tries to refresh.
 
 **Workaround**:
 
-Do not use secrets for properties that are annotated with `@RefreshScope`
+Do not use secrets for properties that are annotated with `@RefreshScope`.
