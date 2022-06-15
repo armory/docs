@@ -1039,4 +1039,4 @@ tencentcloud:
 
 ## Kustomize patch examples
 
- You can see examples in the `spinnaker-kustomize-patches` repo's [`accounts` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/accounts).
+ You can see examples in the `spinnaker-kustomize-patches` repo's [`accounts` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/targets).
