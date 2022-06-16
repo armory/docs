@@ -17,7 +17,10 @@ jobs:
         run: apk --no-cache add git
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Workaround pull-request-creation-peter-evans
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: build output file path
         id: build_output

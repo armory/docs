@@ -45,55 +45,60 @@ Follow these steps to configure Armory Enterprise:
 
 ### Choose a `kustomization` file
 
-Before you begin configuring Armory Enterprise, you need to choose or create a `kustomization.yml` file. The `kustomization.yml` specifies the namespace for Armory Enterprise, a list of Kubernetes resources, and a list of patch files to merge into the `spinnakerservice.yml` manifest file. For example, the `recipes/kustomization-quickstart.yml` file contains the following:
+Before you begin configuring Armory Enterprise, you need to choose or create a
+`kustomization.yml` file. The `kustomization.yml` specifies the namespace for
+Armory Enterprise, a list of Kubernetes resources, and a list of patch files to
+merge into the `spinnakerservice.yml` manifest file. For example, the
+`recipes/kustomization-minimum.yml` file contains the following:
 
-```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
+{{< github repo="armory/spinnaker-kustomize-patches" file="/recipes/kustomization-minimum.yml" lang="yaml" options="" >}}
 
-# Namespace where spinnaker and all its infrastructure will be installed.
-# NOTE: If changed, also change it in all ClusterRoleBinding namespace references.
-namespace: spinnaker
+* The `components`
+  [section](https://kubectl.docs.kubernetes.io/guides/config_management/components/)
+  contains paths to directories that define collections of Kubernetes
+  resources, such as: in-cluster Spinnaker persistence with Minio, Kubernetes
+  Service Account and patches to enable the cluster in Spinnaker.
 
-resources:
-  - spinnakerservice.yml             # (Mandatory). Base spinnaker manifest
-  - infrastructure/minio.yml         # Self hosted minio, a S3 compatible data store
-  - infrastructure/redis.yml
-  - accounts/kubernetes/spin-sa.yml  # Kubernetes service account needed by patch-kube.yml
+* The `patchesStrategicMerge`
+  [section](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesstrategicmerge/)
+  contains links to files that contain partial resource
+  definitions. Kustomize uses these patch files to overwrite sections of 
+  components or resources, such as the `SpinnakerService` definition.
 
-patchesStrategicMerge:
-  - persistence/patch-minio.yml   # (Mandatory). Persistence to store spinnaker applications and pipelines
-  - persistence/patch-redis.yml
-  - expose/patch-lb.yml                 # Automatically expose spinnaker
-  - accounts/kubernetes/patch-kube.yml  # Kubernetes accounts
-  - accounts/docker/patch-dockerhub.yml # Docker accounts
-```
-
-* The `resources` [section](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/resource/) contains links to files that define Kubernetes resources: Minio, Redis, and a Kubernetes Service Account.
-
-* The `patchesStrategicMerge` [section](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesstrategicmerge/) contains links to files that contain partial or complete resource definitions. Kustomize uses these patch files to overwrite sections of the `spinnakerservice.yml` file.
-
-`spinnaker-kustomize-patches/kustomization.yml` is a symlink that points to `spinnaker-kustomize-patches/recipes/kustomization-minimum.yml`. There are multiple `kustomization` examples in the `recipes` directory. Choose the one that most closely resembles your use case and link to it. Alternately, you can delete the symlink, move your desired Kustomization file from `recipes` to the top-level directory, and rename the file to `kustomization.yml`.
+`spinnaker-kustomize-patches/kustomization.yml` is a symlink that points to
+`spinnaker-kustomize-patches/recipes/kustomization-all.yml`. There are
+multiple `kustomization` examples in the `recipes` directory. Choose the one
+that most closely resembles your use case and link to it. Alternately, you can
+delete the symlink, move your desired Kustomization file from `recipes` to the
+top-level directory, and rename the file to `kustomization.yml`.
 
 {{% alert title="Warning" color="warning" %}}
-If you are in an air-gapped environment and are using MinIO to host the Armory Enterprise BOM, remove `infrastructure/minio.yml` from the list of resources to prevent the accidental deletion of the bucket when calling `kubectl delete -k .`.
+If you are in an air-gapped environment and are using MinIO to host the Armory
+Enterprise BOM, remove `core/persistence/in-cluster/minio.yml` from the list of resources to
+prevent the accidental deletion of the bucket when calling `kubectl delete -k
+.`.
 {{% /alert %}}
 
-### Change the `apiVersion`
+### Choose Open Source Spinnaker
 
 >This step is required only if you are deploying open source Spinnaker.
 
-The first line in each patch file defines the `apiVersion`:
+Add the following patch to your `kustomization.yml` file:
 
 ```yaml
-apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
+patches:
+  - target:
+      kind: SpinnakerService
+    path: utilities/switch-to-oss.yml
 ```
-
-Change `spinnaker.armory.io` to `spinnaker.io` if you are deploying open source Spinnaker.
 
 ### Set the Armory Enterprise version
 
-In `spinnaker-kustomize-patches/core_config/patch-version.yml`, set the [Armory Enterprise version]({{< ref "rn-armory-spinnaker" >}}) or [Spinnaker version](https://spinnaker.io/community/releases/versions/) that you want to deploy, such as `{{< param "armory-version-exact" >}}` (Armory Enterprise) or `1.25.3` (Spinnaker).
+In `spinnaker-kustomize-patches/core/patches/version.yml`, set the [Armory
+Enterprise version]({{< ref "rn-armory-spinnaker" >}}) or [Spinnaker
+version](https://spinnaker.io/community/releases/versions/) that you want to
+deploy, such as `{{< param "armory-version-exact" >}}` (Armory Enterprise) or
+`1.25.3` (Spinnaker).
 
 {{< prism lang="yaml" line="8" >}}
 kind: SpinnakerService
@@ -101,16 +106,15 @@ metadata:
   name: spinnaker
 spec:
   spinnakerConfig:
-    # ------- Main config section, equivalent to "~/.hal/config" from Halyard
     config:
       version: {{< param "armory-version-exact" >}}
 {{< /prism >}}
 
-Add `core_config/patch-version.yml` to your `kustomization.yml` file in the `patchesStrategicMerge` section.
-
 ### Verify resources
 
-Read each file linked to in the `resources` section to make sure that the Kubernetes resource as configured works with your environment.
+Read each file linked to from your chosen `kustomization.yml` file section to
+make sure that the Kubernetes resource as configured works with your
+environment.
 
 ### Verify patches
 
@@ -120,7 +124,9 @@ Explore the patches in various folders to see if there are any that you want to 
 
 ### Secrets
 
-If you want to store Spinnaker secrets in Kubernetes, store secret literals in `secrets/secrets.env` and secret files in `secrets/files` .
+If you want to store Spinnaker secrets in Kubernetes, we recommend using
+[Kustomize
+generators](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kustomize/).
 
 ## Deploy Armory Enterprise
 
