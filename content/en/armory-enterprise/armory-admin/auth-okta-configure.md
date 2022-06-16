@@ -65,7 +65,7 @@ In the **Optional** section, copy the contents of IDP metadata and save to file.
 
 ### 1: Create a SAML keystore file
 
->Make sure the Java version used to generate the keystore is the same version used to run Armory Enterprise or Spinnaker.
+>Make sure the Java version used to generate the keystore is the same version used to run Armory Enterprise or Spinnaker. 
 
 Generate a keystore and key:
 
@@ -76,7 +76,7 @@ keytool -genkey -v -keystore KEYSTORE_PATH -alias saml -keyalg RSA -keysize 2048
 
 ### 2: Configure Spinnaker to use SAML
 
-> Note: The value you enter for `issuerId` must match the value entered in "Audience URI (SP Entity ID)" when configuring the app in Okta
+>The value you enter for `issuerId` must match the value entered in **Audience URI (SP Entity ID)** when configuring the app in Okta
 
 {{< tabs name="configure" >}}
 {{% tabbody name="Operator" %}}
