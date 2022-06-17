@@ -1,7 +1,7 @@
 ---
 title: v2.28.0-rc7 Armory Release (OSS Spinnaker™ v1.28.0)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
+version: 02.28.0rc7
 description: >
   Release notes for Armory Enterprise v2.28.0-rc7
 ---
@@ -29,6 +29,38 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
 ## Highlighted updates
+  
+### General Fixes
+  * Added the ability to limit a specific pipeline from executing more than a certain number of instances in parallel by using a setting similar to the already available limitConcurrent setting.
+  * Added support for cancelling Google Cloud Build Account.
+  * To allow better customizations of CloseableHttpClient, adding HttpClientProperties as an additional property in UserConfiguredUrlRestrictions that we can use in HttpClientUtils. This will allow us to enable/disable retry options and configure other HttpClient options. For example, you will now be able to configure httpClientProperties.
+  * When allowDeleteActive: true, then in the ShrinkCluster stage, disableCluster step is performed before shrinking the cluster.
+  * The Google Cloud Platform RETRY_ERROR_CODES list is modified to include 429 , 503 error codes.
+  * Updated account permission check to check for WRITE instead of EXECUTE because account permissions do not currently have
+EXECUTE defined as a potential permission type.
+  * Refactor of launch template roll out config into its own class for reuse and readability.
+  * Use new Github teams API as old one has been deprecated.
+  * Prevent oauth2 redirect loops.
+  * Transition restarted stages to NOT_STARTED so there is visual indication on Deck, and don't allow multiple queuing of the same restarted stage
+  * Bring back template validation messages in Deck.
+  
+### Maximum Concurrent Pipeline Executions
+Added support for max concurrent pipeline executions. If concurrent pipeline execution is enabled, pipelines will queue when the max concurrent pipeline executions is reached. Any queued pipelines will be allowed to run once the number of running pipeline executions drops below the max. If the max is set to 0, then pipelines will not queue.
+  
+### Terraform Show Stage
+There is a new Terraform Show stage available as part of the Terraform Integration. This stage is the equivalent of running the terraform show command with Terraform. The JSON output from your planfile can be used in subsequent stages.
+
+To use the stage, select Terraform for the stage type and Show as the action in the stage configuration UI. Note that the Show stage depends on your Plan stage. For more information, see [Show Stage section in the Terraform Integration docs]({{< ref "terraform-use-integration#example-terraform-integration-stage" >}}).
+
+### Clouddriver
+  * Improvements to Docker Registry Account Management, including integration of Docker Registry Clouddriver accounts to take advantage of the new self-service on-boarding account management API.
+  * Updated account management API to refactor some things in preparation for user secrets support along. Updated the type discriminator handling for account definitions.
+  * Access to Bitbucket through token files without having to restart Clouddriver.
+  * Added an experimental API for storing and loading account credentials definitions from an external durable store such as a SQL database. Secrets can be referenced through the existing Kork SecretEngine API which will be fetched on demand. Initial support is for Kubernetes accounts given the lack of existing Kubernetes cluster federation standards compared to other cloud providers, though this API is made generic to allow for other cloud provider APIs to participate in this system.
+  * To extend the memory feature, a boolean flag is introduced in the validateInstanceType.
+  * Added a Fiat configuration option for the Account Management API in Clouddriver for listing which roles are allowed to manage accounts in the API.
+  
+ 
 
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
