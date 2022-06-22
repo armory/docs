@@ -154,7 +154,7 @@ The config is optional. If omitted, strict validation is on by default.
 
 ## Release notes
 
-* 0.2.2 - Fixed bug for createApplication button with spinnaker core 1.28, to be included in 2.28 release
+* 0.2.2 - Fixed bug for createApplication button with Spinnaker 1.28, to be included in 2.28 release
 * 0.2.1 - Fixed bug with the projects tab on deck for Armory Enterprise 2.27.1 and later
 * 0.2.0 - Update plugin to be compatible with Armory Enterprise 2.27.0 and later.
 * 0.1.6 - The Policy Engine Plugin is now generally available.
