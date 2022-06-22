@@ -9,6 +9,11 @@ description: >
 ## 2022/06/14 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+
+## Disclaimer
+
+{{< include "lts-beta.md" >}}
+
 ## Required Halyard or Operator version
 
 To install, upgrade, or configure Armory 2.28.0-rc7, use one of the following tools:
