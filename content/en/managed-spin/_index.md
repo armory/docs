@@ -47,11 +47,11 @@ Note that this is limited to resources needed for core Spinnaker operations. Arm
 
 ### Monitoring and alerting
 
-Armory monitors the Green Zone Spinnaker 24x7 to ensure uptime guarantees are met. The Armor SRE team has a global presence across the North America, EMEA, and APAC regions. Customers can also notify Armory through the [Support Portal](https://support.armory.io/support) in the event of an outage or degradation in services.
+Armory monitors the Green Zone Spinnaker 24x7 to ensure uptime guarantees are met. The Armory SRE team has a global presence across North America, EMEA, and APAC regions. Customers can also notify Armory through the [Support Portal](https://support.armory.io/support) in the event of an outage or degradation in services.
 
 ### Incident response
 
-Armory SREs provide notifications through the Support Portal whenever an incident is qualified. During an incident, Armory SREs  communicate with customers using a shared Slack channel and/or on a dedicated Zoom bridge. After the incident concludes, Armory SREs provide root cause analysis, including timeline, resolution, future prevention, and action items.
+Armory SREs provide notifications through the Support Portal whenever an incident is qualified. During an incident, Armory SREs communicate with customers using a shared Slack channel and/or on a dedicated Zoom bridge. After the incident concludes, Armory SREs provide root cause analysis, including timeline, resolution, future prevention, and action items.
 
 ## What is not included
 

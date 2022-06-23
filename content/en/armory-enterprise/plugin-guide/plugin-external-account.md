@@ -38,6 +38,7 @@ Any sidecar can populate the accounts directory by pulling information from othe
 |------------------------|-----------------------------------------|
 | Armory 2.23 (OSS 1.23) | Kubernetes and Cloudfoundry implemented |
 | OSS 1.24               | AWS and ECS implemented                 |
+| Armory 2.28 (OSS 1.28) | Docker implemented                      |
 
 > The plugin is not actively tested in all compatible versions with all variants but is expected to work in the above.
 
@@ -66,11 +67,20 @@ spec:
               cloudfoundry: cf       # (Optional, default: cf). All files with this prefix will be scanned for loading cloudfoundry accounts
               aws: aws               # (Optional, default: aws). All files with this prefix will be scanned for loading AWS accounts
               ecs: ecs               # (Optional, default: ecs). All files with this prefix will be scanned for loading ECS accounts
+              dockerRegistry: docker # (Optional, default: docker). All files with this prefix will be scanned for loading docker registry accounts
         credentials:
           poller:
             enabled: true
             types:
-              kubernetes:            # (Mandatory for each provider used: kubernetes, cloudfoundry, aws or ecs). Indicates how often account information should be read from the files
+              kubernetes:                # (Mandatory if the provider is used). Indicates how often account information should be read from the files
+                reloadFrequencyMs: 60000
+              cloudfoundry:              # (Mandatory if the provider is used). Indicates how often account information should be read from the files
+                reloadFrequencyMs: 60000
+              aws:                       # (Mandatory if the provider is used). Indicates how often account information should be read from the files
+                reloadFrequencyMs: 60000
+              ecs:                       # (Mandatory if the provider is used). Indicates how often account information should be read from the files
+                reloadFrequencyMs: 60000
+              dockerRegistry:            # (Mandatory if the provider is used). Indicates how often account information should be read from the files
                 reloadFrequencyMs: 60000
         spinnaker:
           extensibility:
@@ -97,6 +107,8 @@ spec:
                     env:
                     - name: REPO
                       value: "git@github.com:myorg/myrepo.git"    # Git repository to clone
+                    - name: BRANCH
+                      value: "master"                             # Git branch
                     - name: LOCAL_CLONE_DIR
                       value: "/tmp/accounts"                      # Should match the value in armory.eap.dir
                     - name: SYNC_INTERVAL_SECS
@@ -130,6 +142,7 @@ Available environment variables for Git poller sidecar include the following:
 | Name               | Description                                     | Default                              |
 |--------------------|-------------------------------------------------|--------------------------------------|
 | REPO               | Git repository to clone                         | -                                    |
+| BRANCH             | Git branch                                      | master                               |
 | LOCAL_CLONE_DIR    | Path in local file system to clone the repo     | Automatically generated dir int /tmp |
 | SYNC_INTERVAL_SECS | How often to call "git pull" in seconds         | 60                                   |
 | GIT_USER           | Username for git authentication                 | -                                    |
@@ -175,11 +188,20 @@ spec:
               cloudfoundry: cf       # (Optional, default: cf). All files with this prefix will be scanned for loading cloudfoundry accounts
               aws: aws               # (Optional, default: aws). All files with this prefix will be scanned for loading AWS accounts
               ecs: ecs               # (Optional, default: ecs). All files with this prefix will be scanned for loading ECS accounts
+              dockerRegistry: docker # (Optional, default: docker). All files with this prefix will be scanned for loading docker registry accounts
         credentials:
           poller:
             enabled: true
             types:
-              kubernetes:             # (Mandatory for each provider used: kubernetes, cloudfoundry, aws or ecs). Indicates how often account information should be read from the files
+              kubernetes:                # (Mandatory if the provider is used). Indicates how often account information should be read from the files
+                reloadFrequencyMs: 60000
+              cloudfoundry:              # (Mandatory if the provider is used). Indicates how often account information should be read from the files
+                reloadFrequencyMs: 60000
+              aws:                       # (Mandatory if the provider is used). Indicates how often account information should be read from the files
+                reloadFrequencyMs: 60000
+              ecs:                       # (Mandatory if the provider is used). Indicates how often account information should be read from the files
+                reloadFrequencyMs: 60000
+              dockerRegistry:            # (Mandatory if the provider is used). Indicates how often account information should be read from the files
                 reloadFrequencyMs: 60000
         spinnaker:
           extensibility:
@@ -239,7 +261,15 @@ spec:
           poller:
             enabled: true
             types:
-              kubernetes:                           # (Mandatory for each provider used: kubernetes, cloudfoundry, aws or ecs). Indicates how often account information should be read 
+              kubernetes:                # (Mandatory if the provider is used). Indicates how often account information should be read from the files
+                reloadFrequencyMs: 60000
+              cloudfoundry:              # (Mandatory if the provider is used). Indicates how often account information should be read from the files
+                reloadFrequencyMs: 60000
+              aws:                       # (Mandatory if the provider is used). Indicates how often account information should be read from the files
+                reloadFrequencyMs: 60000
+              ecs:                       # (Mandatory if the provider is used). Indicates how often account information should be read from the files
+                reloadFrequencyMs: 60000
+              dockerRegistry:            # (Mandatory if the provider is used). Indicates how often account information should be read from the files
                 reloadFrequencyMs: 60000
         spinnaker:
           extensibility:
@@ -310,6 +340,10 @@ This plugin can read account credentials in the following layouts:
     ```
 
 ## Release Notes
+
+* v0.3.0 (01/30/2022)
+  * Update plugin to be compatible with Armory Enterprise 2.28.0 and later
+  * Added implementation for Docker registry accounts
 
 * v0.2.0 Update plugin to be compatible with Armory Enterprise 2.27.0 and later (10/29/2021)
 

@@ -44,6 +44,6 @@ This shortcode is from https://github.com/haideralipunjabi/hugo-shortcodes/tree/
 
 <details><summary>Show me the manifest</summary>
 
-{{< github repo="armory/spinnaker-kustomize-patches" file="/armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
+{{< github repo="armory/spinnaker-kustomize-patches" file="/targets/aws/base/kustomization.yml" lang="yaml" options="" >}}
 </details>
 
