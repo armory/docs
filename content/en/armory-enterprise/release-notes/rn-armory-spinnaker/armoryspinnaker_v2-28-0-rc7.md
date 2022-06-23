@@ -1,9 +1,10 @@
 ---
-title: v2.28.0-rc7 Armory Release (OSS Spinnaker™ v1.28.0)
+title: v2.28.0-rc8 Armory Release (OSS Spinnaker™ v1.28.0)
 toc_hide: true
-version: 02.28.0rc7
+version: 02.28.0rc8
+hidden: true
 description: >
-  Release notes for Armory Enterprise v2.28.0-rc7
+  Release notes for Armory Enterprise v2.28.0-rc8
 ---
 
 ## 2022/06/14 Release Notes
@@ -16,7 +17,7 @@ description: >
 
 ## Required Halyard or Operator version
 
-To install, upgrade, or configure Armory 2.28.0-rc7, use one of the following tools:
+To install, upgrade, or configure Armory 2.28.0-rc8, use one of the following tools:
 
 - Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
 - Armory Operator <PUT IN A VERSION NUMBER> or later
@@ -96,32 +97,32 @@ dependencies:
     version: 2:2.8.4-2
 services:
   clouddriver:
-    commit: 188d76cfbc65dd5da1d7de9e7813a8d107945066
-    version: 2.28.0-rc7
+    commit: e8c9c4ef055315d1271e1805241c08fbe2629725
+    version: 2.28.0-rc8
   deck:
     commit: 693348595c771625ac4bdc5224921b5882578d79
-    version: 2.28.0-rc7
+    version: 2.28.0-rc8
   dinghy:
     commit: 403640bc88ad42cc55105bff773408d5f845e49c
-    version: 2.28.0-rc7
+    version: 2.28.0-rc8
   echo:
     commit: 488477dd85edfc6206337bb31f76892e641d1803
-    version: 2.28.0-rc7
+    version: 2.28.0-rc8
   fiat:
     commit: 9aca7990e68cc8022a55af31db7df1d04e02de4c
-    version: 2.28.0-rc7
+    version: 2.28.0-rc8
   front50:
     commit: f818ac4ce606e4b4f74f3cada4f4bc173a949b50
-    version: 2.28.0-rc7
+    version: 2.28.0-rc8
   gate:
     commit: 472e2dd8a37e85403b1c934d194d0c4862d97a96
-    version: 2.28.0-rc7
+    version: 2.28.0-rc8
   igor:
     commit: 5ea6da54f840ecaffa72d62386d9efd7bb54e0fe
-    version: 2.28.0-rc7
+    version: 2.28.0-rc8
   kayenta:
     commit: ebc7a92d06ed18b93233a6c887fe9acfd85ccc8c
-    version: 2.28.0-rc7
+    version: 2.28.0-rc8
   monitoring-daemon:
     commit: null
     version: 2.26.0
@@ -130,15 +131,15 @@ services:
     version: 2.26.0
   orca:
     commit: 877733807a0661adef388e9ad45f79506428e2fe
-    version: 2.28.0-rc7
+    version: 2.28.0-rc8
   rosco:
     commit: 8878e069687bfd229bd00907ede66dfe1b73d2e0
-    version: 2.28.0-rc7
+    version: 2.28.0-rc8
   terraformer:
     commit: c3c07a7c4f09752409183f906fb9fa5458e7d602
-    version: 2.28.0-rc7
+    version: 2.28.0-rc8
 timestamp: "2022-06-14 17:24:09"
-version: 2.28.0-rc7
+version: 2.28.0-rc8
 </code>
 </pre>
 </details>
@@ -146,39 +147,39 @@ version: 2.28.0-rc7
 ### Armory
 
 
-#### Armory Front50 - 2.27.0...2.28.0-rc7
+#### Armory Front50 - 2.27.0...2.28.0-rc8
 
 
-#### Armory Deck - 2.27.0...2.28.0-rc7
+#### Armory Deck - 2.27.0...2.28.0-rc8
 
 
-#### Armory Fiat - 2.27.0...2.28.0-rc7
+#### Armory Fiat - 2.27.0...2.28.0-rc8
 
 
-#### Armory Gate - 2.27.0...2.28.0-rc7
+#### Armory Gate - 2.27.0...2.28.0-rc8
 
 
-#### Armory Igor - 2.27.0...2.28.0-rc7
+#### Armory Igor - 2.27.0...2.28.0-rc8
 
 
-#### Armory Clouddriver - 2.27.0...2.28.0-rc7
+#### Armory Clouddriver - 2.27.0...2.28.0-rc8
 
 
-#### Armory Orca - 2.27.0...2.28.0-rc7
+#### Armory Orca - 2.27.0...2.28.0-rc8
 
 
-#### Armory Kayenta - 2.27.0...2.28.0-rc7
+#### Armory Kayenta - 2.27.0...2.28.0-rc8
 
 
-#### Armory Rosco - 2.27.0...2.28.0-rc7
+#### Armory Rosco - 2.27.0...2.28.0-rc8
 
 
-#### Dinghy™ - 2.27.0...2.28.0-rc7
+#### Dinghy™ - 2.27.0...2.28.0-rc8
 
 
-#### Armory Echo - 2.27.0...2.28.0-rc7
+#### Armory Echo - 2.27.0...2.28.0-rc8
 
 
-#### Terraformer™ - 2.27.0...2.28.0-rc7
+#### Terraformer™ - 2.27.0...2.28.0-rc8
 
 
