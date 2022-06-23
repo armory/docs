@@ -26,12 +26,29 @@ To install, upgrade, or configure Armory 2.28.0-rc8, use one of the following to
 Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
 
 ## Breaking changes
-<!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
+{{< include "breaking-changes/bc-dinghy-slack.md" >}}
+
+{{< include "breaking-changes/bc-java-tls-mysql.md" >}}
+
+{{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
+
+{{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
+
+{{< include "breaking-changes/bc-hal-deprecation.md" >}}
+
+#### Plugin compatibility
+
+{{< include "breaking-changes/bc-plug-version-lts-228.md" >}}
+
 ## Known issues
-<!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
+{{< include "known-issues/ki-bake-var-file.md" >}}
+{{< include "known-issues/ki-artifact-binding-spel.md" >}}
+{{< include "known-issues/ki-dinghy-gh-notifications.md" >}}
+{{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
 
 ## Highlighted updates
   
