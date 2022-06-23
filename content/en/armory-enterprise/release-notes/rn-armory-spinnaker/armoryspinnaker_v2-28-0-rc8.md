@@ -15,12 +15,11 @@ description: >
 
 {{< include "lts-beta.md" >}}
 
-## Required Halyard or Operator version
+## Required Operator version
 
 To install, upgrade, or configure Armory 2.28.0-rc8, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory Operator 1.6.0 or later
 
 ## Security
 
