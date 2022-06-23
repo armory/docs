@@ -226,7 +226,7 @@ spec:
 1. Deploy from the `/spinnaker-operator/deploy/spinnaker/kustomize/` directory:
 
    ```bash
-   kubctl -n spinnaker-operator apply -k .
+   kubectl -n spinnaker-operator apply -k .
    ```
 
 1. You can watch the installation progress by executing:
