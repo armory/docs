@@ -46,18 +46,6 @@ spec:
             # path: <k8s cluster path> (Optional; default: kubernetes) Applies to KUBERNETES authentication method) Path of the kubernetes authentication backend mount. Default is "kubernetes"
 ```
 {{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-```bash
-hal armory secrets vault enable
-hal armory secrets vault edit \
-    --auth-method KUBERNETES \
-    --url <Vault server URL>:<port if required> \
-    --role <Role in Vault> \
-    --path <k8s cluster path> # Optional; default is kubernetes
-```
-
-{{% /tabbody %}}
 {{< /tabs >}}
 
 ### 2. Token authentication
@@ -89,17 +77,6 @@ spec:
 ```
 
 {{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-
-```bash
-hal armory secrets vault enable
-hal armory secrets vault edit \
-    --auth-method TOKEN \
-    --url <Vault server URL>:<port if required>
-```
-
-{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Configuring the Operator to use Vault secrets
@@ -117,57 +94,6 @@ secrets:
 ```
 
 Once you've mounted your `ConfigMap` to the `spinnaker-operator` deployment, it will restart the Halyard container with your Vault config.
-
-## Configuring Halyard to use Vault secrets
-
-Halyard will need access to the Vault server in order to decrypt secrets for validation and deployment. While the Spinnaker services are configured through `~/.hal/config`, the Halyard daemon has its own configuration file found at `/opt/spinnaker/config/halyard.yml`. The contents of your file may look different than this example, but just make sure to add the secrets block somewhere at the root level.
-
-### Halyard locally or in Docker
-If you're running Halyard locally, you can use Token auth method. Set your `VAULT_TOKEN` environment variable and add the secrets block to `halyard.yml` like so:
-
-```yaml
-halyard:
-  halconfig:
-    ...
-
-spinnaker:
-  artifacts:
-    ...
-
-secrets:
-  vault:
-    enabled: true
-    url: <Vault server URL>
-    authMethod: TOKEN
-```
-
-Then, restart the daemon if this is the first time you are configuring the Token auth method:
-
-```bash
-hal shutdown
-```
-Your next hal command automatically starts the daemon if you're running Halyard locally. If it's running within a Docker container, mount the volume containing the updated `halyard.yml` and restart the container.
-
-### Halyard in Kubernetes
-Or if you're running Halyard in Kubernetes, you can have Halyard use Kubernetes auth:
-```yaml
-halyard:
-  halconfig:
-    ...
-
-spinnaker:
-  artifacts:
-    ...
-
-secrets:
-  vault:
-    enabled: true
-    url: <Vault server URL>
-    authMethod: KUBERNETES
-    role: <Vault role>
-    path: <k8s cluster path>
-```
-Restart the pod so that Halyard restarts with your new config.
 
 ## Storing secrets
 To store a file, simply prepend the file path with `@`. It accepts relative paths but cannot resolve `~`:

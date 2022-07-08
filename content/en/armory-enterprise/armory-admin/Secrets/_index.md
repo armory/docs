@@ -12,13 +12,13 @@ aliases:
 
 ## Overview of storing secrets
 
-Storing Spinnaker<sup>TM</sup> configs in a git repository is a great solution for maintaining versions of your configurations, but storing secrets in plain text is a bad security practice. If you're using the Operator to deploy Spinnaker, separating your secrets from your configs through end-to-end secrets management is already supported. If you're using Halyard, this is supported as of `halyard-armory:1.4.1`. All you need to do is replace secrets in the configuration files with the syntax described here, and Spinnaker will decrypt them as needed.
+Storing Spinnaker<sup>TM</sup> configs in a git repository is a great solution for maintaining versions of your configurations, but storing secrets in plain text is a bad security practice. If you're using the Operator to deploy Spinnaker, separating your secrets from your configs through end-to-end secrets management is already supported. All you need to do is replace secrets in the configuration files with the syntax described here, and Spinnaker will decrypt them as needed.
 
 We can now store secrets (tokens, passwords, sensitive files) separately from the Spinnaker configurations. We'll provide references to these secrets to services that need them.
 
 - Spinnaker services that support decryption will decrypt these secrets upon startup.
-- Operator (or Halyard) can decrypt these secrets when it needs to use them (e.g. when validating resources).
-- Operator (or Halyard) can send secret references to the services that support decryption or send decrypted secrets if the service does not support it.
+- Operator can decrypt these secrets when it needs to use them (e.g. when validating resources).
+- Operator can send secret references to the services that support decryption or send decrypted secrets if the service does not support it.
 
 
 ## Using secrets
@@ -42,9 +42,9 @@ The keys and values making up the string vary with each secret engine. Refer to 
 
 ### In main configuration
 
-This applies to section `spec.spinnakerConfig.config` of the `SpinnakerService` manifest if using the Operator, or `~/.hal/config` if using Halyard.
+This applies to section `spec.spinnakerConfig.config` of the `SpinnakerService` manifest when using the Operator.
 
-Operator and Halyard can understand the secrets you provide. If the service you are deploying is able to decrypt secrets, Operator (or Halyard) will pass the reference directly. Otherwise it will decrypt the configuration before sending it.
+Operator can understand the secrets you provide. If the service you are deploying is able to decrypt secrets, Operator will pass the reference directly. Otherwise it will decrypt the configuration before sending it.
 
 For instance, after replacing the GitHub token in our main config with the encrypted syntax:
 
@@ -85,7 +85,7 @@ And for an older release of Clouddriver that does not support decryption:
 
 ### In other configuration
 
-You can also provide secret references directly in `SpinnakerService` manifest under section `spec.spinnakerConfig.profiles` if using the Operator, or in `*-local.yml` profile files if using Halyard, as well as directly in Spinnaker services.
+You can also provide secret references directly in `SpinnakerService` manifest under section `spec.spinnakerConfig.profiles` when using the Operator as well as directly in Spinnaker services.
 
 
 ### Supported secret engines

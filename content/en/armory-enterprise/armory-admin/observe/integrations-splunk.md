@@ -48,32 +48,7 @@ You will see that Splunk  successfully created the new data input, and the authe
 
 ## Forward data to the Splunk HTTP Event Collector
 
-This section describes how to forward data to Splunk so that you can see data from Spinnaker in your Splunk dashboard. Based on how you deployed Spinnaker, see [Halyard](#halyard-configuration) or [Operator](#operator-configuration).
-
-### Halyard configuration
-
-1. Login to your Halyard pod.  This can be running standalone, in your Kubernetes cluster, or as a part of Minnaker (Spinnaker in a VM).
-2. Navigate to the `~/.hal/default/profiles` directory inside of Halyard file system.
-3. If one does not already exist, create a `echo-local.yml` file to apply configuration to the Spinnaker's Echo service.  This can be done with any plain text editor, such as VI.
-4. Insert the following config into `echo-local.yml`:
-   ```yaml
-   rest:
-     enabled: true
-     endpoints:
-     - wrap: true
-       url: "https://<Your-HTTP-Event-Collector-Hostname>:8088/services/collector/event?"
-       headers:
-         Authorization: "Splunk <Your-HTTP-Event-Collector-Token>"
-       template: '{"event":{{event}} }'
-       insecure: true
-   ```
-   Make the following changes:
-   * **`url`**: Replace `<Your-HTTP-Event-Collector-Hostname>` with the IP or Hostname of your configured HTTP Event Collector.  
-   * **`Authorization`**: Replace `<Your-HTTP-Event-Collector-Token>` with the token generated from the Splunk HTTP Event Collector configuration.  
-5. Save the file.
-6. Run `hal deploy apply` within the Halyard container to apply the new Echo configuration.  
-
-Once the Spinnaker services that need the configuration change restart, Spinnaker data starts to flow to the HTTP Event Collector and indexed in the "armory" index.
+This section describes how to forward data to Splunk so that you can see data from Spinnaker in your Splunk dashboard.
 
 ### Operator configuration
 

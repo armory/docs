@@ -20,10 +20,8 @@ The open source Spinnaker documentation
 If you actually want to use a file from the GitHub commit in your pipeline,
 you'll need to configure GitHub as an artifact source in Spinnaker.
 
-Many of the commands below have
-additional options that may be useful (or possibly required).  If you need
-more detailed help, take a look at the
-[Halyard command reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-artifact-github) if you're deploying Spinnaker with Halyard.
+Many of the commands below have additional options that may be useful (or
+possibly required).
 
 ### Enable GitHub artifacts
 
@@ -48,14 +46,6 @@ spec:
       artifacts:
         github:
           enabled: true
-```
-
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-```bash
-hal config features edit --artifacts true
-hal config artifact github enable
 ```
 
 {{% /tabbody %}}

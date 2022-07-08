@@ -56,25 +56,6 @@ spec:
 ```
 
 {{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-First, add the AWS provider account with [Halyard](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-aws-account-add). Next, make sure to enable the AWS provider:
-
-```bash
-hal config provider aws enable
-```
-
-Then, add a `rosco.yml` file under `~/.hal/default/service-settings/` that contains the following snippet:
-
-```yaml
-env:
-  SPINNAKER_AWS_DEFAULT_REGION: "YOUR_DEFAULT_REGION"
-  SPINNAKER_AWS_DEFAULT_ACCOUNT: "YOUR_DEFAULT_AWS_ACCOUNT_ID"
-```
-
-`SPINNAKER_AWS_DEFAULT_ACCOUNT` is the target account ID.
-
-{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Spinnaker pipeline Bake stage configuration

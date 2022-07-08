@@ -85,7 +85,3 @@ The [Armory Policy Engine]({{< ref "policy-engine-enable" >}}) is designed to al
 ### Armory Operator
 
 The [Armory Operator]({{< ref "armory-operator" >}}) is a Kubernetes Operator that makes it easy to install, deploy, and upgrade Armory Enterprise.
-
-### Armory Halyard
-
-[Armory-extended Halyard]({{< ref "armory-halyard" >}}) is a versatile command line interface (CLI) to configure and deploy Armory Enterprise in Kubernetes or any cloud environment.

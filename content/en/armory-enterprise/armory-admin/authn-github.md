@@ -10,7 +10,6 @@ description: >
 ## Requirements for configuring GitHub OAuth
 
 * Ability to modify developer settings for your GitHub organization
-* Access to Halyard
 * A Spinnaker<sup>TM</sup> deployment with [DNS and SSL]({{< ref "dns-and-ssl" >}}) configured
 
 ## Configuring GitHub OAuth in GitHub
@@ -39,26 +38,6 @@ oauth2:
 ```
 
 For additional configuration options review the [Spinnaker Manifest Configuration Reference]({{< ref "op-manifest-reference" >}})
-
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-Run the following commands in Halyard with your Client ID and Client Secret.
-
-```bash
-CLIENT_ID=a08xxxxxxxxxxxxx93
-CLIENT_SECRET=6xxxaxxxxxxxxxxxxxxxxxxx59
-PROVIDER=GITHUB
-
-hal config security authn oauth2 edit \
-  --client-id $CLIENT_ID \
-  --client-secret $CLIENT_SECRET \
-  --provider $PROVIDER \
-  --scope read:org,user:email \
-  --pre-established-redirect-uri "https://gate.spinnaker.acme.com/login"
-
-hal config security authn oauth2 enable
-```
 
 {{% /tabbody %}}
 {{< /tabs >}}
