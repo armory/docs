@@ -37,8 +37,8 @@ The **Welcome to Continuous Deployment-as-a-Service** [Configuration page](https
 1. Click **Continue**.
 1. The pop-up window displays options for installing the RNA.
 
-   - The quickest option is to copy the provided script and run it in your terminal after you have set your `kubectl` context.
-   - You can also manually install the RNA in your cluster. Copy the **Client ID**, **Client Secret**, and the name you gave you RNA (the value of the **Agent Identifier** field). Then follow the instructions in the {{< linkWithTitle "cd-as-a-service/tasks/networking/install-agent.md" >}} guide.
+   - **Quick**: The quickest option is to copy the provided script and run it in your terminal after you have set your `kubectl` context. _By default, the RNA is installed with `*` (all) permissions in the cluster. You need to do a manual install if you want to modify the default permissions._
+   - **Manual**: Copy the **Client ID**, **Client Secret**, and the name you gave you RNA (the value of the **Agent Identifier** field). Then follow the instructions in the {{< linkWithTitle "cd-as-a-service/tasks/networking/install-agent.md" >}} guide.
 
 ## {{%  heading "nextSteps" %}}
 
