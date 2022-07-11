@@ -6,4 +6,4 @@ version: 00.10.39
 ---
 
 ### Fixes
-- Added support for fiat core library version 1.28.1+ / clouddriver 5.74.2+ / OSS Spinnaker 1.27.0+ / Armory Spinnaker 2.28.0+
+- Fixes compatibility issues by adding support for fiat core library version 1.28.1+ / clouddriver 5.74.2+ / OSS Spinnaker 1.27.0+ / Armory Spinnaker 2.28.0+
