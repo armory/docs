@@ -5,4 +5,5 @@ version: 01.00.23
 
 ---
 
-* fixes: Prevent connection data race. Behavior is now more consistent in flaky internet connection
+### fixes:
+* Prevents connection data race. Behavior is now more consistent in flaky internet connection.
