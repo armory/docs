@@ -1,6 +1,6 @@
 ### Kubernetes permissions for the Remote Network Agent
 
-By default, the RNA is installed with full access to the cluster. At a minimum, the RNA needs permissions to create, edit, and delete all KINDs that you plan to deploy with CD-as-a-Service, in all namespaces to which you plan to deploy. The RNA also requires network access to any monitoring solutions or webhook APIs that you plan to forward through it.
+By default, the RNA is installed with full access to the cluster. At a minimum, the RNA needs permissions to create, edit, and delete all `kind` objects that you plan to deploy with CD-as-a-Service, in all namespaces to which you plan to deploy. The RNA also requires network access to any monitoring solutions or webhook APIs that you plan to forward through it.
 
 For advanced use cases such as restricting permissions, proxy configurations, custom annotations, labels, or environment variables, download and modify the [`values.yaml` for the RNA](https://github.com/armory-io/remote-network-agent-helm-chart/blob/main/values.yaml) or override existing values on the command line using `--set`. For information about using a `values file`, see the [Helm Values Files guide](https://helm.sh/docs/chart_template_guide/values_files/) and the [Customizing the Chart Before Installing](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing) section of the _Using Helm_ guide.
 
