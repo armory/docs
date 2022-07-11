@@ -5,4 +5,5 @@ version: 01.00.24
 
 ---
 
-* Feature: Helm chart now allow to set replicas number
+### Feature:
+* Helm chart now allows setting number of replicas.
