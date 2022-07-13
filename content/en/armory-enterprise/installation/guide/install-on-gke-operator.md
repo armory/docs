@@ -6,6 +6,7 @@ aliases:
   - /spinnaker-install-admin-guides/install-on-gke-operator/
 description: >
   Use the Armory Operator to deploy Armory Enterprise for Spinnaker in your Google Kubernetes Engine (GKE) cluster.
+draft: true
 ---
 
 {{< include "armory-license.md" >}}

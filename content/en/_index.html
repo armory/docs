@@ -4,60 +4,180 @@ abstract: "Enterprise distribution of Spinnaker"
 cid: home
 ---
 
-{{< blocks/cover title="Armory Docs" image_anchor="top" height="min" id="cover-section">}}
-<div class="mx-auto">
-	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/armory-enterprise/" >}}">
-	Read the Docs<i class="fas fa-arrow-alt-circle-right ml-2"></i>
-</a>
-	<p class="lead mt-5">Unlocking Innovation by Making Software Delivery Continuous, Scalable, and Safe</p>
-	{{< blocks/link-down color="info" >}}
-</div>
+{{< blocks/cover title="Armory Docs" image_anchor="top" height="min">}}
+	<div class="mx-auto hero-top">
+		<p class="lead mt-0">
+			Continuous Deployment at Any Scale for All Developers
+		</p>
+	</div>
 {{< /blocks/cover >}}
 
+<div class="product-documentation">
+	<h2 class="text-center">
+		Product Documentation
+	</h2>
 
-{{% blocks/lead color="primary" id="armory-desc" %}}
-Armory provides an enterprise distribution of Spinnaker<sup>TM</sup>, the cloud native, open source, continuous delivery platform that creates a paved road for your developers to deploy with speed and resilience.
-{{% /blocks/lead %}}
+	<div class="row">
+		<div class="col-sm">
+			<i class="icon">
+				<img src="/images/homepage-cd-as-a-service-icon.png" />
+			</i>
+			<h3 class="text-center mt-3">
+				Armory Continuous Deployment-as-a-Service
+			</h3>
+			<p>
+				Declarative deployments with the GitOps experience you love
+			</p>
+			<div class="link-container">
+				<a class="btn btn-secondary white" href="{{< relref "/cd-as-a-service/" >}}">
+					View Documentation
+				</a>
+				<a class="small-link mt-3" href="https://www.armory.io/products/continuous-deployment-as-a-service/" target="_blank">
+					<span>Learn More</span>
+					<i>&LongRightArrow;</i>
+				</a>
+			</div>
+		</div>
 
-{{< blocks/section color="#101415" id="section-armory-links">}}
+		<div class="col-sm">
+			<i class="icon">
+				<img src="/images/homepage-self-hosted-icon.png" />
+			</i>
+			<h3 class="text-center mt-3">
+				Armory Continuous Deployment Self-Hosted and Managed
+			</h3>
+			<p>
+				Armory’s enterprise-grade distribution of Spinnaker, installed in your cloud and managed by Armory engineers
+			</p>
+			<div class="link-container">
+				<a class="btn btn-secondary white" href="{{< relref "/armory-enterprise/" >}}">
+					View Documentation
+				</a>
+				<a class="small-link mt-3" href="https://www.armory.io/armory-enterprise-spinnaker/" target="_blank">
+					<span>Learn More</span>
+					<i>&LongRightArrow;</i>
+				</a>
+			</div>
+		</div>
 
-{{% blocks/feature icon="fas fa-blog" title="Armory Blog"
-url="https://armory.io/blog/" %}}
-Read the latest about Armory features and events
-{{% /blocks/feature %}}
+		<div class="col-sm">
+			<i class="icon">
+				<img src="/images/homepage-agent-of-kubernetes-icon.png" />
+			</i>
+			<h3 class="text-center mt-3">
+				Armory Scale Agent for Spinnaker and Kubernetes
+			</h3>
+			<p>
+				Kubernetes deployments at massive scale, without the massive headache
+			</p>
+			<div class="link-container">
+				<a class="btn btn-secondary white" href="{{< relref "/armory-enterprise/armory-agent/" >}}">
+					View Documentation
+				</a>
+				<a class="small-link mt-3" href="https://www.armory.io/armory-enterprise-spinnaker/armory-agent-for-kubernetes/" target="_blank">
+					<span>Learn More</span>
+					<i>&LongRightArrow;</i>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
 
-{{% blocks/feature icon="fas fa-book" title="Armory Knowledge Base" url="https://kb.armory.io" %}}
-Search the KB
-{{% /blocks/feature %}}
+<div class="new-to-armory d-flex flex-column justify-content-center align-items-center">
+	<h3>
+		New to Armory?
+	</h3>
+	<div class="btn-container">
+		<a class="btn btn-secondary btn-outline-light" href="https://www.armory.io/demo-request/">
+			Request a Demo
+		</a>
+		<a class="btn btn-secondary btn-outline-light" href="https://go.armory.io/signup" target="_blank">
+			Get Started for Free
+		</a>
+	</div>
+</div>
 
-{{% blocks/feature icon="fas fa-video" title="Armory Videos"
-url="https://www.youtube.com/channel/UC9ESNuSCMXLsdRdBDhjSzcA" %}}
-Watch vidoes about Armory features
-{{% /blocks/feature %}}
+<div class="developer-resources mb-5">
+	<h2 class="text-center">
+		Developer Resources
+	</h2>
 
-{{< /blocks/section >}}
+	<div class="resource-container">
+		<div>
+			<i class="fas fa-blog fa-lg icon small-icon"></i>
+			<h4>Armory Blog</h4>
+			<p class="">
+				Read the latest about Armory features and events
+			</p>
+			<a href="https://armory.io/blog/">
+				Read the Blog
+			</a>
+		</div>
+
+		<div>
+			<i class="fas fa-lg fa-book icon small-icon"></i>
+			<h4>
+				Armory Knowledge Base
+			</h4>
+			<p>
+				Search the KB
+			</p>
+			<a href="https://support.armory.io/">
+				Read More
+			</a>
+		</div>
+
+		<div>
+			<i class="fas fa-lg fa-video icon small-icon"></i>
+			<h4>
+				Armory Videos
+			</h4>
+			<p>
+				Watch videos about Armory features
+			</p>
+			<a href="https://www.youtube.com/channel/UC9ESNuSCMXLsdRdBDhjSzcA/">
+				Read More
+			</a>
+		</div>
+
+		<div>
+			<i class="fas fa-lg fa-shield-alt icon small-icon"></i>
+			<h4>
+				Armory in Production
+			</h4>
+			<p>
+				Learn how the world uses Armory to accelerate software delivery
+			</p>
+			<a href="https://resources.armory.io/">
+				Read More
+			</a>
+		</div>
 
 
-{{< blocks/section  color="primary" id="section-spinnaker-links" >}}
+		<div>
+			<i class="fab fa-lg fa-youtube icon small-icon"></i>
+			<h4>
+				Armory Webinars
+			</h4>
+			<p>
+				Watch webinars about Armory and Spinnaker
+			</p>
+			<a href="https://resources.armory.io/webinars/">
+				Read More
+			</a>
+		</div>
 
-{{% blocks/feature icon="fas fa-shield-alt" title="Armory in Production"
-url="https://resources.armory.io/" %}}
-Learn how the world uses Armory to accelerate software delivery
-{{% /blocks/feature %}}
-
-
-{{% blocks/feature icon="fab fa-youtube" title="Armory Webinars"
-url="https://resources.armory.io/webinars/" %}}
-Watch webinars about Armory and Spinnaker
-{{% /blocks/feature %}}
-
-{{% blocks/feature icon="fas fa-laptop" title="Case Studies"
-url="https://www.armory.io/learn/customer-success-stories/" %}}
-Learn how leading enterprises are reaching Software Delivery Nirvana with Armory and Spinnaker
-{{% /blocks/feature %}}
-
-{{< /blocks/section >}}
-
-{{< blocks/bottom-image image_anchor="bottom" height="min" >}}
-
-{{< /blocks/bottom-image >}}
+		<div>
+			<i class="fas fa-lg fa-laptop icon small-icon"></i>
+			<h4>
+				Case Studies
+			</h4>
+			<p>
+				Learn how leading enterprises are reaching Software Delivery Nirvana with Armory and Spinnaker
+			</p>
+			<a href="https://www.armory.io/learn/customer-success-stories/">
+				Read More
+			</a>
+		</div>
+	</div>
+</div>

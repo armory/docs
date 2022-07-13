@@ -114,7 +114,7 @@ spec:
 * [artifact]({{< ref "artifact" >}})
 * [canary]({{< ref "canary-op-config" >}})
 * [ci]({{< ref "ci" >}})
-* [deploymentEnvironment]({{< ref "deploy" >}})
+* [deploymentEnvironment]({{< ref "op-manifest-reference/deploy" >}})
 * [features]({{< ref "features" >}})
 * [metricStores]({{< ref "metricstores" >}})
 * [notification]({{< ref "notification" >}})
@@ -123,7 +123,7 @@ spec:
 * [providers]({{< ref "providers" >}})
 * [pubsub]({{< ref "pubsub" >}})
 * [repository]({{< ref "repository" >}})
-* [security]({{< ref "security" >}})
+* [security]({{< ref "op-manifest-reference/security" >}})
 * [stats]({{< ref "stats" >}})
 * [webhook]({{< ref "op-webhook" >}})
 

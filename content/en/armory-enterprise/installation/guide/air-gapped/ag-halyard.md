@@ -57,11 +57,11 @@ Restart Halyard.
 
 ### Host the Armory Enterprise BOM
 
-Use [`bomdownloader.sh`](https://github.com/armory/spinnaker-kustomize-patches/blob/master/airgap/bomdownloader.sh) to download the version of the Armory Enterprise BOM that you require.
+Use [`bomdownloader.sh`](https://github.com/armory/spinnaker-kustomize-patches/blob/master/utilities/airgap/bomdownloader.sh) to download the version of the Armory Enterprise BOM that you require.
 
 <details><summary>Show the script</summary>
 
-{{< github repo="armory/spinnaker-kustomize-patches" file="/airgap/bomdownloader.sh" lang="bash" options="" >}}
+{{< github repo="armory/spinnaker-kustomize-patches" file="/utilities/airgap/bomdownloader.sh" lang="bash" options="" >}}
 
 </details><br>
 
@@ -161,11 +161,11 @@ Configure `docker.io/armory` as a remote repository within your private Docker r
 
 ### Download images
 
-You can use the [`imagedownloader.sh`](https://github.com/armory/spinnaker-kustomize-patches/blob/master/airgap/imagedownloader.sh) helper script to download and push the images to your private Docker registry.
+You can use the [`imagedownloader.sh`](https://github.com/armory/spinnaker-kustomize-patches/blob/master/utilities/airgap/imagedownloader.sh) helper script to download and push the images to your private Docker registry.
 
 <details><summary>Show the script</summary>
 
-{{< github repo="armory/spinnaker-kustomize-patches" file="/airgap/imagedownloader.sh" lang="bash" options="" >}}
+{{< github repo="armory/spinnaker-kustomize-patches" file="/utilities/airgap/imagedownloader.sh" lang="bash" options="" >}}
 
 </details><br>
 

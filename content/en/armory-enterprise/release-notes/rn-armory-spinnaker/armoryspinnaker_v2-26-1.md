@@ -1,5 +1,5 @@
 ---
-title: v2.26.1 Armory Release (OSS Spinnaker™ v1.26.6)
+title: v2.26.1 Armory Enterprise Release (Spinnaker™ v1.26.6)
 toc_hide: true
 version: 02.26.01
 description: >
@@ -38,7 +38,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 #### Suffixes for the Kubernetes Run Job stage
 
-The `kubernetes.jobs.append-suffix` parameter no longer works. The removal of this parameter was previously announced as part of a [breaking change](https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v2-22-0/#suffix-no-longer-added-to-jobs-created-by-kubernetes-run-job-stage) in Armory 2.22.
+The `kubernetes.jobs.append-suffix` parameter no longer works. The removal of this parameter was previously announced as part of a [breaking change]({{< ref "armoryspinnaker_v2-22-0/#suffix-no-longer-added-to-jobs-created-by-kubernetes-run-job-stage" >}}) in Armory 2.22.
 
 To continue adding a random suffix to jobs created by the Kubernetes Run Job stage, use the `metadata.generateName` field in your Kubernetes job manifests. For more information, see [Generated values](https://kubernetes.io/docs/reference/using-api/api-concepts/#generated-values).
 

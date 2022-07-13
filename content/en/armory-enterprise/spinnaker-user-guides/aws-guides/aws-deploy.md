@@ -66,7 +66,7 @@ Select the same **VPC Subnet** type as the ELB you just made. Remember to input 
 
 For this example, we'll use a Red/Black (also known as Blue/Green) **deployment strategy**. Leave 3 **maximum server groups** alive for normal services allows you to manually rollback in case of emergency easily.
 
-Scroll down and select the **load balancer** that was just created from the list and select the pre-configured security group.
+Scroll down and select the **load balancer** that was just created from the list and select the preconfigured security group.
 
 Note, the Firewall in this case will be for the EC2 instances.
 

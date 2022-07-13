@@ -10,13 +10,12 @@ description: >
 
 ## Overview of Authentication and Authorization in Spinnaker
 
-Both Armory and Open Source Spinnaker<sup>TM</sup> provide the same functionality for authentication ("authn")
-and authorization ("authz").  You can find a full reference of how to set up both in the [OSS Spinnaker documentation](https://www.spinnaker.io/setup/security/#security).
+Both Armory Enterprise and Spinnaker<sup>TM</sup> provide the same functionality for authentication ("authn")
+and authorization ("authz").  You can find a full reference of how to set up both in the [Spinnaker documentation](https://www.spinnaker.io/setup/security/#security).
 
 ## Authorization &amp; Manual Judgments
 
-The [OSS docs](https://www.spinnaker.io/setup/security/authorization/#restrictable-resources)
-explain that you can limit users' access to both
+The [Spinnaker docs](https://www.spinnaker.io/setup/security/authorization/#restrictable-resources) explain that you can limit users' access to both
 "accounts" and "applications" but doesn't talk much about the interaction of
 the two.
 

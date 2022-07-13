@@ -1,6 +1,6 @@
 # Overview
 
-This is the repo for Armory documentation (https://docs.armory.io). We welcome contributions from people outside of Armory.
+This is the repo for Armory documentation site. We welcome contributions from people outside of Armory.
 
 The site is hosted by [Netlify](https://www.netlify.com/), which generates a preview build for every pull request. Install [Hugo](https://gohugo.io/) if you want to compile and run the project locally. The Hugo extended version is specified in `netlify.toml` (currently 0.71.1).
 
@@ -29,7 +29,7 @@ Armory docs uses the [Docsy](https://docsy.dev) theme as a submodule. You have t
 
 ```bash
 cd docs
-git submodule update --init --recursive
+git submodule update --init --recursive --depth 1
 ```
 
 Set this docs repo as the upstream remote:
@@ -143,6 +143,8 @@ You can commit and push many times before you create your PR.
 ## Create your pull request
 
 See the GitHub [docs](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork) for how to create a pull request from a fork.
+
+**On user-owned forks, select _Allow edits from maintainers_ so maintainers can make changes to your pull request,**
 
 ## Troubleshooting
 

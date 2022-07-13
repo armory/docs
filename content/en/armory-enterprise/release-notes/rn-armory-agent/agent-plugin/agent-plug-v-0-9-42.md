@@ -19,3 +19,7 @@ kubesvc:
 ### Fixes
 
 * Fixed an issue where `NetworkPolicies` were not showing in Firewalls screen in Spinnaker UI.
+
+## Known Issues
+
+* The plugin makes a request to fiat `/sync/roles` endpoint every time an agent connects or accounts are deleted. This can become an issue when having a large number of agents connected to a clouddriver pod that is restarted.

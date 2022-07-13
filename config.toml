@@ -66,32 +66,33 @@ weight = 1
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+  [markup.highlight]
+    guessSyntax = "false" #need for rendering mermaid
 
 [[menu.main]]
-  name = "Docs"
-  weight = 4
+  name = "CD-as-a-Service"
+  weight = 2
+  url = "/cd-as-a-service/"
+
+[[menu.main]]
+  name = "Armory CD"
+  weight = 3
   url = "/armory-enterprise/"
 
 [[menu.main]]
-  name = "Armory.io"
-  weight = 5
-  url = "https://www.armory.io"
-
-[[menu.main]]
-  name = "Case Studies"
-  weight= 6
-  url = "https://www.armory.io/learn/customer-success-stories/"
-
-[[menu.main]]
-  name = "KB"
-  weight = 8
+  name = "Support"
+  weight = 4
   url = "https://support.armory.io/"
 
 [[menu.main]]
   name = "Blog"
-  weight = 9
+  weight = 5
   url = "https://www.armory.io/blog/"
 
+[[menu.main]]
+  name = "Armory.io"
+  weight = 9
+  url = "https://www.armory.io/"
 # Everything below this are Site Params
 
 [params]
@@ -105,7 +106,7 @@ postgresql-version="10+"
 #used in the Operator docs
 armory-version-exact = "2.27.0"
 halyard-armory-version = "1.12.0"
-kubesvc-version="1.0.19"
+kubesvc-version="1.0.24"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
@@ -114,15 +115,15 @@ privacy_policy = "https://www.armory.io/privacy-policy/"
 terms_of_service = "https://www.armory.io/terms-of-service/"
 terms_and_conditions = "https://www.armory.io/terms-and-conditions/"
 
-# Display the Borealis banner
-borealis_banner = true
+# Display the Armory CDaaS NDA banner
+cdaas_banner = false
 
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
-version_menu = "Latest"
+version_menu = "Armory CD v2.27"
 
 # Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
@@ -132,11 +133,12 @@ archived_version = false
 # The version number for the version of the docs represented in this doc set.
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
-version = "2.27"
+# Also used in the PCM to highlight what version the PCM is for
+version = "2.27.3"
 
-# A link to latest version of the docs. Used in the "version-banner" partial to
-# point people to the main doc site.
-url_latest_version = "https://docs.armory.io/"
+# A link to latest version of the Armory CD docs. Used in the "version-banner" partial to
+# point people to the main Armory CD docs site.
+url_latest_version = "https://docs.armory.io/armory-enterprise/"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/armory/docs/"
@@ -160,11 +162,11 @@ prism_syntax_highlighting = true
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]
-agent_plug_latest-2="0.8.53"
+agent_plug_latest-2="0.8.63"
 agent_plug_latest_spin-2="2.25.x (1.25.x)"
-agent_plug_latest-1="0.9.45"
+agent_plug_latest-1="0.9.55"
 agent_plug_latest_spin-1="2.26.x (1.26.x)"
-agent_plug_latest="0.10.29"
+agent_plug_latest="0.10.39"
 agent_plug_latest_spin="2.27.x (1.27.x)"
 
 # User interface configuration
@@ -201,6 +203,7 @@ enable = false
 # Enable Mermaid diagrams
 [params.mermaid]
 enable = true
+theme = "forest"
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
@@ -222,7 +225,7 @@ enable = true
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
 	name = "GitHub"
-	url = "https://github.com/armory/docs"
+	url = "https://github.com/armory/docs/"
 	icon = "fab fa-github"
    desc = "Docs repository"
 [[params.links.developer]]
@@ -234,26 +237,11 @@ enable = true
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
 [[params.versions]]
-  version = "Latest"
-  githubbranch = "master"
-  url = "https://docs.armory.io/"
-
-[[params.versions]]
-  version = "v2.26"
+  version = "Armory CD v2.26"
   githubbranch = "v2.26"
   url = "https://v2-26.docs.armory.io/docs/"
 
 [[params.versions]]
-  version = "v2.25"
+  version = "Armory CD v2.25"
   githubbranch = "v2.25"
   url = "https://v2-25.docs.armory.io/docs/"
-
-[[params.versions]]
-  version = "v2.24"
-  githubbranch = "v2.24"
-  url = "https://v2-24.docs.armory.io/docs/"
-
-[[params.versions]]
-  version = "v2.23"
-  githubbranch = "v2.23"
-  url = "https://v2-23.docs.armory.io/docs/"

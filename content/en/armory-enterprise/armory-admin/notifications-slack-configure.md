@@ -56,7 +56,7 @@ spec:
         slack:
           enabled: true
           botName: spinnaker                                         # The name of your slack bot.
-          token: xoxb-xxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx # Your slack bot token. This field supports "encrypted" secret references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+          token: xoxb-xxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx # Your slack bot token. This field supports "encrypted" secret references 
 ```
 
 Apply the changes:

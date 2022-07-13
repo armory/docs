@@ -37,9 +37,21 @@ This guide details how you can host the Armory Enterprise Bill of Materials (BOM
 
 ## Deploy MinIO for storage
 
-Now that you have cloned the `spinnaker-kustomize-patches` repo, you need to create a storage bucket to host the BOM. [MinIO](https://min.io) is a good choice for the bucket since it's S3 compatible and runs as a pod in Kubernetes. You can find the manifest for MinIO in `spinnaker-kustomize-patches/infrastructure/minio.yml`.
+Now that you have cloned the `spinnaker-kustomize-patches` repo, you need to
+create a storage bucket to host the BOM. [MinIO](https://min.io) is a good
+choice for the bucket since it's S3 compatible and runs as a pod in Kubernetes.
+A ready to use MinIO component can be referenced in
+`spinnaker-kustomize-patches/core/persistence/in-cluster`.
 
-When you look at the content of the `minio.yml` manifest, you see that MinIO needs a secret key called `minioAccessKey`:
+```yaml
+# Your kustomization.yml file
+
+resources:
+  - path/to/spinnaker-kustomize-patches/core/persistence/in-cluster/minio.yml
+```
+
+When you look at the content of the `minio.yml` manifest, you see that MinIO
+needs a secret key called `minioAccessKey`:
 
 ```yaml
 env:
@@ -49,44 +61,37 @@ env:
   - name: MINIO_SECRET_KEY
     valueFrom:
       secretKeyRef:
-        name: spin-secrets
+        name: minio-secret-key
         key: minioAccessKey
 ```
 
-`minioAccessKey` is stored in a Kubernetes secret called `spin-secrets.` You create the secret by running the script `create-secrets.sh` located in the `spinnaker-kustomize-patches/secrets` folder. The script looks for a file called `secrets.env` and if it doesn't find it, uses the contents of `secrets-example.env`, so you should create your own `secrets.env` file before deploying MinIO.
+`minioAccessKey` is stored in a Kubernetes secret called `minio-secret-key`.
+You create the secret by adding a generator to your `kustomization.yml` file.
 
-1. Create your own `secrets.env` file in the `spinnaker-kustomize-patches/secrets` directory. The contents of your file should be:
+```yaml
+secretGenerator:
+  - name: minio-secret-key
+    options:
+      disableNameSuffixHash: true
+    literals:
+      - minioAccessKey=MyAccessKeyValue
+```
 
-   ```text
-   #---------------------------------------------------------------------------
-   # Key-value pairs for secrets to store in Kubernetes.
-   #
-   # Reference secrets in spinnaker config files like this (not all fields support secrets):
-   # encrypted:k8s!n:spin-secrets!k:<secret key>
-   #---------------------------------------------------------------------------
+Consult the [kustomize
+documentation](https://kubectl.docs.kubernetes.io/references/kustomize/builtins/)
+for more ways to configure secrets.
 
-   minioAccessKey=changeme
-   ```
-
-   Update the value for `minioAccessKey` and save the file.
-
-1. Switch to the `spinnaker-kustomize-patches` directory. Create the Kubernetes secret key that contains the MinIO access key:
-
-   ```bash
-   ./secrets/create-secrets.sh
-   ```
-
-1. Deploy MinIO:
+1. Deploy MinIO with your infrastructure:
 
    ```bash
-   kubectl create -f infrastructure/minio.yml -n spinnaker
+   kubectl apply -k .
    ```
 
 ## Download the BOM
 
 Decide which Armory Enterprise version you want to deploy. Check [Armory Release Notes]({{< ref "rn-armory-spinnaker" >}}) for the latest supported versions.
 
-The `spinnaker-kustomize-patches/airgap` directory contains helper scripts for air-gapped environments. Use `bomdownloader.sh` to download the version of the Armory Enterprise BOM that you require.
+The `spinnaker-kustomize-patches/utilities/airgap` directory contains helper scripts for air-gapped environments. Use `bomdownloader.sh` to download the version of the Armory Enterprise BOM that you require.
 
 `bomdownloader.sh` takes two command line parameters in the following order:
 
@@ -99,7 +104,7 @@ The script creates a `halconfig` folder, downloads the necessary files, and upda
 1. Run `bomdownloader.sh <armory-version> <docker-registry>`. For example, if you want to download the 2.25.0 BOM and your registry is `my.jfrog.io/myteam/armory`:
 
    ```bash
-   ./airgap/bomdownloader.sh 2.25.0 my.jfrog.io/myteam/armory
+   ./utilities/airgap/bomdownloader.sh 2.25.0 my.jfrog.io/myteam/armory
    ```
 
    Output is similar to:
@@ -196,12 +201,12 @@ Configure `docker.io/armory` as a remote repository within your private Docker r
 
 ### Download images
 
-You can use the `imagedownloader.sh` helper script in the `spinnaker-kustomize-patches/airgap` directory to download and push the images to your private Docker registry.
+You can use the `imagedownloader.sh` helper script in the `spinnaker-kustomize-patches/utilities/airgap` directory to download and push the images to your private Docker registry.
 
 The execution format is:
 
 ```bash
-./airgap/imagedownloader.sh <armory-version>
+./utilities/airgap/imagedownloader.sh <armory-version>
 ```
 
 `<armory-version>` is the version you specified in the [Download the BOM](#download-the-bom) section.
@@ -233,7 +238,7 @@ operator
 
 ## Host the Armory Operator Docker images
 
-You can find the `operatorimageupdate.sh` script in `spinnaker-kustomize-patches/airgap`. The script does the following:
+You can find the `operatorimageupdate.sh` script in `spinnaker-kustomize-patches/utilities/airgap`. The script does the following:
 
 1. Downloads the Armory Operator Docker images and updates their names.
 1. Pushes the images to the Docker registry you specify in the command line.
@@ -242,7 +247,7 @@ You can find the `operatorimageupdate.sh` script in `spinnaker-kustomize-patches
 From the `spinnaker-kustomize-patches/operator` folder, execute the `operatorimageupdate.sh` script:
 
 ```bash
-../airgap/operatorimageupdate.sh <your-docker-registry>
+../utilities/airgap/operatorimageupdate.sh <your-docker-registry>
 ```
 
 ## Update Armory Operator configuration

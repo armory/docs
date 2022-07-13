@@ -68,6 +68,18 @@ hal armory dinghy enable
 
 The Dinghy service can use MySQL to store relationships between pipeline templates and pipeline Dinghy files. An external MySQL instance is highly recommended for production use because it can provide more durability for Pipelines as Code. If MySQL becomes unavailable, Dinghy files will need to be updated in order to repopulate MySQL with the relationships.
 
+First make sure the schema exists in your database.
+
+```sql
+CREATE SCHEMA IF NOT EXISTS dinghy DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      CREATE USER IF NOT EXISTS 'dinghy_service'@'%' IDENTIFIED BY '${SOME_PASSWORD_HERE}';
+      CREATE USER IF NOT EXISTS 'dinghy_migrate'@'%' IDENTIFIED BY '${SOME_PASSWORD_HERE}';
+      GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, EXECUTE, SHOW VIEW ON dinghy.* TO 'dinghy_service'@'%';
+      GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, LOCK TABLES, EXECUTE, SHOW VIEW ON dinghy.* TO dinghy_migrate@'%';
+```
+
+Next, configure Pipelines as Code to use your MySQL database.
+
 {{< tabs name="MySQL" >}}
 {{% tabbody name="Operator" %}}
 
@@ -287,7 +299,7 @@ spec:
           templateOrg: my-org                # SCM organization or namespace where application and template repositories are located
           templateRepo: dinghy-templates     # SCM repository where module templates are located
           stashUsername: stash_user          # Stash username
-          stashToken: abc                    # Stash token. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+          stashToken: abc                    # Stash token. This field supports "encrypted" field references
           stashEndpoint: https://my-endpoint # Stash API endpoint. If you're using Bitbucket Server, update the endpoint to include the api e.g. https://your-endpoint-here.com/rest/api/1.0
           ... # Rest of config omitted for brevity
 ```
@@ -335,7 +347,7 @@ spec:
           enabled: true                       # Whether or not Dinghy is enabled
           templateOrg: my-org                 # SCM organization or namespace where application and template repositories are located
           templateRepo: dinghy-templates      # SCM repository where module templates are located
-          gitlabToken: abc                    # GitLab token. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+          gitlabToken: abc                    # GitLab token. This field supports "encrypted" field references
           gitlabEndpoint: https://my-endpoint # GitLab endpoint
           ... # Rest of config omitted for brevity
 ```
@@ -371,9 +383,9 @@ to communicate with your GitLab installation. Ensure that connectivity works as 
 
 ### Custom branch configuration
 
-> Configuring a custom branch is required if you are using a repo that does not use `master` as the base branch. Newly created GitHub repositories that use `main` as the default base branch must configure a custom branch using the `repoConfig` parameter.
+> Configuring a custom branch is required if you are using a repo that does not use `master` or `main` as the default branch, or you want to use a branch other than `master` or `main`.
 
-By default, Dinghy will use the `master` branch in your repository. If you wish to use a different base branch for your repository, this can be configured using the `repoConfig` tag in your yaml configuration.
+By default, Dinghy uses the `master` branch in your repository and fallbacks to `main` if `master` doesn't exist. If you wish to use a different branch in your repository, you can configure that using the `repoConfig` tag in your YAML configuration.
 
 The `repoConfig` tag supports a collection of the following values. Each node in the collection must contain all of the fields listed below.
 * `branch` - the name of the branch you wish to use
@@ -496,7 +508,7 @@ Dinghy can provide more robust information to GitHub about executed pipeline cha
 
 Keep the following in mind when enabling GitHub Notifications:
 
-* When using versions below 2.26.2, GitHub notifications are not supported with custom endpoints and [should be disabled due to a known issue](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290). This issue has been resolved as of [2.26.2, Dinghy Change #447](https://docs.armory.io/docs/release-notes/rn-armory-spinnaker/armoryspinnaker_v2-26-2/#dinghy---226622610).
+* When using versions below 2.26.2, GitHub notifications are not supported with custom endpoints and [should be disabled due to a known issue](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290). This issue has been resolved as of [2.26.2, Dinghy Change #447]({{< ref "armoryspinnaker_v2-26-2#dinghy---226622610" >}}).
 * Enabling this functionality may lead to a large number of comments on a Pull Request if, for example, you update a module that is used by multiple pipelines. This can lead to the GitHub UI not loading or GitHub rate limiting cause of related API calls.
 
 

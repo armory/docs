@@ -105,4 +105,4 @@ s3:
 
 ## Kustomize patch examples
 
-You can see examples in the `spinnaker-kustomize-patches` repo's [`persistence` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/persistence).
+You can see examples in the `spinnaker-kustomize-patches` repo's [`persistence` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/core/persistence).

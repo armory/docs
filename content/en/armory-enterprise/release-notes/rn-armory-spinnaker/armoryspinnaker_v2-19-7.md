@@ -1,5 +1,5 @@
 ---
-title: v2.19.7 Armory Release (OSS Release 1.19.5)
+title: v2.19.7 Armory Enterprise Release (Spinnaker Release 1.19.5)
 toc_hide: true
 date: 2020-04-21
 version: 02.19.07
@@ -69,7 +69,7 @@ Additionally, this version of Spinnaker includes updates to how Deck is built. P
 
 **Managed Pipeline Templates v2 UI**
 
-Armory 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in OSS Spinnaker.
+Armory 2.19.x contains the latest version of Managed Pipeline Templates v2 (MPTv2), which is the default pipeline templating solution offered in Spinnaker.
 
 Armory recommends using Armory's Pipeline as Code feature instead of MPTv2 because it offers the following benefits:
 
@@ -84,7 +84,7 @@ By default, the MPTv2 UI is disabled in Armory 2.19.6. Leaving the UI disabled m
 If you want to enable the MPTv2 UI, see [Enabling the Managed Pipeline Templates UI](https://kb.armory.io/admin/enable-mptv2/).
 
 ###  Spinnaker Community Contributions
-The following highlights describe some of the major changes from the Spinnaker community for OSS Release 1.19.5, which is included in this release of Armory 2.19:
+The following highlights describe some of the major changes from the Spinnaker community for Spinnaker Release 1.19.5, which is included in this release of Armory 2.19:
 
 **Java 11**
 > The migration to Java 11 continues. This should not affect Spinnaker users. If you extend Spinnaker, this change may affect you.

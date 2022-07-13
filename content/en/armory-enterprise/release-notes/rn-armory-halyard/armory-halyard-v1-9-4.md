@@ -16,4 +16,4 @@ No known issues
 ## Armory-extended Halyard
 
 - fix(cve): Security fix for CVE-2020-1945
-- Upgrade OSS Halyard to 1.36.0
+- Upgrade open source Halyard to 1.36.0

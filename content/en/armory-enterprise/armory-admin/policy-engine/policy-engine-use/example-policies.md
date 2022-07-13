@@ -1,7 +1,7 @@
 ---
 title: Example Policies
 linkTitle: Example Policies
-description: This page collects and indexes all the example poplicies in the Policy Engine package documentation.
+description: This page collects and indexes all the example policies in the Policy Engine package documentation.
 aliases: 
   - /docs/spinnaker-user-guides/policy-engine-use/example-policies/
 ---

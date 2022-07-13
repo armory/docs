@@ -10,7 +10,7 @@ aliases:
 layout: release-notes-recent
 semver_list: true
 description: >
-  Armory Enterprise releases, long term stable releases and patches.
+  Armory Enterprise releases, long term support releases and patches.
 ---
 
 <!-- the release-notes-recent.html layout inserts the section index list at the top of the page -->
@@ -29,34 +29,36 @@ To install, upgrade, and configure Armory Enterprise, ensure that you are runnin
 
 ## LTS releases
 
-Starting with version 2.27.1, Armory Enterprise follows a Long Term Stable (LTS) release model where there are two LTS releases per year. Major features and changes are packaged into an LTS release.
+Starting with version 2.27.1, Armory Enterprise follows a Long Term Support (LTS) release model where there are two LTS releases per year. Major features and changes are packaged into an LTS release.
 
 Each LTS is supported for 1 year from its release date. During the supported lifetime of an LTS release, Armory ships patch releases for the LTS that include improvements like CVE remediation, bug fixes, and performance improvements.
 
 <!--
 
-## Different Armory Release Types
+## Different Armory Enterprise Release Types
 
-Armory is based off OSS's (Open Source Spinnaker) [release cadence](https://www.spinnaker.io/community/releases/release-cadence), in which we extend OSS with Armory features. We provide a few different release types.
+Armory Enterprise is based off open source Spinnaker's [release cadence](https://www.spinnaker.io/community/releases/release-cadence), in which we extend Spinnaker features. We provide a few different release types.
 
 | Release Type | Description                                       |
 | ------------ | ------------------------------------------------- |
 | `stable`     | Stable release for use in production environments |
-| `rc`         | Latest Armory + OSS release candidates            |
-| `ossedge`    | OSS nightly builds (_untested_)                   |
-| `edge`       | Armory nightly + OSS nightly builds (_untested_)  |
+| `rc`         | Latest Armory Enterprise + Spinnaker release candidates            |
+| `ossedge`    | Spinnaker nightly builds (_untested_)                   |
+| `edge`       | Armory Enterprise nightly + Spinnaker nightly builds (_untested_)  |
 
 
-## Understanding Armory + Open Source Spinnaker Releases
+## Understanding Armory Enterprise and open source Spinnaker releases
 ### Stable Releases
+>Note: Open source Spinnaker is abbreviated as OSS
+
 ```yml
 $ hal version list
 ...
- - 2.2.0 (OSS Release 1.11.9):
+ - 2.2.0 (Spinnaker Release 1.11.9):
    Changelog: https://docs.armory.io/release-notes/armoryspinnaker_v2.2.0/
    Published: Mon Feb 25 04:58:47 GMT 2019
    (Requires Halyard >= 1.2.0)
- - 2.3.0 (OSS Release 1.12.x):
+ - 2.3.0 (Spinnaker Release 1.12.x):
    Changelog: https://docs.armory.io/release-notes/armoryspinnaker_v2.3.0/
    Published: Thu Mar 28 03:44:19 GMT 2019
    (Requires Halyard >= 1.2.0)
@@ -64,11 +66,11 @@ $ hal version list
 **Stable** releases have been tested by Armory. Most of our customers will be using them.
 
 We use [semantic versioning](https://semver.org/) for tagging, e.g. `12.3.4`.
-- MAJOR versions correspond to any major Armory platform changes or breaking OSS changes.
-- MINOR versions correspond to a new OSS release branch.
-- PATCH versions are reserved for minor changes in the same OSS branch.
+- MAJOR versions correspond to any major Armory platform changes or breaking open source changes.
+- MINOR versions correspond to a new open source release branch.
+- PATCH versions are reserved for minor changes in the same open source branch.
 
-| Armory Release | OSS Release Branch |
+| Armory Enterprise Release | Spinnaker Release Branch |
 | -------------- | -----------        |
 | 2.1.x          | 1.10.x             |
 | 2.2.x          | 1.11.x             |
@@ -95,12 +97,12 @@ $ hal version list --release=rc
    Published: Mon Apr 01 16:53:33 GMT 2019
    (Requires Halyard >= 1.2.0)
 ```
-An **rc** release reflects the latest from Armory and OSS release branches.
+An **rc** release reflects the latest from Armory Enterprise and Spinnaker release branches.
 - These versions are used internally at Armory.
 - A few customers may be using it, but we do not recommend using it in production.
 
 <!--
-- A **next rc** will be created from OSS `1.10.*`
+- A **next rc** will be created from Spinnaker `1.10.*`
   + This version has not been tested at Armory, only built and served.
   + A few customers may be using it, but we do not recommend using it in production.
 
@@ -108,7 +110,7 @@ An **rc** release reflects the latest from Armory and OSS release branches.
 **RC**s also follow semantic versioning with the format like `1.2.3-rc202`.
 
 
-### OSS Edge Releases
+### Spinnaker Edge Releases
 ```yml
 $ hal version list --release=ossedge
 ...
@@ -117,7 +119,7 @@ $ hal version list --release=ossedge
    Published: Wed Apr 03 18:34:18 GMT 2019
    (Requires Halyard >= 1.2.0)
 ```
-An **ossedge** release is created from OSS `master`.
+An **ossedge** release is created from Spinnaker `master`.
 - This version has not been tested at Armory, only built and served.
 - This is mainly being used for development work by our customers and **should not be** used in production or any critical workloads.
 
@@ -139,7 +141,7 @@ bash-4.4$ hal version list --release=edge
    Changelog: https://docs.armory.io/release-notes
    Published: Thu Nov 01 20:10:29 GMT 2018
 ```
-An **edge** release is created from OSS `master` and Armory `master`.
+An **edge** release is created from Spinnaker `master` and Armory `master`.
 - These aren't actively maintained, but can be built when a customer has need for it.
 - This is mainly being used for development work by our customers and **should not be** used in production or any critical workloads.
 

@@ -35,9 +35,9 @@ spec:
         serviceIntegrations:
           - name: datadog
             enabled:
-            accounts: 
+            accounts:
             - name: test-account
-              endpoint: 
+              endpoint:
                 baseUrl: <some-URL> # The base URL to the Datadog server.
               apiKey: <encrypted-secret> # Your org’s unique Datadog API key. See https://app.datadoghq.com/account/settings#api. Supports encrypted value.
               applicationKey: <encrypted-secret> #Your Datadog application key. See https://app.datadoghq.com/account/settings#api. Supports encrypted value.
@@ -50,7 +50,7 @@ spec:
             accounts:
             - name: my-google-account
               project: my-project-id       # The Google Cloud Platform project the Canary service uses to consume GCS and Stackdriver.
-              jsonPath: gcp-sa.json        # File name of a JSON service account that Spinnaker uses for credentials. This is only needed if Spinnaker is not deployed on a Google Compute Engine VM or needs permissions not afforded to the VM it is running on. See https://cloud.google.com/compute/docs/access/service-accounts for more information. This field supports using "encryptedFile" secret references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/).
+              jsonPath: gcp-sa.json        # File name of a JSON service account that Spinnaker uses for credentials. This is only needed if Spinnaker is not deployed on a Google Compute Engine VM or needs permissions not afforded to the VM it is running on. See https://cloud.google.com/compute/docs/access/service-accounts for more information. This field supports using "encryptedFile" secret references.
               bucket: my-bucket            # The name of a storage bucket that your specified account has access to. If you specify a globally unique bucket name that doesn't exist, Kayenta creates that bucket.
               bucketLocation: us-central-1 # Required if the bucket you specify doesn't exist. In that case, the bucket gets created in that location. See https://cloud.google.com/storage/docs/managing-buckets#manage-class-location.
               rootFolder: kayenta          # The root folder in the chosen bucket to place all of the Canary service's persistent data in (Default: kayenta).

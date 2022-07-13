@@ -8,7 +8,7 @@ description: Add a Cloud Foundry account as a cloud provider deployment target i
 
 This document assumes the following:
 
-* You are familiar with how Spinnaker uses Cloud Foundry as a deployment target. See the {{< linkWithTitle "cloud-foundry-concepts.md" >}} guide for details.
+* You are familiar with how Spinnaker uses Cloud Foundry as a deployment target. See the {{< linkWithTitle "cloud-foundry-concept.md" >}} guide for details.
 * You have access to a running Spinnaker instance.
 * You use the Armory Operator or the Spinnaker Operator for Kubernetes to configure your Spinnaker instance.
 * You have a valid Cloud Foundry account with at least `Space Developer` access to one or more spaces.

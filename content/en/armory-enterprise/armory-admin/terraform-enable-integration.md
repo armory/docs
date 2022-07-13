@@ -181,7 +181,7 @@ spec:
         github:
           accounts:
           - name: github-for-terraform
-            token: <Your GitHub PAT> # GitHub personal access token # PAT GitHub token. This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+            token: <Your GitHub PAT> # GitHub personal access token # PAT GitHub token. This field supports "encrypted" field references
           enabled: true
 ```
 
@@ -227,7 +227,7 @@ spec:
           accounts:
           - name: bitbucket-for-terraform
             username: <Your Bitbucket username>
-            password: <Your Bitbucket password> # This field supports "encrypted" field references (https://docs.armory.io/spinnaker-install-admin-guides/secrets/)
+            password: <Your Bitbucket password> # This field supports "encrypted" field references
 ```
 
 **Halyard**
@@ -356,9 +356,9 @@ After you finish your Terraform integration configuration, perform the following
 
 ## Configure Terraform for your cloud provider
 
-Since the Terraform Integration executes all Terraform commands against the `terraform` binary, all methods of configuring authentication are supported for your desired cloud provider. This section describes how to accomplish this for various cloud providers.
+>The Terraform Integration is cloud provider agnostic. Terraform commands execute against the terraform binary. All methods of configuring authentication are supported as per Terraform's compatibility and capabilities.
 
-You can also configure a profile that grants access to resources, like AWS.
+You can also configure a profile that grants access to resources such as AWS.
 
 ## Named Profiles
 
@@ -366,14 +366,14 @@ A Named Profile gives users the ability to reference certain kinds of external s
 
 ### Types of credentials
 
-The Terraform integration supports multiple types of credentials for Named Profiles to handle the various use cases that you can use the Terraform integration for:
+The Terraform integration supports multiple types of credentials for Named Profiles:
 
 * AWS
 * SSH
 * Static
 * Terraform remote backend
 
-If you don't see a credential that suits your use case, [let us know](https://feedback.armory.io/feature-requests)!
+If you’re not using AWS, you should configure one of the other credential types in your Named Profile. If you don't see a credential that suits your use case, [submit a feature request](https://feedback.armory.io/feature-requests).
 
 For information about how to configure a Profile, see [Configuring a profile](#configuring-a-named-profile).
 

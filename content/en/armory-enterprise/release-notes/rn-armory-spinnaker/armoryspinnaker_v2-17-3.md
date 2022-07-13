@@ -1,5 +1,5 @@
 ---
-title: v2.17.3 Armory Release (OSS Release 1.17.6)
+title: v2.17.3 Armory Enterprise Release (Spinnaker Release 1.17.6)
 toc_hide: true
 date: 2020-01-14
 version: 02.17.03
@@ -30,7 +30,7 @@ This release includes the following:
 
 ###  Spinnaker Community Contributions
 
-This release also includes a number of fixes submitted to OSS Spinnaker; additional details can be found below.
+This release also includes a number of fixes submitted to Spinnaker; additional details can be found below.
 
 <br>
 

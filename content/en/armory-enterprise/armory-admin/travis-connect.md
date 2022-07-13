@@ -39,7 +39,7 @@ hal config ci travis enable
 <!-- This got carried over from the old KB article. Unlikely still needed but leaving here for posterity.
 ## Update `igor-local.yml` (Temporary Fix)
 
-This is currently a bug with OSS halyard; doing the above will cause Igor to
+This is currently a bug with open source Halyard; doing the above will cause Igor to
 go into a CrashLoopBackoff state.  The fix for this is to go into your
 `<profile>/profiles/` directory and add (or update, if you already have one)
 `igor-local.yml`.  Add this section:

@@ -1,6 +1,6 @@
 ---
 
-title: v2.17.0 Armory Release (OSS Release 1.17.1)
+title: v2.17.0 Armory Enterprise Release (Spinnaker Release 1.17.1)
 toc_hide: true
 date: 2019-11-14
 version: 02.17.00
@@ -402,7 +402,7 @@ See Spinnaker's release notes that are included in this release:
  - fix(core/presentation): Make all DOMPurify'd links open in a new window (#7511)
  - fix(ui): Type field missing for CLB detail view (#7504)
  - fix(bakeManifest/helm): rawOverrides option (#7514)
- - fix(deck): Show fail fast status code only if they are not pre-configured (#7512)
+ - fix(deck): Show fail fast status code only if they are not preconfigured (#7512)
  - fix(amazon/loadBalancer): Disable CLB deletion if instances exist (#7509)
  - fix(core/pipeline): fix Artifactory and Nexus trigger NPE These were throwing upon initial mount because 'error' wasn't defined.
  - refactor: Migrate user code to new validation message API

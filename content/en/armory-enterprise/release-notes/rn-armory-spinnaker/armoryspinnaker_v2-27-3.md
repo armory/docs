@@ -1,5 +1,5 @@
 ---
-title: v2.27.3 Armory Release (OSS Spinnaker™ v1.27.0)
+title: v2.27.3 Armory Enterprise Release (Spinnaker™ v1.27.0)
 toc_hide: true
 version: 02.27.03
 description: >
@@ -21,7 +21,6 @@ To install, upgrade, or configure Armory 2.27.3, use one of the following tools:
 Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
 
 ## Breaking changes
-<!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
@@ -40,20 +39,15 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "breaking-changes/bc-plug-version-lts-227.md" >}}
 
 ## Known issues
-<!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
 
 {{< include "known-issues/ki-deck-navbar.md" >}}
 {{< include "known-issues/ki-bake-var-file.md" >}}
 {{< include "known-issues/ki-artifact-binding-spel.md" >}}
 {{< include "known-issues/ki-dinghy-gh-notifications.md" >}}
+{{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
 
 ## Highlighted updates
-
-<!--
-Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
-- Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
-- Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
--->
 
 ### Cloud Foundry
 

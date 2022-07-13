@@ -677,7 +677,7 @@ spec:
         datadog:
           enabled: false
           api_key: abc # Your datadog API key.
-          app_key: abc # Your datadog app key. This is only required if you want Spinnaker to push pre-configured Spinnaker dashboards to your Datadog account.
+          app_key: abc # Your datadog app key. This is only required if you want Spinnaker to push preconfigured Spinnaker dashboards to your Datadog account.
           tags: #  Your datadog custom tags. Please delimit the KVP with colons i.e. app:test env:dev
           - tag1
         stackdriver:

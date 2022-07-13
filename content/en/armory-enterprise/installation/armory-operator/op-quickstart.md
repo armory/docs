@@ -14,6 +14,12 @@ The goal of this guide is to deploy Armory Enterprise with bare minimum configur
 
 {{% include "armory-operator/k8s-reqs.md" %}}
 
+Depending on your Kubernetes version, you may need to adjust the following
+instructions to use a support Operator version. The following table outlines
+the supported combinations of Kubernetes, Operator, and Armory Enterprise:
+
+{{< include "armory-operator/operator-compat-matrix.md" >}}
+
 ## Operator installation options
 
 The Operator has `basic` and `cluster` installation modes. The option you use depends on which namespace you want to deploy Armory Enterprise or Spinnaker to.
@@ -220,7 +226,7 @@ spec:
 1. Deploy from the `/spinnaker-operator/deploy/spinnaker/kustomize/` directory:
 
    ```bash
-   kubctl -n spinnaker-operator apply -k .
+   kubectl -n spinnaker-operator apply -k .
    ```
 
 1. You can watch the installation progress by executing:

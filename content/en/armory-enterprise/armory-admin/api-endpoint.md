@@ -394,7 +394,7 @@ hal backup create
 
 Next, configure Spinnaker's Deck service to use the Deck certificate and private key that you generated.
 
-> The Kubernetes secret engine does not work for encrypting secrets for the UI. Use another [secret engine]({{< ref "secrets.md#supported-secret-engines" >}}).
+> The Kubernetes secret engine does not work for encrypting secrets for the UI. 
 
 **Operator**
 
