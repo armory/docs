@@ -31,14 +31,14 @@ This shortcode is from https://github.com/haideralipunjabi/hugo-shortcodes/tree/
 {{</* github repo="armory-io/spinnaker-operator" file="/deploy/spinnaker/basic/SpinnakerService.yml" lang="yaml" options="" */>}}
 ```
 
-{{< github repo="armory-io/spinnaker-operator" file="/deploy/spinnaker/basic/SpinnakerService.yml" lang="yaml" options="" >}}
+{{</* github repo="armory-io/spinnaker-operator" file="/deploy/spinnaker/basic/SpinnakerService.yml" lang="yaml" options="" */>}}
 
 
 ## surround with collapsible panel
 
 <details><summary>Expand to see file</summary>
 
-{{< github repo="armory-io/spinnaker-operator" file="/deploy/spinnaker/basic/SpinnakerService.yml" lang="yaml" options="linenos=table" >}}
+{{</* github repo="armory-io/spinnaker-operator" file="/deploy/spinnaker/basic/SpinnakerService.yml" lang="yaml" options="linenos=table" */>}}
 </details>
 
 
