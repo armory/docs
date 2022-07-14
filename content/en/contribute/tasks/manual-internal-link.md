@@ -1,10 +1,10 @@
 ---
 title: "Manual Internal Link Example"
-draft: true
 manualLinkRelRef: "using-params.md"
 manualLinkTarget: "_blank"
 description: >
   Manual hyperlink example for a TOC entry  
+draft: true
 ---
 
-example of adding an internal link to the TOC
+Example of adding an internal link to the TOC

@@ -1,6 +1,5 @@
 ---
-title: "Markdown Examples"
-draft: true
+title: "Do Stuff in Markdown"
 description: >
   Headers, tables, lists, images
 ---
@@ -224,7 +223,5 @@ _The photo above of the Spruce Picea abies shoot with foliage buds: Bjørn Erik 
 
 {{< alert color="warning" title="Warning" >}}This is a warning with a title.{{< /alert >}}
 
-
-## Another Heading
 
 

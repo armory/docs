@@ -1,12 +1,15 @@
 ---
-title: "Tabs Examples"
-draft: true
+title: "Use the Custom Tabs Shortcode"
+linkTitle: Use Tabs Shortcode
+no_list: true
 description: >
-  Tabs examples
+  Examples of how to use the custom Tabs shortcode.
 ---
 
 ## Tabs
 <!-- Copied from github.com/kubernetes/website project, which has a Creative Commons Attribution 4.0 International license -->
+
+>This is not the same as the Tabs shortcode included with Docsy (which was created after Armory added its own Tabs shortcode).
 
 In a markdown page (`.md` file) on this site, you can add a tab set to display multiple flavors of a given solution.
 
@@ -132,21 +135,50 @@ Usage:
 
 Hugo doesn't render the tabs shortcodes when they are embedded in file in the `includes` directory.
 
->All the examples below are supposed to render incorrectly
+>**This examples is supposed to render incorrectly**
+
+```
+{{%/* include "include-tabs.md" */%}}
+```
 
 {{% include "include-tabs.md" %}}
 
+
 ## Tabs in a file in the leaf bundle
 
-{{< tabs name="tab_with_file_include2" >}}
+>**This examples is supposed to render incorrectly**
 
+```
+{{</* tabs name="tab_with_file_include2" */>}}
+{{</* tabbody name="Content File #1" include="example1" */>}}
+{{</* /tabbody */>}}
+{{</* tabbody name="Content File #2" include="example2" */>}}
+{{</* /tabbody */>}}
+{{</*tabbody name="JSON File" include="podtemplate.json" */>}}
+{{</* /tabbody */>}}
+{{</* tabbody name="File with Tabs" include="file-with-tabs.md" */>}}
+{{</* /tabbody */>}}
+{{</* /tabs */>}}
+```
+
+{{< tabs name="tab_with_file_include2" >}}
 {{< tabbody name="Content File #1" include="example1" />}}
 {{< tabbody name="Content File #2" include="example2" />}}
 {{< tabbody name="JSON File" include="podtemplate.json" />}}
 {{< tabbody name="File with Tabs" include="file-with-tabs.md" />}}
-
 {{< /tabs >}}
+
 
 ## Tabs in a partial
 
+>**This examples is supposed to render incorrectly**
+
+```
+{{/* partial "operator/op-install.html" . */}}
+```
+
 {{ partial "operator/op-install.html" . }}
+
+</br></br>
+</br></br>
+</br></br>

@@ -1,6 +1,5 @@
 ---
-title: "Mermaid Diagrams"
-draft: true
+title: "Create a Mermaid Diagram"
 ---
 
 

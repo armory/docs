@@ -1,7 +1,7 @@
 ---
 title: "Table from getCSV"
-draft: true
 description: "table from CSV shortcode"
+
 ---
 
 ## Table from CSV file

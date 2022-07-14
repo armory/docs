@@ -1,6 +1,6 @@
 ---
 title: "Display Single Gist That Contains Many Files"
-draft: true
+
 ---
 
 

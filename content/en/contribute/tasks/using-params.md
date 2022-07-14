@@ -1,8 +1,7 @@
 ---
-title: "Using Parameters"
-draft: true
+title: "Use Hugo Parameters"
 description: >
-  Add a parameter to `config.toml` and then use it in Markdown pages.
+  Add a parameter to Hugo's `config.toml` and then use it in Markdown pages.
 ---
 
 You can add a new global parameter to `config.toml` in the `[params]` section.
