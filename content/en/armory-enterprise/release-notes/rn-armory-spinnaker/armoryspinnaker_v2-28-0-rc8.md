@@ -1,10 +1,10 @@
 ---
-title: v2.28.0-rc8 Armory Release (OSS Spinnaker™ v1.28.0)
+title: v2.28.0 Armory Release (OSS Spinnaker™ v1.28.0)
 toc_hide: true
-version: 02.28.0rc8
+version: 02.28.0
 hidden: true
 description: >
-  Release notes for Armory Enterprise v2.28.0-rc8
+  Release notes for Armory Enterprise v2.28.0
 ---
 
 ## 2022/06/23 Release Notes
@@ -17,7 +17,7 @@ description: >
 
 ## Required Operator version
 
-To install, upgrade, or configure Armory 2.28.0-rc8, use one of the following tools:
+To install, upgrade, or configure Armory 2.28.0, use one of the following tools:
 
 - Armory Operator 1.6.0 or later
 
@@ -56,7 +56,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
 
 ## Highlighted updates
-  
+
 ### General Fixes
   * Added the ability to limit a specific pipeline from executing more than a certain number of instances in parallel by using a setting similar to the already available limitConcurrent setting.
   * Added support for cancelling Google Cloud Build Account.
@@ -70,10 +70,10 @@ EXECUTE defined as a potential permission type.
   * Prevent oauth2 redirect loops.
   * Transition restarted stages to NOT_STARTED so there is visual indication on Deck, and don't allow multiple queuing of the same restarted stage
   * Bring back template validation messages in Deck.
-  
+
 ### Maximum Concurrent Pipeline Executions
 Added support for max concurrent pipeline executions. If concurrent pipeline execution is enabled, pipelines will queue when the max concurrent pipeline executions is reached. Any queued pipelines will be allowed to run once the number of running pipeline executions drops below the max. If the max is set to 0, then pipelines will not queue.
-  
+
 ### Terraform Show Stage
 There is a new Terraform Show stage available as part of the Terraform Integration. This stage is the equivalent of running the terraform show command with Terraform. The JSON output from your planfile can be used in subsequent stages.
 
@@ -86,7 +86,7 @@ To use the stage, select Terraform for the stage type and Show as the action in 
   * Added an experimental API for storing and loading account credentials definitions from an external durable store such as a SQL database. Secrets can be referenced through the existing Kork SecretEngine API which will be fetched on demand. Initial support is for Kubernetes accounts given the lack of existing Kubernetes cluster federation standards compared to other cloud providers, though this API is made generic to allow for other cloud provider APIs to participate in this system.
   * To extend the memory feature, a boolean flag is introduced in the validateInstanceType.
   * Added a Fiat configuration option for the Account Management API in Clouddriver for listing which roles are allowed to manage accounts in the API.
-  
+
 ### Performance
  * Fix in Lambda to remove parallel streams to improve performance.
  * Refactor(artifacts/s3) - share the AmazonS3 client in S3ArtifactCredentials across downloads instead of constructing a new one for each download. There is likely a performance win from this, but the primary motivation was to make it easier to test.
