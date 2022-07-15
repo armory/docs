@@ -165,15 +165,8 @@ Armory recommends using the [plugin]({{< ref "policy-engine-plug-enable.md" >}})
 
 To migrate to the Policy Engine Plugin from the extension, perform the following steps:
 
-1. Turn off the Policy Engine extension. You cannot run both the extension and plugin at the same time. You must disable the extension project and then enable the plugin.
-   * **Halyard**: Remove the following snippet from `.hal/default/profiles/spinnaker-local.yml`:
-   ```yaml
-   armory:
-     opa:
-       enabled: true
-       url: <OPA Server URL>:<port>/v1
-   ```
-   * **Operator**:  Remove the `opa` blocks from the Front50 and Clouddriver sections of your `SpinnakerService` manifest:
+1. Turn off the Policy Engine extension. You cannot run both the extension and plugin at the same time. You must disable the extension project and then enable the plugin. Remove the `opa` blocks from the Front50 and Clouddriver sections of your `SpinnakerService` manifest:
+
    ```yaml
    apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
    kind: SpinnakerService
@@ -196,4 +189,4 @@ To migrate to the Policy Engine Plugin from the extension, perform the following
 
    > If you redeploy Armory Enterprise and apply these changes before you enable the Policy Engine Plugin, no policies get enforced.
 
-2. Enable the [Policy Engine Plugin]({{< ref "policy-engine-plug-enable" >}}).  If you have an existing OPA server with policies that you want to use, you can provide that OPA server in the plugin configuration. You do not need to create a new OPA server or migrate your policies. 
+2. Enable the [Policy Engine Plugin]({{< ref "policy-engine-plug-enable" >}}).  If you have an existing OPA server with policies that you want to use, you can provide that OPA server in the plugin configuration. You do not need to create a new OPA server or migrate your policies.

@@ -21,7 +21,7 @@ When managing roles for Spinnaker, keep the following in mind:
 
 To restrict which users can create applications in Spinnaker, perform the following steps:
 
-1. Add the line `auth.permissions.provider.application: aggregate` to `SpinnakerService` manifest under key `spec.spinnakerConfig.profiles.fiat` if you are using Operator to deploy Spinnaker, or to `fiat-local.yml` if you are using Halyard.
+1. Add the line `auth.permissions.provider.application: aggregate` to `SpinnakerService` manifest under key `spec.spinnakerConfig.profiles.fiat`.
 2. Add prefixes as a source:
 
     ```yaml
@@ -53,7 +53,7 @@ To restrict which users can create applications in Spinnaker, perform the follow
    spec:
      spinnakerConfig:  
        profiles:
-         fiat: # Below section maps to fiat-local.yml if using Halyard
+         fiat:
            # Enables Fiat to read from new sources.
            auth.permissions.provider.application: aggregate
            # Sets `prefix` as one of these new sources
@@ -92,7 +92,7 @@ To restrict which users can create applications in Spinnaker, perform the follow
    spec:
      spinnakerConfig:  
        profiles:
-         fiat: # Below section maps to fiat-local.yml if using Halyard
+         fiat:
            # Add CREATE as a permission
            fiat.restrictApplicationCreation: true
            auth.permissions.provider.application: aggregate
@@ -115,7 +115,7 @@ To restrict which users can create applications in Spinnaker, perform the follow
 
    The above example assigns CREATE permission to users with the `role-one` role. Users without the `role-one` role cannot create any applications in Spinnaker.
 
-5. Apply your configuration changes to Spinnaker by running the following command: `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if you are using Operator, or `hal deploy apply` if you are using Halyard.
+5. Apply your configuration changes to Spinnaker by running the following command: `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>`.
 
 The following screenshot shows what happens when a user without sufficient permissions attempts to create an application in Deck, Spinnaker's UI:
 ![No CREATE Permission](/images/authz_create_permission.png)

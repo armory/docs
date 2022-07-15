@@ -64,9 +64,6 @@ this:
 
 *Replace the account name `github_user` with the string you want to use to identify this GitHub credential.*
 
-{{< tabs name="add" >}}
-{{% tabbody name="Operator" %}}
-
 Add the following snippet to `SpinnakerService` manifest:
 
 ```yaml
@@ -99,21 +96,6 @@ Don't forget to apply your changes:
 kubectl -n >spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
 
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-```bash
-GITHUB_ACCOUNT_NAME=github_user
-hal config artifact github account add ${GITHUB_ACCOUNT_NAME} \
-    --token # you'll be prompted for this interactively
-```
-
-Detailed information on all command line options can be found [here](https://www.spinnaker.io/reference/halyard/commands/#hal-config-artifact-github-account-add).
-
-Don't forget to run `hal deploy apply` to apply your changes.
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 ## Using the GitHub credential
 

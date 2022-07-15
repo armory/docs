@@ -7,7 +7,7 @@ description: >
 
 ## Overview
 
-Armory supports using AWS Lambda as a deployment target for your apps and includes a variety of Lambda specific stages. Enabling the full suite of features for Lambda support requires updating the configurations for core Spinnaker services and adding the Lambda Plugin. Depending on how you manage Spinnaker, this requires either Operator or Halyard config updates.
+Armory supports using AWS Lambda as a deployment target for your apps and includes a variety of Lambda specific stages. Enabling the full suite of features for Lambda support requires updating the configurations for core Spinnaker services and adding the Lambda Plugin. Depending on how you manage Spinnaker, this requires Operator config updates.
 
 ## Requirements
 
@@ -20,10 +20,6 @@ If you are using the [Armory Operator]({{< ref "armory-operator" >}}), check out
 ### Enabling AWS Lambda
 
 First, enable Lambda as a deployment target for your apps by updating the settings for Clouddriver and the UI (Deck).
-
-{{< tabs name="enable" >}}
-{{% tabbody name="Operator" %}}
-
 
 In the `spinnakerservice` manifest, update the `spinnakerConfig` section to include the properties for Lambda:
 
@@ -50,46 +46,11 @@ spec:
             assumeRole: role/spinnaker   # (Required)
 ```
 
-{{% /tabbody %}}
-
-{{% tabbody name="Halyard" %}}
-
-Enabling Lambda support using Halyard requires two configuration changes, one in `clouddriver-local.yml` and one in `settings-local.js`:
-
-`.hal/default/profiles/clouddriver-local.yml`:
-
-```yaml
-aws:
-  features:
-    lambda:
-      enabled: true
-  accounts:
-  - name: aws-dev               # NOTE: This merge is Index based - so if you do not want to overwrite .hal/config you must create another account in the list
-    lambdaEnabled: true
-    accountId: "xxxxxxxx"       # (Required)
-    assumeRole: role/spinnaker  # (Required)
-```
-
-`.hal/default/profiles/settings-local.js`:
-
-```
-window.spinnakerSettings.feature.functions = true
-```
-
-After you make the two changes, run `hal deploy apply` to apply the changes.
-
-{{% /tabbody %}}
-{{< /tabs >}}
-
-
 ### Adding AWS Lambda Plugin
 
 Next, add the Lambda Plugin to include the Lambda stages (Delete, Deploy, Invoke, and Route) in the UI.
 
-{{< tabs name="enable-plugin">}}
-{{% tabbody name="Operator" %}}
-
-```
+```yaml
 #-----------------------------------------------------------------------------------------------------------------
 # Example configuration for adding AWS Lambda plugin to spinnaker.
 #
@@ -130,69 +91,15 @@ spec:
                 url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json
 ```
 
-{{% /tabbody %}}
-
-{{% tabbody name="Halyard" %}}
-
-`.hal/default/profiles/gate-local.yml`:
-
-```yaml
-spinnaker:
-  extensibility:
-    deck-proxy:
-      enabled: true
-      plugins:
-        Aws.LambdaDeploymentPlugin:
-          enabled: true
-          version: 1.0.1
-    repositories:
-      awsLambdaDeploymentPluginRepo:
-        url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json
-```
-
-`.hal/default/profiles/orca-local.yml`:
-
-```yaml
-spinnaker:
-  extensibility:
-    plugins:
-      Aws.LambdaDeploymentPlugin:
-        enabled: true
-        version: 1.0.1
-        # extensions:
-        #   Aws.LambdaDeploymentStage:
-        #     enabled: true
-    repositories:
-      awsLambdaDeploymentPluginRepo:
-        id: awsLambdaDeploymentPluginRepo
-        url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json
-```
-
-{{% /tabbody %}}
-{{% /tabs %}}
-
 ### Applying config updates
 
-Once you make the required config changes, apply them by running the command for either Operator or Halyard:
-
-{{< tabs name="apply-changes">}}
-{{% tabbody name="Operator" %}}
+Once you make the required config changes, apply them by running the command for Operator:
 
 Assuming the Armory instance lives in the `spinnaker` namespace, run the following command to apply the changes:
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
-{{% /tabbody %}}
-
-{{% tabbody name="Halyard" %}}
-
-```bash
-hal deploy apply
-```
-
-{{% /tabbody %}}
-{{% /tabs %}}
 
 ## Known issues
 

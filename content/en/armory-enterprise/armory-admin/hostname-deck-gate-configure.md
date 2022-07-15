@@ -32,8 +32,6 @@ at a sub-path. We recommend configuring the Gate microservice so that it is serv
 
 ## Configure Spinnaker
 
-{{< tabs name="approach">}}
-{{% tabbody name="Operator" %}}
 
 1. Set Gate's server servlet to be aware of its context path at `/api/v1` in your `SpinnakerService` config.
 
@@ -75,59 +73,4 @@ at a sub-path. We recommend configuring the Gate microservice so that it is serv
 
 1. Deploy your `SpinnakerService` config using either `kubectl` or `kustomize` command syntax
 
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
 
-1. Set Gate's server servlet to be aware of its context path at `/api/v1` by creating a file named `gate-local.yml`
-in the `profiles` directory.
-
-   ```bash
-   # Make the profiles directory if it doesn't already exist
-   mkdir /home/spinnaker/.hal/default/profiles
-   ```
-
-   ```bash
-   # Make the gate-local.yml file in the profile directory
-   tee /home/spinnaker/.hal/default/profiles/gate-local.yml <<-'EOF'
-   server:
-     servlet:
-       context-path: /api/v1
-   EOF
-   ```
-
-1. Set Gate's health endpoint to `/api/v1/health` by creating a file named `gate.yml` in the `service-settings` directory.
-
-   ```bash
-   # Make the service-settings directory if it doesn't already exist
-
-   mkdir /home/spinnaker/.hal/default/service-settings
-   ```
-
-   ```bash
-   # Make the gate-local.yml file in the profile directory
-
-   tee -a /home/spinnaker/.hal/default/profiles/gate-local.yml <<-'EOF'
-   healthEndpoint: /api/v1/health
-   EOF
-   ```
-
-1. Update Deck's URL using Halyard command
-
-   ```bash
-   hal config security ui edit --override-base-url https://spinnaker.example.com
-   ```
-
-1. Update Gate's URL using Halyard command
-
-   ```bash
-   hal config security api edit --override-base-url https://spinnaker.example.com/api/v1
-   ```
-
-1. Apply the Spinnaker Configuration changes using Halyard command
-
-   ```bash
-   hal deploy apply
-   ```
-
-{{% /tabbody %}}
-{{< /tabs >}}

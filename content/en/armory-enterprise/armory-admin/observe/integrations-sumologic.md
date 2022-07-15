@@ -5,7 +5,7 @@ aliases:
   - /docs/spinnaker-install-admin-guides/sumologic-dashboard/
   - /armory-enterprise/armory-admin/integrations-sumologic/
 description:
-  Learn how to integrate a Sumo Logic Dashboard using Halyard or the Armory Operator.
+  Learn how to integrate a Sumo Logic Dashboard using the Armory Operator.
 ---
 
 ## Advantages to integrating Sumo Logic
@@ -50,7 +50,6 @@ Configure an HTTP Source. And get a copy of the endpoint URL from your SumoLogic
 
 ### Collection Step 2: Modify Spinnaker configuration to export logs to SumoLogic**
 
-**Operator**
 
 Add to the `SpinnakerService` manifest the following snippet:
 
@@ -70,20 +69,10 @@ spec:
             url: [insert your custom HTTP endpoint] #e.g. https://endpoint1.collection.us1.sumologic.com/...
 ```
 
-**Halyard**
-
-Add (and create if necessary) to `.hal/default/profiles/echo-local.yml` the following:
-```yaml
-rest:
-  enabled: true
-  endpoints:
-  - wrap: false
-    url: [insert your custom HTTP endpoint] #e.g. https://endpoint1.collection.us1.sumologic.com/...
-```
 
 ### Collection Step 3: Apply changes**
 
-Run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if using the Operator, or `hal deploy apply` if using Halyard, and wait for the services to restart. Check SumoLogic console for ingestion of data.
+Run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>`, and wait for the services to restart. Check SumoLogic console for ingestion of data.
 
 ## Install the Spinnaker app and view the Dashboards
 

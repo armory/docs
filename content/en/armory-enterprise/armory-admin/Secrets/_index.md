@@ -5,8 +5,6 @@ description: >
   This section contains guides for using secrets stored outside of Spinnaker in products such as Hashicorp Vault, Google Cloud Storage, AWS S3, and the AWS Secrets Manager.
 aliases:
   - /docs/spinnaker-install-admin-guides/secrets/
-  - /docs/spinnaker/halyard_secrets/
-  - /docs/spinnaker/halyard-secrets/
   - /docs/spinnaker-install-admin-guides/secrets/secrets/
 ---
 

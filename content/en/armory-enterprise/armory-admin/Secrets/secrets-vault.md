@@ -50,13 +50,9 @@ spec:
 
 ### 2. Token authentication
 
-This method is not recommended, but it is supported if you choose to use it. We recommend this for testing and development purposes only. For token authentication, you need to have a `VAULT_TOKEN` environment variable set in the Halyard container of the Operator pod (or in the Halyard machine if using plain Halyard) as well as each of the services.
+This method is not recommended, but it is supported if you choose to use it. Armory recommends this for testing and development purposes only. For token authentication, you need to have a `VAULT_TOKEN` environment variable set in the Halyard container of the Operator pod as well as each of the services.
 
 Use the following configuration to enable Vault secrets using token auth:
-
-{{< tabs name="token" >}}
-{{% tabbody name="Operator" %}}
-
 
 Add the following snippet to the `SpinnakerService` manifest:
 
@@ -76,9 +72,6 @@ spec:
             url: <Vault server URL>:<port if required> # URL of the Vault endpoint from Spinnaker services.
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
-
 ## Configuring the Operator to use Vault secrets
 
 If you are using the Armory Operator, set up a [custom Halyard configuration]({{< ref "op-advanced-config" >}}) with this content:
@@ -93,7 +86,7 @@ secrets:
     path: <k8s cluster path>
 ```
 
-Once you've mounted your `ConfigMap` to the `spinnaker-operator` deployment, it will restart the Halyard container with your Vault config.
+Once you've mounted your `ConfigMap` to the `spinnaker-operator` deployment, it restarts the Halyard container with your Vault config.
 
 ## Storing secrets
 To store a file, simply prepend the file path with `@`. It accepts relative paths but cannot resolve `~`:
