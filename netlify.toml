@@ -110,27 +110,20 @@
   from = "/armory-cdaas/*"
   to = "/cd-as-a-service/"
 
-# https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
 package = "@netlify/plugin-sitemap"
 
   [plugins.inputs]
   buildDir = "public"
   # make sure you add a comma after each entry in the exclude list except on the last one
+  # exclude everything in archive site
   exclude =[
-    './public/armory-enterprise/plugin-guide/plugin-appname/',
-    './public/armory-enterprise/plugin-guide/plugin-external-account/',
-    './public/armory-enterprise/plugin-guide/plugin-iam-authentication/',
-    './public/armory-enterprise/feature-status/deprecations/pacrd-deprecation/',
-    './public/armory-enterprise/installation/deployment-reg/',
-    './public/managed-spin',
-    './public/contribute'
+    './public/**/**'
   ]
   # append missing trailing slash to prettyURL
   trailingSlash = true
   changeFreq = "weekly"
   priority = 0.5
-
 
 # headers  https://docs.netlify.com/routing/headers/#syntax-for-the-headers-file
 # https://cloud-armory.slack.com/archives/CH4RVCCTS/p1608572781420500

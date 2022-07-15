@@ -1,6 +1,2 @@
 User-agent: *
-
-{{range .Pages}}
-Disallow: /docs/plugin-guide/plugin-appname/
-Disallow: /docs/plugin-guide/plugin-policy-engine/
-{{end}}
+Disallow: /
