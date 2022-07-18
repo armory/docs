@@ -87,6 +87,9 @@ To use the stage, select Terraform for the stage type and Show as the action in 
   * To extend the memory feature, a boolean flag is introduced in the validateInstanceType.
   * Added a Fiat configuration option for the Account Management API in Clouddriver for listing which roles are allowed to manage accounts in the API.
 
+### Launch Templates
+* Randall to add a blurb here
+
 ### Performance
  * Fix in Lambda to remove parallel streams to improve performance.
  * Refactor(artifacts/s3) - share the AmazonS3 client in S3ArtifactCredentials across downloads instead of constructing a new one for each download. There is likely a performance win from this, but the primary motivation was to make it easier to test.
