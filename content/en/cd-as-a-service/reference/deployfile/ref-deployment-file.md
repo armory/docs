@@ -54,6 +54,21 @@ armory template kubernetes [template-type] > deployment-template.yaml
 
 Provide a descriptive name for your application so that you can identify it when viewing the status of your deployment in the Deployments UI and other locations.
 
+### `deploymentConfig.`
+
+This config block is optional. If included, this configuration applies to all targets.
+
+```yaml
+deploymentConfig:
+  timeout:
+    unit: <seconds|minutes|hours>
+    duration: <integer>
+```
+
+- `timeout`: (Required is section is included) The section specifies the amount of time to wait for pods to be ready before cancelling the deployment.
+   - `unit`: (Required) Set to `seconds`, `minutes` or `hours` to indicate what `duration` refers to.
+   - `duration`: (Required) Integer amount of time to wait
+
 ### `targets.`
 
 This config block is where you define where and how you want to deploy an app. You can specify multiple targets. Provide unique descriptive names for each environment to which you are deploying.
