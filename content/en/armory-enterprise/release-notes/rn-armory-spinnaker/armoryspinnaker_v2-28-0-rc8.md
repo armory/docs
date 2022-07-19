@@ -11,10 +11,6 @@ description: >
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-## Disclaimer
-
-{{< include "lts-beta.md" >}}
-
 ## Required Operator version
 
 To install, upgrade, or configure Armory 2.28.0, use one of the following tools:
@@ -44,8 +40,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "breaking-changes/bc-plug-version-lts-228.md" >}}
 
 ## Known issues
-
-* Clicking the "Create Server Group" button does not work for an AWS provider.
 
 {{< include "known-issues/ki-bake-var-file.md" >}}
 
