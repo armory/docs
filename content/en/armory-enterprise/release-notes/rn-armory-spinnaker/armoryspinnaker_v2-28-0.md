@@ -29,7 +29,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 **Impact**
 
-With 2.28 of spinnaker, we’ve updated the kubectl binary to a 1.20 release.  You may have potential caching issues as a result due to certain resources in K8s being removed and/or no longer supported.  It’s recommended to look for failures in your log files and exclude resources that don’t match your target cluster.  For example, adding “PodPreset” to the “omitKinds” on your K8s account configs would cause spinnaker to skip trying to cache resources that no longer be able to be cached in newer kubernetes releases.
+With 2.28 of Spinnaker, we’ve updated the kubectl binary to a 1.20 release.  You may have potential caching issues as a result due to certain resources in K8s being removed and/or no longer supported.  It’s recommended to look for failures in your log files and exclude resources that don’t match your target cluster.  For example, adding “PodPreset” to the “omitKinds” on your K8s account configs would cause Spinnaker to skip trying to cache resources that no longer be able to be cached in newer kubernetes releases.
 
 
 **Introduced in**: Armory CD 2.28.0
