@@ -58,6 +58,8 @@ Provide a descriptive name for your application so that you can identify it when
 
 This config block is optional. If included, this configuration applies to all targets.
 
+A deployment times out if the pods for your application fail to be in ready state in 30 minutes. If you want to change the default, include this section.
+
 ```yaml
 deploymentConfig:
   timeout:
