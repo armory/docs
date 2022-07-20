@@ -32,7 +32,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 With 2.28 of spinnaker, we’ve updated the kubectl binary to a 1.20 release.  You may have potential caching issues as a result due to certain resources in K8s being removed and/or no longer supported.  It’s recommended to look for failures in your log files and exclude resources that don’t match your target cluster.  For example, adding “PodPreset” to the “omitKinds” on your K8s account configs would cause spinnaker to skip trying to cache resources that no longer be able to be cached in newer kubernetes releases.
 
 
-**Introduced in**: Armory 2.28.0
+**Introduced in**: Armory CD 2.28.0
 
 ### Pipelines as Code Slack notifications stop working
 
@@ -44,7 +44,7 @@ After upgrading to 2.27.x, your Pipelines as Code Slack notifications may stop w
 
 See the [Dinghy Slack Notifications not working](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010573&sys_kb_id=c0befa03dbd2811079f53ec8f496192a&spa=1) KB article for the Hotfix.
 
-**Introduced in**: Armory 2.27.0
+**Introduced in**: Armory CD 2.27.0
 
 ### Java 11.0.11+, TLS 1.1 communication failure
 
@@ -56,9 +56,9 @@ Oracle released Java 11.0.11 in April of 2021. Java 11.0.11 dropped support for 
 
 **Impact**
 
-Any services running under Java 11.0.11+ **and** using TLSv1.1 will encounter a communication failure. For example, you will see a communication failure between an Armory Enterprise service running under Java 11.0.1 and MySQL 5.7 if the MySQL driver is using TLSv1.1.
+Any services running under Java 11.0.11+ **and** using TLSv1.1 will encounter a communication failure. For example, you will see a communication failure between an Armory CD service running under Java 11.0.1 and MySQL 5.7 if the MySQL driver is using TLSv1.1.
 
-The version of Java depends on the version used by the Docker container's OS. Most Armory Enterprise services are using Alpine 3.11 or 3.12, which **does not** use Java 11.0.11. However, Alpine 3.11 is end-of-life in November of 2021, and 3.12 is end-of-life in May of 2022. There is no guarantee that Java 11.0.11+ won’t be added to those container images by some other manner. **You should modify your TLSv1.1 environment now** so you don't encounter communication failures.
+The version of Java depends on the version used by the Docker container's OS. Most Armory CD services are using Alpine 3.11 or 3.12, which **does not** use Java 11.0.11. However, Alpine 3.11 is end-of-life in November of 2021, and 3.12 is end-of-life in May of 2022. There is no guarantee that Java 11.0.11+ won’t be added to those container images by some other manner. **You should modify your TLSv1.1 environment now** so you don't encounter communication failures.
 
 **Fix**
 
@@ -74,14 +74,14 @@ Choose the option that best fits your environment.
    ?enabledTLSProtocols=TLSv1.2
    ```
 
-   Note that this only fixes communication between Armory Enterprise and MySQL.
+   Note that this only fixes communication between Armory CD and MySQL.
 
    See [MySQL communication failure when using TSL1.1](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010376) for more information.
 
 
 ### Kubernetes version for deployment targets
 
-Armory Enterprise 2.26 no longer supports Kubernetes deployment targets prior to version 1.16.  
+Armory CD 2.26 no longer supports Kubernetes deployment targets prior to version 1.16.  
 
 **Impact**
 
@@ -112,7 +112,7 @@ If you are affected by this change, perform the following tasks to update your a
 - Upgrade the Kubernetes clusters that you are trying to deploy to. They must run version 1.16 or higher.
 - If you have manifest files using deprecated APIs, update them to use newer APIs. For more information on which APIs are deprecated in each Kubernetes version and how to migrate, see the [Kubernetes Deprecated API Migration Guide](https://kubernetes.io/docs/reference/using-api/deprecation-guide/).
 
-**Introduced in**: Armory 2.26.0
+**Introduced in**: Armory CD 2.26.0
 
 ### Kubernetes infrastructure in the UI
 
@@ -132,7 +132,7 @@ Whether or not these actions are available in the UI is controlled by the follow
 window.spinnakerSettings.kubernetesAdHocInfraWritesEnabled = <boolean>;
 ```
 
-This setting does not completely prevent users from modifying Kubernetes infrastructure through Armory Enterprise. To do so, you must use the Policy Engine and write policies using the `spinnaker.http.authz` package.
+This setting does not completely prevent users from modifying Kubernetes infrastructure through Armory CD. To do so, you must use the Policy Engine and write policies using the `spinnaker.http.authz` package.
 
 If you use the Policy Engine to control which user roles can see the UI actions and be able to use them, you must set this property to `true`. Setting the value to `false` hides the buttons for all users regardless of whether you grant specific users access to the buttons through the Policy Engine.
 
@@ -148,15 +148,15 @@ If the application includes Kubernetes and other providers, the following applie
 - When set to `true`, this property causes the UI to function as it did in previous releases. This allows people to manually create and delete Kubernetes infrastructure from the UI. Users can continue to select whether they want to create Kubernetes or other infrastructure in the UI.
 - When set to `false`, this property causes Kubernetes to be unavailable as an option when trying to modify infrastructure from the UI. Users can still make changes to infrastructure for the application from cloud providers, such as AWS, but not Kubernetes.
 
-**Introduced in**: Armory 2.26.0
+**Introduced in**: Armory CD 2.26.0
 
 ### Halyard deprecation
 
-Halyard is no longer supported for installing Armory Enterprise 2.27.0 and later. Use the Operator. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
+Halyard is no longer supported for installing Armory CD 2.27.0 and later. Use the Operator. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
 
 #### Plugin compatibility
 
-Due to changes in the underlying services, older versions of some plugins may not work with Armory Enterprise 2.28.x or later.
+Due to changes in the underlying services, older versions of some plugins may not work with Armory CD 2.28.x or later.
 
 The following table lists the plugins and their required minimum version:
 
@@ -191,13 +191,13 @@ kubernetes:
 
 This setting only binds the version when the tag is missing, such as `image: nginx` without a version number.
 
-**Affected versions**: 2.26.x and later
+**Affected versions**: Armory CD 2.26.x and later
 
 ### Pipelines as Code GitHub comments
 
 There is a known issue where Pipelines as Code can generate hundreds of comments in a GitHub Pull Request (PR) when updates are made, such as when a module that is used by multiple `dinghyfiles` gets changed. These comments may prevent the GitHub UI from loading or related API calls may lead to rate limiting.
 
-**Affected versions**: 2.26.x and later
+**Affected versions**: Armory CD 2.26.x and later
 
 **Workaround**:
 
@@ -205,19 +205,16 @@ You can either manually resolve the comments so that you can merge any PRs or tu
 
 For information about about how to disable this functionality, see [GitHub Notifications]({{< ref "dinghy-enable#github-notifications" >}}).
 
-<!-- armory-admin/dinghy-enable also has a warning in the github notifications sectoin -->
+<!-- armory-admin/dinghy-enable also has a warning in the github notifications section -->
 
 ### Secrets do not work with Spring Cloud Config
 
-If you enable [Spring Cloud Config](https://spring.io/projects/spring-cloud-config)
-all the properties
+If you enable [Spring Cloud Config](https://spring.io/projects/spring-cloud-config), all the properties
 (e.g. [Docker](https://github.com/spinnaker/clouddriver/blob/1d442d40e1a1eac851288fd1d45e7f19177896f9/clouddriver-docker/src/main/java/com/netflix/spinnaker/config/DockerRegistryConfiguration.java#L58))
 using [Secrets]({{< ref "armory-enterprise/armory-admin/secrets" >}})
 are not resolved when Spring Cloud tries to refresh.
 
-**Affected versions**:
-
-* 2.26.x and later
+**Affected versions**: Armory CD 2.26.x and later
 
 **Known Affected providers in Clouddriver**:
 
