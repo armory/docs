@@ -15,9 +15,9 @@ This compatibility matrix details what is supported in the **Armory Enterprise {
 
 You can find the compatibility matrix for previous Armory Enterprise releases in the docs version for the release you are using:
 
+* [Armory Enterprise v2.27 compatibility matrix](https://v2-27.docs.armory.io/docs/armory-platform-matrix/)  
 * [Armory Enterprise v2.26 compatibility matrix](https://v2-26.docs.armory.io/docs/feature-status/armory-enterprise-matrix/)
 * [Armory Enterprise v2.25 compatibility matrix](https://v2-25.docs.armory.io/docs/armory-enterprise-matrix/)
-* [Armory Enterprise v2.24 compatibility matrix](https://v2-24.docs.armory.io/docs/armory-platform-matrix/)   
 
 >See {{< linkWithTitle "system-requirements" >}} for information about the system requirements you need to install Armory Enterprise.
 
