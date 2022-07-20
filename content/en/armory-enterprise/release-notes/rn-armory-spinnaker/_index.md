@@ -1,6 +1,6 @@
 ---
-title: Armory Enterprise for Spinnaker Release Notes
-linkTitle: Armory Enterprise Release Notes
+title: Armory Continuous Deployment Release Notes
+linkTitle: Armory CD Release Notes
 aliases:
   - /releases/
   - /release/
@@ -10,7 +10,7 @@ aliases:
 layout: release-notes-recent
 semver_list: true
 description: >
-  Armory Enterprise releases, long term support releases and patches.
+  Armory Continuous Deployment releases, long term support releases and patches.
 ---
 
 <!-- the release-notes-recent.html layout inserts the section index list at the top of the page -->
@@ -19,13 +19,14 @@ description: >
 
 ## Minimum Operator version
 
-To install, upgrade, and configure Armory Enterprise, ensure that you are running at least the minimum Operator version for your release:
+To install, upgrade, and configure Armory Continuous Deployment (Armory CD), ensure that you are running at least the minimum Operator version for your release:
 
-| Armory Enterprise version | Minimum Operator version |
-| ----------------------- | ----------------------- |
-| 2.27.x | 1.4.0 |
-| 2.26.x | 1.2.6 |
-| 2.25.x | 1.2.6 |
+| Armory CD version | Minimum Operator version |
+| ----------------- | ------------------------ |
+| 2.28.x            | 1.6.0                    |
+| 2.27.x            | 1.4.0                    |
+| 2.26.x            | 1.2.6                    |
+| 2.25.x            | 1.2.6                    |
 
 ## LTS releases
 

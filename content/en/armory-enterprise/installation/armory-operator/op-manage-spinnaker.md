@@ -117,6 +117,64 @@ spinnaker    2.20.2
 
 `VERSION` should reflect the target version for your upgrade.
 
+## Rollback Armory Enterprise
+
+{{< tabs name="rollback" >}}
+{{% tabbody name="Manifest" %}}
+
+Change the `version` field in your manifest file to the target version for the rollback:
+
+```bash
+kind: SpinnakerService
+metadata:
+ name: spinnaker
+spec:
+ spinnakerConfig:
+   config:
+     version: <version>
+```
+
+Apply the updated manifest:
+
+```bash
+kubectl -n <namespace> apply -f <path-to-manifest-file>
+```
+
+{{% /tabbody %}}
+{{% tabbody name="Kustomize" %}}
+
+Change the `version` field in your Kustomize patch to the target version for the rollback.
+
+Apply the update:
+
+```bash
+kubctl -n <namespace> apply -k <path-to-kustomize-directory>
+```
+
+{{% /tabbody %}}
+{{< /tabs >}}
+
+You can view the rolled back services starting up by executing `describe`:
+
+```bash
+kubectl -n <namespace>  describe spinsvc spinnaker
+```
+
+Verify the rolled back version of Spinnaker:
+
+```bash
+kubectl -n <namespace> get spinsvc
+```
+
+The command returns information similar to the following:
+
+```
+NAME         VERSION
+spinnaker    2.27.2
+```
+
+`VERSION` should reflect the target version for your rollback.
+
 
 ## Delete Armory Enterprise
 
