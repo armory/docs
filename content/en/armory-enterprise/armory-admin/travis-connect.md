@@ -5,6 +5,7 @@ aliases:
   - /docs/spinnaker-install-admin/guides/configure-travis/
 description: >
   Use Halyard to configure Spinnaker to access to your Travic CI instance.
+draft: true
 ---
 
 ## Overview of connecting Spinnaker to Travis

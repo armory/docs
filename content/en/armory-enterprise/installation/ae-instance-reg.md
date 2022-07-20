@@ -25,15 +25,13 @@ aliases:
 
 ## Apply the registration information
 
-In your Operator manifest (such as `spinnakerService.yml`) or `spinnaker-local` file (Halyard), configure the following parameters:
+In your Operator manifest, configure the following parameters:
   - `spec.spinnakerConfig.profiles.spinnaker.armory.cloud.iam.tokenIssueUrl`: set this value to `https://auth.cloud.armory.io/oauth/token`.
   - `spec.spinnakerConfig.profiles.spinnaker.armory.cloud.iam.clientID`: set this value to **Client ID** that you received from [Register your instance](#register-your-instance).
   - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientSecret`: set this value to the **Secret** that you received from [Register your instance](#register-your-instance).
 
 Once you apply the registration information to your instance, your Armory Enterprise instance is registered with Armory.
 
-{{< tabs name="Configure Armory Enterprise" >}}
-{{% tabbody name="Operator" %}}
 
 ```yaml
 spec:
@@ -52,26 +50,7 @@ spec:
 
 Save the file and apply the manifest. This redeploys Armory Enterprise.
 
-{{% /tabbody %}}
 
-{{% tabbody name="Halyard" %}}
-
-```yaml
-
-#gate-local
-armory.cloud:
-  enabled: true
-  iam:
-    tokenIssuerUrl: https://auth.cloud.armory.io/oauth/token
-    clientId: <clientId>
-    clientSecret:<clientSecret>
-  api:
-    baseUrl: https://api.cloud.armory.io
-```
-
-Save the file and apply the changes with the following command: `hal deploy apply`. Applying the config changes redeploys Armory Enterprise.
-{{% /tabbody %}}
-{{< /tabs >}}
 
 ## Troubleshooting
 

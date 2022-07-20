@@ -20,10 +20,8 @@ The open source Spinnaker documentation
 If you actually want to use a file from the GitHub commit in your pipeline,
 you'll need to configure GitHub as an artifact source in Spinnaker.
 
-Many of the commands below have
-additional options that may be useful (or possibly required).  If you need
-more detailed help, take a look at the
-[Halyard command reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-artifact-github) if you're deploying Spinnaker with Halyard.
+Many of the commands below have additional options that may be useful (or
+possibly required).
 
 ### Enable GitHub artifacts
 
@@ -51,14 +49,6 @@ spec:
 ```
 
 {{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-```bash
-hal config features edit --artifacts true
-hal config artifact github enable
-```
-
-{{% /tabbody %}}
 {{< /tabs >}}
 
 ### Add a GitHub credential
@@ -73,9 +63,6 @@ as a credential to use to access GitHub.  This can be done with a command like
 this:
 
 *Replace the account name `github_user` with the string you want to use to identify this GitHub credential.*
-
-{{< tabs name="add" >}}
-{{% tabbody name="Operator" %}}
 
 Add the following snippet to `SpinnakerService` manifest:
 
@@ -109,21 +96,6 @@ Don't forget to apply your changes:
 kubectl -n >spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
 
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-```bash
-GITHUB_ACCOUNT_NAME=github_user
-hal config artifact github account add ${GITHUB_ACCOUNT_NAME} \
-    --token # you'll be prompted for this interactively
-```
-
-Detailed information on all command line options can be found [here](https://www.spinnaker.io/reference/halyard/commands/#hal-config-artifact-github-account-add).
-
-Don't forget to run `hal deploy apply` to apply your changes.
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 ## Using the GitHub credential
 

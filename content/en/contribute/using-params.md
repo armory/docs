@@ -23,25 +23,21 @@ The latest Armory version is {{< param armory-version >}}.
 You can use the `param` shortcode inside codeblock as well.
 
 ```markdown
-latestHalyard: {{</* param halyard-armory-version */>}}
 latestSpinnaker: {{</* param armory-version */>}}
 versions:
 - version: {{</* param armory-version */>}}
   alias: OSS Release <ossVersion> # The corresponding OSS version can be found in the Release Notes
   changelog: <Link to Armory Release Notes for this version>
-  minimumHalyardVersion: 1.2.0
   lastUpdate: "1568853000000"
 ```
 
 Renders as:
 
 ```yaml
-latestHalyard: {{< param halyard-armory-version >}}
 latestSpinnaker: {{< param armory-version >}}
 versions:
 - version: {{< param armory-version >}}
   alias: OSS Release <ossVersion> # The corresponding OSS version can be found in the Release Notes
   changelog: <Link to Armory Release Notes for this version>
-  minimumHalyardVersion: 1.2.0
   lastUpdate: "1568853000000"
 ```

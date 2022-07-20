@@ -17,11 +17,10 @@ aliases:
 An air-gapped deployment environment is one where any combination of the following conditions is true:
 
 - Your deployment environment, such as a Kubernetes cluster, doesn't have internet access AWS S3 bucket and `docker.io`.
-- No ability for engineers to deploy with Halyard from their machines.
 
 If your deployment environment is air-gapped, you need to host the Armory Enterprise Bill of Materials (BOM) and Docker images in a location that your deployment environment can access. To set this up, you need public internet access so you can get the BOM and images, authority to create or access internal storage and image hosting, and permissions to move the Armory Enterprise materials to your internal systems.  
 
-The process for deploying Armory Enterprise in an air-gapped environment is different depending on whether you are using Halyard or the Armory Operator. The first step in both cases, though, is to familiarize yourself with the Armory Enterprise Bill of Materials.
+The first step is to familiarize yourself with the Armory Enterprise Bill of Materials.
 
 ## {{% heading "prereq" %}}
 
@@ -125,4 +124,4 @@ artifactSources:
 
 ## {{% heading "nextSteps" %}}
 
-Follow the instructions for your deployment method: {{< linkWithTitle "ag-operator.md" >}} or {{< linkWithTitle "ag-halyard.md" >}}.
+Follow the instructions for your deployment method: {{< linkWithTitle "ag-operator.md" >}}.

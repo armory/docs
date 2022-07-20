@@ -1,6 +1,4 @@
-Use either the Operator or Halyard to change Spinnaker's service endpoints.
-
-**Operator**
+Use the Operator to change Spinnaker's service endpoints.
 
 Change the SpinnakerService custom resource:
 
@@ -32,13 +30,5 @@ spec:
         baseUrl: https://spin-rosco.<NAMESPACE>:8087
       terraformer:
         baseUrl: https://spin-terraformer.<NAMESPACE>:7088
-```
-
-**Halyard**
-
-Change each Java or Golang service endpoints by adding the following in `<hal directory>/<deployment>/service-settings/<service>.yml`:
-
-```yaml
-baseUrl: https://spin-<SERVICE>.<NAMESPACE>:<SERVICE PORT>
 ```
 

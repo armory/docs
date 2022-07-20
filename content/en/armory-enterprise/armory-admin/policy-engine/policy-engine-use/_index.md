@@ -378,7 +378,7 @@ and are required for Spinnaker to operate normally. These paths include:
 /plugins/deck/**
 ```
 
-Any API request to these paths is not subject to authorization requests by the plugin. To add additional paths to this list, add the following to the plugin configuration to your Gate profile in the Operator config or `profiles/gate-local.yml` for Halyard:
+Any API request to these paths is not subject to authorization requests by the plugin. To add additional paths to this list, add the following to the plugin configuration to your Gate profile in the Operator config:
 
 ```yaml
 armory:
@@ -396,7 +396,7 @@ armory:
 
 The Policy Engine Plugin can apply identity-based policies to the `/webhooks/**` endpoint. Because the `/webhooks/**` endpoint is unauthenticated by default, additional configuration is needed to enable this capability. You must enable forced authentication on the `/webhooks/**` endpoints to ensure that all webhooks go through the authentication flow before triggering their associated pipelines.
 
-Add the following to the plugin configuration to your Gate profile in the Operator config or `profiles/gate-local.yml` for Halyard:
+Add the following to the plugin configuration to your Gate profile in the Operator config:
 
 ```yaml
 armory:
@@ -449,4 +449,4 @@ The Armory (or Spinnaker) UI fails to load after you enable Policy Engine. This 
 
 Solution:
 
-Open your browser's console and see if there are SSL exceptions. If there are, check what the `baseUrl` value for the OPA server is in `profiles/spinnaker-local.yml` (Halyard-based deployments) or your operator config. Specifically, using HTTPS for an HTTP server can cause SSL exceptions.
+Open your browser's console and see if there are SSL exceptions. If there are, check what the `baseUrl` value for the OPA server is in your operator config. Specifically, using HTTPS for an HTTP server can cause SSL exceptions.

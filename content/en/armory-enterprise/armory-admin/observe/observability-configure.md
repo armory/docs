@@ -26,7 +26,7 @@ The Observability Plugin removes the service name from the metric. This is incom
 
 You have two options for installing the Observability plugin:
 
-* Add the plugin configuration for all services in `spinnaker-local.yml` (Halyard installs) or the `spinnaker` profile section (Operator installs).  
+* Add the plugin configuration for all services the `spinnaker` profile section.  
 * Add the plugin configuration to only the services you want to monitor.
 
 The following example adds the Observability Plugin configuration for all services to the `spinnaker-local.yml` file and enables Prometheus:

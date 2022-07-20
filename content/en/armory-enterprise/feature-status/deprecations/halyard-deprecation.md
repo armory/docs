@@ -46,4 +46,3 @@ As mentioned above, if your company uses Armory-extended Halyard, you will not b
 ## Who should I contact if I have questions or need further assistance?
 
 For customers who have an assigned Technical Account Manager and/or Account Executive, they are your first and best resource. For others, you can reach our Customer Care team at [support@armory.io](mailto:support@armory.io) or visit the [Help Center](https://support.armory.io/) to submit a case.
-
