@@ -116,32 +116,32 @@ dependencies:
     version: 2:2.8.4-2
 services:
   clouddriver:
-    commit: e8c9c4ef055315d1271e1805241c08fbe2629725
-    version: 2.28.0-rc8
+    commit: adbe01b56d31389c9cad1274b894c740835c3834
+    version: 2.28.0
   deck:
-    commit: 693348595c771625ac4bdc5224921b5882578d79
-    version: 2.28.0-rc8
+    commit: 108847b83576abf24d437a0c89015a65f337ec54
+    version: 2.28.0
   dinghy:
     commit: 403640bc88ad42cc55105bff773408d5f845e49c
-    version: 2.28.0-rc8
+    version: 2.28.0
   echo:
     commit: 488477dd85edfc6206337bb31f76892e641d1803
-    version: 2.28.0-rc8
+    version: 2.28.0
   fiat:
-    commit: 9aca7990e68cc8022a55af31db7df1d04e02de4c
-    version: 2.28.0-rc8
+    commit: 5728f3484b01459e9b246117cdfbb54f9d00768c
+    version: 2.28.0
   front50:
-    commit: f818ac4ce606e4b4f74f3cada4f4bc173a949b50
-    version: 2.28.0-rc8
+    commit: 1bc61a77916acf5bf7b13041005e730bdac8cd8e
+    version: 2.28.0
   gate:
-    commit: 472e2dd8a37e85403b1c934d194d0c4862d97a96
-    version: 2.28.0-rc8
+    commit: 938dccc232f849bae4446376579a39755267904b
+    version: 2.28.0
   igor:
-    commit: 5ea6da54f840ecaffa72d62386d9efd7bb54e0fe
-    version: 2.28.0-rc8
+    commit: c10937f0110f81bd2f17dfea79bfbf01f53598a5
+    version: 2.28.0
   kayenta:
-    commit: ebc7a92d06ed18b93233a6c887fe9acfd85ccc8c
-    version: 2.28.0-rc8
+    commit: 7bfe2c300432c865f10f07985d81decb58b1ee48
+    version: 2.28.0
   monitoring-daemon:
     commit: null
     version: 2.26.0
@@ -149,16 +149,16 @@ services:
     commit: null
     version: 2.26.0
   orca:
-    commit: 877733807a0661adef388e9ad45f79506428e2fe
-    version: 2.28.0-rc8
+    commit: 30ca83945081107105b9186461730988fabd11d5
+    version: 2.28.0
   rosco:
-    commit: 8878e069687bfd229bd00907ede66dfe1b73d2e0
-    version: 2.28.0-rc8
+    commit: 36a55d07da5f25fc385e67922e35f387f13a6fb1
+    version: 2.28.0
   terraformer:
     commit: c3c07a7c4f09752409183f906fb9fa5458e7d602
-    version: 2.28.0-rc8
-timestamp: "2022-06-14 17:24:09"
-version: 2.28.0-rc8
+    version: 2.28.0
+timestamp: "2022-07-19 18:54:16"
+version: 2.28.0
 </code>
 </pre>
 </details>
@@ -166,39 +166,39 @@ version: 2.28.0-rc8
 ### Armory
 
 
-#### Armory Front50 - 2.27.0...2.28.0-rc8
+#### Terraformer™ - 2.27.3...2.28.0
 
 
-#### Armory Deck - 2.27.0...2.28.0-rc8
+#### Armory Clouddriver - 2.27.3...2.28.0
 
 
-#### Armory Fiat - 2.27.0...2.28.0-rc8
+#### Armory Rosco - 2.27.3...2.28.0
 
 
-#### Armory Gate - 2.27.0...2.28.0-rc8
+#### Armory Deck - 2.27.3...2.28.0
 
 
-#### Armory Igor - 2.27.0...2.28.0-rc8
+#### Armory Front50 - 2.27.3...2.28.0
 
 
-#### Armory Clouddriver - 2.27.0...2.28.0-rc8
+#### Dinghy™ - 2.27.3...2.28.0
 
 
-#### Armory Orca - 2.27.0...2.28.0-rc8
+#### Armory Kayenta - 2.27.3...2.28.0
 
 
-#### Armory Kayenta - 2.27.0...2.28.0-rc8
+#### Armory Echo - 2.27.3...2.28.0
 
 
-#### Armory Rosco - 2.27.0...2.28.0-rc8
+#### Armory Orca - 2.27.3...2.28.0
 
 
-#### Dinghy™ - 2.27.0...2.28.0-rc8
+#### Armory Gate - 2.27.3...2.28.0
 
 
-#### Armory Echo - 2.27.0...2.28.0-rc8
+#### Armory Igor - 2.27.3...2.28.0
 
 
-#### Terraformer™ - 2.27.0...2.28.0-rc8
+#### Armory Fiat - 2.27.3...2.28.0
 
 
