@@ -65,6 +65,7 @@ EXECUTE defined as a potential permission type.
   * Prevent oauth2 redirect loops.
   * Transition restarted stages to NOT_STARTED so there is visual indication on Deck, and don't allow multiple queuing of the same restarted stage
   * Bring back template validation messages in Deck.
+  * Bump the JVM version used by all appropriate services to ensure all services are using the same JVM version.
 
 ### Maximum Concurrent Pipeline Executions
 Added support for max concurrent pipeline executions. If concurrent pipeline execution is enabled, pipelines will queue when the max concurrent pipeline executions is reached. Any queued pipelines will be allowed to run once the number of running pipeline executions drops below the max. If the max is set to 0, then pipelines will not queue.
@@ -81,9 +82,6 @@ To use the stage, select Terraform for the stage type and Show as the action in 
   * Added an experimental API for storing and loading account credentials definitions from an external durable store such as a SQL database. Secrets can be referenced through the existing Kork SecretEngine API which will be fetched on demand. Initial support is for Kubernetes accounts given the lack of existing Kubernetes cluster federation standards compared to other cloud providers, though this API is made generic to allow for other cloud provider APIs to participate in this system.
   * To extend the memory feature, a boolean flag is introduced in the validateInstanceType.
   * Added a Fiat configuration option for the Account Management API in Clouddriver for listing which roles are allowed to manage accounts in the API.
-
-### Launch Templates
-* Randall to add a blurb here
 
 ### Performance
  * Fix in Lambda to remove parallel streams to improve performance.
