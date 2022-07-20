@@ -194,7 +194,7 @@ Since you are using the CLI, you do not need to have service account credentials
 
    Each step can have the same or different pause behaviors. Additionally, you can configure as many steps  as you want for the deployment strategy, but you do not need to create a step with a weight set to 100. Once Armory CD-as-a-Service completes the last step you configure, the manifest gets deployed to the whole cluster automatically.
 
-   You can optionally configure a [deployment timeout]({{< ref "cd-as-a-service/reference/deployfile/ref-deployment-file#deploymentconfig" >}}) by adding a `deploymentConfig` top-level section:
+  A deployment times out if the pods for your application fail to be in ready state in 30 minutes. You can optionally configure a [deployment timeout]({{< ref "cd-as-a-service/reference/deployfile/ref-deployment-file#deploymentconfig" >}}) by adding a `deploymentConfig` top-level section:
 
    ```yaml
    deploymentConfig:
