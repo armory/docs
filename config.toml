@@ -248,7 +248,3 @@ theme = "forest"
   githubbranch = "v2.26"
   url = "https://v2-26.docs.armory.io/docs/"
 
-[[params.versions]]
-  version = "Armory CD v2.25"
-  githubbranch = "v2.25"
-  url = "https://v2-25.docs.armory.io/docs/"
