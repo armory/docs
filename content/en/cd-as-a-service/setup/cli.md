@@ -155,9 +155,8 @@ Since you are using the CLI, you do not need to have service account credentials
 
    The CLI returns a `Device Code` and opens your default browser. To complete the log in process, confirm the code in your browser.
 
-   After you successfully authenticate, the CLI returns a list of tenants if you have access to more than one, which is rare.
+   After you successfully authenticate, the CLI returns a list of tenants if you have access to more than one. Select the tenant you want to access. Note that most users only have access to one tenant. If you have access to several tenants, you can can [log in directly to your desired tenant]({{< ref "cd-as-a-service/reference/cli/cli-cheat#log-into-armory-cd-as-a-service" >}}) with `armory login -e '<tenant>'`.
 
-1. Select the tenant you want to log in to. Note that most users only have access to one tenant.  
 
 1. Generate your deployment template and output it to a file.
 
@@ -222,6 +221,8 @@ Since you are using the CLI, you do not need to have service account credentials
    ```
 
    The command starts your deployment and progresses until the first weight and pause you set. It also returns a deployment ID that you can use to check the status of your deployment and a link to the Deployments UI page for your deployment.
+
+   Note that you can deploy an app without manually logging into CD-as-a-Service. See the {{< linkWithTitle "cd-as-a-service/tasks/deploy/deploy-with-creds.md" >}} page for details.
 
 
 ## Monitor your deployment

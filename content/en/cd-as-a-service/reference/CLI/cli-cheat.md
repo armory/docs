@@ -92,13 +92,17 @@ Use only one of the following ways to authenticate your deployment: `armory logi
 
 **Examples**
 
-You are in the directory where your deployment file is located. To deploy your app, execute:
+You are in the directory where your deployment file `deploy.yaml` is located. To deploy your app, execute:
 
 `armory deploy start -f deploy.yaml`
 
 To deploy your app with new context variables:
 
 `armory deploy start -f deploy.yml --add-context=pr=myprnumber,jira=myjiranumber`
+
+To deploy your app without first manually logging into CD-as-a-Service, pass your Client ID and Client Secret:
+
+`armory deploy start -c <your-client-id> -s <your-client-secret> -f deploy.yml`
 
 ## Generate a blue/green deployment template
 
