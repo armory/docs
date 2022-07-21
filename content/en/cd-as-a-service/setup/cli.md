@@ -158,9 +158,10 @@ Since you are using the CLI, you do not need to have service account credentials
    After you successfully authenticate, the CLI returns a list of tenants if you have access to more than one, which is rare.
 
 1. Select the tenant you want to log in to. Note that most users only have access to one tenant.  
+
 1. Generate your deployment template and output it to a file.
 
-   This command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`:
+   For example, this command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`:
 
    ```bash
    armory template kubernetes canary > canary.yaml
@@ -173,7 +174,7 @@ Since you are using the CLI, you do not need to have service account credentials
    - `targets.<deploymentName>.account`: This is the name of your RNA. If you installed the RNA manually, it is the value that you assigned to the `agentIdentifier` parameter.
    - `targets.<deploymentName>.strategy`: the name of the deployment strategy you want to use. You define the strategy in `strategies.<strategy-name>`.
    - `manifests`: a map of manifest locations. This can be a directory of `yaml (yml)` files or a specific manifest. Each entry must use the following convention:  `- path: /path/to/directory-or-file`
-   - `strategies.<strategy-name>`: the list of your deployment strategies. Use one of these for `targets.<target-cluster>.strategy`. Each strategy in this section consists of a map of steps for your deployment strategy in the following format:
+   - `strategies.<strategy-name>`: the list of your deployment strategies. Use one of these for `targets.<target-cluster>.strategy`. If you are using a canary strategy, each strategy in this section consists of a map of steps for your deployment strategy in the following format:
 
      ```yaml
      strategies:
@@ -192,6 +193,17 @@ Since you are using the CLI, you do not need to have service account credentials
      ```
 
    Each step can have the same or different pause behaviors. Additionally, you can configure as many steps  as you want for the deployment strategy, but you do not need to create a step with a weight set to 100. Once Armory CD-as-a-Service completes the last step you configure, the manifest gets deployed to the whole cluster automatically.
+
+   A deployment times out if the pods for your application fail to be in ready state in 30 minutes. You can optionally configure a [deployment timeout]({{< ref "cd-as-a-service/reference/deployfile/ref-deployment-file#deploymentconfig" >}}) by adding a `deploymentConfig` top-level section:
+
+   ```yaml
+   deploymentConfig:
+     timeout:
+       unit: <seconds|minutes|hours>
+       duration: <integer>
+   ```
+
+   Note that the minimum timeout you can specify is 60 seconds (1 minute).
 
    <details><summary>Show me a completed deployment file</summary>
 
