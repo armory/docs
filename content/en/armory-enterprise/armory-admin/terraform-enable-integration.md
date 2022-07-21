@@ -223,8 +223,6 @@ This example manifest also enables the Terraform Integration UI.
 
 ### Remote backends
 
-{{< include "early-access-feature.html" >}}
-
 The Terraform Integration supports using remote backends provided by Terraform Cloud and Terraform Enterprise.
 
 When using remote backends, keep the following in mind:
