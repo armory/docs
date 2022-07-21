@@ -17,17 +17,10 @@ aliases:
 * [Plugin Users Guide](https://spinnaker.io/docs/guides/user/plugins-users/)
   * Explains important concepts and files, such as `plugins.json` and `repositories.json`, that you need to deploy a plugin
   * Specifies what types of plugins you can deploy to Spinnaker
-  * Shows how to deploy a plugin using Halyard
 
 
 * pf4jStagePlugin deployment [walkthrough](https://spinnaker.io/docs/guides/user/plugins-users/plugin-deploy-example/) using Halyard
 * pf4jStagePlugin deployment [walkthrough]({{< ref "pf4j-deploy-example" >}}) using the Armory Operator
-
-
-* Halyard Command Reference
-
-  * [`hal` commands](https://spinnaker.io/reference/halyard/commands/#hal-plugins-repository) to add, update, enable, list, and delete plugin repositories
-  * [`hal` commands](https://spinnaker.io/reference/halyard/commands/#hal-plugins) to add, update, enable, list, and delete plugins
 
 
 * Plugin Creators Guide

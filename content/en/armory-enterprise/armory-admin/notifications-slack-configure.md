@@ -39,9 +39,6 @@ Spinnaker only requires publishing on a channel to interact with Slack. All you 
 
 You are now ready to configure Spinnaker with the bot you’ve just registered.
 
-{{< tabs name="register" >}}
-{{% tabbody name="Operator" %}}
-
 Add the following snippet to the `SpinnakerService` manifest:
 
 ```yaml
@@ -56,7 +53,7 @@ spec:
         slack:
           enabled: true
           botName: spinnaker                                         # The name of your slack bot.
-          token: xoxb-xxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx # Your slack bot token. This field supports "encrypted" secret references 
+          token: xoxb-xxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx # Your slack bot token. This field supports "encrypted" secret references
 ```
 
 Apply the changes:
@@ -65,37 +62,6 @@ Apply the changes:
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
 
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-Start by setting the variables below:
-
-```bash
-export TOKEN_FROM_SLACK="xoxb-xxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx"
-export SLACK_BOT=spinnaker
-```
-
-Register the token and bot name in the configuration:
-
-```bash
-$ echo $TOKEN_FROM_SLACK | hal config notification slack edit --bot-name \
-   $SLACK_BOT --token
-```
-
-Set the configuration that enables Slack:
-
-```bash
-$ hal config notification slack enable
-```
-
-Redeploy the configuration:
-
-```bash
-$ hal deploy apply
-```
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 ## Test Spinnaker
 

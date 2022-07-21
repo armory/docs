@@ -376,27 +376,13 @@ which is importable into a Java Keystore (JKS).
 
 ## Back Up Your Spinnaker Configuration
 
-**Operator**
-
 Backup all `SpinnakerService` related files.
-
-**Halyard**
-
-    Before making any changes with Halyard, Armory recommends backing up your current configuration.  You can back up your Halyard configuration with the following command:
-
-```bash
-hal backup create
-```
-
-    Copy the generated `.tar` file somewhere it will be preserved in the event of a container restart or system reboot (ideally, off to another system).
 
 ## Enable SSL for the UI
 
 Next, configure Spinnaker's Deck service to use the Deck certificate and private key that you generated.
 
-> The Kubernetes secret engine does not work for encrypting secrets for the UI. 
-
-**Operator**
+> The Kubernetes secret engine does not work for encrypting secrets for the UI.
 
 Add the following snippet to the `SpinnakerService` manifest:
 
@@ -423,33 +409,11 @@ Create a new Kubernetes secret containing the files. The following example assum
 kubectl -n spinnaker create secret generic spin-deck-secrets --from-file=deck.crt --from-file=deck.key
 ```
 
-**Halyard**
-
-Copy `deck.crt` and `deck.key` to locations accessible to your Halyard. For example, if Halyard is a Docker container with the `.secret` directory mounted into it, copy `deck.crt` and `deck.key` to `.secret/`.
-
-Then, run this Halyard configuration:
-
-*This will prompt for the pass phrase used to encrypt `deck.crt`.*
-
-```bash
-SERVER_CERT=   # /path/to/deck.crt
-SERVER_KEY=    # /path/to/deck.key
-
-hal config security ui ssl edit \
-    --ssl-certificate-file ${SERVER_CERT} \
-    --ssl-certificate-key-file ${SERVER_KEY} \
-    --ssl-certificate-passphrase
-
-hal config security ui ssl enable
-```
-
 Depending on how your load balancer is configured (if you're using an Ingress vs. a Service), you may have to change your service and/or ingress configuration. This is discussed below, in **Update Load Balancers and URLs**
 
 ## Enable SSL for the API
 
 Next, we will configure Spinnaker's Gate service to use the JKS that we've generated.
-
-**Operator**
 
 Add the following snippet to the `SpinnakerService` manifest:
 
@@ -479,29 +443,6 @@ Create a new Kubernetes secret having the above files. Here we assume that Spinn
 
 ```bash
 kubectl -n spinnaker create secret generic spin-gate-secrets --from-file=gate.jks
-```
-
-**Halyard**
-
-First, copy `gate.jks` to a location accessible to your Halyard.  For example, if Halyard is a Docker container with the `.secret` directory mounted into it, copy `gate.jks` to `.secret/`.
-
-Then, run this Halyard configuration:
-
-*This will prompt twice, once for the keystore password and once for the truststore password, which are the same.*
-
-```bash
-KEYSTORE_PATH= # /path/to/gate.jks
-
-hal config security api ssl edit \
-    --key-alias gate \
-    --keystore ${KEYSTORE_PATH} \
-    --keystore-password \
-    --keystore-type jks \
-    --truststore ${KEYSTORE_PATH} \
-    --truststore-password \
-    --truststore-type jks
-
-hal config security api ssl enable
 ```
 
 ## Update load balancers and URLs
@@ -539,8 +480,6 @@ The mechanism to achieve this will depend on what type of Ingress you are using.
 
 If you are instead using a Layer 4 (TCP) load balancer (such as a `Service` configured as a `LoadBalancer` in EKS), or directly exposing your Kubernetes `Service` objects using a `NodePort` configuration, then you'll need to change the base URL overrides.
 
-**Operator**
-
 In the `SpinnakerService` manifest you need to change the `overrideBaseUrl` settings of Deck and Gate in the following way:
 
 ```yaml
@@ -560,42 +499,12 @@ spec:
 
 Although Spinnaker also supports using a different DNS name, Armory recommends that you use the same DNS but different paths for Deck and Gate. Tasks such as Cross-Origin Resource Sharing (CORS) between your Gate and Deck endpoints and securing Gate and Deck are much easier when both services use the same DNS name.
 
-**Halyard**
-
-Look at your existing Halconfig (`cat .hal/config` or `hal config`), and look for these sections:
-* `security.apiSecurity.overrideBaseUrl`
-* `security.uiSecurity.overrideBaseUrl`
-
-These may be configured to something like this:
-
-* `https://spinnaker.domain.com` -- URL to access Deck
-* `https://spinnaker.domain.com/api/v1` -- URL to access Gate
-
-Although Spinnaker also supports using a different DNS name, Armory recommends that you use the same DNS but different paths for Deck and Gate. Tasks such as Cross-Origin Resource Sharing (CORS) between your Gate and Deck endpoints and securing Gate and Deck are much easier when both services use the same DNS name.
-
-We need to update these to use the https-equivalent URLs.  This can be achieved with these Halyard commands:
-
-```bash
-SPINNAKER_FQDN=spinnaker.domain.com
-GATE_FQDN=spinnaker.domain.com/api/v1
-hal config security ui edit --override-base-url https://${SPINNAKER_FQDN}
-hal config security api edit --override-base-url https://${GATE_FQDN}
-```
-
 ## Apply SSL Changes
 
 Before enabling the API endpoint, we should apply the changes that we've made so far and make sure everything continues to work.
 
-**Operator**
-
 ```bash
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
-```
-
-**Halyard**
-
-```bash
-hal deploy apply
 ```
 
 1. Apply your Ingress / Service changes, as indicated abvoe in the **Changing Ingress** section.
@@ -606,15 +515,9 @@ hal deploy apply
 
 4. If you have any issues, perform various troubleshooting steps (such as those related to HTTPS in our [KB](https://kb.armory.io/s/category-knowledge?categ=Troubleshooting)), or restore your prior backup:
 
-**Operator**
 
 Apply the backed up manifests files with `kubectl -n <spinnaker namespace> apply -f ...`
 
-**Halyard**
-
-```bash
-hal backup restore --backup-path <backup-name>.tar
-```
 
 ## Gate-local
 
@@ -622,7 +525,7 @@ Once you've verified that your existing Gate and Deck endpoints continue to work
 
 1. Enable x509 Authentication
 
-   **Operator**
+
 
    ```yaml
    apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -638,15 +541,11 @@ Once you've verified that your existing Gate and Deck endpoints continue to work
                enabled: true
    ```
 
-   **Halyard**
 
-   ```bash
-   hal config security authn x509 enable
-   ```
 
 2. Configure Gate to use a second port for the x509 API port.  
 
-   **Operator**
+
 
    ```yaml
    apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -661,28 +560,17 @@ Once you've verified that your existing Gate and Deck endpoints continue to work
              apiPort: 8085
    ```
 
-   **Halyard**
 
-   This must currently be done via a local profile override.  Create and/or update the file `.hal/default/profiles/gate-local.yml` with these contents:
-
-   ```yml
-   default:
-     apiPort: 8085
-   ```
 
 3. Apply your changes
 
-   **Operator**
+
 
    ```bash
    kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
    ```
 
-   **Halyard**
 
-   ```bash
-   hal deploy apply
-   ```
 
 Gate will now have a second API port set up listening on port 8085, which will expect an x509 client certificate from all clients trying to communicate with it.  We have to expose this port externally.
 
@@ -690,79 +578,9 @@ Gate will now have a second API port set up listening on port 8085, which will e
 
 You must expose port 8085 on your Gate containers externally, and you should **not** terminate TLS in front of them.  Depending on how your Kubernetes cluster lives, you may be able to use a `LoadBalancer` or `NodePort` Service.  Alternatively, if your Ingress Controller is configured to support TLS pass-through, you can use that.
 
-**Operator**
+Operator automatically exposes Gate's API port.
 
-   No action needed; Operator automatically exposes Gate's API port.
-
-**Halyard**
-
-We detail two options here.
-
-If your Kubernetes cluster is configured to set up a TCP load balancer for `LoadBalancer` Services:
-
-```bash
-# Replace this with the namespace where Spinnaker is installed
-NAMESPACE=<spinnaker-namespace>
-
-tee gate-api-service.yml <<-'EOF'
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: spin
-    cluster: spin-gate
-  name: spin-gate-api
-  namespace: NAMESPACE
-spec:
-  ports:
-  - port: 8085
-    protocol: TCP
-    targetPort: 8085
-  selector:
-    app: spin
-    cluster: spin-gate
-  sessionAffinity: None
-  type: LoadBalancer
-EOF
-
-sed -i "s|NAMESPACE|${NAMESPACE}|g" gate-api-service.yml
-
-kubectl apply -f gate-api-service.yml
-```
-
-Otherwise, if you're going to use a NodePort:
-
-```bash
-# Replace this with the namespace where Spinnaker is installed
-NAMESPACE=spinnaker
-
-tee gate-api-service.yml <<-'EOF'
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: spin
-    cluster: spin-gate
-  name: spin-gate-api
-  namespace: NAMESPACE
-spec:
-  ports:
-  - port: 8085
-    protocol: TCP
-    targetPort: 8085
-  selector:
-    app: spin
-    cluster: spin-gate
-  sessionAffinity: None
-  type: NodePort
-EOF
-
-sed -i "s|NAMESPACE|${NAMESPACE}|g" gate-api-service.yml
-
-kubectl apply -f gate-api-service.yml
-```
-
-This should expose the endpoint.  For example, with the LoadBalancer configuration in EKS, you will get an ELB endpoint (get this with `kubectl -n NAMESPACE get svc -owide`).  With the NodePort configuration, you can use any instance in your cluster with the generated NodePort port.
+For example, with the LoadBalancer configuration in EKS, you will get an ELB endpoint (get this with `kubectl -n NAMESPACE get svc -owide`).  With the NodePort configuration, you can use any instance in your cluster with the generated NodePort port.
 
 You can verify that the client certificate is set up properly by `curl`ing the endpoint with the `-v` and `-k` (verbose, no validation) flags. You should get an alert for bad certificate, since the endpoint is expecting a client certificate and you are not providing one:
 
@@ -876,8 +694,6 @@ The OID `1.2.840.10070.8.1` is used to identify roles for a given user, so it is
 
 You can configure Gate to look for a list of endline-delimited groups in the `1.2.840.10070.8.1` OID:
 
-**Operator**
-
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
@@ -894,14 +710,6 @@ spec:
 
 ```bash
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
-```
-
-**Halyard**
-
-```bash
-hal config security authn x509 edit --role-oid 1.2.840.10070.8.1
-
-hal deploy apply
 ```
 
 ### Adding groups and signing certificates with the OID extensions
@@ -1050,24 +858,6 @@ spec:
 
 ```bash
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
-```
-
-**Halyard**
-
-```bash
-hal config security authn x509 edit \
-    --subject-principal-regex "DESIRED_REGEX"
-
-hal deploy apply
-```
-
-For example, if you want to use the "Email Address" field from the certificate,
-
-```bash
-hal config security authn x509 edit \
-    --subject-principal-regex "EMAILADDRESS=(.*?)(?:,|$)"
-
-hal deploy apply
 ```
 
 ### Verify the x509 certificate

@@ -8,7 +8,7 @@ description: Release notes for Armory Enterprise v2.20.5
 
 ## 2020/07/30 Release Notes
 
-> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a previous working version and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Halyard version
 

@@ -55,7 +55,7 @@ You have two options for deploying Clouddriver with MySQL: a simpler deployment,
 
 ### Simple deployment
 
-If you are not worried about downtime or if Spinnaker is not currently executing any pipelines, you can run a simple deployment by adding the following snippet to `SpinnakerService` manifest under `spec.spinnakerConfig.profiles.clouddriver` if using the Operator, or to `<HALYARD>/<DEPLOYMENT>/profiles/clouddriver-local.yml` if using Halyard:
+If you are not worried about downtime or if Spinnaker is not currently executing any pipelines, you can run a simple deployment by adding the following snippet to `SpinnakerService` manifest under `spec.spinnakerConfig.profiles.clouddriver`:
 
 ```yaml
 sql:
@@ -117,7 +117,7 @@ You can do it manually or by using the [following script](https://gist.github.co
 
 After waiting a few minutes (from 2 to 10 minutes depending on how many accounts are connected), we'll update Spinnaker to use MySQL but remain aware of task statuses in Redis.
 
-We're deploying Spinnaker with the following configuration in `SpinnakerService` manifest under the key `spec.spinnakerConfig.profiles.clouddriver` if using the Operator, or in `clouddriver-local.yml` if using Halyard:
+We're deploying Spinnaker with the following configuration in `SpinnakerService` manifest under the key `spec.spinnakerConfig.profiles.clouddriver`:
 
 ```yaml
 sql:

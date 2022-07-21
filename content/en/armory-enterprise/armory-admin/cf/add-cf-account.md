@@ -13,8 +13,6 @@ This document assumes the following:
 * You use the Armory Operator or the Spinnaker Operator for Kubernetes to configure your Spinnaker instance.
 * You have a valid Cloud Foundry account with at least `Space Developer` access to one or more spaces.
 
-> If you manage Spinnaker using Halyard, see the open source Spinnaker docs' [Cloud Foundry](https://spinnaker.io/setup/install/providers/cf/) guide for how to add a Cloud Foundry account using Halyard.
-
 ## Add the Cloud Foundry account to Spinnaker
 
 > Spinnaker must be able to reach your Cloud Foundry API endpoint. See the Cloud Foundry [docs](https://docs.cloudfoundry.org/running/cf-api-endpoint.html) for how to identify the API endpoint and version.

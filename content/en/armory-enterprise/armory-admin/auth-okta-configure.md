@@ -65,7 +65,7 @@ In the **Optional** section, copy the contents of IDP metadata and save to file.
 
 ### 1: Create a SAML keystore file
 
->Make sure the Java version used to generate the keystore is the same version used to run Armory Enterprise or Spinnaker. 
+>Make sure the Java version used to generate the keystore is the same version used to run Armory Enterprise or Spinnaker.
 
 Generate a keystore and key:
 
@@ -77,9 +77,6 @@ keytool -genkey -v -keystore KEYSTORE_PATH -alias saml -keyalg RSA -keysize 2048
 ### 2: Configure Spinnaker to use SAML
 
 >The value you enter for `issuerId` must match the value entered in **Audience URI (SP Entity ID)** when configuring the app in Okta
-
-{{< tabs name="configure" >}}
-{{% tabbody name="Operator" %}}
 
 Add the following snippet to `SpinnakerService` manifest. This references secrets stored in a Kubernetes secrets in the same namespace as Spinnaker, but secrets can be stored in any of the supported [secret engines]({{< ref "armory-enterprise/armory-admin/secrets" >}}):
 
@@ -117,31 +114,6 @@ Apply your changes to the `SpinnakerService` manifest:
 ```bash
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
-
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-```bash
-KEYSTORE_PATH=/Users/armory/.hal/saml/saml.jks
-KEYSTORE_PASSWORD=<password-entered-in-step-1>
-METADATA_PATH=/Users/armory/.hal/saml/metadata.xml
-SERVICE_ADDR_URL=https://<gate-URL>
-ISSUER_ID=io.armory.spinnaker.oktatest
-
-hal config security authn saml edit \
-    --keystore $KEYSTORE_PATH \
-    --keystore-alias saml \
-    --keystore-password $KEYSTORE_PASSWORD \
-    --metadata $METADATA_PATH \
-    --issuer-id $ISSUER_ID \
-    --service-address-url $SERVICE_ADDR_URL
-
-hal config security authn saml enable
-hal deploy apply
-```
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 ## Troubleshooting
 

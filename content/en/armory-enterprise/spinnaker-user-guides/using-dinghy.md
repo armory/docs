@@ -1112,8 +1112,6 @@ This feature supports **GitHub** webhooks.
 
 When you enable webhook secret validation, **ALL** webhooks for that provider are validated for a secret.
 
-**Operator**
-
 Add the `webhookValidationEnabledProviders` element to the `dinghy` configuration in the `SpinnakerService` manifest. Add the providers as a list. To disable webhooks secrets, delete the `webhookValidationEnabledProviders` element with the list of providers.
 
 ```yaml
@@ -1136,21 +1134,6 @@ Then update the SpinnakerService with your updated manifest:
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
-
-**Halyard**
-
-* **Enable**
-
-  ```bash
-  hal armory dinghy webhooksecrets <version control provider> enable
-  ```
-
-* **Disable**
-
-  ```bash
-  hal armory dinghy webhooksecrets <version control provider> disable
-  ```
-
 
 ### Webhook validation fields
 
@@ -1175,8 +1158,6 @@ You can specify a default secret to use when your GitHub organization has multip
 * **secret**: Secret configured.
 
 ## Add or Edit Webhook Validations
-
-**Operator**
 
 Add the `webhookValidations` element to the `dinghy` configuration in the `SpinnakerService` manifest.
 
@@ -1208,66 +1189,9 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-**Halyard**
-
-```bash
-hal armory dinghy webhooksecrets <version control provider> edit \
-  --organization testOrg \
-  --repo repoName \
-  --enabled true \
-  --secret testSecret
-```
-
-Edit with Halyard
-
-To disable a repository, set `enabled` to `false`:
-
-```bash
-hal armory dinghy webhooksecrets <version control provider> edit \
-  --organization testOrg \
-  --repo repoName \
-  --enabled false \
-  --secret testSuperSecret
-```
-
-
-### List Webhook Validations
-
-**Halyard**
-
-```bash
-hal armory dinghy webhooksecrets <version control provider> list
-```
-
-You can use parameters to search for specific elements.
-
-```bash
-hal armory dinghy webhooksecrets <version control provider> list \
-  --organization armory-io \
-  --enabled false
-```
-
 ### Delete Webhook Validations
 
-**Operator**
-
 Delete a `webhookValidations` element by deleting it from the manifest and then applying the manifest.
-
-**Halyard**
-
-Apply at least one filter to avoid deleting all webhook validations by mistake.
-
-```bash
-hal armory dinghy webhooksecrets <version control provider> delete \
-  --repo testRepo
-```
-
-Delete all Webhook validations with the `--all` parameter.
-
-```bash
-hal armory dinghy webhooksecrets <version control provider> delete --all
-```
-
 
 ## Application updates
 
@@ -1406,8 +1330,6 @@ Dinghy sends a notification to channel `slack-channel-good` and `slack-channel-b
 
 ## Repository Template processing
 
-*This feature requires __Armory Platform 2.22+__ and __Armory-extended Halyard 1.9.5+__*
-
 Imagine you have a template and a couple of modules and `dinghyfiles` pointing at them. You modify a module and this module is using Rawdata. At this moment the commited Rawdata is from the template repository, so there can be two possible scenarios:
 
   - The Rawdata from the template repository is taken in order to render all the dependent `dinghyfiles` again. Use the `repositoryRawdataProcessing = false` config for this behavior.
@@ -1415,7 +1337,6 @@ Imagine you have a template and a couple of modules and `dinghyfiles` pointing a
 
 By default Dinghy uses the Rawdata from the template repository. However, you can enable the second behavior in which the Rawdata from the latest push gets used for that `dinghyfile` in the specific repository.
 
-**Operator**
 
 ```yaml
 apiVersion: spinnaker.armory.io/v1alpha2
@@ -1435,20 +1356,6 @@ Then, update the SpinnakerService with your updated manifest:
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
-```
-
-**Halyard**
-
-**Enable**
-
-```bash
-hal armory dinghy repository_only_rawdata_processing enable
-```
-
-**Disable**
-
-```bash
-hal armory dinghy repository_only_rawdata_processing disable
 ```
 
 ### Repository Template processing example
@@ -1497,8 +1404,6 @@ If the Pipelines as Code service (Dinghy) crashes on start up and you encounter 
 
 You have probably configured global logging levels with `spinnaker-local.yml`. The work around is to override Dinghy's logging levels:
 
-**Operator**
-
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
@@ -1513,11 +1418,3 @@ spec:
           ... # Rest of config omitted for brevity
 ```
 
-**Halyard**
-
-Create `.hal/default/profiles/dinghy-local.yml` and add the following snippet:
-
-```yaml
-Logging:
-  Level: INFO
-```

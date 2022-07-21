@@ -6,14 +6,14 @@ draft: true
 aliases:
   - /spinnaker-install-admin-guides/install-on-k8s/
 description: >
-  Use Armory-extended Halyard or the Armory Operator to deploy Armory Enterprise for Spinnaker in Kubernetes.
+  Use the Armory Operator to deploy Armory Enterprise for Spinnaker in Kubernetes.
 ---
 
 {{< include "armory-license.md" >}}
 
 ## Overview of installing Armory Enterprise in Kubernetes
 
-This guide describes the initial installation of Armory Enterprise in Kubernetes. You can choose between two different installation methods: Armory Operator or Armory-extended Halyard. By the end of this guide, you have an instance of Armory Enterprise deployed on your Kubernetes cluster. This guide does not fully cover the following:
+This guide describes the initial installation of Armory Enterprise in Kubernetes. By the end of this guide, you have an instance of Armory Enterprise deployed on your Kubernetes cluster. This guide does not fully cover the following:
 
 * TLS Encryption
 * Authentication/Authorization
@@ -23,8 +23,6 @@ This guide describes the initial installation of Armory Enterprise in Kubernetes
 See [Next Steps](#next-steps) for information related to these topics.
 
 ## Choosing an installation method
-
-There are two recommended ways of installing Armory Enterprise: using the [Armory Operator]({{< ref "armory-operator" >}}) or using [Armory-extended Halyard]({{< ref "armory-halyard" >}}).
 
 {{< tabs name="install-methods" >}}
 {{% tabbody name="Armory Operator" %}}
@@ -46,35 +44,6 @@ The _Armory Operator_ is the newest installation and configuration method for Ar
 * Create an IAM user that Armory Enterprise will use to access the S3 bucket (or alternately, granting access to the bucket via IAM roles).
 * Create a Kubernetes namespace for Armory Enterprise.
 * Install Armory Enterprise in that namespace.
-
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-Halyard is the former installation method for Armory Enterprise. It has been around the longest and is the first one supporting new Armory Enterprise features. Operator uses a customized version of Halyard that is constantly updated to incorporate changes from base Halyard.
-
-{{< include "halyard-note.md" >}}
-
-*Prerequisites*
-
-* Your Kubernetes cluster has storage set up so that PersistentVolumeClaims properly allocates PersistentVolumes.
-
-*General workflow*
-
-* Create a Kubernetes namespace where we will run both Halyard and Armory Enterprise
-* In the namespace, grant the `default` Kubernetes ServiceAccount the `cluster-admin` ClusterRole. This gives it full permissions within our namespace, but not on other namespaces; for details, see the [Kubernetes RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/))
-* In the namespace, create a PersistentVolumeClaim (PVC), which you use for persistent Armory Enterprise cluster configuration (the "halyard configuration" or "halconfig")
-* In the namespace, create a StatefulSet to run Halyard.  The PVC will be mounted to this StatefulSet.
-* Halyard will use the `default` Kubernetes ServiceAccount to create and modify resources running the cluster (the Kubernetes Secrets, Deployments, and Services that make up Armory Enterprise).
-* The Armory Enterprise microservice called "Clouddriver", which interacts with various clouds including Kubernetes, also uses the `default` ServiceAccount to interact with Kubernetes.
-* Run Halyard as a Kubernetes Pod in the namespace (using a StatefulSet).
-* Create an S3 bucket for Armory Enterprise to store persistent configuration.
-* Create an IAM user that Armory Enterprise will use to access the S3 bucket (or alternately, granting access to the bucket via IAM roles).
-* Run the `hal` client interactively in the Kubernetes Pod to:
-  * Build out the `hal` config YAML file (`.hal/config`)
-  * Configure Armory Enterprise with the IAM credentials and bucket information
-  * Turn on other recommended settings (artifacts and http artifact provider)
-  * Install Armory Enterprise
-  * Expose Armory Enterprise
 
 {{% /tabbody %}}
 {{< /tabs >}}
@@ -193,7 +162,7 @@ This section describes how to do the following:
   <li>For this guide, do not add a distinct policy to this user. Click on <b>Next: Tags</b>. <i>You may receive a warning about how there are no policies attached to this user. You can ignore this warning.</i></li>
   <li>Optionally, add tags, then click on <b>Next: Review</b>.</li>
   <li>Click <b>Create user</b>.</li>
-  <li>Save the Access Key ID and Secret Access Key. You need this information later during Halyard configuration.</li>
+  <li>Save the Access Key ID and Secret Access Key. You need this information later during Operator configuration.</li>
   <li>Click <b>Close</b>.</li>
 </ol>
 
@@ -484,324 +453,6 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
 {{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-### Start the Halyard StatefulSet
-
-Halyard is a Docker image used to install Armory Enterprise. It generates Kubernetes manifests for each of the Armory Enterprise services.  This guide explains how to run it in a Kubernetes cluster as a StatefulSet with one (1) Pod.
-
-First, create a namespace for Armory Enterprise to run in (this can be any namespace):
-
-```bash
-kubectl create ns spinnaker
-```
-
-Create a file called `halyard.yml` that contains the following:
-
-```yml
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: spinnaker
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
--
-  kind: ServiceAccount
-  name: default
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: hal-pvc
-  labels:
-    app: halyard
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi
----
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: halyard
-spec:
-  replicas: 1
-  serviceName: halyard
-  selector:
-    matchLabels:
-      app: halyard
-  template:
-    metadata:
-      labels:
-        app: halyard
-    spec:
-      containers:
-      -
-        name: halyard
-        image: armory/halyard-armory:{{< param halyard-armory-version >}}
-        volumeMounts:
-        -
-          name: hal
-          mountPath: /home/spinnaker
-        env:
-        -
-          name: HOME
-          value: "/home/spinnaker"
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 65535
-        fsGroup: 65535
-      volumes:
-      -
-        name: hal
-        persistentVolumeClaim:
-          claimName: hal-pvc
-```
-
-This Kubernetes manifest has these three resources in it:
-
-* A Kubernetes Rolebinding that grants the `default` ServiecAccount access to the full namespace. This is used by both Halyard and Clouddriver.
-* A PersistentVolumeClaim used for persistent Halyard configuration.
-* A StatefulSet using the PVC which runs the Halyard Pod.
-
-Apply (create) the resources **in your namespace**:
-
-```bash
-kubectl -n spinnaker apply -f halyard.yml
-```
-
-Change `spinnaker` to a different namespace if you're using a different namespace.
-
-Check the status of the pod and wait until all the pods are running:
-
-```bash
-kubectl -n spinnaker get pods
-```
-
-If you run into issues, such as the pods getting evicted, see the Kubernetes documentation for troubleshooting tips.
-
-### Access the Halyard container
-
-The majority of tasks you need to perform are done from inside the Halyard container.  Use the following command to access the container:
-
-```bash
-kubectl -n spinnaker exec -it halyard-0 bash
-```
-
-Once inside the container, customize the environment with a minimal `.bashrc` like this:
-
-```bash
-tee -a /home/spinnaker/.bashrc <<-EOF
-export PS1="\h:\w \$ "
-alias ll='ls -alh'
-cd /home/spinnaker
-EOF
-
-source /home/spinnaker/.bashrc
-```
-
-### Configure Armory Enterprise to install in Kubernetes
-
-Inside the container, use the Halyard `hal` command line tool to enable the Kubernetes cloud provider:
-
-```bash
-hal config provider kubernetes enable
-```
-
-Next, configure a Kubernetes account called `spinnaker`:  
-
-```bash
-hal config provider kubernetes account add spinnaker \
-  --provider-version v2 \
-  --only-spinnaker-managed true \
-  --service-account true \
-  --namespaces spinnaker
-  # Update the 'namespaces' field with your namespace if using a different namespace
-```
-This command uses the ServiceAccount associated with Halyard and Clouddriver, the `default` service account in this case.
-
-Once you create an account (with `account add`), you can _edit_ it by running the command with `edit` instead of `add`. Use the same flags.  
-
-For example, if you need to support multiple namespaces, you can run the following:
-
-```bash
-hal config provider kubernetes account edit spinnaker \
-  --namespaces spinnaker,dev,stage,prod
-  # Make sure to include all namespace you need to support
-```
-
-**Important: These commands and parameters limit Armory Enterprise to deploying to the `spinnaker` namespace. If you want to deploy to other namespaces, either add a second cloud provider target or grant the `default` service account in your namespace permissions on additional namespaces and change the `--namespaces` flag.**
-
-Use the Halyard `hal` command line tool to configure Halyard to install Armory Enterprise in your Kubernetes cluster
-
-```bash
-hal config deploy edit \
-  --type distributed \
-  --account-name spinnaker \
-  --location spinnaker
-  # Update the 'location' parameter with your namespace, if relevant
-```
-
-### Enable and configure the 'Artifact' feature
-
-Within Armory Enterprise, 'artifacts' are consumable references to items that live outside of Armory Enterprise, such as a file in a git repository or a file in an S3 bucket. The Artifacts feature must be explicitly turned on.
-
-The following commands enable the "Artifacts" feature, the new Artifact UI, and the "http" artifact provider:
-
-```bash
-hal config features edit --artifacts true
-hal config features edit --artifacts-rewrite true
-hal config artifact http enable
-```
-
-Although enabling the new Artifacts UI is optional, Armory recommends using it for better user experience.
-
-In order to add specific types of artifacts, additional configuration must be completed. For now though, it is sufficient to turn on the artifacts feature with the `http` artifact provider. This allows Armory Enterprise to retrieve files using unauthenticated http.
-
-
-### Configure Armory Enterprise to access S3 with the IAM Role or User
-
-Armory Enterprise needs information about which bucket to access.  Additionally, if you are using an IAM User to access the the bucket, Armory Enterprise needs credentials for the IAM User.
-
-<pre class="highlight"><code># Update these snippets with the information for your bucket
-export BUCKET_NAME=spinnaker-abcxyz
-export REGION=us-west-2
-
-# This will prompt for the secret key
-hal config storage s3 edit \
-  --bucket ${BUCKET_NAME} \
-  --region ${REGION} \
-  --no-validate
-
-hal config storage edit --type s3
-</code></pre>
-
-If you are using an IAM User, then provide Armory Enterprise with the S3 credentials for your IAM User:
-
-<pre class="highlight"><code># Update this with the AWS Access Key ID
-export ACCESS_KEY_ID=AKIAWWWWXXXXYYYYZZZZ
-
-# This will prompt for the secret key
-hal config storage s3 edit \
-  --access-key-id ${ACCESS_KEY_ID} \
-  --secret-access-key
-</code></pre>
-
-By default, Halyard configures Armory Enterprise to use the folder `front50` in your S3 bucket. You can configure it to use a different folder with this command:
-
-<pre class="highlight"><code># Replace with the root folder within our bucket to use
-ROOT_FOLDER=spinnaker_apps
-hal config storage s3 edit \
-  --root-folder ${ROOT_FOLDER}
-</code></pre>
-
-### Set up Gate to listen on the `/api/v1` path
-
-The Armory Enterprise microservice "Gate" serves as the API gateway for Armory Enterprise.  Configure it to listen on a specific path rather than requiring different hosts or ports to differentiate it from the UI of Armory Enterprise.
-
-Create these two files (you may have to create several directories):
-
-Create the file `/home/spinnaker/.hal/default/profiles/gate-local.yml`:
-
-```yml
-server:
-  servlet:
-    context-path: /api/v1
-```
-
-Create the file `/home/spinnaker/.hal/default/service-settings/gate.yml`:
-
-```yml
-healthEndpoint: /api/v1/health
-```
-
-You can copy/paste this snippet to automatically create these two files:
-
-```bash
-mkdir -p /home/spinnaker/.hal/default/{profiles,service-settings}
-
-tee /home/spinnaker/.hal/default/profiles/gate-local.yml <<-'EOF'
-server:
-  servlet:
-    context-path: /api/v1
-EOF
-
-tee /home/spinnaker/.hal/default/service-settings/gate.yml <<-'EOF'
-healthEndpoint: /api/v1/health
-EOF
-```
-
-### Select the Armory Enterprise version to install
-
-Before you use Armory-extended Halyard to install Armory Enterprise, specify the version of Armory Enterprise you want to use. Make sure the version of Armory Enterprise you want to install is compatible with the version of Armory-extended Halyard you are using.
-
-You can get a list of available versions of Armory Enterprise with this command:
-
-```bash
-hal version list
-```
-
-* If you are installing Armory Enterprise using Armory-extended Halyard, the command returns a version that starts with `2.x.x`
-
-* If you are installing open source Spinnaker and using open source Halyard (installed from `gcr.io/spinnaker-marketplace/halyard:stable`), the command returns a version that starts with `1.x.x`
-
-Select the version with the following:
-
-```bash
-# Replace with version of choice:
-export VERSION=$(hal version latest -q)
-echo ${VERSION}
-hal config version edit --version ${VERSION}
-```
-
-### Install Armory Enterprise
-
-Now that our halconfig is configured, you can install Armory Enterprise:
-
-```bash
-hal deploy apply --wait-for-completion
-```
-
-Once this is complete, congratulations! Armory Enterprise is installed. Keep going to learn how to access Armory Enterprise.
-
-### Connect to Armory Enterprise using `kubectl port-forward`
-
-If you have `kubectl` on a local machine with access to your Kubernetes cluster, you can test the status of your Armory Enterprise instance by doing a port-forward.
-
-First, tell Armory Enterprise about its local endpoint for `localhost:8084/api/v1`:
-
-```bash
-hal config security api edit --override-base-url http://localhost:8084/api/v1
-
-hal deploy apply --wait-for-completion
-```
-
-Wait for the pods get in a running state. Then, set up two port forwards, one for Gate (the API gateway) and one for Deck (the Armory Enterprise UI):
-
-```bash
-NAMESPACE=spinnaker
-kubectl -n ${NAMESPACE} port-forward svc/spin-deck 9000 &
-kubectl -n ${NAMESPACE} port-forward svc/spin-gate 8084 &
-```
-
-Then, you can access Armory Enterprise at `http://localhost:9000`.
-
-If you are doing this on a remote machine, this does not work because your browser attempts to access `localhost` on your local workstation rather than on the remote machine where the port is forwarded.
-
-__Note:__ Even if the `hal deploy apply` command returns successfully, the
-installation may not be complete yet. This is especially the case with
-distributed Kubernetes installs. If you see errors such as `Connection refused`,
-the containers may not be available yet. Either wait
-or check the status of all of the containers using the command for our cloud provider
-(such as `kubectl get pods --namespace spinnaker`).
-
-{{% /tabbody %}}
 {{< /tabs >}}
 
 ## Ingress
@@ -911,7 +562,7 @@ kubectl -n spinnaker apply -f spin-ingress.yml
 
 ### Configure Armory Enterprise to be aware of its endpoints
 
-Armory Enterprise must be aware of its endpoints to work properly. Configuration updates vary depending upon whether you installed Armory Enterprise using Operator or Halyard.
+Armory Enterprise must be aware of its endpoints to work properly.
 
 **Operator**
 
@@ -932,26 +583,6 @@ Apply the changes:
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
-```
-
-**Halyard**
-
-Run this command to get into the Halyard container:
-
-```
-kubectl -n spinnaker exec -it halyard-0 bash
-```
-
-Then, run the following command from inside the container:
-
-```bash
-SPINNAKER_ENDPOINT=http://spinnaker.domain.com
-# ^ Replace this with the IP address or DNS that points to our nginx ingress instance
-
-hal config security ui edit --override-base-url ${SPINNAKER_ENDPOINT}
-hal config security api edit --override-base-url ${SPINNAKER_ENDPOINT}/api/v1
-
-hal deploy apply
 ```
 
 ### Configuring TLS certificates
