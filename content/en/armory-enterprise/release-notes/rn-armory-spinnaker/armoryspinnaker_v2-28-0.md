@@ -226,6 +226,13 @@ are not resolved when Spring Cloud tries to refresh.
 
 Do not use secrets for properties that are annotated with `@RefreshScope`.
 
+### Manual Judgment Stage Slack notifications not working
+
+If you are using using manual judgments or slack integration, may not want to upgrade to 2.28.0 until this issue is resolved.
+
+**Affected versions**: Armory CD 2.27.x and later
+
+
 ## Highlighted updates
 
 ### General Fixes
@@ -251,6 +258,9 @@ There is a new Terraform Show stage available as part of the Terraform Integrati
 
 To use the stage, select Terraform for the stage type and Show as the action in the stage configuration UI. Note that the Show stage depends on your Plan stage. For more information, see [Show Stage section in the Terraform Integration docs]({{< ref "terraform-use-integration#example-terraform-integration-stage" >}}).
 
+### Terraform remote backends provided by Terraform Cloud and Terraform Enterprise
+Terraform now supports remote backends provided by Terraform Cloud and Terraform Enterprise - see [Remote Backends section in the Terraform Integration docs]({{< ref "terraform-enable-integration#remote-backends" >}}).
+
 ### Clouddriver
   * Improvements to Docker Registry Account Management, including integration of Docker Registry Clouddriver accounts to take advantage of the new self-service on-boarding account management API.
   * Updated account management API to refactor some things in preparation for user secrets support along. Updated the type discriminator handling for account definitions.
@@ -274,8 +284,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 ###  Spinnaker Community Contributions
 
-There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
-[Spinnaker v1.28.0](https://www.spinnaker.io/changelogs/1.28.0-changelog/) changelog for details.
+There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. 
 
 ## Detailed updates
 
