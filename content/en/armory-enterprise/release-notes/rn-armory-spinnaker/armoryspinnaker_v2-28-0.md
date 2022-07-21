@@ -228,7 +228,7 @@ Do not use secrets for properties that are annotated with `@RefreshScope`.
 
 ### Manual Judgment Stage Slack notifications not working
 
-If you are using using manual judgments or slack integration, may not want to upgrade to 2.28.0 until this issue is resolved.
+If you are using using manual judgments with Slack integration, you may not want to upgrade to 2.28.0 until this issue is resolved.
 
 **Affected versions**: Armory CD 2.27.x and later
 
@@ -254,9 +254,9 @@ EXECUTE defined as a potential permission type.
 Added support for max concurrent pipeline executions. If concurrent pipeline execution is enabled, pipelines will queue when the max concurrent pipeline executions is reached. Any queued pipelines will be allowed to run once the number of running pipeline executions drops below the max. If the max is set to 0, then pipelines will not queue.
 
 ### Terraform Show Stage
-There is a new Terraform Show stage available as part of the Terraform Integration. This stage is the equivalent of running the terraform show command with Terraform. The JSON output from your planfile can be used in subsequent stages.
+There is a new Terraform Show stage available as part of the Terraform Integration. This stage is the equivalent of running the Terraform ```show``` command with Terraform. The JSON output from your planfile can be used in subsequent stages.
 
-To use the stage, select Terraform for the stage type and Show as the action in the stage configuration UI. Note that the Show stage depends on your Plan stage. For more information, see [Show Stage section in the Terraform Integration docs]({{< ref "terraform-use-integration#example-terraform-integration-stage" >}}).
+To use the stage, select **Terraform** for the stage type and **Show** as the action in the Stage Configuration UI. Note that the **Show** stage depends on your **Plan** stage. For more information, see [Show Stage section in the Terraform Integration docs]({{< ref "terraform-use-integration#example-terraform-integration-stage" >}}).
 
 ### Terraform remote backends provided by Terraform Cloud and Terraform Enterprise
 Terraform now supports remote backends provided by Terraform Cloud and Terraform Enterprise - see [Remote Backends section in the Terraform Integration docs]({{< ref "terraform-enable-integration#remote-backends" >}}).
