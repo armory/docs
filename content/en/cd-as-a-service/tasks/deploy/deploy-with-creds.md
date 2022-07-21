@@ -11,11 +11,12 @@ When you want to script a CLI deployment, you can pass your Client ID and Client
 
 ## {{% heading "prereq" %}}
 
-You have [created machine to machine client credentials]({{< ref "cd-as-a-service/tasks/iam/client-creds" >}}).
+You have [created machine to machine client credentials]({{< ref "cd-as-a-service/tasks/iam/client-creds" >}}) and have access to your Client ID and Client Secret values.
 
 ## Deploy your app
 
-```bash
-armory deploy start  -c <clientID> -s <clientSecret> -f <deploy.yaml>
-```
+{{< prism lang="bash" >}}
+armory deploy start  -c <your-client-id> -s <your-client-secret> -f <your-deploy.yaml>
+{{< /prism >}}
 
+See the [deploy command]({{< ref "cd-as-a-service/reference/cli/cli-cheat#deploy-an-application" >}}) for details.
