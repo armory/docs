@@ -226,12 +226,6 @@ are not resolved when Spring Cloud tries to refresh.
 
 Do not use secrets for properties that are annotated with `@RefreshScope`.
 
-### Manual Judgment Stage Slack notifications not working
-
-If you are using using manual judgments with Slack integration, you may not want to upgrade to 2.28.0 until this issue is resolved.
-
-**Affected versions**: Armory CD 2.27.x and later
-
 
 ## Highlighted updates
 
