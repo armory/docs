@@ -40,7 +40,7 @@ Golang services need a X509 certificate (PEM format) and a private key for #1 as
 
 ## Configuring Java services
 
-Add the following to each Java service profile: `<deploy>/profiles/<service>-local.yml` in Halyard or under `profiles` in the [SpinnakerService's profiles]({{< ref "op-config-manifest#specspinnakerconfigprofiles" >}}):
+Add the following to each Java service profile under `profiles` in the [SpinnakerService's profiles]({{< ref "op-config-manifest#specspinnakerconfigprofiles" >}}):
 
 ```yaml
 # Only needed for "server" role
@@ -83,7 +83,7 @@ http:
 
 ## Deploying Spinnaker
 
-After you finish modifying the service YAML files, run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if using Operator, or `hal deploy apply` if using Halyard to apply your changes to your Spinnaker deployment.
+After you finish modifying the service YAML files, run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` to apply your changes to your Spinnaker deployment.
 
 Switching from plain HTTP to HTTPS will cause some short disruption to the services as they become healthy at different times.
 
@@ -94,7 +94,7 @@ Switching from plain HTTP to HTTPS will cause some short disruption to the servi
 
 You can store secrets (and non secrets) in [supported secret stores]({{< ref "secrets" >}}) as well as in Kubernetes secrets if using the [Armory Operator]({{< ref "armory-operator" >}}). This is the simplest route.
 
-For instance, assuming all the information is stored in a bucket named `mybucket` on s3 that all services have access to, `SpinnakerService` manifest (or the corresponding `echo-local.yml` in Halyard) might look like:
+For instance, assuming all the information is stored in a bucket named `mybucket` on s3 that all services have access to, `SpinnakerService` manifest  might look like:
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -122,7 +122,7 @@ spec:
           trust-store-password: encrypted:s3!b:mybucket!r:us-west-2!f:passwords.yml!k:truststorePassword
 ```
 
-Run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if using Operator, or `hal deploy apply` if using Halyard after you make your changes.
+Run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>`  after you make your changes.
 
 ### Manually providing information
 
@@ -151,6 +151,5 @@ server:
     key-store: /var/mysecrets/echo.jks
 ```
 
-Run `hal deploy apply` after you make your changes.
+Apply your changes.
 
->There is currently no way to pass passwords stored in Kubernetes secrets as environment variables using Halyard. You can remove passwords from the keys you're using or use the Spinnaker Operator to reference Kubernetes secrets directly.

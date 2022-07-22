@@ -23,9 +23,6 @@ You have set up a data aggregator with a unique endpoint. You need the endpoint 
 
 The following configuration example shows how to configure Echo to send data to Splunk. If you are using another data aggregator, replace the `url` value with the endpoint for your aggregator.
 
-{{< tabs name="enable-logging" >}}
-{{< tabbody name="Operator" >}}
-
 Add the <b>rest</b> block to the <b>spec.spinnakerConfig.profiles.echo</b> section of your Operator manifest.
 
 {{< prism lang="yaml" >}}
@@ -48,25 +45,6 @@ spec:
           insecure: true
 {{< /prism  >}}
 
-{{< /tabbody >}}
-{{< tabbody name="Halyard" >}}
-
-Add the <b>rest</b> block to the <b>echo-local.yml</b> section in your <b>~/.hal/default/profiles/</b> directory.
-
-{{< prism lang="yaml" >}}
-rest:
-  enabled: true
-  endpoints:
-  - wrap: true
-    url: "http://<SERVICE_URL>:<PORT>/services/collector/event?"
-    headers:
-      Authorization: "<TOKEN>"
-    template: '{"event":{{event}} }'
-  insecure: true
-{{< /prism  >}}
-
-{{< /tabbody >}}
-{{< /tabs >}}
 
 * `SERVICE_URL`: the FQDN of the service; for example `https://splunk.armory.io`.
 * `PORT`: the TCP listener port available in your aggregator.

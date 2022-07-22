@@ -33,7 +33,7 @@ Verify that you meet or can meet these requirements before getting started.
 Your Armory Enterprise (or open source Spinnaker) instance must meet the following requirements:
 
 - Version 2.24 or later (or Spinnaker 1.24 or later)
-- A supported Operator or Halyard version. For information about what version of Halyard or Operator is supported, see the [release notes]({{< ref "rn-armory-spinnaker" >}}) for your Armory Enterprise version.
+- A supported Operator version. For information about what version of Operator is supported, see the [release notes]({{< ref "rn-armory-spinnaker" >}}) for your Armory Enterprise version.
 
 ### Networking
 

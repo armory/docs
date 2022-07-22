@@ -58,8 +58,6 @@ Add a CNAME entry for the given ELB to create a simple name you will use to acce
 
 Update the endpoints for Spinnaker Deck (the Spinnaker UI microservice) and Spinnaker Gate (the Spinnaker API microservice)
 
-{{< tabs name="config" >}}
-{{% tabbody name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -81,21 +79,3 @@ Don't forget to apply your changes:
 ```bash
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
-
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-
-```bash
-hal config security ui edit --override-base-url=https://spinnaker.mydomain.com
-hal config security api edit --override-base-url=https://spinnaker-gate.mydomain.com
-```
-
-Don't forget to apply your changes:
-
-```bash
-hal deploy apply
-```
-
-{{% /tabbody %}}
-{{< /tabs >}}

@@ -17,11 +17,7 @@ Make sure the following requirements are met:
 
 ## Setup
 
-The Policy Engine Plugin can be enabled using the Armory Operator or Halyard.
-
-
-{{< tabs name="enable-plugin" >}}
-{{% tabbody name="Operator" %}}
+You can enable the Policy Engine Plugin using the Armory Operator.
 
 You can use the sample configuration to install the plugin, but keep the following in mind:
 
@@ -60,95 +56,6 @@ The config is optional. If omitted, strict validation is on by default.
 
 </details>
 
-{{% /tabbody %}}
-
-{{% tabbody name="Halyard" %}}
-
-> If you are using the Policy Engine Plugin with open source Spinnaker, configuration in addition to what is described below is required. For more information, see [Policy Engine: PluginRuntimeException: Failed to write file 'plugins/Armory.PolicyEngine-policy-engine-vX.X.X' to plugins folder](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010518).
-
-1. Add the following to `profiles/spinnaker-local.yml`:
-
-   ```yaml
-   armory:
-     policyEngine:
-       opa:
-         # Replace with the  URL to your OPA deployment   
-         baseUrl: http://opa.server:8181/v1/data
-   spinnaker:
-     extensibility:
-       repositories:
-         policyEngine:
-           enabled: true
-           url: file:///opt/spinnaker/lib/local-plugins/policy-engine/plugins.json
-   ```
-
-1. For each service you want to enable the plugin for, add the following snippet to its local profile. For example, add it to the file `profiles/gate-local.yml` for Gate.
-
-   ```yaml
-   spinnaker:
-     extensibility:
-       plugins:
-           Armory.PolicyEngine:
-               enabled: true
-   ```
-
-1. Add the following to `service-settings/gate.yml`, `service-settings/orca.yml`, `service-settings/clouddriver.yml` and `service-settings/front50.yml`:
-
-   ```yaml
-   kubernetes:
-     volumes:
-     - id: policy-engine-install
-       type: emptyDir
-       mountPath: /opt/spinnaker/lib/local-plugins
-   ```
-
-1. Configure Halyard by updating your `.hal/config` file. Use the following snippet and replace `<PLUGIN VERSION>` with the [plugin version](#release-notes) you want to use without the `v` prefix:
-
-   ```yaml
-   deploymentConfigurations:
-     - name: default
-       deploymentEnvironment:
-         initContainers:
-           front50:
-             - name: policy-engine-install
-               image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
-               args:
-                 - -install-path
-                 - /opt/policy-engine-plugin/target
-               volumeMounts:
-                 - mountPath: /opt/policy-engine-plugin/target
-                   name: policy-engine-install
-           clouddriver:
-             - name: policy-engine-install
-               image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
-               args:
-                 - -install-path
-                 - /opt/policy-engine-plugin/target
-               volumeMounts:
-                 - mountPath: /opt/policy-engine-plugin/target
-                   name: policy-engine-install
-           gate:
-             - name: policy-engine-install
-               image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
-               args:
-                 - -install-path
-                 - /opt/policy-engine-plugin/target
-               volumeMounts:
-                 - mountPath: /opt/policy-engine-plugin/target
-                   name: policy-engine-install
-           orca:
-             - name: policy-engine-install
-               image: docker.io/armory/policy-engine-plugin:<PLUGIN VERSION>
-               args:
-                 - -install-path
-                 - /opt/policy-engine-plugin/target
-               volumeMounts:
-                 - mountPath: /opt/policy-engine-plugin/target
-                   name: policy-engine-install
-   ```
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 
 

@@ -10,7 +10,7 @@ description: >
 
 ## Authorize Spinnaker to access the AWS Secrets Manager
 
-Remember to run the Operator (or Halyard's daemon) and Spinnaker<sup>TM</sup> services with IAM roles that allow them to read the keys stored in the AWS Secrets Manager. The following example policy enables access to the AWS Secrets Manger and the KMS store:
+Remember to run the Operator and Spinnaker<sup>TM</sup> services with IAM roles that allow them to read the keys stored in the AWS Secrets Manager. The following example policy enables access to the AWS Secrets Manger and the KMS store:
 
 ```json
   {
