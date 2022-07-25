@@ -26,7 +26,6 @@ For more information, see {{< linkWithTitle "terraform-enable-integration.md">}}
 
 ## Example Terraform Integration stage
 
-
 The following example describes a basic pipeline that performs the plan and apply Terraform actions. This is a simple example. For a more involved one, watch this [demo](https://youtu.be/_p8v-6_5DTI) of the Terraform Integration.
 
 The pipeline consists of these parts:
@@ -90,13 +89,13 @@ The Apply stage performs the same action as running the `terraform apply` comman
 - For **Terraform Artifacts**, add a new file and select the `planfile` from the dropdown. This is the file that you created during the Plan stage and verified during the Manual Judgment stage.
 - All other fields can be left blank or with their default values for this example.
 
-Run the pipeline! For more information about any of the fields discussed in this example or steps for how to configure your own stage, see [Creating a Terraform Integration stage](#creating-a-terraform-integration-stage).
+Run the pipeline.
 
 ## Create a Terraform Integration stage
 
 ![Terraform Stage in Deck](/images/terraform_stage_ui.png)
 
-To use the stage, perform the following steps:
+To create a new Terraform stage, perform the following steps:
 
 1. In Deck, select the Application and pipeline you want to add the Terraform Integration stage to.
 2. Configure the Pipeline and add a stage.
