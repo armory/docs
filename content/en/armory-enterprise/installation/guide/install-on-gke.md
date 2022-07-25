@@ -233,8 +233,6 @@ cp spinnaker-gcs-account.json ${WORKING_DIRECTORY}/.secret
 
 ## Start the Halyard container
 
-{{< include "halyard-note.md" >}}
-
 On the `Halyard machine`, start the Halyard container.
 
 *If you want to install open source Spinnaker instead, use `gcr.io/spinnaker-marketplace/halyard:stable` for the Docker Halyard image reference in substitution of `armory/halyard-armory:<image_version>` in the commands below*

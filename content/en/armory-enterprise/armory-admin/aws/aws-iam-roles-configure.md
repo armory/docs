@@ -29,9 +29,9 @@ This document will guide you through the following:
 
 ## Prerequisites for deploying to AWS
 
-* You installed Spinnaker with Operator or Halyard.
-* You have access to the Spinnaker config files, and a way to apply them (`kubectl` for Operator or `hal` for Halyard).
-* If you're using Operator, you have a access to run `kubectl` commands against the cluster where Spinnaker is installed. If you're using Halyard, you have access to it.
+* You installed Spinnaker with Operator.
+* You have access to the Spinnaker config files, and a way to apply them (`kubectl` for Operator).
+* If you're using Operator, you have a access to run `kubectl` commands against the cluster where Spinnaker is installed.
 * You have permissions to create IAM roles using IAM policies and permissions, in all relevant AWS accounts.
   * You should also be able to set up cross-account trust relationships between IAM roles.
 * If you want to add the IAM Role to Spinnaker via an Access Key/Secret Access Key, you have permissions to create an IAM User.
@@ -147,57 +147,6 @@ Here's a sample `SpinnakerService` manifest block that supports the above:
                iamRole: BaseIAMRole
    ```
 
-{{% /tabbody %}}
-
-{{% tabbody name="Halyard" %}}
-
-
-Here's a sample halconfig `aws` YAML block that supports the above:
-
-   ```yml
-       aws:
-         enabled: true
-         accounts:
-         - name: aws-1
-           requiredGroupMembership: []
-           providerVersion: V1
-           permissions: {}
-           accountId: '111111111111'
-           regions:
-           - name: us-east-1
-           - name: us-west-2
-           assumeRole: role/spinnakerManaged
-         - name: aws-2
-           requiredGroupMembership: []
-           providerVersion: V1
-           permissions: {}
-           accountId: '222222222222'
-           regions:
-           - name: us-east-1
-           - name: us-west-2
-           assumeRole: role/spinnakerManaged
-         - name: aws-3
-           requiredGroupMembership: []
-           providerVersion: V1
-           permissions: {}
-           accountId: '333333333333'
-           regions:
-           - name: us-east-1
-           - name: us-west-2
-           assumeRole: role/spinnakerManaged
-         # Because we're baking in 111111111111, this must match the accountName that is associated with 111111111111
-         primaryAccount: aws-1
-         bakeryDefaults:
-           templateFile: aws-ebs-shared.json
-           baseImages: []
-           awsAssociatePublicIpAddress: true
-           defaultVirtualizationType: hvm
-         defaultKeyPairTemplate: '{{name}}-keypair'
-         defaultRegions:
-         - name: us-west-2
-         defaults:
-           iamRole: BaseIAMRole
-   ```
 {{% /tabbody %}}
 {{< /tabs >}}
 
@@ -421,36 +370,6 @@ spinnakerConfig:
 ```
 
 {{% /tabbody %}}
-
-{{% tabbody name="Halyard" %}}
-
-For each of the Managed (Target) accounts you want to deploy to, perform the following from your Halyard instance:
-
-1. Run this command, **updating fields as follows**:
-   * `AWS_ACCOUNT_NAME` should be a unique name which is used in the Armory UI and API  to identify the deployment target.  For example, `aws-dev-1` or `aws-dev-2`
-   * `ACCOUNT_ID` should be the account ID for the Managed Role (Target Role) you are  assuming.  For example, if the role ARN is `arn:aws:iam::123456789012:role/ DevSpinnakerManagedRole`, then ACCOUNT_ID would be `123456789012`
-   * `ROLE_NAME` should be the full role name within the account, including the type of  object (`role`).  For example, if the role ARN is `arn:aws:iam::123456789012:role/ DevSpinnakerManagedRole`, then ROLE_NAME would be `role/DevSpinnakerManagedRole`
-
-   ```bash
-   # Enter the account name you want Armory to use to identify the deployment target,  the account ID, and the role name.
-   export AWS_ACCOUNT_NAME=aws-dev-1
-   export ACCOUNT_ID=123456789012
-   export ROLE_NAME=role/DevSpinnakerManagedRole
-
-   hal config provider aws account add ${AWS_ACCOUNT_NAME} \
-      --account-id ${ACCOUNT_ID} \
-      --assume-role ${ROLE_NAME}
-   ```
-
-1. Optionally, edit the account with additional options such as those indicated in the [halyard documentation](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-aws-account-edit).  For example, to set the regions that you can deploy to:
-
-   ```bash
-   export AWS_ACCOUNT_NAME=aws-dev-1
-   hal config provider aws account edit ${AWS_ACCOUNT_NAME} \
-      --regions us-east-1,us-west-2
-   ```
-
-{{% /tabbody %}}
 {{< /tabs >}}
 
 ### Instance Role Part 7: Adding/Enabling the AWS CloudProvider configuration to Armory
@@ -463,25 +382,6 @@ Apply the changes done in `Spinnakerservice` manifest:
 ```bash
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest file>
 ```
-
-{{% /tabbody %}}
-
-{{% tabbody name="Halyard" %}}
-
-Once you've added all of the Managed (Target) accounts, run these commands to set up and enable the AWS CloudProvider setting as whole (this can be run multiple times with no ill effects):
-
-1. Enable the AWS Provider
-
-   ```bash
-   hal config provider aws enable
-   ```
-
-1. Apply all changes:
-
-   ```bash
-   # Apply changes
-   hal deploy apply
-   ```
 
 {{% /tabbody %}}
 {{< /tabs >}}

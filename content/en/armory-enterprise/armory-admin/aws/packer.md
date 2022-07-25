@@ -22,7 +22,7 @@ If you've configured Spinnaker to deploy to AWS, then you've likely set up a set
 
 ### AWS bake credentials using IAM credentials
 
-If you've configured Spinnaker to interact with AWS using explicit credentials (an AWS Access Key and Secret Access Key), you can likewise configure Rosco to use a set of AWS credentials.  What you essentially need are an IAM user with permissions to do the things that Packer needs to do, and then you can pass those credentials to Rosco via Halyard.
+If you've configured Spinnaker to interact with AWS using explicit credentials (an AWS Access Key and Secret Access Key), you can likewise configure Rosco to use a set of AWS credentials.  What you essentially need are an IAM user with permissions to do the things that Packer needs to do, and then you can pass those credentials to Rosco.
 
 The AWS account that you're baking in must also match an account configured as a Managed Account, and that Managed Account must be configured as the primary AWS account within Spinnaker.
 
@@ -134,7 +134,7 @@ If you don't configure Rosco with explicit AWS credentials to use, Packer will d
 7. Click on "Review Policy"
 8. Call it "PassRole" and then click "Create Policy"
 
-You don't have to configure anything in Halyard for this, since this role should be immediately available to your Rosco instance.
+This role should be immediately available to your Rosco instance.
 
 ## Configuring AWS networks
 
@@ -173,10 +173,7 @@ If your app is using zip, tarballs or you need some customization, you need to c
 
 Out of the box, Armory comes with these built-in Packer templates and scripts: https://github.com/spinnaker/rosco/tree/master/rosco-web/config/packer
 
-If you'd like to add additional Packer template or script files, you can add them via the [Armory Operator]({{< ref "armory-operator" >}}) or Halyard.
-
-{{< tabs name="custom" >}}
-{{% tabbody name="Operator" %}}
+If you'd like to add additional Packer template or script files, you can add them via the [Armory Operator]({{< ref "armory-operator" >}}) .
 
 Add any Packer template and supporting scripts as string-formatted entries under the `spec.spinnakerConfig.files` section of the `SpinnakerService` config.
 
@@ -212,21 +209,3 @@ NOTE:  The Armory Operator interprets the double underscores in the file names a
 
 See the "Export Packer template files" step in the [Migrating from Halyard to Operator]({{< ref "hal-op-migration" >}}) section of the Armory Operator document for more examples.
 
-{{% /tabbody %}}
-
-{{% tabbody name="Halyard" %}}
-
-* If it does not already exist, create this directory: `~/.hal/<deployment-name>/profiles/rosco/packer/`
-  * For example, if you're using the default Halyard deployment, then create this directory: `~/.hal/default/profiles/rosco/packer/`
-* Add the templates and scripts to the created directory.
-  * For example, if you have packer template `aws-custom.json` and script `setup-base.sh` and are using the `default` deployment in your Halyard configuration, then you'll end up with these files:
-    * `~/.hal/default/profiles/rosco/packer/aws-custom.json`
-    * `~/.hal/default/profiles/rosco/packer/setup-base.sh`
-* Run `hal deploy apply` to apply your changes.  Your scripts will be added to a Kubernetes secret and added to the Rosco Kubernetes pod(s).
-
-**Bake Configuration** in Spinnaker
-Spinnaker can send pipeline variables such as `repository` to the packer script by adding it in the extended attributes. Some attributes are prefilled because of selecting `trusty` as the base OS.
-![example](/images/Screen-Shot-2017-09-05-at-4.34.58-PM.png)
-
-{{% /tabbody %}}
-{{< /tabs >}}

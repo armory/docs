@@ -6,9 +6,8 @@ description: >
 
 ## Overview of connecting Spinnaker to Docker registries
 
-Many of the commands below have additional options that
-may be useful, or possibly required.  If you need more detailed help, take
-a look at the [Halyard command reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-docker-registry) if you're using Halyard to deploy Spinnaker.
+Many of the commands below have additional options that may be useful, or
+possibly required.
 
 ## Enable Docker registries in Spinnaker
 
@@ -30,13 +29,6 @@ spec:
       providers:
         dockerRegistry:
           enabled: true
-```
-
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-```bash
-hal config provider docker-registry enable
 ```
 
 {{% /tabbody %}}
@@ -91,21 +83,6 @@ spec:
             # passwordCommand: abc # Command to retrieve docker token/password, commands must be available in environment
             # environment: dev # The environment name for the account. Many accounts can share the same environmen(e.g. dev, test, prod)
 ```
-
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-
-```bash
-hal config provider docker-registry account add my-docker-registry \
-    --address index.docker.io
-    --repositories armory/demoapp
-    --username yourusername
-    --password # you'll be prompted for this interactively
-    # --repositoriesRegex: <regexForYourRepos> # Optional regular expression that limits what repositories Clouddriver caches images from. This is useful if you add repos frequently. Any new repo that matches the regex gets cached automatically.
-```
-
-Detailed information on all command line options can be found [here](https://www.spinnaker.io/reference/halyard/commands/#hal-config-provider-docker-registry-account-add)
 
 {{% /tabbody %}}
 {{< /tabs >}}

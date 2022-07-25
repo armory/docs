@@ -112,7 +112,7 @@ spec:
             replicas: 0
 ```
 
-Once you're done configuring for the passive Spinnaker, run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` if using Operator, or `hal deploy apply` if using Halyard to deploy.
+Once you're done configuring for the passive Spinnaker, run `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>` to deploy.
 
 {{% alert title="Note" %}}Armory recommends performing a DR exercise run to make sure the passive Armory is set up correctly. Ideally, the DR exercise should include both failing over to the DR region and failing back to the primary region.{{% /alert %}}
 
@@ -124,10 +124,10 @@ If the active Spinnaker is failing, the following actions need to be taken:
 
 Perform the following tasks when you make the passive Spinnaker into the active Spinnaker:
 
-* Use the same version of Operator or Halyard to deploy the passive Spinnaker installation that was used to deploy the active Spinnaker.
+* Use the same version of Operator to deploy the passive Spinnaker installation that was used to deploy the active Spinnaker.
 * AWS Aurora
     * Promote another cluster in the global database to have read/write capability.
-    * Update `SpinnakerService` manifest if using Operator, or Halyard configuration if using Halyard to point to the promoted database if the database endpoint and/or the database credentials have changed.
+    * Update `SpinnakerService` manifest to point to the promoted database if the database endpoint and/or the database credentials have changed.
 * Create the Redis clusters.
 * Activate the passive instance.
     * Set the replicas to more than 0. Ideally, this should be set to the same number of replicas that the active Armory used.

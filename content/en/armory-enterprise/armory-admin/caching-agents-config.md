@@ -11,7 +11,7 @@ See the {{< linkWithTitle "caching-agents-concept.md" >}} page for detailed cont
 
 Depending on how large your infrastructure is and how many elements it has, you may need to increase Clouddriver's CPU and memory limits, increase the number of running Clouddriver instances, or both.
 
-The following configuration settings affect the behavior of the caching agents and can be used to adjust them depending on the size of the infrastructure being cached. If using the Spinnaker Operator, these settings live under the key `.spec.spinnakerConfig.profiles.clouddriver` of `SpinnakerService` manifest. If using Halyard, they live in `.hal/<profile name>/profiles/clouddriver-local.yml`.
+The following configuration settings affect the behavior of the caching agents and can be used to adjust them depending on the size of the infrastructure being cached. If using the Spinnaker Operator, these settings live under the key `.spec.spinnakerConfig.profiles.clouddriver` of `SpinnakerService` manifest.
 
 ### SQL global caching agents configuration
 

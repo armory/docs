@@ -68,19 +68,7 @@ is doing.
 
 Note: If you see the following error `The was an error saving your config: 400` when you are trying to save your "Canary Config", add the following setting:
 
-**Halyard**
-
-In `.hal/default/profiles/gate-local.yml`, add the following snippet:
-
-```yaml
-services:
-  kayenta:
-    canaryConfigStore: true
-```
-
-**Operator**
-
-In your `SpinnakerService` manifest, add the following snippet:
+In your Armory Operator's `SpinnakerService` manifest, add the following snippet:
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}

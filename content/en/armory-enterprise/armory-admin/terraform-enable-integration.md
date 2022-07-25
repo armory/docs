@@ -48,8 +48,6 @@ The Terraform Integration uses Redis to store Terraform logs and plans.
 
 To set/override the Armory Enterprise Redis settings do the following:
 
-**Operator**
-
 In `SpinnakerService` manifest:
 
 ```yaml
@@ -70,17 +68,6 @@ spec:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
-**Halyard**
-
-Edit the `~/.hal/default/profiles/terraformer-local.yml` file and add the following:
-
-```yaml
-redis:
-  baseUrl: "redis://spin-redis:6379"
-  password: "password"
-```
-
-Then run `hal deploy apply` to deploy the changes.
 
 ### Generating a GitHub Personal Access Token (PAT)
 
@@ -110,7 +97,7 @@ Spinnaker uses the Git Repo Artifact Provider to download the repo containing yo
 If you already have a Git Repo artifact account configured in Spinnaker,
 skip this section.
 
-**Operator**
+
 
 Edit the `SpinnakerService` manifest to add the following:
 
@@ -131,21 +118,6 @@ spec:
               token: <Your GitHub PAT> # GitHub personal access token
 ```
 
-**Halyard**
-
-1. Enable Git Repo as an artifact provider:
-
-   ```bash
-   hal config artifact gitrepo enable
-   ```
-
-2. Add the Git Repo account:
-
-   ```bash
-   hal config artifact gitrepo account add gitrepo-for-terraform --token
-   ```
-
-   The command prompts you for your Git Repo PAT.
 
 For more configuration options, see [Git Repo](https://spinnaker.io/setup/artifacts/gitrepo/).
 
@@ -165,7 +137,7 @@ skip this section.
 {{% alert title="Note" %}}The following examples use `github-for-terraform` as a unique identifier for the artifact account. Replace it with your own identifier.
 {{% /alert %}}
 
-**Operator**
+
 
 Edit the `SpinnakerService` manifest to add the following:
 
@@ -185,19 +157,6 @@ spec:
           enabled: true
 ```
 
-**Halyard**
-
-1. Enable GitHub as an artifact provider:
-
-   ```bash
-   hal config artifact github enable
-   ```
-2. Add the GitHub account:
-   ```bash
-   hal config artifact github account add github-for-terraform --token
-   ```
-   The command prompts you for your GitHub PAT.
-
 
 ## Configure the Terraform Integration for BitBucket *(optional)*
 
@@ -211,7 +170,7 @@ If you already have a BitBucket artifact account configured in Spinnaker, skip t
 Replace `bitbucket-for-terraform` with any unique identifier to
 identify the artifact account.
 
-**Operator**
+
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -230,16 +189,6 @@ spec:
             password: <Your Bitbucket password> # This field supports "encrypted" field references
 ```
 
-**Halyard**
-
-```bash
-hal config artifact bitbucket enable
-
-# This will prompt for the password
-hal config artifact bitbucket account add bitbucket-for-terraform \
-  --username <USERNAME> \
-  --password
-```
 
 
 ## Enabling the Terraform Integration
@@ -247,7 +196,7 @@ hal config artifact bitbucket account add bitbucket-for-terraform \
 
 Enable the Terraform Integration:
 
-**Operator**
+
 
 In `SpinnakerService` manifest:
 
@@ -271,15 +220,8 @@ spec:
 
 This example manifest also enables the Terraform Integration UI.
 
-**Halyard**
-
-```bash
-hal armory terraform enable
-```
 
 ### Remote backends
-
-{{< include "early-access-feature.html" >}}
 
 The Terraform Integration supports using remote backends provided by Terraform Cloud and Terraform Enterprise.
 
@@ -310,17 +252,10 @@ If you previously used the Terraform Integration stage by editing the JSON repre
 
 Manually enable the stage UI for Deck:
 
-**Operator**
+
 
 See the example manifest in [Enabling the Terraform Integration](#enabling-the-terraform-integration).
 
-**Halyard**
-
-Edit `~/.hal/default/profiles/settings-local.js` and add the following:
-
-```js
-window.spinnakerSettings.feature.terraform = true;
-```
 
 ## Completing the installation
 
@@ -328,7 +263,7 @@ After you finish your Terraform integration configuration, perform the following
 
 1. Apply the changes:
 
-   **Operator**
+
 
    Assuming that Spinnaker lives in the namespace `spinnaker` and the `SpinnakerService` manifest is named `spinnakerservice.yml`:
 
@@ -336,11 +271,7 @@ After you finish your Terraform integration configuration, perform the following
    kubectl -n spinnaker apply -f spinnakerservice.yml
    ```
 
-   **Halyard**
 
-   ```bash
-   hal deploy apply
-   ```
 
 2. Confirm that the Terraform Integration service (Terraformer) is deployed with your Spinnaker deployment:
 
@@ -486,44 +417,7 @@ You can see a demo here: [Named Profiles for the Terraform Integration](https://
 
 {{% alert color=note title="Note" %}}Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/).{{% /alert %}}
 
-#### Halyard
-To start, edit `~/.hal/default/profiles/terraformer-local.yml` and add the following config:
 
-```yaml
-fiat:
-  enabled: true
-  baseUrL: ${services.fiat.baseUrl} # If you are using a custom URL for Fiat, replace with your Fiat URL.
-```
-
-Now, you can specify permissions for any profiles you have:
-
-```yaml
-profiles:
-  ...
-  ...
-  ...
-  permissions:
-    - <role that should have access>
-    - <role that should have access>
-    - ...
-```
-
-This is what a Named Profile for a team named `dev-team` looks like for AWS credentials:
-
-```yaml
-profiles:
-  - name: dev-team
-    variables:
-      - kind: aws
-        options:
-          assumeRole: my-role
-    permissions:
-      - dev
-      - ops
-```
-In the example, only users who belong to the `dev` or `ops` groups can use the credentials that correspond to this profile.
-
-Don't forget to run `hal deploy apply` once you finish making changes!
 
 ## Retries
 
@@ -546,10 +440,8 @@ The preceding example enables retries and sets the minimum wait between attempts
 
 > If the logging URL is not responsive, the Terraform Integration may not process deploys until the URL can be reached.
 
-You can enable logging and metrics for Prometheus by adding the following configuration to the `spec.spinnakerConfig.profiles.terraformer.logging.remote` block in your `SpinnakerService` manifest (Operator) or the `terraformer-local.yml` file (Halyard):
+You can enable logging and metrics for Prometheus by adding the following configuration to the `spec.spinnakerConfig.profiles.terraformer.logging.remote` block in your `SpinnakerService` manifest:
 
-{{< tabs name="Logging and metrics" >}}
-{{% tabbody name="Operator" %}}
 
 ```yaml
 spec:
@@ -575,29 +467,6 @@ spec:
 ```
 
 
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-```yaml
-logging:
-  remote:
-    enabled: true
-    endpoint: <TheLoggingEndPoint> # For example, https://debug.armory.io
-    version: 1.2.3
-    customerId: someCustomer123 # Your Armory Customer ID
-  metrics:
-    enabled: true
-    frequency: <Seconds> # Replace with an integer value for seconds based on how frequently you want metrics to be scraped
-    prometheus:
-      enabled: true
-      commonTags: # The following tags are examples. Use tags that are relevant for your environment
-        # env: dev
-        # nf_app: exampleApp
-        # nf_region: us-west-1
-```
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 ## Submit feedback
 

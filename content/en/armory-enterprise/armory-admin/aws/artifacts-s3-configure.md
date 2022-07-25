@@ -15,8 +15,11 @@ description: >
 The example on this page describes how to reference a Helm chart tarball for
 later use during deployment.
 
-This is a quick walkthrough of how to configure Spinnaker<sup>TM</sup> and Armory to access an [S3](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html) bucket as a source of artifacts.  Many of the configurations below have additional options that may be useful (or possibly required).  If you need more detailed help, take a look at the
-[Halyard command reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-artifact-s3-account)
+This is a quick walkthrough of how to configure Spinnaker<sup>TM</sup> and
+Armory to access an
+[S3](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html)
+bucket as a source of artifacts.  Many of the configurations below have
+additional options that may be useful (or possibly required).
 
 ## Enable S3 artifacts
 
@@ -39,15 +42,6 @@ spec:
       artifacts:
         s3:
           enabled: true
-```
-
-{{% /tabbody %}}
-
-{{% tabbody name="Halyard" %}}
-
-```bash
-hal config features edit --artifacts true
-hal config artifact s3 enable
 ```
 
 {{% /tabbody %}}
@@ -82,22 +76,6 @@ spec:
 ```
 
 Apply your changes with `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>`.
-
-{{% /tabbody %}}
-
-{{% tabbody name="Halyard" %}}
-
-```bash
-hal config artifact s3 account add my-s3-account \
-    --region us-west-2 \
-    --aws-access-key-id ABCDEF01234... \
-    --aws-secret-access-key # Will be prompted for this interactively
-```
-
-Apply your changes with `hal deploy apply`.
-
-You can find detailed information on all command line options in the Halyard  [reference](https://www.spinnaker.io/reference/halyard/commands/#hal-config-artifact-s3-account-add)
-
 
 {{% /tabbody %}}
 {{< /tabs >}}

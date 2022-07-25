@@ -2,15 +2,12 @@
 title: Connect Spinnaker to Jenkins
 linkTitle: Connect to Jenkins
 description: >
-  Use Halyard or the Armory Operator to configure Spinnaker to access to your Jenkins instance.
+  Use the Armory Operator to configure Spinnaker to access to your Jenkins instance.
 ---
 
 > Consult the Spinnaker documentation's [Jenkins page](https://www.spinnaker.io/setup/ci/jenkins/) for an in-depth guide.
 
 ## Enable Jenkins in Spinnaker
-
-{{< tabs name="enable" >}}
-{{% tabbody name="Operator" %}}
 
 Add the following snippet to your `SpinnakerService` manifest:
 
@@ -26,18 +23,6 @@ spec:
         jenkins:
           enabled: true
 ```
-
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-Enable Jenkins using the Halyard command:
-
-```bash
-hal config ci jenkins enable
-```
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 ## Create a User API Token in Jenkins
 
@@ -57,8 +42,6 @@ available jobs and display them in the UI for triggers and stages.
 
 Add the Jenkins master to Spinnaker:
 
-{{< tabs name="add" >}}
-{{% tabbody name="Operator" %}}
 
 Add the following snippet to your `SpinnakerService` manifest:
 
@@ -86,21 +69,6 @@ Don't forget to apply your changes:
 kubectl -n >spinnaker namespace> apply -f <SpinnakerService manifest>
 ```
 
-{{% /tabbody %}}
-{{% tabbody name="Halyard" %}}
-
-
-```bash
-hal config ci jenkins master add <jenkins-master-name> \
-    --address https://<jenkins-url>/ \
-    --username <jenkins-username> \
-    --password # You will be prompted for your Jenkins API token interactively
-```
-
-Apply your changes using `hal deploy apply`.
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 ## Troubleshooting Authentication / Connectivity
 

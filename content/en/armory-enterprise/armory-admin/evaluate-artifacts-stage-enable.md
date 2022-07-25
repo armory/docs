@@ -78,50 +78,6 @@ Then, deploy your updated Armory Enterprise configuration using one of the follo
    ```
 
 {{% /tabbody %}}
-
-{{% tabbody name="Halyard" %}}
-
-> The following method adds the plugin repository as part of the service profile for Orca, the orchestrator service. The benefit of this method is that it minimizes the downtime for your Armory instance. It is possible to add and manage plugin repositories in a separate file. For more information, see [Add a plugin repository using Halyard](https://spinnaker.io/guides/user/plugins/#add-a-plugin-repository-using-halyard).
-
-Perform the following steps to enable the plugin for the Evaluate Artifact stage:
-
-1. Add the plugin to your `~/.hal/default/profiles/orca-local.yml` file:
-
-   ```yaml
-   spinnaker:
-     extensibility:
-       plugins:
-         Armory.EvaluateArtifactsPlugin:
-           enabled: true
-           version: <PLUGIN_VERSION> # Replace with the version you want to use. For example, use 0.1.0.
-       repositories:
-         evaluateArtifacts:
-           url: https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
-   ```
-
-   Make sure to replace `PLUGIN_VERSION` with the version of the plugin you want to use. Plugin versions can be found [here](#versions).
-
-2. Enable the UI for the stage in your `~/.hal/default/profiles/gate-local.yml` file:
-
-   ```yaml
-   spinnaker:
-     extensibility:
-      deck-proxy:
-        enabled: true
-        plugins:
-          Armory.EvaluateArtifactsPlugin:
-            enabled: true
-            version: <PLUGIN_VERSION> # Replace with the version you want to use. For example, use 0.1.0.
-      repositories:
-        evaluateArtifacts:
-          url: https://raw.githubusercontent.com/armory-plugins/evaluate-artifacts-releases/master/repositories.json
-   ```
-
-   Make sure to replace `PLUGIN_VERSION` with the version of the plugin you want to use. Plugin versions can be found [here](#versions).
-
-3. Run `hal deploy apply` to apply the changes to your Armory Enterprise instance.
-
-{{% /tabbody %}}
 {{< /tabs>}}
 
 ## Versions
