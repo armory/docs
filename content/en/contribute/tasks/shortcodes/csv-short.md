@@ -1,6 +1,8 @@
 ---
-title: "Table from getCSV"
-description: "table from CSV shortcode"
+title: Diplay the Contents of a CSV File
+linktitle: "Table from CSV"
+description: >
+   Render the contents of a CSV file as a table.
 
 ---
 

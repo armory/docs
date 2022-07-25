@@ -1,6 +1,5 @@
 ---
 title: "Include Content of GitHub File"
-
 ---
 
 ## Include the contents of a file from a public GitHub repo

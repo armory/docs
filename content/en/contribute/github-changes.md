@@ -1,6 +1,9 @@
 ---
 title: Make a Change Using the GitHub Web UI
 weight: 3
+description: >
+   Use the GitHub web UI to edit a single page and create a pull request.
+
 ---
 
 ## Open a pull request (PR) on GitHub
@@ -10,7 +13,7 @@ weight: 3
 
    ![EditFileIcon](/images/contribute/github-edit-file-icon.jpg)
 
-1. Make your changes in the GitHub markdown editor.
+1. Make your changes in the GitHub markdown editor. Be sure to follow the guidelines in the {{< linkWithTitle "contribute/docs-style-guide.md" >}}.
 1. Fill in the **Propose file change** form.
 
    ![ProposeFileChange](/images/contribute/github-propose-file-change-form.jpg)

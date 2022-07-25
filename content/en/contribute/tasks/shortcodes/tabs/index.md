@@ -1,6 +1,6 @@
 ---
 title: "Use the Custom Tabs Shortcode"
-linkTitle: Use Tabs Shortcode
+linkTitle: Tabs
 no_list: true
 description: >
   Examples of how to use the custom Tabs shortcode.

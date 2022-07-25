@@ -1,6 +1,7 @@
 ---
 title: 'Code Of Conduct'
 weight: 1
+description: Contributor code of conduct
 ---
 
 ## Contributor Covenant Code of Conduct

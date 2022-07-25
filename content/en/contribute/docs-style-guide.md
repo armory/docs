@@ -1,6 +1,8 @@
 ---
 title:  "Docs Style Guide"
 weight: 5
+description: >
+   Writing guidelines for creating content
 ---
 
 ## Overview

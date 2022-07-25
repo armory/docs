@@ -1,4 +1,6 @@
 ---
 title: "Approver and Reviewer Guidelines"
-weight: 50
+weight: 60
+description: >
+  Guidelines for reviewing and approving pull requests
 ---

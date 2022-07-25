@@ -1,6 +1,8 @@
 ---
 title: Make a Change Using a Local Clone
 weight: 4
+description: >
+   Locally clone the armory/docs repo, make your changes, build locally, push, and create a pull request.
 ---
 
 ## Overview
@@ -50,6 +52,7 @@ To make a significant changes to the `armory/docs` repository, you can fork the 
    ```
 {{% /tabbody %}}
 {{% tabbody name="Armory Employee" %}}
+
 1. Navigate to the `armory/docs` [repository](https://github.com/armory/docs) with a web browser.
 1. In a terminal window, clone the repo:
 
@@ -123,7 +126,7 @@ git checkout -b <your-working-branch>
 {{% /tabbody %}}
 {{< /tabs >}}
 
-Make your changes.
+Make your changes. Be sure to follow the guidelines in the {{< linkWithTitle "contribute/docs-style-guide.md" >}}.
 
 Use the `git status` command at any time to see what files you've changed.
 
