@@ -247,8 +247,8 @@ EXECUTE defined as a potential permission type.
 ### Maximum Concurrent Pipeline Executions
 Added support for max concurrent pipeline executions. If concurrent pipeline execution is enabled, pipelines will queue when the max concurrent pipeline executions is reached. Any queued pipelines will be allowed to run once the number of running pipeline executions drops below the max. If the max is set to 0, then pipelines will not queue.
 
-### Terraform Show Stage
-There is a new Terraform Show stage available as part of the Terraform Integration. This stage is the equivalent of running the Terraform ```show``` command with Terraform. The JSON output from your planfile can be used in subsequent stages.
+### **Show** Added to Terraform Integration Stage
+There is a new Terraform action available as part of the Terraform Integration stage. This action is the equivalent of running the Terraform ```show``` command with Terraform. The JSON output from your planfile can be used in subsequent stages.
 
 To use the stage, select **Terraform** for the stage type and **Show** as the action in the Stage Configuration UI. Note that the **Show** stage depends on your **Plan** stage. For more information, see [Show Stage section in the Terraform Integration docs]({{< ref "terraform-use-integration#example-terraform-integration-stage" >}}).
 
