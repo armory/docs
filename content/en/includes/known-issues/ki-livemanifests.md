@@ -6,7 +6,7 @@ This can be especially detrimental to any pipelines that use a rollout strategy 
 
 **Workaround**
 
-Consult the [KB Article detailing solutions on this issue](https://support.armory.io/support?sys_kb_id=b1f16c701b3ca05013d4fe6fdc4bcb9f&id=kb_article_view&sysparm_rank=1&sysparm_tsqueryId=5365bbeb1b701510ec88b8c2cc4bcb90) for how to work around this issue.
+Consult the [KB Article detailing solutions on this issue](https://armoryspinnaker.force.com/s/article/Accounts-with-liveManifestCalls-Set-to-True-Have-In-Correct-Dynamic-Lookup-Results) for how to work around this issue.
 
 **Impact**
 

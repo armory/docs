@@ -9,26 +9,27 @@ description: >
 ![Proprietary](/images/proprietary.svg)
 ## Overview of Terraform integration
 
-At the core of Terraform Integration is the Terraformer service. This service fetches your Terraform projects from source and executes various Terraform commands against them. When a `terraform` stage starts, Orca submits the task to Terraformer and monitors it until completion. Once a task is submitted, Terraformer fetches your target project, runs `terraform init` to initialize the project, and then runs your desired `action` (`plan` or `apply`). If the task is successful, the stage gets marked successful as well. If the task fails, the stage gets marked as a failure, and the pipeline stops.
+At the core of the Terraform Integration is the Terraformer service. This service fetches your Terraform projects from source and executes various Terraform commands against them. When a `terraform` stage starts, Orca submits the task to Terraformer and monitors it until completion. Once a task is submitted, Terraformer fetches your target project, runs `terraform init` to initialize the project, and then runs your desired `action` (`plan` or `apply`). If the task is successful, the stage gets marked successful as well. If the task fails, the stage gets marked as a failure, and the pipeline stops.
 
 A Terraform Integration stage performs the following actions when it runs:
 
 1. Authenticates to your repo using basic authentication credentials you provide. This can be a GitHub token or a BitBucket username/password combination.
-1. Pulls a full directory from your Git repository.
-1. Optionally uses a Spinnaker artifact provider (Github, BitBucket, or HTTP) to pull in a `tfvars`-formatted variable file.
-1. Runs the Terraform action you select.
+2. Pulls a full directory from your Git repository.
+3. Optionally uses a Spinnaker artifact provider (Github, BitBucket, or HTTP) to pull in a `tfvars`-formatted variable file.
+4. Runs the Terraform action you select.
 
 ## Requirements
 
-Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. Additionally, you need to store your Terraform code in either a GitHub or BitBucket repo that Armory Enterprise can access. You grant access as part of the enablement process.
+Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. Additionally, your Terraform code needs to be stored in either a GitHub or BitBucket repo that Armory Enterprise can access. You grant access as part of the enablement process.
 
-For more information, see {{< linkWithTitle "terraform-enable-integration.md">}}.
+For more information, see [Enabling the Terraform Integration]({{< ref "terraform-enable-integration">}}).
 
 ## Example Terraform Integration stage
 
+
 The following example describes a basic pipeline that performs the plan and apply Terraform actions. This is a simple example. For a more involved one, watch this [demo](https://youtu.be/_p8v-6_5DTI) of the Terraform Integration.
 
-The pipeline consists of these parts:
+The pipeline consists of three parts:
 
 **Plan stage**
 
@@ -48,7 +49,7 @@ For this stage, configure the following:
   3. For **Match Artifact > Account** , select **embedded-artifact** .
   4. Name the artifact `planfile`.
 
-The output of this stage, the embedded artifact named `planfile`, can be consumed by subsequent stages in this pipeline. In this example, this occurs during the final stage of the pipeline. Additionally, more complex use cases that involve parent-child pipelines can also use plan files.
+The output of this stage, the embedded artifact named `planfile`, can get consumed by subsequent stages in this pipeline. In this example, this occurs during the final stage of the pipeline. Additionally, more complex use cases that involve parent-child pipelines can also use plan files.
 
 **Show stage**
 
@@ -89,13 +90,13 @@ The Apply stage performs the same action as running the `terraform apply` comman
 - For **Terraform Artifacts**, add a new file and select the `planfile` from the dropdown. This is the file that you created during the Plan stage and verified during the Manual Judgment stage.
 - All other fields can be left blank or with their default values for this example.
 
-Run the pipeline.
+Run the pipeline! For more information about any of the fields discussed in this example or steps for how to configure your own stage, see [Creating a Terraform Integration stage](#creating-a-terraform-integration-stage).
 
-## Create a Terraform Integration stage
+## Creating a Terraform Integration stage
 
 ![Terraform Stage in Deck](/images/terraform_stage_ui.png)
 
-To create a new Terraform stage, perform the following steps:
+To use the stage, perform the following steps:
 
 1. In Deck, select the Application and pipeline you want to add the Terraform Integration stage to.
 2. Configure the Pipeline and add a stage.
@@ -111,7 +112,6 @@ To create a new Terraform stage, perform the following steps:
         * **Apply**: Run `terraform apply`. Optionally, you can ignore state locking. Armory recommends you do not ignore state locking because it can lead to state corruption. Only ignore state locking if you understand the consequences.
         * **Destroy**: Run `terraform destroy`. Optionally, you can ignore state locking. Armory recommends you do not ignore state locking because it can lead to state corruption.  Only ignore state locking if you understand the consequences.
         * **Output**: Run `terraform output`.
-        * **Show**: Run `terraform show`. This creates human-readable JSON output from your `planfile`.
       * **Targets**: Scope execution to a certain subset of resources.
       * **Workspace**: [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html) to use. The workspace gets created if it does not already exist. For remote backends, the workspace must be explicit or prefixed. For more information about what that means, see the Terraform documentation about [remote backends](https://www.terraform.io/docs/backends/types/remote.html)
     * **Main Terraform Artifact**
@@ -146,9 +146,9 @@ To create a new Terraform stage, perform the following steps:
 
 
 
-## Custom plugins
+## Custom Plugins
 
-Terraform Integration supports the use of custom Terraform providers and plugins. Terraform Integration downloads the plugins and injects them into each stage dynamically as needed to ensure the Terraform code can run.
+The Terraform Integration supports the use of custom Terraform providers and plugins. The Terraform Integration downloads the plugins and injects them into each stage dynamically as needed to ensure the Terraform code can run.
 
 Any plugin you want to use must meet the following requirements:
 * Be a zip, tar, gzip, tar-gzip or executable
@@ -184,7 +184,7 @@ Any plugin you want to use must meet the following requirements:
 }
 ```
 
-Terraform Integration caches all the defined plugins by default and does not redownload them.  To configure the Terraform Integration to redownload a plugin, add the following JSON under the metadata key in the artifact object:
+The Terraform Integration caches all the defined plugins by default and does not redownload them.  To configure the Terraform Integration to redownload a plugin, add the following JSON under the metadata key in the artifact object:
 
 ```yaml
 "metadata": {
@@ -193,7 +193,7 @@ Terraform Integration caches all the defined plugins by default and does not red
 }
 ```
 
-## View Terraform log output
+## Viewing Terraform log output
 
 ![Terraform Integration logs](/images/terraformer-ui-logs.png)
 
@@ -207,7 +207,7 @@ Terraform provides logs that describe the status of your Terraform action. When 
 
 For more information about Terraform logs, see the [Terraform documentation](https://www.terraform.io/docs/commands/plan.html#detailed-exitcode).
 
-## Consume Terraform output using SpEL
+## Consuming Terraform output via SpEL
 
 If you have a Terraform template configured with [Output Values](https://www.terraform.io/docs/configuration/outputs.html), then you can use the `Output` stage to parse the output and add it to your pipeline execution context.
 
@@ -225,3 +225,6 @@ Then you can set up an `Output` stage that exposes this in the pipeline executio
 ${#stage('My Output Stage')["context"]["status"]["outputs"]["bucket_arn"]["value"]}
 ```
 
+## Submit feedback
+
+Let us know what you think at [go.armory.io/ideas](https://go.armory.io/ideas) or [feedback.armory.io](https://feedback.armory.io). We're constantly iterating on customer feedback to ensure that the features we build make your life easier!

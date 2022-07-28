@@ -1,5 +1,5 @@
 ---
-title: v2.28.0 Armory CD Release (Spinnaker™ v1.28.0)
+title: v2.28.0 Armory CD Release (OSS Spinnaker™ v1.28.0)
 toc_hide: true
 version: 02.28.0
 hidden: true
@@ -226,7 +226,6 @@ are not resolved when Spring Cloud tries to refresh.
 
 Do not use secrets for properties that are annotated with `@RefreshScope`.
 
-
 ## Highlighted updates
 
 ### General Fixes
@@ -247,13 +246,10 @@ EXECUTE defined as a potential permission type.
 ### Maximum Concurrent Pipeline Executions
 Added support for max concurrent pipeline executions. If concurrent pipeline execution is enabled, pipelines will queue when the max concurrent pipeline executions is reached. Any queued pipelines will be allowed to run once the number of running pipeline executions drops below the max. If the max is set to 0, then pipelines will not queue.
 
-### **Show** Added to Terraform Integration Stage
-There is a new Terraform action available as part of the Terraform Integration stage. This action is the equivalent of running the Terraform ```show``` command with Terraform. The JSON output from your planfile can be used in subsequent stages.
+### Terraform Show Stage
+There is a new Terraform Show stage available as part of the Terraform Integration. This stage is the equivalent of running the terraform show command with Terraform. The JSON output from your planfile can be used in subsequent stages.
 
-To use the stage, select **Terraform** for the stage type and **Show** as the action in the Stage Configuration UI. Note that the **Show** stage depends on your **Plan** stage. For more information, see [Show Stage section in the Terraform Integration docs]({{< ref "terraform-use-integration#example-terraform-integration-stage" >}}).
-
-### Terraform remote backends provided by Terraform Cloud and Terraform Enterprise
-Terraform now supports remote backends provided by Terraform Cloud and Terraform Enterprise - see [Remote Backends section in the Terraform Integration docs]({{< ref "terraform-enable-integration#remote-backends" >}}).
+To use the stage, select Terraform for the stage type and Show as the action in the stage configuration UI. Note that the Show stage depends on your Plan stage. For more information, see [Show Stage section in the Terraform Integration docs]({{< ref "terraform-use-integration#example-terraform-integration-stage" >}}).
 
 ### Clouddriver
   * Improvements to Docker Registry Account Management, including integration of Docker Registry Clouddriver accounts to take advantage of the new self-service on-boarding account management API.
@@ -278,7 +274,8 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 ###  Spinnaker Community Contributions
 
-There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. 
+There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
+[Spinnaker v1.28.0](https://www.spinnaker.io/changelogs/1.28.0-changelog/) changelog for details.
 
 ## Detailed updates
 

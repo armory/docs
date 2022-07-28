@@ -245,7 +245,7 @@ canary:
   - `accounts`:
       - `name`: account name
         - `endpoint`:
-          - `baseUrl`: The base URL to the SignalFx server. Defaults to `https://stream.signalfx.com`
+          - `baseUrl`: The base URL to the SignalFx server. Defaults to https://stream.signalfx.com
         - `accessToken`: (*Required*) The SignalFx access token. Supports encrypted value.
         - `defaultScopeKey`: Scope key is used to distinguish between base and canary deployments. If omitted every request must supply the `_scope_key` param in extended scope params
         - `defaultLocationKey`: Location key is used to filter by deployment region. If omitted requests must supply the `_location_key` if it is needed.
