@@ -1,5 +1,5 @@
 ---
-title: "Autoscaling a Kubernetes deployment with HPA"
+title: "Autoscale a Kubernetes deployment with HPA"
 linktitle: "Horizontal Pod Autoscaling"
 date: 2022-07-21T11:03:01-07:00
 draft: false
@@ -17,7 +17,7 @@ Make sure you have a deployment configured as described in {{< linkWithTitle "co
 
 - {{< linkWithTitle "ref-deployment-file.md" >}}
 
- ## What is HPA
+ ## What is HPA?
  HPA scales a Kubernetes resource in reaction to changes in observed metrics. The scale behavior is horizontal, rather than vertical: the HPA scales a resource by adding or removing identical instances of your application. Kubernetes implements Horizontal Auto Scaling (HPA) as a control loop that runs intermittently. `HorizontalPodAutoscaler` controls the scale of a Deployment and its `ReplicaSet`. The interval is set by the `--horizontal-pod-autoscaler-sync-period` parameter to the `kube-controller-manager`. The default interval is 15 seconds (it is not a continuous process).
   
 An HPA resource has three components:
@@ -32,7 +32,7 @@ Armory Continuous Deployment-as-a-Service supports the following HorizontalPodAu
 -  [v2](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2/)
 
   
-## Using HPA autoscaling
+## Use HPA autoscaling
 When a client uses Armory Continuous Deployment-as-a-Service (CDaaS) to deploy a resource, it converts the deployment to a `ReplicaSet`. When the client provides an HPA to scale a deployed resource, the HPA is automatically re-written to reference the generated `ReplicaSet` resource.
 
 Armory CDaaS freezes scaling behavior during a deployment. For example, consider a deployment to upgrade from the v1 to v2 version of your application:
@@ -42,7 +42,7 @@ Armory CDaaS freezes scaling behavior during a deployment. For example, consider
  - At the end of the deployment, CDaaS deploys a new HPA resource that targets your v2 application.
  - If the deployment needs to be rolled back, CDaaS deletes the v2 application and re-creates the original HPA.
 
-## Configuring HPA
+## Configure HPA
 
 To autoscale a deployement using HPA set the following parameters in the .yaml configuration file:
 - `--horizontal-pod-autoscaler-sync-period`
@@ -76,7 +76,7 @@ Run integration tests in a staging environment.
 ```
 kubectl get hpa
 ```
-## Rolling back an HPA configured deployment
+## Roll back an HPA configured deployment
 During a rollback, Armory CDaaS relies on the `kubectl.kubernetes.io/last-applied-configuration` annotation to re-create the HPA. 
 
 > Do not delete this annotation between deployments. 
