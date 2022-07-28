@@ -22,7 +22,7 @@ Make sure you have a deployment configured as described in {{< linkWithTitle "co
   
 An HPA resource has three components:
 - A set of one or more metrics, each with a desired target value.
-- A reference to a Kubernetes resource, typically a Deployment but any resource that supports the Scale API sub-resource (e.g., ReplicaSet, StatefulSet). The HPA scales this resource in response to changes in observed metrics.
+- A reference to a Kubernetes resource, typically a Deployment but any resource that supports the Scale API sub-resource (e.g., `ReplicaSet`, `StatefulSet`). The HPA scales this resource in response to changes in observed metrics.
 - A minimum and maximum number of replicas.
 
  ### Supported versions
@@ -30,10 +30,9 @@ Armory Continuous Deployment-as-a-Service supports the following HorizontalPodAu
 - [v1](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v1/)
 - [v2beta 1 and 2](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2beta2/)
 -  [v2](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2/)
-
   
 ## Use HPA autoscaling
-When a client uses Armory Continuous Deployment-as-a-Service (CDaaS) to deploy a resource, it converts the deployment to a `ReplicaSet`. When the client provides an HPA to scale a deployed resource, the HPA is automatically re-written to reference the generated `ReplicaSet` resource.
+Armory Continuous Deployment-as-a-Service (CDaaS) deployments are converted to a `ReplicaSet`. When HPA is used to scale a deployed resource, the HPA.yaml file is automatically re-written to reference the generated `ReplicaSet` resource.
 
 Armory CDaaS freezes scaling behavior during a deployment. For example, consider a deployment to upgrade from the v1 to v2 version of your application:
 > Your v1 application is running with 10 replicas and is scaled by an HPA (min: 5 pods, max: 15 pods).
@@ -50,8 +49,8 @@ To autoscale a deployement using HPA set the following parameters in the .yaml c
 - ``
 - ``
 CDaaS deploys the v2 instance of the application with 10 pods (20 total pods between v1 and v2).
-At the end of the deployment, CDaaS deploys a new HPA resource that targets the new v2 application.
-If the deployment needs to be rolled back, CDaaS deletes the v2 application and re-creates the original HPA.
+At the end of the deployment, CD as a service deploys a new HPA resource that targets the new v2 application.
+If the deployment needs to be rolled back, CD as a service deletes the v2 application and re-creates the original HPA.
 
 **Before deployment**
 
@@ -83,6 +82,6 @@ During a rollback, Armory CDaaS relies on the `kubectl.kubernetes.io/last-applie
 
 Manual or programmatic changes to the HPA configuration file between deployments (for example, changes to the HPA's min/max boundaries) may not be captured during a rollback.
 
-To use an HPA point to an HPA configuration file that references a Deployment resource in your manifests. 
+Point to an HPA configuration file that references a Deployment resource in your manifests. 
 
 > Each Deployment resource can have its own HPA.
