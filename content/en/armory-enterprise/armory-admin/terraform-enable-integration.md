@@ -6,14 +6,14 @@ aliases:
   - /spinnaker/terraform-configure-integration/
   - /docs/spinnaker/terraform-enable-integration/
 description: >
-  Learn how to configure the Terraform Integration so that app developers can provision infrastructure using Terraform as part of their delivery pipelines.
+  Learn how to configure the Terraform Integration stage so that app developers can provision infrastructure using Terraform as part of their delivery pipelines.
 ---
 ![Proprietary](/images/proprietary.svg)
 ## Overview of Terraform Integration in Spinnaker
 
-The examples on this page describe how to configure the Terraform Integration and an artifact provider to support either GitHub or BitBucket. Note that the Terraform Integration also requires a `git/repo` artifact account. For information about how to use the stage, see [Using the Terraform Integration]({{< ref "terraform-use-integration" >}}).
+The examples on this page describe how to configure the Terraform Integration stage and an artifact provider to support either GitHub or BitBucket. Note that the Terraform Integration stage also requires a `git/repo` artifact account. For information about how to use the stage, see {{< linkWithTitle "terraform-use-integration.md" >}}.
 
-Armory's Terraform Integration integrates your infrastructure-as-code Terraform workflow into your SDLC. The integration interacts with a source repository you specify to deploy your infrastructure as part of a Spinnaker pipeline.
+Armory's Terraform Integration feature integrates your infrastructure-as-code Terraform workflow into your SDLC. The integration interacts with a source repository you specify to deploy your infrastructure as part of a Spinnaker pipeline.
 
 ## Supported Terraform versions
 
@@ -23,7 +23,7 @@ When creating a Terraform Integration stage, pipeline creators select a specific
 
 ![Terraform version to use](/images/terraform_version.png)
 
-Note that all Terraform stages within a Pipeline that affect state must use the same Terraform version.
+Note that all Terraform stages within a pipeline that affects state must use the same Terraform version.
 
 
 ## Requirements
@@ -44,7 +44,7 @@ Note that all Terraform stages within a Pipeline that affect state must use the 
 
 The Terraform Integration uses Redis to store Terraform logs and plans.
 
-**Note:** The Terraform Integration can only be configured to use a password with the default Redis user.
+**Note:** The Terraform Integration feature can only be configured to use a password with the default Redis user.
 
 To set/override the Armory Enterprise Redis settings do the following:
 
@@ -69,7 +69,7 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
 
-### Generating a GitHub Personal Access Token (PAT)
+### Generate a GitHub Personal Access Token (PAT)
 
 Skip this section if you are using BitBucket, which requires your username and password.
 
@@ -121,12 +121,12 @@ spec:
 
 For more configuration options, see [Git Repo](https://spinnaker.io/setup/artifacts/gitrepo/).
 
-## Configure the Terraform Integration for GitHub *(optional)*
+## Configure Terraform Integration for GitHub
 
-These steps describe how to configure GitHub as an artifact provider for the Terraform Integration. For information about BitBucket, see [Configuring the Terraform Integration with BitBucket](#configuring-the-terraform-integration-with-bitbucket).
+These *(optional)* steps describe how to configure GitHub as an artifact provider for the Terraform Integration. For information about BitBucket, see [Configuring the Terraform Integration with BitBucket](#configuring-the-terraform-integration-with-bitbucket).
 
 
-#### Enabling and configuring the GitHub Artifact Provider
+#### Enable and configure the GitHub Artifact Provider
 
 Spinnaker uses the Github Artifact Provider to download any referenced `tfvar`
 files.
@@ -158,9 +158,11 @@ spec:
 ```
 
 
-## Configure the Terraform Integration for BitBucket *(optional)*
+## Configure Terraform Integration for BitBucket
 
-### Enabling and configuring the BitBucket Artifact Provider
+This is *(optional)*.
+
+### Enable and configure the BitBucket Artifact Provider
 
 Spinnaker uses the BitBucket Artifact Provider to download any referenced `tfvar`
 files, so it must be configured with the BitBucket token to pull these files.
@@ -191,12 +193,7 @@ spec:
 
 
 
-## Enabling the Terraform Integration
-
-
-Enable the Terraform Integration:
-
-
+## Enable Terraform Integration
 
 In `SpinnakerService` manifest:
 
@@ -223,15 +220,13 @@ This example manifest also enables the Terraform Integration UI.
 
 ### Remote backends
 
-{{< include "early-access-feature.html" >}}
-
-The Terraform Integration supports using remote backends provided by Terraform Cloud and Terraform Enterprise.
+The Terraform Integration feature supports using remote backends provided by Terraform Cloud and Terraform Enterprise.
 
 When using remote backends, keep the following in mind:
 
 * The Terraform stage must use the same Terraform version that your Terraform Cloud/Enterprise workspace is configured to run.
 * The minimum supported Terraform version is 0.12.0.
-* In the Terraform Cloud/Enterprise UI, the type of `plan` action that the Terraform Integration performs is a "speculative plan." For more information, see [Speculative Plans](https://www.terraform.io/docs/cloud/run/index.html#speculative-plans).
+* In the Terraform Cloud/Enterprise UI, the type of `plan` action that the Terraform Integration stage performs is a "speculative plan." For more information, see [Speculative Plans](https://www.terraform.io/docs/cloud/run/index.html#speculative-plans) in the Terraform docs.
 * You cannot save and apply a plan file.
 
 #### Enable remote backend support
@@ -248,23 +243,15 @@ terraform:
   remoteBackendSupport: true
 ```
 
-## Enabling the Terraform Integration UI
+## Enable the Terraform Integration UI
 
 If you previously used the Terraform Integration stage by editing the JSON representation of the stage, those stages are automatically converted to use the UI.
 
-Manually enable the stage UI for Deck:
+## Complete the installation
 
-
-
-See the example manifest in [Enabling the Terraform Integration](#enabling-the-terraform-integration).
-
-
-## Completing the installation
-
-After you finish your Terraform integration configuration, perform the following steps:
+After you finish your Terraform Integration configuration, perform the following steps:
 
 1. Apply the changes:
-
 
 
    Assuming that Spinnaker lives in the namespace `spinnaker` and the `SpinnakerService` manifest is named `spinnakerservice.yml`:
@@ -275,7 +262,7 @@ After you finish your Terraform integration configuration, perform the following
 
 
 
-2. Confirm that the Terraform Integration service (Terraformer) is deployed with your Spinnaker deployment:
+1. Confirm that the Terraform Integration service (Terraformer) is deployed with your Spinnaker deployment:
 
    ```bash
    kubectl get pods -n <your-spinnaker-namespace>
@@ -375,7 +362,7 @@ Use the `tfc` credential kind to provide authentication to remote Terraform back
       token: <authentication-token> # Replace with your token
 ```
 
-### Configuring a Named Profile
+### Configure a Named Profile
 
 Configure profiles that users can select when creating a Terraform Integration stage:
 
@@ -411,7 +398,7 @@ Configure profiles that users can select when creating a Terraform Integration s
    hal deploy apply
    ```
 
-### Adding authz to Named Profiles
+### Add authz to Named Profiles
 
 Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the role(s) you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in Deck. And any stage with that uses a Named Profile that a user is not authorized for fails.
 
@@ -468,8 +455,3 @@ spec:
 
 ```
 
-
-
-## Submit feedback
-
-Let us know what you think at [go.armory.io/ideas](https://go.armory.io/ideas) or [feedback.armory.io](https://feedback.armory.io). We're constantly iterating on customer feedback to ensure that the features we build make your life easier!
