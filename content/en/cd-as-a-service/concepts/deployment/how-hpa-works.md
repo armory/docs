@@ -1,6 +1,6 @@
 ---
-title: "Auto scaling a Kubernetes deployment with HPA"
-linktitle: "HPA Autoscaling"
+title: "Autoscaling a Kubernetes deployment with HPA"
+linktitle: "Horizontal Pod Autoscaling"
 date: 2022-07-21T11:03:01-07:00
 draft: false
 description: >
@@ -13,7 +13,7 @@ Make sure you have a deployment configured as described in {{< linkWithTitle "co
 
 > The Kubernetes cluster server must be version 1.23 or newer.
 
- Review the following topics for more a more complete understanding of deployement scaling options:
+ Review the following topics for more a more complete understanding of deployment scaling options:
 
 - {{< linkWithTitle "ref-deployment-file.md" >}}
 
@@ -33,7 +33,7 @@ Armory Continuous Deployment-as-a-Service supports the following HorizontalPodAu
 
   
 ## Using HPA autoscaling
-When a client uses Armory Continuous Deployment-as-a-Service (CDaaS) to deploy a resource, it converts the deployment to a `ReplicaSet`. When the client provides an HPA to scale a deplyed resource, the HPA is automatically re-written to reference the generated `ReplicaSet` resource.
+When a client uses Armory Continuous Deployment-as-a-Service (CDaaS) to deploy a resource, it converts the deployment to a `ReplicaSet`. When the client provides an HPA to scale a deployed resource, the HPA is automatically re-written to reference the generated `ReplicaSet` resource.
 
 Armory CDaaS freezes scaling behavior during a deployment. For example, consider a deployment to upgrade from the v1 to v2 version of your application:
 > Your v1 application is running with 10 replicas and is scaled by an HPA (min: 5 pods, max: 15 pods).
