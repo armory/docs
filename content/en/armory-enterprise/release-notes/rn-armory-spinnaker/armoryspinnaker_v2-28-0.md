@@ -29,7 +29,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 **Impact**
 
-You must update any Kkubernetes v2 provider account that uses the `aws-iam-authenticator` to use `client.authentication.k8s.io/v1beta1`.
+You must update any Kubernetes v2 provider account that uses the `aws-iam-authenticator` to use `client.authentication.k8s.io/v1beta1`.
 
 **Introduced in**: Armory CD 2.28.0
 
