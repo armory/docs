@@ -25,6 +25,14 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
+### Update kubernetes v2 provider accounts that use the aws-iam-authenticator
+
+**Impact**
+
+Any kubernetes v2 provider account that uses the aws-iam-authenticator needs to be updated to use client.authentication.k8s.io/v1beta1.
+
+**Introduced in**: Armory CD 2.28.0
+
 ### Update kubectl to 1.20
 
 **Impact**
