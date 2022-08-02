@@ -15,11 +15,11 @@ The Armory Scale Agent for Spinnaker and Kubernetes consists of a lightweight Ag
 
 The Armory Agent is compatible with Armory CD and open source Spinnaker.
 
-### Advantages of using the Armory Agent for Kubernetes
+### Advantages of using the Armory Agent
 
 * Scalability
   * Caching and deployment scales to thousands of Kubernetes clusters for your largest applications.
-  * By leveraging the Kubernetes `watch` mechanism, the Agent detects changes to Kubernetes and streams them in real time over a single TCP connection per cluster to Spinnaker<sup>TM</sup>.
+  * By leveraging the Kubernetes `watch` mechanism, the Armory Agent detects changes to Kubernetes and streams them in real time over a single TCP connection per cluster to Spinnaker<sup>TM</sup>.
   * The Agent optimizes how infrastructure information is cached, making _Force Cache Refresh_ almost instantaneous. This means optimal performance for your end users and your pipeline executions.
 
 * Security
@@ -30,21 +30,21 @@ The Armory Agent is compatible with Armory CD and open source Spinnaker.
 
 
 * Usability
-  * Use the Agent alongside Armory CD and benefit from performance improvements.
-  * Use the Agent in a target cluster and get Kubernetes accounts automatically registered.
-  * Use YAML, a HELM chart, or a Kustomize template to inject the Agent into newly provisioned Kubernetes clusters, and immediately make those clusters software deployment targets.
-  * Use the Agent with little operational overhead or changes in the way you currently manage Armory CD.
+  * Use the Armory Agent alongside Armory CD and benefit from performance improvements.
+  * Use the Armory Agent in a target cluster and get Kubernetes accounts automatically registered.
+  * Use YAML, a HELM chart, or a Kustomize template to inject the Armory Agent into newly provisioned Kubernetes clusters, and immediately make those clusters software deployment targets.
+  * Use the Armory Agent with little operational overhead or changes in the way you currently manage Armory CD.
 
-Check out the installation [guide]({{< ref "scale-agent/install" >}}) for how to deploy the Agent components in Armory CD and in your Kubernetes infrastructure.
+Check out the installation [guide]({{< ref "scale-agent/install" >}}) for how to deploy the Armory Agent components in Armory CD and in your Kubernetes infrastructure.
 
 ## Deployment modes
 
 ### Agent mode
 
-In this mode, the Agent service acts as a piece of infrastructure. It authenticates  using a [service account token](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#service-account-tokens). You use
-[RBAC service account permissions](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions) to configure what the Agent service is authorized to do.
+In this mode, the Armory Agent service acts as a piece of infrastructure. It authenticates  using a [service account token](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#service-account-tokens). You use
+[RBAC service account permissions](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions) to configure what the Armory Agent service is authorized to do.
 
-If the Clouddriver plugin is unable to communicate with the Agent service, the plugin attempts to reconnect during a defined grace period. If the plugin still can't communicate with the Agent service after the grace period has expired, the cluster associated with the Agent service is removed from Armory CD.
+If the Clouddriver plugin is unable to communicate with the Armory Agent service, the plugin attempts to reconnect during a defined grace period. If the plugin still can't communicate with the Armory Agent service after the grace period has expired, the cluster associated with the Armory Agent service is removed from Armory CD.
 
 Keep the following pros and cons in mind when deciding if Agent mode fits your use case:
 
@@ -75,7 +75,7 @@ Keep the following pros and cons in mind when deciding if Infrastructure mode fi
 **Cons**
 
 - You need to create kubeconfig file for each account.
-- The API servers of the target clusters need to be accessible from the Agent cluster.
+- The API servers of the target clusters need to be accessible from the Armory Agent cluster.
 - You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
 
 ![Infra mode](/images/armory-agent/agent-infra-mode.png)
@@ -84,11 +84,11 @@ Keep the following pros and cons in mind when deciding if Infrastructure mode fi
 
 ### Spinnaker service mode
 
-In this mode, the Agent is installed as a new Spinnaker service (`spin-armory-agent`) and can be configured like other services.
+In this mode, the Armory Agent is installed as a new Spinnaker service (`spin-armory-agent`) and can be configured like other services.
 
 ![Spinnaker service mode](/images/armory-agent/in-cluster-mode.png)
 
-If you provision clusters automatically, the Agent service can dynamically reload accounts when `armory-agent.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/armory/config/armory-agent-local.yaml`.  The Agent service reflects `ConfigMap` changes within seconds after [etcd](https://etcd.io/) sync.
+If you provision clusters automatically, the Armory Agent service can dynamically reload accounts when `armory-agent.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/armory/config/armory-agent-local.yaml`.  The Agent service reflects `ConfigMap` changes within seconds after [etcd](https://etcd.io/) sync.
 
 **Pros**
 
@@ -105,12 +105,12 @@ If you provision clusters automatically, the Agent service can dynamically reloa
 
 The Agent service does outbound calls only, except for a local health check, over a single [gPRC](https://grpc.io/) connection to the Clouddriver plugin. The connection can be over TLS or mTLS. You can terminate TLS:
 
-1. On Clouddriver: in the case of running the Agent in Spinnaker Service mode or if declaring `spin-clouddriver-grpc` as a network load balancer.
+1. On Clouddriver: in the case of running the Armory Agent in Spinnaker Service mode or if declaring `spin-clouddriver-grpc` as a network load balancer.
 2. On a gRPC proxy that directs request to the `spin-clouddriver-grpc` service.
 
-The Clouddriver plugin uses the bidirectional communication channel to receive changes from Kubernetes accounts as well as send operations to the Agent service.
+The Clouddriver plugin uses the bidirectional communication channel to receive changes from Kubernetes accounts as well as send operations to the Armory Agent service.
 
-### Information sent by the Agent service
+### Information sent by the Armory Agent service
 
 The Agent service sends the following information about the cluster it is watching to the Clouddriver plugin:
 
@@ -118,11 +118,11 @@ The Agent service sends the following information about the cluster it is watchi
 - Kubernetes API server host, certificate fingerprint, version.
 - All the Kubernetes objects it is configured to watch and has permissions to access. You can ignore certain Kubernetes [kinds](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/) (`kubernetes.accounts[].omitKinds`) or configure specific kinds to watch (`kubernetes.accounts[].kinds`).
 
-> The Agent service always scrubs data from `Secret` in memory before it is sent and even before that data makes it onto the Agent's memory heap.
+> The Agent service always scrubs data from `Secret` in memory before it is sent and even before that data makes it onto the Armory Agent's memory heap.
 
 ## Security
 
-Since the Agent service does outbound calls only, you can have Agent services running on-premises or in public clouds such as AWS, GCP, Azure, Oracle, or Alibaba.
+Since the Armory Agent service does outbound calls only, you can have Agent services running on-premises or in public clouds such as AWS, GCP, Azure, Oracle, or Alibaba.
 
 What Armory CD can do in the target cluster is limited by what it is running as:
 
@@ -135,11 +135,11 @@ Furthermore, in [Agent mode](#agent-mode), Armory CD never gets credentials, and
 
 ## Scalability
 
-Each Agent can scale to hundreds of Kubernetes clusters. The more types of Kubernetes objects the Agent has to watch, the more memory it uses. Memory usage is bursty. You can control burst with `budget`. See [Agent options]({{< ref "scale-agent/reference/agent-options#configuration-options" >}})) for configuration information.
+Each Agent can scale to hundreds of Kubernetes clusters. The more types of Kubernetes objects the Armory Agent has to watch, the more memory it uses. Memory usage is bursty. You can control burst with `budget`. See [Agent options]({{< ref "scale-agent/reference/agent-options#configuration-options" >}})) for configuration information.
 
-Scaling the Agent can mean:
+Scaling the Armory Agent can mean:
 
-- Scaling the Kubernetes `Deployment` the Agent service is part of.
+- Scaling the Kubernetes `Deployment` the Armory Agent service is part of.
 - Sharding Kubernetes clusters into groups that can in turn be scaled as described in [Infrastructure mode](#infrastructure-mode) above.
 
 You can also mix deployment strategies if you have complex Kubernetes infrastructure and permissions:

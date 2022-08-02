@@ -7,7 +7,7 @@ version: 00.09.32
 
 ## Fixes
 
-* Fixed a race condition where accounts onboarded by the Agent were not available in Clouddriver. This occurred when an internal load balancing process ran exactly at the same time as the initial Agent registration.
+* Fixed a race condition where accounts onboarded by the Armory Agent were not available in Clouddriver. This occurred when an internal load balancing process ran exactly at the same time as the initial Agent registration.
 
 * Redis errors like "ERR wrong number of arguments for 'subscribe' command" or "class java.util.ArrayList cannot be cast to class java.lang.Long" no longer appear. The Redis pools from Agent and the Redis scheduler have been separated.
 

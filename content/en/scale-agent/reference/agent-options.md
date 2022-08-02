@@ -9,10 +9,10 @@ aliases:
 ---
 
 
-## Where to configure the Agent
+## Where to configure the Armory Agent
 
-- If you install the Agent service using `kubectl`, configure the Agent using a `ConfigMap`. See the `kubectl` installation instruction's [Configure the Agent]({{< ref "install-agent-service-kubectl#configure-the-agent" >}}) section for an example.
-- If you install the Agent service using Helm, see the [Helm chart installation instructions]({{< ref "install-agent-service-helm" >}})
+- If you install the Armory Agent service using `kubectl`, configure the Armory Agent using a `ConfigMap`. See the `kubectl` installation instruction's [Configure the Armory Agent]({{< ref "install-agent-service-kubectl#configure-the-agent" >}}) section for an example.
+- If you install the Armory Agent service using Helm, see the [Helm chart installation instructions]({{< ref "install-agent-service-helm" >}})
 
 ## Configure Kubernetes accounts
 
@@ -27,12 +27,12 @@ Behavior when reading Kubernetes account configuration from multiple sources:
 * When you configure different accounts in Agent and Armory CD, Agent merges both sources.
 * If you configure an account with the same name in Agent as well as Armory CD (Clouddriver or Spring Cloud Config Server backends), Agent account configuration always overrides the Armory CD configuration.
 * If you configure an account with the same name in Agent as well as in the Clouddriver plugin, the account that is used depends on the order of precedence defined in the plugin's `CredentialsDefinitionSource` interface. The Agent has an order precedence of 1000. Check with your plugin provider for the plugin's order of precedence.
-  * If the plugin has a higher precedence than the Agent, the plugin's account is used. For example, if the plugin's precedence is 500, the plugin's account is used.
-  * If the plugin has no precedence defined or a lower precedence than the Agent, the account defined in the Agent is used.
+  * If the plugin has a higher precedence than the Armory Agent, the plugin's account is used. For example, if the plugin's precedence is 500, the plugin's account is used.
+  * If the plugin has no precedence defined or a lower precedence than the Armory Agent, the account defined in the Armory Agent is used.
 
 ### Migrate accounts from Clouddriver to Agent
 
-Copy the account definition from its original source, such as Clouddriver, to Agent's configuration. Depending on how you installed Agent, this configuration could be in the `armory-agent.yml` data section of a `ConfigMap` or in the `armory-agent.yml` file in the Agent pod.
+Copy the account definition from its original source, such as Clouddriver, to Agent's configuration. Depending on how you installed Agent, this configuration could be in the `armory-agent.yml` data section of a `ConfigMap` or in the `armory-agent.yml` file in the Armory Agent pod.
 
 Agent may not use all the properties you copy from the original source definition. Unused properties are ignored.
 
@@ -66,12 +66,12 @@ kubernetes:
 
 Follow these steps to migrate accounts from Agent to Clouddriver:
 
-* Delete the account definition from your Agent configuration. Depending on how you installed Agent, this configuration could be in the `armory-agent.yml` data section of a `ConfigMap` or in the `armory-agent.yml` file in the Agent pod.
+* Delete the account definition from your Agent configuration. Depending on how you installed Agent, this configuration could be in the `armory-agent.yml` data section of a `ConfigMap` or in the `armory-agent.yml` file in the Armory Agent pod.
 * Add the account definition to the source that Clouddriver uses.
 
 ## Permissions format
 
-Permissions for the Agent use a format that is slightly different than the format that Clouddriver uses for permissions. Define your permissions like this:
+Permissions for the Armory Agent use a format that is slightly different than the format that Clouddriver uses for permissions. Define your permissions like this:
 
 ```
 kubernetes:
@@ -110,7 +110,7 @@ rules:
 
 ### Namespace restrictions
 
-You can limit the Agent to monitoring specific namespaces by listing them under `namespaces`. If you need to prevent the Agent from accessing cluster-wide (non-namespaced) resources, use the `onlyNamespacedResources` setting.
+You can limit the Armory Agent to monitoring specific namespaces by listing them under `namespaces`. If you need to prevent the Armory Agent from accessing cluster-wide (non-namespaced) resources, use the `onlyNamespacedResources` setting.
 
 A side effect of disabling cluster-wide resources is that [CustomResourceDefinitions](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/) won't be known (and therefore deployable by Spinnaker). `CustomResourceDefinitions` are cluster-wide resources, but the custom resources themselves may be namespaced. To workaround the limitation, you can define `customResourceDefinitions`. Both namespaces and CRDs are sent to Spinnaker as "synthetic" resources. They won't be queried or watched, but Spinnaker knows about their existence.
 
@@ -123,7 +123,7 @@ kubernetes:
           namespaces:
             - ns1
             - ns2
-          # Prevents the Agent from querying non-namespaced resources
+          # Prevents the Armory Agent from querying non-namespaced resources
           onlyNamespacedResources: true
           # Whitelist CRDs so Spinnaker
           customResourceDefinitions:

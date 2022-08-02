@@ -11,7 +11,7 @@ aliases:
 
 ## Networking issues
 
-Communication between Clouddriver and the Agent must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between Clouddriver and the Agent.   
+Communication between Clouddriver and the Armory Agent must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between Clouddriver and the Armory Agent.   
 
 ## Agent plugin messages
 
@@ -113,7 +113,7 @@ Your reponse should be similar to:
 
 If one account/Agent is associated with more than one Clouddriver instance having `clouddriverAlive: true`, it's possible that the balancer Agent that runs every 30 seconds didn't flip the flag to false for dead connections. However, the plugin will just select the Clouddriver with the most recent `lastConnection` date.
 
-If no account/Agent is registered with a Clouddriver having `clouddriverAlive: true`, it's possible that the Agent is not connected yet to any Clouddriver.
+If no account/Agent is registered with a Clouddriver having `clouddriverAlive: true`, it's possible that the Armory Agent is not connected yet to any Clouddriver.
 
 ## Testing gRPC endpoints
 
@@ -184,14 +184,14 @@ INFO: 2021/01/25 22:10:52 Subchannel Connectivity change to SHUTDOWN
 
 ## Agent service messages
 
-On a normal startup, the Agent will show the following messages:
+On a normal startup, the Armory Agent will show the following messages:
 
 ```
 # This shows where the configuration is read. "no such file" is expected.
 time="2020-10-02T22:22:14Z" level=info msg="Config file /opt/armory/config/armory-agent-local.yaml not present; falling back to default settings" error="stat /opt/armory/config/armory-agent-local.yaml: no such file or directory"
 ...
 
-# Where is the Agent connecting to?
+# Where is the Armory Agent connecting to?
 time="2020-10-02T22:22:14Z" level=info msg="connecting to spin-clouddriver-grpc:9091..."
 
 # Connection successful
@@ -205,7 +205,7 @@ time="2020-10-02T22:22:14Z" level=info msg="connecting to Spinnaker: 9bece238-a4
 time="2020-10-02T22:22:14Z" level=info msg="registering with 32 servers"
 ...
 
-# At that point Clouddriver assigned caching to this instance of the Agent
+# At that point Clouddriver assigned caching to this instance of the Armory Agent
 time="2020-10-02T22:22:27Z" level=info msg="starting agentCreator account-01"
 ```
 
@@ -246,8 +246,8 @@ Common errors:
 
 ## Agent tips
 
-- It is a good idea to have each Kubernetes cluster accessible by at least two instances of the Agent. Only one instance will actively stream Kubernetes changes. The second one will be on standby and can be used for other operations such as deploying manifests and getting logs.
+- It is a good idea to have each Kubernetes cluster accessible by at least two instances of the Armory Agent. Only one instance will actively stream Kubernetes changes. The second one will be on standby and can be used for other operations such as deploying manifests and getting logs.
 
 - For better availability, you can run Agent deployments in [different availability zones](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity).
 
-- Restarting the Agent won't cause direct outages, provided it is limited in time (less than 30s). No operation can happen while no Agent is connected to Spinnaker. Caching is asynchronous and other operations are retried `kubesvc.operations.retry.maxRetries` times. Furthermore, restarts are generally fast, and the Agent resumes where it left off.
+- Restarting the Armory Agent won't cause direct outages, provided it is limited in time (less than 30s). No operation can happen while no Agent is connected to Spinnaker. Caching is asynchronous and other operations are retried `kubesvc.operations.retry.maxRetries` times. Furthermore, restarts are generally fast, and the Armory Agent resumes where it left off.

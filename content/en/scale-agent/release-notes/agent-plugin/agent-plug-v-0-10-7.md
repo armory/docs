@@ -7,4 +7,4 @@ version: 00.10.07
 
 ## Fixes
 
-Fixed an issue where the Kubernetes objects for accounts added using the Agent did not show up in the UI.
+Fixed an issue where the Kubernetes objects for accounts added using the Armory Agent did not show up in the UI.

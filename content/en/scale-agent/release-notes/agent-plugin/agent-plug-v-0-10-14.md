@@ -7,5 +7,5 @@ version: 00.10.14
 
 ## Changes
 
-- Update the directory where the Agent releases notes are stored.
+- Update the directory where the Armory Agent releases notes are stored.
 

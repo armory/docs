@@ -12,5 +12,5 @@ version: 01.00.07
 
 The Agent Service now waits for Kubernetes to report the deletion of a Kubernetes object before returning.
 
-Before this change, the Agent did not wait for a resource to be deleted. Instead, it sent the delete operation to Kubernetes and returned immediately. This led to pipeline failures.
+Before this change, the Armory Agent did not wait for a resource to be deleted. Instead, it sent the delete operation to Kubernetes and returned immediately. This led to pipeline failures.
 

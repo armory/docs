@@ -8,7 +8,7 @@ version: 00.06.10
 
 Added support for reading values in a map (in config files) when they are not specified as string values. You no longer have to enclose the map values in quotes although you still can.
 
-Previously, when you added permissions to the Agent like the following:
+Previously, when you added permissions to the Armory Agent like the following:
 
 ```yaml
 permissions:
@@ -20,7 +20,7 @@ permissions:
     - 891234
 ```
 
-The permissions did not load because the Agent expected strings and not numbers. You had surround the values with quotes like the following:
+The permissions did not load because the Armory Agent expected strings and not numbers. You had surround the values with quotes like the following:
 ```
 permissions:
   READ:

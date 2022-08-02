@@ -106,7 +106,7 @@ After you have configured both manifests, apply the updates.
 
 ## Get the LoadBalancer IP address
 
-Use `kubectl get svc spin-agent-cloud-driver -n spinnaker` to make note of the LoadBalancer IP external address. You need this address when you configure the Agent.
+Use `kubectl get svc spin-agent-cloud-driver -n spinnaker` to make note of the LoadBalancer IP external address. You need this address when you configure the Armory Agent.
 
 ## Confirm Clouddriver is listening
 
@@ -116,6 +116,6 @@ Armory CD cluster and one in your target cluster.
 
 ## {{% heading "nextSteps" %}}
 
-Install the Agent service [using a Helm chart]({{< ref "install-agent-service-helm" >}}) or [using `kubectl`]({{< ref "install-agent-service-kubectl" >}}).
+Install the Armory Agent service [using a Helm chart]({{< ref "install-agent-service-helm" >}}) or [using `kubectl`]({{< ref "install-agent-service-kubectl" >}}).
 </br>
 </br>

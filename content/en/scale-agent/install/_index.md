@@ -10,7 +10,7 @@ aliases:
   - /docs/armory-agent/armory-agent-quick/
 ---
 
->This installation guide is designed for installing the Agent in a test environment. It does not include [mTLS configuration]({{< ref "agent-mtls" >}}), so the Agent service and plugin do not communicate securely.
+>This installation guide is designed for installing the Armory Agent in a test environment. It does not include [mTLS configuration]({{< ref "agent-mtls" >}}), so the Armory Agent service and plugin do not communicate securely.
 
 ## {{% heading "prereq" %}}
 
@@ -40,9 +40,9 @@ aliases:
 
 ### Networking requirements
 
-Communication from the Agent service to the Clouddriver plugin occurs over gRPC port 9091. Communication between the service and the plugin must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between the Agent service and Clouddriver plugin.  
+Communication from the Armory Agent service to the Clouddriver plugin occurs over gRPC port 9091. Communication between the service and the plugin must be `http/2`. `http/1.1` is *not* compatible and causes communication issues between the Armory Agent service and Clouddriver plugin.  
 
-Consult the {{< linkWithTitle "agent-k8s-clustering.md" >}} page for details on how the Agent plugin communicates with Clouddriver instances in Kubernetes.
+Consult the {{< linkWithTitle "agent-k8s-clustering.md" >}} page for details on how the Armory Agent plugin communicates with Clouddriver instances in Kubernetes.
 
 ### Compatibility matrix
 
@@ -50,7 +50,7 @@ Consult the {{< linkWithTitle "agent-k8s-clustering.md" >}} page for details on 
 
 ## Installation steps
 
-In this guide, you deploy the Agent service to your target cluster.
+In this guide, you deploy the Armory Agent service to your target cluster.
 
 Installation steps:
 
@@ -60,7 +60,7 @@ Installation steps:
    1. Create a LoadBalancer service Kustomize patch to expose the plugin on gRPC port `9091`.
    1. Apply the manifests.
 
-1. Install the Agent service using a Helm chart or using `kubectl`.
+1. Install the Armory Agent service using a Helm chart or using `kubectl`.
 
 
 ## {{% heading "nextSteps" %}}

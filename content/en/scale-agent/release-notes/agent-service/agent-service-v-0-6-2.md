@@ -7,7 +7,7 @@ version: 00.06.02
 
 ## New features and improvements
 
-* You can now install the Agent service with Helm:
+* You can now install the Armory Agent service with Helm:
 
 ```
 helm repo add armory-charts http://armory.jfrog.io/artifactory/charts

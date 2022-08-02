@@ -22,7 +22,7 @@ Log messages now enforce including key-value pairs that are relevant to the mess
 
 The following list describes the supported key-value pairs:
 
-* `agentId`: Identifier of the Agent instance logging the message.
+* `agentId`: Identifier of the Armory Agent instance logging the message.
 * `account`: Account name related to the message.
 * `kind`: Kubernetes kind name.
 * `group`: Kubernetes API group name.
@@ -54,10 +54,10 @@ The following new Prometheus metrics are available in this version:
 
 ### Faster reconnection
 
-In previous versions, Agent validated access to all the kinds in the clusters every time it established a connection to Clouddriver. The amount of time the validation process took depended on the number of accounts. This led to situations where the Agent did not perform operations for extended periods of time because it was busy validating access.
+In previous versions, Agent validated access to all the kinds in the clusters every time it established a connection to Clouddriver. The amount of time the validation process took depended on the number of accounts. This led to situations where the Armory Agent did not perform operations for extended periods of time because it was busy validating access.
 
 In version 1.0, there are no initial validations. When Agent fails to list or watch a kind because of permission issues, it does not attempt validation again even across service disconnections. This allows Agent to be ready to receive operations faster when the connection is established.
 
 ### Initial cache memory
 
-The Agent Clouddriver Plugin can now persist the object versions that Agent reads from the cluster, and the Agent can continue the cache from that version if Clouddriver or the Agent service restart. This allows for faster restart cycles because Agent doesn't need to list the full infrastructure every time after a restart.
+The Agent Clouddriver Plugin can now persist the object versions that Agent reads from the cluster, and the Armory Agent can continue the cache from that version if Clouddriver or the Armory Agent service restart. This allows for faster restart cycles because Agent doesn't need to list the full infrastructure every time after a restart.

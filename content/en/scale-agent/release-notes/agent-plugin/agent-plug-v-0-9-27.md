@@ -6,5 +6,5 @@ version: 00.09.27
 
 ### Fixes
 
-* Fixed an issue where old Agent connection information was not released after the Agent reconnected, potentially leading to stale Agents.
+* Fixed an issue where old Agent connection information was not released after the Armory Agent reconnected, potentially leading to stale Agents.
 * Fixed an issue where the pub/sub subscription between Clouddriver and Redis couldn't be restored after a disconnection from Redis.

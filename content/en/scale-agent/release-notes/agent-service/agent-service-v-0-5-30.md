@@ -17,7 +17,7 @@ clouddriver:
     backOffMs: 3000   # (Optional, integer, default: 3000): How much time to wait between retries in milliseconds.
 ```
 
-Note that the `kubesvc.cache.operationWaitMs` config for the Agent Plugin should be set so that it does not time out before the retries are complete.
+Note that the `kubesvc.cache.operationWaitMs` config for the Armory Agent Plugin should be set so that it does not time out before the retries are complete.
 
 ## Known Issues
 

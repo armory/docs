@@ -6,7 +6,7 @@ version: 00.05.29
 ---
 
 ## Fixes
-*   Resolved an issue that occurred when watching Kubernetes kinds. The Agent now checks for both `list` and `watch` permissions. Previously, the Agent only checked for `list` permission, which resulted in errors like the following not being filtered out: `Failed to watch *unstructured.Unstructured: unknown`.
+*   Resolved an issue that occurred when watching Kubernetes kinds. The Agent now checks for both `list` and `watch` permissions. Previously, the Armory Agent only checked for `list` permission, which resulted in errors like the following not being filtered out: `Failed to watch *unstructured.Unstructured: unknown`.
 
 ## Known Issues
 

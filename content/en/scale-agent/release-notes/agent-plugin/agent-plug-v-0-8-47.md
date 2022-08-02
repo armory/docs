@@ -9,7 +9,7 @@ version: 00.08.47
 
 > Requires Agent Service 1.0.11
 
-The Agent Plugin now sends a list of Kubernetes kinds to get cached when the Agent registers itself to save memory. The default kinds list includes the following:
+The Agent Plugin now sends a list of Kubernetes kinds to get cached when the Armory Agent registers itself to save memory. The default kinds list includes the following:
 
 - ReplicaSet
 - Service
@@ -22,7 +22,7 @@ The Agent Plugin now sends a list of Kubernetes kinds to get cached when the Age
 - CronJob
 - Event
 
-You can remove kinds from the list with `kubernetes.accounts[].omitKinds` in the Agent configs.
+You can remove kinds from the list with `kubernetes.accounts[].omitKinds` in the Armory Agent configs.
 
 ## Known Issues
 

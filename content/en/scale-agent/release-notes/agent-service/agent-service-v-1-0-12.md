@@ -7,7 +7,7 @@ version: 01.00.12
 
 ## Fixes
 
-- Fixed a nil pointer exception condition that caused the Agent to crash in certain conditions.
+- Fixed a nil pointer exception condition that caused the Armory Agent to crash in certain conditions.
 
 ## Improvements
 

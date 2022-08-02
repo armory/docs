@@ -7,7 +7,7 @@ aliases:
    - /armory-enterprise/armory-agent/agent-k8s-clustering/
 ---
 
-## How the Agent plugin communicates with Clouddriver instances
+## How the Armory Agent plugin communicates with Clouddriver instances
 
 {{< figure src="/images/armory-agent/k8s-clustering.png"  alt="Kubernetes clustering"  height="75%" width="75%" >}}
 

@@ -6,4 +6,4 @@ version: 00.09.29
 
 ## Improvements
 
-Improved how the Agent is updated when a code change occurs. This is a backend infrastructure change for Armory and does not affect users.
+Improved how the Armory Agent is updated when a code change occurs. This is a backend infrastructure change for Armory and does not affect users.

@@ -25,4 +25,4 @@ The default kinds list includes the following:
 - CronJob
 - Event
 
-You can remove kinds from the list with `kubernetes.accounts[].omitKinds` in the Agent configs.
+You can remove kinds from the list with `kubernetes.accounts[].omitKinds` in the Armory Agent configs.

@@ -6,4 +6,4 @@ version: 00.06.11
 
 ## Improvements
 
-Improved how the Agent service is updated when a code change occurs. This is a backend infrastructure change for Armory and does not affect users.
+Improved how the Armory Agent service is updated when a code change occurs. This is a backend infrastructure change for Armory and does not affect users.

@@ -7,7 +7,7 @@ version: 00.08.46
 
 ## Fixes
 
-* Fixed an issue where CRD exceptions were cached, which prevented calls to the Agent related to the same Kind.
+* Fixed an issue where CRD exceptions were cached, which prevented calls to the Armory Agent related to the same Kind.
 
 ## Known Issues
 
