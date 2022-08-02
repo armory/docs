@@ -106,6 +106,14 @@
   to = "/cd-as-a-service/"
 
 [[redirects]]
+  from = "/armory-enterprise/release-notes/rn-armory-agent/*"
+  to = "/scale-agent/release-notes/:splat"
+
+[[redirects]]
+  from = "/armory-enterprise/armory-agent/armory-agent-install/*"
+  to = "/scale-agent/install/:splat"
+
+[[redirects]]
   from = "/armory-enterprise/armory-agent/*"
   to = "/scale-agent/"
 

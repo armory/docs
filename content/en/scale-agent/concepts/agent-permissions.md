@@ -1,9 +1,10 @@
 ---
 title: "Kubernetes Permissions for the Armory Agent"
 linkTitle: "Kubernetes Permissions"
-weight: 50
 description: >
   Kubernetes permissions required by the Armory Agent.
+aliases:
+   - /armory-enterprise/armory-agent/agent-permissions/
 ---
 
 ## Permissions

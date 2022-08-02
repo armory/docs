@@ -4,6 +4,8 @@ weight: 20
 no_list: true
 description: >
   The Armory Scale Agent for Spinnaker and Kubernetes is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker's Clouddriver service.
+aliases:
+   - /armory-enterprise/armory-agent/
 ---
 ![Proprietary](/images/proprietary.svg)
 

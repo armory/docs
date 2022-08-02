@@ -5,7 +5,7 @@ weight: 1
 description: >
   This guide contains a detailed list of Armory Agent plugin configuration options for Clouddriver.
 aliases:
-  - /armory-enterprise/armory-agent/agent-plugin-options/
+  - /armory-enterprise/armory-agent/advanced-config/agent-plugin-options/
 ---
 
 

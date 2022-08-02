@@ -5,7 +5,7 @@ weight: 2
 description: >
   Configure mTLS authentication in the Armory Agent plugin and service.
 aliases:
-  - /armory-enterprise/armory-agent/agent-mtls/
+  - /armory-enterprise/armory-agent/advanced-config/agent-mtls/
 ---
 
 ## {{% heading "prereq" %}}

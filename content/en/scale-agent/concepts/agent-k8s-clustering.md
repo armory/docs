@@ -1,9 +1,10 @@
 ---
 title: Communication With Clouddriver Instances in Kubernetes
 linkTitle: Clouddriver Communication
-weight: 50
 description: >
   Learn how the Agent and Clouddriver instances communicate in a Kubernetes cluster.
+aliases:
+   - /armory-enterprise/armory-agent/agent-k8s-clustering/
 ---
 
 ## How the Agent plugin communicates with Clouddriver instances
