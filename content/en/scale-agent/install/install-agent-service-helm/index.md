@@ -1,8 +1,8 @@
 ---
-title: "Armory Agent Service Installation Using a Helm Chart"
+title: "Install the Armory Agent Service Using a Helm Chart"
 linkTitle: "Install Service - Helm"
 description: >
-  Use a Helm chart to install the Armory Agent service in your Kubernetes and Armory Enterprise environments.
+  Use a Helm chart to install the Armory Agent service in your Kubernetes and Armory CD environments.
 weight: 30
 ---
 
@@ -52,7 +52,7 @@ Create a pipeline with a **Deploy manifest** stage. You should see your target c
 
 ## Set proxy settings
 
-The `env` parameters are optional and only need to be used if Armory Enterprise is behind an HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
+The `env` parameters are optional and only need to be used if Armory CD is behind an HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
 
 {{< prism lang="bash" line="4-6">}}
 helm install armory-agent armory-charts/agent-k8s-full \

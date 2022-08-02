@@ -33,7 +33,7 @@ There are additional optional configuration available. Most Agent Plugin instanc
 ```yaml
 kubesvc:
   cluster-kubernetes:
-    kubeconfigFile: path/to/kubeconfig # (Default: null) Agent Plugin uses this kubeconfgFile to communicate with the Armory Enterprise  cluster instead of the service account mounted in the Clouddriver pod.
+    kubeconfigFile: path/to/kubeconfig # (Default: null) Agent Plugin uses this kubeconfgFile to communicate with the Armory CD  cluster instead of the service account mounted in the Clouddriver pod.
     verifySsl: <true|false> # (Default: true) Verify kubernetes API server certificate.
     namespace: <namespace> #(Default: null) Agent Plugin watches endpoints on this namespace instead of the autodetected namespace where Clouddriver runs.
     httpPortName: <portName> # (Default: http) Name of the port in the clouddriver Kubernetes Service selector for port 7002.

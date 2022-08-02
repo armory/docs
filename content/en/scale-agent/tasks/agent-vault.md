@@ -1,7 +1,5 @@
 ---
-title: "Vault Integration"
-linkTitle: "Vault Integration"
-weight: 30
+title: "Integrate Vault"
 description: >
   Integrate HashiCorp Vault with the Armory Scale Agent for Spinnaker and Kubernetes.
 aliases:
@@ -10,12 +8,12 @@ aliases:
 
 ## {{% heading "prereq" %}}
 
-* This guide is for experienced Kubernetes and Armory Enterprise users.
+* This guide is for experienced Kubernetes and Armory CD users.
 * You have read the Armory Scale Agent [overview]({{< ref "scale-agent" >}}).
 
 ## Authenticate Agent with Vault
 
-The Armory Agent is compatible with properties Armory Enterprise uses for [storing secrets in HashiCorp Vault]({{< ref "secrets-vault" >}}). You put configuration in `armory-agent.yaml` in the `secrets.vault.*` section. You refer to Vault secrets using the same syntax you use in configuring secrets for Armory Enterprise. See the [Referencing Secrets section]({{< ref "secrets-vault#referencing-secrets" >}}) for details.
+The Armory Agent is compatible with properties Armory CD uses for [storing secrets in HashiCorp Vault]({{< ref "secrets-vault" >}}). You put configuration in `armory-agent.yaml` in the `secrets.vault.*` section. You refer to Vault secrets using the same syntax you use in configuring secrets for Armory CD. See the [Referencing Secrets section]({{< ref "secrets-vault#referencing-secrets" >}}) for details.
 
 This is an example of what the [Kubernetes service account]({{< ref "secrets-vault#1-kubernetes-service-account-recommended" >}}) configuration looks like in Agent, using an `encryptedFile:` reference for `kubeconfigFile`:
 
@@ -47,7 +45,7 @@ vault kv put secret/kubernetes account01=@kubeconfig.yaml
 ```
 
  * Keep `kubeconfig` files in one Vault secret (in this case `secret/kubernetes`).
- * Each field name corresponds to an account name in Armory Enterprise.
+ * Each field name corresponds to an account name in Armory CD.
  * Each field value is the contents of the `kubeconfigFile` used by that account.
 
 ### Configuration template

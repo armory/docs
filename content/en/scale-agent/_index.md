@@ -1,6 +1,6 @@
 ---
 title: "Armory Scale Agent for Spinnaker and Kubernetes"
-weight: 20
+weight: 1
 no_list: true
 description: >
   The Armory Scale Agent for Spinnaker and Kubernetes is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker's Clouddriver service.
@@ -13,7 +13,7 @@ aliases:
 
 The Armory Scale Agent for Spinnaker and Kubernetes consists of a lightweight Agent service that you deploy on Kubernetes and a plugin that you install into Clouddriver.
 
-The Armory Agent is compatible with Armory Enterprise and open source Spinnaker.
+The Armory Agent is compatible with Armory CD and open source Spinnaker.
 
 ### Advantages of using the Armory Agent for Kubernetes
 
@@ -24,18 +24,18 @@ The Armory Agent is compatible with Armory Enterprise and open source Spinnaker.
 
 * Security
   * Keep your Kubernetes API servers private from Spinnaker.
-  * Only the information Armory Enterprise needs leaves the cluster.
+  * Only the information Armory CD needs leaves the cluster.
   * Decentralize your account management. Using Kubernetes Service Accounts, teams control what Spinnaker can do. Add or remove accounts in real time. and then use them without restarting Spinnaker.
   * Use Kubernetes Service Accounts or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "armory-enterprise/armory-admin/secrets" >}}), or provision them via the method of your choice as Kubernetes secrets.
 
 
 * Usability
-  * Use the Agent alongside Armory Enterprise and benefit from performance improvements.
+  * Use the Agent alongside Armory CD and benefit from performance improvements.
   * Use the Agent in a target cluster and get Kubernetes accounts automatically registered.
   * Use YAML, a HELM chart, or a Kustomize template to inject the Agent into newly provisioned Kubernetes clusters, and immediately make those clusters software deployment targets.
-  * Use the Agent with little operational overhead or changes in the way you currently manage Armory Enterprise.
+  * Use the Agent with little operational overhead or changes in the way you currently manage Armory CD.
 
-Check out the installation [guide]({{< ref "scale-agent/install" >}}) for how to deploy the Agent components in Armory Enterprise and in your Kubernetes infrastructure.
+Check out the installation [guide]({{< ref "scale-agent/install" >}}) for how to deploy the Agent components in Armory CD and in your Kubernetes infrastructure.
 
 ## Deployment modes
 
@@ -44,7 +44,7 @@ Check out the installation [guide]({{< ref "scale-agent/install" >}}) for how to
 In this mode, the Agent service acts as a piece of infrastructure. It authenticates  using a [service account token](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#service-account-tokens). You use
 [RBAC service account permissions](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions) to configure what the Agent service is authorized to do.
 
-If the Clouddriver plugin is unable to communicate with the Agent service, the plugin attempts to reconnect during a defined grace period. If the plugin still can't communicate with the Agent service after the grace period has expired, the cluster associated with the Agent service is removed from Armory Enterprise.
+If the Clouddriver plugin is unable to communicate with the Agent service, the plugin attempts to reconnect during a defined grace period. If the plugin still can't communicate with the Agent service after the grace period has expired, the cluster associated with the Agent service is removed from Armory CD.
 
 Keep the following pros and cons in mind when deciding if Agent mode fits your use case:
 
@@ -52,12 +52,12 @@ Keep the following pros and cons in mind when deciding if Agent mode fits your u
 
 - Agent mode is scalable because each agent only manages one Kubernetes account.
 - Initial setup is easier because there's no need to create kubeconfig files.
-- Target clusters can remain private or in separate VPCs from the Armory Enterprise (Spinnaker) cluster because agents initiate the connection to Armory Enterprise (Spinnaker).
+- Target clusters can remain private or in separate VPCs from the Armory CD (Spinnaker) cluster because agents initiate the connection to Armory CD (Spinnaker).
 
 **Cons**
 
-- It is difficult to get agent logs, upgrade Agent, or check configurations because agents (often) run in third-party clusters that the DevOps team operating Armory Enterprise (Spinnaker) doesn't have access.
-- There is no authentication/authorization, so any team can start an Agent and register itself with Armory Enterprise (Spinnaker). mTLS encryption can be used so that only agents with the right certificate can register. For information about how to configure mTLS, see {{< linkWithTitle "scale-agent/tasks/agent-mtls.md" >}}.
+- It is difficult to get agent logs, upgrade Agent, or check configurations because agents (often) run in third-party clusters that the DevOps team operating Armory CD (Spinnaker) doesn't have access.
+- There is no authentication/authorization, so any team can start an Agent and register itself with Armory CD (Spinnaker). mTLS encryption can be used so that only agents with the right certificate can register. For information about how to configure mTLS, see {{< linkWithTitle "scale-agent/tasks/agent-mtls.md" >}}.
 - You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
 
 ![Agent mode](/images/armory-agent/agent-mode.png)
@@ -98,7 +98,7 @@ If you provision clusters automatically, the Agent service can dynamically reloa
 **Cons**
 
 - You need to create kubeconfig file for each account.
-- The API servers of the target clusters need to be accessible from the Armory Enterprise (Spinnaker) cluster.
+- The API servers of the target clusters need to be accessible from the Armory CD (Spinnaker) cluster.
 
 
 ## Communication with Clouddriver
@@ -124,14 +124,14 @@ The Agent service sends the following information about the cluster it is watchi
 
 Since the Agent service does outbound calls only, you can have Agent services running on-premises or in public clouds such as AWS, GCP, Azure, Oracle, or Alibaba.
 
-What Armory Enterprise can do in the target cluster is limited by what it is running as:
+What Armory CD can do in the target cluster is limited by what it is running as:
 
 - a `serviceAccount` in Agent mode
 - a `kubeconfig` setup for infrastructure or Spinnaker service mode
 
 Communications are secured with TLS and optionally mTLS.
 
-Furthermore, in [Agent mode](#agent-mode), Armory Enterprise never gets credentials, and account registration is dynamic.
+Furthermore, in [Agent mode](#agent-mode), Armory CD never gets credentials, and account registration is dynamic.
 
 ## Scalability
 

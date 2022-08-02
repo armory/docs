@@ -3,7 +3,7 @@ title: Armory Agent Configuration
 linkTitle: Agent Config Options
 weight: 1
 description: >
-  Learn how to configure the Armory Agent based on installation mode and environment restrictions. This guide contains a detailed list of configuration options.
+  Learn how to configure the Armory Scale Agent for Spinnaker and Kubernetes based on installation mode and environment restrictions. This guide contains a detailed list of configuration options.
 aliases:
   - /armory-enterprise/armory-agent/advanced-config/agent-options/
 ---
@@ -16,7 +16,7 @@ aliases:
 
 ## Configure Kubernetes accounts
 
-You can configure Kubernetes accounts in Armory Enterprise in multiple places:
+You can configure Kubernetes accounts in Armory CD in multiple places:
 
 * Clouddriver configuration files: `clouddriver.yml`, c`louddriver-local.yml`, `spinnaker.yml`, `spinnaker-local.yml`
 * Spring Cloud Config Server reading accounts from Git, Vault, or another supported backend
@@ -24,8 +24,8 @@ You can configure Kubernetes accounts in Armory Enterprise in multiple places:
 
 Behavior when reading Kubernetes account configuration from multiple sources:
 
-* When you configure different accounts in Agent and Armory Enterprise, Agent merges both sources.
-* If you configure an account with the same name in Agent as well as Armory Enterprise (Clouddriver or Spring Cloud Config Server backends), Agent account configuration always overrides the Armory Enterprise configuration.
+* When you configure different accounts in Agent and Armory CD, Agent merges both sources.
+* If you configure an account with the same name in Agent as well as Armory CD (Clouddriver or Spring Cloud Config Server backends), Agent account configuration always overrides the Armory CD configuration.
 * If you configure an account with the same name in Agent as well as in the Clouddriver plugin, the account that is used depends on the order of precedence defined in the plugin's `CredentialsDefinitionSource` interface. The Agent has an order precedence of 1000. Check with your plugin provider for the plugin's order of precedence.
   * If the plugin has a higher precedence than the Agent, the plugin's account is used. For example, if the plugin's precedence is 500, the plugin's account is used.
   * If the plugin has no precedence defined or a lower precedence than the Agent, the account defined in the Agent is used.

@@ -1,8 +1,8 @@
 ---
-title: "Armory Agent Plugin Installation Using kubectl"
+title: "Install the Armory Agent Plugin Using kubectl"
 linkTitle: "Install Plugin - kubectl"
 description: >
-  Install the Armory Agent Clouddriver plugin using kubectl in your Kubernetes and Armory Enterprise environments.
+  Install the Armory Agent Clouddriver plugin using kubectl in your Kubernetes and Spinnaker or Armory CD environments.
 weight: 30
 ---
 
@@ -14,8 +14,8 @@ weight: 30
 
 Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to your new `armory-agent` directory.
 
-* Change the value for `name` if your Armory Enterprise service is called something other than "spinnaker".
-* Update the `agent-kube-spinplug` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix]({{< ref "scale-agent/install#compatibility-matrix" >}}).
+* Change the value for `name` if your Armory CD service is called something other than "spinnaker".
+* Update the `agent-kube-spinplug` value to the Armory Agent Plugin Version that is compatible with your Armory CD version. See the [compatibility matrix]({{< ref "scale-agent/install#compatibility-matrix" >}}).
 
 {{< prism lang="yaml" line="4, 39" >}}
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
@@ -51,7 +51,7 @@ spec:
                 spec:
                   initContainers:
                   - name: armory-agent-plugin
-                    image: docker.io/armory/kubesvc-plugin:<version> # must be compatible with your Armory Enterprise version
+                    image: docker.io/armory/kubesvc-plugin:<version> # must be compatible with your Armory CD version
                     volumeMounts:
                       - mountPath: /opt/plugin/target
                         name: armory-agent-plugin-vol
@@ -111,7 +111,7 @@ Use `kubectl get svc spin-agent-cloud-driver -n spinnaker` to make note of the L
 ## Confirm Clouddriver is listening
 
 Use `netcat` to confirm Clouddriver is listening on port 9091 by executing `nc -zv [LB address] 9091`. Perform this check from a node in your
-Armory Enterprise cluster and one in your target cluster.
+Armory CD cluster and one in your target cluster.
 
 
 ## {{% heading "nextSteps" %}}

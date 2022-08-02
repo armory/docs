@@ -7,4 +7,4 @@ version: 00.10.00
 
 ## New
 
-- v0.10.0 is the minimum required Agent Plugin version if you want to use Armory Enterprise 2.27.x (1.27.x).
+- v0.10.0 is the minimum required Agent Plugin version if you want to use Armory CD 2.27.x (1.27.x).

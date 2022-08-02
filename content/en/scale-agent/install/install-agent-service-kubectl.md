@@ -1,8 +1,8 @@
 ---
-title: "Armory Agent Service Installation Using Kubectl"
+title: "Install the Armory Agent Service Using Kubectl"
 linkTitle: "Install Service - Kubectl"
 description: >
-  Use 'kubectl' to install the Armory Agent for Kubernetes service in your Kubernetes and Armory Enterprise environments.
+  Use 'kubectl' to install the Armory Scale Agent for Spinnaker and Kubernetes service in your Kubernetes and Spinnaker or Armory CD environments.
 weight: 30
 ---
 
@@ -263,7 +263,7 @@ spec:
     spec:
       serviceAccount: spin-sa
       containers:
-      - image: armory/agent-k8s:<version> # must be compatible with your Armory Enterprise version
+      - image: armory/agent-k8s:<version> # must be compatible with your Armory CD version
         imagePullPolicy: IfNotPresent
         name: armory-agent
         ports:

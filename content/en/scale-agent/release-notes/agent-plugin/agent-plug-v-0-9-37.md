@@ -16,7 +16,7 @@ Agent now notifies Fiat to sync accounts when one of the following occurs:
 
 This reduces downtime.
 
-Prior to this change, Agent did not notify Fiat to sync accounts when a new agent connects (adding an account) or an existing agent disconnects (deleting an account). This led to situations where an `Access denied` or `Time out` error occurred while trying to perform an operation using one of the accounts that had been added or deleted. Intermittent `Access denied` errors may still occur if Armory Enterprise (Spinnaker™) does not have at least one role configured.
+Prior to this change, Agent did not notify Fiat to sync accounts when a new agent connects (adding an account) or an existing agent disconnects (deleting an account). This led to situations where an `Access denied` or `Time out` error occurred while trying to perform an operation using one of the accounts that had been added or deleted. Intermittent `Access denied` errors may still occur if Armory CD (Spinnaker™) does not have at least one role configured.
 
 ## Known Issues
 

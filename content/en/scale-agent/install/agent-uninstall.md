@@ -1,8 +1,6 @@
 ---
 title: Uninstall the Agent
 weight: 99
-aliases:
-  - /armory-enterprise/armory-agent/agent-uninstall/
 ---
 
 ## Uninstall the plugin

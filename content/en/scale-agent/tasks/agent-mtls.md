@@ -1,9 +1,8 @@
 ---
 title: "Configure Mutual TLS Authentication"
 linkTitle: "Configure mTLS"
-weight: 2
 description: >
-  Configure mTLS authentication in the Armory Agent plugin and service.
+  Configure mTLS authentication in the Armory Scale Agent for Spinnaker and Kubernetes plugin and service.
 aliases:
   - /armory-enterprise/armory-agent/advanced-config/agent-mtls/
 ---
@@ -16,7 +15,7 @@ You need the following to configure mTLS:
 * Clouddriver certificate and corresponding private key.
 * Agent certificate and corresponding private key.
 
->The Agent only supports PKCS#8 keys. The PKCS#12 key store you set up for Armory Enterprise can still use PKCS#8 keys. So, the Agent should use a PKCS#8 key while other services use PKCS#12 keys.
+>The Agent only supports PKCS#8 keys. The PKCS#12 key store you set up for Armory CD can still use PKCS#8 keys. So, the Agent should use a PKCS#8 key while other services use PKCS#12 keys.
 
 ## Agent plugin configuration
 
