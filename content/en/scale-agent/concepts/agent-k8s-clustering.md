@@ -5,7 +5,6 @@ weight: 50
 description: >
   Learn how the Agent and Clouddriver instances communicate in a Kubernetes cluster.
 ---
-![Proprietary](/images/proprietary.svg)
 
 ## How the Agent plugin communicates with Clouddriver instances
 

@@ -4,8 +4,6 @@ weight: 99
 aliases:
   - /armory-enterprise/armory-agent/agent-uninstall/
 ---
-![Proprietary](/images/proprietary.svg)
-
 
 ## Uninstall the plugin
 

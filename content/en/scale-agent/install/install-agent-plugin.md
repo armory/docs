@@ -5,18 +5,17 @@ description: >
   Install the Armory Agent Clouddriver plugin using kubectl in your Kubernetes and Armory Enterprise environments.
 weight: 30
 ---
-![Proprietary](/images/proprietary.svg)
 
 ## {{% heading "prereq" %}}
 
-* Make sure you have read the Installation [overview]({{< ref "armory-agent-install" >}}).
+* Make sure you have read the Installation [overview]({{< ref "scale-agent" >}}).
 
 ## Create the plugin manifest
 
 Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to your new `armory-agent` directory.
 
 * Change the value for `name` if your Armory Enterprise service is called something other than "spinnaker".
-* Update the `agent-kube-spinplug` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix]({{< ref "armory-agent-install#compatibility-matrix" >}}).
+* Update the `agent-kube-spinplug` value to the Armory Agent Plugin Version that is compatible with your Armory Enterprise version. See the [compatibility matrix]({{< ref "scale-agent/install#compatibility-matrix" >}}).
 
 {{< prism lang="yaml" line="4, 39" >}}
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}

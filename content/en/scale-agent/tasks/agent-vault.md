@@ -3,14 +3,13 @@ title: "Vault Integration"
 linkTitle: "Vault Integration"
 weight: 30
 description: >
-  Integrate HashiCorp Vault with Armory Agent.
+  Integrate HashiCorp Vault with the Armory Scale Agent for Spinnaker and Kubernetes.
 ---
-![Proprietary](/images/proprietary.svg)
 
 ## {{% heading "prereq" %}}
 
 * This guide is for experienced Kubernetes and Armory Enterprise users.
-* You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
+* You have read the Armory Scale Agent [overview]({{< ref "scale-agent" >}}).
 
 ## Authenticate Agent with Vault
 

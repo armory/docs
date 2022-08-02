@@ -7,7 +7,7 @@ description: >
 aliases:
   - /armory-enterprise/armory-agent/agent-plugin-options/
 ---
-![Proprietary](/images/proprietary.svg)
+
 
 {{% csv-table "|" "/static/csv/agent/agent-plugin-config-options.csv" %}}
 

@@ -1,21 +1,20 @@
 ---
-title: "Armory Agent for Kubernetes Installation"
+title: "Armory Scale Agent for Spinnaker and Kubernetes Installation"
 linkTitle: "Installation"
 description: >
-  Learn how to install the Armory Agent in your Kubernetes and Armory Enterprise environments.
+  Learn how to install the Armory Scale Agent for Spinnaker and Kubernetes in your Kubernetes, Spinnaker, and Armory Enterprise environments.
 weight: 1
 no_list: true
 aliases:
   - /armory-enterprise/armory-agent/armory-agent-quick/
   - /docs/armory-agent/armory-agent-quick/
 ---
-![Proprietary](/images/proprietary.svg)
 
 >This installation guide is designed for installing the Agent in a test environment. It does not include [mTLS configuration]({{< ref "agent-mtls" >}}), so the Agent service and plugin do not communicate securely.
 
 ## {{% heading "prereq" %}}
 
-* You have read the Armory Agent [overview]({{< ref "armory-agent" >}}).
+* You have read the Scale Agent [overview]({{< ref "scale-agent" >}}).
 * You deployed Armory Enterprise using the [Armory Operator and Kustomize patches]({{< ref "op-config-kustomize" >}}).
 * You have configured Clouddriver to use MySQL or PostgreSQL. See the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions. The Agent plugin uses the SQL database to store cache data.
 * For Clouddriver pods, you have mounted a service account with permissions to `list` and `watch` the Kubernetes kind `Endpoint` in namespace where Clouddriver is running.
@@ -66,6 +65,6 @@ Installation steps:
 
 ## {{% heading "nextSteps" %}}
 
-Install the Clouddriver plugin [using kubectl]({{< ref "install-agent-plugin" >}}).
+Install the Clouddriver plugin [using kubectl]({{< ref "scale-agent/install/install-agent-plugin" >}}).
 </br>
 </br>

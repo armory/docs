@@ -5,7 +5,6 @@ weight: 30
 description: >
   Learn how to configure Prometheus to get metrics from the Armory Agent and display them in a Grafana dashboard.
 ---
-![Proprietary](/images/proprietary.svg)
 
 ## Available metrics
 

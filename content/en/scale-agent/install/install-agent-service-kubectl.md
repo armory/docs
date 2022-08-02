@@ -5,7 +5,6 @@ description: >
   Use 'kubectl' to install the Armory Agent for Kubernetes service in your Kubernetes and Armory Enterprise environments.
 weight: 30
 ---
-![Proprietary](/images/proprietary.svg)
 
 ## {{% heading "prereq" %}}
 
@@ -308,9 +307,9 @@ Create a pipeline with a `Deploy manifest` stage. You should see your target clu
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "agent-troubleshooting.md" >}} page if you run into issues.
-* Learn how to {{< linkWithTitle "agent-monitoring.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
-* {{< linkWithTitle "agent-mtls.md" >}}
-* Read about {{< linkWithTitle "agent-permissions.md" >}}
+* {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}} page if you run into issues.
+* Learn how to {{< linkWithTitle "scale-agent/tasks/agent-monitoring.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
+* {{< linkWithTitle "scale-agent/tasks/agent-mtls.md" >}}
+* Read about {{< linkWithTitle "scale-agent/concepts/agent-permissions.md" >}}
 </br>
 </br>

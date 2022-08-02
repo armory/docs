@@ -2,12 +2,12 @@
 title: Clouddriver Caching Agents in Spinnaker
 linkTitle: Caching Agents
 description: >
-  Clouddriver caching agents discover your infrastructure elements and cache the data for use by Spinnaker™.
+  Clouddriver caching agents discover your infrastructure elements and cache the data for use by Spinnaker.
 ---
 
 ## How Spinnaker discovers and caches infrastructure elements
 
-Clouddriver is the Spinnaker service responsible for discovering and caching cloud provider infrastructure, such as AWS EC2 instances, Kubernetes pods, and Docker images. Clouddriver has a [caching agent scheduler](#the-caching-agent-scheduler) that runs caching agents for providers in separate threads at scheduled intervals. These agents query the infrastructure, index the data, and save the results in a [cache store](#the-cache-store), which is usually a Redis or a SQL datastore.
+Clouddriver is the Spinnaker™ service responsible for discovering and caching cloud provider infrastructure, such as AWS EC2 instances, Kubernetes pods, and Docker images. Clouddriver has a [caching agent scheduler](#the-caching-agent-scheduler) that runs caching agents for providers in separate threads at scheduled intervals. These agents query the infrastructure, index the data, and save the results in a [cache store](#the-cache-store), which is usually a Redis or a SQL datastore.
 
 ## The caching agent
 
@@ -59,4 +59,4 @@ When using a cache store like Redis that works across multiple Clouddriver insta
 ## Next steps
 
 * {{< linkWithTitle "caching-agents-config.md" >}}
-* If you are using Kubernetes and would like to use a different method for cataloging your Kubernetes infrastructure, see the [Armory Agent for Spinnaker]({{< ref "armory-agent" >}}). It's a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Clouddriver.
+* If you are using Kubernetes and would like to use a different method for cataloging your Kubernetes infrastructure, see {{< linkWithTitle "scale-agent/_index.md" >}}.

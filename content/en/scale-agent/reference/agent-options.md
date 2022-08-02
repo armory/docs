@@ -7,7 +7,7 @@ description: >
 aliases:
   - /armory-enterprise/armory-agent/agent-options/
 ---
-![Proprietary](/images/proprietary.svg)
+
 
 ## Where to configure the Agent
 

@@ -86,11 +86,6 @@
   force = false
 
 [[redirects]]
-  from = "/docs/installation/armory-agent/agent-options/"
-  to = "/armory-enterprise/armory-agent/advanced-config/agent-options/"
-  force = true
-
-[[redirects]]
   from = "/docs/spinnaker-user-guides/policy-engine-use/packages/*"
   to = "/armory-enterprise/armory-admin/policy-engine/policy-engine-use/packages/:splat"
 
@@ -109,6 +104,10 @@
 [[redirects]]
   from = "/armory-cdaas/*"
   to = "/cd-as-a-service/"
+
+[[redirects]]
+  from = "/armory-enterprise/armory-agent/*"
+  to = "/scale-agent/"
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
