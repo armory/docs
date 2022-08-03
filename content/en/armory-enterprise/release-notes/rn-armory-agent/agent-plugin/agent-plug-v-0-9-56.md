@@ -6,4 +6,4 @@ version: 00.09.56
 ---
 
 ### Deprecated
-* Deprecrate cluster: redis config
+* Deprecrate `cluster: redis` config
