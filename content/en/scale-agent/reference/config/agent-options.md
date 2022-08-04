@@ -1,7 +1,6 @@
 ---
 title: Armory Agent Configuration
 linkTitle: Agent Config Options
-weight: 1
 description: >
   Learn how to configure the Armory Scale Agent for Spinnaker and Kubernetes based on installation mode and environment restrictions. This guide contains a detailed list of configuration options.
 aliases:

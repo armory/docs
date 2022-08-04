@@ -4,7 +4,6 @@ type: swagger
 description: >
    Dynamic Accounts API reference documentation for the Armory Scale Agent for Spinnaker and Kubernetes.
 ---
-![Proprietary](/images/proprietary.svg)
 
 FIX ME: THIS IS A DUMMY FILE
 
