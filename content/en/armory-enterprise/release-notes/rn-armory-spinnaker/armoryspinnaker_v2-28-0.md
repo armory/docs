@@ -25,11 +25,19 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
+### Update Kubernetes v2 provider accounts that use the `aws-iam-authenticator`
+
+**Impact**
+
+With 2.28 of Spinnaker, we’ve updated the aws-iam-authenticator binary to a 0.5.5 release. Due to the fact that the default value of the apiVersion for the aws-iam-authenticator has changed strictly to client.authentication.k8s.io/v1beta1, you may experience failures for the Kubernetes V2 provider accounts that still use client.authentication.k8s.io/v1alpha1. To mitigate the authentication failures, update your relevant kubeconfigs to use client.authentication.k8s.io/v1beta1.
+
+**Introduced in**: Armory CD 2.28.0
+
 ### Update kubectl to 1.20
 
 **Impact**
 
-With 2.28 of Spinnaker, we’ve updated the kubectl binary to a 1.20 release.  You may have potential caching issues as a result due to certain resources in K8s being removed and/or no longer supported.  It’s recommended to look for failures in your log files and exclude resources that don’t match your target cluster.  For example, adding “PodPreset” to the “omitKinds” on your K8s account configs would cause Spinnaker to skip trying to cache resources that no longer be able to be cached in newer kubernetes releases.
+With 2.28 of Spinnaker, we’ve updated the kubectl binary to a 1.20 release.  You may have potential caching issues as a result due to certain resources in Kubernetes being removed and/or no longer supported.  Look for failures in your log files and exclude resources that don’t match your target cluster.  For example, adding “PodPreset” to the “omitKinds” on your Kubernetes account configs would cause Spinnaker to skip trying to cache resources that no longer be able to be cached in newer kubernetes releases.
 
 
 **Introduced in**: Armory CD 2.28.0
@@ -226,12 +234,6 @@ are not resolved when Spring Cloud tries to refresh.
 
 Do not use secrets for properties that are annotated with `@RefreshScope`.
 
-### Manual Judgment Stage Slack notifications not working
-
-If you are using using manual judgments with Slack integration, you may not want to upgrade to 2.28.0 until this issue is resolved.
-
-**Affected versions**: Armory CD 2.27.x and later
-
 
 ## Highlighted updates
 
@@ -253,8 +255,8 @@ EXECUTE defined as a potential permission type.
 ### Maximum Concurrent Pipeline Executions
 Added support for max concurrent pipeline executions. If concurrent pipeline execution is enabled, pipelines will queue when the max concurrent pipeline executions is reached. Any queued pipelines will be allowed to run once the number of running pipeline executions drops below the max. If the max is set to 0, then pipelines will not queue.
 
-### Terraform Show Stage
-There is a new Terraform Show stage available as part of the Terraform Integration. This stage is the equivalent of running the Terraform ```show``` command with Terraform. The JSON output from your planfile can be used in subsequent stages.
+### **Show** Added to Terraform Integration Stage
+There is a new Terraform action available as part of the Terraform Integration stage. This action is the equivalent of running the Terraform ```show``` command with Terraform. The JSON output from your planfile can be used in subsequent stages.
 
 To use the stage, select **Terraform** for the stage type and **Show** as the action in the Stage Configuration UI. Note that the **Show** stage depends on your **Plan** stage. For more information, see [Show Stage section in the Terraform Integration docs]({{< ref "terraform-use-integration#example-terraform-integration-stage" >}}).
 
