@@ -11,7 +11,7 @@ Armory CD-as-a-Service uses agents that run in target Kubernetes clusters to com
 
 There are no additional requirements for installing the agents that Armory CD-as-a-Service uses. For information about how to install these agents, see [Enable the Armory CD-as-a-Service Remote Network Agent in target Kubernetes clusters]({{< ref "plugin-spinnaker#enable-the-armory-cd-as-a-service-remote-network-agent-in-target-kubernetes-clusters" >}}) or {{< linkWithTitle "get-started" >}}.
 
-> If you are using the Armory Agent for Kubernetes, that is a separate agent from the Remote Networking Agent. It has its own requirements. For more information, see [those requirements]({{< ref "armory-agent-install#before-you-begin" >}}).
+> If you are using the Armory Scale Agent for Spinnaker and Kubernetes, that is a separate agent from the Remote Networking Agent. It has its own requirements. For more information, see {{< linkWithTitle "scale-agent/install/_index.md" >}}.
 
 ## Deployment target
 

@@ -80,18 +80,23 @@ weight = 1
   url = "/armory-enterprise/"
 
 [[menu.main]]
-  name = "Support"
+  name = "Scale Agent"
   weight = 4
+  url = "/scale-agent/"
+
+[[menu.main]]
+  name = "Support"
+  weight = 5
   url = "https://support.armory.io/"
 
 [[menu.main]]
   name = "Blog"
-  weight = 5
+  weight = 6
   url = "https://www.armory.io/blog/"
 
 [[menu.main]]
   name = "Armory.io"
-  weight = 9
+  weight = 7
   url = "https://www.armory.io/"
 # Everything below this are Site Params
 
