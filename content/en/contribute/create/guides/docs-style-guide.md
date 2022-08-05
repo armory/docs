@@ -14,9 +14,14 @@ This a subset of the [Google developer documentation style guide](https://develo
 
 The Armory documentation uses U.S. English spelling and grammar. However, use the international standard for putting punctuation outside of quotation marks.
 
-|**Do** |**Do Not**|
-|:------|:---------|
+| **Do**                                    | **Do Not**                                |
+|:----------------------------------------- |:----------------------------------------- |
 | Your copy of the repo is called a "fork". | Your copy of the repo is called a "fork." |
+
+
+We also use [Oxford commas](https://visual.ly/community/infographic/humor/oxford-comma)(serial commas).
+
+
 
 Create content using [Markdown](https://www.markdownguide.org/) with your favorite IDE.
 
@@ -127,10 +132,17 @@ Avoid using words like "currently" and "new." A feature that is new today might 
 
 ## Documentation formatting standards
 
+### Use Capital case for page titles
+
+|**Do** |**Do Not**|
+|:------|:---------|
+| Documentation Style Guide | Documentation style guide |
+| Connect Docker Registries | Connect Docker registries |
+
 ### Use sentence capitalization for headings
 
 ~~~~~~~~~
-# Create a custom webhook stage
+## Create a custom webhook stage
 
 ## Configure parameters for custom webhook stages
 ~~~~~~~~~
@@ -167,6 +179,13 @@ For example:
 | Click **Fork**.| Click "Fork".|
 | Select **Other**. | Select "Other".|
 
+You should code cascading menus like this:
+
+```
+**Options** > **About Me**> **Edit Profile**
+```
+
+Rendered as: **Options** > **About Me**> **Edit Profile**
 
 ### Use italics to define or introduce new terms
 
@@ -193,35 +212,35 @@ Group items in a list that are related to each other. Use a numbered list for in
  - Indent nested list items with one tab
  - List items may consist of multiple paragraphs. Each subsequent paragraph in a list item must be indented by either four spaces or one tab.
  - Indent nested list items by either four spaces or one tab.
- - The first line of a code block should be indented four spaces. For example, an ordered list with a code block looks like this in Markdown:
+ - The first line of a code block should be indented **three** spaces. For example, an ordered list with a code block looks like this in Markdown:
 
-	~~~
-	1. Do this
-	1. Do this
-	1. Do this
-	1. Run these commands:
+   ```markdown
+	 1. Do this
+	 1. Do this
+	 1. Do this
+	 1. Run these commands:
 
 	    ```
 		  curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/debian/InstallHalyard.sh
 		  sudo bash InstallHalyard.sh
-		```
+		  ```
 
-	1. Do the next thing
-	~~~
+	 1. Do the next thing
+   ```
 
-	The rendered output looks like:
+   The rendered output looks like:
 
-	1. Do this
-	1. Do this
-	1. Do this
-	1. Run these commands:
+   1. Do this
+   1. Do this
+   1. Do this
+   1. Run these commands:
 
-	    ```
-		curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/debian/InstallHalyard.sh
-		sudo bash InstallHalyard.sh
-		```
+      ```bash
+		  curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/debian/InstallHalyard.sh
+		  sudo bash InstallHalyard.sh
+		  ```
 
-	1. Do the next thing
+   1. Do the next thing
 
 See the [Markdown Guide](https://www.markdownguide.org/basic-syntax/#lists) for more list examples.
 
@@ -292,11 +311,11 @@ For field values of type string or integer, use code style instead of quotation 
 | Set the value of `image` to `nginx:1.8`. | Set the value of `image` to "nginx:1.8." |
 | Set the value of `maxWaitTime` to `30`.  | 'Set the value of `maxWaitTime` to "30".' |
 
-## Versioning Armory Enterprise examples
+## Versioning Armory CD examples
 
 Code examples and configuration examples that include version information should be consistent with the accompanying text.
 
-If the information is version specific, the Armory version needs to be defined in the `Prerequisites` section of the guide.
+If the information is version specific, the Armory version needs to be defined in the **{{% heading "prereq" %}}** section of the guide.
 
 ## Armory word list
 
@@ -307,5 +326,70 @@ A list of specific terms and words to be used consistently across the docs:
 | Kubernetes | kubernetes |
 | Docker  | docker |
 | On-premises or on-prem | On-premise or other variations. |  
-| Halyard | halyard |
-| Operator or Armory Operator | operator or Spinnaker operator |
+| Multicloud | Multi-cloud |
+| Open source  | Open-source |
+
+
+- **Cloud Native** this appears as cloud native and cloud-native; generally:
+    - Use cloud-native with they hypen when you use it as an adjective, when referring to technologies, systems, platforms, applications
+        - cloud-native applications; cloud-native platforms, like Kubernetes…;
+        - “cloud native" or "Cloud Native” when the term is used as a noun
+- Plugins/Plugin Framework - Technically, the proper American English term is plug-in, but tech seems to prefer it it without a hyphen.
+- Repository - repos is fine
+- Continuous Integration/Continuous Delivery (CI/CD)
+- **Blue/Green** deployment (not Blue-Green)
+    - AWS, The New Stack, Kubernetes, Spinnaker all use "Blue/Green"
+    - blue/green
+    - Blue/green
+
+- Data center (not datacenter)
+- Em dash — space on either side
+- En dash ­– for ranges
+- Toward (not towards)
+- Companies _that_, people _who_
+- Global 2000 companies, not Global 2,000 companies (Forbes refers to “Global 2000”)
+- always lowercase in sentences: kubeconfig, kubectl, kubeadm, kubelet
+- blitzscale, blitzscaling
+- on-premises; not _on prem_ or _on premise_ Use to refer to a customer&#39;s resources that they manage in their own facilities. Don&#39;t use _peer_. Hyphenate when used as any part of speech. It can be acceptable to use _on-premises_ as a noun when it would be awkward to repeatedly write out a full phrase like _an on-premises environment_. However, it&#39;s preferable to use the more complete phrase whenever possible. ([https://developers.google.com/style/word-list#letter-o](https://developers.google.com/style/word-list#letter-o))
+- setup vs set up
+   - setup is a noun
+   - set up is a verb
+   - https://writingexplained.org/setup-vs-set-up-difference
+- into vs in to
+   - https://writingexplained.org/into-vs-in-to-difference
+
+
+## Armory products list
+
+
+| **Name** | **Shortened Name** | Notes |
+| --- | --- | --- |
+| Armory Continuous Deployment | Armory CD | |
+| Armory Continuous Deployment Self-Hosted | Armory CD Self-Hosted | |
+| Armory Continuous Deployment Managed | Armory CD Managed | |
+| Pipelines-as-Code |  |  |
+| Pipeline Policies |  | Policy Engine | OPA is the Open Policy Agent. It is the OSS project that the Policy Engine uses. Guardian is an internal code  name for a possible future state of policy engine. |
+| Terraform Integration (Stage) |  | Terraformer is the microservice behind the integration b/c the feature uses Terraform, an OSS project &quot;owned&quot; by Hashicorp  |
+| Armory Operator | Operator | Different from the Spinnaker Operator, which is open source software |
+| Spinnaker Operator | Operator |  |
+| Armory Scale Agent for Spinnaker and Kubernetes  |  Armory Agent |  |
+| Plugin Framework | Plugins | No `-` in plugin. |
+| Evaluate Artifacts Stage |  | A feature available in armory enterprise, not a stand alone offering. |
+| CD-as-a-Service Cloud Console | Cloud Console |  |
+| Automated Impact Analysis || Automated Canary Analysis |   |
+
+
+## Products we frequently refer to
+
+One of the key parts of Armory CD is that it integrates with a ton of stuff that isn't ours.
+
+When in doubt, check the company’s website.
+
+| Official name | Shortened name | Example of when/how to refer to it |
+| --- | --- | --- |
+| Open Policy Agent | OPA | Policy Engine checks policy against OPA. |
+| Amazon Web Services | AWS | Spinnaker can deploy to AWS |
+| Elastic Compute Cloud | EC2 | Spinnaker can deploy EC2 instances after baking an AMI for them. |
+| NGINX, NGINX Plus, NGINX Controller|  | |
+
+
