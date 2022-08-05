@@ -126,7 +126,7 @@ git checkout -b <your-working-branch>
 {{% /tabbody %}}
 {{< /tabs >}}
 
-Make your changes. Be sure to follow the guidelines in the {{< linkWithTitle "contribute/docs-style-guide.md" >}}.
+Make your changes. Be sure to follow the guidelines in the {{< linkWithTitle "docs-style-guide.md" >}}.
 
 Use the `git status` command at any time to see what files you've changed.
 

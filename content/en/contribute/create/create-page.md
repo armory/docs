@@ -1,7 +1,8 @@
 ---
 title: "Create a New Page"
+weight: 10
 description: >
-  How to create a new page.
+  How to create a new page - content types, structure.
 ---
 
 ## Page frontmatter
@@ -36,7 +37,7 @@ The top-level heading starts with `##`. Create subheadings by adding a `#` to ea
 ##### Fourth-level heading
 ```
 
-Try to keep your headings at `####` or above. If you have to use 
+Try to keep your headings at `####` or above. If you have to use
 ## Page content types
 
 

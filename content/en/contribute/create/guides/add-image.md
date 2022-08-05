@@ -1,5 +1,7 @@
 ---
 title: Add an Image
+description: >
+   Add an image using the `figure` shortcode.
 ---
 
 ## Add an image to a page

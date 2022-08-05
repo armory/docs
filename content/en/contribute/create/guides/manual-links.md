@@ -1,5 +1,7 @@
 ---
 title: "Create Page Link in Front Matter"
+description: >
+   Use a `manualLink` in a page's frontmatter to automatically redirect to another page.
 ---
 
 ## Hyperlink to external site

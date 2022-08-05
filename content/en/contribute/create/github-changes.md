@@ -13,7 +13,7 @@ description: >
 
    ![EditFileIcon](/images/contribute/github-edit-file-icon.jpg)
 
-1. Make your changes in the GitHub markdown editor. Be sure to follow the guidelines in the {{< linkWithTitle "contribute/docs-style-guide.md" >}}.
+1. Make your changes in the GitHub markdown editor. Be sure to follow the guidelines in the {{< linkWithTitle "docs-style-guide.md" >}}.
 1. Fill in the **Propose file change** form.
 
    ![ProposeFileChange](/images/contribute/github-propose-file-change-form.jpg)

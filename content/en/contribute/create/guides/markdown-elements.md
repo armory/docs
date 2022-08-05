@@ -1,10 +1,8 @@
 ---
-title: Page Content Types and Organization
+title: Markdown
 description: >
-  Headers, tables, lists, images
+  Markdown resources for newbies.
 ---
-
-
 
 ## Help, I don't know markdown!
 
