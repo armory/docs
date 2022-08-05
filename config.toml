@@ -98,6 +98,12 @@ weight = 1
   name = "Armory.io"
   weight = 7
   url = "https://www.armory.io/"
+
+[[menu.main]]
+  name = "Contribute"
+  weight = 10
+  url = "/contribute/"
+
 # Everything below this are Site Params
 
 [params]

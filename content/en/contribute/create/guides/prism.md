@@ -1,9 +1,8 @@
 ---
-title: "Prism Customization"
-draft: true
+title: "Customize Prism"
 ---
 
-In order to extend and update our implementation of Prism, we override the version packaged with Docsy.
+In order to extend and update our implementation of Prism, we override the version packaged with Docsy. **Only Docs Team admins should modify the files mentioned in this content.**
 
 ## Updating and Extending Prism
 

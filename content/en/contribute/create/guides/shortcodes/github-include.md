@@ -1,6 +1,5 @@
 ---
 title: "Include Content of GitHub File"
-draft: true
 ---
 
 ## Include the contents of a file from a public GitHub repo
@@ -31,19 +30,19 @@ This shortcode is from https://github.com/haideralipunjabi/hugo-shortcodes/tree/
 {{</* github repo="armory-io/spinnaker-operator" file="/deploy/spinnaker/basic/SpinnakerService.yml" lang="yaml" options="" */>}}
 ```
 
-{{< github repo="armory-io/spinnaker-operator" file="/deploy/spinnaker/basic/SpinnakerService.yml" lang="yaml" options="" >}}
+{{</* github repo="armory-io/spinnaker-operator" file="/deploy/spinnaker/basic/SpinnakerService.yml" lang="yaml" options="" */>}}
 
 
 ## surround with collapsible panel
 
 <details><summary>Expand to see file</summary>
 
-{{< github repo="armory-io/spinnaker-operator" file="/deploy/spinnaker/basic/SpinnakerService.yml" lang="yaml" options="linenos=table" >}}
+{{</* github repo="armory-io/spinnaker-operator" file="/deploy/spinnaker/basic/SpinnakerService.yml" lang="yaml" options="linenos=table" */>}}
 </details>
 
 
 <details><summary>Show me the manifest</summary>
 
-{{< github repo="armory/spinnaker-kustomize-patches" file="/targets/aws/base/kustomization.yml" lang="yaml" options="" >}}
+{{< github repo="armory/spinnaker-kustomize-patches" file="/armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
 </details>
 

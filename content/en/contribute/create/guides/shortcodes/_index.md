@@ -1,7 +1,7 @@
 ---
-title: "Using Shortcodes"
-weight: 999
-draft: true
+title: "Use Shortcodes"
+description: >
+   Use code snippets ("shortcodes") to create content that is outside of Markdown's capabilities. Both Hugo and Docsy provide shortcodes that you can use. Additionally, the Armory docs project has its own shortcodes for rendering headings, linking to a page title, displaying the contents of a CSV file, and rendering tabbed panes.   
 ---
 
 ## Hugo shortcodes
@@ -22,8 +22,8 @@ alert, swaggerui, imgproc
 
 location:  `docs/layouts/shortcodes`
 
-
 ### Heading
+
 This shortcode works in conjunction with the `i118n/en.toml` file, which contains key/value pairs for common headings.
 
 Usage:
@@ -69,7 +69,6 @@ Renders as:
 See the {{< linkWithTitle best-practices.md >}} page...
 
 See this page: {{< linkWithTitle agent-troubleshooting.md >}}.
-
 
 ### Google suite shortcode
 

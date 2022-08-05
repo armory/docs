@@ -1,6 +1,6 @@
 ---
 title: "Gist vs Codeblock"
-draft: true
+
 ---
 
 ## Overview
