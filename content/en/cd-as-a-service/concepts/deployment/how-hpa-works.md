@@ -29,7 +29,7 @@ For example, consider a deployment to upgrade the `v1` version of a CD-as-a-Serv
  1. When the deployment begins the `v1` HPA is deleted. The `v1` app is running 10 pods, but no longer scales between 5 and 15 pods.
  2. CD-as-a-Service deploys the `v2` instance of the application with 10 pods (20 total pods between `v1` and `v2`).
  3.  At the end of the deployment, a new HPA resource is created to target the v2 application. 
- 4.  If the deployment needs to be rolled back, CD-as-a-Service deletes the v2 application and re-creates the original HPA.
+ 4.  If you need to roll back your deployment, CD-as-a-Service deletes the `v2` app and recreates the original HPA.
 
 ## Roll back HPA configured deployments
 During a rollback, CD-as-a-Service relies on the `kubectl.kubernetes.io/last-applied-configuration` annotation to re-create the HPA. 
