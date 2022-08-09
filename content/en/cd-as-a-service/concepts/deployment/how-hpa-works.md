@@ -1,8 +1,8 @@
 ---
 title: "Kubernetes HPA deployments in CD-as-a-Service"
-linktitle: "HPA"
+linktitle: "Kubernetes HPA"
 description: >
-  Armory CD-as-a-Service works with HPA configured Kubernetes deployments.
+  Learn how Armory Continuous Deployment-as-a-Service supports Kubernetes deployments with Horizontal Pod Autoscaling.
 ---
  # What is HPA?
  Kubernetes Horizontal Pod Autoscaling (HPA) scales deployments based on workload. When the load increases, new pods are generated on the deployed cluster. With HPA, the cluster is scaled horizontally by increasing the number of deployed pods on the cluster, rather than vertically increasing memory or CPU of an existing pod. When the workload decreases the cluster is scaled back down to the configured minimum number of replicas as defined in the deployment file.
