@@ -31,7 +31,7 @@ For example, consider a deployment to upgrade the `v1` version of a CD-as-a-Serv
  3.  At the end of the deployment, a new HPA resource is created to target the v2 application. 
  4.  If you need to roll back your deployment, CD-as-a-Service deletes the `v2` app and recreates the original HPA.
 
-## Roll back HPA configured deployments
+## What happens during a rollback
 During a rollback, CD-as-a-Service relies on the `kubectl.kubernetes.io/last-applied-configuration` annotation to re-create the HPA. 
 
 > Do not delete this annotation between deployments. Manual or programmatic changes to the HPA configuration file between deployments (for example, changes to the HPA defined minimum and maximum boundaries) may not be captured during a rollback.
