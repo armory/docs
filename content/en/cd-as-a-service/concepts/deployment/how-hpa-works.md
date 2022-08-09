@@ -1,73 +1,43 @@
 ---
-title: "How CD-as-a-Service implements Kubernetes HPA"
+title: "Kubernetes HPA deployments in CD-as-a-Service"
 linktitle: "HPA"
 description: >
-  Armory CD-as-a-Service supports Kubernetes deployments with HPA.
+  Armory CD-as-a-Service works with HPA configured Kubernetes deployments.
 ---
- ## What is HPA?
- Kubernetes Horizontal Pod Autoscaling (HPA) scales deployments in reaction to changes in observed metrics. When the deployment load increases, the number of deployed pods is increased to meet the demand. The scale behavior is horizontal, rather than vertical, which means that rather than assigning an existing pod more memory or CPU to handle the incoming traffic, new pods that identical instances of your application, are created.
+ # What is HPA?
+ Kubernetes Horizontal Pod Autoscaling (HPA) scales deployments based on workload. When the load increases, new pods are generated on the deployed cluster. With HPA, the cluster is scaled horizontally by increasing the number of deployed pods on the cluster, rather than vertically increasing memory or CPU of an existing pod. When the workload decreases the cluster is scaled back down to the configured minimum number of replicas as defined in the deployment file.
 
- An HPA resource has three components:
-- A set of one or more metrics, each with a desired target value.
-- A reference to a Kubernetes resource, typically a Deployment but any resource that supports the Scale API sub-resource (e.g., `ReplicaSet`, `StatefulSet`). The HPA scales this resource in response to changes in observed metrics.
-- A minimum and maximum number of replicas.
+ - `HorizontalPodAutoscaler` controls the scale of a deployment and its `ReplicaSet`. 
+ - The minimum and maximum number of replicas is defined in the deployment file. 
+ - The default sync interval is 30 seconds. The sync interval is set by the `kube-controller-manager`. 
+ - The default interval is modified using the `horizontal-pod-autoscaler-sync-period` flag. 
+ - The default delay is 3 minutes after an upscale event to allow metrics to stabilize. Change the default upscale delay period using the `horizontal-pod-autoscaler-upscale-delay` flag.
+ - With HPA configured, the deployment object manages the size of underlying replica sets. HPA does not manage rolling updates by manipulating the replication controller. 
+  > HPA is not recommended for replication controllers. 
 
-HPA checks metrics as configured in the deployment file AT A DEFAULT 30 SEC intervals. When the threshold load is met the HPA increases or decreases the number of pods. 
+To learn more about HPA, read these Kubernetes Documentation topics: 
+- [Horizontal Pod Autoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
+- [HorizontalPodAutoscaler Walkthrough](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/)
  
- Kubernetes implements Horizontal Auto Scaling (HPA) as a control loop that runs intermittently. `HorizontalPodAutoscaler` controls the scale of a Deployment and its `ReplicaSet`. 
- 
- HPA is not recommended for replication controllers. 
- 
- HPA does not manage rolling updates by manipulating the replication controller. The deployment object manages the size of underlying replica sets. 
+# HPA in CD-as-a-Service
+Continuous Deployment-as-a-Service (CD-as-a-Service) converts HPA configured deployments to replica sets. The HPA configuration file is automatically re-written to reference the generated `ReplicaSet` resource.CD-as-a-Service freezes scaling behavior during a deployment.
 
- The sync interval is set by the `kube-controller-manager`. The default interval is 30 seconds. Change the default interval using the `horizontal-pod-autoscaler-sync-period` flag.
+> To check the current status of the `HorizontalPodAutoscaler` run `kubectl get hpa`.
 
-The default delay is 3 minutes after an upscale event to allow metrics to stabilize. Change the default upscale delay period using the `horizontal-pod-autoscaler-upscale-delay` flag.
- 
-## How HPA works in CD-as-a-Service
-When HPA is configured for an Armory Continuous Deployment-as-a-Service (CD-as-a-Service) deployment the deployment is converted to a `ReplicaSet` and the HPA configuration file is automatically re-written to reference the generated `ReplicaSet` resource. Continuous Deployment-as-a-Service freezes scaling behavior during a deployment.
+For example, consider a deployment to upgrade the v1 version of a CD-as-a-Service app to a v2 release. In this scenario the v1 application is running with 10 replicas and is scaled by HPA with a minimum set to 5 pods and a maximum set to 15 pods.
 
-Consider a deployment to upgrade from the v1 to v2 version of your application. In this scenario the v1 application is running with 10 replicas and is scaled by HPA (min: 5 pods, max: 15 pods).
- - At the beginning of a deployment, the HPA is deleted. Your v1 application has 10 pods but no longer scales between 5 and 15 pods.
- - CD as a Service deploys the v2 instance of your application with 10 pods (20 total pods between v1 and v2).
- - At the end of the deployment, a new HPA resource is created to target the v2 application.
- - If the deployment needs to be rolled back, CDaaS deletes the v2 application and re-creates the original HPA.
+ 1. When the deployment begins the v1 HPA is deleted. The v1 app is running 10 pods, but no longer scales between 5 and 15 pods.
+ 2. CD-as-a-Service deploys the v2 instance of the application with 10 pods (20 total pods between v1 and v2).
+ 3.  At the end of the deployment, a new HPA resource is created to target the v2 application. 
+ 4.  If the deployment needs to be rolled back, CD-as-a-Service deletes the v2 application and re-creates the original HPA.
 
-### Supported versions
-Armory Continuous Deployment-as-a-Service supports the following HorizontalPodAutoscaler API versions:
+## Roll back HPA configured deployments
+During a rollback, CD-as-a-Service relies on the `kubectl.kubernetes.io/last-applied-configuration` annotation to re-create the HPA. 
+
+> Do not delete this annotation between deployments. Manual or programmatic changes to the HPA configuration file between deployments (for example, changes to the HPA defined minimum and maximum boundaries) may not be captured during a rollback.
+
+## Supported HPA versions
+CD-as-a-Service supports the following `HorizontalPodAutoscaler` API versions:
 - [v1](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v1/)
 - [v2beta 1 and 2](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2beta2/)
 -  [v2](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2/)
-  
-**Before deployment**
-
-- Upgrade a database schema
-- Custom approval process
-
-**Within your deployment strategy**
-
-- Check logs and system health
-- Run custom tests
-
-**After deployment**
-Once CPU utilization drops to 0, the HPA automatically scales the number of replicas down to 1.
-
-> Autoscaling the replicas may take a few minutes.
-
-Run integration tests in a staging environment.
-- Perform metric tests
-- Run security scanners
-
-**Check the current status of the `HorizontalPodAutoscaler`**
-```
-kubectl get hpa
-```
-### Roll back an HPA configured deployment
-During a rollback, Armory CDaaS relies on the `kubectl.kubernetes.io/last-applied-configuration` annotation to re-create the HPA. 
-
-> Do not delete this annotation between deployments. 
-
-Manual or programmatic changes to the HPA configuration file between deployments (for example, changes to the HPA's min/max boundaries) may not be captured during a rollback.
-
-Point to an HPA configuration file that references a Deployment resource in your manifests. An HPA configuration file can be assigned to each individual Deployment resource.
-
