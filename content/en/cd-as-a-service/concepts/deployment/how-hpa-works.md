@@ -24,10 +24,10 @@ Continuous Deployment-as-a-Service (CD-as-a-Service) converts HPA configured dep
 
 > To check the current status of the `HorizontalPodAutoscaler` run `kubectl get hpa`.
 
-For example, consider a deployment to upgrade the v1 version of a CD-as-a-Service app to a v2 release. In this scenario the v1 application is running with 10 replicas and is scaled by HPA with a minimum set to 5 pods and a maximum set to 15 pods.
+For example, consider a deployment to upgrade the `v1` version of a CD-as-a-Service app to a `v2` release. In this scenario the `v1` application is running with 10 replicas and is scaled by HPA with a minimum set to 5 pods and a maximum set to 15 pods.
 
- 1. When the deployment begins the v1 HPA is deleted. The v1 app is running 10 pods, but no longer scales between 5 and 15 pods.
- 2. CD-as-a-Service deploys the v2 instance of the application with 10 pods (20 total pods between v1 and v2).
+ 1. When the deployment begins the `v1` HPA is deleted. The `v1` app is running 10 pods, but no longer scales between 5 and 15 pods.
+ 2. CD-as-a-Service deploys the `v2` instance of the application with 10 pods (20 total pods between `v1` and `v2`).
  3.  At the end of the deployment, a new HPA resource is created to target the v2 application. 
  4.  If the deployment needs to be rolled back, CD-as-a-Service deletes the v2 application and re-creates the original HPA.
 
