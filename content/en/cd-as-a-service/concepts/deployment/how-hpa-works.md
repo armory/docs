@@ -20,7 +20,7 @@ To learn more about HPA, read these Kubernetes Documentation topics:
 - [HorizontalPodAutoscaler Walkthrough](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/)
  
 # HPA in CD-as-a-Service
-Continuous Deployment-as-a-Service (CD-as-a-Service) converts HPA configured deployments to replica sets. The HPA configuration file is automatically re-written to reference the generated `ReplicaSet` resource.CD-as-a-Service freezes scaling behavior during a deployment.
+Continuous Deployment-as-a-Service (CD-as-a-Service) converts HPA configured deployments to replica sets. The HPA configuration file is automatically re-written to reference the generated `ReplicaSet` resource. CD-as-a-Service freezes scaling behavior during a deployment.
 
 > To check the current status of the `HorizontalPodAutoscaler` run `kubectl get hpa`.
 
