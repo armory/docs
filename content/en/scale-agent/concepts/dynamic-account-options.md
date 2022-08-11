@@ -52,6 +52,6 @@ The Autoscan configuration polls the connected database (SQL is supported for be
 The initial request from `agent` to `clouddriver` sets up the persistent connection, including the list of static accounts defined in the Agent `armory-agent.yml` configuration file. The `clouddriver` notifies the agent about which accounts to monitor and manage, including new accounts details. 
 The `kubeconfig` file target clusters connection configuration is also sent.  
 
-If the agent is not able to connect to the target clusters the Agent is notificed and the Clouddriver sends the `SaveAccounts` operation to the Agent with a a unique `zoneId`.
+If the agent is not able to connect to the target clusters the Agent is notified and the Clouddriver sends the `SaveAccounts` operation to the Agent with a a unique `zoneId`.
 
 
