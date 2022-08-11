@@ -2,8 +2,7 @@
 title: Identity and Access Management Concepts
 linkTitle: IAM
 description: >
-  Learn about Identity and Access Management in Armory Continuous Deployment-as-a-Service.
-
+  In this section, learn about Identity and Access Management in Armory CD-as-a-Service.
 ---
 
 ## Armory CD-as-a-Service Identity and Access Management (IAM)

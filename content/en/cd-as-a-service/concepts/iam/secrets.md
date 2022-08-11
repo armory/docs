@@ -1,7 +1,6 @@
 ---
-title: Secrets
+title: Types of Secrets in CD-as-a-Service
 linktitle: Secrets
-
 description: >
   Use secrets to integrate Armory CD-as-a-Service with external systems and tools.
 ---

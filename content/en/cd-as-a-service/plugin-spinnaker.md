@@ -6,7 +6,7 @@ description: >
 weight: 500
 ---
 
-## Overview
+## Overview of the CD-as-a-Service Spinnaker plugin
 
 {{< include "cdaas/desc-plugin.md" >}}
 
