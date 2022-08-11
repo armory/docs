@@ -24,7 +24,7 @@ Return the list of all managed accounts, including static accounts defined in ag
   "total": 542
 }
 ```
-## Get and account by ID
+## Get an account by ID
 
 `GET /armory/accounts/{accountId}`
 
@@ -64,16 +64,16 @@ Returns account details for the account ID.
    "lastAssignmentMsg":"successfully assigned to agent agent-private-network-1-54865d798c-tdfvw for executing operations"
 }
 ```
-## Assign Clouddriver account to Agent
+## Migrate Clouddriver account to Agent
 `POST /armory/accounts`
 
-Assign an existing native clouddriver account to be managed by agents.
+Migrate an existing native clouddriver account to be managed by agents.
 The `zoneId` is an optional parameter. If present, the account is pinned to agents matching the same zoneId in the Agent config. If omitted, the account can be assigned to any Agent. 
 
 ## Assign Clouddriver account to Agent
 `PATCH /armory/accounts`
 
-### Example Request body
+### Example request body
 
 ```json
 {
@@ -84,7 +84,7 @@ The `zoneId` is an optional parameter. If present, the account is pinned to agen
 
 Use this endpoint to activate migrated accounts on Agent. The request body for this endpoint allows the same parameters as the `POST /armory/accounts`. In most cases only the  `zoneId` is required to successfully complete the request.
 
-### Example Request body
+### Example request body
 
 ```json
 {
