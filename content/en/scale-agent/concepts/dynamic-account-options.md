@@ -42,7 +42,7 @@ Use of the `zoneId` flag is recommend for efficient migration. The `kubeconfig` 
 If the agent is not able to connect to the target clusters, the Clouddriver sends the `SaveAccounts` operation to an Agent with a different zone identifier. On demand HTTP request indicate which accounts are removed from Agents and managed by Clouddriver.
 
 #### Interceptor option
-An interceptor option is also provided to ease the configuration steps with manual configuration. With this option the configuration steps are minimized and only the new account is enabled with one request to set it to `ACTIVE` from the initial `INACTIVE` state.
+An interceptor option is also provided to ease the configuration steps with manual configuration. With this option the configuration steps are minimized and the new account is enabled with only one request to set it to `ACTIVE` from the initial `INACTIVE` state.
 
 >This enpoint does not allow batch requests.
 
