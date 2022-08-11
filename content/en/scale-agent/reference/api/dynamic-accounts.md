@@ -1,5 +1,5 @@
 ---
-title: Dynamic Accounts API developer guide
+title: Dynamic Accounts API Developer Guide
 description: >
    Learn about the Clouddriver HTTP REST API Dynamic Accounts endpoints for the Armory Scale Agent for Spinnaker and Kubernetes.
 ---
