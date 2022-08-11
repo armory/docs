@@ -1,5 +1,5 @@
 ---
-title: Migrate Clouddriver accounts to the Agent
+title: Migrate Clouddriver Accounts to the Agent
 linkTitle: Dynamic accounts
 description: >
   Learn how to migrate account definitions from Clouddriver to the Armory Agent dynamically.
