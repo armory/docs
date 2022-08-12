@@ -1,0 +1,4161 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Cloud read and write operations",
+    "title": "clouddriver",
+    "contact": {
+      "name": "admin@host.net"
+    }
+  },
+  "host": "localhost:7002",
+  "basePath": "/",
+  "paths": {
+    "/agents/kubernetes/accounts/{accountName}": {
+      "get": {
+        "tags": [
+          "agent-accounts-controller"
+        ],
+        "summary": "Retrieve account by name if handled by armory agent",
+        "operationId": "getAccountUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "accountName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/KubesvcAccount"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/agents/kubernetes/accounts/{accountName}/namespaces": {
+      "get": {
+        "tags": [
+          "agent-accounts-controller"
+        ],
+        "summary": "Retrieve namespaces by account name if handled by armory agent",
+        "operationId": "getNamespacesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "accountName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications": {
+      "get": {
+        "tags": [
+          "applications-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "expand",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "restricted",
+            "in": "query",
+            "description": "restricted",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Application"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/clusters": {
+      "get": {
+        "tags": [
+          "cluster-controller"
+        ],
+        "summary": "listByAccount",
+        "operationId": "listByAccountUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/clusters/{account}": {
+      "get": {
+        "tags": [
+          "cluster-controller"
+        ],
+        "summary": "getForAccount",
+        "operationId": "getForAccountUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ClusterViewModel"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/clusters/{account}/{clusterName}/{cloudProvider}/{scope}/serverGroups/target/{target}": {
+      "get": {
+        "tags": [
+          "cluster-controller"
+        ],
+        "summary": "getTargetServerGroup",
+        "operationId": "getTargetServerGroupUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cloudProvider",
+            "in": "path",
+            "description": "cloudProvider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "clusterName",
+            "in": "path",
+            "description": "clusterName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "onlyEnabled",
+            "in": "query",
+            "description": "onlyEnabled",
+            "required": false,
+            "type": "string",
+            "default": "false"
+          },
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "scope",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "target",
+            "in": "path",
+            "description": "target",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "validateOldest",
+            "in": "query",
+            "description": "validateOldest",
+            "required": false,
+            "type": "string",
+            "default": "true"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ServerGroup"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/clusters/{account}/{clusterName}/{cloudProvider}/{scope}/serverGroups/target/{target}/{summaryType}": {
+      "get": {
+        "tags": [
+          "cluster-controller"
+        ],
+        "summary": "getServerGroupSummary",
+        "operationId": "getServerGroupSummaryUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cloudProvider",
+            "in": "path",
+            "description": "cloudProvider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "clusterName",
+            "in": "path",
+            "description": "clusterName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "onlyEnabled",
+            "in": "query",
+            "description": "onlyEnabled",
+            "required": false,
+            "type": "string",
+            "default": "false"
+          },
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "scope",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "summaryType",
+            "in": "path",
+            "description": "summaryType",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "target",
+            "in": "path",
+            "description": "target",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Summary"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/clusters/{account}/{clusterName}/{type}/serverGroups": {
+      "get": {
+        "tags": [
+          "cluster-controller"
+        ],
+        "summary": "getServerGroups",
+        "operationId": "getServerGroupsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "clusterName",
+            "in": "path",
+            "description": "clusterName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "expand",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "region",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "description": "type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ServerGroup"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/clusters/{account}/{clusterName}/{type}/serverGroups/{serverGroupName}": {
+      "get": {
+        "tags": [
+          "cluster-controller"
+        ],
+        "summary": "getServerGroup",
+        "operationId": "getServerGroupUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "clusterName",
+            "in": "path",
+            "description": "clusterName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "region",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "serverGroupName",
+            "in": "path",
+            "description": "serverGroupName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "description": "type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/clusters/{account}/{name}": {
+      "get": {
+        "tags": [
+          "cluster-controller"
+        ],
+        "summary": "getForAccountAndName",
+        "operationId": "getForAccountAndNameUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "expand",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cluster"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/clusters/{account}/{name}/{type}": {
+      "get": {
+        "tags": [
+          "cluster-controller"
+        ],
+        "summary": "getForAccountAndNameAndType",
+        "operationId": "getForAccountAndNameAndTypeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "expand",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "description": "type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cluster"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/functions": {
+      "get": {
+        "tags": [
+          "function-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET_2",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Function"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/jobs/{account}/{location}/{id}": {
+      "get": {
+        "tags": [
+          "job-controller"
+        ],
+        "summary": "Collect a JobStatus",
+        "description": "Collects the output of the job.",
+        "operationId": "collectJobUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account job was created by",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "application",
+            "in": "path",
+            "description": "Application name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique identifier of job being looked up",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "path",
+            "description": "Namespace, region, or zone job is running in",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JobStatus"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "job-controller"
+        ],
+        "summary": "Cancel a Job",
+        "description": "Cancels the job.",
+        "operationId": "cancelJobUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account job is running in",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "application",
+            "in": "path",
+            "description": "Application name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique identifier of job to be canceled",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "path",
+            "description": "Namespace, region, or zone job is running in",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/jobs/{account}/{location}/{id}/{fileName}": {
+      "get": {
+        "tags": [
+          "job-controller"
+        ],
+        "summary": "Collect a file from a job",
+        "description": "Collects the file result of a job.",
+        "operationId": "getFileContentsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account job was created by",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "application",
+            "in": "path",
+            "description": "Application name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fileName",
+            "in": "path",
+            "description": "File name to look up",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique identifier of job being looked up",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "path",
+            "description": "Namespace, region, or zone job is running in",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/loadBalancers": {
+      "get": {
+        "tags": [
+          "load-balancer-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET_4",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LoadBalancer"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/rawResources": {
+      "get": {
+        "tags": [
+          "raw-resource-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET_7",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/KubernetesRawResource"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/serverGroupManagers": {
+      "get": {
+        "tags": [
+          "server-group-manager-controller"
+        ],
+        "summary": "getForApplication",
+        "operationId": "getForApplicationUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ServerGroupManager"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/serverGroups": {
+      "get": {
+        "tags": [
+          "server-group-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET_9",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cloudProvider",
+            "in": "query",
+            "description": "cloudProvider",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "clusters",
+            "in": "query",
+            "description": "clusters",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "expand",
+            "required": false,
+            "type": "string",
+            "default": "false"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{application}/serverGroups/{account}/{region}/{name}": {
+      "get": {
+        "tags": [
+          "server-group-controller"
+        ],
+        "summary": "getServerGroupByApplication",
+        "operationId": "getServerGroupByApplicationUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "application",
+            "in": "path",
+            "description": "application",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "includeDetails",
+            "in": "query",
+            "description": "includeDetails",
+            "required": false,
+            "type": "string",
+            "default": "true"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "in": "path",
+            "description": "region",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ServerGroup"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/applications/{name}": {
+      "get": {
+        "tags": [
+          "applications-controller"
+        ],
+        "summary": "get",
+        "operationId": "getUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ApplicationViewModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/artifacts/credentials": {
+      "get": {
+        "tags": [
+          "artifact-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ArtifactCredentials"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cache/introspection": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "getAgentIntrospections",
+        "operationId": "getAgentIntrospectionsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AgentIntrospection"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cache/{cloudProvider}/{type}": {
+      "get": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "pendingOnDemands",
+        "operationId": "pendingOnDemandsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "cloudProvider",
+            "in": "path",
+            "description": "cloudProvider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "description": "type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Map"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "cache-controller"
+        ],
+        "summary": "handleOnDemand",
+        "operationId": "handleOnDemandUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "cloudProvider",
+            "in": "path",
+            "description": "cloudProvider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "data",
+            "description": "data",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "description": "type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/credentials": {
+      "get": {
+        "tags": [
+          "credentials-controller"
+        ],
+        "summary": "listAccountCredentials",
+        "operationId": "listAccountCredentialsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "expand",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Map«string,object»"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "credentials-controller"
+        ],
+        "summary": "createAccount",
+        "operationId": "createAccountUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "definition",
+            "description": "definition",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CredentialsDefinition"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CredentialsDefinition"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "credentials-controller"
+        ],
+        "summary": "updateAccount",
+        "operationId": "updateAccountUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "definition",
+            "description": "definition",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CredentialsDefinition"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CredentialsDefinition"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/credentials/type/{accountType}": {
+      "get": {
+        "tags": [
+          "credentials-controller"
+        ],
+        "summary": "listAccountsByType",
+        "operationId": "listAccountsByTypeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "accountType",
+            "in": "path",
+            "description": "accountType",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startingAccountName",
+            "in": "query",
+            "description": "startingAccountName",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CredentialsDefinition"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/credentials/{accountName}": {
+      "get": {
+        "tags": [
+          "credentials-controller"
+        ],
+        "summary": "getAccountCredentialsDetails",
+        "operationId": "getAccountCredentialsDetailsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "accountName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "credentials-controller"
+        ],
+        "summary": "deleteAccount",
+        "operationId": "deleteAccountUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "accountName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/credentials/{accountName}/history": {
+      "get": {
+        "tags": [
+          "credentials-controller"
+        ],
+        "summary": "getAccountHistory",
+        "operationId": "getAccountHistoryUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "accountName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Revision"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/elasticIps/{account}": {
+      "get": {
+        "tags": [
+          "elastic-ip-controller"
+        ],
+        "summary": "listByAccountAndRegion",
+        "operationId": "listByAccountAndRegionUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "region",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ElasticIp"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/instanceTypes": {
+      "get": {
+        "tags": [
+          "instance-type-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET_3",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InstanceType"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/instances/{account}/{region}/{id}": {
+      "get": {
+        "tags": [
+          "instance-controller"
+        ],
+        "summary": "getInstance",
+        "operationId": "getInstanceUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "in": "path",
+            "description": "region",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Instance"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/instances/{account}/{region}/{id}/console": {
+      "get": {
+        "tags": [
+          "instance-controller"
+        ],
+        "summary": "getConsoleOutput",
+        "operationId": "getConsoleOutputUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cloudProvider",
+            "in": "query",
+            "description": "cloudProvider",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "description": "provider",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "in": "path",
+            "description": "region",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/networks": {
+      "get": {
+        "tags": [
+          "network-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET_5",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Network"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/networks/{cloudProvider}": {
+      "get": {
+        "tags": [
+          "network-controller"
+        ],
+        "summary": "listByCloudProvider",
+        "operationId": "listByCloudProviderUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "cloudProvider",
+            "in": "path",
+            "description": "cloudProvider",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Network"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/ops": {
+      "post": {
+        "tags": [
+          "operations-controller"
+        ],
+        "summary": "operations",
+        "operationId": "operationsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "clientRequestId",
+            "in": "query",
+            "description": "clientRequestId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "requestBody",
+            "description": "requestBody",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Map«string,Map»"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StartOperationResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/ops/{name}": {
+      "post": {
+        "tags": [
+          "operations-controller"
+        ],
+        "summary": "operation",
+        "operationId": "operationUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "clientRequestId",
+            "in": "query",
+            "description": "clientRequestId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "requestBody",
+            "description": "requestBody",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StartOperationResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/reports/reservation": {
+      "get": {
+        "tags": [
+          "reservation-report-controller"
+        ],
+        "summary": "getReservationReports",
+        "operationId": "getReservationReportsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "filters",
+            "required": true,
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReservationReport"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/reports/reservation/{name}": {
+      "get": {
+        "tags": [
+          "reservation-report-controller"
+        ],
+        "summary": "getReservationReportsByName",
+        "operationId": "getReservationReportsByNameUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "filters",
+            "in": "query",
+            "description": "filters",
+            "required": true,
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReservationReport"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/search": {
+      "get": {
+        "tags": [
+          "search-controller"
+        ],
+        "summary": "search",
+        "operationId": "searchUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "required": false,
+            "type": "integer",
+            "default": 1,
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "pageSize",
+            "required": false,
+            "type": "integer",
+            "default": 10000,
+            "format": "int32"
+          },
+          {
+            "name": "platform",
+            "in": "query",
+            "description": "platform",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "type",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SearchResultSet"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/securityGroups": {
+      "get": {
+        "tags": [
+          "security-group-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET_8",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/SecurityGroupSummary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/securityGroups/{account}": {
+      "get": {
+        "tags": [
+          "security-group-controller"
+        ],
+        "summary": "listByAccountAndRegion",
+        "operationId": "listByAccountAndRegionUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "region",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/SecurityGroupSummary"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/securityGroups/{account}/{cloudProvider}": {
+      "get": {
+        "tags": [
+          "security-group-controller"
+        ],
+        "summary": "listByAccountAndCloudProvider",
+        "operationId": "listByAccountAndCloudProviderUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cloudProvider",
+            "in": "path",
+            "description": "cloudProvider",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/SecurityGroupSummary"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/securityGroups/{account}/{cloudProvider}/{region}/{securityGroupNameOrId}": {
+      "get": {
+        "tags": [
+          "security-group-controller"
+        ],
+        "summary": "get",
+        "operationId": "getUsingGET_2",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cloudProvider",
+            "in": "path",
+            "description": "cloudProvider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "getById",
+            "in": "query",
+            "description": "getById",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "region",
+            "in": "path",
+            "description": "region",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "securityGroupNameOrId",
+            "in": "path",
+            "description": "securityGroupNameOrId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "vpcId",
+            "in": "query",
+            "description": "vpcId",
+            "required": false,
+            "type": "string",
+            "default": "*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SecurityGroup"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/securityGroups/{account}/{cloudProvider}/{securityGroupName}": {
+      "get": {
+        "tags": [
+          "security-group-controller"
+        ],
+        "summary": "listByAccountAndCloudProviderAndName",
+        "operationId": "listByAccountAndCloudProviderAndNameUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "account",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cloudProvider",
+            "in": "path",
+            "description": "cloudProvider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "securityGroupName",
+            "in": "path",
+            "description": "securityGroupName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/SecurityGroupSummary"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/subnets": {
+      "get": {
+        "tags": [
+          "subnet-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET_10",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Subnet"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/subnets/{cloudProvider}": {
+      "get": {
+        "tags": [
+          "subnet-controller"
+        ],
+        "summary": "listByCloudProvider",
+        "operationId": "listByCloudProviderUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "cloudProvider",
+            "in": "path",
+            "description": "cloudProvider",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Subnet"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/task": {
+      "get": {
+        "tags": [
+          "operations-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET_6",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/task/{id}": {
+      "get": {
+        "tags": [
+          "operations-controller"
+        ],
+        "summary": "get",
+        "operationId": "getUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/task/{id}:resume": {
+      "post": {
+        "tags": [
+          "operations-controller"
+        ],
+        "summary": "resumeTask",
+        "operationId": "resumeTaskUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StartOperationResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/vpcs": {
+      "get": {
+        "tags": [
+          "vpc-controller"
+        ],
+        "summary": "list",
+        "operationId": "listUsingGET_11",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Network"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{cloudProvider}/ops": {
+      "post": {
+        "tags": [
+          "operations-controller"
+        ],
+        "summary": "cloudProviderOperations",
+        "operationId": "cloudProviderOperationsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "clientRequestId",
+            "in": "query",
+            "description": "clientRequestId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cloudProvider",
+            "in": "path",
+            "description": "cloudProvider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "requestBody",
+            "description": "requestBody",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Map«string,Map»"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StartOperationResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{cloudProvider}/ops/{name}": {
+      "post": {
+        "tags": [
+          "operations-controller"
+        ],
+        "summary": "cloudProviderOperation",
+        "operationId": "cloudProviderOperationUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "clientRequestId",
+            "in": "query",
+            "description": "clientRequestId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cloudProvider",
+            "in": "path",
+            "description": "cloudProvider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "requestBody",
+            "description": "requestBody",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StartOperationResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "AgentIntrospection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "lastError": {
+          "$ref": "#/definitions/Throwable"
+        },
+        "lastExecutionDurationMs": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lastExecutionStartDate": {
+          "type": "string"
+        },
+        "lastExecutionStartMs": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "totalAdditions": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalEvictions": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "AgentIntrospection"
+    },
+    "Application": {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "clusterNames": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "Application"
+    },
+    "ApplicationClusterViewModel": {
+      "type": "object",
+      "properties": {
+        "loadBalancers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "serverGroups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "ApplicationClusterViewModel"
+    },
+    "ApplicationViewModel": {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "clusters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/ApplicationClusterViewModel"
+            }
+          }
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "ApplicationViewModel"
+    },
+    "ArtifactCredentials": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "ArtifactCredentials"
+    },
+    "Capacity": {
+      "type": "object",
+      "properties": {
+        "desired": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "max": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pinned": {
+          "type": "boolean"
+        }
+      },
+      "title": "Capacity"
+    },
+    "Cluster": {
+      "type": "object",
+      "properties": {
+        "accountName": {
+          "type": "string"
+        },
+        "loadBalancers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LoadBalancer"
+          }
+        },
+        "moniker": {
+          "$ref": "#/definitions/Moniker"
+        },
+        "name": {
+          "type": "string"
+        },
+        "serverGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServerGroup"
+          }
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "title": "Cluster"
+    },
+    "ClusterViewModel": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "loadBalancers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "moniker": {
+          "$ref": "#/definitions/Moniker"
+        },
+        "name": {
+          "type": "string"
+        },
+        "serverGroups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "ClusterViewModel"
+    },
+    "CredentialsDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "CredentialsDefinition"
+    },
+    "ElasticIp": {
+      "type": "object",
+      "properties": {
+        "accountName": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "attachedToId": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "title": "ElasticIp"
+    },
+    "Function": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "cloudProvider": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        }
+      },
+      "title": "Function"
+    },
+    "Instance": {
+      "type": "object",
+      "properties": {
+        "cloudProvider": {
+          "type": "string"
+        },
+        "health": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Map«string,object»"
+          }
+        },
+        "healthState": {
+          "type": "string",
+          "enum": [
+            "Failed",
+            "Down",
+            "OutOfService",
+            "Unknown",
+            "Starting",
+            "Succeeded",
+            "Up",
+            "Draining"
+          ]
+        },
+        "humanReadableName": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "launchTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "providerType": {
+          "type": "string"
+        },
+        "zone": {
+          "type": "string"
+        }
+      },
+      "title": "Instance"
+    },
+    "InstanceCounts": {
+      "type": "object",
+      "properties": {
+        "down": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "outOfService": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "starting": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "unknown": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "up": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "InstanceCounts"
+    },
+    "InstanceType": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "InstanceType"
+    },
+    "JobStatus": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "completedTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "completionDetails": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Serializable"
+          }
+        },
+        "createdTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "id": {
+          "type": "string"
+        },
+        "jobState": {
+          "type": "string",
+          "enum": [
+            "Starting",
+            "Running",
+            "Failed",
+            "Succeeded",
+            "Unknown"
+          ]
+        },
+        "location": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        }
+      },
+      "title": "JobStatus"
+    },
+    "KubernetesApiGroup": {
+      "type": "object",
+      "properties": {
+        "nativeGroup": {
+          "type": "boolean"
+        }
+      },
+      "title": "KubernetesApiGroup"
+    },
+    "KubernetesApiVersion": {
+      "type": "object",
+      "properties": {
+        "apiGroup": {
+          "$ref": "#/definitions/KubernetesApiGroup"
+        }
+      },
+      "title": "KubernetesApiVersion"
+    },
+    "KubernetesKind": {
+      "type": "object",
+      "properties": {
+        "apiGroup": {
+          "$ref": "#/definitions/KubernetesApiGroup"
+        }
+      },
+      "title": "KubernetesKind"
+    },
+    "KubernetesRawResource": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "apiVersion": {
+          "$ref": "#/definitions/KubernetesApiVersion"
+        },
+        "createdTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/definitions/KubernetesKind"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "moniker": {
+          "$ref": "#/definitions/Moniker"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        }
+      },
+      "title": "KubernetesRawResource"
+    },
+    "KubesvcAccount": {
+      "type": "object",
+      "required": [
+        "definition",
+        "definitionAsString",
+        "name",
+        "permissions",
+        "properties",
+        "propertiesAsString"
+      ],
+      "properties": {
+        "certFingerprint": {
+          "type": "string"
+        },
+        "def": {
+          "type": "string"
+        },
+        "definition": {
+          "type": "object"
+        },
+        "definitionAsString": {
+          "type": "string"
+        },
+        "dynamic": {
+          "type": "boolean"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "kubeHost": {
+          "type": "string"
+        },
+        "kubeVersion": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maxWatchAgeSeconds": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "permissions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "properties": {
+          "type": "object"
+        },
+        "propertiesAsString": {
+          "type": "string"
+        },
+        "props": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ACTIVATING",
+            "ACTIVE",
+            "DEACTIVATING",
+            "FAILED",
+            "INACTIVE",
+            "TO_DEACTIVATE",
+            "TO_MIGRATE",
+            "ORPHANED"
+          ]
+        },
+        "zoneId": {
+          "type": "string"
+        }
+      },
+      "title": "KubesvcAccount"
+    },
+    "LoadBalancer": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "cloudProvider": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "moniker": {
+          "$ref": "#/definitions/Moniker"
+        },
+        "name": {
+          "type": "string"
+        },
+        "serverGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LoadBalancerServerGroup"
+          }
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "title": "LoadBalancer"
+    },
+    "LoadBalancerInstance": {
+      "type": "object",
+      "properties": {
+        "health": {
+          "type": "object"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "zone": {
+          "type": "string"
+        }
+      },
+      "title": "LoadBalancerInstance"
+    },
+    "LoadBalancerServerGroup": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "cloudProvider": {
+          "type": "string"
+        },
+        "detachedInstances": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LoadBalancerInstance"
+          }
+        },
+        "isDisabled": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        }
+      },
+      "title": "LoadBalancerServerGroup"
+    },
+    "Map«string,Map«string,Set«SecurityGroupSummary»»»": {
+      "type": "object",
+      "title": "Map«string,Map«string,Set«SecurityGroupSummary»»»",
+      "additionalProperties": {
+        "$ref": "#/definitions/Map"
+      }
+    },
+    "Map«string,Map»": {
+      "type": "object",
+      "title": "Map«string,Map»",
+      "additionalProperties": {
+        "$ref": "#/definitions/Map"
+      }
+    },
+    "Map«string,Set«SecurityGroupSummary»»": {
+      "type": "object",
+      "title": "Map«string,Set«SecurityGroupSummary»»",
+      "additionalProperties": {
+        "$ref": "#/definitions/Set"
+      }
+    },
+    "Map«string,object»": {
+      "type": "object",
+      "title": "Map«string,object»",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Moniker": {
+      "type": "object",
+      "properties": {
+        "app": {
+          "type": "string"
+        },
+        "cluster": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "sequence": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "stack": {
+          "type": "string"
+        }
+      },
+      "title": "Moniker"
+    },
+    "Network": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "cloudProvider": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        }
+      },
+      "title": "Network"
+    },
+    "PortRange": {
+      "type": "object",
+      "properties": {
+        "endPort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startPort": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "PortRange"
+    },
+    "ReservationReport": {
+      "type": "object",
+      "title": "ReservationReport"
+    },
+    "ResponseEntity": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "object"
+        },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "100 CONTINUE",
+            "101 SWITCHING_PROTOCOLS",
+            "102 PROCESSING",
+            "103 CHECKPOINT",
+            "200 OK",
+            "201 CREATED",
+            "202 ACCEPTED",
+            "203 NON_AUTHORITATIVE_INFORMATION",
+            "204 NO_CONTENT",
+            "205 RESET_CONTENT",
+            "206 PARTIAL_CONTENT",
+            "207 MULTI_STATUS",
+            "208 ALREADY_REPORTED",
+            "226 IM_USED",
+            "300 MULTIPLE_CHOICES",
+            "301 MOVED_PERMANENTLY",
+            "302 FOUND",
+            "302 MOVED_TEMPORARILY",
+            "303 SEE_OTHER",
+            "304 NOT_MODIFIED",
+            "305 USE_PROXY",
+            "307 TEMPORARY_REDIRECT",
+            "308 PERMANENT_REDIRECT",
+            "400 BAD_REQUEST",
+            "401 UNAUTHORIZED",
+            "402 PAYMENT_REQUIRED",
+            "403 FORBIDDEN",
+            "404 NOT_FOUND",
+            "405 METHOD_NOT_ALLOWED",
+            "406 NOT_ACCEPTABLE",
+            "407 PROXY_AUTHENTICATION_REQUIRED",
+            "408 REQUEST_TIMEOUT",
+            "409 CONFLICT",
+            "410 GONE",
+            "411 LENGTH_REQUIRED",
+            "412 PRECONDITION_FAILED",
+            "413 PAYLOAD_TOO_LARGE",
+            "413 REQUEST_ENTITY_TOO_LARGE",
+            "414 URI_TOO_LONG",
+            "414 REQUEST_URI_TOO_LONG",
+            "415 UNSUPPORTED_MEDIA_TYPE",
+            "416 REQUESTED_RANGE_NOT_SATISFIABLE",
+            "417 EXPECTATION_FAILED",
+            "418 I_AM_A_TEAPOT",
+            "419 INSUFFICIENT_SPACE_ON_RESOURCE",
+            "420 METHOD_FAILURE",
+            "421 DESTINATION_LOCKED",
+            "422 UNPROCESSABLE_ENTITY",
+            "423 LOCKED",
+            "424 FAILED_DEPENDENCY",
+            "425 TOO_EARLY",
+            "426 UPGRADE_REQUIRED",
+            "428 PRECONDITION_REQUIRED",
+            "429 TOO_MANY_REQUESTS",
+            "431 REQUEST_HEADER_FIELDS_TOO_LARGE",
+            "451 UNAVAILABLE_FOR_LEGAL_REASONS",
+            "500 INTERNAL_SERVER_ERROR",
+            "501 NOT_IMPLEMENTED",
+            "502 BAD_GATEWAY",
+            "503 SERVICE_UNAVAILABLE",
+            "504 GATEWAY_TIMEOUT",
+            "505 HTTP_VERSION_NOT_SUPPORTED",
+            "506 VARIANT_ALSO_NEGOTIATES",
+            "507 INSUFFICIENT_STORAGE",
+            "508 LOOP_DETECTED",
+            "509 BANDWIDTH_LIMIT_EXCEEDED",
+            "510 NOT_EXTENDED",
+            "511 NETWORK_AUTHENTICATION_REQUIRED"
+          ]
+        },
+        "statusCodeValue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ResponseEntity"
+    },
+    "Revision": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/CredentialsDefinition"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "Revision"
+    },
+    "Rule": {
+      "type": "object",
+      "properties": {
+        "portRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PortRange"
+          }
+        },
+        "protocol": {
+          "type": "string"
+        }
+      },
+      "title": "Rule"
+    },
+    "SagaId": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "SagaId"
+    },
+    "SearchResultSet": {
+      "type": "object",
+      "properties": {
+        "pageNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Map«string,object»"
+          }
+        },
+        "totalMatches": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "SearchResultSet"
+    },
+    "SecurityGroup": {
+      "type": "object",
+      "properties": {
+        "accountName": {
+          "type": "string"
+        },
+        "application": {
+          "type": "string"
+        },
+        "cloudProvider": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "inboundRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Rule"
+          }
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "moniker": {
+          "$ref": "#/definitions/Moniker"
+        },
+        "name": {
+          "type": "string"
+        },
+        "outboundRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Rule"
+          }
+        },
+        "region": {
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "#/definitions/SecurityGroupSummary"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "title": "SecurityGroup"
+    },
+    "SecurityGroupSummary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "moniker": {
+          "$ref": "#/definitions/Moniker"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "SecurityGroupSummary"
+    },
+    "Serializable": {
+      "type": "object",
+      "title": "Serializable"
+    },
+    "ServerGroup": {
+      "type": "object",
+      "properties": {
+        "capacity": {
+          "$ref": "#/definitions/Capacity"
+        },
+        "cloudProvider": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "instanceCounts": {
+          "$ref": "#/definitions/InstanceCounts"
+        },
+        "instanceType": {
+          "type": "string"
+        },
+        "instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Instance"
+          }
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "launchConfig": {
+          "type": "object"
+        },
+        "loadBalancers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "moniker": {
+          "$ref": "#/definitions/Moniker"
+        },
+        "name": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "securityGroups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "serverGroupManagers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServerGroupManagerSummary"
+          }
+        },
+        "tags": {
+          "type": "object"
+        },
+        "type": {
+          "type": "string"
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "ServerGroup"
+    },
+    "ServerGroupManager": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "moniker": {
+          "$ref": "#/definitions/Moniker"
+        },
+        "name": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "serverGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServerGroupSummary"
+          }
+        }
+      },
+      "title": "ServerGroupManager"
+    },
+    "ServerGroupManagerSummary": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "ServerGroupManagerSummary"
+    },
+    "ServerGroupSummary": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "moniker": {
+          "$ref": "#/definitions/Moniker"
+        },
+        "name": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        }
+      },
+      "title": "ServerGroupSummary"
+    },
+    "StackTraceElement": {
+      "type": "object",
+      "properties": {
+        "classLoaderName": {
+          "type": "string"
+        },
+        "className": {
+          "type": "string"
+        },
+        "fileName": {
+          "type": "string"
+        },
+        "lineNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "methodName": {
+          "type": "string"
+        },
+        "moduleName": {
+          "type": "string"
+        },
+        "moduleVersion": {
+          "type": "string"
+        },
+        "nativeMethod": {
+          "type": "boolean"
+        }
+      },
+      "title": "StackTraceElement"
+    },
+    "StartOperationResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "resourceUri": {
+          "type": "string"
+        }
+      },
+      "title": "StartOperationResult"
+    },
+    "Status": {
+      "type": "object",
+      "properties": {
+        "completed": {
+          "type": "boolean"
+        },
+        "failed": {
+          "type": "boolean"
+        },
+        "phase": {
+          "type": "string"
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "title": "Status"
+    },
+    "Subnet": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "title": "Subnet"
+    },
+    "Summary": {
+      "type": "object",
+      "title": "Summary"
+    },
+    "Task": {
+      "type": "object",
+      "properties": {
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Status"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "ownerId": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "resultObjects": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "sagaIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SagaId"
+          }
+        },
+        "startTimeMs": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "$ref": "#/definitions/Status"
+        }
+      },
+      "title": "Task"
+    },
+    "Throwable": {
+      "type": "object",
+      "properties": {
+        "cause": {
+          "$ref": "#/definitions/Throwable"
+        },
+        "localizedMessage": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "stackTrace": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StackTraceElement"
+          }
+        },
+        "suppressed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Throwable"
+          }
+        }
+      },
+      "title": "Throwable"
+    }
+  }
+}
