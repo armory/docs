@@ -4,18 +4,9 @@ linktitle: "Kubernetes HPA"
 description: >
   Learn how Armory Continuous Deployment-as-a-Service supports Kubernetes deployments with Horizontal Pod Autoscaling.
 ---
- # What is HPA?
- Kubernetes Horizontal Pod Autoscaling (`HPA`) scales deployments based on workload. When the load increases, new pods are generated on the deployed cluster. With `HPA`, the cluster is scaled horizontally by increasing the number of deployed pods on the cluster, rather than vertically increasing memory or CPU of an existing pod. When the workload decreases the cluster is scaled back down to the configured minimum number of replicas as defined in the deployment file.
+ # Before you begin
 
- - `HorizontalPodAutoscaler` controls the scale of a deployment and its `ReplicaSet`. 
- - The minimum and maximum number of replicas is defined in the deployment file. 
- - The default sync interval is 30 seconds. The sync interval is set by the `kube-controller-manager`. 
- - The default interval is modified using the `horizontal-pod-autoscaler-sync-period` flag. 
- - The default delay is 3 minutes after an upscale event to allow metrics to stabilize. Change the default upscale delay period using the `horizontal-pod-autoscaler-upscale-delay` flag.
- - With `HPA` configured, the deployment object manages the size of underlying replica sets. `HPA` does not manage rolling updates by manipulating the replication controller. 
-  > `HPA` is not recommended for replication controllers. 
-
-To learn more about `HPA`, read these Kubernetes Documentation topics: 
+Learn more about `HPA`, read these Kubernetes Documentation topics: 
 - [Horizontal Pod Autoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
 - [HorizontalPodAutoscaler Walkthrough](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/)
  
