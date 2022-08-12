@@ -26,7 +26,6 @@ Return a list of all managed accounts, including static accounts defined in agen
 }
 ```
 ## Get an account by ID
-
 `GET /armory/accounts/{accountId}`
 
 Return account details based on the account ID.
