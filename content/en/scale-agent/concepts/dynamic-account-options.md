@@ -74,5 +74,3 @@ kubesvc:
 When enabled the account name pattern is used to identify accounts for migration.  Autos scanning minimizes the manual effort and eliminates the `add` and `migrate` steps when the `namePatterns` flag is set to match a specified account naming pattern.
 
 If the agent is not able to connect to the target clusters the Agent is notified and the Clouddriver sends the `SaveAccounts` operation to the Agent with a a unique `zoneId`.
-
-
