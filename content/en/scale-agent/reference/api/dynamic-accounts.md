@@ -17,12 +17,12 @@ Return a list of all managed accounts, including static accounts defined in Agen
 ### Example response
 ``` json
 {
-  "items": [
-   {_accounts listed in this array_}
-  ]
-  "page": 1,
-  "limit": 3,
-  "total": 542
+   "items":[
+      
+   ],
+   "page":1,
+   "limit":3,
+   "total":542
 }
 ```
 ## Get an account by ID
@@ -75,14 +75,14 @@ Provide the account number for an existing native Clouddriver account to be late
 #### Example request body
 ```json
 [
- {
-  "name":	"account-01"
- },
- {
-  "name":	"account-02",
-  "zoneId": "agent-1_namespace1",
-  "kubeconfigFile": "encryptedFile:k8s!n:kubeconfig!k:config!ns:spinnaker"
- }
+   {
+      "name":"account-01"
+   },
+   {
+      "name":"account-02",
+      "zoneId":"agent-1_namespace1",
+      "kubeconfigFile":"encryptedFile:k8s!n:kubeconfig!k:config!ns:spinnaker"
+   }
 ]
 ```
 
@@ -111,16 +111,16 @@ Use this endpoint to activate migrated accounts on an Agent. The request body fo
 
 ```json
 [
- {
-  "name":  "account-01",
-  "state": "ACTIVE"
- },
- {
-  "name":	"account-02",
-  "state": "ACTIVE",
-  "zoneId": "agent-1_namespace1",
-  "kubeconfigFile": "encryptedFile:k8s!n:kubeconfig!k:config!ns:spinnaker"
- }
+   {
+      "name":"account-01",
+      "state":"ACTIVE"
+   },
+   {
+      "name":"account-02",
+      "state":"ACTIVE",
+      "zoneId":"agent-1_namespace1",
+      "kubeconfigFile":"encryptedFile:k8s!n:kubeconfig!k:config!ns:spinnaker"
+   }
 ]
 ```
 
