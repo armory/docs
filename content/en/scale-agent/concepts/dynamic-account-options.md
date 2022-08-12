@@ -19,7 +19,7 @@ The account lifecycle is represented by the following states:
   - `TO_DEACTIVATE`: indicates there was an instruction to deactivate such account.
   - `DEACTIVATING`: the request to stop watching the account has ben sent to Agent.
   
-> This feature is a limited availability beta release and requires the use of custom agent and service plugins (available from your technical account manager).
+> This feature is a limited availability release candidate and requires the use of custom agent and service plugins (available from your technical account manager).
 
 ## Configuration details
 Dynamic Account configuration parameters are added to the Agent plugin deployment file. The required parameters must be updated as shown here:
