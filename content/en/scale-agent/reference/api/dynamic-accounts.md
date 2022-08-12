@@ -1,6 +1,6 @@
 ---
-title: Clouddriver Account storage Dynamic Accounts API
-linkTitle: Dynamic Accounts API 
+title: Armory Agent Dynamic Accounts API
+linkTitle: Dynamic Accounts API
 description: >
   The Armory Scale Agent Clouddriver HTTP REST API Dynamic Accounts endpoints for Spinnaker and Kubernetes.
 ---
@@ -8,7 +8,7 @@ description: >
 ## Get Armory accounts
 `GET /armory/accounts`
 
-Return a list of all managed accounts, including static accounts defined in agent config files, and dynamic accounts defined in Clouddriver. The returned list is sorted by account name in ascending order.
+Return a list of all managed accounts, including static accounts defined in Agent config files, and dynamic accounts defined in Clouddriver. The returned list is sorted by account name in ascending order.
 
 ### Request parameters
  - `page` -  The page number for paginating results, starting from 1. This parameter defaults to 1 if omitted.
@@ -35,9 +35,9 @@ Return account details based on the `accountId`.
  - `type`: The cloud provider name (currently always kubernetes).
  - `source`: The account origin - either `clouddriver` or  `static-agent-config`.
  - `config`: The account configuration as defined in the underlying data stores.
- - `zoneId`: Identifier of the zone to which this account is pinned (optional). A missing value means that the account can be dynamically assigned to any available agent.
- - `agents`: The List of agent identifiers confirmed to handle the account, either for making deployments, watching cluster events, or both.
- - `lastAssignmnentMsg`: This string represents the last message produced when assigning an account to an agent. It is used to reveal communication errors, for example using an invalid `kubeconfig` file. 
+ - `zoneId`: Identifier of the zone to which this account is pinned (optional). A missing value means that the account can be dynamically assigned to any available Agent.
+ - `agents`: The List of Agent identifiers confirmed to handle the account, either for making deployments, watching cluster events, or both.
+ - `lastAssignmnentMsg`: This string represents the last message produced when assigning an account to an Agent. It is used to reveal communication errors, for example using an invalid `kubeconfig` file.
 
 ### Example response
 ``` json
@@ -59,17 +59,17 @@ Return account details based on the `accountId`.
          "caching":false
       }
    },
-   "lastAssignmentMsg":"successfully assigned to agent agent-private-network-1-54865d798c-tdfvw for executing operations"
+   "lastAssignmentMsg":"successfully assigned to Agent agent-private-network-1-54865d798c-tdfvw for executing operations"
 }
 ```
 ## Migrate Clouddriver account to Agent
 `POST /armory/accounts`
 
-Provide the account number for an existing native Clouddriver account to be later migrated to an agent. The `zoneId` is an optional parameter. If present, the account is pinned to agents matching the Agent configuration or its computed value: `deploymentName_namespace`. If omitted, the account is assigned to any available Agent pod. same zoneId ".
+Provide the account number for an existing native Clouddriver account to be later migrated to an Agent. The `zoneId` is an optional parameter. If present, the account is pinned to agents matching the Agent configuration or its computed value: `deploymentName_namespace`. If omitted, the account is assigned to any available Agent pod. same zoneId ".
 
 ### Request parameters
 - `name`: the name of the account matching the account in clouddriver accounts.
-- `zoneId` (optional): the name of the zoneId for the targeted agent `replicaset`, it is by default `deploymentName_namespace,`
+- `zoneId` (optional): the name of the zoneId for the targeted Agent `replicaset`, it is by default `deploymentName_namespace,`
 - `kubeConfigFile` (optional): a secret token for a `kubeconfig` path or file, it supports `encrypted/encryptedFile`.
 
 #### Example request body
@@ -96,16 +96,16 @@ Use this endpoint to activate migrated accounts on an Agent. The request body fo
 
 ### Prerequisites
 - The account must be in an `INACTIVE` or `FAILED` state.
-- An active connection with Agent. 
+- An active connection with Agent.
 
 ### Request parameters
 - `name`: the name of the account matching the account in clouddriver accounts.
-- `zoneId` (optional): the name of the zoneId for the targeted agent `replicaset`, it is by default `deploymentName_namespace,`
+- `zoneId` (optional): the name of the zoneId for the targeted Agent `replicaset`, it is by default `deploymentName_namespace,`
 - `kubeConfigFile` (optional): a secret token for a `kubeconfig` path or file, it supports `encrypted/encryptedFile`.
 
-> If the `zoneId` is supplied in a prior `POST` request it is not necessary to include it in this call. In this scenario the request tells Clouddriver to send the account to all agents. Keep in mind that if the targeted k8s cluster in `kubeconfig` is unreachable by one agent leaving out the `zoneId` may unnecessary stress on the services infrastructure.
- 
-> The `kubeconfigFile` is optional only if supplied in the previous `POST` or if the native account `kubeconfig` works for the targeted agent. In most cases it is a best practice to include this parameter with a valid value.
+> If the `zoneId` is supplied in a prior `POST` request it is not necessary to include it in this call. In this scenario the request tells Clouddriver to send the account to all agents. Keep in mind that if the targeted k8s cluster in `kubeconfig` is unreachable by one Agent leaving out the `zoneId` may unnecessary stress on the services infrastructure.
+
+> The `kubeconfigFile` is optional only if supplied in the previous `POST` or if the native account `kubeconfig` works for the targeted Agent. In most cases it is a best practice to include this parameter with a valid value.
 
 #### Example request body
 
@@ -135,5 +135,3 @@ Remove a Clouddriver migrated account from an Agent.
 # Response
 If the request is successful a 200 response code is returned. If a 400 response is returned the account name is not defined in Clouddriver.
 
-
- {{< swaggerui src="/reference/scale-agent/dynamic-accounts/dbaas.json" >}} 
