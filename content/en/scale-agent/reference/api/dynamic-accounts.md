@@ -1,12 +1,12 @@
 ---
-title: Clouddriver Account storage API 
-linkTitle: Clouddriver Account storage API 
+title: Clouddriver Account storage Dynamic Accounts API
+linkTitle: Dynamic Accounts API 
 description: >
-   Learn about the Clouddriver HTTP REST API Dynamic Accounts endpoints for the Armory Scale Agent for Spinnaker and Kubernetes.
+  The Armory Scale Agent Clouddriver HTTP REST API Dynamic Accounts endpoints for Spinnaker and Kubernetes.
 ---
 
 ## Get Armory accounts
-`GET /armory/accounts/{accountId}`
+`GET /armory/accounts`
 
 Return a list of all managed accounts, including static accounts defined in agent config files, and dynamic accounts defined in Clouddriver. The returned list is sorted by account name in ascending order.
 
@@ -18,7 +18,7 @@ Return a list of all managed accounts, including static accounts defined in agen
 ``` json
 {
   "items": [
-   {example of list items needed here}
+   {_accounts listed in this array_}
   ]
   "page": 1,
   "limit": 3,
@@ -28,7 +28,7 @@ Return a list of all managed accounts, including static accounts defined in agen
 ## Get an account by ID
 `GET /armory/accounts/{accountId}`
 
-Return account details based on the account ID.
+Return account details based on the `accountId`.
 
 ### Top level response fields
  - `name`: The account name.
@@ -65,35 +65,72 @@ Return account details based on the account ID.
 ## Migrate Clouddriver account to Agent
 `POST /armory/accounts`
 
-Migrate an existing native clouddriver account an agent.
-The `zoneId` is an optional parameter. If present, the account is pinned to agents matching the same `zoneId` in the Agent configuration. If omitted, the account is assigned to any available Agent pod. 
+Provide the account number for an existing native Clouddriver account to be later migrated to an agent. The `zoneId` is an optional parameter. If present, the account is pinned to agents matching the Agent configuration or its computed value: `deploymentName_namespace`. If omitted, the account is assigned to any available Agent pod. same zoneId ".
+
+### Request parameters
+- `name`: the name of the account matching the account in clouddriver accounts.
+- `zoneId` (optional): the name of the zoneId for the targeted agent `replicaset`, it is by default `deploymentName_namespace,`
+- `kubeConfigFile` (optional): a secret token for a `kubeconfig` path or file, it supports `encrypted/encryptedFile`.
+
+#### Example request body
+```json
+[
+ {
+  "name":	"account-01"
+ },
+ {
+  "name":	"account-02",
+  "zoneId": "agent-1_namespace1",
+  "kubeconfigFile": "encryptedFile:k8s!n:kubeconfig!k:config!ns:spinnaker"
+ }
+]
+```
+
+#### Response
+If the request is successful a 200 response code is returned. If a 400 response is returned the account name is not defined in Clouddriver.
 
 ## Assign Clouddriver account to Agent
 `PATCH /armory/accounts`
 
-### Example request body
-
-```json
-{
-  "name": "my-account-1",
-  "zoneId": "agent-private-network-1"
-}
-```
-
 Use this endpoint to activate migrated accounts on an Agent. The request body for this endpoint provides the same parameters as the `POST /armory/accounts`. In most cases, only the  `zoneId` is required to successfully complete the request.
 
-### Example request body
+### Prerequisites
+- The account must be in an `INACTIVE` or `FAILED` state.
+- An active connection with Agent. 
+
+### Request parameters
+- `name`: the name of the account matching the account in clouddriver accounts.
+- `zoneId` (optional): the name of the zoneId for the targeted agent `replicaset`, it is by default `deploymentName_namespace,`
+- `kubeConfigFile` (optional): a secret token for a `kubeconfig` path or file, it supports `encrypted/encryptedFile`.
+
+> If the `zoneId` is supplied in a prior `POST` request it is not necessary to include it in this call. In this scenario the request tells Clouddriver to send the account to all agents. Keep in mind that if the targeted k8s cluster in `kubeconfig` is unreachable by one agent leaving out the `zoneId` may unnecessary stress on the services infrastructure.
+ 
+> The `kubeconfigFile` is optional only if supplied in the previous `POST` or if the native account `kubeconfig` works for the targeted agent. In most cases it is a best practice to include this parameter with a valid value.
+
+#### Example request body
 
 ```json
-{
-  "zoneId": "agent-private-network-1"
-}
+[
+ {
+  "name":  "account-01",
+  "state": "ACTIVE"
+ },
+ {
+  "name":	"account-02",
+  "state": "ACTIVE",
+  "zoneId": "agent-1_namespace1",
+  "kubeconfigFile": "encryptedFile:k8s!n:kubeconfig!k:config!ns:spinnaker"
+ }
+]
 ```
 
-##  Delete an account
+#### Response
+If the request is successful a 200 response code is returned. If a 400 response is returned the account name is not defined in Clouddriver.
+
+## Delete an account
 `DELETE /armory/accounts/{accountName}`
 
-Remove a Clouddriver defined account from an Agent.
+Remove a Clouddriver migrated account from an Agent.
 
 # Response
 If the request is successful a 200 response code is returned. If a 400 response is returned the account name is not defined in Clouddriver.
