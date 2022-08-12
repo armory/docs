@@ -9,15 +9,15 @@ Dynamic accounts are migrated from the Clouddriver to the Armory Scale Agent. Th
 
 The account lifecycle is represented by the following states:
 - Non transient:
-  - `INACTIVE`: It is the initial state, the account is provided but waiting for a migrate operation.
-  - `ACTIVE`: The account is being managed and watched by Agent.
-  - `FAILED`: Indicates a failure when adding or deleting the account.
-  - `ORPHANED`:  There aren't online agents managing the account that was once active. (this state is usually seen when restarting or bringing down all of the replicas managing that account).
+  - `INACTIVE`: the initial state, the account is provided but waiting for a migrate operation.
+  - `ACTIVE`: the account is being managed and watched by Agent.
+  - `FAILED`: indicates a failure when adding or deleting the account.
+  - `ORPHANED`: the account is no longer  managed by online agents (this state is usually seen when restarting or bringing down all of the replicas managing that account).
 - Transient
-  - `TO_MIGRATE`: Indicates there was an instruction to migrate such account.
-  - `ACTIVATING`: The account has been processed and sent to Agent.
-  - `TO_DEACTIVATE`: Indicates there was an instruction to deactivate such account.
-  - `DEACTIVATING`: The request to stop watching the account has ben sent to Agent.
+  - `TO_MIGRATE`: indicates there was an instruction to migrate such account.
+  - `ACTIVATING`: the account has been processed and sent to Agent.
+  - `TO_DEACTIVATE`: indicates there was an instruction to deactivate such account.
+  - `DEACTIVATING`: the request to stop watching the account has ben sent to Agent.
   
 > This feature is a limited availability beta release and requires the use of custom agent and service plugins (available from your technical account manager).
 
