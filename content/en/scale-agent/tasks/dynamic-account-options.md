@@ -49,7 +49,7 @@ Accounts can be migrated from Clouddriver `kubesvc_account` table to the agent(s
 
 ### Manual migration
 
-Accounts can be pulled from Clouddriver to the cluster Agents using the {{< linkWithTitle "scale-agent/reference/api/dynamic-accounts.md" >}}).
+Accounts can be pulled from Clouddriver to the cluster Agents using the {{< linkWithTitle "scale-agent/reference/api/dynamic-accounts.md" >}}.
 
 > An account can only be successfully migrated if it has network connectivity to the cluster in the underlying configuration.
 
