@@ -8,6 +8,8 @@ description: >
 
 ## Overview of Armory CD-as-a-Service
 
+{{< youtube id="r29UCKMXEi4" title="Watch How CD-as-a-Service Simplifies Your Deployment Process" autoplay="false" >}}
+<br><br>
 Armory CD-as-a-Service delivers intelligent deployment-as-a-service that supports advanced deployment strategies so developers can focus on building
 great code rather than deploying it. By automating code deployment across all of your Kubernetes environments, Armory CD-as-a-Service removes demands on developers and reduces the risk of service disruptions due to change failures. It does this by seamlessly integrating preproduction verification tasks with advanced production deployment strategies. This mitigates risks by providing deployment flexibility while limiting blast radius, which leads to a better customer experience. Best of all, Armory CD-as-a-Service doesn’t require migrating to a new deployment platform. It easily plugs into any existing SDLC.
 
