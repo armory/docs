@@ -5,7 +5,7 @@ description: >
   In this section, learn about Access Management in Armory CD-as-a-Service.
 ---
 
-## Armory CD-as-a-Service Identity and Access Management (IAM)
+## Armory CD-as-a-Service Access Management
 
 Armory CD-as-a-Service uses OIDC to authenticate both user and machine principals and issue short-lived access tokens, which are signed JSON web tokens (JWTs).
 
