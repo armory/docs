@@ -1,8 +1,8 @@
 ---
-title: Identity and Access Management Concepts
-linkTitle: IAM
+title: Access Management Concepts
+linkTitle: Access Management
 description: >
-  In this section, learn about Identity and Access Management in Armory CD-as-a-Service.
+  In this section, learn about Access Management in Armory CD-as-a-Service.
 ---
 
 ## Armory CD-as-a-Service Identity and Access Management (IAM)
@@ -13,7 +13,7 @@ The Armory CD-as-a-Service API consumes these access tokens in order to validate
 
 Use the the [CD-as-a-Service Console](https://console.cloud.armory.io/) to manage the following:
 
-- Create credentials for machines and scope them for specific permissions and use cases.
-- Invite and manage users.
-- Enable OIDC based external identity providers (IdP), such as Okta, Auth0, or OneLogin.
+- Credentials for machines and scope them for specific permissions and use cases
+- Users
+- OIDC based external identity providers (IdP), such as Okta, Auth0, or OneLogin
 
