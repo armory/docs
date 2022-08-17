@@ -375,8 +375,9 @@ A list of specific terms and words to be used consistently across the docs:
 | Armory Scale Agent for Spinnaker and Kubernetes  |  Armory Agent |  |
 | Plugin Framework | Plugins | No `-` in plugin. |
 | Evaluate Artifacts Stage |  | A feature available in armory enterprise, not a stand alone offering. |
-| CD-as-a-Service Cloud Console | Cloud Console |  |
 | Automated Impact Analysis || Automated Canary Analysis |   |
+| Armory Continuous Deployment-as-a-Service | CD-as-a-Service |  |
+| CD-as-a-Service Cloud Console | Cloud Console |  |
 
 
 ## Products we frequently refer to
