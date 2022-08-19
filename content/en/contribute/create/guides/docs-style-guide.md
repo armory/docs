@@ -1,5 +1,5 @@
 ---
-title:  "Docs Style Guide"
+title:  "Style Guide"
 description: >
    Learn the writing guidelines for creating content.
 ---
