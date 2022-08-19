@@ -76,7 +76,7 @@ git fetch origin
 git fetch upstream
 ```
 {{% /tabbody %}}
-{{< tabbody name="Armory Employee" >}}
+{{%  tabbody name="Armory Employee" %}}
 
 ```bash
 git pull
@@ -117,7 +117,7 @@ git checkout -b <your-working-branch> upstream/master
 Since `git` tracks changes to `upstream\master`, you don't need to rebase your fork before you create a working branch.
 
 {{% /tabbody %}}
-{{< tabbody name="Armory Employee" >}}
+{{% tabbody name="Armory Employee" %}}
 
 ```bash
 git checkout -b <your-working-branch>
