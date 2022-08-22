@@ -376,7 +376,7 @@ A list of specific terms and words to be used consistently across the docs:
 | Plugin Framework | Plugins | No `-` in plugin. |
 | Evaluate Artifacts Stage |  | A feature available in armory enterprise, not a stand alone offering. |
 | Automated Impact Analysis || Automated Canary Analysis |   |
-| Armory Continuous Deployment-as-a-Service | CD-as-a-Service |  |
+| Armory Continuous Deployment-as-a-Service | Armory CD-as-a-Service or CD-as-a-Service |  |
 | CD-as-a-Service Cloud Console | Cloud Console |  |
 
 
