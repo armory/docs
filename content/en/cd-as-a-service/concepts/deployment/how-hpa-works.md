@@ -7,34 +7,40 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-Before you begin using a Kubernetes `HorizontalPodAutoscaler` in your CD-as-a-Service deployment, you should have a working knowledge of Horizontal Pod Autoscaling in Kubernetes. Consult the following Kubernetes docs:
+Before you begin using a Kubernetes HorizontalPodAutoscaler in your CD-as-a-Service deployment, you should have a working knowledge of Horizontal Pod Autoscaling in Kubernetes. Consult the following Kubernetes docs:
 
 - [Horizontal Pod Autoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
 - [HorizontalPodAutoscaler Walkthrough](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/)
 
-## Where to create your `HorizontalPodAutoscaler`
+## Where to create your HorizontalPodAutoscaler
 
-You must create your app's `HorizontalPodAutoscaler` in a manifest. See [Creating the autoscaler declaratively](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/#creating-the-autoscaler-declaratively) for a manifest example. Each `Deployment` resource can have its own `HorizontalPodAutoscaler`.
+You must create your app's HorizontalPodAutoscaler in a manifest. See [Creating the autoscaler declaratively](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/#creating-the-autoscaler-declaratively) for a manifest example. Each Deployment resource can have its own HorizontalPodAutoscaler.
 
 
 ## How Horizontal Pod Autoscaling works in CD-as-a-Service
 
-When you deploy a `Deployment` resource,  CD-as-a-Service converts the `Deployment` to a `ReplicaSet`. Correspondingly, when you declare a `HorizontalPodAutoscaler` to scale a `Deployment` resource, CD-as-a-Service automatically reconfigures that `HorizontalPodAutoscaler` to reference the generated `ReplicaSet` resource.
+When you deploy a Deployment resource, CD-as-a-Service converts the Deployment to a ReplicaSet. Correspondingly, when you declare a HorizontalPodAutoscaler to scale a Deployment resource, CD-as-a-Service automatically reconfigures that HorizontalPodAutoscaler to reference the generated ReplicaSet resource.
 
-CD-as-a-Service freezes scaling behavior during a deployment. Consider a deployment to upgrade your app from v1 to v2. In this scenario, the v1 app is running with 10 replicas. Your `HorizontalPodAutoscaler` scales your app down to 5 replicas minimum or up to 15 replicas maximum.
+### What happens during a deployment
 
-1. When the deployment begins, CD-as-a-Service deletes the v1 `HorizontalPodAutoscaler`. Your v1 app has 10 replicas but no longer scales up or down.
-1. CD-as-a-Service deploys the v2 instance of your app with 10 replicas. Now you have 20 total replicas between v1 and v2.
-1. At the end of your v2 app deployment, CD-as-a-Service creates a new `HorizontalPodAutoScaler` resource to target your v2 app.
+CD-as-a-Service freezes scaling behavior during a deployment.
 
-If you need to roll back your deployment, CD-as-a-Service deletes the v2 app and associated `HorizontalPodAutoscaler`. CD-as-a-Service relies on the `kubectl.kubernetes.io/last-applied-configuration` annotation to recreate the v1 `HorizontalPodAutoscaler` configuration file.
+Consider a deployment to upgrade your app from v1 to v2. In this scenario, the v1 app is running with 10 Pods. Your HorizontalPodAutoscaler scales your app down to 5 Pods minimum or up to 15 Pods maximum.
 
->Do not delete the `kubectl.kubernetes.io/last-applied-configuration` annotation between deployments. Additionally, CD-as-a-service may not capture any manual or programmatic changes you make to the `HorizontalPodAutoscaler` configuration file between deployments.
+1. When the deployment begins, CD-as-a-Service deletes the v1 HorizontalPodAutoscaler. Your v1 app has 10 Pods but no longer scales up or down.
+1. CD-as-a-Service deploys the v2 instance of your app with 10 Pods. Now you have 20 total Pods between v1 and v2.
+1. At the end of your v2 app deployment, CD-as-a-Service creates a new HorizontalPodAutoscaler resource to target your v2 app.
+
+### What happens during a rollback
+
+If you need to roll back your deployment, CD-as-a-Service deletes the v2 app and associated HorizontalPodAutoscaler. CD-as-a-Service relies on the `kubectl.kubernetes.io/last-applied-configuration` annotation to recreate the v1 HorizontalPodAutoscaler configuration file.
+
+>Do not delete the `kubectl.kubernetes.io/last-applied-configuration` annotation between deployments. Additionally, CD-as-a-service may not capture any manual or programmatic changes you make to the HorizontalPodAutoscaler configuration file between deployments.
 
 
-## Supported `HorizontalPodAutoScaler` API versions
+## Supported HorizontalPodAutoscaler API versions
 
-CD-as-a-Service supports the following `HorizontalPodAutoscaler` API versions:
+CD-as-a-Service supports the following HorizontalPodAutoscaler API versions:
 
 - [v1](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v1/)
 - [v2 beta 1 and 2](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2beta2/)
