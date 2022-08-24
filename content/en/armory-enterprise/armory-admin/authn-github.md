@@ -16,7 +16,7 @@ description: >
 
 1. Login to GitHub and go to Settings > Developer Settings > OAuth Apps > New OAuth App
 2. Note the Client ID / Client Secret
-3. Homepage URL: This would be the URL of your Spinnaker service e.g. `https://spinnaker.acme.com`
+3. Homepage URL: This would be the URL of your Spinnaker Gate e.g. `https://gate.spinnaker.acme.com`
 4. Authorization callback URL: This is going to match your `--pre-established-redirect-uri` and the URL needs `login` appended to your gate endpoint e.g. `https://gate.spinnaker.acme.com/login`  or `https://spinnaker.acme.com/gate/login`
 
 ## Configuring GitHub OAuth in Spinnaker
@@ -30,7 +30,6 @@ oauth2:
       clientId: a08xxxxxxxxxxxxx93
       clientSecret: 6xxxaxxxxxxxxxxxxxxxxxxx59   # Secret Enabled Field
       scope: read:org,user:email
-      preEstablishedRedirectUri: https://gate.spinnaker.acme.com/login
     provider: GITHUB
 ```
 
