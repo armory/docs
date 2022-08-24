@@ -33,7 +33,7 @@ Consider a deployment to upgrade your app from v1 to v2. In this scenario, the v
 
 ### What happens during a rollback
 
-CD-as-a-Service freezes scaling behavior at the start of a rollback.
+Since you can't roll back once a deployment has finished, scaling behavior is still frozen when a rollback begins.
 
 CD-as-a-Service deletes the v2 app and v2 HorizontalPodAutoscaler and recreates the v1 HorizontalPodAutoscaler config file using the  `kubectl.kubernetes.io/last-applied-configuration` annotation. CD-as-a-Service then deploys your v1 app and HorizontalPodAutoscaler.
 
