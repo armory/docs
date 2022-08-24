@@ -33,7 +33,7 @@ Consider a deployment to upgrade your app from v1 to v2. In this scenario, the v
 
 ### What happens during a rollback
 
-If you need to roll back your deployment, CD-as-a-Service deletes the v2 app and associated HorizontalPodAutoscaler. CD-as-a-Service relies on the `kubectl.kubernetes.io/last-applied-configuration` annotation to recreate the v1 HorizontalPodAutoscaler configuration file.
+CD-as-a-Service deletes the v2 app and associated HorizontalPodAutoscaler during a rollback. CD-as-a-Service relies on the `kubectl.kubernetes.io/last-applied-configuration` annotation to recreate the v1 HorizontalPodAutoscaler configuration file.
 
 >Do not delete the `kubectl.kubernetes.io/last-applied-configuration` annotation between deployments. Additionally, CD-as-a-service may not capture any manual or programmatic changes you make to the HorizontalPodAutoscaler configuration file between deployments.
 
