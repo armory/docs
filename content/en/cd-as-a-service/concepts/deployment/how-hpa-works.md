@@ -23,7 +23,7 @@ When you deploy a Deployment resource, CD-as-a-Service converts the Deployment t
 
 ### What happens during a deployment
 
-CD-as-a-Service freezes scaling behavior during a deployment.
+CD-as-a-Service freezes scaling behavior at the start of a deployment.
 
 Consider a deployment to upgrade your app from v1 to v2. In this scenario, the v1 app is running with 10 Pods. Your HorizontalPodAutoscaler scales your app down to 5 Pods minimum or up to 15 Pods maximum.
 
@@ -33,12 +33,11 @@ Consider a deployment to upgrade your app from v1 to v2. In this scenario, the v
 
 ### What happens during a rollback
 
-CD-as-a-Service deletes the v2 app and associated HorizontalPodAutoscaler during a rollback.
+CD-as-a-Service freezes scaling behavior at the start of a rollback.
 
-CD-as-a-Service relies on the `kubectl.kubernetes.io/last-applied-configuration` annotation to recreate the v1 HorizontalPodAutoscaler configuration file.
+CD-as-a-Service deletes the v2 app and v2 HorizontalPodAutoscaler and recreates the v1 HorizontalPodAutoscaler config file using the  `kubectl.kubernetes.io/last-applied-configuration` annotation. CD-as-a-Service then deploys your v1 app and HorizontalPodAutoscaler.
 
->Do not delete the `kubectl.kubernetes.io/last-applied-configuration` annotation between deployments. Additionally, CD-as-a-service may not capture any manual or programmatic changes you make to the HorizontalPodAutoscaler configuration file between deployments.
-
+>Do not delete the `kubectl.kubernetes.io/last-applied-configuration` annotation between deployments or your rollback will fail. Additionally, CD-as-a-service may not capture any manual or programmatic changes you make to the HorizontalPodAutoscaler configuration file between deployments.
 
 ## Supported HorizontalPodAutoscaler API versions
 
