@@ -13,7 +13,7 @@ This a subset of the [Google developer documentation style guide](https://develo
 
 ## {{% heading "prereq" %}}
 
-Make sure you have read Armory Docs' {{< linkWithTitle "content-guide.md" >}}.
+Make sure you have read the {{< linkWithTitle "content-guide.md" >}}.
 
 ## Language
 
@@ -415,3 +415,4 @@ When in doubt, check the company’s website.
 ## {{% heading "nextSteps" %}}
 
 {{< linkWithTitle "diagram-guide.md" >}}
+<br><br>
