@@ -7,7 +7,7 @@ description: >
 
 ## What's allowed
 
-* Content that documents Armory software products and platforms
+Armory docs contains content that documents Armory software products and platforms.
 
 ## What's not allowed
 
