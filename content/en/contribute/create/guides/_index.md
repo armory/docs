@@ -1,5 +1,5 @@
 ---
-title: Content Guides
+title: Guides
 linkTitle: Guides
 weight: 99
 description: >
