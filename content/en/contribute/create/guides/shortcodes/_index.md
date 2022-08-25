@@ -1,14 +1,20 @@
 ---
-title: "Use Shortcodes"
+title: "Use Hugo and Docsy Shortcodes"
+linkTitle: Use Shortcodes
 description: >
    Use code snippets ("shortcodes") to create content that is outside of Markdown's capabilities. Both Hugo and Docsy provide shortcodes that you can use. Additionally, the Armory docs project has its own shortcodes for rendering headings, linking to a page title, displaying the contents of a CSV file, and rendering tabbed panes.   
 ---
 
 ## Hugo shortcodes
 
-[Hugo Shortcodes Guide](https://gohugo.io/content-management/shortcodes/)
+Shortcodes let you do things like insert fancy stuff like tabbed codeblocks. You can see them in the `docs` repo:
 
-gist, youtube, figure, ref, relref and more
+- Rendered w/ examples in content/en/docs/zz-contribute in the docs repo. Build this locally by running `hugo server --buildDrafts`
+- `layouts` for the raw source
+
+Refer to them by the filename without the `.html` and enclosed by `{{</* shortcode */>}}`. For example, `{{</* legacy */>}}`.
+
+[Hugo Shortcodes Guide](https://gohugo.io/content-management/shortcodes/)
 
 For how to use the `gist` shortcode, see {{< linkWithTitle "gist-vs-codeblock.md" >}} and {{< linkWithTitle "entire-gist.md" >}}.
 
