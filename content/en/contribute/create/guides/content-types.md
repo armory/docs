@@ -213,3 +213,7 @@ A Reference page contains the same frontmatter as other page types. The body for
 ### Troubleshooting
 
 A Troubleshooting page contains the same frontmatter as other page types. The body format is less structured. Be sure to list the exact error the reader could encounter and the solution.
+
+## {{% heading "nextSteps" %}}
+
+{{< linkWithTitle "docs-style-guide.md" >}}

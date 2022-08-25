@@ -11,6 +11,10 @@ This page gives writing style guidelines for the Armory documentation. Since the
 
 This a subset of the [Google developer documentation style guide](https://developers.google.com/style). The Docs team uses that guide for anything not listed here.
 
+## {{% heading "prereq" %}}
+
+Make sure you have read Armory Docs' {{< linkWithTitle "content-types.md" >}}.
+
 ## Language
 
 The Armory documentation uses U.S. English spelling and grammar. However, use the international standard for putting punctuation outside of quotation marks.
@@ -408,3 +412,6 @@ When in doubt, check the company’s website.
 | NGINX, NGINX Plus, NGINX Controller|  | |
 
 
+## {{% heading "nextSteps" %}}
+
+{{< linkWithTitle "mermaid-example.md" >}}
