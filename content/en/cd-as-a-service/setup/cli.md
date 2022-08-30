@@ -49,13 +49,13 @@ After installation completes, you should start a new terminal session or source 
 1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo](https://github.com/armory/avm/releases/) or use the following command:
 
    ```bash
-   curl -O https://github.com/armory/avm/releases/latest/download/avm-<os>-<architecture>
+   curl -LO https://github.com/armory/avm/releases/latest/download/avm-<os>-<architecture>
    ```
 
    For example, the following command downloads the latest version for macOS (Darwin):
 
    ```bash
-   curl -O https://github.com/armory/avm/releases/latest/download/avm-darwin-amd64
+   curl -LO https://github.com/armory/avm/releases/latest/download/avm-darwin-amd64
    ```
 
    You can see the full list of available releases in the [repo](https://github.com/armory/avm/releases/).
