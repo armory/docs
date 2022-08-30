@@ -19,6 +19,16 @@ They do not run on Windows.
 
 ## Install the Armory CD-as-a-Service CLI
 
+### Docker image
+
+Armory provides the CD-as-a-Service CLI as a [Docker image](https://hub.docker.com/r/armory/armory-cli).
+
+```bash
+docker pull armory/armory-cli
+```
+
+### Local installation
+
 You can install the Armory Version Manager (AVM) and CLI using a one-line command or you can download the AVM manually.
 
 The AVM enables you to quickly and easily download, install, and update the CLI. The AVM includes additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
