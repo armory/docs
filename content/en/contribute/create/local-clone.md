@@ -7,7 +7,11 @@ description: >
 
 ## Overview
 
-To make a significant changes to the `armory/docs` repository, you can fork the repository and work from a local clone. The workflow below walks through a fork-and-pull-request change to the `armory/docs` repository. Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your computer and have configured your GitHub account. See the [GitHub Help](https://help.github.com) for details.
+To make a significant changes to the `armory/docs` repository, you can fork the repository and work from a local clone. The workflow below walks through a fork-and-pull-request change to the `armory/docs` repository.
+
+## {{% heading "prereq" %}}
+
+Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your computer and have configured your GitHub account. See the [GitHub Help](https://help.github.com) for details.
 
 ## Fork and clone
 
@@ -76,7 +80,7 @@ git fetch origin
 git fetch upstream
 ```
 {{% /tabbody %}}
-{{< tabbody name="Armory Employee" >}}
+{{%  tabbody name="Armory Employee" %}}
 
 ```bash
 git pull
@@ -117,7 +121,7 @@ git checkout -b <your-working-branch> upstream/master
 Since `git` tracks changes to `upstream\master`, you don't need to rebase your fork before you create a working branch.
 
 {{% /tabbody %}}
-{{< tabbody name="Armory Employee" >}}
+{{% tabbody name="Armory Employee" %}}
 
 ```bash
 git checkout -b <your-working-branch>
@@ -126,7 +130,9 @@ git checkout -b <your-working-branch>
 {{% /tabbody %}}
 {{< /tabs >}}
 
-Make your changes. Be sure to follow the guidelines in the {{< linkWithTitle "docs-style-guide.md" >}}.
+## Create your content
+
+Make your changes. Be sure to follow the guidelines in the {{< linkWithTitle "content-guide.md" >}} and the {{< linkWithTitle "docs-style-guide.md" >}}.
 
 Use the `git status` command at any time to see what files you've changed.
 

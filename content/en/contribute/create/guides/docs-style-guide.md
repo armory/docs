@@ -1,5 +1,6 @@
 ---
-title:  "Docs Style Guide"
+title:  "Style Guide"
+weight: 2
 description: >
    Learn the writing guidelines for creating content.
 ---
@@ -9,6 +10,10 @@ description: >
 This page gives writing style guidelines for the Armory documentation. Since these are guidelines, not rules, use your best judgment when creating content. Feel free to propose changes to this document in a pull request.
 
 This a subset of the [Google developer documentation style guide](https://developers.google.com/style). The Docs team uses that guide for anything not listed here.
+
+## {{% heading "prereq" %}}
+
+Make sure you have read the {{< linkWithTitle "content-guide.md" >}}.
 
 ## Language
 
@@ -148,6 +153,7 @@ Avoid using words like "currently" and "new." A feature that is new today might 
 ~~~~~~~~~
 
 ### Line breaks
+
 Use a single newline to separate block-level content like headings, lists, images, code blocks, paragraphs, and others.
 
 ### Use camel case for API objects
@@ -163,6 +169,18 @@ Refer to API objects without saying "object," unless omitting "object" leads to 
 |:------|:---------|
 | The PipelineController restarts a Stage. | The pipeline controller restarts a stage.|
 | The AmazonInfrastructureController is responsible for ... | The AmazonInfrastructureController object is responsible for ...|
+
+### Kubernetes objects
+
+See the following Kubernetes Documentation Style Guide sections:
+
+* [Use upper camel case for API objects](https://kubernetes.io/docs/contribute/style/style-guide/#use-upper-camel-case-for-api-objects)
+* [Use code style for inline code, commands, and API objects](https://kubernetes.io/docs/contribute/style/style-guide/#code-style-inline-code)
+* [Use code style for object field names and namespaces](https://kubernetes.io/docs/contribute/style/style-guide/#use-code-style-for-object-field-names-and-namespaces)
+* [Use code style for Kubernetes command tool and component names](https://kubernetes.io/docs/contribute/style/style-guide/#use-code-style-for-kubernetes-command-tool-and-component-names)
+* [Starting a sentence with a component tool or component name](https://kubernetes.io/docs/contribute/style/style-guide/#starting-a-sentence-with-a-component-tool-or-component-name)
+* [Use a general descriptor over a component name](https://kubernetes.io/docs/contribute/style/style-guide/#use-a-general-descriptor-over-a-component-name)
+* [Referring to Kubernetes API resources](https://kubernetes.io/docs/contribute/style/style-guide/#referring-to-kubernetes-api-resources)
 
 ### Use angle brackets for placeholders
 
@@ -375,8 +393,9 @@ A list of specific terms and words to be used consistently across the docs:
 | Armory Scale Agent for Spinnaker and Kubernetes  |  Armory Agent |  |
 | Plugin Framework | Plugins | No `-` in plugin. |
 | Evaluate Artifacts Stage |  | A feature available in armory enterprise, not a stand alone offering. |
-| CD-as-a-Service Cloud Console | Cloud Console |  |
 | Automated Impact Analysis || Automated Canary Analysis |   |
+| Armory Continuous Deployment-as-a-Service | Armory CD-as-a-Service or CD-as-a-Service |  |
+| CD-as-a-Service Cloud Console | Cloud Console |  |
 
 
 ## Products we frequently refer to
@@ -393,3 +412,7 @@ When in doubt, check the company’s website.
 | NGINX, NGINX Plus, NGINX Controller|  | |
 
 
+## {{% heading "nextSteps" %}}
+
+{{< linkWithTitle "diagram-guide.md" >}}
+<br><br>

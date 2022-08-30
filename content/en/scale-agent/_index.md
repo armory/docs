@@ -135,7 +135,7 @@ Furthermore, in [Agent mode](#agent-mode), Armory CD never gets credentials, and
 
 ## Scalability
 
-Each Agent can scale to hundreds of Kubernetes clusters. The more types of Kubernetes objects the Armory Agent has to watch, the more memory it uses. Memory usage is bursty. You can control burst with `budget`. See [Agent options]({{< ref "scale-agent/reference/agent-options#configuration-options" >}})) for configuration information.
+Each Agent can scale to hundreds of Kubernetes clusters. The more types of Kubernetes objects the Armory Agent has to watch, the more memory it uses. Memory usage is bursty. You can control burst with `budget`. See [Agent options]({{< ref "scale-agent/reference/config/agent-options#configuration-options" >}})) for configuration information.
 
 Scaling the Armory Agent can mean:
 

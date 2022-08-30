@@ -1,9 +1,8 @@
 ---
-title: Armory Agent Configuration
-linkTitle: Agent Config Options
-weight: 1
+title: Armory Agent Service Configuration
+linkTitle: Service
 description: >
-  Learn how to configure the Armory Scale Agent for Spinnaker and Kubernetes based on installation mode and environment restrictions. This guide contains a detailed list of configuration options.
+  Learn how to configure the Armory Scale Agent for Spinnaker and Kubernetes based on installation mode and environment restrictions. This guide contains a detailed list of configuration options for the Agent service.
 aliases:
   - /armory-enterprise/armory-agent/advanced-config/agent-options/
 ---
