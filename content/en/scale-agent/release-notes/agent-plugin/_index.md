@@ -9,7 +9,7 @@ description: Release notes for the Armory Agent Clouddriver Plugin. The plugin r
 {{< include "agent/agent-compat-matrix.md" >}}
 
 ## Release Notes
-<h3><a class="fas fa-rss" target="_blank" href="https://docs.armory.io/armory-enterprise/release-notes/rn-armory-agent/agent-plugin/index.xml"></a></h3>
+<h3><a class="fas fa-rss" target="_blank" href="{{< ref "/scale-agent/release-notes/agent-plugin" >}}/index.xml"></a></h3>
 
 {{% alert title="Known Issue" color="warning" %}}
 Note the following before upgrading the Armory Agent Plugin:
