@@ -15,6 +15,6 @@ If you add, delete, or modify Kubernetes deployment targets on a regular basis, 
 account configuration impacts your teams. Spinnaker's [External Account Configuration](https://www.spinnaker.io/setup/configuration/#external-account-configuration) feature allows you to manage account configuration
 externally from Spinnaker and then read that configuration change without requiring a redeployment of Clouddriver.
 
-> External Account Configuration is only supported for Kubernetes and Cloud Foundry provider accounts. This document describes how this works with Kubernetes acccounts.
+> External Account Configuration is only supported for Kubernetes and Cloud Foundry provider accounts. This document describes how this works with Kubernetes accounts.
 
 Armory does not recommend using External Account Configuration with Spring Cloud Config Server. If you have an existing environment with Spring Cloud Config Server with this setup, see the following KB article: [Configure Spinnaker's External Account Configuration with Vault](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010418).
