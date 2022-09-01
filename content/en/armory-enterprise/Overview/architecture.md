@@ -9,7 +9,7 @@ aliases:
 
 ## Armory Enterprise architecture
 
-Armory Enterprise is an enterprise version of open source [Spinnaker](https://spinnaker.io/). It is composed of several microservices for resiliency and follows the single-responsibility principle. It allows for faster iteration on each individual component and a more pluggable architecture for custom components.
+Armory Enterprise is an enterprise version of open source [Spinnaker](https://spinnaker.io/). It is composed of several microservices for resiliency and follows the single-responsibility principle. It allows for faster iteration on each individual component and a more pluggable architecture for custom components. See the open source Spinnaker [microservices overview](https://spinnaker.io/docs/reference/architecture/microservices-overview/#system-dependencies) for port mappings and a table of service interdependencies. 
 
 ![Architecture Diagram](/images/overview/SpinnakerArchitecture.png)
 
@@ -60,9 +60,9 @@ Rosco is the "bakery" service. It is a wrapper around Hashicorp's Packer command
 ## Armory Enterprise proprietary microservices
 ![Proprietary](/images/proprietary.svg)
 
-### Armory Agent for Kubernetes
+### Armory Scale Agent for Spinnaker and Kubernetes
 
-The [Armory Agent]({{< ref "armory-agent" >}}) is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to the Clouddriver service.
+The {{< linkWithTitle "scale-agent/_index.md" >}} is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to the Clouddriver service.
 
 ### Dinghy
 
