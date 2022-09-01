@@ -19,6 +19,16 @@ They do not run on Windows.
 
 ## Install the Armory CD-as-a-Service CLI
 
+### Docker image
+
+Armory provides the CD-as-a-Service CLI as a [Docker image](https://hub.docker.com/r/armory/armory-cli).
+
+```bash
+docker pull armory/armory-cli
+```
+
+### Local installation
+
 You can install the Armory Version Manager (AVM) and CLI using a one-line command or you can download the AVM manually.
 
 The AVM enables you to quickly and easily download, install, and update the CLI. The AVM includes additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
@@ -49,13 +59,13 @@ After installation completes, you should start a new terminal session or source 
 1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo](https://github.com/armory/avm/releases/) or use the following command:
 
    ```bash
-   curl -O https://github.com/armory/avm/releases/latest/download/avm-<os>-<architecture>
+   curl -LO https://github.com/armory/avm/releases/latest/download/avm-<os>-<architecture>
    ```
 
    For example, the following command downloads the latest version for macOS (Darwin):
 
    ```bash
-   curl -O https://github.com/armory/avm/releases/latest/download/avm-darwin-amd64
+   curl -LO https://github.com/armory/avm/releases/latest/download/avm-darwin-amd64
    ```
 
    You can see the full list of available releases in the [repo](https://github.com/armory/avm/releases/).
