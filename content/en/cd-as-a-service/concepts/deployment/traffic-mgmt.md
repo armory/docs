@@ -3,7 +3,6 @@ title: Traffic Management Using a Service Mesh
 linktitle: Traffic Management
 description: >
   Learn about service mesh traffic management for your canary strategy.
-
 ---
 
 ## Service Meshes and the Service Mesh Interface (SMI)
