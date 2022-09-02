@@ -117,7 +117,7 @@ postgresql-version="10+"
 #used in the Operator docs
 armory-version-exact = "2.28.0"
 halyard-armory-version = "1.12.1"
-kubesvc-version="1.0.24"
+kubesvc-version="1.0.25"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
@@ -175,11 +175,11 @@ prism_syntax_highlighting = true
 [params.kubesvc-plugin]
 agent_plug_latest-3="0.8.63"
 agent_plug_latest_spin-3="2.25.x (1.25.x)"
-agent_plug_latest-2="0.9.55"
+agent_plug_latest-2="0.9.56"
 agent_plug_latest_spin-2="2.26.x (1.26.x)"
-agent_plug_latest-1="0.10.39"
+agent_plug_latest-1="0.10.40"
 agent_plug_latest_spin-1="2.27.x (1.27.x)"
-agent_plug_latest="0.11.0"
+agent_plug_latest="0.11.1"
 agent_plug_latest_spin="2.28.x (1.28.x)"
 
 # User interface configuration
