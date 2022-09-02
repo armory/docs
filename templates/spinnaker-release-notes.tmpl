@@ -57,8 +57,17 @@ Here's the BOM for this version.
 
 ### Armory
 
-{{ range (ds "payload").services }}
+{{ range (ds "payload").armoryServices }}
 #### {{ .name }} - {{ .previousVersion }}...{{ .currentVersion }}
+{{ range .commitMessages }}
+  - {{- printf " %s" . -}}
+{{ end }}
+{{ end }}
+
+### Spinnaker
+
+{{ range (ds "payload").ossServices }}
+#### {{ .name }} - {{ .currentVersion }}
 {{ range .commitMessages }}
   - {{- printf " %s" . -}}
 {{ end }}
