@@ -7,7 +7,7 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-To create a Spinnaker instance using Quick Spin you must have Docker and Docker Compose installed on your machine.
+Quick Spin runs in a Docker container. To create a Spinnaker instance using Quick Spin you must have Docker and Docker Compose installed on your machine.
 > Docker Compose is installed with Docker Desktop
 
 ## Spin up a Spinnaker instance using Quick Spin
