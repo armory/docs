@@ -1,7 +1,8 @@
 ---
 title: v2.27.4 Armory Release (OSS Spinnaker™ v1.27.1)
 toc_hide: true
-version: 02.27.4
+version: 02.27.04
+date: 2022-09-02
 description: >
   Release notes for Armory Enterprise v2.27.4
 ---
