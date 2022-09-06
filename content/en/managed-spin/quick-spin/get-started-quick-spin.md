@@ -25,7 +25,7 @@ Use the following steps to run a local instance of quick-spin using docker compo
 ### Stop the Quick Spin container
 - Stop a running Quick Spin container using one of the following options:
 Stopping the container using the `Ctrl + c` keyboard shortcut from the terminal where the instance is running. 
-- In the terminal, from the the root of the `quick-spin` directory issue the `docker compose stop` command.
+- In the terminal, from the root of the `quick-spin` directory issue the `docker compose stop` command.
 
 Both options stop the container but do not remove the instance. Remove the container  containers, networks, volumes, and images created with the `compose up` command with:
 `docker compose down -v --rmi all`
