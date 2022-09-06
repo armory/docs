@@ -31,7 +31,7 @@ Both options stop the container but do not remove the instance. Remove the conta
 `docker compose down -v --rmi all`
 
 ##Configuring Kubernetes on Quick Spin
-By default, `quick-spin` uses the `~/.kube/config` file to fetch kubernetes configuration. To define a different patch for the config file inclue the configuration in the docker-compose.yml file.
+By default, `quick-spin` uses the `~/.kube/config` file to fetch kubernetes configuration. To define a different patch for the config file include the configuration in the docker-compose.yml file.
 
 > Example:
 ```
