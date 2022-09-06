@@ -55,11 +55,12 @@ clusters:
 ```
 
 > Example server configuration for a local Kubernetes instance
+```
 # ~/.kube/config
 apiVersion: v1
 clusters:
 - cluster:
-    server: https://host.docker.internal:53133```
+    server: https://host.docker.internal:53133
 ```
 
 
