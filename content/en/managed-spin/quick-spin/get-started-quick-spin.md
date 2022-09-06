@@ -8,18 +8,18 @@ description: >
 ## {{% heading "prereq" %}}
 
 To create a Spinnaker instance using Quick Spin you must Docker and Docker Compose installed on your machine.
-> Docker Compose is installed with Docker Desktop.
+> Docker Compose is installed with Docker Desktop
 
 ## Spin up a Spinnaker instance using Quick Spin
-The following steps will run a local instance of quick-spin using docker compose.
+Use the following steps to run a local instance of quick-spin using docker compose.
 
 1. Clone the [quick-spin](https://github.com/armory-io/quick-spin) repository.
    `git clone https://github.com/armory-io/quick-spin.git'`
-1. Change directory into the root of the project.
+2. Change directory into the root of the project.
    `cd quick-spin`
-1. Start the docker container.
+3. Start the docker container.
    `docker compose up`
-1. Navigate to the Spinnaker UI from a browser.
+4. Navigate to the Spinnaker UI from a browser.
    `http://localhost:9000`
 
 ### Stop the Quick Spin container
