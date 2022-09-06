@@ -14,14 +14,21 @@ Quick Spin runs in a Docker container. To create a Spinnaker instance using Quic
 Use the following steps to run a local instance of quick-spin using docker compose.
 
 1. Clone the [quick-spin](https://github.com/armory-io/quick-spin) repository.
-   `git clone https://github.com/armory-io/quick-spin.git'`
+   ```
+   git clone https://github.com/armory-io/quick-spin.git'
+   ```
 2. Change directory into the root of the project.
-   `cd quick-spin`
-3. Start the docker container.
-   `docker compose up`
-4. Navigate to the Spinnaker UI from a browser.
-   `http://localhost:9000`
-
+    ```
+   cd quick-spin
+   ```
+4. Start the docker container.
+   ```
+   docker compose up
+   ```
+5. Navigate to the Spinnaker UI from a browser.
+   ```
+   http://localhost:9000`
+   ```
 ### Stop the Quick Spin container
 - Stop a running Quick Spin container using one of the following options:
 Stopping the container using the `Ctrl + c` keyboard shortcut from the terminal where the instance is running. 
