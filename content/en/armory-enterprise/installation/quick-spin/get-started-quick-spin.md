@@ -77,4 +77,3 @@ Now that you have a working Spinnaker instance running, you can start using it t
 - {{< linkWithTitle "your-first-application" >}}
 - {{< linkWithTitle "your-first-pipeline" >}}
 - {{< linkWithTitle "working-with-jenkins" >}}
-- {{< linkWithTitle "bake-and-share" >}}
