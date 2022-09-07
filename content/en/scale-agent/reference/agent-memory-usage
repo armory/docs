@@ -1,5 +1,5 @@
 ---
-title: Armory Agent Resource Usage and Memory Management
+title: Armory Agent Resource Usage
 linkTitle: Agent Memory Usage
 description: > Agent memory usage reference.
 ---
@@ -7,7 +7,7 @@ Consider the following tested resource usage metrics for the Armory Scale Agent.
 
 ## Test case details
 * 5 Agent instances (v1.0.18):
-  * accounts: 100 per agent
+  * Accounts: 100 per agent
   * Kubernetes kinds:
     * DaemonSet
     * Deployment
@@ -19,7 +19,7 @@ Consider the following tested resource usage metrics for the Armory Scale Agent.
     * CronJob
     * NetworkPolicy
     * Ingress
-  * Dynamic Namespaces: 50
+  * Dynamic namespaces: 50
   * 8 Clouddriver instances:
     * 1 deployment per account every minute
     * 1 deletion per account every minute
