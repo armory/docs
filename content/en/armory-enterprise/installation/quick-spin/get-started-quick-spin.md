@@ -71,8 +71,10 @@ clusters:
     server: https://host.docker.internal:53133
 ```
 
+## Next steps
+Now that you have a working Spinnaker instance running, you can start using it to deploy applications. For more information, see the following topics:
 
-
-
-
-
+- {{< linkWithTitle "your-first-application" >}}
+- {{< linkWithTitle "your-first-pipeline" >}}
+- {{< linkWithTitle "working-with-jenkins" >}}
+- {{< linkWithTitle "bake-and-share" >}}
