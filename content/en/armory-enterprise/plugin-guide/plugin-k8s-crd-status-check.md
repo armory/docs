@@ -51,7 +51,7 @@ metadata:
     crd.armory.io/status: status:Ready
   name: my-crd
 spec:
-  ...
+#  ...
 ```
 
 ### Syntax
