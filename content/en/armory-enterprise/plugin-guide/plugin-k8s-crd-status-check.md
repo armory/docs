@@ -3,7 +3,7 @@ title: K8s CRD Status Check Plugin
 toc_hide: true
 exclude_search: true
 description: >
-This plugin helps to determinate if a kubernetes CRD is stable or not.
+  This plugin helps to determinate if a kubernetes CRD is stable or not.
 ---
 <!-- this is a private plugin. It is also hidden via robots.txt and the netlify sitemap plugin. -->
 ![Proprietary](/images/proprietary.svg)
@@ -51,7 +51,7 @@ metadata:
     crd.armory.io/status: status:Ready
   name: my-crd
 spec:
-#  ...
+  ...
 ```
 
 ### Syntax
