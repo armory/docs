@@ -46,11 +46,6 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 * Fixed an issue to address the fact that Manual Slack notifications were not working.
 
-### Deck
-
-* Fixed an issue to address the missing timestamp in the Revision history.
-
-
 
 ###  Spinnaker Community Contributions
 
