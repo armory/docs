@@ -95,6 +95,14 @@ Run the pipeline.
 
 ![Terraform Stage in Deck](/images/terraform_stage_ui.png)
 
+ {{% alert title="Important" color=warning %}} 
+ The Terraform Integration stage requires that you configure the RDBMS driver exactly as described in [Set up Clouddriver to use SQL - Database Setup](https://spinnaker.io/docs/setup/productionize/persistence/clouddriver-sql/#database-setup). The MySQL database schema must be configured to with:
+ - Default character set `utfmb4`
+ - Default collate `utf8mb4_unicode_ci`
+
+If the Clouddriver MYSQL schema is not configured as required, the Terraform Integration stage fails.
+ {{% /alert %}}
+
 To create a new Terraform stage, perform the following steps:
 
 1. In Deck, select the Application and pipeline you want to add the Terraform Integration stage to.

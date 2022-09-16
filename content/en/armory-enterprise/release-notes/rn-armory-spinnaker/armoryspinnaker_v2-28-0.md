@@ -25,6 +25,9 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
+### Orca requires RDBMS configured with UTF-8 encoding
+This release includes a change from MySQL JDBC drivers to AWS drivers. We have seen this cause issues when the database is NOT in a utf8mb4 format.
+
 ### Update Kubernetes v2 provider accounts that use the `aws-iam-authenticator`
 
 **Impact**
@@ -168,15 +171,15 @@ Due to changes in the underlying services, older versions of some plugins may no
 
 The following table lists the plugins and their required minimum version:
 
-|  Plugin |  Version  |
-|---------|-----------|
-| [Armory Agent for Kubernetes Clouddriver Plugin](h{{< ref "agent-plugin" >}}") | 0.11.0 |
-| App Name | 0.2.0 |
-| [AWS Lambda](https://github.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/releases) | 1.0.10   |
-| [Evaluate Artifacts](https://github.com/armory-plugins/evaluate-artifacts-releases/releases) | 0.1.1 |
-| [External Accounts](https://github.com/armory-plugins/external-accounts/releases) | 0.3.0 |
-| [Observability Plugin](https://github.com/armory-plugins/armory-observability-plugin/releases) | 1.3.1 |
-| [Policy Engine](https://github.com/armory-plugins/policy-engine-releases/releases) | 0.2.2 |
+| Plugin                                                                                             | Version |
+| -------------------------------------------------------------------------------------------------- | ------- |
+| [Armory Agent for Kubernetes Clouddriver Plugin](h{{< ref "agent-plugin" >}}")                     | 0.11.0  |
+| App Name                                                                                           | 0.2.0   |
+| [AWS Lambda](https://github.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/releases) | 1.0.10  |
+| [Evaluate Artifacts](https://github.com/armory-plugins/evaluate-artifacts-releases/releases)       | 0.1.1   |
+| [External Accounts](https://github.com/armory-plugins/external-accounts/releases)                  | 0.3.0   |
+| [Observability Plugin](https://github.com/armory-plugins/armory-observability-plugin/releases)     | 1.3.1   |
+| [Policy Engine](https://github.com/armory-plugins/policy-engine-releases/releases)                 | 0.2.2   |
 
 
 ## Known issues

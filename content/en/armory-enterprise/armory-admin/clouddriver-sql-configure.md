@@ -10,7 +10,7 @@ description: >
 
 ## Advantages of using an RDMS with Clouddriver
 
-Since Armory Enteprise version 2.5.x (Spinnaker 1.14.x), Clouddriver can store its data (task, infrastructure, etc) in a MySQL-compatible database. Similar to Orca, the main advantage of doing this is to improve performance and remove Redis as a single point of failure.
+Since Armory Enterprise version 2.5.x (Spinnaker 1.14.x), Clouddriver can store its data (task, infrastructure, etc) in a MySQL-compatible database. Similar to Orca, the main advantage of doing this is to improve performance and remove Redis as a single point of failure.
 
 {{< include "db-compat.md" >}}
 
@@ -25,6 +25,12 @@ You can find a complete description of the options in the [open source documenta
 You can skip this step if you create the database during provisioning - for instance with Terraform.
 
 Once you've provisioned your RDBMS and ensured connectivity with Spinnaker, you need to create the database:
+
+{{% alert title="Important" color=warning %}} 
+ Configure the RDBMS driver exactly as described in [Set up Clouddriver to use SQL - Database Setup](https://spinnaker.io/docs/setup/productionize/persistence/clouddriver-sql/#database-setup). The MySQL database schema must be configured to with:
+ - Default character set `utfmb4`
+ - Default collate `utf8mb4_unicode_ci`
+  {{% /alert %}}
 
 ```sql
 CREATE SCHEMA `clouddriver` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
