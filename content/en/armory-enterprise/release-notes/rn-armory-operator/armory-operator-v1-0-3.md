@@ -3,6 +3,7 @@ title: v1.0.3 Armory Operator
 toc_hide: true
 version: 01.00.03
 description: Release notes for Armory Operator v1.0.3
+date: 2020-08-03
 ---
 
 ## 08/03/2020 Release Notes
