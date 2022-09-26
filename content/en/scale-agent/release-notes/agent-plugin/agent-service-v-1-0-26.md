@@ -6,4 +6,4 @@ version: 01.00.26
 ---
 
 ###Changes:
- is sent now on each ping request of the keepalive routine.
+Agent identifier is sent now on each ping request of the keepalive routine.
