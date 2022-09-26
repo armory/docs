@@ -4,5 +4,5 @@ toc_hide: true
 version: 00.11.09
 
 ---
-
-Add grpc health check in the response of 
+### Changes:
+Added gRPC health check.

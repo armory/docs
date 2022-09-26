@@ -5,5 +5,5 @@ version: 00.11.07
 
 ---
 
-### Fix
-handles every type of exception when creating the kubernetes api client.
+### Fixes
+- Handles every type of exception when creating the kubernetes api client.
