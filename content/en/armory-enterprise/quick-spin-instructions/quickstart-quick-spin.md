@@ -1,6 +1,6 @@
 ---
-title: Quick Spin Quick Start 
-linkTitle: "Start using Quick Spin"
+title: Deploy and manage a Spinnaker Application with Quick Spin 
+linkTitle: "quick-spin-tutorial"
 no_list: true
 weight: 5
 description: >
