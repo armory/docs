@@ -1,43 +1,45 @@
 ---
-title: Deploy a Demo App Tutorial
-linktitle: Deploy a Demo App
-
+title: Deploy a Sample App Tutorial
+linktitle: Deploy a Sample App
 description: >
-  Learn how to deploy a demo app to a Kubernetes cluster using Armory Continuous Deployment-as-a-Service.
+  Learn how to deploy a sample app to a Kubernetes cluster using Armory Continuous Deployment-as-a-Service.
 ---
 
-## Objectives
+## Learning objectives
 
-In this tutorial, you configure your Kubernetes environment for the demo app and then deploy to multiple environments using Armory CD-as-a-Service.
+In this tutorial, you configure your Kubernetes environment for the sample app and then deploy to multiple targets using Armory CD-as-a-Service.
+
+This tutorial is designed to use a single Kubernetes cluster with multiple namespaces to simulate multiple clusters. In a real
+
+
 
 ## {{% heading "prereq" %}}
 
-* You have access to a Kubernetes cluster and have installed `kubectl`. Your cluster should have at least 4 nodes available for the demo app.
+* You have access to a Kubernetes cluster and have installed `kubectl`.
 * You have [set up your Armory CD-as-a-Service account]({{< ref "get-started" >}}).
 * You have [installed the `armory` CLI]({{< ref "cd-as-a-service/setup/cli" >}}) and [Helm](https://helm.sh/docs/intro/install/).
-* You have access to a GitHub account so you can fork the demo project.
+* You have access to a GitHub account so you can fork the sample project.
 
 ## 1. Fork and clone the repo
 
-Fork and then clone the [demo repo](https://github.com/armory/docs-cdaas-demo) to the machine where you installed `kubectl` and the `armory` CLI.
+Fork and then clone the [sample repo](https://github.com/armory/docs-cdaas-demo) to the machine where you installed `kubectl` and the `armory` CLI.
 
-The demo deploys the following:
+The sample deploys the following:
 
 - A simple microservice called Potato Facts, which has an API for facts about potatoes; Armory engineers created this app for demo purposes only.
-- A Potato Facts load balancer
 - Prometheus
 
 In the `configuration` directory is a `setup.sh` script that sets up your Kubernetes infrastructure and connects it to Armory CD-as-a-Service.
 
 ## 2. Create credentials
 
-Create a new set of credentials for the demo Remote Network Agents. Name the credentials "demo-app".
+Create a new set of credentials for the demo Remote Network Agents. Name the credentials "sample-app".
 
 {{< include "cdaas/client-creds.md" >}}
 
 ## 3. Set up the demo environments in Kubernetes
 
-1. Make sure you are connected to the Kubernetes cluster you want to install the demo app on.
+1. Make sure you are connected to the Kubernetes cluster you want to install the sample app on.
 1. Log into your Armory CD-as-a-Service environment using the CLI:
 
    ```bash
