@@ -29,7 +29,7 @@ Before you begin make sure you have installed Quick Spin and have an active inst
    ```
    https://github.com/arnab-datta/counter-app
    ```
-2. Create a fork to your personal github account.
+2. Create a fork to your personal Github account.
 3. (Optional) Clone the fork.
 
 ## Create an application 
