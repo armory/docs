@@ -7,7 +7,6 @@ description: >
   Use the Armory Quick Spin container to quickly get an evaluation or testing instance of Spinnaker up and running.
 exclude_search: true
 toc_hide: true
-hide_summary: true
 ---
 {{< include "experimental-feature.html" >}}
 
@@ -21,9 +20,3 @@ To get started using Quick Spin use the Quick Spin Tutorial {{< linkWithTitle "q
 The Quick Spin Spinnaker instance is configured for easy install and evaluation, testing or POC use. Please consider the following usage limitations:
 - No Canary testing
 - Only Highlander and Blue Green
-  
-  aliases:
-  - /quickspin/install-quick-spin.md
-  - /quickspin/quickstart-quick-spin.md
-  - no_list: true
----

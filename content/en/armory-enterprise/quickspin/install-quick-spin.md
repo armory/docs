@@ -1,8 +1,8 @@
 ---
 title: Install Quick Spin 
 linkTitle: "Install Quick Spin"
-draft: true
-weight: 3
+no_list: true
+weight: 4
 description: >
   Use the Armory Quick Spin container to quickly get an evaluation or testing instance of Spinnaker up and running.
 exclude_search: true
