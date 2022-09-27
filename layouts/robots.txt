@@ -8,4 +8,5 @@ Disallow: /armory-enterprise/feature-status/deprecations/pacrd-deprecation/
 Disallow: /armory-enterprise/installation/deployment-reg/
 Disallow: /managed-spin/
 Disallow: /contribute/
+Disallow: /armory-enterprise/quick-spin-instructions
 {{end}}
