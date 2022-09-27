@@ -37,7 +37,7 @@ The provided application deploys a basic NGINX instance and sets up a minimal de
 1. Update the *Default Name* and *Default Label* parameters to create a unique deployment.
 1. Update the notification options to receive notifications about pipeline activity, select the events you want to receive notifications for, and click *Update*.
 1. Click *Save Changes*.
-1. Select *Pipleines* for the left navigation menu and click *Start Manual Execution* for the `prepare-quick-spin-environment` pipeline.
+1. Select *Pipelines* for the left navigation menu and click *Start Manual Execution* for the `prepare-quick-spin-environment` pipeline.
 
 {{< alert color="success" >}}Your pipeline is deployed. When it completes you can try out the `basic-deployment` pipeline. Use the `teardown-qick-spin environment` pipeline to remove the a deployment.{{< /alert >}}
 
