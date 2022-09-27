@@ -1,6 +1,5 @@
 ---
 title: Install Quick Spin 
-linkTitle: "Install Quick Spin"
 no_list: true
 weight: 4
 description: >
@@ -11,7 +10,7 @@ exclude_search: true
 ## {{% heading "prereq" %}}
 
 
-To run the Quick `quick-spin` container you need a hosting machine that can support a running instance with 
+To run the Quick `quick-spin` container you need a host machine that can support a running instance with 
   - 4 vCPU
   - 8GB Memory
   - 2GB Disk space
@@ -20,7 +19,7 @@ The hosting machine must have [Docker](https://docs.docker.com/get-docker/) and 
 
 ## Usage
 
-To run a local instance of `quick-spin` using [docker compose](https://docs.docker.com/compose/):
+To run a local instance of `quick-spin` using [Docker Compose](https://docs.docker.com/compose/)::
 
 1. Clone the [Quick Spin repository](https://github.com/armory-io/quick-spin).
    
@@ -42,13 +41,12 @@ docker compose up
 
 ### Stop quick-spin
 
-To stope the running Quick Spin instance navigate to the terminal instance running the container and:
+To stop the running Quick Spin instance, navigate to the terminal instance running the container and execute one of the following:
 
 1. Use the `Ctrl + c` keyboard shortcut.
-2. Enter the  `docker compose stop` command.
+1. Enter the  `docker compose stop` command.
 
-> Result: The Quick Spin container stops running.  
-> The containers are not removed.
+{{< alert color="success" >}}The Quick Spin container stops running. The containers are not removed.{{< /alert >}}  
 
 To restart the container navigate to the root of the quick-spin repository and  run `docker compose start`.
 
@@ -59,3 +57,6 @@ To completely the `quick-spin` containers, networks, volumes, and images use:
 ```shell
 docker compose down -v --rmi all
 ```
+
+## < {{% heading "nextSteps" %}} >
+Use the {{< linkWithTitle "quickstart-quick-spin" >}} to get started using Quick Spin.

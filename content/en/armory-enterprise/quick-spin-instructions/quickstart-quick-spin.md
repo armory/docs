@@ -7,27 +7,25 @@ description: >
   Use this tutorial to lean how to create and manage a simple Spinnaker workflow.
 exclude_search: true
 ---
-## Abstract
+## Learning objectives
 This tutorial demonstrates how to:
 - Create a Spinnaker application
-- Create a Jenkins instance and add it to your application
 - Deploy and manage a Spinnaker pipeline for your application
 - Deploy updates to the application
 - Monitor the health of your application
 
-## Prerequisites
-Before you begin make sure you have installed Quick Spin and have an active instance running on `locahost:9000` as described in: TBD.
+## {{% heading "prereq" %}}
+Before you begin make sure you have installed Quick Spin and have an active instance running on `locahost:9000` as described in {{< linkWithTitle "install-quick-spin" >}}.
 
-- You need an active github account
-- Your favorite code editor with some JavaScript support enabled
-- 
+- Make sure you have installed Quick Spin and have an active instance running on `locahost:9000`.   See {{< linkWithTitle "install-quick-spin.md" >}}.
+- You have an active GitHub account.
+- You have Javascript enabled in your favorite code editor.
 
+## Create a minikube or kind cluster
+(Refer to topic explaining how to create these types of K8s)
 ## Run the Spinnaker prep pipeline
-
-## Create kub cluster
-
-## Get the tutorial repository:
-1. From your browser navigate to:
+## Fork the tutorial repository:
+1. Navigate to:
    ```
    https://github.com/arnab-datta/counter-app
    ```
