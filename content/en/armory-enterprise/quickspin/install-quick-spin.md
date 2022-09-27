@@ -5,11 +5,11 @@ draft: true
 weight: 3
 description: >
   Use the Armory Quick Spin container to quickly get an evaluation or testing instance of Spinnaker up and running.
+exclude_search: true
 ---
 
-{{< include "armory-license.md" >}}
+## {{% heading "prereq" %}}
 
-## Prerequisites
 
 To run the Quick `quick-spin` container you need a hosting machine that can support a running instance with 
   - 4 vCPU

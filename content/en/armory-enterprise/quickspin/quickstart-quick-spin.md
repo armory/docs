@@ -2,14 +2,14 @@
 title: Quick Spin Quick Start 
 linkTitle: "Start using Quick Spin"
 draft: true
-weight: 3
+weight: 4
 description: >
   Use this tutorial to lean how to create and manage a simple Spinnaker workflow.
+exclude_search: true
 ---
 {{< include "armory-license.md" >}}
-
 ## Abstract
-This tutorial demonstates how to:
+This tutorial demonstrates how to:
 - Create a Spinnaker application
 - Create a Jenkins instance and add it to your application
 - Deploy and manage a Spinnaker pipeline for your application
