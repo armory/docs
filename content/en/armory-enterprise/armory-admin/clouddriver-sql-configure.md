@@ -26,11 +26,7 @@ You can skip this step if you create the database during provisioning - for inst
 
 Once you've provisioned your RDBMS and ensured connectivity with Spinnaker, you need to create the database:
 
-{{% alert title="Important" color=warning %}} 
- Configure the RDBMS driver exactly as described in [Set up Clouddriver to use SQL - Database Setup](https://spinnaker.io/docs/setup/productionize/persistence/clouddriver-sql/#database-setup). The MySQL database schema must be configured to with:
- - Default character set `utfmb4`
- - Default collate `utf8mb4_unicode_ci`
-  {{% /alert %}}
+{{< include "rdbms-utf8-required.md" >}}
 
 ```sql
 CREATE SCHEMA `clouddriver` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

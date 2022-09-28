@@ -51,12 +51,8 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 {{< include "early-access-feature.html" >}}
 
 The Dinghy service can use MySQL to store relationships between pipeline templates and pipeline Dinghy files. An external MySQL instance is highly recommended for production use because it can provide more durability for Pipelines as Code. If MySQL becomes unavailable, Dinghy files will need to be updated in order to repopulate MySQL with the relationships.
-
- {{% alert title="Important" color=warning %}} 
- Configure the RDBMS driver exactly as described in [Set up Clouddriver to use SQL - Database Setup](https://spinnaker.io/docs/setup/productionize/persistence/clouddriver-sql/#database-setup). The MySQL database schema must be configured to with:
- - Default character set `utfmb4`
- - Default collate `utf8mb4_unicode_ci`
-  {{% /alert %}}
+  
+ {{< include "rdbms-utf8-required.md" >}}
 
 First make sure the schema exists in your database.
 
