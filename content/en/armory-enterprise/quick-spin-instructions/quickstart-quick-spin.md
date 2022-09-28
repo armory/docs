@@ -2,6 +2,7 @@
 title: Deploy and manage a Spinnaker Application with Quick Spin 
 linkTitle: "quick-spin-tutorial"
 no_list: true
+draft: true
 weight: 5
 description: >
   Use this tutorial to lean how to create and manage a simple Spinnaker workflow.
