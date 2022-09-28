@@ -95,6 +95,11 @@ Run the pipeline.
 
 ![Terraform Stage in Deck](/images/terraform_stage_ui.png)
 
+{{< include "rdbms-utf8-required.md" >}}
+
+ {{% alert title="Warning" color=warning %}} 
+ > If the Clouddriver MYSQL schema is not configured correctly, the Terraform Integration stage fails.
+ {{% /alert %}}
 To create a new Terraform stage, perform the following steps:
 
 1. In Deck, select the Application and pipeline you want to add the Terraform Integration stage to.
