@@ -1,16 +1,16 @@
 ---
-title: Install Quick Spin 
-no_list: true
+title: Install Quick Spin
 weight: 4
 description: >
   Use the Armory Quick Spin container to quickly get an evaluation or testing instance of Spinnaker up and running.
 exclude_search: true
+toc_hide: true
 ---
 
 ## {{% heading "prereq" %}}
 
 
-To run the Quick `quick-spin` container you need a host machine that can support a running instance with 
+To run the Quick `quick-spin` container you need a host machine that can support a running instance with
   - 4 vCPU
   - 8GB Memory
   - 2GB Disk space
@@ -22,17 +22,17 @@ The hosting machine must have [Docker](https://docs.docker.com/get-docker/) and 
 To run a local instance of `quick-spin` using [Docker Compose](https://docs.docker.com/compose/)::
 
 1. Clone the [Quick Spin repository](https://github.com/armory-io/quick-spin).
-   
+
 ```shell
 git clone https://github.com/armory-io/quick-spin.git
 ```
 2. From the terminal navigate to the root of the cloned repository.
-   
+
 ```shell
 cd quick-spin
 ```
 3. Run the following command:
-   
+
 ```shell
 docker compose up
 ```
