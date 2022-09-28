@@ -7,9 +7,10 @@ description: >
 
 ## Learning objectives
 
-In this tutorial, you configure your Kubernetes environment for the sample app and then deploy to multiple targets using Armory CD-as-a-Service.
+This tutorial is designed to use a single Kubernetes cluster with multiple namespaces to simulate multiple clusters. The sample code is in a GitHub repo that you can fork to your own GitHub account.
 
-This tutorial is designed to use a single Kubernetes cluster with multiple namespaces to simulate multiple clusters. In a real
+- Create **Client Credentials** to use for installing Remote Network Agents.
+- Install Remote Network Agents in your Kubernetes cluster.
 
 
 
@@ -33,7 +34,7 @@ In the `configuration` directory is a `setup.sh` script that sets up your Kubern
 
 ## 2. Create credentials
 
-Create a new set of credentials for the demo Remote Network Agents. Name the credentials "sample-app".
+Create a new set of credentials for the demo Remote Network Agents. Name the credentials "sample-rna".
 
 {{< include "cdaas/client-creds.md" >}}
 
