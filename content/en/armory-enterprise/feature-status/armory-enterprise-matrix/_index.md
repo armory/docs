@@ -25,7 +25,6 @@ You can find the compatibility matrix for previous Armory Enterprise releases in
 Or you can write raw HTML :shrug: You might want to do that if you need to do bulleted lists etc inside of the table
 Or a mixture of html + markdown. ## Deployment targets has an example of what this might look like
 -->
-
 ## Legend
 <!-- Copy and paste the below badges that apply to your area -->
 **Feature status** describes what state the feature is in and where you should install it. For more information, see [Release Definitions]({{< ref "release-definitions" >}}). You can also click on the feature status badge directly.
@@ -174,8 +173,8 @@ The following table lists the supported Terraform versions:
 
 | Terraform Versions | Armory Enterprise Version                 | Note |
 | ------------------ | ---------------------- | ---- |
-| 0.11.10 - 0.11.14  | All supported versions |      |
-| 0.12.0 - 0.12.24   | All supported versions |      |
+| 0.11.10 - 0.11.14  | 2.28.0 or older |      |
+| 0.12.0 - 0.12.24   | 2.28.0 or older |      |
 | 0.13.4 - 0.13.5   | 2.24.0 or later |      |
 | 0.14.0 - 0.14.2   | 2.24.0 or later |      |
 

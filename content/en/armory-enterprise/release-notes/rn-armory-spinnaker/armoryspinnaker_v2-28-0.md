@@ -28,6 +28,8 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ### Orca requires RDBMS configured with UTF-8 encoding
 This release includes a change from MySQL JDBC drivers to AWS drivers. We have seen this cause issues when the database is NOT in a utf8mb4 format.
 
+### Terraform supported versions
+This release includes support for Terraform 12.0.0. Please note that upcoming releases will support Terraform 13.0 and newer. For more detailed compatibility information see [Supported Terraform versions](https://docs.armory.io/armory-enterprise/feature-status/armory-enterprise-matrix/#terraform-integration).
 ### Update Kubernetes v2 provider accounts that use the `aws-iam-authenticator`
 
 **Impact**
@@ -283,9 +285,6 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
-
-
-
 
 ###  Spinnaker Community Contributions
 
