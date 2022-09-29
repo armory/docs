@@ -27,7 +27,7 @@ Use this containerized version of Armory to run a minimal instance for evaluatin
    * 8 GB RAM
    * 2 GB disk space
    * Make sure Docker is running on your host machine.
-   * Your Kubernetes cluster configured for the Armory CD Self-Hosted easy install container. The docker script expects a ~/.kube/quick-spin-sa.kubeconfig file to be present. This file is created when you run the pre-install script. If you are using a different kubeconfig file, you must copy it to the ~/.kube/quick-spin-sa.kubeconfig file.
+   * Your non-local Kubernetes cluster configured for the Armory CD Self-Hosted easy install container. The docker script expects a ~/.kube/quick-spin-sa.kubeconfig file to be present. This file is created when you run the pre-install script. If you are using a different kubeconfig file, you must copy it to the ~/.kube/quick-spin-sa.kubeconfig file.
 
 ## Get the easy install container
 
@@ -83,3 +83,4 @@ The Armory CD instance is configured for easy installation, evaluation, testing,
 - Support for Blue/Green (red/black in Spinnaker lingo) and Highlander deployment strategies (Canary not supported with this offering)
 - Service providers are limited to Kubernetes
 - Port `9000` must be open to deploy the service
+- This release does not support local cluster deployments
