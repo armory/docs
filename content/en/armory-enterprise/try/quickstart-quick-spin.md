@@ -1,11 +1,11 @@
 ---
-title: Deploy and manage a Spinnaker Application with Quick Spin 
+title: Deploy and manage a Spinnaker Application with Quick Spin
 linkTitle: "quick-spin-tutorial"
-no_list: true
 weight: 5
 description: >
   Use this tutorial to lean how to create and manage a simple Spinnaker workflow.
 exclude_search: true
+toc_hide: true
 ---
 ## Learning objectives
 This tutorial demonstrates how to:
@@ -32,13 +32,13 @@ Before you begin make sure you have installed Quick Spin and have an active inst
 2. Create a fork to your personal GitHub account.
 3. (Optional) Clone the fork.
 
-## Create an application 
+## Create an application
 1. Navigate to the running Quick Spin instance:
    ```shell
    http://localhost:9000
    ```
 2. Select Create Application.
-3. 
+3.
 
 ## Update the application
 
