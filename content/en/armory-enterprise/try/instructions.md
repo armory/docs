@@ -6,8 +6,8 @@ description: >
 exclude_search: true
 toc_hide: true
 aliases:
-  - /armory-enterprise/try/
-  - /armory-enterprise/quick-spin-instructions/
+#   - /armory-enterprise/try/
+#   - /armory-enterprise/quick-spin-instructions/
 ---
 
 ![Proprietary](/images/proprietary.svg)
