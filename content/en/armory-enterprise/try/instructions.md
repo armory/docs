@@ -12,7 +12,7 @@ aliases:
 
 ![Proprietary](/images/proprietary.svg)
 
-Thank You for signing up to try Armory Continuous Deployment. Use these instructions to obtain and quickly install a containerized Armory CD instance for evaluating the self-hosted solution.[Contact us](https://www.armory.io/contact-us/) if you are interested in using this product! Your feedback helps shape future development.
+Thank You for signing up to try Armory Continuous Deployment. Use these instructions to obtain and quickly install a containerized Armory CD instance for evaluating the self-hosted solution.[Contact Armory](https://www.armory.io/contact-us/) if you are interested in using this product! Your feedback helps shape future development.
 
 > Do not use this Early Access product as a production environment.
 
@@ -49,7 +49,7 @@ Use this containerized version of Armory to run a minimal instance for evaluatin
    Waiting for Quick-Spin to become ready . . .
    +---------------------------------+
    |                                 |
-   | Quick-Spin is ready to go!      |
+   | Quick-Spin is ready to go       |
    |                                 |
    | Go to: http://localhost:9000    |
    |                                 |
