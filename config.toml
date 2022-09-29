@@ -1,5 +1,4 @@
 baseURL = "/"
-title = "Armory Docs"
 
 enableRobotsTXT = true
 enableInlineShortcodes = true
@@ -56,7 +55,8 @@ id = "UA-79996712-5"
 
 [languages]
 [languages.en]
-title = "Armory Docs"
+#comment out title as it messes with the new logo
+#title = "Armory Docs"
 description = "Unlocking Innovation by Making Software Delivery Continuous, Scalable, and Safe"
 languageName ="English"
 # Weight used for sorting.
