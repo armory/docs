@@ -43,7 +43,7 @@ Use this containerized version of Armory to run a minimal instance for evaluatin
    docker run --name quick-spin --rm -p 9000:80 -t armory/quick-spin:latest
    ```
 
-   You should see output similar to this:
+   When the installation is complete the ready banner appears:
 
    ```bash
    Waiting for Quick-Spin to become ready . . .
