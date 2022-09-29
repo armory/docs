@@ -12,16 +12,11 @@ aliases:
 
 ![Proprietary](/images/proprietary.svg)
 
-Thank You for signing up to try Armory Armory Continuous Deployment. Use these instructions to obtain and quickly install a containerized quick start instance for evaluating the self-hosted solution.
+Thank You for signing up to try Armory Continuous Deployment. Use these instructions to obtain and quickly install a containerized quick start instance for evaluating the self-hosted solution.[Contact us](https://www.armory.io/contact-us/) if you are interested in using this product! Your feedback helps shape future development.
 
-{{% alert title="Early Access" color="warning" %}}
-The information below is written for an Early Access product. [Contact us](https://www.armory.io/contact-us/) if you are interested in using this product! Your feedback helps shape future development.
-<br><br>
-<b>Do not use this Early Access product as a production environment.
-</b>
-{{% /alert %}}
+> Do not use this Early Access product as a production environment.
 
-Use this containerized version of Armory CD that you install and run using Docker. You can use this minimal instance to evaluate the Armory CD Self-Hosted product in functional areas such as creating pipelines to deploy an application. Quick Spin comes configured with a sample application and three pipelines to start you on your continuous deployment journey.
+Use this containerized version of Armory CD that you install and run using Docker. You can use this minimal instance to evaluate the Armory CD Self-Hosted product in functional areas such as creating pipelines to deploy an application. The easy install container comes configured with a sample application and three pipelines to start you on your continuous deployment journey.
 
 ## {{% heading "prereq" %}}
 
@@ -65,7 +60,7 @@ Use this containerized version of Armory CD that you install and run using Docke
 {{< alert color="success" >}}
 The provided instance deploys a basic NGINX instance and sets up a minimal deployment configuration. Now you can start using Spinnaker to deploy your own applications.
 {{< /alert >}}
-## Use the Armory CD Self-Hosted Application
+## Use Armory CD Self-Hosted
 
 1. Launch the Armory CD application in your browser (http://localhost:9000).
 2. Click **Applications** on the top menu bar.
@@ -80,13 +75,13 @@ The provided instance deploys a basic NGINX instance and sets up a minimal deplo
 11. Click **Start Manual Execution** for the **prepare-quick-spin-environment** pipeline.
 12. In the **Select Execution Parameters** window, click **Run** to execute the pipeline that prepares the deployment environment.
 
-@TODO Add additional steps
 
 {{< alert color="success" >}}Your pipeline is deployed. When it completes you can try out the `basic-deployment` pipeline. Use the `teardown-quick-spin environment` pipeline to remove the a deployment.{{< /alert >}}
 
-## Armory CD trial version limitations
+## Armory CD easy install container limitations and troubleshooting
 
 The Armory CD instance is configured for easy installation, evaluation, testing, and proof of concept use. It has the following usage limitations:
 
 - Support for Blue/Green and Highlander deployment strategies (Canary not supported with this offering)
 - Service providers are limited to Kubernetes
+- Port 9000 must be open to deploy the service
