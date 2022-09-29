@@ -15,9 +15,9 @@ This tutorial demonstrates how to:
 - Monitor the health of your application
 
 ## {{% heading "prereq" %}}
-Before you begin make sure you have installed Quick Spin and have an active instance running on `locahost:9000` as described in {{< linkWithTitle "install-quick-spin" >}}.
+Before you begin make sure you have installed Quick Spin and have an active instance running on `locahost:9000` as described in {{< linkWithTitle "instructions.md" >}}.
 
-- Make sure you have installed Quick Spin and have an active instance running on `locahost:9000`.   See {{< linkWithTitle "install-quick-spin.md" >}}.
+- Make sure you have installed Quick Spin and have an active instance running on `locahost:9000`.   See {{< linkWithTitle "instructions.md" >}}.
 - You have an active GitHub account.
 - You have Javascript enabled in your favorite code editor.
 
