@@ -2,7 +2,7 @@
 title: Instructions for Trying Armory Continuous Deployment Self-Hosted
 linkTitle: Try Armory CD
 description: >
-  Use Armory Quick Spin to quickly install a lightweight Docker image of Armory CD for evaluation and proofs of concept.
+  Install a lightweight Docker image of Armory CD for evaluation and proofs of concept.
 exclude_search: true
 toc_hide: true
 aliases:
@@ -12,6 +12,8 @@ aliases:
 
 ![Proprietary](/images/proprietary.svg)
 
+Thank You for signing up to try Armory Armory Continuous Deployment. Use these instructions to obtain and quickly install a containerized quick start instance for evaluating the self-hosted solution.
+
 {{% alert title="Early Access" color="warning" %}}
 The information below is written for an Early Access product. [Contact us](https://www.armory.io/contact-us/) if you are interested in using this product! Your feedback helps shape future development.
 <br><br>
@@ -19,9 +21,7 @@ The information below is written for an Early Access product. [Contact us](https
 </b>
 {{% /alert %}}
 
-## What is Quick Spin?
-
-Quick Spin is a containerized version of Armory CD that you install and run using Docker. You can use this minimal instance to evaluate the Armory CD Self-Hosted product in functional areas such as creating pipelines to deploy an application. Quick Spin comes configured with a sample application and three pipelines to start you on your continuous deployment journey.
+Use this containerized version of Armory CD that you install and run using Docker. You can use this minimal instance to evaluate the Armory CD Self-Hosted product in functional areas such as creating pipelines to deploy an application. Quick Spin comes configured with a sample application and three pipelines to start you on your continuous deployment journey.
 
 ## {{% heading "prereq" %}}
 
@@ -30,9 +30,10 @@ Quick Spin is a containerized version of Armory CD that you install and run usin
 
    * 4 vCPU
    * 8 GB RAM
-   * 2 GB disk space           
+   * 2 GB disk space
+   * Your Kubernetes cluster           
 
-## Pull and run the Quick Spin image
+## Get the easy install container
 
 1. Ensure Docker is running on your host machine.
 1. Pull the `armory/quick-spin` [image](https://hub.docker.com/r/armory/quick-spin) by executing:
@@ -61,32 +62,31 @@ Quick Spin is a containerized version of Armory CD that you install and run usin
    |                                 |
    +---------------------------------+
    ```
-
-
-
-## Run pipelines
-
- Use the following steps to get a deployment running:
+{{< alert color="success" >}}
+The provided instance deploys a basic NGINX instance and sets up a minimal deployment configuration. Now you can start using Spinnaker to deploy your own applications.
+{{< /alert >}}
+## Use the Armory CD Self-Hosted Application
 
 1. Launch the Armory CD application in your browser (http://localhost:9000).
-1. Click **Applications** on the top menu bar.
-1. On the **Applications** screen, click **my  first application**.
-1. Click **PIPELINES** in the left navigation menu.
-1. Select **Configure** for the **prepare-quick-spin-environment** pipeline.
-1. In the **Parameters** section, update the **Name** and **Label** values to create a unique deployment.
-1. In the **Notifications** section, click **Add Notification Preference**.
-1. In the **Edit Notification** window, select **Email** from the **Notify via** drop-down, enter your email address in the **Email Address** field, and select all the options in the **Notify when** list. Click **Update**.
-1. Click **Save Changes**.
-1. Select **Pipelines** from the left navigation menu to go back to the **Pipelines** screen.
-1. Click **Start Manual Execution** for the **prepare-quick-spin-environment** pipeline.
-1. In the **Select Execution Parameters** window, click **Run** to execute the pipeline that prepares the deployment environment.
+2. Click **Applications** on the top menu bar.
+3. On the **Applications** screen, click **my  first application**.
+4. Click **PIPELINES** in the left navigation menu.
+5. Select **Configure** for the **prepare-quick-spin-environment** pipeline.
+6. In the **Parameters** section, update the **Name** and **Label** values to create a unique deployment.
+7. In the **Notifications** section, click **Add Notification Preference**.
+8. In the **Edit Notification** window, select **Email** from the **Notify via** drop-down, enter your email address in the **Email Address** field, and select all the options in the **Notify when** list. Click **Update**.
+9. Click **Save Changes**.
+10. Select **Pipelines** from the left navigation menu to go back to the **Pipelines** screen.
+11. Click **Start Manual Execution** for the **prepare-quick-spin-environment** pipeline.
+12. In the **Select Execution Parameters** window, click **Run** to execute the pipeline that prepares the deployment environment.
 
 @TODO Add additional steps
 
-{{< alert color="success" >}}Your pipeline is deployed. When it completes you can try out the `basic-deployment` pipeline. Use the `teardown-qick-spin environment` pipeline to remove the a deployment.{{< /alert >}}
+{{< alert color="success" >}}Your pipeline is deployed. When it completes you can try out the `basic-deployment` pipeline. Use the `teardown-quick-spin environment` pipeline to remove the a deployment.{{< /alert >}}
 
 ## Armory CD trial version limitations
 
 The Armory CD instance is configured for easy installation, evaluation, testing, and proof of concept use. It has the following usage limitations:
 
-- Only supports Blue/Green and Highlander deployment strategies
+- Support for Blue/Green and Highlander deployment strategies (Canary not supported with this offering)
+- Service providers are limited to Kubernetes
