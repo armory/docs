@@ -12,11 +12,11 @@ aliases:
 
 ![Proprietary](/images/proprietary.svg)
 
-Thank You for signing up to try Armory Continuous Deployment. Use these instructions to obtain and quickly install a containerized quick start instance for evaluating the self-hosted solution.[Contact us](https://www.armory.io/contact-us/) if you are interested in using this product! Your feedback helps shape future development.
+Thank You for signing up to try Armory Continuous Deployment. Use these instructions to obtain and quickly install a containerized Armory CD instance for evaluating the self-hosted solution.[Contact us](https://www.armory.io/contact-us/) if you are interested in using this product! Your feedback helps shape future development.
 
 > Do not use this Early Access product as a production environment.
 
-Use this containerized version of Armory CD that you install and run using Docker. You can use this minimal instance to evaluate the Armory CD Self-Hosted product in functional areas such as creating pipelines to deploy an application. The easy install container comes configured with a sample application and three pipelines to start you on your continuous deployment journey.
+Use this containerized version of Armory to run a minimal instance for evaluating the Armory CD Self-Hosted product. The easy install container comes configured with a sample application and three pipelines for you to start your continuous deployment journey.
 
 ## {{% heading "prereq" %}}
 
@@ -26,18 +26,18 @@ Use this containerized version of Armory CD that you install and run using Docke
    * 4 vCPU
    * 8 GB RAM
    * 2 GB disk space
-   * Your Kubernetes cluster           
+   * Make sure Docker is running on your host machine.
+   * Your Kubernetes cluster configured for the Armory CD Self-Hosted easy install container. The docker script expects a ~/.kube/quick-spin-sa.kubeconfig file to be present. This file is created when you run the pre-install script. If you are using a different kubeconfig file, you must copy it to the ~/.kube/quick-spin-sa.kubeconfig file.
 
 ## Get the easy install container
 
-1. Ensure Docker is running on your host machine.
 1. Pull the `armory/quick-spin` [image](https://hub.docker.com/r/armory/quick-spin) by executing:
 
    ```bash
    docker pull armory/quick-spin
    ```
 
-1. Run the image:
+2. Run the image:
 
    ```bash
    docker run --name quick-spin --rm -p 9000:80 -t armory/quick-spin:latest
@@ -61,11 +61,10 @@ Use this containerized version of Armory CD that you install and run using Docke
 The provided instance deploys a basic NGINX instance and sets up a minimal deployment configuration. Now you can start using Spinnaker to deploy your own applications.
 {{< /alert >}}
 ## Use Armory CD Self-Hosted
-
-1. Launch the Armory CD application in your browser (http://localhost:9000).
+1. Launch Armory CD in your browser on `localhost:9000`.
 2. Click **Applications** on the top menu bar.
-3. On the **Applications** screen, click **my  first application**.
-4. Click **PIPELINES** in the left navigation menu.
+3. On the **Applications** screen, click **my first application**.
+4. Click **Pipelines** in the left navigation menu.
 5. Select **Configure** for the **prepare-quick-spin-environment** pipeline.
 6. In the **Parameters** section, update the **Name** and **Label** values to create a unique deployment.
 7. In the **Notifications** section, click **Add Notification Preference**.
@@ -75,13 +74,12 @@ The provided instance deploys a basic NGINX instance and sets up a minimal deplo
 11. Click **Start Manual Execution** for the **prepare-quick-spin-environment** pipeline.
 12. In the **Select Execution Parameters** window, click **Run** to execute the pipeline that prepares the deployment environment.
 
-
 {{< alert color="success" >}}Your pipeline is deployed. When it completes you can try out the `basic-deployment` pipeline. Use the `teardown-quick-spin environment` pipeline to remove the a deployment.{{< /alert >}}
 
 ## Armory CD easy install container limitations and troubleshooting
 
 The Armory CD instance is configured for easy installation, evaluation, testing, and proof of concept use. It has the following usage limitations:
 
-- Support for Blue/Green and Highlander deployment strategies (Canary not supported with this offering)
+- Support for Blue/Green (red/black in Spinnaker lingo) and Highlander deployment strategies (Canary not supported with this offering)
 - Service providers are limited to Kubernetes
-- Port 9000 must be open to deploy the service
+- Port `9000` must be open to deploy the service
