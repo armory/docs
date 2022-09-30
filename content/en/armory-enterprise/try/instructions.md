@@ -87,7 +87,7 @@ Access Armory CD in your browser on [localhost:9000](http://localhost:9000). The
 
 > Executing this pipeline multiple times will result in deploying new replica sets into the `quick-spin-prod` namespace. Once the newest replica set is fully available, the previous replica set has traffic to it disabled -- this behavior relies on the `red/black` deployment strategy 
 
-{{< alert color="success" >}}Your pipeline is executing. Run it again to see what happens when you do not approve the deploy task to continue. Use the `teardown-quick-spin environment` pipeline to remove the a deployment.
+{{< alert color="success" >}}Your pipeline is executing. Run it again to see what happens when you do not approve the deploy task to continue. Use the `teardown-quick-spin environment` pipeline to remove the deployment.
 {{< /alert >}}
 
 ## Armory CD easy install container limitations and troubleshooting
