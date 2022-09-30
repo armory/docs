@@ -62,36 +62,39 @@ Beyond the default pipelines, you are free to create your own applications and p
 {{< /alert >}}
 ## Use Armory CD Self-Hosted
 Access Armory CD in your browser on [localhost:9000](http://localhost:9000). The main page displays the Armory CD UI.
-### Running the default pipelines
+## Running the sample pipelines
 1. Click **Applications** on the top menu bar.
 1. On the **Applications** screen, click **my-first-application**.
 1. Click **Pipelines** in the left navigation menu.
-1. Select **Configure** for the **prepare-quick-spin-environment** pipeline.
-1. In the **Parameters** section, update the **Name** and **Label** values to create a unique deployment.
-1. In the **Notifications** section, click **Add Notification Preference**.
-1. In the **Edit Notification** window, select **Email** from the **Notify via** drop-down, enter your email address in the **Email Address** field, and select all the options in the **Notify when** list. Click **Update**.
-1. Click **Save Changes**.
-1.  Select **Pipelines** from the left navigation menu to go back to the **Pipelines** screen.
+
+### Prepare your environment
 1. Click **Start Manual Execution** for the **prepare-quick-spin-environment** pipeline.
 1. In the **Select Execution Parameters** window, click **Run** to execute the pipeline that prepares the deployment environment.
 
-{{< alert color="success" >}}Your pipeline is deployed. When it completes you can try out the `basic-deployment` pipeline.
+{{< alert color="success" >}}Your pipeline is executing. When it completes you can try out the `basic-deployment` pipeline.
 {{< /alert >}}
 
-### Deploy the sample application
-1.  Select **Pipelines** from the left navigation menu to go back to the **Pipelines** screen.
+### Test the basic-deployment pipeline
+1. Select **Pipelines** from the left navigation menu to go back to the **Pipelines** screen.
 1. Click **Start Manual Execution** for the **basic-deployment** pipeline.
 1. In the **Select Execution Parameters** window, click **Run** to execute the pipeline that prepares the deployment environment.
-1. This pipeline is configured for you to provide a judgement. When the application is ready for the deploy task you must manually approve the pipeline to complete the process. Right-click on the pipeline progress bar, at the judgement, and select **Continue** to approve the pipeline and complete the deployment. 
 
-{{< alert color="success" >}}Your pipeline is deployed. Run it again to see what happens when you do not approve the deploy task to continue. Use the `teardown-quick-spin environment` pipeline to remove the a deployment.
+### Test the promote-to-prod-with-red-black pipeline
+1. Select **Pipelines** from the left navigation menu to go back to the **Pipelines** screen.
+1. Click **Start Manual Execution** for the **promote-to-prod-with-red-black** pipeline.
+1. In the **Select Execution Parameters** window, click **Run** to execute the pipeline that prepares the deployment environment.
+1. This pipeline is configured for you to provide a manual judgement. Before the pipeline executes the `Deploy to PROD` stage, a prompt appears which must be approved. Click on the pipeline progress bar for the manual judgement stage and select **Continue** to approve the pipeline and complete the deployment.
+
+> Executing this pipeline multiple times will result in deploying new replica sets into the `quick-spin-prod` namespace. Once the newest replica set is fully available, the previous replica set has traffic to it disabled -- this behavior relies on the `red/black` deployment strategy 
+
+{{< alert color="success" >}}Your pipeline is executing. Run it again to see what happens when you do not approve the deploy task to continue. Use the `teardown-quick-spin environment` pipeline to remove the a deployment.
 {{< /alert >}}
 
 ## Armory CD easy install container limitations and troubleshooting
 
 The Armory CD instance is configured for easy installation, evaluation, testing, and proof of concept use. It has the following usage limitations:
 
-- Support for Blue/Green (red/black in Spinnaker lingo) and Highlander        deployment strategies (Canary not supported with this offering)
-- Service providers are limited to Kubernetes
-- Port `9000` must be open to deploy the service
+- Support for Blue/Green (red/black in Spinnaker lingo) and Highlander deployment strategies (Canary not currently supported)
+- Default providers are limited to Kubernetes using the kubernetes account you provide access to
 - This release does not support local cluster deployments
+- Port `9000` must be open to deploy the easy install container
