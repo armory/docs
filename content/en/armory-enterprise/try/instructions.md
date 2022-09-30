@@ -32,31 +32,18 @@ Do not use this evaluation product as a production environment.
   * Make sure Docker is running on your host machine.
   * Your non-local Kubernetes cluster configured for the Armory CD Self-Hosted easy install container. 
 ## Configure the cluster
-Before you can use the evaluation product, you must configure your Kubernetes cluster. The docker container is configured to look for a `~/.kube/quick-spin-sa.kubeconfig` file. This file is created when you run the pre-install script. If you are using a different kubeconfig file, you must copy it to the `~/.kube/quick-spin-sa.kubeconfig` file. If you are using your own config file make sure the following properties are set:
+Before you can use the evaluation product, you must configure your Kubernetes cluster to provide access to the easy install container. This is done by creating a namespace in your cluster, creating a service account within that namespace, associating a cluster role binding with that service account, and then generating a kubeconfig using that service account.  This is handled by an executable we provide you through the following command.
 
-@TODO: Add the properties that need to be set.
-
-{{% alert title="Tip" %}}
-If this is all new to you thats OK we have a script for that. Copy and paste the following into a file called `kubeconfig.sh` and run it on the host machine. This script configures your cluster to work with the Armory CD Self-Hosted easy install container.
-
-```bash
-@TODO: Add the script here.
-```
-{{% /alert %}}
+   ```bash
+   bash <(curl -sL https://go.armory.io/generate-quick-spin-kubeconfig)
+   ```
 
 ## Install the Armory CD Self-Hosted easy install container
-1. Pull the `armory/quick-spin` [image](https://hub.docker.com/r/armory/quick-spin) by executing:
+Run the container using Docker Compose by executing:
 
    ```bash
    curl -sSL https://go.armory.io/quick-spin-compose | docker compose -f - up
    ```
-
-2. Run the image:
-
-   ```bash
-   docker run --name quick-spin --rm -p 9000:80 -t armory/quick-spin:latest
-   ```
-
    When the installation is complete the ready banner appears:
 
    ```bash
@@ -72,13 +59,15 @@ If this is all new to you thats OK we have a script for that. Copy and paste the
    +---------------------------------+
    ```
 {{< alert color="success" >}}
-The provided instance deploys a basic NGINX instance and sets up a minimal deployment configuration. Now you can start using Spinnaker to deploy your own applications.
+The easy install container includes some preconfigured pipelines which will interact with the cluster you provided access to earlier.  These pipelines will create and deploy to the `quick-spin-dev` and `quick-spin-prod` namespaces by default.  
+
+Beyond the default pipelines, you are free to create your own applications and pipelines.
 {{< /alert >}}
 ## Use Armory CD Self-Hosted
-The Armory CD Self-Hosted easy install container does not require authentication just launch Armory CD in your browser on `localhost:9000`. The main page displays the Armory CD UI. You can now start using Armory CD to deploy your own applications.
-### Prepare the sample application
+Access Armory CD in your browser on [localhost:9000](http://localhost:9000). The main page displays the Armory CD UI.
+### Running the default pipelines
 1. Click **Applications** on the top menu bar.
-1. On the **Applications** screen, click **my first application**.
+1. On the **Applications** screen, click **my-first-application**.
 1. Click **Pipelines** in the left navigation menu.
 1. Select **Configure** for the **prepare-quick-spin-environment** pipeline.
 1. In the **Parameters** section, update the **Name** and **Label** values to create a unique deployment.
