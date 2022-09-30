@@ -2,7 +2,7 @@
 title: Instructions for Trying Armory Continuous Deployment Self-Hosted
 linkTitle: Try Armory CD
 description: >
-  Install a lightweight Docker image of Armory CD for evaluation and proofs of concept.
+  Install a lightweight Docker image of Armory Continuous Deployment (CD) for evaluation and proofs of concept.
 exclude_search: true
 toc_hide: true
 aliases:
@@ -12,37 +12,35 @@ aliases:
 
 ![Proprietary](/images/proprietary.svg)
 
-Thank You for signing up to try Armory Continuous Deployment. Use these instructions to obtain and quickly install a containerized Armory CD instance for evaluating the self-hosted solution.[Contact Armory](https://www.armory.io/contact-us/) if you are interested in using this product! Your feedback helps shape future development.
+Thank you for signing up to try Armory CD. Use these instructions to obtain and quickly install a containerized Armory CD instance for evaluating the self-hosted solution. [Contact Armory](https://www.armory.io/contact-us/) if you have questions about using the product! Your feedback helps shape future development.
 
-> Do not use this Early Access product as a production environment.
+Use this containerized version of Armory to run a minimal instance for evaluating the Armory CD Self-Hosted product. The easy install container comes configured with a sample application and three pipelines for you to start your Armory CD journey.
 
-Use this containerized version of Armory to run a minimal instance for evaluating the Armory CD Self-Hosted product. The easy install container comes configured with a sample application and three pipelines for you to start your continuous deployment journey.
+> If you have not already done so, please sign up for access to try out [Armory CD Self Hosted](https://www.armory.io/quick-spin/).
 
+> Do not use this evaluation product as a production environment.
 ## {{% heading "prereq" %}}
-
-1. Ensure you have installed [Docker](https://docs.docker.com/get-docker/) on your host machine.
-1. Your host machine must be able to run a container with the following resource needs:
-
-   * 4 vCPU
-   * 8 GB RAM
-   * 2 GB disk space
-   * Make sure Docker is running on your host machine.
-   * Your non-local Kubernetes cluster configured for the Armory CD Self-Hosted easy install container. The docker script expects a ~/.kube/quick-spin-sa.kubeconfig file to be present. This file is created when you run the pre-install script. If you are using a different kubeconfig file, you must copy it to the ~/.kube/quick-spin-sa.kubeconfig file.
-
-## Get the easy install container
-
-1. Pull the `armory/quick-spin` [image](https://hub.docker.com/r/armory/quick-spin) by executing:
+* Ensure you have installed [Docker](https://docs.docker.com/get-docker/) on your host machine.
+* Your host machine must be able to run a container with the following minimum resource requirements:
+  * 4 vCPU
+  * 8 GB RAM
+  * 20 GB disk space
+  * Make sure Docker is running on your host machine.
+  * Your non-local Kubernetes cluster configured for the Armory CD Self-Hosted easy install container. 
+## Configure the cluster
+Before you can use the evaluation product, you must configure your Kubernetes cluster to provide access to the easy install container. This is done by creating a namespace in your cluster, creating a service account within that namespace, associating a cluster role binding with that service account, and then generating a kubeconfig using that service account.  This is handled by an executable we provide you through the following command.
 
    ```bash
-   docker pull armory/quick-spin
+   bash <(curl -sL https://go.armory.io/generate-quick-spin-kubeconfig)
    ```
 
-2. Run the image:
+
+## Install the Armory CD Self-Hosted easy install container
+Run the container using Docker Compose by executing:
 
    ```bash
-   docker run --name quick-spin --rm -p 9000:80 -t armory/quick-spin:latest
+   curl -sSL https://go.armory.io/quick-spin-compose | docker compose -f - up
    ```
-
    When the installation is complete the ready banner appears:
 
    ```bash
@@ -58,29 +56,45 @@ Use this containerized version of Armory to run a minimal instance for evaluatin
    +---------------------------------+
    ```
 {{< alert color="success" >}}
-The provided instance deploys a basic NGINX instance and sets up a minimal deployment configuration. Now you can start using Spinnaker to deploy your own applications.
+The easy install container includes some preconfigured pipelines which will interact with the cluster you provided access to earlier.  These pipelines will create and deploy to the `quick-spin-dev` and `quick-spin-prod` namespaces by default.  
+
+Beyond the default pipelines, you are free to create your own applications and pipelines.
 {{< /alert >}}
 ## Use Armory CD Self-Hosted
-1. Launch Armory CD in your browser on `localhost:9000`.
-2. Click **Applications** on the top menu bar.
-3. On the **Applications** screen, click **my first application**.
-4. Click **Pipelines** in the left navigation menu.
-5. Select **Configure** for the **prepare-quick-spin-environment** pipeline.
-6. In the **Parameters** section, update the **Name** and **Label** values to create a unique deployment.
-7. In the **Notifications** section, click **Add Notification Preference**.
-8. In the **Edit Notification** window, select **Email** from the **Notify via** drop-down, enter your email address in the **Email Address** field, and select all the options in the **Notify when** list. Click **Update**.
-9. Click **Save Changes**.
-10. Select **Pipelines** from the left navigation menu to go back to the **Pipelines** screen.
-11. Click **Start Manual Execution** for the **prepare-quick-spin-environment** pipeline.
-12. In the **Select Execution Parameters** window, click **Run** to execute the pipeline that prepares the deployment environment.
+Access Armory CD in your browser on [localhost:9000](http://localhost:9000). The main page displays the Armory CD UI.
+## Running the sample pipelines
+1. Click **Applications** on the top menu bar.
+1. On the **Applications** screen, click **my-first-application**.
+1. Click **Pipelines** in the left navigation menu.
 
-{{< alert color="success" >}}Your pipeline is deployed. When it completes you can try out the `basic-deployment` pipeline. Use the `teardown-quick-spin environment` pipeline to remove the a deployment.{{< /alert >}}
+### Prepare your environment
+1. Click **Start Manual Execution** for the **prepare-quick-spin-environment** pipeline.
+1. In the **Select Execution Parameters** window, click **Run** to execute the pipeline that prepares the deployment environment.
+
+{{< alert color="success" >}}Your pipeline is executing. When it completes you can try out the `basic-deployment` pipeline.
+{{< /alert >}}
+
+### Test the basic-deployment pipeline
+1. Select **Pipelines** from the left navigation menu to go back to the **Pipelines** screen.
+1. Click **Start Manual Execution** for the **basic-deployment** pipeline.
+1. In the **Select Execution Parameters** window, click **Run** to execute the pipeline that prepares the deployment environment.
+
+### Test the promote-to-prod-with-red-black pipeline
+1. Select **Pipelines** from the left navigation menu to go back to the **Pipelines** screen.
+1. Click **Start Manual Execution** for the **promote-to-prod-with-red-black** pipeline.
+1. In the **Select Execution Parameters** window, click **Run** to execute the pipeline that prepares the deployment environment.
+1. This pipeline is configured for you to provide a manual judgement. Before the pipeline executes the `Deploy to PROD` stage, a prompt appears which must be approved. Click on the pipeline progress bar for the manual judgement stage and select **Continue** to approve the pipeline and complete the deployment.
+
+> Executing this pipeline multiple times will result in deploying new replica sets into the `quick-spin-prod` namespace. Once the newest replica set is fully available, the previous replica set has traffic to it disabled -- this behavior relies on the `red/black` deployment strategy 
+
+{{< alert color="success" >}}Your pipeline is executing. Run it again to see what happens when you do not approve the deploy task to continue. Use the `teardown-quick-spin environment` pipeline to remove the a deployment.
+{{< /alert >}}
 
 ## Armory CD easy install container limitations and troubleshooting
 
 The Armory CD instance is configured for easy installation, evaluation, testing, and proof of concept use. It has the following usage limitations:
 
-- Support for Blue/Green (red/black in Spinnaker lingo) and Highlander deployment strategies (Canary not supported with this offering)
-- Service providers are limited to Kubernetes
-- Port `9000` must be open to deploy the service
+- Support for Blue/Green (red/black in Spinnaker lingo) and Highlander deployment strategies (Canary not currently supported)
+- Default providers are limited to Kubernetes using the kubernetes account you provide access to
 - This release does not support local cluster deployments
+- Port `9000` must be open to deploy the easy install container
