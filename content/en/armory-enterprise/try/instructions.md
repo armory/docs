@@ -2,7 +2,7 @@
 title: Instructions for Trying Armory Continuous Deployment Self-Hosted
 linkTitle: Try Armory CD
 description: >
-  Install a lightweight Docker image of Armory CD for evaluation and proofs of concept.
+  Install a lightweight Docker image of Armory Continuous Deployment (CD) for evaluation and proofs of concept.
 exclude_search: true
 toc_hide: true
 aliases:
@@ -12,17 +12,13 @@ aliases:
 
 ![Proprietary](/images/proprietary.svg)
 
-Thank you for signing up to try Armory Continuous Deployment. Use these instructions to obtain and quickly install a containerized Armory CD instance for evaluating the self-hosted solution.[Contact Armory](https://www.armory.io/contact-us/) if you have questions about using the product! Your feedback helps shape future development.
+Thank you for signing up to try Armory CD. Use these instructions to obtain and quickly install a containerized Armory CD instance for evaluating the self-hosted solution. [Contact Armory](https://www.armory.io/contact-us/) if you have questions about using the product! Your feedback helps shape future development.
 
-{{% alert title="Tip" %}}
-If you have not already done so, sign up for access to the Armory Continuous Deployment Try version here: [Try Armory CD](https://armory2020dev.wpengine.com/quick-spin/) page.
-{{% /alert %}}
+Use this containerized version of Armory to run a minimal instance for evaluating the Armory CD Self-Hosted product. The easy install container comes configured with a sample application and three pipelines for you to start your Armory CD journey.
 
-Use this containerized version of Armory to run a minimal instance for evaluating the Armory CD Self-Hosted product. The easy install container comes configured with a sample application and three pipelines for you to start your continuous deployment journey.
+> If you have not already done so, please sign up for access to try out [Armory CD Self Hosted](https://www.armory.io/quick-spin/).
 
-{{% alert title="Warning" color="warning" %}}
-Do not use this evaluation product as a production environment.
-{{% /alert %}}
+> Do not use this evaluation product as a production environment.
 ## {{% heading "prereq" %}}
 * Ensure you have installed [Docker](https://docs.docker.com/get-docker/) on your host machine.
 * Your host machine must be able to run a container with the following minimum resource requirements:
@@ -31,19 +27,13 @@ Do not use this evaluation product as a production environment.
   * 20 GB disk space
   * Make sure Docker is running on your host machine.
   * Your non-local Kubernetes cluster configured for the Armory CD Self-Hosted easy install container. 
-## Configure the cluster
-Before you can use the evaluation product, you must configure your Kubernetes cluster. The docker container is configured to look for a `~/.kube/quick-spin-sa.kubeconfig` file. This file is created when you run the pre-install script. If you are using a different kubeconfig file, you must copy it to the `~/.kube/quick-spin-sa.kubeconfig` file. If you are using your own config file make sure the following properties are set:
+## Configure your cluster
+Before you can deploy applications in the evaluation product, you must configure your Kubernetes cluster. 
+IF 
 
-@TODO: Add the properties that need to be set.
 
-{{% alert title="Tip" %}}
-If this is all new to you thats OK we have a script for that. Copy and paste the following into a file called `kubeconfig.sh` and run it on the host machine. This script configures your cluster to work with the Armory CD Self-Hosted easy install container.
 
-```bash
-@TODO: Add the script here.
-```
-{{% /alert %}}
-
+The docker container is configured to look for a `~/.kube/quick-spin.kubeconfig` file. This file is created when you run the pre-install script. If you are using a different kubeconfig file, you must copy it to the `~/.kube/quick-spin.kubeconfig` file. If you are using your own config file make sure the following properties are set:
 ## Install the Armory CD Self-Hosted easy install container
 1. Pull the `armory/quick-spin` [image](https://hub.docker.com/r/armory/quick-spin) by executing:
 
@@ -51,10 +41,11 @@ If this is all new to you thats OK we have a script for that. Copy and paste the
    curl -sSL https://go.armory.io/quick-spin-compose | docker compose -f - up
    ```
 
-2. Run the image:
+1. Run the image:
 
    ```bash
-   docker run --name quick-spin --rm -p 9000:80 -t armory/quick-spin:latest
+   bash <(curl -sL https://go.armory.io/generate-quick-spin-kubeconfig)
+curl -sSL https://go.armory.io/quick-spin-compose | docker compose -f - up
    ```
 
    When the installation is complete the ready banner appears:
