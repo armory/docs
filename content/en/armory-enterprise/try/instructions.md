@@ -34,7 +34,7 @@ Before you can use the evaluation product, you must configure your Kubernetes cl
    bash <(curl -sL https://go.armory.io/generate-quick-spin-kubeconfig)
    ```
 
-The docker container is configured to look for a `~/.kube/quick-spin.kubeconfig` file. This file is created when you run the pre-install script. If you are using a different kubeconfig file, you must copy it to the `~/.kube/quick-spin.kubeconfig` file. If you are using your own config file make sure the following properties are set:
+
 ## Install the Armory CD Self-Hosted easy install container
 Run the container using Docker Compose by executing:
 
