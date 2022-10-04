@@ -9,7 +9,7 @@ description: >
 
 This tutorial shows you how to configure webhook-based approvals using GitHub.
 
-This tutorial assumes you have completed the {{< linkWithTitle "deploy-demo-app.md" >}} guide. You will use the same `docs-cdaas-demo` repo that you forked and cloned as part of that tutorial.
+This tutorial assumes you have completed the {{< linkWithTitle "deploy-demo-app.md" >}} guide. You will use the same `docs-cdaas-sample` repo that you forked and cloned as part of that tutorial.
 
 ## {{% heading "prereq" %}}
 
@@ -37,7 +37,7 @@ You need to create credentials that enable GitHub and Armory CD-as-a-Service to 
 
    Click **Create Credentials**. Copy the **Client ID** and **Client Secret** values for use in the next step.
 
-1. Create two GitHub repo secrets in your fork of the `docs-cdaas-demo` repo. See GitHub's [Creating encrypted secrets for a repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for instructions. Your webhook callback uses the value of these secrets to authenticate to Armory CD-as-a-Service. Create your repo secrets with the following names and values:
+1. Create two GitHub repo secrets in your fork of the `docs-cdaas-sample` repo. See GitHub's [Creating encrypted secrets for a repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for instructions. Your webhook callback uses the value of these secrets to authenticate to Armory CD-as-a-Service. Create your repo secrets with the following names and values:
 
     1. **Name**: CDAAS_CLIENT_ID **Value**: `<github_webhooks_client_id>`
 
@@ -55,7 +55,7 @@ You can create a `repository_dispatch` webhook event when you want to trigger a 
 - [Events that trigger workflows](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#repository_dispatch)
 - [Create a repository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event)
 
-The `docs-cdaas-demo` repo contains a webhook file called `basicPing.yml` in the `.github/workflows` directory. The workflow defined in the file is deliberately simple and for tutorial purposes only. It gets an OAUTH token, extracts the callback URI, and sends a POST request to that callback URI.
+The `docs-cdaas-sample` repo contains a webhook file called `basicPing.yml` in the `.github/workflows` directory. The workflow defined in the file is deliberately simple and for tutorial purposes only. It gets an OAUTH token, extracts the callback URI, and sends a POST request to that callback URI.
 
 {{< prism lang="yaml" line-numbers="true" line="5, 16-19, 24-28" >}}
 name: Basic Ping
@@ -107,12 +107,12 @@ Note:
 
 ## Configure the webhook in your deployment file
 
-The `docs-cdaas-demo` repo contains a second deployment file called `deploy-webhook.yml` in the root directory. The `webhooks` section is at the bottom of the file.
+The `docs-cdaas-sample` repo contains a second deployment file called `deploy-webhook.yml` in the root directory. The `webhooks` section is at the bottom of the file.
 
 The `uriTemplate` uses secrets instead of hardcoding the URI. If you don't want to create secrets, be sure to change to `uriTemplete` to use your GitHub org and repo. To create secrets using the CD-as-a-Service Console, go to **Secrets** > **Secrets** and create two new secrets:
 
-1. **Name**: `github_org`; **Value**: the name of the GitHub org into which you forked the `docs-cdaas-demo` repo. This is either your business org, like 'armory', or your GitHub username.
-1. **Name**: `github_repo`; **Value**: the name of the GitHub repo into which you forked the `docs-cdaas-demo` repo. This is most likely `docs-cdaas-demo`.
+1. **Name**: `github_org`; **Value**: the name of the GitHub org into which you forked the `docs-cdaas-sample` repo. This is either your business org, like 'armory', or your GitHub username.
+1. **Name**: `github_repo`; **Value**: the name of the GitHub repo into which you forked the `docs-cdaas-sample` repo. This is most likely `docs-cdaas-sample`.
 
 {{< prism lang="yaml" line-numbers="true" line="2, 5-6, 8-10, 15-20" >}}
 webhooks:
@@ -216,7 +216,7 @@ strategies:
 
 ## Deploy your updated process
 
-Navigate to your `docs-cdaas-demo` directory. Make sure you have logged in using the CLI (`armory login`).
+Navigate to your `docs-cdaas-sample` directory. Make sure you have logged in using the CLI (`armory login`).
 
 Deploy the using the `deploy-webhook.yml` file.
 

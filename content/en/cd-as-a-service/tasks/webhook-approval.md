@@ -40,7 +40,7 @@ The first example configures a GitHub webhook that uses token authorization, wit
 webhooks:
   - name: myWebhook
     method: POST
-    uriTemplate: https://api.github.com/repos/armory/docs-cdaas-demo/dispatches
+    uriTemplate: https://api.github.com/repos/armory/docs-cdaas-sample/dispatches
     networkMode: direct
     headers:
       - key: Authorization
