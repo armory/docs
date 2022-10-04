@@ -6,4 +6,4 @@ version: 00.09.66
 ---
 
 ### Changes
-- Adds support for using dns URLs for communication between clouddrivers.
+- Adds support for using dns URLs for communication between clouddrivers. Disabled by default, enable it with `kubesvc.cluster-kubernetes.useDNS: true` and `kubesvc.cluster-kubernetes.domainName: <some-domain>` (defaults to cluster.local).
