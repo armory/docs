@@ -14,13 +14,9 @@ This tutorial is designed to use a single Kubernetes cluster with multiple names
 - [Deploy the sample app](#deploy-the-sample-app).
 - [Tear down](#tear-down) the environment.
 
-
 ## {{% heading "prereq" %}}
 
-{{< include "cdaas/k8s-options.md" >}}
-
-After you have installed `kubectl` and have access to a Kubernetes cluster, make sure:
-
+* You have installed `kubectl` and have access to a Kubernetes cluster
 * You have [set up your Armory CD-as-a-Service account]({{< ref "get-started" >}}).
 * You have [installed the `armory` CLI]({{< ref "cd-as-a-service/setup/cli" >}}).
 * You have installed [Helm](https://helm.sh/docs/intro/install/).
