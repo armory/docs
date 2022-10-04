@@ -7,4 +7,4 @@ version: 00.10.49
 
 ### Fixes
 
-* Fixes an issue which prevented operation results to arrive to the correct clouddriver instance
+* Fixes an issue which prevented operation results from arriving to the correct clouddriver instance
