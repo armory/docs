@@ -3,6 +3,8 @@ title: Deploy a Sample App Tutorial
 linktitle: Deploy a Sample App
 description: >
   Learn how to deploy a sample app to a Kubernetes cluster using Armory Continuous Deployment-as-a-Service.
+aliases:
+  - /cd-as-a-service/tutorials/deploy-demo-app/
 ---
 
 ## Objectives
@@ -11,6 +13,7 @@ This tutorial is designed to use a single Kubernetes cluster with multiple names
 
 - [Create Client Credentials](#create-client-credentials) to use when installing Remote Network Agents.
 - [Connect your cluster](#connect-your-cluster).
+- [Add Prometheus integration](#add-prometheus-integration) for canary deployment.
 - [Deploy the sample app](#deploy-the-sample-app).
 - [Tear down](#tear-down) the environment.
 
@@ -62,8 +65,19 @@ Configure the sample environments and install the Remote Network Agents in your 
 
    After the script completes successfully, you can view the connected Remote Network Agents on the CD-as-a-Service Console's **Networking** > **Agents** screen.
 
+## 4. Add Prometheus integration
 
-## 4. Deploy the sample app
+You need to configure Prometheus integration because deployment to the `prod-us` target uses canary analysis.
+
+In the CD-as-a-Service Console, navigate to **Configuration** > **Canary Analysis** > **Integrations**. Add a new Integration with the following information:
+
+* **Type**: `Prometheus`
+* **Name**: `Sample-Prometheus`
+* **Base URL**: `http://prometheus-kube-prometheus-prometheus.demo-infra:9090/`
+* **Remote Network Agent**: `sample-rna-prod-us-cluster`
+* **Authentication Type**: `None`
+
+## 5. Deploy the sample app
 
 The sample [app](https://hub.docker.com/r/demoimages/bluegreen) is a simple webserver and a corresponding `Service`. You can find the Kubernetes manifest is the `manifests` directory. The CD-as-a-Service deployment file is called `deploy.yml` and is at the root level.
 
