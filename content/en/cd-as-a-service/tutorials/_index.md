@@ -7,4 +7,4 @@ description: >
 weight: 40
 ---
 
-End-to-end tutorials for Armory CD-as-a-Service functionality. Begin with {{< linkWithTitle "deploy-demo-app.md" >}}.
+End-to-end tutorials for Armory CD-as-a-Service functionality. Begin with {{< linkWithTitle "deploy-sample-app.md" >}}.

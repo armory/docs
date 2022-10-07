@@ -25,7 +25,7 @@ The **Get Started** section contains guides that walk you through the core funct
 
 Read the {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}} guide to learn how to install the CLI, create a deployment file, and deploy your app.
 
-After you've completed those guides, you can follow the {{< linkWithTitle "cd-as-a-service/tutorials/deploy-demo-app.md" >}}, in which you fork a demo app repo and deploy that app to your Kubernetes cluster.
+After you've completed those guides, you can follow the {{< linkWithTitle "cd-as-a-service/tutorials/deploy-sample-app.md" >}}, in which you fork a demo app repo and deploy that app to your Kubernetes cluster.
 
 In addition to deployment using the CLI, you can start a deployment from your GitHub workflow. Read the {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}} guide to integrate Armory CD-as-a-Service's GitHub Action into your workflow.
 
