@@ -3,6 +3,8 @@ title: Types of Secrets in CD-as-a-Service
 linktitle: Secrets
 description: >
   Use secrets to integrate Armory CD-as-a-Service with external systems and tools.
+aliases:
+  - /cd-as-a-service/concepts/iam/secrets/
 ---
 
 ## Overview of using secrets with external systems
@@ -30,4 +32,4 @@ Secrets are [encrypted in transit and at rest]({{< ref "cd-as-a-service/concepts
 
 ## {{% heading "nextSteps" %}}
 
-{{< linkWithTitle "cd-as-a-service/tasks/iam/secrets-create.md" >}}
+{{< linkWithTitle "cd-as-a-service/tasks/secrets/secrets-create.md" >}}
