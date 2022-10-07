@@ -13,7 +13,6 @@ This tutorial is designed to use a single Kubernetes cluster with multiple names
 
 - [Create Client Credentials](#create-client-credentials) to use when installing Remote Network Agents.
 - [Connect your cluster](#connect-your-cluster).
-- [Add Prometheus integration](#add-prometheus-integration) for canary deployment.
 - [Deploy the sample app](#deploy-the-sample-app).
 - [Tear down](#tear-down) the environment.
 
@@ -25,19 +24,19 @@ This tutorial is designed to use a single Kubernetes cluster with multiple names
 * You have installed [Helm](https://helm.sh/docs/intro/install/).
 * You have a GitHub account so you can fork the sample project.
 
-## 1. Fork and clone the repo
+## Fork and clone the repo
 
 [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the  [sample repo](https://github.com/armory/docs-cdaas-sample) to your own GitHub account and then clone it to the machine where you installed `kubectl` and the `armory` CLI.
 
 The `configuration` directory contains a script to set up Kubernetes cluster and connect it to Armory CD-as-a-Service.
 
-## 2. Create Client Credentials
+## Create Client Credentials
 
 Create a new set of Client Credentials for the Remote Network Agents. Name the credentials "docs-sample-rna".
 
 {{< include "cdaas/client-creds.md" >}}
 
-## 3. Connect your cluster
+## Connect your cluster
 
 Configure the sample environments and install the Remote Network Agents in your Kubernetes cluster.
 
@@ -65,19 +64,7 @@ Configure the sample environments and install the Remote Network Agents in your 
 
    After the script completes successfully, you can view the connected Remote Network Agents on the CD-as-a-Service Console's **Networking** > **Agents** screen.
 
-## 4. Add Prometheus integration
-
-You need to configure Prometheus integration because deployment to the `prod-us` target uses canary analysis.
-
-In the CD-as-a-Service Console, navigate to **Configuration** > **Canary Analysis** > **Integrations**. Add a new Integration with the following information:
-
-* **Type**: `Prometheus`
-* **Name**: `Sample-Prometheus`
-* **Base URL**: `http://prometheus-kube-prometheus-prometheus.demo-infra:9090/`
-* **Remote Network Agent**: `sample-rna-prod-us-cluster`
-* **Authentication Type**: `None`
-
-## 5. Deploy the sample app
+## Deploy the sample app
 
 The sample [app](https://hub.docker.com/r/demoimages/bluegreen) is a simple webserver and a corresponding `Service`. You can find the Kubernetes manifest is the `manifests` directory. The CD-as-a-Service deployment file is called `deploy.yml` and is at the root level.
 
@@ -106,7 +93,7 @@ https://console.cloud.armory.io/deployments/pipeline/4be2228f-5c46-4574-ad9a-e70
 
 You can check deployment status by accessing the URL included in the output.
 
-Deployment to `prod-us` and `prod-eu` requires manual approval, so be sure to approve in the UI.
+Deployment to `prod-us` and `prod-eu` requires manual approval, so be sure to approve in the UI. Additionally, `prod-eu` requires manual approval to move all of the traffic to the new pods, so be sure to look two manual approvals
 
 ## Tear down
 

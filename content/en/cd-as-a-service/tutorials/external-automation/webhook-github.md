@@ -59,7 +59,7 @@ You can create a `repository_dispatch` webhook event when you want to trigger a 
 
 The `docs-cdaas-sample` repo contains a `basicPing.yml` webhook workflow file in the `.github/workflows` directory. The webhook workflow obtains an OAUTH token, extracts the callback URI, and sends a POST request to that callback URI.
 
-You must include specific keys and values as outlined in the following sample:
+You must include specific keys and values as detailed in the following sample:
 
 {{< prism lang="yaml" line-numbers="true" line="5, 16-19, 24-28" >}}
 name: basicPing Webhook Callback
@@ -89,7 +89,7 @@ jobs:
           method: 'POST'
           bearerToken: ${{ fromJSON(steps.getToken.outputs.response).access_token }}
           customHeaders: '{ "Content-Type": "application/json" }'
-          data: '{ "success": true, "mdMessage": "Webhook success: ${{ github.event.client_payload.callbackUri }}" }'
+          data: '{ "success": true, "mdMessage": "basickPing webhook success: ${{ github.event.client_payload.callbackUri }}" }'
       - name: show http response
         run: echo ${{ steps.callCallback.outputs.response }}
 {{< /prism >}}
@@ -160,13 +160,13 @@ Note:
 The `deploy-webhook.yml` calls the webhook workflows in the `constraints` section of the deployment target definition. Look for `runWebhook` entries such as the following:
 
 {{< prism lang="yaml" line-numbers="true" line="8-9" >}}
-prod-eu:
-  account: sample-rna-prod-eu-cluster
-  namespace: sample-prod-eu
-  strategy: mybluegreen
+staging:
+  account: sample-rna-staging-cluster
+  namespace: sample-staging
+  strategy: rolling
   constraints:
-    dependsOn: ["staging"]
-    beforeDeployment:
+    dependsOn: ["test"]
+    afterDeployment:
       - runWebhook:
           name: basicPing
 {{< /prism >}}
@@ -175,7 +175,7 @@ prod-eu:
 
 ## Deploy your updated process
 
-The deployment process call the `basicPing` webhook workflows when deploying to the `prod-eu` target. Deployment to `prod-us` requires manual approval but deployment to `prod-eu` is based on the result of the `basicPing` webhook.
+The deployment process calls the `basicPing` webhook workflow when deploying to the `staging` target. The webhook must be successful for deployment to continue to the prod targets.
 
 Navigate to your `docs-cdaas-sample` directory. Make sure you have logged in using the CLI (`armory login`).
 
@@ -233,11 +233,9 @@ jobs:
 
 Commit the change.
 
-Make sure to manually approve the `prod-us` deployment in the CD-as-a-Service Console and that deployment has finished before you start another deployment.
+Deploy by running `armory start deploy -f deploy-webhook.yml`. Then check deployment status by accessing the URL included in the output. CD-as-a-Service cancels the deployment when it receives a failure message from the webhook.
 
-Deploy by running `armory start deploy -f deploy-webhook.yml`. Then check deployment status by accessing the URL included in the output.
-
-{{< figure width="100%" height="100%" src="/images/cdaas/tutorials/webhooks/webhook-fail.png"  alt="BeforeDeployment webhook failure"  caption="<center><i>The basicPing webhook failed.</i></center>">}}
+{{< figure width="100%" height="100%" src="/images/cdaas/tutorials/webhooks/webhook-failure.jpg"  alt="BeforeDeployment webhook failure"  caption="<center><i>The basicPing webhook failed.</i></center>">}}
 
 ## Troubleshooting
 
