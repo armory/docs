@@ -5,6 +5,8 @@ description: >
   Learn how Armory Continuous Deployment-as-a-Service implements role-based access control.
 ---
 
+THIS IS AIMEE'S SCRATCH PAGE AND NOT READ FOR PRIME TIME
+
 ```mermaid
 classDiagram
     class Role {
