@@ -1,5 +1,5 @@
 ---
-title: Create a New Role
+title: Create a Role
 description: >
   Create a new RBAC role in Armory CD-as-a-Service.
 ---
@@ -37,20 +37,18 @@ roles:
    * `resource`: (Required); String; one of `organization`, `tenant`, or `deployments`
    * `permission`: (Required); String; `full`
 
-### User role examples
+After you have defined your roles, use the CLI to add those roles to CD-as-a-Service.
 
-**Organization Admin**
-
-A user with this role can access every screen in every tenant and deploy apps using the CLI.
-
-{{< prism lang="yaml" line-numbers="true" line="" >}}
-roles:
-  - name: Organization Admin
-    grants:
-      - type: api
-        resource: organization
-        permission: full
+{{< prism lang="bash" line-numbers="true" line="" >}}
+armory login
+armory config apply -f <path-to-rbac-config>.yaml
 {{< /prism >}}
+
+You can check that you created your roles correctly by running `armory config get`.
+
+>**Organization Admin** is a system-defined role that does not appear in your RBAC config.
+
+### User role examples
 
 **Tenant Admin**
 
