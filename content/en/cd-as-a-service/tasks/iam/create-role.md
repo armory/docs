@@ -30,7 +30,7 @@ roles:
 {{< /prism >}}
 
 * `name`: (Required); String; name of the role
-* `tenant`: (Optional); String; name of the tenant; defaults to `main`
+* `tenant`: (Optional); String; name of the tenant; if omitted, the role is an organization-wide role, not bound to a specific tenant
 * `grants`: (Required)(Dictionary)
 
    * `type`: (Required); String; `api`
