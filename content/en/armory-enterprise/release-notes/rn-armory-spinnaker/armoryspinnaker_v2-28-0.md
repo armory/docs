@@ -241,9 +241,9 @@ are not resolved when Spring Cloud tries to refresh.
 
 Do not use secrets for properties that are annotated with `@RefreshScope`.
 
-## Terraform Supported Versions
+## Supported Terraform Versions
 
-We removed support for older, non supported versions of Terraform (older than 0.13). 
+Armory removed support for older, non-supported versions of Terraform (older than 0.13). 
 
 ## Highlighted updates
 
