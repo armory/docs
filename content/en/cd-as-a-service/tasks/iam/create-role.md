@@ -34,7 +34,7 @@ roles:
 * `grants`: (Required)(Dictionary)
 
    * `type`: (Required); String; `api`
-   * `resource`: (Required); String; one of `organization`, `tenant`, or `deployments`
+   * `resource`: (Required); String; one of `organization`, `tenant`, or `deployment`
    * `permission`: (Required); String; `full`
 
 After you have defined your roles, use the CLI to add those roles to CD-as-a-Service.
