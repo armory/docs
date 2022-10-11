@@ -158,7 +158,7 @@ roles:
         resource: potato-facts
         permission: full
       - type: api
-        resource: deployments
+        resource: deployment
         permission: full
   - name: Tenant Admin
     # optional field, defaults to main

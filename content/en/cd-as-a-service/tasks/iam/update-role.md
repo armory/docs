@@ -1,19 +1,18 @@
 ---
-title: Delete a Role
+title: Update a Role
 description: >
-  Delete an RBAC role in Armory CD-as-a-Service.
+  Update an RBAC role in Armory CD-as-a-Service.
 ---
 
 ## {{% heading "prereq" %}}
 
 * You are an Organization or Tenant Admin within CD-as-a-Service.
 
-## How to delete a role
+## How to update a role
 
-Perform the following to delete a role or roles:
+Perform the following to update a role or roles:
 
-1. Add `allowAutoDelete: true` to the top of your RBAC config file.
-1. Remove the role(s) from your RBAC config file.
+1. Update the existing role(s) in your RBAC config file.
 1. Log into the CLI and apply the changes:
 
    {{< prism lang="bash" line-numbers="true" >}}
@@ -21,9 +20,32 @@ Perform the following to delete a role or roles:
    armory config apply -f <path-to-rbac-config>.yml{{< /prism >}}
 
 
-For example, you have a config file with the following roles:
+For example, you created the following roles:
 
 {{< prism lang="yaml" line-numbers="true" line="" >}}
+roles:
+  - name: Tenant Admin
+    tenant: main
+    grants:
+      - type: api
+        resource: tenant
+        permission: full
+  - name: Deployer
+    tenant: main
+    grants:
+      - type: api
+        resource: deployment
+        permission: full
+  - name: Tester
+    grants:
+      - type: api
+        resource: deployment
+        permission: full
+{{< /prism >}}
+
+You notice that the Tester role has no `tenant` defined, which means the role is organization-wide. Update your config file to add the tenant:
+
+{{< prism lang="yaml" line-numbers="true" line="14" >}}
 roles:
   - name: Tenant Admin
     tenant: main
@@ -45,29 +67,13 @@ roles:
         permission: full
 {{< /prism >}}
 
-You want to delete the Tester role. Update your config file by adding `autodelete: true` to the top and removing the Tester role entry:
-
-{{< prism lang="yaml" line-numbers="true" line="" >}}
-allowAutoDelete: true
-roles:
-  - name: Tenant Admin
-    tenant: main
-    grants:
-      - type: api
-        resource: tenant
-        permission: full
-  - name: Deployer
-    tenant: main
-    grants:
-      - type: api
-        resource: deployment
-        permission: full
-{{< /prism >}}
-
 Execute `armory config apply -f <path-to-rbac-config>.yml` to apply your changes.
 
-You can check that you deleted your role by running `armory config get`.
+You can check that you updated your role correctly by running `armory config get`.
 
-When you delete a role, that role is removed from existing users. You can accidentally remove the ability for your users to perform actions within CD-as-a-Service. A user with no role can still log into the UI but only sees a blank **Deployments** screen:
-{{< figure src="/images/cdaas/user-no-role.png" >}}
+>The role name is case insensitive. "DeployM2m" is the same as "DeployM2M", so if you want to change capitalization in a role name, you must delete the role and add a new role with the name's corrected capitalization.
 
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}
+* {{< linkWithTitle "cd-as-a-service/tutorials/access-management/rbac-users.md" >}}

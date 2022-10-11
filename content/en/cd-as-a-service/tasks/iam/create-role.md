@@ -13,7 +13,7 @@ By default, a new user has no permission to access CD-as-a-Service. So before yo
 
 ## {{% heading "prereq" %}}
 
-* You are an Organization or Tenant Admin within CD-as-a-Service
+* You are an Organization or Tenant Admin within CD-as-a-Service.
 
 ## How to create a role
 
@@ -74,7 +74,7 @@ roles:
     tenant: main
     grants:
       - type: api
-        resource: deployments
+        resource: deployment
         permission: full
 {{< /prism >}}
 
@@ -113,4 +113,5 @@ roles:
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "cd-as-a-service/tasks/iam/invite-users.md" >}}
+* {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}
 * {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}

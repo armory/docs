@@ -100,7 +100,7 @@ roles:
     tenant: main
     grants:
       - type: api
-        resource: deployments
+        resource: deployment
         permission: full
 {{< /prism >}}
 
@@ -138,7 +138,7 @@ roles:
     tenant: main
     grants:
       - type: api
-        resource: deployments
+        resource: deployment
         permission: full
   - name: ProdAppDeployment
     tenant: main
