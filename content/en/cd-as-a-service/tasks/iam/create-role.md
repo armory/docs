@@ -41,7 +41,7 @@ After you have defined your roles, use the CLI to add those roles to CD-as-a-Ser
 
 {{< prism lang="bash" line-numbers="true" line="" >}}
 armory login
-armory config apply -f <path-to-rbac-config>.yaml
+armory config apply -f <path-to-rbac-config>.yml
 {{< /prism >}}
 
 You can check that you created your roles correctly by running `armory config get`.
@@ -113,4 +113,4 @@ roles:
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "cd-as-a-service/tasks/iam/invite-users.md" >}}
-
+* {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}
