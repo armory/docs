@@ -5,6 +5,6 @@ version: 00.09.67
 
 ---
 
-Performance introduce to let agent manage the cache start and end synchronization timestamps
+Performance enhancement introduced to let agent manage the cache start and end synchronization timestamps.
 
 
