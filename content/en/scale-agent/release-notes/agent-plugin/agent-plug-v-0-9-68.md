@@ -6,4 +6,4 @@ version: 00.09.68
 ---
 
 ### Changes
-Startup fails if endpoint discovery fails to get the clouddriver replicas, this behavior can be turned off by setting .
+Startup fails if endpoint discovery fails to get the clouddriver replicas, this behavior can be turned off by setting `kubesvc.cluster-kubernetes.failFast: false`.
