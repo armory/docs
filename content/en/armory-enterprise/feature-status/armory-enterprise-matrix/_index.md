@@ -174,10 +174,11 @@ The following table lists the supported Terraform versions:
 
 | Terraform Versions | Armory Enterprise Version | Note |
 | ------------------ | ------------------------- | ---- |
-| 0.11.10 - 0.11.14  | 2.28.0 and earlier        |      |
-| 0.12.0 - 0.12.24   | All supported versions    |      |
+| 0.11.10 - 0.11.15  | 2.27.0 and earlier        |      |
+| 0.12.0 - 0.12.31   | All supported versions    |      |
 | 0.13.4 - 0.13.5    | 2.24.0 - 2.28.0           |      |
 | 0.14.0 - 0.14.2    | 2.24.0 or later           |      |
+| 1.0.0 - 1.2.7      | 2.27.0 or later           |      |
 
 Although other Terraform versions may be usable with Armory Enterprise and the Terraform Integration, only the versions listed here are supported.
 
