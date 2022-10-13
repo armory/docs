@@ -26,6 +26,15 @@ For your users to get access to Armory CD-as-a-Service, you must invite them to 
 
 The new user receives an email with instructions for accessing the CD-as-a-Service Console.
 
-<!--
+
 ## {{% heading "nextSteps" %}}
--->
+
+* RBAC
+   * {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}
+   * {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}
+
+* User Role Management
+   * {{< linkWithTitle "cd-as-a-service/tasks/iam/manage-role-user.md" >}}
+   * {{< linkWithTitle "cd-as-a-service/tutorials/access-management/rbac-users.md" >}}
+
+* {{< linkWithTitle "cd-as-a-service/troubleshoOting/rbac.md" >}}

@@ -3,8 +3,10 @@ title: Role-Based Access Control
 linktitle: RBAC
 description: >
   Learn how to configure and use Role-Based Access Control (RBAC) in Armory Continuous Deployment-as-a-Service.
-draft: true 
+draft: true
 ---
+
+<!-- THIS IS A DRAFT! HUGO DOES NOT COMPILE DRAFTS. I'M LEAVING THIS HERE FOR WHEN TARGET GROUPS ARE DONE -->
 
 ## Objectives
 

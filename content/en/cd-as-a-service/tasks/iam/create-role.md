@@ -7,7 +7,7 @@ description: >
 
 ## Create a new RBAC role
 
-By default, a new user has no permission to access CD-as-a-Service. So before you invite a user, you need to create a role that defines what the user can see and do in the UI as well as from the CLI.
+By default, a new user has no permission to access functionality within CD-as-a-Service. So before you invite a user, you need to create a role that defines what the user can see and do in the UI as well as from the CLI.
 
 >All users can start a deployment.
 
@@ -80,14 +80,12 @@ roles:
 
 ## SSO roles
 
-If your organization uses SSO with CD-as-a-Service, you must create your roles using the same names as your SSO roles. For example, your company has the following roles defined in its SSO provider:
+If your organization uses SSO with CD-as-a-Service, you must create your roles using the same names as your SSO groups. For example, your company has the following groups defined in its SSO provider:
 
 1. Engineering-Lead
 1. Engineering-Deployment
-1. Engineering-Core
-1. Engineering-Intern
 
-You want to use the Engineering-Deployment and Engineering-Lead roles in CD-as-a-Service, so you need to create roles for those SSO roles. In the following example, `Engineering-Lead` has a Tenant Admin role and `Engineering-Deployment` has a deployment role.
+You want to use those groups in CD-as-a-Service, so you need to create roles for those SSO groups. In the following example, `Engineering-Lead` has a Tenant Admin role and `Engineering-Deployment` has a deployment role.
 
 {{< prism lang="yaml" line-numbers="true" line="" >}}
 roles:
@@ -105,13 +103,21 @@ roles:
         permission: full
 {{< /prism >}}
 
-{{% alert title="SSO Gotchas" color="warning" %}}
-1. The role does not appear in the UI.
+During authentication, CD-as-a-Service maps a user's SSO group names to RBAC role names.
+
+{{% alert title="Caution" color="warning" %}}
+1. The SSO role does not appear in the UI. You cannot use CD-as-a-Service to assign an SSO role to a user.
 1. You cannot use CD-as-a-Service to inspect the SSO groups that a user belongs to.
 {{% /alert %}}
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "cd-as-a-service/tasks/iam/invite-users.md" >}}
-* {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}
-* {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}
+* RBAC
+   * {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}
+   * {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}
+
+* User Role Management
+   * {{< linkWithTitle "cd-as-a-service/tasks/iam/manage-role-user.md" >}}
+   * {{< linkWithTitle "cd-as-a-service/tutorials/access-management/rbac-users.md" >}}
+
+* {{< linkWithTitle "cd-as-a-service/troubleshoOting/rbac.md" >}}

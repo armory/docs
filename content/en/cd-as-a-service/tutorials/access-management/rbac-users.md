@@ -12,10 +12,9 @@ You are the CD-as-a-Service Organization Admin and lead a small development team
 
 In this tutorial, you learn how to:
 
-* [Define RBAC roles](#create-rbac-roles) in a YAML file.
-* Assign a role to a user
-* Update a role
-* Delete a role
+* [Define and add RBAC roles](#define-and-add-rbac-roles) in a YAML file.
+* [Invite users and assign roles](#invite-users-and-assign-roles).
+* [Modify your RBAC roles](#modify-your-rbac-roles).
 
 
 ## {{% heading "prereq" %}}
@@ -102,7 +101,7 @@ Repeat the process for the Deployer and Tester roles.
 
 
 
-## Update RBAC roles
+## Modify your RBAC roles
 
 Due to a hasty copy/paste, you inadvertently granted the Deployer and Tester roles full access to the main tenant. You need to change that. Also, since Deployer and Tester have the same grants, you want to eliminate the Tester role. You can do both in a single update to your `config.yml` file:
 
@@ -142,3 +141,7 @@ armory config get
 {{< /prism >}}
 
 Lastly, since you eliminiated the Tester role, you need to update the user you originally assigned the Tester role. Access that user in the **Access Management** > **Users** screen and edit the user to assign the Deployer role.
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "cd-as-a-service/troubleshoOting/rbac.md" >}}

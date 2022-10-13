@@ -71,3 +71,10 @@ You can check that you deleted your role by running `armory config get`.
 When you delete a role, that role is removed from existing users. You can accidentally remove the ability for your users to perform actions within CD-as-a-Service. A user with no role can still log into the UI but only sees a blank **Deployments** screen:
 {{< figure src="/images/cdaas/user-no-role.png" >}}
 
+## {{% heading "nextSteps" %}}
+
+* User Role Management
+   * {{< linkWithTitle "cd-as-a-service/tasks/iam/manage-role-user.md" >}}
+   * {{< linkWithTitle "cd-as-a-service/tutorials/access-management/rbac-users.md" >}}
+
+* {{< linkWithTitle "cd-as-a-service/troubleshoOting/rbac.md" >}}
