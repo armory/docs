@@ -1,7 +1,7 @@
 ---
-title: Update a Role
+title: Update an RBAC Role
 description: >
-  Update an RBAC role in Armory CD-as-a-Service.
+  Update an RBAC role using Armory CD-as-a-Service's CLI.
 ---
 
 ## {{% heading "prereq" %}}

@@ -2,7 +2,7 @@
 title: Create Client Credentials
 linktitle: Create Client Credentials
 description: >
-  Create machine-to-machine client credentials in Armory Continuous Deployment-as-a-Service
+  Create machine-to-machine client credentials in Armory Armory CD-as-a-Service.
 ---
 
 ## Overview
