@@ -1,6 +1,6 @@
 ---
 title: Manage a User's RBAC Role
-linktitle: Manage
+linktitle: Manage User's Role
 description: >
   Assign and remove a user's RBAC role in Armory CArmory CD-as-a-Service.
 ---
@@ -27,7 +27,7 @@ description: >
 1. In the **Edit User** screen, you can see a user's roles listed below the **Roles** field.
 1. Each assigned role has an **x** next to it. Click the **x** to remove the role.
 
-{{< figure src="/images/cdaas/user-role-delete.png" alt="User role with arrow pointing at 'x' to delete" >}}
+{{< figure src="/images/cdaas/user-role-delete.jpg" alt="User role with arrow pointing at 'x' to delete" >}}
 
 
 >Make sure your user has at least one role!
