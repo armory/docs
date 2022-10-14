@@ -169,6 +169,7 @@ You can find the latest version on [Docker Hub](https://hub.docker.com/r/armory/
 Use Terraform within your pipelines to create your infrastructure as part of your software delivery pipeline. For more information see {{< linkWithTitle terraform-enable-integration.md >}} and {{< linkWithTitle terraform-use-integration.md >}}.
 
 **Supported Terraform versions**
+
 | CDSH Version | Terraform Supported Versions                | Notes                                                                         |
 | ------------ | ------------------------------------------- | ----------------------------------------------------------------------------- |
 | 2.26         | 0.11, 0.12, 0.13, 0.14, 0.15, 1.0           |
