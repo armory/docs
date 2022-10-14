@@ -177,10 +177,10 @@ Use Terraform within your pipelines to create your infrastructure as part of you
 | 2.28         | 0.12, 0.13, 0.14, 0.15,  1.0, 1.1, 1.2      | Version 0.12 was not available in 2.28 but is supported as of release 2.28.1. |
 
 {{% alert title="Note" color="primary" %}}
-Not all patch versions are included for each release.
+Not all patch versions are included for each release. Although other Terraform versions may be usable with Armory Enterprise and the Terraform Integration, only the versions listed here are supported.
 {{% /alert %}}
 
-Although other Terraform versions may be usable with Armory Enterprise and the Terraform Integration, only the versions listed here are supported.
+
 
 **Features**
 
