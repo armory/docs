@@ -4,6 +4,9 @@ linkTitle: Manage Armory Enterprise
 weight: 15
 description: >
   Manage, upgrade, or uninstall Armory Enterprise or Spinnaker using the Operator.
+aliases:
+  - /armory-enterprise/installation/guide/upgrade-spinnaker/
+  - /docs/installation/guide/upgrade-spinnaker/
 ---
 
 {{< include "armory-operator/os-operator-blurb.md">}}
