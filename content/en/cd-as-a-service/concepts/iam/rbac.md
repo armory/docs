@@ -52,47 +52,86 @@ classDiagram
 ```
 
 
-Central to CD-as-a-Service's RBAC implementation is the concept of a _Role_, which defines what a user or Client Credential can do within the platform. Each Role has a _Grant_ collection that defines platform permissions.
+Central to CD-as-a-Service's [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control) implementation is a _Role_, which defines what a user can do within the platform. Each Role has a _Grant_ collection that defines permissions.
 
-You define your roles in a YAML file and then use the CLI to apply those roles to your CD-as-a-Service _Organization_.
-
-### Role
-
-You can bind a Role to your Organization or to a _Tenant_ within your Organization.
-
+You define your roles in a YAML file that has this structure:
 
 {{< prism lang="yaml" line-numbers="true" >}}
 roles:
   - name: <role-name>
     tenant: <tenant-name>
-    grants: []
+    grants:
+      - type: <type>
+        resource: <resource>
+        permission: <permission>
 {{< /prism >}}
 
-`tenant`
-- If you want to bind your role to a tenant, you must specify the tenant's name.
-- The default tenant is `main`.
+You can create an organization-wide role by omitting the `tenant` definition.
+
+After you define your roles, you use the CLI to add your roles to your CD-as-a-Service Organization. You do all subsequent role management with the CLI, but you assign roles to users using the UI.
+
+All users must have at least one role in order to use CD-as-a-Service. If a user has login credentials but no role assigned, the user sees a blank **Deployments** screen after logging in.
+
+{{< figure src="/images/cdaas/user-no-role.png" alt="User sees the Deployments screen with no deployments." height="75%" width="75%">}}
+
+## Grants
+
+The `grants` section is where you define your role's permissions.
 
 
-### Grant
 
+## Platform roles
 
-
-### GrantType
-
-
-
-### Permission
-
-
-## Organization Admin
-
-The system-defined _Organization Admin_ role is a platform-wide role that has superuser permissions within CD-as-a-Service. In the UI, an Organization Admin has full access to all screens and functionality. The same applies to using the CLI. The Organization Admin has full access to execute all commands.
+The system-defined _Organization Admin_ role is a platform-wide role that has superuser permissions within CD-as-a-Service. In the UI, an Organization Admin has full access to all screens and functionality. Additionally, the Organization Admin has full authority to execute all CLI commands.
 
 You cannot modify or delete the Organization Admin role.
 
 ## SSO support
 
 
+## Examples
+
+### Tenant Admin role
+
+This example defines three Tenant Admin roles, one for each tenant. Each role has full authority within the specified tenant.
+
+{{< prism lang="yaml" line-numbers="true" >}}
+roles:
+  - name: Tenant Admin Main
+    tenant: main
+    grants:
+      - type: api
+        resource: tenant
+        permission: full
+  - name: Tenant Admin Finance
+    tenant: finance
+    grants:
+      - type: api
+        resource: tenant
+        permission: full
+  - name: Tenant Admin Commerce
+    tenant: commerce
+    grants:
+      - type: api
+        resource: tenant
+        permission: full
+{{< /prism >}}
+
+If you want to grant a user permission to manage all tenants, give that user the **Organization Admin** role using the UI.
+
+### Deployment role
+
+This example defines a role that grants permission to use the **Deployments** UI and start deployments using the CLI.
+
+{{< prism lang="yaml" line-numbers="true" >}}
+roles:
+  - name: Deployer
+    tenant: main
+    grants:
+      - type: api
+        resource: deployment
+        permission: full
+{{< /prism >}}
 
 ## {{% heading "nextSteps" %}}
 
@@ -105,7 +144,7 @@ You cannot modify or delete the Organization Admin role.
 ## Not for primetime
 <!--
 aimee scratchpad
--->
+
 
 aimee's scratchpad stuff below
 
@@ -223,3 +262,4 @@ deployment.yaml  |  rbac.yaml
 --|--
 {{% include "cdaas/rbac/snippet-deploy.md" %}}  |  {{% include "cdaas/rbac/snippet-rbac.md" %}}
 
+-->

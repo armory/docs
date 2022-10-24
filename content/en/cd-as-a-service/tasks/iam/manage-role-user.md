@@ -19,7 +19,7 @@ description: >
 1. Select a role from the drop-down list. Repeat if you want to assign the user more than one role. Selected roles appear below the **Roles** drop-down list.
 1. Click the **Save Roles** button.
 
-## How to delete a role
+## How to revoke a role
 
 1. Access the [CD-as-a-Service Console](https://console.cloud.armory.io).
 1. Navigate to **Access Management** > **Users**.
