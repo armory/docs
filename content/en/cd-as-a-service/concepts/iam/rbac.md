@@ -68,7 +68,7 @@ roles:
 
 You can create an organization-wide role by omitting the `tenant` definition.
 
-After you define your roles, you use the CLI to add your roles to your CD-as-a-Service Organization. You do all subsequent role management with the CLI, but you assign roles to users using the UI.
+After you define your roles, you use the CLI to [add your roles]({{< ref "cd-as-a-service/tasks/iam/create-role" >}}) to your CD-as-a-Service Organization. You do all subsequent role management with the CLI, but you [assign roles to users]({{< ref "cd-as-a-service/tasks/iam/manage-role-user" >}}) using the UI.
 
 All users must have at least one role in order to use CD-as-a-Service. If a user has login credentials but no role assigned, the user sees a blank **Deployments** screen after logging in.
 
@@ -88,6 +88,9 @@ You cannot modify or delete the Organization Admin role.
 
 ## SSO support
 
+@TODO document how to configure SSO in CDaaS
+
+If your organization uses SSO to
 
 ## Examples
 
@@ -117,16 +120,27 @@ roles:
         permission: full
 {{< /prism >}}
 
-If you want to grant a user permission to manage all tenants, give that user the **Organization Admin** role using the UI.
+If you want to grant a user permission to manage all of your tenants, assign that user the **Organization Admin** role using the UI.
 
-### Deployment role
+### Deployment roles
 
-This example defines a role that grants permission to use the **Deployments** UI and start deployments using the CLI.
+This example defines a role that grants permission to use the **Deployments** UI and start deployments using the CLI. The role is bound to the `finance` tenant.
 
 {{< prism lang="yaml" line-numbers="true" >}}
 roles:
   - name: Deployer
-    tenant: main
+    tenant: finance
+    grants:
+      - type: api
+        resource: deployment
+        permission: full
+{{< /prism >}}
+
+This example defines a role that grants permission to use the **Deployments** UI and start deployments using the CLI across your entire organization. Note that `tenant` is not defined, which makes this an organization-wide role.
+
+{{< prism lang="yaml" line-numbers="true" >}}
+roles:
+  - name: Deployer
     grants:
       - type: api
         resource: deployment
@@ -135,14 +149,19 @@ roles:
 
 ## {{% heading "nextSteps" %}}
 
-{{< linkWithTitle "cd-as-a-service/tasks/iam/create-role.md" >}}
+* {{< linkWithTitle "cd-as-a-service/tasks/iam/create-role.md" >}}
+* {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}
+* {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}
+* {{< linkWithTitle "cd-as-a-service/tutorials/access-management/rbac-users.md" >}} tutorial
 
 
 
+<br>
+<br>
 
 
-## Not for primetime
 <!--
+## Not for primetime
 aimee scratchpad
 
 
