@@ -89,7 +89,8 @@ See [Custom Halyard Configuration]({{< ref "op-advanced-config.md" >}}) if you n
 Deploy using `kubectl`:
 
 ```bash
-kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/SpinnakerService.yml
+kubectl create ns spinnaker
+kubectl -n spinnaker apply -f deploy/spinnaker/basic/SpinnakerService.yml
 ```
 
 {{% /tabbody %}}
@@ -125,7 +126,8 @@ spec:
 Deploy using `kubectl`:
 
 ```bash
-kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/spinnakerservice.yml
+kubectl create ns spinnaker
+kubectl -n spinnaker apply -f deploy/spinnaker/basic/spinnakerservice.yml
 ```
 
 {{% /tabbody %}}
@@ -134,13 +136,13 @@ kubectl -n spinnaker-operator apply -f deploy/spinnaker/basic/spinnakerservice.y
 You can watch the installation progress by executing:
 
 ```bash
-kubectl -n spinnaker-operator get spinsvc spinnaker -w
+kubectl -n spinnaker get spinsvc spinnaker -w
 ```
 
 You can verify pod status by executing:
 
 ```bash
- kubectl -n spinnaker-operator get pods
+ kubectl -n spinnaker get pods
  ```
 
 The included manifest file is only for a very basic installation.
@@ -226,19 +228,20 @@ spec:
 1. Deploy from the `/spinnaker-operator/deploy/spinnaker/kustomize/` directory:
 
    ```bash
-   kubectl -n spinnaker-operator apply -k .
+   kubectl create ns spinnaker
+   kubectl -n spinnaker apply -k .
    ```
 
 1. You can watch the installation progress by executing:
 
    ```bash
-   kubectl -n spinnaker-operator get spinsvc spinnaker -w
+   kubectl -n spinnaker get spinsvc spinnaker -w
    ```
 
 1. You can verify pod status by executing:
 
    ```bash
-   kubectl -n spinnaker-operator get pods
+   kubectl -n spinnaker get pods
    ```
 
 ## Help resources
