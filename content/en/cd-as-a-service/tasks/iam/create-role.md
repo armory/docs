@@ -14,6 +14,7 @@ By default, a new user has no permission to access functionality within CD-as-a-
 ## {{% heading "prereq" %}}
 
 * You are an Organization or Tenant Admin within CD-as-a-Service.
+* You have read {{< linkWithTitle "cd-as-a-service/concepts/iam/rbac.md" >}}.
 
 ## How to create a role
 
@@ -84,8 +85,9 @@ If your organization uses SSO with CD-as-a-Service, you must create your roles u
 
 1. Engineering-Lead
 1. Engineering-Deployment
+1. Engineering-Infra
 
-You want to use those groups in CD-as-a-Service, so you need to create roles for those SSO groups. In the following example, `Engineering-Lead` has a Tenant Admin role and `Engineering-Deployment` has a deployment role.
+You want to use those groups in CD-as-a-Service, so you need to create roles for those SSO groups. In the following example, `Engineering-Lead` has a Tenant Admin role, `Engineering-Deployment` has a deployment role.
 
 {{< prism lang="yaml" line-numbers="true" line="" >}}
 roles:
@@ -101,14 +103,13 @@ roles:
       - type: api
         resource: deployment
         permission: full
+  - name: Engineering-Infra
+    tenant: main
+    grants:
+      - type: api
+        resource: deployment
+        permission: full
 {{< /prism >}}
-
-During authentication, CD-as-a-Service maps a user's SSO group names to RBAC role names.
-
-{{% alert title="Caution" color="warning" %}}
-1. The SSO role does not appear in the UI. You cannot use CD-as-a-Service to assign an SSO role to a user.
-1. You cannot use CD-as-a-Service to inspect the SSO groups that a user belongs to.
-{{% /alert %}}
 
 ## {{% heading "nextSteps" %}}
 

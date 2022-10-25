@@ -7,6 +7,7 @@ description: >
 ## {{% heading "prereq" %}}
 
 * You are an Organization or Tenant Admin within CD-as-a-Service.
+* You have read {{< linkWithTitle "cd-as-a-service/concepts/iam/rbac.md" >}}.
 
 ## How to update a role
 
