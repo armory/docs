@@ -74,7 +74,7 @@ You can create an organization-wide role by omitting the `tenant` definition.
 
 A _Grant_ has type, resource, and permission attributes.
 
-`type` has a single choice: `api`. This means the Grant applies to the UI and CLI.
+`type` has a single choice: `api`. 
 
 `resource` has the following values:
 
