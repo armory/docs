@@ -5,4 +5,4 @@ version: 00.09.71
 
 ---
 
-Fix delete logical cluster cache record only when there are indeed not associated k8s objects to the cache event received. Before this change when we have a deployment with replicasSets that has 0 pods associated if we remove one of those replicas the logical cluster record on cache will be drop; making spinnaker UI to not show the deployment under cluster tab.
+Fix to delete logical cluster cache records only when the record is not associated with Kubernetes objects related to the cache event received. This resolves an issue where if a deployment with replicasSets that had 0 pods associated was removed, the replica was dropped from the logical cluster record, and the deployment was not listed in the Spinnaker UI Cluster tab.
