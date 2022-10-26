@@ -78,8 +78,8 @@ A _Grant_ has type, resource, and permission attributes.
 
 `resource` has the following values:
 
-* `tenant`: When you use `tenant` as the `resource`, the Grant is restricted to the tenant that you specify in the `roles.tenant` field. You use `tenant` when you define a [Tenant Admin role](#tenant-admin-role).
-* `deployment`: This resource restricts the role to deploying using the CLI and managing deployments in the **Deployments** UI. If you omit `roles.tenant`, the role has this Grant across your organization.
+* `tenant`: When you use `tenant` as the `resource`, the Grant allows access to the tenant that you specify in the `roles.tenant` field. You use `tenant` when you define a [Tenant Admin role](#tenant-admin-role).
+* `deployment`: This resource allows the role to deploy using the CLI and manage deployments in the **Deployments** UI. If you omit `roles.tenant`, the role has this Grant across your organization.
 * `organization`: You use this resource when you need to create an Organization Admin role that maps to an SSO group. See [SSO support](#sso-support) for more on mapping SSO groups to RBAC roles.
 
 `permission` has one option: `full`.
