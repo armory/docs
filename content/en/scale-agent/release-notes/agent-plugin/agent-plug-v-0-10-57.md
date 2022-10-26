@@ -5,4 +5,4 @@ version: 00.10.57
 
 ---
 
-Fix to cache namespaces independent of the `kubesvc.runtime.defaults.onlySpinnakerManaged` property value. This change allows the agent to recieve all Clouddriver accounts, mapped by namespace.
+Fix to cache namespaces independent of the `kubesvc.runtime.defaults.onlySpinnakerManaged` property value. This change allows agent plugin to retrieve all connected accounts using the `GET /credentials` endpoint.
