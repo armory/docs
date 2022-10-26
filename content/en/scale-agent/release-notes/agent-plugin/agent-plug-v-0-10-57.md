@@ -5,4 +5,4 @@ version: 00.10.57
 
 ---
 
-Fix to caching namespaces despide the value of `kubesvc.runtime.defaults.onlySpinnakerManaged` property; since the namespaces are use to provide the agent accounts clouddriver has
+Fix to cache namespaces independent of the `kubesvc.runtime.defaults.onlySpinnakerManaged` property value. This change allows the agent to recieve all Clouddriver accounts, mapped by namespace.
