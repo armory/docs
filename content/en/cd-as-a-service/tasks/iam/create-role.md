@@ -7,7 +7,7 @@ description: >
 
 ## Create a new RBAC role
 
-By default, a new user has no permission to access functionality within CD-as-a-Service. So before you invite a user, you need to create a role that defines what the user can see and do in the UI as well as from the CLI.
+By default, a new user has no permission to access functionality within CD-as-a-Service. You can assign a new user the Organization Admin role or create a custom role that defines what the user can see and do in the UI as well as from the CLI.
 
 >All users can start a deployment.
 
@@ -16,7 +16,7 @@ By default, a new user has no permission to access functionality within CD-as-a-
 * You are an Organization or Tenant Admin within CD-as-a-Service.
 * You have read {{< linkWithTitle "cd-as-a-service/concepts/iam/rbac.md" >}}.
 
-## How to create a role
+## How to create a custom role
 
 You define your roles in a YAML file using the following structure:
 
