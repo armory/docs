@@ -43,16 +43,16 @@ jobs:
           json: ${{ github.event.client_payload }}
 
       - name: generate template rendered for LTS
-        if: ${{ github.event.client_payload.prerelease == "false" }}
+        if: ${{ github.event.client_payload.prerelease == 'false' }}
         run: gomplate -d payload.json --file templates/spinnaker-release-notes.tmpl --out ${{ steps.build_output.outputs.path }}
 
       - name: generate template rendered for RC
-        if: ${{ github.event.client_payload.prerelease == "true" }}
+        if: ${{ github.event.client_payload.prerelease == 'true' }}
         run: gomplate -d payload.json --file templates/spinnaker-prerelease-release-notes.tmpl --out ${{ steps.build_output.outputs.path }}
 
       - name: Create Pull Request for LTS
         uses: peter-evans/create-pull-request@v3.10.1
-        if: ${{ github.event.client_payload.prerelease == "false" }}
+        if: ${{ github.event.client_payload.prerelease == 'false' }}
         with:
           token: ${{ secrets.ASTROLABE_GITHUB_TOKEN }}
           commit-message: "chore(release): add release notes for ${{ env.ARMORY_VERSION}}"
@@ -71,7 +71,7 @@ jobs:
 
       - name: Create Pull Request for Prerelease
         uses: peter-evans/create-pull-request@v3.10.1
-        if: ${{ github.event.client_payload.prerelease == "true" }}
+        if: ${{ github.event.client_payload.prerelease == 'true' }}
         with:
           token: ${{ secrets.ASTROLABE_GITHUB_TOKEN }}
           commit-message: "chore(release): add release notes for ${{ env.ARMORY_VERSION}}"
