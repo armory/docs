@@ -39,7 +39,7 @@ spec:
                   url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
 ```
 
-## How to use
+## Usage
 
 The plugin checks for any of the statuses the user has set in the properties and will update the Deploy (Manifest) stage
 pipeline accordingly. The plugin supports two ways to check for a Status in your Custom Resource while deploying using
@@ -47,6 +47,13 @@ Spinnaker:
 
 1. Kubernetes Conditions.
 2. Any other custom field(s).
+
+The plugin also checks that:
+
+* All the replicas associated have been updated to the latest version you've specified, meaning any updates you've
+  requested have been completed.
+* All the replicas associated with the Deployment are available.
+* No old replicas for the Deployment are running.
 
 ### Properties
 
