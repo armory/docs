@@ -106,7 +106,7 @@ Deployment validation works by mapping an OPA policy package to a Spinnaker depl
 
 ```json
 # Notice the package. The package maps to the task you want to create a policy for.
-package spinnaker.deployment.tasks.deployManifest
+package spinnaker.deployment.tasks.before.deployManifest
 
 deny[msg] {
     msg := "LoadBalancer Services must not have port 22 open."
