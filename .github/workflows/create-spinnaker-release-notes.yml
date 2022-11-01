@@ -30,9 +30,9 @@ jobs:
           versionWithDash=$(echo $ARMORY_VERSION | tr '.' '-')
           if [[ $IS_PRERELEASE = "true" ]]
           then
-            outputPath=$(printf "%srn-prerelease-armory-spinnaker/%s%s.md" $OUTPUT_BASE_FILE $OUTPUT_BASE_FILE $versionWithDash)
+            outputPath=$(printf "%srn-prerelease-armory-spinnaker/%s%s.md" $OUTPUT_BASE_FOLDER $OUTPUT_BASE_FILE $versionWithDash)
           else
-            outputPath=$(printf "%srn-armory-spinnaker/%s%s.md" $OUTPUT_BASE_FILE $OUTPUT_BASE_FILE $versionWithDash)
+            outputPath=$(printf "%srn-armory-spinnaker/%s%s.md" $OUTPUT_BASE_FOLDER $OUTPUT_BASE_FILE $versionWithDash)
           fi
           echo "##[set-output name=path;]$outputPath"
 
