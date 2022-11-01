@@ -1,0 +1,151 @@
+{
+  "armoryServices": [
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.1-rc1",
+      "name": "Armory Gate",
+      "previousVersion": "2.28.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.1-rc1",
+      "name": "Armory Igor",
+      "previousVersion": "2.28.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.1-rc1",
+      "name": "Armory Front50",
+      "previousVersion": "2.28.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.1-rc1",
+      "name": "Armory Kayenta",
+      "previousVersion": "2.28.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.1-rc1",
+      "name": "Armory Rosco",
+      "previousVersion": "2.28.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.1-rc1",
+      "name": "Armory Orca",
+      "previousVersion": "2.28.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.1-rc1",
+      "name": "Terraformer™",
+      "previousVersion": "2.28.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.1-rc1",
+      "name": "Armory Clouddriver",
+      "previousVersion": "2.28.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.1-rc1",
+      "name": "Armory Deck",
+      "previousVersion": "2.28.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.1-rc1",
+      "name": "Dinghy™",
+      "previousVersion": "2.28.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.1-rc1",
+      "name": "Armory Echo",
+      "previousVersion": "2.28.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.1-rc1",
+      "name": "Armory Fiat",
+      "previousVersion": "2.28.0"
+    }
+  ],
+  "armoryVersion": "2.28.1-rc1",
+  "ossServices": [],
+  "ossVersion": "1.28.1",
+  "prerelease": true,
+  "stack": {
+    "artifactSources": {
+      "dockerRegistry": "docker.io/armory"
+    },
+    "dependencies": {
+      "redis": {
+        "commit": null,
+        "version": "2:2.8.4-2"
+      }
+    },
+    "services": {
+      "clouddriver": {
+        "commit": "3b1c90e3afdb77f6a3b9b607f6f98d69cb8894a0",
+        "version": "2.28.1-rc1"
+      },
+      "deck": {
+        "commit": "108847b83576abf24d437a0c89015a65f337ec54",
+        "version": "2.28.1-rc1"
+      },
+      "dinghy": {
+        "commit": "1859781ad9a529c45f18693e239031cf1365fe1e",
+        "version": "2.28.1-rc1"
+      },
+      "echo": {
+        "commit": "508646c02d5053c63ca7892b613398cc012ba324",
+        "version": "2.28.1-rc1"
+      },
+      "fiat": {
+        "commit": "fce52482097b606389328d25d220be5eaaddab21",
+        "version": "2.28.1-rc1"
+      },
+      "front50": {
+        "commit": "1e5d3a5dfce38d26f809dee107d8145c00caa27e",
+        "version": "2.28.1-rc1"
+      },
+      "gate": {
+        "commit": "2b2b668ac5d4cbf126190baf450116de6aa0aa4a",
+        "version": "2.28.1-rc1"
+      },
+      "igor": {
+        "commit": "50db5b5e329651e8375eecda168b4b0e727f189e",
+        "version": "2.28.1-rc1"
+      },
+      "kayenta": {
+        "commit": "6004bfd90ad2e4fa9b02dddc26253210b8aa3a3c",
+        "version": "2.28.1-rc1"
+      },
+      "monitoring-daemon": {
+        "commit": null,
+        "version": "2.26.0"
+      },
+      "monitoring-third-party": {
+        "commit": null,
+        "version": "2.26.0"
+      },
+      "orca": {
+        "commit": "2315edcd8c918c3b2baceae6742c757cb9d36c38",
+        "version": "2.28.1-rc1"
+      },
+      "rosco": {
+        "commit": "ae14cddd90ed2b969dd3e0fd1c023383a36126b9",
+        "version": "2.28.1-rc1"
+      },
+      "terraformer": {
+        "commit": "bb576e57561db2d957c25e00992e24f53a223bd5",
+        "version": "2.28.1-rc1"
+      }
+    },
+    "timestamp": "2022-10-28 16:46:44",
+    "version": "2.28.1-rc1"
+  }
+}
