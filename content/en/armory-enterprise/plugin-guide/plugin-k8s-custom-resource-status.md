@@ -113,6 +113,18 @@ config:
 * Each list item under `fields` is a map. Every field per map has to match your expected values in the manifest. If the
   first map of fields do not match, it will proceed to check the next list item.
 
+#### Custom field syntax
+
+Values under `fields` have a custom syntax to access the value from the Manifest.
+
+Accepted field formats:
+
+* Simple: `field`
+* Nested: `field1.field2.field3`
+* Indexed: `field[index]`
+* Mapped: `field(key)`
+* Combined: `field1.field2[index].field3(key)`
+
 Full properties:
 
 ```yaml
