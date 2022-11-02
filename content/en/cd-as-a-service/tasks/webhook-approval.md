@@ -192,7 +192,5 @@ strategies:
 
 ## {{% heading "nextSteps" %}}
 
-For in-depth examples, see the following tutorials:
-
-* {{< linkWithTitle "webhook-github.md" >}}
-
+* {{< linkWithTitle "cd-as-a-service/tutorials/external-automation/webhook-github.md" >}}
+* {{< linkWithTitle "cd-as-a-service/troubleshooting/webhook.md" >}}
