@@ -184,6 +184,16 @@ The following table lists the plugins and their required minimum version:
 
 ## Known issues
 
+### Google App Engine account authentication
+
+The credentials endpoint changed on 1.28 and 2.28 as it went from Groovy to Java. The result of this is that users can not see any Google App Engine accounts listed when trying to run pipelines. Non-admin users also get "access denied" error when trying to run pipelines.
+
+**Workaround**:
+
+2.28.X or later: Replace the Clouddriver image in 2.28 with the Armory Clouddriver 2.27 image
+
+1.28.X or later: Replace the Clouddriver image in 1.28 with the OSS Clouddriver 1.27 image
+
 ### 403 and permission errors when upgrading to 2.28.x+
 
 Some users are reporting 403 and permission errors when upgrading to 2.28.x. Please reference this support article - [403 and permission errors when Upgrading to 2.28.x+ ](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010662&sys_kb_id=794f06ae1bda5550ec88b8c2cc4bcb67&spa=1) for more information.
