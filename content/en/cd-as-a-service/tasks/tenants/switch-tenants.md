@@ -6,10 +6,11 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-* You have a [custom Tenant Admin role]({{< ref "cd-as-a-service/tasks/iam/create-role#user-role-examples" >}}) that applies to more than one tenant **or** you have the Organization Admin role.
 * You have installed the CLI and are logged into CD-as-a-Service.
 
 ## View tenants
+
+>Non-Admin users only see tenants that they belong to. If they don't have a role belonging to a particular tenant, they don't see those tenants.
 
 You can use the CLI to view your tenants:
 
@@ -17,7 +18,7 @@ You can use the CLI to view your tenants:
 armory config get
 {{< /prism >}}
 
-Output shows the list of tenants. When you only have the default tenant, the output is:
+Output shows the list of tenants. When you only have access to the default tenant, the output is:
 
 {{< prism lang="bash" line-numbers="true" >}}
 tenants:
@@ -33,6 +34,6 @@ You use the UI to switch to the tenant whose resources you want to see. CD-as-a-
 {{< figure src="/images/cdaas/ui-switch-tenant.jpg" alt="Switch Tenant." >}}
 
 1. Access your user context menu.
-1. Hover over **Switch Tenant** to display a list of accessible tenants. 
+1. Hover over **Switch Tenant** to display a list of accessible tenants.
 1. Click the tenant you want to switch to.
 
