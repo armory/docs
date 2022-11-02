@@ -11,7 +11,7 @@ description: >
 
 ## Create tenants
 
-Every organization has a `main` tenant. You can create one or more additional tenants using a YAML file and the CLI. You YAML file should have the following structure:
+Every organization has a `main` tenant. You can create one or more additional tenants using a YAML file and the CLI. Your YAML file should have the following structure:
 
 {{< prism lang="yaml" line-numbers="true" line="" >}}
 tenants:
@@ -27,7 +27,7 @@ armory config apply -f <path-to-tenant-config.yaml>
 
 ## Example
 
-In the following example, you create tenants for each of your applications.
+In the following example, you create tenants for two applications and a sandbox.
 
 1. Create a file called `config.yaml`.
 1. Add the following content:
