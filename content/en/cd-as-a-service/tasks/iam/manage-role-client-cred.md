@@ -26,14 +26,10 @@ description: >
 1. Navigate to **Access Management** > **Client Credentials**.
 1. Find the Client Credential you want to update. Click the **pencil icon** to open the **Update** screen.
 1. In the **Update** screen, you can see a credential's roles listed below the **Select Roles** field.
-1. Each assigned role has an **x** next to it. Click the **x** to remove the role.
+1. Each assigned role has an **x** next to it. Click the **x** to revoke the role.
 
 >Make sure your Client Credential has at least one role!
 
 ## {{% heading "nextSteps" %}}
-
-* RBAC
-   * {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}
-   * {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}
 
 * {{< linkWithTitle "cd-as-a-service/troubleshooting/rbac.md" >}}
