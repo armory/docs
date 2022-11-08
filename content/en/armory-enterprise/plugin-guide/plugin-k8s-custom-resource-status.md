@@ -149,6 +149,19 @@ spinnaker:
                     field2: value2
                   - item2: valueX
           status:
+            stable:
+              markAsUnavailableUntilStable: false
+              failIfNoMatch: false
+              conditions:
+                - message:
+                  reason:
+                  status:
+                  type:
+                - status:
+                  type:
+              fields:
+                - field1: value1
+                - field2: value2
             failed:
               conditions:
                 - message:
@@ -232,10 +245,49 @@ spinnaker:
                   status.collisionCount: 0
 ```
 
-In this example, the plugin will check if the Manifest has any of the following conditions, if it matches with one, it
+In this example, the plugin will check if the Manifest has any of the following fields, if it matches with one, it
 will mark the deployment as `Stable`.
 
-##### Example 3: Explicitly check for a Stable status using Conditions & Custom Fields per Kind:
+##### Example 3: Mark as failed if status is not Stable with custom field:
+
+```yaml
+spinnaker:
+  extensibility:
+    plugins:
+      Armory.K8sCustomResourceStatus:
+        enabled: true
+        config:
+          status:
+            stable:
+              failIfNoMatch: true
+              fields:
+                - status.ready: True
+                  status.collisionCount: 0
+```
+
+In this example, if it doesn't find any of the fields, it will mark the deployment as failed.
+
+##### Example 4: Mark as unavailable if status is not Stable with custom field:
+
+```yaml
+spinnaker:
+  extensibility:
+    plugins:
+      Armory.K8sCustomResourceStatus:
+        enabled: true
+        config:
+          status:
+            stable:
+              markAsUnavailableUntilStable: true
+              fields:
+                - status.ready: True
+                  status.collisionCount: 0
+```
+
+In this example, if it doesn't find any of the fields, it will mark the deployment as unavailable and wait for the
+deployment to become stable. It will become stable until it finds any of the fields in the properties.
+
+##### Example 5: Explicitly check for a Stable status using Conditions & Custom Fields per Kind:
 
 ```yaml
 spinnaker:
