@@ -12,4 +12,9 @@
 
    _Removing a preconfigured scope group does not remove the permissions that a preconfigured scope group assigns. You must remove the permissions manually._
 
-1. Note both the `Client ID` and `Client Secret`. You need these values when configuring the RNA or any other service that you want to grant access to. Make sure to store the secret somewhere safe. You are not shown the value again.
+1. Select an RBAC role from the **Select Roles** list. You must assign an [RBAC role]({{< ref "cd-as-a-service/concepts/iam/rbac" >}}) in order for the credential to access CD-as-a-Service.
+
+   * If the credential for is an RNA, select **Remote Network Agent**.
+   * If you plan to use the credential to deploy from a GitHub Action or similar tool, select **Deployments Full Access**.
+
+1. Note the values for both **Client ID** and **Client Secret**. You need these values when configuring the RNA or any other service that you want to grant access to. Make sure to store the secret somewhere safe. You are not shown the value again.

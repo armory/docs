@@ -86,19 +86,26 @@ A _Grant_ has type, resource, and permission attributes.
 
 CD-as-a-Service has the following system roles:
 
-* _Organization Admin_
+* Organization Admin
   * Grants:  
+
       * UI - full access to all screens and functionality
       * CLI -  full authority to execute all CLI commands
+
   * Assignment:  
+
       * CD-as-a-Service assigns this role to the person who creates a new CD-as-a-Service account (Organization).
       * You are able to manually assign the Organization Admin role to all users you invite to your Organization, thus bypassing the need to create custom RBAC roles.
-* _Deployments Full Access_:
+
+* Deployments Full Access
+
   * Grants:
       * This role grants full authority to trigger deployments.
   * Assignment:
       * Assign this role to Client Credentials that you plan to use with CI tools like GitHub Actions.
-* _Remote Network Agent_:
+
+* Remote Network Agent
+
   * Grants:
       * This role grants a Remote Network Agent access to CD--as-a-Service.
   * Assignment:
@@ -212,7 +219,7 @@ During authentication, CD-as-a-Service maps a user's SSO groups to your defined 
 
 ## {{% heading "nextSteps" %}}
 
-* Tasks: {{< linkWithTitle "cd-as-a-service/tasks/iam/create-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}
+* Tasks: {{< linkWithTitle "cd-as-a-service/tasks/iam/create-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/invite-users.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/client-creds.md" >}}
 * Tutorial: {{< linkWithTitle "cd-as-a-service/tutorials/access-management/rbac-users.md" >}}
 * {{< linkWithTitle "cd-as-a-service/troubleshooting/rbac.md" >}}
 
