@@ -16,7 +16,7 @@ For information about how to use the stage, see {{< linkWithTitle "evaluate-arti
 
 ## {{% heading "prereq" %}}
 
-* If you are new to enabling plugins, read the [Plugin Users Guide](https://spinnaker.io/guides/user/plugins/) to familiarize yourself with how plugins to Armory Enterprise work.
+* If you are new to enabling plugins, read Spinnaker's [Plugin Users Guide](https://spinnaker.io/docs/guides/user/plugins-users/) to familiarize yourself with how plugins to Armory Enterprise work.
 * The Evaluate Artifacts Stage requires Armory Enterprise 2.24.x or later (Spinnaker 1.24.x or later)
 
 
