@@ -54,8 +54,6 @@ classDiagram
 
 Central to CD-as-a-Service's [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control) implementation is a _Role_, which defines what a user can do within the platform. Each Role has a _Grants_ collection that defines permissions.
 
-The _Organization_ is the **Company** name you enter when signing up. The system-defined _Organization Admin_ role is a platform-wide role that has superuser permissions. CD-as-a-Service assigns this role to the person who creates a new CD-as-a-Service account. In the UI, an Organization Admin role has full access to all screens and functionality. Additionally, the Organization Admin role has full authority to execute all CLI commands. You are able to manually assign the Organization Admin role to all users you invite to your Organization, thus bypassing the need to create custom RBAC roles.
-
 You define your custom RBAC roles in a YAML file that has this structure:
 
 {{< prism lang="yaml" line-numbers="true" >}}
@@ -76,7 +74,7 @@ A _Grant_ has type, resource, and permission attributes.
 
 `type` has a single choice: `api`.
 
-`resource` has the following values:
+`resource` defines what area the Grant can access. It has the following values:
 
 * `tenant`: When you use `tenant` as the `resource`, the Grant allows access to the tenant that you specify in the `roles.tenant` field. You use `tenant` when you define a [Tenant Admin role](#tenant-admin-role).
 * `deployment`: This resource allows the role to deploy using the CLI and manage deployments in the **Deployments** UI. If you omit `roles.tenant`, the role has this Grant across your organization.
@@ -84,7 +82,37 @@ A _Grant_ has type, resource, and permission attributes.
 
 `permission` has one option: `full`.
 
-## Examples
+### System roles
+
+CD-as-a-Service provides the following system roles:
+
+* Organization Admin
+  * Grants:  
+
+      * UI - full access to all screens and functionality
+      * CLI -  full authority to execute all CLI commands
+
+  * Assignment:  
+
+      * CD-as-a-Service assigns this role to the person who creates a new CD-as-a-Service account (Organization).
+      * You are able to manually assign the Organization Admin role to all users you invite to your Organization, thus bypassing the need to create custom RBAC roles.
+
+* Deployments Full Access
+
+  * Grants:
+      * This role grants full authority to trigger deployments.
+  * Assignment:
+      * Assign this role to Client Credentials that you plan to use with CI tools like GitHub Actions.
+
+* Remote Network Agent
+
+  * Grants:
+      * This role grants a Remote Network Agent access to CD--as-a-Service.
+  * Assignment:
+      * Assign this role to all Client Credentials you create to use with Remote Network Agents.
+
+
+## Custom role examples
 
 ### Tenant Admin role
 
@@ -140,13 +168,13 @@ roles:
 {{< /prism >}}
 
 
-## Assign roles to users
+## Assign roles
 
 After you define your roles, you use the CLI to [add your roles]({{< ref "cd-as-a-service/tasks/iam/create-role" >}}) to your CD-as-a-Service Organization. You do all subsequent role management with the CLI, but you [assign roles to users]({{< ref "cd-as-a-service/tasks/iam/manage-role-user" >}}) using the UI.
 
-All users must have at least one role in order to use CD-as-a-Service. You can assign the Organization Admin role or a custom role. If a user has login credentials but no role assigned, the user sees a blank **Deployments** screen after logging in:
+All users must have at least one role in order to use CD-as-a-Service. You can assign the Organization Admin role or a custom role. If a user has login credentials but no role assigned, the user sees a blank **Deployments** screen after logging in.
 
-{{< figure src="/images/cdaas/user-no-role.png" alt="User sees the Deployments screen with no deployments." height="75%" width="75%">}}
+A Client Credential must also have an RBAC role to access CD-as-a-Service functionality. See {{< linkWithTitle "cd-as-a-service/tasks/iam/client-creds.md" >}} for how to assign a role to a Client Credential.
 
 ## SSO groups and RBAC roles
 
@@ -191,7 +219,7 @@ During authentication, CD-as-a-Service maps a user's SSO groups to your defined 
 
 ## {{% heading "nextSteps" %}}
 
-* Tasks: {{< linkWithTitle "cd-as-a-service/tasks/iam/create-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}
+* Tasks: {{< linkWithTitle "cd-as-a-service/tasks/iam/create-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/invite-users.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/client-creds.md" >}}
 * Tutorial: {{< linkWithTitle "cd-as-a-service/tutorials/access-management/rbac-users.md" >}}
 * {{< linkWithTitle "cd-as-a-service/troubleshooting/rbac.md" >}}
 
