@@ -30,12 +30,12 @@ You need to create credentials that enable GitHub and Armory CD-as-a-Service to 
 
    Replace `<gigithub_personal_access_tokenn_value>` with your token value. You use this secret when configuring your webhook in your deployment file.
 
-1. Create a new Armory CD-as-a-Service credential for your webhook callback to use to authenticate to Armory CD-as-a-Service. In the CD-as-a-Service Console, go to the **Access Management** > **Client Credentials** screen. Click the **New Credential** button. On the **Create New Client Credential** screen:
+1. [Create a new CD-as-a-Service credential]({{< ref "cd-as-a-service/tasks/iam/client-creds" >}}) for your webhook callback to use for CD-as-a-Service authentication. In the CD-as-a-Service Console, go to the **Access Management** > **Client Credentials** screen. Click the **New Credential** button. On the **Create New Client Credential** screen:
 
    - **Name**: `github_webhooks`
-   - **Preconfigured Scope Group**: select `Deployments using Spinnaker`
+   - **Select Roles**: select `Deployments Full Access`
 
-   Click **Create Credentials**. Copy the **Client ID** and **Client Secret** values for use in the next step.
+   Click **Create Credential**. Copy the **Client ID** and **Client Secret** values for use in the next step.
 
 1. Create two GitHub repo secrets in your fork of the `docs-cdaas-sample` repo. See GitHub's [Creating encrypted secrets for a repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for instructions. Your webhook callback uses the value of these secrets to authenticate to Armory CD-as-a-Service. Create your repo secrets with the following names and values:
 

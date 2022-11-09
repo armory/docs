@@ -17,7 +17,7 @@ description: >
 1. Navigate to **Access Management** > **Client Credentials**.
 1. Find the credential you want to update. Click the **pencil icon** to open the **Update** screen.
 1. In the **Update** screen, place your cursor in the **Select Roles** field and click.
-1. Select a role from the drop-down list. Repeat if you want to assign the credential more than one role. Selected rolcleares appear below the **Select Roles** drop-down list.
+1. Select a role from the drop-down list. Repeat if you want to assign the credential more than one role. Selected roles appear below the **Select Roles** drop-down list.
 1. Click the **Update Credential** button.
 
 ## How to revoke a role

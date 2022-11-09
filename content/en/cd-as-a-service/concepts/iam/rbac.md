@@ -84,7 +84,7 @@ A _Grant_ has type, resource, and permission attributes.
 
 ### System roles
 
-CD-as-a-Service has the following system roles:
+CD-as-a-Service provides the following system roles:
 
 * Organization Admin
   * Grants:  

@@ -56,17 +56,9 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 1. [Register](https://go.armory.io/signup/) to use Armory CD-as-a-Service.
 1. Register your Armory Enterprise [environment]({{< ref "ae-instance-reg" >}}).
 
-## Create client credentials for your Agents
+## Create credentials for your Remote Network Agent
 
-1. Log in to the [CD-as-a-Service Console](https://console.cloud.armory.io/).
-1. In the left navigation menu, select **Access Management > Client Credentials**.
-1. In the upper right corner, select **New Credential**.
-1. Create a credential for your RNA. Use a descriptive name for the credential, such as `us-west RNA`
-1. Set the permission scope to `connect:agentHub`.
-
-   > Removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
-
-1. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Armory CD-as-a-Service. Make sure to store the secret somewhere safe. You are not shown the value again.
+{{< include "cdaas/client-creds.md" >}}
 
 ## Enable the Armory CD-as-a-Service Remote Network Agent in target Kubernetes clusters
 
