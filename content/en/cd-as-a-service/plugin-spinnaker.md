@@ -1,8 +1,8 @@
 ---
-title: Armory CD-as-a-Service Plugin for Armory Enterprise and Spinnaker
+title: Armory CD-as-a-Service Plugin for Armory CD and Spinnaker
 linkTitle: Spinnaker Plugin
 description: >
-  Use this guide to install the Armory Continuous Deployment-as-a-Service plugin for Spinnaker and Armory Enterprise. This plugin enables performing canary and blue/green deployments in a single stage.
+  Use this guide to install the Armory Continuous Deployment-as-a-Service plugin for Spinnaker and Armory CD. This plugin enables performing canary and blue/green deployments in a single stage.
 weight: 500
 ---
 
@@ -28,9 +28,9 @@ You can find the plugin release notes in the [Armory CD-as-a-Service release not
 
 Verify that you meet or can meet these requirements before getting started.
 
-### Armory Enterprise (Spinnaker)
+### Armory CD (Spinnaker)
 
-Your Armory Enterprise (or open source Spinnaker) instance must meet the following requirements:
+Your Armory CD (or open source Spinnaker) instance must meet the following requirements:
 
 - Version 2.24 or later (or Spinnaker 1.24 or later)
 - A supported Operator version. For information about what version of Operator is supported, see the [release notes]({{< ref "rn-armory-spinnaker" >}}) for your Armory Enterprise version.
@@ -56,7 +56,7 @@ Register your Armory Enterprise environment so that it can communicate with Armo
 1. [Register](https://go.armory.io/signup/) to use Armory CD-as-a-Service.
 1. Register your Armory Enterprise [environment]({{< ref "ae-instance-reg" >}}).
 
-## Create credentials for your Remote Network Agent
+## Create a credential for your Remote Network Agent
 
 {{< include "cdaas/client-creds.md" >}}
 
@@ -68,11 +68,11 @@ This section walks you through installing the Remote Network Agent (RNA) using a
 
 ### Verify the Agent deployment
 
-Go to the [Agents page in the Configuration UI](https://console.cloud.armory.io/configuration/agents) and verify the connection. If you do not see your cluster, verify that you are in the correct Armory CD-as-a-Service environment.
+Go to the [Agents page in the Configuration UI](https://console.cloud.armory.io/configuration/agents) and verify the connection. If you do not see your cluster, verify that you are in the correct CD-as-a-Service tenant.
 
 > Note that you may see a "No Data message" when first loading the Agent page.
 
-{{< figure src="/images/cdaas/ui-rna-status.jpg" alt="The Connected Remote Network Agents page shows connected agents and the following information: Agent Identifier, Agent Version, Connection Time when the connection was established, Last Heartbeat time, Client ID, and IP Address." >}}
+{{< figure src="/images/cdaas/ui-rna-status.jpg" alt="The Connected Remote Network Agents page shows connected Agents and the following information: Agent Identifier, Agent Version, Connection Time when the connection was established, Last Heartbeat time, Client ID, and IP Address." >}}
 
 
 

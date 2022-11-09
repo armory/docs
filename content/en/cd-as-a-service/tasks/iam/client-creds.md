@@ -1,12 +1,12 @@
 ---
 title: Create Client Credentials
 description: >
-  Create machine-to-machine client credentials and assign RBAC roles to them in Armory CD-as-a-Service.
+  Create machine-to-machine credentials and assign RBAC roles to them in Armory CD-as-a-Service.
 ---
 
 ## Overview
 
-A Client Credential is a machine-to-machine credential that the CLI uses to authenticate with your Armory CD-as-a-Service environment when you trigger deployments as part of an external automated workflow. You pass the credential through the `clientID` and `clientSecret` parameters.
+A _Client Credential_ is a machine-to-machine credential that the CLI uses to authenticate with CD-as-a-Service when you trigger deployments as part of an external automated workflow. You pass the credential through the `clientID` and `clientSecret` parameters.
 
 Additionally, a Remote Network Agent uses a Client Credential for authentication when communicating with CD-as-a-Service.
 

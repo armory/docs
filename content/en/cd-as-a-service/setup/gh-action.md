@@ -12,15 +12,15 @@ description: >
 If you have previously configured Armory CD-as-a-Service for your deployment target, you can skip to step 3.
 
 1. Review the full set of requirements for Armory CD-as-a-Service at [System Requirements]({{< ref "requirements" >}}).
-1. If you have already prepared a deployment target for Armory CD-as-a-Service, skip this step. If you have not, complete the {{< linkWithTitle "get-started.md" >}} tasks, which include the following:
+2. If you have already prepared a deployment target for Armory CD-as-a-Service, skip this step. If you have not, complete the {{< linkWithTitle "get-started.md" >}} tasks, which include the following:
 
    - [Register for Armory CD-as-a-Service]({{< ref "cd-as-a-service/setup/get-started" >}}).
    - [Create machine-to-machine client credentials]({{< ref "client-creds" >}}) for the Remote Network Agent (RNA), which you install on your deployment target cluster.
    - Add a Kubernetes Cluster by installing the RNA.
 
-1. [Create credentials]({{< ref "cd-as-a-service/tasks/iam/client-creds" >}}) for your GitHub Action to use to connect to CD-as-a-Service. Assign the `Deployments Full Access` role to your credential.
+3. [Create a credential]({{< ref "cd-as-a-service/tasks/iam/client-creds" >}}) for your GitHub Action to use to connect to CD-as-a-Service. Assign the `Deployments Full Access` role to your credential.
 
-1. Encrypt the GitHub Action service account credentials so that you can use them securely in the action. Create a secret for the Client ID and a separate secret for the Client Secret.
+4. Encrypt the GitHub Action service account credentials so that you can use them securely in the action. Create a secret for the Client ID and a separate secret for the Client Secret.
 
    Use descriptive name for these two values. You use the name to reference them in the GitHub Action.
 
