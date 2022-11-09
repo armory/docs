@@ -74,7 +74,7 @@ A _Grant_ has type, resource, and permission attributes.
 
 `type` has a single choice: `api`.
 
-`resource` defines what the Grant can access and has the following values:
+`resource` defines what area the Grant can access. It has the following values:
 
 * `tenant`: When you use `tenant` as the `resource`, the Grant allows access to the tenant that you specify in the `roles.tenant` field. You use `tenant` when you define a [Tenant Admin role](#tenant-admin-role).
 * `deployment`: This resource allows the role to deploy using the CLI and manage deployments in the **Deployments** UI. If you omit `roles.tenant`, the role has this Grant across your organization.
