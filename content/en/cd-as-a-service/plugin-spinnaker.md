@@ -221,7 +221,7 @@ hal deploy apply
 1. Check that all the services are up and running:
 
    ```bash
-   kubectl -n <Armory-Enterprise-namespace> get pods
+   kubectl -n <Armory-CD-namespace> get pods
    ```
 
 2. Navigate to the Armory CD UI.
