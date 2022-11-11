@@ -184,6 +184,12 @@ The following table lists the plugins and their required minimum version:
 
 ## Known issues
 
+### **Application Attributes** section displays "This Application has not been configured"
+
+There is a known issue that relates to the **Application Attributes** section under the **Config** menu. An application that was already created and configured in Spinnaker displays the message, “This application has not been configured.” While the information is missing, there is no functional impact.
+
+**Affected versions**: Armory CD 2.28.0
+
 ### Google App Engine account authentication
 
 Spinnaker 1.28 introduced a new API to allow adding accounts to Spinnaker.  This change required all existing providers to register themselves with the credentials repo system.  Several cloud providers were missed as part of the migration, including Google and AppEngine providers. It’s possible other non-supported providers may also be broken.  The result of this is that users cannot see any Google or App Engine accounts listed in the UI, and non-admin users get an Access Denied error when trying to run pipelines as no permissions are granted.  Admins can still deploy to these accounts since they bypass any permissions restrictions.
