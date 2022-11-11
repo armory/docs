@@ -2,11 +2,13 @@ API
 Armory
 Armory Agent
 Armory Operator
+Armory Version Manager
 artifactory
 Artifactory
 Astra
 AWS
 Bitbucket
+CDaaS
 CLI
 clouddriver
 Clouddriver
@@ -61,6 +63,7 @@ namespaces
 OpenShift
 Orca
 Postgres
+powershell
 Prometheus
 rawdata
 Redis
@@ -75,11 +78,16 @@ Spinnaker
 SpinnakerService
 spinnakerservice
 spinsvc
+Splunk
 SQL
+tabbody
 .yml
 yml
 .yaml
 yaml
+YAML
+"yaml"
+zsh
 {{< heading "prereq" >}}
 {{% heading "prereq" %}}
 {{% heading "nextSteps" %}}

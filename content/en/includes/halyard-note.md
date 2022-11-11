@@ -1,1 +1,0 @@
->Visit the [Armory-extended Halyard Release Notes page]({{< ref "rn-armory-halyard" >}}) for a list of available Armory-extended Halyard versions and their release notes. You can view version differences as well as which versions are compatible with which Armory releases.

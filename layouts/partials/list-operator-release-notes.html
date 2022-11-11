@@ -16,12 +16,12 @@
       {{end}}
     {{ end }}
   </ul>
-  <div>OSS Operator:</div>
+  <div>Open Source Operator:</div>
   <ul>
     {{ range $pagesReverse }}
       {{ if eq .Parent $parent }}
 
-        {{ if in .Title "OSS" }}
+        {{ if in .Title "Operator for Spinnaker" }}
         <li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
         {{end}}
 

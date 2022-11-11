@@ -7,3 +7,6 @@ tech-doc-hugo
 utils/vendor/
 .vscode/
 .env
+# Local Netlify folder
+.netlify
+.hugo_build.lock

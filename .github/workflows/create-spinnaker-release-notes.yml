@@ -1,0 +1,90 @@
+name: Create Spinnaker Release Notes
+
+on:
+  repository_dispatch:
+    types: CreateSpinnakerReleaseNotes
+
+jobs:
+  create_spinnaker_release_notes:
+    runs-on: ubuntu-latest
+    container:
+      image: hairyhenderson/gomplate:alpine
+    env:
+      ARMORY_VERSION: ${{ github.event.client_payload.armoryVersion }}
+      IS_PRERELEASE: ${{ github.event.client_payload.prerelease }}
+      OUTPUT_BASE_FOLDER: 'content/en/armory-enterprise/release-notes/'
+      OUTPUT_BASE_FILE: 'armoryspinnaker_v'
+    steps:
+      - name: Install dependencies
+        run: apk --no-cache add git
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Workaround pull-request-creation-peter-evans
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: build output file path
+        id: build_output
+        run: |
+          versionWithDash=$(echo $ARMORY_VERSION | tr '.' '-')
+          if [[ $IS_PRERELEASE = "true" ]]
+          then
+            outputPath=$(printf "%srn-prerelease-armory-spinnaker/%s%s.md" $OUTPUT_BASE_FOLDER $OUTPUT_BASE_FILE $versionWithDash)
+          else
+            outputPath=$(printf "%srn-armory-spinnaker/%s%s.md" $OUTPUT_BASE_FOLDER $OUTPUT_BASE_FILE $versionWithDash)
+          fi
+          echo "##[set-output name=path;]$outputPath"
+
+      - name: build json with payload
+        uses: jsdaniell/create-json@v1.2.1
+        with:
+          name: "payload.json"
+          json: ${{ toJson(github.event.client_payload) }}
+
+      - name: generate template rendered for LTS
+        if: ${{ github.event.client_payload.prerelease == false }}
+        run: gomplate -d payload.json --file templates/spinnaker-release-notes.tmpl --out ${{ steps.build_output.outputs.path }}
+
+      - name: generate template rendered for RC
+        if: ${{ github.event.client_payload.prerelease == true }}
+        run: gomplate -d payload.json --file templates/spinnaker-prerelease-release-notes.tmpl --out ${{ steps.build_output.outputs.path }}
+
+      - name: Create Pull Request for LTS
+        uses: peter-evans/create-pull-request@v3.10.1
+        if: ${{ github.event.client_payload.prerelease == false }}
+        with:
+          token: ${{ secrets.ASTROLABE_GITHUB_TOKEN }}
+          commit-message: "chore(release): add release notes for ${{ env.ARMORY_VERSION}}"
+          branch: "release-notes-${{ env.ARMORY_VERSION}}"
+          branch-suffix: timestamp
+          base: master
+          title: "chore(release): add release notes for ${{ env.ARMORY_VERSION}}"
+          labels: |
+            releaseNotesUpdate
+            ${{ github.event.client_payload.armoryVersion }}
+          body: |
+            Event
+            ```
+            ${{ toJson(github.event.client_payload) }}
+            ```
+
+      - name: Create Pull Request for Prerelease
+        uses: peter-evans/create-pull-request@v3.10.1
+        if: ${{ github.event.client_payload.prerelease == true }}
+        with:
+          token: ${{ secrets.ASTROLABE_GITHUB_TOKEN }}
+          commit-message: "chore(release): add release notes for ${{ env.ARMORY_VERSION}}"
+          branch: "release-notes-${{ env.ARMORY_VERSION}}"
+          branch-suffix: timestamp
+          base: master
+          title: "chore(release): add release notes for ${{ env.ARMORY_VERSION}}"
+          labels: |
+            releaseNotesUpdate
+            ${{ github.event.client_payload.armoryVersion }}
+            automerge
+          body: |
+            Event
+            ```
+            ${{ toJson(github.event.client_payload) }}
+            ```

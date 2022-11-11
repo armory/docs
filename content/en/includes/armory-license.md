@@ -1,1 +1,1 @@
-> Armory Enterprise requires a license. For more information, contact [Armory](https://www.armory.io/contact-us/).
+> Armory Continuous Deployment (Armory CD) requires a license. For more information, contact [Armory](https://www.armory.io/contact-us/).

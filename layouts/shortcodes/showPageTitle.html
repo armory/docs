@@ -1,0 +1,6 @@
+{{/* surrounding a string field with - is supposed to remove the whitespace before rendering https://gohugo.io/templates/introduction/#whitespace  */}}
+{{- $fileName := .Get 0 -}}
+{{- with .Site.GetPage $fileName -}}
+{{- .Title -}}{{ else }}
+{{- errorf "linkWithTitle file not found: %s %s" $fileName .Position -}}
+{{- end -}}
