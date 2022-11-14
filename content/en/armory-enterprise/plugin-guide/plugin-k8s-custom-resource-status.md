@@ -13,7 +13,7 @@ description: >
 | Plugin | Spinnaker Platform | Armory Spinnaker Platform |
 |:-------|:-------------------|:--------------------------|
 | 1.0.0  | 1.27.x, 1.28.x     | 2.27.x, 2.28.x            |
-| 2.0.0  | 1.27.x, 1.28.x     | 2.27.x, 2.28.x            |
+| 2.0.x  | 1.27.x, 1.28.x     | 2.27.x, 2.28.x            |
 
 ## Configuration
 
@@ -33,7 +33,7 @@ spec:
             plugins:
               Armory.K8sCustomResourceStatus:
                 enabled: true
-                version: 2.0.0
+                version: 2.0.1
               repositories:
                 pluginRepository:
                   url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
