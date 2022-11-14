@@ -70,9 +70,6 @@ Under `config`, you can split the statuses per kind or set statuses that apply t
 
 * If you set any statuses under a specific `kind`, whenever you deploy that `kind`, the plugin will check for those
   statuses in isolation and not any other values from other kinds or the general list under `status`.
-* When setting statuses per `kind`, use the full kind name `kind`+ `.`+`apiVersion` if your Manifest has
-  the `apiVersion`
-  field.
 
 Example Custom Resource Manifest
 
@@ -86,21 +83,12 @@ spec:
   image: my-awesome-cron-image
 ```
 
-Using this Custom Resource, your properties should use the full name since it has the `apiVersion`
+Example config
 
 ```yaml
 config:
   kind:
-    CronTab.stable.example.com/v1: # The name of your Custom Resource
-      failed:
-```
-
-If you do not have `apiVersion`, the concatenation is not needed.
-
-```yaml
-config:
-  kind:
-    CronTab: # The name of your Custom Resource
+    CronTab: # The kind of your Custom Resource
       failed:
 ```
 
@@ -510,4 +498,5 @@ spinnaker:
 ## Release Notes
 
 * v1.0.0 Initial release - 09/09/2022
-* v2.0.0 Support multiple statuses - 28/10/2022
+* v2.0.0 Support multiple statuses - 10/28/2022
+* v2.0.1 Bug fixes - 10/14/2022
