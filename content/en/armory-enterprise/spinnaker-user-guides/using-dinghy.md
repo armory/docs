@@ -110,7 +110,7 @@ Make sure you specify the following fields so that the Dinghyfile can create a p
 
 * `.application`: The name of the application where pipelines will be created or updated.  If the application does not exist, it will be created.
 * `.globals`: Configuration used to define top-level variables. See [top-level variables](#top-level-variables) for more information.
-* `.globals.save_app_on_update`:  Flag that allows updates to application properties. Ssee [see Application updates](#application-updates) for more information.
+* `.globals.save_app_on_update`:  Flag that allows updates to application properties. See [Application updates](#application-updates) for more information.
 * `.appmetadata`: Key/value pairs where you can define application metadata, such as whether Canary analysis is enabled. You can retrieve a list of potential configs by opening the developer console for your browser when viewing the **Config** page of an application. Look for the possible parameters under the `spinnaker.application.attributes` key. Note that no validation is done for this field.
 * `.appmetadata.dataSources.enabled`:  An array of features that will be displayed on Armory Enterprise.
 * `.appmetadata.dataSources.disabled`: An array of features that will not be displayed on Armory Enterprise.
