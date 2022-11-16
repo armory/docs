@@ -117,6 +117,10 @@
   from = "/armory-enterprise/armory-agent/*"
   to = "/scale-agent/"
 
+[[redirects]]
+  from = "/armory-enterprise/plugin-guide/cdaas-spinnaker/"
+  to = "/cd-as-a-service/plugin-spinnaker/"
+
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
 package = "@netlify/plugin-sitemap"
