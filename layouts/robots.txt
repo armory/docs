@@ -4,6 +4,7 @@ User-agent: *
 Disallow: /armory-enterprise/plugin-guide/plugin-appname/
 Disallow: /armory-enterprise/plugin-guide/plugin-external-account/
 Disallow: /armory-enterprise/plugin-guide/plugin-iam-authentication/
+Disallow: /armory-enterprise/plugin-guide/cdaas-spinnaker/
 Disallow: /armory-enterprise/feature-status/deprecations/pacrd-deprecation/
 Disallow: /armory-enterprise/installation/deployment-reg/
 Disallow: /managed-spin/
