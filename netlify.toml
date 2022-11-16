@@ -120,6 +120,7 @@
 [[redirects]]
   from = "/armory-enterprise/plugin-guide/cdaas-spinnaker/"
   to = "/cd-as-a-service/plugin-spinnaker/"
+  force = true # ensure this always redirects because cdaas-spinnaker does exist
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
