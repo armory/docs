@@ -17,7 +17,7 @@ great code rather than deploying it. By automating code deployment across all of
 
 See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture" >}}) and [System Requirements]({{< ref "cd-as-a-service/release-notes/requirements">}}) pages for details.
 
-For a full list of features and pricing, see the [Armory Continuous Deployment-as-a-Service product page](https://www.armory.io/products/continuous-deployment-as-a-service/).
+For a full list of features and pricing, see [Armory Continuous Deployment-as-a-Service](https://www.armory.io/products/continuous-deployment-as-a-service/).
 
 ## Start using Armory CD-as-a-Service
 
