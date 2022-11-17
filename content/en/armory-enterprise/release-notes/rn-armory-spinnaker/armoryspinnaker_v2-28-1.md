@@ -1,7 +1,7 @@
 ---
 title: v2.28.1 Armory Release (OSS Spinnaker™ v1.28.1)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
+version: 02.28.1
 description: >
   Release notes for Armory Enterprise v2.28.1
 ---
@@ -13,8 +13,7 @@ description: >
 
 To install, upgrade, or configure Armory 2.28.1, use one of the following tools:
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+- Armory Operator 1.6.0 or later
 
 ## Security
 
@@ -25,10 +24,32 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
+{{< include "breaking-changes/bc-hal-deprecation.md" >}}
+
+{{< include "breaking-changes/bc-kubectl-120.md" >}}
+
+#### Plugin compatibility
+
+{{< include "breaking-changes/bc-plug-version-lts-228.md" >}}
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+{{< include "known-issues/ki-artifact-binding-spel.md" >}}
+
+{{< include "known-issues/ki-dinghy-gh-notifications.md" >}}
+
+{{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
+
 ## Highlighted updates
+
+### General Fixes
+  * Terraform 0.12 Now Supported - Restored support for Terraform 0.12 in version 2.28.1
+  * Update for Kubernetes v2 provider accounts that use the aws-iam-authenticator - Fixed failures for the Kubernetes V2 provider accounts that still use client.authentication.k8s.io/v1alpha1. This bug was introduced in 2.28.0.
+  * Dinghy Vault Passwords - Fixed an issue where Dinghy fails to start when Vault password contains an exclamation point
+  * Revision History Display - Addressed an issue where the revision history was not showing the timestamp of the revision
+  * Automated Triggers Permissions - Fixed an issue where permissions defined under "Automated Triggers" become empty after a triggered pipeline updat
+  
 
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
