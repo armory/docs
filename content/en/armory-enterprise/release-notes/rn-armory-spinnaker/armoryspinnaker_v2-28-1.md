@@ -28,6 +28,9 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "breaking-changes/bc-kubectl-120.md" >}}
 
+### Breaking change for Orca goes here
+ 
+
 #### Plugin compatibility
 
 {{< include "breaking-changes/bc-plug-version-lts-228.md" >}}
@@ -41,14 +44,20 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
 
+### Known issue for Application Attributes section goes here
+
+### Known issue for 403 and permission errors when upgrading to 2.28.x+ goes here
+
+### Known issue for Git artifact constraints (triggers) are broken goes here
+
 ## Highlighted updates
 
 ### General Fixes
-  * Terraform 0.12 Now Supported - Restored support for Terraform 0.12 in version 2.28.1
+  * Terraform 0.12 Now Supported - Restored support for Terraform 0.12 in version 2.28.1.
   * Update for Kubernetes v2 provider accounts that use the aws-iam-authenticator - Fixed failures for the Kubernetes V2 provider accounts that still use client.authentication.k8s.io/v1alpha1. This bug was introduced in 2.28.0.
-  * Dinghy Vault Passwords - Fixed an issue where Dinghy fails to start when Vault password contains an exclamation point
-  * Revision History Display - Addressed an issue where the revision history was not showing the timestamp of the revision
-  * Automated Triggers Permissions - Fixed an issue where permissions defined under "Automated Triggers" become empty after a triggered pipeline updat
+  * Dinghy Vault Passwords - Fixed an issue where Dinghy fails to start when Vault password contains an exclamation point.
+  * Revision History Display - Addressed an issue where the revision history was not showing the timestamp of the revision.
+  * Automated Triggers Permissions - Fixed an issue where permissions defined under "Automated Triggers" become empty after a triggered pipeline update.
   
 
 <!--
