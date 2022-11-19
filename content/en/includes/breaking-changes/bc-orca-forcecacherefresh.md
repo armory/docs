@@ -1,4 +1,4 @@
-#### ManifestForceCacheRefreshTask removed from Orca
+### ManifestForceCacheRefreshTask removed from Orca
 
 When you upgrade to 2.23.0 or later, you might encounter the following error:
 
