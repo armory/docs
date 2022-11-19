@@ -1,4 +1,4 @@
-#### Spinnaker Dockerfile GID/UID changes
+### Spinnaker Dockerfile GID/UID changes
 
 The Dockerfile of each Spinnaker microservice (except Halyard and Deck) now specifies an explicit GID and UID (10111) for the `spinnaker user`.
 

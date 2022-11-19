@@ -1,4 +1,4 @@
-#### Kubernetes deployment namespace 
+### Kubernetes deployment namespace 
 
 Upgrading to 2.20x or later introduces a breaking change in the Kubernetes provider for Spinnaker. Spinnaker now correctly interprets the namespace declared in your kubeconfig file and uses that namespace. Previously, Spinnaker deployed to the default namespace called `default` because of an error in how Spinnaker interpreted the namespace in the Kubernetes context.
 
