@@ -39,6 +39,8 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "breaking-changes/bc-hal-deprecation.md" >}}
 
+{{< include "breaking-changes/bc-terraform-older-than-013.md" >}}
+
 #### Plugin compatibility
 
 Due to changes in the underlying services, older versions of some plugins may not work with Armory CD 2.28.x or later.
@@ -69,10 +71,6 @@ The following table lists the plugins and their required minimum version:
 {{< include "known-issues/ki-pipelines-as-code-gh-comments.md" >}}
 
 {{< include "known-issues/ki-secrets-and-sping-cloud.md" >}}
-
-### Supported Terraform Versions
-
-Armory removed support for older, non-supported versions of Terraform (older than 0.13). 
 
 ## Highlighted updates
 
