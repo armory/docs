@@ -70,7 +70,7 @@ The following table lists the plugins and their required minimum version:
 
 {{< include "known-issues/ki-pipelines-as-code-gh-comments.md" >}}
 
-{{< include "known-issues/ki-secrets-and-sping-cloud.md" >}}
+{{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
 
 ## Highlighted updates
 
