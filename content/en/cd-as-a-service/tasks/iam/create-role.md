@@ -116,9 +116,11 @@ roles:
 * RBAC
    * {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}
    * {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}
+   * {{< linkWithTitle "cd-as-a-service/concepts/deployment/role-based-manual-approval.md" >}}
 
 * User Role Management
    * {{< linkWithTitle "cd-as-a-service/tasks/iam/manage-role-user.md" >}}
    * {{< linkWithTitle "cd-as-a-service/tutorials/access-management/rbac-users.md" >}}
 
-* {{< linkWithTitle "cd-as-a-service/troubleshoOting/rbac.md" >}}
+
+* {{< linkWithTitle "cd-as-a-service/troubleshooting/rbac.md" >}}
