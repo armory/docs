@@ -2,14 +2,14 @@
 title: v0.11.22 Armory Agent Clouddriver Plugin (2022-11-21)
 toc_hide: true
 version: 00.11.22
-
+date: 2022-11-21
 ---
 
-Feats:
+Features:
 
-- Closes agent connection when it stops receiving agent ping after `kubesvc.cache.agentCleanupFrequencySeconds` instead of when a stream interruption happens, this prevents unnecessary cleanup of resources when only the stream needs restarting.
+- Close Agent connection when it stops receiving Agent ping after `kubesvc.cache.agentCleanupFrequencySeconds` instead of when a stream interruption happens. This prevents unnecessary cleanup of resources when only the stream needs restarting.
 
 Changes:
-- Use different thread pool to handle agent disconnections
-- Makes the heartbeat and cleanup more resilient
+- Use different thread pool to handle Agent disconnections.
+- Make the heartbeat and cleanup more resilient.
 
