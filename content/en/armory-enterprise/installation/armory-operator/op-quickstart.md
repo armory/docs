@@ -30,7 +30,7 @@ The Operator has `basic` and `cluster` installation modes. The option you use de
 | Must deploy Armory Enterprise in the same namespace as the Operator;<br>permissions scoped to single namespace; suitable for a Proof of Concept (POC)   |      &#9989;       |    &#10060;     |
 | Can deploy Armory Enterprise to multiple namespaces<br>(requires Kubernetes ClusterRole)                 |      &#10060;      |     &#9989;     |
 | Configure Armory Enterprise using a single manifest file            |      &#9989;       |     &#9989;     |
-| Configure Armory Enterpris eusing Kustomize patches            |      &#9989;       |     &#9989;     |
+| Configure Armory Enterprise using Kustomize patches            |      &#9989;       |     &#9989;     |
 | Perform pre-flight checks to prevent misconfiguration             |     &#10060;       |     &#9989;     |
 
 
