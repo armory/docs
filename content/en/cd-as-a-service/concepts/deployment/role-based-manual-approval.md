@@ -1,8 +1,12 @@
 ---
 title: Role-Based Manual Approval
 description: >
-  Learn about role-based manual approval of deployments in Armory Continuous Deployment-as-a-Service.
+  Learn how role-based manual approvals in Armory Continuous Deployment-as-a-Service can enforce your SDLC's approval processes.
 ---
+
+## Overview of role-based manual approval in Armory CD-as-a-Service
+
+You can use role-based manual approvals to enforce approval processes within your SDLC. For example, if a release manager must provide a signoff before production deployment, you can create a "Release Managers" role and configure a manual approval to require approval by that role.
 
 ## {{% heading "prereq" %}}
 
@@ -20,9 +24,10 @@ pause:
 ...
 {{< /prism >}}
 
-- `requiresRoles`: list of RBAC roles; must have at least one entry
+- `requiresRoles`: list of RBAC roles
 
-Omitting the `requiresRoles` field means that any user with access to the deployment can issue the approval.
+  - The list must have at least one entry.
+  - Omitting this field means that any user with access to the deployment can issue the approval.
 
 ### Rules
 
