@@ -40,11 +40,8 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "breaking-changes/bc-plugin-compatibility-2-28-0.md" >}}
 
-### Git artifact constraints (triggers) are broken
-When setting an artifact constraint to limit when a pipeline executes on a git web hook, it's likely the trigger will break with an error message.
-The following required artifacts could not be bound: '[ArtifactKey(type=docker/image, ...
+{{< include "breaking-changes/bc-git-artifact-constraint.md" >}}
 
-See https://github.com/spinnaker/spinnaker/issues/6757
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
