@@ -45,6 +45,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "breaking-changes/bc-plugin-compatibility-2-28-0.md" >}}
 
+
 ## Known issues
 
 {{< include "known-issues/ki-app-attr-not-configured.md" >}}
@@ -58,6 +59,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "known-issues/ki-pipelines-as-code-gh-comments.md" >}}
 
 {{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
+
 
 ## Highlighted updates
 
@@ -110,7 +112,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 ###  Spinnaker Community Contributions
 
-There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. 
+There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services.
 
 ## Detailed updates
 
