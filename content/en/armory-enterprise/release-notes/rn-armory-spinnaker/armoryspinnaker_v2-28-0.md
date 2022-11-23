@@ -68,11 +68,11 @@ The following table lists the plugins and their required minimum version:
 
 {{< include "known-issues/ki-pipelines-as-code-gh-comments.md" >}}
 
-{{< include "known-issues/ki-secrets-and-sping-cloud.md" >}}
+{{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
 
 ### Supported Terraform Versions
 
-Armory removed support for older, non-supported versions of Terraform (older than 0.13). 
+Armory removed support for older, non-supported versions of Terraform (older than 0.13).
 
 ## Highlighted updates
 
@@ -125,7 +125,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 ###  Spinnaker Community Contributions
 
-There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. 
+There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services.
 
 ## Detailed updates
 
