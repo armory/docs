@@ -36,11 +36,11 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
 
+{{< include "breaking-changes/bc-git-artifact-constraint.md" >}}
+
 {{< include "breaking-changes/bc-hal-deprecation.md" >}}
 
 {{< include "breaking-changes/bc-plugin-compatibility-2-28-0.md" >}}
-
-{{< include "breaking-changes/bc-git-artifact-constraint.md" >}}
 
 
 ## Known issues
