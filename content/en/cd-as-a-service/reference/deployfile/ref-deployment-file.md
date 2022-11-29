@@ -392,7 +392,7 @@ steps:
 When you configure a manual judgment, the deployment waits when it hits the corresponding weight threshold. At that point, you can either approve the deployment so far and let it continue or roll the deployment back if something doesn't look right.
 
 - `strategies.<strategyName>.canary.steps.pause.untilApproved: true`
-- `targets.<targetName>.constraints.beforeDeployment.pause.requiresRole` (Optional) list of RBAC roles that can issue a manual approval
+- `strategies.<strategyName>.canary.steps.pause.requiresRole` (Optional) list of RBAC roles that can issue a manual approval
 
 For example:
 
