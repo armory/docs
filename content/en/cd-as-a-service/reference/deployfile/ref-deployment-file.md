@@ -608,7 +608,7 @@ redirectTrafficAfter:
 When you configure a manual judgment, the deployment waits for manual approval through the UI. You can either approve the deployment or roll the deployment back if something doesn't look right. Do not provide a `duration` or `unit` value when defining a judgment-based pause.
 
 - `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.untilApproved: true`
-- `targets.<targetName>.constraints.beforeDeployment.pause.requiresRole` (Optional) list of RBAC roles that can issue a manual approval
+- `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.requiresRole` (Optional) list of RBAC roles that can issue a manual approval
 
 For example:
 
