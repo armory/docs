@@ -5,6 +5,6 @@ version: 01.00.29
 
 ---
 
-Feat:
+### Feat:
  - Restart operations grpc stream connection when clouddriver stops responding a ping event.
 
