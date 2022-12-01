@@ -41,36 +41,19 @@ Lists the usage and available commands.
 
 `armory help`
 
-## Log into Armory CD-as-a-Service
+## Configure CD-as-a-Service
+
+Apply configuration. See {{< linkWithTitle "cd-as-a-service/tasks/tenants/add-tenants.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/create-role.md" >}}.
 
 **Usage**
 
-`armory login [flags]`
+`armory config apply -f <path-to-config.yaml>`
 
-**Flags**
-- `-e, --envName`: (Optional) The name of your Armory CD-as-a-Service environment. Names with spaces must be enclosed in single or double quotes.
-
-**Example**
-
-If your environment is named `dev`, execute:
-
-`armory login -e dev`
-
-If your environment is named `dev team`, execute:
-
-`armory login -e 'dev team'`
-
-If you don't include your environment, the command returns with a list of environments. You must select one to continue.
-
-## Log out of Armory CD-as-a-Service
+### View configuration
 
 **Usage**
 
-`armory logout [envName]`
-
-`envName` is optional.
-
-When you execute the `armory logout` command, a prompt appears for user confirmation.
+`armory config get`
 
 ## Deploy an application
 
@@ -104,7 +87,17 @@ To deploy your app without first manually logging into CD-as-a-Service, pass you
 
 `armory deploy start -c <your-client-id> -s <your-client-secret> -f deploy.yml`
 
-## Generate a blue/green deployment template
+## Download and deploy a sample app
+
+Download a sample app from an Armory repo. Then deploy that sample app.
+
+**Usage**
+
+`armory quick-start`
+
+## Generate deployment templates
+
+### Blue/green
 
 Generate a customizable Kubernetes blue/green deployment template.
 
@@ -118,7 +111,7 @@ To generate a template and save the output to a file:
 
 `armory template kubernetes bluegreen > deploy-bluegreen.yaml`
 
-## Generate a canary deployment template
+### Canary
 
 Generate a customizable Kubernetes canary deployment template.
 
@@ -137,6 +130,39 @@ To generate a canary template and save the output to a file:
 **Usage**
 
 `armory version`
+
+## Log into Armory CD-as-a-Service
+
+**Usage**
+
+`armory login [flags]`
+
+**Flags**
+- `-e, --envName`: (Optional) The name of your Armory CD-as-a-Service environment. Names with spaces must be enclosed in single or double quotes.
+
+**Example**
+
+If your environment is named `dev`, execute:
+
+`armory login -e dev`
+
+If your environment is named `dev team`, execute:
+
+`armory login -e 'dev team'`
+
+If you don't include your environment, the command returns with a list of environments. You must select one to continue.
+
+## Log out of Armory CD-as-a-Service
+
+**Usage**
+
+`armory logout [envName]`
+
+`envName` is optional.
+
+When you execute the `armory logout` command, a prompt appears for user confirmation.
+
+
 
 </br>
 </br>

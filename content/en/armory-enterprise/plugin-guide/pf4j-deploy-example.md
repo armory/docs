@@ -17,7 +17,7 @@ By implementing Orca's SimpleStage PF4J extension point, the `pf4jStagePlugin` c
 - You understand the concept of [managing Kubernetes resources using manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/)
 - You have a basic understanding of how the [Armory Operator]({{< ref "armory-operator" >}}) deploys Armory to [Kubernetes](https://kubernetes.io/)
 - You have `kubectl` access to an instance of Armory installed using the Armory Operator in `basic` and have permissions to modify and apply the manifest that deploys Armory
-- You have read the [Plugin Users Guide](https://spinnaker.io/guides/user/plugins); you are familiar with plugin concepts and the files used when deploying plugins (`repositories.json`, `plugins.json`)
+- You have read Spinnaker's [Plugin Users Guide](https://spinnaker.io/docs/guides/user/plugins-users/); you are familiar with plugin concepts and the files used when deploying plugins (`repositories.json`, `plugins.json`)
 
 ### Armory environment
 

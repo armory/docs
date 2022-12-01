@@ -18,12 +18,7 @@ If you have previously configured Armory CD-as-a-Service for your deployment tar
    - [Create machine-to-machine client credentials]({{< ref "client-creds" >}}) for the Remote Network Agent (RNA), which you install on your deployment target cluster.
    - Add a Kubernetes Cluster by installing the RNA.
 
-3. In the CD-as-a-Service Console, create machine-to-machine client credentials to use for your GitHub Action service account. You can select the preconfigured scope group **Deployments using Spinnaker** or manually select the following:
-
-   - `manage:deploy`
-   - `read:infra:data`
-   - `exec:infra:op`
-   - `read:artifacts:data`
+3. [Create a credential]({{< ref "cd-as-a-service/tasks/iam/client-creds" >}}) for your GitHub Action to use to connect to CD-as-a-Service. Assign the `Deployments Full Access` role to your credential.
 
 4. Encrypt the GitHub Action service account credentials so that you can use them securely in the action. Create a secret for the Client ID and a separate secret for the Client Secret.
 

@@ -51,6 +51,8 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 {{< include "early-access-feature.html" >}}
 
 The Dinghy service can use MySQL to store relationships between pipeline templates and pipeline Dinghy files. An external MySQL instance is highly recommended for production use because it can provide more durability for Pipelines as Code. If MySQL becomes unavailable, Dinghy files will need to be updated in order to repopulate MySQL with the relationships.
+  
+ {{< include "rdbms-utf8-required.md" >}}
 
 First make sure the schema exists in your database.
 
