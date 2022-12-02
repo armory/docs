@@ -43,24 +43,20 @@ spec:
 - `dinghy.enabled`: `true`; required to enable Pipelines as Code
 - `dinghy.dinghyIgnoreRegexp2Enabled`: (Optional) `true `if you want Dinghy to ignore everything other than required files.
 
-   The Regexp2 engine supports negative expressions, so you don’t need to define patterns for all files to be ignored. You can ignore everything other than required files. For example:
+   The Regexp2 engine supports negative expressions, so you don’t need to define patterns for all files to be ignored. You can ignore everything other than required files. For example, in your project you have some project specific files: `file.js`, `file.ts`, `file.css`. You also have files used by Dinghy: `dinghyfile`, `minimum-wait.stage.module`, `maximum-wait.stage.module`. If you enable `dinghyIgnoreRegexp2Enabled`, you can create your `.dinghyfile` with one of the following regular expressions:
 
-   {{< prism >}}
-   ignoreFile := NewRegexp2IgnoreFile([]string{"file.(js|ts|css)"}, dl)
+      - file.(js|ts|css)
+      - ^(?!.*(.stage.module)|(dinghyfile)).*
 
-   // or
+   Both of those regular expressions product the same result:
 
-   ignoreFile := NewRegexp2IgnoreFile([]string{"^(?!.*(.stage.module)|(dinghyfile)).*"}, dl)
+      - file.js -> ignored
+      - file.ts -> ignored
+      - file.css -> ignored
+      - dinghyfile -> processed by Dinghy
+      - minimum-wait.stage.module -> processed by Dinghy
+      - maximum-wait.stage.module -> processed by Dinghy
 
-   // result the same
-
-   assert.True(t, ignoreFile.ShouldIgnore("file.js"))
-   assert.True(t, ignoreFile.ShouldIgnore("file.ts"))
-   assert.True(t, ignoreFile.ShouldIgnore("file.css"))
-   assert.False(t, ignoreFile.ShouldIgnore("dinghyfile"))
-   assert.False(t, ignoreFile.ShouldIgnore("minimum-wait.stage.module"))
-   assert.False(t, ignoreFile.ShouldIgnore("maximum-wait.stage.module"))
-   {{< /prism >}}
 
 Assuming Spinnaker lives in the `spinnaker` namespace, execute the following to update your instance:
 
