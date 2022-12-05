@@ -2,8 +2,9 @@
 title: v2.26.2 Armory Enterprise Release (Spinnaker™ v1.26.6)
 toc_hide: true
 version: 02.26.02
+date: 2021-09-03
 description: >
-  Release notes for Armory Enterprise v2.26.2 
+  Release notes for Armory Enterprise v2.26.2
 ---
 
 ## 2021/09/03 Release Notes
@@ -44,7 +45,7 @@ Armory scans the codebase as we develop and release software. For information ab
 
 #### Lambda icon missing
 
-In the left navigation of the UI, the icon for Lambda functions is missing. This does not affect any functionality. 
+In the left navigation of the UI, the icon for Lambda functions is missing. This does not affect any functionality.
 
 ## Highlighted updates
 
@@ -53,7 +54,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
-### Artifacts 
+### Artifacts
 
 This release includes the following improvements for git-based artifact providers:
 
@@ -64,7 +65,7 @@ This release includes the following improvements for git-based artifact provider
 
 Resolved an issue where the subnets and server groups were not being cached.
 
-### AWS Lambda 
+### AWS Lambda
 
 > These improvements require version 1.0.8 of the AWS Lambda Plugin in addition to Armory Enterprise 2.26.2.
 
@@ -73,7 +74,7 @@ This release includes the following new features and improvements for the Lambda
 * Improved cache performance including fixes to cache issues found in 2.24.2
 * New configuration properties that give you greater control over how Armory Enterprise behaves when connection or cache issues occur.
 
-Configure the following properties in your Operator manifest (`spinnakerservice.yml` by default). Note that all these properties are optional and use the default if omitted. 
+Configure the following properties in your Operator manifest (`spinnakerservice.yml` by default). Note that all these properties are optional and use the default if omitted.
 
 `spec.spinnakerConfig.profiles.orca.spinnaker.`:
 
@@ -100,7 +101,7 @@ spec:
 `spec.spinnakerConfig.profiles.clouddriver.aws.lambda.`:
 
 - `retry.timeout`: Integer. The time (in minutes) that Clouddriver will wait before timing out when attempting to connect to the Lambda client. (Defaults to 15 minutes.)
-- `concurrency.threads`: Integer. The maximum number of threads to use for calls to the Lambda client. (Defaults to 10 threads.) 
+- `concurrency.threads`: Integer. The maximum number of threads to use for calls to the Lambda client. (Defaults to 10 threads.)
 
 For example:
 

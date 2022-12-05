@@ -2,7 +2,7 @@
 title: v0.11.0 Armory Agent Clouddriver Plugin (2022-06-24)
 toc_hide: true
 version: 00.11.00
-
+date: 2022-06-24
 ---
 
 ### New
