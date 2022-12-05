@@ -2,7 +2,7 @@
 title: v0.6.5 Armory Agent Service (2021-09-30)
 toc_hide: true
 version: 00.06.05
-
+date: 2021-09-30
 ---
 
 ## Known Issues

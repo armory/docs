@@ -2,7 +2,7 @@
 title: v0.10.24 Armory Agent Clouddriver Plugin (2022-02-17)
 toc_hide: true
 version: 00.10.24
-
+date: 2022-02-17
 ---
 
 ## New features
@@ -22,13 +22,13 @@ To configure this change, update your `clouddriver.yml` file with the following 
 kubesvc:
   cluster: kubernetes
 redis:
-  enabled: false 
+  enabled: false
 ```
 
 You should only set `redis.enabled` to `false` if no other processes use Redis, such as the Caching Agent Scheduler or the Task Repository.
 
 
-There are additional optional configuration available. Most Agent Plugin instances work without setting the following options: 
+There are additional optional configuration available. Most Agent Plugin instances work without setting the following options:
 
 ```yaml
 kubesvc:

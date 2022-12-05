@@ -26,7 +26,7 @@ _Dinghy_ is the microservice for Pipelines as Code. You need to enable it to use
 
 In `SpinnakerService` manifest:
 
-```yaml
+{{< prism lang="yaml" line="9-11" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -36,39 +36,57 @@ spec:
     config:
       armory:
         dinghy:
-          enabled: true       # Whether or not Dinghy is enabled
-          ... # Rest of config omitted for brevity
-```
+          enabled: true
+          dinghyIgnoreRegexp2Enabled: true
+{{< /prism >}}
 
-Assuming Spinnaker lives in the `spinnaker` namespace:
+- `dinghy.enabled`: `true`; required to enable Pipelines as Code
+- `dinghy.dinghyIgnoreRegexp2Enabled`: (Optional) `true `if you want Dinghy to ignore everything other than required files.
 
-```bash
+   The Regexp2 engine supports negative expressions, so you don’t need to define patterns for all files to be ignored. You can ignore everything other than required files. For example, in your project you have some project specific files: `file.js`, `file.ts`, `file.css`. You also have files used by Dinghy: `dinghyfile`, `minimum-wait.stage.module`, `maximum-wait.stage.module`. If you enable `dinghyIgnoreRegexp2Enabled`, you can create your `.dinghyfile` with one of the following regular expressions:
+
+      - file.(js|ts|css)
+      - ^(?!.*(.stage.module)|(dinghyfile)).*
+
+   Both of those regular expressions product the same result:
+
+      - file.js -> ignored
+      - file.ts -> ignored
+      - file.css -> ignored
+      - dinghyfile -> processed by Dinghy
+      - minimum-wait.stage.module -> processed by Dinghy
+      - maximum-wait.stage.module -> processed by Dinghy
+
+
+Assuming Spinnaker lives in the `spinnaker` namespace, execute the following to update your instance:
+
+{{< prism lang="bash"  >}}
 kubectl -n spinnaker apply -f spinnakerservice.yml
-```
+{{< /prism >}}
 
 ## Configuring SQL
 
 {{< include "early-access-feature.html" >}}
 
 The Dinghy service can use MySQL to store relationships between pipeline templates and pipeline Dinghy files. An external MySQL instance is highly recommended for production use because it can provide more durability for Pipelines as Code. If MySQL becomes unavailable, Dinghy files will need to be updated in order to repopulate MySQL with the relationships.
-  
+
  {{< include "rdbms-utf8-required.md" >}}
 
 First make sure the schema exists in your database.
 
-```sql
+{{< prism lang="sql" >}}
 CREATE SCHEMA IF NOT EXISTS dinghy DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
       CREATE USER IF NOT EXISTS 'dinghy_service'@'%' IDENTIFIED BY '${SOME_PASSWORD_HERE}';
       CREATE USER IF NOT EXISTS 'dinghy_migrate'@'%' IDENTIFIED BY '${SOME_PASSWORD_HERE}';
       GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, EXECUTE, SHOW VIEW ON dinghy.* TO 'dinghy_service'@'%';
       GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, LOCK TABLES, EXECUTE, SHOW VIEW ON dinghy.* TO dinghy_migrate@'%';
-```
+{{< /prism >}}
 
 Next, configure Pipelines as Code to use your MySQL database.
 
 In `SpinnakerService` manifest:
 
-```yaml
+{{< prism lang="sql" line="8-14">}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -83,21 +101,23 @@ spec:
           enabled: true
           password: password
           user: user
-```
+{{< /prism >}}
 
-```bash
+Apply your changes:
+
+{{< prism lang="bash">}}
 kubectl -n spinnaker apply -f spinnakerservice.yml
-```
+{{< /prism >}}
 
 ### Migration from Redis to SQL
 
 There's a migration strategy to move the relationships from Redis to SQL. In order to do that, you need to have the configuration from your redis and add the configuration for SQL as shown previously, when you do this and the pod starts, what will happen is that the migration will be done automatically by a job. To verify that the migration was done successfully you can enter into your database and query this tables.
 
-```sql
+{{< prism lang="sql">}}
 select * from executions;
 select * from fileurls;
 select * from fileurl_childs;
-```
+{{< /prism >}}
 
 In `executions` table you should be able to see one record with the name `REDIS_TO_SQL_MIGRATION`.
 
@@ -116,7 +136,7 @@ To set/override the Spinnaker Redis settings do the following:
 
 In `SpinnakerService` manifest:
 
-```yaml
+{{< prism lang="yaml" line="8-11" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -128,11 +148,13 @@ spec:
         redis:
           baseUrl: "redis://spin-redis:6379"
           password: "password"
-```
+{{< /prism >}}
 
-```bash
+Apply your changes:
+
+{{< prism lang="bash">}}
 kubectl -n spinnaker apply -f spinnakerservice.yml
-```
+{{< /prism >}}
 
 ## Configuring Pipelines as Code
 
@@ -142,7 +164,7 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 
 ### GitHub
 
-```yaml
+{{< prism lang="yaml" line="11-14">}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -157,14 +179,15 @@ spec:
           templateRepo: dinghy-templates # SCM repository where module templates are located
           githubToken: abc  #  GitHub token.
           githubEndpoint: https://api.github.com # (Default: https://api.github.com) GitHub API endpoint. Useful if you’re using GitHub Enterprise
-          ... # Rest of config omitted for brevity
-```
+{{< /prism >}}
 
 * `githubToken`: This field supports "encrypted" field references; see [Secrets]({{< ref "Secrets" >}}) for details.
 
-```bash
+Apply your changes:
+
+{{< prism lang="bash">}}
 kubectl -n spinnaker apply -f spinnakerservice.yml
-```
+{{< /prism >}}
 
 #### Configuring GitHub webhooks
 
@@ -181,8 +204,6 @@ If your gate endpoint is protected by a firewall, you need to configure your fir
 > You can configure webhooks on multiple GitHub organizations or repositories to send events to Dinghy. Only a single repository from one organization can be the shared template repository in Dinghy. However, pipelines can be processed from multiple GitHub organizations. You want to ensure the GitHub token configured for Dinghy has permission for all the organizations involved.
 
 #### Pull request validations
-
-{{% alert title="New feature" %}}Pull Request Validation is a new feature in Armory 2.21.{{% /alert %}}
 
 When you make a GitHub Pull Request (PR) and there is a change in a `dinghyfile`, Pipelines as Code automatically performs a validation for that `dinghyfile`. It also updates the GitHub status accordingly. If the validation fails, you see an unsuccessful `dinghy` check.
 
@@ -206,7 +227,7 @@ The following screenshot shows what your GitHub settings should resemble:
 
 Bitbucket has both cloud and server offerings. See the Atlassian [docs](https://confluence.atlassian.com/bitbucketserver/bitbucket-rebrand-faq-779298912.html) for more on the name change from Stash to Bitbucket Server. Consult your company's Bitbucket support desk if you need help determining what flavor and version of Bitbucket you are using.
 
-```yaml
+{{< prism lang="yaml" line="11-15" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -222,12 +243,13 @@ spec:
           stashUsername: stash_user          # Stash username
           stashToken: abc                    # Stash token. This field supports "encrypted" field references
           stashEndpoint: https://my-endpoint # Stash API endpoint. If you're using Bitbucket Server, update the endpoint to include the api e.g. https://your-endpoint-here.com/rest/api/1.0
-          ... # Rest of config omitted for brevity
-```
+{{< /prism >}}
 
-```bash
+Apply your changes:
+
+{{< prism lang="bash">}}
 kubectl -n spinnaker apply -f spinnakerservice.yml
-```
+{{< /prism >}}
 
 > If you're using Bitbucket Server, update the endpoint to include the api, e.g. `--stash-endpoint https://your-endpoint-here.com/rest/api/1.0`
 
@@ -235,7 +257,7 @@ You need to set up webhooks for each project that has the `dinghyfile` or module
 
 ### GitLab
 
-```yaml
+{{< prism lang="yaml" line="" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -250,12 +272,13 @@ spec:
           templateRepo: dinghy-templates      # SCM repository where module templates are located
           gitlabToken: abc                    # GitLab token. This field supports "encrypted" field references
           gitlabEndpoint: https://my-endpoint # GitLab endpoint
-          ... # Rest of config omitted for brevity
-```
+{{< /prism >}}
 
-```bash
+Apply your changes:
+
+{{< prism lang="bash">}}
 kubectl -n spinnaker apply -f spinnakerservice.yml
-```
+{{< /prism >}}
 
 Under "Settings -> Integrations"  on your project page, point your webhooks
 to `https://<your-gate-url>/webhooks/git/gitlab`.  Make sure the server your
@@ -279,7 +302,7 @@ All providers available in Dinghy are supported. Please refer to the list below 
 * `bitbucket-server`
 
 
-```yaml
+{{< prism lang="yaml" line="9-15" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -295,8 +318,7 @@ spec:
         - branch: some_branch
           provider: github
           repo: my-github-repository
-          ... # Rest of config omitted for brevity
-```
+{{< /prism >}}
 
 ### Other Options
 
@@ -318,7 +340,7 @@ If you want to disable lock pipelines in the UI before overwriting changes, add 
 
 If you [configured]({{< ref "notifications-slack-configure" >}}) Armory to send Slack notifications for pipeline events, you can configure Dinghy to send pipeline update results to Slack.
 
-```yaml
+{{< prism lang="yaml" line="11-15" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -336,8 +358,7 @@ spec:
               channel: my-channel # Slack channel where notifications will be sent to
             github:
               enabled: false       # (Default: true) Whether or not github notifications are enabled for Dinghy events, once spec.spinnakerConfig.prifles.dinghy.notifiers are enabled.  Only enable if you want both slack and github notifications at the same time
-              ... # Rest of config omitted for brevity
-```
+{{< /prism >}}
 
 ![Slack Notifications](/images/dinghy-slack-notifications.png)
 
@@ -350,7 +371,7 @@ Keep the following in mind when enabling GitHub Notifications:
 * When using versions below 2.26.2, GitHub notifications are not supported with custom endpoints and [should be disabled due to a known issue](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290). This issue has been resolved as of [2.26.2, Dinghy Change #447]({{< ref "armoryspinnaker_v2-26-2#dinghy---226622610" >}}).
 * Enabling this functionality may lead to a large number of comments on a Pull Request if, for example, you update a module that is used by multiple pipelines. This can lead to the GitHub UI not loading or GitHub rate limiting cause of related API calls.
 
-```yaml
+{{< prism lang="yaml" line="11-12" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -363,7 +384,7 @@ spec:
           enabled: true
           github:
             enabled: true       # (Default: true) Whether or not github notifications are enabled for Dinghy events, once spec.spinnakerConfig.profles.dinghy.notifiers are enabled
-```
+{{< /prism >}}
 
 
 ![GitHub Notifications](/images/armory-admin/dinghy-enable/dinghy-github-notifications.jpg)
@@ -386,7 +407,7 @@ You need to configure `parserFormat` with one of the parsers:
 * `hcl`
 
 
-```yaml
+{{< prism lang="yaml" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -396,25 +417,22 @@ spec:
     profiles:
       dinghy:
         parserFormat: hcl
-        ... # Rest of config omitted for brevity
-```
+{{< /prism >}}
 
 
 ## Known Issues
 
 If Dinghy crashes on start up and you encounter an error in Dinghy similar to:
 
-```bash
+{{< prism lang="bash" >}}
 time="2020-03-06T22:35:54Z"
 level=fatal
 msg="failed to load configuration: 1 error(s) decoding:\n\n* 'Logging.Level' expected type 'string', got unconvertible type 'map[string]interface {}'"
-```
+{{< /prism >}}
 
 You probably configured global logging levels with `spinnaker-local.yml`. The work around is to override Dinghy's logging levels:
 
-
-
-```yaml
+{{< prism lang="yaml" line="9-10" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -425,7 +443,5 @@ spec:
       dinghy:
         Logging:
           Level: INFO
-          ... # Rest of config omitted for brevity
-```
-
+{{< /prism >}}
 
