@@ -2,7 +2,7 @@
 title: v1.0.8 Armory Agent Service (2022-02-05)
 toc_hide: true
 version: 01.00.08
-
+date: 2022-02-05
 ---
 
 ## Fixes

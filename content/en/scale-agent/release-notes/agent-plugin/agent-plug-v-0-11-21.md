@@ -2,7 +2,7 @@
 title: v0.11.21 Armory Agent Clouddriver Plugin (2022-11-12)
 toc_hide: true
 version: 00.11.21
-
+date: 2022-11-12
 ---
 
 Prevents unexpected account caching.

@@ -2,12 +2,12 @@
 title: v0.9.74 Armory Agent Clouddriver Plugin (2022-11-12)
 toc_hide: true
 version: 00.09.74
-
+date: 2022-11-12
 ---
 
 Prevents unexpected account caching.
 
-The issue occurred because more than a single clouddriver instance was trying to request caching to agent at the same time (concurrency issue). 
+The issue occurred because more than a single clouddriver instance was trying to request caching to agent at the same time (concurrency issue).
 These release introduces locks around the caching assignment process to give time for each thread to complete the task, the locks auto expire so there isn't a deadlock risk (see below).
 
 The following properties allow to adjust this mechanism:

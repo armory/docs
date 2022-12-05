@@ -3,6 +3,7 @@ title: v1.3.0 Armory Operator
 toc_hide: true
 version: 01.03.00
 description: Release notes for Armory Operator v1.3.0
+date: 2021-03-01
 ---
 
 ## 2021/06/30 Release Notes
@@ -23,7 +24,7 @@ The `spinnakeraccounts.spinnaker.io` CRD is no longer supported in this release.
 
 ### Support Diagnostics
 
-This release adds support for the `Support Diagnostics` service for Armory Enterprise. 
+This release adds support for the `Support Diagnostics` service for Armory Enterprise.
 
 This feature requires you to have diagnostics enabled within your `SpinnakerService`. For more information, see [Configure Support Diagnostics for Armory Enterprise]({{< ref "diagnostics-configure.md" >}}).
 

@@ -3,6 +3,7 @@ title: v1.4.0 Armory Operator
 toc_hide: true
 version: 01.04.00
 description: Release notes for Armory Operator v1.4.0
+date: 2021-07-21
 ---
 
 ## 2021/07/21 Release Notes
