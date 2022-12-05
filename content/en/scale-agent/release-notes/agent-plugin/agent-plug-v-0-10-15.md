@@ -2,10 +2,10 @@
 title: v0.10.15 Armory Agent Clouddriver Plugin (2022-01-11)
 toc_hide: true
 version: 00.10.15
-date: 2022-01-11
+
 ---
 
-## New features
+## New features 
 
 * You can now correlate information across different logs more easily. The Clouddriver identifier used in logs and the database that identify a replica is now the pod name. Previously, a UUID was used.
 

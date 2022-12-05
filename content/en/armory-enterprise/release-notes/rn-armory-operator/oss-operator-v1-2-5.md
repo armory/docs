@@ -3,7 +3,6 @@ title: v1.2.5 Operator for Spinnaker
 toc_hide: true
 version: 01.02.05
 description: Release notes for open source Operator v1.2.5
-date: 2021-05-07
 ---
 
 ## 2021/05/07 Release Notes

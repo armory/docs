@@ -23,7 +23,7 @@ You can configure your SQL database by adding the following snippet to `Spinnake
 ```yaml
 sql:
   enabled: true
-  connectionPools:
+  connectionPool:
     jdbcUrl: jdbc:mysql://<DB CONNECTION HOSTNAME>:<DB CONNECTION PORT>/<DATABASE NAME>
     user: orca_service
     password: <orca_service password>
@@ -133,7 +133,7 @@ To try a different database you can switch the JDBC URL and set the `dialect` in
 ```yaml
 sql:
   enabled: true
-  connectionPools:
+  connectionPool:
     jdbcUrl: jdbc:<DRIVER>://<DB CONNECTION HOSTNAME>:<DB CONNECTION PORT>/<DATABASE NAME>
     dialect: <DIALECT VALUE>
     ...

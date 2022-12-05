@@ -191,7 +191,7 @@ spec:
 
         sql:
           enabled: true
-          connectionPools:
+          connectionPool:
             jdbcUrl: jdbc:mysql:aws://<RDSHOST>:<PORT>/orca?enabledTLSProtocols=TLSv1.2&acceptAwsProtocolOnly=true&useAwsIam=true
             user: orca_service
             connectionTimeout: 5000

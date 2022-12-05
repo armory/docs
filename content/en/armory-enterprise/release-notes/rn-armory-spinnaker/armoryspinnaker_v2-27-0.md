@@ -2,7 +2,6 @@
 title: v2.27.0 Armory Enterprise Release (Spinnaker™ v1.27.0)
 toc_hide: true
 version: 02.27.00
-date: 2021-09-03
 description: >
   Release notes for Armory Enterprise v2.27.0 Beta. A beta release is not meant for installation in production environments.
 ---

@@ -8,7 +8,6 @@ description: Release notes for the Armory Agent, which runs as a service and kee
 {{< include "agent/agent-compat-matrix.md" >}}
 
 ## Release Notes
-<h3><a class="fas fa-rss" target="_blank" href="{{< ref "/scale-agent/release-notes/agent-service" >}}/index.xml"></a></h3>
 
 {{% alert title="Known Issue" color="warning" %}}
 Note the following before upgrading the Armory Agent Service:
@@ -20,4 +19,5 @@ These timeout errors should resolve after several minutes. This issue affects al
 {{% /alert %}}
 
 
+<h3><a class="fas fa-rss" target="_blank" href="https://docs.armory.io/armory-enterprise/release-notes/rn-armory-agent/agent-service/index.xml"></a></h3>
 
