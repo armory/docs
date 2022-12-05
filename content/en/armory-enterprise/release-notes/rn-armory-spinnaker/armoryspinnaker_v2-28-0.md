@@ -2,6 +2,7 @@
 title: v2.28.0 Armory CD Release (Spinnaker™ v1.28.0)
 toc_hide: true
 version: 02.28.0
+date: 2022-07-20
 hidden: true
 description: >
   Release notes for Armory Continuous Deployment (Armory CD) v2.28.0
