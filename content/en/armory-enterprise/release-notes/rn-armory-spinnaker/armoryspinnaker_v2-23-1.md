@@ -2,6 +2,7 @@
 title: v2.23.1 Armory Enterprise Release (Spinnaker™ v1.23.3)
 toc_hide: true
 version: 02.23.01
+date: 2020-12-05
 description: >
   Release notes for Armory Enterprise v2.23.1
 ---

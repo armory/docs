@@ -2,8 +2,9 @@
 title: v2.26.5 Armory Enterprise Release (Spinnaker™ v1.26.6)
 toc_hide: true
 version: 02.26.05
+date: 2022-02-21
 description: >
-  Release notes for Armory Enterprise v2.26.5 
+  Release notes for Armory Enterprise v2.26.5
 ---
 
 ## 2022/01/21 Release Notes
@@ -50,7 +51,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
-### Terraform Show stage 
+### Terraform Show stage
 
 There is a new Terraform Show stage available as part of the Terraform Integration. This stage is the equivalent of running the `terraform show` command with Terraform. The JSON output from your `planfile` can be used in subsequent stages.
 

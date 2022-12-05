@@ -3,6 +3,7 @@ title: v1.2.5 Armory Operator
 toc_hide: true
 version: 01.02.05
 description: Release notes for Armory Operator v1.2.5
+date: 2021-03-17
 ---
 
 ## 03/17/2021 Release Notes
