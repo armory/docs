@@ -8,7 +8,7 @@ aliases:
 ---
 
 {{% alert title="Warning" color="warning" %}}
-Please see the [Plugins User Guide](https://spinnaker.io/guides/user/plugins) for a detailed explanation of plugins.
+Please see Spinnaker's [Plugins User Guide](https://spinnaker.io/docs/guides/user/plugins-users/) for a detailed explanation of plugins.
 {{% /alert %}}
 
 ## Parameters
@@ -50,7 +50,7 @@ spec:
     - `id`: same as <repository-name>
     - `url`: URL to `repositories.json` or `plugins.json`
 
-See the Plugin Users Guide _Add a plugin repository_ [section](https://spinnaker.io/guides/user/plugins/#add-a-plugin-repository-using-halyard) for when you can use `plugins.json` instead of `repositories.json`.
+See the Plugin Users Guide _Add a plugin repository_ [section](https://spinnaker.io/docs/guides/user/plugins-users/#add-a-plugin-repository-using-halyard) for when you can use `plugins.json` instead of `repositories.json`.
 
 ### Deck proxy
 
@@ -125,4 +125,4 @@ spec:
 
 ## Kustomize patch examples
 
-You can see examples in the `spinnaker-kustomize-patches` repo's [`plugins` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/plugins). 
+You can see examples in the `spinnaker-kustomize-patches` repo's [`plugins` folder](https://github.com/armory/spinnaker-kustomize-patches/tree/master/plugins).

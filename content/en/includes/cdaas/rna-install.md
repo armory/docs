@@ -9,7 +9,7 @@ For advanced use cases such as restricting permissions, proxy configurations, cu
 1. In your terminal, configure your `kubectl` [context](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-em-set-context-em-) to connect to the cluster where you want to deploy your app:
 
    ```bash
-   kubectl config set-context <NAME>
+   kubectl config use-context <NAME>
    ```
 
 1. Create the namespace for the RNA:

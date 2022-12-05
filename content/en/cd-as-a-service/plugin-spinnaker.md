@@ -1,8 +1,8 @@
 ---
-title: Armory CD-as-a-Service Plugin for Armory Enterprise and Spinnaker
+title: Armory CD-as-a-Service Plugin for Armory CD and Spinnaker
 linkTitle: Spinnaker Plugin
 description: >
-  Use this guide to install the Armory Continuous Deployment-as-a-Service plugin for Spinnaker and Armory Enterprise. This plugin enables performing canary and blue/green deployments in a single stage.
+  Use this guide to install the Armory Continuous Deployment-as-a-Service plugin for Spinnaker and Armory CD. This plugin enables performing canary and blue/green deployments in a single stage.
 weight: 500
 ---
 
@@ -10,11 +10,11 @@ weight: 500
 
 {{< include "cdaas/desc-plugin.md" >}}
 
-See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture" >}}) page for an overview of the Armory CD-as-a-Service Spinnaker plugin and how it fits in with Armory Enterprise.
+See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture" >}}) page for an overview of the Armory CD-as-a-Service Spinnaker plugin and how it fits in with Armory CD.
 
 This guide walks you through the following:
 
-- Registering your Armory Enterprise environment
+- Registering your Armory CD environment
 - Installing the Remote Network Agent (RNA) on your deployment target cluster
 - Connecting to Armory Continuous Deployment-as-a-Service
 - Installing the plugin
@@ -28,20 +28,20 @@ You can find the plugin release notes in the [Armory CD-as-a-Service release not
 
 Verify that you meet or can meet these requirements before getting started.
 
-### Armory Enterprise (Spinnaker)
+### Armory CD (Spinnaker)
 
-Your Armory Enterprise (or open source Spinnaker) instance must meet the following requirements:
+Your Armory CD (or open source Spinnaker) instance must meet the following requirements:
 
 - Version 2.24 or later (or Spinnaker 1.24 or later)
-- A supported Operator version. For information about what version of Operator is supported, see the [release notes]({{< ref "rn-armory-spinnaker" >}}) for your Armory Enterprise version.
+- A supported Operator version. For information about what version of Operator is supported, see the [release notes]({{< ref "rn-armory-spinnaker" >}}) for your Armory CD version.
 
 ### Networking
 
-Ensure that your Armory Enterprise (or Spinnaker) instance and Armory Agents have the following networking access:
+Ensure that your Armory CD (or Spinnaker) instance and Armory Agents have the following networking access:
 
 {{< include "cdaas/req-networking.md" >}}
 
-Additionally, your Armory Enterprise instance needs access to GitHub to download the plugin during installation.
+Additionally, your Armory CD instance needs access to GitHub to download the plugin during installation.
 
 ### Target Kubernetes cluster
 
@@ -49,24 +49,16 @@ The Spinnaker plugin does not use Clouddriver to source its accounts. Instead, i
 
 The Helm chart described in [Enable the Armory CD-as-a-Service Remote Network Agent in target Kubernetes clusters](#enable-the-armory-cd-as-a-service-remote-network-agent-in-target-kubernetes-clusters) manages the installation of both of these requirements for you.
 
-## Register your Armory Enterprise environment
+## Register your Armory CD environment
 
-Register your Armory Enterprise environment so that it can communicate with Armory services. Each environment needs to get registered if you, for example, have production and development environments.
+Register your Armory CD environment so that it can communicate with Armory services. Each environment needs to get registered if you, for example, have production and development environments.
 
 1. [Register](https://go.armory.io/signup/) to use Armory CD-as-a-Service.
-1. Register your Armory Enterprise [environment]({{< ref "ae-instance-reg" >}}).
+1. Register your Armory CD [environment]({{< ref "ae-instance-reg" >}}).
 
-## Create client credentials for your Agents
+## Create a credential for your Remote Network Agent
 
-1. Log in to the [CD-as-a-Service Console](https://console.cloud.armory.io/).
-1. In the left navigation menu, select **Access Management > Client Credentials**.
-1. In the upper right corner, select **New Credential**.
-1. Create a credential for your RNA. Use a descriptive name for the credential, such as `us-west RNA`
-1. Set the permission scope to `connect:agentHub`.
-
-   > Removing a preconfigured scope group does not deselect the permissions that the group assigned. You must remove the permissions manually.
-
-1. Note both the **Client ID** and **Client Secret**. You need these values when configuring the Remote Network Agent or other services that you want to use to interact with Armory CD-as-a-Service. Make sure to store the secret somewhere safe. You are not shown the value again.
+{{< include "cdaas/client-creds.md" >}}
 
 ## Enable the Armory CD-as-a-Service Remote Network Agent in target Kubernetes clusters
 
@@ -76,11 +68,11 @@ This section walks you through installing the Remote Network Agent (RNA) using a
 
 ### Verify the Agent deployment
 
-Go to the [Agents page in the Configuration UI](https://console.cloud.armory.io/configuration/agents) and verify the connection. If you do not see your cluster, verify that you are in the correct Armory CD-as-a-Service environment.
+Go to the [Agents page in the Configuration UI](https://console.cloud.armory.io/configuration/agents) and verify the connection. If you do not see your cluster, verify that you are in the correct CD-as-a-Service tenant.
 
 > Note that you may see a "No Data message" when first loading the Agent page.
 
-{{< figure src="/images/cdaas/ui-rna-status.jpg" alt="The Connected Remote Network Agents page shows connected agents and the following information: Agent Identifier, Agent Version, Connection Time when the connection was established, Last Heartbeat time, Client ID, and IP Address." >}}
+{{< figure src="/images/cdaas/ui-rna-status.jpg" alt="The Connected Remote Network Agents page shows connected Agents and the following information: Agent Identifier, Agent Version, Connection Time when the connection was established, Last Heartbeat time, Client ID, and IP Address." >}}
 
 
 
@@ -102,7 +94,7 @@ time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kub
 {{< tabs name="DeploymentPlugin" >}}
 {{% tabbody name="Operator" %}}
 
-If you are running Armory Enterprise 2.26.3, `armory.cloud` block goes in a different location. Instead of `spec.spinnakerConfig.spinnaker`, the block needs to go under both `spec.spinnakerConfig.gate` and `spec.spinnakerConfig.orca`. For more information see [Known issues](#known-issues). Additionally there is a `plugins` block that needs to be added.
+If you are running Armory CD 2.26.3, `armory.cloud` block goes in a different location. Instead of `spec.spinnakerConfig.spinnaker`, the block needs to go under both `spec.spinnakerConfig.gate` and `spec.spinnakerConfig.orca`. For more information see [Known issues](#known-issues). Additionally there is a `plugins` block that needs to be added.
 
 The installation instructions using the Operator are the same except for where the `armory.cloud` and this `plugins` block go.
 
@@ -162,7 +154,7 @@ patchesStrategicMerge:
   - patches/patch-plugin-deployment.yml
 ```      
 
-Apply the changes to your Armory Enterprise instance.
+Apply the changes to your Armory CD instance.
 
 ```bash
 kubectl apply -k <path-to-kustomize-file>.yml
@@ -171,7 +163,7 @@ kubectl apply -k <path-to-kustomize-file>.yml
 {{% /tabbody %}}
 {{% tabbody name="Halyard" %}}
 
-If you are running Armory Enterprise 2.26.3, `armory.cloud` block needs to go in `gate-local.yml` and `orca-local.yml` instead of `spinnaker-local.yml`. For more information see [Known issues](#known-issues). Other than the change in location, the installation instructions remain the same.
+If you are running Armory CD 2.26.3, `armory.cloud` block needs to go in `gate-local.yml` and `orca-local.yml` instead of `spinnaker-local.yml`. For more information see [Known issues](#known-issues). Other than the change in location, the installation instructions remain the same.
 
 In the `/.hal/default/profiles` directory, add the following configuration to `spinnaker-local.yml`. If the file does not exist, create it and add the configuration.
 
@@ -215,7 +207,7 @@ spinnaker:
         url: https://raw.githubusercontent.com/armory-plugins/armory-deployment-plugin-releases/master/repositories.json
 ```
 
-Apply the changes to your Armory Enterprise instance.
+Apply the changes to your Armory CD instance.
 
 ```bash
 hal deploy apply
@@ -229,10 +221,10 @@ hal deploy apply
 1. Check that all the services are up and running:
 
    ```bash
-   kubectl -n <Armory-Enterprise-namespace> get pods
+   kubectl -n <Armory-CD-namespace> get pods
    ```
 
-2. Navigate to the Armory Enterprise UI.
+2. Navigate to the Armory CD UI.
 3. In a new or existing application, create a new pipeline.
 4. In this pipeline, select **Add stage** and search for **Kubernetes Progressive**. The stage should appear if the plugin is properly configured.
 
@@ -259,12 +251,12 @@ This stage uses YAML deployment configuration to deploy your app. The YAML that 
 
 You have the following options for adding your Armory CD-as-a-Service deployment YAML configuration:
 
-1. **Text**: You create and store your deployment YAML within Armory Enterprise.
+1. **Text**: You create and store your deployment YAML within Armory CD.
 1. **Artifact**: You store your deployment YAML file in source control.
 
 #### {{% heading "prereq" %}}
 
-1. Add the Kubernetes manifest for your app as a pipeline artifact in the Configuration section of your pipeline. Or you can generate it using the 'Bake (Manifest)' stage, as you would for a standard Kubernetes deployment in Armory Enterprise.
+1. Add the Kubernetes manifest for your app as a pipeline artifact in the Configuration section of your pipeline. Or you can generate it using the 'Bake (Manifest)' stage, as you would for a standard Kubernetes deployment in Armory CD.
 
 1. Prepare your Armory CD-as-a-Service deployment YAML. You can use the [Armory CD-as-a-Service CLI]({{< ref "cd-as-a-service/setup/cli#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template. In your deployment YAML `manifests.path` section, you have to specify the file name of the app's Kubernetes manifest artifact, which may vary from the **Display Name** on the **Expected Artifact** screen.
 
@@ -315,7 +307,7 @@ Then you must bind `potato-facts.yml` as a required artifact:
 
 ### Kubernetes Progressive stage
 
-If you have deployed Kubernetes apps before using Armory Enterprise, this page may look familiar. The key difference between a Kubernetes deployment using Armory Enterprise and Armory Enterprise with the Armory CD-as-a-Service Spinnaker Plugin is in the **How to Deploy** section.
+If you have deployed Kubernetes apps before using Armory CD, this page may look familiar. The key difference between a Kubernetes deployment using Armory CD and Armory CD with the Armory CD-as-a-Service Spinnaker Plugin is in the **How to Deploy** section.
 
 The **How to Deploy** section is where you define your progressive deployment and consists of two parts:
 
@@ -338,7 +330,7 @@ You can try out the **Kubernetes Progressive** stage using either the `hello-wor
 
 Perform the following steps:
 
-1. In the Armory Enterprise UI, select an existing app or create a new one.
+1. In the Armory CD UI, select an existing app or create a new one.
 2. Create a new pipeline.
 3. Add a stage to your pipeline with the following attributes:
    - **Type**: select **Kubernetes Progressive**
@@ -390,7 +382,7 @@ Perform the following steps:
 
    **Using an existing artifact**
 
-   Select an existing artifact or define a new one as you would for a standard Kubernetes deployment in Armory Enterprise.
+   Select an existing artifact or define a new one as you would for a standard Kubernetes deployment in Armory CD.
 
 7. In the **How to Deploy** section, configure the **Rollout Ratio** and **Then wait** attributes for the deployment.
 
@@ -399,7 +391,7 @@ Perform the following steps:
 8.  Save the pipeline.
 9.  Trigger a manual execution of the pipeline.
 
-On the **Pipelines** page of the Armory Enterprise UI, select the pipeline and watch the deployment progress. If you set the **Then wait** behavior of any step to **until approved**, this is where you approve the rollout and allow it to continue. After completing the final step you configured, Armory CD-as-a-Service scales the deployment to 100% of the cluster if needed.
+On the **Pipelines** page of the Armory CD UI, select the pipeline and watch the deployment progress. If you set the **Then wait** behavior of any step to **until approved**, this is where you approve the rollout and allow it to continue. After completing the final step you configured, Armory CD-as-a-Service scales the deployment to 100% of the cluster if needed.
 
 ## Known issues and limitations
 
@@ -409,7 +401,7 @@ On the **Pipelines** page of the Armory Enterprise UI, select the pipeline and w
 
 ### `armory.cloud` block location
 
-In Armory Enterprise 2.26.3, the location of where you put the `armory.cloud` config block is different from other versions. Additionally, there is an additional config block for `spec.spinnakerConfig.profiles.gate.spinnaker.extensibility` that contains information for the plugin named `plugins`.
+In Armory CD 2.26.3, the location of where you put the `armory.cloud` config block is different from other versions. Additionally, there is an additional config block for `spec.spinnakerConfig.profiles.gate.spinnaker.extensibility` that contains information for the plugin named `plugins`.
 
 {{< tabs name="KnownIssue" >}}
 {{% tabbody name="Operator" %}}

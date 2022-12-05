@@ -95,6 +95,11 @@ Run the pipeline.
 
 ![Terraform Stage in Deck](/images/terraform_stage_ui.png)
 
+{{< include "rdbms-utf8-required.md" >}}
+
+ {{% alert title="Warning" color=warning %}} 
+ > If the Clouddriver MYSQL schema is not configured correctly, the Terraform Integration stage fails.
+ {{% /alert %}}
 To create a new Terraform stage, perform the following steps:
 
 1. In Deck, select the Application and pipeline you want to add the Terraform Integration stage to.
@@ -142,7 +147,7 @@ To create a new Terraform stage, perform the following steps:
 
       For the `backendArtifact` and other artifacts, you can replace `github/file` with some other artifact type. For example, if you're using the BitBucket artifact provider, specify `bitbucket/file` and the corresponding artifact account.
 
-      The Terraform Integration supports remote backends as an [Early Access]({{< ref "release-definitions" >}}) feature. Select a Terraform version that is 0.12.0 or higher when configuring the stage. Then, you can use Terraform code that references a remote backend.
+      The Terraform Integration supports remote backends as a feature. Select a Terraform version that is 0.12.0 or higher when configuring the stage. Then, you can use Terraform code that references a remote backend.
 
 
 

@@ -117,6 +117,11 @@
   from = "/armory-enterprise/armory-agent/*"
   to = "/scale-agent/"
 
+[[redirects]]
+  from = "/armory-enterprise/plugin-guide/cdaas-spinnaker/"
+  to = "/cd-as-a-service/plugin-spinnaker/"
+  force = true # ensure this always redirects because cdaas-spinnaker does exist
+
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
 package = "@netlify/plugin-sitemap"
@@ -128,10 +133,12 @@ package = "@netlify/plugin-sitemap"
     './public/armory-enterprise/plugin-guide/plugin-appname/',
     './public/armory-enterprise/plugin-guide/plugin-external-account/',
     './public/armory-enterprise/plugin-guide/plugin-iam-authentication/',
+    './public/armory-enterprise/plugin-guide/cdaas-spinnaker/',
     './public/armory-enterprise/feature-status/deprecations/pacrd-deprecation/',
     './public/armory-enterprise/installation/deployment-reg/',
     './public/managed-spin',
-    './public/contribute'
+    './public/contribute',
+    './public/armory-enterprise/try/'
   ]
   # append missing trailing slash to prettyURL
   trailingSlash = true

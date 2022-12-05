@@ -19,7 +19,7 @@ Armory supports the following metrics providers:
 ## {{% heading "prereq" %}}
 
 - You have installed one of the supported metrics providers.
-- You have created a [secret]({{< ref "cd-as-a-service/tasks/iam/secrets-create" >}}) for your provider's encrypted connection token:
+- You have created a [secret]({{< ref "cd-as-a-service/tasks/secrets/secrets-create" >}}) for your provider's encrypted connection token:
 
    - Datadog: **API Key** and **Application Key**
    - New Relic: **API Key**

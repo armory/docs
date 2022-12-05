@@ -3,7 +3,7 @@ title: Armory Continuous Deployment-as-a-Service
 linkTitle: Armory CD-as-a-Service
 no_list: true
 description: >
-  Use Armory Continuous Deployment-as-a-Service to continuously deliver your apps to your Kubernetes clusters. Armory CD-as-a-Service integrates with external automation tools so you can create your own CI/CD pipelines.
+  Use Armory CD-as-a-Service to continuously deliver your apps to your Kubernetes clusters. Armory CDaaS integrates with external automation tools so you can create your own CI/CD pipelines.
 ---
 
 ## Overview of Armory CD-as-a-Service
@@ -17,7 +17,7 @@ great code rather than deploying it. By automating code deployment across all of
 
 See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture" >}}) and [System Requirements]({{< ref "cd-as-a-service/release-notes/requirements">}}) pages for details.
 
-For a full list of features and pricing, see the [Armory Continuous Deployment-as-a-Service product page](https://www.armory.io/products/continuous-deployment-as-a-service/).
+The [Armory CDaaS](https://www.armory.io/products/continuous-deployment-as-a-service/) product page contains a full list of features and pricing.
 
 ## Start using Armory CD-as-a-Service
 
@@ -25,7 +25,7 @@ The **Get Started** section contains guides that walk you through the core funct
 
 Read the {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}} guide to learn how to install the CLI, create a deployment file, and deploy your app.
 
-After you've completed those guides, you can follow the {{< linkWithTitle "cd-as-a-service/tutorials/deploy-demo-app.md" >}}, in which you fork a demo app repo and deploy that app to your Kubernetes cluster.
+After you've completed those guides, you can follow the {{< linkWithTitle "cd-as-a-service/tutorials/deploy-sample-app.md" >}}, in which you fork a demo app repo and deploy that app to your Kubernetes cluster.
 
 In addition to deployment using the CLI, you can start a deployment from your GitHub workflow. Read the {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}} guide to integrate Armory CD-as-a-Service's GitHub Action into your workflow.
 

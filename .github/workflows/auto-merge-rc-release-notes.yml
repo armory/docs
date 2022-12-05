@@ -1,0 +1,21 @@
+name: Automerge RC release notes
+
+on:
+  pull_request:
+    paths:
+      - 'content/en/armory-enterprise/release-notes/rn-prerelease-armory-spinnaker/**'
+
+jobs:
+  create_ephemeral_spinnaker_and_run_tests:
+    name: auto-merge rc release notes PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR label
+        uses: NathanielHill/check-pr-label-action@v4.0.0
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          valid-labels: 'automerge, releaseNotesUpdate'
+      - name: Enable automerge in PR
+        uses: alexwilson/enable-github-automerge-action@main
+        with:
+          github-token: "${{ secrets.ASTROLABE_GITHUB_TOKEN }}"

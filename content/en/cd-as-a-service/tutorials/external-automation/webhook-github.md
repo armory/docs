@@ -1,5 +1,5 @@
 ---
-title: Deploy a Demo App That Uses GitHub Webhook-Based Approval
+title: Deploy a Sample App That Uses GitHub Webhook-Based Approval
 linktitle: GitHub Webhook Approval
 description: >
   Learn how to configure GitHub webhook-based approvals in your Armory CD-as-a-Service app deployment process.
@@ -9,7 +9,7 @@ description: >
 
 This tutorial shows you how to configure webhook-based approvals using GitHub.
 
-This tutorial assumes you have completed the {{< linkWithTitle "deploy-demo-app.md" >}} guide. You will use the same `docs-cdaas-demo` repo that you forked and cloned as part of that tutorial.
+You should have completed the {{< linkWithTitle "deploy-sample-app.md" >}} guide. You use the same `docs-cdaas-sample` repo that you forked and cloned as part of that tutorial.
 
 ## {{% heading "prereq" %}}
 
@@ -25,19 +25,19 @@ You need to create credentials that enable GitHub and Armory CD-as-a-Service to 
 1. Create a personal access token in GitHub with **workflow** and **admin:repo_hook** permissions. See the GitHub [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) guide for instructions. Copy the token value for use in the next step.
 1. Create a new secret in the CD-as-a-Service Console for the GitHub token you just created. Go to the **Secrets** > **Secrets** screen. Click the **New Secret** button.
 
-   - **Name**: `github_webhook_token`
-   - **Replacement Value**: `<github_token_value>`
+   - **Name**: `github_personal_access_token`
+   - **Replacement Value**: `<github_personal_access_token_value>`
 
-   Replace `<github_token_value>` with your token value. You use this secret when configuring your webhook in your deployment file.
+   Replace `<gigithub_personal_access_tokenn_value>` with your token value. You use this secret when configuring your webhook in your deployment file.
 
-1. Create a new Armory CD-as-a-Service credential for your webhook callback to use to authenticate to Armory CD-as-a-Service. In the CD-as-a-Service Console, go to the **Access Management** > **Client Credentials** screen. Click the **New Credential** button. On the **Create New Client Credential** screen:
+1. [Create a new CD-as-a-Service credential]({{< ref "cd-as-a-service/tasks/iam/client-creds" >}}) for your webhook callback to use for CD-as-a-Service authentication. In the CD-as-a-Service Console, go to the **Access Management** > **Client Credentials** screen. Click the **New Credential** button. On the **Create New Client Credential** screen:
 
    - **Name**: `github_webhooks`
-   - **Preconfigured Scope Group**: select `Deployments using Spinnaker`
+   - **Select Roles**: select `Deployments Full Access`
 
-   Click **Create Credentials**. Copy the **Client ID** and **Client Secret** values for use in the next step.
+   Click **Create Credential**. Copy the **Client ID** and **Client Secret** values for use in the next step.
 
-1. Create two GitHub repo secrets in your fork of the `docs-cdaas-demo` repo. See GitHub's [Creating encrypted secrets for a repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for instructions. Your webhook callback uses the value of these secrets to authenticate to Armory CD-as-a-Service. Create your repo secrets with the following names and values:
+1. Create two GitHub repo secrets in your fork of the `docs-cdaas-sample` repo. See GitHub's [Creating encrypted secrets for a repository](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for instructions. Your webhook callback uses the value of these secrets to authenticate to Armory CD-as-a-Service. Create your repo secrets with the following names and values:
 
     1. **Name**: CDAAS_CLIENT_ID **Value**: `<github_webhooks_client_id>`
 
@@ -49,16 +49,20 @@ You need to create credentials that enable GitHub and Armory CD-as-a-Service to 
 
 ## Create the webhook event and workflow
 
+>Be sure to enable workflows in your fork of the `docs-cdaass-sample` repo.
+
 You can create a `repository_dispatch` webhook event when you want to trigger a workflow from outside of GitHub. Review the following GitHub `repository_dispatch` docs if you're unfamiliar with this type of webhook event:
 
 - [Webhook events and payloads](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#repository_dispatch)
 - [Events that trigger workflows](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#repository_dispatch)
 - [Create a repository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event)
 
-The `docs-cdaas-demo` repo contains a webhook file called `basicPing.yml` in the `.github/workflows` directory. The workflow defined in the file is deliberately simple and for tutorial purposes only. It gets an OAUTH token, extracts the callback URI, and sends a POST request to that callback URI.
+The `docs-cdaas-sample` repo contains a `basicPing.yml` webhook workflow file in the `.github/workflows` directory. The webhook workflow obtains an OAUTH token, extracts the callback URI, and sends a POST request to that callback URI.
+
+You must include specific keys and values as detailed in the following sample:
 
 {{< prism lang="yaml" line-numbers="true" line="5, 16-19, 24-28" >}}
-name: Basic Ping
+name: basicPing Webhook Callback
 
 on:
   repository_dispatch:
@@ -85,7 +89,7 @@ jobs:
           method: 'POST'
           bearerToken: ${{ fromJSON(steps.getToken.outputs.response).access_token }}
           customHeaders: '{ "Content-Type": "application/json" }'
-          data: '{ "success": true, "mdMessage": "Webhook was successful: ${{ github.event.client_payload.callbackUri }}" }'
+          data: '{ "success": true, "mdMessage": "basickPing webhook success: ${{ github.event.client_payload.callbackUri }}" }'
       - name: show http response
         run: echo ${{ steps.callCallback.outputs.response }}
 {{< /prism >}}
@@ -107,12 +111,14 @@ Note:
 
 ## Configure the webhook in your deployment file
 
-The `docs-cdaas-demo` repo contains a second deployment file called `deploy-webhook.yml` in the root directory. The `webhooks` section is at the bottom of the file.
+The `docs-cdaas-sample` repo contains a second deployment file called `deploy-webhook.yml` in the root directory. The `webhooks` section is at the bottom of the file.
 
 The `uriTemplate` uses secrets instead of hardcoding the URI. If you don't want to create secrets, be sure to change to `uriTemplete` to use your GitHub org and repo. To create secrets using the CD-as-a-Service Console, go to **Secrets** > **Secrets** and create two new secrets:
 
-1. **Name**: `github_org`; **Value**: the name of the GitHub org into which you forked the `docs-cdaas-demo` repo. This is either your business org, like 'armory', or your GitHub username.
-1. **Name**: `github_repo`; **Value**: the name of the GitHub repo into which you forked the `docs-cdaas-demo` repo. This is most likely `docs-cdaas-demo`.
+1. **Name**: `github_org`; **Value**: the name of the GitHub org into which you forked the `docs-cdaas-sample` repo. This is either your business org, like 'armory', or your GitHub username.
+1. **Name**: `github_repo`; **Value**: the name of the GitHub repo into which you forked the `docs-cdaas-sample` repo. This is most likely `docs-cdaas-sample`.
+
+The following is an example of how to configure a GitHub webhook workflow:
 
 {{< prism lang="yaml" line-numbers="true" line="2, 5-6, 8-10, 15-20" >}}
 webhooks:
@@ -123,8 +129,8 @@ webhooks:
     networkMode: direct
     headers:
       - key: Authorization
-        # The secret name must match the Armory CD-as-a-Service secret name for your GitHub access token
-        value: token  {{secrets.github_webhook_token}}
+        # The secret name must match the Armory CDaaS secret name for your GitHub access token
+        value: token  {{secrets.github_personal_access_token}}
       - key: Content-Type
         value: application/json
     bodyTemplate:
@@ -135,7 +141,7 @@ webhooks:
             "callbackUri": "{{armory.callbackUri}}/callback"
             }
         }
-    retryCount: 0
+    retryCount: 1
 {{< /prism >}}
 <br>
 Note:
@@ -149,74 +155,29 @@ Note:
    - The `event_type` must match the `on.repository_dispatch.types` value in the `basicPing.yml` file.
    - The items in the `client_payload` dictionary depend on the functionality within the `basicPing.yml` file. The `basicPing` workflow looks for `callbackUri`. The `callbackUri` value is always `{{armory.callbackUri}}/callback`. Armory CD-as-a-Service dynamically generates and fills in `armory.callbackUri` at runtime.
 
-## Call the webhook in your deployment process
+## Call the webhooks in your deployment process
 
-The `deploy-webhook.yml` calls the `basicPing` webhook in two places. The first is in a `beforeDeployment` constraint in the `prod-us` and `prod-eu` targets.
+The `deploy-webhook.yml` calls the webhook workflows in the `constraints` section of the deployment target definition. Look for `runWebhook` entries such as the following:
 
-{{< prism lang="yaml" line-numbers="true" line="12-13, 21-22" >}}
-targets:
-...
-prod-us:
-  account: demo-rna-prod-us-cluster
-  namespace: demo-prod-us
-  strategy: mycanary
+{{< prism lang="yaml" line-numbers="true" line="8-9" >}}
+staging:
+  account: sample-rna-staging-cluster
+  namespace: sample-staging
+  strategy: rolling
   constraints:
-    dependsOn: ["staging"]
-    beforeDeployment:
-      - pause:
-          untilApproved: true
-      - runWebhook:
-          name: basicPing
-prod-eu:
-  account: demo-rna-prod-eu-cluster
-  namespace: demo-prod-eu
-  strategy: myBlueGreen
-  constraints:
-    dependsOn: ["staging"]
-    beforeDeployment:
+    dependsOn: ["test"]
+    afterDeployment:
       - runWebhook:
           name: basicPing
 {{< /prism >}}
 
-Deployment to `prod-us` requires manual approval and a successful webhook result, whereas deployment to `prod-eu` only requires a successful result.
-
-The second place that deployment calls the webhook is within a canary strategy configuration.
-
-{{< prism lang="yaml" line-numbers="true" line="15-16" >}}
-strategies:
-  mycanary:
-    canary:
-      steps:
-        - setWeight:
-            weight: 25
-        - analysis:
-            interval: 7
-            units: seconds
-            numberOfJudgmentRuns: 1
-            rollBackMode: manual
-            rollForwardMode: automatic
-            queries:
-              - avgCPUUsage-pass
-        - runWebhook:
-            name: basicPing
-        - setWeight:
-            weight: 50
-        - analysis:
-            interval: 7
-            units: seconds
-            numberOfJudgmentRuns: 3
-            rollBackMode: manual
-            rollForwardMode: manual
-            queries:
-              - avgCPUUsage-fail
-              - avgCPUUsage-pass
-        - setWeight:
-            weight: 100
-{{< /prism >}}
+`runWebhook.name` must match the name you gave the webhook in the `webhooks` section.
 
 ## Deploy your updated process
 
-Navigate to your `docs-cdaas-demo` directory. Make sure you have logged in using the CLI (`armory login`).
+The deployment process calls the `basicPing` webhook workflow when deploying to the `staging` target. The webhook must be successful for deployment to continue to the prod targets.
+
+Navigate to your `docs-cdaas-sample` directory. Make sure you have logged in using the CLI (`armory login`).
 
 Deploy the using the `deploy-webhook.yml` file.
 
@@ -233,9 +194,7 @@ Output is similar to:
 
 You can check deployment status by accessing the URL included in the output.
 
-Deployment to `prod-us` requires manual approval but deployment to `prod-eu` is based on the result of the `basicPing` webhook.
-
-{{< figure width="100%" height="100%" src="/images/cdaas/tutorials/webhooks/webhook-success.png"  alt="BeforeDeployment webhook success"  caption="<center><i>The basicPing webhook succeeded so deployment continued.</i></center>">}}
+{{< figure width="100%" height="100%" src="/images/cdaas/tutorials/webhooks/webhook-success.jpg"  alt="BeforeDeployment webhook success"  caption="<center><i>The basicPing webhook succeeded so deployment continued.</i></center>">}}
 
 To see what webhook failure looks like, go into your GitHub repo and change the `basicPing.yml` file line 28 like this:
 
@@ -274,57 +233,13 @@ jobs:
 
 Commit the change.
 
-Make sure to manually approve the `prod-us` deployment in the CD-as-a-Service Console before you redeploy.
+Deploy by running `armory start deploy -f deploy-webhook.yml`. Then check deployment status by accessing the URL included in the output. CD-as-a-Service cancels the deployment when it receives a failure message from the webhook.
 
-Deploy by running `armory start deploy -f deploy-webhook.yml`. Then check deployment status by accessing the URL included in the output.
+{{< figure width="100%" height="100%" src="/images/cdaas/tutorials/webhooks/webhook-failure.jpg"  alt="BeforeDeployment webhook failure"  caption="<center><i>The basicPing webhook failed.</i></center>">}}
 
-{{< figure width="100%" height="100%" src="/images/cdaas/tutorials/webhooks/webhook-fail.png"  alt="BeforeDeployment webhook failure"  caption="<center><i>The basicPing webhook failed.</i></center>">}}
+## {{% heading "nextSteps" %}}
 
-## Troubleshooting
-
-### Webhook process runs for a long time
-
-Check your repo to see if the action is also still running.
-
-* If the action hasn't started, the call to your action wasn't successful. The UI should display an error message with a non-200 HTTP return code when the webhook process times out. In the meantime, check your deployment file to make sure the following fields have the correct values:
-
-   - `uriTemplate`
-   - `networkMode` and optionally `agentIdentifier`
-   - `event_type` in the inline body template
-
-   If you find an error, cancel your deployment before fixing and redeploying.
-
-* If your GitHub action workflow has completed, your workflow failed to trigger the callback to Armory CD-as-a-Service. Check GitHub's [Monitoring and troubleshooting workflows](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows) for troubleshooting suggestions.
-
-
-### 401 status code
-
-In the UI, you see a `Received non-200 status code: 401` error when you pass invalid credentials. Check that your GitHub access token is valid.
-
-### 404 status code
-
-```
-404 Not Found: [{"message":"Not Found","documentation_url":"https://docs.github.com/rest"}]
-```
-
-This is a confusing error that occurs when you do not send authorization credentials in the header. Make sure you include your GitHub token in the request header.
-
-{{< prism lang="yaml" >}}
-headers:
-- key: Authorization
-  value: token  {{secrets.github_webhook_token}}
-{{< /prism >}}
-
-
-
-
-
-
-
-
-
-
-
+{{< linkWithTitle "cd-as-a-service/troubleshooting/webhook.md" >}}
 
 
 <!-- do not delete these. Markdown links used in the content. -->
