@@ -2,7 +2,7 @@
 title: v0.9.62 Armory Agent Clouddriver Plugin (2022-09-07)
 toc_hide: true
 version: 00.09.62
-date: 2022-09-07
+
 ---
 
-Fix missing cluster deletion when removing all associated deployments; not allowing to delete an application because the existence of that empty cluster.
+Fix missing cluster deletion when removing all associated deployments; not allowing to delete an application because the existence of that empty cluster. 
