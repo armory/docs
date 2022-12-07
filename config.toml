@@ -1,5 +1,7 @@
-# baseURL = "/"
-BaseURL = "https://docs.armory.io/"
+baseURL = "/"
+#baseURL = "https://docs.armory.io/"
+
+#canonifyURLs = true
 
 enableRobotsTXT = true
 enableInlineShortcodes = true
