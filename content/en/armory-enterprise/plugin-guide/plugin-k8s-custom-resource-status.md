@@ -1,29 +1,42 @@
 ---
-title: K8s Custom Resource Status Check Plugin
-toc_hide: true
-exclude_search: true
+title: Kubernetes Custom Resource Status Check Plugin
+linkTitle: K8s Custom Resource Status
 description: >
-  This plugin checks the Status of a Custom Resource Deployment
+  This Armory CD and Spinnaker plugin checks the status of your Custom Resource deployment on Kubernetes.
 ---
-<!-- this is a private plugin. It is also hidden via robots.txt and the netlify sitemap plugin. -->
+
 ![Proprietary](/images/proprietary.svg)
+
+## Overview of the Kubernetes Custom Resource Status Check Plugin
+
+The Kubernetes Custom Resource Status Check Plugin checks for the status of a Custom Resource deployment by comparing the values set in the properties and
+updating the Deploy (Manifest) stage pipeline status. The plugin supports two ways to check for a status in your Custom Resource while deploying using
+Armory CD:
+
+1. Kubernetes conditions
+2. Any other custom field(s)
+
+The plugin also checks that:
+
+* All the associated replicas have been updated to the latest version you specified, meaning any updates you requested are complete.
+* All the replicas associated with the Deployment are available.
+* No old replicas for the Deployment are running.
+
+These replica checks are enabled by default and do not require additional configuration.
 
 ## Version Compatibility
 
-| Plugin | Spinnaker Platform | Armory Spinnaker Platform |
+| Plugin | Spinnaker Version  | Armory CD Version |
 |:-------|:-------------------|:--------------------------|
 | 1.0.0  | 1.27.x, 1.28.x     | 2.27.x, 2.28.x            |
 | 2.0.x  | 1.27.x, 1.28.x     | 2.27.x, 2.28.x            |
 
 ## Configuration
 
-Example configuration using the Spinnaker Operator for `clouddriver` service:
+Put the plugin configuration in the `spec.spinnakerConfig.profiles.clouddriver` section of your Operator `spinnakerservice.yml`:
 
-```yaml
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
+{{< prism lang="yaml" line="5-14" >}}
+... (omitted for brevity)
 spec:
   spinnakerConfig:
     profiles:
@@ -33,57 +46,41 @@ spec:
             plugins:
               Armory.K8sCustomResourceStatus:
                 enabled: true
-                version: 2.0.1
+                version: <version>
               repositories:
                 pluginRepository:
                   url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-```
+{{< /prism >}}
+
+* `version`: The plugin version that corresponds to your Armory CD version.
 
 ## Usage
 
-The plugin checks for the status of a Custom Resource deployment by comparing the values set in the properties and
-updating the Deploy (Manifest) stage
-pipeline status. The plugin supports two ways to check for a Status in your Custom Resource while deploying using
-Spinnaker:
-
-1. Kubernetes Conditions.
-2. Any other custom field(s).
-
-The plugin will also check:
-
-* All the replicas associated have been updated to the latest version you've specified, meaning any updates you've
-  requested have been completed.
-* All the replicas associated with the Deployment are available.
-* No old replicas for the Deployment are running.
-
-These replica checks are enabled by default with the plugin and do not require additional configuration.
-
 ### Supported Statuses
 
-The plugin supports the following statuses:
+The plugin uses the following statuses:
 
 * **Stable Deployment**
-  1. By default, you do not need to set the expected `Stable` values in your Custom Resource. The plugin will set the
-     status as Stable if you do not set the Stable properties. This means that you can only check for negative values.
-  2. Manually setting the possible Stable values in the properties. This will let the plugin know that you explicitly
-     want
-     to check for a status.
-* **Failed Deployment**
-  * By default, the plugin sets the default status to `Stable`. If you want to check for certain failed statuses, you
-    can set them in the properties. When a deployment fails, the Deploy Manifest stage will stop and mark the deployment
-    as
-    Failed.
-* **Paused Deployment**
-  * When a deployment is `Paused`, the stage will finish and the message will be yellow colored.
-* **Unavailable Deployment**
-  * When a deployment is `Unavailable`, the stage continue to query the status and wait for the deployment to become
-    stable.
 
-## Properties
+   By default, you do not need to set the expected `Stable` values in your Custom Resource. The plugin sets the status as **Stable** if you do not set the Stable properties. This means that you can only check for negative values. If you manually set the possible Stable values in the properties, the plugin knows that you explicitly want to check for a status.
+
+* **Failed Deployment**
+
+   By default, the plugin sets the default status to `Stable`. If you want to check for certain failed statuses, you can set them in the properties. When a deployment fails, the Deploy Manifest stage will stop and mark the deployment as Failed.
+
+* **Paused Deployment**
+
+   When a deployment is `Paused`, the stage finishes and the message is rendered in yellow.
+
+* **Unavailable Deployment**
+
+   When a deployment is **Unavailable**, the stage continues to query the status and wait for the deployment to become stable.
+
+### Properties
 
 All supported properties with some example values:
 
-```yaml
+{{< prism lang="yaml" >}}
 spinnaker:
   extensibility:
     plugins:
@@ -151,41 +148,28 @@ spinnaker:
               fields:
                 - field1: value1
                 - field2: value2
-```
+{{< /prism >}}
 
-* `markAsUnavailableUntilStable` (optional): Only used under `stable` properties. If it doesn't find any of the fields
-  declared under `stable`, it will mark
-  the deployment as
-  unavailable and wait for the deployment to become stable. It will become stable until it finds any of the fields in
-  the properties.
-* `failIfNoMatch` (optional): Only used under `stable` properties. In this example, if it doesn't find any of the
-  fields, it will mark the deployment as
-  failed.
+* `markAsUnavailableUntilStable`: (Optional) Only used under `stable` properties. If the plugin doesn't find any of the fields declared under `stable`, it marks the deployment as unavailable and waits for the deployment to become stable. The status changes to stable when the plugin finds any of the fields in the properties.
+* `failIfNoMatch`: (Optional) Only used under `stable` properties. In this example, if the plugin doesn't find any of the fields, it marks the deployment as failed.
 
 ### Considerations
 
-All values below `config` are optional. You have the flexibility to check for multiple combinations of kinds, statuses
-and values.
+All values below `config` are optional. You have the flexibility to check for multiple combinations of kinds, statuses, and values.
 
-Under `config`, you can split the statuses per Custom Resource kind or set statuses that apply to all Custom Resources
-deployed, except the ones you declare by kind.
+Under `config`, you can split the statuses per Custom Resource kind or set statuses that apply to all Custom Resources deployed, except the ones you declare by kind.
 
-* If you set any statuses under a specific `kind`, whenever you deploy that `kind`, the plugin will check for those
-  statuses in isolation and not any other values from other kinds or the general list under `status`.
-* If you set the statuses under the `status` field, the statuses will apply to any Custom Resource you deploy, except
-  any declared kinds in the properties.
+* If you set any statuses under a specific `kind`, whenever you deploy that `kind`, the plugin checks for those statuses in isolation and not any other values from other kinds or the general list under `status`.
+* If you set the statuses under the `status` field, the statuses apply to any Custom Resource you deploy, except any declared kinds in the properties.
 
-Each field under `conditions` is optional. But any condition field you set in the properties, has to match your
-manifest conditions for the plugin to update the status in your pipeline correctly.
+Each field under `conditions` is optional. But any condition field you set in the properties must match your manifest conditions in order for the plugin to update the status in your pipeline correctly.
 
-* If you add multiple list items under `conditions`, it will update the status as soon as it finds a match and stop
-  checking any other list items. It will not evaluate any further.
-* Each list item under `fields` is a map. Every field per map has to match your expected values in the manifest. If the
-  first map of fields do not match, it will proceed to check the next list item.
+* If you add multiple list items under `conditions`, the plugin updates the status as soon as it finds a match and stops checking any other list items. The plugin does not evaluate any further.
+* Each list item under `fields` is a map. Every field per map has to match your expected values in the manifest. If the first map of fields do not match, the plugin proceeds to check the next list item.
 
 ### Custom field syntax
 
-Values under `fields` have a custom syntax to access the value from the Manifest.
+Values under `fields` have a custom syntax to access the value from the manifest.
 
 Accepted field formats:
 
@@ -195,9 +179,9 @@ Accepted field formats:
 * Mapped: `field(key)`
 * Combined: `field1.field2[index].field3(key)`
 
-For example, if you want to access the field `ready` with the value `True`.
+For example, if you want to access the field `ready` with the value `True`:
 
-```yaml
+{{< prism lang="yaml" >}}
 apiVersion: example.com
 kind: Foo
 metadata:
@@ -209,26 +193,26 @@ status:
   observedGeneration: 12
   values:
     - ready: "True"
-```
+{{< /prism >}}
 
-The syntax would be:
+The syntax is:
 
-```yaml
+{{< prism lang="yaml" >}}ml
 config:
   kind:
     status:
       available:
         fields:
           - status.values.[0].ready: "True"
-```
+{{< /prism >}}
 
 ## Examples
 
-### Example 1: Custom Resource following Kubernetes API Guideline with conditions
+### Example 1: Custom Resource following Kubernetes API guidelines with conditions
 
 `kubectl get foo -o yaml`
 
-```yaml
+{{< prism lang="yaml" >}}
 apiVersion: example.com
 kind: Foo
 metadata:
@@ -249,14 +233,13 @@ status:
       lastUpdateTime: "2020-03-25T21:20:39Z"
       status: "False"
       type: Stalled
-```
+{{< /prism>}}
 
-Let's map this custom resource status values to the plugin configuration. The plugin will update the status if the
-values from the config match with the values from our custom resource.
+First map this custom resource's status values to the plugin configuration. The plugin updates the status if the values from the config match the values from your custom resource.
 
 #### Example 1.1: Config per kind
 
-```yaml
+{{< prism lang="yaml" >}}
 spinnaker:
   extensibility:
     plugins:
@@ -291,14 +274,13 @@ spinnaker:
                     reason: Reconciling
                     status: "True"
                     type: Reconciling
-```
+{{< /prism >}}
 
-These properties are only for `Foo` kind. Every time you deploy `Foo`, it will compare the resource status values
-against these properties. In this case, it will mark the deployment as unavailable since it matches our custom resource.
+These properties are only for `Foo` kind. Every time you deploy `Foo`, the plugin compares the resource status values against these properties. In this case, the plugin marks the deployment as unavailable since it matches your custom resource.
 
 #### Example 1.2: Config for all Custom Resources
 
-```yaml
+{{< prism lang="yaml" >}}
 spinnaker:
   extensibility:
     plugins:
@@ -332,17 +314,15 @@ spinnaker:
                   reason: Reconciling
                   status: "True"
                   type: Reconciling
-```
+{{< /prism >}}
 
-These properties apply to all custom resource kinds you deploy. If you deploy different kinds with different statuses,
-you should declare per kind like in `Example 1.1`. In this case, it will mark the deployment as unavailable since it
-matches our custom resource.
+These properties apply to all custom resource kinds you deploy. If you deploy different kinds with different statuses, you should declare per kind like in `Example 1.1`. In this case, the plugin marks the deployment as unavailable since that matches your custom resource.
 
 ### Example 2: Custom Resource with Non-Standard status fields
 
 `kubectl get foo -o yaml`
 
-```yaml
+{{< prism lang="yaml" >}}
 apiVersion: example.com
 kind: Foo
 metadata:
@@ -354,14 +334,13 @@ status:
   status: Ready
   message: API is ready
   collisionCount: 0
-```
+{{< /prism >}}
 
-Let's map this custom resource status values to the plugin configuration. The plugin will update the status if the
-values from the config match with the values from our custom resource.
+First map this custom resource's status value to the plugin configuration. The plugin updates the status if the values from the config match the values from your custom resource.
 
 #### Example 2.1: Config per kind
 
-```yaml
+{{< prism lang="yaml" >}}
 spinnaker:
   extensibility:
     plugins:
@@ -387,14 +366,13 @@ spinnaker:
                 fields:
                   - status.available: False
                     status.collisionCount: 0
-```
+{{< /prism >}}
 
-These properties are only for `Foo` kind. Every time you deploy `Foo`, it will compare the resource status values
-against these properties. In this case, it will mark the deployment as ready since it matches our custom resource.
+These properties are only for `Foo` kind. Every time you deploy `Foo`, it compares the resource status values against these properties. In this case, the plugin marks the deployment as ready since that matches your custom resource.
 
 #### Example 2.2: Config for all Custom Resources
 
-```yaml
+{{< prism lang="yaml" >}}
 spinnaker:
   extensibility:
     plugins:
@@ -419,11 +397,10 @@ spinnaker:
               fields:
                 - status.available: False
                   status.collisionCount: 0
-```
+{{< /prism >}}
 
-These properties apply to all custom resource kinds you deploy. If you deploy different kinds with different statuses,
-you should declare per kind like in `Example 2.1`. In this case, it will mark the deployment as ready since it
-matches our custom resource.
+These properties apply to all custom resource kinds you deploy. If you deploy different kinds with different statuses, you should declare per kind like in `Example 2.1`. In this case, the plugin marks the deployment as ready since that
+matches your custom resource.
 
 ## Release Notes
 
