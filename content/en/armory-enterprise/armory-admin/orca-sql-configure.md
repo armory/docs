@@ -24,12 +24,13 @@ You can configure your SQL database by adding the following snippet to `Spinnake
 sql:
   enabled: true
   connectionPools:
-    jdbcUrl: jdbc:mysql://<DB CONNECTION HOSTNAME>:<DB CONNECTION PORT>/<DATABASE NAME>
-    user: orca_service
-    password: <orca_service password>
-    connectionTimeout: 5000
-    maxLifetime: 30000
-    maxPoolSize: 50
+    default:
+      jdbcUrl: jdbc:mysql://<DB CONNECTION HOSTNAME>:<DB CONNECTION PORT>/<DATABASE NAME>
+      user: orca_service
+      password: <orca_service password>
+      connectionTimeoutMS: 5000
+      maxLifetimeMS: 30000
+      maxPoolSize: 50
   migration:
     jdbcUrl: jdbc:mysql://<DB CONNECTION HOSTNAME>:<DB CONNECTION PORT>/<DATABASE NAME>
     user: orca_migrate
