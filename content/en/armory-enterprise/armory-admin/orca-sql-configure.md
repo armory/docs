@@ -25,11 +25,12 @@ sql:
   enabled: true
   connectionPools:
     default:
+      default: true
       jdbcUrl: jdbc:mysql://<DB CONNECTION HOSTNAME>:<DB CONNECTION PORT>/<DATABASE NAME>
       user: orca_service
       password: <orca_service password>
-      connectionTimeoutMS: 5000
-      maxLifetimeMS: 30000
+      connectionTimeoutMs: 5000
+      maxLifetimeMs: 30000
       maxPoolSize: 50
   migration:
     jdbcUrl: jdbc:mysql://<DB CONNECTION HOSTNAME>:<DB CONNECTION PORT>/<DATABASE NAME>
