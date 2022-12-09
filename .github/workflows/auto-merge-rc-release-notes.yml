@@ -3,7 +3,7 @@ name: Automerge RC release notes
 on:
   pull_request:
     paths:
-      - 'content/en/armory-enterprise/release-notes/rn-prerelease-armory-spinnaker/**'
+      - 'content/en/continuous-deployment/release-notes/rn-prerelease-armory-spinnaker/**'
 
 jobs:
   create_ephemeral_spinnaker_and_run_tests:
