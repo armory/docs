@@ -5,6 +5,11 @@ description: >
   Install a lightweight Docker image of Armory Continuous Deployment (CD) for evaluation and proofs of concept.
 exclude_search: true
 toc_hide: true
+aliases:
+  - /armory-enterprise/try/
+  - /armory-enterprise/quick-spin-instructions/
+  - /continuous-deployment/try/
+  - /continuous-deployment/quick-spin-instructions/
 ---
 
 ![Proprietary](/images/proprietary.svg)
