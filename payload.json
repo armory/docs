@@ -99,7 +99,25 @@
       "commitMessages": [],
       "currentVersion": "1.28.4",
       "name": "Spinnaker Fiat",
-      "previousVersion": "1.28.0"
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump fiatVersion (#1154)",
+        "fix(updateTs): missing updateTs field in the get pipeline history's response. (backport #1159) (#1161)"
+      ],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Front50",
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [
+        "fix(links): update link to spinnaker release changelog (#9897) (#9898)",
+        "chore(dependencies): Autobump spinnakerGradleVersion (#9916) (#9925)"
+      ],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Deck",
+      "previousVersion": "1.27.0"
     },
     {
       "commitMessages": [],
