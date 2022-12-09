@@ -17,7 +17,7 @@ Armory docs does not host dual sourced content since that requires double the ef
 
 ### Third party content
 
-Armory docs does not repeat content from third party product documentation. For example, don't tell the reader how to create an app OAuth token in GitHub. Instead, link to the GitHub docs and optionally point out Armory-specific information that the user needs in order to perform a third party task. See the {{< linkWithTitle "armory-enterprise/armory-admin/authn-github.md" >}} for an example.
+Armory docs does not repeat content from third party product documentation. For example, don't tell the reader how to create an app OAuth token in GitHub. Instead, link to the GitHub docs and optionally point out Armory-specific information that the user needs in order to perform a third party task. See the {{< linkWithTitle "continuous-deployment/armory-admin/authn-github.md" >}} for an example.
 
 
 ## Where to add content
