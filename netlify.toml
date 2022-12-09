@@ -13,93 +13,14 @@
   HUGO_ENV = "production"
 
 # section redirects
-[[redirects]]
-  from = "/overview/*"
-  to = "/armory-enterprise/overview/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/install-guide/*"
-  to = "/armory-enterprise/installation/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/halyard-release-notes/*"
-  to = "/armory-enterprise/release-notes/rn-armory-halyard/"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/release-notes/*"
-  to = "/armory-enterprise/release-notes/rn-armory-spinnaker/"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/spinnaker/*"
-  to = "/armory-enterprise/spinnaker-user-guides/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/operator_reference/*"
-  to = "/armory-enterprise/installation/armory-operator/op-manifest-reference/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/spinnaker-user-guides/*"
-  to = "/armory-enterprise/spinnaker-user-guides/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/spinnaker-install-admin-guides/*"
-  to = "/armory-enterprise/spinnaker-install-admin-guides/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/glossary/glossary"
-  to = "/armory-enterprise/overview/glossary/"
-  status = 301
-  force = false
-
-[[redirects]]
-  from =  "/docs/spinnaker-install-admin-guides/installation/*"
-  to = "/armory-enterprise/installation/guide/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from =  "/docs/operator-reference/*"
-  to = "/armory-enterprise/installation/armory-operator/op-manifest-reference/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from =  "/docs/installation/operator-reference/*"
-  to = "/armory-enterprise/installation/armory-operator/op-manifest-reference/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/docs/spinnaker-user-guides/policy-engine-use/packages/*"
-  to = "/armory-enterprise/armory-admin/policy-engine/policy-engine-use/packages/:splat"
 
 [[redirects]]
   from = "/docs/*"
-  to = "/armory-enterprise/:splat"
+  to = "/continuous-deployment/:splat"
 
 [[redirects]]
-  from = "/ae/*"
-  to = "/armory-enterprise/:splat"
-
-[[redirects]]
-  from = "/borealis/*"
-  to = "/cd-as-a-service/"
+  from = "/armory-enterprise/*"
+  to = "/continuous-deployment/:splat"
 
 [[redirects]]
   from = "/armory-cdaas/*"
@@ -130,15 +51,15 @@ package = "@netlify/plugin-sitemap"
   buildDir = "public"
   # make sure you add a comma after each entry in the exclude list except on the last one
   exclude =[
-    './public/armory-enterprise/plugin-guide/plugin-appname/',
-    './public/armory-enterprise/plugin-guide/plugin-external-account/',
-    './public/armory-enterprise/plugin-guide/plugin-iam-authentication/',
-    './public/armory-enterprise/plugin-guide/cdaas-spinnaker/',
-    './public/armory-enterprise/feature-status/deprecations/pacrd-deprecation/',
-    './public/armory-enterprise/installation/deployment-reg/',
+    './public/continuous-deploymentplugin-guide/plugin-appname/',
+    './public/continuous-deployment/plugin-guide/plugin-external-account/',
+    './public/continuous-deployment/plugin-guide/plugin-iam-authentication/',
+    './public/continuous-deployment/plugin-guide/cdaas-spinnaker/',
+    './public/continuous-deployment/feature-status/deprecations/pacrd-deprecation/',
+    './public/continuous-deployment/installation/deployment-reg/',
     './public/managed-spin',
     './public/contribute',
-    './public/armory-enterprise/try/'
+    './public/continuous-deployment/try/'
   ]
   # append missing trailing slash to prettyURL
   trailingSlash = true

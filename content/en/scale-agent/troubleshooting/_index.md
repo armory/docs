@@ -5,8 +5,6 @@ weight: 99
 no_list: true
 description: >
   Armory Scale Agent for Spinnaker and Kubernetes successful installation and startup messages, common errors, tips, and gRPC endpoint testing.
-aliases:
-   - /armory-enterprise/armory-agent/agent-troubleshooting/
 ---
 
 ## Networking issues

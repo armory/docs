@@ -78,7 +78,7 @@ weight = 1
 [[menu.main]]
   name = "Armory CD"
   weight = 3
-  url = "/armory-enterprise/"
+  url = "/continuous-deployment/"
 
 [[menu.main]]
   name = "Scale Agent"
@@ -150,7 +150,7 @@ version = "2.28.0"
 
 # A link to latest version of the Armory CD docs. Used in the "version-banner" partial to
 # point people to the main Armory CD docs site.
-url_latest_version = "https://docs.armory.io/armory-enterprise/"
+url_latest_version = "https://docs.armory.io/continuous-deployment/"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/armory/docs/"

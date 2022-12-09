@@ -89,7 +89,7 @@ time="2021-07-16T17:48:30Z" level=info msg="starting agentCreator provider:\"kub
 
 ## Install the plugin
 
-> You can configure secrets as outlined in the [Secrets Guide]({{< ref "armory-enterprise/armory-admin/secrets" >}}). This means you can set the clientSecret value to be a secret token instead of the plain text value.
+> You can configure secrets as outlined in the [Secrets Guide]({{< ref "continuous-deployment/armory-admin/secrets" >}}). This means you can set the clientSecret value to be a secret token instead of the plain text value.
 
 {{< tabs name="DeploymentPlugin" >}}
 {{% tabbody name="Operator" %}}
