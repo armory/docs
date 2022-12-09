@@ -15,6 +15,10 @@
 # section redirects
 
 [[redirects]]
+  from = "/docs/*"
+  to = "/continuous-deployment/:splat"
+
+[[redirects]]
   from = "/armory-enterprise/*"
   to = "/continuous-deployment/:splat"
 
