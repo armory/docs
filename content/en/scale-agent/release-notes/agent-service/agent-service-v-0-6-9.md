@@ -2,7 +2,7 @@
 title: v0.6.9 Armory Agent Service (2021-11-19)
 toc_hide: true
 version: 00.06.09
-
+date: 2021-11-19
 ---
 
 Fixes `clouddriver.keepAliveHeartbeatSeconds` property:

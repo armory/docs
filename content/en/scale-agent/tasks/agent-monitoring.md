@@ -2,8 +2,6 @@
 title: Integrate Prometheus
 description: >
   Learn how to configure Prometheus to get metrics from the Armory Agent and display them in a Grafana dashboard.
-aliases:
-   - /armory-enterprise/armory-agent/agent-monitoring/
 ---
 
 ## Available metrics

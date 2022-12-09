@@ -5,3 +5,5 @@ nonword: true
 level: warning
 tokens:
   - ':\s[A-Z]'
+raw:
+  - ': Armory'

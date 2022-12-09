@@ -4,8 +4,6 @@ weight: 1
 no_list: true
 description: >
   The Armory Scale Agent for Spinnaker and Kubernetes is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker's Clouddriver service.
-aliases:
-   - /armory-enterprise/armory-agent/
 ---
 ![Proprietary](/images/proprietary.svg)
 
@@ -26,7 +24,7 @@ The Armory Agent is compatible with Armory CD and open source Spinnaker.
   * Keep your Kubernetes API servers private from Spinnaker.
   * Only the information Armory CD needs leaves the cluster.
   * Decentralize your account management. Using Kubernetes Service Accounts, teams control what Spinnaker can do. Add or remove accounts in real time. and then use them without restarting Spinnaker.
-  * Use Kubernetes Service Accounts or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "armory-enterprise/armory-admin/secrets" >}}), or provision them via the method of your choice as Kubernetes secrets.
+  * Use Kubernetes Service Accounts or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "continuous-deployment/armory-admin/secrets" >}}), or provision them via the method of your choice as Kubernetes secrets.
 
 
 * Usability

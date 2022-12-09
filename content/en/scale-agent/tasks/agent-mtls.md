@@ -3,8 +3,6 @@ title: "Configure Mutual TLS Authentication"
 linkTitle: "Configure mTLS"
 description: >
   Configure mTLS authentication in the Armory Scale Agent for Spinnaker and Kubernetes plugin and service.
-aliases:
-  - /armory-enterprise/armory-agent/advanced-config/agent-mtls/
 ---
 
 ## {{% heading "prereq" %}}

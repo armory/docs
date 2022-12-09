@@ -28,6 +28,7 @@ pygmentsUseClassic = false
 # See https://help.farbox.com/pygments.html
 pygmentsStyle = "tango"
 
+
 # Configure how URLs look like per section.
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
@@ -77,7 +78,7 @@ weight = 1
 [[menu.main]]
   name = "Armory CD"
   weight = 3
-  url = "/armory-enterprise/"
+  url = "/continuous-deployment/"
 
 [[menu.main]]
   name = "Scale Agent"
@@ -117,7 +118,7 @@ postgresql-version="10+"
 #used in the Operator docs
 armory-version-exact = "2.28.0"
 halyard-armory-version = "1.12.1"
-kubesvc-version="1.0.27"
+kubesvc-version="1.0.31"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
@@ -149,7 +150,7 @@ version = "2.28.0"
 
 # A link to latest version of the Armory CD docs. Used in the "version-banner" partial to
 # point people to the main Armory CD docs site.
-url_latest_version = "https://docs.armory.io/armory-enterprise/"
+url_latest_version = "https://docs.armory.io/continuous-deployment/"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/armory/docs/"
@@ -175,11 +176,11 @@ prism_syntax_highlighting = true
 [params.kubesvc-plugin]
 agent_plug_latest-3="0.8.66"
 agent_plug_latest_spin-3="2.25.x (1.25.x)"
-agent_plug_latest-2="0.9.74"
+agent_plug_latest-2="0.9.77"
 agent_plug_latest_spin-2="2.26.x (1.26.x)"
-agent_plug_latest-1="0.10.59"
+agent_plug_latest-1="0.10.62"
 agent_plug_latest_spin-1="2.27.x (1.27.x)"
-agent_plug_latest="0.11.21"
+agent_plug_latest="0.11.24"
 agent_plug_latest_spin="2.28.x (1.28.x)"
 
 # User interface configuration
