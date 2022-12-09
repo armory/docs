@@ -28,12 +28,9 @@ IN NO EVENT SHALL ARMORY, ITS EMPLOYEES, AGENTS, ATTORNEYS, CONSULTANTS, OR CONT
 You acknowledge that Armory has provided the Services in reliance upon the limitations of liability set forth herein and that the same is an essential basis of the bargain between the parties.
 
 
-## Required Halyard or Operator version
+## Required Armory Operator version
 
-To install, upgrade, or configure Armory 2.28.1-rc4, use one of the following tools:
-
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+To install, upgrade, or configure Armory 2.28.1-rc4, use Armory Operator 1.70 or later.
 
 ## Security
 
