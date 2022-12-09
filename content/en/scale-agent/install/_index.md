@@ -5,9 +5,6 @@ description: >
   Learn how to install the Armory Scale Agent for Spinnaker and Kubernetes in your Kubernetes, Spinnaker, and Armory CD environments.
 weight: 1
 no_list: true
-aliases:
-  - /armory-enterprise/armory-agent/armory-agent-quick/
-  - /docs/armory-agent/armory-agent-quick/
 ---
 
 >This installation guide is designed for installing the Armory Agent in a test environment. It does not include [mTLS configuration]({{< ref "agent-mtls" >}}), so the Armory Agent service and plugin do not communicate securely.
