@@ -169,7 +169,7 @@ You don't have to compile and preview locally. When you submit a pull request, N
    Untracked files:
    (use "git add <file>..." to include in what will be committed)
 
-   content/en/armory-enterprise/overview/new-file.md
+   content/en/continuous-deployment/overview/new-file.md
 
    no changes added to commit (use "git add" and/or "git commit -a")
    ```

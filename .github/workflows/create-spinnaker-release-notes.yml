@@ -12,7 +12,7 @@ jobs:
     env:
       ARMORY_VERSION: ${{ github.event.client_payload.armoryVersion }}
       IS_PRERELEASE: ${{ github.event.client_payload.prerelease }}
-      OUTPUT_BASE_FOLDER: 'content/en/armory-enterprise/release-notes/'
+      OUTPUT_BASE_FOLDER: 'content/en/continuous-deployment/release-notes/'
       OUTPUT_BASE_FILE: 'armoryspinnaker_v'
     steps:
       - name: Install dependencies

@@ -1,13 +1,13 @@
 User-agent: *
 
 {{range .Pages}}
-Disallow: /armory-enterprise/plugin-guide/plugin-appname/
-Disallow: /armory-enterprise/plugin-guide/plugin-external-account/
-Disallow: /armory-enterprise/plugin-guide/plugin-iam-authentication/
-Disallow: /armory-enterprise/plugin-guide/cdaas-spinnaker/
-Disallow: /armory-enterprise/feature-status/deprecations/pacrd-deprecation/
-Disallow: /armory-enterprise/installation/deployment-reg/
+Disallow: /continuous-deployment/plugin-guide/plugin-appname/
+Disallow: /continuous-deployment/plugin-guide/plugin-external-account/
+Disallow: /continuous-deployment/plugin-guide/plugin-iam-authentication/
+Disallow: /continuous-deployment/plugin-guide/cdaas-spinnaker/
+Disallow: /continuous-deployment/feature-status/deprecations/pacrd-deprecation/
+Disallow: /continuous-deployment/installation/deployment-reg/
 Disallow: /managed-spin/
 Disallow: /contribute/
-Disallow: /armory-enterprise/try/
+Disallow: /continuous-deployment/try/
 {{end}}
