@@ -14,9 +14,9 @@ Armory's Policy Engine helps you meet compliance requirements based on custom po
 
 ## {{% heading "prereq" %}}
 
-* The Policy Engine requires an [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) server, version 0.12.x or later. You can either use the example on this page to deploy a server in the same Kubernetes cluster as Armory Continuous Deployment or see the OPA documentation for information about how to [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/#running-opa). Specifically, the OPA v1 API must be available.
-* You must be using a [version]{{< ref "continuous-deployment-matrix#policy-engine" >}} of Armory Continuous Deployment or Spinnaker that supports the Policy Engine.
-* You are familiar with 
+* The Policy Engine requires an [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) server, version 0.12.x or later. You can either use the example on this page to deploy a server in the same Kubernetes cluster as Armory Continuous Deployment or see the OPA documentation for information about how to [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/deployments/). Specifically, the OPA v1 API must be available.
+* You must be using a Armory Continuous Deployment or Spinnaker [version]{{< ref "continuous-deployment-matrix#policy-engine" >}} that supports the Policy Engine.
+
 
 ## Deploy an OPA server
 
