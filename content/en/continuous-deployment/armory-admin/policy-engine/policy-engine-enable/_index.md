@@ -1,6 +1,7 @@
 ---
 title: Enable the Policy Engine for Armory Continuous Deployment or Spinnaker
 linkTitle: Enable the Policy Engine
+no_list: true
 description: >
   Enable the Policy Engine to enforce policies on your Armory Continuous Deployment or Spinnaker instance. This page includes information about how to deploy and configure an Open Policy Agent server, which the Policy Engine requires.
 ---
