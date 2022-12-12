@@ -3,6 +3,7 @@ title: Deprecated - Enable Policy Engine Extension in Armory Enterprise
 linkTitle: Deprecated - Enable Policy Engine Extension
 description: "This feature is deprecated. Use the Policy Engine Plugin instead."
 weight: 10
+draft: true
 ---
 ![Proprietary](/images/proprietary.svg)
 

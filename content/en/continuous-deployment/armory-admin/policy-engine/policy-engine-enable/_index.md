@@ -1,38 +1,33 @@
 ---
-title: Enable the Policy Engine for Armory Enterprise
+title: Enable the Policy Engine for Armory Continuous Deployment or Spinnaker
 linkTitle: Enable the Policy Engine
 description: >
-  Enable the Policy Engine to enforce policies on your Armory Enterprise instance. This page includes information about how to deploy and configure an OPA server, which the Policy Engine requires.
-aliases:
-  - /docs/plugin-guide/plugin-policy-engine/
-  - /docs/armory-admin/policy-engine-enable/
+  Enable the Policy Engine to enforce policies on your Armory Continuous Deployment or Spinnaker instance. This page includes information about how to deploy and configure an Open Policy Agent server, which the Policy Engine requires.
 ---
 
 ![Proprietary](/images/proprietary.svg)
 
-## Requirements for using the Policy Engine
+## Overview of the Policy Engine
 
-Make sure you can meet the following version requirements for the Policy Engine:
+Armory's Policy Engine helps you meet compliance requirements based on custom policies you set. You can configure the Policy Engine to verify that your pipelines meet certain requirements at save time or at runtime. You can use the Policy Engine with Armory Continuous Deployment (Armory CD) and open source Spinnaker.
 
-* OPA versions 0.12.x or later. Specifically, the OPA v1 API must be available.
-* A supported version of Armory Enterprise
+## {{% heading "prereq" %}}
 
+* The Policy Engine requires an [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) server, version 0.12.x or later. You can either use the example on this page to deploy a server in the same Kubernetes cluster as Armory Continuous Deployment or see the OPA documentation for information about how to [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/#running-opa). Specifically, the OPA v1 API must be available.
+* You must be using a [version]{{< ref "continuous-deployment-matrix#policy-engine" >}} of Armory Continuous Deployment or Spinnaker that supports the Policy Engine.
+* You are familiar with 
 
-## Before You Start
-
-The Policy Engine requires an OPA server. You can either use the example on this page to deploy a server in the same Kubernetes cluster as Armory Enterprise or see the OPA documentation for information about how to [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/#running-opa).
-
-### Deploy an OPA server
+## Deploy an OPA server
 
 The Policy Engine supports the following OPA server deployments:
 
-* An OPA server deployed in the same Kubernetes cluster as an Armory Spinnaker deployment. The [Using ConfigMaps for OPA policies](#using-configmaps-for-opa-policies) section contains a ConfigMap you can use.
-* An OPA cluster that is **not** in the same Kubernetes cluster as an Armory Spinnaker deployment . See the [OPA documentation](https://www.openpolicyagent.org/docs/latest/) for more information about installing an OPA server in a separate cluster.
+* An OPA server deployed in the same Kubernetes cluster as an Armory CD or Spinnaker deployment. The [Using ConfigMaps for OPA policies](#using-configmaps-for-opa-policies) section contains a ConfigMap you can use.
+* An OPA cluster that is **not** in the same Kubernetes cluster as an Armory CD or Spinnaker deployment . See the [OPA documentation](https://www.openpolicyagent.org/docs/latest/) for more information about installing an OPA server in a separate cluster.
 
-#### Using ConfigMaps for OPA Policies
+### Using ConfigMaps for Open Policy Agent policies
 
-If you want to use ConfigMaps for OPA policies, you can use the below manifest as a starting point. This example manifest deploys an OPA server and applies the configuration for things like rolebinding and a static DNS.
-When using the below example, keep the following guidelines in mind:
+If you want to use ConfigMaps for OPA policies, you can use the following manifest as a starting point. This example manifest deploys an OPA server and applies the configuration for things like rolebinding and a static DNS. When using the example, keep the following guidelines in mind:
+
 * The manifest does not configure any authorization requirements for the OPA server it deploys. This means that anyone can add a policy.
 * The manifest deploys the OPA server to a namespace called `opa`.
 * The OPA server uses the following config: `"--require-policy-label=true"`. This configures the OPA server to look for a specific label so that it does not check all configmaps for new policies. For information about how to apply the relevant label to your policy configmaps, see [Creating a policy]({{< ref "policy-engine-use#step-2-add-the-policy-to-your-opa-server" >}}).
@@ -157,11 +152,13 @@ spec:
 </pre></code>
 </details>
 
-## Enabling the Policy Engine
+## How to enable the Policy Engine
 
-Armory recommends using the [plugin]({{< ref "policy-engine-plug-enable.md" >}}). To migrate to the plugin from the extension, see [Migrating to the Policy Engine Plugin](#migrating-to-the-policy-engine-plugin). For information about making configuration changes to a Policy Engine Extension instance that already exists, see the [extension page]({{< ref "policy-engine-ext-enable.md" >}}).
+The Policy Engine is a plugin that you install in your . 
 
-## Migrating to the Policy Engine Plugin
+To migrate to the plugin from the extension, see [Migrate to the Policy Engine Plugin](#migrate-to-the-policy-engine-plugin). 
+
+## Migrate to the Policy Engine Plugin
 
 To migrate to the Policy Engine Plugin from the extension, perform the following steps:
 
@@ -187,6 +184,11 @@ To migrate to the Policy Engine Plugin from the extension, perform the following
                url: <OPA Server URL>:<port>/v1
    ```
 
-   > If you redeploy Armory Enterprise and apply these changes before you enable the Policy Engine Plugin, no policies get enforced.
+   > If you redeploy Armory Continuous Deployment and apply these changes before you enable the Policy Engine Plugin, no policies get enforced.
 
 2. Enable the [Policy Engine Plugin]({{< ref "policy-engine-plug-enable" >}}).  If you have an existing OPA server with policies that you want to use, you can provide that OPA server in the plugin configuration. You do not need to create a new OPA server or migrate your policies.
+
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "policy-engine-plug-enable.md" >}}
