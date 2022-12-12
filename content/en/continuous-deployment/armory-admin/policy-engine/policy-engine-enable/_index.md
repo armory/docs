@@ -152,43 +152,6 @@ spec:
 </pre></code>
 </details>
 
-## How to enable the Policy Engine
-
-The Policy Engine is a plugin that you install in your . 
-
-To migrate to the plugin from the extension, see [Migrate to the Policy Engine Plugin](#migrate-to-the-policy-engine-plugin). 
-
-## Migrate to the Policy Engine Plugin
-
-To migrate to the Policy Engine Plugin from the extension, perform the following steps:
-
-1. Turn off the Policy Engine extension. You cannot run both the extension and plugin at the same time. You must disable the extension project and then enable the plugin. Remove the `opa` blocks from the Front50 and Clouddriver sections of your `SpinnakerService` manifest:
-
-   ```yaml
-   apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-   kind: SpinnakerService
-   metadata:
-     name: spinnaker
-   spec:
-     spinnakerConfig:
-       profiles:
-         front50: #Enables Save time validation of policies
-           armory:
-             opa:
-               enabled: true
-               url: <OPA Server URL>:<port>/v1
-         clouddriver: #Enables Runtime validation of policies
-           armory:
-             opa:
-               enabled: true
-               url: <OPA Server URL>:<port>/v1
-   ```
-
-   > If you redeploy Armory Continuous Deployment and apply these changes before you enable the Policy Engine Plugin, no policies get enforced.
-
-2. Enable the [Policy Engine Plugin]({{< ref "policy-engine-plug-enable" >}}).  If you have an existing OPA server with policies that you want to use, you can provide that OPA server in the plugin configuration. You do not need to create a new OPA server or migrate your policies.
-
-
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "policy-engine-plug-enable.md" >}}
