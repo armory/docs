@@ -12,7 +12,7 @@ aliases:
 
 ## {{% heading "prereq" %}}
 
-* You have deployed an [Open Policy Agent server]({{< ref "policy-engine#deploy-an-opa-server" >}}) and [enabled the Policy Engine plugin]({{< ref "policy-engine#how-to-enable-the-policy-engine-plugin" >}}).
+* You have deployed an [Open Policy Agent server]({{< ref "/continuous-deployment/plugin-guide/policy-engine#deploy-an-opa-server" >}}) and [enabled the Policy Engine plugin]({{< ref "/continuous-deployment/plugin-guide/policy-engine#enable-the-policy-engine-plugin" >}}).
 * You are familiar with the [list of packages]({{< ref "continuous-deployment/plugin-guide/policy-engine/use/packages/_index.md" >}}) that you can write policies against.  
 * Keep the following in mind when you use the Policy Engine:
 

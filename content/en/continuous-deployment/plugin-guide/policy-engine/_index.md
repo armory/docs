@@ -1,6 +1,6 @@
 ---
 title: Enable the Policy Engine in Armory Continuous Deployment or Spinnaker
-linkTitle: Enable the Policy Engine 
+linkTitle: Policy Engine
 description: >
    Enable the Policy Engine to enforce policies on your Armory Continuous Deployment or Spinnaker instance. This page includes information about how to deploy and configure an Open Policy Agent server, which the Policy Engine requires. With the Policy Engine enabled, you can write policies that the Policy Engine enforces during save time, runtime validation, or when a user interacts with Armory CD or Spinnaker.
 no_list: true
@@ -37,8 +37,8 @@ Enabling the Policy Engine consists of the following steps:
 
 ## {{% heading "prereq" %}}
 
-* The Policy Engine requires an [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) server, version 0.12.x or later. You can either use the example on this page to deploy a server in the same Kubernetes cluster as Armory Continuous Deployment or see the OPA documentation for information about how to [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/deployments/). Specifically, the OPA v1 API must be available.
-* You have identified the Policy Engine plugin that is compatible with your version of Armory Continuous Deployment or Spinnaker.
+* The Policy Engine requires an [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) server, version 0.12.x or later. You can either use the example on this page to deploy a server in the same Kubernetes cluster as Armory Continuous Deployment. Alternately, see the OPA documentation for information about how to [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/deployments/). Specifically, the OPA v1 API must be available.
+* You have identified the Policy Engine plugin that is compatible with your version of Armory Continuous Deployment or Spinnaker. See the [Supported versions](#supported-versions) section.
 * If you are using Spinnaker, you are familiar with [installing and using plugins](https://spinnaker.io/docs/guides/user/plugins-users/) in Spinnaker.
 
 ### Supported versions
@@ -49,16 +49,16 @@ Enabling the Policy Engine consists of the following steps:
 
 The Policy Engine supports the following OPA server deployments:
 
-* An OPA server deployed in the same Kubernetes cluster as an Armory CD or Spinnaker deployment. The [Using ConfigMaps for OPA policies](#using-configmaps-for-opa-policies) section contains a ConfigMap you can use.
-* An OPA cluster that is **not** in the same Kubernetes cluster as an Armory CD or Spinnaker deployment . See the [OPA documentation](https://www.openpolicyagent.org/docs/latest/) for more information about installing an OPA server in a separate cluster.
+* An OPA server deployed in the same Kubernetes cluster as an Armory CD or Spinnaker deployment. The [Use ConfigMaps for Open Policy Agent policies](#use-configmaps-for-open-policy-agent-policies) section contains a ConfigMap you can use.
+* An OPA cluster that is **not** in the same Kubernetes cluster as an Armory CD or Spinnaker deployment. See the [OPA documentation](https://www.openpolicyagent.org/docs/latest/) for more information about installing an OPA server in a separate cluster.
 
-### Using ConfigMaps for Open Policy Agent policies
+### Use ConfigMaps for Open Policy Agent policies
 
-If you want to use ConfigMaps for OPA policies, you can use the following manifest as a starting point. This example manifest deploys an OPA server and applies the configuration for things like rolebinding and a static DNS. When using the example, keep the following guidelines in mind:
+If you want to use ConfigMaps for OPA policies, you can use the following manifest as a starting point. This example manifest deploys an OPA server and applies the configuration for things like RoleBinding and a static DNS. When using the example, keep the following guidelines in mind:
 
 * The manifest does not configure any authorization requirements for the OPA server it deploys. This means that anyone can add a policy.
 * The manifest deploys the OPA server to a namespace called `opa`.
-* The OPA server uses the following config: `"--require-policy-label=true"`. This configures the OPA server to look for a specific label so that it does not check all configmaps for new policies. For information about how to apply the relevant label to your policy configmaps, see [Creating a policy]({{< ref "/continuous-deployment/plugin-guide/policy-engine/use#step-2-add-the-policy-to-your-opa-server" >}}).
+* The OPA server uses `"--require-policy-label=true"`. This configures the OPA server to look for a specific label so that it does not check all ConfigMaps for new policies. For information about how to apply the relevant label to your policy ConfigMaps, see [Add the policy to your OPA server]({{< ref "/continuous-deployment/plugin-guide/policy-engine/use#step-2-add-the-policy-to-your-opa-server" >}}).
 
 <details><summary>Show the manifest</summary>
 <code><pre>
@@ -221,7 +221,7 @@ You can enable the Policy Engine plugin using the Armory Operator or the Spinnak
 #### Optional settings
 ##### Timeout settings
 
-You can configure the amount of time that the Policy Engine waits for a response from your OPA server. If you have network or latency issues, increasing the timeout can make Policy Engine more resilient. Use the following config to set the timeout in seconds: `spec.spinnakerConfig.profiles.spinnaker.armory.policyEngine.opa.timeoutSeconds`. The default timeout is 10 seconds if you omit the config.
+You can configure the amount of time that the Policy Engine waits for a response from your OPA server. If you have network or latency issues, increasing the timeout can make Policy Engine more resilient. Use `spec.spinnakerConfig.profiles.spinnaker.armory.policyEngine.opa.timeoutSeconds` to set the timeout in seconds. The default timeout is 10 seconds if you omit the config.
 
 ##### JSON validation
 
@@ -244,7 +244,7 @@ The config is optional. If omitted, strict validation is on by default. When str
 The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. To avoid each service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, configure the plugin in the service’s local file.
 {{% /alert %}}
 
-The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You must create or update the service's local file in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
+The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You must create or update the extended service's local file in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
 
 1. Add the following to `gate-local.yml`, `orca-local.yml`, `front50-local.yml`, and `clouddriver.yml`:
 
