@@ -14,7 +14,7 @@
 
 `retryCount`: (Optional; Default: 0) if the first connection attempt fails, the number of retries before failing and declaring that the webhook cannot be reached.
 
-`disableCallback`: (Optional; Default: false) if set to `true`, Armory CD-as-a-Service will not wait for a callback before moving on to the next deployment step.
+`disableCallback`: (Optional; Default: false) if set to `true`, Armory CD-as-a-Service does not wait for a callback before moving on to the next deployment step.
 
 **Callback URI**
 
