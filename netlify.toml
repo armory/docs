@@ -44,7 +44,7 @@
   force = true # ensure this always redirects because cdaas-spinnaker does exist
 
 [[redirects]]
-  from = "/continuous-deployment/plugin-guide/policy-engine/use/*"
+  from = "/continuous-deployment/armory-admin/policy-engine/policy-engine-use/*"
   to = "/continuous-deployment/plugin-guide/policy-engine/use/:splat"
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
