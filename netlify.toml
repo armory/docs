@@ -43,6 +43,10 @@
   to = "/cd-as-a-service/plugin-spinnaker/"
   force = true # ensure this always redirects because cdaas-spinnaker does exist
 
+[[redirects]]
+  from = "/continuous-deployment/plugin-guide/policy-engine/use/*"
+  to = "/continuous-deployment/plugin-guide/policy-engine/use/:splat"
+
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
 package = "@netlify/plugin-sitemap"

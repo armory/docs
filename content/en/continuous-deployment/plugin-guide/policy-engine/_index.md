@@ -5,9 +5,10 @@ description: >
    Enable the Policy Engine to enforce policies on your Armory Continuous Deployment or Spinnaker instance. This page includes information about how to deploy and configure an Open Policy Agent server, which the Policy Engine requires. With the Policy Engine enabled, you can write policies that the Policy Engine enforces during save time, runtime validation, or when a user interacts with Armory CD or Spinnaker.
 no_list: true
 aliases:
-  - /continuous-deployment/armory-admin/policy-engine/policy-engine-enable/
-  - /continuous-deployment/armory-admin/policy-engine/policy-engine-enable/policy-engine-plug-enable/
-  - /continuous-deployment/armory-admin/policy-engine/policy-engine-enable/policy-engine-ext-enable/
+   - /continuous-deployment/armory-admin/policy-engine/
+   - /continuous-deployment/armory-admin/policy-engine/policy-engine-enable/
+   - /continuous-deployment/armory-admin/policy-engine/policy-engine-enable/policy-engine-plug-enable/
+   - /continuous-deployment/armory-admin/policy-engine/policy-engine-enable/policy-engine-ext-enable/
 ---
 
 ![Proprietary](/images/proprietary.svg)
@@ -27,7 +28,7 @@ At a high level, adding policies for the Policy Engine to use is a two-step proc
 1. Create the policies and save them to a `.rego` file.
 2. Add the policies to the OPA server with a ConfigMap or API request.
 
-These policies are evaluated against the packages that Armory Continuous Deployment sends between its services. For a list of packages that you can write policies against, see {{< linkWithTitle "continuous-deployment/armory-admin/policy-engine/policy-engine-use/packages/_index.md" >}}. 
+These policies are evaluated against the packages that Armory Continuous Deployment sends between its services. For a list of packages that you can write policies against, see {{< linkWithTitle "continuous-deployment/plugin-guide/policy-engine/use/packages/_index.md" >}}. 
 
 Enabling the Policy Engine consists of the following steps:
 
@@ -57,7 +58,7 @@ If you want to use ConfigMaps for OPA policies, you can use the following manife
 
 * The manifest does not configure any authorization requirements for the OPA server it deploys. This means that anyone can add a policy.
 * The manifest deploys the OPA server to a namespace called `opa`.
-* The OPA server uses the following config: `"--require-policy-label=true"`. This configures the OPA server to look for a specific label so that it does not check all configmaps for new policies. For information about how to apply the relevant label to your policy configmaps, see [Creating a policy]({{< ref "policy-engine-use#step-2-add-the-policy-to-your-opa-server" >}}).
+* The OPA server uses the following config: `"--require-policy-label=true"`. This configures the OPA server to look for a specific label so that it does not check all configmaps for new policies. For information about how to apply the relevant label to your policy configmaps, see [Creating a policy]({{< ref "/continuous-deployment/plugin-guide/policy-engine/use#step-2-add-the-policy-to-your-opa-server" >}}).
 
 <details><summary>Show the manifest</summary>
 <code><pre>
@@ -334,4 +335,4 @@ The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. Whe
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "continuous-deployment/armory-admin/policy-engine/policy-engine-use/_index.md" >}}
+* {{< linkWithTitle "continuous-deployment/plugin-guide/policy-engine/use/_index.md" >}}

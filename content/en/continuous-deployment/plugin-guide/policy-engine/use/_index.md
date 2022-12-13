@@ -4,6 +4,8 @@ linkTitle: Use Policy Engine
 no_list: true
 description: >
   Learn how to add policies to your Open Policy Agent (OPA) server for Armory Continuous Deployment or open source Spinnaker to use when performing validations to ensure your pipelines and users follow policy requirements. This page includes information about what goes into a policy and some basic policies for you to try. There are examples for save time validation, runtime validation, and entitlements.
+aliases:
+   - /continuous-deployment/plugin-guide/policy-engine/use/
 ---
 ![Proprietary](/images/proprietary.svg)
 
@@ -11,7 +13,7 @@ description: >
 ## {{% heading "prereq" %}}
 
 * You have deployed an [Open Policy Agent server]({{< ref "policy-engine#deploy-an-opa-server" >}}) and [enabled the Policy Engine plugin]({{< ref "policy-engine#how-to-enable-the-policy-engine-plugin" >}}).
-* You are familiar with the [list of packages]({{< ref "continuous-deployment/armory-admin/policy-engine/policy-engine-use/packages/_index.md" >}}) that you can write policies against.  
+* You are familiar with the [list of packages]({{< ref "continuous-deployment/plugin-guide/policy-engine/use/packages/_index.md" >}}) that you can write policies against.  
 * Keep the following in mind when you use the Policy Engine:
 
    * Policies are written using OPA's [rego syntax](https://www.openpolicyagent.org/docs/latest/policy-language/). Although Armory provides some example policies, becoming more familiar with the syntax will help you write policies tailored to your requirements.
@@ -450,4 +452,4 @@ Open your browser's console and see if there are SSL exceptions. If there are, c
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "continuous-deployment/armory-admin/policy-engine/policy-engine-use/example-policies.md" >}}
+* {{< linkWithTitle "continuous-deployment/plugin-guide/policy-engine/use/example-policies.md" >}}
