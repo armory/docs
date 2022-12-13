@@ -229,7 +229,7 @@ The Policy Engine allows you to return a custom message when an action violates 
 
 Returning a custom message works slightly differently for the `spinnaker.http.authz` package because it is based on the `allow` rules rather than `deny` rules.
 
-If a user attempts to perform an action that they are not allowed to, a window appears and displays the custom message you specify. If you are running an Armory Continuous Deployment version earlier than 2.26.0, you cannot specify a custom message. Instead, a generic server error message appears.
+If a user attempts to perform an action that they are not allowed to, a window appears and displays the custom message you specify.
 
 The following example policy prevents the user `milton` from taking specific actions in the UI. Specifically, the user cannot use the  **Edit** or **Delete** buttons on the **Clusters** tab.
 

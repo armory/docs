@@ -15,7 +15,7 @@ aliases:
 
 ## Overview of the Armory Policy Engine
 
-The Armory Policy Engine is a proprietary feature for Armory Continuous Deployment and open source Spinnaker. It is designed to enable more complete control of your software delivery process by providing you with the hooks necessary to perform extensive verification of pipelines and processes. The Policy Engine uses the [Open Policy Agent](https://www.openpolicyagent.org/) (OPA) and input style documents to perform validations on the following:
+The Armory Policy Engine is a proprietary feature for Armory Continuous Deployment and open source Spinnaker. It is designed to enable more complete control of your software delivery process by providing you with the hooks necessary to make assertions about the structure and behavior of pipelines and processes in your environment. The Policy Engine uses the [Open Policy Agent](https://www.openpolicyagent.org/) (OPA) and input style documents to perform validations on the following:
 
 * **Save time validation** - Validate pipelines as they're created or modified. Tasks with no policies are not validated.
 * **Runtime validation** - Validate deployments as a pipeline is executing. Tasks with no policies are not validated.
@@ -37,7 +37,7 @@ Enabling the Policy Engine consists of the following steps:
 
 ## {{% heading "prereq" %}}
 
-* The Policy Engine requires an [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) server, version 0.12.x or later. You can either use the example on this page to deploy a server in the same Kubernetes cluster as Armory Continuous Deployment. Alternately, see the OPA documentation for information about how to [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/deployments/). Specifically, the OPA v1 API must be available.
+* The Policy Engine requires an [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) server, version 0.12.x or later. You can use the example on this page to deploy a server in the same Kubernetes cluster as Armory Continuous Deployment. Alternately, see the OPA documentation for information about how to [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/deployments/). Specifically, the OPA v1 API must be available.
 * You have identified the Policy Engine plugin that is compatible with your version of Armory Continuous Deployment or Spinnaker. See the [Supported versions](#supported-versions) section.
 * If you are using Spinnaker, you are familiar with [installing and using plugins](https://spinnaker.io/docs/guides/user/plugins-users/) in Spinnaker.
 
@@ -190,7 +190,7 @@ You have three options for enabling the Policy Engine plugin:
 
 ### Armory Operator or Spinnaker Operator              
 
-You can enable the Policy Engine plugin using the Armory Operator or the Spinnaker Operator and the sample manifest, which is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml).
+You can enable the Policy Engine plugin using the Armory Operator or the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml).
 
 * The sample manifest is for the Armory Operator and Armory CD. If you are using the Spinnaker Operator and Spinnaker, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:
 
@@ -214,37 +214,23 @@ You can enable the Policy Engine plugin using the Armory Operator or the Spinnak
                 version: &version 0.2.1
    {{< /prism>}}
 
+If you don't use Kustomize, you should manually patch your `SpinSvc` config with the entries in the sample manifest.
+
 <details><summary>Show the manifest</summary>
 {{< github repo="armory/spinnaker-kustomize-patches" file="/armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
 </details>
 
-#### Optional settings
-##### Timeout settings
+#### Timeout settings
 
 You can configure the amount of time that the Policy Engine waits for a response from your OPA server. If you have network or latency issues, increasing the timeout can make Policy Engine more resilient. Use `spec.spinnakerConfig.profiles.spinnaker.armory.policyEngine.opa.timeoutSeconds` to set the timeout in seconds. The default timeout is 10 seconds if you omit the config.
-
-##### JSON validation
-
-You can configure strict JSON validation as a boolean in `spec.spinnakerConfig.profiles.dinghy.jsonValidationDisabled`:
-
-
-{{< prism lang="yaml" >}}
-spec:
-  spinnakerConfig:
-    profiles:
-      dinghy:
-        jsonValidationDisabled: <boolean>
-{{< /prism >}}
-
-The config is optional. If omitted, strict validation is on by default. When strict validation is on, existing pipelines may fail if any JSON is invalid.
 
 ### Spinnaker services local files
 
 {{% alert title="Warning" color="warning" %}}
-The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. To avoid each service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, configure the plugin in the service’s local file.
+The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. To avoid each service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, configure the plugin in the service’s local profile.
 {{% /alert %}}
 
-The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You must create or update the extended service's local file in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
+The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You must create or update the extended service's local profile in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
 
 1. Add the following to `gate-local.yml`, `orca-local.yml`, `front50-local.yml`, and `clouddriver.yml`:
 
