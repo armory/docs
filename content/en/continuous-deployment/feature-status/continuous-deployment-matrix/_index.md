@@ -44,14 +44,6 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 **All supported versions** for the Armory Continuous Deployment version refers to the current minor release and the two previous minor releases. For example, if the current version is 2.21.x, all supported versions include 2.19.x, 2.20.x, and 2.21.x. For third-party software, "all supported versions" refers to actively maintained versions by the provider.
 
-## Scale Agent
-
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})![Proprietary](/images/proprietary.svg)
-
-{{< include "agent/agent-compat-matrix.md" >}}
-
-For a full list of previous releases, see this [page](https://armory.jfrog.io/artifactory/manifests/).
-
 ## Armory Operator
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
@@ -469,3 +461,10 @@ The following table lists the supported secret stores for referencing secrets in
 | [Kubernetes secrets]({{< ref "secrets-kubernetes" >}}) | All supported versions    | Armory Operator based deployments |
 | [Vault]({{< ref "secrets-vault" >}})                   | All supported versions    | Proprietary feature               |
 
+## Scale Agent
+
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})![Proprietary](/images/proprietary.svg)
+
+{{< include "agent/agent-compat-matrix.md" >}}
+
+For a full list of previous releases, see this [page](https://armory.jfrog.io/artifactory/manifests/).
