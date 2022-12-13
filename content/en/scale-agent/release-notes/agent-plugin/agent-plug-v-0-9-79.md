@@ -6,4 +6,4 @@ date: 2022-12-13
 ---
 
 ### Changes: 
-* Removed warning message for missing http port. Usually caused by spin-clouddriver-grpc service
+* Removed warning message for missing http port. Usually caused by spin-clouddriver-grpc service.
