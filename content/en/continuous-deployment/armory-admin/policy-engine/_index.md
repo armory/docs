@@ -2,11 +2,12 @@
 title: Enable the Policy Engine in Armory Continuous Deployment or Spinnaker
 linkTitle: Enable the Policy Engine 
 description: >
-   Enable the Policy Engine to enforce policies on your Armory Continuous Deployment or Spinnaker instance. This page includes information about how to deploy and configure an Open Policy Agent server, which the Policy Engine requires. With the Policy Engine enabled, you can write policies that the Policy Engine enforces during save time, runtime validation, or when a user interacts with Armory Continuous Deployment or Spinnaker.
+   Enable the Policy Engine to enforce policies on your Armory Continuous Deployment or Spinnaker instance. This page includes information about how to deploy and configure an Open Policy Agent server, which the Policy Engine requires. With the Policy Engine enabled, you can write policies that the Policy Engine enforces during save time, runtime validation, or when a user interacts with Armory CD or Spinnaker.
 no_list: true
 aliases:
-  - /continuous-deployment/armory-admin/policy-engine/policy-engine-enable/policy-engine-plugin-enable/
   - /continuous-deployment/armory-admin/policy-engine/policy-engine-enable/
+  - /continuous-deployment/armory-admin/policy-engine/policy-engine-enable/policy-engine-plug-enable/
+  - /continuous-deployment/armory-admin/policy-engine/policy-engine-enable/policy-engine-ext-enable/
 ---
 
 ![Proprietary](/images/proprietary.svg)
@@ -28,11 +29,14 @@ At a high level, adding policies for the Policy Engine to use is a two-step proc
 
 These policies are evaluated against the packages that Armory Continuous Deployment sends between its services. For a list of packages that you can write policies against, see {{< linkWithTitle "continuous-deployment/armory-admin/policy-engine/policy-engine-use/packages/_index.md" >}}. 
 
+Enabling the Policy Engine consists of the following steps:
+
+1. [Deploy an OPA server](#deploy-an-opa-server)
+1. [Enable the Policy Engine plugin](#enable-the-policy-engine-plugin)
+
 ## {{% heading "prereq" %}}
 
 * The Policy Engine requires an [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) server, version 0.12.x or later. You can either use the example on this page to deploy a server in the same Kubernetes cluster as Armory Continuous Deployment or see the OPA documentation for information about how to [deploy an OPA server](https://www.openpolicyagent.org/docs/latest/deployments/). Specifically, the OPA v1 API must be available.
-* You must be using a Armory Continuous Deployment or Spinnaker [version]{{< ref "continuous-deployment-matrix#policy-engine" >}} that supports the Policy Engine.
-* You have access to the internet to download the plugin.
 * You have identified the Policy Engine plugin that is compatible with your version of Armory Continuous Deployment or Spinnaker.
 * If you are using Spinnaker, you are familiar with [installing and using plugins](https://spinnaker.io/docs/guides/user/plugins-users/) in Spinnaker.
 
@@ -175,7 +179,7 @@ spec:
 </pre></code>
 </details>
 
-## How to enable the Policy Engine plugin
+## Enable the Policy Engine plugin
 
 You have three options for enabling the Policy Engine plugin:
 
