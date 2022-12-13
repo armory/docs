@@ -445,6 +445,14 @@ The following table lists the requirements:
 | Save time validation | All supported versions    | If no policies are set, you cannot save any pipelines until you set any policy or turn off save time validation. |
 | Runtime validation   | All supported versions    | If no policies are set, no policy enforcement occurs and pipelines run as they do normally.                      |
 
+## Scale Agent
+
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})![Proprietary](/images/proprietary.svg)
+
+{{< include "agent/agent-compat-matrix.md" >}}
+
+For a full list of previous releases, see this [page](https://armory.jfrog.io/artifactory/manifests/).
+
 ## Secret stores
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)
@@ -460,11 +468,3 @@ The following table lists the supported secret stores for referencing secrets in
 | [Encrypted S3 Bucket]({{< ref "secrets-s3" >}})        | All supported versions    |                                   |
 | [Kubernetes secrets]({{< ref "secrets-kubernetes" >}}) | All supported versions    | Armory Operator based deployments |
 | [Vault]({{< ref "secrets-vault" >}})                   | All supported versions    | Proprietary feature               |
-
-## Scale Agent
-
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})![Proprietary](/images/proprietary.svg)
-
-{{< include "agent/agent-compat-matrix.md" >}}
-
-For a full list of previous releases, see this [page](https://armory.jfrog.io/artifactory/manifests/).
