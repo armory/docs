@@ -55,7 +55,7 @@ This version includes a cherry picked commit that fixes an issue with creating o
 
 **Policy Engine**
 
-Armory's Policy Engine for the SDLC now also performs Runtime validation on Spinnaker pipelines. This means that when a pipeline runs, the Policy Engine evaluates the pipeline. This validation only operates on tasks that you have explicitly created policies for. For more information, see [Policy Engine]({{< ref "policy-engine-enable" >}}).
+Armory's Policy Engine for the SDLC now also performs Runtime validation on Spinnaker pipelines. This means that when a pipeline runs, the Policy Engine evaluates the pipeline. This validation only operates on tasks that you have explicitly created policies for. For more information, see [Policy Engine]({{< ref "policy-engine" >}}).
 
 **CVEs**
 

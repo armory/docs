@@ -10,7 +10,7 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-* You have deployed an [Open Policy Agent server]({{< ref "policy-engine" >}}) and [enabled the Policy Engine plugin]({{< ref "policy-engine-plug-enable" >}}).
+* You have deployed an [Open Policy Agent server]({{< ref "policy-engine#deploy-an-opa-server" >}}) and [enabled the Policy Engine plugin]({{< ref "policy-engine#how-to-enable-the-policy-engine-plugin" >}}).
 * You are familiar with the [list of packages]({{< ref "continuous-deployment/armory-admin/policy-engine/policy-engine-use/packages/_index.md" >}}) that you can write policies against.  
 * Keep the following in mind when you use the Policy Engine:
 
@@ -74,7 +74,7 @@ After you create the policy ConfigMap, apply a label to it:
 kubectl -n <opaServerNamespace> label configmap manual-judgment openpolicyagent.org/policy=rego
 ```
 
-This label corresponds to the label you add in the [example manifest]({{< ref "policy-engine-enable#using-configmaps-for-opa-policies" >}}). The example ConfigMap creates an OPA server and, by extension, the Policy Engine that only checks ConfigMaps with the correct label. This improves performance.
+This label corresponds to the label you add in the [example manifest]({{< ref "policy-engine#using-configmaps-for-opa-policies" >}}). The example ConfigMap creates an OPA server and, by extension, the Policy Engine that only checks ConfigMaps with the correct label. This improves performance.
 
 **API Example**
 

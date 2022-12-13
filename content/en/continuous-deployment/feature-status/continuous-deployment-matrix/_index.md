@@ -432,7 +432,7 @@ The following table lists the supported pipeline triggers:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
 
-The [Policy Engine]({{< ref "policy-engine-enable" >}}) gives you the ability to ensure any pipeline meets certain requirements that you specify.
+The [Policy Engine]({{< ref "policy-engine" >}}) gives you the ability to ensure any pipeline meets certain requirements that you specify.
 
 {{< include "policy-engine/plugin-compat-matrix.md" >}}
 
