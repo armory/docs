@@ -2,7 +2,7 @@
 
 This is the repo for Armory documentation site. We welcome contributions from people outside of Armory.
 
-The site is hosted by [Netlify](https://www.netlify.com/), which generates a preview build for every pull request. Install [Hugo](https://gohugo.io/) if you want to compile and run the project locally. The Hugo extended version is specified in `netlify.toml` (currently 0.71.1).
+The site is hosted by [Netlify](https://www.netlify.com/), which generates a preview build for every pull request. Install [Hugo](https://gohugo.io/) if you want to compile and run the project locally. The Hugo extended version is specified in `netlify.toml`.
 
 The latest version of the docs website is the `master` branch. Previous releases point to branches that start with `release-`.
 
