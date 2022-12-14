@@ -239,7 +239,7 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 
 > If you're using Bitbucket Server, update the endpoint to include the api, e.g. `--stash-endpoint https://your-endpoint-here.com/rest/api/1.0`
 
-You need to set up webhooks for each project that has the `dinghyfile` or module separately. Make the webhook `POST` to: `https://spinnaker.your-company.com:8084/webhooks/git/bitbucket`. If you're using stash `<v3.11.6`, you need to install the [webhook plugin](https://marketplace.atlassian.com/plugins/com.atlassian.stash.plugin.stash-web-post-receive-hooks-plugin/server/overview) to be able to set up webhooks.
+You need to set up webhooks for each project that has the `dinghyfile` or module separately. Make the webhook `POST` to: `https://spinnaker.your-company.com:8084/webhooks/git/bitbucket`. If you're using Stash `<v3.11.6`, you need to install the [webhook plugin](https://marketplace.atlassian.com/plugins/com.atlassian.stash.plugin.stash-web-post-receive-hooks-plugin/server/overview) to be able to set up webhooks.
 
 ### Enable GitLab
 
@@ -266,7 +266,7 @@ Apply your changes:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 {{< /prism >}}
 
-Under "Settings -> Integrations"  on your project page, point your webhooks
+Under **Settings** -> **Integrations**  on your project page, point your webhooks
 to `https://<your-gate-url>/webhooks/git/gitlab`.  Make sure the server your
 GitLab install is running on can connect to your Gate URL. Armory also needs
 to communicate with your GitLab installation. Ensure that connectivity works as well.
@@ -306,7 +306,7 @@ Dinghy can provide more robust information to GitHub about executed pipeline cha
 Keep the following in mind when enabling GitHub Notifications:
 
 * When using versions below 2.26.2, GitHub notifications are not supported with custom endpoints and [should be disabled due to a known issue](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290). This issue has been resolved as of [2.26.2, Dinghy Change #447]({{< ref "armoryspinnaker_v2-26-2#dinghy---226622610" >}}).
-* Enabling this functionality may lead to a large number of comments on a Pull Request if, for example, you update a module that is used by multiple pipelines. This can lead to the GitHub UI not loading or GitHub rate limiting cause of related API calls.
+* Enabling this functionality may lead to a large number of comments on a pull request if, for example, you update a module that is used by multiple pipelines. This can lead to the GitHub UI not loading or GitHub rate limiting cause of related API calls.
 
 {{< prism lang="yaml" line="11-12" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -334,15 +334,17 @@ spec:
 
 By default, Dinghy uses the `master` branch in your repository and fallbacks to `main` if `master` doesn't exist. If you wish to use a different branch in your repository, you can configure that using the `repoConfig` tag in your YAML configuration.
 
-The `repoConfig` tag supports a collection of the following values. Each node in the collection must contain all of the fields listed below.
+The `repoConfig` tag supports a collection of the following values:
+
 * `branch` - the name of the branch you wish to use
-* `provider` - the name of the provider (see below for available providers)
+* `provider` - the name of the provider. Pipelines as Code supports the following:
+
+   * `github`
+   * `bitbucket-cloud`
+   * `bitbucket-server`
 * `repo` - the name of the repository
 
-All providers available in Dinghy are supported. Please refer to the list below for the proper name to use in the configuration for each provider.
-* `github`
-* `bitbucket-cloud`
-* `bitbucket-server`
+For example: 
 
 {{< prism lang="yaml" line="9-15" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -442,35 +444,81 @@ spec:
 
 ### Fiat
 
-If Fiat is enabled, add the field `fiatUser: "your-service-account"` to the `dinghy` section in `SpinnakerService` manifest. Note that the service account has to be in a group that has read/write access to the pipelines you are updating.
+If Fiat is enabled, add the field `fiatUser: <your-service-account>` to the `dinghy` section in `SpinnakerService` manifest. Note that the service account has to be in a group that has read/write access to the pipelines you are updating.
+
+For example:
+
+{{< prism lang="yaml" line="9-10" >}}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          fiatUser: <your-service-account>
+{{< /prism >}}
 
 If you have app specific permissions configured in Armory CD, make sure you add the service account. For information on how to create a service account, see [Creating service accounts](https://www.spinnaker.io/setup/security/authorization/service-accounts/#creating-service-accounts).
 
 ### Custom dinghyfile name
 
-If you want to change the name of the file that describes pipelines, add the field `dinghyFilename: "your-name-here"` to the `dinghy` section in `SpinnakerService` manifest.
+If you want to change the name of the file that describes pipelines, add `spec.spinnakerConfig.armory.dinghy.dinghyFilename: <your-filename>` to your  `SpinnakerService` manifest.
+
+For example:
+
+{{< prism lang="yaml" line="9-10" >}}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          dinghyFilename: <your-filename>
+{{< /prism >}}
 
 ### Disable lock pipelines
 
-If you want to disable lock pipelines in the UI before overwriting changes, add the field `autoLockPipelines: false` to `SpinnakerService` manifest.
+If you want to disable lock pipelines in the UI before overwriting changes, add  `spec.spinnakerConfig.armory.dinghy.autoLockPipelines: false` to your  `SpinnakerService` manifest.
+
+For example:
+
+{{< prism lang="yaml" line="9-10" >}}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          autoLockPipelines: false
+{{< /prism >}}
 
 ### Define additional template formats
 
-Dinghy supports two additional template formats in addition to JSON:
+Pipelines as Code supports two additional template formats in addition to JSON:
 
 * [HCL](https://github.com/hashicorp/hcl)
 * [YAML](https://yaml.org/)
 
 > Selecting one of these parsers means that all of your templates must also be in that format.
 
-You need to configure `parserFormat` with one of the parsers:
+In your `SpinnakerService` manifest, you need to configure `spec.SpinnakerConfig.profiles.dinghy.parserFormat` with one of the parsers:
 
 * `json` (Default)
 * `yaml`
 * `hcl`
 
+For example:
 
-{{< prism lang="yaml" >}}
+{{< prism lang="yaml" line="8-9" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -479,7 +527,7 @@ spec:
   spinnakerConfig:
     profiles:
       dinghy:
-        parserFormat: hcl
+        parserFormat: <parser-format>
 {{< /prism >}}
 
 ## Known issues
