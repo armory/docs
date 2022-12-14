@@ -5,11 +5,6 @@ weight: 25
 no_list: true
 description: >
   Resources for extending Spinnaker<sup>TM</sup> functionality with plugins.
-aliases:
-  - /spinnaker-user-guides/plugin-creators/
-  - /docs/spinnaker-user-guides/plugin-creators/
-  - /spinnaker-user-guides/plugin-users/
-  - /docs/spinnaker-user-guides/plugin-users/
 ---
 
 ## Spinnaker plugin guides:
