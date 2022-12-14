@@ -1,9 +1,6 @@
 ---
 title: Enable Pipelines as Code in Armory Continuous Deployment
 linkTitle: Enable Pipelines as Code
-aliases:
-  - /spinnaker/install_dinghy/
-  - /docs/spinnaker/install-dinghy/
 description: >
   Learn how to configure Armory CD to use pipeline templates stored in source control. Options for Pipelines as Code's Dinghy service include pulling from multiple branches and Regexp2 support.
 ---
@@ -24,7 +21,7 @@ You can also [configure notifications](#configure-notifications) to work with Pi
 
 ## Enable Pipelines as Code
 
-_Dinghy_ is the microservice for Pipelines as Code. You need to enable it to use Pipelines as Code by adding the following to your `SpinnakerService` manifest:
+_Dinghy_ is the microservice for Pipelines as Code. You need to enable it to use Pipelines as Code. Add the following to your `SpinnakerService` manifest:
 
 {{< prism lang="yaml" line="9-10" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
