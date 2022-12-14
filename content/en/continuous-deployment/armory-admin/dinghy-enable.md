@@ -1,11 +1,11 @@
 ---
-title: Enable Pipelines as Code in Armory Enterprise
+title: Enable Pipelines as Code in Armory Continuous Deployment
 linkTitle: Enable Pipelines as Code
 aliases:
   - /spinnaker/install_dinghy/
   - /docs/spinnaker/install-dinghy/
 description: >
-  Learn how to configure Spinnaker to use pipeline templates stored in source control.
+  Learn how to configure Armory CD to use pipeline templates stored in source control. Options for Pipelines as Code's Dinghy service include pulling from multiple branches and Regexp2 support.
 ---
 
 ![Proprietary](/images/proprietary.svg)
@@ -14,19 +14,19 @@ description: >
 
 {{% include "admin/pac-overview.md" %}}
 
-This guide includes:
+At a high level, follow these steps to enable Pipelines as Code:
 
-* Configurations for enabling Armory's Pipelines as Code feature using Armory Operator
-* Settings for GitHub, GitLab, or Bitbucket/Stash webhooks to work with the Pipelines as code
-* GitHub [custom branch configuration](#custom-branch-configuration) for information about how to explicitly set the branch that Pipelines as Code uses.
+1. [Enable](#enable-pipelines-as-code) Pipelines as Code in your `SpinnakerService` manifest.
+1. [Configure a database](#configure-a-database).
+1. [Enable and configure your repos](#enable-your-repos).
 
-## Enabling Pipelines as Code
+You can also [configure notifications](#configure-notifications) to work with Pipelines as Code. Be sure to look at the [additional options](#additional-options) section for optional features such as custom branch configuration if you don't use `master` or `main` branches and how to use multiple branches instead of a default single branch.
 
-_Dinghy_ is the microservice for Pipelines as Code. You need to enable it to use Pipelines as Code.
+## Enable Pipelines as Code
 
-In `SpinnakerService` manifest:
+_Dinghy_ is the microservice for Pipelines as Code. You need to enable it to use Pipelines as Code by adding the following to your `SpinnakerService` manifest:
 
-{{< prism lang="yaml" line="9-11" >}}
+{{< prism lang="yaml" line="9-10" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -37,42 +37,31 @@ spec:
       armory:
         dinghy:
           enabled: true
-          dinghyIgnoreRegexp2Enabled: true
 {{< /prism >}}
 
-- `dinghy.enabled`: `true`; required to enable Pipelines as Code
-- `dinghy.dinghyIgnoreRegexp2Enabled`: (Optional) `true `if you want Dinghy to ignore everything other than required files.
+- `dinghy.enabled`: `true`; required to enable Pipelines as Code.
 
-   The Regexp2 engine supports negative expressions, so you don’t need to define patterns for all files to be ignored. You can ignore everything other than required files. For example, in your project you have some project specific files: `file.js`, `file.ts`, `file.css`. You also have files used by Dinghy: `dinghyfile`, `minimum-wait.stage.module`, `maximum-wait.stage.module`. If you enable `dinghyIgnoreRegexp2Enabled`, you can create your `.dinghyfile` with one of the following regular expressions:
+**Apply your changes**
 
-      - file.(js|ts|css)
-      - ^(?!.*(.stage.module)|(dinghyfile)).*
-
-   Both of those regular expressions product the same result:
-
-      - file.js -> ignored
-      - file.ts -> ignored
-      - file.css -> ignored
-      - dinghyfile -> processed by Dinghy
-      - minimum-wait.stage.module -> processed by Dinghy
-      - maximum-wait.stage.module -> processed by Dinghy
-
-
-Assuming Spinnaker lives in the `spinnaker` namespace, execute the following to update your instance:
+Assuming Armory CD lives in the `spinnaker` namespace, execute the following to update your instance:
 
 {{< prism lang="bash"  >}}
 kubectl -n spinnaker apply -f spinnakerservice.yml
 {{< /prism >}}
 
-## Enable feature to define multiple branches in a repo for Dinghy
+## Configure a database
 
-> This feature requires Armory CDSH 2.28.2+
+### Configure Redis
 
-Administrators working in environments where they would like to enable the capability to pull from multiple branches in a Repo should toggle the following setting: `spec.spinnakerConfig.profiles.dinghy.multipleBranchesEnabled` to `true`. By default, the setting is `false`
+Dinghy can use Redis to store relationships between pipeline templates and pipeline Dinghy files. An external Redis instance is highly recommended for production use. If Redis becomes unavailable, Dinghy files will need to be updated in order to repopulate Redis with the relationships.
+
+> Dinghy can only be configured to use a password with the default Redis user.
+
+To set/override the Spinnaker Redis settings do the following:
 
 In `SpinnakerService` manifest:
 
-{{< prism lang="yaml" line="9-11" >}}
+{{< prism lang="yaml" line="8-11" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -81,37 +70,18 @@ spec:
   spinnakerConfig:
     profiles:
       dinghy:
-        multipleBranchesEnabled: true
+        redis:
+          baseUrl: "redis://spin-redis:6379"
+          password: "password"
 {{< /prism >}}
 
-Once an Administrator has completed the changes, they can then define their `repoConfig` under their Dinghy Profile at `spec.spinnakerConfig.profiles.dinghy.repoConfig` as per the example below. By doing so, customers can utilize multiple selections in Spinnaker's UI to access the different branches in the repo.
+Apply your changes:
 
-In `SpinnakerService` manifest:
-
-{{< prism lang="yaml" line="9-11" >}}
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      dinghy:
-        multipleBranchesEnabled: true
-        repoConfig:
-          - branch: prod
-            provider: github
-            repo: myrepo
-          - branch: dev
-            provider: github
-            repo: myrepo
-          - branch: main
-            provider: github
-            repo: myrepo
+{{< prism lang="bash">}}
+kubectl -n spinnaker apply -f spinnakerservice.yml
 {{< /prism >}}
 
-
-## Configuring SQL
+### Configure MySQL
 
 {{< include "early-access-feature.html" >}}
 
@@ -158,7 +128,7 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 
 ### Migration from Redis to SQL
 
-There's a migration strategy to move the relationships from Redis to SQL. In order to do that, you need to have the configuration from your redis and add the configuration for SQL as shown previously, when you do this and the pod starts, what will happen is that the migration will be done automatically by a job. To verify that the migration was done successfully you can enter into your database and query this tables.
+There is a migration strategy to move the relationships from Redis to SQL. In order to do that, you need to have the configuration from your redis and add the configuration for SQL as shown previously, when you do this and the pod starts, what will happen is that the migration will be done automatically by a job. To verify that the migration was done successfully you can enter into your database and query this tables.
 
 {{< prism lang="sql">}}
 select * from executions;
@@ -172,44 +142,13 @@ In `fileurls` and `fileurl_childs` you should be able to see the migration infor
 
 After Dinghy makes the migration at start, it will close the Redis connection and it will work in full SQL mode.
 
-
-## Configuring Redis
-
-Dinghy can use Redis to store relationships between pipeline templates and pipeline Dinghy files. An external Redis instance is highly recommended for production use. If Redis becomes unavailable, Dinghy files will need to be updated in order to repopulate Redis with the relationships.
-
-> Dinghy can only be configured to use a password with the default Redis user.
-
-To set/override the Spinnaker Redis settings do the following:
-
-In `SpinnakerService` manifest:
-
-{{< prism lang="yaml" line="8-11" >}}
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      dinghy:
-        redis:
-          baseUrl: "redis://spin-redis:6379"
-          password: "password"
-{{< /prism >}}
-
-Apply your changes:
-
-{{< prism lang="bash">}}
-kubectl -n spinnaker apply -f spinnakerservice.yml
-{{< /prism >}}
-
-## Configuring Pipelines as Code
+## Enable your repos
 
 1. Create a personal access token (in either [GitHub](https://github.com/settings/tokens) or Bitbucket/Stash) that has read access to the repo where you store your `dinghyfile` and the repo where you store `module` files.
 1. Get your GitHub, GitLab, or Bitbucket/Stash organization where the app repos and templates reside. For example, if your repo is `armory-io/dinghy-templates`, your `template-org` would be `armory-io`.
-1. Get the name of the repo containing modules. . For example, if your repo is `armory-io/dinghy-templates`, your `template-repo` would be `dinghy-templates`.
+1. Get the name of the repo containing modules. For example, if your repo is `armory-io/dinghy-templates`, your `template-repo` would be `dinghy-templates`.
 
-### GitHub
+### Enable GitHub
 
 {{< prism lang="yaml" line="11-14">}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -236,7 +175,7 @@ Apply your changes:
 kubectl -n spinnaker apply -f spinnakerservice.yml
 {{< /prism >}}
 
-#### Configuring GitHub webhooks
+#### GitHub webhooks
 
 Set up webhooks at the organization level for Push events. You can do this by going to ```https://github.com/organizations/<your_org_here>/settings/hooks```.
 
@@ -270,7 +209,7 @@ The following screenshot shows what your GitHub settings should resemble:
 {{< figure src="/images/dinghy/pr_validation/branch_mandatory.png" alt="Configured dinghy PR validation." >}}
 
 
-### Bitbucket Server (Stash) and Bitbucket Cloud
+### Enable Bitbucket Server (Stash) and Bitbucket Cloud
 
 Bitbucket has both cloud and server offerings. See the Atlassian [docs](https://confluence.atlassian.com/bitbucketserver/bitbucket-rebrand-faq-779298912.html) for more on the name change from Stash to Bitbucket Server. Consult your company's Bitbucket support desk if you need help determining what flavor and version of Bitbucket you are using.
 
@@ -302,7 +241,7 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 
 You need to set up webhooks for each project that has the `dinghyfile` or module separately. Make the webhook `POST` to: `https://spinnaker.your-company.com:8084/webhooks/git/bitbucket`. If you're using stash `<v3.11.6`, you need to install the [webhook plugin](https://marketplace.atlassian.com/plugins/com.atlassian.stash.plugin.stash-web-post-receive-hooks-plugin/server/overview) to be able to set up webhooks.
 
-### GitLab
+### Enable GitLab
 
 {{< prism lang="yaml" line="" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -332,58 +271,9 @@ to `https://<your-gate-url>/webhooks/git/gitlab`.  Make sure the server your
 GitLab install is running on can connect to your Gate URL. Armory also needs
 to communicate with your GitLab installation. Ensure that connectivity works as well.
 
-### Custom branch configuration
+## Configure notifications
 
-> Configuring a custom branch is required if you are using a repo that does not use `master` or `main` as the default branch, or you want to use a branch other than `master` or `main`.
-
-By default, Dinghy uses the `master` branch in your repository and fallbacks to `main` if `master` doesn't exist. If you wish to use a different branch in your repository, you can configure that using the `repoConfig` tag in your YAML configuration.
-
-The `repoConfig` tag supports a collection of the following values. Each node in the collection must contain all of the fields listed below.
-* `branch` - the name of the branch you wish to use
-* `provider` - the name of the provider (see below for available providers)
-* `repo` - the name of the repository
-
-All providers available in Dinghy are supported. Please refer to the list below for the proper name to use in the configuration for each provider.
-* `github`
-* `bitbucket-cloud`
-* `bitbucket-server`
-
-
-{{< prism lang="yaml" line="9-15" >}}
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      dinghy:
-        repoConfig:
-        - branch: some_branch
-          provider: bitbucket-server
-          repo: my-bitbucket-repository
-        - branch: some_branch
-          provider: github
-          repo: my-github-repository
-{{< /prism >}}
-
-### Other Options
-
-#### Fiat
-
-If Fiat is enabled, add the field `fiatUser: "your-service-account"` to the `dinghy` section in `SpinnakerService` manifest. Note that the service account has to be in a group that has read/write access to the pipelines you will be updating.
-
-If you have app specific permissions configured in Spinnaker, make sure you add the service account. For information on how to create a service account, click [here](https://www.spinnaker.io/setup/security/authorization/service-accounts/#creating-service-accounts).
-
-#### Custom Filename
-
-If you want to change the name of the file that describes pipelines, add the field `dinghyFilename: "your-name-here"` to the `dinghy` section in `SpinnakerService` manifest.
-
-#### Disabling Locks
-
-If you want to disable lock pipelines in the UI before overwriting changes, add the field `autoLockPipelines: false` to `SpinnakerService` manifest.
-
-#### Slack Notifications
+### Slack notifications
 
 If you [configured]({{< ref "notifications-slack-configure" >}}) Armory to send Slack notifications for pipeline events, you can configure Dinghy to send pipeline update results to Slack.
 
@@ -409,7 +299,7 @@ spec:
 
 ![Slack Notifications](/images/dinghy-slack-notifications.png)
 
-#### GitHub Notifications
+### GitHub notifications
 
 Dinghy can provide more robust information to GitHub about executed pipeline changes. This information appears as a comment in the PR.  
 
@@ -436,9 +326,110 @@ spec:
 
 ![GitHub Notifications](/images/armory-admin/dinghy-enable/dinghy-github-notifications.jpg)
 
-### Other Template Formats
+## Additional options
 
-> This feature requires Armory 2.5.4 or above.
+### Custom branches
+
+> Configuring a custom branch is required if you are using a repo that does not use `master` or `main` as the default branch, or you want to use a branch other than `master` or `main`.
+
+By default, Dinghy uses the `master` branch in your repository and fallbacks to `main` if `master` doesn't exist. If you wish to use a different branch in your repository, you can configure that using the `repoConfig` tag in your YAML configuration.
+
+The `repoConfig` tag supports a collection of the following values. Each node in the collection must contain all of the fields listed below.
+* `branch` - the name of the branch you wish to use
+* `provider` - the name of the provider (see below for available providers)
+* `repo` - the name of the repository
+
+All providers available in Dinghy are supported. Please refer to the list below for the proper name to use in the configuration for each provider.
+* `github`
+* `bitbucket-cloud`
+* `bitbucket-server`
+
+{{< prism lang="yaml" line="9-15" >}}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        repoConfig:
+        - branch: some_branch
+          provider: bitbucket-server
+          repo: my-bitbucket-repository
+        - branch: some_branch
+          provider: github
+          repo: my-github-repository
+{{< /prism >}}
+
+### Multiple branches
+
+This feature enables you to select multiple branches in the UI. If you want to pull from multiple branches, you must add `multipleBranchesEnabled` to the `dinghy` config in your `SpinnakerService` manifest:
+
+{{< prism lang="yaml" line="10" >}}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          multipleBranchesEnabled: true
+{{< /prism >}}
+
+- `multipleBranchesEnabled`: (Optional; default `false`) `true` if you want to enable pulling from multiple branches in your repo. If `true`, you must configure your repo branches in the `spec.spinnakerConfig.profiles.dinghy` section of your `SpinnakerService` manifest. See [Configure custom branches](#configure-custom-branches).
+
+### Negative expressions support in your `dinghyfile`
+
+The Regexp2 engine supports negative expressions, so you don’t need to define patterns for all files to be ignored. You can ignore everything other than required files. For example, in your project you have some project-specific files: `file.js`, `file.ts`, `file.css`. You also have files used by Dinghy: `dinghyfile`, `minimum-wait.stage.module`, `maximum-wait.stage.module`. If you enable `dinghyIgnoreRegexp2Enabled`, you can create your `.dinghyfile` with one of the following regular expressions:
+
+      - file.(js|ts|css)
+      - ^(?!.*(.stage.module)|(dinghyfile)).*
+
+   Both of those regular expressions product the same result:
+
+      - file.js -> ignored
+      - file.ts -> ignored
+      - file.css -> ignored
+      - dinghyfile -> processed by Dinghy
+      - minimum-wait.stage.module -> processed by Dinghy
+      - maximum-wait.stage.module -> processed by Dinghy
+
+To enable this feature, add `dinghyIgnoreRegexp2Enabled` to your `SpinnakerService` manifest:
+
+{{< prism lang="yaml" line="11" >}}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          enabled: true
+          dinghyIgnoreRegexp2Enabled: true
+{{< /prism >}}
+
+- `dinghy.dinghyIgnoreRegexp2Enabled`: (Optional; default `false`) `true `if you want Dinghy to ignore everything other than required files.
+
+### Fiat
+
+If Fiat is enabled, add the field `fiatUser: "your-service-account"` to the `dinghy` section in `SpinnakerService` manifest. Note that the service account has to be in a group that has read/write access to the pipelines you are updating.
+
+If you have app specific permissions configured in Armory CD, make sure you add the service account. For information on how to create a service account, see [Creating service accounts](https://www.spinnaker.io/setup/security/authorization/service-accounts/#creating-service-accounts).
+
+### Custom dinghyfile name
+
+If you want to change the name of the file that describes pipelines, add the field `dinghyFilename: "your-name-here"` to the `dinghy` section in `SpinnakerService` manifest.
+
+### Disable lock pipelines
+
+If you want to disable lock pipelines in the UI before overwriting changes, add the field `autoLockPipelines: false` to `SpinnakerService` manifest.
+
+### Define additional template formats
 
 Dinghy supports two additional template formats in addition to JSON:
 
@@ -466,8 +457,7 @@ spec:
         parserFormat: hcl
 {{< /prism >}}
 
-
-## Known Issues
+## Known issues
 
 If Dinghy crashes on start up and you encounter an error in Dinghy similar to:
 
