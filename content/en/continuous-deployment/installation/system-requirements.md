@@ -10,7 +10,7 @@ The requirements described on this page are meant as a minimum starting point fo
 
 ## Installation targets
 
-> This section defines where you can run Armory Enterprise, not where you can deploy your applications. For information about where you can deploy applications to, see the [Product Compatibility Matrix]({{< ref "armory-enterprise-matrix#deployment-targets" >}}).
+> This section defines where you can run Armory Enterprise, not where you can deploy your applications. For information about where you can deploy applications to, see the [Product Compatibility Matrix]({{< ref "continuous-deployment-matrix#deployment-targets" >}}).
 
 Armory Enterprise can be installed on any [certified Kubernetes cluster](https://www.cncf.io/certification/software-conformance/) that meets the following version requirements:
 
@@ -91,4 +91,4 @@ Additionally, the ports for the API gateway (the Gate service) and the UI (the D
 
 Armory Enterprise needs to be able to assume roles in the accounts that it deploys applications to. For example, Armory Enterprise needs the `sts:AssumeRole` permission for AWS. Elevated access (equivalent to the level of **PowerUser** access in AWS) is helpful so that Armory Enterprise can cache data from deployment target accounts and deploy without errors.
 
-In addition to the security requirements that Armory Enterprise needs to run, Armory recommends securing your installation by using a [secret store]({{< ref "armory-enterprise-matrix#secret-stores" >}}) for sensitive values in your configs as well as configuring [authentication]({{< ref "armory-enterprise-matrix#authentication" >}}) and [authorization]({{< ref "armory-enterprise-matrix#authorization" >}}).
+In addition to the security requirements that Armory Enterprise needs to run, Armory recommends securing your installation by using a [secret store]({{< ref "continuous-deployment-matrix#secret-stores" >}}) for sensitive values in your configs as well as configuring [authentication]({{< ref "continuous-deployment-matrix#authentication" >}}) and [authorization]({{< ref "continuous-deployment-matrix#authorization" >}}).
