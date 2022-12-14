@@ -364,7 +364,9 @@ spec:
 
 ### Multiple branches
 
-This feature enables you to select multiple branches in the UI. If you want to pull from multiple branches, you must add `multipleBranchesEnabled` to the `dinghy` config in your `SpinnakerService` manifest:
+This feature enables you to select multiple branches in the UI. 
+
+If you want to pull from multiple branches in the same repo, you must add `multipleBranchesEnabled` to the `dinghy` config in your `SpinnakerService` manifest:
 
 {{< prism lang="yaml" line="10" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -379,7 +381,30 @@ spec:
           multipleBranchesEnabled: true
 {{< /prism >}}
 
-- `multipleBranchesEnabled`: (Optional; default `false`) `true` if you want to enable pulling from multiple branches in your repo. If `true`, you must configure your repo branches in the `spec.spinnakerConfig.profiles.dinghy` section of your `SpinnakerService` manifest. See [Custom branches](#custom-branches).
+- `multipleBranchesEnabled`: (Optional; default `false`) `true` if you want to enable pulling from multiple branches in your repo. 
+
+If `true`, you must configure your repo branches in the `spec.spinnakerConfig.profiles.dinghy` section of your `SpinnakerService` manifest.  For example:
+
+{{< prism lang="yaml" line="9-18" >}}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        repoConfig:
+          - branch: prod
+            provider: github
+            repo: my-github-repository
+          - branch: dev
+            provider: github
+            repo: my-github-repository
+          - branch: main
+            provider: github
+            repo: my-github-repository
+{{< /prism >}}
 
 ### Negative expressions support in your `dinghyfile`
 
