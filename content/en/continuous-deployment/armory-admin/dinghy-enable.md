@@ -64,6 +64,53 @@ Assuming Spinnaker lives in the `spinnaker` namespace, execute the following to 
 kubectl -n spinnaker apply -f spinnakerservice.yml
 {{< /prism >}}
 
+## Enable functionality to define Multiple Branch for Dinghy
+
+> This feature requires Armory CDSH 2.28.2+
+
+Administrators working in environments where they would like to enable the capability to pull from multiple branches in a Repo will need to toggle the following setting.  
+
+In `SpinnakerService` manifest:
+
+{{< prism lang="yaml" line="9-11" >}}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          multipleBranchesEnabled: true
+{{< /prism >}}
+
+Once an Administrator has done so, they can then define their repoConfig under their Dinghy Profile as per the example below.  By doing so, customers will then be able to utilize multiple selections in Spinnaker's UI to access the different branches in the repo.
+
+In `SpinnakerService` manifest:
+
+{{< prism lang="yaml" line="9-11" >}}
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        repoConfig:
+          - branch: prod
+            provider: github
+            repo: myrepo
+          - branch: dev
+            provider: github
+            repo: myrepo
+          - branch: main
+            provider: github
+            repo: myrepo
+{{< /prism >}}
+
+
 ## Configuring SQL
 
 {{< include "early-access-feature.html" >}}
