@@ -64,11 +64,11 @@ Assuming Spinnaker lives in the `spinnaker` namespace, execute the following to 
 kubectl -n spinnaker apply -f spinnakerservice.yml
 {{< /prism >}}
 
-## Enable functionality to define Multiple Branch for Dinghy
+## Enable feature to define multiple branches in a repo for Dinghy
 
 > This feature requires Armory CDSH 2.28.2+
 
-Administrators working in environments where they would like to enable the capability to pull from multiple branches in a Repo will need to toggle the following setting.  
+Administrators working in environments where they would like to enable the capability to pull from multiple branches in a Repo should toggle the following setting: `spec.spinnakerConfig.config.armory.dinghy.multipleBranchesEnabled` to `true`. By default, the setting is `false`
 
 In `SpinnakerService` manifest:
 
