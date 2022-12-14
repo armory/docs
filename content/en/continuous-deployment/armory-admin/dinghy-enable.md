@@ -68,7 +68,7 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 
 > This feature requires Armory CDSH 2.28.2+
 
-Administrators working in environments where they would like to enable the capability to pull from multiple branches in a Repo should toggle the following setting: `spec.spinnakerConfig.config.armory.dinghy.multipleBranchesEnabled` to `true`. By default, the setting is `false`
+Administrators working in environments where they would like to enable the capability to pull from multiple branches in a Repo should toggle the following setting: `spec.spinnakerConfig.profiles.dinghy.multipleBranchesEnabled` to `true`. By default, the setting is `false`
 
 In `SpinnakerService` manifest:
 
@@ -79,13 +79,12 @@ metadata:
   name: spinnaker
 spec:
   spinnakerConfig:
-    config:
-      armory:
-        dinghy:
-          multipleBranchesEnabled: true
+    profiles:
+      dinghy:
+        multipleBranchesEnabled: true
 {{< /prism >}}
 
-Once an Administrator has completed the changes, they can then define their `repoConfig` under their Dinghy Profile at `spec.spinnakerConfig.profiles.dinghy.repoConfig` as per the example below.  By doing so, customers can utilize multiple selections in Spinnaker's UI to access the different branches in the repo.
+Once an Administrator has completed the changes, they can then define their `repoConfig` under their Dinghy Profile at `spec.spinnakerConfig.profiles.dinghy.repoConfig` as per the example below. By doing so, customers can utilize multiple selections in Spinnaker's UI to access the different branches in the repo.
 
 In `SpinnakerService` manifest:
 
