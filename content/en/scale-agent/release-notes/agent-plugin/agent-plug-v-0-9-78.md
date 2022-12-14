@@ -5,4 +5,4 @@ version: 00.09.78
 date: 2022-12-05
 ---
 
-- no functionality changes, ignore (internal)
+- no functionality changes, ignore (internal).

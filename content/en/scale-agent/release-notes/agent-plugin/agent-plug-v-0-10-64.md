@@ -6,4 +6,4 @@ date: 2022-12-13
 ---
 
 Feats:
-- Enable any clouddriver replica to get the ping event from any agent
+- Enable any clouddriver replica to get the ping event from any agent.
