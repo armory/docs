@@ -379,7 +379,7 @@ spec:
           multipleBranchesEnabled: true
 {{< /prism >}}
 
-- `multipleBranchesEnabled`: (Optional; default `false`) `true` if you want to enable pulling from multiple branches in your repo. If `true`, you must configure your repo branches in the `spec.spinnakerConfig.profiles.dinghy` section of your `SpinnakerService` manifest. See [Configure custom branches](#configure-custom-branches).
+- `multipleBranchesEnabled`: (Optional; default `false`) `true` if you want to enable pulling from multiple branches in your repo. If `true`, you must configure your repo branches in the `spec.spinnakerConfig.profiles.dinghy` section of your `SpinnakerService` manifest. See [Custom branches](#custom-branches).
 
 ### Negative expressions support in your `dinghyfile`
 
