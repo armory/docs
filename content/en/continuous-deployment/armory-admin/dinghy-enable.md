@@ -97,6 +97,7 @@ spec:
   spinnakerConfig:
     profiles:
       dinghy:
+        multipleBranchesEnabled: true
         repoConfig:
           - branch: prod
             provider: github
