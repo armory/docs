@@ -85,7 +85,7 @@ spec:
           multipleBranchesEnabled: true
 {{< /prism >}}
 
-Once an Administrator has done so, they can then define their repoConfig under their Dinghy Profile as per the example below.  By doing so, customers will then be able to utilize multiple selections in Spinnaker's UI to access the different branches in the repo.
+Once an Administrator has completed the changes, they can then define their `repoConfig` under their Dinghy Profile at `spec.spinnakerConfig.profiles.dinghy.repoConfig` as per the example below.  By doing so, customers can utilize multiple selections in Spinnaker's UI to access the different branches in the repo.
 
 In `SpinnakerService` manifest:
 
