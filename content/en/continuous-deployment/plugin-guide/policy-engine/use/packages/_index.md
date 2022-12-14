@@ -2,9 +2,7 @@
 title: Policy Engine Packages
 linkTitle: Packages
 description: >
-  Customize policy enforcement around Armory Enterprise actions.
-aliases:
-  - /docs/spinnaker-user-guides/policy-engine-use/packages/
+  Customize policy enforcement around Armory Continuous Deployment or Spinnaker actions.
 ---
 
 ## Packages

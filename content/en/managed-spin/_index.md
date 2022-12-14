@@ -17,7 +17,7 @@ Here is everything included in the Armory Managed Services offering.
 
 ### Armory Enterprise for Spinnaker
 
-Armory Site Reliability Engineers (SREs) install, configure, and operate Armory's Enterprise distribution of Spinnaker in the customer's cloud environment. Currently, Armory supports running Spinnaker in AWS and GCP. Armory supports any integrations listed on the [Armory Enterprise Compatibility Matrix]({{< ref "armory-enterprise-matrix" >}}).
+Armory Site Reliability Engineers (SREs) install, configure, and operate Armory's Enterprise distribution of Spinnaker in the customer's cloud environment. Currently, Armory supports running Spinnaker in AWS and GCP. Armory supports any integrations listed on the [Armory Enterprise Compatibility Matrix]({{< ref "continuous-deployment-matrix" >}}).
 
 Armory provides two environments for you to use:
 
@@ -67,7 +67,7 @@ Armory operated resources are limited to resources that are necessary for core S
 
 The customer is responsible for building out the applications and pipelines needed to support their use cases. This includes troubleshooting pipeline executions and the third-party software that Spinnaker integrates with. Armory SREs provide support for any Spinnaker configuration changes needed.
 
-The customer is also responsible for onboarding users to the system. Armory SREs can help setup integrations with any authentication and authorization system listed in the [Armory Enterprise Compatibility Matrix]({{< ref "armory-enterprise-matrix" >}}), such as Okta or LDAP.
+The customer is also responsible for onboarding users to the system. Armory SREs can help setup integrations with any authentication and authorization system listed in the [Armory Enterprise Compatibility Matrix]({{< ref "continuous-deployment-matrix" >}}), such as Okta or LDAP.
 
 ### Third-party software support
 

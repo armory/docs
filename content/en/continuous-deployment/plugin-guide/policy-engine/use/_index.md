@@ -1,29 +1,27 @@
 ---
-title: Introduction to Using the Policy Engine
+title: How to Use the Policy Engine
 linkTitle: Use Policy Engine
+no_list: true
 description: >
-  Learn how to add policies to your Open Policy Agent (OPA) server for Armory Enterprise to use when it performs validations to make sure your pipelines and users follow policy requirements. This page includes information about what goes into a policy and some basic policies for you to try. There are examples for save time validation, runtime validation, and entitlements.
+  Learn how to add policies to your Open Policy Agent (OPA) server for Armory Continuous Deployment or open source Spinnaker to use when performing validations to ensure your pipelines and users follow policy requirements. This page includes information about what goes into a policy and some basic policies for you to try. There are examples for save time validation, runtime validation, and entitlements.
 aliases:
-  - /docs/spinnaker/policy-engine-use/
-  - /docs/spinnaker-user-guides/policy-engine-use/
+   - /continuous-deployment/plugin-guide/policy-engine/use/
 ---
 ![Proprietary](/images/proprietary.svg)
 
-> For information about how to set up the Policy Engine, see [Enabling the Policy Engine]({{< ref "policy-engine-enable" >}}).
 
+## {{% heading "prereq" %}}
 
-## Before you start
+* You have deployed an [Open Policy Agent server]({{< ref "/continuous-deployment/plugin-guide/policy-engine#deploy-an-opa-server" >}}) and [enabled the Policy Engine plugin]({{< ref "/continuous-deployment/plugin-guide/policy-engine#enable-the-policy-engine-plugin" >}}).
+* You are familiar with the [list of packages]({{< ref "continuous-deployment/plugin-guide/policy-engine/use/packages/_index.md" >}}) that you can write policies against.  
+* Keep the following in mind when you use the Policy Engine:
 
-Knowing the following information will help you use the Policy Engine:
-
-* Policies are written using OPA's [rego syntax](https://www.openpolicyagent.org/docs/latest/policy-language/). Although Armory provides some example policies, becoming more familiar with the syntax will help you write policies tailored to your requirements.
-* Whether your OPA server is configured to receive policies through config maps. If the server is configured to use config maps, you need to know the namespace where the server lives and if the OPA server is configured to look for a specific label. Alternatively, policies can be added to the server through the OPA API.
-
-If you do not have an OPA server configured for the Policy Engine, you can find information about how to deploy an OPA server [here]({{< ref "policy-engine-enable" >}}).
+   * Policies are written using OPA's [rego syntax](https://www.openpolicyagent.org/docs/latest/policy-language/). Although Armory provides some example policies, becoming more familiar with the syntax will help you write policies tailored to your requirements.
+   * Know whether your OPA server is configured to receive policies through config maps. If the server is configured to use config maps, you need to know the namespace where the server lives and if the OPA server is configured to look for a specific label. Alternatively, you can add policies to the server through the OPA API.
 
 ## Tutorial using save time validation
 
-The following steps walk you through the two-step process described previously with a basic save time validation that applies to all pipelines in your instance when they are saved.
+The following steps walk you through the two-step process with a basic save time validation that applies to all pipelines in your instance when they are saved.
 
 ### Step 1. Create a policy
 
@@ -78,7 +76,7 @@ After you create the policy ConfigMap, apply a label to it:
 kubectl -n <opaServerNamespace> label configmap manual-judgment openpolicyagent.org/policy=rego
 ```
 
-This label corresponds to the label you add in the [example manifest]({{< ref "policy-engine-enable#using-configmaps-for-opa-policies" >}}). The example ConfigMap creates an OPA server and, by extension, the Policy Engine that only checks ConfigMaps with the correct label. This improves performance.
+This label corresponds to the label you add in the [example manifest]({{< ref "policy-engine#using-configmaps-for-opa-policies" >}}). The example ConfigMap creates an OPA server and, by extension, the Policy Engine that only checks ConfigMaps with the correct label. This improves performance.
 
 **API Example**
 
@@ -225,13 +223,13 @@ allow {
 
 ### Return a custom message
 
-> Providing a custom message for the `spinnaker.http.authz` package requires Armory Enterprise 2.26.0 or later.
+> Providing a custom message for the `spinnaker.http.authz` package requires Armory Continuous Deployment 2.26.0 or later.
 
 The Policy Engine allows you to return a custom message when an action violates a policy and is blocked. For most packages that you want to enforce policies on, this is done by specifying the message as part of the `deny` block. You can see this in the examples for other policy types on this page.
 
 Returning a custom message works slightly differently for the `spinnaker.http.authz` package because it is based on the `allow` rules rather than `deny` rules.
 
-If a user attempts to perform an action that they are not allowed to, a window appears and displays the custom message you specify. If you are running an Armory Enterprise version earlier than 2.26.0, you cannot specify a custom message. Instead, a generic server error message appears.
+If a user attempts to perform an action that they are not allowed to, a window appears and displays the custom message you specify.
 
 The following example policy prevents the user `milton` from taking specific actions in the UI. Specifically, the user cannot use the  **Edit** or **Delete** buttons on the **Clusters** tab.
 
@@ -450,3 +448,8 @@ The Armory (or Spinnaker) UI fails to load after you enable Policy Engine. This 
 Solution:
 
 Open your browser's console and see if there are SSL exceptions. If there are, check what the `baseUrl` value for the OPA server is in your operator config. Specifically, using HTTPS for an HTTP server can cause SSL exceptions.
+
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "continuous-deployment/plugin-guide/policy-engine/use/example-policies.md" >}}
