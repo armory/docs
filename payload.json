@@ -2,160 +2,157 @@
   "armoryServices": [
     {
       "commitMessages": [],
-      "currentVersion": "2.28.2-rc2",
+      "currentVersion": "2.28.2-rc3",
       "name": "Armory Clouddriver",
-      "previousVersion": "2.28.2-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.2-rc2",
-      "name": "Armory Deck",
-      "previousVersion": "2.28.2-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.2-rc2",
-      "name": "Terraformer™",
-      "previousVersion": "2.28.2-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.2-rc2",
-      "name": "Armory Echo",
-      "previousVersion": "2.28.2-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.2-rc2",
-      "name": "Dinghy™",
-      "previousVersion": "2.28.2-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.2-rc2",
-      "name": "Armory Fiat",
-      "previousVersion": "2.28.2-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.2-rc2",
-      "name": "Armory Front50",
-      "previousVersion": "2.28.2-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.2-rc2",
-      "name": "Armory Gate",
-      "previousVersion": "2.28.2-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.2-rc2",
-      "name": "Armory Igor",
-      "previousVersion": "2.28.2-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.2-rc2",
-      "name": "Armory Kayenta",
-      "previousVersion": "2.28.2-rc1"
+      "previousVersion": "2.28.2-rc2"
     },
     {
       "commitMessages": [
-        "chore(cd): update base service version to rosco:2022.12.08.21.17.26.release-1.28.x (#474)"
+        "chore(cd): update base service version to fiat:2022.11.21.16.27.25.release-1.28.x (#411)"
       ],
-      "currentVersion": "2.28.2-rc2",
-      "name": "Armory Rosco",
-      "previousVersion": "2.28.2-rc1"
+      "currentVersion": "2.28.2-rc3",
+      "name": "Armory Fiat",
+      "previousVersion": "2.28.2-rc2"
+    },
+    {
+      "commitMessages": [
+        "style(logo): Changed Armory logo (#1264) (#1265)"
+      ],
+      "currentVersion": "2.28.2-rc3",
+      "name": "Armory Deck",
+      "previousVersion": "2.28.2-rc2"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.28.2-rc2",
+      "currentVersion": "2.28.2-rc3",
+      "name": "Armory Echo",
+      "previousVersion": "2.28.2-rc2"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.2-rc3",
+      "name": "Dinghy™",
+      "previousVersion": "2.28.2-rc2"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.2-rc3",
+      "name": "Armory Gate",
+      "previousVersion": "2.28.2-rc2"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.2-rc3",
+      "name": "Armory Igor",
+      "previousVersion": "2.28.2-rc2"
+    },
+    {
+      "commitMessages": [
+        "fix(versions): Sets version constraints for kubectl & aws-iam-authent… (#487) (#489)"
+      ],
+      "currentVersion": "2.28.2-rc3",
+      "name": "Terraformer™",
+      "previousVersion": "2.28.2-rc2"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.2-rc3",
+      "name": "Armory Kayenta",
+      "previousVersion": "2.28.2-rc2"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to front50:2022.11.29.21.48.45.release-1.28.x (#472)"
+      ],
+      "currentVersion": "2.28.2-rc3",
+      "name": "Armory Front50",
+      "previousVersion": "2.28.2-rc2"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.2-rc3",
       "name": "Armory Orca",
-      "previousVersion": "2.28.2-rc1"
+      "previousVersion": "2.28.2-rc2"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.28.2-rc3",
+      "name": "Armory Rosco",
+      "previousVersion": "2.28.2-rc2"
     }
   ],
-  "armoryVersion": "2.28.2-rc2",
+  "armoryVersion": "2.28.2-rc3",
   "ossServices": [
     {
       "commitMessages": [],
       "currentVersion": "1.28.4",
       "name": "Spinnaker Clouddriver",
-      "previousVersion": "1.28.0"
+      "previousVersion": "1.28.4"
+    },
+    {
+      "commitMessages": [
+        "fix(permissions): ensure lower case for resource name in fiat_permission and fiat_resource tables (backport #963) (#980)",
+        "fix(roles): Ensure account manager role is cached (backport #960) (#984)",
+        "fix: add migration to ensure consistency between resource_name in fiat_resource and fiat_permission tables (backport #964) (#978)",
+        "chore(dependencies): Autobump korkVersion (#986)",
+        "chore(dependencies): Autobump spinnakerGradleVersion (#989) (#994)"
+      ],
+      "currentVersion": "1.28.4",
+      "name": "Spinnaker Fiat",
+      "previousVersion": "1.28.4"
     },
     {
       "commitMessages": [],
       "currentVersion": "1.28.4",
       "name": "Spinnaker Deck",
-      "previousVersion": "1.28.0"
+      "previousVersion": "1.28.4"
     },
     {
       "commitMessages": [],
       "currentVersion": "1.28.4",
       "name": "Spinnaker Echo",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.4",
-      "name": "Spinnaker Fiat",
-      "previousVersion": "1.27.0"
-    },
-    {
-      "commitMessages": [
-        "chore(dependencies): Autobump fiatVersion (#1154)",
-        "fix(updateTs): missing updateTs field in the get pipeline history's response. (backport #1159) (#1161)"
-      ],
-      "currentVersion": "1.27.3",
-      "name": "Spinnaker Front50",
-      "previousVersion": "1.27.0"
-    },
-    {
-      "commitMessages": [
-        "fix(links): update link to spinnaker release changelog (#9897) (#9898)",
-        "chore(dependencies): Autobump spinnakerGradleVersion (#9916) (#9925)"
-      ],
-      "currentVersion": "1.27.3",
-      "name": "Spinnaker Deck",
-      "previousVersion": "1.27.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.4",
-      "name": "Spinnaker Front50",
-      "previousVersion": "1.28.0"
+      "previousVersion": "1.28.4"
     },
     {
       "commitMessages": [],
       "currentVersion": "1.28.4",
       "name": "Spinnaker Gate",
-      "previousVersion": "1.28.0"
+      "previousVersion": "1.28.4"
     },
     {
       "commitMessages": [],
       "currentVersion": "1.28.4",
       "name": "Spinnaker Igor",
-      "previousVersion": "1.28.0"
+      "previousVersion": "1.28.4"
     },
     {
       "commitMessages": [],
       "currentVersion": "1.28.4",
       "name": "Spinnaker Kayenta",
-      "previousVersion": "1.28.0"
+      "previousVersion": "1.28.4"
     },
     {
       "commitMessages": [
-        "Merge pull request from GHSA-wqq8-664f-54hh"
+        "chore(dependencies): Autobump korkVersion (#1170)",
+        "chore(dependencies): Autobump fiatVersion (#1171)",
+        "fix(pipelines): prevent from creating duplicated pipelines (#1172) (#1174)",
+        "chore(dependencies): Autobump spinnakerGradleVersion (#1177) (#1183)"
       ],
       "currentVersion": "1.28.4",
-      "name": "Spinnaker Rosco",
-      "previousVersion": "1.28.0"
+      "name": "Spinnaker Front50",
+      "previousVersion": "1.28.4"
     },
     {
       "commitMessages": [],
       "currentVersion": "1.28.4",
       "name": "Spinnaker Orca",
-      "previousVersion": "1.28.0"
+      "previousVersion": "1.28.4"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.28.4",
+      "name": "Spinnaker Rosco",
+      "previousVersion": "1.28.4"
     }
   ],
   "ossVersion": "1.28.4",
@@ -173,39 +170,39 @@
     "services": {
       "clouddriver": {
         "commit": "960c72d1e7e7b9e857d94af9731c3441426ee073",
-        "version": "2.28.2-rc2"
+        "version": "2.28.2-rc3"
       },
       "deck": {
-        "commit": "6798fd1789d2c062c4a1cd2e33615e6bad9aa90b",
-        "version": "2.28.2-rc2"
+        "commit": "dd17c153eaf117ab7990c11182a6bdc887d020f9",
+        "version": "2.28.2-rc3"
       },
       "dinghy": {
         "commit": "c4ed5b19dbcfefe8dea14cdff7df9a8ab540eba3",
-        "version": "2.28.2-rc2"
+        "version": "2.28.2-rc3"
       },
       "echo": {
         "commit": "6d4e4ae054b7a13050a1d271b3c771a790e27fc6",
-        "version": "2.28.2-rc2"
+        "version": "2.28.2-rc3"
       },
       "fiat": {
-        "commit": "fce52482097b606389328d25d220be5eaaddab21",
-        "version": "2.28.2-rc2"
+        "commit": "48c8759b0878fd1b86b91dae9ee288afcf03dd39",
+        "version": "2.28.2-rc3"
       },
       "front50": {
-        "commit": "1e5d3a5dfce38d26f809dee107d8145c00caa27e",
-        "version": "2.28.2-rc2"
+        "commit": "fab8841982330e7537629c9f24f41205cd5863fd",
+        "version": "2.28.2-rc3"
       },
       "gate": {
         "commit": "65bdd30238312bbca2dce613825eda7ae88f1dfa",
-        "version": "2.28.2-rc2"
+        "version": "2.28.2-rc3"
       },
       "igor": {
         "commit": "61ce26babfcd0bdf62872c24e707ca5b5371a381",
-        "version": "2.28.2-rc2"
+        "version": "2.28.2-rc3"
       },
       "kayenta": {
         "commit": "6004bfd90ad2e4fa9b02dddc26253210b8aa3a3c",
-        "version": "2.28.2-rc2"
+        "version": "2.28.2-rc3"
       },
       "monitoring-daemon": {
         "commit": null,
@@ -217,18 +214,18 @@
       },
       "orca": {
         "commit": "76fe72a46566bb404eb4db4c842ecb0775c546bf",
-        "version": "2.28.2-rc2"
+        "version": "2.28.2-rc3"
       },
       "rosco": {
         "commit": "945f21dec252da7dd2e00c8d23a1687aa3b9841a",
-        "version": "2.28.2-rc2"
+        "version": "2.28.2-rc3"
       },
       "terraformer": {
-        "commit": "57c6a9a72d4cfccb7caf229e360fa7f17410afea",
-        "version": "2.28.2-rc2"
+        "commit": "0d18998cb4790dd4857d79e318d873450bd5975d",
+        "version": "2.28.2-rc3"
       }
     },
-    "timestamp": "2022-12-08 23:17:08",
-    "version": "2.28.2-rc2"
+    "timestamp": "2022-12-15 10:58:49",
+    "version": "2.28.2-rc3"
   }
 }
