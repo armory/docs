@@ -369,6 +369,8 @@ spec:
 
 ### Multiple branches
 
+{{< include "early-access-feature.html" >}}
+
 This feature enables you to select multiple branches in the UI. 
 
 If you want to pull from multiple branches in the same repo, you must add `multipleBranchesEnabled` to the `dinghy` config in your `SpinnakerService` manifest:
