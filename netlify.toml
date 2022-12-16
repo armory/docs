@@ -67,7 +67,7 @@ package = "@netlify/plugin-sitemap"
   ]
   # append missing trailing slash to prettyURL
   trailingSlash = true
-  changeFreq = "weekly"
+  changeFreq = "daily"
   priority = 0.5
 
 
