@@ -3,6 +3,9 @@ title: Armory Continuous Deployment Compatibility Matrix
 linkTitle: Compatibility Matrix
 description: >
   Information about support and compatibility for Armory Continuous Deployment as well as the products and platforms with which it integrates.
+aliases:
+  - /continuous-deployment/feature-status/armory-enterprise-matrix/
+  - /armory-enterprise/feature-status/armory-enterprise-matrix/
 ---
 
 ## Compatibility matrix overview
