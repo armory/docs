@@ -30,7 +30,7 @@ To assure the best user-experience possible, we recommend the following options:
 
  ## What happens if I don't act in time?
 
-If your company uses PaCRD, it will no longer be guaranteed to function as part of Armory Enterprise releases after 2021 Nov 01. Any workflows that utilize PaCRD may break when you upgrade Armory Enterprise to a new release after that date.
+If your company uses PaCRD, it will no longer be guaranteed to function as part of Armory Continuous Deployment releases after 2021 Nov 01. Any workflows that utilize PaCRD may break when you upgrade Armory Continuous Deployment to a new release after that date.
 
 ## Who should I contact if I have questions or need further assistance?
 

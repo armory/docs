@@ -3,7 +3,7 @@ title: External Account Plugin
 toc_hide: true
 exclude_search: true
 description: >
-  The External Account Plugin allows Armory Enterprise to read accounts from external sources.
+  The External Account Plugin allows Armory Continuous Deployment to read accounts from external sources.
 ---
 <!-- this is a private plugin German created for a customer. This unlisted page is to satisfy an auditing requirement they have. It is also hidden via robots.txt and the netlify sitemap plugin. -->
 ![Proprietary](/images/proprietary.svg)
@@ -342,10 +342,10 @@ This plugin can read account credentials in the following layouts:
 ## Release Notes
 
 * v0.3.0 (01/30/2022)
-  * Update plugin to be compatible with Armory Enterprise 2.28.0 and later
+  * Update plugin to be compatible with Armory Continuous Deployment 2.28.0 and later
   * Added implementation for Docker registry accounts
 
-* v0.2.0 Update plugin to be compatible with Armory Enterprise 2.27.0 and later (10/29/2021)
+* v0.2.0 Update plugin to be compatible with Armory Continuous Deployment 2.27.0 and later (10/29/2021)
 
 - v0.1.1 (01/22/2021)
 

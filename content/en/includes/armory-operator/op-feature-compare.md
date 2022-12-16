@@ -1,7 +1,7 @@
 |                                                                                                                                                        | Armory Operator ![Proprietary](/images/proprietary.svg) | Spinnaker Operator |
 |:------------------------------------------------------------------------------------------------------------------------------------------------------ |:---------------:|:------------------:|
 | Deploy open source Spinnaker                                                                                                                           |    &#10060;     |      &#9989;       |
-| Deploy Armory Enterprise for Spinnaker ![Proprietary](/images/proprietary.svg)                                                                         |      &#9989;     |      &#10060;      |
+| Deploy Armory Continuous Deployment for Spinnaker ![Proprietary](/images/proprietary.svg)                                                                         |      &#9989;     |      &#10060;      |
 | Use `kubectl` to manage deployment                                                                                                                     |      &#9989;       |     &#9989;     |
 | Validate your configuration before deployment                                                                                                          |      &#9989;       |     &#9989;     |
 | Use a single `spinnakerservice.yml` configuration file                                                                                                 |      &#9989;       |     &#9989;     |

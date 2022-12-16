@@ -1,9 +1,9 @@
 ---
-title: Spinnaker Overview
+title: Armory Continuous Deployment Overview
 linkTitle: "Overview"
 weight: 1
 description: >
-  Overview of Armory, Spinnaker™, and related technology
+  Armory Continuous Deployment, Spinnaker™, and related technology
 ---
 
 ## What is Spinnaker?
@@ -44,12 +44,12 @@ Spinnaker solves these problems by enabling safer and faster deployments with th
 
 A typical workflow with Spinnaker starts with baking a Linux-based machine image. This image along with your launch configurations define an immutable infrastructure that you can use to deploy to your cloud provider with Spinnaker. After the deployment, run your tests, which can be integrated with Spinnaker and automatically triggered. Based on your deployment strategy and any criteria you set, go live with the build.
 
-## Armory platform
+## Armory Continuous Deployment
 
-Armory's platform includes an enterprise-grade distribution of Spinnaker that forms the core of Armory's platform. It is preconfigured and runs in your Kubernetes cluster. The platform is an extension of open source Spinnaker and includes all those benefits as well as the following:
+Armory Continuous Deployment (Armory CD) includes an enterprise-grade distribution of Spinnaker that is configured to run in your Kubernetes cluster. Armory CD is an extension of open source Spinnaker and includes all those benefits as well as the following:
 
 - Pipeline as Code (Dinghy) allows you to store Spinnaker pipelines in Github and manage them like you would manage code, including version control, templatization, and modularization. Spinnaker pipelines are flexible and customizable series of deployment stages. Combine all these to rapidly and repeatably scale pipelines in your Spinnaker deployment.
-- An Armory extended version of the Spinnaker Operator helps you configure, deploy, and update Spinnaker on Kubernetes clusters. 
+- An Armory extended version of the Spinnaker Operator helps you configure, deploy, and update Spinnaker on Kubernetes clusters.
 - Policy Engine helps you meet compliance requirements based on custom policies you set.
 - Integrations with many of your existing tools, such as Terraform. For a full list, see [Integrations](https://www.armory.io/armory-spinnaker/integrations/).
 

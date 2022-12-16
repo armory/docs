@@ -3,7 +3,7 @@ title: IAM Authentication Plugin
 toc_hide: true
 exclude_search: true
 description: >
-  The IAM Authentication Plugin enables Armory Enterprise to use AWS IAM credentials to authenticate to an Aurora Database.
+  The IAM Authentication Plugin enables Armory Continuous Deployment to use AWS IAM credentials to authenticate to an Aurora Database.
 ---
 ![Proprietary](/images/proprietary.svg)
 

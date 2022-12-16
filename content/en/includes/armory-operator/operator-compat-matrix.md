@@ -1,4 +1,4 @@
-| Kubernetes Version         | Armory Operator Version        | Armory Enterprise Version         |
+| Kubernetes Version         | Armory Operator Version        | Armory Continuous Deployment Version         |
 | :------------------------- | :----------------------------- | :-------------------------------- |
 | < 1.21                     | <= 1.6.x                       | <= 2.28.0                         |
 | >= 1.21                    | >= 1.7.x                       | All Supported Enterprise Versions |

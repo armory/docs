@@ -9,7 +9,7 @@ description: >
 ![Proprietary](/images/proprietary.svg)
 ## Requirements
 
-For Armory Enterprise 2.27.x (OSS 1.27.x) and later, you must use version `0.2.0` or later of the plugin.
+For Armory Continuous Deployment 2.27.x (OSS 1.27.x) and later, you must use version `0.2.0` or later of the plugin.
 
 
 ## Limitations
@@ -275,5 +275,5 @@ The `appStackDetailSeparator` is a separator character used to build server grou
 
 ## Release Notes
 
-* v0.2.0 Update plugin to be compatible with Armory Enterprise 2.27.0 and later - 10/29/2021
+* v0.2.0 Update plugin to be compatible with Armory Continuous Deployment 2.27.0 and later - 10/29/2021
 * v0.1.0 Initial plugin release - 10/09/2020
