@@ -284,6 +284,67 @@ You can also configure a profile that grants access to resources such as AWS.
 
 A Named Profile gives users the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. The supported credentials are described in [Types of credentials](#types-of-credentials).
 
+### Configure a Named Profile
+
+Configure profiles that users can select when creating a Terraform Integration stage:
+
+1. Within the `SpinnakerService`, at `spec.spinnakerConfig.profiles.terraformer`
+2. Add the values for the profile(s) you want to enable. The following example adds a profile named `pixel-git` for an SSH key secured in Vault. Additional profile examples can be found at [Types of credentials](#types-of-credentials)
+
+   ```yaml
+   - name: pixel-git # Unique profile name displayed in Deck
+     variables:
+     - kind: git-ssh
+       options:
+         sshPrivateKey: encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?>
+   ```
+
+3. When a user creates or edits a Terraform Integration stage in Deck, they can select the profile `pixel-git` from a dropdown.
+4. Keep the following in mind when adding profiles:
+
+   * You can add multiple profiles under the `profiles` section.
+   * As a best practice, do not commit plain text secrets to `spec.spinnakerConfig.profiles.terraformer`. Instead, use a [secret store]({{< ref "secrets" >}}): [Vault]({{< ref "secrets-vault" >}}), an [encrypted S3 bucket]({{< ref "secrets-s3" >}}), an [AWS Secrets Manager]({{< ref "secrets-aws-sm" >}}), or an [encrypted GCS bucket]({{< ref "secrets-gcs" >}}).
+   * For SSH keys, one option parameter at a time is supported for each Profile. This means that you can use a private key file (`sshPrivateKeyFilePath`) or the key (`sshPrivateKey`) as the option. To use the key file path, use `sshPrivateKeyFilePath` for the option and provide the path to the key file. The path can also be encrypted using a secret store such as Vault. The following `option` example uses `sshPrivateKeyFilePath`:
+
+     ```yaml
+     options:
+       sshPrivateKeyFilePath: encryptedFile:<secret_store>!e:...
+     ```
+
+     For more information, see the documentation for your secret store.
+5. Save the file and apply changes:
+
+```bash
+kubectl -n spinnaker apply -f spinnakerservice.yml
+```
+
+### Add authz to Named Profiles
+
+Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the role(s) you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in Deck. And any stage with that uses a Named Profile that a user is not authorized for fails.
+
+{{% alert color=note title="Note" %}}Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/).{{% /alert %}}
+
+In addition to granting access to the resources and accounts that a customer requires (e.g. permissions to deploy to AWS via FIAT in Clouddriver), end users will also 
+
+In `SpinnakerService` manifest:
+
+```yaml
+apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      profiles:
+        terraformer:
+          fiat:
+            enabled: true
+            baseUrl: https://spin-fiat:7003     # ${services.fiat.baseUrl}
+```
+
+You can see a demo here: [Named Profiles for the Terraform Integration](https://www.youtube.com/watch?v=RYO-b1kyEU0).
+
 ### Types of credentials
 
 The Terraform integration supports multiple types of credentials for Named Profiles:
@@ -361,51 +422,6 @@ Use the `tfc` credential kind to provide authentication to remote Terraform back
       domain: app.terraform.io # or Terraform Enterprise URL
       token: <authentication-token> # Replace with your token
 ```
-
-### Configure a Named Profile
-
-Configure profiles that users can select when creating a Terraform Integration stage:
-
-1. In the `.hal/default/profiles` directory, create or edit `terraformer-local.yml`.
-2. Add the values for the profile(s) you want to add under the `profiles` section. The following example adds a profile named `pixel-git` for an SSH key secured in Vault.
-
-   ```yaml
-   - name: pixel-git # Unique profile name displayed in Deck
-     variables:
-     - kind: git-ssh
-       options:
-         sshPrivateKey: encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?>
-   ```
-
-   When a user creates or edits a Terraform Integration stage in Deck, they can select the profile `pixel-git` from a dropdown.
-
-   Keep the following in mind when adding profiles:
-
-   * You can add multiple profiles under the `profiles` section.
-   * Do not commit plain text secrets to `terraformer-local.yml`. Instead, use a secret store: [Vault]({{< ref "secrets-vault" >}}), an [encrypted S3 bucket]({{< ref "secrets-s3" >}}), or an [encrypted GCS bucket]({{< ref "secrets-gcs" >}}).
-   * For SSH keys, one option parameter at a time is supported for each Profile. This means that you can use a private key file (`sshPrivateKeyFilePath`) or the key (`sshPrivateKey`) as the option. To use the key file path, use `sshPrivateKeyFilePath` for the option and provide the path to the key file. The path can also be encrypted using a secret store such as Vault. The following `option` example uses `sshPrivateKeyFilePath`:
-
-     ```yaml
-     options:
-       sshPrivateKeyFilePath: encryptedFile:<secret_store>!e:...
-     ```
-
-     For more information, see the documentation for your secret store.
-3. Save the file.
-4. Apply your changes:
-
-   ```bash
-   hal deploy apply
-   ```
-
-### Add authz to Named Profiles
-
-Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the role(s) you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in Deck. And any stage with that uses a Named Profile that a user is not authorized for fails.
-
-You can see a demo here: [Named Profiles for the Terraform Integration](https://www.youtube.com/watch?v=RYO-b1kyEU0).
-
-{{% alert color=note title="Note" %}}Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/).{{% /alert %}}
-
 
 
 ## Retries
