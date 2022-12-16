@@ -282,14 +282,13 @@ You can also configure a profile that grants access to resources such as AWS.
 
 ## Named Profiles
 
-A Named Profile gives users the ability to reference certain kinds of external sources, such as a private remote repository, when creating pipelines. The supported credentials are described in [Types of credentials](#types-of-credentials).
+When creating pipelines, a Named Profile gives you the ability to reference certain kinds of external sources, such as a private remote repository. The supported credentials are described in [Types of credentials](#types-of-credentials).
 
 ### Configure a Named Profile
 
-Configure profiles that users can select when creating a Terraform Integration stage:
+Configure profiles that you can select when creating a Terraform Integration stage:
 
-1. Within the `SpinnakerService`, at `spec.spinnakerConfig.profiles.terraformer`
-2. Add the profiles you would like to enable to enable. The following example adds a profile named `pixel-git` for an SSH key secured in Vault. Additional profile examples can be found at [Types of credentials](#types-of-credentials)
+1. In your `SpinnakerService`, add the profiles to `spec.spinnakerConfig.profiles.terraformer` that you would like to enable. The following example adds a profile named `pixel-git` for an SSH key secured in Vault. You can find additional profile examples at [Types of credentials](#types-of-credentials).
 
    ```yaml
    - name: pixel-git # Unique profile name displayed in Deck
@@ -299,34 +298,40 @@ Configure profiles that users can select when creating a Terraform Integration s
          sshPrivateKey: encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?>
    ```
 
-3. When a user creates or edits a Terraform Integration stage in Deck, they can select the profile `pixel-git` from a dropdown.
-4. Keep the following in mind when adding profiles:
-
-   * You can add multiple profiles under the `profiles` section.
-   * As a best practice, do not commit plain text secrets to `spec.spinnakerConfig.profiles.terraformer`. Instead, use a [secret store]({{< ref "secrets" >}}): [Vault]({{< ref "secrets-vault" >}}), an [encrypted S3 bucket]({{< ref "secrets-s3" >}}), an [AWS Secrets Manager]({{< ref "secrets-aws-sm" >}}), or an [encrypted GCS bucket]({{< ref "secrets-gcs" >}}).
-   * For SSH keys, one option parameter at a time is supported for each Profile. This means that you can use a private key file (`sshPrivateKeyFilePath`) or the key (`sshPrivateKey`) as the option. To use the key file path, use `sshPrivateKeyFilePath` for the option and provide the path to the key file. The path can also be encrypted using a secret store such as Vault. The following `option` example uses `sshPrivateKeyFilePath`:
-
-     ```yaml
-     options:
-       sshPrivateKeyFilePath: encryptedFile:<secret_store>!e:...
-     ```
-
-     For more information, see the documentation for your secret store.
-5. Save the file and apply changes:
+1. Save the file and apply changes:
 
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
 
+Keep in mind:
+
+1. When you create or edit a Terraform Integration stage in Deck, you can select the profile `pixel-git` from a dropdown.
+1. When adding profiles:
+
+   * You can add multiple profiles under the `profiles` section.
+   * As a best practice, do not commit plain text secrets to `spec.spinnakerConfig.profiles.terraformer`. Instead, use a [secret store]({{< ref "secrets" >}}): [Vault]({{< ref "secrets-vault" >}}), an [encrypted S3 bucket]({{< ref "secrets-s3" >}}), an [AWS Secrets Manager]({{< ref "secrets-aws-sm" >}}), or an [encrypted GCS bucket]({{< ref "secrets-gcs" >}}).
+   * For SSH keys, each profile supports only one option parameter at a time. This means that you can use a private key file (`sshPrivateKeyFilePath`) or the key (`sshPrivateKey`) as the option. To use the key file path, use `sshPrivateKeyFilePath` for the option and provide the path to the key file. You can also encrypt the path using a secret store such as Vault. The following `option` example uses `sshPrivateKeyFilePath`:
+
+      ```yaml
+      options:
+      sshPrivateKeyFilePath: encryptedFile:<secret_store>!e:...
+      ```
+
+      For more information, see the documentation for your secret store.
+
 ### Add authz to Named Profiles
 
-Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the roles you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in Deck. And any stage with that uses a Named Profile that a user is not authorized for fails.
+Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the roles you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in Deck. Also, any stage that uses a Named Profile that a user is not authorized for fails.
 
 {{% alert color=note title="Note" %}}Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/).{{% /alert %}}
 
-In addition to granting access to the resources and accounts that a customer requires (for example, permissions to deploy to AWS via FIAT in Clouddriver), the following setting will also need to be added to enable FIAT authz to work with Terraformer
+This example does the following:
 
-In `SpinnakerService` manifest:
+* Grants access to the resources and accounts that you need, such as permissions to deploy to AWS via FIAT in Cloud
+* Enables FIAT authz to work with Terraformer
+
+In your `SpinnakerService` manifest:
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
