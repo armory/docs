@@ -289,7 +289,7 @@ A Named Profile gives users the ability to reference certain kinds of external s
 Configure profiles that users can select when creating a Terraform Integration stage:
 
 1. Within the `SpinnakerService`, at `spec.spinnakerConfig.profiles.terraformer`
-2. Add the values for the profile(s) you want to enable. The following example adds a profile named `pixel-git` for an SSH key secured in Vault. Additional profile examples can be found at [Types of credentials](#types-of-credentials)
+2. Add the profiles you would like to enable to enable. The following example adds a profile named `pixel-git` for an SSH key secured in Vault. Additional profile examples can be found at [Types of credentials](#types-of-credentials)
 
    ```yaml
    - name: pixel-git # Unique profile name displayed in Deck
@@ -320,11 +320,11 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 
 ### Add authz to Named Profiles
 
-Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the role(s) you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in Deck. And any stage with that uses a Named Profile that a user is not authorized for fails.
+Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the roles you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in Deck. And any stage with that uses a Named Profile that a user is not authorized for fails.
 
 {{% alert color=note title="Note" %}}Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/).{{% /alert %}}
 
-In addition to granting access to the resources and accounts that a customer requires (e.g. permissions to deploy to AWS via FIAT in Clouddriver), end users will also 
+In addition to granting access to the resources and accounts that a customer requires (for example, permissions to deploy to AWS via FIAT in Clouddriver), the following setting will also need to be added to enable FIAT authz to work with Terraformer
 
 In `SpinnakerService` manifest:
 
