@@ -23,6 +23,7 @@ SMI solves a common integration problem: _n_ consumers want to integrate with _m
 ## Supported service mesh products
 
 * [Linkerd](https://linkerd.io/)
+* [Istio](https://istio.io/)
 
 
 ## {{%  heading "nextSteps" %}}

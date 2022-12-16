@@ -44,7 +44,7 @@ A canary deployment with SMI has the following advantages over a pod-ratio canar
 ## Supported service mesh products
 
 * [Linkerd](https://linkerd.io/)
-
+* [Istio](https://istio.io/)
 
 ## {{%  heading "nextSteps" %}}
 
