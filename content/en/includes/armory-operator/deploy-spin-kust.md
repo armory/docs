@@ -1,4 +1,4 @@
-Once you have configured your patch files, you can deploy Armory Enterprise.
+Once you have configured your patch files, you can deploy Armory Continuous Deployment.
 
 1. Create the `spinnaker` namespace:
 

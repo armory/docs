@@ -6,7 +6,7 @@ description: "Policy checks that run immediate before a task deletes a spinnaker
 
 If your policy is for controlling deletion from within a pipeline, more information is available in policies written against the [spinnaker.deployment.tasks.before.deployManifest]({{< ref "deployManifest.md" >}}) package.
 
-If your policy is for controlling manual deletion triggers from within the Armory Enterprise UI that are not triggered via a pipeline, more information is available in policies written against the [spinnaker.http.authz](/docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/) package.
+If your policy is for controlling manual deletion triggers from within the Armory Continuous Deployment UI that are not triggered via a pipeline, more information is available in policies written against the [spinnaker.http.authz](/docs/plugin-guide/plugin-policy-engine/packages/spinnaker.http.authz/) package.
 
 ## Example Payload
 
