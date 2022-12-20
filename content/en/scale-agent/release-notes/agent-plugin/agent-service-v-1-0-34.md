@@ -5,5 +5,5 @@ version: 01.00.34
 date: 2022-12-19
 ---
 
-### Changes
-* Added /version and /accounts/{name}/version endpoints for troubleshooting
+## Changes
+* Added `/version` and `/accounts/{name}/version` endpoints for troubleshooting.
