@@ -5,5 +5,5 @@ version: 00.11.27
 date: 2022-12-19
 ---
 
-### Fixes
-* Fixes issue in which clouddriver with postgresql would not allow agent to connect
+## Fixes
+* Fixed issue in which Clouddriver with PostgreSQL would not allow Agent to connect.
