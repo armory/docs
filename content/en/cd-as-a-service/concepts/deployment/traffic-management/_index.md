@@ -1,8 +1,11 @@
 ---
 title: Traffic Management Using a Service Mesh
-linktitle: Traffic Management
+linkTitle: Traffic Management
+no_list: true
 description: >
-  Learn about service mesh traffic management for your canary strategy.
+  Learn about service mesh traffic management for your Armory Continuous Deployment-as-a-Service canary deployments.
+aliases: 
+  - /cd-as-a-service/concepts/deployment/traffic-mgmt/
 ---
 
 ## Service Meshes and the Service Mesh Interface (SMI)
@@ -28,5 +31,5 @@ SMI solves a common integration problem: _n_ consumers want to integrate with _m
 
 ## {{%  heading "nextSteps" %}}
 
-- {{< linkWithTitle "cd-as-a-service/concepts/deployment/progressive-canary.md" >}}
-- {{< linkWithTitle "cd-as-a-service/tasks/deploy/traffic-management.md" >}}
+- {{< linkWithTitle "cd-as-a-service/concepts/deployment/traffic-management/progressive-canary-linkerd.md" >}}
+- {{< linkWithTitle "cd-as-a-service/tasks/deploy/traffic-management/traffic-manage-linkerd.md" >}}

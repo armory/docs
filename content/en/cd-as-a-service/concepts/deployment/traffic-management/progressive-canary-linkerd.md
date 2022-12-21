@@ -1,13 +1,15 @@
 ---
-title: Progressive Canary Deployment
-linktitle: Progressive Canary
+title: Progressive Canary Deployment Using LinkerD
+linkTitle: LinkerD
 description: >
-  Learn about service mesh traffic management for your canary strategy.
+  Learn how CD-as-a-Service implements progressive canary traffic management using LinkerD.
+aliases: 
+  - /cd-as-a-service/concepts/deployment/progressive-canary/
 ---
 
 ## {{% heading "prereq" %}}
 
-You should be familiar with {{< linkWithTitle "cd-as-a-service/concepts/deployment/traffic-mgmt.md" >}}.
+You should be familiar with {{< linkWithTitle "cd-as-a-service/concepts/deployment/traffic-management/_index.md" >}}.
 
 ## Overview
 
@@ -44,11 +46,11 @@ A canary deployment with SMI has the following advantages over a pod-ratio canar
 ## Supported service mesh products
 
 * [Linkerd](https://linkerd.io/)
-* [Istio](https://istio.io/)
+
 
 ## {{%  heading "nextSteps" %}}
 
-- {{< linkWithTitle "cd-as-a-service/tasks/deploy/traffic-management.md" >}}
+- {{< linkWithTitle "cd-as-a-service/tasks/deploy/traffic-management/traffic-manage-linkerd.md" >}}
 
 
 
