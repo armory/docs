@@ -48,6 +48,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 
 ## Known issues
+{{< include "known-issues/ki-empty-roles.md" >}}
 
 {{< include "known-issues/ki-app-attr-not-configured.md" >}}
 
