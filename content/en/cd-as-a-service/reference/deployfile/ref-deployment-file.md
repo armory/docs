@@ -2,10 +2,8 @@
 title: Deployment File Reference
 linktitle: Deployment File
 description: >
-  The deployment (deploy) file is how you define how your app gets deployed by Armory CD-as-a-Service, including the targets and deployment strategies.
-
+  Define how Armory CD-as-a-Service deploys your app. Include targets and deployment strategies.
 ---
-
 
 ## Deployment file reference overview
 
@@ -147,7 +145,7 @@ Read more about how this config is defined and used in the [strategies.<strategy
 
 #### `targets.<targetName>.constraints`
 
-A map of conditions that must be met before a deployment starts. The constraints can be dependencies on previous deployments, such as requiring deployments to a test environment before staging, or a pause. If you omit the constraints section, the deployment starts immediately when it gets triggered.
+`constraints` is a map of conditions that must be met before a deployment starts. The constraints can be dependencies on previous deployments, such as requiring deployments to a test environment before staging, or a pause. If you omit the constraints section, the deployment starts immediately when it gets triggered.
 
 > Constraints are evaluated in parallel.
 
@@ -189,11 +187,12 @@ Conditions that must be met before the deployment can start. These are in additi
 
 You can specify a pause that waits for a manual approval or a certain amount of time before starting.
 
-Pause until manual approval
+**Pause until manual approval**
 
 Use the following configs to configure this deployment to wait until a manual approval before starting:
 
 - `targets.<targetName>.constraints.beforeDeployment.pause.untilApproved` set to true
+- `targets.<targetName>.constraints.beforeDeployment.pause.requiresRole` (Optional) list of RBAC roles that can issue a manual approval
 
 ```yaml
 targets:
@@ -206,9 +205,10 @@ targets:
       beforeDeployment:
         - pause:
             untilApproved: true
+            requiresRole: []
 ```
 
-Pause for a certain amount of time
+**Pause for a certain amount of time**
 
 - `targets.<targetName>.constraints.beforeDeployment.pause.duration` set to an integer value for the amount of time to wait before starting after the `dependsOn` condition is met.
 - `targets.<targetName>.constraints.beforeDeployment.pause.unit` set to `seconds`, `minutes` or `hours` to indicate the unit of time to wait.
@@ -391,7 +391,8 @@ steps:
 
 When you configure a manual judgment, the deployment waits when it hits the corresponding weight threshold. At that point, you can either approve the deployment so far and let it continue or roll the deployment back if something doesn't look right.
 
-`strategies.<strategyName>.canary.steps.pause.untilApproved: true`
+- `strategies.<strategyName>.canary.steps.pause.untilApproved: true`
+- `strategies.<strategyName>.canary.steps.pause.requiresRole` (Optional) list of RBAC roles that can issue a manual approval
 
 For example:
 
@@ -400,11 +401,12 @@ steps:
 ...
   - pause:
       untilApproved: true
+      requiresRoles: []
 ```
 
 ##### `strategies.<strategyName>.canary.steps.analysis`
 
-The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll forward or roll back.
+The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can automatically or manually roll forward or roll back.
 
 ```yaml
 steps:
@@ -605,7 +607,8 @@ redirectTrafficAfter:
 
 When you configure a manual judgment, the deployment waits for manual approval through the UI. You can either approve the deployment or roll the deployment back if something doesn't look right. Do not provide a `duration` or `unit` value when defining a judgment-based pause.
 
-`strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.untilApproved: true`
+- `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.untilApproved: true`
+- `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.requiresRole` (Optional) list of RBAC roles that can issue a manual approval
 
 For example:
 
@@ -613,6 +616,7 @@ For example:
 redirectTrafficAfter:
   - pause:
       untilApproved: true
+      requiresRoles: []
 ```
 
 ###### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.analysis`
@@ -757,7 +761,7 @@ analysis: # Define queries and thresholds used for automated analysis
 
 The query you want to run. See the {{< linkWithTitle "cd-as-a-service/tasks/canary/retro-analysis.md" >}} guide for details on how to build and test queries using the UI.
 
-For information about writing queries, see the {{< linkWithTitle "ref-queries.md" >}}.
+For information about writing queries, see {{< linkWithTitle "ref-queries.md" >}}.
 
 When writing queries, you can use key/value pairs that are passed as substitutions for variables to the queries.
 
