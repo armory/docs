@@ -20,7 +20,7 @@ Create a new `armory-agent` directory in your Kustomize patches directory. Add t
 {{< tabs name="DeploymentPlugin" >}}
 {{% tabbody name="Quickstart with remote plugin repo" %}}
 
-{{< prism lang="yaml" line="4, 39" >}}
+```yaml
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
 kind: SpinnakerService
 metadata:
@@ -38,7 +38,7 @@ spec:
             plugins:
               Armory.Kubesvc:
                 enabled: true
-                version: {{<param kubesvc-plugin.agent_plug_latest_spin>}}
+                version: {{<param kubesvc-plugin.agent_plug_latest>}}
                 extensions:
                   armory.kubesvc:
                     enabled: true
@@ -51,11 +51,12 @@ spec:
             namespace: <string> # (Optional, default: null). If configured, the plugin watches Endpoints in this namespace. If null, it watches endpoints in the namespace indicated in the file "/var/run/secrets/kubernetes.io/serviceaccount/namespace".
             httpPortName: <string> # (Optional, default: http). Name of the port configured in the Clouddriver Service that forwards traffic to the Clouddriver HTTP port for REST requests.
             clouddriverServiceNamePrefix: <string> # (Optional, default: spin-clouddriver). Name prefix of the Kubernetes Service pointing to the Clouddriver standard HTTP port.
-{{< /prism >}}
+```
+
 {{% /tabbody %}}
 {{% tabbody name="Cacheable using a init container" %}}
 
-{{< prism lang="yaml" line="4, 39" >}}
+```yaml
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
 kind: SpinnakerService
 metadata:
@@ -89,7 +90,7 @@ spec:
                 spec:
                   initContainers:
                   - name: armory-agent-plugin
-                    image: docker.io/armory/kubesvc-plugin:{{<param kubesvc-plugin.agent_plug_latest_spin>}} # must be compatible with your Armory CD version
+                    image: docker.io/armory/kubesvc-plugin:{{<param kubesvc-plugin.agent_plug_latest>}} # must be compatible with your Armory CD version
                     volumeMounts:
                       - mountPath: /opt/plugin/target
                         name: armory-agent-plugin-vol
@@ -101,7 +102,8 @@ spec:
                   volumes:
                   - name: armory-agent-plugin-vol
                     emptyDir: {}
-{{< /prism >}}
+```
+
 {{% /tabbody %}}
 {{< /tabs >}}
 
