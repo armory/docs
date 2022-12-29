@@ -17,7 +17,14 @@ The Armory Version Manager and CLI are only supported on Linux and Mac OSX.<br>
 They do not run on Windows.
 {{% /alert %}}
 
-## Install the Armory CD-as-a-Service CLI
+## Deployment steps
+
+1. [Install the CLI](#install-the-cli)
+1. [Create a deployment config file](#create-a-deployment-config-file)
+1. [Deploy your app](#deploy-your-app)
+1. [Monitor your deployment](#monitor-your-deployment)
+
+## Install the CLI
 
 ### Docker image
 
@@ -146,8 +153,11 @@ For the AVM or the CLI, you can use the `-h` flag for more information about spe
 
 See the {{< linkWithTitle "avm-cheat.md" >}} and {{< linkWithTitle "cli-cheat.md" >}} pages for more information on AVM and CLI commands.
 
+## Create a deployment config file
 
-## Manually deploy apps using the CLI
+{{< include "cdaas/create-config.md" >}}
+
+## Deploy your app
 
 >Armory CD-as-a-Service manages your Kubernetes deployments using ReplicaSet resources. During the initial deployment of your application using Armory CD-as-a-Service, the underlying Kubernetes deployment object is deleted in a way that it leaves behind the ReplicaSet and pods so that there is no actual downtime for your application. These are later deleted when the deployment succeeds.
 
@@ -167,62 +177,6 @@ Since you are using the CLI, you do not need to have service account credentials
 
    After you successfully authenticate, the CLI returns a list of tenants if you have access to more than one. Select the tenant you want to access. Note that most users only have access to one tenant. If you have access to several tenants, you can can [log in directly to your desired tenant]({{< ref "cd-as-a-service/reference/cli/cli-cheat#log-into-armory-cd-as-a-service" >}}) with `armory login -e '<tenant>'`.
 
-
-1. Generate your deployment template and output it to a file.
-
-   For example, this command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`:
-
-   ```bash
-   armory template kubernetes canary > canary.yaml
-   ```
-
-1. Customize your deployment file by setting the following minimum set of parameters:
-
-   - `application`: The name of your app.
-   - `targets.<deploymentName>`: A descriptive name for your deployment. Armory recommends using the environment name.
-   - `targets.<deploymentName>.account`: This is the name of your RNA. If you installed the RNA manually, it is the value that you assigned to the `agentIdentifier` parameter.
-   - `targets.<deploymentName>.strategy`: the name of the deployment strategy you want to use. You define the strategy in `strategies.<strategy-name>`.
-   - `manifests`: a map of manifest locations. This can be a directory of `yaml (yml)` files or a specific manifest. Each entry must use the following convention:  `- path: /path/to/directory-or-file`
-   - `strategies.<strategy-name>`: the list of your deployment strategies. Use one of these for `targets.<target-cluster>.strategy`. If you are using a canary strategy, each strategy in this section consists of a map of steps for your deployment strategy in the following format:
-
-     ```yaml
-     strategies:
-       my-demo-strat: # Name that you use for `targets.<deploymentName>.strategy
-       - canary # The type of deployment strategy to use.
-          steps:
-            - setWeight:
-                weight: <integer> # What percentage of the cluster to roll out the manifest to before pausing.
-            - pause:
-                duration: <integer> # How long to pause before deploying the manifest to the next threshold.
-                unit: <seconds|minutes|hours> # The unit of time for the duration.
-            - setWeight:
-                weight: <integer> # The next percentage threshold the manifest should get deployed to before pausing.
-            - pause:
-                untilApproved: true # Wait until a user provides a manual approval before deploying the manifest
-     ```
-
-   Each step can have the same or different pause behaviors. Additionally, you can configure as many steps  as you want for the deployment strategy, but you do not need to create a step with a weight set to 100. Once Armory CD-as-a-Service completes the last step you configure, the manifest gets deployed to the whole cluster automatically.
-
-   A deployment times out if the pods for your application fail to be in ready state in 30 minutes. You can optionally configure a [deployment timeout]({{< ref "cd-as-a-service/reference/deployfile/ref-deployment-file#deploymentconfig" >}}) by adding a `deploymentConfig` top-level section:
-
-   ```yaml
-   deploymentConfig:
-     timeout:
-       unit: <seconds|minutes|hours>
-       duration: <integer>
-   ```
-
-   Note that the minimum timeout you can specify is 60 seconds (1 minute).
-
-   <details><summary>Show me a completed deployment file</summary>
-
-   {{< codefile file="cdaas/deploy/deploy.yaml" >}}
-
-    </details><br>
-
-1. (Optional) Ensure there are no YAML issues with your deployment file.
-
-   Since a hidden tab in your YAML can cause your deployment to fail, it's a good idea to validate the structure and syntax in your deployment file. There are several online linters, IDE-based linters, and command line linters such as `yamllint` that you can use to validate your deployment file.
 
 1. Start the deployment.
 
@@ -293,7 +247,7 @@ This issue occurs because the the directory where the CLI stores your credential
 mkdir ~/.armory/credentials
 ```
 
-Make sure you are running the lastest version of the CLI.
+Make sure you are running the latest version of the CLI.
 
 ## {{% heading "nextSteps" %}}
 

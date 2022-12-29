@@ -1,7 +1,10 @@
 ---
-title: Reference
-
+title: Reference Docs for Armory CD-as-a-Service
+linkTitle: Reference
 weight: 50
+no_list: true
+description: >
+  Deployment config file reference, CLI cheat sheets
 ---
 
 ## Terminology
