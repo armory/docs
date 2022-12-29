@@ -38,7 +38,7 @@ spec:
             plugins:
               Armory.Kubesvc:
                 enabled: true
-                version: {{<param kubesvc-plugin.agent_plug_latest>}}
+                version: {{<param kubesvc-plugin.agent_plug_latest>}} # check compatibility matrix for your Armory CD version
                 extensions:
                   armory.kubesvc:
                     enabled: true
