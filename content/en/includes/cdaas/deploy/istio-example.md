@@ -94,5 +94,5 @@ spec:
 |----------------------------------|-------------|----------------------------------------------|------------|
 | virtualService.name              | 28          | VirtualService.metadata.name                 | 4          |
 | virtualService.httpRouteName     | 29          | VirtualService.http.route.name               | 13         |
-| destinationRule.name             | 31          | DestinationRule.name                         | 18         |
+| destinationRule.name             | 31          | DestinationRule.metadata.name                | 18         |
 | destinationRule.activeSubsetName | 32          | VirtualService.http.route.destination.subset | 12         |
