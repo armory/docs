@@ -14,7 +14,7 @@ description: >
 
 ## How CD-as-a-Service shapes traffic
 
-Let's say you have defined the following VirtualService, DestinationRule, and CD-as-a-Service deployment:
+Let's say you define a CD-as-a-Service deployment that uses a VirtualService and DestinationRoute:
 
 {{< include "cdaas/deploy/istio-example.md" >}}
 
@@ -61,7 +61,7 @@ At the end of the deployment, CD-as-a-Service removes the lines it added so the 
 
 ## Additional capabilities
 
-* You have two options for deploying your irtualService and DestinationRule Istio resources:
+* You have two options for deploying your VirtualService and DestinationRule Istio resources:
 
    1. Separately, before your CD-as-a-Service deployment
    1. As part of your CD-as-a-Service deployment, included in the same directory as your app manifest
