@@ -3,7 +3,7 @@ title: Deployment Config File Reference for CD-as-a-Service
 linkTitle: Deployment Config File
 description: >
   The deployment (deploy) file is where you configure your app for deployment by Armory CD-as-a-Service. This config file includes deployment artifact, target, strategy, and traffic management definitions.
-aliases: 
+aliases:
   - /cd-as-a-service/reference/deployfile/
   - /cd-as-a-service/reference/deployfile/ref-deployment-file/
 ---
@@ -19,6 +19,7 @@ You can see what a blank deployment file looks like in the [Blank templates](#bl
 You can generate a template file by running the following command with the CLI:
 
 Basic template:
+
 ```bash
 armory template kubernetes [command]
 ```
@@ -62,12 +63,12 @@ This config block is optional. If included, this configuration applies to all ta
 A deployment times out if the pods for your application fail to be in ready state in 30 minutes. If you want to change the default, include this section.
 
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 deploymentConfig:
   timeout:
     unit: <seconds|minutes|hours>
     duration: <integer>
-```
+{{< /prism >}}
 
 - `timeout`: (Required is section is included) The section specifies the amount of time to wait for pods to be ready before cancelling the deployment.
    - `unit`: (Required) Set to `seconds`, `minutes` or `hours` to indicate what `duration` refers to.
@@ -79,14 +80,14 @@ deploymentConfig:
 
 This config block is where you define where and how you want to deploy an app. You can specify multiple targets. Provide unique descriptive names for each environment to which you are deploying.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 targets:
   <targetName>:
     account: <accountName>
     namespace: <namespaceOverride>
     strategy: <strategyName>
     constraints: <mapOfConstraints>
-```
+{{< /prism >}}
 
 
 
@@ -96,11 +97,11 @@ A descriptive name for this deployment, such as the name of the environment you 
 
 For example, this snippet configures a deployment target with the name `prod`:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 targets:
   prod:
 ...
-```
+{{< /prism >}}
 
 #### `targets.<targetName>.account`
 
@@ -110,12 +111,12 @@ This name must match an existing cluster because Armory CD-as-a-Service uses the
 
 For example, this snippet configures a deployment to an environment named `prod` that is hosted on a cluster named `prod-cluster-west`:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 targets:
   prod:
     account: prod-cluster-west
 ...
-```
+{{< /prism >}}
 
 #### `targets.<targetName>.namespace`
 
@@ -123,12 +124,12 @@ targets:
 
 For example, this snippet overrides the namespace in your manifest and deploys the app to a namespace called `overflow`:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 targets:
   prod:
     account: prod-cluster-west
     namespace: overflow
-```
+{{< /prism >}}
 
 #### `targets.<targetName>.strategy`
 
@@ -136,13 +137,13 @@ This is the name of the strategy that you want to use to deploy your app. You de
 
 For example, this snippet configures a deployment to use the `canary-wait-til-approved` strategy:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 targets:
   prod:
     account: prod-cluster-west
     namespace: overflow
     strategy: canary-wait-til-approved
-```
+{{< /prism >}}
 
 Read more about how this config is defined and used in the [strategies.<strategyName>](#strategies.<strategyName>) section.
 
@@ -152,7 +153,7 @@ Read more about how this config is defined and used in the [strategies.<strategy
 
 > Constraints are evaluated in parallel.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 targets:
   prod:
     account: prod-cluster-west
@@ -166,7 +167,7 @@ targets:
         - pause:
             duration: <integer>
             unit: <seconds|minutes|hours>
-```
+{{< /prism >}}
 
 ##### `targets.<targetName>.constraints.dependsOn`
 
@@ -174,7 +175,7 @@ A comma-separated list of deployments that must finish before this deployment ca
 
 The following example shows a deployment to `prod-west` that cannot start until the `dev-west` target finishes:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 targets:
   prod:
     account: prod-west
@@ -182,7 +183,7 @@ targets:
     strategy: canary-wait-til-approved
     constraints:
       dependsOn: ["dev-west"]
-```
+{{< /prism >}}
 
 ##### `targets.<targetName>.constraints.beforeDeployment`
 
@@ -197,7 +198,7 @@ Use the following configs to configure this deployment to wait until a manual ap
 - `targets.<targetName>.constraints.beforeDeployment.pause.untilApproved` set to true
 - `targets.<targetName>.constraints.beforeDeployment.pause.requiresRole` (Optional) list of RBAC roles that can issue a manual approval
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 targets:
   prod:
     account: prod-cluster-west
@@ -209,14 +210,14 @@ targets:
         - pause:
             untilApproved: true
             requiresRole: []
-```
+{{< /prism >}}
 
 **Pause for a certain amount of time**
 
 - `targets.<targetName>.constraints.beforeDeployment.pause.duration` set to an integer value for the amount of time to wait before starting after the `dependsOn` condition is met.
 - `targets.<targetName>.constraints.beforeDeployment.pause.unit` set to `seconds`, `minutes` or `hours` to indicate the unit of time to wait.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 targets:
   prod:
     account: prod-cluster-west
@@ -228,11 +229,11 @@ targets:
         - pause:
             duration: 60
             unit: seconds
-```
+{{< /prism >}}
 
 ### `manifests.`
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 manifests:
   # Directory containing manifests
   - path: /path/to/manifest/directory
@@ -240,7 +241,7 @@ manifests:
   # Specific manifest file
   - path: /path/to/specific/manifest.yaml
     targets: ["<targetName3>", "<targetName4>"]
-```  
+{{< /prism >}}  
 
 #### `manifests.path`
 
@@ -254,7 +255,7 @@ The path to a manifest file that you want to deploy or the directory where your 
 
 This config block is where you define behavior and the actual steps to a deployment strategy.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 strategies:
   <strategyName>
     canary:
@@ -293,7 +294,7 @@ strategies:
       shutDownOldVersionAfter:
         - pause:
             untilApproved: true
-```
+{{< /prism >}}
 
 #### `strategies.<strategyName>`
 
@@ -301,31 +302,31 @@ The name you assign to the strategy. Use this name for `targets.<targetName>.str
 
 For example, this snippet names the strategy `canary-wait-til-approved`:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 strategies:
   canary-wait-til-approved:
-```
+{{< /prism >}}
 
 You would use `canary-wait-til-approved` as the value for `targets.<targetName>.strategy` that is at the start of the file:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 ...
 targets:
   someName:
     ...
     strategy: canary-wait-till-approved
 ...
-```
+{{< /prism >}}
 
 #### `strategies.<strategyName>.<strategy>`
 
 The kind of deployment strategy this strategy uses. Armory CD-as-a-Service supports `canary` and `blueGreen`.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 strategies:
   <strategyName>
     canary:
-```
+{{< /prism >}}
 
 #### Canary fields
 
@@ -349,18 +350,18 @@ This is an integer value and determines how much of the cluster the app gets dep
 
 For example, this snippet instructs Armory CD-as-a-Service to deploy the app to 33% of the cluster:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 ...
 steps:
   - setWeight:
       weight: 33
-```
+{{< /prism >}}
 
 ##### `strategies.<strategyName>.canary.steps.pause`
 
 There are two base behaviors you can set for `pause`, either a set amount of time or until a manual judgment is made.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 steps:
 ...
   - pause:
@@ -369,7 +370,7 @@ steps:
 ...
   - pause:
       untilApproved: true
-```
+{{< /prism >}}
 
 **Pause for a set amount of time**
 
@@ -382,13 +383,13 @@ If you want the deployment to pause for a certain amount of time after a weight 
 
 For example, this snippet instructs Armory CD-as-a-Service to wait for 30 seconds:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 steps:
 ...
   - pause:
       duration: 30
       unit: seconds
-```
+{{< /prism >}}
 
 **Pause until a manual judgment**
 
@@ -399,19 +400,19 @@ When you configure a manual judgment, the deployment waits when it hits the corr
 
 For example:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 steps:
 ...
   - pause:
       untilApproved: true
       requiresRoles: []
-```
+{{< /prism >}}
 
 ##### `strategies.<strategyName>.canary.steps.analysis`
 
 The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can automatically or manually roll forward or roll back.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 steps:
 ...
         - analysis:
@@ -427,7 +428,7 @@ steps:
             queries:
               - <queryName>
               - <queryName>
-```
+{{< /prism >}}
 
 ###### `strategies.<strategyName>.canary.steps.analysis.metricProviderName`
 
@@ -459,26 +460,26 @@ For information about writing queries, see the [Query Reference Guide]({{< ref "
 
 ###### `strategies.<strategyName>.canary.steps.analysis.interval`
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 steps:
 ...
         - analysis:
             interval: <integer>
             units: <seconds|minutes|hours>
-```
+{{< /prism >}}
 
 How long each sample of the query gets summarized over.
 
 For example, the following snippet sets the interval to 30 seconds:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 steps:
 ...
         - analysis:
             interval: 30
             units: seconds
 
-```
+{{< /prism >}}
 
 ###### `strategies.<strategyName>.canary.steps.analysis.units`
 
@@ -486,27 +487,27 @@ The unit of time for the interval. Use `seconds`, `minutes` or `hours`. See `str
 
 ###### `strategies.<strategyName>.canary.steps.analysis.numberOfJudgmentRuns`
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 steps:
 ...
         - analysis:
             ...
             numberOfJudgmentRuns: <integer>
             ...
-```
+{{< /prism >}}
 
 The number of times that each query runs as part of the analysis. Armory CD-as-a-Service takes the average of all the results of the judgment runs to determine whether the deployment falls within the acceptable range.
 
 ###### `strategies.<strategyName>.canary.steps.analysis.rollBackMode`
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 steps:
 ...
         - analysis:
             ...
             rollBackMode: <manual|automatic>
             ...
-```
+{{< /prism >}}
 
 Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omitted.
 
@@ -514,14 +515,14 @@ How a rollback is approved if the analysis step determines that the deployment s
 
 ###### `strategies.<strategyName>.canary.steps.analysis.rollForwardMode`
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 steps:
 ...
         - analysis:
             ...
             rollForwardMode: <manual|automatic>
             ...
-```
+{{< /prism >}}
 
 Optional. Can either be `manual` or `automatic`. Defaults to `automatic` if omitted.
 
@@ -529,7 +530,7 @@ How a rollback is approved if the analysis step determines that the deployment s
 
 ###### `strategies.<strategyName>.canary.steps.analysis.queries`
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 steps:
 ...
         - analysis:
@@ -537,7 +538,7 @@ steps:
             queries:
               - <queryName>
               - <queryName>
-```
+{{< /prism >}}
 
 A list of queries that you want to use as part of this `analysis` step. Provide the name of the query, which is set in the `analysis.queries.name` parameter. Note that thee `analysis` block is separate from the `analysis` step.
 
@@ -549,23 +550,23 @@ All the queries must pass for the step as a whole to be considered a success.
 
 The name of a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) that you created to route traffic to your application.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 strategies:
   <strategy>:
     blueGreen:
       activeService: <active-service>
-```
+{{< /prism >}}
 
 ##### `strategies.<strategyName>.blueGreen.previewService`
 
 (Optional) The name of a [Kubernetes Service object](https://kubernetes.io/docs/concepts/services-networking/service/) you created to route traffic to the new version of your application so you can preview your updates.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 strategies:
   <strategy>:
     blueGreen:
       previewService: <preview-service>
-```
+{{< /prism >}}
 
 ##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter`
 
@@ -575,18 +576,18 @@ The `redirectTrafficAfter` steps are conditions for exposing the new version to 
 
 There are two base behaviors you can set for `pause`, either a set amount of time or until a manual judgment is made.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 redirectTrafficAfter:
   - pause:
       duration: <integer>
       unit: <seconds|minutes|hours>
-```
+{{< /prism >}}
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 redirectTrafficAfter:
   - pause:
       untilApproved: true
-```
+{{< /prism >}}
 
 **Pause for a set amount of time**
 
@@ -599,12 +600,12 @@ If you want the deployment to pause for a certain amount of time, you must provi
 
 For example, this snippet instructs Armory CD-as-a-Service to wait for 30 minutes:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 redirectTrafficAfter:
   - pause:
       duration: 30
       unit: minutes
-```
+{{< /prism >}}
 
 **Pause until a manual judgment**
 
@@ -615,18 +616,18 @@ When you configure a manual judgment, the deployment waits for manual approval t
 
 For example:
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 redirectTrafficAfter:
   - pause:
       untilApproved: true
       requiresRoles: []
-```
+{{< /prism >}}
 
 ###### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.analysis`
 
 The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll forward or roll back.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 redirectTrafficAfter:
   - analysis:
       metricProviderName: <metricProviderName>
@@ -641,23 +642,23 @@ redirectTrafficAfter:
       queries:
         - <queryName>
         - <queryName>
-```
+{{< /prism >}}
 
 ##### `strategies.<strategyName>.blueGreen.shutdownOldVersionAfter`
 
 This step is a condition for deleting the old version of your software. Armory CD-as-a-Service executes the `shutDownOldVersion` steps in parallel. After each step completes, Armory CD-as-a-Service deletes the old version.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 shutdownOldVersionAfter:
   - pause:
       untilApproved: true
-```
+{{< /prism >}}
 
 ###### `strategies.<strategyName>.blueGreen.shutdownOldVersionAfter.analysis`
 
 The `analysis` step is used to run a set of queries against your deployment. Based on the results of the queries, the deployment can (automatically or manually) roll forward or roll back.
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 shutdownOldVersionAfter:
   - analysis:
       metricProviderName: <metricProviderName>
@@ -672,7 +673,7 @@ shutdownOldVersionAfter:
       queries:
         - <queryName>
         - <queryName>
-```
+{{< /prism >}}
 
 ### `analysis.`
 
@@ -683,7 +684,7 @@ You can provide multiple queries in this block.  The following snippet includes 
 - `kube-state-metrics.metricAnnotationsAllowList[0]=pods=[*]` must be set
 - Your applications pods need to have the annotation `"prometheus.io/scrape": "true"`
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 analysis: # Define queries and thresholds used for automated analysis
   defaultMetricProviderName: <providerName> # The name that you assigned a metrics provider in the Configuration UI.
   queries:
@@ -705,7 +706,7 @@ analysis: # Define queries and thresholds used for automated analysis
                 #${replicaSetName}
                 #${applicationName}
                 # note the time should actually be set to ${promQlStepInterval}
-```
+{{< /prism >}}
 
 You can insert variables into your queries. Variables are inserted using the format `{{key}}`. The example query includes the variable `armory.replicaSetName`. Variables that Armory supports can be referenced by `{{armory.VariableName}}`. Custom defined variables can be referenced by `{{context.VariableName}}`.
 
@@ -739,7 +740,7 @@ If the query returns a value that falls within the range between the `upperLimit
 
 ##### `analysis.queries.queryTemplate`
 
-```yaml
+{{< prism lang="yaml"  line-numbers="true" >}}
 analysis: # Define queries and thresholds used for automated analysis
   queries:
     - name: <queryName>
@@ -760,7 +761,7 @@ analysis: # Define queries and thresholds used for automated analysis
                 #${replicaSetName}
                 #${applicationName}
                 # note the time should actually be set to ${promQlStepInterval}
-```
+{{< /prism >}}
 
 The query you want to run. See the {{< linkWithTitle "cd-as-a-service/tasks/canary/retro-analysis.md" >}} guide for details on how to build and test queries using the UI.
 
@@ -789,37 +790,28 @@ You can supply your own variables by adding them to the `strategies.<strategyNam
 
 ### `webhooks.`
 
-```yaml
-webhooks:
-  - name: <webhook-name>
-    method: <endpoint-method-type>
-    uriTemplate: <endpoint-uri>
-    networkMode: <network-mode>
-    agentIdentifier: <remote-network-agent-id>
-    headers:
-      - key: Authorization
-        value: <auth-type-and-value>
-    bodyTemplate:
-      inline: >-
-      {
-      }
-    retryCount: <num-retries>
-```
+See {{< linkWithTitle "cd-as-a-service/tasks/webhook-approval.md" >}} for a detailed example.
 
-{{% include "cdaas/dep-file/webhooks-fields.md" %}}
+{{< include "cdaas/dep-file/webhooks-config.md" >}}
 
 ### `trafficManagement.`
 
-```
-trafficManagement:
-  - targets: ["<target>"]
-    smi:
-      - rootServiceName: "<rootServiceName>"
-        canaryServiceName: "<rootServiceName>-canary"
-        trafficSplitName: "<rootServiceName>"
-    kubernetes:
-      - activeService: "<activeServiceName>"
-        previewService: "<previewServiceName>"
-```
+You configure your service mesh per target in this section. If you omit the `target` entry, CD-as-a-Service applies the config to all targets.
 
-{{% include "cdaas/dep-file/traffic-mgmt-fields.md" %}}
+{{< prism lang="yaml"  line-numbers="true" >}}
+trafficManagement:
+  - targets: ["<target-name>"]
+{{< /prism >}}
+
+#### `trafficManagement.targets.smi`
+
+{{< include "cdaas/dep-file/tm-smi-config.md" >}}
+
+
+#### `trafficManagment.targets.istio`
+
+See {{< linkWithTitle "cd-as-a-service/tasks/deploy/traffic-management/istio.md" >}} for a detailed example.
+
+{{< include "cdaas/dep-file/tm-istio-config.md" >}}
+
+

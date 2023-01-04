@@ -16,18 +16,6 @@ aliases:
 
 ## Configure traffic management
 
-Add a top-level `trafficManagement` section to your deployment file.
+Add a top-level `trafficManagement.targets` section to your deployment file.
 
-{{< prism lang="yaml" line-numbers="true" line="" >}}
-trafficManagement:
-  - targets: ["<target>"]
-    smi:
-      - rootServiceName: "<rootServiceName>"
-        canaryServiceName: "<rootServiceName>-canary"
-        trafficSplitName: "<rootServiceName>"
-    kubernetes:
-      - activeService: "<activeServiceName>"
-        previewService: "<previewServiceName>"
-{{< /prism >}}
-
-{{% include "cdaas/dep-file/traffic-mgmt-fields.md" %}}
+{{% include "cdaas/dep-file/tm-smi-config.md" %}}

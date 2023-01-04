@@ -13,24 +13,7 @@ You have read the {{< linkWithTitle "cd-as-a-service/concepts/external-automatio
 
 In your deployment file, you configure your webhook by adding a top-level `webhooks` section with the following information:
 
-{{< prism lang="yaml"  line-numbers="true" >}}
-webhooks:
-  - name: <webhook-name>
-    method: <endpoint-method-type>
-    uriTemplate: <endpoint-uri>
-    networkMode: <network-mode>
-    agentIdentifier: <remote-network-agent-id>
-    headers:
-      - key: Authorization
-        value: <auth-type-and-value>
-    bodyTemplate:
-      inline: >-
-      {
-      }
-    retryCount: <num-retries>
-{{< /prism >}}
-
-{{% include "cdaas/dep-file/webhooks-fields.md" %}}
+{{% include "cdaas/dep-file/webhooks-config.md" %}}
 
 ### Configuration examples
 

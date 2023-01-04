@@ -1,6 +1,5 @@
 ---
 ---
-
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;width:100%;}
 .tg td{border-color:black;border-style:solid;border-width:1px;padding:10px 5px;width:50%;}
