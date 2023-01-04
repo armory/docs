@@ -251,6 +251,7 @@ Make sure you are running the latest version of the CLI.
 
 ## {{% heading "nextSteps" %}}
 
+* {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}
 * {{< linkWithTitle "gh-action.md" >}}
 * {{< linkWithTitle "add-context-variable.md" >}}
 * {{< linkWithTitle "deploy-sample-app.md" >}}

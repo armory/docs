@@ -115,4 +115,5 @@ To see the deployment ID and the Deployments UI link, perform the following step
 
 ## {{%  heading "nextSteps" %}}
 
+* {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}
 * {{< linkWithTitle "add-context-variable.md" >}}
