@@ -59,6 +59,3 @@ A canary deployment with SMI has the following advantages over a pod-ratio canar
 ## {{%  heading "nextSteps" %}}
 
 - {{< linkWithTitle "cd-as-a-service/tasks/deploy/traffic-management/linkerd.md" >}}
-
-
-
