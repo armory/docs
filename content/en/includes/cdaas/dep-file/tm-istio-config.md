@@ -5,10 +5,9 @@
 trafficManagement:
   - targets: ["<target-name>"]
     istio:
-    - virtualService: 
-        name: <VirtualService-metadata-name>
-        httpRouteName: <VirtualService-http-route-name>
-      destinationRule: 
+    - virtualService:
+        name: <VirtualService-metadata-name>       httpRouteName: <VirtualService-http-route-name>
+      destinationRule:
         name: <DestinationRule-metadata-name>               
         activeSubsetName: <VirtualService-http-route-destination-subset-name>
         canarySubsetName: <canary-subset-name>     
@@ -19,11 +18,12 @@ trafficManagement:
 
    * `istio.virtualService.name`: The name of your VirtualService
    * `istio.virtualService.httpRouteName`: The name of the HTTPRoute defined in your VirtualService. This field is optional if you define only one HttpRoute.
-  
+
 * `istio.destinationRule`:  Optional if you only define only one DestinationRule.
 
    * `istio.destinationRule.name`: The name of your DestinationRule
-   * `istio.destinationRule.activeSubsetName`: The name of the subset configured in your VirtualService HTTPRoute destination. This field is optional if you define only one active subset.
-   * `istio.destinationRule.canarySubsetName`: (Optional)  The name of the canary subset defined in your DestinationRule. 
+   * `istio.destinationRule.activeSubsetName`: The name of the subset configured in your VirtualService HTTPRoute destination. This subset is running the current version of your app. `activeSubsetName` is optional if you define only one active subset.
+   * `istio.destinationRule.canarySubsetName`: (Optional)  The name of the canary subset defined in your DestinationRule.
 
 <!--  top of file must have the two lines of --- followed by a blank line or Hugo throws a compile error due to the embedded Prism shortcode -->
+<!-- Do not "include" using the "%" version! -->

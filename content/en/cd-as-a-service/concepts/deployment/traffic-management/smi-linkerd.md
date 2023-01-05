@@ -1,5 +1,5 @@
 ---
-title: Traffic Management using LinkerD
+title: Traffic Management Using LinkerD
 linkTitle: LinkerD
 description: >
   Learn how CD-as-a-Service implements progressive canary traffic management using LinkerD.
@@ -7,12 +7,7 @@ aliases:
   - /cd-as-a-service/concepts/deployment/progressive-canary/
 ---
 
-## {{% heading "prereq" %}}
-
-You should be familiar with {{< linkWithTitle "cd-as-a-service/concepts/deployment/traffic-management/_index.md" >}}.
-
-
-## Service Meshes and the Service Mesh Interface (SMI)
+## Service meshes and the Service Mesh Interface (SMI)
 
 There are many guides and introductions to service meshes, such as the [Service Mesh Manifesto](https://buoyant.io/service-mesh-manifesto/).
 
@@ -41,15 +36,15 @@ In a pod-ratio canary, we shape traffic by controlling the relative number of po
 - **Traffic shift and rollback time**: since the pod-ratio strategy scales pods up and down to shift traffic, traffic shifts and rollbacks can be slow if your application boots slowly. This can be scary if you need to roll back quickly.
 For those that like to get straight to the point (and would like to skip to the end of the article): our implementation of progressive canary with SMI solves both of these problems.
 
-## Progressive Canary with SMI Traffic Split
+## Progressive canary with SMI TrafficSplit
 
-Armory CD-as-a-Service uses SMI's `TrafficSplit` resource to implement progressive canary deployments.
+Armory CD-as-a-Service uses SMI's TrafficSplit resource to implement progressive canary deployments.
 
-A `TrafficSplit` defines, declaratively, how traffic should be weighted across two or more groups of pods under a single cluster-local domain name. Clients can call a single address and talk, with a defined likelihood, to one of several different versions of your software.
+A TrafficSplit defines, declaratively, how traffic should be weighted across two or more groups of pods under a single cluster-local domain name. Clients can call a single address and talk, with a defined likelihood, to one of several different versions of your software.
 
-A split is a powerful tool but, on its own, it can't deploy your software. It needs to be used in concert with other tools: as the SMI spec says, "the resource itself [i.e., SMI `TrafficSplit`] is not a complete solution as there must be some kind of controller managing the traffic shifting over time."
+A split is a powerful tool but, on its own, it can't deploy your software. It needs to be used in concert with other tools: as the SMI spec says, "the resource itself [i.e., SMI TrafficSplit] is not a complete solution as there must be some kind of controller managing the traffic shifting over time."
 
-Armory CD-as-a-Service is this controller — it's the coordinator that scales up the new version of your software, waits for it to become healthy, safely shifts traffic by updating a `TrafficSplit`, and shuts down the old version of your software once you're certain that your deployment is healthy. Apart from installation, you don't need any knowledge of SMI or your service mesh to use CD-as-a-Service - we're responsible for creating all of the auxiliary resources and cleaning them up when we're done.
+Armory CD-as-a-Service is this controller — it's the coordinator that scales up the new version of your software, waits for it to become healthy, safely shifts traffic by updating a TrafficSplit, and shuts down the old version of your software once you're certain that your deployment is healthy. Apart from installation, you don't need any knowledge of SMI or your service mesh to use CD-as-a-Service - we're responsible for creating all of the auxiliary resources and cleaning them up when we're done.
 
 A canary deployment with SMI has the following advantages over a pod-ratio canary:
 

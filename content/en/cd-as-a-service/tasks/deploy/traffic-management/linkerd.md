@@ -9,8 +9,9 @@ aliases:
 
 ## {{% heading "prereq" %}}
 
-- You are familiar {{< linkWithTitle "cd-as-a-service/concepts/deployment/traffic-management/smi-linkerd.md" >}}.
-- In your target Kubernetes cluster, you must install a service mesh that complies with the [Service Mesh Interface (SMI) spec](https://github.com/servicemeshinterface/smi-spec). See the list of [supported service mesh products]({{< ref "cd-as-a-service/concepts/deployment/traffic-management#supported-service-mesh-products" >}}) that have been tested with Armory CD-as-a-Service.
+* You have read {{< linkWithTitle "cd-as-a-service/concepts/deployment/traffic-management/smi-linkerd.md" >}}.
+* In your target Kubernetes cluster, you have deployed LinkerD, a service mesh that complies with the [Service Mesh Interface (SMI) spec](https://github.com/servicemeshinterface/smi-spec).
+* You know [how to create a CD-as-a-Service deployment config file]({{< ref "cd-as-a-service/tasks/deploy/create-deploy-config" >}}).
 
 >CD-as-a-Service does not configure proxy sidecar injection.
 
@@ -18,4 +19,8 @@ aliases:
 
 Add a top-level `trafficManagement.targets` section to your deployment file.
 
-{{% include "cdaas/dep-file/tm-smi-config.md" %}}
+{{< include "cdaas/dep-file/tm-smi-config.md" >}}
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}

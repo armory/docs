@@ -29,3 +29,4 @@ trafficManagement:
 * `kubernetes.previewService`: (Optional)(Blue/Green) the name of a Kubernetes `Service`. Its service selector should target a Kubernetes `Deployment` resource in your deployment's manifests. The `Service` should exist at the time of deployment.
 
 <!-- top of file must have the two lines of --- followed by a blank line or Hugo throws a compile error due to the embedded Prism shortcode -->
+<!-- Do not "include" using the "%" version! --><!-- Do not "include" using the "%" version! -->

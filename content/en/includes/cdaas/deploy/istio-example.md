@@ -1,5 +1,6 @@
 ---
 ---
+
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;width:100%;}
 .tg td{border-color:black;border-style:solid;border-width:1px;padding:10px 5px;width:50%;}
@@ -10,8 +11,8 @@
 <div class="tg-wrap"><table class="tg">
 <thead>
   <tr>
-    <th class="tg-73oq">CD-as-a-Service Deployment</th>
-    <th class="tg-73oq">Istio Resources</th>
+    <th class="tg-73oq">CD-as-a-Service Deployment (deploy.yaml)<s/th>
+    <th class="tg-73oq">Istio Resources (istio-resources.yaml)</th>
   </tr>
 </thead>
 <tbody>
@@ -89,9 +90,14 @@ spec:
 **Mapping**
 <br>
 
-| Deploy Field                     | Deploy Line | Istio Field                                  | Istio Line | 
+| Deployment Field (deploy.yaml)  | Deploy Line | Istio Resources Field (istio-resources.yaml) | Istio Line | 
 |----------------------------------|-------------|----------------------------------------------|------------|
 | virtualService.name              | 28          | VirtualService.metadata.name                 | 4          |
 | virtualService.httpRouteName     | 29          | VirtualService.http.route.name               | 13         |
 | destinationRule.name             | 31          | DestinationRule.metadata.name                | 18         |
 | destinationRule.activeSubsetName | 32          | VirtualService.http.route.destination.subset | 12         |
+
+
+
+<!--  top of file must have the two lines of --- followed by a blank line or Hugo throws a compile error due to the embedded Prism shortcode. -->
+<!-- Do not "include" using the "%" version! -->
