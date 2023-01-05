@@ -43,3 +43,6 @@ exceptions:
   - Halyard
   - Dinghy
   - Terraformer
+  - Service Mesh Interface
+  - heading "nextSteps"
+  - heading "prereq"
