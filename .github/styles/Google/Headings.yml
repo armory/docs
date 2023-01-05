@@ -44,5 +44,5 @@ exceptions:
   - Dinghy
   - Terraformer
   - Service Mesh Interface
-  - {{% heading "nextSteps" %}}
-  - {{% heading "prereq" %}}
+  - heading "nextSteps"
+  - heading "prereq"
