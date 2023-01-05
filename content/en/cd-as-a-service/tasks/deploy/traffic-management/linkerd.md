@@ -2,7 +2,7 @@
 title: Configure Traffic Management Using LinkerD
 linkTitle: LinkerD
 description: >
-  Configure your deployment to use LinkerD for traffic management.
+  Configure your Armory CD-as-a-Service deployment to use LinkerD for traffic management.
 aliases:
   - /cd-as-a-service/tasks/deploy/traffic-management/
 ---
