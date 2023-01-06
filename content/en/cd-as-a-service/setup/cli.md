@@ -26,6 +26,8 @@ They do not run on Windows.
 
 ## Install the CLI
 
+You can run the CLI in Docker. or you can install the CLI on your Mac or Linux workstation.
+
 ### Docker image
 
 Armory provides the CD-as-a-Service CLI as a [Docker image](https://hub.docker.com/r/armory/armory-cli).
@@ -184,20 +186,42 @@ Since you are using the CLI, you do not need to have service account credentials
    armory deploy start  -f canary.yaml
    ```
 
-   The command starts your deployment and progresses until the first weight and pause you set. It also returns a deployment ID that you can use to check the status of your deployment and a link to the Deployments UI page for your deployment.
+   The command starts your deployment and progresses until the first weight and pause you set. It also returns a Deployment ID that you can use to check the status of your deployment and a link to the Deployments UI page for your deployment.
 
    Note that you can deploy an app without manually logging into CD-as-a-Service. See the {{< linkWithTitle "cd-as-a-service/tasks/deploy/deploy-with-creds.md" >}} page for details.
 
+   If you want to monitor your deployment in your terminal, use the `--watch` flag to output deployment status.
 
-## Monitor your deployment
+   ```bash
+   armory deploy start  -f canary.yaml --watch
+   ```
+   
+   You can also monitor the progress of any deployment in the Deployments UI, which gives you a visual representation of a deployment's health and progress. If your deployment strategy includes a manual approval step, use the Deployments UI to approve the step and continue your deployment.
 
-You can monitor the progress of any deployment through the CLI itself or from the Deployments UI. The Deployments UI gives you a visual representation of a deployment's health and progress in addition to controls. If your deployment strategy includes a manual approval step, use the Deployments UI to approve the step and continue.
+   If you forget to add the `--watch` flag, you can run the `armory deploy status --deploymentID <deployment-id>` command. Use the Deployment ID returned by the `armory deploy start` command. For example:
 
-Run the following command to get a direct link to monitor your deployment using the Deployments UI:
+   ```bash
+   armory deploy start -f deploy-simple-app.yml
+   Deployment ID: 9bfb67e9-41c1-41e8-b01f-e7ad6ab9d90e
+   See the deployment status UI: https://console.cloud.armory.io/deployments/pipeline/9bfb67e9-41c1-41e8-b01f-e7ad6ab9d90e?environmentId=82431eae-1244-4855-81bd-9a4bc165f90b
+   ```
 
-```bash
-armory deploy status -i <deployment-ID>
-```
+   then run:
+
+   ```bash
+   armory deploy status --deploymentId 9bfb67e9-41c1-41e8-b01f-e7ad6ab9d90e
+   ```
+
+   Output is similar to:
+
+      ```bash
+   application: sample-application, started: 2023-01-06T20:07:36Z
+   status: RUNNING
+   See the deployment status UI: https://console.cloud.armory.io/deployments/pipeline/9bfb67e9-41c1-41e8-b01f-e7ad6ab9d90e? environmentId=82431eae-1244-4855-81bd-9a4bc165f90b
+   ```
+
+   This `armory deploy status` command returns a point-in-time status and exits. It does not watch the deployment.
+
 
 ### Initial deployment failure
 
@@ -241,7 +265,7 @@ This issue occurs if the AVM version you downloaded does not match your CPU arch
 
 `error: Error: there was an error writing the credentials file. `
 
-This issue occurs because the the directory where the CLI stores your credentials after you run `armory login` does not exist. You can create the directory by running the following command:
+This issue occurs because the directory the CLI stores your credentials in after you run `armory login` does not exist. You can create the directory by running the following command:
 
 ```bash
 mkdir ~/.armory/credentials
@@ -252,6 +276,7 @@ Make sure you are running the latest version of the CLI.
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}
+* {{< linkWithTitle "cd-as-a-service/reference/cli/cli-cheat.md" >}}
 * {{< linkWithTitle "gh-action.md" >}}
 * {{< linkWithTitle "add-context-variable.md" >}}
 * {{< linkWithTitle "deploy-sample-app.md" >}}

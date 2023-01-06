@@ -103,24 +103,6 @@ To deploy your app without first manually logging into CD-as-a-Service, pass you
 `armory deploy start -c <your-client-id> -s <your-client-secret> -f deploy.yml`
 
 
-### Monitor your deployment
-
-You have the following options for monitoring your deployment:
-
-1. Add the `--watch` flag to `armory deploy start`
-
-   ```
-   armory deploy start -f <path-to-config.yaml> --watch
-   ```
-
-1. Use the `armory deploy status` command
-
-   ```
-   armory deploy status --deploymentId <deployment-id>
-   ```
-   
-   You can find the Deployment ID by navigating to the details screen and then looking at the URL. The format is `https://console.cloud.armory.io/deployments/<deployment-id>`. For example, if the URL is `https://console.cloud.armory.io/deployments/4bbe3f4c-3d7d-449a-8470-f0d2d6cee2bg`, then the Deployment ID is `4bbe3f4c-3d7d-449a-8470-f0d2d6cee2bg`.
-
 ## Download and deploy a sample app
 
 Download a sample app from an Armory repo. Then deploy that sample app.
