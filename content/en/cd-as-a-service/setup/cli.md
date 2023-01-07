@@ -1,6 +1,6 @@
 ---
 title: Get Started with the CLI to Deploy Apps
-linktitle: CLI
+linkTitle: CLI
 description: >
   Use the CLI to interact with Armory CD-as-a-Service. You can integrate Armory CD-as-a-Service into your existing CI/CD tooling. Start by familiarizing yourself with the CLI and its workflow.
 

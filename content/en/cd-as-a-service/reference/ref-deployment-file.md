@@ -12,8 +12,6 @@ aliases:
 
 The deployment config file is what you use to define how and where Armory CD-as-a-Service deploys your app.
 
-You can see what a blank deployment file looks like in the [Blank templates](#blank-template) section. To see a filled out example, see [Complete examples](#complete-examples).
-
 ## Templates
 
 You can generate a template file by running the following command with the CLI:
@@ -44,9 +42,9 @@ armory template kubernetes [template-type] > deployment-template.yaml
 ```
 
 <details><summary>Show me an example deployment file</summary>
+This file is in the <a href="https://github.com/armory/docs-cdaas-sample" target="_blank">armory/docs-cdaas-sample repo</a>.
 
-{{< codefile file="cdaas/deploy/deploy.yaml" >}}
-
+{{< github repo="armory/docs-cdaas-sample" file="/deploy.yml" lang="yaml" options="" >}}
 </details><br>
 
 ## Sections
