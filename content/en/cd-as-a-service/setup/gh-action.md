@@ -122,7 +122,7 @@ You could, as a simplistic example, add a step that prints out the values of the
 ```yaml
 - name: Print Armory CD-as-a-Service Deployment Output
   id: output
-  run: echo -e 'DeploymentID ${{steps.deploy.outputs.DEPLOYMENT_ID}}\nLink ${{steps.deploy.outputs.LINK}}\n${{steps.deploy.outputs.RUN_RESULT}}'`
+  run: echo -e 'DeploymentID ${{steps.deploy.outputs.DEPLOYMENT_ID}}\nLink ${{steps.deploy.outputs.LINK}}\n${{steps.deploy.outputs.RUN_RESULT}}'
 ```
 
 See GitHub's [Using workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows) content for more information.
@@ -165,7 +165,7 @@ jobs:
 
       - name: Print deploy output
         id: output
-        run: echo 'deploy args ${{steps.deploy.outputs.LINK}}, ${{steps.deploy.outputs.DEPLOYMENT_ID}}, ${{steps.deploy.outputs.RUN_RESULT}}'
+        run: echo -e 'DeploymentID ${{steps.deploy.outputs.DEPLOYMENT_ID}}\nLink ${{steps.deploy.outputs.LINK}}\n${{steps.deploy.outputs.RUN_RESULT}}'
 ```
 
 
