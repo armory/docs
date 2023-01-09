@@ -51,7 +51,7 @@ Then, the value you use for `path` in the deployment file should be `/deployment
 
 ### Create a deployment file
 
-The [deployment file]({{< ref "ref-deployment-file" >}}) is a YAML file that defines what app you want to deploy and how Armory CD-as-a-Service should deploy it. You can use the [CLI]({{< ref "cli#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template.
+{{< include "cdaas/create-config.md" >}}
 
 Save your deployment file to a directory in your repo. You use this path later when you create the GitHub Action for the `path-to-file` parameter.
 
@@ -115,4 +115,5 @@ To see the deployment ID and the Deployments UI link, perform the following step
 
 ## {{%  heading "nextSteps" %}}
 
+* {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}
 * {{< linkWithTitle "add-context-variable.md" >}}

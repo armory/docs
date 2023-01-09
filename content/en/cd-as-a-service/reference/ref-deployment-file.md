@@ -1,13 +1,16 @@
 ---
-title: Deployment File Reference
-linktitle: Deployment File
+title: Deployment Config File Reference for CD-as-a-Service
+linkTitle: Deployment Config File
 description: >
-  Define how Armory CD-as-a-Service deploys your app. Include targets and deployment strategies.
+  The deployment (deploy) file is where you configure your app for deployment by Armory CD-as-a-Service. This config file includes deployment artifact, target, strategy, and traffic management definitions.
+aliases: 
+  - /cd-as-a-service/reference/deployfile/
+  - /cd-as-a-service/reference/deployfile/ref-deployment-file/
 ---
 
-## Deployment file reference overview
+## Deployment config file reference overview
 
-The deployment file is what you use to define how and where Armory CD-as-a-Service deploys your app.
+The deployment config file is what you use to define how and where Armory CD-as-a-Service deploys your app.
 
 You can see what a blank deployment file looks like in the [Blank templates](#blank-template) section. To see a filled out example, see [Complete examples](#complete-examples).
 
