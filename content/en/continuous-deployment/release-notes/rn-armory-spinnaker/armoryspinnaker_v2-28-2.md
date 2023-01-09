@@ -1,13 +1,13 @@
 ---
 title: v2.28.2 Armory Release (OSS Spinnaker™ v1.28.4)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
-date: 2023-01-04
+version: 02.28.2
+date: 2023-01-09
 description: >
   Release notes for Armory Enterprise v2.28.2
 ---
 
-## 2023/01/04 Release Notes
+## 2023/01/09 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a previous working version and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
@@ -22,21 +22,71 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
+{{< include "breaking-changes/bc-orca-rdbms-configured-utf8.md" >}}
+
+{{< include "breaking-changes/bc-kubectl-120.md" >}}
+
+{{< include "breaking-changes/bc-dinghy-slack.md" >}}
+
+{{< include "breaking-changes/bc-java-tls-mysql.md" >}}
+
+{{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
+
+{{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
+
+{{< include "breaking-changes/bc-git-artifact-constraint.md" >}}
+
+{{< include "breaking-changes/bc-hal-deprecation.md" >}}
+
+{{< include "breaking-changes/bc-plugin-compatibility-2-28-0.md" >}}
+
+
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+{{< include "known-issues/ki-empty-roles.md" >}}
+
+{{< include "known-issues/ki-app-attr-not-configured.md" >}}
+
+{{< include "known-issues/ki-app-eng-acct-auth.md" >}}
+
+{{< include "known-issues/ki-403-permission-err.md" >}}
+
+{{< include "known-issues/ki-spel-expr-art-binding.md" >}}
+
+{{< include "known-issues/ki-pipelines-as-code-gh-comments.md" >}}
+
+{{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
+### When Auth Z is enabled, Access Denied on deployments using accounts that have empty permissions 2.28.x+
+Users report that when attempting to use FIAT defined User Accounts/Service Accounts/Service Principals that have empty permissions or roles, they receive an Exception: Access denied to account *** message. (For example, `Exception: Access denied to account aws’.) This is contrary to expected behavior in Spinnaker/Armory CDSH.
+To work around this issue, Customers can add roles to the accounts in FIAT that are affected, even “dummy” roles. Armory will be adding changes to the code beginning in 2.28.3 to address this issue.
+
+## Early Access
+
+### Pipelines as Code Multi-Branch Enhancement
+Now you can configure Pipelines as Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines.
+
+### Enhanced BitBucket Server Pull Request Handling
+Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. Learn more about this BitBucket enhancement and how to enable it in Spinnaker in the full 2.28.2 Release Notes.
+
+### Terraform Template Fix
+We’ve done some work to fix an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you will be able to use the Terraform template file provider. Please open a support ticket if you need this fix. 
+
+
 ## Highlighted updates
+
+### General Fixes
+  * Duplicate Pipelines: Addressed an issue where Spinnaker users were ending up with duplicate pipelines when using pipelines as code.
+  * Jenkins backlinks: Fixed an issue where Igor was failing when Jenkins backlinks were enabled.
+  * Manual Judgment: Improved the logic around restart scenarios when executing a manual judgment.
 
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
-
-
-
 
 ###  Spinnaker Community Contributions
 
