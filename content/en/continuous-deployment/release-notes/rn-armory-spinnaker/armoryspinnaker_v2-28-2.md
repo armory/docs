@@ -64,17 +64,17 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ### Pipelines as Code multi-branch enhancement
 
-Now you can configure Pipelines as Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines.
+Now you can configure Pipelines as Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "continuous-deployment/armory-admin/dinghy-enable#multiple-branches" >}}) for how to enable and configure this feature.
 
 ### Enhanced BitBucket Server pull request handling
 
-Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. Learn more about this BitBucket enhancement and how to enable it in Spinnaker in the full 2.28.2 Release Notes.
+Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. See [Triggering pipelines with Bitbucket Server](https://spinnaker.io/docs/guides/user/pipeline/triggers/bitbucket-events/) in the Spinnaker docs for details.
 
 <!-- Spinnaker docs PR https://github.com/spinnaker/spinnaker.io/pull/285 -->
 
 ### Terraform template fix
 
-We’ve done some work to fix an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you will be able to use the Terraform template file provider. Please open a support ticket if you need this fix. 
+Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you will be able to use the Terraform template file provider. Please open a support ticket if you need this fix. 
 
 
 ## Highlighted updates
