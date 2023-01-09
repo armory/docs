@@ -1,10 +1,10 @@
 ---
-title: v2.28.2 Armory Release (OSS Spinnaker™ v1.28.4)
+title: v2.28.2 Armory Continuous Deployment Release (OSS Spinnaker™ v1.28.4)
 toc_hide: true
 version: 02.28.2
 date: 2023-01-09
 description: >
-  Release notes for Armory Enterprise v2.28.2
+  Release notes for Armory Continuous Deployment v2.28.2
 ---
 
 ## 2023/01/09 Release Notes
@@ -59,28 +59,31 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "known-issues/ki-pipelines-as-code-gh-comments.md" >}}
 
 {{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
-### When Auth Z is enabled, Access Denied on deployments using accounts that have empty permissions 2.28.x+
-Users report that when attempting to use FIAT defined User Accounts/Service Accounts/Service Principals that have empty permissions or roles, they receive an Exception: Access denied to account *** message. (For example, `Exception: Access denied to account aws’.) This is contrary to expected behavior in Spinnaker/Armory CDSH.
-To work around this issue, Customers can add roles to the accounts in FIAT that are affected, even “dummy” roles. Armory will be adding changes to the code beginning in 2.28.3 to address this issue.
 
-## Early Access
+## Early access
 
-### Pipelines as Code Multi-Branch Enhancement
+### Pipelines as Code multi-branch enhancement
+
 Now you can configure Pipelines as Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines.
 
-### Enhanced BitBucket Server Pull Request Handling
+### Enhanced BitBucket Server pull request handling
+
 Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. Learn more about this BitBucket enhancement and how to enable it in Spinnaker in the full 2.28.2 Release Notes.
 
-### Terraform Template Fix
+<!-- Spinnaker docs PR https://github.com/spinnaker/spinnaker.io/pull/285 -->
+
+### Terraform template fix
+
 We’ve done some work to fix an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you will be able to use the Terraform template file provider. Please open a support ticket if you need this fix. 
 
 
 ## Highlighted updates
 
-### General Fixes
-  * Duplicate Pipelines: Addressed an issue where Spinnaker users were ending up with duplicate pipelines when using pipelines as code.
-  * Jenkins backlinks: Fixed an issue where Igor was failing when Jenkins backlinks were enabled.
-  * Manual Judgment: Improved the logic around restart scenarios when executing a manual judgment.
+### General fixes
+
+  * **Duplicate Pipelines**: Addressed an issue where Spinnaker users were ending up with duplicate pipelines when using pipelines as code.
+  * **Jenkins Backlinks**: Fixed an issue where Igor was failing when Jenkins backlinks were enabled.
+  * **Manual Judgment**: Improved the logic around restart scenarios when executing a manual judgment.
 
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
@@ -88,7 +91,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
-###  Spinnaker Community Contributions
+###  Spinnaker community contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
 [Spinnaker v1.28.4](https://www.spinnaker.io/changelogs/1.28.4-changelog/) changelog for details.

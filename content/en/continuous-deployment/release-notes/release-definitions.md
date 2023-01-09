@@ -1,5 +1,5 @@
 ---
-title: Armory Enterprise Release Definitions
+title: Armory Continuous Deployment Release Definitions
 ---
 
 ## Definitions for different release states
