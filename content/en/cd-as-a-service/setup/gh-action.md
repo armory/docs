@@ -135,7 +135,7 @@ For this scenario:
 1. Your `deployment.yaml` file is in the root of your repo.
 1. You want to deploy when a pull request is merged to the `main` branch.
 1. You want the Armory GitHub Action to run until it receives a final deployment status from CD-as-a-Service.
-1. You want to print the output from the Armory GitHub Action.
+1. You want to print the output from the Armory GitHub Action in a separate step.
 
 Your workflow file contents looks like this:
 
