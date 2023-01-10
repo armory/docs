@@ -17,7 +17,7 @@ In the deployment target cluster, execute `kubectl create ns spin-agent` to crea
 
 ## Configure permissions
 
-The Agent _can_ run with limited functionality on the [default ServiceAccount](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/). However, if you want the Scale Agent to load balance connections or assign a precise Zone ID, the Scale Agent needs permissions to get Pods, Deployments, ReplicaSets, and Namespaces in your cluster. Rather than modifying the default ServiceAccount permissions, Armory recommends creating a new ServiceAccount, ClusterRole, and ClusterRoleBinding for the Scale Agent.
+The Agent _can_ run with most features on the [default ServiceAccount](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/). However, if you want the Scale Agent to load balance connections or assign a precise Zone ID, the Scale Agent needs permissions to get Pods, Deployments, ReplicaSets, and Namespaces in your cluster. Rather than modifying the default ServiceAccount permissions, Armory recommends creating a new ServiceAccount, ClusterRole, and ClusterRoleBinding for the Scale Agent.
 
 Apply the following manifest in your `spin-agent` namespace:
 
