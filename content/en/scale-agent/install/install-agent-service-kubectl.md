@@ -17,14 +17,11 @@ In the deployment target cluster, execute `kubectl create ns spin-agent` to crea
 
 ## Configure permissions
 
-Agent could make use of the default `ServiceAccount` created by Kubernetes under every namespace, but since agent needs access to list and get the pods and endpoints kinds under the cluster to assign a precise zoneId if its not provided under config file and load balance connections if balanceConnection property is true.
+The Agent _can_ run with limited functionality on the [default ServiceAccount](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/). However, if you want the Scale Agent to load balance connections or assign a precise Zone ID, the Scale Agent needs permissions to get Pods, Deployments, ReplicaSets, and Namespaces in your cluster. Rather than modifying the default ServiceAccount permissions, Armory recommends creating a new ServiceAccount, ClusterRole, and ClusterRoleBinding for the Scale Agent.
 
-If the default `ServiceAccount` doesn't have those access, agent is still be able to run but not able to load balance connections or compute a precise zoneId but this is not essential, also if you are planing 
-to have accounts that use such default `ServiceAccount` (serviceAccount: true) be wary of the permissions when you are deploying or caching.
+Apply the following manifest in your `spin-agent` namespace:
 
-For all those cases create a `ClusterRole`, `ServiceAccount`, and `ClusterRoleBinding` for the Armory Agent by applying the following manifest in your `spin-agent` namespace:
-
-<details><summary>Show me the manifest</summary>
+<details><summary>Show me a manifest</summary>
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
