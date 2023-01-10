@@ -130,7 +130,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-  name: spin-agent-clouddriver
+  name: spin-clouddriver-grpc
 spec:
   ports:
     - name: grpc
@@ -149,7 +149,7 @@ After you have configured both manifests, apply the updates.
 
 ## Get the LoadBalancer IP address
 
-Use `kubectl get svc spin-agent-cloud-driver -n spinnaker` to make note of the LoadBalancer IP external address. You need this address when you configure the Armory Agent.
+Use `kubectl get svc spin-clouddriver-grpc -n spinnaker` to make note of the LoadBalancer IP external address. You need this address when you configure the Armory Agent.
 
 ## Confirm Clouddriver is listening
 
