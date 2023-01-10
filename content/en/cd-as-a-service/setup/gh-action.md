@@ -213,6 +213,6 @@ You can monitor your deployment's progress in the GitHub UI or in the CD-as-a-Se
 
 ## {{%  heading "nextSteps" %}}
 
-* {{< linkWithTitle "cd-as-a-service/troubleshooting/github-action.md" >}}
+* {{< linkWithTitle "cd-as-a-service/troubleshooting/tools.md" >}}
 * {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}
 * {{< linkWithTitle "add-context-variable.md" >}}

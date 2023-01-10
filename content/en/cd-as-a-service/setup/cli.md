@@ -249,32 +249,9 @@ Run the following command to upgrade your existing CLI:
 avm install
 ```
 
-## Troubleshooting
-
-### Developer cannot be verified error when trying to run AVM
-
-Depending on your operating system settings, you may need to allow apps from an unidentified developer in order to use AVM. For macOS, go to **System Preferences > Security & Privacy > General** and click **Allow Anyway**. For more information, see the macOS documentation about [how to open a Mac app from an unidentified developer](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
-
-### Bad CPU type
-
-`bad CPU type in executable`
-
-This issue occurs if the AVM version you downloaded does not match your CPU architecture. For example, if you try to run an `arm64` build on a system that is not ARM based. Verify that you downloaded the correct AVM version for your system.
-
-### Error writing credentials file
-
-`error: Error: there was an error writing the credentials file. `
-
-This issue occurs because the directory the CLI stores your credentials in after you run `armory login` does not exist. You can create the directory by running the following command:
-
-```bash
-mkdir ~/.armory/credentials
-```
-
-Make sure you are running the latest version of the CLI.
-
 ## {{% heading "nextSteps" %}}
 
+* {{< linkWithTitle "cd-as-a-service/troubleshooting/tools.md" >}}
 * {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}
 * {{< linkWithTitle "cd-as-a-service/reference/cli/cli-cheat.md" >}}
 * {{< linkWithTitle "gh-action.md" >}}
