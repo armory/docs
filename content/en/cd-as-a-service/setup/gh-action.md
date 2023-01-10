@@ -26,7 +26,7 @@ If you have previously configured Armory CD-as-a-Service for your deployment tar
 1. (Optional) [Install the CD-as-a-Service CLI]({{< ref "cd-as-a-service/setup/cli#local-installation" >}}) on your workstation. You can use the CLI to generate a deployment file template. You can also create a deployment file manually. See {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}.
 1. If you are new to using GitHub Actions, see GitHub's [Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart) guide for information about setting up GitHub Actions.
 1. [Create a CD-as-a-Service Client Credential]({{< ref "cd-as-a-service/tasks/iam/client-creds" >}}) for your GitHub Action to use to connect to CD-as-a-Service. Assign the `Deployments Full Access` role to your credential.
-1. Create GitHub secrets for the Client ID and a Client Secret so you don't expose them in plain text in your GitHub workflow file. Use descriptive name for these two values. You use the name to reference them in the GitHub Action. For more information, see GitHub's [Encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) guide.
+1. Create GitHub [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for the Client ID and a Client Secret so you don't expose them in plain text in your GitHub workflow file. Use descriptive name for these two values. You reference these secrets when you configure the CD-as-a-Service GitHub Action.
 
 ## Use the GitHub Action
 
@@ -65,7 +65,7 @@ Save your deployment file to a directory in your repo. You use this path later w
 Create a file in the `.github/workflows` directory.  The content format is:
 
 ```yaml
-name: <descriptive-name> # This name appears on the Actions tab in the GitHub UI.
+name: <descriptive-name> # This name appears in the Actions screen in the GitHub UI.
 
 on:
   push: # What triggers a deployment. For example, `push`.
@@ -117,12 +117,14 @@ When the Action is done running, it prints out the Deployment ID, a link to the 
 * `LINK`: This is the link to the UI, where you can check the state of the workflow and advance it to the next stages if you have manual judgments.
 * `RUN_RESULT`: If you configured 'waitForDeployment=true', this variable contains final state of the deployment (FAILED, SUCCEEDED, CANCELLED, or UNKNOWN if there is an error).
 
-You could, as a simplistic example, add a step that prints out the values of the output parameters:
+You could, as a simplistic example, add a job step that prints out the values of the output parameters:
 
 ```yaml
-- name: Print Armory CD-as-a-Service Deployment Output
-  id: output
-  run: echo -e 'DeploymentID ${{steps.deploy.outputs.DEPLOYMENT_ID}}\nLink ${{steps.deploy.outputs.LINK}}\n${{steps.deploy.outputs.RUN_RESULT}}'
+steps:
+...
+   - name: Print Armory CD-as-a-Service Deployment Output
+     id: output
+     run: echo -e 'DeploymentID ${{steps.deploy.outputs.DEPLOYMENT_ID}}\nLink ${{steps.deploy.outputs.LINK}}\n${{steps.deploy.outputs.RUN_RESULT}}'
 ```
 
 See GitHub's [Using workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows) content for more information.
@@ -132,10 +134,10 @@ See GitHub's [Using workflows](https://docs.github.com/en/actions/using-workflow
 For this scenario:
 
 1. You created secrets called `CDAAS_CLIENT_ID` AND `CDAAS_CLIENT_SECRET`.
-1. Your `deployment.yaml` file is in the root of your repo.
+1. Your `deployment.yaml` file is in the `deployments` directory of your repo.
 1. You want to deploy when a pull request is merged to the `main` branch.
 1. You want the Armory GitHub Action to run until it receives a final deployment status from CD-as-a-Service.
-1. You want to print the output from the Armory GitHub Action in a separate step.
+1. You want to print the output from the Armory GitHub Action in a separate job step.
 
 Your workflow file contents looks like this:
 
@@ -171,22 +173,46 @@ jobs:
 
 ## Trigger a deployment
 
-Now you can trigger a deployment based on what you defined in the workflow, such as a push to the main branch.
+After you have created your deployment file and configured your workflow, you can trigger a CD-as-a-Service deployment based on the trigger you defined in your workflow. 
 
-When the Action runs, Armory CD-as-a-Service starts your deployment, and it progresses to the first weight you set. After completing the first step, what Armory CD-as-a-Service does next depends on the steps you defined in your deployment file. Armory CD-as-a-Service either waits a set amount of time or until you provide a manual approval.
+You can monitor your deployment's progress in the GitHub UI or in the CD-as-a-Service UI. Be sure to you know how to access a GitHub Action [workflow run log](https://docs.github.com/en/act##ions/monitoring-and-troubleshooting-workflows/about-monitoring-and-troubleshooting) before you begin.
 
-You can monitor the progress by using the Deployments UI. The GitHub Action provides both the deployment ID and a URL to the Deployments UI page for the deployment.
+1. **GitHub workflow run log**: Use `waitForDeployment: true` in your job and watch the Action output in the workflow run log.
 
-To see the deployment ID and the Deployments UI link, perform the following steps:
+   Output is similar to:
 
-1. In your repo, go to the **Actions** tab.
-2. Select the workflow run that corresponds to the deployment.
-3. Select the GitHub Action. This is the `name` parameter you used in the `jobs` block.
-4. In the **Deployment** section, you can find the **Deployment ID** and a link to the **deployment status UI**.
+   ```bash
+   Waiting for deployment to complete. Status UI: https://console.cloud.armory.io/deployments/pipeline/f4e1fbfe-641f-4613-aff3-0699698d5aed?environmentId=82431eae-1244-4855-81bd-9a4bc165f90b
+   .
+   Deployment status changed: RUNNING
+   .....
+   Deployment status changed: PAUSED
+   ..
+   Deployment status changed: RUNNING
+   ...
+   Deployment status changed: PAUSED
+   ..
+   Deployment status changed: RUNNING
+   Deployment ID: f4e1fbfe-641f-4613-aff3-0699698d5aed
+   .....
+   Deployment status changed: SUCCEEDED
+   Deployment f4e1fbfe-641f-4613-aff3-0699698d5aed completed with status: SUCCEEDED
+   See the deployment status UI: https://console.cloud.armory.io/deployments/pipeline/f4e1fbfe-641f-4613-aff3-0699698d5aed?environmentId=82431eae-1244-4855-81bd-9a4bc165f90b
+   ```
 
-{{< figure src="/images/cdaas/gha-statusUI.jpg" alt="" >}}
+1. **CD-as-a-Service Deployments UI**: Obtain the **Deployments** UI direct link from the Action output.
+
+   When you configure `waitForDeployment: false`, the Action immediately prints out the Deployment ID and a link to the **Deployments** UI and then exits. Output is similar to:
+
+   ```bash
+   Deployment ID: 065e9c2c-5e3e-4e6a-a591-bdd756a497c2
+   See the deployment status UI: https://console.cloud.armory.io/deployments/pipeline/065e9c2c-5e3e-4e6a-a591-bdd756a497c2?environmentId=82431eae-1244-4855-81bd-9a4bc165f90b
+   ```
+
+>Note: if you configured a manual approval in your strategy, you must use the CD-as-a-Service Deployments UI to issue that approval.
 
 ## {{%  heading "nextSteps" %}}
 
+* {{< linkWithTitle "cd-as-a-service/troubleshooting/github-action.md" >}}
 * {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}
 * {{< linkWithTitle "add-context-variable.md" >}}
