@@ -1,13 +1,13 @@
 ---
 title: v2.27.5 Armory Release (OSS Spinnaker™ v1.27.3)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
-date: 2023-01-11
+version: 02.27.05
+date: 2023-01-12
 description: >
   Release notes for Armory Enterprise v2.27.5
 ---
 
-## 2023/01/11 Release Notes
+## 2023/01/12 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a previous working version and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
@@ -22,20 +22,45 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
+{{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
+{{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
+{{< include "breaking-changes/bc-hal-deprecation.md" >}}
+{{< include "breaking-changes/bc-plug-version-lts-227.md" >}}
+
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
-## Highlighted updates
+{{< include "known-issues/ki-artifact-binding-spel.md" >}}
+{{< include "known-issues/ki-dinghy-gh-notifications.md" >}}
+{{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
+{{< include "known-issues/ki-pipelines-as-code-gh-comments.md" >}}
+
+## Early Access
+
+### Pipelines as Code multi-branch enhancement
+
+Now you can configure Pipelines as Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "continuous-deployment/armory-admin/dinghy-enable#multiple-branches" >}}) for how to enable and configure this feature.
+
+### Feature flag in Orca to use the new Igor stop endpoint 
+
+When defining a Jenkins job inside folders, the name contains slashes. Because of that, instead of matching the request to the IGOR STOP endpoint (/masters/{name}/jobs/{jobName}/stop/{queuedBuild}/{buildNumber}), Spring is matching the request to the BUILD one (/masters/{name}/jobs/**)
+The stop request is failing because it is trying to start a job that does not exist.  A [feature flag](https://spinnaker.io/changelogs/1.29.0-changelog/#orca) was added to call the existing endpoint (which accepts the job name as path variable) or the new one (which accepts the job name as a query parameter).
+
+## Fixes
+
+### General
+  * Revision History Display - Addressed an issue where the revision history was not showing the timestamp of the revision.
+  * Duplicate Pipelines - Addressed an issue where Spinnaker users were ending up with duplicate pipelines when using pipelines as code.
+  * Jenkins Backlinks - Fixed an issue where Igor was failing when Jenkins backlinks were enabled.
+  * KubernetesManifest - Teach KubernetesManifest to support kubernetes resources where the spec is not a map.
 
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
-
-
 
 
 ###  Spinnaker Community Contributions
