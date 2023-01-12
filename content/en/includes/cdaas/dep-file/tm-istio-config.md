@@ -6,7 +6,8 @@ trafficManagement:
   - targets: ["<target-name>"]
     istio:
     - virtualService:
-        name: <VirtualService-metadata-name>       httpRouteName: <VirtualService-http-route-name>
+        name: <VirtualService-metadata-name>
+        httpRouteName: <VirtualService-http-route-name>
       destinationRule:
         name: <DestinationRule-metadata-name>               
         activeSubsetName: <VirtualService-http-route-destination-subset-name>
