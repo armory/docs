@@ -17,7 +17,7 @@ trafficManagement:
 * `istio.virtualService`: (Required)
 
    * `istio.virtualService.name`: The name of your VirtualService
-   * `istio.virtualService.httpRouteName`: The name of the HTTPRoute defined in your VirtualService. This field is optional if you define only one HttpRoute.
+   * `istio.virtualService.httpRouteName`: The name of the HTTPRoute defined in your VirtualService. This field is optional if you define only one HTTPRoute.
 
 * `istio.destinationRule`:  Optional if you only define only one DestinationRule.
 
