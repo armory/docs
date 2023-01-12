@@ -62,13 +62,28 @@ Apply configuration. See {{< linkWithTitle "cd-as-a-service/tasks/tenants/add-te
 `armory deploy start [flags]`
 
 **Flags**
+
+- `--add-context`: (Optional) Comma-delimited list of new context variables in  `name=value` format. These are added to your canary analysis and webhook triggers. Default: `[]`.
+- `-n, --application`: (Optional) The app name for deployment.
 - `-a, --authToken`: (Optional) The authentication token to use rather than `clientId` and `clientSecret` or user login.
-- `--add-context`: (Optional) Comma-delimited list of new context variables in  `name=value` format. These are added to your canary analysis and webhook triggers.
-- `-n, --application`: (Optional) The app name for deployment.
 - `-c, --clientId`: (Optional) The Client ID for connecting to Armory CD-as-a-Service.
-- `-f, --file`: (Required) The path to the deployment file.
-- `-n, --application`: (Optional) The app name for deployment.
 - `-s, --clientSecret`: (Optional) The Client Secret for connecting to Armory CD-as-a-Service.
+- `-f, --file`: (Required) The path to the deployment file.
+- `-w, --watch`: (Optional) This blocks the `deploy start` command execution from completing until the deployment has transitioned to its final state (FAILED, SUCCEEDED, CANCELLED). Use this flag when you want to see deployment status reported in your terminal or process.
+   
+   When you run the `deploy start` command with the `-w` flag, you should see output similar to this:
+
+   ```bash
+   Waiting for deployment to complete. Status UI: https://console.cloud.armory.io/deployments/pipeline/e6980646-923a-496b-ad87-ad81804187e3?environmentId=437b09db-b6d9-4198-84c2-8aef69f4fd07
+   .
+   Deployment status changed: RUNNING
+   Deployment ID: e6980646-923a-496b-ad87-ad81804187e3
+   .
+   Deployment status changed: SUCCEEDED
+   Deployment e6980646-923a-496b-ad87-ad81804187e3 completed with status: SUCCEEDED
+   See the deployment status UI: https://console.cloud.armory.io/deployments/pipeline/e6980646-923a-496b-ad87-ad81804187e3?environmentId=437b09db-b6d9-4198-84c2-8aef69f4fd07
+   ```
+
 
 Use only one of the following ways to authenticate your deployment: `armory login` **or** `--clientId` and `--clientSecret` **or** `--authToken`.
 
@@ -86,6 +101,7 @@ To deploy your app with new context variables:
 To deploy your app without first manually logging into CD-as-a-Service, pass your Client ID and Client Secret:
 
 `armory deploy start -c <your-client-id> -s <your-client-secret> -f deploy.yml`
+
 
 ## Download and deploy a sample app
 
