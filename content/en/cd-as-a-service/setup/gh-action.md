@@ -109,13 +109,13 @@ jobs:
 
    Then `path-to-file` would be `/deployments/deployment.yaml`.
    
-* `waitForDeployment`: (Optional); Default: false; this blocks the GitHub Action from completing until the deployment has transitioned to its final state (FAILED, SUCCEEDED, CANCELLED, or UNKNOWN if there is an error).
+* `waitForDeployment`: (Optional); Default: false; this blocks the GitHub Action from completing until the deployment has transitioned to its final state (FAILED, SUCCEEDED, CANCELLED).
 
 When the Action is done running, it prints out the Deployment ID, a link to the Deployments UI, and optionally the deployment's final state. It also returns that information in output parameters that you can use elsewhere in your workflow:
 
 * `DEPLOYMENT_ID`: This is the unique deployment identifier, which you can use to query the status of the deployment in UI.
 * `LINK`: This is the link to the UI, where you can check the state of the workflow and advance it to the next stages if you have manual judgments.
-* `RUN_RESULT`: If you configured 'waitForDeployment=true', this variable contains final state of the deployment (FAILED, SUCCEEDED, CANCELLED, or UNKNOWN if there is an error).
+* `RUN_RESULT`: If you configured 'waitForDeployment=true', this variable contains the final state of the deployment (FAILED, SUCCEEDED, CANCELLED).
 
 You could, as a simplistic example, add a job step that prints out the values of the output parameters:
 

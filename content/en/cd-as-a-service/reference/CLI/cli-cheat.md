@@ -69,7 +69,7 @@ Apply configuration. See {{< linkWithTitle "cd-as-a-service/tasks/tenants/add-te
 - `-c, --clientId`: (Optional) The Client ID for connecting to Armory CD-as-a-Service.
 - `-s, --clientSecret`: (Optional) The Client Secret for connecting to Armory CD-as-a-Service.
 - `-f, --file`: (Required) The path to the deployment file.
-- `-w, --watch`: (Optional) This blocks the `deploy start` command execution from completing until the deployment has transitioned to its final state (FAILED, SUCCEEDED, CANCELLED, or UNKNOWNin case of an error). Use this flag when you want to see deployment status reported in your terminal or process.
+- `-w, --watch`: (Optional) This blocks the `deploy start` command execution from completing until the deployment has transitioned to its final state (FAILED, SUCCEEDED, CANCELLED). Use this flag when you want to see deployment status reported in your terminal or process.
    
    When you run the `deploy start` command with the `-w` flag, you should see output similar to this:
 
