@@ -14,7 +14,7 @@ description: >
 
 ## How CD-as-a-Service shapes traffic
 
-Let's say you define a CD-as-a-Service deployment that uses a VirtualService and DestinationRoute:
+In the following example, you define a CD-as-a-Service deployment that uses a VirtualService and DestinationRoute:
 
 {{< include "cdaas/deploy/istio-example.md" >}}
 
