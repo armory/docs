@@ -45,7 +45,7 @@ Now you can configure Pipelines as Code to pull Dinghy files from multiple branc
 
 ### Feature flag in Orca to use the new Igor stop endpoint 
 
-When defining a Jenkins job inside folders, the name contains slashes. Because of that, instead of matching the request to the IGOR STOP endpoint (/masters/{name}/jobs/{jobName}/stop/{queuedBuild}/{buildNumber}), Spring is matching the request to the BUILD one (/masters/{name}/jobs/**)
+When defining a Jenkins job inside folders, the name contains slashes. Because of that, instead of matching the request to the IGOR STOP endpoint (`/masters/{name}/jobs/{jobName}/stop/{queuedBuild}/{buildNumber}`), Spring is matching the request to the BUILD one (`/masters/{name}/jobs/**`)
 The stop request is failing because it is trying to start a job that does not exist.  A [feature flag](https://spinnaker.io/changelogs/1.29.0-changelog/#orca) was added to call the existing endpoint (which accepts the job name as path variable) or the new one (which accepts the job name as a query parameter).
 
 ## Fixes
