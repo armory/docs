@@ -26,7 +26,7 @@ They do not run on Windows.
 
 ## Install the CLI
 
-You can run the CLI in Docker. or you can install the CLI on your Mac or Linux workstation.
+You can run the CLI in Docker, or you can install the CLI on your Mac or Linux workstation.
 
 ### Docker image
 
