@@ -11,7 +11,7 @@
 <div class="tg-wrap"><table class="tg">
 <thead>
   <tr>
-    <th class="tg-73oq">CD-as-a-Service Deployment (deploy.yaml)<s/th>
+    <th class="tg-73oq">CD-as-a-Service Deployment (deploy.yaml)</th>
     <th class="tg-73oq">Istio Resources (istio-resources.yaml)</th>
   </tr>
 </thead>
