@@ -1,5 +1,5 @@
 ---
-title: Migrate Clouddriver Kubernetes Accounts to the Armory Agent
+title: Migrate Clouddriver Kubernetes Accounts to the Armory Scale Agent
 linkTitle: Migrate Dynamic Accounts
 description: >
   Learn how to dynamically migrate account definitions from Clouddriver to the Armory Scale Agent for Spinnaker and Kubernetes.
@@ -12,7 +12,7 @@ This feature is a limited availability release candidate and requires the use of
 
 ## What are Dynamic accounts?
 
-Dynamic accounts are accounts that you migrate from Clouddriver to the Armory Agent. You use the credential source and account storage endpoints, provided in the {{< linkWithTitle "dynamic-accounts.md" >}}, to migrate and manage the account lifecycle on the Agent in a dedicated table (`clouddriver.kubesvc_accounts`), without modifying or altering the information in `clouddriver.accounts`.
+Dynamic accounts are accounts that you migrate from Clouddriver to the Armory Scale Agent. You use the credential source and account storage endpoints, provided in the {{< linkWithTitle "dynamic-accounts.md" >}}, to migrate and manage the account lifecycle on the Agent in a dedicated table (`clouddriver.kubesvc_accounts`), without modifying or altering the information in `clouddriver.accounts`.
 
 The account lifecycle is represented by the following states:
 

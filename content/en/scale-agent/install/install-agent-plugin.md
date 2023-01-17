@@ -1,21 +1,43 @@
 ---
-title: "Install the Armory Agent Plugin Using kubectl"
-linkTitle: "Install Plugin - kubectl"
+title: "Install the Scale Agent Plugin"
+linkTitle: "Install Plugin"
 description: >
-  Install the Armory Agent Clouddriver plugin using kubectl in your Kubernetes and Spinnaker or Armory CD environments.
+  Install the Armory Scale Agent Clouddriver plugin in your Spinnaker or Armory CD environments.
 weight: 30
 ---
 
 ## {{% heading "prereq" %}}
 
-* Make sure you have read the Installation [overview]({{< ref "scale-agent" >}}).
+Make sure you have read the Installation [overview]({{< ref "scale-agent" >}}) and have met the prerequisites.
 
-## Create the plugin manifest
+### Install as an initContainer or from the plugins repository
+
+### Installation tools
+
+You can use an Operator or Halyard to install the plugin.
+
+1. [Armory Operator or Spinnaker Operator](#armory-operator-or-spinnaker-operator)
+1. [Spinnaker services local files](#spinnaker-services-local-files) (Halyard; Spinnaker only)
+1. [Halyard](#halyard) command line (Spinnaker only)
+
+## Armory Operator or Spinnaker Operator
+
+You can create a new Kustomize patch or you can directly modify your `SpinSvc` config file. 
+
+* The sample manifest is for the Armory Operator and Armory CD. If you are using the Spinnaker Operator and Spinnaker, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:
+
+  * Armory Operator: `apiVersion: spinnaker.armory.io/v1alpha2`
+  * Spinnaker Operator: `apiVersion: spinnaker.io/v1alpha2`
+
 
 Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to your new `armory-agent` directory.
 
 * Change the value for `name` if your Armory CD service is called something other than "spinnaker".
-* Update the `agent-kube-spinplug` value to the Armory Agent Plugin Version that is compatible with your Armory CD version. See the [compatibility matrix]({{< ref "scale-agent/install#compatibility-matrix" >}}).
+* Update the `agent-kube-spinplug` value to the Armory Agent Plugin Version that is compatible with your Armory CD version. 
+
+
+{{< include "agent/agent-compat-matrix.md" >}}
+
 
 {{< tabs name="DeploymentPlugin" >}}
 {{% tabbody name="Quickstart with remote plugin repo" %}}
@@ -38,7 +60,7 @@ spec:
             plugins:
               Armory.Kubesvc:
                 enabled: true
-                version: {{<param kubesvc-plugin.agent_plug_latest>}} # check compatibility matrix for your Armory CD version
+                version: {{< param kubesvc-plugin.agent_plug_latest >}} # check compatibility matrix for your Armory CD version
                 extensions:
                   armory.kubesvc:
                     enabled: true
@@ -159,6 +181,10 @@ Armory CD cluster and one in your target cluster.
 
 ## {{% heading "nextSteps" %}}
 
-Install the Armory Agent service [using a Helm chart]({{< ref "install-agent-service-helm" >}}) or [using `kubectl`]({{< ref "install-agent-service-kubectl" >}}).
-</br>
-</br>
+* {{< linkWithTitle "scale-agent/reference/config/agent-plugin-options.md" >}}
+* {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}}
+* Install the Armory Scale Agent service using one of the following guides:
+
+   - {{< linkWithTitle "scale-agent/install/install-agent-service-helm/index.md" >}}
+   - {{< linkWithTitle "scale-agent/install/install-agent-service-kubectl.md" >}}
+

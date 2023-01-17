@@ -1,5 +1,5 @@
 ---
-title: "Install the Armory Agent Service Using Kubectl"
+title: "Install the Armory Scale Agent Service Using Kubectl"
 linkTitle: "Install Service - Kubectl"
 description: >
   Use 'kubectl' to install the Armory Scale Agent for Spinnaker and Kubernetes service in your Kubernetes and Spinnaker or Armory CD environments.
@@ -13,11 +13,11 @@ Make sure you have [installed the Clouddriver plugin]({{< ref "install-agent-plu
 
 ## Create a namespace
 
-In the deployment target cluster, execute `kubectl create ns spin-agent` to create a namespace for the Armory Agent service.
+In the deployment target cluster, execute `kubectl create ns spin-agent` to create a namespace for the Armory Scale Agent service.
 
 ## Configure permissions
 
-Create a `ClusterRole`, `ServiceAccount`, and `ClusterRoleBinding` for the Armory Agent by applying the following manifest in your `spin-agent` namespace:
+Create a `ClusterRole`, `ServiceAccount`, and `ClusterRoleBinding` for the Armory Scale Agent by applying the following manifest in your `spin-agent` namespace:
 
 <details><summary>Show me the manifest</summary>
 
@@ -154,9 +154,9 @@ roleRef:
 
 </details>
 
-## Configure the Armory Agent service
+## Configure the service
 
-Configure the Armory Agent service using a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/). Define `armory-agent.yml` in the `data` section:
+Configure the Armory Scale Agent service using a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/). Define `armory-agent.yml` in the `data` section:
 
 
 ```yaml
@@ -231,7 +231,7 @@ See the [Agent options]({{< ref "agent-options#configuration-options">}}) for fi
 
 Apply the manifest to your `spin-agent` namespace.
 
-## Deploy the Armory Agent service
+## Deploy the Armory Scale Agent service
 
 Apply the following Agent deployment manifest in your `spin-agent` namespace:
 
@@ -308,7 +308,7 @@ Create a pipeline with a `Deploy manifest` stage. You should see your target clu
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}} page if you run into issues.
-* Learn how to {{< linkWithTitle "scale-agent/tasks/agent-monitoring.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
+* Learn how to {{< linkWithTitle "scale-agent/tasks/agent-monitoring.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Scale Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
 * {{< linkWithTitle "scale-agent/tasks/agent-mtls.md" >}}
 * Read about {{< linkWithTitle "scale-agent/concepts/agent-permissions.md" >}}
 </br>
