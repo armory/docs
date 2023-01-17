@@ -8,39 +8,35 @@ weight: 30
 
 ## {{% heading "prereq" %}}
 
-Make sure you have read the Installation [overview]({{< ref "scale-agent" >}}) and have met the prerequisites.
+* Make sure you have read the Installation [overview]({{< ref "scale-agent" >}}) and have met the prerequisites.
+* You are familiar with how plugins work in Spinnaker. See open source Spinnaker's [Plugin User Guide](https://spinnaker.io/docs/guides/user/plugins-users/).
 
-### Install as an initContainer or from the plugins repository
 
-### Installation tools
+You can install the plugin from a plugins repository or from Docker. If you want to cache the plugin and run security scans on it before installation, choose the Docker option.
 
-You can use an Operator or Halyard to install the plugin.
+The tool you use to install the plugin depends on the tool you use to manage your Armory CD or Spinnaker installation.
 
 1. [Armory Operator or Spinnaker Operator](#armory-operator-or-spinnaker-operator)
-1. [Spinnaker services local files](#spinnaker-services-local-files) (Halyard; Spinnaker only)
-1. [Halyard](#halyard) command line (Spinnaker only)
+1. [Halyard](#halyard) - put the plugin repo configuration into a local Clouddriver service file.
+
+Be sure to choose the Scale Agent version that is compatible with your Armory CD or Spinnaker version.
+
+{{< include "agent/agent-compat-matrix.md" >}}
 
 ## Armory Operator or Spinnaker Operator
 
-You can create a new Kustomize patch or you can directly modify your `SpinSvc` config file. 
+You can install the Scale Agent plugin using the Armory Operator or the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/plugins/armory-agent). Alternately, you can directly modify your `spinnakerservice.yml` config file.
 
 * The sample manifest is for the Armory Operator and Armory CD. If you are using the Spinnaker Operator and Spinnaker, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:
 
   * Armory Operator: `apiVersion: spinnaker.armory.io/v1alpha2`
   * Spinnaker Operator: `apiVersion: spinnaker.io/v1alpha2`
 
-
-Create a new `armory-agent` directory in your Kustomize patches directory. Add the following `agent-config.yaml` manifest to your new `armory-agent` directory.
-
 * Change the value for `name` if your Armory CD service is called something other than "spinnaker".
-* Update the `agent-kube-spinplug` value to the Armory Agent Plugin Version that is compatible with your Armory CD version. 
-
-
-{{< include "agent/agent-compat-matrix.md" >}}
-
+* Update the `agent-kube-spinplug` value to the Scale Agent Plugin Version that is compatible with your Armory CD version.
 
 {{< tabs name="DeploymentPlugin" >}}
-{{% tabbody name="Quickstart with remote plugin repo" %}}
+{{% tabbody name="Plugin Repo" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
@@ -76,7 +72,7 @@ spec:
 ```
 
 {{% /tabbody %}}
-{{% tabbody name="Cacheable using a init container" %}}
+{{% tabbody name="Docker" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
@@ -129,7 +125,6 @@ spec:
 {{% /tabbody %}}
 {{< /tabs >}}
 
-
 Then include the file under the `patchesStrategicMerge` section of your `kustomization` file.
 
 {{< prism lang="yaml" line="4" >}}
@@ -139,52 +134,75 @@ patchesStrategicMerge:
   - armory-agent/agent-config.yaml
 {{< /prism >}}
 
+
+Apply your manifest.
+
+## Halyard
+
+{{% alert title="Warning" color="warning" %}}
+The Scale Agent plugin extends Clouddriver. When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to each service. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. To avoid each service restarting and downloading the plugin, configure the plugin in Clouddriver’s local profile.
+{{% /alert %}}
+
+If you don't have a Clouddriver local profile, create one in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
+
+Add the following to `clouddriver.yml`:
+
+```yaml
+spinnaker:
+  extensibility:
+    repositories:
+      armory-agent-k8s-spinplug-releases:
+        enabled: true
+        url: https://raw.githubusercontent.com/armory-io/agent-k8s-spinplug-releases/master/repositories.json
+    plugins:
+      Armory.Kubesvc:
+        enabled: true
+        version: {{< param kubesvc-plugin.agent_plug_latest >}} # check compatibility matrix for your Armory CD version
+        extensions:
+          armory.kubesvc:
+            enabled: true
+# Plugin config
+kubesvc:
+  cluster: kubernetes
+  cluster-kubernetes:
+    kubeconfigFile: <path-to-file> # (Optional, default: null). If configured, the plugin uses this file to discover Endpoints. If not configured, it uses the service account mounted to the pod.
+    verifySsl: <true|false> # Optional, default: true). Whether to verify the Kubernetes API cert or not.
+    namespace: <string> # (Optional, default: null). If configured, the plugin watches Endpoints in this namespace. If null, it watches endpoints in the namespace indicated in the file "/var/run/secrets/kubernetes.io/serviceaccount/namespace".
+    httpPortName: <string> # (Optional, default: http). Name of the port configured in the Clouddriver Service that forwards traffic to the Clouddriver HTTP port for REST requests.
+    clouddriverServiceNamePrefix: <string> # (Optional, default: spin-clouddriver). Name prefix of the Kubernetes Service pointing to the Clouddriver standard HTTP port.
+```
+
+Save your file and apply your changes by running `hal deploy apply`.
+
+
 ## Expose Clouddriver as a LoadBalancer
 
-To expose Clouddriver as a Kubernetes-type LoadBalancer, add the following manifest to your Kustomize directory. Then include the file in the `resources` section of your `kustomization` file.
+To expose Clouddriver as a Kubernetes-type LoadBalancer, apply the following manifest: 
+
+{{< github repo="armory/spinnaker-kustomize-patches" file="/plugins/armory-agent/service.yaml" lang="yaml" options="" >}}
 
 >Various cloud providers may require additional annotations for LoadBalancer. Consult your cloud provider's documentation.
 
-{{< prism lang="yaml" >}}
-# This LoadBalancer service exposes the gRPC port on Clouddriver for the remote Agents to connect to
-# Look for the LoadBalancer service IP address that is exposed on 9091
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-  name: spin-clouddriver-grpc
-spec:
-  ports:
-    - name: grpc
-      port: 9091
-      protocol: TCP
-      targetPort: 9091
-  selector:
-    app: spin
-    cluster: spin-clouddriver
-  type: LoadBalancer
-{{< /prism >}}
-
-## Apply the manifests
-
-After you have configured both manifests, apply the updates.
+If you are using the `spinnaker-kustomize-patches` repo, the manifest file is already included in the `resources` section of the `/plugins/armory-agent/kustomization.yaml` file. Alternately, you can apply the manifest using `kubectl`.
 
 ## Get the LoadBalancer IP address
 
-Use `kubectl get svc spin-clouddriver-grpc -n spinnaker` to make note of the LoadBalancer IP external address. You need this address when you configure the Armory Agent.
+Use `kubectl get svc spin-clouddriver-grpc -n spinnaker` to make note of the LoadBalancer IP external address. You need this address when you configure the Scale Agent.
 
 ## Confirm Clouddriver is listening
 
 Use `netcat` to confirm Clouddriver is listening on port 9091 by executing `nc -zv [LB address] 9091`. Perform this check from a node in your
-Armory CD cluster and one in your target cluster.
+Armory CD or Spinnaker cluster and one in your target cluster.
 
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "scale-agent/reference/config/agent-plugin-options.md" >}}
-* {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}}
 * Install the Armory Scale Agent service using one of the following guides:
 
    - {{< linkWithTitle "scale-agent/install/install-agent-service-helm/index.md" >}}
    - {{< linkWithTitle "scale-agent/install/install-agent-service-kubectl.md" >}}
+
+
+* {{< linkWithTitle "scale-agent/reference/config/agent-plugin-options.md" >}}
+* {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}}
 
