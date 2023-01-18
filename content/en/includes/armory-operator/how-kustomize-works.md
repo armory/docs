@@ -1,4 +1,4 @@
-Kustomize uses patch files to build a deployment file by overwriting sections of the `spinnakerservice.yml` manifest file. You declare your patch files in a `kustomization.yml` file, which `kubectl` and Kustomize and use to build the Armory Enterprise or Spinnaker manifest file.
+Kustomize uses patch files to build a deployment file by overwriting sections of the `spinnakerservice.yml` manifest file. You declare your patch files in a `kustomization.yml` file, which `kubectl` and Kustomize and use to build the Armory Continuous Deployment or Spinnaker manifest file.
 
 You can put each manifest config section in its own file. For example, if you create a `profiles-patch.yml` patch with configuration for various services, you are telling Kustomize to overwrite the `profiles` section of the `spinnakerservice.yml` manifest with the contents of `profiles-patch.yml`.  Kustomize is flexible, though, so you could instead create a separate patch file for each service (`profiles-clouddriver-patch.yml`, `profiles-gate-patch.yml`, `profiles-deck-patch.yml`, etc.), and then declare those patches in the `kustomization.yml` file.
 

@@ -3,7 +3,7 @@ title: IAM Authentication Plugin
 toc_hide: true
 exclude_search: true
 description: >
-  The IAM Authentication Plugin enables Armory Enterprise to use AWS IAM credentials to authenticate to an Aurora Database.
+  The IAM Authentication Plugin enables Armory Continuous Deployment to use AWS IAM credentials to authenticate to an Aurora Database.
 ---
 ![Proprietary](/images/proprietary.svg)
 
@@ -359,4 +359,5 @@ Make sure you have set the `maxAllowedPacket` param in your MySQL Aurora instanc
 ## Release Notes
 
 - v1.0.0 Initial plugin release May 31, 2022. Availability to configure AWS IAM Auth for `clouddriver`, `orca`, and `front50` Armory Spinnaker services.
+- v1.1.0 Update release Nov. 14, 2022. Address DSA-5169-1 openssl -- security update (CVE `CVE-2022-2068` - OpenSSL: c_rehash script vulnerability).
 

@@ -157,4 +157,3 @@ git submodule update --init --recursive
 ## Monitoring
 
 The Armory documentation uses New Relic to monitor the website status and other metrics.
-

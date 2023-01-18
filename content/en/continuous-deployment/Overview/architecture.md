@@ -7,17 +7,17 @@ aliases:
   - /spinnaker-install-admin-guides/architecture/
 ---
 
-## Armory Enterprise architecture
+## Armory Continuous Deployment architecture
 
-Armory Enterprise is an enterprise version of open source [Spinnaker](https://spinnaker.io/). It is composed of several microservices for resiliency and follows the single-responsibility principle. It allows for faster iteration on each individual component and a more pluggable architecture for custom components. See the open source Spinnaker [microservices overview](https://spinnaker.io/docs/reference/architecture/microservices-overview/#system-dependencies) for port mappings and a table of service interdependencies. 
+Armory Continuous Deployment is an enterprise version of open source [Spinnaker](https://spinnaker.io/). It is composed of several microservices for resiliency and follows the single-responsibility principle. It allows for faster iteration on each individual component and a more pluggable architecture for custom components. See the open source Spinnaker [microservices overview](https://spinnaker.io/docs/reference/architecture/microservices-overview/#system-dependencies) for port mappings and a table of service interdependencies. 
 
 ![Architecture Diagram](/images/overview/SpinnakerArchitecture.png)
 
-## Armory Enterprise microservices
+## Armory Continuous Deployment microservices
 
 ### Clouddriver
 
-Clouddriver is a core component of Armory Enterprise and facilitates the interaction between a given cloud provider such as AWS, GCP or Kubernetes. There is a common interface that is used so that additional cloud providers can be added.
+Clouddriver is a core component of Armory Continuous Deployment and facilitates the interaction between a given cloud provider such as AWS, GCP or Kubernetes. There is a common interface that is used so that additional cloud providers can be added.
 
 ### Deck
 
@@ -29,7 +29,7 @@ Echo is the service for Spinnaker which manages notifications, alerts and schedu
 
 ### Fiat
 
-Fiat is the microservice responsible for authorization (authz) for the other microservices. By default, it is not enabled, so users are able to perform any action in Armory Enterprise.
+Fiat is the microservice responsible for authorization (authz) for the other microservices. By default, it is not enabled, so users are able to perform any action in Armory Continuous Deployment.
 
 ### Front50
 
@@ -49,7 +49,7 @@ Kayenta is Spinnaker's canary analysis service, integrating with 3rd party monit
 
 ### Orca
 
-Orca is responsible for the orchestration of pipelines, stages, and tasks within Armory Enterprise. Orca acts as the "traffic cop" within Armory Enterprise making sure that sub-services, their executions and states are passed along correctly.
+Orca is responsible for the orchestration of pipelines, stages, and tasks within Armory Continuous Deployment. Orca acts as the "traffic cop" within Armory Continuous Deployment making sure that sub-services, their executions and states are passed along correctly.
 
 The smallest atomic unit within Orca is a task - stages are composed of tasks and pipelines are composed of stages.  
 
@@ -57,7 +57,7 @@ The smallest atomic unit within Orca is a task - stages are composed of tasks an
 
 Rosco is the "bakery" service. It is a wrapper around Hashicorp's Packer command line tool which bakes images for AWS, GCP, Docker, Azure, and [other builders](https://www.packer.io/docs/builders).
 
-## Armory Enterprise proprietary microservices
+## Armory Continuous Deployment proprietary microservices
 ![Proprietary](/images/proprietary.svg)
 
 ### Armory Scale Agent for Spinnaker and Kubernetes
@@ -73,7 +73,7 @@ The {{< linkWithTitle "scale-agent/_index.md" >}} is a lightweight, scalable ser
 
 ### Policy Engine
 
-The [Armory Policy Engine]({{< ref "policy-engine-enable" >}}) is designed to allow enterprises more complete control of their software delivery process by providing them with the hooks necessary to perform more extensive verification of their pipelines and processes in Spinnaker. This policy engine is backed by Open Policy Agent(OPA) and uses input style documents to perform validation of pipelines during save time and runtime
+The [Armory Policy Engine]({{< ref "policy-engine" >}}) is designed to allow enterprises more complete control of their software delivery process by providing them with the hooks necessary to perform more extensive verification of their pipelines and processes in Spinnaker. This policy engine is backed by Open Policy Agent(OPA) and uses input style documents to perform validation of pipelines during save time and runtime
 
 ### Terraformer
 
@@ -84,4 +84,4 @@ The [Armory Policy Engine]({{< ref "policy-engine-enable" >}}) is designed to al
 
 ### Armory Operator
 
-The [Armory Operator]({{< ref "armory-operator" >}}) is a Kubernetes Operator that makes it easy to install, deploy, and upgrade Armory Enterprise.
+The [Armory Operator]({{< ref "armory-operator" >}}) is a Kubernetes Operator that makes it easy to install, deploy, and upgrade Armory Continuous Deployment.

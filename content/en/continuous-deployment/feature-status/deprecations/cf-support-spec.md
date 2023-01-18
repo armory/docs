@@ -1,6 +1,6 @@
 ---
 title: Clound Foundry Support 
-description: Armory supports Cloud Foundry on a customer-by-customer basis. Additionally, Armory's support for the Cloud Foundry provider in Armory Enterprise is limited to what is explicitly defined on this page. 
+description: Armory supports Cloud Foundry on a customer-by-customer basis. Additionally, Armory's support for the Cloud Foundry provider in Armory Continuous Deployment is limited to what is explicitly defined on this page. 
 toc_hide: true
 exclude_search: true
 aliases:
@@ -9,11 +9,11 @@ aliases:
 
 ## Supported Cloud Foundry Versions
 
-The Cloud Foundry (CF) provider in Armory Enterprise is based on versions 3.38.0 and 2.103.0 of Cloud Foundry. Features available in subsequent versions of Cloud Foundry are not guaranteed to be compatible with or available in Armory Enterprise.
+The Cloud Foundry (CF) provider in Armory Continuous Deployment is based on versions 3.38.0 and 2.103.0 of Cloud Foundry. Features available in subsequent versions of Cloud Foundry are not guaranteed to be compatible with or available in Armory Continuous Deployment.
 
 ## Supported  Resources
 
-This section outlines the types of Cloud Foundry resources that Armory Enterprise supports.
+This section outlines the types of Cloud Foundry resources that Armory Continuous Deployment supports.
 
 * **Applications**
   - Application deployment attributes (manifest)
@@ -46,7 +46,7 @@ This section outlines the types of Cloud Foundry resources that Armory Enterpris
 
 ## Supported Operations
 
-Armory Enterprise supports the following Cloud Foundry related stages in application pipelines:
+Armory Continuous Deployment supports the following Cloud Foundry related stages in application pipelines:
 
 **Stages**
   - Deploy CF ServerGroup
@@ -67,7 +67,7 @@ There may be more Cloud Foundry related stages available than these, but Armory 
 
 ## Supported Rollout Strategies
 
-Armory Enterprise supports the following rollout strategies for Cloud Foundry applications:
+Armory Continuous Deployment supports the following rollout strategies for Cloud Foundry applications:
 
 - No strategy
 - Highlander

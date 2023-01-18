@@ -1,2 +1,2 @@
-* Armory Operator and Armory Enterprise: contact [Armory Support](https://support.armory.io/) or use the [Spinnaker Slack](https://join.spinnaker.io/) `#armory` channel.
+* Armory Operator and Armory Continuous Deployment: contact [Armory Support](https://support.armory.io/) or use the [Spinnaker Slack](https://join.spinnaker.io/) `#armory` channel.
 * Spinnaker Operator and Spinnaker: [Spinnaker Slack](https://join.spinnaker.io/) `#kubernetes-operator` channel.

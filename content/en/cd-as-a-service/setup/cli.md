@@ -1,6 +1,6 @@
 ---
 title: Get Started with the CLI to Deploy Apps
-linktitle: CLI
+linkTitle: CLI
 description: >
   Use the CLI to interact with Armory CD-as-a-Service. You can integrate Armory CD-as-a-Service into your existing CI/CD tooling. Start by familiarizing yourself with the CLI and its workflow.
 
@@ -17,7 +17,16 @@ The Armory Version Manager and CLI are only supported on Linux and Mac OSX.<br>
 They do not run on Windows.
 {{% /alert %}}
 
-## Install the Armory CD-as-a-Service CLI
+## Deployment steps
+
+1. [Install the CLI](#install-the-cli)
+1. [Create a deployment config file](#create-a-deployment-config-file)
+1. [Deploy your app](#deploy-your-app)
+1. [Monitor your deployment](#monitor-your-deployment)
+
+## Install the CLI
+
+You can run the CLI in Docker, or you can install the CLI on your Mac or Linux workstation.
 
 ### Docker image
 
@@ -146,8 +155,11 @@ For the AVM or the CLI, you can use the `-h` flag for more information about spe
 
 See the {{< linkWithTitle "avm-cheat.md" >}} and {{< linkWithTitle "cli-cheat.md" >}} pages for more information on AVM and CLI commands.
 
+## Create a deployment config file
 
-## Manually deploy apps using the CLI
+{{< include "cdaas/create-config.md" >}}
+
+## Deploy your app
 
 >Armory CD-as-a-Service manages your Kubernetes deployments using ReplicaSet resources. During the initial deployment of your application using Armory CD-as-a-Service, the underlying Kubernetes deployment object is deleted in a way that it leaves behind the ReplicaSet and pods so that there is no actual downtime for your application. These are later deleted when the deployment succeeds.
 
@@ -168,82 +180,48 @@ Since you are using the CLI, you do not need to have service account credentials
    After you successfully authenticate, the CLI returns a list of tenants if you have access to more than one. Select the tenant you want to access. Note that most users only have access to one tenant. If you have access to several tenants, you can can [log in directly to your desired tenant]({{< ref "cd-as-a-service/reference/cli/cli-cheat#log-into-armory-cd-as-a-service" >}}) with `armory login -e '<tenant>'`.
 
 
-1. Generate your deployment template and output it to a file.
-
-   For example, this command generates a deployment template for canary deployments and saves it to a file named `canary.yaml`:
-
-   ```bash
-   armory template kubernetes canary > canary.yaml
-   ```
-
-1. Customize your deployment file by setting the following minimum set of parameters:
-
-   - `application`: The name of your app.
-   - `targets.<deploymentName>`: A descriptive name for your deployment. Armory recommends using the environment name.
-   - `targets.<deploymentName>.account`: This is the name of your RNA. If you installed the RNA manually, it is the value that you assigned to the `agentIdentifier` parameter.
-   - `targets.<deploymentName>.strategy`: the name of the deployment strategy you want to use. You define the strategy in `strategies.<strategy-name>`.
-   - `manifests`: a map of manifest locations. This can be a directory of `yaml (yml)` files or a specific manifest. Each entry must use the following convention:  `- path: /path/to/directory-or-file`
-   - `strategies.<strategy-name>`: the list of your deployment strategies. Use one of these for `targets.<target-cluster>.strategy`. If you are using a canary strategy, each strategy in this section consists of a map of steps for your deployment strategy in the following format:
-
-     ```yaml
-     strategies:
-       my-demo-strat: # Name that you use for `targets.<deploymentName>.strategy
-       - canary # The type of deployment strategy to use.
-          steps:
-            - setWeight:
-                weight: <integer> # What percentage of the cluster to roll out the manifest to before pausing.
-            - pause:
-                duration: <integer> # How long to pause before deploying the manifest to the next threshold.
-                unit: <seconds|minutes|hours> # The unit of time for the duration.
-            - setWeight:
-                weight: <integer> # The next percentage threshold the manifest should get deployed to before pausing.
-            - pause:
-                untilApproved: true # Wait until a user provides a manual approval before deploying the manifest
-     ```
-
-   Each step can have the same or different pause behaviors. Additionally, you can configure as many steps  as you want for the deployment strategy, but you do not need to create a step with a weight set to 100. Once Armory CD-as-a-Service completes the last step you configure, the manifest gets deployed to the whole cluster automatically.
-
-   A deployment times out if the pods for your application fail to be in ready state in 30 minutes. You can optionally configure a [deployment timeout]({{< ref "cd-as-a-service/reference/deployfile/ref-deployment-file#deploymentconfig" >}}) by adding a `deploymentConfig` top-level section:
-
-   ```yaml
-   deploymentConfig:
-     timeout:
-       unit: <seconds|minutes|hours>
-       duration: <integer>
-   ```
-
-   Note that the minimum timeout you can specify is 60 seconds (1 minute).
-
-   <details><summary>Show me a completed deployment file</summary>
-
-   {{< codefile file="cdaas/deploy/deploy.yaml" >}}
-
-    </details><br>
-
-1. (Optional) Ensure there are no YAML issues with your deployment file.
-
-   Since a hidden tab in your YAML can cause your deployment to fail, it's a good idea to validate the structure and syntax in your deployment file. There are several online linters, IDE-based linters, and command line linters such as `yamllint` that you can use to validate your deployment file.
-
 1. Start the deployment.
 
    ```bash
    armory deploy start  -f canary.yaml
    ```
 
-   The command starts your deployment and progresses until the first weight and pause you set. It also returns a deployment ID that you can use to check the status of your deployment and a link to the Deployments UI page for your deployment.
+   The command starts your deployment and progresses until the first weight and pause you set. It also returns a Deployment ID that you can use to check the status of your deployment and a link to the Deployments UI page for your deployment.
 
    Note that you can deploy an app without manually logging into CD-as-a-Service. See the {{< linkWithTitle "cd-as-a-service/tasks/deploy/deploy-with-creds.md" >}} page for details.
 
+   If you want to monitor your deployment in your terminal, use the `--watch` flag to output deployment status.
 
-## Monitor your deployment
+   ```bash
+   armory deploy start  -f canary.yaml --watch
+   ```
+   
+   You can also monitor the progress of any deployment in the Deployments UI, which gives you a visual representation of a deployment's health and progress. If your deployment strategy includes a manual approval step, use the Deployments UI to approve the step and continue your deployment.
 
-You can monitor the progress of any deployment through the CLI itself or from the Deployments UI. The Deployments UI gives you a visual representation of a deployment's health and progress in addition to controls. If your deployment strategy includes a manual approval step, use the Deployments UI to approve the step and continue.
+   If you forget to add the `--watch` flag, you can run the `armory deploy status --deploymentID <deployment-id>` command. Use the Deployment ID returned by the `armory deploy start` command. For example:
 
-Run the following command to get a direct link to monitor your deployment using the Deployments UI:
+   ```bash
+   armory deploy start -f deploy-simple-app.yml
+   Deployment ID: 9bfb67e9-41c1-41e8-b01f-e7ad6ab9d90e
+   See the deployment status UI: https://console.cloud.armory.io/deployments/pipeline/9bfb67e9-41c1-41e8-b01f-e7ad6ab9d90e?environmentId=82431eae-1244-4855-81bd-9a4bc165f90b
+   ```
 
-```bash
-armory deploy status -i <deployment-ID>
-```
+   then run:
+
+   ```bash
+   armory deploy status --deploymentId 9bfb67e9-41c1-41e8-b01f-e7ad6ab9d90e
+   ```
+
+   Output is similar to:
+
+      ```bash
+   application: sample-application, started: 2023-01-06T20:07:36Z
+   status: RUNNING
+   See the deployment status UI: https://console.cloud.armory.io/deployments/pipeline/9bfb67e9-41c1-41e8-b01f-e7ad6ab9d90e? environmentId=82431eae-1244-4855-81bd-9a4bc165f90b
+   ```
+
+   This `armory deploy status` command returns a point-in-time status and exits. It does not watch the deployment.
+
 
 ### Initial deployment failure
 
@@ -271,32 +249,11 @@ Run the following command to upgrade your existing CLI:
 avm install
 ```
 
-## Troubleshooting
-
-### Developer cannot be verified error when trying to run AVM
-
-Depending on your operating system settings, you may need to allow apps from an unidentified developer in order to use AVM. For macOS, go to **System Preferences > Security & Privacy > General** and click **Allow Anyway**. For more information, see the macOS documentation about [how to open a Mac app from an unidentified developer](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
-
-### Bad CPU type
-
-`bad CPU type in executable`
-
-This issue occurs if the AVM version you downloaded does not match your CPU architecture. For example, if you try to run an `arm64` build on a system that is not ARM based. Verify that you downloaded the correct AVM version for your system.
-
-### Error writing credentials file
-
-`error: Error: there was an error writing the credentials file. `
-
-This issue occurs because the the directory where the CLI stores your credentials after you run `armory login` does not exist. You can create the directory by running the following command:
-
-```bash
-mkdir ~/.armory/credentials
-```
-
-Make sure you are running the lastest version of the CLI.
-
 ## {{% heading "nextSteps" %}}
 
+* {{< linkWithTitle "cd-as-a-service/troubleshooting/tools.md" >}}
+* {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}
+* {{< linkWithTitle "cd-as-a-service/reference/cli/cli-cheat.md" >}}
 * {{< linkWithTitle "gh-action.md" >}}
 * {{< linkWithTitle "add-context-variable.md" >}}
 * {{< linkWithTitle "deploy-sample-app.md" >}}

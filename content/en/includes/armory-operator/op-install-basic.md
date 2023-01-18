@@ -1,7 +1,7 @@
 <!-- this file does not contain H2 etc headings
 Hugo does not render headings in included files
 -->
-Operator in `basic` mode has permissions scoped to a single namespace, so the Operator can't see anything in other namespaces. You must deploy Armory Enterprise to the same namespace as the Operator.
+Operator in `basic` mode has permissions scoped to a single namespace, so the Operator can't see anything in other namespaces. You must deploy Armory Continuous Deployment to the same namespace as the Operator.
 
 You can find the Operator's deployment configuration in `spinnaker-operator/deploy/operator/basic` after you download and unpack the archive. You don't need to update any configuration values.
 

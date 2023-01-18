@@ -1,4 +1,4 @@
-Due to changes in the underlying services, older versions of some plugins may not work with Armory Enterprise 2.27.x or later.
+Due to changes in the underlying services, older versions of some plugins may not work with Armory Continuous Deployment 2.27.x or later.
 
 The following table lists the plugins and their required minimum version:
 
