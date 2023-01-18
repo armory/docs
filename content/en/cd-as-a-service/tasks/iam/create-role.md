@@ -83,27 +83,27 @@ roles:
 
 If your organization uses SSO with CD-as-a-Service, you must create your roles using the same names as your SSO groups. For example, your company has the following groups defined in its SSO provider:
 
-1. Engineering-Lead
-1. Engineering-Deployment
 1. Engineering-Infra
+1. Engineering-Release
+1. Engineering-InfoSec
 
-You want to use those groups in CD-as-a-Service, so you need to create roles for those SSO groups. In the following example, `Engineering-Lead` has a Tenant Admin role, `Engineering-Deployment` has a deployment role.
+You want to use those groups in CD-as-a-Service, so you need to create roles for those SSO groups. In the following example, `Engineering-Infra` has a Tenant Admin role. `Engineering-Release` and `Engineering-InfoSec` have tenant-scoped deployment roles.
 
 {{< prism lang="yaml" line-numbers="true" line="" >}}
 roles:
-  - name: Engineering-Lead
+  - name: Engineering-Infra
     tenant: main
     grants:
       - type: api
         resource: tenant
         permission: full
-  - name: Engineering-Deployment
+  - name: Engineering-InfoSec
     tenant: main
     grants:
       - type: api
         resource: deployment
         permission: full
-  - name: Engineering-Infra
+  - name: Engineering-Release
     tenant: main
     grants:
       - type: api
@@ -116,9 +116,11 @@ roles:
 * RBAC
    * {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}
    * {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}
+   * {{< linkWithTitle "cd-as-a-service/concepts/deployment/role-based-manual-approval.md" >}}
 
 * User Role Management
    * {{< linkWithTitle "cd-as-a-service/tasks/iam/manage-role-user.md" >}}
    * {{< linkWithTitle "cd-as-a-service/tutorials/access-management/rbac-users.md" >}}
 
-* {{< linkWithTitle "cd-as-a-service/troubleshoOting/rbac.md" >}}
+
+* {{< linkWithTitle "cd-as-a-service/troubleshooting/rbac.md" >}}
