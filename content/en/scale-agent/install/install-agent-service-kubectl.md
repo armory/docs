@@ -1,6 +1,6 @@
 ---
-title: "Install the Armory Scale Agent Service Using Kubectl"
-linkTitle: "Install Service - Kubectl"
+title: "Install the Armory Scale Agent Service Using kubectl"
+linkTitle: "Install Service - kubectl"
 description: >
   Use 'kubectl' to install the Armory Scale Agent for Spinnaker and Kubernetes service in your Kubernetes and Spinnaker or Armory CD environments.
 weight: 30

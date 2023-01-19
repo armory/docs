@@ -11,13 +11,12 @@ weight: 30
 * Make sure you have read the Installation [overview]({{< ref "scale-agent" >}}) and have met the prerequisites.
 * You are familiar with how plugins work in Spinnaker. See open source Spinnaker's [Plugin User Guide](https://spinnaker.io/docs/guides/user/plugins-users/).
 
-
 You can install the plugin from a plugins repository or from Docker. If you want to cache the plugin and run security scans on it before installation, choose the Docker option.
 
 The tool you use to install the plugin depends on the tool you use to manage your Armory CD or Spinnaker installation.
 
 1. [Armory Operator or Spinnaker Operator](#armory-operator-or-spinnaker-operator)
-1. [Halyard](#halyard) - put the plugin repo configuration into a local Clouddriver service file.
+1. [Halyard](#halyard) (Spinnaker only)
 
 Be sure to choose the Scale Agent version that is compatible with your Armory CD or Spinnaker version.
 
@@ -25,105 +24,37 @@ Be sure to choose the Scale Agent version that is compatible with your Armory CD
 
 ## Armory Operator or Spinnaker Operator
 
-You can install the Scale Agent plugin using the Armory Operator or the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/plugins/armory-agent). Alternately, you can directly modify your `spinnakerservice.yml` config file.
+You can install the Scale Agent plugin using the Armory Operator or the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the `spinnaker-kustomize-patches` [repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/plugins/armory-agent). 
 
-* The sample manifest is for the Armory Operator and Armory CD. If you are using the Spinnaker Operator and Spinnaker, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:
+* The sample manifest is for the Armory Operator using Kustomize. If you are using the Spinnaker Operator, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:
 
   * Armory Operator: `apiVersion: spinnaker.armory.io/v1alpha2`
   * Spinnaker Operator: `apiVersion: spinnaker.io/v1alpha2`
 
-* Change the value for `name` if your Armory CD service is called something other than "spinnaker".
-* Update the `agent-kube-spinplug` value to the Scale Agent Plugin Version that is compatible with your Armory CD version.
+* Change the value for `metadata.name` if your Armory CD service is called something other than "spinnaker".
 
 {{< tabs name="DeploymentPlugin" >}}
 {{% tabbody name="Plugin Repo" %}}
 
-```yaml
-apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      clouddriver:
-        spinnaker:
-          extensibility:
-            repositories:
-              armory-agent-k8s-spinplug-releases:
-                enabled: true
-                url: https://raw.githubusercontent.com/armory-io/agent-k8s-spinplug-releases/master/repositories.json
-            plugins:
-              Armory.Kubesvc:
-                enabled: true
-                version: {{< param kubesvc-plugin.agent_plug_latest >}} # check compatibility matrix for your Armory CD version
-                extensions:
-                  armory.kubesvc:
-                    enabled: true
-        # Plugin config
-        kubesvc:
-          cluster: kubernetes
-          cluster-kubernetes:
-            kubeconfigFile: <path-to-file> # (Optional, default: null). If configured, the plugin uses this file to discover Endpoints. If not configured, it uses the service account mounted to the pod.
-            verifySsl: <true|false> # Optional, default: true). Whether to verify the Kubernetes API cert or not.
-            namespace: <string> # (Optional, default: null). If configured, the plugin watches Endpoints in this namespace. If null, it watches endpoints in the namespace indicated in the file "/var/run/secrets/kubernetes.io/serviceaccount/namespace".
-            httpPortName: <string> # (Optional, default: http). Name of the port configured in the Clouddriver Service that forwards traffic to the Clouddriver HTTP port for REST requests.
-            clouddriverServiceNamePrefix: <string> # (Optional, default: spin-clouddriver). Name prefix of the Kubernetes Service pointing to the Clouddriver standard HTTP port.
-```
+Update `plugins.Armory.Kubesvc.version` to a version that is compatible with your Armory CD installation.
+
+{{< github repo="armory/spinnaker-kustomize-patches" file="plugins/armory-agent/patch-clouddriver-repo.yaml" lang="yaml" options="" >}}
+
+Then include the file under the `patchesStrategicMerge` section of your `kustomization` file.
+
+{{< prism lang="yaml" line="4" >}}
+bases:
+  - plugins/armory-agent
+patchesStrategicMerge:
+  - armory-agent//patch-clouddriver-repo.yaml
+{{< /prism >}}
 
 {{% /tabbody %}}
 {{% tabbody name="Docker" %}}
 
-```yaml
-apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version">}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      clouddriver:
-        spinnaker:
-          extensibility:
-            pluginsRootPath: /opt/clouddriver/lib/plugins
-            plugins:
-              Armory.Kubesvc:
-                enabled: true
-        # Plugin config
-        kubesvc:
-          cluster: kubernetes
-          cluster-kubernetes:
-            kubeconfigFile: <path-to-file> # (Optional, default: null). If configured, the plugin uses this file to discover Endpoints. If not configured, it uses the service account mounted to the pod.
-            verifySsl: <true|false> # Optional, default: true). Whether to verify the Kubernetes API cert or not.
-            namespace: <string> # (Optional, default: null). If configured, the plugin watches Endpoints in this namespace. If null, it watches endpoints in the namespace indicated in the file "/var/run/secrets/kubernetes.io/serviceaccount/namespace".
-            httpPortName: <string> # (Optional, default: http). Name of the port configured in the Clouddriver Service that forwards traffic to the Clouddriver HTTP port for REST requests.
-            clouddriverServiceNamePrefix: <string> # (Optional, default: spin-clouddriver). Name prefix of the Kubernetes Service pointing to the Clouddriver standard HTTP port.
-  kustomize:
-    clouddriver:
-      deployment:
-        patchesStrategicMerge:
-          - |
-            spec:
-              template:
-                spec:
-                  initContainers:
-                  - name: armory-agent-plugin
-                    image: docker.io/armory/kubesvc-plugin:{{<param kubesvc-plugin.agent_plug_latest>}} # must be compatible with your Armory CD version
-                    volumeMounts:
-                      - mountPath: /opt/plugin/target
-                        name: armory-agent-plugin-vol
-                  containers:
-                  - name: clouddriver
-                    volumeMounts:
-                      - mountPath: /opt/clouddriver/lib/plugins
-                        name: armory-agent-plugin-vol
-                  volumes:
-                  - name: armory-agent-plugin-vol
-                    emptyDir: {}
-```
+Update `plugins.Armory.Kubesvc.version` to a version that is compatible with your Armory CD installation.
 
-{{% /tabbody %}}
-{{< /tabs >}}
+{{< github repo="armory/spinnaker-kustomize-patches" file="plugins/armory-agent/patch-clouddriver-docker.yaml" lang="yaml" options="" >}}
 
 Then include the file under the `patchesStrategicMerge` section of your `kustomization` file.
 
@@ -131,8 +62,12 @@ Then include the file under the `patchesStrategicMerge` section of your `kustomi
 bases:
   - agent-service
 patchesStrategicMerge:
-  - armory-agent/agent-config.yaml
+  - armory-agent//patch-clouddriver-docker.yaml
 {{< /prism >}}
+
+{{% /tabbody %}}
+{{< /tabs >}}
+
 
 
 Apply your manifest.

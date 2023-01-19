@@ -30,7 +30,7 @@ no_list: true
          - watch
     ```
 
-* Verify that there is a Kubernetes Service with prefix name `spin-clouddriver` (configurable) routing HTTP traffic to Clouddriver pods, having a port with name `http` (configurable). This Service is created automatically when installing Armory CD using the Armory Operator.
+* Verify that there is a Kubernetes Service with prefix name `spin-clouddriver` (configurable) routing HTTP traffic to Clouddriver pods, having a port with name `http` (configurable). This service is created automatically when installing Armory CD using the Armory Operator.
 
 * You have an additional Kubernetes cluster to serve as your deployment target cluster.
 
@@ -44,20 +44,21 @@ Consult the {{< linkWithTitle "agent-k8s-clustering.md" >}} page for details on 
 
 {{< include "agent/agent-compat-matrix.md" >}}
 
-## Installation steps
+## Installation methods
 
-In this guide, you deploy the Scale Agent service to your target cluster.
+There are a variety of ways to install the Scale Agent components in your Armory CD environment. Choose the method that best suits your process.
 
-Installation steps:
+1. Use the Armory Operator with Kustomize to install the plugin. Create manifests to install the service and apply with `kubectl`.
+1. Use the Armory Operator with Kustomize to install the plugin. Use the Helm chart to install the service.
+1. Use the Armory Operator with Kustomize to install both the plugin and the service.
 
-1. Install the Clouddriver plugin. You do this in the cluster where you are running Armory CD or Spinnaker.
+If you are using open source Spinnaker, you have the following options:
 
-   1. Create the plugin manifest.
-   1. Create a LoadBalancer service to expose the plugin on gRPC port `9091`.
-   1. Apply the manifests.
+1. Use Halyard (clouddriver-local.yaml) to install the plugin. Create manifests to install the service and apply with `kubectl`.
+1. Use Halyard (clouddriver-local.yaml) to install the plugin. Use the Helm chart to install the service.
+1. Use the Spinnaker Operator and one of the Armory Operator methods, with slight modifications.
 
-1. Install the Armory Scale Agent service using a Helm chart or using `kubectl`.
-
+Regardless of method, you should install the plugin before installing the service.
 
 ## {{% heading "nextSteps" %}}
 
