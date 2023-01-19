@@ -452,7 +452,7 @@ The following table lists the requirements:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})![Proprietary](/images/proprietary.svg)
 
-{{< include "agent/agent-compat-matrix.md" >}}
+{{< include "scale-agent/agent-compat-matrix.md" >}}
 
 For a full list of previous releases, see this [page](https://armory.jfrog.io/artifactory/manifests/).
 

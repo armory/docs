@@ -3,48 +3,27 @@ title: Migrate Clouddriver Kubernetes Accounts to the Armory Scale Agent
 linkTitle: Migrate Accounts
 description: >
   Learn how to dynamically migrate accounts from Clouddriver to the Armory Scale Agent for Spinnaker and Kubernetes.
+aliases:
+  - /scale-agent/tasks/dynamic-account-options/
 ---
-
-{{% alert title="Attention" color="warning" %}}
-This feature is a limited availability release candidate and requires the use of custom builds for the Scale Agent service and plugin. Contact your Account Manager if you are interested in using this feature.
-<b>Do not use release candidate features in production environments.</b>
-{{% /alert %}}
-
 
 ## {{% heading "prereq" %}}
 
 * Familiarize yourself with {{< linkWithTitle "scale-agent/concepts/dynamic-accounts.md" >}}.
-* Enable the Dynamic Accounts API:
-
-   * In your Clouddriver config, set `kubesvc.dynamic-accounts.enabled: true`.
-   * In your Scale Agent config, set `dynamicAccountsEnabled: true`.
-
-* Make sure you expose your Clouddriver service. The Dynamic Accounts API endpoints are not directly accessible, so you call the endpoints using the Clouddriver API. 
+* [Enable the Dynamic Accounts API]({{< ref "scale-agent/tasks/dynamic-accounts/enable" >}})
 
 
-Dynamic accounts are accounts that you migrate from Clouddriver to the Armory Agent. You use the credential source and account storage endpoints, provided in the {{< linkWithTitle "dynamic-accounts.md" >}}, to migrate and manage the account lifecycle on the Agent in a dedicated table (`clouddriver.kubesvc_accounts`), without modifying or altering the information in `clouddriver.accounts`.
+Dynamic accounts are accounts that you migrate from Clouddriver to the Armory Agent. You use the credential source and account storage endpoints, provided in the  to migrate and manage the account lifecycle on the Agent in a dedicated table (`clouddriver.kubesvc_accounts`), without modifying or altering the information in `clouddriver.accounts`.
 
 The accounts you want to migrate must exist in the `clouddriver.accounts` table.
 
-## Configuration details
-
-You add dynamic account configuration parameters to the Agent plugin deployment file. The required parameters must be updated as shown here:
-
-``` yaml
-- account:
-  - storage:
-    - enabled: true
-    - kubernetes:
-      - enabled: true
-```
 
 ## Migrate accounts
 
-You can migrate accounts can be migrated from Clouddriver `kubesvc_account` table to the agent(s) manually or automatically.
+You can migrate accounts from Clouddriver to the Scale Agent manually or automatically.
 
 ### Manual migration
 
-Accounts can be pulled from Clouddriver to the cluster Agents using the {{< linkWithTitle "scale-agent/reference/api/dynamic-accounts.md" >}}.
 
 > An account can only be successfully migrated if it has network connectivity to the cluster in the underlying configuration.
 
@@ -83,3 +62,8 @@ kubesvc:
 When enabled, the account name pattern is used to identify accounts for migration.  Autoscanning minimizes the manual effort and eliminates the `add` and `migrate` steps when the `namePatterns` flag is set to match a specified account naming pattern.
 
 If the Agent is not able to connect to the target clusters, the Agent is notified and Clouddriver sends the `SaveAccounts` operation to the Agent with a a unique `zoneId`.
+
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "scale-agent/reference/dynamic-accounts/_index.md" >}}

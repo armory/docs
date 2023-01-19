@@ -43,7 +43,7 @@ Consult the {{< linkWithTitle "agent-k8s-clustering.md" >}} page for details on 
 
 ### Compatibility matrix
 
-{{< include "agent/agent-compat-matrix.md" >}}
+{{< include "scale-agent/agent-compat-matrix.md" >}}
 
 ## Installation steps
 

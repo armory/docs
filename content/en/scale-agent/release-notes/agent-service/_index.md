@@ -5,7 +5,7 @@ weight: 1
 description: Release notes for the Armory Agent, which runs as a service and keeps track of your Kubernetes cluster. It works together with the Armory Agent Plugin.
 ---
 
-{{< include "agent/agent-compat-matrix.md" >}}
+{{< include "scale-agent/agent-compat-matrix.md" >}}
 
 ## Release Notes
 <h3><a class="fas fa-rss" target="_blank" href="{{< ref "/scale-agent/release-notes/agent-service" >}}/index.xml"></a></h3>

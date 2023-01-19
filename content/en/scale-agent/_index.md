@@ -148,7 +148,7 @@ You can also mix deployment strategies if you have complex Kubernetes infrastruc
 
 ## Supported Spinnaker and Armory CD versions
 
-{{< include "agent/agent-compat-matrix.md" >}}
+{{< include "scale-agent/agent-compat-matrix.md" >}}
 
 You can find a full list of previous releases in the [artifactory](https://armory.jfrog.io/artifactory/manifests/).
 

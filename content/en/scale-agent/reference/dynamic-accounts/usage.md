@@ -1,8 +1,9 @@
 ---
-title: Armory Agent Dynamic Accounts API
-linkTitle: Dynamic Accounts API
+title: Armory Agent Dynamic Accounts API Usage
+linkTitle: Usage
+weight: 1
 description: >
-  The Armory Scale Agent Clouddriver HTTP REST API Dynamic Accounts endpoints for Spinnaker and Kubernetes.
+  This page contains examples of how to use the Dynamic Accounts API.
 ---
 
 ## Get Armory accounts
