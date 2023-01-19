@@ -15,7 +15,7 @@ You can install the plugin from a plugins repository or from Docker. If you want
 
 The tool you use to install the plugin depends on the tool you use to manage your Armory CD or Spinnaker installation.
 
-1. [Armory Operator or Spinnaker Operator](#armory-operator-or-spinnaker-operator)
+1. [Armory Operator or Spinnaker Operator](#armory-operator-or-spinnaker-operator) with Kustomize
 1. [Halyard](#halyard) (Spinnaker only)
 
 Be sure to choose the Scale Agent version that is compatible with your Armory CD or Spinnaker version.
@@ -34,38 +34,38 @@ You can install the Scale Agent plugin using the Armory Operator or the Spinnake
 * Change the value for `metadata.name` if your Armory CD service is called something other than "spinnaker".
 
 {{< tabs name="DeploymentPlugin" >}}
-{{% tabbody name="Plugin Repo" %}}
-
-Update `plugins.Armory.Kubesvc.version` to a version that is compatible with your Armory CD installation.
+{{< tabbody name="Plugin Repo" >}}
+<br>
+Update <code>plugins.Armory.Kubesvc.version</code> to a version that is compatible with your Armory CD installation.
 
 {{< github repo="armory/spinnaker-kustomize-patches" file="plugins/armory-agent/patch-clouddriver-repo.yaml" lang="yaml" options="" >}}
 
-Then include the file under the `patchesStrategicMerge` section of your `kustomization` file.
+Then include the file under the <code>patchesStrategicMerge</code> section of your <code>kustomization</code> file.
 
 {{< prism lang="yaml" line="4" >}}
 bases:
   - plugins/armory-agent
 patchesStrategicMerge:
-  - armory-agent//patch-clouddriver-repo.yaml
+  - armory-agent/patch-clouddriver-repo.yaml
 {{< /prism >}}
 
-{{% /tabbody %}}
-{{% tabbody name="Docker" %}}
-
-Update `plugins.Armory.Kubesvc.version` to a version that is compatible with your Armory CD installation.
+{{< /tabbody >}}
+{{< tabbody name="Docker" >}}
+<br>
+Update <code>plugins.Armory.Kubesvc.version</code> to a version that is compatible with your Armory CD installation.
 
 {{< github repo="armory/spinnaker-kustomize-patches" file="plugins/armory-agent/patch-clouddriver-docker.yaml" lang="yaml" options="" >}}
 
-Then include the file under the `patchesStrategicMerge` section of your `kustomization` file.
+Then include the file under the <code>patchesStrategicMerge</code> section of your <code>kustomization</code> file.
 
 {{< prism lang="yaml" line="4" >}}
 bases:
   - agent-service
 patchesStrategicMerge:
-  - armory-agent//patch-clouddriver-docker.yaml
+  - armory-agent/patch-clouddriver-docker.yaml
 {{< /prism >}}
 
-{{% /tabbody %}}
+{{< /tabbody >}}
 {{< /tabs >}}
 
 
