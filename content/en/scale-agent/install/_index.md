@@ -48,13 +48,13 @@ Consult the {{< linkWithTitle "agent-k8s-clustering.md" >}} page for details on 
 
 There are a variety of ways to install the Scale Agent components in your Armory CD environment. Choose the method that best suits your process.
 
-1. Use the Armory Operator with Kustomize to install the plugin. Create manifests to install the service and apply with `kubectl`.
+1. Use the Armory Operator with Kustomize to install the plugin. Use the provided manifests to install the service and apply with `kubectl`.
 1. Use the Armory Operator with Kustomize to install the plugin. Use the Helm chart to install the service.
 1. Use the Armory Operator with Kustomize to install both the plugin and the service.
 
 If you are using open source Spinnaker, you have the following options:
 
-1. Use Halyard (clouddriver-local.yaml) to install the plugin. Create manifests to install the service and apply with `kubectl`.
+1. Use Halyard (clouddriver-local.yaml) to install the plugin. Use the provided manifests to install the service and apply with `kubectl`.
 1. Use Halyard (clouddriver-local.yaml) to install the plugin. Use the Helm chart to install the service.
 1. Use the Spinnaker Operator and one of the Armory Operator methods, with slight modifications.
 
