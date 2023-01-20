@@ -1,7 +1,7 @@
 ---
 title: Armory Scale Agent Resource Usage
 linkTitle: Agent Memory Usage
-description: > Agent memory usage reference.
+description: "Agent memory usage reference"
 ---
 Consider the following tested resource usage metrics for the Armory Scale Agent. This data is derived from testing five agent instances, with an 100 account load, and 100 pipelines per account. The instances were tested with 4 vCPUs and 8 GB of memory configured.
 
