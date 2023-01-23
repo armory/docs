@@ -56,7 +56,7 @@ kubesvc:
     scan: true
     scanBatchSize: 5
     scanFrequencySeconds: 60
-    namePatterns: ['^apple.*','^.*depot.*']
+    namePatterns: ['^account1.*','^.*account2.*']
   ```
 
 When enabled, the account name pattern is used to identify accounts for migration.  Autoscanning minimizes the manual effort and eliminates the `add` and `migrate` steps when the `namePatterns` flag is set to match a specified account naming pattern.

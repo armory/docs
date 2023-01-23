@@ -11,6 +11,7 @@ Settings|Type|Default|Description
 <code>clouddriver.tls.insecureSkipVerify</code>|boolean|false|Do not verify the endpoint's certificate.
 <code>clouddriver.tls.clientCertFile</code><br><code>clouddriver.tls.clientKeyFile</code><br><code>clouddriver.tls.clientKeyFilePassword</code>|string<br>string<br>string|none<br>none<br>none|Client certificate file for mTLS.<br>Client key file if not included in the certificate.<br>Password the key file if needed.
 <code>clouddriver.tls.cacertFile</code>|string|none|If provided, verify endpoint certificate with the trust store. Otherwise, the system trust store is used.
+<code>dynamicAccountsEnabled</code>|boolean|true|<span class='badge badge-primary'>1.0.39+</span> Enable or disable access to the Dynamic Accounts API.
 <code>kubernetes.noProxy</code>|boolean|false|<span class='badge badge-primary'>0.3.1+</span> Ignore the <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, and <code>NO_PROXY</code> environment variables when connecting to any Kubernetes cluster.
 <code>kubernetes.reconnectTimeoutMs</code>|integer|5000|How long to wait before reconnecting to Armory Enterprise.
 <code>kubernetes.accounts[].context</code>|string|empty|If provided, use the given context of the configured kubeconfig.

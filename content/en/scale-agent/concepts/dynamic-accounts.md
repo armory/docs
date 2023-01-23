@@ -6,31 +6,54 @@ description: >
 
 ## Overview of the Dynamic Accounts API
 
-This API gives you the ability to migrate Clouddriver accounts to the Scale Agent. You can use the API to add new accounts as well as modify and delete existing accounts that are managed by the Scale Agent.
-
+This API gives you the ability to migrate Clouddriver accounts to the Scale Agent either manually by calling the API or configuring the . The Dynamic Accounts API provides migration and creation functionality that supports a batch encapsulation of multiple accounts containing the account definitions within. You can use the API to modify and delete existing accounts that are managed by the Scale Agent.
 
 ## Dynamic Accounts glossary
 
 - **Endpoint**: the URL segment after the Clouddriver root
 - **Migrate an account**: move a Clouddriver-managed account to the Scale Agent for management
 - **Account**: an abstraction of a target cluster or target set of namespaces within a cluster
-- **Credential source**: any source from which credentials/accounts are read
-- **Request**: an instruction that isn’t been fulfilled immediately and can have different outcomes; a request can be done through HTTP by the admin or internally by one of the services.
+- **Credentials source**: any source from which credentials/accounts are read
+- **Request**: an instruction that isn’t fulfilled immediately and can have different outcomes; a request can be done through HTTP by the admin or internally by one of the services.
 
-The feature can be turned on or off with boolean values ****`kubesvc.dynamic-accounts.enabled` in clouddriver and `dynamicAccountsEnabled` in k8s Agent config file.
-Since these APIs are internal (apart from /credentials) they aren’t exposed through gate, so a tunnel to clouddriver’s service (by default on port 7002) is needed to call these endpoints.
+## Architecture
 
+Dynamic Accounts extends Clouddriver's Account Management [feature](https://spinnaker.io/docs/setup/other_config/accounts/), which uses a database for storing account configuration. The Scale Agent stores account data in a dedicated table called `clouddriver.kubesvc_accounts`. It does not modify or delete the account data in the `clouddriver.accounts` table.
 
+An account has the following lifecycle states:
 
-The account lifecycle is represented by the following states:
+- Non-transient:
 
-- Non transient:
-  - `INACTIVE`: the initial state, the account is provided but waiting for a migrate operation.
-  - `ACTIVE`: the account is being managed and watched by Agent.
-  - `FAILED`: indicates a failure when adding or deleting the account.
-  - `ORPHANED`: the account is no longer  managed by online agents (this state is usually seen when restarting or bringing down all of the replicas managing that account).
+  - `INACTIVE`: This is the initial state. Scale Agent has provisioned the account, but the account is waiting for a migration operation.
+  - `ACTIVE`: Scale Agent watches and manages the account.
+  - `FAILED`: Scale Agent failed to add or delete an account.
+  - `ORPHANED`: Neither Scale Agent nor Clouddriver is managing the account. It is inactive. You usually see this state when restarting or bringing down all of the replicas managing that account.
+
 - Transient
-  - `TO_MIGRATE`: indicates there was an instruction to migrate such account.
-  - `ACTIVATING`: the account has been processed and sent to Agent.
-  - `TO_DEACTIVATE`: indicates there was an instruction to deactivate such account.
-  - `DEACTIVATING`: the request to stop watching the account has ben sent to Agent.
+
+  - `TO_MIGRATE`: The account is waiting for migration.
+  - `ACTIVATING`: The account transferred to Scale Agent for activation.
+  - `TO_DEACTIVATE`: Indicates there is an instruction to deactivate the account.
+  - `DEACTIVATING`: A request to stop watching the account has been sent to the Scale Agent.
+
+
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant Clouddriver
+    participant Scale Agent Plugin
+
+    User->>Clouddriver: POST /armory/accounts
+    Clouddriver->>Clouddriver: Store in kubesvc_accounts
+    User->>Clouddriver: PATCH /armory/accounts
+    Clouddriver->>Scale Agent Plugin: gRPC AddAccounts
+    Scale Agent Plugin-->>Clouddriver: return
+    Clouddriver->>Clouddriver: Update status in kubesvc_accounts
+```
+
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/enable.md" >}}
+* {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}}

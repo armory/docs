@@ -1,8 +1,8 @@
 ---
-title: Enable the Dynamic Accounts API
+title: Enable Dynamic Accounts 
 linkTitle: Enable Dynamic Accounts
 description: >
-  Learn how to enable and disable the Dynamic Accounts API in Armory Scale Agent for Spinnaker and Kubernetes.
+  Learn how to enable and configure the Dynamic Accounts feature in Armory Scale Agent for Spinnaker and Kubernetes.
 ---
 
 ## {{% heading "prereq" %}}
@@ -12,13 +12,10 @@ description: >
 
 ## Scale Agent plugin
 
-The Dynamic Accounts API can be enabled or disabled using the `kubesvc.dynamicAccounts.enable` variable in the plugin config. For example:
+You need to enable Dynamic Accounts in your plugin config. Add `kubesvc.dynamicAccounts.enabled: true` to the config section of your plugin declaration. For example:
 
-{{< prism lang="yaml" line="31-32" line-numbers="true" >}}
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
+{{< prism lang="yaml" line="27-28" line-numbers="true" >}}
+...
 spec:
   spinnakerConfig:
     profiles:
@@ -47,6 +44,12 @@ spec:
             clouddriverServiceNamePrefix: <string> # (Optional; default: spin-clouddriver)
          	dynamicAccounts:
              enabled: true # (Optional; default: false)
+             interceptor:
+               enabled: <true|false>
+             scan: <true|false> # (Optional)
+             scanBatchSize: <int> # (Optional)
+             scanFrequencySeconds: <int> # (Optional)
+             namePatterns: ['^account1.*','^.*account2.*'] # (Optional)
 {{< /prism >}}
 
 ## Scale Agent service
@@ -68,5 +71,5 @@ data:
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}}
-* {{< linkWithTitle "scale-agent/reference/dynamic-accounts/_index.md" >}}
+1. {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}}
+1. {{< linkWithTitle "scale-agent/reference/dynamic-accounts/_index.md" >}}

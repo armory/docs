@@ -59,6 +59,10 @@ kubernetes:
     - ...  
 {{< /prism >}}
 
+#### Dynamic Accounts API
+
+You can also use the [Dynamic Accounts API]({{< ref "scale-agent/concepts/dynamic-accounts" >}}) to migrate accounts.
+
 ### Migrate accounts from Agent to Clouddriver
 
 Follow these steps to migrate accounts from Agent to Clouddriver:

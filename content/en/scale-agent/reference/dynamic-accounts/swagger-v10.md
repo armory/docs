@@ -1,6 +1,6 @@
 ---
-title: Dynamic Accounts API v0.10.65
-linkTitle: v0.10.65 Reference
+title: Dynamic Accounts API for Scale Agent Plugin v0.10.65
+linkTitle: Plugin v0.10.65
 type: swagger
 description: OpenAPI (Swagger) Reference 
 ---
