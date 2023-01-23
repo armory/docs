@@ -1,3 +1,4 @@
+# This config.toml is used with Hugo <= 0.110.0
 baseURL = "/"
 
 enableRobotsTXT = true
@@ -217,7 +218,7 @@ enable = false
 
 # Enable Mermaid diagrams
 [params.mermaid]
-enable = true
+# enable = true  # not needed with Hugo >= 93
 theme = "forest"
 
 [params.links]
