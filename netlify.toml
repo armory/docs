@@ -4,6 +4,7 @@
 [build]
   publish = "public"
   # command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
+  command = "hugo"
 
 
 # "production" environment specific build settings
@@ -11,6 +12,7 @@
   HUGO_VERSION = "0.110.0"
   HUGO_THEME = "docsy"
   HUGO_ENV = "production"
+  GO_VERSION = "1.18"
 
 # section redirects
 
