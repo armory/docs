@@ -18,7 +18,7 @@ Armory Operator may fail to start in some EKS clusters. Please upgrade to Armory
 
 ## Highlighted updates
 
-* Support for basic installation as an alternative RBAC model
+* Helm chart support for basic-mode installation pattern
 
 ### Armory Operator
 
