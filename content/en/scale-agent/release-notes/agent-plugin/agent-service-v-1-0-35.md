@@ -5,7 +5,7 @@ version: 01.00.35
 date: 2022-12-30
 ---
 
-changes: 
-- bum grpc and proto library versions
-- optimized grpc connection states 
+Changes: 
+- Bump gRPC and proto library versions
+- Optimize gRPC connection states 
 
