@@ -1,122 +1,125 @@
 {
   "armoryServices": [
     {
-      "commitMessages": [
-        "chore(cd): update base service version to front50:2022.08.17.22.13.34.release-1.27.x (#448)",
-        "chore(cd): update base service version to front50:2022.09.12.22.11.40.release-1.27.x (#454)"
-      ],
-      "currentVersion": "2.27.5",
-      "name": "Armory Front50",
-      "previousVersion": "2.27.4"
-    },
-    {
       "commitMessages": [],
-      "currentVersion": "2.27.5",
-      "name": "Armory Kayenta",
-      "previousVersion": "2.27.4"
-    },
-    {
-      "commitMessages": [
-        "Updating up to 1.3.5 tf version (#480)",
-        "fix(log): calling remote logging asynchronously (#471) (#486)"
-      ],
-      "currentVersion": "2.27.5",
-      "name": "Terraformer™",
-      "previousVersion": "2.27.4"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update base service version to clouddriver:2022.09.27.19.40.03.release-1.27.x (#724)",
-        "chore(cd): update base service version to clouddriver:2022.11.17.17.20.07.release-1.27.x (#741)",
-        "chore(cd): update base service version to clouddriver:2022.11.18.20.27.41.release-1.27.x (#744)",
-        "chore(cd): update base service version to clouddriver:2022.11.29.22.19.50.release-1.27.x (#751)"
-      ],
-      "currentVersion": "2.27.5",
-      "name": "Armory Clouddriver",
-      "previousVersion": "2.27.4"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update base service version to echo:2022.11.18.20.17.06.release-1.27.x (#499)",
-        "chore(cd): update base service version to echo:2022.11.29.21.47.09.release-1.27.x (#503)"
-      ],
-      "currentVersion": "2.27.5",
-      "name": "Armory Echo",
-      "previousVersion": "2.27.4"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update base service version to gate:2022.11.18.20.16.26.release-1.27.x (#487)",
-        "chore(cd): update base service version to gate:2022.11.29.21.50.55.release-1.27.x (#491)",
-        "chore(cd): update base service version to gate:2022.12.01.19.38.20.release-1.27.x (#493)"
-      ],
-      "currentVersion": "2.27.5",
-      "name": "Armory Gate",
-      "previousVersion": "2.27.4"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.27.5",
+      "currentVersion": "2.27.6-rc1",
       "name": "Dinghy™",
-      "previousVersion": "2.27.4"
+      "previousVersion": "2.27.5"
     },
     {
       "commitMessages": [
-        "chore(cd): update base service version to igor:2022.11.02.03.23.43.release-1.27.x (#374)",
-        "chore(cd): update base service version to igor:2022.11.18.20.16.38.release-1.27.x (#379)",
-        "fix: NoSuchMethodError exception in JenkinsClient. (#377) (#386)",
-        "chore(cd): update base service version to igor:2022.11.29.21.52.13.release-1.27.x (#389)"
+        "feat(google): Updated google cloud SDK to support GKE >1.26 (#769) (#771)"
       ],
-      "currentVersion": "2.27.5",
-      "name": "Armory Igor",
-      "previousVersion": "2.27.4"
+      "currentVersion": "2.27.6-rc1",
+      "name": "Armory Clouddriver",
+      "previousVersion": "2.27.5"
     },
     {
       "commitMessages": [
-        "chore(cd): update base deck version to 2022.0.0-20221021162941.release-1.27.x (#1263)",
-        "chore(cd): update base deck version to 2022.0.0-20221129214343.release-1.27.x (#1278)"
+        "style(logo): Changed Armory logo (#1264) (#1266)"
       ],
-      "currentVersion": "2.27.5",
+      "currentVersion": "2.27.6-rc1",
       "name": "Armory Deck",
-      "previousVersion": "2.27.4"
+      "previousVersion": "2.27.5"
     },
     {
       "commitMessages": [
-        "chore(cd): update base orca version to 2022.11.02.03.24.06.release-1.27.x (#534)",
-        "chore(cd): update base orca version to 2022.11.08.07.29.37.release-1.27.x (#537)",
-        "chore(cd): update base orca version to 2022.11.08.22.28.13.release-1.27.x (#540)",
-        "chore(cd): update base orca version to 2022.11.18.19.16.45.release-1.27.x (#549)",
-        "chore(cd): update base orca version to 2022.11.18.20.23.15.release-1.27.x (#550)",
-        "chore(cd): update base orca version to 2022.11.21.16.32.20.release-1.27.x (#553)",
-        "chore(cd): update base orca version to 2022.11.23.15.54.32.release-1.27.x (#556)"
+        "chore(cd): update base service version to fiat:2022.11.18.19.29.05.release-1.27.x (#408)"
       ],
-      "currentVersion": "2.27.5",
-      "name": "Armory Orca",
-      "previousVersion": "2.27.4"
+      "currentVersion": "2.27.6-rc1",
+      "name": "Armory Fiat",
+      "previousVersion": "2.27.5"
     },
     {
       "commitMessages": [
-        "chore(cd): update base service version to rosco:2022.11.23.15.48.46.release-1.27.x (#467)",
-        "chore(cd): update base service version to rosco:2022.11.29.21.53.45.release-1.27.x (#471)",
-        "chore(cd): update base service version to rosco:2022.12.08.21.13.25.release-1.27.x (#475)"
+        "chore(cd): update base service version to front50:2022.12.01.21.15.09.release-1.27.x (#473)"
       ],
-      "currentVersion": "2.27.5",
-      "name": "Armory Rosco",
-      "previousVersion": "2.27.4"
+      "currentVersion": "2.27.6-rc1",
+      "name": "Armory Front50",
+      "previousVersion": "2.27.5"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.27.5",
-      "name": "Armory Fiat",
-      "previousVersion": "2.27.4"
+      "currentVersion": "2.27.6-rc1",
+      "name": "Armory Echo",
+      "previousVersion": "2.27.5"
+    },
+    {
+      "commitMessages": [
+        "fix(kayenta-integration-tests): update dynatrace tenant to qso00828 (backport #376) (#378)",
+        "chore(cd): update base service version to kayenta:2022.12.01.22.29.56.release-1.27.x (#373)"
+      ],
+      "currentVersion": "2.27.6-rc1",
+      "name": "Armory Kayenta",
+      "previousVersion": "2.27.5"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.27.6-rc1",
+      "name": "Armory Gate",
+      "previousVersion": "2.27.5"
+    },
+    {
+      "commitMessages": [
+        "fix(versions): Sets version constraints for kubectl & aws-iam-authent… (backport #487) (#488)",
+        "Fixes builds with golint being dead until were on a newer golang (#491) (#494)",
+        "feat(gcloud): Bump to latest gcloud sdk & adds the GKE Auth plugin (#490) (#492)"
+      ],
+      "currentVersion": "2.27.6-rc1",
+      "name": "Terraformer™",
+      "previousVersion": "2.27.5"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.27.6-rc1",
+      "name": "Armory Igor",
+      "previousVersion": "2.27.5"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.27.6-rc1",
+      "name": "Armory Orca",
+      "previousVersion": "2.27.5"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.27.6-rc1",
+      "name": "Armory Rosco",
+      "previousVersion": "2.27.5"
     }
   ],
-  "armoryVersion": "2.27.5",
+  "armoryVersion": "2.27.6-rc1",
   "ossServices": [
     {
+      "commitMessages": [],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Clouddriver",
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Deck",
+      "previousVersion": "1.27.0"
+    },
+    {
       "commitMessages": [
-        "chore(dependencies): Autobump fiatVersion (#1154)",
-        "fix(updateTs): missing updateTs field in the get pipeline history's response. (backport #1159) (#1161)"
+        "fix(permissions): ensure lower case for resource name in fiat_permission and fiat_resource tables (backport #963) (#979)",
+        "chore(build): set timeout for apt publishing to 5 minutes (#987)",
+        "chore(build): set timeout for apt publishing to 10 minutes and add --stacktrace (#988)",
+        "chore(dependencies): Autobump spinnakerGradleVersion (#989) (#990)",
+        "Cleanup publish debugging (#991)"
+      ],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Fiat",
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump fiatVersion (#1178)",
+        "fix(pipelines): prevent from creating duplicated pipelines (#1172) (#1173)",
+        "chore(dependencies): Autobump spinnakerGradleVersion (#1177) (#1182)",
+        "chore(gha): bump versions of github actions (#1185)"
       ],
       "currentVersion": "1.27.3",
       "name": "Spinnaker Front50",
@@ -125,91 +128,47 @@
     {
       "commitMessages": [],
       "currentVersion": "1.27.3",
-      "name": "Spinnaker Kayenta",
-      "previousVersion": "1.27.0"
-    },
-    {
-      "commitMessages": [
-        "fix(core): Remove payload data from logs (#5784) (#5788)",
-        "fix(kubernetes): teach KubernetesManifest to support kubernetes resources where the spec is not a map (#5814) (#5816)",
-        "chore(dependencies): Autobump fiatVersion (#5820)",
-        "chore(dependencies): Autobump spinnakerGradleVersion (#5819) (#5826)"
-      ],
-      "currentVersion": "1.27.3",
-      "name": "Spinnaker Clouddriver",
-      "previousVersion": "1.27.0"
-    },
-    {
-      "commitMessages": [
-        "chore(dependencies): Autobump fiatVersion (#1216)",
-        "chore(dependencies): Autobump spinnakerGradleVersion (#1215) (#1221)"
-      ],
-      "currentVersion": "1.27.3",
       "name": "Spinnaker Echo",
       "previousVersion": "1.27.0"
     },
     {
       "commitMessages": [
-        "chore(dependencies): Autobump fiatVersion (#1586)",
-        "chore(dependencies): Autobump spinnakerGradleVersion (#1585) (#1591)",
-        "chore(gha): bump versions of github actions (#1594)"
+        "fix(security): Bump commons-text for CVE-2022-42889 (#911) (#913)",
+        "chore(dependencies): Autobump orcaVersion (#918)",
+        "chore(dependencies): Autobump orcaVersion (#919)",
+        "chore(dependencies): Autobump spinnakerGradleVersion (#917) (#920)"
       ],
       "currentVersion": "1.27.3",
-      "name": "Spinnaker Gate",
-      "previousVersion": "1.27.0"
-    },
-    {
-      "commitMessages": [
-        "feat(jenkins): Stop Jenkins job when job name has slashes in the job name (backport #1038) (#1051)",
-        "chore(dependencies): Autobump fiatVersion (#1056)",
-        "chore(dependencies): Autobump spinnakerGradleVersion (#1055) (#1060)"
-      ],
-      "currentVersion": "1.27.3",
-      "name": "Spinnaker Igor",
-      "previousVersion": "1.27.0"
-    },
-    {
-      "commitMessages": [
-        "fix(links): update link to spinnaker release changelog (#9897) (#9898)",
-        "chore(dependencies): Autobump spinnakerGradleVersion (#9916) (#9925)"
-      ],
-      "currentVersion": "1.27.3",
-      "name": "Spinnaker Deck",
-      "previousVersion": "1.27.0"
-    },
-    {
-      "commitMessages": [
-        "feat(igor): Stop Jenkins job when job name has slashes in the job name (backport #4294) (#4320)",
-        "fix(stageExecution): In evaluable variable stage restart scenario variables are not cleaned properly (#16) (backport #4307) (#4325)",
-        "fix(stage): Resource requests on custom stage | Error: got \"map\", expected \"string…\" (backport #4295) (#4329)",
-        "fix(tasks): Fix MonitorKayentaCanaryTask on results data map (#4312) (#4338)",
-        "chore(dependencies): Autobump fiatVersion (#4341)",
-        "chore(dependencies): Autobump spinnakerGradleVersion (#4337) (#4344)",
-        "feat(bakery): Clean up cached data created by Rosco. (#4323) (#4349)"
-      ],
-      "currentVersion": "1.27.3",
-      "name": "Spinnaker Orca",
-      "previousVersion": "1.27.0"
-    },
-    {
-      "commitMessages": [
-        "feat(bakery): Clean up cached data created by Rosco. (#912) (#920)",
-        "chore(dependencies): Autobump spinnakerGradleVersion (#917) (#924)",
-        "Merge pull request from GHSA-wqq8-664f-54hh"
-      ],
-      "currentVersion": "1.27.3",
-      "name": "Spinnaker Rosco",
+      "name": "Spinnaker Kayenta",
       "previousVersion": "1.27.0"
     },
     {
       "commitMessages": [],
       "currentVersion": "1.27.3",
-      "name": "Spinnaker Fiat",
+      "name": "Spinnaker Gate",
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Igor",
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Orca",
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Rosco",
       "previousVersion": "1.27.0"
     }
   ],
   "ossVersion": "1.27.3",
-  "prerelease": false,
+  "prerelease": true,
   "stack": {
     "artifactSources": {
       "dockerRegistry": "docker.io/armory"
@@ -222,40 +181,40 @@
     },
     "services": {
       "clouddriver": {
-        "commit": "f310d91adf02ab892147e02fd549fd09af05a332",
-        "version": "2.27.5"
+        "commit": "c978d08b3f5d155e8efbfb9010520d848bf4a93c",
+        "version": "2.27.6-rc1"
       },
       "deck": {
-        "commit": "1d2408e6d94fa62200bd0b776fdc021c5ff9f83d",
-        "version": "2.27.5"
+        "commit": "0802cbb92aa32eb6b387b5a6e54db14843fc6f31",
+        "version": "2.27.6-rc1"
       },
       "dinghy": {
         "commit": "ca161395d61ae5e93d1f9ecfbb503b68c2b54bc5",
-        "version": "2.27.5"
+        "version": "2.27.6-rc1"
       },
       "echo": {
         "commit": "ed3c35253d27af121a5a6874de9b006d3b5d3bcf",
-        "version": "2.27.5"
+        "version": "2.27.6-rc1"
       },
       "fiat": {
-        "commit": "9d615d351b220ea846e3c31890ecea7757fe40f4",
-        "version": "2.27.5"
+        "commit": "b3ca6748d2377454949420613e7912748ea00b52",
+        "version": "2.27.6-rc1"
       },
       "front50": {
-        "commit": "8be88a5e2efdf5ac85b6ea38c264d762e8ccf523",
-        "version": "2.27.5"
+        "commit": "5e1fe36c4b8df29cc9cb4d7af581a44b0ca44e59",
+        "version": "2.27.6-rc1"
       },
       "gate": {
         "commit": "adf9732bc7b3c8df48b21b86ef9783efcadec78b",
-        "version": "2.27.5"
+        "version": "2.27.6-rc1"
       },
       "igor": {
         "commit": "9e2d7946da19c803eb0bd12e888c5119528a364c",
-        "version": "2.27.5"
+        "version": "2.27.6-rc1"
       },
       "kayenta": {
-        "commit": "08b8f4656b4f6285ae5b0a5577ab10f6c50ba8ec",
-        "version": "2.27.5"
+        "commit": "5a1efcefddfe78f37550f5bee723570e3737ce04",
+        "version": "2.27.6-rc1"
       },
       "monitoring-daemon": {
         "commit": null,
@@ -267,18 +226,18 @@
       },
       "orca": {
         "commit": "fa3449f0202512534382d2d2a0431f25f4f408c5",
-        "version": "2.27.5"
+        "version": "2.27.6-rc1"
       },
       "rosco": {
         "commit": "f4164fdcfa275b62e0c0fefbe26b5cbd845c543d",
-        "version": "2.27.5"
+        "version": "2.27.6-rc1"
       },
       "terraformer": {
-        "commit": "0703f04671e56a94ac99e436a30c237b274e9407",
-        "version": "2.27.5"
+        "commit": "f845ba2fc760c46b98794a10c32cc2b713c7c9e0",
+        "version": "2.27.6-rc1"
       }
     },
-    "timestamp": "2022-12-08 23:35:17",
-    "version": "2.27.5"
+    "timestamp": "2023-01-10 18:31:01",
+    "version": "2.27.6-rc1"
   }
 }
