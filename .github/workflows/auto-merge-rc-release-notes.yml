@@ -6,8 +6,9 @@ on:
       - 'content/en/continuous-deployment/release-notes/rn-prerelease-armory-spinnaker/**'
 
 jobs:
-  create_ephemeral_spinnaker_and_run_tests:
+  automerge:
     name: auto-merge rc release notes PR
+    if: ${{ github.event.pull_request.user.login == 'armory-astrolabe' && contains(github.event.pull_request.labels.*.name, 'automerge') }}
     runs-on: ubuntu-latest
     steps:
       - name: Check PR label
