@@ -13,7 +13,7 @@ You have read the {{< linkWithTitle "cd-as-a-service/concepts/external-automatio
 
 In your deployment file, you configure your webhook by adding a top-level `webhooks` section with the following information:
 
-{{% include "cdaas/dep-file/webhooks-config.md" %}}
+{{< include "cdaas/dep-file/webhooks-config.md" >}}
 
 ### Configuration examples
 
