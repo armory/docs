@@ -5,4 +5,6 @@ version: 01.00.38
 date: 2023-01-18
 ---
 
-Improve zone id calculation by taking the deployment information from HOSTNAME environment variable when the provided service account has not access to list deployments.
+Changes:
+
+Improve zoneID calculation by taking the deployment information from the HOSTNAME environment variable when the provided service account has no access to list deployments.
