@@ -11,9 +11,12 @@ To make a significant changes to the `armory/docs` repository, you can fork the 
 
 ## {{% heading "prereq" %}}
 
-Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your computer and have configured your GitHub account. See the [GitHub Help](https://help.github.com) for details.
+- Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed on your computer and have configured your GitHub account. See the [GitHub Help](https://help.github.com) for details.
+-  The project uses the Docsy theme as a Go module. Be sure your system has [the software required to build the project](https://www.docsy.dev/docs/get-started/docsy-as-module/installation-prerequisites/).
 
 ## Fork and clone
+
+
 
 {{< tabs name="forkAndClone" >}}
 {{% tabbody name="General User" %}}
@@ -48,12 +51,6 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
    upstream	https://github.com/armory/docs.git (push)
    ```
 
-1. Pull in the site theme submodule
-
-   ```bash
-   cd docs
-   git submodule update --init --recursive --depth 1
-   ```
 {{% /tabbody %}}
 {{% tabbody name="Armory Employee" %}}
 
@@ -62,8 +59,6 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
 
    ```bash
    git clone git@github.com:armory/docs.git
-   cd docs
-   git submodule update --init --recursive --depth 1
    ```
 
 {{% /tabbody %}}
@@ -94,17 +89,17 @@ git pull
 Make sure you are in your `master` branch before you create your working
 branch. You can use `git branch` to see which branch you are in.
 
-````bash
-	git branch
-	```
+```bash
+git branch
+```
 
-	The output lists your local branches. There is an `*` next to the branch you are in.
+The output lists your local branches. There is an `*` next to the branch you are in.
 
-	```bash
+```bash
 working-branch-1
 working-branch-2
 * master
-````
+```
 
 If you are not in `master`, execute `git checkout master` to go to your `master` branch. See the [Understanding history: What is a branch?](https://git-scm.com/docs/user-manual#what-is-a-branch) section of the _Git User Manual_ for more information.
 
