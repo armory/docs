@@ -6,4 +6,5 @@ date: 2023-01-06
 ---
 
 Improvements:
-* Prevent unnecessary disconnects when agent starts with 0 accounts in preparation for Dynamic Accounts
+
+* Prevent unnecessary disconnects when Agent starts with 0 accounts
