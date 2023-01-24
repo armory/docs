@@ -6,4 +6,4 @@ date: 2023-01-19
 ---
 
 Added:
-* Helm settings for podLabels podAnnotations, and podResources 
+* Helm settings for podLabels, podAnnotations, and podResources 
