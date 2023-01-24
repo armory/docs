@@ -12,6 +12,15 @@ Removed grant types, resources, and permissions that haven't been (or won't be) 
 
 ## Overview of RBAC in CD-as-a-Service
 
+CD-as-a-Service's RBAC implementation provides you with the following features:
+
+* [System-defined roles](#system-roles) for admins and machine-to-machine credentials
+* [Custom roles](#custom-role-examples) that you create to fit your company's needs
+* [SSO groups to custom RBAC roles mapping](#sso-groups-and-rbac-roles)
+* [Role-based deployment approval]({{< ref "cd-as-a-service/concepts/deployment/role-based-manual-approval.md" >}})
+
+## RBAC implementation
+
 ```mermaid
 classDiagram
     class Role {
@@ -219,6 +228,7 @@ During authentication, CD-as-a-Service maps a user's SSO groups to your defined 
 
 ## {{% heading "nextSteps" %}}
 
+* {{< linkWithTitle "cd-as-a-service/concepts/deployment/role-based-manual-approval.md" >}}
 * Tasks: {{< linkWithTitle "cd-as-a-service/tasks/iam/create-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/update-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/delete-role.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/invite-users.md" >}}, {{< linkWithTitle "cd-as-a-service/tasks/iam/client-creds.md" >}}
 * Tutorial: {{< linkWithTitle "cd-as-a-service/tutorials/access-management/rbac-users.md" >}}
 * {{< linkWithTitle "cd-as-a-service/troubleshooting/rbac.md" >}}
