@@ -18,7 +18,7 @@ No known issues.
 
 ## Highlighted updates
 
-Operator now supports disabling the Admission Controller
+Operator now supports disabling the Admission Controller.
 
 ### Armory Operator
 

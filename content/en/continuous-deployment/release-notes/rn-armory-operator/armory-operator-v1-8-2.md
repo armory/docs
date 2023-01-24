@@ -18,8 +18,8 @@ No known issues.
 
 ## Highlighted updates
 
-This release resolves CVE [GHSA-599f-7c49-w659](https://github.com/advisories/GHSA-599f-7c49-w659)
+This release resolves CVE [GHSA-599f-7c49-w659](https://github.com/advisories/GHSA-599f-7c49-w659).
 
 ### Armory Operator
 
-fix(cve): Upgrade Armory halyard version
+fix(cve): Upgrade Armory Halyard version

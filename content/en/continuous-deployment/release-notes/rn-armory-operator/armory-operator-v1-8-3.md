@@ -18,8 +18,8 @@ Armory Operator may fail to start in some EKS clusters. Please upgrade to Armory
 
 ## Highlighted updates
 
-Operator now supports basic installation as an alternative RBAC model
+* Support for basic installation as an alternative RBAC model
 
 ### Armory Operator
 
-chore(helm): Add support for namespace scoped rbac
+chore(helm): Add support for namespace-scoped RBAC.

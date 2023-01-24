@@ -18,8 +18,8 @@ No known issues.
 
 ## Highlighted updates
 
-Resolves an issue that preveted Armory Operator from starting in some EKS clusters.
+* Resolves the issue that prevented Armory Operator from starting in some EKS clusters.
 
 ### Armory Operator
 
-chore(dependency): update upstream halyard version
+chore(dependency): update upstream Halyard version

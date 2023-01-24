@@ -18,31 +18,34 @@ No known issues.
 
 ## Highlighted updates
 
-Operator now supports Config Maps as a data source. 
+* Config Maps as a data source
 
-```apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: halyard-config-map
-data:
-  config: |
-    halyard:
-      configSourceType: secret # or configMap
-```
-Operator now allows the option to use a different Regex Engine when structuring ignore patterns -- enabling this feature flag allows for negative lookahead. 
+   ```apiVersion: v1
+   kind: ConfigMap
+   metadata:
+     name: halyard-config-map
+   data:
+     config: |
+       halyard:
+        configSourceType: secret # or configMap
+   ```
 
-```
-spec:
-  spinnakerConfig:
-    config:
-      armory:
-        dinghy:
-          enabled: true
-          dinghyIgnoreRegexp2Enabled: true
-```
+* Support for using a different Regex engine when structuring ignore patterns -- enabling this feature flag allows for negative lookahead
+
+   ```
+   spec:
+     spinnakerConfig:
+       config:
+         armory:
+           dinghy:
+             enabled: true
+             dinghyIgnoreRegexp2Enabled: true
+   ```
+
+   See [Negative expressions support in your `dinghyfile`]({{<  ref "continuous-deployment/armory-admin/dinghy-enable#negative-expressions-support-in-your-dinghyfile" >}}) for more information.
 
 ### Armory Operator
 
 * chore(secrets): Add SecretOrConfigMapData type
 * feat(secrets): Add the secrets extracting from ConfigMap
-* chore(halyard): bump halyard, add dinghyIgnoreRegexp2Enabled feature
+* chore(halyard): bump Halyard, add dinghyIgnoreRegexp2Enabled feature
