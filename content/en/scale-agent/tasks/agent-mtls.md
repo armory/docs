@@ -13,7 +13,7 @@ You need the following to configure mTLS:
 * Clouddriver certificate and corresponding private key.
 * Agent certificate and corresponding private key.
 
->The Agent only supports PKCS#8 keys. The PKCS#12 key store you set up for Armory CD can still use PKCS#8 keys. So, the Armory Agent should use a PKCS#8 key while other services use PKCS#12 keys.
+>The Agent only supports PKCS#8 keys. The PKCS#12 key store you set up for Armory CD can still use PKCS#8 keys. So, the Armory Scale Agent should use a PKCS#8 key while other services use PKCS#12 keys.
 
 ## Agent plugin configuration
 
@@ -94,7 +94,7 @@ See the {{< linkWithTitle "agent-plugin-options.md" >}} page for additional opti
 
 ### Create a secret
 
-Create a secret in the target cluster namespace where the Armory Agent resides.
+Create a secret in the target cluster namespace where the Armory Scale Agent resides.
 
 ```bash
 kubectl create secret generic <agent-secret-name> \
@@ -103,7 +103,7 @@ kubectl create secret generic <agent-secret-name> \
 
 ### Modify deployment configuration
 
-Modify the Armory Agent's deployment configuration in `deployment.yaml` to mount the certs.
+Modify the Armory Scale Agent's deployment configuration in `deployment.yaml` to mount the certs.
 
 >The paths that files are mounted to in the `deployment.yaml` file should always match the corresponding location in the `armory-agent.yaml` configuration file. For example, the `mountPath` of the CA cert in the `deployment.yaml` file must match the `clouddriver.tls.clientCertFile` location in `armory-agent.yaml`.
 
@@ -129,7 +129,7 @@ spec:
           secretName: <CA-secret-name>
 {{< /prism >}}
 
-If you use a custom CA, you can install it on the Armory Agent pod. The default location on that image, which uses the Alpine base, is `/etc/ssl/cert.pem`, so you can either append your CA cert to the trust store, which is `/etc/ssl/cert.pem`, or you can mount the file anywhere and configure the
+If you use a custom CA, you can install it on the Armory Scale Agent pod. The default location on that image, which uses the Alpine base, is `/etc/ssl/cert.pem`, so you can either append your CA cert to the trust store, which is `/etc/ssl/cert.pem`, or you can mount the file anywhere and configure the
 `clouddriver.tls.cacertFile` property in your YAML to point to that location.
 
 See the [Agent Options]({{< ref "agent-options#configuration-options" >}}) for configuration details.
