@@ -1,25 +1,25 @@
 ---
-title: "Install the Armory Agent Service Using a Helm Chart"
+title: "Install the Armory Scale Agent Service Using a Helm Chart"
 linkTitle: "Install Service - Helm"
 description: >
-  Use a Helm chart to install the Armory Agent service in your Kubernetes and Armory CD environments.
+  Use a Helm chart to install the Armory Scale Agent service in your Kubernetes and Armory CD environments.
 weight: 30
 ---
 
 ## Chart overview
 
-This Helm chart replaces installing the Armory Agent using `kubectl`. The chart:
+This Helm chart replaces installing the Armory Scale Agent using `kubectl`. The chart:
 
-- Exposes all settings for installing the Armory Agent service.
-- Enables you to easily deploy the Armory Agent service with default configuration using a single command.
+- Exposes all settings for installing the Armory Scale Agent service.
+- Enables you to easily deploy the Armory Scale Agent service with default configuration using a single command.
 - Gives you the ability to customize the service settings in a file or via the command line.
 
->**Connecting to Armory Cloud services is enabled by default.** Armory Cloud services is required for some features to function and affects how you configure the Armory Agent service installation. If you want to connect to Armory Cloud services, you must include your Armory Cloud client ID and secret. You can disable connecting to Armory Cloud services by setting a gPRC URL instead of providing your Armory Cloud services credentials.
+>**Connecting to Armory Cloud services is enabled by default.** Armory Cloud services is required for some features to function and affects how you configure the Armory Scale Agent service installation. If you want to connect to Armory Cloud services, you must include your Armory Cloud client ID and secret. You can disable connecting to Armory Cloud services by setting a gPRC URL instead of providing your Armory Cloud services credentials.
 
 
 ## {{% heading "prereq" %}}
 
-Ensure you have completed the following steps before you install the Armory Agent using the Helm chart:
+Ensure you have completed the following steps before you install the Armory Scale Agent using the Helm chart:
 
 1. You have [installed the Clouddriver plugin]({{< ref "install-agent-plugin" >}}).
 1. You are familiar with [Helm](https://helm.sh/) and have installed v3.6.3+.
@@ -83,7 +83,7 @@ With the file, you can avoid setting individual `env` parameters in the `helm in
 
 ## Set a custom Agent image registry
 
-If you need to download the Armory Agent image from a different registry, you can specify that repository using the following settings:
+If you need to download the Armory Scale Agent image from a different registry, you can specify that repository using the following settings:
 
 {{< prism lang="bash">}}
 --set image.repository=<repo-name>,image.imagePullPolicy=IfNotPresent, /
@@ -148,7 +148,7 @@ helm install armory-agent armory-charts/agent-k8s-full \
 
 ### The difference between `values.yaml` and `armory-agent.yml`
 
-`armory-agent.yml`: any supported configuration option listed in the Armory Agent Options [configuration option]({{< ref "agent-options#configuration-options" >}}) section.
+`armory-agent.yml`: any supported configuration option listed in the Armory Scale Agent Options [configuration option]({{< ref "agent-options#configuration-options" >}}) section.
 
 `values.yaml`: environmental values such as proxy settings and image repository.
 
@@ -168,9 +168,9 @@ helm install armory-agent armory-charts/agent-k8s-full \
 
 <details><summary><string>Armory Cloud, custom config</strong></summary>
 
-This example installs the Armory Agent service into the "dev" namespace with a connection to Armory Cloud services and the following custom configuration:
+This example installs the Armory Scale Agent service into the "dev" namespace with a connection to Armory Cloud services and the following custom configuration:
 - `debug` logging level
-- Increase the Armory Agent request retry attempts to 5
+- Increase the Armory Scale Agent request retry attempts to 5
 - Increase the time (in milliseconds) to wait between retry attempts to 5000
 - Enables Prometheus.
 
@@ -196,7 +196,7 @@ prometheus:
   enabled: true
 {{< /prism >}}
 
-Install the Armory Agent with configuration in a file:
+Install the Armory Scale Agent with configuration in a file:
 
 {{< prism lang="bash" >}}
 helm install armory-agent armory-charts/agent-k8s-full \
@@ -210,7 +210,7 @@ helm install armory-agent armory-charts/agent-k8s-full \
 
 <details><summary><string>Local gPRC, private image registry, proxy</strong></summary>
 
-This example installs the Armory Agent service into the "dev" namespace with a local gPRC endpoint (no Armory Cloud services connection), pulls the image from a private registry, and configures proxy settings.
+This example installs the Armory Scale Agent service into the "dev" namespace with a local gPRC endpoint (no Armory Cloud services connection), pulls the image from a private registry, and configures proxy settings.
 
 {{< prism lang="bash" >}}
 helm install armory-agent armory-charts/agent-k8s-full \
@@ -243,7 +243,7 @@ env:
     value: localhost,127.0.0.1,*.spinnaker
 {{< /prism >}}
 
-Install the Armory Agent with configuration in a file:
+Install the Armory Scale Agent with configuration in a file:
 
 {{< prism lang="bash" >}}
 helm install armory-agent armory-charts/agent-k8s-full \
@@ -257,9 +257,9 @@ helm install armory-agent armory-charts/agent-k8s-full \
 
 <details><summary><string>Agent and environment config in files</strong></summary>
 
-This example installs the Armory Agent service into the "dev" namespace with a connection to Armory Cloud services and the following custom Agent configuration:
+This example installs the Armory Scale Agent service into the "dev" namespace with a connection to Armory Cloud services and the following custom Agent configuration:
 - `debug` logging level
-- Increase the Armory Agent request retry attempts to 5
+- Increase the Armory Scale Agent request retry attempts to 5
 - Increase the time (in milliseconds) to wait between retry attempts to 5000
 - Enables Prometheus.
 
@@ -312,9 +312,9 @@ helm install armory-agent armory-charts/agent-k8s-full \
 
 <details><summary><string>Armory Cloud, custom config</strong></summary>
 
-This example installs the Armory Agent service into the "dev" namespace with a connection to Armory Cloud services and the following custom configuration:
+This example installs the Armory Scale Agent service into the "dev" namespace with a connection to Armory Cloud services and the following custom configuration:
 - `debug` logging level
-- Increase the Armory Agent request retry attempts to 5
+- Increase the Armory Scale Agent request retry attempts to 5
 - Increase the time (in milliseconds) to wait between retry attempts to 5000
 - Enables Prometheus.
 
@@ -330,7 +330,7 @@ Create the secret:
 kubectl create secret generic kubeconfig --from-file=/User/armory/.kube/config -n dev
 {{< /prism >}}
 
-Install the Armory Agent:
+Install the Armory Scale Agent:
 
 {{< prism lang="bash" >}}
 helm install armory-agent armory-charts/agent-k8s-full \
@@ -355,7 +355,7 @@ prometheus:
   enabled: true
 {{< /prism >}}
 
-Install the Armory Agent with configuration in a file:
+Install the Armory Scale Agent with configuration in a file:
 
 {{< prism lang="bash" >}}
 helm install armory-agent armory-charts/agent-k8s-full \
@@ -372,7 +372,7 @@ helm install armory-agent armory-charts/agent-k8s-full \
 
 <details><summary><string>Local gPRC, private image registry, proxy</strong></summary>
 
-This example installs the Armory Agent service into the "dev" namespace with a local gPRC endpoint (no Armory Cloud services connection), pulls the image from a private registry, and configures proxy settings.
+This example installs the Armory Scale Agent service into the "dev" namespace with a local gPRC endpoint (no Armory Cloud services connection), pulls the image from a private registry, and configures proxy settings.
 
 Create the namespace:
 
@@ -386,7 +386,7 @@ Create the secret:
 kubectl create secret generic kubeconfig --from-file=/User/armory/.kube/config -n dev
 {{< /prism >}}
 
-Install the Armory Agent:
+Install the Armory Scale Agent:
 
 {{< prism lang="bash" >}}
 helm install armory-agent armory-charts/agent-k8s-full \
@@ -419,7 +419,7 @@ env:
     value: localhost,127.0.0.1,*.spinnaker
 {{< /prism >}}
 
-Install the Armory Agent with configuration in a file:
+Install the Armory Scale Agent with configuration in a file:
 
 {{< prism lang="bash" >}}
 helm install armory-agent armory-charts/agent-k8s-full \
@@ -438,13 +438,13 @@ helm install armory-agent armory-charts/agent-k8s-full \
 helm uninstall <release-name> --namespace=<agent-namespace>
 {{< /prism >}}
 
-- `<release-name>`: (Reqired) the Armory Agent service release, such as {{<param kubesvc-version>}}.
-- `<agent-namespace>`: (Required) The namespace where you installed the Armory Agent.
+- `<release-name>`: (Reqired) the Armory Scale Agent service release, such as {{<param kubesvc-version>}}.
+- `<agent-namespace>`: (Required) The namespace where you installed the Armory Scale Agent.
 
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}} page if you run into issues.
-* Learn how to {{< linkWithTitle "scale-agent/tasks/agent-monitoring.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
+* Learn how to {{< linkWithTitle "scale-agent/tasks/agent-monitoring.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Scale Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
 * {{< linkWithTitle "scale-agent/tasks/agent-mtls.md" >}}
 * Read about {{< linkWithTitle "scale-agent/concepts/agent-permissions.md" >}}
 </br>
