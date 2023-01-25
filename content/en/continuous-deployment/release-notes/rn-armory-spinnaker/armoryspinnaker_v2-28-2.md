@@ -52,8 +52,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "known-issues/ki-app-eng-acct-auth.md" >}}
 
-{{< include "known-issues/ki-403-permission-err.md" >}}
-
 {{< include "known-issues/ki-spel-expr-art-binding.md" >}}
 
 {{< include "known-issues/ki-pipelines-as-code-gh-comments.md" >}}
@@ -74,7 +72,7 @@ Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket 
 
 ### Terraform template fix
 
-Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you will be able to use the Terraform template file provider. Please open a support ticket if you need this fix. 
+Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you will be able to use the Terraform template file provider. Please open a support ticket if you need this fix.
 
 
 ## Highlighted updates

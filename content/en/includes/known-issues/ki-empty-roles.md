@@ -4,7 +4,8 @@ Users report that when attempting to use FIAT-defined User Accounts/Service Acco
 
 **Workaround**:
 
-Users can add roles to the accounts in FIAT that are affected, even "dummy" roles. 
-Customers can use the following KB article to locate the user accounts, service accounts, or service principals, affected  https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010748
+Users can add roles to the accounts in FIAT that are affected, even "dummy" roles.
+
+See the [How to Audit for Empty Roles in FIAT using Redis/MySQL](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010748) KB article for how to locate affected user accounts, service accounts, or service principals.
 
 **Affected versions**: Armory CD 2.28.x
