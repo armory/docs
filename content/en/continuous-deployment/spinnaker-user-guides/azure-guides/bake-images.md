@@ -26,10 +26,14 @@ description: >
    1. Select an image from the **Managed Image** list, which contains the images from your Azure account.
       {{< figure src="/images/user-guides/azure/select-managed-image.png" alt="Select a managed image." >}}
 
-   1. If you choose a Linux image, you need to select the distro in the **Package Type** field. 
+   1. Select a value in the **Package Type** field. 
 
-      * **DEB**: For example, Debian and Ubuntu
-      * **RPM**: For example, CentOS and Fedora
+      * If you are using a Linux image, you need to select the distro: 
+
+         * **DEB**: For example, Debian and Ubuntu
+         * **RPM**: For example, CentOS and Fedora
+
+      * If you are using a Windows image, select the `chocolatey` package manager.
 
    1. In the **Packages** field, add any packages you want to install in the image. This is a space-delimited list.
    1. Select a value in the **Base Label** list.
@@ -53,10 +57,14 @@ You can configure your bake configuration using an image's Publisher, Offer, and
    1. Enter the image's Offer in the **Offer** field.
    1. Enter the image's SKU in the **SKU** field.
    1. Select a value in the **OS Type** list.
-   1. If you are using a Linux image, you need to select the distro in the **Package Type** field. 
+   1. Select a value in the **Package Type** field. 
 
-      * **DEB**: For example, Debian and Ubuntu
-      * **RPM**: For example, CentOS and Fedora
+      * If you are using a Linux image, you need to select the distro: 
+
+         * **DEB**: For example, Debian and Ubuntu
+         * **RPM**: For example, CentOS and Fedora
+
+      * If you are using a Windows image, select the `chocolatey` package manager.
 
    1. In the **Packages** field, add any packages you want to install in the image. This is a space-delimited list.
    1. Select a value in the **Base Label** list.
