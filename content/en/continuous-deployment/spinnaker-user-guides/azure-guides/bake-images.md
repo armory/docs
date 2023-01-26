@@ -33,7 +33,7 @@ description: >
          * **DEB**: For example, Debian and Ubuntu
          * **RPM**: For example, CentOS and Fedora
 
-      * If you are using a Windows image, select the `chocolatey` package manager.
+      * A Windows image automatically use the `chocolatey` package manager.
 
    1. In the **Packages** field, add any packages you want to install in the image. This is a space-delimited list.
    1. Select a value in the **Base Label** list.
@@ -64,7 +64,7 @@ You can configure your bake configuration using an image's Publisher, Offer, and
          * **DEB**: For example, Debian and Ubuntu
          * **RPM**: For example, CentOS and Fedora
 
-      * If you are using a Windows image, select the `chocolatey` package manager.
+      * A Windows image automatically use the `chocolatey` package manager.
 
    1. In the **Packages** field, add any packages you want to install in the image. This is a space-delimited list.
    1. Select a value in the **Base Label** list.
