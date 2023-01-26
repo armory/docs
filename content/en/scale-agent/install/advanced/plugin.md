@@ -4,6 +4,8 @@ linkTitle: "Install Plugin"
 description: >
   Install the Armory Scale Agent Clouddriver plugin in your Spinnaker or Armory CD environments.
 weight: 30
+aliases:
+  - /scale-agent/install/advanced/plugin
 ---
 
 ## {{% heading "prereq" %}}
@@ -134,10 +136,10 @@ Armory CD or Spinnaker cluster and one in your target cluster.
 
 * Install the Armory Scale Agent service using one of the following guides:
 
-   - {{< linkWithTitle "scale-agent/install/install-agent-service-helm/index.md" >}}
-   - {{< linkWithTitle "scale-agent/install/install-agent-service-kubectl.md" >}}
+   - {{< linkWithTitle "scale-agent/install/advanced/service-helm/index.md" >}}
+   - {{< linkWithTitle "scale-agent/install/advanced/service-kubectl.md" >}}
 
 
-* {{< linkWithTitle "scale-agent/reference/config/agent-plugin-options.md" >}}
+* {{< linkWithTitle "scale-agent/reference/config/plugin-options.md" >}}
 * {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}}
 

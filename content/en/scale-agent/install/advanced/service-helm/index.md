@@ -4,6 +4,8 @@ linkTitle: "Install Service - Helm"
 description: >
   Use a Helm chart to install the Armory Scale Agent service in your Kubernetes and Armory CD environments.
 weight: 30
+aliases:
+  - /scale-agent/install/install-agent-service-helm
 ---
 
 ## Chart overview
@@ -21,7 +23,7 @@ This Helm chart replaces installing the Armory Scale Agent using `kubectl`. The 
 
 Ensure you have completed the following steps before you install the Armory Scale Agent using the Helm chart:
 
-1. You have [installed the Clouddriver plugin]({{< ref "install-agent-plugin" >}}).
+1. You have [installed the Clouddriver plugin]({{< ref "scale-agent/install/advanced/plugin" >}}).
 1. You are familiar with [Helm](https://helm.sh/) and have installed v3.6.3+.
 1. You have added or updated the Armory charts repo in your Kubernetes environment.
 
@@ -107,7 +109,7 @@ Include the `--values` parameter as part of the Helm install command:
 
 ## Custom configuration
 
-If you need greater flexibility, you can override any supported [configuration option]({{< ref "agent-options#configuration-options" >}}), either by setting values using the command line or by setting values in an `armory-agent.yml` file.
+If you need greater flexibility, you can override any supported [configuration option]({{< ref "scale-agent/reference/config/service-options#configuration-options" >}}), either by setting values using the command line or by setting values in an `armory-agent.yml` file.
 
 ### Set config values using the command line
 
@@ -148,7 +150,7 @@ helm install armory-agent armory-charts/agent-k8s-full \
 
 ### The difference between `values.yaml` and `armory-agent.yml`
 
-`armory-agent.yml`: any supported configuration option listed in the Armory Scale Agent Options [configuration option]({{< ref "agent-options#configuration-options" >}}) section.
+`armory-agent.yml`: any supported configuration option listed in the Armory Scale Agent Options [configuration option]({{< ref "scale-agent/reference/config/service-options#configuration-options" >}}) section.
 
 `values.yaml`: environmental values such as proxy settings and image repository.
 

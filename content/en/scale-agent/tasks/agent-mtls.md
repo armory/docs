@@ -88,7 +88,7 @@ spec:
                 clientAuth: REQUIRE
 {{< /prism >}}
 
-See the {{< linkWithTitle "agent-plugin-options.md" >}} page for additional options.
+See the {{< linkWithTitle "plugin-options.md" >}} page for additional options.
 
 ## Agent service configuration
 
@@ -132,7 +132,7 @@ spec:
 If you use a custom CA, you can install it on the Armory Scale Agent pod. The default location on that image, which uses the Alpine base, is `/etc/ssl/cert.pem`, so you can either append your CA cert to the trust store, which is `/etc/ssl/cert.pem`, or you can mount the file anywhere and configure the
 `clouddriver.tls.cacertFile` property in your YAML to point to that location.
 
-See the [Agent Options]({{< ref "agent-options#configuration-options" >}}) for configuration details.
+See the [Agent Options]({{< ref "scale-agent/reference/config/service-options#configuration-options" >}}) for configuration details.
 
 ### Configure the service
 
@@ -150,7 +150,7 @@ clouddriver:
     #clientKeyPassword:
 {{< /prism >}}
 
-See the [Agent Options]({{< ref "agent-options#configuration-options" >}}) for configuration details.
+See the [Agent Options]({{< ref "scale-agent/reference/config/service-options#configuration-options" >}}) for configuration details.
 
 ## x509 certificate subject filtering
 
@@ -177,4 +177,4 @@ spec:
                   - UID=([a-z]){3}:[1-9]{3}:ksvc
 {{< /prism >}}
 
-See the {{< linkWithTitle "agent-plugin-options.md" >}} page for configuration options.
+See the {{< linkWithTitle "plugin-options.md" >}} page for configuration options.

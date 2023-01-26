@@ -1,12 +1,12 @@
 ---
-title: Dynamic Accounts API
+title: Dynamic Accounts
 description: >
-  Learn about the Dynamic Accounts feature in the Armory Scale Agent for Spinnaker and Kubernetes.
+  Learn how the Dynamic Accounts feature simplifies migrating accounts from Clouddriver to the Armory Scale Agent in your Armory Continuous Deployment or Spinnaker instance.
 ---
 
-## Overview of the Dynamic Accounts API
+## Overview of the Dynamic Accounts feature
 
-This API gives you the ability to migrate Clouddriver accounts to the Scale Agent either manually by calling the API or configuring the . The Dynamic Accounts API provides migration and creation functionality that supports a batch encapsulation of multiple accounts containing the account definitions within. You can use the API to modify and delete existing accounts that are managed by the Scale Agent.
+The Dynamic Accounts feature gives you the ability to migrate Clouddriver accounts to the Scale Agent either manually automatically by configuring. The Dynamic Accounts API provides migration and creation functionality that supports a batch encapsulation of multiple accounts containing the account definitions within. You can use the API to modify and delete existing accounts that are managed by the Scale Agent.
 
 ## Dynamic Accounts glossary
 
@@ -37,6 +37,9 @@ An account has the following lifecycle states:
   - `DEACTIVATING`: A request to stop watching the account has been sent to the Scale Agent.
 
 
+### Manual migration flow
+
+Since the Scale Agent endpoints aren't directly accessible, you call them using the publicly exposed Clouddriver API `https://<clouddriver-url>:<clouddriver-port>`. 
 
 ```mermaid
 sequenceDiagram
