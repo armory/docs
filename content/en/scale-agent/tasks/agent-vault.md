@@ -11,7 +11,7 @@ description: >
 
 ## Authenticate Agent with Vault
 
-The Armory Agent is compatible with properties Armory CD uses for [storing secrets in HashiCorp Vault]({{< ref "secrets-vault" >}}). You put configuration in `armory-agent.yaml` in the `secrets.vault.*` section. You refer to Vault secrets using the same syntax you use in configuring secrets for Armory CD. See the [Referencing Secrets section]({{< ref "secrets-vault#referencing-secrets" >}}) for details.
+The Armory Scale Agent is compatible with properties Armory CD uses for [storing secrets in HashiCorp Vault]({{< ref "secrets-vault" >}}). You put configuration in `armory-agent.yaml` in the `secrets.vault.*` section. You refer to Vault secrets using the same syntax you use in configuring secrets for Armory CD. See the [Referencing Secrets section]({{< ref "secrets-vault#referencing-secrets" >}}) for details.
 
 This is an example of what the [Kubernetes service account]({{< ref "secrets-vault#1-kubernetes-service-account-recommended" >}}) configuration looks like in Agent, using an `encryptedFile:` reference for `kubeconfigFile`:
 
@@ -35,7 +35,7 @@ secrets:
 
 >This requires you to install the [Vault Injector Sidecar](https://www.vaultproject.io/docs/platform/k8s/injector/installation).
 
-The Armory Agent detects changes in the configuration file and manages new accounts that it finds. This makes it possible to use a sidecar for
+The Armory Scale Agent detects changes in the configuration file and manages new accounts that it finds. This makes it possible to use a sidecar for
 adding and removing accounts dynamically instead of having a static `ConfigMap`. The [Vault guide](https://www.vaultproject.io/docs/commands/kv/put) specifies the following syntax:
 
 ```bash
@@ -117,7 +117,7 @@ namespace: spinnaker
 resources:
   - spinnakerservice.yaml
 bases:
-# Armory agent deployment
+# Armory Scale Agent deployment
   - armory-agent
 
 patchesStrategicMerge:

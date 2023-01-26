@@ -1,5 +1,5 @@
 ---
-title: Armory Agent Dynamic Accounts API
+title: Armory Scale Agent Dynamic Accounts API
 linkTitle: Dynamic Accounts API
 description: >
   The Armory Scale Agent Clouddriver HTTP REST API Dynamic Accounts endpoints for Spinnaker and Kubernetes.
