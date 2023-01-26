@@ -31,6 +31,6 @@ Run one of the following commands:
 Command options:
 
 - `--create-namespace`: (Optional) Creates the namespace if not present. See the [Helm install docs](https://helm.sh/docs/helm/helm_install/#options).
-- `--namespace=<agent-namespace>`: (Required) The namespace where you install the Armory Agent, which is also the deployment target for your app.
+- `--namespace=<agent-namespace>`: (Required) The namespace where you install the Armory Scale Agent, which is also the deployment target for your app.
 
 
