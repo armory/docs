@@ -200,5 +200,3 @@ version: 2.28.3-rc1
 
 
 #### Spinnaker Clouddriver - 1.28.4
-
-
