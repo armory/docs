@@ -6,7 +6,7 @@ The following table lists the plugins and their required minimum version:
 
 | Plugin                                                                                             | Version |
 | -------------------------------------------------------------------------------------------------- | ------- |
-| [Armory Agent for Kubernetes Clouddriver Plugin](h{{< ref "agent-plugin" >}}")                     | 0.11.0  |
+| [Scale Agent for Spinnaker and Kubernetes Clouddriver Plugin]({{< ref "scale-agent/" >}}")                     | 0.11.0  |
 | App Name                                                                                           | 0.2.0   |
 | [AWS Lambda](https://github.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/releases) | 1.0.10  |
 | [Evaluate Artifacts](https://github.com/armory-plugins/evaluate-artifacts-releases/releases)       | 0.1.1   |
