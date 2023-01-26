@@ -1,12 +1,12 @@
 ---
 title: Integrate Prometheus
 description: >
-  Learn how to configure Prometheus to get metrics from the Armory Agent and display them in a Grafana dashboard.
+  Learn how to configure Prometheus to get metrics from the Armory Scale Agent and display them in a Grafana dashboard.
 ---
 
 ## Available metrics
 
-If `prometheus.enabled` is true in the Armory Agent [configuration]({{< ref "agent-options" >}}), the Armory Agent exposes metrics on port 8008 (`prometheus.port`) on path `/metrics` or `/prometheus_metrics` like other Armory CD services. Both paths serve the same data.
+If `prometheus.enabled` is true in the Armory Scale Agent [configuration]({{< ref "agent-options" >}}), the Armory Scale Agent exposes metrics on port 8008 (`prometheus.port`) on path `/metrics` or `/prometheus_metrics` like other Armory CD services. Both paths serve the same data.
 
 {{% csv-table ";" "/static/csv/agent/monitor-metrics.csv" %}}
 
