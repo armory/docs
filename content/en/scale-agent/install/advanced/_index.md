@@ -1,13 +1,13 @@
 ---
 title: Armory Scale Agent Advanced Installation
-linkTitle: "Advanced Installation"
+linkTitle: Advanced Installation
 description: >
   Learn about advanced installation scenarios for the Armory Scale Agent in your Kubernetes, Spinnaker, and Armory Continuous Deployment environments.
 weight: 2
 no_list: true
 ---
 
-
+@TODO 
 
 
 ## Deployment modes
