@@ -1,7 +1,6 @@
 ---
-title: Armory Agent Dynamic Accounts API Usage
+title: Armory Scale Agent Dynamic Accounts API
 linkTitle: Usage
-weight: 1
 description: >
   This page contains examples of how to use the Dynamic Accounts API.
 ---
@@ -19,7 +18,7 @@ Return a list of all managed accounts, including static accounts defined in Agen
 ``` json
 {
    "items":[
-      
+
    ],
    "page":1,
    "limit":3,

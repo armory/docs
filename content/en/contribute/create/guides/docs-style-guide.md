@@ -390,7 +390,7 @@ A list of specific terms and words to be used consistently across the docs:
 | Terraform Integration (Stage) |  | Terraformer is the microservice behind the integration b/c the feature uses Terraform, an OSS project &quot;owned&quot; by Hashicorp  |
 | Armory Operator | Operator | Different from the Spinnaker Operator, which is open source software |
 | Spinnaker Operator | Operator |  |
-| Armory Scale Agent for Spinnaker and Kubernetes  |  Armory Agent |  |
+| Armory Scale Agent for Spinnaker and Kubernetes  |  Scale Agent |   |
 | Plugin Framework | Plugins | No `-` in plugin. |
 | Evaluate Artifacts Stage |  | A feature available in armory enterprise, not a stand alone offering. |
 | Automated Impact Analysis || Automated Canary Analysis |   |

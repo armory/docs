@@ -52,8 +52,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "known-issues/ki-app-eng-acct-auth.md" >}}
 
-{{< include "known-issues/ki-403-permission-err.md" >}}
-
 {{< include "known-issues/ki-spel-expr-art-binding.md" >}}
 
 {{< include "known-issues/ki-pipelines-as-code-gh-comments.md" >}}
