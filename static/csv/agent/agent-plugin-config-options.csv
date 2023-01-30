@@ -9,6 +9,7 @@ Setting|Type|Default|Description
 <code>kubesvc.cluster-kubernetes.kubeconfigFile</code><br><code>kubesvc.cluster-kubernetes.verifySsl</code><br><code>kubesvc.cluster-kubernetes.namespace</code><br><code>kubesvc.cluster-kubernetes.httpPortName</code><br><code>kubesvc.cluster-kubernetes.clouddriverServiceNamePrefix</code>|string<br>boolean<br>string<br>string<br>string<br>|null<br>true<br>null<br>http<br>spin-clouddriver|(Optional) If configured, the plugin uses this file to discover Endpoints. If not configured, it will use the service account mounted to the pod.<br>(Optional) Whether to verify the Kubernetes API cert or not.<br>(Optional) If configured, the plugin watches Endpoints in this namespace. If null, it watches endpoints in the namespace indicated in the file <code>/var/run/secrets/kubernetes.io/serviceaccount/namespace</code><br>(Optional) Name of the port configured in clouddriver Service that forwards traffic to clouddriver http port for REST requests.<br>(Optional) Name prefix of the Kubernetes Service pointing to the Clouddriver standard HTTP port.  
 <code>kubesvc.credentials.poller.reloadFrequencyMs</code>|long|30000|<span class='badge badge-primary'>2.23.0+</span> <span class='badge badge-primary'>1.23.0+</span> How often the plugin will refresh account credentials to clouddriver in case <code>credentials.poller.enabled</code> is disabled. Otherwise the standard properties of <code>credentials.poller.enabled</code> and <code>credentials.poller.types.kubernetes.reloadFrequencyMs</code> are respected
 <code>kubesvc.disableV2Provider</code>|boolean|false|If you don’t need the V2 provider account, set that to true to speed up caching deserialization.
+<code>kubesvc.dynamicAccounts.enable</code>|boolean|false|<span class='badge badge-primary'>0.11.27+</span><span class='badge badge-primary'>0.10.65+</span><span class='badge badge-primary'>0.9.81+</span> Enable access to the Dynamic Accounts API
 <code>kubesvc.grpc.auth.x509.enabled</code>|boolean|false|Enable x509 subject filtering
 <code>kubesvc.grpc.auth.x509.filters</code>|list(string)|<code>[]</code>|x509 subject line filter; see <a href='https://docs.armory.io/docs/armory-agent/agent-mtls/#x509-certificate-subject-filtering' target='new'>x509 Certificate Subject Filtering</a>
 <code>kubesvc.grpc.server.address</code>|string|<code>*</code>|Address to bind the gRPC server to
@@ -35,3 +36,7 @@ Setting|Type|Default|Description
 <code>kubesvc.v2-cache-eviction.disable</code>|boolean| |<span class='badge badge-primary'>0.10.3+</span> Set this to <code>true</code> if you want to turn off the eviction of the V2 cache.
 <code>kubesvc.v2-cache-eviction.batch-size</code>|integer|5|<span class='badge badge-primary'>0.10.3+</span> How many Kubernetes kinds to evict for each eviction event. 
 <code>kubesvc.v2-cache-eviction.millis</code>|integer|200|<span class='badge badge-primary'>0.10.3+</span> The time between evictions in milliseconds. Using a low value can lead to a spike in resource usage when migration occurs.
+
+
+
+

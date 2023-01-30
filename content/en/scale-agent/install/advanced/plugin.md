@@ -4,6 +4,8 @@ linkTitle: "Install Plugin"
 description: >
   Install the Armory Scale Agent Clouddriver plugin in your Spinnaker or Armory CD environments.
 weight: 30
+aliases:
+  - /scale-agent/install/advanced/plugin
 ---
 
 ## {{% heading "prereq" %}}
@@ -20,11 +22,11 @@ The tool you use to install the plugin depends on the tool you use to manage you
 
 Be sure to choose the Scale Agent version that is compatible with your Armory CD or Spinnaker version.
 
-{{< include "agent/agent-compat-matrix.md" >}}
+{{< include "scale-agent/agent-compat-matrix.md" >}}
 
 ## Armory Operator or Spinnaker Operator
 
-You can install the Scale Agent plugin using the Armory Operator or the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the `spinnaker-kustomize-patches` [repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/plugins/armory-agent). 
+You can install the Scale Agent plugin using the Armory Operator or the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the `spinnaker-kustomize-patches` [repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/plugins/armory-agent).
 
 * The sample manifest is for the Armory Operator using Kustomize. If you are using the Spinnaker Operator, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:
 
@@ -112,7 +114,7 @@ Save your file and apply your changes by running `hal deploy apply`.
 
 ## Expose Clouddriver as a LoadBalancer
 
-To expose Clouddriver as a Kubernetes-type LoadBalancer, apply the following manifest: 
+To expose Clouddriver as a Kubernetes-type LoadBalancer, apply the following manifest:
 
 {{< github repo="armory/spinnaker-kustomize-patches" file="/plugins/armory-agent/service.yaml" lang="yaml" options="" >}}
 
@@ -134,10 +136,10 @@ Armory CD or Spinnaker cluster and one in your target cluster.
 
 * Install the Armory Scale Agent service using one of the following guides:
 
-   - {{< linkWithTitle "scale-agent/install/install-agent-service-helm/index.md" >}}
-   - {{< linkWithTitle "scale-agent/install/install-agent-service-kubectl.md" >}}
+   - {{< linkWithTitle "scale-agent/install/advanced/service-helm/index.md" >}}
+   - {{< linkWithTitle "scale-agent/install/advanced/service-kubectl.md" >}}
 
 
-* {{< linkWithTitle "scale-agent/reference/config/agent-plugin-options.md" >}}
+* {{< linkWithTitle "scale-agent/reference/config/plugin-options.md" >}}
 * {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}}
 

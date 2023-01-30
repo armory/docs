@@ -4,11 +4,13 @@ linkTitle: "Install Service - kubectl"
 description: >
   Use 'kubectl' to install the Armory Scale Agent for Spinnaker and Kubernetes service in your Kubernetes and Spinnaker or Armory CD environments.
 weight: 30
+aliases:
+  - /scale-agent/install/service-kubectl
 ---
 
 ## {{% heading "prereq" %}}
 
-Make sure you have [installed the Clouddriver plugin]({{< ref "install-agent-plugin" >}}).
+Make sure you have [installed the Clouddriver plugin]({{< ref "scale-agent/install/advanced/plugin" >}}).
 
 
 ## Create a namespace
@@ -229,7 +231,7 @@ data:
        noProxy:
 ```
 
-See the [Agent options]({{< ref "agent-options#configuration-options">}}) for field explanations.
+See the [Agent options]({{< ref "scale-agent/reference/config/service-options#configuration-options">}}) for field explanations.
 
 Apply the manifest to your `spin-agent` namespace.
 

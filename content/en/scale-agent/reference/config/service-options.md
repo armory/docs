@@ -8,8 +8,8 @@ description: >
 
 ## Where to configure the Armory Scale Agent
 
-- If you install the Armory Scale Agent service using `kubectl`, configure the Armory Scale Agent using a `ConfigMap`. See the `kubectl` installation instruction's [Configure the service]({{< ref "install-agent-service-kubectl#configure-the-service" >}}) section for an example.
-- See {{< linkWithTitle "/scale-agent/install/install-agent-service-helm/index.md" >}} for both CLI and `values.yml` configuration options.
+- If you install the Armory Scale Agent service using `kubectl`, configure the Armory Scale Agent using a `ConfigMap`. See the `kubectl` installation instruction's [Configure the service]({{< ref "scale-agent/install/advanced/service-kubectl#configure-the-service" >}}) section for an example.
+- See {{< linkWithTitle "scale-agent/install/advanced/service-helm/index.md" >}} for both CLI and `values.yml` configuration options.
 
 ## Configure Kubernetes accounts
 

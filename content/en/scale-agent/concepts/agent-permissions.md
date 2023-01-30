@@ -67,7 +67,7 @@ rules:
 {{% /tabbody %}}
 {{< /tabs >}}
 
-See the {{< linkWithTitle "install-agent-service-kubectl.md" >}} for a complete example that uses `ClusterRole`, `ClusterRoleBinding`, and `ServiceAccount`.
+See the {{< linkWithTitle "service-kubectl.md" >}} for a complete example that uses `ClusterRole`, `ClusterRoleBinding`, and `ServiceAccount`.
 
 See the Kubernetes [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) guide for details on configuring `ClusterRole` and `Role` authorization.
 
