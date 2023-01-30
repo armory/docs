@@ -12,14 +12,33 @@ no_list: true
 
 ## Deployment modes
 
+### Spinnaker service mode
+
+In this mode, you install the Armory Scale Agent service as a new Spinnaker service (`spin-armory-agent`), so you can configure it like other services.
+
+![Spinnaker service mode](/images/scale-agent/in-cluster-mode.png)
+
+If you provision clusters automatically, the Armory Scale Agent service can dynamically reload accounts when `armory-agent.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/armory/config/armory-agent-local.yaml`.  The Agent service reflects `ConfigMap` changes within seconds after [etcd](https://etcd.io/) sync.
+
+**Pros**
+
+- You do not have to configure external Network/Application Load Balancers to expose the Clouddriver gRPC port unless you want to use the Dynamic Accounts REST API.
+- The Agent service can be managed centrally, so it is easy to get logs or configs and upgrade.
+
+**Cons**
+
+- You need to create kubeconfig file for each Kubernetes account.
+- The API servers of the target clusters need to be accessible from the Armory CD (Spinnaker) cluster.
+
+
 ### Agent mode
 
 In this mode, the Armory Scale Agent service acts as a piece of infrastructure. It authenticates  using a [service account token](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#service-account-tokens). You use
 [RBAC service account permissions](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions) to configure what the Armory Scale Agent service is authorized to do.
 
-If the Clouddriver plugin is unable to communicate with the Armory Scale Agent service, the plugin attempts to reconnect during a defined grace period. If the plugin still can't communicate with the Armory Scale Agent service after the grace period has expired, the cluster associated with the Armory Scale Agent service is removed from Armory CD.
+If the Clouddriver plugin is unable to communicate with the Scale Agent service, the plugin attempts to reconnect during a defined grace period. If the plugin still can't communicate with the Scale Agent service after the grace period has expired, the plugin removes the cluster associated with that Scale Agent service from Armory CD.
 
-In this mode, Armory CD never gets credentials, and account registration is dynamic.
+In this mode, Armory CD never gets credentials, and Kubernetes account registration is dynamic.
 
 Keep the following pros and cons in mind when deciding if Agent mode fits your use case:
 
@@ -27,11 +46,11 @@ Keep the following pros and cons in mind when deciding if Agent mode fits your u
 
 - Agent mode is scalable because each agent only manages one Kubernetes account.
 - Initial setup is easier because there's no need to create kubeconfig files.
-- Target clusters can remain private or in separate VPCs from the Armory CD (Spinnaker) cluster because agents initiate the connection to Armory CD (Spinnaker).
+- Target clusters can remain private or in separate VPCs from the Armory CD (Spinnaker) cluster because Scale Agents initiate the connection to Armory CD (Spinnaker).
 
 **Cons**
 
-- It is difficult to get agent logs, upgrade Agent, or check configurations because agents (often) run in third-party clusters that the DevOps team operating Armory CD (Spinnaker) doesn't have access.
+- It is difficult to get agent logs, upgrade the Agent service, or check configurations because agents (often) run in third-party clusters that the DevOps team operating Armory CD (Spinnaker) doesn't have access.
 - There is no authentication/authorization, so any team can start an Agent and register itself with Armory CD (Spinnaker). mTLS encryption can be used so that only agents with the right certificate can register. For information about how to configure mTLS, see {{< linkWithTitle "scale-agent/tasks/agent-mtls.md" >}}.
 - You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
 
@@ -45,35 +64,18 @@ Keep the following pros and cons in mind when deciding if Infrastructure mode fi
 
 **Pro**
 
-- Agent can be managed centrally, so it is easy to get logs or configs and upgrade.
+- The Agent service can be managed centrally, so it is easy to get logs or configs and upgrade.
 
 **Cons**
 
-- You need to create kubeconfig file for each account.
+- You need to create a kubeconfig file for each Kubernetes account.
 - The API servers of the target clusters need to be accessible from the Armory Scale Agent cluster.
 - You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
 
 ![Infra mode](/images/scale-agent/agent-infra-mode.png)
 
-> Account name must still be unique across all your infrastructure. Clouddriver will reject new accounts with a name that matches a different cluster.
+> Kubernetes account names must be unique across all your infrastructure. Clouddriver rejects new accounts with a name that matches a different cluster.
 
-### Spinnaker service mode
-
-In this mode, the Armory Scale Agent is installed as a new Spinnaker service (`spin-armory-agent`) and can be configured like other services.
-
-![Spinnaker service mode](/images/scale-agent/in-cluster-mode.png)
-
-If you provision clusters automatically, the Armory Scale Agent service can dynamically reload accounts when `armory-agent.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/armory/config/armory-agent-local.yaml`.  The Agent service reflects `ConfigMap` changes within seconds after [etcd](https://etcd.io/) sync.
-
-**Pros**
-
-- You do not have to configure external Network/Application Load Balancers to expose the Clouddriver gRPC port.
-- Agent can be managed centrally, so it is easy to get logs or configs and upgrade.
-
-**Cons**
-
-- You need to create kubeconfig file for each account.
-- The API servers of the target clusters need to be accessible from the Armory CD (Spinnaker) cluster.
 
 
 
