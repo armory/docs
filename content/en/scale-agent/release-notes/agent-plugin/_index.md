@@ -6,7 +6,7 @@ weight: 2
 description: Release notes for the Armory Scale Agent Clouddriver Plugin. The plugin runs as part of your Armory CD or Spinnaker instance and communicates with the Armory Scale Agent service.
 ---
 
-{{< include "agent/agent-compat-matrix.md" >}}
+{{< include "scale-agent/agent-compat-matrix.md" >}}
 
 ## Release Notes
 <h3><a class="fas fa-rss" target="_blank" href="{{< ref "/scale-agent/release-notes/agent-plugin" >}}/index.xml"></a></h3>
