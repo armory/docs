@@ -9,6 +9,7 @@ description: >
 
 * You are familiar with [installing the Scale Agent]({{< ref "scale-agent/install" >}}) and the [Dynamic Accounts API]({{< ref "scale-agent/concepts/dynamic-accounts" >}})
 * Make sure you have [exposed Clouddriver]({{< ref "scale-agent/install/install-agent-plugin#expose-clouddriver-as-a-loadbalancer" >}}). The Dynamic Accounts API endpoints are not directly accessible, so you call the endpoints using the Clouddriver API.
+* The Dynamic Accounts feature uses Clouddriver Account Management, which was introduced in Spinnaker 1.28. Clouddriver Account Management is automatically enabled in Armory Continuous Deployment but not in Spinnaker. See Spinnaker's [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/) page for how to enable the feature in Spinnaker.
 
 ## Scale Agent plugin
 

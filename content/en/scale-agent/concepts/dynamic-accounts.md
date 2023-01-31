@@ -39,8 +39,6 @@ An account has the following lifecycle states:
 
 ### Manual migration flow
 
-Since the Scale Agent endpoints aren't directly accessible, you call them using the publicly exposed Clouddriver API `https://<clouddriver-url>:<clouddriver-port>`. 
-
 Migration of an account is the combination of taking the snapshot from a credential source and activating it:
 
 ```mermaid
@@ -59,9 +57,9 @@ sequenceDiagram
 
 **What happens when you initiate a migration**
 
-* If you do not include a `zoneId`, Clouddriver sends the request to every other Clouddriver instance that has a connected Scale Agent. Each Clouddriver instance subsequently sends the request to its Agents in an attempt to find one  that can process the request. t, this is done by trial and error.
+* If you do not include a `zoneId`, Clouddriver sends the request to every other Clouddriver instance that has a connected Scale Agent service. Each Clouddriver instance subsequently sends the request to all of its connected Agents in an attempt to find one that can process the request.  
 
-* If the zoneId is provided** the request will be forwarded only to those clouddrivers that have an agent matching such zoneId and only to those agents the add operation will be sent.
+* If you provide the `zoneId`, Clouddriver forwards the request to those clouddrivers that have an agent matching such zoneId and only to those agents the add operation will be sent.
 
 The kubeconfig secret is decrypted in by the agent plugin and then the file content is sent as base64 as part of an attribute of the account.
 

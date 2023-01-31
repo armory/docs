@@ -5,4 +5,11 @@ type: swagger
 description: OpenAPI (Swagger) Reference 
 ---
 
+## Usage 
+
+clouddriver
+
+## Endpoints
+these should be public endpoints 
+
 {{< swaggerui src="/reference/scale-agent/swagger.0.11.27.json" >}}

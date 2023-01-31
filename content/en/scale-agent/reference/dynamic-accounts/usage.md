@@ -1,9 +1,13 @@
 ---
-title: Armory Scale Agent Dynamic Accounts API
+title: Armory Scale Agent Dynamic Accounts API Usage
 linkTitle: Usage
 description: >
   This page contains examples of how to use the Dynamic Accounts API.
 ---
+
+## Usage overview
+
+The Scale Agent endpoints aren't directly accessible. If you don't have direct access to your cluster, you should [expose Clouddriver using a LoadBalancer service]({{< ref "scale-agent/install/install-agent-plugin#expose-clouddriver-as-a-loadbalancer" >}}). You can then call the API using the public `https://<clouddriver-loadbalancer-url>:<clouddriver-port>`. 
 
 ## Response codes
 
