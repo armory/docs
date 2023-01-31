@@ -1,0 +1,14 @@
+---
+title: v0.5.27 Armory Agent Service (2021-09-10)
+toc_hide: true
+version: 00.05.27
+date: 2021-09-10
+---
+
+## New features and improvements
+
+* You can now control the format of the logs that Agent prints to the console. In the Armory Agent config file, set `logging.format` to either `text` (default) or `json`.
+
+## Known Issues
+
+{{< include "release-notes/agent/ki-permissions-whitespace.md" >}}

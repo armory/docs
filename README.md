@@ -2,9 +2,9 @@
 
 This is the repo for Armory documentation site. We welcome contributions from people outside of Armory.
 
-The site is hosted by [Netlify](https://www.netlify.com/), which generates a preview build for every pull request. Install [Hugo](https://gohugo.io/) if you want to compile and run the project locally. The Hugo extended version is specified in `netlify.toml` (currently 0.71.1).
+The site is hosted by [Netlify](https://www.netlify.com/), which generates a preview build for every pull request. Install the extended version of [Hugo](https://gohugo.io/) (`brew install hugo`) if you want to compile and run the project locally. The Hugo extended version (currently 0.110.10) is specified in both `config.yaml` and `netlify.toml`. Armory docs uses the [Docsy](https://docsy.dev) theme as a Go module. If you want to build locally, you should make sure your workstation has the required software installed. https://www.docsy.dev/docs/get-started/docsy-as-module/installation-prerequisites/
 
-The latest version of the docs website is the `master` branch. Previous releases point to branches that start with `release-`.
+The latest version of the docs website is the `master` branch. Previous releases point to branches that start with `v`.
 
 The site has built-in support for [Mermaid](https://mermaid-js.github.io/mermaid/), which is a Javascript based diagramming and charting tool that uses Markdown-inspired text definitions and a renderer to create and modify complex diagrams. <i>Diagramming and documentation costs precious developer time and gets outdated quickly. But not having diagrams or docs ruins productivity and hurts organizational learning. Mermaid addresses this problem by cutting the time, effort and tooling that is required to create modifiable diagrams and charts, for smarter and more reusable content. The text definitions for Mermaid diagrams allows for it to be updated easily, it can also be made part of production scripts (and other pieces of code). So less time needs to be spent on documenting, as a separate and laborious task. Even non-programmers can create diagrams through the Mermaid Live Editor.</i>
 
@@ -13,9 +13,12 @@ Mermaid resources:
 - [Tutorials](https://mermaid-js.github.io/mermaid/getting-started/Tutorials.html)
 - [Mermaid Live Editor](https://mermaid-js.github.io/mermaid-live-editor/) - create your diagrams visually and copy the generated Mermaid code to your page
 
+The theme also supports PlantUML and draw.io.
+
+
 ## Cloning the project
 
-If you work for Armory, see the internal docs for how to contribute content.
+[Contributor's Guide](https://docs.armory.io/contribute)
 
 People who are not part of the Armory organization need to create a fork of this repo. See the GitHub.com help [docs](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-forks) for how to fork a repo.
 
@@ -23,13 +26,6 @@ Clone your forked repo:
 
 ```bash
 git clone git@github.com:<github-username>/docs.git
-```
-
-Armory docs uses the [Docsy](https://docsy.dev) theme as a submodule. You have to update the submodule if you want to build locally.
-
-```bash
-cd docs
-git submodule update --init --recursive --depth 1
 ```
 
 Set this docs repo as the upstream remote:
@@ -146,14 +142,7 @@ See the GitHub [docs](https://help.github.com/en/github/collaborating-with-issue
 
 **On user-owned forks, select _Allow edits from maintainers_ so maintainers can make changes to your pull request,**
 
-## Troubleshooting
-
-If you run into a situation where the theme says it's been modified but you and the branch you're working on didn't modify the theme (i.e. you run `git status` and see this:https://s.armory.io/4guJmdAq), try updating the submodules:
-
-```bash
-git submodule update --init --recursive
-```
-
 ## Monitoring
 
 The Armory documentation uses New Relic to monitor the website status and other metrics.
+

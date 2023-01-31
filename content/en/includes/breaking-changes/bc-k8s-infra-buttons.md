@@ -1,4 +1,4 @@
-#### Kubernetes infrastructure in the UI
+### Kubernetes infrastructure in the UI
 
 Starting in 2.26, the UI has been updated to more closely follow immutable infrastructure principles.
 
@@ -16,7 +16,7 @@ Whether or not these actions are available in the UI is controlled by the follow
 window.spinnakerSettings.kubernetesAdHocInfraWritesEnabled = <boolean>;
 ```
 
-This setting does not completely prevent users from modifying Kubernetes infrastructure through Armory Enterprise. To do so, you must use the Policy Engine and write policies using the `spinnaker.http.authz` package.
+This setting does not completely prevent users from modifying Kubernetes infrastructure through Armory CD. To do so, you must use the Policy Engine and write policies using the `spinnaker.http.authz` package.
 
 If you use the Policy Engine to control which user roles can see the UI actions and be able to use them, you must set this property to `true`. Setting the value to `false` hides the buttons for all users regardless of whether you grant specific users access to the buttons through the Policy Engine.
 
@@ -32,6 +32,4 @@ If the application includes Kubernetes and other providers, the following applie
 - When set to `true`, this property causes the UI to function as it did in previous releases. This allows people to manually create and delete Kubernetes infrastructure from the UI. Users can continue to select whether they want to create Kubernetes or other infrastructure in the UI.
 - When set to `false`, this property causes Kubernetes to be unavailable as an option when trying to modify infrastructure from the UI. Users can still make changes to infrastructure for the application from cloud providers, such as AWS, but not Kubernetes.
 
-
-
-**Introduced in**: Armory 2.26.0
+**Introduced in**: Armory CD 2.26.0

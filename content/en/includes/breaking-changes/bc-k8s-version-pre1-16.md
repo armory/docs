@@ -1,6 +1,6 @@
-#### Kubernetes version for deployment targets
+### Kubernetes version for deployment targets
 
-Armory Enterprise 2.26 no longer supports Kubernetes deployment targets prior to version 1.16.  
+Armory CD 2.26 no longer supports Kubernetes deployment targets prior to version 1.16.
 
 **Impact**
 
@@ -31,4 +31,4 @@ If you are affected by this change, perform the following tasks to update your a
 - Upgrade the Kubernetes clusters that you are trying to deploy to. They must run version 1.16 or higher.
 - If you have manifest files using deprecated APIs, update them to use newer APIs. For more information on which APIs are deprecated in each Kubernetes version and how to migrate, see the [Kubernetes Deprecated API Migration Guide](https://kubernetes.io/docs/reference/using-api/deprecation-guide/).
 
-**Introduced in**: Armory 2.26.0
+**Introduced in**: Armory CD 2.26.0

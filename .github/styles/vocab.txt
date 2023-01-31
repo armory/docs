@@ -43,6 +43,7 @@ Igor
 Istio
 json
 K3s
+k8s
 K8s
 Kayenta
 Keel

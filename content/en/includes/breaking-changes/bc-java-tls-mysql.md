@@ -12,9 +12,9 @@ Oracle released Java 11.0.11 in April of 2021. Java 11.0.11 dropped support for 
 
 **Impact**
 
-Any services running under Java 11.0.11+ **and** using TLSv1.1 will encounter a communication failure. For example, you will see a communication failure between an Armory Enterprise service running under Java 11.0.1 and MySQL 5.7 if the MySQL driver is using TLSv1.1.
+Any services running under Java 11.0.11+ **and** using TLSv1.1 will encounter a communication failure. For example, you will see a communication failure between an Armory CD service running under Java 11.0.1 and MySQL 5.7 if the MySQL driver is using TLSv1.1.
 
-The version of Java depends on the version used by the Docker container's OS. Most Armory Enterprise services are using Alpine 3.11 or 3.12, which **does not** use Java 11.0.11. However, Alpine 3.11 is end-of-life in November of 2021, and 3.12 is end-of-life in May of 2022. There is no guarantee that Java 11.0.11+ won’t be added to those container images by some other manner. **You should modify your TLSv1.1 environment now** so you don't encounter communication failures.
+The version of Java depends on the version used by the Docker container's OS. Most Armory CD services are using Alpine 3.11 or 3.12, which **does not** use Java 11.0.11. However, Alpine 3.11 is end-of-life in November of 2021, and 3.12 is end-of-life in May of 2022. There is no guarantee that Java 11.0.11+ won’t be added to those container images by some other manner. **You should modify your TLSv1.1 environment now** so you don't encounter communication failures.
 
 **Fix**
 
@@ -30,7 +30,6 @@ Choose the option that best fits your environment.
    ?enabledTLSProtocols=TLSv1.2
    ```
 
-   Note that this only fixes communication between Armory Enterprise and MySQL. 
+   Note that this only fixes communication between Armory CD and MySQL.
 
    See [MySQL communication failure when using TSL1.1](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010376) for more information.
-

@@ -2,19 +2,18 @@
 title: v{{ (ds "payload").armoryVersion }} Armory Release (OSS Spinnaker™ v{{ (ds "payload").ossVersion }})
 toc_hide: true
 version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
+date: {{ (time.Now).Format "2006-01-02" }}
 description: >
   Release notes for Armory Enterprise v{{ (ds "payload").armoryVersion }}
 ---
 
 ## {{ (time.Now).Format "2006/01/02" }} Release Notes
 
-> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{`{{< ref "upgrade-spinnaker#rolling-back-an-upgrade" >}}`}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
-## Required Halyard or Operator version
+> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a previous working version and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-To install, upgrade, or configure Armory {{ (ds "payload").armoryVersion }}, use one of the following tools:
+## Required Armory Operator version
 
-- Armory-extended Halyard <PUT IN A VERSION NUMBER> or later
-- Armory Operator <PUT IN A VERSION NUMBER> or later
+To install, upgrade, or configure Armory {{ (ds "payload").armoryVersion }}, use Armory Operator 1.70 or later.
 
 ## Security
 
@@ -57,8 +56,17 @@ Here's the BOM for this version.
 
 ### Armory
 
-{{ range (ds "payload").services }}
+{{ range (ds "payload").armoryServices }}
 #### {{ .name }} - {{ .previousVersion }}...{{ .currentVersion }}
+{{ range .commitMessages }}
+  - {{- printf " %s" . -}}
+{{ end }}
+{{ end }}
+
+### Spinnaker
+
+{{ range (ds "payload").ossServices }}
+#### {{ .name }} - {{ .currentVersion }}
 {{ range .commitMessages }}
   - {{- printf " %s" . -}}
 {{ end }}

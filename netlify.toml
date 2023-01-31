@@ -3,112 +3,48 @@
 # Default build settings
 [build]
   publish = "public"
-  command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
-
+  command = "hugo"
 
 # "production" environment specific build settings
 [build.environment]
-  HUGO_VERSION = "0.71.1"
-  HUGO_THEME = "docsy"
+  HUGO_VERSION = "0.110.0"
   HUGO_ENV = "production"
+  GO_VERSION = "1.18"
 
 # section redirects
-[[redirects]]
-  from = "/overview/*"
-  to = "/armory-enterprise/overview/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/install-guide/*"
-  to = "/armory-enterprise/installation/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/halyard-release-notes/*"
-  to = "/armory-enterprise/release-notes/rn-armory-halyard/"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/release-notes/*"
-  to = "/armory-enterprise/release-notes/rn-armory-spinnaker/"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/spinnaker/*"
-  to = "/armory-enterprise/spinnaker-user-guides/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/operator_reference/*"
-  to = "/armory-enterprise/installation/armory-operator/op-manifest-reference/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/spinnaker-user-guides/*"
-  to = "/armory-enterprise/spinnaker-user-guides/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/spinnaker-install-admin-guides/*"
-  to = "/armory-enterprise/spinnaker-install-admin-guides/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/glossary/glossary"
-  to = "/armory-enterprise/overview/glossary/"
-  status = 301
-  force = false
-
-[[redirects]]
-  from =  "/docs/spinnaker-install-admin-guides/installation/*"
-  to = "/armory-enterprise/installation/guide/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from =  "/docs/operator-reference/*"
-  to = "/armory-enterprise/installation/armory-operator/op-manifest-reference/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from =  "/docs/installation/operator-reference/*"
-  to = "/armory-enterprise/installation/armory-operator/op-manifest-reference/:splat"
-  status = 301
-  force = false
-
-[[redirects]]
-  from = "/docs/installation/armory-agent/agent-options/"
-  to = "/armory-enterprise/armory-agent/advanced-config/agent-options/"
-  force = true
-
-[[redirects]]
-  from = "/docs/spinnaker-user-guides/policy-engine-use/packages/*"
-  to = "/armory-enterprise/armory-admin/policy-engine/policy-engine-use/packages/:splat"
 
 [[redirects]]
   from = "/docs/*"
-  to = "/armory-enterprise/:splat"
+  to = "/continuous-deployment/:splat"
 
 [[redirects]]
-  from = "/ae/*"
-  to = "/armory-enterprise/:splat"
-
-[[redirects]]
-  from = "/borealis/*"
-  to = "/cd-as-a-service/"
+  from = "/armory-enterprise/*"
+  to = "/continuous-deployment/:splat"
 
 [[redirects]]
   from = "/armory-cdaas/*"
   to = "/cd-as-a-service/"
+
+[[redirects]]
+  from = "/armory-enterprise/release-notes/rn-armory-agent/*"
+  to = "/scale-agent/release-notes/:splat"
+
+[[redirects]]
+  from = "/armory-enterprise/armory-agent/armory-agent-install/*"
+  to = "/scale-agent/install/:splat"
+
+[[redirects]]
+  from = "/armory-enterprise/armory-agent/*"
+  to = "/scale-agent/"
+
+[[redirects]]
+  from = "/armory-enterprise/plugin-guide/cdaas-spinnaker/"
+  to = "/cd-as-a-service/plugin-spinnaker/"
+  force = true # ensure this always redirects because cdaas-spinnaker does exist
+
+[[redirects]]
+  from = "/continuous-deployment/armory-admin/policy-engine/policy-engine-use/*"
+  to = "/continuous-deployment/plugin-guide/policy-engine/use/:splat"
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
@@ -118,17 +54,19 @@ package = "@netlify/plugin-sitemap"
   buildDir = "public"
   # make sure you add a comma after each entry in the exclude list except on the last one
   exclude =[
-    './public/armory-enterprise/plugin-guide/plugin-appname/',
-    './public/armory-enterprise/plugin-guide/plugin-external-account/',
-    './public/armory-enterprise/plugin-guide/plugin-iam-authentication/',
-    './public/armory-enterprise/feature-status/deprecations/pacrd-deprecation/',
-    './public/armory-enterprise/installation/deployment-reg/',
+    './public/continuous-deploymentplugin-guide/plugin-appname/',
+    './public/continuous-deployment/plugin-guide/plugin-external-account/',
+    './public/continuous-deployment/plugin-guide/plugin-iam-authentication/',
+    './public/continuous-deployment/plugin-guide/cdaas-spinnaker/',
+    './public/continuous-deployment/feature-status/deprecations/pacrd-deprecation/',
+    './public/continuous-deployment/installation/deployment-reg/',
     './public/managed-spin',
-    './public/contribute'
+    './public/contribute',
+    './public/continuous-deployment/try/'
   ]
   # append missing trailing slash to prettyURL
   trailingSlash = true
-  changeFreq = "weekly"
+  changeFreq = "daily"
   priority = 0.5
 
 

@@ -1,18 +1,13 @@
+# This config.toml is used with Hugo <= 0.110.0
 baseURL = "/"
-title = "Armory Docs"
 
 enableRobotsTXT = true
 enableInlineShortcodes = true
-
-
-# Hugo allows theme composition (and inheritance). The precedence is from left to right.
-theme = ["docsy"]
 
 # Will give values to .Lastmod etc.
 enableGitInfo = true
 
 # Language settings
-contentDir = "content/en"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 # Useful when translating.
@@ -28,6 +23,58 @@ pygmentsUseClassic = false
 #pygmentsOptions = "linenos=table"
 # See https://help.farbox.com/pygments.html
 pygmentsStyle = "tango"
+
+# Docsy is now a Go module; need to map theme dirs to local dirs
+[module]
+proxy = "direct"
+
+  [module.hugoVersion]
+  extended = true
+  min = "0.110.0"
+
+  [[module.imports]]
+  path = "github.com/google/docsy"
+  disable = false
+
+    [[module.imports.mounts]]
+    source = "assets"
+    target = "assets"
+
+    [[module.imports.mounts]]
+    source = "node_modules/bootstrap"
+    target = "assets/vendor/bootstrap"
+
+    [[module.imports.mounts]]
+    source = "node_modules/@fortawesome/fontawesome-free"
+    target = "assets/vendor/Font-Awesome"
+
+    [[module.imports.mounts]]
+    source = "i18n"
+    target = "i18n"
+
+    [[module.imports.mounts]]
+    source = "layouts"
+    target = "layouts"
+
+    [[module.imports.mounts]]
+    source = "static"
+    target = "static"
+
+    [[module.imports.mounts]]
+    source = "data"
+    target = "data"
+
+    [[module.imports.mounts]]
+    source = "node_modules/@fortawesome/fontawesome-free/webfonts"
+    target = "static/webfonts"
+
+  [[module.imports]]
+  path = "github.com/google/docsy/dependencies"
+  disable = false
+
+  [[module.mounts]]
+  source = "content/en"
+  target = "content"
 
 # Configure how URLs look like per section.
 [permalinks]
@@ -56,7 +103,8 @@ id = "UA-79996712-5"
 
 [languages]
 [languages.en]
-title = "Armory Docs"
+#comment out title as it messes with the new logo
+#title = "Armory Docs"
 description = "Unlocking Innovation by Making Software Delivery Continuous, Scalable, and Safe"
 languageName ="English"
 # Weight used for sorting.
@@ -66,8 +114,6 @@ weight = 1
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
-  [markup.highlight]
-    guessSyntax = "false" #need for rendering mermaid
 
 [[menu.main]]
   name = "CD-as-a-Service"
@@ -77,36 +123,47 @@ weight = 1
 [[menu.main]]
   name = "Armory CD"
   weight = 3
-  url = "/armory-enterprise/"
+  url = "/continuous-deployment/"
+
+[[menu.main]]
+  name = "Scale Agent"
+  weight = 4
+  url = "/scale-agent/"
 
 [[menu.main]]
   name = "Support"
-  weight = 4
+  weight = 5
   url = "https://support.armory.io/"
 
 [[menu.main]]
   name = "Blog"
-  weight = 5
+  weight = 6
   url = "https://www.armory.io/blog/"
 
 [[menu.main]]
   name = "Armory.io"
-  weight = 9
+  weight = 7
   url = "https://www.armory.io/"
+
+[[menu.main]]
+  name = "Contribute"
+  weight = 10
+  url = "/contribute/"
+
 # Everything below this are Site Params
 
 [params]
 deploy-engine-plugin-version = "0.16.8"
-armory-version = "2.27.x"
+armory-version = "2.28.x"
 #used in air-gapped
 matching-oss-version-exact = "1.27.0"
 # used in agent compat and system requirements
 mysql-version="5.7; AWS Aurora"
 postgresql-version="10+"
 #used in the Operator docs
-armory-version-exact = "2.27.0"
-halyard-armory-version = "1.12.0"
-kubesvc-version="1.0.22"
+armory-version-exact = "2.28.0"
+halyard-armory-version = "1.12.1"
+kubesvc-version="1.0.41"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
@@ -123,7 +180,7 @@ cdaas_banner = false
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
-version_menu = "Armory CD v2.27"
+version_menu = "Armory CD v2.28"
 
 # Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
@@ -134,14 +191,15 @@ archived_version = false
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
 # Also used in the PCM to highlight what version the PCM is for
-version = "2.27.3"
+version = "2.28.0"
 
 # A link to latest version of the Armory CD docs. Used in the "version-banner" partial to
 # point people to the main Armory CD docs site.
-url_latest_version = "https://docs.armory.io/armory-enterprise/"
+url_latest_version = "https://docs.armory.io/continuous-deployment/"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/armory/docs/"
+github_branch = "master"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
 #github_project_repo = "https://github.com/armory"
 
@@ -156,18 +214,22 @@ algolia_docsearch = false
 
 # Enable Lunr.js offline search
 offlineSearch = true
+offlineSearchMaxResults = 50
+offlineSearchSummaryLength = 200
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = true
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]
-agent_plug_latest-2="0.8.62"
-agent_plug_latest_spin-2="2.25.x (1.25.x)"
-agent_plug_latest-1="0.9.54"
-agent_plug_latest_spin-1="2.26.x (1.26.x)"
-agent_plug_latest="0.10.38"
-agent_plug_latest_spin="2.27.x (1.27.x)"
+agent_plug_latest-3="0.8.66"
+agent_plug_latest_spin-3="2.25.x (1.25.x)"
+agent_plug_latest-2="0.9.85"
+agent_plug_latest_spin-2="2.26.x (1.26.x)"
+agent_plug_latest-1="0.10.69"
+agent_plug_latest_spin-1="2.27.x (1.27.x)"
+agent_plug_latest="0.11.31"
+agent_plug_latest_spin="2.28.x (1.28.x)"
 
 # User interface configuration
 [params.ui]
@@ -237,11 +299,13 @@ theme = "forest"
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
 [[params.versions]]
+  version = "Armory CD v2.27"
+  githubbranch = "v2.27"
+  url = "https://v2-27.docs.armory.io/docs/"
+
+[[params.versions]]
   version = "Armory CD v2.26"
   githubbranch = "v2.26"
   url = "https://v2-26.docs.armory.io/docs/"
 
-[[params.versions]]
-  version = "Armory CD v2.25"
-  githubbranch = "v2.25"
-  url = "https://v2-25.docs.armory.io/docs/"
+

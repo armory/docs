@@ -5,22 +5,44 @@ level: warning
 scope: heading
 match: $sentence
 exceptions:
+  - Armory
+  - Armory Operator
   - Azure
   - CLI
+  - Clouddriver
+  - Cloud Foundry
   - Code
   - Cosmos
+  - Deck
   - Docker
+  - Echo
   - Emmet
+  - Fiat
+  - Front50
+  - Gate
   - I
+  - Igor
+  - Kayenta
+  - Kork
   - Kubernetes
   - Linux
   - macOS
   - Marketplace
   - MongoDB
+  - Orca
   - REPL
+  - Rosco
+  - Scale Agent
+  - Spinnaker
   - Studio
   - TypeScript
   - URLs
   - Visual
   - VS
   - Windows
+  - Halyard
+  - Dinghy
+  - Terraformer
+  - Service Mesh Interface
+  - heading "nextSteps"
+  - heading "prereq"

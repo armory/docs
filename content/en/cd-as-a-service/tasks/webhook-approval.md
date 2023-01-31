@@ -1,8 +1,6 @@
 ---
 title: Configure a Webhook in the Deployment File
 linktitle: Configure a Webhook
-
-no_list: true
 description: >
   Configure a webhook-based approval into your Armory CD-as-a-Service app deployment process.
 ---
@@ -15,24 +13,7 @@ You have read the {{< linkWithTitle "cd-as-a-service/concepts/external-automatio
 
 In your deployment file, you configure your webhook by adding a top-level `webhooks` section with the following information:
 
-{{< prism lang="yaml"  line-numbers="true" >}}
-webhooks:
-  - name: <webhook-name>
-    method: <endpoint-method-type>
-    uriTemplate: <endpoint-uri>
-    networkMode: <network-mode>
-    agentIdentifier: <remote-network-agent-id>
-    headers:
-      - key: Authorization
-        value: <auth-type-and-value>
-    bodyTemplate:
-      inline: >-
-      {
-      }
-    retryCount: <num-retries>
-{{< /prism >}}
-
-{{% include "cdaas/dep-file/webhooks-fields.md" %}}
+{{< include "cdaas/dep-file/webhooks-config.md" >}}
 
 ### Configuration examples
 
@@ -42,7 +23,7 @@ The first example configures a GitHub webhook that uses token authorization, wit
 webhooks:
   - name: myWebhook
     method: POST
-    uriTemplate: https://api.github.com/repos/armory/docs-cdaas-demo/dispatches
+    uriTemplate: https://api.github.com/repos/armory/docs-cdaas-sample/dispatches
     networkMode: direct
     headers:
       - key: Authorization
@@ -194,7 +175,5 @@ strategies:
 
 ## {{% heading "nextSteps" %}}
 
-For in-depth examples, see the following tutorials:
-
-* {{< linkWithTitle "webhook-github.md" >}}
-
+* {{< linkWithTitle "cd-as-a-service/tutorials/external-automation/webhook-github.md" >}}
+* {{< linkWithTitle "cd-as-a-service/troubleshooting/webhook.md" >}}
