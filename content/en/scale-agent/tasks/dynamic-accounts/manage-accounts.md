@@ -7,9 +7,9 @@ description: >
 
 ## Manage accounts overview
 
-The Scale Agent REST API provides endpoints to create, delete, get, and update Kubernetes accounts. Endpoints aren't directly accessible. If you don't have direct access to your cluster, you should [expose Clouddriver using a LoadBalancer service]({{< ref "scale-agent/install/install-agent-plugin#expose-clouddriver-as-a-loadbalancer" >}}). You can then call the API using the public `https://<clouddriver-loadbalancer-url>:<clouddriver-port>`. 
+{{< include "scale-agent/api-overview" >}}
 
-See {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}} for details on how to manually or automatically migrate accounts from Clouddriver to the Scale Agent.
+See {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}} for details on how to manually or automatically migrate accounts from Clouddriver to the Scale Agent using the Dynamic Accounts API.
 
 ## Create accounts
 

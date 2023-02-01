@@ -7,7 +7,7 @@ description: >
 
 ## Migration overview
 
-You can migrate accounts from Clouddriver to the Scale Agent manually using the API or automatically by adding specific values to your plugin configuration. Endpoints aren't directly accessible. If you don't have direct access to your cluster, you should [expose Clouddriver using a LoadBalancer service]({{< ref "scale-agent/install/install-agent-plugin#expose-clouddriver-as-a-loadbalancer" >}}). You can then call the API using the public `https://<clouddriver-loadbalancer-url>:<clouddriver-port>`. 
+{{< include "scale-agent/api-overview" >}}
 
 
 ## {{% heading "prereq" %}}
@@ -149,7 +149,7 @@ This feature is enabled when `namePatterns` has at least one value. The Scale Ag
 
 ### Intercept Clouddriver account creation request
 
-When you enable this option, the Scale Agent intercepts any new account creation request that is sent to Clouddriver's `credentials` endpoint (`POST <GATE_URL>/credentials`).  The Scale Agent automatically migrates the new account and sets the account state to ACTIVE. 
+When you enable this option, the Scale Agent plugin intercepts any new account creation request that is sent to Clouddriver's `credentials` endpoint (`POST <GATE_URL>/credentials`).  The Scale Agent plugin automatically migrates the new account and sets the account state to ACTIVE. 
 
 Add the following to your plugin configuration:
 
