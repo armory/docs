@@ -1,7 +1,7 @@
-### Access denied error
+### MySQL Permission Repository error in 2.28.1+
 
-You may encounter the following error intermittently: `Access denied to account`. 
+Armory is currently investingating an issue with FIAT when using MySQL as the backend permission repository.  When it is enabled, unexpected authorization errors will appear in logs across Clouddriver/Orca/Front50 for users and Service Accounts.  Admins appear unaffected
 
-**Workaround**: Restart Clouddriver or the Agent.
+The issue does not exist for 2.28.0 and lower, and environments using the default Redis backend will not encounter these errors
 
-**Affected versions**: 0.8.39/0.9.31/0.10.15
+**Workaround**: Use Redis backend or 2.28.0 
