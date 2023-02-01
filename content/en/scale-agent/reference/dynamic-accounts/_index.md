@@ -6,4 +6,5 @@ description: >
 aliases:
   - /scale-agent/reference/api/dynamic-accounts/
   - /scale-agent/reference/api/
+draft: true
 ---

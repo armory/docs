@@ -1,24 +1,36 @@
 ---
-title: Dynamic Accounts
+title: Dynamic Accounts Architecture and Features
 description: >
   Learn how the Dynamic Accounts feature simplifies migrating accounts from Clouddriver to the Armory Scale Agent in your Armory Continuous Deployment or Spinnaker instance.
+aliases:
+  - /scale-agent/tasks/dynamic-account-options/
+  - /scale-agent/reference/api/dynamic-accounts/
+  - /scale-agent/reference/api/
 ---
 
-## Overview of the Dynamic Accounts feature
+## Overview of Dynamic Accounts
 
-The Dynamic Accounts feature gives you the ability to migrate Clouddriver accounts to the Scale Agent either manually automatically by configuring. The Dynamic Accounts API provides migration and creation functionality that supports a batch encapsulation of multiple accounts containing the account definitions within. You can use the API to modify and delete existing accounts that are managed by the Scale Agent.
+Dynamic Accounts provides the following features:
+
+* Manual migration of Clouddriver Kubernetes accounts to the Scale Agent using a REST API
+* Automatic migration of Clouddriver Kubernetes accounts using Clouddriver Account Management
+
+   * Automatic migration requires Armory Continuous Deployment 2.28+ or Spinnaker 1.28+.
+   * Clouddriver Account Management is not enabled by default in Spinnaker or Armory Continuous Deployment. See Spinnaker's [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/) for how to enable this feature in your Spinnaker instance.
+
+* REST API endpoints to create, update, and delete accounts managed by the Scale Agent
 
 ## Dynamic Accounts glossary
 
-- **Endpoint**: the URL segment after the Clouddriver root
-- **Migrate an account**: move a Clouddriver-managed account to the Scale Agent for management
 - **Account**: an abstraction of a target cluster or target set of namespaces within a cluster
 - **Credentials source**: any source from which credentials/accounts are read
+- **Endpoint**: the URL segment after the Clouddriver root
+- **Migrate an account**: move a Clouddriver-managed account to the Scale Agent for management
 - **Request**: an instruction that isn’t fulfilled immediately and can have different outcomes; a request can be done through HTTP by the admin or internally by one of the services.
 
 ## Architecture
 
-Dynamic Accounts extends Clouddriver's Account Management [feature](https://spinnaker.io/docs/setup/other_config/accounts/), which uses a database for storing account configuration. The Scale Agent stores account data in a dedicated table called `clouddriver.kubesvc_accounts`. It does not modify or delete the account data in the `clouddriver.accounts` table.
+The Scale Agent stores account data in a dedicated table called `clouddriver.kubesvc_accounts`. It does not modify or delete the account data in the `clouddriver.accounts` table.
 
 An account has the following lifecycle states:
 
@@ -39,7 +51,7 @@ An account has the following lifecycle states:
 
 ### Manual migration flow
 
-Migration of an account is the combination of taking the snapshot from a credential source and activating it:
+Migration of an account is the combination of taking the snapshot from a credential source and then activating the accounts:
 
 ```mermaid
 sequenceDiagram
@@ -47,7 +59,7 @@ sequenceDiagram
     participant Clouddriver
     participant Scale Agent Plugin
 
-    User->>Clouddriver: POST /armory/accounts
+    User->>Clouddriver: POST <Accounts[]> /armory/accounts
     Clouddriver->>Clouddriver: Store in kubesvc_accounts
     User->>Clouddriver: PATCH /armory/accounts
     Clouddriver->>Scale Agent Plugin: gRPC AddAccounts
@@ -76,7 +88,7 @@ A good indicator is when all accounts become ACTIVE in the database, this can be
 
 ## Failures and retry mechanism
 
-Failed accounts will have a status of FAILED in kubesvc_accounts, in addition to this the reason for the failure can be obtained from the error_message column as well as the number of failures in the failed_count.
+Failed accounts have a status of FAILED in kubesvc_accounts, in addition to this the reason for the failure can be obtained from the error_message column as well as the number of failures in the failed_count.
 
 The agent plugin has an automatic retry mechanism for FAILED accounts, the max retries are 3 by default. The frequency of retry and the max retries can be changed by `kubesvc.dynamicAccounts.retryFrequencySeconds` and `kubesvc.dynamicAccounts.maxRetries`
 If an account is manually patched to ACTIVE using the API the falied_count resets and the retries can start over.

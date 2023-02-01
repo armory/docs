@@ -7,13 +7,13 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-* You are familiar with [installing the Scale Agent]({{< ref "scale-agent/install" >}}) and the [Dynamic Accounts API]({{< ref "scale-agent/concepts/dynamic-accounts" >}})
+* You are familiar with [installing the Scale Agent]({{< ref "scale-agent/install" >}}) and the [Dynamic Accounts feature]({{< ref "scale-agent/concepts/dynamic-accounts" >}})
 * Make sure you have [exposed Clouddriver]({{< ref "scale-agent/install/install-agent-plugin#expose-clouddriver-as-a-loadbalancer" >}}). The Dynamic Accounts API endpoints are not directly accessible, so you call the endpoints using the Clouddriver API.
-* The Dynamic Accounts feature uses Clouddriver Account Management, which was introduced in Spinnaker 1.28. Clouddriver Account Management is automatically enabled in Armory Continuous Deployment but not in Spinnaker. See Spinnaker's [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/) page for how to enable the feature in Spinnaker.
+* The Dynamic Accounts automatic migration feature uses Clouddriver Account Management, which is not enabled by default in Spinnaker or Armory Continuous Deployment. See Spinnaker's [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/) page for how to enable the feature in Spinnaker.
 
 ## Scale Agent plugin
 
-You need to enable Dynamic Accounts in your plugin config. Add `kubesvc.dynamicAccounts.enabled: true` to the config section of your plugin declaration. For example:
+You need to enable Dynamic Accounts in your plugin config. Add `kubesvc.dynamicAccounts` to the config section of your plugin declaration. For example:
 
 {{< prism lang="yaml" line="27-28" line-numbers="true" >}}
 ...
@@ -45,17 +45,27 @@ spec:
             clouddriverServiceNamePrefix: <string> # (Optional; default: spin-clouddriver)
          	dynamicAccounts:
              enabled: true # (Optional; default: false)
-             interceptor:
+             interceptor: # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
                enabled: <true|false>
-             scan: <true|false> # (Optional)
-             scanBatchSize: <int> # (Optional)
-             scanFrequencySeconds: <int> # (Optional)
-             namePatterns: ['^account1.*','^.*account2.*'] # (Optional)
+             scan: <true|false> # (Optional) # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
+             scanBatchSize: <int> # (Optional) # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
+             scanFrequencySeconds: <int> # (Optional) # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
+             namePatterns: ['^account1.*','^.*account2.*'] # (Optional) # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
 {{< /prism >}}
+
+`dynamicAccounts`:
+
+* enabled: true # (Optional; default: false)
+* interceptor: # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
+  enabled: <true|false>
+* scan: <true|false> # (Optional) # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
+* scanBatchSize: <int> # (Optional) # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
+* scanFrequencySeconds: <int> # (Optional) # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
+* namePatterns: ['^account1.*','^.*account2.*'] # (Optional) # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
 
 ## Scale Agent service
 
-The Dynamic Accounts API is enabled by default in the Scale Agent Service. If you want to disable it, add the `dynamicAccountsEnabled` variable to your `armory-agent` config. For example:
+The Dynamic Accounts API is enabled by default in the Scale Agent Service:
 
 {{< prism lang="yaml" line=10" line-numbers="true" >}}
 apiVersion: v1
@@ -67,10 +77,12 @@ data:
   armory-agent.yml: |  
   server:
     port: 8082
-  dynamicAccountsEnabled: false # (Optional; default: true)
+  dynamicAccountsEnabled: true # (Optional; default: true)
 {{< /prism >}}
+
+You can disable dynamic accounts features by setting `dynamicAccountsEnabled` to `false`.
 
 ## {{% heading "nextSteps" %}}
 
 1. {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}}
-1. {{< linkWithTitle "scale-agent/reference/dynamic-accounts/_index.md" >}}
+1. {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/manage-accounts.md" >}}
