@@ -1,121 +1,119 @@
 ---
 title: Get Started with Argo Rollouts Deployment
-linktitle: Argo Rollouts Deployment
+linkTitle: Argo Rollouts Deployment
 description: >
   Use Armory CD-as-a-Service to deploy Argo Rollout Objects across multiple environments.
 weight: 40
-
 ---
+
+## Objectives
+
+In this guide, you learn how to use Argo Rollouts with Armory CD-as-a-Service. 
+
+1. [Create a CD-as-a-Service deployment config file](#create-a-cd-as-a-service-deployment-config-file)
+1. [Add your Rollout manifest](#add-your-rollout-manifest)
+1. [Deploy your app](#deploy-your-app)
+1. [Extend deployment functionality](#extend-functionality-for-rollout-deployments) to use webhooks and to deploy multiple rollouts
 
 
 ## {{% heading "prereq" %}}
 
-This quick start assumes that you have performed the following steps :-
-- [Connected a Kubernetes cluster](https://docs.armory.io/cd-as-a-service/setup/get-started/#connect-your-kubernetes-cluster) with Armory CD-as-a-Service.
-- [Deployed an app with the CLI](https://docs.armory.io/cd-as-a-service/setup/cli/).
+Make sure that you have performed the following steps:
+
+- [Connected Armory CD-as-a-Service to your Kubernetes cluster]({{< ref "cd-as-a-service/setup/get-started#connect-your-kubernetes-cluster" >}}). 
+- [Deployed an app with the CLI]({{< ref "cd-as-a-service/setup/cli" >}}).
 
 To complete this quick start, you need the following:
 
-- Access to a Kubernetes cluster where you have installed the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app.
-- One or more Argo Rollout Objects manifests.
-- (Optional) You can connect multiple Kubernetes clusters to deploy to multiple environments
-   ```yaml
-  # rollout.yaml
-  apiVersion: argoproj.io/v1alpha1
-  kind: Rollout
-  metadata:
-    name: example
-    spec:
-      replicas: 5
-      ...
-   ```
-## Create a CD-as-a-Service deployment object
+- Access to a Kubernetes cluster where you have installed the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app. (Optional) You can connect multiple Kubernetes clusters to deploy to multiple environments
+- One or more [Argo Rollout manifests](https://argoproj.github.io/argo-rollouts/features/specification/). For example:
 
-If you don’t already have a CD-as-a-Service deployment yaml, you need to create one.
+   {{< prism lang="yaml" >}}
+   # rollout.yaml
+   apiVersion: argoproj.io/v1alpha1
+   kind: Rollout
+   metadata:
+     name: example
+     spec:
+       replicas: 5
+       ...
+    {{< /prism >}}
 
-You can [generate one using the CLI](https://docs.armory.io/cd-as-a-service/setup/cli/#create-a-deployment-config-file) or alternatively use the deployment yaml below
+## Create a CD-as-a-Service deployment config file
 
-```yaml
-#armoryDeployment.yaml
+Create a file called `armoryDeployment.yaml` with the following contents:
+
+{{< prism lang="yaml" >}}
+# armoryDeployment.yaml
 version: v1
 kind: kubernetes
-application: <Application Name> 
+application: <app-name> 
 targets:
   staging:
-    account: <Cluster Name> # Name of the Cluster you entered when installing the RNA. 
-    namespace: default
+    account: <cluster-name> # Name of the cluster you entered when installing the RNA. 
+    namespace: <namespace>
   production:
-    account: <Cluster Name> 
-    namespace: default
+    account: <cluster-name> 
+    namespace: <namespace>
     constraints:
       dependsOn: [staging]
       beforeDeployment:
         - pause:
             untilApproved: true
-		
 manifests:
-  - path: rollout.yaml
-```
+     - path: <path-to-app-manifest>
+{{< /prism >}}
 
-   See the [Deployment File Reference]({{< ref "ref-deployment-file#bluegreen-fields" >}}) for an explanation of these fields.
-## Configure your CD-as-a-Service deployment
+This example includes multiple targets. You can remove or add targets to match your environment.
 
-1. In your deploy file, go to the `manifests` section
-2. Configure your Argo Rollout Manifests in the `manifests[].path` section of your deployment file:
+Be sure to replace `<app-name>`, `<cluster-name>`, and `<namespace>` placeholders with your own values.
 
-```yaml
-#armoryDeployment.yaml
-version: v1
-kind: kubernetes
-application: my-application
-targets:
-  staging:
-    account: staging
-    namespace: default		
-    
-manifests:
-  - path: rollout.yaml
-```
+See {{< linkWithTitle "cd-as-a-service/tasks/deploy/create-deploy-config.md" >}} if you want to create a more robust deployment config file. 
+The {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}} page contains explanations of the fields.
 
-3. If you are deploying to more than one environment, across different Kubernetes clusters, add a new environment in the `targets` section:
+## Add your Rollout manifest
 
-```yaml
-#armoryDeployment.yaml
-version: v1
-kind: kubernetes
-application: my-application
-targets:
-  staging:
-    account: staging
-    namespace: default
-  production:
-    account: production
-    namespace: default
-    constraints:
-      dependsOn: [staging]
-      beforeDeployment:
-        - pause:
-            untilApproved: true
-		
-manifests:
-  - path: rollout.yaml
-```
+1. Go to the `manifests` section in your deployment config file.
+1. Add your Argo Rollout manifests in the `manifests[].path` section:
 
-4. Start your deployment using Armory CLI
+   {{< prism lang="yaml" line="5-6" >}}
+   # armoryDeployment.yaml
+   version: v1
+   kind: kubernetes
+   ...    
+   manifests:
+     - path: rollout.yaml
+   {{< /prism >}}
 
-```yaml
-armory deploy start -f armoryDeployment.yaml
-```
 
-If you are only deploying Argo Rollout objects, CD-as-a-Service ignores the strategy for the environment. The rollout object follows the strategy defined in the rollout object.
-## Extending functionality for rollout deployments
+## Deploy your app
+
+1. Ensure you have logged into CD-as-a-Service:
+
+   {{< prism lang="bash" >}}
+   armory login
+   {{< /prism >}}
+
+
+1. Start your deployment using the Armory CLI:
+
+   {{< prism lang="bash" >}}
+   armory deploy start -f armoryDeployment.yaml --watch
+   {{< /prism >}}
+
+   Remove the `--watch` flag if you don't want to output deployment status in your terminal.
+
+
+>If you are only deploying Argo Rollouts, CD-as-a-Service ignores any strategy you configure in your deployment config file. The Rollout follows the strategy defined in the Rollout manifest.
+
+## Extend functionality for Rollout deployments
 
 ### Run integration tests using webhooks
 
-You can use webhooks in `afterDeployment` constraint to add specific logic for Argo Rollouts to finish deploying before starting integration tests. For example:
+You can use webhooks in `afterDeployment` constraints to add specific logic for Argo Rollouts to finish deploying before starting integration tests. For example:
 
-```yaml
- #armoryDeployment.yaml
+{{< prism lang="yaml" line="9-12, 15-28" >}}
+ # armoryDeployment.yaml
 version: v1
 kind: kubernetes
 application: my-application
@@ -123,35 +121,42 @@ targets:
   staging:
     account: staging
     namespace: default
-		constraints:
+    constraints:
       afterDeployment:
         - runWebhook:
-	          name: Refer to Argo Rollouts for status
+          name: Refer to Argo Rollouts for status
 manifests:
   - path: rollout.yaml
 webhooks:
-	- name: Refer to Argo Rollouts for status
-    method: POST
-    uriTemplate: http://cmd-hook.default:8081/cmd
-    networkMode: remoteNetworkAgent
-    agentIdentifier: demo-prod-west-cluster
-    retryCount: 3
-    bodyTemplate:
-      inline:  >-
+   - name: Refer to Argo Rollouts for status
+     method: POST
+     uriTemplate: http://cmd-hook.default:8081/cmd
+     networkMode: remoteNetworkAgent
+     agentIdentifier: <cluster-name>
+     retryCount: 3
+     bodyTemplate:
+        inline:  >-
         {
         "cmd": "kubectl",
         "arg": "wait -n=default rollout/example --for=condition=Completed --timeout=30m",
         "callbackURL": "{{armory.callbackUri}}/callback"
-				}
-```
+        }
+{{< /prism >}}
 
-### Deploy multiple Argo Rollout objects
+### Deploy multiple Argo Rollouts
 
-To deploy multiple Argo Rollout objects together, you can add more paths to the `manifests` section of the deployment config file:
+To deploy multiple Argo Rollouts together, you can add more paths to the `manifests` section of the deployment config file:
 
-```yaml
+{{< prism lang="yaml" >}}
 manifests:
   - path: rollout-1.yaml
   - path: rollout-2.yaml
   - path: rollout-3.yaml
-```
+{{< /prism >}}
+
+## {{%  heading "nextSteps" %}}
+
+* {{< linkWithTitle "cd-as-a-service/troubleshooting/tools.md" >}}
+* {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}
+* {{< linkWithTitle "cd-as-a-service/concepts/external-automation.md" >}}
+* {{< linkWithTitle "cd-as-a-service/tasks/webhook-approval.md" >}}
