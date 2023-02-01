@@ -124,7 +124,7 @@ targets:
     constraints:
       afterDeployment:
         - runWebhook:
-          name: Refer to Argo Rollouts for status
+            name: Refer to Argo Rollouts for status
 manifests:
   - path: rollout.yaml
 webhooks:
