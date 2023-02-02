@@ -17,23 +17,16 @@ You can install the plugin from a plugins repository or from Docker. If you want
 
 The tool you use to install the plugin depends on the tool you use to manage your Armory CD or Spinnaker installation.
 
-1. [Armory Operator or Spinnaker Operator](#armory-operator-or-spinnaker-operator) with Kustomize
+1. [Armory Operator](#armory-operator-or-spinnaker-operator) with Kustomize
 1. [Halyard](#halyard) (Spinnaker only)
 
 Be sure to choose the Scale Agent version that is compatible with your Armory CD or Spinnaker version.
 
 {{< include "scale-agent/agent-compat-matrix.md" >}}
 
-## Armory Operator or Spinnaker Operator
+## Armory Operator
 
-You can install the Scale Agent plugin using the Armory Operator or the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the `spinnaker-kustomize-patches` [repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/plugins/armory-agent).
-
-* The sample manifest is for the Armory Operator using Kustomize. If you are using the Spinnaker Operator, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:
-
-  * Armory Operator: `apiVersion: spinnaker.armory.io/v1alpha2`
-  * Spinnaker Operator: `apiVersion: spinnaker.io/v1alpha2`
-
-* Change the value for `metadata.name` if your Armory CD service is called something other than "spinnaker".
+You can install the Scale Agent plugin using the Armory Operator and the sample manifest, which uses Kustomize and is in the `spinnaker-kustomize-patches` [repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/plugins/armory-agent).
 
 {{< tabs name="DeploymentPlugin" >}}
 {{< tabbody name="Plugin Repo" >}}
