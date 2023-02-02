@@ -44,28 +44,14 @@ Manually migrating Clouddriver accounts is a two-step process:
    
    Example:
 
-   ```bash
-   curl --request POST \
-   --url http://clouddriver:7002/armory/accounts \
-   --header 'Content-Type: application/json' \
-   --data '[
-   {
-    "name":   "account-01"
-   },
-   {
-    "name":   "account-02",
-    "zoneId": "agent-1_namespace1",
-    "kubeconfigFile": "encryptedFile:k8s!n:kubeconfig!k:config!ns:spinnaker"
-   }
-   ]'
-   ```
+   {{< include "scale-agent/curl/post-armory-accounts" >}}
 
    Responses:
 
       - 202 Accepted: `[] empty array`
       - 409 Conflict: `[] array containing already migrated accounts` (still processes valid ones)
       - 400 Bad Request: the account array is empty
-      - 501 Not Implemented: this means that dynamic accounts setting isn't enabled in the plugin configuration
+      - 501 Not Implemented: this means that Dynamic Accounts isn't enabled in the plugin configuration
  
 
 1. Activate the migrated accounts using `PATCH <Account[]> /armory/accounts`
@@ -101,29 +87,15 @@ Manually migrating Clouddriver accounts is a two-step process:
 
    Example:
 
-   ```bash
-    curl --request POST \
-    --url http://clouddriver:7002/armory/accounts \
-    --header 'Content-Type: application/json' \
-    --data '[
-    {
-     "name":   "account-01"
-    },
-    {
-     "name":   "account-02",
-     "zoneId": "agent-1_namespace1",
-     "kubeconfigFile": "encryptedFile:k8s!n:kubeconfig!k:config!ns:spinnaker"
-    }
-    ]'
-   ```
+   {{< include "scale-agent/curl/patch-armory-accounts" >}}
 
    Response:
 
       - 202 Accepted
-      - 501 Not Implemented: this means that dynamic accounts setting isn't enabled in the plugin configuration
+      - 501 Not Implemented: this means that Dynamic Accounts setting isn't enabled in the plugin configuration
  
 
-   The account state changes to FAILED if the Scale Agent plugin is not able to connect to the target Scale Agent service, .
+   The account state changes to FAILED if the Scale Agent plugin is not able to connect to the target Scale Agent service.
 
 
 ## Automatic migration

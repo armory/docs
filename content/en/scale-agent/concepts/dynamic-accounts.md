@@ -1,5 +1,6 @@
 ---
 title: Dynamic Accounts Architecture and Features
+linkTitle: Dynamic Accounts
 description: >
   Learn how the Dynamic Accounts feature simplifies migrating accounts from Clouddriver to the Armory Scale Agent in your Armory Continuous Deployment or Spinnaker instance.
 aliases:
@@ -10,7 +11,7 @@ aliases:
 
 ## Overview of Dynamic Accounts
 
-Dynamic Accounts provides the following features:
+Rather than [manually configure]({{< ref "scale-agent/reference/config/agent-options#configure-kubernetes-accounts" >}}) each Scale Agent service with the Kubernetes accounts it should manage, you can use the Dynamic Accounts feature to migrate and manage your accounts. Dynamic Accounts provides:
 
 * Manual migration of Clouddriver Kubernetes accounts to the Scale Agent using a REST API
 * Automatic migration of Clouddriver Kubernetes accounts using Clouddriver Account Management
@@ -18,7 +19,17 @@ Dynamic Accounts provides the following features:
    * Automatic migration requires Armory Continuous Deployment 2.28+ or Spinnaker 1.28+.
    * Clouddriver Account Management is not enabled by default in Spinnaker or Armory Continuous Deployment. See Spinnaker's [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/) for how to enable this feature in your Spinnaker instance.
 
-* REST API endpoints to create, update, and delete accounts managed by the Scale Agent
+### REST API
+
+{{< include "scale-agent/api-overview" >}}
+
+### How to enable and use Dynamic Accounts
+
+First, familiarize yourself with the architecture and features in this guide. Then you can:
+
+1. {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/enable.md" >}}
+1. {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}}
+1. {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/manage-accounts.md" >}}
 
 ## Dynamic Accounts glossary
 
@@ -51,55 +62,76 @@ An account has the following lifecycle states:
 
 ### Manual migration flow
 
-Migration of an account is the combination of taking the snapshot from a credential source and then activating the accounts:
+Migration of an account is the combination of taking the snapshot from a credential source and then activating the accounts.
 
 ```mermaid
 sequenceDiagram
     actor User
-    participant Clouddriver
-    participant Scale Agent Plugin
+    participant Plugin
+    participant Service
 
-    User->>Clouddriver: POST <Accounts[]> /armory/accounts
-    Clouddriver->>Clouddriver: Store in kubesvc_accounts
-    User->>Clouddriver: PATCH /armory/accounts
-    Clouddriver->>Scale Agent Plugin: gRPC AddAccounts
-    Scale Agent Plugin-->>Clouddriver: return
-    Clouddriver->>Clouddriver: Update status in kubesvc_accounts
+    User->>Plugin: POST /armory/accounts
+    Plugin->>Plugin: Store in clouddriver.kubesvc_accounts
+    User->>Plugin: PATCH /armory/accounts
+    Plugin->>Service: gRPC AddAccounts
+    Service-->>Plugin: return
+    Plugin->>Plugin: Update status in clouddriver.kubesvc_accounts
 ```
 
-**What happens when you initiate a migration**
+| POST | PATCH |
+|:------|:-------|
+| {{< include "scale-agent/curl/post-armory-accounts" >}} | {{< include "scale-agent/curl/patch-armory-accounts" >}}   |
 
-* If you do not include a `zoneId`, Clouddriver sends the request to every other Clouddriver instance that has a connected Scale Agent service. Each Clouddriver instance subsequently sends the request to all of its connected Agents in an attempt to find one that can process the request.  
+See {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}} for detailed instructions and examples.
 
-* If you provide the `zoneId`, Clouddriver forwards the request to those clouddrivers that have an agent matching such zoneId and only to those agents the add operation will be sent.
+**What happens when you initiate a migration request**
 
-The kubeconfig secret is decrypted in by the agent plugin and then the file content is sent as base64 as part of an attribute of the account.
+* If you **do not** include a `zoneId`, the plugin sends the request to every Clouddriver instance that has a connected Scale Agent service. Each Clouddriver instance subsequently sends the request to all of its connected Scale Agent services in an attempt to find one that can process the request.  The account's `zoneId` is updated to be the one of the Agent service that is able to process the add request for that account.
+* If you **do** provide a `zoneId`, the plugin forwards the request to only those Clouddriver instances with a matching Agent service.
+* The plugin decrypts the `kubeconfig` secret and encodes it in Basee64. Then the plugin adds the content as an attribute of the account.
+* The plugin stores the account data in the `clouddriver.kubesvc_accounts` before sending the accounts to the relevant Scale Agent services for processing.
 
-It is a good practice to keep the kubeconfig with only the minimum requirements to reduce overhead.
+>To reduce overhead, create the `kubeconfig` with only the minimum requirements.
 
-## What happens when Agent receives the Add Account request
+**What happens when the service receives a request to add accounts**
 
-When receiving the set of accounts Agent will try to parse the kubeconfig and fetch the certificate information from the cluster in it. If it succeeds it will initiate a process called Discovery, which is about discovering every kubernetes kind in the target cluster for initiation of k8s-watches.
+* After receiving the set of accounts, the Scale Agent service parses each `kubeconfig` and fetches the certificate information from the specified cluster. After the fetch succeeds, the Scale Agent service initiates a process that discovers every Kubernetes kind in the target cluster for initiation of a [Kubernetes watch](https://kubernetes.io/docs/reference/using-api/api-concepts/#efficient-detection-of-changes).
+* Next, the Scale Agent service creates a new gRPC connection as a response to tell the Scale Agent plugin which accounts are now active. The plugin then updates account data in the `clouddriver.kubesvc_accounts` table.
 
-After this the old operations grpc stream is terminated a new one is created as a response to tell clouddriver which accounts are now active.
+The plugin does not inform you of the operation results. Check for an ACTIVE account state in the `clouddriver.kubesvc_accounts` table by querying the database directly or by calling `/agents/kubernetes/accounts/{accountName}`.
 
-A good indicator is when all accounts become ACTIVE in the database, this can be checked by calling `/agents/kubernetes/accounts/{accountName}` on any of the accounts that were added.
 
+### CRUD operations
+
+Dynamic Accounts provides endpoints for CRUD operations. The following illustrates what happens when you initiate a deletion request.
+
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant Plugin
+    participant Service
+
+    User->>Plugin: DELETE /armory/accounts
+    Plugin->>Plugin: checks for the account in kubesvc_accounts
+    Plugin->>Service: gRPC DeleteAccounts
+    Service-->>Plugin: return
+    Plugin->>Plugin: delete in clouddriver.kubesvc_accounts
+```
+
+See {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/manage-accounts.md" >}} for detailed instructions and examples of create, read, update, and delete endpoints.
 
 ## Failures and retry mechanism
 
-Failed accounts have a status of FAILED in kubesvc_accounts, in addition to this the reason for the failure can be obtained from the error_message column as well as the number of failures in the failed_count.
+If the Scale Agent cannot add an account, it updates the account state to FAILED in the `clouddriver.kubesvc_accounts` table. You can find the reason in the `error_message` column and the number of attempts in the `failed_count` column.
 
-The agent plugin has an automatic retry mechanism for FAILED accounts, the max retries are 3 by default. The frequency of retry and the max retries can be changed by `kubesvc.dynamicAccounts.retryFrequencySeconds` and `kubesvc.dynamicAccounts.maxRetries`
-If an account is manually patched to ACTIVE using the API the falied_count resets and the retries can start over.
+The Scale Agent plugin has an automatic retry mechanism for FAILED accounts. You can configure the max retries and the frequency of retries by setting `kubesvc.dynamicAccounts.retryFrequencySeconds` (default: 5) and `kubesvc.dynamicAccounts.maxRetries` (default: 3) in the plugin configuration.
+
+If an account is manually patched to ACTIVE using the API, the `failed_count` resets and the retries can start over.
 
 ## Automatic recovery of orphaned accounts
 
-When an account has been successfully added even if the zoneId was not provided provided it will get populated with the value of the k8s Agent replicas’ zoneId that ultimately were able to process such account.
-
-When all of the agents managing a specific account die, this account will go to an **ORPHANED** state, and on the next time the agents start the accounts will be recovered. The same happens when a new replica is scaled up for an **ACTIVE** account. That way consistency is maintained across replicas.
-
-It can take some time for Agent when it’s restarted to process all of the accounts sent to it but it’s usually short.
+When all of the Scale Agent services managing a specific account die, the account goes into an ORPHANED state. The account state changes back to ACTIVE the next time the managing Scale Agent service becomes active. The same happens when a new replica is scaled up for an ACTIVE account. That way consistency is maintained across replicas.
 
 ## {{% heading "nextSteps" %}}
 

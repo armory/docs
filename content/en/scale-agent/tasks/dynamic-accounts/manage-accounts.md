@@ -1,5 +1,5 @@
 ---
-title: Manage Accounts in the Armory Scale Agent
+title: Manage Kubernetes Accounts in the Armory Scale Agent
 linkTitle: Manage Accounts
 description: >
   Learn how to create, update, delete, and fetch accounts in the Armory Scale Agent for Spinnaker and Kubernetes.
