@@ -41,13 +41,13 @@ First, familiarize yourself with the architecture and features in this guide. Th
 
 ## Architecture
 
-The Scale Agent stores account data in a dedicated table called `clouddriver.kubesvc_accounts`. It does not modify or delete the account data in the `clouddriver.accounts` table.
+The Scale Agent stores account data in a dedicated table called `clouddriver.kubesvc_accounts`. It does not modify or delete the account data in the original credential source.
 
 An account has the following lifecycle states:
 
 - Non-transient:
 
-  - `INACTIVE`: This is the initial state. Scale Agent has provisioned the account, but the account is waiting for a migration operation.
+  - `INACTIVE`: This is the initial state when a user adds an account. The account is waiting for a migration operation.
   - `ACTIVE`: Scale Agent watches and manages the account.
   - `FAILED`: Scale Agent failed to add or delete an account.
   - `ORPHANED`: Neither Scale Agent nor Clouddriver is managing the account. It is inactive. You usually see this state when restarting or bringing down all of the replicas managing that account.
@@ -86,9 +86,9 @@ See {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >
 
 **What happens when you initiate a migration request**
 
-* If you **do not** include a `zoneId`, the plugin sends the request to every Clouddriver instance that has a connected Scale Agent service. Each Clouddriver instance subsequently sends the request to all of its connected Scale Agent services in an attempt to find one that can process the request.  The account's `zoneId` is updated to be the one of the Agent service that is able to process the add request for that account.
-* If you **do** provide a `zoneId`, the plugin forwards the request to only those Clouddriver instances with a matching Agent service.
-* The plugin decrypts the `kubeconfig` secret and encodes it in Basee64. Then the plugin adds the content as an attribute of the account.
+* If you **do not** include a `zoneId`, the plugin sends the request to every connected Scale Agent service in an attempt to find one that can process the request.  The account's `zoneId` is updated to that of the Agent service that is able to process the add request.
+* If you **do** provide a `zoneId`, the plugin forwards the request only to matching Agent services. 
+* Before sending account data to the Agent service, the plugin decrypts the `kubeconfig` secret and encodes it in Base64. Then the plugin adds the encoded content as an attribute of the account. The secret data remains encoded in the database; it is not stored in plain text. 
 * The plugin stores the account data in the `clouddriver.kubesvc_accounts` before sending the accounts to the relevant Scale Agent services for processing.
 
 >To reduce overhead, create the `kubeconfig` with only the minimum requirements.
@@ -98,8 +98,7 @@ See {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >
 * After receiving the set of accounts, the Scale Agent service parses each `kubeconfig` and fetches the certificate information from the specified cluster. After the fetch succeeds, the Scale Agent service initiates a process that discovers every Kubernetes kind in the target cluster for initiation of a [Kubernetes watch](https://kubernetes.io/docs/reference/using-api/api-concepts/#efficient-detection-of-changes).
 * Next, the Scale Agent service creates a new gRPC connection as a response to tell the Scale Agent plugin which accounts are now active. The plugin then updates account data in the `clouddriver.kubesvc_accounts` table.
 
-The plugin does not inform you of the operation results. Check for an ACTIVE account state in the `clouddriver.kubesvc_accounts` table by querying the database directly or by calling `/agents/kubernetes/accounts/{accountName}`.
-
+The plugin does not inform you of the operation results due to potentially long processing time. The more accounts you send, the longer the operation takes to complete. You can check for an ACTIVE account state in the `clouddriver.kubesvc_accounts` table by querying the database directly or by calling `/agents/kubernetes/accounts/{accountName}`.
 
 ### CRUD operations
 

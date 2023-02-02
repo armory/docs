@@ -13,7 +13,12 @@ See {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >
 
 ## Create accounts
 
-Use this when you want to create an account that does not exist in Clouddriver or the Scale Agent.
+Like migrating accounts, creating new accounts is a two-step process:
+
+1. POST new account data; this adds the new accounts in an INACTIVE state 
+1. PATCH to change state to ACTIVE and begin using the account.
+
+### Provision accounts
 
 **Endpoint**: POST<Account[]> `/armory/accounts/dynamic`
 
@@ -22,6 +27,7 @@ Use this when you want to create an account that does not exist in Clouddriver o
 ```json
 {
 "name":	"<account-name>",
+"zoneId": "<zone-id>",
 "kubeconfigContents": "encryptedFile:k8s!n:kubeconfig-t!k:config!ns:spinnaker"
 }
 ```
@@ -34,25 +40,16 @@ and **one** of the following:
 
 * `kubeconfigContents`: encrypted contents of the `kubeconfig` file
 * `kubeconfigFile`: Path to the `kubeconfig` file if not using `serviceAccount`.
-* `serviceAccount`: "<true|false>"; If true, use the current service account to call to the current API server. In this mode, you don’t need to provide a `kubeconfig` file.
+* `serviceAccount`: true or false; if true, use the current service account to call to the current API server. In this mode, you don’t need to provide a `kubeconfig` file.
 
 Optional fields:
 
-You can include any `kubernetes.accounts[]` attribute from the Scale Agent service [config options list]({{< ref "scale-agent/reference/config/agent-options#configuration-options" >}}).
-
+* `zoneId`: (Optional) the `zoneId` for the targeted Agent service, which is by default deploymentName_namespace. This can optionally be supplied during the activation step.
+* You can include any `kubernetes.accounts[]` attribute from the Scale Agent service [config options list]({{< ref "scale-agent/reference/config/agent-options#configuration-options" >}}).
 
 **Example**:
 
-```bash
-curl --request POST \
-  --url http://localhost:7002/armory/accounts/dynamic \
-  --header 'Content-Type: application/json' \
-  --data '{
-"name":	"acc2",
-"type": "kubernetes",
-"kubeconfigContents":"encryptedFile:k8s!n:kubeconfig-t!k:config!ns:spinnaker"
-}'
-```
+{{< include "scale-agent/curl/post-armory-accounts" >}}
 
 **Response**:
 
@@ -60,6 +57,42 @@ curl --request POST \
 - 409 Conflict: `[] array containing already migrated accounts` (still processes valid ones)
 - 400 Bad Request: in case the account array is empty
 - 501 Not Implemented: if the Dynamic Accounts feature isn't enabled 
+
+### Activate accounts
+
+**Endpoint**: PATCH<Account[]> `/armory/accounts/dynamic`
+
+**Request body**:
+
+```json
+[
+{
+  "name":  "<account-name>",
+  "state": "<INACTIVE | FAILED>",
+  "zoneId": "<zone-id>",
+  "kubeconfigFile": "<encrypted-kubeconfig>"
+}
+]
+```
+
+Required fields:
+
+* `name`: the account name
+* `state`: the account state; valid values are INACTIVE or FAILED.
+
+and **one** of the following: `kubeconfigContents`, `kubeconfigFile`, or `serviceAccount` (whichever one you used in the POST request).
+
+`zoneId` is optional if you included one in the provision step.
+
+**Example**:
+
+{{< include "scale-agent/curl/patch-armory-accounts" >}}
+
+**Response**:
+
+- 202 Accepted
+- 501 Not Implemented: if the Dynamic Accounts feature isn't enabled 
+
 
 ## Deactivate accounts
 
@@ -143,7 +176,7 @@ Use this to fetch the status and definition of an account.
 
 ```bash
 curl --request GET \
-  --url http://localhost:7002/agents/kubernetes/accounts/dynamic-account
+  --url http://localhost:7002/agents/kubernetes/accounts/account-01
 ```
 
 **Response**: 
@@ -172,7 +205,8 @@ curl --request GET \
          "caching":false
       }
    },
-   "lastAssignmentMsg":"successfully assigned to Agent agent-private-network-1-54865d798c-tdfvw for executing operations"
+   "status": "ACTIVE",
+   "lastAssignmentMsg": "successfully assigned to Agent agent-private-network-1-54865d798c-tdfvw for executing operations"
 }
 ```
 
@@ -180,7 +214,7 @@ curl --request GET \
 
 Updating an account is similar to [creating a new one](#create-accounts). The API detects it by its name and performs the update. If the account is already ACTIVE, the plugin immediately propagates the changes to the corresponding Scale Agent services.
 
-**Endpoint**: PUT <Account> `/armory/accounts/**dynamic`
+**Endpoint**: PUT <Account> `/armory/accounts/dynamic`
 
 **Request body**:
 

@@ -37,9 +37,9 @@ Manually migrating Clouddriver accounts is a two-step process:
    ]
    ```
 
-   * **name**: (Required) the account's name
-   * **zoneId**: (Optional) the `zoneId` for the targeted Agent service, which is by default deploymentName_namespace. This can optionally be supplied during the activation step.
-   * **kubeconfigFile**: (Optional) the secret token for the `kubeconfig` path or file. This should be in [encrypted secret format](https://spinnaker.io/docs/reference/halyard/secrets/](https://spinnaker.io/docs/reference/halyard/secrets/); for example, `encryptedFile:k8s!n:kubeconfig!k:config!ns:spinnaker`. **`kubeconfigFile` is optional only if the native account's `kubeconfig` works for the targeted Agent service; otherwise you need to supply this parameter with a working value**.
+   * `name`: (Required) the account's name
+   * `zoneId`: (Optional) the `zoneId` for the targeted Agent service, which is by default deploymentName_namespace. This can optionally be supplied during the activation step.
+   * `kubeconfigFile`: (Optional) the secret token for the `kubeconfig` path or file. This should be in [encrypted secret format](https://spinnaker.io/docs/reference/halyard/secrets/](https://spinnaker.io/docs/reference/halyard/secrets/); for example, `encryptedFile:k8s!n:kubeconfig!k:config!ns:spinnaker`. **`kubeconfigFile` is optional only if the native account's `kubeconfig` works for the targeted Agent service; otherwise you need to supply this parameter with a working value**.
 
 
    Example:
@@ -68,20 +68,20 @@ Manually migrating Clouddriver accounts is a two-step process:
    [
     {
      "name":  "<account-name>",
-     "state": "<ACTIVE | FAILED>",
+     "state": "<INACTIVE | FAILED>",
      "zoneId": "<zone-id>",
      "kubeconfigFile": "<encrypted-kubeconfig>"
     }
    ]
    ```
 
-   * **name**: (Required) the account's name
-   * **state**: (Required) the account state; valid values are ACTIVE or FAILED.
-   * **zoneId**: (Optional) the `zoneId` for the targeted Agent service, which is by default deploymentName_namespace. This is not needed if you supplied this value in the previous step.
+   * `name`: (Required) the account's name
+   * `state`: (Required) the account state; valid values are INACTIVE or FAILED.
+   * `zoneId`: (Optional) the `zoneId` for the targeted Agent service, which is by default deploymentName_namespace. This is not needed if you supplied this value in the previous step.
 
        If you do not include a `zoneId`, Clouddriver sends the request to every other Clouddriver instance that has a connected Scale Agent service. Each Clouddriver instance subsequently sends the request to all of its connected Agents in an attempt to find one that can process the request. This is resource intensive, so be sure to include a `zoneId`.
 
-   * **kubeconfigFile**: (Optional) the secret token for the `kubeconfig` path or file. This should be in [encrypted secret format](https://spinnaker.io/docs/reference/halyard/secrets/](https://spinnaker.io/docs/reference/halyard/secrets/); for example, `encryptedFile:k8s!n:kubeconfig!k:config!ns:spinnaker`.
+   * `kubeconfigFile`: (Optional) the secret token for the `kubeconfig` path or file. This should be in [encrypted secret format](https://spinnaker.io/docs/reference/halyard/secrets/](https://spinnaker.io/docs/reference/halyard/secrets/); for example, `encryptedFile:k8s!n:kubeconfig!k:config!ns:spinnaker`.
 
       `kubeconfigFile` is optional only if you supplied this value in the previous step or the native account's `kubeconfig` works for the targeted Agent service.
 
