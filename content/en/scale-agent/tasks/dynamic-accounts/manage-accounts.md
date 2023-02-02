@@ -15,29 +15,30 @@ See {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >
 
 Use this when you want to create an account that does not exist in Clouddriver or the Scale Agent.
 
-**Endpoint**: `POST<Account[]> /armory/accounts/dynamic`
+**Endpoint**: POST<Account[]> `/armory/accounts/dynamic`
 
 **Request body**:
 
 ```json
 {
-"name":	"acc2",
-"type": "kubernetes",
-"kubeconfigContents":"encryptedFile:k8s!n:kubeconfig-t!k:config!ns:spinnaker",
-"metrics": false,
-"kinds": [...],
-"omitKinds": [...],
-"namespaces": ["default", "spinnaker"],
-"onlyNamespacedResources": false
+"name":	"<account-name>",
+"kubeconfigContents": "encryptedFile:k8s!n:kubeconfig-t!k:config!ns:spinnaker"
 }
 ```
 
 Required fields:
 
-You must supply `kubeconfigContents` or `kubeconfigFile` or `
+* `name`: the account name
 
-- Only mandatory fields are  **`kubecongifContents** / **KubeconfigFile / serviceAccount: true**` and **`name.`**
-- the definition supports any agent account setting see ****[https://docs.armory.io/scale-agent/reference/config/agent-options/](https://docs.armory.io/scale-agent/reference/config/agent-options/)
+and **one** of the following:
+
+* `kubeconfigContents`: encrypted contents of the `kubeconfig` file
+* `kubeconfigFile`: Path to the `kubeconfig` file if not using `serviceAccount`.
+* `serviceAccount`: "<true|false>"; If true, use the current service account to call to the current API server. In this mode, you don’t need to provide a `kubeconfig` file.
+
+Optional fields:
+
+You can include any `kubernetes.accounts[]` attribute from the Scale Agent service [config options list]({{< ref "scale-agent/reference/config/agent-options#configuration-options" >}}).
 
 
 **Example**:
@@ -53,82 +54,182 @@ curl --request POST \
 }'
 ```
 
-
 **Response**:
 
 - 202 Accepted: `[] empty array`
 - 409 Conflict: `[] array containing already migrated accounts` (still processes valid ones)
 - 400 Bad Request: in case the account array is empty
-- 501 Not Implemented: if the dynamic accounts settings aren’t enabled with `kubesvc.dynamicAccounts.enabled=true`
+- 501 Not Implemented: if the Dynamic Accounts feature isn't enabled 
 
 ## Deactivate accounts
 
-Deactivating an account will not delete it but transfer it to an INACTIVE state, a.k.a only tells the k8s Agent to stop watching it.
+This action changes the state to INACTIVE and instructs the Scale Agent service to stop watching the account(s).
 
-**PATCH** <Account[]> `/armory/accounts` NOT IN SWAGGER
+**Endpoint**: PATCH <Account[]> `/armory/accounts` 
 
-```
+**Request body**:
+
+```json
 [
  {
-  "name":  "account-01",
+  "name":  "<account-name>",
   "state": "INACTIVE"
  },
  {
-  "name":   "account-02",
+  "name":   "<account-name>",
   "state": "INACTIVE"
  }
 ]
 ```
 
-**Account object:**
+**Example**:
 
-- **name:** the name of the account matching the account in `clouddriver.accounts`
-- **state**: the desired state of the account, can only be `ACTIVE | INACTIVE`
+```bash
+curl --request PATCH \
+  --url http://localhost:7002/armory/accounts \
+  --header 'Content-Type: application/json' \
+  --data '[
+	{
+	"name":	"account-01",
+	"state": "INACTIVE"
+	},
+	{
+	"name":	"account-02",
+	"state": "INACTIVE"
+	}
+]'
+```
+
+**Response**:
+
+- 202 Accepted - no body.
+- 501 Not Implemented: if the Dynamic Accounts feature isn't enabled 
 
 ## Delete accounts
 
-Deleting an account will tell Agent to stop watching and managing the account and then will be effectively removed from kubesvc_accounts.
+This action removes the account from the Scale Agent service that watches it. Then the plugin removes the account from the `clouddriver.kubesvc_accounts` table.
 
-**Prerequisites:**
+>Account must be of type **dynamic** in `clouddriver.kubesvc_accounts`. 
 
-- Account must be of type **dynamic** in `kubesvc_accounts`. HOW DOES “DYNAMIC” GET SET IN THE TABLE?
+**Endpoint**: DELETE <string[]> `/armory/accounts`
 
-**DELETE** <string[]> `/armory/accounts` NOT IN SWAGGER
+**Request body**:
 
-```
+```json
 ["account-01","account-02"]
 ```
 
+**Example**:
+
+```bash
+curl --request DELETE \
+  --url http://localhost:7002/armory/accounts \
+  --header 'Content-Type: application/json' \
+  --data '["account-01","account-02"]'
+```
+
+**Response:** 
+
+- 202 Accepted - no body.
+- 501 Not Implemented: if the Dynamic Accounts feature isn't enabled 
 
 ## Get an account
 
-The status and definition of an account can be observed in 
-**GET** `/agents/kubernetes/accounts/{account-name}` NOT IN SWAGGER
+Use this to fetch the status and definition of an account.
 
+**Endpoint**: GET `/agents/kubernetes/accounts/{account-name}`
 
-## Update accounts
+**Example**:
 
-Updating an account is similar to creating a new one, the API will detect it by its name and perform the update, if the account is already in ACTIVE state it will propagate the changes immediately to the corresponding **k8s Agents**.
-**PUT**<Account[]> `/armory/accounts/**dynamic`
-
+```bash
+curl --request GET \
+  --url http://localhost:7002/agents/kubernetes/accounts/dynamic-account
 ```
+
+**Response**: 
+
+- 200 Accepted: `{name:..., kubeconfigContents:..., ... } account object found` or empty object if none.
+- 501 Not Implemented: if the Dynamic Accounts feature isn't enabled 
+
+**Example response**:
+
+``` json
 {
-"name": "demo-acc-02",
+   "name":"my-account-1",
+   "type":"kubernetes",
+   "source":"clouddriver",
+   "config":{
+
+   },
+   "zoneId":"agent-private-network-1",
+   "agents":{
+      {
+         "agentId":"agent-private-network-1-54865d798c-cpqgm",
+         "caching":true
+      },
+      {
+         "agentId":"agent-private-network-1-54865d798c-tdfvw",
+         "caching":false
+      }
+   },
+   "lastAssignmentMsg":"successfully assigned to Agent agent-private-network-1-54865d798c-tdfvw for executing operations"
+}
+```
+
+## Update a single account
+
+Updating an account is similar to [creating a new one](#create-accounts). The API detects it by its name and performs the update. If the account is already ACTIVE, the plugin immediately propagates the changes to the corresponding Scale Agent services.
+
+**Endpoint**: PUT <Account> `/armory/accounts/**dynamic`
+
+**Request body**:
+
+```json
+{
+"name": "<account-name>",
 "type": "kubernetes",
 "kubeconfigFile":"encryptedFile:k8s!n:kubeconfig-t!k:config!ns:spinnaker",
-"kubeconfigAgent":"encryptedFile:k8s!n:kubeconfig-agent!k:config!ns:spinnaker",
+"kubeconfigAgent":"encryptedFile:k8s!n:kubeconfig-agent!k:config!ns:spinnaker"
+}
+```
+
+Required fields:
+
+* `name`: the account name
+
+Optional fields:
+
+* `kubeconfigAgent`: you only need to include this if the account is in an **ACTIVE** state and if the target Scale Agent service needs a **different kubeconfig from the original one.**
+* You can include any `kubernetes.accounts[]` attribute from the Scale Agent service [config options list]({{< ref "scale-agent/reference/config/agent-options#configuration-options" >}}).
+
+
+**Example**:
+
+```bash
+curl --request PUT \
+  --url http://localhost:7002/armory/accounts/dynamic \
+  --header 'Content-Type: application/json' \
+  --data '{
+"name":	"demo-acc-02",
+"type": "kubernetes",
+"kubeconfigContents":"encryptedFile:k8s!n:kubeconfig-t!k:config!ns:spinnaker",
+"metrics": false,
+"kinds": [],
 "omitKinds": [],
+"onlyNamespacedResources": false,
 "namespaces": [
     "dev",
     "spinnaker",
     "default"
 ]
-}
+}'
 ```
 
-**kubeconfigAgent** is only needed if the account is in an **ACTIVE** state and if the target agent needs a **different kubeconfig from the original one.**
+**Response**: 
 
-
+- 202 Accepted: `[] empty array`
+- 400 Bad Request: in case the request is empty or body is an array.
+- 501 Not Implemented: if the Dynamic Accounts feature isn't enabled 
 
 
 ## {{% heading "nextSteps" %}}

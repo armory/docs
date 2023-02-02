@@ -56,7 +56,7 @@ spec:
 
 * **enabled**: (Optional) default: false; set to `true` to enable the Dynamic Accounts feature
 * **maxRetries**: (Optional) default: 3; the number of times to retry adding an account that fails the first time
-* **retryFrequencySeconds**: (Optional) default: 5; the number of seconds to wait between retrying to add a FAILED account
+* **retryFrequencySeconds**: (Optional) default: 5; the number of seconds to wait between trying to add a FAILED account
 
 The remaining optional attributes in the `dynamicAccounts` section are for configuring automatic migration of Clouddriver accounts to the Scale Agent. These options are discussed in detail in {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}}.
 
