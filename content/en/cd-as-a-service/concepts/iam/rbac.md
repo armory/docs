@@ -26,26 +26,24 @@ classDiagram
     class Role {
       +String name
       +Tenant tenant
-      +List<Grant> grants
+      +List~Grant~ grants
     }
     class Grant {
       +GrantType type
       +String resource
-      +List<Permission> permissions
+      +List~Permission~ permissions
     }
-    class GrantType {
-      <<enumeration>>
+    class GrantType {      
       api
     }
-    class Permission {
-      <<enumeration>>
+    class Permission {      
       full
     }
     class User {
-      +List<Role> roles
+      +List~Role~ roles
     }
     class M2MCredential {
-      +List<Role> roles
+      +List~Role~ roles
     }
     class Tenant {
       +String name
