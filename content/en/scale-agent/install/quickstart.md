@@ -32,7 +32,7 @@ we are assuming the user has in-depth Spinnaker knowledge and has kubernetes acc
 ## {{% heading "prereq" %}}
 
 * You have admin access to a Kubernetes cluster running 1.23, 1.22 (not 1.24)
-* `kubernetes-cli` is version 
+* `kubernetes-cli` is version ???
 
 <!-- too much text -  put in a collapsible pane if we decide to include it
 ### Why use Kustomize patches for Spinnaker configuration
