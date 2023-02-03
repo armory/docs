@@ -34,11 +34,9 @@ The Scale Agent works with Armory Continuous Deployment v2.26+ and Spinnaker v1.
 
 ## How to get started using the Scale Agent
 
-* **New Spinnaker instance**: The {{< linkWithTitle "scale-agent/install/quickstart.md" >}} guide shows you how to use the Spinnaker Operator to install Spinnaker and the Scale Agent in the same Kubernetes cluster for testing the Scale Agent's features.
+* **New Spinnaker instance**: The {{< linkWithTitle "scale-agent/install/quickstart.md" >}} guide shows you how to use the Operator to install Spinnaker and the Scale Agent in the same Kubernetes cluster for testing the Scale Agent's features.
 * **Existing Spinnaker instance**: How you install the Scale Agent components depends on how you manage your Spinnaker instance. The [Advanced Installation]({{< ref "scale-agent/install/advanced/_index.md" >}}) section covers installation using Halyard for the plugin and `kubectl` or Helm for the service. 
-* **Existing Armory Continuous Deployment instance**: The [Advanced Installation]({{< ref "scale-agent/install/advanced/_index.md" >}}) section covers how to use the Armory Operator to install the Scale Agent components. @TODO USING THE ARMORY OPERATOR AND SPINNAKER OPERATOR IS BASICALLY THE SAME.  
-
-@TODO ADVANCED SHOULD COVER USING THE PLUGIN DOCKER IMAGE
+* **Existing Armory Continuous Deployment instance**: The [Advanced Installation]({{< ref "scale-agent/install/advanced/_index.md" >}}) section covers how to use the Armory Operator to install the Scale Agent components. 
 
 >For installation into existing instances, note that your Clouddriver service must use a MySQL-compatible database. If yours doesn't, see the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions.
 
