@@ -59,6 +59,10 @@ kubernetes:
     - ...  
 {{< /prism >}}
 
+### Automatically migrate accounts from Clouddriver to Agent
+
+The Dynamic Accounts feature enables manual account migration using a REST API or automatic account migration via request interception or a scanning mechanism. See {{< linkWithTitle "scale-agent/concepts/dynamic-accounts.md" >}}.
+
 ### Migrate accounts from Agent to Clouddriver
 
 Follow these steps to migrate accounts from Agent to Clouddriver:

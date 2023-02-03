@@ -1,9 +1,16 @@
 ---
-title: Armory Scale Agent Dynamic Accounts API
-linkTitle: Dynamic Accounts API
+title: Armory Scale Agent Dynamic Accounts API Usage
+linkTitle: Usage
 description: >
-  The Armory Scale Agent Clouddriver HTTP REST API Dynamic Accounts endpoints for Spinnaker and Kubernetes.
+  This page contains examples of how to use the Dynamic Accounts API.
+draft: true
 ---
+
+## Usage overview
+
+The Scale Agent endpoints aren't directly accessible. If you don't have direct access to your cluster, you should [expose Clouddriver using a LoadBalancer service]({{< ref "scale-agent/install/install-agent-plugin#expose-clouddriver-as-a-loadbalancer" >}}). You can then call the API using the public `https://<clouddriver-loadbalancer-url>:<clouddriver-port>`. 
+
+
 
 ## Get Armory accounts
 `GET /armory/accounts`
@@ -18,7 +25,7 @@ Return a list of all managed accounts, including static accounts defined in Agen
 ``` json
 {
    "items":[
-      
+
    ],
    "page":1,
    "limit":3,
@@ -37,7 +44,7 @@ Return account details based on the `accountId`.
  - `config`: The account configuration as defined in the underlying data stores.
  - `zoneId`: Identifier of the zone to which this account is pinned (optional). A missing value means that the account can be dynamically assigned to any available Agent.
  - `agents`: The List of Agent identifiers confirmed to handle the account, either for making deployments, watching cluster events, or both.
- - `lastAssignmnentMsg`: This string represents the last message produced when assigning an account to an Agent. It is used to reveal communication errors, for example using an invalid `kubeconfig` file.
+ - `lastAssignmentMsg`: This string represents the last message produced when assigning an account to an Agent. It is used to reveal communication errors, for example using an invalid `kubeconfig` file.
 
 ### Example response
 ``` json
@@ -87,7 +94,9 @@ Provide the account number for an existing native Clouddriver account to be late
 ```
 
 #### Response
-If the request is successful a 200 response code is returned. If a 400 response is returned the account name is not defined in Clouddriver.
+
+* 200: success
+* 400: the account name is not defined in Clouddriver
 
 ## Assign Clouddriver account to Agent
 `PATCH /armory/accounts`
@@ -125,13 +134,22 @@ Use this endpoint to activate migrated accounts on an Agent. The request body fo
 ```
 
 #### Response
-If the request is successful a 200 response code is returned. If a 400 response is returned the account name is not defined in Clouddriver.
+
+* 200: success
+* 400: the account name is not defined in Clouddriver
 
 ## Delete an account
-`DELETE /armory/accounts/{accountName}`
 
-Remove a Clouddriver migrated account from an Agent.
+Deleting an account tells the Scale Agent to stop watching and managing the account. Then the account is effectively removed from the `kubesvc_accounts` table. Each account must have a `dynamic` type in the `kubesvc_accounts` table.
 
-# Response
-If the request is successful a 200 response code is returned. If a 400 response is returned the account name is not defined in Clouddriver.
+`DELETE <string[]> clouddriver/armory/accounts`
+
+For example: `DELETE ["account01", "account02"] clouddriver/armory/accounts`
+
+## Response
+
+* 200: success
+* 400: the account name is not defined in Clouddriver
+
+
 
