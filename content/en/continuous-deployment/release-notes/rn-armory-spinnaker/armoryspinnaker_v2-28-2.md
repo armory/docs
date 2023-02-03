@@ -24,6 +24,8 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "breaking-changes/bc-orca-rdbms-configured-utf8.md" >}}
 
+{{< include "known-issues/ki-fiat-mysql.md" >}}
+
 {{< include "breaking-changes/bc-kubectl-120.md" >}}
 
 {{< include "breaking-changes/bc-dinghy-slack.md" >}}

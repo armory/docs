@@ -48,6 +48,8 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "known-issues/ki-empty-roles.md" >}}
 
+{{< include "known-issues/ki-fiat-mysql.md" >}}
+
 {{< include "known-issues/ki-app-attr-not-configured.md" >}}
 
 {{< include "known-issues/ki-app-eng-acct-auth.md" >}}

@@ -46,3 +46,4 @@ Learn how to deploy your app using one of these options:
 
 * {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}}
 * {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}}
+* {{< linkWithTitle "cd-as-a-service/setup/argo-rollouts.md" >}}

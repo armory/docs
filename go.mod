@@ -1,6 +1,6 @@
 module github.com/armory/docs
 
-go 1.18
+go 1.19
 
 require (
 	github.com/FortAwesome/Font-Awesome v0.0.0-20220831210243-d3a7818c253f // indirect
