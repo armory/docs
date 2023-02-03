@@ -20,7 +20,7 @@ The tool you use to install the plugin depends on the tool you use to manage you
 
 Be sure to choose the Scale Agent version that is compatible with your Armory CD or Spinnaker version.
 
-{{< include "agent/agent-compat-matrix.md" >}}
+{{< include "scale-agent/agent-compat-matrix.md" >}}
 
 ## Armory Operator or Spinnaker Operator
 
