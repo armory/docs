@@ -24,10 +24,14 @@ https://armory.zoom.us/rec/share/aaavlB1E3jRFDi3C7resW4GOwNOZp6F_luKTHLrjbIGvtJZ
 * install the spinnaker operator and use it to install a complete spinnaker 1.28 instance with the latest scale agent plugin and service  into a clean Kubernetes cluster
 * single cluster (spinnaker mode)
 * clouddriver uses sql database
-* clouddriver account management enabled
-* dynamic accounts enabled in plugin
+* clouddriver account management enabled in plugin file
+* dynamic accounts automatically enabled in plugin
 
 we are assuming the user has in-depth Spinnaker knowledge and has kubernetes accounts to migrate???
+
+* clone repo
+* configure k8s accounts (optional)
+* install
 
 ## {{% heading "prereq" %}}
 
@@ -65,8 +69,12 @@ Clone the [spinnaker-kustomize-patches](https://github.com/aimeeu/spinnaker-kust
 
 Navigate to the `spinnaker-kustomize-patches/targets/kubernetes/scale-agent/` directory.
 
+Note: the files in the repo don't enable the Clouddriver Account Management API or Dynamic Accounts in the plugin
 
+explain what each file we use is for 
 
-
+user needs to update the password values in 
 
 ## {{% heading "nextSteps" %}}
+
+- migrate 

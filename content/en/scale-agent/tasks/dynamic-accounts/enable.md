@@ -1,5 +1,5 @@
 ---
-title: Enable Dynamic Accounts in the Armory Scale Agent
+title: Enable and Configure Dynamic Accounts in the Armory Scale Agent
 linkTitle: Enable Dynamic Accounts
 description: >
   Learn how to enable and configure the Dynamic Accounts feature in Armory Scale Agent for Spinnaker and Kubernetes.
@@ -17,7 +17,9 @@ description: >
 
 ## Scale Agent plugin
 
-You need to enable Dynamic Accounts in your plugin config. Add `kubesvc.dynamicAccounts` to the config section of your plugin declaration. For example:
+>Dynamic Accounts is enabled by default starting with plugin versions v0.11.21/0.10.69/0.9.85. 
+
+If you are using a prior version of the plugin, you should enable Dynamic Accounts by setting `kubesvc.dynamicAccounts.enabled: true` in your plugin configuration. For example:
 
 {{< prism lang="yaml" line="27-28" >}}
 spec:
