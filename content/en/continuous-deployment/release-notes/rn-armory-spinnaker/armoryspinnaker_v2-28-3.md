@@ -23,6 +23,8 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 hey there this is a test
 
+{{< include "test/test-add-includes.md" >}}
+
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
