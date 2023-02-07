@@ -175,7 +175,7 @@ Since you are using the CLI, you do not need to have service account credentials
 
    The CLI returns a `Device Code` and opens your default browser. To complete the log in process, confirm the code in your browser.
 
-   After you successfully authenticate, the CLI returns a list of tenants if you have access to more than one. Select the tenant you want to access. Note that most users only have access to one tenant. If you have access to several tenants, you can [log in directly to your desired tenant] with `armory login -e '<tenant>'`.
+   After you successfully authenticate, the CLI returns a list of tenants if you have access to more than one. Select the tenant you want to access. Note that most users only have access to one tenant. If you have access to several tenants, you can log in directly to your desired tenant with `armory login -e '<tenant>'`.
 
 
 1. Start the deployment.
