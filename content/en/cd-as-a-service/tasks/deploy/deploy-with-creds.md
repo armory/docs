@@ -18,5 +18,3 @@ You have [created machine to machine client credentials]({{< ref "cd-as-a-servic
 {{< prism lang="bash" >}}
 armory deploy start  -c <your-client-id> -s <your-client-secret> -f <your-deploy.yaml>
 {{< /prism >}}
-
-See the [deploy command]({{< ref "cd-as-a-service/reference/cli/cli-cheat#deploy-an-application" >}}) for details.
