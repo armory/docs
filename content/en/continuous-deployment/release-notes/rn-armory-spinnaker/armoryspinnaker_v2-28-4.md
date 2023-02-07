@@ -1,7 +1,7 @@
 ---
 title: v2.28.4 Armory Release (OSS Spinnaker™ v1.28.4)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
+version: 02.28.4
 date: 2023-02-07
 description: >
   Release notes for Armory Enterprise v2.28.4
@@ -21,13 +21,64 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
+{{< include "breaking-changes/bc-orca-rdbms-configured-utf8.md" >}}
+
+{{< include "breaking-changes/bc-kubectl-120.md" >}}
+
+{{< include "breaking-changes/bc-dinghy-slack.md" >}}
+
+{{< include "breaking-changes/bc-java-tls-mysql.md" >}}
+
+{{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
+
+{{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
+
+{{< include "breaking-changes/bc-git-artifact-constraint.md" >}}
+
+{{< include "breaking-changes/bc-hal-deprecation.md" >}}
+
+{{< include "breaking-changes/bc-plugin-compatibility-2-28-0.md" >}}
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
-## Highlighted updates
+{{< include "known-issues/ki-fiat-mysql.md" >}}
+
+{{< include "known-issues/ki-app-attr-not-configured.md" >}}
+
+{{< include "known-issues/ki-app-eng-acct-auth.md" >}}
+
+{{< include "known-issues/ki-spel-expr-art-binding.md" >}}
+
+{{< include "known-issues/ki-pipelines-as-code-gh-comments.md" >}}
+
+{{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
+
+## Early access
+
+### Pipelines as Code multi-branch enhancement
+
+Now you can configure Pipelines as Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "continuous-deployment/armory-admin/dinghy-enable#multiple-branches" >}}) for how to enable and configure this feature.
+
+### Enhanced BitBucket Server pull request handling
+
+Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. See [Triggering pipelines with Bitbucket Server](https://spinnaker.io/docs/guides/user/pipeline/triggers/bitbucket-events/) in the Spinnaker docs for details.
+
+<!-- Spinnaker docs PR https://github.com/spinnaker/spinnaker.io/pull/285 -->
+
+### Terraform template fix
+
+Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you will be able to use the Terraform template file provider. Please open a support ticket if you need this fix.
+
+### Automatically Cancel Jenkins Jobs
+
+You now have the ability to cancel triggered Jenkins jobs when a Spinnaker pipeline is canceled, giving you more control over your full Jenkins workflow. Learn more about Jenkins + Spinnaker in this [documentation](https://spinnaker.io/changelogs/1.29.0-changelog/#orca).
+
+## Fixed issues
+
+* Addressed an issue which could result in access denied errors for Clouddriver accounts when AuthZ enabled and has empty roles
 
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
