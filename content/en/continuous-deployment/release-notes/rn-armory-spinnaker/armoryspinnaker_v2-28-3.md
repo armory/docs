@@ -23,6 +23,8 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 I'm adding content in the release notes file directly
 
+{{< include "test/test-this-is-included.md" >}}
+
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
