@@ -1,9 +1,8 @@
 ---
 title: Deploy a Docker Image to Kubernetes
-linkTitle: Deploy a Docker Image to Kubernetes
+linkTitle: Deploy a Docker Image
 aliases:
-  - /spinnaker/kubernetes_deployments/
-  - /docs/spinnaker/kubernetes-deployments/
+  - /spinnaker-user-guides/kubernetes-deployments/
 description: >
   Learn how to use Spinnaker's Kubernetes V2 provider to deploy your Docker image.
 ---

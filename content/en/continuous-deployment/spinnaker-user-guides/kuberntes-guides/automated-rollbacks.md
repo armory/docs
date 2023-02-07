@@ -1,11 +1,10 @@
 ---
 title: Automated Kubernetes Rollbacks in Spinnaker
-linkTitle: Automated Kubernetes Rollbacks
+linkTitle: Automated Rollbacks
 aliases:
-  - /spinnaker/automated_rollbacks/
-  - /docs/spinnaker/automated-rollbacks/
+  - /spinnaker-user-guides/automated-rollbacks/
 description: >
-  Learn how to rollback Kubernetes deployments from Spinnaker based on complexity and number of artifacts deployed.
+  Learn how to use Spinnaker to rollback Kubernetes deployments based on complexity and number of artifacts deployed.
 ---
 
 ## Creating a main deployment pipeline
