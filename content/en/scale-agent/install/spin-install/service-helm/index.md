@@ -23,7 +23,7 @@ This Helm chart replaces installing the Armory Scale Agent using `kubectl`. The 
 
 Ensure you have completed the following steps before you install the Armory Scale Agent using the Helm chart:
 
-1. You have [installed the Clouddriver plugin]({{< ref "scale-agent/install/advanced/plugin" >}}).
+1. You have installed the Clouddriver plugin.
 1. You are familiar with [Helm](https://helm.sh/) and have installed v3.6.3+.
 1. You have added or updated the Armory charts repo in your Kubernetes environment.
 
@@ -446,8 +446,8 @@ helm uninstall <release-name> --namespace=<agent-namespace>
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}} page if you run into issues.
-* Learn how to {{< linkWithTitle "scale-agent/tasks/agent-monitoring.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Scale Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
-* {{< linkWithTitle "scale-agent/tasks/agent-mtls.md" >}}
-* Read about {{< linkWithTitle "scale-agent/concepts/agent-permissions.md" >}}
+* Learn how to {{< linkWithTitle "scale-agent/tasks/service-monitor.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Scale Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
+* {{< linkWithTitle "scale-agent/tasks/configure-mtls.md" >}}
+* Read about {{< linkWithTitle "scale-agent/concepts/service-permissions.md" >}}
 </br>
 </br>

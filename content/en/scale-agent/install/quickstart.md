@@ -33,6 +33,23 @@ we are assuming the user has in-depth Spinnaker knowledge and has kubernetes acc
 * configure k8s accounts (optional)
 * install
 
+Need to provide a cleanup script - can't just delete spinnaker namespace - need to delete ClusterRole and ClusterRoleBinding
+
+ClusterRoleBinding: spinnaker-operator-binding-my-suffix-changeme `kubectl delete clusterrolebinding spinnaker-operator-binding-my-suffix-changeme`
+
+ClusterRole: spinnaker-operator-role-my-suffix-changeme  `kubectl delete clusterrole spinnaker-operator-role-my-suffix-changeme`
+
+ServiceAccount `kubectl delete serviceaccount spinnaker-operator-my-suffix-changeme` (should be deleted when namespace is deleted)
+
+`kubectl delete namespace spinnaker`
+
+Tested with AWS EKS running Kubernetes v1.23
+
+
+serviceaccount/spinnaker-operator-my-suffix-changeme created
+clusterrole.rbac.authorization.k8s.io/spinnaker-operator-role-my-suffix-changeme created
+clusterrolebinding.rbac.authorization.k8s.io/spinnaker-operator-binding-my-suffix-changeme created
+
 ## {{% heading "prereq" %}}
 
 * You have admin access to a Kubernetes cluster running 1.23, 1.22 (not 1.24)
@@ -69,11 +86,15 @@ Clone the [spinnaker-kustomize-patches](https://github.com/aimeeu/spinnaker-kust
 
 Navigate to the `spinnaker-kustomize-patches/targets/kubernetes/scale-agent/` directory.
 
-Note: the files in the repo don't enable the Clouddriver Account Management API or Dynamic Accounts in the plugin
+Note: the files in the repo don't enable the Clouddriver Account Management API or have all the dynamic accounts settings in the plugin config
 
 explain what each file we use is for 
 
 user needs to update the password values in 
+
+
+
+kubectl -n spinnaker get spinsvc && echo && kubectl -n spinnaker get pods
 
 ## {{% heading "nextSteps" %}}
 

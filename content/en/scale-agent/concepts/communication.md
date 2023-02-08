@@ -3,6 +3,8 @@ title: Armory Scale Agent Communication With Clouddriver Instances in Kubernetes
 linkTitle: Clouddriver Communication
 description: >
   Learn how the Armory Scale Agent and Clouddriver instances communicate in a Kubernetes cluster.
+aliases:
+  - /scale-agent/concepts/agent-k8s-clustering/
 ---
 
 ## How the Armory Scale Agent plugin communicates with Clouddriver instances

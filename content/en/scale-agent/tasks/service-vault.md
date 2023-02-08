@@ -1,7 +1,9 @@
 ---
-title: "Integrate Vault"
+title: Integrate Vault with the Armory Scale Agent Service
 description: >
   Integrate HashiCorp Vault with the Armory Scale Agent for Spinnaker and Kubernetes.
+aliases:
+  - /scale-agent/tasks/agent-vault/
 ---
 
 ## {{% heading "prereq" %}}

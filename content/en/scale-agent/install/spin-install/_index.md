@@ -7,7 +7,7 @@ weight: 2
 no_list: true
 ---
 
-@TODO 
+## Advanced installation options
 
 
 ## Deployment modes
@@ -51,7 +51,7 @@ Keep the following pros and cons in mind when deciding if Agent mode fits your u
 **Cons**
 
 - It is difficult to get agent logs, upgrade the Agent service, or check configurations because agents (often) run in third-party clusters that the DevOps team operating Armory CD (Spinnaker) doesn't have access.
-- There is no authentication/authorization, so any team can start an Agent and register itself with Armory CD (Spinnaker). mTLS encryption can be used so that only agents with the right certificate can register. For information about how to configure mTLS, see {{< linkWithTitle "scale-agent/tasks/agent-mtls.md" >}}.
+- There is no authentication/authorization, so any team can start an Agent and register itself with Armory CD (Spinnaker). mTLS encryption can be used so that only agents with the right certificate can register. For information about how to configure mTLS, see {{< linkWithTitle "scale-agent/tasks/configure-mtls.md" >}}.
 - You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
 
 ![Agent mode](/images/scale-agent/agent-mode.png)

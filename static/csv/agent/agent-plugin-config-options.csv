@@ -11,7 +11,7 @@ Setting|Type|Default|Description
 <code>kubesvc.disableV2Provider</code>|boolean|false|If you don’t need the V2 provider account, set that to true to speed up caching deserialization.
 <code>kubesvc.dynamicAccounts.enable</code>|boolean|false|<span class='badge badge-primary'>0.11.27+</span><span class='badge badge-primary'>0.10.65+</span><span class='badge badge-primary'>0.9.81+</span> Enable access to the Dynamic Accounts API
 <code>kubesvc.grpc.auth.x509.enabled</code>|boolean|false|Enable x509 subject filtering
-<code>kubesvc.grpc.auth.x509.filters</code>|list(string)|<code>[]</code>|x509 subject line filter; see <a href='https://docs.armory.io/docs/armory-agent/agent-mtls/#x509-certificate-subject-filtering' target='new'>x509 Certificate Subject Filtering</a>
+<code>kubesvc.grpc.auth.x509.filters</code>|list(string)|<code>[]</code>|x509 subject line filter; see <a href='https://docs.armory.io/docs/armory-agent/configure-mtls/#x509-certificate-subject-filtering' target='new'>x509 Certificate Subject Filtering</a>
 <code>kubesvc.grpc.server.address</code>|string|<code>*</code>|Address to bind the gRPC server to
 <code>kubesvc.grpc.server.port</code>|int|<code>9091</code>|Port to bind the gRPC server to
 <code>kubesvc.grpc.server.healthServiceEnabled</code>|boolean|<code>true</code>|Enable gRPC healthcheck service

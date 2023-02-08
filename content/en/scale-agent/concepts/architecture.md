@@ -4,6 +4,8 @@ linkTitle: Architecture
 description: >
   Learn about the key components that comprise the Armory Scale Agent for Spinnaker and Kubernetes. 
 weight: 10
+aliases:
+  - /scale-agent/concepts/service-permissions/
 ---
 
 <!-- the purpose is to list the bare minimum IT security needs to know to approve use in a corporate env; modeled after the CDaaS arch page-->
@@ -12,7 +14,7 @@ weight: 10
 
 ### Scale Agent plugin for Clouddriver
 
-The Scale Agent plugin runs inside Clouddriver and manages migrated accounts. The plugin does not engage in outbound communication. Through Clouddriver, the plugin exposes a REST API that you can use to dynamically migrate and manage Kubernetes accounts.
+The Scale Agent plugin runs inside Clouddriver and manages migrated accounts and accounts created specifically for Scale Agent management. The plugin does not engage in outbound communication. Through Clouddriver, the plugin exposes an internally-accessible REST API that you can use to dynamically migrate and manage Kubernetes accounts.
 
 ### Scale Agent service for Kubernetes
 
@@ -21,7 +23,7 @@ You Scale Agent service monitors your Kubernetes clusters and sends information 
 The Agent service sends the following information about the cluster it is watching to the Clouddriver plugin:
 
 - Account properties as configured in `kubernetes.accounts[]`.
-- Kubernetes API server host, certificate fingerprint, version.
+- Kubernetes API server host, certificate fingerprint, and version.
 - All the Kubernetes objects it is configured to watch and has permissions to access. You can ignore certain Kubernetes [kinds](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/) (`kubernetes.accounts[].omitKinds`) or configure specific kinds to watch (`kubernetes.accounts[].kinds`).
 
 > The Agent service always scrubs data from `Secret` in memory before it is sent and even before that data makes it onto the Armory Scale Agent's memory heap.
@@ -29,7 +31,9 @@ The Agent service sends the following information about the cluster it is watchi
 
 #### Kubernetes permissions for the service
 
-The Agent service should have `ClusterRole` authorization if you need to deploy pods across your cluster. If you only deploy pods only to a single namespace, the service needs `Role` authorization. See {{< linkWithTitle "scale-agent/concepts/agent-permissions.md" >}} for detailed information.
+The Agent service should have `ClusterRole` authorization if you need to deploy pods across your cluster. If you only deploy pods only to a single namespace, the service needs `Role` authorization. 
+
+See {{< linkWithTitle "scale-agent/concepts/service-permissions.md" >}} for detailed information.
 
 ## Communication and networking
 
@@ -42,7 +46,7 @@ Except for a local health check, the Agent service makes outbound calls only to 
 
 The Clouddriver plugin uses the bidirectional communication channel to receive changes from Kubernetes accounts as well as send operations to the Armory Scale Agent service.
 
-See the {{< linkWithTitle "agent-k8s-clustering.md" >}} page for detailed information.
+See the {{< linkWithTitle "scale-agent/concepts/communication.md" >}} page for detailed information.
 
 ## Security
 
@@ -57,7 +61,7 @@ Communications are secured with TLS and optionally mTLS.
 
 ## {{% heading "nextSteps" %}}
 
-* [Quick Start]({{< ref "scale-agent/install/quickstart" >}})
-* [Advanced Installation]({{< ref "scale-agent/install/advanced/_index.md" >}})
+* {{< linkWithTitle "scale-agent/concepts/service-permissions.md" >}}
+* {{< linkWithTitle "scale-agent/concepts/communication.md" >}}
 
 

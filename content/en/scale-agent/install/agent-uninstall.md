@@ -1,5 +1,5 @@
 ---
-title: Uninstall the Scale Agent
+title: Uninstall the Scale Agent - Armory Continuous Deployment
 linkTitle: Uninstall
 weight: 99
 ---
