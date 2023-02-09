@@ -19,8 +19,8 @@ This guide assumes you want to evaluate the Scale Agent with an existing Spinnak
 
 The following features require Spinnaker 1.28+ and [Clouddriver Account Management]():
 
-* [Automated scanning[()] for newly created accounts in Clouddriver and migrating those accounts to Scale Agent management
-* [Intercepting and processing requests]() sent to Clouddriver's `<GATE-URL>/credentials` endpoint
+* [Automated scanning]({{< ref "scale-agent/concepts/dynamic-accounts#automatic-account-migration" >}}) for newly created accounts in Clouddriver and migrating those accounts to Scale Agent management
+* [Intercepting and processing requests]({{< ref "scale-agent/concepts/dynamic-accounts#clouddriver-account-management-api-request-interception" >}}) sent to Clouddriver's `<GATE-URL>/credentials` endpoint
 
 ### Objectives
 
