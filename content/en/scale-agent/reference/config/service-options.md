@@ -9,13 +9,13 @@ description: >
 ## Where to configure the Armory Scale Agent
 
 - If you install the Armory Scale Agent service using `kubectl`, configure the Armory Scale Agent using a `ConfigMap`. See the `kubectl` installation instruction's [Configure the service]({{< ref "scale-agent/install/install-spin#configure-the-service" >}}) section for an example.
-- See {{< linkWithTitle "scale-agent/install/spin-install/service-helm/index.md" >}} for both CLI and `values.yml` configuration options.
+- See {{< linkWithTitle "scale-agent/install/service-deploy/helm/index.md" >}} for both CLI and `values.yml` configuration options.
 
 ## Configure Kubernetes accounts
 
-You can configure Kubernetes accounts in Armory CD in multiple places:
+You can configure Kubernetes accounts in Spinnaker in multiple places:
 
-* Clouddriver configuration files: `clouddriver.yml`, c`louddriver-local.yml`, `spinnaker.yml`, `spinnaker-local.yml`
+* Clouddriver configuration files: `clouddriver.yml`, `clouddriver-local.yml`, `spinnaker.yml`, `spinnaker-local.yml`
 * Spring Cloud Config Server reading accounts from Git, Vault, or another supported backend
 * Plugins
 

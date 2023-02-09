@@ -1,5 +1,6 @@
 ---
 title: Integrate Prometheus
+linkTitle: Integrate Prometheus
 description: >
   Learn how to configure Prometheus to get metrics from the Armory Scale Agent service and display them in a Grafana dashboard.
 aliases:

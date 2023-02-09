@@ -1,8 +1,8 @@
 ---
-title: Armory Scale Agent Quick Start
+title: "Quick Start: Spinnaker and the Armory Scale Agent"
 linkTitle: Quick Start
 description: >
-  This guide shows you how to install Spinnaker with the Armory Scale Agent in your Kubernetes cluster. 
+  This guide shows you how to use the Spinnaker Operator to install Spinnaker and the Scale Agent in the same Kubernetes cluster for testing the Scale Agent's features.
 weight: 1
 ---
 

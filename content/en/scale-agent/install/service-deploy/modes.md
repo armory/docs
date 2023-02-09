@@ -1,18 +1,14 @@
 ---
-title: Armory Scale Agent Advanced Installation
-linkTitle: Advanced Installation
+title: Scale Agent Service Deployment Modes
+linkTitle: Deploy Modes
+weight: 1
 description: >
-  Learn about advanced installation scenarios for the Armory Scale Agent in your Kubernetes, Spinnaker, and Armory Continuous Deployment environments.
-weight: 2
-no_list: true
+  Learn about Spinnaker Service mode, Agent mode, and Infrastructure mode - different approaches to deploying the Scale Agent service in your Kubernetes clusters.  
 ---
-
-## Advanced installation options
-
 
 ## Deployment modes
 
-### Spinnaker service mode
+### Spinnaker Service mode
 
 In this mode, you install the Armory Scale Agent service as a new Spinnaker service (`spin-armory-agent`), so you can configure it like other services.
 
@@ -30,6 +26,25 @@ If you provision clusters automatically, the Armory Scale Agent service can dyna
 - You need to create kubeconfig file for each Kubernetes account.
 - The API servers of the target clusters need to be accessible from the Armory CD (Spinnaker) cluster.
 
+### Infrastructure mode
+
+In infrastructure mode, multiple Agent service deployments handle different groups of Kubernetes clusters. Each service deployment is configured separately.
+
+Keep the following pros and cons in mind when deciding if Infrastructure mode fits your use case:
+
+**Pro**
+
+- The Agent service can be managed centrally, so it is easy to get logs or configs and upgrade.
+
+**Cons**
+
+- You need to create a kubeconfig file for each Kubernetes account.
+- The API servers of the target clusters need to be accessible from the Armory Scale Agent cluster.
+- You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
+
+![Infra mode](/images/scale-agent/agent-infra-mode.png)
+
+> Kubernetes account names must be unique across all your infrastructure. Clouddriver rejects new accounts with a name that matches a different cluster.
 
 ### Agent mode
 
@@ -56,32 +71,11 @@ Keep the following pros and cons in mind when deciding if Agent mode fits your u
 
 ![Agent mode](/images/scale-agent/agent-mode.png)
 
-### Infrastructure mode
-
-In infrastructure mode, multiple Agent service deployments handle different groups of Kubernetes clusters. Each service deployment is configured separately.
-
-Keep the following pros and cons in mind when deciding if Infrastructure mode fits your use case:
-
-**Pro**
-
-- The Agent service can be managed centrally, so it is easy to get logs or configs and upgrade.
-
-**Cons**
-
-- You need to create a kubeconfig file for each Kubernetes account.
-- The API servers of the target clusters need to be accessible from the Armory Scale Agent cluster.
-- You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
-
-![Infra mode](/images/scale-agent/agent-infra-mode.png)
-
-> Kubernetes account names must be unique across all your infrastructure. Clouddriver rejects new accounts with a name that matches a different cluster.
-
-
 
 
 ## Scalability
 
-Each Agent can scale to hundreds of Kubernetes clusters. The more types of Kubernetes objects the Armory Scale Agent has to watch, the more memory it uses. Memory usage is bursty. You can control burst with `budget`. See [Agent options]({{< ref "scale-agent/reference/config/service-options#configuration-options" >}})) for configuration information.
+Each Agent can scale to hundreds of Kubernetes clusters. The more types of Kubernetes objects the Armory Scale Agent has to watch, the more memory it uses. Memory usage is bursty. You can control burst with `budget`. See [Agent options]({{< ref "scale-agent/reference/config/service-options#configuration-options" >}}) for configuration information.
 
 Scaling the Armory Scale Agent can mean:
 

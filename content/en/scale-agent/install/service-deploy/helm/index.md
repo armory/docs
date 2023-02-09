@@ -1,16 +1,14 @@
 ---
-title: "Install the Armory Scale Agent Service Using a Helm Chart"
-linkTitle: "Install Service - Helm"
+title: Deploy the Armory Scale Agent Service Using a Helm Chart
+linkTitle: Helm
 description: >
-  Use a Helm chart to install the Armory Scale Agent service in your Kubernetes and Armory CD environments.
-weight: 30
+  Use a Helm chart to deploy the Armory Scale Agent service to your Kubernetes cluster.
+weight: 10
 aliases:
   - /scale-agent/install/install-agent-service-helm
 ---
 
 ## Chart overview
-
-This Helm chart replaces installing the Armory Scale Agent using `kubectl`. The chart:
 
 - Exposes all settings for installing the Armory Scale Agent service.
 - Enables you to easily deploy the Armory Scale Agent service with default configuration using a single command.
@@ -40,6 +38,7 @@ Ensure you have completed the following steps before you install the Armory Scal
    helm upgrade armory-agent armory-charts/agent-k8s-full
    {{< /prism >}}
 
+1. You are familiar with the various use cases for deploying Scale Agent services to your Kubernetes clusters.
 
 ## Quickstart
 
