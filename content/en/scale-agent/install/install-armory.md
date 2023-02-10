@@ -26,7 +26,7 @@ The following features require Armory CD 2.28+ and [Clouddriver Account Manageme
 1. Meet the prerequisites outlined in the {{% heading "prereq" %}} section.
 1. [Configure and install the Clouddriver plugin](#install-the-plugin). This step optionally includes configuring Clouddriver Account Management.
 1. [Learn the options for migrating Clouddriver accounts to the Scale Agent](#options-for-migrating-accounts).
-1. [Configure and deploy the Scale Agent service](#deploy-the-armory-scale-agent-service) in the cluster and namespace where Spinnaker is running ([Spinnaker Service mode]({{< ref "scale-agent/install/service-deploy/modes#spinnaker-service-mode" >}})). 
+1. [Configure and deploy the Scale Agent service](#deploy-the-armory-scale-agent-service) in the cluster and namespace where Spinnaker is running ([Spinnaker Service mode]({{< ref "scale-agent/install/advanced/modes#spinnaker-service-mode" >}})). 
 
 >Since this guide is for installing the Armory Scale Agent in a test environment, it does not include [mTLS configuration]({{< ref "configure-mtls" >}}). The Armory Agent service and plugin do not communicate securely.
 

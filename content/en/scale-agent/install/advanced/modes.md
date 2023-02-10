@@ -1,6 +1,6 @@
 ---
-title: Scale Agent Service Deployment Modes
-linkTitle: Deploy Modes
+title: Armory Scale Agent Service Deployment Modes
+linkTitle: Service Deploy Modes
 weight: 1
 description: >
   Learn about Spinnaker Service mode, Agent mode, and Infrastructure mode - different approaches to deploying the Scale Agent service in your Kubernetes clusters.  

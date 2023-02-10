@@ -27,15 +27,15 @@ Base dynamic accounts features automatically enabled in plugin and service. Auto
    * Armory/Spinnaker Operator config - exists
    * Halyard config  ???
 * service
-   * modes (Spinnaker Service, Infrastructure, Agent)  {{< linkWithTitle "scale-agent/install/service-deploy/modes.md" >}} 
-   * k8s manifests 
+   * modes (Spinnaker Service, Infrastructure, Agent)  {{< linkWithTitle "scale-agent/install/advanced/modes.md" >}}
+   * k8s manifests
       * Spinnaker Service mode in {{< linkWithTitle "scale-agent/install/install-spin.md" >}}
-      * Example of installing in different cluster and namespace  {{< linkWithTitle "scale-agent/install/service-deploy/kubectl.md" >}} -- needs more explanation; doesn't mention which mode this is
-   * Helm chart {{< linkWithTitle "scale-agent/install/service-deploy/helm/index.md" >}}  (have not reviewed the content, which is old)
+      * Example of installing in different cluster and namespace  {{< linkWithTitle "scale-agent/install/advanced/service-deploy/kubectl.md" >}} -- needs more explanation; doesn't mention which mode this is
+   * Helm chart {{< linkWithTitle "scale-agent/install/advanced/service-deploy/helm/index.md" >}}  (have not reviewed the content, which is old)
    * configuration -> buried right now in reference/config/service-options   {{< linkWithTitle "scale-agent/reference/config/service-options.md" >}}
    * account configuration and migration
       * buried right now in reference/config/service-options   {{< linkWithTitle "scale-agent/reference/config/service-options.md" >}}
-      * a bit in the modes content  {{< linkWithTitle "scale-agent/install/service-deploy/modes.md" >}} 
+      * a bit in the modes content  {{< linkWithTitle "scale-agent/install/advanced/modes.md" >}}
       * and more in the dynamic accounts content
 
 
