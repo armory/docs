@@ -17,7 +17,7 @@ This guide assumes you want to evaluate the Scale Agent with an existing Spinnak
 1. You have Kubernetes accounts configured in Clouddriver so you can evaluate account migration.
 1. You are going to deploy the Scale Agent service in the same cluster and namespace as your Spinnaker test instance. 
 
-The following features require Spinnaker 1.28+ and [Clouddriver Account Management]():
+The following features require Spinnaker 1.28+ and [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/):
 
 * [Automated scanning]({{< ref "scale-agent/concepts/dynamic-accounts#automatic-account-migration" >}}) for newly created accounts in Clouddriver and migrating those accounts to Scale Agent management
 * [Intercepting and processing requests]({{< ref "scale-agent/concepts/dynamic-accounts#clouddriver-account-management-api-request-interception" >}}) sent to Clouddriver's `<GATE-URL>/credentials` endpoint
@@ -25,7 +25,7 @@ The following features require Spinnaker 1.28+ and [Clouddriver Account Manageme
 ### Objectives
 
 1. Meet the prerequisites outlined in the {{% heading "prereq" %}} section.
-1. [Configure the Clouddriver plugin in your `clouddriver-local.yml` file and deploy using Halyard](#install-the-plugin). This step includes enabling [Clouddriver Account Management
+1. [Configure the Clouddriver plugin in your `clouddriver-local.yml` file and deploy using Halyard](#install-the-plugin). 
 1. [Learn the options for migrating Clouddriver accounts to the Scale Agent](#options-for-migrating-accounts).
 1. [Configure and deploy the Scale Agent service](#deploy-the-armory-scale-agent-service) in the cluster and namespace where Spinnaker is running ([Spinnaker Service mode]({{< ref "scale-agent/install/service-deploy/modes#spinnaker-service-mode" >}})). 
 
@@ -146,7 +146,7 @@ This guide shows you how to statically add an account to the Scale Agent service
 
 ## Deploy the service using manifests
 
-@DOES THIS STILL WORK? WHEN WAS THE LAST TIME SOMEBODY TESTED THIS?
+**@DOES THIS STILL WORK? WHEN WAS THE LAST TIME SOMEBODY TESTED THIS?**
 
 The Scale Agent service _can_ run with most features on the [default ServiceAccount](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/). However, if you want the Scale Agent service to load balance connections or assign a precise Zone ID, the Scale Agent service needs permissions to get Pods, Deployments, ReplicaSets, and Namespaces in your cluster. Rather than modifying the default ServiceAccount permissions, Armory recommends creating a new ServiceAccount, ClusterRole, and ClusterRoleBinding for the Scale Agent.
 
