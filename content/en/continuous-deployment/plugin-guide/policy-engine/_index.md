@@ -184,47 +184,70 @@ spec:
 
 You have three options for enabling the Policy Engine plugin:
 
-1. [Armory Operator or Spinnaker Operator](#armory-operator-or-spinnaker-operator)
-1. [Spinnaker services local files](#spinnaker-services-local-files) (Spinnaker only)
-1. [Halyard](#halyard) (Spinnaker only)
+1. Armory Operator or Spinnaker Operator
+1. Spinnaker services local files
+1. Halyard
 
-### Armory Operator or Spinnaker Operator              
+{{< tabs name="Install Instructions" >}}
 
-You can enable the Policy Engine plugin using the Armory Operator or the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml).
+{{% tabbody name="Spinnaker Operator" %}}
 
-* The sample manifest is for the Armory Operator and Armory CD. If you are using the Spinnaker Operator and Spinnaker, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:
+You can enable the Policy Engine plugin using the the Spinnaker Operator and
+the sample manifest, which uses Kustomize and is in the
+[spinnaker-kustomize-patches
+repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml):
+
+<details><summary>Show the manifest</summary>
+{{< github repo="armory/spinnaker-kustomize-patches" file="armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
+</details>
+
+{{% alert title="Warning" color="warning" %}}
+The sample manifest is for the Armory Operator and Armory CD. When using the
+Spinnaker Operator and Spinnaker, you must replace the `apiVersion` value
+"spinnaker.armory.io/" with "spinnaker.io/". For example:
 
   * Armory Operator: `apiVersion: spinnaker.armory.io/v1alpha2`
   * Spinnaker Operator: `apiVersion: spinnaker.io/v1alpha2`
+{{% /alert%}}
 
-* In the `gate.spinnaker.extensibility.deck-proxy.plugins.Armory.PolicyEngine.version` entry, make sure to replace the version number listed after `&version` with the version of the plugin you want to use. For example, if you are using Armory CD 2.27.x (Spinnaker 1.27.x), you would use version 0.2.1:
+This patch uses [YAML
+anchors](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_advanced_syntax.html#yaml-anchors-and-aliases-sharing-variable-values)
+to ensure that plugin versions are set correctly throughout Spinnaker's config.
+In the
+`gate.spinnaker.extensibility.deck-proxy.plugins.Armory.PolicyEngine.version`
+entry, make sure to replace the version number listed after `&version` with the
+version of the plugin you want to use. Refer to the [supported
+versions](#supported-versions) section to determine the correct plugin version
+for your installation.
 
-   {{< prism lang="yaml" line="12" >}}
-   gate:
-     spinnaker:
-        extensibility:
-         plugins:
-           Armory.PolicyEngine:
-              enabled: true
-         deck-proxy:
-           enabled: true
-          plugins:
-             Armory.PolicyEngine:
-                enabled: true
-                version: &version 0.2.1
-   {{< /prism>}}
+{{% /tabbody %}}
 
-If you don't use Kustomize, you should manually patch your `SpinSvc` config with the entries in the sample manifest.
+{{% tabbody name="Armory Operator" %}}
+
+You can enable the Policy Engine plugin using the the Spinnaker Operator and
+the sample manifest, which uses Kustomize and is in the
+[spinnaker-kustomize-patches
+repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml):
 
 <details><summary>Show the manifest</summary>
-{{< github repo="armory/spinnaker-kustomize-patches" file="/armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
-</details>
+{{< github repo="armory/spinnaker-kustomize-patches" file="armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
+</details><br />
 
-#### Timeout settings
+This patch uses [YAML
+anchors](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_advanced_syntax.html#yaml-anchors-and-aliases-sharing-variable-values)
+to ensure that plugin versions are set correctly throughout Spinnaker's config.
+In the
+`gate.spinnaker.extensibility.deck-proxy.plugins.Armory.PolicyEngine.version`
+entry, make sure to replace the version number listed after `&version` with the
+version of the plugin you want to use. Refer to the [supported
+versions](#supported-versions) section to determine the correct plugin version
+for your installation.
 
-You can configure the amount of time that the Policy Engine waits for a response from your OPA server. If you have network or latency issues, increasing the timeout can make Policy Engine more resilient. Use `spec.spinnakerConfig.profiles.spinnaker.armory.policyEngine.opa.timeoutSeconds` to set the timeout in seconds. The default timeout is 10 seconds if you omit the config.
 
-### Spinnaker services local files
+{{% /tabbody %}}
+
+
+{{% tabbody name="Local Config" %}}
 
 {{% alert title="Warning" color="warning" %}}
 The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. To avoid each service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, configure the plugin in the service’s local profile.
@@ -253,8 +276,9 @@ The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You
     {{< /prism >}}
 
 1. Save your files and apply your changes by running `hal deploy apply`.
+{{% /tabbody %}}
 
-### Halyard
+{{% tabbody name="Halyard" %}}
 
 {{% alert title="Warning" color="warning" %}}
 The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to each service. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. Clouddriver can take an hour or more to restart if you have many accounts configured.
@@ -295,7 +319,17 @@ The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. Whe
    {{< /prism >}}
 
 1. Apply the changes by executing `hal deploy apply`. 
+{{% /tabbody %}}
 
+{{< /tabs >}}
+
+#### Timeout settings
+
+You can configure the amount of time that the Policy Engine waits for a response from your OPA server. If you have network or latency issues, increasing the timeout can make Policy Engine more resilient. Use `spec.spinnakerConfig.profiles.spinnaker.armory.policyEngine.opa.timeoutSeconds` to set the timeout in seconds. The default timeout is 10 seconds if you omit the config.
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "continuous-deployment/plugin-guide/policy-engine/use/_index.md" >}}
 
 ## Release notes
 
@@ -317,8 +351,4 @@ The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. Whe
 * 0.0.19 - Adds forced authentication feature and fixes NPE bug
 * 0.0.17 - Initial plugin release
 
-</details>
-
-## {{% heading "nextSteps" %}}
-
-* {{< linkWithTitle "continuous-deployment/plugin-guide/policy-engine/use/_index.md" >}}
+</details><br />
