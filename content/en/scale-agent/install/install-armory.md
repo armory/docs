@@ -1,12 +1,14 @@
 ---
-title: Install the Armory Scale Agent in Armory Continuous Deployment
-linkTitle: Armory CD
+title: Install the Armory Scale Agent in Armory CD Quick Start
+linkTitle: Armory CD Quick Start
 weight: 10
 description: >
   This guide shows you how to get started using the Scale Agent with an existing Armory Continuous Deployment test instance. Configure the plugin and service in your Kustomize files and use the Armory Operator to deploy the Scale Agent components.
 ---
 
+<!-- 
 **@TODO IDEALLY THIS PAGE USES A KUSTOMIZE RECIPE THAT INSTALLS BOTH THE PLUGIN AND THE SERVICE (BUT NOT CDSH). SHOULD BE ABLE TO CREATE A RECIPE BASED ON THE KUSTOMIZE SPINNAKER/SCALE AGENT RECIPE OR USE FILES FROM THAT AND TELL USERS HOW TO MODIFY THEIR EXISTING CDSH RECIPE.**
+-->
 
 ## How to get started using the Scale Agent with Armory Continuous Deployment
 
@@ -145,9 +147,11 @@ This guide shows you how to statically add an account to the Scale Agent service
 
 ## Deploy the service using manifests
 
+<!--
 **@DOES THIS STILL WORK? WHEN WAS THE LAST TIME SOMEBODY TESTED THIS?**
 
 **IDEALLY THIS SECTION IS REPLACED WITH A KUSTOMIZE RECIPE THAT INSTALLS BOTH THE PLUGIN AND THE SERVICE (BUT NOT CDSH). THIS WOULD BE THE SAME AS THE QUICKSTART OPTION EXCEPT THE RECIPE WOULD NOT INSTALL CDSH**
+-->
 
 The Scale Agent service _can_ run with most features on the [default ServiceAccount](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/). However, if you want the Scale Agent service to load balance connections or assign a precise Zone ID, the Scale Agent service needs permissions to get Pods, Deployments, ReplicaSets, and Namespaces in your cluster. Rather than modifying the default ServiceAccount permissions, Armory recommends creating a new ServiceAccount, ClusterRole, and ClusterRoleBinding for the Scale Agent.
 
@@ -444,19 +448,9 @@ Remove the Scale Agent plugin config from `spinnakerservice` and apply the chang
 <!-- need to add kustomize instructions -->
 
 ## Uninstall the service
-<!-- need to add kustomize instructions -->
-@TODO (this is more for aimee than potential customers, who should know how to do this)
+<!-- need to add kustomize instructions Remove `targets/kubernetes/scale-agent` from your Kustomization recipe.-->
 
-kubectl delete serviceaccount scale-agent-sa
-
-kubectl delete clusterrole scale-agent-cluster-role
-
-kubectl delete clusterrolebinding scale-agent-cluster-role-binding
-
-kubectl delete ???
-
-
-
+You can use `kubectl` to delete all Scale Agent service's `Deployment` objects and their accompanying `ConfigMap` and `Secret`.
 
 
 

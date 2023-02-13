@@ -1,6 +1,6 @@
 ---
-title: Install the Armory Scale Agent in Spinnaker
-linkTitle: Spinnaker
+title: Install the Armory Scale Agent in Spinnaker Quick Start
+linkTitle: Spinnaker Quick Start
 weight: 5
 description: >
   This guide shows you how to get started using the Scale Agent with an existing Spinnaker instance managed by Halyard. Configure the plugin in your `cloudriver-local.yml` file and use the provided manifests to deploy the service to the same Kubernetes cluster and namespace that Spinnaker is running in.
@@ -443,18 +443,7 @@ Remove the Scale Agent plugin config from `clouddriver-local.yml` and `hal deplo
 
 ## Uninstall the service
 
-@TODO (this is more for aimee than potential customers, who should know how to do this)
-
-kubectl delete serviceaccount scale-agent-sa
-
-kubectl delete clusterrole scale-agent-cluster-role
-
-kubectl delete clusterrolebinding scale-agent-cluster-role-binding
-
-kubectl delete ???
-
-
-
+You can use `kubectl` to delete all Scale Agent service's `Deployment` objects and their accompanying `ConfigMap` and `Secret`.
 
 
 

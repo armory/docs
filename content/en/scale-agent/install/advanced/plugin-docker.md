@@ -17,8 +17,6 @@ If you don't have a Clouddriver local profile, create one in the same directory 
 
 Add the following to `clouddriver.yml`:
 
-@TODO - IS THIS CORRECT??????
-
 ```yaml
 spinnaker:
   extensibility:

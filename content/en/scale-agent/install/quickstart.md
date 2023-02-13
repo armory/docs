@@ -4,6 +4,7 @@ linkTitle: Quick Start
 description: >
   This guide shows you how to use the Spinnaker Operator to install Spinnaker and the Scale Agent in the same Kubernetes cluster for testing the Scale Agent's features.
 weight: 1
+draft: true
 ---
 
 <!--
