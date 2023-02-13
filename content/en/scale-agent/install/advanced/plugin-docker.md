@@ -1,6 +1,7 @@
 ---
-title: How to Install the Scale Agent Plugin From Docker
-linkTitle: Plugin - Docker
+title: Install the Scale Agent Plugin Using a Docker Image
+linkTitle: Install Plugin - Docker
+weight: 20
 description: >
   Learn how to install the Armory Scale Agent plugin using a Docker image. 
 ---

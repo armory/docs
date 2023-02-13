@@ -1,7 +1,7 @@
 ---
 title: Armory Scale Agent Plugin Configuration
 linkTitle: Configure Plugin
-weight: 20
+weight: 30
 description: >
   Learn advanced Armory Scale Agent plugin configuration. 
 ---
