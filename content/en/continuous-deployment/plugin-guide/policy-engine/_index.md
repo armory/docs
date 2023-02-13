@@ -335,6 +335,7 @@ You can configure the amount of time that the Policy Engine waits for a response
 
 <details><summary>Show the release notes</summary>
 
+* 0.3.0 - Fixed bug in 1.28 & 2.28 that prevented proper deserialization of Instant values when validating policies
 * 0.2.2 - Fixed bug for createApplication button with Spinnaker 1.28, to be included in 2.28 release
 * 0.2.1 - Fixed bug with the projects tab on deck for Armory Continuous Deployment 2.27.1 and later
 * 0.2.0 - Update plugin to be compatible with Armory Continuous Deployment 2.27.0 and later.
