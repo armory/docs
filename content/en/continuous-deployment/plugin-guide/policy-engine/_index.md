@@ -201,13 +201,11 @@ repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/ar
 
 <details><summary><strong>Show the manifest</strong></summary>
 {{< github repo="armory/spinnaker-kustomize-patches" file="armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
-</details>
+</details><br />
 
-{{< alert title="Note" color="primary" >}}
-The sample manifest is for the Armory Operator and Armory CD. When using the Spinnaker Operator and Spinnaker, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:
-  * Armory Operator: `apiVersion: spinnaker.armory.io/v1alpha2`
-  * Spinnaker Operator: `apiVersion: spinnaker.io/v1alpha2`
-{{< /alert >}}
+**Note: The sample manifest is for the Armory Operator and Armory CD. When using the Spinnaker Operator and Spinnaker, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:**
+  * **Armory Operator: `apiVersion: spinnaker.armory.io/v1alpha2`**
+  * **Spinnaker Operator: `apiVersion: spinnaker.io/v1alpha2`**
 
 This patch uses [YAML
 anchors](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_advanced_syntax.html#yaml-anchors-and-aliases-sharing-variable-values)
@@ -248,9 +246,7 @@ for your installation.
 
 {{% tab header="Local Config" %}}
 
-{{% alert title="Warning" color="warning" %}}
-The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. To avoid each service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, configure the plugin in the service’s local profile.
-{{% /alert %}}
+**Warning: The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. To avoid each service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, configure the plugin in the service’s local profile.**
 
 The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You must create or update the extended service's local profile in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
 
@@ -279,9 +275,7 @@ The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You
 
 {{% tab header="Halyard" %}}
 
-{{% alert title="Warning" color="warning" %}}
-The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to each service. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. Clouddriver can take an hour or more to restart if you have many accounts configured.
-{{% /alert %}}
+**Warning: the Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to each service. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. Clouddriver can take an hour or more to restart if you have many accounts configured.**
 
 1. Add the plugins repository
 
