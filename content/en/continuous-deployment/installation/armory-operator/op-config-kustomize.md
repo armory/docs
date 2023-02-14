@@ -1,9 +1,9 @@
 ---
-title: Configure Armory Enterprise Using Kustomize
+title: Configure Armory Continuous Deployment Using Kustomize
 linkTitle: Config Using Kustomize
 weight: 5
 description: >
-  This guide describes how to configure Armory Enterprise or Spinnaker using Kustomize patches.
+  This guide describes how to configure Armory Continuous Deployment or Spinnaker using Kustomize patches.
 ---
 {{< include "armory-operator/os-operator-blurb.md">}}
 
@@ -19,7 +19,7 @@ description: >
 
 ## Kustomize resources
 
-You should familiarize yourself with Kustomize before you create patch files to configure Armory Enterprise.
+You should familiarize yourself with Kustomize before you create patch files to configure Armory Continuous Deployment.
 
 * Kustomize [Glossary](https://kubectl.docs.kubernetes.io/references/kustomize/glossary/)
 * Kustomize [introduction](https://kubectl.docs.kubernetes.io/guides/introduction/kustomize/)
@@ -33,21 +33,21 @@ You should familiarize yourself with Kustomize before you create patch files to 
 
 {{% include "armory-operator/spin-kust-repo.md" %}}
 
-## Configure Armory Enterprise
+## Configure Armory Continuous Deployment
 
-Follow these steps to configure Armory Enterprise:
+Follow these steps to configure Armory Continuous Deployment:
 
 1. [Choose a `kustomization.yml` file](#choose-a-kustomization-file).
 1. (Optional) If you are deploying open source Spinnaker, [change the `apiVersion` in each patch file](#change-the-apiversion).
-1. [Set the Armory Enterprise (or Spinnaker) version](#set-the-spinnaker-version).
+1. [Set the Armory Continuous Deployment (or Spinnaker) version](#set-the-spinnaker-version).
 1. [Verify the content of each resource file](#verify-resources).
 1. [Verify the configuration contents of each patch file](#verify-patches).
 
 ### Choose a `kustomization` file
 
-Before you begin configuring Armory Enterprise, you need to choose or create a
+Before you begin configuring Armory Continuous Deployment, you need to choose or create a
 `kustomization.yml` file. The `kustomization.yml` specifies the namespace for
-Armory Enterprise, a list of Kubernetes resources, and a list of patch files to
+Armory Continuous Deployment, a list of Kubernetes resources, and a list of patch files to
 merge into the `spinnakerservice.yml` manifest file. For example, the
 `recipes/kustomization-minimum.yml` file contains the following:
 
@@ -62,7 +62,7 @@ merge into the `spinnakerservice.yml` manifest file. For example, the
 * The `patchesStrategicMerge`
   [section](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesstrategicmerge/)
   contains links to files that contain partial resource
-  definitions. Kustomize uses these patch files to overwrite sections of 
+  definitions. Kustomize uses these patch files to overwrite sections of
   components or resources, such as the `SpinnakerService` definition.
 
 `spinnaker-kustomize-patches/kustomization.yml` is a symlink that points to
@@ -74,7 +74,7 @@ top-level directory, and rename the file to `kustomization.yml`.
 
 {{% alert title="Warning" color="warning" %}}
 If you are in an air-gapped environment and are using MinIO to host the Armory
-Enterprise BOM, remove `core/persistence/in-cluster/minio.yml` from the list of resources to
+Continuous Deployment BOM, remove `core/persistence/in-cluster/minio.yml` from the list of resources to
 prevent the accidental deletion of the bucket when calling `kubectl delete -k
 .`.
 {{% /alert %}}
@@ -92,12 +92,12 @@ patches:
     path: utilities/switch-to-oss.yml
 ```
 
-### Set the Armory Enterprise version
+### Set the Armory Continuous Deployment version
 
 In `spinnaker-kustomize-patches/core/patches/version.yml`, set the [Armory
 Enterprise version]({{< ref "rn-armory-spinnaker" >}}) or [Spinnaker
 version](https://spinnaker.io/community/releases/versions/) that you want to
-deploy, such as `{{< param "armory-version-exact" >}}` (Armory Enterprise) or
+deploy, such as `{{< param "armory-version-exact" >}}` (Armory Continuous Deployment) or
 `1.25.3` (Spinnaker).
 
 {{< prism lang="yaml" line="8" >}}
@@ -128,7 +128,7 @@ If you want to store Spinnaker secrets in Kubernetes, we recommend using
 [Kustomize
 generators](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kustomize/).
 
-## Deploy Armory Enterprise
+## Deploy Armory Continuous Deployment
 
 {{% include "armory-operator/deploy-spin-kust.md" %}}
 

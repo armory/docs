@@ -1,10 +1,10 @@
 ---
-title: Install Armory Enterprise for Spinnaker in Air-Gapped Environments
+title: Install Armory Continuous Deployment for Spinnaker in Air-Gapped Environments
 linkTitle: Air-Gapped Environments
 weight: 1
 no_list: true
 description: >
-  Options for deploying Armory Enterprise in an environment that is isolated from the internet.
+  Options for deploying Armory Continuous Deployment in an environment that is isolated from the internet.
 aliases:
   - /spinnaker-user-guides/plugin-creators/
   - /docs/spinnaker-user-guides/plugin-creators/
@@ -18,9 +18,9 @@ An air-gapped deployment environment is one where any combination of the followi
 
 - Your deployment environment, such as a Kubernetes cluster, doesn't have internet access AWS S3 bucket and `docker.io`.
 
-If your deployment environment is air-gapped, you need to host the Armory Enterprise Bill of Materials (BOM) and Docker images in a location that your deployment environment can access. To set this up, you need public internet access so you can get the BOM and images, authority to create or access internal storage and image hosting, and permissions to move the Armory Enterprise materials to your internal systems.  
+If your deployment environment is air-gapped, you need to host the Armory Continuous Deployment Bill of Materials (BOM) and Docker images in a location that your deployment environment can access. To set this up, you need public internet access so you can get the BOM and images, authority to create or access internal storage and image hosting, and permissions to move the Armory Continuous Deployment materials to your internal systems.  
 
-The first step is to familiarize yourself with the Armory Enterprise Bill of Materials.
+The first step is to familiarize yourself with the Armory Continuous Deployment Bill of Materials.
 
 ## {{% heading "prereq" %}}
 
@@ -28,9 +28,9 @@ The first step is to familiarize yourself with the Armory Enterprise Bill of Mat
 * You have installed the [AWS CLI](https://aws.amazon.com/cli/).
 
 
-## Inspect the Armory Enterprise Bill of Materials
+## Inspect the Armory Continuous Deployment Bill of Materials
 
-Armory Enterprise's Bill of Materials (BOM) is stored in the public S3 bucket `halconfig`. You can see the contents of this bucket using the AWS CLI:
+Armory Continuous Deployment's Bill of Materials (BOM) is stored in the public S3 bucket `halconfig`. You can see the contents of this bucket using the AWS CLI:
 
 ```bash
 aws s3 ls s3://halconfig
