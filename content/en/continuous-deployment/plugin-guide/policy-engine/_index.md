@@ -60,7 +60,7 @@ If you want to use ConfigMaps for OPA policies, you can use the following manife
 * The manifest deploys the OPA server to a namespace called `opa`.
 * The OPA server uses `"--require-policy-label=true"`. This configures the OPA server to look for a specific label so that it does not check all ConfigMaps for new policies. For information about how to apply the relevant label to your policy ConfigMaps, see [Add the policy to your OPA server]({{< ref "/continuous-deployment/plugin-guide/policy-engine/use#step-2-add-the-policy-to-your-opa-server" >}}).
 
-<details><summary>Show the manifest</summary>
+<details><summary><strong>Show the manifest</strong></summary>
 <code><pre>
 ---
 apiVersion: v1
@@ -188,27 +188,26 @@ You have three options for enabling the Policy Engine plugin:
 1. Spinnaker services local files
 1. Halyard
 
-{{< tabs name="Install Instructions" >}}
+{{< tabpane text=true right=true >}}
 
-{{% tabbody name="Spinnaker Operator" %}}
+{{% tab header="**Install Method**:" disabled=true /%}}
+
+{{% tab header="Spinnaker Operator" %}}
 
 You can enable the Policy Engine plugin using the the Spinnaker Operator and
 the sample manifest, which uses Kustomize and is in the
 [spinnaker-kustomize-patches
 repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml):
 
-<details><summary>Show the manifest</summary>
+<details><summary><strong>Show the manifest</strong></summary>
 {{< github repo="armory/spinnaker-kustomize-patches" file="armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
 </details>
 
-{{% alert title="Warning" color="warning" %}}
-The sample manifest is for the Armory Operator and Armory CD. When using the
-Spinnaker Operator and Spinnaker, you must replace the `apiVersion` value
-"spinnaker.armory.io/" with "spinnaker.io/". For example:
-
+{{< alert title="Note" color="primary" >}}
+The sample manifest is for the Armory Operator and Armory CD. When using the Spinnaker Operator and Spinnaker, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:
   * Armory Operator: `apiVersion: spinnaker.armory.io/v1alpha2`
   * Spinnaker Operator: `apiVersion: spinnaker.io/v1alpha2`
-{{% /alert%}}
+{{< /alert >}}
 
 This patch uses [YAML
 anchors](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_advanced_syntax.html#yaml-anchors-and-aliases-sharing-variable-values)
@@ -220,16 +219,16 @@ version of the plugin you want to use. Refer to the [supported
 versions](#supported-versions) section to determine the correct plugin version
 for your installation.
 
-{{% /tabbody %}}
+{{% /tab %}}
 
-{{% tabbody name="Armory Operator" %}}
+{{% tab header="Armory Operator" %}}
 
 You can enable the Policy Engine plugin using the the Spinnaker Operator and
 the sample manifest, which uses Kustomize and is in the
 [spinnaker-kustomize-patches
 repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml):
 
-<details><summary>Show the manifest</summary>
+<details><summary><strong>Show the manifest</strong></summary>
 {{< github repo="armory/spinnaker-kustomize-patches" file="armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
 </details><br />
 
@@ -244,10 +243,10 @@ versions](#supported-versions) section to determine the correct plugin version
 for your installation.
 
 
-{{% /tabbody %}}
+{{% /tab %}}
 
 
-{{% tabbody name="Local Config" %}}
+{{% tab header="Local Config" %}}
 
 {{% alert title="Warning" color="warning" %}}
 The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. To avoid each service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, configure the plugin in the service’s local profile.
@@ -276,9 +275,9 @@ The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You
     {{< /prism >}}
 
 1. Save your files and apply your changes by running `hal deploy apply`.
-{{% /tabbody %}}
+{{% /tab %}}
 
-{{% tabbody name="Halyard" %}}
+{{% tab header="Halyard" %}}
 
 {{% alert title="Warning" color="warning" %}}
 The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to each service. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. Clouddriver can take an hour or more to restart if you have many accounts configured.
@@ -319,9 +318,9 @@ The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. Whe
    {{< /prism >}}
 
 1. Apply the changes by executing `hal deploy apply`. 
-{{% /tabbody %}}
+{{% /tab %}}
 
-{{< /tabs >}}
+{{< /tabpane >}}
 
 #### Timeout settings
 
