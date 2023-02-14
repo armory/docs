@@ -184,8 +184,16 @@ spec:
 
 You have the following options for installing the Policy Engine plugin:
 
-* **Spinnaker**: Spinnaker Operator, Local Config, or Halyard
 * **Armory CD**: Armory Operator
+* **Spinnaker**: Spinnaker Operator, Local Config, or Halyard
+
+{{% alert color="warning" title="A note about installing plugins in Spinnaker" %}}
+When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to all services, not just the ones the plugin is for. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. Clouddriver can take an hour or more to restart if you have many accounts configured.
+
+The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. To avoid every Spinnaker service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, follow the **Local Config** installation method, in which you configure the plugin in each extended service’s local profile.
+
+The Spinnaker Operator and Armory Operator add configuration only to extended services.
+{{% /alert %}}
 
 {{< tabpane text=true right=true >}}
 
@@ -226,8 +234,6 @@ Apply the manifest using `kubectl`.
 
 {{% tab header="Local Config" %}}
 
-**Warning: The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. To avoid each service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, configure the plugin in each impacted service’s local profile.**
-
 The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You should create or update the extended service's local profile in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
 
 1. Add the following to `gate-local.yml`, `orca-local.yml`, `front50-local.yml`, and `clouddriver.yml`:
@@ -254,10 +260,6 @@ The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You
 {{% /tab %}}
 
 {{% tab header="Halyard" %}}
-
-**Warning: When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to all services, not just the ones the plugin is for. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. Clouddriver can take an hour or more to restart if you have many accounts configured.**
-
-The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. 
 
 1. Add the plugins repository
 
