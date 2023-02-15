@@ -1,34 +1,34 @@
 ---
-title: Deploy Armory Enterprise in GKE
+title: Deploy Armory Continuous Deployment in GKE
 linkTitle: "Install in GKE using Operator"
 weight: 5
 aliases:
   - /spinnaker-install-admin-guides/install-on-gke-operator/
 description: >
-  Use the Armory Operator to deploy Armory Enterprise for Spinnaker in your Google Kubernetes Engine (GKE) cluster.
+  Use the Armory Operator to deploy Armory Continuous Deployment for Spinnaker in your Google Kubernetes Engine (GKE) cluster.
 draft: true
 ---
 
 {{< include "armory-license.md" >}}
 
-## Overview of installing Armory Enterprise in GKE
+## Overview of installing Armory Continuous Deployment in GKE
 
 Installing Armory using the Armory Operator consists of the following steps:
 
-* [Create a cluster](#create-a-gke-cluster) for the Armory Operator and Armory Enterprise
+* [Create a cluster](#create-a-gke-cluster) for the Armory Operator and Armory Continuous Deployment
 * [Create a GCS service account](#create-a-gcs-service-account)
 * [Create a Kubernetes service account](#create-a-kubernetes-service-account)
 * [Create a Google Cloud Storage (GCS) bucket](#create-a-gcs-bucket)
 * [Install the Armory Operator](#install-the-armory-operator)
-* [Configure your Armory Enterprise installation](#configure-your-armory-enterprise-installation)
-* [Deploy Armory Enterprise using the Armory Operator](#deploy-armory-enterprise)
+* [Configure your Armory Continuous Deployment installation](#configure-your-armory-enterprise-installation)
+* [Deploy Armory Continuous Deployment using the Armory Operator](#deploy-armory-enterprise)
 
 ## {{% heading "prereq" %}}
 
-* You have reviewed and met the Armory Enterprise [system requirements]({{< ref "system-requirements.md" >}}).
+* You have reviewed and met the Armory Continuous Deployment [system requirements]({{< ref "system-requirements.md" >}}).
 * You know how to [install the Armory Operator in `cluster` mode]({{< ref "op-quickstart#install-the-operator" >}}).
-* You know how to [configure Armory Enterprise using Kustomize patches]({{< ref "op-config-kustomize.md" >}}) from the `spinnaker-kustomize-patches` repo.
-* You know how to use the Armory Operator to [deploy Armory Enterprise using Kustomize patches]({{< ref "op-config-kustomize#deploy-spinnaker" >}}).
+* You know how to [configure Armory Continuous Deployment using Kustomize patches]({{< ref "op-config-kustomize.md" >}}) from the `spinnaker-kustomize-patches` repo.
+* You know how to use the Armory Operator to [deploy Armory Continuous Deployment using Kustomize patches]({{< ref "op-config-kustomize#deploy-spinnaker" >}}).
 * You have a machine configured to use the `gcloud` CLI tool and a recent version of the `kubectl` tool
 * You have logged into the `gcloud` CLI and have permissions to create GKE clusters and a service account
 
@@ -115,9 +115,9 @@ Use the GCP Console to [create your bucket](https://cloud.google.com/storage/doc
 
 Follow the instructions in the _Armory Operator Quickstart_ guide, [Install the Operator section]({{< ref "op-quickstart#install-the-operator" >}}), **Cluster Mode** tab.
 
-## Configure your Armory Enterprise installation
+## Configure your Armory Continuous Deployment installation
 
-Clone the `spinnnaker-kustomize-patches` template repo by following the directions in the {{< linkWithTitle "op-config-kustomize.md" >}} guide. Make sure you choose or create a `kustomization.yml` file as detailed in the _Choose a `kustomization` file_ [section]({{< ref "op-config-kustomize#choose-a-kustomization-file" >}}). You also need to [set the Armory Enterprise version]({{< ref "op-config-kustomize#set-the-Spinnaker-version">}}).
+Clone the `spinnnaker-kustomize-patches` template repo by following the directions in the {{< linkWithTitle "op-config-kustomize.md" >}} guide. Make sure you choose or create a `kustomization.yml` file as detailed in the _Choose a `kustomization` file_ [section]({{< ref "op-config-kustomize#choose-a-kustomization-file" >}}). You also need to [set the Armory Continuous Deployment version]({{< ref "op-config-kustomize#set-the-Spinnaker-version">}}).
 
 ### Add GCP credentials as a cluster secret
 
@@ -160,12 +160,12 @@ cluster.
 ### Configure Dinghy
 
 The `spinnaker-kustomize-patches` repository contains a patch for
-enabling Dinghy in your Armory Enterprise deployment. Be sure to modify the
+enabling Dinghy in your Armory Continuous Deployment deployment. Be sure to modify the
 `armory/patch-dinghy.yml` file with configuration specific to your environment.
 Then make sure the file is listed in the `patchesStrategicMerge` section of your
 `kustomization.yml` file.
 
-## Deploy Armory Enterprise
+## Deploy Armory Continuous Deployment
 
 {{% include "armory-operator/deploy-spin-kust.md" %}}
 

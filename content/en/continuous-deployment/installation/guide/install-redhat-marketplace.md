@@ -1,9 +1,9 @@
 ---
-title: Install Armory Enterprise in OpenShift using the Armory Operator
+title: Install Armory Continuous Deployment in OpenShift using the Armory Operator
 linkTitle: Install in OpenShift
 weight: 5
 description: >
-  Use the Armory Operator from the Red Hat Marketplace to deploy Armory Enterprise in your OpenShift cluster.
+  Use the Armory Operator from the Red Hat Marketplace to deploy Armory Continuous Deployment in your OpenShift cluster.
 draft: true
 ---
 
