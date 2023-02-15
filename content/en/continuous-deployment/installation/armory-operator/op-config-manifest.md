@@ -1,12 +1,12 @@
 ---
-title: Configure Armory Enterprise Using a Manifest File
+title: Configure Armory Continuous Deployment Using a Manifest File
 linkTitle: Config Using Manifest
 weight: 10
 aliases:
   - /docs/installation/armory-operator/op-manifest-reference/operator-config
   - /installation/armory-operator/op-manifest-reference/operator-config
 description: >
-  This guide describes the fields in the `SpinnakerService` manifest that the the Armory Operator uses to deploy Armory Enterprise or the Spinnaker Operator uses to deploy Spinnaker.
+  This guide describes the fields in the `SpinnakerService` manifest that the the Armory Operator uses to deploy Armory Continuous Deployment or the Spinnaker Operator uses to deploy Spinnaker.
 ---
 
 {{< include "armory-operator/os-operator-blurb.md" >}}
@@ -14,11 +14,11 @@ description: >
 ## {{% heading "prereq" %}}
 
 * This guide assumes you want to expand the manifest file used in the Quickstart.
-* You know how to deploy Armory Enterprise using a Kubernetes manifest file. See the Quickstart's [Single manifest file section]({{< ref "op-quickstart#single-manifest-file-option">}}).
+* You know how to deploy Armory Continuous Deployment using a Kubernetes manifest file. See the Quickstart's [Single manifest file section]({{< ref "op-quickstart#single-manifest-file-option">}}).
 
 ## Kubernetes manifest file
 
-The structure of the manifest file is the same whether you are using the Armory Operator or the Spinnaker Operator. The value of certain keys, though, depends on whether you are deploying Armory Enterprise or Spinnaker. The following snippet is the first several lines from a `spinnakerservice.yml` manifest that deploys Armory Enterprise.
+The structure of the manifest file is the same whether you are using the Armory Operator or the Spinnaker Operator. The value of certain keys, though, depends on whether you are deploying Armory Continuous Deployment or Spinnaker. The following snippet is the first several lines from a `spinnakerservice.yml` manifest that deploys Armory Continuous Deployment.
 
 {{< prism lang="yaml" line="1,8" >}}
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}
@@ -37,10 +37,10 @@ spec:
 {{< /prism >}}
 
 * Line 1: `apiVersion` is the CRD version of the `SpinnakerService` custom resource.
-   * If you are deploying Armory Enterprise, the value is `spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}`; if you change this value, the Armory Operator won't process the manifest file.
+   * If you are deploying Armory Continuous Deployment, the value is `spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}`; if you change this value, the Armory Operator won't process the manifest file.
    * If you are deploying Spinnaker, the value is `spinnaker.io/{{< param "operator-oss-crd-version" >}}`; if you change this value, the Spinnaker Operator won't process the manifest file.
 * Line 8: `spec.spinnakerConfig.config.version`
-   * If you are using the Armory Operator, this is the [version of Armory Enterprise]({{< ref "rn-armory-spinnaker" >}}) you want to deploy; for example, {{< param "armory-version-exact" >}}.  
+   * If you are using the Armory Operator, this is the [version of Armory Continuous Deployment]({{< ref "rn-armory-spinnaker" >}}) you want to deploy; for example, {{< param "armory-version-exact" >}}.  
    * If you are using the Spinnaker Operator, this is the [version of Spinnaker](https://spinnaker.io/community/releases/versions/) you want to deploy; for example, `1.25`.
 
 
@@ -64,13 +64,13 @@ metadata:
   name: spinnaker
 ```
 
-`metadata.name` is the name of your Armory Enterprise service. Use this name to view, edit, or delete Armory Enterprise. The following example uses the name `prod`:
+`metadata.name` is the name of your Armory Continuous Deployment service. Use this name to view, edit, or delete Armory Continuous Deployment. The following example uses the name `prod`:
 
 ```bash
 $ kubectl get spinsvc prod
 ```
 
-Note that you can use `spinsvc` for brevity. You can also use `spinnakerservices.spinnaker.armory.io` (Armory Enterprise) or `spinnakerservices.spinnaker.io` (Spinnaker).
+Note that you can use `spinsvc` for brevity. You can also use `spinnakerservices.spinnaker.armory.io` (Armory Continuous Deployment) or `spinnakerservices.spinnaker.io` (Spinnaker).
 
 ### spec.spinnakerConfig
 
@@ -203,15 +203,15 @@ A double underscore (`__`) in the file name is translated to a path separator (`
 ```
 
 ### spec.expose
-Optional. Controls how Armory Enterprisegets exposed. If you omit it, no load balancer gets created. If this section gets removed, the Load Balancer does not get deleted.
+Optional. Controls how Armory Continuous Deploymentgets exposed. If you omit it, no load balancer gets created. If this section gets removed, the Load Balancer does not get deleted.
 
 Use the following configurations:
 
-- `spec.expose.type`: How Armory Enterprisegets exposed. Currently, only `service` is supported, which uses Kubernetes services to expose Spinnaker.
+- `spec.expose.type`: How Armory Continuous Deploymentgets exposed. Currently, only `service` is supported, which uses Kubernetes services to expose Spinnaker.
 - `spec.expose.service`: Service configuration
 - `spec.expose.service.type`: Should match a valid Kubernetes service type (i.e. `LoadBalancer`, `NodePort`, or `ClusterIP`).
 - `spec.expose.service.annotations`: Map containing annotations to be added to Gate (API) and Deck (UI) services.
-- `spec.expose.service.overrides`: Map with key for overriding the service type and specifying extra annotations: Armory Enterpriseservice name (Gate or Deck) and value. By default, all services receive the same annotations. You can override annotations for a Deck (UI) or Gate (API) services.
+- `spec.expose.service.overrides`: Map with key for overriding the service type and specifying extra annotations: Armory Continuous Deploymentservice name (Gate or Deck) and value. By default, all services receive the same annotations. You can override annotations for a Deck (UI) or Gate (API) services.
 
 ### spec.validation
 
@@ -248,9 +248,9 @@ spec:
 Support for `SpinnakerAccount` CRD (**Experimental**):
 
 - `spec.accounts.enabled`: Boolean. Defaults to false. If true, the `SpinnakerService` uses all `SpinnakerAccount` objects enabled.
-- `spec.accounts.dynamic` (experimental): Boolean. Defaults to false. If true, `SpinnakerAccount` objects are available to Armory Enterprise as the account is applied (without redeploying any service).
+- `spec.accounts.dynamic` (experimental): Boolean. Defaults to false. If true, `SpinnakerAccount` objects are available to Armory Continuous Deployment as the account is applied (without redeploying any service).
 
-## Example Manifests for exposing Armory Enterprise
+## Example Manifests for exposing Armory Continuous Deployment
 
 ### Load balancer Services
 
