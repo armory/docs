@@ -95,7 +95,7 @@ patches:
 ### Set the Armory Continuous Deployment version
 
 In `spinnaker-kustomize-patches/core/patches/version.yml`, set the [Armory
-Enterprise version]({{< ref "rn-armory-spinnaker" >}}) or [Spinnaker
+CD version]({{< ref "rn-armory-spinnaker" >}}) or [Spinnaker
 version](https://spinnaker.io/community/releases/versions/) that you want to
 deploy, such as `{{< param "armory-version-exact" >}}` (Armory Continuous Deployment) or
 `1.25.3` (Spinnaker).

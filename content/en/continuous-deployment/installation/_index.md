@@ -35,4 +35,4 @@ Based on your environment, use one of the following guides to help you install A
 | [AWS Marketplace]({{< ref "aws-container-marketplace" >}}) | AWS, Armory Operator | Use the Armory Operator from the AWS Container Marketplace to deploy Armory Continuous Deployment in your Amazon Kubernetes (EKS) cluster. |
 | [Armory Continuous Deployment on AWS workshop](https://armory.awsworkshop.io/) | AWS |  Use AWS CloudFormation to create infrastructure and deploy Armory Continuous Deployment from the AWS Marketplace. |
 | [Install in AWS]({{< ref "install-on-aws" >}}) | AWS EKS | Use Armory Operator to deploy Armory Continuous Deployment in an AWS EKS cluster. |
-| [Install on AWS EC2 with Operator]({{< ref "operator-k3s" >}})        | AWS EC2, Armory Operator              | Installation steps for using Armory Operator to install Armory  Enterprise in a Lightweight Kubernetes (K3s) instance for a Proof of Concept.
+| [Install on AWS EC2 with Operator]({{< ref "operator-k3s" >}})        | AWS EC2, Armory Operator              | Installation steps for using Armory Operator to install Armory CD in a Lightweight Kubernetes (K3s) instance for a Proof of Concept.
