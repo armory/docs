@@ -1,7 +1,7 @@
 ---
 title: Instance Registration
 linkTitle: Registration
-description: As part of the configuration process, you need to register your Armory Enterprise instance. If you maintain several instances, such as development, staging, and production instances, you must register each one.
+description: As part of the configuration process, you need to register your Armory Continuous Deployment instance. If you maintain several instances, such as development, staging, and production instances, you must register each one.
 aliases:
   - /docs/installation/deployment-reg/
   - /docs/ae-environment-reg/
@@ -30,7 +30,7 @@ In your Operator manifest, configure the following parameters:
   - `spec.spinnakerConfig.profiles.spinnaker.armory.cloud.iam.clientID`: set this value to **Client ID** that you received from [Register your instance](#register-your-instance).
   - `spec.spinnakerConfig.profiles.spinnaker.”armory.cloud”.iam.clientSecret`: set this value to the **Secret** that you received from [Register your instance](#register-your-instance).
 
-Once you apply the registration information to your instance, your Armory Enterprise instance is registered with Armory.
+Once you apply the registration information to your instance, your Armory Continuous Deployment instance is registered with Armory.
 
 
 ```yaml
@@ -48,7 +48,7 @@ spec:
             baseUrl: https://api.cloud.armory.io
 ```
 
-Save the file and apply the manifest. This redeploys Armory Enterprise.
+Save the file and apply the manifest. This redeploys Armory Continuous Deployment.
 
 
 
@@ -56,9 +56,9 @@ Save the file and apply the manifest. This redeploys Armory Enterprise.
 
 ### Registration fails
 
-This issue can occur if Operator failed to generate a UUID for your Armory Enterprise instance. You can resolve this issue with one of the following actions:
+This issue can occur if Operator failed to generate a UUID for your Armory Continuous Deployment instance. You can resolve this issue with one of the following actions:
 
-- Deploy Armory Enterprise with a supported Operator version that corresponds to your Armory Enterprise version.
+- Deploy Armory Continuous Deployment with a supported Operator version that corresponds to your Armory Continuous Deployment version.
 - Manually apply a registration ID.
 
 To manually apply a registration ID, perform the following steps:
@@ -70,6 +70,6 @@ To manually apply a registration ID, perform the following steps:
    If there is no value, generate a UUID and add it to `spec.spinnakerConfig.config.armory.diagnostics.uuid` field.
 
 2. Add the UUID to the `spec.spinnakerConfig.profiles.spinnaker.armory.registrationId` field.
-3. Save the file and deploy Armory Enterprise.
+3. Save the file and deploy Armory Continuous Deployment.
 
 If you generated your own UUID, contact Armory Support and provide your UUID so that it can be associated with your organization. This helps with troubleshooting when you contact Support.
