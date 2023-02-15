@@ -6,4 +6,4 @@ date: 2023-02-14
 ---
 
 Fixes:
-* Memory leak when CR watches are enabled
+* Memory leak when CR watches are enabled.

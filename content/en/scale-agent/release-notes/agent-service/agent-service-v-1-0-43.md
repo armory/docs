@@ -6,4 +6,4 @@ date: 2023-02-09
 ---
 
 Fixes:
-- The ability to override default boolean properties with a false value
+- fixes a problem with the ability to override default boolean properties with a false value.

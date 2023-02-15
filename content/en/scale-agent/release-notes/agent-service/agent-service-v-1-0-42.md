@@ -6,4 +6,4 @@ date: 2023-01-25
 ---
 
 Changes: 
-- Support agent to start without  any provided config file
+- Enables Agent to start without  any provided config file.
