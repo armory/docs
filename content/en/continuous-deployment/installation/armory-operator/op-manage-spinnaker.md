@@ -1,16 +1,16 @@
 ---
-title: Manage Armory Enterprise using the Operator
-linkTitle: Manage Armory Enterprise
+title: Manage Armory Continuous Deployment using the Operator
+linkTitle: Manage Armory Continuous Deployment
 weight: 15
 description: >
-  Manage, upgrade, or uninstall Armory Enterprise or Spinnaker using the Operator.
+  Manage, upgrade, or uninstall Armory Continuous Deployment or Spinnaker using the Operator.
 ---
 
 {{< include "armory-operator/os-operator-blurb.md">}}
 
 ## Kubernetes tools
 
-You use [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) to manage the Armory Enterprise or Spinnaker lifecycle like you do with other applications deployed to Kubernetes. For example:
+You use [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) to manage the Armory Continuous Deployment or Spinnaker lifecycle like you do with other applications deployed to Kubernetes. For example:
 
 **List instances**
 
@@ -28,7 +28,7 @@ kubectl -n <namespace> describe spinsvc spinnaker
 
 Consult the `kubectl` [docs](https://kubernetes.io/docs/reference/kubectl/) for a list of commands.
 
-## Deploy Armory Enterprise
+## Deploy Armory Continuous Deployment
 
 {{< tabs name="deploy" >}}
 {{% tabbody name="Manifest" %}}
@@ -59,7 +59,7 @@ You can verify pod status by executing:
  kubectl -n <namespace> get pods
  ```
 
-## Upgrade Armory Enterprise
+## Upgrade Armory Continuous Deployment
 
 {{< tabs name="upgrade" >}}
 {{% tabbody name="Manifest" %}}
@@ -117,7 +117,7 @@ spinnaker    2.20.2
 
 `VERSION` should reflect the target version for your upgrade.
 
-## Rollback Armory Enterprise
+## Rollback Armory Continuous Deployment
 
 {{< tabs name="rollback" >}}
 {{% tabbody name="Manifest" %}}
@@ -176,7 +176,7 @@ spinnaker    2.27.2
 `VERSION` should reflect the target version for your rollback.
 
 
-## Delete Armory Enterprise
+## Delete Armory Continuous Deployment
 
 ```bash
 kubectl -n <namespace> delete spinnakerservice spinnaker

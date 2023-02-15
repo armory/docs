@@ -3,24 +3,24 @@ title: Migrate from Halyard to the Operator
 linkTitle: Migrate from Halyard
 weight: 20
 description: >
-  Migrate your Armory Enterprise or Spinnaker installation from Halyard to the Operator.
+  Migrate your Armory Continuous Deployment or Spinnaker installation from Halyard to the Operator.
 ---
 
 {{< include "armory-operator/os-operator-blurb.md">}}
 
 ## {{% heading "prereq" %}}
 
-You need to decide if you want to overwrite the current Halyard deployment of Armory Enterprise or create a test instance.
+You need to decide if you want to overwrite the current Halyard deployment of Armory Continuous Deployment or create a test instance.
 
-If you choose to overwrite your current instance, you need to take downtime to clean up the namespace that the Halyard-deployed Armory Enterprise is in so Operator can deploy Armory Enterprise without collision.
+If you choose to overwrite your current instance, you need to take downtime to clean up the namespace that the Halyard-deployed Armory Continuous Deployment is in so Operator can deploy Armory Continuous Deployment without collision.
 
-Alternately, you can use Operator to deploy Armory Enterprise to a different namespace to test out the migration. You need to create a separate data store as well as separate Gate and Deck URLs for your test instance of Armory Enterprise. Once you've verified that Operator has deployed your test configuration as you expected, decommission the Halyard-deployed instance of Armory Enterprise. Change the data store config and URLs in the manifest that Operator used to deploy your test instance to match what your decommissioned instance used. Then redeploy.
+Alternately, you can use Operator to deploy Armory Continuous Deployment to a different namespace to test out the migration. You need to create a separate data store as well as separate Gate and Deck URLs for your test instance of Armory Continuous Deployment. Once you've verified that Operator has deployed your test configuration as you expected, decommission the Halyard-deployed instance of Armory Continuous Deployment. Change the data store config and URLs in the manifest that Operator used to deploy your test instance to match what your decommissioned instance used. Then redeploy.
 
-The second method is preferred as it allows you to test everything before decommissioning Armory Enterprise that you deployed using Halyard.
+The second method is preferred as it allows you to test everything before decommissioning Armory Continuous Deployment that you deployed using Halyard.
 
 ## Migrate to Operator
 
-This guide assumes you want to deploy Armory Enterprise using a single `SpinnakerSerivce.yml` manifest file rather than Kustomize patches.
+This guide assumes you want to deploy Armory Continuous Deployment using a single `SpinnakerSerivce.yml` manifest file rather than Kustomize patches.
 
 The migration process from Halyard to Operator can be completed in 7 steps:
 
@@ -51,9 +51,9 @@ The migration process from Halyard to Operator can be completed in 7 steps:
 
    You can see more details in [`spec.spinnakerConfig.config`]({{< ref "op-config-manifest#specspinnakerconfig" >}}).
 
-1. Export Armory Enterprise profiles.
+1. Export Armory Continuous Deployment profiles.
 
-   If you have configured Armory Enterprise profiles, you need to migrate these profiles to the `SpinnakerService` manifest.
+   If you have configured Armory Continuous Deployment profiles, you need to migrate these profiles to the `SpinnakerService` manifest.
 
    First, identify the current profiles under  `~/.hal/default/profiles`.
 
@@ -78,7 +78,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
 
    You can see more details in [`spec.spinnakerConfig.profiles`]({{< ref "op-config-manifest#specspinnakerconfigprofiles" >}}).
 
-1. Export Armory Enterprise settings.
+1. Export Armory Continuous Deployment settings.
 
    If you configured Armory settings, you need to migrate these settings to the `SpinnakerService` manifest also.
 
