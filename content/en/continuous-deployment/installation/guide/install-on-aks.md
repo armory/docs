@@ -1,5 +1,5 @@
 ---
-title: Install Armory Enterprise for Spinnaker in the Azure Kubernetes Service (AKS)
+title: Install Armory Continuous Deployment for Spinnaker in the Azure Kubernetes Service (AKS)
 linkTitle: "Install in AKS"
 draft: true
 weight: 5
@@ -9,12 +9,12 @@ aliases:
   - /spinnaker-install-admin-guides/install_on_aks/
   - /spinnaker-install-admin-guides/install-on-aks/
 description: >
-  Use Armory-extended Halyard and Armory's Spinnaker<sup>TM</sup> tools CLI to deploy Armory Enterprise for Spinnaker in the Azure Kubernetes Service (AKS).
+  Use Armory-extended Halyard and Armory's Spinnaker<sup>TM</sup> tools CLI to deploy Armory Continuous Deployment for Spinnaker in the Azure Kubernetes Service (AKS).
 ---
 
 {{< include "armory-license.md" >}}
 
-## Overview of installing Armory Enterprise in AKS
+## Overview of installing Armory Continuous Deployment in AKS
 
 This guide walks you through creating and using the following Azure resources:
 
@@ -33,7 +33,7 @@ See [Next Steps](#next-steps) for resources related to these topics.
 
 > This document focuses on Armory's extended Spinnaker for enterprises and uses the Armory-extended version of Halyard (referred to as 'Halyard' in this doc). You can install open source Spinnaker by using an open source Halyard container and a corresponding open source Spinnaker version.
 
-## Prerequisites for installing Armory Enterprise
+## Prerequisites for installing Armory Continuous Deployment
 
 To follow the steps described in this guide, make sure you have met the following prerequisites:
 
