@@ -153,8 +153,6 @@ For the AVM or the CLI, you can use the `-h` flag for more information about spe
 {{< /tabs >}}
 
 
-See the {{< linkWithTitle "avm-cheat.md" >}} and {{< linkWithTitle "cli-cheat.md" >}} pages for more information on AVM and CLI commands.
-
 ## Create a deployment config file
 
 {{< include "cdaas/create-config.md" >}}
@@ -177,7 +175,7 @@ Since you are using the CLI, you do not need to have service account credentials
 
    The CLI returns a `Device Code` and opens your default browser. To complete the log in process, confirm the code in your browser.
 
-   After you successfully authenticate, the CLI returns a list of tenants if you have access to more than one. Select the tenant you want to access. Note that most users only have access to one tenant. If you have access to several tenants, you can can [log in directly to your desired tenant]({{< ref "cd-as-a-service/reference/cli/cli-cheat#log-into-armory-cd-as-a-service" >}}) with `armory login -e '<tenant>'`.
+   After you successfully authenticate, the CLI returns a list of tenants if you have access to more than one. Select the tenant you want to access. Note that most users only have access to one tenant. If you have access to several tenants, you can log in directly to your desired tenant with `armory login -e '<tenant>'`.
 
 
 1. Start the deployment.
@@ -253,7 +251,6 @@ avm install
 
 * {{< linkWithTitle "cd-as-a-service/troubleshooting/tools.md" >}}
 * {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}
-* {{< linkWithTitle "cd-as-a-service/reference/cli/cli-cheat.md" >}}
 * {{< linkWithTitle "gh-action.md" >}}
 * {{< linkWithTitle "add-context-variable.md" >}}
 * {{< linkWithTitle "deploy-sample-app.md" >}}

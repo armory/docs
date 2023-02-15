@@ -6,4 +6,4 @@ date: 2023-01-25
 ---
 
 Changes:
-- Make sure there are not pending caching tasks or events before connecting or reconnecting to clouddriver
+- Ensures there are not pending caching tasks or events before connecting or reconnecting to clouddriver, thereby optimizing performance and minimizing resource usage.

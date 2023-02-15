@@ -2,19 +2,19 @@
 title: Air-Gapped with the Armory Operator
 weight: 2
 description: >
-  Guide for hosting the Armory Enterprise BOM and Docker images in an air-gapped environment.
+  Guide for hosting the Armory Continuous Deployment BOM and Docker images in an air-gapped environment.
 ---
 
 ## Overview
 
-This guide details how you can host the Armory Enterprise Bill of Materials (BOM) and Docker images, as well as the Armory Operator Docker images, in your  air-gapped environment. The steps at a high level are:
+This guide details how you can host the Armory Continuous Deployment Bill of Materials (BOM) and Docker images, as well as the Armory Operator Docker images, in your  air-gapped environment. The steps at a high level are:
 
 
 1. [Clone the `spinnaker-kustomize-patches` repo](#clone-the-spinnaker-kustomize-patches-repo), which contains helper scripts as well as Kustomize patches.
 1. [Deploy S3-compatible MinIO](#deploy-minio-for-storage) to store the BOM.
 1. [Download the BOM](#download-the-bom).
 1. [Copy the BOM](#copy-the-bom) to your MinIO bucket.
-1. [Host Armory Enterprise Docker images](#host-the-armory-enterprise-docker-images) in your private Docker registry.
+1. [Host Armory Continuous Deployment Docker images](#host-the-armory-enterprise-docker-images) in your private Docker registry.
 1. [Download the Armory Operator](#download-the-armory-operator).
 1. [Host Armory Operator Docker images](#host-the-armory-operator-docker-images) in your private Docker registry.
 1. [Update Armory Operator configuration](#update-armory-operator-configuration).
@@ -22,7 +22,7 @@ This guide details how you can host the Armory Enterprise Bill of Materials (BOM
 
 ## {{% heading "prereq" %}}
 
-* You are familiar with the [Armory Operator]({{< ref "armory-operator" >}}) and [configuring Armory Enterprise using Kustomize patches]({{< ref "op-config-kustomize" >}}).
+* You are familiar with the [Armory Operator]({{< ref "armory-operator" >}}) and [configuring Armory Continuous Deployment using Kustomize patches]({{< ref "op-config-kustomize" >}}).
 * You have read the [introduction]({{< ref "air-gapped" >}}) to air-gapped environments.
 * You have public internet access.
 * You have administrator access to your Kubernetes cluster.
@@ -89,13 +89,13 @@ for more ways to configure secrets.
 
 ## Download the BOM
 
-Decide which Armory Enterprise version you want to deploy. Check [Armory Release Notes]({{< ref "rn-armory-spinnaker" >}}) for the latest supported versions.
+Decide which Armory Continuous Deployment version you want to deploy. Check [Armory Release Notes]({{< ref "rn-armory-spinnaker" >}}) for the latest supported versions.
 
-The `spinnaker-kustomize-patches/utilities/airgap` directory contains helper scripts for air-gapped environments. Use `bomdownloader.sh` to download the version of the Armory Enterprise BOM that you require.
+The `spinnaker-kustomize-patches/utilities/airgap` directory contains helper scripts for air-gapped environments. Use `bomdownloader.sh` to download the version of the Armory Continuous Deployment BOM that you require.
 
 `bomdownloader.sh` takes two command line parameters in the following order:
 
-1. Armory Enterprise version; for example, {{< param "armory-version-exact" >}}.
+1. Armory Continuous Deployment version; for example, {{< param "armory-version-exact" >}}.
 1. The name of your Docker registry; for example, `my.jfrog.io/myteam/armory`.
 
 The script creates a `halconfig` folder, downloads the necessary files, and updates the BOM to use the Docker registry you specified. To download the BOM:
@@ -118,7 +118,7 @@ The script creates a `halconfig` folder, downloads the necessary files, and upda
    For example, with "aws cp --recursive"  or "gsutil cp -m -r ..."
    ```
 
-Inspecting your file system, you should see the new `halconfig` folder. For example, if you specified Armory Enterprise v2.25.0, your file system should be:
+Inspecting your file system, you should see the new `halconfig` folder. For example, if you specified Armory Continuous Deployment v2.25.0, your file system should be:
 
 ```bash
 halconfig
@@ -191,7 +191,7 @@ With the MinIO pod running, copy your local BOM into your MinIO bucket.
    aws s3 cp --recursive halconfig s3://halconfig --endpoint=http://localhost:9000
    ```
 
-## Host the Armory Enterprise Docker images
+## Host the Armory Continuous Deployment Docker images
 
 There are two options for hosting the Docker images: 1) configure your Docker registry as a proxy for `docker.io/armory`; or 2) download the images and push them to your private Docker registry.
 
@@ -295,7 +295,7 @@ spec:
 
 ### Update Halyard configuration
 
-The Armory Operator uses its own Halyard installation to deploy and manage Armory Enterprise. You need to configure the new BOM location in `spinnaker-kustomize-patches/operator/halyard-local.yml`.  Update your `halyard-local.yml` to match the content of the highlighted lines in the following example:
+The Armory Operator uses its own Halyard installation to deploy and manage Armory Continuous Deployment. You need to configure the new BOM location in `spinnaker-kustomize-patches/operator/halyard-local.yml`.  Update your `halyard-local.yml` to match the content of the highlighted lines in the following example:
 
 {{< prism lang="yaml" line="8-14" >}}
 halyard:
@@ -374,4 +374,4 @@ Contact [Armory Support](https://support.armory.io/) or use the [Spinnaker Slack
 
 ## {{% heading "nextSteps" %}}
 
-[Configure and deploy Armory Enterprise using Kustomize patches]({{< ref "op-config-kustomize#configure-armory-enterprise">}}).
+[Configure and deploy Armory Continuous Deployment using Kustomize patches]({{< ref "op-config-kustomize#configure-armory-enterprise">}}).

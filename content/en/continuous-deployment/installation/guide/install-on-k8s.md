@@ -1,19 +1,19 @@
 ---
-title: Install Armory Enterprise for Spinnaker in Kubernetes
+title: Install Armory Continuous Deployment for Spinnaker in Kubernetes
 linkTitle: Install in Kubernetes
 weight: 3
 draft: true
 aliases:
   - /spinnaker-install-admin-guides/install-on-k8s/
 description: >
-  Use the Armory Operator to deploy Armory Enterprise for Spinnaker in Kubernetes.
+  Use the Armory Operator to deploy Armory Continuous Deployment for Spinnaker in Kubernetes.
 ---
 
 {{< include "armory-license.md" >}}
 
-## Overview of installing Armory Enterprise in Kubernetes
+## Overview of installing Armory Continuous Deployment in Kubernetes
 
-This guide describes the initial installation of Armory Enterprise in Kubernetes. By the end of this guide, you have an instance of Armory Enterprise deployed on your Kubernetes cluster. This guide does not fully cover the following:
+This guide describes the initial installation of Armory Continuous Deployment in Kubernetes. By the end of this guide, you have an instance of Armory Continuous Deployment deployed on your Kubernetes cluster. This guide does not fully cover the following:
 
 * TLS Encryption
 * Authentication/Authorization
@@ -27,7 +27,7 @@ See [Next Steps](#next-steps) for information related to these topics.
 {{< tabs name="install-methods" >}}
 {{% tabbody name="Armory Operator" %}}
 
-The _Armory Operator_ is the newest installation and configuration method for Armory Enterprise. Using the Operator, you can entirely manage Armory Enterprise using only Kubernetes manifest files. You treat Armory Enterprise like any other Kubernetes application, running standard tools like `kubectl`, `helm`, and `kustomize`. You can even use an Armory Enterprise pipeline to roll out configuration changes to itself. The Operator runs a few "hot" validations before accepting a manifest into the cluster, preventing some configuration problems from affecting a running Armory Enterprise installation.
+The _Armory Operator_ is the newest installation and configuration method for Armory Continuous Deployment. Using the Operator, you can entirely manage Armory Continuous Deployment using only Kubernetes manifest files. You treat Armory Continuous Deployment like any other Kubernetes application, running standard tools like `kubectl`, `helm`, and `kustomize`. You can even use an Armory Continuous Deployment pipeline to roll out configuration changes to itself. The Operator runs a few "hot" validations before accepting a manifest into the cluster, preventing some configuration problems from affecting a running Armory Continuous Deployment installation.
 
 *Prerequisites*
 
@@ -40,34 +40,34 @@ The _Armory Operator_ is the newest installation and configuration method for Ar
 * Install Armory Operator CRDs cluster wide.
 * Create a Kubernetes namespace for the Operator.
 * Install the Operator in that namespace, using a ServiceAccount with a ClusterRole to access other namespaces.
-* Create an S3 bucket for Armory Enterprise to store persistent configuration.
-* Create an IAM user that Armory Enterprise will use to access the S3 bucket (or alternately, granting access to the bucket via IAM roles).
-* Create a Kubernetes namespace for Armory Enterprise.
-* Install Armory Enterprise in that namespace.
+* Create an S3 bucket for Armory Continuous Deployment to store persistent configuration.
+* Create an IAM user that Armory Continuous Deployment will use to access the S3 bucket (or alternately, granting access to the bucket via IAM roles).
+* Create a Kubernetes namespace for Armory Continuous Deployment.
+* Install Armory Continuous Deployment in that namespace.
 
 {{% /tabbody %}}
 {{< /tabs >}}
 
-## Prerequisites for installing Armory Enterprise
+## Prerequisites for installing Armory Continuous Deployment
 
-* Your Kubernetes cluster is up and running with at least 4 CPUs and 12 GB of memory.  This is the bare minimum to install and run Armory Enterprise; depending on our Armory Enterprise workload, you may need more resources.
+* Your Kubernetes cluster is up and running with at least 4 CPUs and 12 GB of memory.  This is the bare minimum to install and run Armory Continuous Deployment; depending on our Armory Continuous Deployment workload, you may need more resources.
 * You have `kubectl` installed and are able to access and create Kubernetes resources.
 * You have access to an existing object storage bucket or the ability to create an object storage bucket (Amazon S3, Google GCS, Azure Storage, or Minio).  _For the initial version of this document, **only** Amazon S3 is used._
 * You have access to an IAM role or user with access to the S3 bucket. If neither of these exists, you need to create an IAM role or user with access to the S3 bucket.
 * Your cluster has either an existing Kubernetes Ingress controller or the permissions to install the NGINX Ingress Controller
 
-These instructions set up the Armory Enterprise microservice called "Front50", which stores Armory Enterprise Application and Pipeline configuration to an object store, with the following permission:
+These instructions set up the Armory Continuous Deployment microservice called "Front50", which stores Armory Continuous Deployment Application and Pipeline configuration to an object store, with the following permission:
 
 * Front50 has full access to an S3 bucket through either an IAM user (with an AWS access key and secret access key) or an IAM role (attached to your Kubernetes cluster).
 
-At the end of this guide, you have a Armory Enterprise deployment that is:
+At the end of this guide, you have a Armory Continuous Deployment deployment that is:
 
 * Accessible from your browser
 * Able to deploy other Kubernetes resources to the namespace where it runs, but not to any other namespace
 
 ## Configure application and pipeline configuration storage
 
-The Armory Enterprise microservice Front50 requires a backing store to store Armory Enterprise Application and Pipeline definitions.  There are a number of options for this:
+The Armory Continuous Deployment microservice Front50 requires a backing store to store Armory Continuous Deployment Application and Pipeline definitions.  There are a number of options for this:
 
 * Amazon S3 Bucket
 * Google Cloud Storage (GCS) Bucket
@@ -75,11 +75,11 @@ The Armory Enterprise microservice Front50 requires a backing store to store Arm
 * Minio
 * MySQL
 
-> You _must_ set up a backing store for Armory Enterprise to use for persistent application and pipeline configuration.
+> You _must_ set up a backing store for Armory Continuous Deployment to use for persistent application and pipeline configuration.
 
 ### Using S3 for Front50
 
-Armory Enterprise (the `Front50` service, specifically) needs access to an S3 bucket. There are a number of ways to achieve this.
+Armory Continuous Deployment (the `Front50` service, specifically) needs access to an S3 bucket. There are a number of ways to achieve this.
 
 This section describes how to do the following:
 * Create an S3 bucket
@@ -93,7 +93,7 @@ This section describes how to do the following:
 
 <p>If you do not have an S3 bucket, create an S3 bucket.</p>
 
-<p>By default, Armory Enterprise stores all Armory Enterprise information in a folder called <code>front50</code> in your bucket. Optionally, you can specify a different directory. You might want to do this if you're using an existing or shared S3 bucket..</p>
+<p>By default, Armory Continuous Deployment stores all Armory Continuous Deployment information in a folder called <code>front50</code> in your bucket. Optionally, you can specify a different directory. You might want to do this if you're using an existing or shared S3 bucket..</p>
 
 <p>Perform the following steps:</p>
 <ol>
@@ -230,7 +230,7 @@ kubectl get namespaces
 
 The command returns the namespaces in the EKS cluster.
 
-## Install Armory Enterprise
+## Install Armory Continuous Deployment
 
 {{< tabs name="install-steps" >}}
 {{% tabbody name="Armory Operator" %}}
@@ -283,24 +283,24 @@ You can find the Operator's deployment configuration in `spinnaker-operator/depl
    spinnaker-operator-7cd659654b-4vktl   2/2           Running      0             6s
    ```
 
-### Deploy Armory Enterprise
+### Deploy Armory Continuous Deployment
 
-First, create the namespace where you want to deploy Armory Enterprise. In this guide you use `spinnaker`, but it can have any name:
+First, create the namespace where you want to deploy Armory Continuous Deployment. In this guide you use `spinnaker`, but it can have any name:
 
 ```bash
 kubectl create namespace spinnaker
 ```
 
-You define and configure Armory Enterprise in a YAML file and use `kubectl` to create the service. Copy the contents below to a configuration file called `spinnakerservice.yml`. The code creates a Kubernetes `ServiceAccount` with permissions only to the namespace where Armory Enterprise is installed. Applying this file creates a base Armory Enterprise installation with one Kubernetes target account, which enables Armory Enterprise to deploy to the same namespace where it is installed.
+You define and configure Armory Continuous Deployment in a YAML file and use `kubectl` to create the service. Copy the contents below to a configuration file called `spinnakerservice.yml`. The code creates a Kubernetes `ServiceAccount` with permissions only to the namespace where Armory Continuous Deployment is installed. Applying this file creates a base Armory Continuous Deployment installation with one Kubernetes target account, which enables Armory Continuous Deployment to deploy to the same namespace where it is installed.
 
 Note the values that you need to modify:
 
-- Armory Enterprise `version`: Use the version of Armory Enterprise that you want to deploy, which can be found [here]({{< ref "rn-armory-spinnaker#list-of-stable-armory-releases" >}}).
+- Armory Continuous Deployment `version`: Use the version of Armory Continuous Deployment that you want to deploy, which can be found [here]({{< ref "rn-armory-spinnaker#list-of-stable-armory-releases" >}}).
 - S3 `bucket`: Use the name of the S3 bucket created above.
 - S3 `region`: Region where the S3 bucket is located.
 - S3 `accessKeyId`: Optional, set when using IAM user credentials to authenticate to the S3 bucket.
 - S3 `secretAccessKey`: Optional, set when using IAM user credentials to authenticate to the S3 bucket.
-- metadata `name`: Change if you're installing Armory Enterprise to a namespace other than `spinnaker`.
+- metadata `name`: Change if you're installing Armory Continuous Deployment to a namespace other than `spinnaker`.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -407,7 +407,7 @@ metadata:
 spec:
   spinnakerConfig:
     config:
-      version: 2.17.1  # Replace with desired version of Armory Enterprise to deploy
+      version: 2.17.1  # Replace with desired version of Armory Continuous Deployment to deploy
       persistentStorage:
         persistentStoreType: s3
         s3:
@@ -429,7 +429,7 @@ spec:
             dockerRegistries: []
             kinds: []
             namespaces:
-            - spinnaker  # Name of the namespace where Armory Enterprise is installed
+            - spinnaker  # Name of the namespace where Armory Continuous Deployment is installed
             oAuthScopes: []
             omitKinds: []
             omitNamespaces: []
@@ -457,30 +457,30 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 
 ## Ingress
 
-There several ways to expose Armory Enterprise, but there are a some basic requirements.
+There several ways to expose Armory Continuous Deployment, but there are a some basic requirements.
 
 Given a domain name (or IP address) (such as spinnaker.domain.com or 55.55.55.55), you should be able to:
 
 * Reach the `spin-deck` service at the root of the domain (`http://spinnaker.domain.com` or `http://55.55.55.55`)
 * Reach the `spin-gate` service at the root of the domain (`http://spinnaker.domain.com/api/v1` or `http://55.55.55.55/api/v1`)
 
-You  can use either http or https, as long as you use the same for both. Additionally, you have to configure Armory Enterprise to be aware of its endpoints.
+You  can use either http or https, as long as you use the same for both. Additionally, you have to configure Armory Continuous Deployment to be aware of its endpoints.
 
 The Install the NGINX ingress controller section details how to do that with the NGINX ingress controller.
 
 ### Install the NGINX ingress controller
 
-In order to expose Armory Enterprise to end users, perform the following actions:
+In order to expose Armory Continuous Deployment to end users, perform the following actions:
 
 * Expose the spin-deck (UI) Kubernetes service on a URL endpoint
 * Expose the spin-gate (API) Kubernetes service on a URL endpoint
-* Update Armory Enterprise to be aware of the new endpoints
+* Update Armory Continuous Deployment to be aware of the new endpoints
 
 **If you already have an ingress controller, use that ingress controller instead.  You can check for the existence of the NGINX Ingress Controller by running `kubectl get ns` and looking for a namespace called `ingress-nginx`. If the namespace exists, you likely already have an NGINX Ingress Controller running in your cluster.**
 
 The following instructions walk you through how to install the NGINX ingress controller on AWS. This uses the Layer 4 ELB, as indicated in the NGINX ingress controller [documentation](https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md#aws). You can use other NGINX ingress controller configurations, such as the Layer 7 load balancer, based on your organization's ingress policy.)
 
-Both of these are configurable with Armory Enterprise, but the NGINX ingress controller is also generally much more configurable.
+Both of these are configurable with Armory Continuous Deployment, but the NGINX ingress controller is also generally much more configurable.
 
 {{< include "install/nginx-common.md" >}}
 
@@ -505,7 +505,7 @@ If you stood up a new NGINX ingress controller, you can likely use this value (I
 
 For example, if the command returns `abcd1234abcd1234abcd1234abcd1234-123456789.us-west-2.elb.amazonaws.com`, then you can use `abcd1234abcd1234abcd1234abcd1234-123456789.us-west-2.elb.amazonaws.com` for the `SPINNAKER_ENDPOINT` in the following steps. If the command returns `55.55.55.55`, then use `55.55.55.55` for the `SPINNAKER_ENDPOINT`.
 
-If you use an existing NGINX ingress controller or other services are likely to be using the same NGINX ingress controller, create a DNS entry that points at the NGINX ingress controller endpoint you are using for Armory Enterprise. You can create either a `CNAME Record` that points at the DNS name or an `A Record` that points at the IP address.
+If you use an existing NGINX ingress controller or other services are likely to be using the same NGINX ingress controller, create a DNS entry that points at the NGINX ingress controller endpoint you are using for Armory Continuous Deployment. You can create either a `CNAME Record` that points at the DNS name or an `A Record` that points at the IP address.
 
 For the example `abcd1234abcd1234abcd1234abcd1234-123456789.us-west-2.elb.amazonaws.com` DNS name, do the following:
 * Create a CNAME pointing `spinnaker.domain.com` at `abcd1234abcd1234abcd1234abcd1234-123456789.us-west-2.elb.amazonaws.com`
@@ -560,9 +560,9 @@ Apply the ingress file you just created:
 kubectl -n spinnaker apply -f spin-ingress.yml
 ```
 
-### Configure Armory Enterprise to be aware of its endpoints
+### Configure Armory Continuous Deployment to be aware of its endpoints
 
-Armory Enterprise must be aware of its endpoints to work properly.
+Armory Continuous Deployment must be aware of its endpoints to work properly.
 
 **Operator**
 
@@ -591,14 +591,14 @@ Configuring TLS certificates for ingresses is often very environment-specific. I
 
 * Add certificate(s) so that our ingress controller can use them
 * Configure the ingress(es) so that NGINX (or the load balancer in front of NGINX, or your alternative ingress controller) terminates TLS using the certificate(s)
-* Update Armory Enterprise to be aware of the new TLS endpoints, by replacing `http` by `https` to override the base URLs in the previous section.
+* Update Armory Continuous Deployment to be aware of the new TLS endpoints, by replacing `http` by `https` to override the base URLs in the previous section.
 
 ## Next steps
 
-Now that Armory Enterprise is running, here are potential next steps:
+Now that Armory Continuous Deployment is running, here are potential next steps:
 
 * Configuration of certificates to secure our cluster (see [this section](#configuring-tls-certificates) for notes on this)
 * Configuration of Authentication/Authorization (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/security/))
-* Add Kubernetes accounts to deploy applications to (see [Creating and Adding a Kubernetes Account to Armory Enterprise as a Deployment Target]({{< ref "kubernetes-account-add" >}}))
+* Add Kubernetes accounts to deploy applications to (see [Creating and Adding a Kubernetes Account to Armory Continuous Deployment as a Deployment Target]({{< ref "kubernetes-account-add" >}}))
 * Add GCP accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/gce/))
 * Add AWS accounts to deploy applications to (see the [Open Source Spinnaker documentation](https://www.spinnaker.io/setup/install/providers/aws/))
