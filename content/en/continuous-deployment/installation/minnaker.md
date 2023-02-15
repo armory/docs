@@ -3,7 +3,7 @@ title: Install Spinnaker on Lightweight Kubernetes using Minnaker
 linkTitle: Minnaker
 weight: 4
 description: >
-  Install Spinnaker or Armory Enterprise for Spinnaker in less than 10 minutes in a Lightweight Kubernetes (k3s) environment using the all-in-one, open source command line tool called Minnaker.
+  Install Spinnaker or Armory Continuous Deployment for Spinnaker in less than 10 minutes in a Lightweight Kubernetes (k3s) environment using the all-in-one, open source command line tool called Minnaker.
 ---
 
 ## Install Spinnaker in 10 minutes using Minnaker

@@ -1,5 +1,5 @@
 ---
-title: Install Armory Enterprise in Amazon Web Services (AWS)
+title: Install Armory Continuous Deployment in Amazon Web Services (AWS)
 linkTitle: "Install in AWS"
 weight: 5
 aliases:
@@ -12,7 +12,7 @@ aliases:
   - /spinnaker_install_admin_guides/install-on-aws/
   - /spinnaker-install-admin-guides/install-on-aws/
 description: >
-  Use Armory-extended Halyard to deploy Armory Enterprise in an AWS Kubernetes cluster or in an on-prem Kubernetes cluster with access to Amazon Secure Storage Service (S3).
+  Use Armory-extended Halyard to deploy Armory Continuous Deployment in an AWS Kubernetes cluster or in an on-prem Kubernetes cluster with access to Amazon Secure Storage Service (S3).
 ---
 
 {{< include "armory-license.md" >}}
@@ -36,7 +36,7 @@ Before you install Armory on AWS, it is essential that you familiarize yourself 
 
 ## {{% heading "prereq" %}}
 
-- You have reviewed and met the Armory Enterprise [system requirements]({{< ref "system-requirements.md" >}}).
+- You have reviewed and met the Armory Continuous Deployment [system requirements]({{< ref "system-requirements.md" >}}).
 - You have a running EKS and can access the Kubernetes API. Either your user/role created the EKS cluster or your user/role has been added to the `aws-auth` configmap in the EKS cluster. See the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html) for more details.
 - You have access to an S3 bucket or access to create an S3 bucket.
 - You have access to an IAM role or user with access to the S3 bucket or can create an IAM role or user with access to the S3 bucket.
@@ -488,9 +488,9 @@ Now that your Halconfig is completely configured for the initial Armory deployme
 hal deploy apply
 ```
 
-Once this is complete, congratulations! Armory Enterprise is installed. Now, we have to access and expose it.
+Once this is complete, congratulations! Armory Continuous Deployment is installed. Now, we have to access and expose it.
 
-## Connect to Armory Enterprise using `kubectl port-forward`
+## Connect to Armory Continuous Deployment using `kubectl port-forward`
 
 If you have kubectl on a local machine with access to your Kubernetes cluster, you can test connecting to it with the following:
 

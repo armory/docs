@@ -1,5 +1,5 @@
 ---
-title: Install Armory Enterprise from the AWS Container Marketplace
+title: Install Armory Continuous Deployment from the AWS Container Marketplace
 linkTitle: Install from AWS Marketplace
 weight: 2
 draft: false
@@ -7,7 +7,7 @@ aliases:
   - /spinnaker/aws_container_marketplace/
   - /spinnaker/aws-container-marketplace/
 description: >
-  Use the Armory Operator from the AWS Container Marketplace to deploy Armory Enterprise for Spinnaker in your Amazon Kubernetes (EKS) cluster.
+  Use the Armory Operator from the AWS Container Marketplace to deploy Armory Continuous Deployment for Spinnaker in your Amazon Kubernetes (EKS) cluster.
 
 ---
 
@@ -27,7 +27,7 @@ Before you install Armory on AWS, it is essential that you familiarize yourself 
 
 To use the Marketplace's Armory offering, make sure you meet the following requirements:
 
-* You have reviewed and met the Armory Enterprise [system requirements]({{< ref "system-requirements.md" >}}).
+* You have reviewed and met the Armory Continuous Deployment [system requirements]({{< ref "system-requirements.md" >}}).
 * You have access to an EKS cluster configured with [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 * You have an ingress controller for your EKS cluster. This document assumes the EKS cluster is using the NGINX Ingress Controller.
 * You have `cluster-admin` access on the EKS cluster.

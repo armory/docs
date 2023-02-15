@@ -1,5 +1,5 @@
 | Armory CD (Spinnaker) Version | Armory Policy Agent Plugin Version    |
 |:-------------------------- |:------------------------------ |
-| 2.28.x (1.28.x) | 0.2.2 |
-| 2.27.x (1.27.x) | 0.2.1 | 
-| 2.26.x (1.26.x) | 0.1.6 | 
+| {{< param policy-engine-plugin.pe_plug_latest_spin >}} | {{< param policy-engine-plugin.pe_plug_latest >}} |
+| {{< param policy-engine-plugin.pe_plug_latest_spin-1 >}} | {{< param policy-engine-plugin.pe_plug_latest-1 >}} | 
+| {{< param policy-engine-plugin.pe_plug_latest_spin-2 >}} |  {{< param policy-engine-plugin.pe_plug_latest-2 >}} | 
