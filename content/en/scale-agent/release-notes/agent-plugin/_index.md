@@ -20,7 +20,7 @@ Note the following before upgrading the Armory Scale Agent Plugin:
 
    These timeout errors should resolve after several minutes. This issue affects all current versions of the Armory Scale Agent.
 
-* Do not use plugin versions v0.9.75-v0.9.82, v0.10.60-v0.10.66, v0.11.22-v0.11.28 with agent versions >= v1.0.26.
+* Do not use plugin versions v0.9.75-v0.9.82, v0.10.60-v0.10.66, v0.11.22-v0.11.28 with agent versions >= v1.0.26, otherwise it could cause to have Timeouts issues.
 
 {{% /alert %}}
 
