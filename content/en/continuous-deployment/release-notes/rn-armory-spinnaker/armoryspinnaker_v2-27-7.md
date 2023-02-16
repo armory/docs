@@ -39,10 +39,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Early Access features
 
-### Make the timeout value for DetermineRollbackCandidatesTask within the rollbackCluster stage be configurable via the Spinnaker UI/Portal
-
-Description to follow
-
 ### Pipelines as Code multi-branch enhancement
 
 Now you can configure Pipelines as Code to pull Dinghy files from multiple branches in the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "continuous-deployment/armory-admin/dinghy-enable#multiple-branches" >}}) for how to enable and configure this feature.
