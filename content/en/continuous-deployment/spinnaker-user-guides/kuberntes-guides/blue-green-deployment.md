@@ -101,29 +101,20 @@ In this example, you use the Spinnaker UI to create a blue/green deployment for 
    1. Click the **Create Load Balancer** button. 
 
       {{< figure src="/images/user-guides/k8s/bg/spinui-loadbalancers.png" >}}
+   
    1. If you have more than one provider configured, select **Kubernetes** in the **Select Your Provider** window. Then click **Next**.
    1. In the **Deploy Manifest** window, select your Kubernetes account from the **Account** list. Then add the following in the **Manifest** text box:
 
-      ```yaml
-      apiVersion: v1
-      kind: Service
-      metadata:
-        name: nginx
-      spec:
-        ports:
-          - port: 80
-            protocol: TCP
-	      selector:
-		      name: nginx
-        type: LoadBalancer
-      ```
+      {{< readfile file="/includes/cdsh/user/bluegreen/loadbalancer.yaml" code="true" lang="yaml" >}}
       
       Press the **Create** button.
+
       {{< figure src="/images/user-guides/k8s/bg/Untitled%202.png" >}}
 
    1. Wait for service creation to complete. Then verify the LoadBalancer has been created.
       
       {{< figure src="/images/user-guides/k8s/bg/Untitled%203.png" >}}
+
       {{< figure src="/images/user-guides/k8s/bg/Untitled%204.png" >}}
 
 ### Create the blue deployment
@@ -142,58 +133,7 @@ Create a server group for your blue deployment.
 
     Add the following in the **Manifest** text box:
 
-    ```yaml
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: blue-index-html
-    data:
-      index.html: |
-        <html>
-        <body bgcolor=blue>
-        <marquee behavior=alternate>
-        <font face=arial size=6 color=white>
-        !!! Welcome to Nginx Blue Deployment !!!
-        </font>
-        </marquee>
-        </body>
-        </html>
-
-    ---
-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: nginx-deployment
-    spec:
-      replicas: 2
-      selector:
-        matchLabels:
-          app: nginx
-      template:
-        metadata:
-          labels:
-            app: nginx
-            version: blue
-        spec:
-          containers:
-          - name: nginx
-            image: nginx:latest
-            ports:
-            - containerPort: 80
-            volumeMounts:
-            - mountPath: /usr/share/nginx/html/index.html # mount index.html to /usr/share/nginx/html/index.html
-              subPath: index.html
-              readOnly: true
-              name: index-html
-          volumes:
-          - name: index-html
-            configMap:
-              name: blue-index-html # place ConfigMap `index-html` on /usr/share/nginx/html/index.html
-              items:
-                - key: index.html
-                  path: index.html
-    ```
+    {{< readfile file="/includes/cdsh/user/bluegreen/deployment-blue.yaml" code="true" lang="yaml" >}}
 
     The Deployment is created in the current namespace. To specify a namespace, you can add `namespace: ${account}` in the `metadata` section. For example:
 
@@ -206,6 +146,7 @@ Create a server group for your blue deployment.
     ```
 
     Press the **Create** button.
+
     {{< figure src="/images/user-guides/k8s/bg/Untitled%206.png" >}}
 
 
@@ -240,62 +181,9 @@ You should see the blue deployment page.
 1. If you have more than one provider configured, select **Kubernetes** in the **Select Your Provider** window. Then click **Next**.
 1. In the **Deploy Manifest** window, select your Kubernetes account from the **Account** list.  Add the following in the **Manifest** text box:
 
-    ```yaml
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: green-index-html
-    data:
-      index.html: |
-        <html>
-        <body bgcolor=green>
-        <marquee behavior=alternate>
-        <font face=arial size=6 color=white>
-        !!! Welcome to Nginx Green Deployment !!!
-        </font>
-        </marquee>
-        </body>
-        </html>
+   {{< readfile file="/includes/cdsh/user/bluegreen/deployment-green.yaml" code="true" lang="yaml" >}}
 
-    ---
-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: nginx-deployment
-      annotations:
-        traffic.spinnaker.io/load-balancers: '["service nginx"]'
-    spec:
-      selector:
-        matchLabels:
-          app: nginx
-      replicas: 2 # tells deployment to run 2 pods matching the template
-      template:
-        metadata:
-          labels:
-            app: nginx
-            version: green
-        spec:
-          containers:
-          - name: nginx
-            image: nginx:1.14.2
-            ports:
-            - containerPort: 80
-            volumeMounts:
-            - mountPath: /usr/share/nginx/html/index.html # mount index.html to /usr/share/nginx/html/index.html
-              subPath: index.html
-              readOnly: true
-              name: index-html
-          volumes:
-          - name: index-html
-            configMap:
-              name: green-index-html # place ConfigMap `index-html` on /usr/share/nginx/html/index.html
-              items:
-                - key: index.html
-                  path: index.html
-    ```
-
-    Press the **Create** button.
+   Press the **Create** button.
 
 <br><br>
 Refresh the Spinnaker UI page. You should see the new version listed inside your deployment and also how the LoadBalancer is transferring the network traffic to the green version.
@@ -324,24 +212,14 @@ If we go back to the app ingress url, we have again the blue deployment
 Congrats! you achieved a blue/green deployment successfully. Now we can translate all previous steps in a pipeline to automatize this process for any new release/deployment
 
 ## Create a blue/green deployment using ReplicaSet
-
+ 
 The process to execute a blue/green deployment is pretty similar to use directly Deployment, basically we gonna use explicitly the ReplicaSet resource in our manifests. As we explained before Deployment is a high abstraction of ReplicaSets.
 
 So lets start, creating an app and going to LOAD BALANCERS section to create our loadbalancer resource to allow us handle the network and expose our app.
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2020.png" >}}
 
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx
-spec:
-  ports:
-    - port: 80
-      protocol: TCP
-  type: LoadBalancer
-```
+{{< readfile file="/includes/cdsh/user/bluegreen/loadbalancer.yaml" code="true" lang="yaml" >}}
 
 Wait until complete, and you will be able to see our resource in LOAD BALANCERS screen
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2021.png" >}}
@@ -353,59 +231,7 @@ Now, let’s go to create our app with blue version, only using ReplicaSet resou
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2023.png" >}}
 
 
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: blue-index-html
-data:
-  index.html: |
-    <html>
-    <body bgcolor=blue>
-    <marquee behavior=alternate>
-    <font face=arial size=6 color=white>
-    !!! Welcome to Nginx Blue Deployment !!!
-    </font>
-    </marquee>
-    </body>
-    </html>
-
----
-
-apiVersion: apps/v1
-kind: ReplicaSet
-metadata:
-  name: nginx-replicaset
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-      version: blue
-  template:
-    metadata:
-      labels:
-        app: nginx
-        version: blue
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
-        volumeMounts:
-        - mountPath: /usr/share/nginx/html/index.html # mount index.html to /usr/share/nginx/html/index.html
-          subPath: index.html
-          readOnly: true
-          name: index-html
-      volumes:
-      - name: index-html
-        configMap:
-          name: blue-index-html # place ConfigMap `index-html` on /usr/share/nginx/html/index.html
-          items:
-            - key: index.html
-              path: index.html
-```
+{{< readfile file="/includes/cdsh/user/bluegreen/replicaset-blue.yaml" code="true" lang="yaml" >}}
 
 Note: Again, first we added a ConfigMap to allow us create a html view and let us exemplify in a visual way our app versioned. Then with volumeMount we shared the nginx default index.html, and later is replaced with our ConfigMap.
 
@@ -429,59 +255,9 @@ Here we have a difference with deployment resource. If we go to check our cluste
 
 Now, proceed to deploy our green version over our replicaSet resource, again going to CLUSTERS section,
 
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: green-index-html
-data:
-  index.html: |
-    <html>
-    <body bgcolor=green>
-    <marquee behavior=alternate>
-    <font face=arial size=6 color=white>
-    !!! Welcome to Nginx Green Deployment !!!
-    </font>
-    </marquee>
-    </body>
-    </html>
+{{< readfile file="/includes/cdsh/user/bluegreen/replicaset-green.yaml" code="true" lang="yaml" >}}
 
----
 
-apiVersion: apps/v1
-kind: ReplicaSet
-metadata:
-  name: nginx-replicaset
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-      version: green
-  template:
-    metadata:
-      labels:
-        app: nginx
-        version: green
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
-        volumeMounts:
-        - mountPath: /usr/share/nginx/html/index.html # mount index.html to /usr/share/nginx/html/index.html
-          subPath: index.html
-          readOnly: true
-          name: index-html
-      volumes:
-      - name: index-html
-        configMap:
-          name: green-index-html # place ConfigMap `index-html` on /usr/share/nginx/html/index.html
-          items:
-            - key: index.html
-              path: index.html
-```
 
 Now, our replicaSet resource will display the new version, with new pods create, but LoadBalancer is still pointing to blue version.
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2029.png" >}}
@@ -501,313 +277,11 @@ If green version is working as expected, finally, go back to CLUSTERS section, a
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2032.png" >}}
 
 
-## Blue/Green Deployment from a pipeline
+## Use a blue/green strategy in a pipeline
 
 Create a pipeline, in configuration pipeline, go to “Pipeline Actions”, and click in “Edit as JSON”, paste:
 
-```json
-{
-  "keepWaitingPipelines": false,
-  "lastModifiedBy": "anonymous",
-  "limitConcurrent": true,
-  "parameterConfig": [
-    {
-      "default": "",
-      "description": "Select deployment",
-      "hasOptions": true,
-      "label": "",
-      "name": "deployment",
-      "options": [
-        {
-          "value": "blue"
-        },
-        {
-          "value": "green"
-        }
-      ],
-      "pinned": false,
-      "required": true
-    }
-  ],
-  "schema": "1",
-  "spelEvaluator": "v4",
-  "stages": [
-    {
-      "account": "spinnaker",
-      "cloudProvider": "kubernetes",
-      "manifests": [
-        {
-          "apiVersion": "v1",
-          "data": {
-            "index.html": "<html>\n<body bgcolor=blue>\n<marquee behavior=alternate>\n<font face=arial size=6 color=white>\n!!! Welcome to Nginx Blue Deployment !!!\n</font>\n</marquee>\n</body>\n</html>\n"
-          },
-          "kind": "ConfigMap",
-          "metadata": {
-            "name": "blue-index-html"
-          }
-        },
-        {
-          "apiVersion": "apps/v1",
-          "kind": "Deployment",
-          "metadata": {
-            "name": "nginx-deployment"
-          },
-          "spec": {
-            "replicas": 2,
-            "selector": {
-              "matchLabels": {
-                "app": "nginx"
-              }
-            },
-            "template": {
-              "metadata": {
-                "labels": {
-                  "app": "nginx",
-                  "version": "blue"
-                }
-              },
-              "spec": {
-                "containers": [
-                  {
-                    "image": "nginx:1.14.2",
-                    "name": "nginx",
-                    "ports": [
-                      {
-                        "containerPort": 80
-                      }
-                    ],
-                    "volumeMounts": [
-                      {
-                        "mountPath": "/usr/share/nginx/html/index.html",
-                        "name": "index-html",
-                        "readOnly": true,
-                        "subPath": "index.html"
-                      }
-                    ]
-                  }
-                ],
-                "volumes": [
-                  {
-                    "configMap": {
-                      "items": [
-                        {
-                          "key": "index.html",
-                          "path": "index.html"
-                        }
-                      ],
-                      "name": "blue-index-html"
-                    },
-                    "name": "index-html"
-                  }
-                ]
-              }
-            }
-          }
-        }
-      ],
-      "moniker": {
-        "app": "nginx"
-      },
-      "name": "Blue Deployment",
-      "refId": "1",
-      "requisiteStageRefIds": [
-        "3"
-      ],
-      "skipExpressionEvaluation": false,
-      "source": "text",
-      "trafficManagement": {
-        "enabled": true,
-        "options": {
-          "enableTraffic": true,
-          "namespace": "your-namespace",
-          "services": [
-            "service nginx"
-          ],
-          "strategy": "redblack"
-        }
-      },
-      "type": "deployManifest"
-    },
-    {
-      "completeOtherBranchesThenFail": false,
-      "continuePipeline": false,
-      "failPipeline": true,
-      "name": "Check If Blue",
-      "preconditions": [
-        {
-          "context": {
-            "expression": "${parameters.deployment.equals('blue')}"
-          },
-          "failPipeline": false,
-          "type": "expression"
-        }
-      ],
-      "refId": "3",
-      "requisiteStageRefIds": [
-        "6"
-      ],
-      "restrictExecutionDuringTimeWindow": false,
-      "type": "checkPreconditions"
-    },
-    {
-      "failOnFailedExpressions": false,
-      "name": "Check If Green",
-      "preconditions": [
-        {
-          "context": {
-            "expression": "${parameters.deployment.equals('green')}"
-          },
-          "failPipeline": false,
-          "type": "expression"
-        }
-      ],
-      "refId": "4",
-      "requisiteStageRefIds": [
-        "6"
-      ],
-      "type": "checkPreconditions"
-    },
-    {
-      "account": "spinnaker",
-      "cloudProvider": "kubernetes",
-      "manifests": [
-        {
-          "apiVersion": "v1",
-          "data": {
-            "index.html": "<html>\n<body bgcolor=green>\n<marquee behavior=alternate>\n<font face=arial size=6 color=white>\n!!! Welcome to Nginx Green Deployment !!!\n</font>\n</marquee>\n</body>\n</html>\n"
-          },
-          "kind": "ConfigMap",
-          "metadata": {
-            "name": "green-index-html"
-          }
-        },
-        {
-          "apiVersion": "apps/v1",
-          "kind": "Deployment",
-          "metadata": {
-            "name": "nginx-deployment"
-          },
-          "spec": {
-            "replicas": 2,
-            "selector": {
-              "matchLabels": {
-                "app": "nginx"
-              }
-            },
-            "template": {
-              "metadata": {
-                "labels": {
-                  "app": "nginx",
-                  "version": "green"
-                }
-              },
-              "spec": {
-                "containers": [
-                  {
-                    "image": "nginx:1.14.2",
-                    "name": "nginx",
-                    "ports": [
-                      {
-                        "containerPort": 80
-                      }
-                    ],
-                    "volumeMounts": [
-                      {
-                        "mountPath": "/usr/share/nginx/html/index.html",
-                        "name": "index-html",
-                        "readOnly": true,
-                        "subPath": "index.html"
-                      }
-                    ]
-                  }
-                ],
-                "volumes": [
-                  {
-                    "configMap": {
-                      "items": [
-                        {
-                          "key": "index.html",
-                          "path": "index.html"
-                        }
-                      ],
-                      "name": "green-index-html"
-                    },
-                    "name": "index-html"
-                  }
-                ]
-              }
-            }
-          }
-        }
-      ],
-      "moniker": {
-        "app": "nginx"
-      },
-      "name": "Green Deployment",
-      "refId": "5",
-      "requisiteStageRefIds": [
-        "4"
-      ],
-      "skipExpressionEvaluation": false,
-      "source": "text",
-      "trafficManagement": {
-        "enabled": true,
-        "options": {
-          "enableTraffic": true,
-          "namespace": "your-namespace",
-          "services": [
-            "service nginx"
-          ],
-          "strategy": "redblack"
-        }
-      },
-      "type": "deployManifest"
-    },
-    {
-      "account": "spinnaker",
-      "cloudProvider": "kubernetes",
-      "manifests": [
-        {
-          "apiVersion": "v1",
-          "kind": "Service",
-          "metadata": {
-            "name": "nginx"
-          },
-          "spec": {
-            "ports": [
-              {
-                "port": 80,
-                "protocol": "TCP"
-              }
-            ],
-            "selector": {
-              "name": "nginx"
-            },
-            "type": "LoadBalancer"
-          }
-        }
-      ],
-      "moniker": {
-        "app": "nginx"
-      },
-      "name": "Create LoadBalancer",
-      "refId": "6",
-      "requisiteStageRefIds": [],
-      "skipExpressionEvaluation": false,
-      "source": "text",
-      "trafficManagement": {
-        "enabled": false,
-        "options": {
-          "enableTraffic": false,
-          "services": []
-        }
-      },
-      "type": "deployManifest"
-    }
-  ],
-  "triggers": []
-}
-```
+{{< readfile file="/includes/cdsh/user/bluegreen/deployment-pipeline.json" code="true" lang="json" >}}
 
 Now, let’s see the pipeline
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2033.png" >}}
@@ -847,309 +321,4 @@ If the deployment is completed successfully, but you can rollback to the last ve
 
 The next JSON is to use ReplicaSets instead deployments:
 
-```json
-{
-  "appConfig": {},
-  "keepWaitingPipelines": false,
-  "lastModifiedBy": "anonymous",
-  "limitConcurrent": true,
-  "parameterConfig": [
-    {
-      "default": "",
-      "description": "Select deployment",
-      "hasOptions": true,
-      "label": "",
-      "name": "deployment",
-      "options": [
-        {
-          "value": "blue"
-        },
-        {
-          "value": "green"
-        }
-      ],
-      "pinned": false,
-      "required": true
-    }
-  ],
-  "schema": "1",
-  "spelEvaluator": "v4",
-  "stages": [
-    {
-      "account": "spinnaker",
-      "cloudProvider": "kubernetes",
-      "manifests": [
-        {
-          "apiVersion": "v1",
-          "data": {
-            "index.html": "<html>\n<body bgcolor=blue>\n<marquee behavior=alternate>\n<font face=arial size=6 color=white>\n!!! Welcome to Nginx Blue Deployment !!!\n</font>\n</marquee>\n</body>\n</html>\n"
-          },
-          "kind": "ConfigMap",
-          "metadata": {
-            "name": "blue-index-html"
-          }
-        },
-        {
-          "apiVersion": "apps/v1",
-          "kind": "ReplicaSet",
-          "metadata": {
-            "name": "nginx-replicaset"
-          },
-          "spec": {
-            "replicas": 3,
-            "selector": {
-              "matchLabels": {
-                "app": "nginx",
-                "version": "blue"
-              }
-            },
-            "template": {
-              "metadata": {
-                "labels": {
-                  "app": "nginx",
-                  "version": "blue"
-                }
-              },
-              "spec": {
-                "containers": [
-                  {
-                    "image": "nginx:1.14.2",
-                    "name": "nginx",
-                    "ports": [
-                      {
-                        "containerPort": 80
-                      }
-                    ],
-                    "volumeMounts": [
-                      {
-                        "mountPath": "/usr/share/nginx/html/index.html",
-                        "name": "index-html",
-                        "readOnly": true,
-                        "subPath": "index.html"
-                      }
-                    ]
-                  }
-                ],
-                "volumes": [
-                  {
-                    "configMap": {
-                      "items": [
-                        {
-                          "key": "index.html",
-                          "path": "index.html"
-                        }
-                      ],
-                      "name": "blue-index-html"
-                    },
-                    "name": "index-html"
-                  }
-                ]
-              }
-            }
-          }
-        }
-      ],
-      "moniker": {
-        "app": "nginx"
-      },
-      "name": "Blue Deployment",
-      "refId": "1",
-      "requisiteStageRefIds": [
-        "3"
-      ],
-      "skipExpressionEvaluation": false,
-      "source": "text",
-      "trafficManagement": {
-        "enabled": true,
-        "options": {
-          "enableTraffic": true,
-          "namespace": "your-namespace",
-          "services": [
-            "service nginx"
-          ],
-          "strategy": "redblack"
-        }
-      },
-      "type": "deployManifest"
-    },
-    {
-      "completeOtherBranchesThenFail": false,
-      "continuePipeline": false,
-      "failPipeline": true,
-      "name": "Check If Blue",
-      "preconditions": [
-        {
-          "context": {
-            "expression": "${parameters.deployment.equals('blue')}"
-          },
-          "failPipeline": false,
-          "type": "expression"
-        }
-      ],
-      "refId": "3",
-      "requisiteStageRefIds": [
-        "6"
-      ],
-      "restrictExecutionDuringTimeWindow": false,
-      "type": "checkPreconditions"
-    },
-    {
-      "failOnFailedExpressions": false,
-      "name": "Check If Green",
-      "preconditions": [
-        {
-          "context": {
-            "expression": "${parameters.deployment.equals('green')}"
-          },
-          "failPipeline": false,
-          "type": "expression"
-        }
-      ],
-      "refId": "4",
-      "requisiteStageRefIds": [
-        "6"
-      ],
-      "type": "checkPreconditions"
-    },
-    {
-      "account": "spinnaker",
-      "cloudProvider": "kubernetes",
-      "manifests": [
-        {
-          "apiVersion": "v1",
-          "data": {
-            "index.html": "<html>\n<body bgcolor=green>\n<marquee behavior=alternate>\n<font face=arial size=6 color=white>\n!!! Welcome to Nginx Green Deployment !!!\n</font>\n</marquee>\n</body>\n</html>\n"
-          },
-          "kind": "ConfigMap",
-          "metadata": {
-            "name": "green-index-html"
-          }
-        },
-        {
-          "apiVersion": "apps/v1",
-          "kind": "ReplicaSet",
-          "metadata": {
-            "name": "nginx-replicaset"
-          },
-          "spec": {
-            "replicas": 3,
-            "selector": {
-              "matchLabels": {
-                "app": "nginx",
-                "version": "green"
-              }
-            },
-            "template": {
-              "metadata": {
-                "labels": {
-                  "app": "nginx",
-                  "version": "green"
-                }
-              },
-              "spec": {
-                "containers": [
-                  {
-                    "image": "nginx:1.14.2",
-                    "name": "nginx",
-                    "ports": [
-                      {
-                        "containerPort": 80
-                      }
-                    ],
-                    "volumeMounts": [
-                      {
-                        "mountPath": "/usr/share/nginx/html/index.html",
-                        "name": "index-html",
-                        "readOnly": true,
-                        "subPath": "index.html"
-                      }
-                    ]
-                  }
-                ],
-                "volumes": [
-                  {
-                    "configMap": {
-                      "items": [
-                        {
-                          "key": "index.html",
-                          "path": "index.html"
-                        }
-                      ],
-                      "name": "green-index-html"
-                    },
-                    "name": "index-html"
-                  }
-                ]
-              }
-            }
-          }
-        }
-      ],
-      "moniker": {
-        "app": "nginx"
-      },
-      "name": "Green Deployment",
-      "refId": "5",
-      "requisiteStageRefIds": [
-        "4"
-      ],
-      "skipExpressionEvaluation": false,
-      "source": "text",
-      "trafficManagement": {
-        "enabled": true,
-        "options": {
-          "enableTraffic": true,
-          "namespace": "your-namespace",
-          "services": [
-            "service nginx"
-          ],
-          "strategy": "redblack"
-        }
-      },
-      "type": "deployManifest"
-    },
-    {
-      "account": "spinnaker",
-      "cloudProvider": "kubernetes",
-      "manifests": [
-        {
-          "apiVersion": "v1",
-          "kind": "Service",
-          "metadata": {
-            "name": "nginx"
-          },
-          "spec": {
-            "ports": [
-              {
-                "port": 80,
-                "protocol": "TCP"
-              }
-            ],
-            "selector": {
-              "name": "nginx"
-            },
-            "type": "LoadBalancer"
-          }
-        }
-      ],
-      "moniker": {
-        "app": "nginx"
-      },
-      "name": "Create LoadBalancer",
-      "refId": "6",
-      "requisiteStageRefIds": [],
-      "skipExpressionEvaluation": false,
-      "source": "text",
-      "trafficManagement": {
-        "enabled": false,
-        "options": {
-          "enableTraffic": false,
-          "services": []
-        }
-      },
-      "type": "deployManifest"
-    }
-  ],
-  "triggers": []
-}
-```
+{{< readfile file="/includes/cdsh/user/bluegreen/replicaset-pipeline.json" code="true" lang="json" >}}
