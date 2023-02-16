@@ -1,148 +1,154 @@
 {
   "armoryServices": [
     {
-      "commitMessages": [],
-      "currentVersion": "2.28.4",
-      "name": "Armory Fiat",
-      "previousVersion": "2.28.3"
+      "commitMessages": [
+        "chore(cd): update base orca version to 2023.02.03.15.10.20.release-1.27.x (#585)"
+      ],
+      "currentVersion": "2.27.7",
+      "name": "Armory Orca",
+      "previousVersion": "2.27.6"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.28.4",
-      "name": "Armory Front50",
-      "previousVersion": "2.28.3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.4",
-      "name": "Terraformer™",
-      "previousVersion": "2.28.3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.4",
-      "name": "Armory Gate",
-      "previousVersion": "2.28.3"
+      "currentVersion": "2.27.7",
+      "name": "Armory Rosco",
+      "previousVersion": "2.27.6"
     },
     {
       "commitMessages": [
-        "chore(cd): update base service version to clouddriver:2023.01.25.18.10.13.release-1.28.x (#782)",
-        "chore(cd): update base service version to clouddriver:2023.01.30.18.47.09.release-1.28.x (#787)"
+        "chore(cd): update base deck version to 2023.0.0-20230203161357.release-1.27.x (#1295)"
       ],
-      "currentVersion": "2.28.4",
-      "name": "Armory Clouddriver",
-      "previousVersion": "2.28.3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.4",
-      "name": "Armory Kayenta",
-      "previousVersion": "2.28.3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.4",
-      "name": "Armory Igor",
-      "previousVersion": "2.28.3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.4",
-      "name": "Armory Rosco",
-      "previousVersion": "2.28.3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.4",
-      "name": "Armory Echo",
-      "previousVersion": "2.28.3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.4",
-      "name": "Armory Orca",
-      "previousVersion": "2.28.3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.4",
+      "currentVersion": "2.27.7",
       "name": "Armory Deck",
-      "previousVersion": "2.28.3"
+      "previousVersion": "2.27.6"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.28.4",
+      "currentVersion": "2.27.7",
+      "name": "Armory Echo",
+      "previousVersion": "2.27.6"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to clouddriver:2023.01.27.17.41.53.release-1.27.x (#784)"
+      ],
+      "currentVersion": "2.27.7",
+      "name": "Armory Clouddriver",
+      "previousVersion": "2.27.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.27.7",
+      "name": "Armory Fiat",
+      "previousVersion": "2.27.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.27.7",
+      "name": "Armory Front50",
+      "previousVersion": "2.27.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.27.7",
       "name": "Dinghy™",
-      "previousVersion": "2.28.3"
+      "previousVersion": "2.27.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.27.7",
+      "name": "Armory Gate",
+      "previousVersion": "2.27.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.27.7",
+      "name": "Armory Igor",
+      "previousVersion": "2.27.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.27.7",
+      "name": "Armory Kayenta",
+      "previousVersion": "2.27.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.27.7",
+      "name": "Terraformer™",
+      "previousVersion": "2.27.6"
     }
   ],
-  "armoryVersion": "2.28.4",
+  "armoryVersion": "2.27.7",
   "ossServices": [
     {
-      "commitMessages": [],
-      "currentVersion": "1.28.4",
-      "name": "Spinnaker Fiat",
-      "previousVersion": "1.28.0"
+      "commitMessages": [
+        "fix(timeout): Added feature flag for rollback timeout ui input. (backport #4383) (#4384)"
+      ],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Orca",
+      "previousVersion": "1.27.0"
     },
     {
       "commitMessages": [],
-      "currentVersion": "1.28.4",
-      "name": "Spinnaker Front50",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.4",
-      "name": "Spinnaker Gate",
-      "previousVersion": "1.28.0"
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Rosco",
+      "previousVersion": "1.27.0"
     },
     {
       "commitMessages": [
-        "fix(permissions): Added evaluator case when fiat is enabled (#5856)",
-        "feat(gke): Enables gcloud auth plugin for 1.26+ GKE clusters (backport #5847) (#5851)"
+        "fix(timeout): Added feature flag for rollback timeout ui input. (backport #9937) (#9939)"
       ],
-      "currentVersion": "1.28.4",
-      "name": "Spinnaker Clouddriver",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.4",
-      "name": "Spinnaker Kayenta",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.4",
-      "name": "Spinnaker Igor",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.4",
-      "name": "Spinnaker Rosco",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.4",
-      "name": "Spinnaker Echo",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.4",
-      "name": "Spinnaker Orca",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.4",
+      "currentVersion": "1.27.3",
       "name": "Spinnaker Deck",
-      "previousVersion": "1.28.0"
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Echo",
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [
+        "feat(gke): Enables gcloud auth plugin for 1.26+ GKE clusters (backport #5847) (#5852)"
+      ],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Clouddriver",
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Fiat",
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Front50",
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Gate",
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Igor",
+      "previousVersion": "1.27.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.27.3",
+      "name": "Spinnaker Kayenta",
+      "previousVersion": "1.27.0"
     }
   ],
-  "ossVersion": "1.28.4",
+  "ossVersion": "1.27.3",
   "prerelease": false,
   "stack": {
     "artifactSources": {
@@ -156,40 +162,40 @@
     },
     "services": {
       "clouddriver": {
-        "commit": "d52c864053d77a05eef806926591427bc866b529",
-        "version": "2.28.4"
+        "commit": "dc29b777268954cce13b1b36b152d4e2a493caa9",
+        "version": "2.27.7"
       },
       "deck": {
-        "commit": "dd17c153eaf117ab7990c11182a6bdc887d020f9",
-        "version": "2.28.4"
+        "commit": "be6776c69c18743de1df214acaa500250569a146",
+        "version": "2.27.7"
       },
       "dinghy": {
-        "commit": "c4ed5b19dbcfefe8dea14cdff7df9a8ab540eba3",
-        "version": "2.28.4"
+        "commit": "ca161395d61ae5e93d1f9ecfbb503b68c2b54bc5",
+        "version": "2.27.7"
       },
       "echo": {
-        "commit": "53bebfd6900b3de124dde043a00d164aa2e50773",
-        "version": "2.28.4"
+        "commit": "3204f90e951562245c62430d863617c34b3a0826",
+        "version": "2.27.7"
       },
       "fiat": {
-        "commit": "48c8759b0878fd1b86b91dae9ee288afcf03dd39",
-        "version": "2.28.4"
+        "commit": "b3ca6748d2377454949420613e7912748ea00b52",
+        "version": "2.27.7"
       },
       "front50": {
-        "commit": "fab8841982330e7537629c9f24f41205cd5863fd",
-        "version": "2.28.4"
+        "commit": "5e1fe36c4b8df29cc9cb4d7af581a44b0ca44e59",
+        "version": "2.27.7"
       },
       "gate": {
-        "commit": "65bdd30238312bbca2dce613825eda7ae88f1dfa",
-        "version": "2.28.4"
+        "commit": "adf9732bc7b3c8df48b21b86ef9783efcadec78b",
+        "version": "2.27.7"
       },
       "igor": {
-        "commit": "61ce26babfcd0bdf62872c24e707ca5b5371a381",
-        "version": "2.28.4"
+        "commit": "9e2d7946da19c803eb0bd12e888c5119528a364c",
+        "version": "2.27.7"
       },
       "kayenta": {
-        "commit": "0333b9ed6153acfc090edcfa38e3514439e2863c",
-        "version": "2.28.4"
+        "commit": "5a1efcefddfe78f37550f5bee723570e3737ce04",
+        "version": "2.27.7"
       },
       "monitoring-daemon": {
         "commit": null,
@@ -200,19 +206,19 @@
         "version": "2.26.0"
       },
       "orca": {
-        "commit": "76fe72a46566bb404eb4db4c842ecb0775c546bf",
-        "version": "2.28.4"
+        "commit": "b239fa305820b1102d38fe4d0beeaca847c0f4f2",
+        "version": "2.27.7"
       },
       "rosco": {
-        "commit": "945f21dec252da7dd2e00c8d23a1687aa3b9841a",
-        "version": "2.28.4"
+        "commit": "f4164fdcfa275b62e0c0fefbe26b5cbd845c543d",
+        "version": "2.27.7"
       },
       "terraformer": {
-        "commit": "3764e523e17dfdd4cf309dc2bd7c13d9b804f309",
-        "version": "2.28.4"
+        "commit": "f845ba2fc760c46b98794a10c32cc2b713c7c9e0",
+        "version": "2.27.7"
       }
     },
-    "timestamp": "2023-01-31 10:52:55",
-    "version": "2.28.4"
+    "timestamp": "2023-02-08 07:01:33",
+    "version": "2.27.7"
   }
 }
