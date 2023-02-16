@@ -6,3 +6,5 @@ date: 2022-12-05
 ---
 
 - no functionality changes, ignore (internal).
+### Compatibility:
+- agent < **1.0.26**. 
