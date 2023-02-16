@@ -5,7 +5,7 @@ version: 00.10.64
 date: 2022-12-13
 ---
 
-Feats:
+## Feats:
 - Enable any clouddriver replica to get the ping event from any agent.
-Compatibility:
+## Compatibility:
 - agent < **1.0.26**. 
