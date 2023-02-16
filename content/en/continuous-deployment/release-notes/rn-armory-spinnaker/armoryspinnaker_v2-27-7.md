@@ -1,7 +1,7 @@
 ---
 title: v2.27.7 Armory Release (OSS Spinnaker™ v1.27.3)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
+version: 02.27.07
 date: 2023-02-16
 description: >
   Release notes for Armory Enterprise v2.27.7
@@ -22,12 +22,39 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
+{{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
+{{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
+{{< include "breaking-changes/bc-hal-deprecation.md" >}}
+{{< include "breaking-changes/bc-plug-version-lts-227.md" >}}
+
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
-## Highlighted updates
+{{< include "known-issues/ki-artifact-binding-spel.md" >}}
+{{< include "known-issues/ki-dinghy-gh-notifications.md" >}}
+{{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
+{{< include "known-issues/ki-pipelines-as-code-gh-comments.md" >}}
+
+## Early Access features
+
+### Make the timeout value for DetermineRollbackCandidatesTask within the rollbackCluster stage be configurable via the Spinnaker UI/Portal
+
+Description to follow
+
+### Pipelines as Code multi-branch enhancement
+
+Now you can configure Pipelines as Code to pull Dinghy files from multiple branches in the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "continuous-deployment/armory-admin/dinghy-enable#multiple-branches" >}}) for how to enable and configure this feature.
+
+### Feature flag in Orca to use the new Igor stop endpoint 
+
+When defining a Jenkins job inside folders, the name contains slashes. Because of that, instead of matching the request to the IGOR STOP endpoint (`/masters/{name}/jobs/{jobName}/stop/{queuedBuild}/{buildNumber}`), Spring is matching the request to the BUILD one (`/masters/{name}/jobs/**`)
+The stop request is failing because it is trying to start a job that does not exist.  A [feature flag](https://spinnaker.io/changelogs/1.29.0-changelog/#orca) was added to call the existing endpoint (which accepts the job name as path variable) or the new one (which accepts the job name as a query parameter).
+
+## Fixed
+
+* Updated google cloud SDK to support GKE >1.26
 
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
