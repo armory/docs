@@ -1,8 +1,8 @@
 ---
-title: Use a Blue/Green Deployment Strategy in Spinnaker
+title: Use a Blue/Green Deployment Strategy with Spinnaker
 linkTitle: Blue/Green
 description: >
-  Learn how to deploy your apps from Armory Continuous Deployment/Spinnaker to Kubernetes using a blue/green deployment strategy. This strategy works with ReplicaSet and Deployment kinds.
+  Learn how to deploy your apps from Armory Continuous Deployment or Spinnaker to Kubernetes using a blue/green deployment strategy. This strategy works with ReplicaSet and Deployment kinds.
 ---
 
 ## Overview of blue/green deployment
@@ -20,66 +20,44 @@ Some benefits of using the blue/green deployment strategy include:
 1. **Parallel deployment**: Blue/Green deployment enables parallel deployment of new versions, meaning you can deploy a new version of your app while still running the previous version.
 1. **Cost-effective**: Blue/Green deployment can be cost-effective as it enables using the same infrastructures for both versions of your app.
 
-For example, you have an app called spinnaker-app and a corresponding service called spinnaker-service. The first version deployed is the blue version of our app.
+For example, you have an app called `spinnaker-app` and a corresponding service called `spinnaker-service`. The first version deployed is the blue version of your app.
 
 {{< figure src="/images/user-guides/k8s/bg/spin-blue-start.jpg" >}}
 
 
-We need to update our app to a newer version, which become the green version. Then a battery of tests should be run against this version in order to check if everything is working as expected.
+You then need to update your app to a newer version, which become the green version. You run tests on the green version in order to check if everything is working as expected.
 
 {{< figure src="/images/user-guides/k8s/bg/spin-blue-with-green.jpg" >}}
 
-
-
-After checking the green version is up and running, and work as expected, we switch the traffic from the blue version to the green version.
+After checking the green version is working as expected, you switch the traffic from the blue version to the green version.
 
 {{< figure src="/images/user-guides/k8s/bg/spin-green.jpg" >}}
 
 Now the user uses the app version "green".
 
-Let's say we notice a critical bug which passed through the validation process and has been deployed along the new version. Since the previous version of the app is still up and running , yet not exposed to production traffic, we can easily switch back the traffic from the new version to the old one.
+With a blue/green deployment, you can easily switch back to the blue version if you find a critical bug in the green version. 
 
 {{< figure src="/images/user-guides/k8s/bg/spin-blue-start.jpg" >}}
 
+## {{% heading "prereq" %}}
 
-## Blue/Green Deployments in Spinnaker
+You should be familiar with Kubernetes workload resource kinds [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)  and [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/).
 
-Exists different ways to create a Blue/Green deployments in Spinnaker, currently spinnaker supports use manifests of ReplicaSet kind and Deployment kind.
+## Blue/Green deployments in Spinnaker
 
-```yaml
-apiVersion: apps/v1
-kind: ReplicaSet
-```
+For blue/green deployments, Spinnaker supports using Deployment and ReplicaSet kinds.
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 ```
 
-## ReplicaSet deployment
+```yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+```
 
-A ReplicaSet is a type of Kubernetes deployment that ensures a specified number of replicas of a pod are running at any given time. A ReplicaSet ensures that if a pod crashes or is deleted, another pod will be created to take its place. ReplicaSet also provides automatic failover, distributing the load across multiple pods, and self-healing capabilities.
-
-A ReplicaSet is a higher-level abstraction of a deployment that ensures that a specified number of replicas of your pod are running at any given time.
-When you create a ReplicaSet, Kubernetes creates a set of identical pods and ensures that a specified number of replicas of those pods are running at all times.
-
-ReplicaSets are a key building block for scaling your app in Kubernetes. They ensure that your app is always running and provide automatic failover and self-healing capabilities.
-
-You can scale the number of replicas up or down as needed, and ReplicaSets will automatically create or delete pods as necessary to match the desired number of replicas.
-
-## Deployment kind
-
-A Deployment in Kubernetes is a higher-level resource object that is used to manage the desired state of one or more replicas of a pod. It is built on top of ReplicaSets, and it provides additional functionality for rolling updates, rollbacks, and self-healing.
-
-A Deployment is defined by a pod template and a desired number of replicas, and it creates and manages ReplicaSets and the pods they create. It ensures that the desired number of replicas are running and available, and it continuously monitors the status of the pods.
-
-When a Deployment is updated, it performs a rolling update by incrementally updating the replicas in a ReplicaSet, while keeping the others running. This allows for zero-downtime updates of your app. If an update causes issues, the Deployment can easily roll back to a previous version.
-
-Deployments also provide self-healing capabilities, by automatically detecting and replacing failed pods, ensuring that your app is always running the desired number of replicas.
-
-## Use ReplicaSet or Deployment kind?
-
-### Differences between ReplicaSet & Deployment kind
+### Differences between a ReplicaSet and a Deployment
 
 A ReplicaSet creates and scales pods. It also ensures that pods are running on healthy nodes. A Deployment, on the other hand, is a higher-level resource object that creates and updates ReplicaSets and pods. It provides additional functionality such as rolling updates, rollbacks, and self-healing.
 
@@ -108,219 +86,228 @@ Benefits to using ReplicaSets over Deployments in Kubernetes are:
 1. Lower overhead: ReplicaSets have lower overhead than Deployments, as they don't have the additional logic for rolling updates, rollbacks and self-healing. This can be useful in scenarios where you have limited resources or where performance is critical.
 1. Compatibility: ReplicaSets are compatible with other k8s resources such as StatefulSets and DaemonSets, while Deployment is not.
 
-### Conclusion
+ReplicaSets are considered a building block for Deployments. For most use cases, you should use a Deployment because it provides more robust and sophisticated management capabilities.
 
-It's worth noting that ReplicaSets are considered a building block for Deployments, so in most cases, using Deployments will be the recommended approach as it provides more robust and sophisticated management capabilities.
+## Create a blue/green deployment using Deployment
 
-In summary, Deployments provide more robust and sophisticated management capabilities than ReplicaSets, making it easier to deploy, update, and scale your apps in a Kubernetes cluster, and ReplicaSets can save resources in certain cases.
+In this example, you use the Spinnaker UI to create a blue/green deployment for nginx. You can extend this process to create pipelines that automatically deploy your services using a blue/green strategy.
 
-### Blue/Green Deployment kind in Spinnaker
+### Create a Spinnaker application and LoadBalancer
 
- Next we gonna guide the most simple case only using the UI, but we can extend this process in order to create pipelines that automatically will deploy your services with B/G strategy. Now we gonna work around manifests in format YAML supported by Spinnaker using “Deployment kind” manifests.
+1. [Create an application](https://spinnaker.io/docs/guides/user/applications/create/).
+1. Create a LoadBalancer to handle our service traffic. 
 
-First, we gonna create a LoadBalancer to handle our service traffic. So we need create a basic app, go inside, and go to LOAD BALANCERS tab and click on “Create Load Balancer”.  
+   1. Click the **LOAD BALANCERS** tab.
+   1. Click the **Create Load Balancer** button. 
 
-A window with a manifest YAML editor will be displayed, so we gonna proceed to paste the next example to create our LoadBalancer:
+      {{< figure src="/images/user-guides/k8s/bg/spinui-loadbalancers.png" >}}
+   1. If you have more than one provider configured, select **Kubernetes** in the **Select Your Provider** window. Then click **Next**.
+   1. In the **Deploy Manifest** window, select your Kubernetes account from the **Account** list. Then add the following in the **Manifest** text box:
 
-{{< figure src="/images/user-guides/k8s/bg/spinui-loadbalancers.png" >}}
-{{< figure src="/images/user-guides/k8s/bg/Untitled%202.png" >}}
-
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx
-spec:
-  ports:
-    - port: 80
-      protocol: TCP
-	selector:
-		name: nginx
-  type: LoadBalancer
-```
-
-Wait until creation complete, and verify the service creation
-{{< figure src="/images/user-guides/k8s/bg/Untitled%203.png" >}}
-{{< figure src="/images/user-guides/k8s/bg/Untitled%204.png" >}}
-
-
-Next, go to “CLUSTERS” tab and clic on “Create Server Group”:
-{{< figure src="/images/user-guides/k8s/bg/Untitled%205.png" >}}
-
-Similar previous windows will be displayed, so we gonna proceed to paste the next example to create a replicaSet with a nginx basic deployment:
-
-{{< figure src="/images/user-guides/k8s/bg/Untitled%206.png" >}}
-
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: blue-index-html
-data:
-  index.html: |
-    <html>
-    <body bgcolor=blue>
-    <marquee behavior=alternate>
-    <font face=arial size=6 color=white>
-    !!! Welcome to Nginx Blue Deployment !!!
-    </font>
-    </marquee>
-    </body>
-    </html>
-
----
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-        version: blue
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:latest
+      ```yaml
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: nginx
+      spec:
         ports:
-        - containerPort: 80
-        volumeMounts:
-        - mountPath: /usr/share/nginx/html/index.html # mount index.html to /usr/share/nginx/html/index.html
-          subPath: index.html
-          readOnly: true
-          name: index-html
-      volumes:
-      - name: index-html
-        configMap:
-          name: blue-index-html # place ConfigMap `index-html` on /usr/share/nginx/html/index.html
-          items:
-            - key: index.html
-              path: index.html
-```
+          - port: 80
+            protocol: TCP
+	      selector:
+		      name: nginx
+        type: LoadBalancer
+      ```
+      
+      Press the **Create** button.
+      {{< figure src="/images/user-guides/k8s/bg/Untitled%202.png" >}}
 
-Note: First we added a ConfigMap to allow us create a html view and let us exemplify in a visual way our app versioned. Then with volumeMount we shared the nginx default index.html, and later is replaced with our ConfigMap.
+   1. Wait for service creation to complete. Then verify the LoadBalancer has been created.
+      
+      {{< figure src="/images/user-guides/k8s/bg/Untitled%203.png" >}}
+      {{< figure src="/images/user-guides/k8s/bg/Untitled%204.png" >}}
 
-Note 2: Deployment will be created in current namespace, to specify namespace you can add
+### Create the blue deployment
 
-namespace: ${account} in metadata deployment section, for example:
+Create a server group for your blue deployment. 
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-	namespace: ${account}
-```
+1. Click the **CLUSTERS** tab.
+1. Click the **Create Server Group** button. 
 
-Click in create, and wait until our deployment is completed and replicaSet was created in our cluster
+   {{< figure src="/images/user-guides/k8s/bg/Untitled%205.png" >}}
+
+1. If you have more than one provider configured, select **Kubernetes** in the **Select Your Provider** window. Then click **Next**.
+1. In the **Deploy Manifest** window, select your Kubernetes account from the **Account** list. 
+
+    Add a ConfigMap that includes a custom `index.html` for the blue version of the app. Then in the deployment config, add a volume mount for the default nginx `index.html`, which is replaced by the custom index page defined in the ConfigMap.
+
+    Add the following in the **Manifest** text box:
+
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: blue-index-html
+    data:
+      index.html: |
+        <html>
+        <body bgcolor=blue>
+        <marquee behavior=alternate>
+        <font face=arial size=6 color=white>
+        !!! Welcome to Nginx Blue Deployment !!!
+        </font>
+        </marquee>
+        </body>
+        </html>
+
+    ---
+
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nginx-deployment
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          app: nginx
+      template:
+        metadata:
+          labels:
+            app: nginx
+            version: blue
+        spec:
+          containers:
+          - name: nginx
+            image: nginx:latest
+            ports:
+            - containerPort: 80
+            volumeMounts:
+            - mountPath: /usr/share/nginx/html/index.html # mount index.html to /usr/share/nginx/html/index.html
+              subPath: index.html
+              readOnly: true
+              name: index-html
+          volumes:
+          - name: index-html
+            configMap:
+              name: blue-index-html # place ConfigMap `index-html` on /usr/share/nginx/html/index.html
+              items:
+                - key: index.html
+                  path: index.html
+    ```
+
+    The Deployment is created in the current namespace. To specify a namespace, you can add `namespace: ${account}` in the `metadata` section. For example:
+
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nginx-deployment
+      namespace: ${account}
+    ```
+
+    Press the **Create** button.
+    {{< figure src="/images/user-guides/k8s/bg/Untitled%206.png" >}}
 
 
+<br><br>
 
-
-We can verify the resource creation from kubectl or any cluster visualizator ([https://k8slens.dev/](https://k8slens.dev/) for example)
+You can verify the resource creation using `kubectl` or a cluster visualizer like [Lens](https://k8slens.dev/).
 
 {{< figure src="/images/user-guides/k8s/bg/Untitled%208.png" >}}
-
-
 
 {{< figure src="/images/user-guides/k8s/bg/Untitled%209.png" >}}
 
 
-You gonna see our Deployment created with our previously LoadBalancer attached.
+You should see your deployment the LoadBalancer attached.
 
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2010.png" >}}
 
 
-If we click in the LoadBalancer icon, a tab will be displayed, so click in “ingress” url
+When you click in the LoadBalancer icon, a tab opens. Click the **Ingress** URL to open a browser window to the deployment.
 
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2011.png" >}}
 
 
-We have the blue deployment already working
+You should see the blue deployment page.
 
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2012.png" >}}
 
 
-With this steps we have created our “Blue” deployment, next we gonna create the “Green” deployment.
+### Create the green deployment
 
-Returning to CLUSTERS section, now we gonna create a new version of our app from Create Server Group and deploy the next manifest:
+1. Click the **CLUSTERS** tab.
+1. Click the **Create Server Group** button. 
+1. If you have more than one provider configured, select **Kubernetes** in the **Select Your Provider** window. Then click **Next**.
+1. In the **Deploy Manifest** window, select your Kubernetes account from the **Account** list.  Add the following in the **Manifest** text box:
 
-{{< figure src="/images/user-guides/k8s/bg/Untitled%2013.png" >}}
-
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: green-index-html
-data:
-  index.html: |
-    <html>
-    <body bgcolor=green>
-    <marquee behavior=alternate>
-    <font face=arial size=6 color=white>
-    !!! Welcome to Nginx Green Deployment !!!
-    </font>
-    </marquee>
-    </body>
-    </html>
-
----
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-  annotations:
-    traffic.spinnaker.io/load-balancers: '["service nginx"]'
-spec:
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 2 # tells deployment to run 2 pods matching the template
-  template:
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
     metadata:
-      labels:
-        app: nginx
-        version: green
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
-        volumeMounts:
-        - mountPath: /usr/share/nginx/html/index.html # mount index.html to /usr/share/nginx/html/index.html
-          subPath: index.html
-          readOnly: true
-          name: index-html
-      volumes:
-      - name: index-html
-        configMap:
-          name: green-index-html # place ConfigMap `index-html` on /usr/share/nginx/html/index.html
-          items:
-            - key: index.html
-              path: index.html
-```
+      name: green-index-html
+    data:
+      index.html: |
+        <html>
+        <body bgcolor=green>
+        <marquee behavior=alternate>
+        <font face=arial size=6 color=white>
+        !!! Welcome to Nginx Green Deployment !!!
+        </font>
+        </marquee>
+        </body>
+        </html>
 
-Now if we refresh our page, we gonna see the new version listed inside our deployment, and how is the LoadBalancer transferring the network traffic to the new version.
+    ---
+
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nginx-deployment
+      annotations:
+        traffic.spinnaker.io/load-balancers: '["service nginx"]'
+    spec:
+      selector:
+        matchLabels:
+          app: nginx
+      replicas: 2 # tells deployment to run 2 pods matching the template
+      template:
+        metadata:
+          labels:
+            app: nginx
+            version: green
+        spec:
+          containers:
+          - name: nginx
+            image: nginx:1.14.2
+            ports:
+            - containerPort: 80
+            volumeMounts:
+            - mountPath: /usr/share/nginx/html/index.html # mount index.html to /usr/share/nginx/html/index.html
+              subPath: index.html
+              readOnly: true
+              name: index-html
+          volumes:
+          - name: index-html
+            configMap:
+              name: green-index-html # place ConfigMap `index-html` on /usr/share/nginx/html/index.html
+              items:
+                - key: index.html
+                  path: index.html
+    ```
+
+    Press the **Create** button.
+
+<br><br>
+Refresh the Spinnaker UI page. You should see the new version listed inside your deployment and also how the LoadBalancer is transferring the network traffic to the green version.
 
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2014.png" >}}
 
 
-If the deployment is successfully, resources will be assigned completely to our green deployment
+If the deployment is successful, the green version has 100% of the resources.
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2015.png" >}}
 
 
-If we go to our previous ingress url, we gonna see the new version deployed
+If you go to our previous ingress url, we gonna see the new version deployed
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2016.png" >}}
 
 
@@ -336,7 +323,7 @@ If we go back to the app ingress url, we have again the blue deployment
 
 Congrats! you achieved a blue/green deployment successfully. Now we can translate all previous steps in a pipeline to automatize this process for any new release/deployment
 
-## Blue/Green ReplicaSet kind in Spinnaker
+## Create a blue/green deployment using ReplicaSet
 
 The process to execute a blue/green deployment is pretty similar to use directly Deployment, basically we gonna use explicitly the ReplicaSet resource in our manifests. As we explained before Deployment is a high abstraction of ReplicaSets.
 
@@ -514,7 +501,7 @@ If green version is working as expected, finally, go back to CLUSTERS section, a
 {{< figure src="/images/user-guides/k8s/bg/Untitled%2032.png" >}}
 
 
-#### Blue/Green Deployment from a pipeline
+## Blue/Green Deployment from a pipeline
 
 Create a pipeline, in configuration pipeline, go to “Pipeline Actions”, and click in “Edit as JSON”, paste:
 

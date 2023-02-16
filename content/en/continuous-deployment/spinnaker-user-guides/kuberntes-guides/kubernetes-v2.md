@@ -1,10 +1,10 @@
 ---
 title: Use Spinnaker to Deploy Apps to Kubernetes
 linkTitle: Deploy Apps
-aliases:
-  - /spinnaker-user-guides/kubernetes-v2/
 description: >
   Learn how to use Spinnaker's Kubernetes V2 provider to deploy your applications.
+aliases:
+  - /spinnaker-user-guides/kubernetes-v2/
 ---
 
 ## Overview of Spinnaker's Kubernetes V2 Provider
