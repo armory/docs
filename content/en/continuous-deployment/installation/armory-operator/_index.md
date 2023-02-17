@@ -15,10 +15,11 @@ aliases:
 
 From the Kubernetes [Operator pattern docs](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/): "Operators are software extensions to Kubernetes that make use of custom resources to manage applications and their components." In other words, an Operator is a Kubernetes controller that manages a specific application using a custom resource. Both the proprietary Armory Operator and the open source [Spinnaker Operator for Kubernetes](https://github.com/armory/spinnaker-operator) are custom Kubernetes Operators that you can install in your cluster.
 
-* The **Armory Operator** ![Proprietary](/images/proprietary.svg) extends the Spinnaker Operator's features by providing the ability to configure Armory Continuous Deployment's [features]({{< ref "continuous-deployment#what-is-armory-continuous-deployment">}}), such as Pipelines as Code and Policy Engine. The Armory Operator and Armory Continuous Deployment are closed source and not free to use.
 * The **Spinnaker Operator** is a Kubernetes controller for deploying and managing Spinnaker. The Spinnaker Operator and Spinnaker are both open source and free to use.
+* The **Armory Operator** ![Proprietary](/images/proprietary.svg) extends the Spinnaker Operator's features by providing the ability to configure Armory Continuous Deployment's [features]({{< ref "continuous-deployment#what-is-armory-continuous-deployment">}}). The Armory Operator and Armory Continuous Deployment are closed source and not free to use.
 
-## Advantages to using a Kubernetes Operator for Armory Continuous Deployment deployment
+
+## Advantages to using a Kubernetes Operator for deployment
 
 * Use a Kubernetes manifest to deploy and manage Armory Continuous Deployment or Spinnaker.
 * Use `kubectl` to deploy, manage, and access Armory Continuous Deployment or Spinnaker like you would with any other app deployed on Kubernetes.
@@ -85,5 +86,7 @@ Use the Armory Operator if you want to deploy Armory Continuous Deployment and u
 {{% include "armory-operator/op-feature-compare.md" %}}
 
 ## {{% heading "nextSteps" %}}
+
 * {{< linkWithTitle "system-requirements.md" >}}
 * {{< linkWithTitle "op-quickstart.md" >}}
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/install-spinnaker.md" >}}

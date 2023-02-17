@@ -18,7 +18,7 @@ Once you have configured your patch files, you can deploy Armory Continuous Depl
 
 1. Apply the manifest:
 
-   ```yaml
+   ```bash
    kubectl apply -k <path-to-kustomization.yml>
    ```
 
