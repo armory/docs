@@ -7,7 +7,7 @@ description: >
 ---
 
 
-## Halyard
+## Halyard local config
 
 {{% alert title="Warning" color="warning" %}}
 The Scale Agent plugin extends Clouddriver. When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to each service. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. To avoid each service restarting and downloading the plugin, configure the plugin in Clouddriver’s local profile.
@@ -60,7 +60,71 @@ The Scale Agent plugin extends Clouddriver. When Halyard adds a plugin to a Spin
 
 1. Apply your changes by running `hal deploy apply`.
 
+### Validate plugin installation
 
-## Armory Operator
+1. Confirm the plugin Docker image exists locally.
+
+   ```bash
+   docker images | grep kubesvc
+   ```
+
+   Output is similar to:
+
+   ```bash
+   armory/kubesvc-plugin     0.11.32
+   ```
+
+1. Find the name of the new Clouddriver pod.
+
+   ```bash
+   kubectl -n spinnaker get pods
+   ```
+
+1. Confirm the Clouddriver service is using the Docker image.
+
+   ```bash
+   kubectl -n spinnaker describe pod <clouddriver-pod-name> | grep Image:
+   ```
+
+   Output is similar to:
+
+   ```bash
+   Image:    docker.io/armory/kubesvc-plugin:0.11.32
+   ```
+
+1. View the Clouddriver log to verify that the plugin has started.
+
+   ```bash
+   kubectl -n spinnaker logs deployments/spin-clouddriver | grep "Plugin"
+   ```
+
+   Output is similar to:
+
+   ```bash
+   org.pf4j.AbstractPluginManager      :  Plugin 'Armory.Kubesvc@0.11.32' resolved
+   org.pf4j.AbstractPluginManager      :  Start plugin 'Armory.Kubesvc@0.11.32'
+   io.armory.kubesvc.KubesvcPlugin     :  Starting Kubesvc  plugin...
+   ```
+
+
+## Armory Operator or Spinnaker Operator
+
+The sample manifest is for the Armory Operator using Kustomize and the `spinnaker-patches-kustomize` [repo](https://github.com/armory/spinnaker-kustomize-patches/tree/master/targets/kubernetes/scale-agent). If you are using the Spinnaker Operator, you must replace the `apiVersion` value “spinnaker.armory.io/” with “spinnaker.io/”. For example:
+
+* Armory Operator: apiVersion: spinnaker.armory.io/v1alpha2
+* Spinnaker Operator: apiVersion: spinnaker.io/v1alpha2
+
+Change the value for `metadata.name` if your Armory CD service is called something other than “spinnaker”.
+
+Create a `plugin-container-patch.yml` file with the following contents:
 
 {{< readfile file="/includes/scale-agent/install/plugin-docker-armory-op.yaml" code="true" lang="yaml" >}}
+
+Then include the file under the `patchesStrategicMerge` section of your kustomization file.
+
+```yaml
+patchesStrategicMerge:
+  - <path>/plugin-container-patch.yml
+```
+
+Apply your changes.

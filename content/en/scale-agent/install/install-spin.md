@@ -131,7 +131,7 @@ spinnaker:
     plugins:
       Armory.Kubesvc:
         enabled: true
-        version: {{< param kubesvc-plugin.agent_plug_latest-1 >}} # check compatibility matrix for your Armory CD version
+        version: {{< param kubesvc-plugin.agent_plug_latest-1 >}} # check compatibility matrix for your Spinnaker version
         extensions:
           armory.kubesvc:
             enabled: true
@@ -145,7 +145,13 @@ kubernetes:
 
 
 
-Save your file and apply your changes by running `hal deploy apply`.
+Save your file and apply your changes by running `hal deploy apply`. Kubernetes terminates the existing Clouddriver pod and creates a new one. You can validate plugin installation by executing `kubectl -n spinnaker logs deployments/spin-clouddriver | grep "Plugin"`. Output is similar to:
+
+```bash
+org.pf4j.AbstractPluginManager      :  Plugin 'Armory.Kubesvc@0.11.32' resolved
+org.pf4j.AbstractPluginManager      :  Start plugin 'Armory.Kubesvc@0.11.32'
+io.armory.kubesvc.KubesvcPlugin     :  Starting Kubesvc  plugin...
+```
 
 ### Expose Clouddriver as a LoadBalancer
 
@@ -154,6 +160,8 @@ To expose Clouddriver as a Kubernetes-type LoadBalancer, `kubectl` apply the fol
 {{< readfile file="/includes/scale-agent/install/ns-spin/loadbalancer.yaml" code="true" lang="yaml" >}}
 
 >Various cloud providers may require additional annotations for LoadBalancer. Consult your cloud provider's documentation.
+
+Apply the manifest using `kubectl`.
 
 ### Get the LoadBalancer IP address
 
@@ -264,7 +272,7 @@ data:
 
 See the [Agent options]({{< ref "scale-agent/reference/config/service-options#configuration-options">}}) for field explanations.
 
-Apply the manifest to your `spinnaker` namespace.
+Apply the manifest in your `spinnaker` namespace.
 
 ### Deploy the Armory Scale Agent service
 

@@ -46,12 +46,12 @@ The following features require Armory CD 2.28+ and [Clouddriver Account Manageme
 {{% alert title="Warning" color="warning" %}}
 The default behavior when Spinnaker installs a plugin is to add the plugin repository information to each service. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. 
 
-When you use the Armory Operator to install a plugin, the Operator creates the configuration in the relevant service's local configuration. This means that only the Armory CD service that the plugin is installed into downloads the plugin.
+When you use the Armory Operator to install a plugin, the Operator creates the configuration in the relevant service's local configuration. This means only the Armory CD service that the plugin is installed into downloads the plugin.
 {{% /alert %}}
 <!-- need to add kustomize repo instructions -->
 Add the following to your `spinnakerservice` manifest:
 
-{{< prism lang="yaml" >}}
+```yaml
 spec:
   spinnakerConfig:
     profiles:
@@ -65,11 +65,11 @@ spec:
             plugins:
               Armory.Kubesvc:
                 enabled: true
-                version: {{< param kubesvc-version >}} # Replace with a version compatible with your Armory CD version
+                version: {{< param kubesvc-plugin.agent_plug_latest >}} # check compatibility matrix for your Armory CD version
                 extensions:
                   armory.kubesvc:
                     enabled: true
-        accounts:
+        account:
           storage:
             enabled: true # This enables Clouddriver Account Management; requires Armory CD 2.28+
         kubernetes:
@@ -84,38 +84,23 @@ spec:
             enabled: false
         kubesvc:
           cluster: kubernetes # Communication between clouddrivers is through direct HTTP requests instead of using the redis pubusb, requires redis.enabled: false
-{{< /prism >}}
+```
 
 Update <code>plugins.Armory.Kubesvc.version</code> to a version that is compatible with your Armory CD installation.
+
+`account.storage.enable: true` enables Clouddriver Account Management. Set this to `false` if your Armory CD version is earlier than 1.28.
 
 Apply the manifest using `kubectl`. 
 
 
 ## Expose Clouddriver as a LoadBalancer
 <!-- need to add kustomize repo instructions -->
-To expose Clouddriver as a Kubernetes-type LoadBalancer, create a manifest with this content:
 
-{{< prism lang="yaml" >}}
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: spin
-    cluster: spin-clouddriver
-  name: spin-clouddriver-grpc
-spec:
-  ports:
-    - name: grpc
-      port: 9091
-      protocol: TCP
-      targetPort: 9091
-  selector:
-    app: spin
-    cluster: spin-clouddriver
-{{< /prism >}}
+To expose Clouddriver as a Kubernetes-type LoadBalancer, `kubectl` apply the following manifest:
+
+{{< readfile file="/includes/scale-agent/install/ns-spin/loadbalancer.yaml" code="true" lang="yaml" >}}
 
 >Various cloud providers may require additional annotations for LoadBalancer. Consult your cloud provider's documentation.
-
 Apply the manifest using `kubectl`.
 
 ## Get the LoadBalancer IP address
@@ -159,140 +144,7 @@ The Scale Agent service _can_ run with most features on the [default ServiceAcco
 
 The following manifest creates a ServiceAccount, ClusterRole, and ClusterRoleBinding. Apply the manifest in your `spinnaker` namespace.
 
-<details><summary>Show me the manifest</summary>
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: scale-agent-cluster-role
-rules:
-- apiGroups:
-  - ""
-  resources:
-  - configmaps
-  - endpoints
-  - events
-  - ingresses
-  - ingresses/status
-  - jobs
-  - jobs/status
-  - namespaces
-  - namespaces/finalize
-  - namespaces/status
-  - pods
-  - pods/log
-  - pods/status
-  - secrets
-  - services
-  - services/status
-  - services/finalizers
-  verbs:
-  - create
-  - get
-  - list
-  - update
-  - watch
-  - patch
-  - delete
-- apiGroups:
-  - batch
-  resources:
-  - jobs
-  - jobs/status
-  verbs:
-  - create
-  - get
-  - list
-  - update
-  - watch
-  - patch
-  - delete
-- apiGroups:
-  - apps
-  - extensions
-  resources:
-  - daemonsets
-  - daemonsets/status
-  - deployments
-  - deployments/finalizers
-  - deployments/scale
-  - deployments/status
-  - replicasets
-  - replicasets/finalizers
-  - replicasets/scale
-  - replicasets/status
-  - statefulsets
-  - statefulsets/finalizers
-  - statefulsets/scale
-  - statefulsets/status
-  verbs:
-  - create
-  - get
-  - list
-  - update
-  - watch
-  - patch
-  - delete
-- apiGroups:
-  - monitoring.coreos.com
-  resources:
-  - servicemonitors
-  verbs:
-  - get
-  - create
-- apiGroups:
-  - spinnaker.armory.io
-  resources:
-  - '*'
-  - spinnakerservices
-  verbs:
-  - create
-  - get
-  - list
-  - update
-  - watch
-  - patch
-- apiGroups:
-  - apiextensions.k8s.io
-  resources:
-  - customresourcedefinitions
-  verbs:
-  - '*'
-- apiGroups:
-  - admissionregistration.k8s.io
-  resources:
-  - validatingwebhookconfigurations
-  verbs:
-  - '*'
-- apiGroups:
-  - argoproj.io
-  resources:
-  - '*'
-  verbs:
-  - '*'
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  namespace: spinnaker
-  name: scale-agent-sa
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: scale-agent-cluster-role-binding
-subjects:
-  - kind: ServiceAccount
-    name: scale-agent-sa
-    namespace: spinnaker
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: scale-agent-cluster-role
-```
-
-</details>
+{{< readfile file="/includes/scale-agent/install/ns-spin/sa-cr-crb.yaml" code="true" lang="yaml" >}}
 
 ### Configure the service
 
@@ -366,77 +218,13 @@ data:
 
 See the [Agent options]({{< ref "scale-agent/reference/config/service-options#configuration-options">}}) for field explanations.
 
-Apply the manifest to your `spinnaker` namespace.
+Apply the manifest in your `spinnaker` namespace.
 
 ### Deploy the Armory Scale Agent service
 
 Apply the following manifest in your `spinnaker` namespace:
 
-<details><summary>Show me the manifest</summary>
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: spin
-    app.kubernetes.io/name: armory-agent
-    app.kubernetes.io/part-of: spinnaker
-    cluster: spin-armory-agent
-  name: spin-armory-agent
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: spin
-      cluster: spin-armory-agent
-  template:
-    metadata:
-      labels:
-        app: spin
-        app.kubernetes.io/name: armory-agent
-        app.kubernetes.io/part-of: spinnaker
-        cluster: spin-armory-agent
-    spec:
-      serviceAccount: scale-agent-sa
-      containers:
-      - image: armory/agent-k8s:<version> # must be compatible with your Armory CD version
-        imagePullPolicy: IfNotPresent
-        name: armory-agent
-        ports:
-          - name: health
-            containerPort: 8082
-            protocol: TCP
-          - name: metrics
-            containerPort: 8008
-            protocol: TCP
-        readinessProbe:
-          httpGet:
-            port: health
-            path: /health
-          failureThreshold: 3
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        volumeMounts:
-        - mountPath: /opt/armory/config
-          name: volume-armory-agent-config
-        # - mountPath: /kubeconfigfiles
-        #   name: volume-armory-agent-kubeconfigs
-      restartPolicy: Always
-      volumes:
-      - name: volume-armory-agent-config
-        configMap:
-          name: armory-agent-config
-      # - name: volume-armory-agent-kubeconfigs
-      #   secret:
-      #     defaultMode: 420
-      #     secretName: kubeconfigs-secret
-```
-
-</details>
+{{< readfile file="/includes/scale-agent/install/ns-spin/agent-service.yaml" code="true" lang="yaml" >}}
 
 ### Confirm success
 
