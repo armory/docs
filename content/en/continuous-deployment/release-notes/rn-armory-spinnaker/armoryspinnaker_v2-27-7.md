@@ -39,6 +39,28 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Early Access features
 
+### Dynamic Rollback Timeout
+
+To make the dynamic timeout available, you need to enable the feature flag in Orca and Deck.
+
+On the Orca side, the feature flag overrides the default value rollback timeout - 5min - with a UI input from the user.
+
+```
+{
+  "yaml,"
+   "orca.yml,"
+  "rollback:"
+  "timeout:"
+    "enabled: true"
+}
+```
+
+On the Deck side, the feature flag enhances the Rollback Cluster stage UI with timeout input.
+
+`window.spinnakerSettings.feature.dynamicRollbackTimeout = true;`
+
+The default is used if there is no value set in the UI.
+
 ### Pipelines as Code multi-branch enhancement
 
 Now you can configure Pipelines as Code to pull Dinghy files from multiple branches in the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "continuous-deployment/armory-admin/dinghy-enable#multiple-branches" >}}) for how to enable and configure this feature.
