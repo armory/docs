@@ -10,7 +10,7 @@ description: >
 
 ## `SpinnakerAcount` Custom Resource Definition overview
 
-The Operator comes with a `SpinnakerAccount` Custom Resource for managing Kubernetes accounts that you want to use with Spinnaker. This `SpinnakerAccount` resource enables defining and managing Kubernetes accounts outside of Spinnaker's manifest file. You create a separate manifest for each Kubernetes account and `kubectl apply` each manifest. `kubectl` delegates to the Operator, which then processes the manifest into the requisite configuration and adds the account to Armory Enterprise or Spinnaker.
+The Operator comes with a `SpinnakerAccount` Custom Resource for managing Kubernetes accounts that you want to use with Spinnaker. This `SpinnakerAccount` resource enables defining and managing Kubernetes accounts outside of Spinnaker's manifest file. You create a separate manifest for each Kubernetes account and `kubectl apply` each manifest. `kubectl` delegates to the Operator, which then processes the manifest into the requisite configuration and adds the account to Armory Continuous Deployment or Spinnaker.
 
 For example, you have a pipeline that provisions a Kubernetes
 cluster with Terraform. If you want that new cluster to be available, you can
