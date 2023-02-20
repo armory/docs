@@ -24,7 +24,7 @@ Be sure to choose the Scale Agent version that is compatible with your Armory CD
 
 ## Armory Operator or Spinnaker Operator
 
-You can install the Scale Agent plugin using the Armory Operator or the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the `spinnaker-kustomize-patches` [repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/plugins/armory-agent). 
+You can install the Scale Agent plugin using the Armory Operator or the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the `spinnaker-kustomize-patches` [repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/targets/kubernetes/scale-agent).
 
 * The sample manifest is for the Armory Operator using Kustomize. If you are using the Spinnaker Operator, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:
 
@@ -38,15 +38,15 @@ You can install the Scale Agent plugin using the Armory Operator or the Spinnake
 <br>
 Update <code>plugins.Armory.Kubesvc.version</code> to a version that is compatible with your Armory CD installation.
 
-{{< github repo="armory/spinnaker-kustomize-patches" file="plugins/armory-agent/patch-clouddriver-repo.yaml" lang="yaml" options="" >}}
+{{< github repo="armory/spinnaker-kustomize-patches" file="targets/kubernetes/scale-agent/plugin-config.yml" lang="yaml" options="" >}}
 
 Then include the file under the <code>patchesStrategicMerge</code> section of your <code>kustomization</code> file.
 
 {{< prism lang="yaml" line="4" >}}
 bases:
-  - plugins/armory-agent
+  - plugins/scale-agent
 patchesStrategicMerge:
-  - armory-agent/patch-clouddriver-repo.yaml
+  - scale-agent/plugin-config.yml
 {{< /prism >}}
 
 {{< /tabbody >}}
@@ -54,7 +54,7 @@ patchesStrategicMerge:
 <br>
 Update <code>plugins.Armory.Kubesvc.version</code> to a version that is compatible with your Armory CD installation.
 
-{{< github repo="armory/spinnaker-kustomize-patches" file="plugins/armory-agent/patch-clouddriver-docker.yaml" lang="yaml" options="" >}}
+{{< github repo="armory/spinnaker-kustomize-patches" file="targets/kubernetes/scale-agent/plugin-container-patch.yml" lang="yaml" options="" >}}
 
 Then include the file under the <code>patchesStrategicMerge</code> section of your <code>kustomization</code> file.
 
@@ -62,7 +62,7 @@ Then include the file under the <code>patchesStrategicMerge</code> section of yo
 bases:
   - agent-service
 patchesStrategicMerge:
-  - armory-agent/patch-clouddriver-docker.yaml
+  - scale-agent/plugin-container-patch.yml
 {{< /prism >}}
 
 {{< /tabbody >}}
@@ -112,13 +112,13 @@ Save your file and apply your changes by running `hal deploy apply`.
 
 ## Expose Clouddriver as a LoadBalancer
 
-To expose Clouddriver as a Kubernetes-type LoadBalancer, apply the following manifest: 
+To expose Clouddriver as a Kubernetes-type LoadBalancer, apply the following manifest:
 
-{{< github repo="armory/spinnaker-kustomize-patches" file="/plugins/armory-agent/service.yaml" lang="yaml" options="" >}}
+{{< github repo="armory/spinnaker-kustomize-patches" file="/targets/kubernetes/scale-agent/scale-agent-service.yml" lang="yaml" options="" >}}
 
 >Various cloud providers may require additional annotations for LoadBalancer. Consult your cloud provider's documentation.
 
-If you are using the `spinnaker-kustomize-patches` repo, the manifest file is already included in the `resources` section of the `/plugins/armory-agent/kustomization.yaml` file. Alternately, you can apply the manifest using `kubectl`.
+If you are using the `spinnaker-kustomize-patches` repo, the manifest file is already included in the `resources` section of the `/targets/kubernetes/scale-agent/kustomization.yaml` file. Alternately, you can apply the manifest using `kubectl`.
 
 ## Get the LoadBalancer IP address
 

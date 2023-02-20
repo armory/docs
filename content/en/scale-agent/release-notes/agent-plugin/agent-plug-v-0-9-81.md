@@ -7,3 +7,5 @@ date: 2022-12-16
 
 ### Fixes
 * Fix: Issue that prevented agents with version > 1.0.25 from connecting with clouddriver when using postgresql
+### Compatibility:
+* agent < **1.0.26**. 

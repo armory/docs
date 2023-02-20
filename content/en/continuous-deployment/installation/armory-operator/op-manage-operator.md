@@ -37,13 +37,13 @@ Use the `kubectl replace` command to replace your Operator deployment. See the `
 
 Uninstalling the Operator involves deleting its deployment and `SpinnakerService` CRD. When you delete the Operator CRD, Kubernetes deletes any installation created by Operator. This occurs because the CRD is set as the owner of the resources, so they get garbage collected.
 
-You can remove this ownership relationship so that Armory Enterprise is not
+You can remove this ownership relationship so that Armory Continuous Deployment is not
 deleted when deleting the Operator by [removing Operator ownership of
 resources](#remove-operator-ownership-of-spinnaker-resources).
 
-### Remove Operator ownership of Armory Enterprise resources
+### Remove Operator ownership of Armory Continuous Deployment resources
 
-Run the following script to remove ownership of Armory resources, where `NAMESPACE` is the namespace where Armory Enterprise is installed:
+Run the following script to remove ownership of Armory resources, where `NAMESPACE` is the namespace where Armory Continuous Deployment is installed:
 
 ```bash
 #! /usr/bin/env bash
