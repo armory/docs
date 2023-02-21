@@ -67,6 +67,19 @@ kubectl create ns spinnaker-operator
 kubectl -n spinnaker-operator apply -f deploy/operator/cluster
 ```
 
+Verify that the Spinnaker Operator is running before you deploy Spinnaker.
+
+```bash
+kubectl get pods -n spinnaker-operator | grep operator
+```
+
+Output is similar to:
+
+```bash
+spinnaker-operator-79599cbf55-js5pg   2/2     Running   0          159m
+```
+
+
 ## Get the spinnaker-kustomize-patches repo
 
 {{% include "armory-operator/spin-kust-repo.md" %}}
