@@ -1,6 +1,6 @@
 ---
-title: Install the Armory Scale Agent in Armory CD Quick Start
-linkTitle: Armory CD Quick Start
+title: Install the Armory Scale Agent in Armory CD
+linkTitle: Armory CD
 weight: 10
 description: >
   This guide shows you how to get started using the Scale Agent with an existing Armory Continuous Deployment test instance. Configure the plugin and service in your Kustomize files and use the Armory Operator to deploy the Scale Agent components.

@@ -1,6 +1,6 @@
 ---
-title: Install the Armory Scale Agent in Spinnaker Quick Start
-linkTitle: Spinnaker Quick Start
+title: Install the Armory Scale Agent in Spinnaker
+linkTitle: Spinnaker
 weight: 5
 description: >
   This guide shows you how to get started using the Scale Agent with an existing Spinnaker instance managed by Halyard. Configure the plugin in your `cloudriver-local.yml` file and use the provided manifests to deploy the service to the same Kubernetes cluster and namespace that Spinnaker is running in.

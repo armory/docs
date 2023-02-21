@@ -13,6 +13,7 @@ weight: 1
 
 | Use Case | Guide | K8s Acct Config | Mode |
 |:--- |:---- |:----- |:-----|
+| New Spinnaker instance managed by the Spinnaker Operator | {{< linkWithTitle "scale-agent/install/quickstart.md" >}} | Service's ConfigMap | Spinnaker Service |
 | Existing Spinnaker instance managed by Halyard | {{< linkWithTitle "scale-agent/install/install-spin.md" >}} | Service's ConfigMap | Spinnaker Service |
 | Existing Armory CD instance managed by the Armory Operator | {{< linkWithTitle "scale-agent/install/install-armory.md" >}} | Service's ConfigMap | Spinnaker Service |
 

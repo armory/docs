@@ -40,6 +40,7 @@ The Scale Agent works with Armory Continuous Deployment v2.26+ and Spinnaker v1.
 
 ## How to get started using the Scale Agent
 
+* **New Spinnaker instance**: {{< linkWithTitle "scale-agent/install/quickstart.md" >}} shows you how to use the Spinnaker Operator and Kustomize to install Spinnaker and the Scale Agent in the same Kubernetes cluster and namespace for testing the Scale Agent's features.
 * **Existing Spinnaker instance**: {{< linkWithTitle "scale-agent/install/install-spin.md" >}} covers installation using Halyard for the plugin and `kubectl` to apply the service's manifests. You deploy the Scale Agent service to the same cluster and namespace as Spinnaker.
 * **Existing Armory Continuous Deployment instance**: {{< linkWithTitle "scale-agent/install/install-armory" >}} covers how to use the Armory Operator to install the Scale Agent components. You deploy the Scale Agent service to the same cluster and namespace as Armory CD.
 
