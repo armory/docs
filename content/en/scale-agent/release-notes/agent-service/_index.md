@@ -12,10 +12,11 @@ description: Release notes for the Armory Scale Agent, which runs as a service a
 
 {{% alert title="Known Issue" color="warning" %}}
 Note the following before upgrading the Armory Scale Agent Service:
+- Starting from v1.0.42 the `clouddriver.insecure` flag is set to `true` by default, if using tls make sure to set it to `false`.
 
 Timeouts can occur after restarting Clouddriver or Agent. This issue is intermittent. It may occur when you upgrade the Armory Scale Agent Service or Plugin because the upgrade process involves restarting, but it is due to the restart and not the upgrade.
 
-These timeout errors should resolve after several minutes. This issue affects all current versions of the Armory Scale Agent.
+These timeouts should resolve after few minutes.
 
 {{% /alert %}}
 
