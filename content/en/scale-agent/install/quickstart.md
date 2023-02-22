@@ -7,15 +7,15 @@ weight: 1
 spin-op-ns: spinnaker
 ---
 
-## Overview
+## Quick start overview
 
-In this guide, you deploy a basic instance of Spinnaker along with the Scale Agent. You can evaluate:
+In this guide, you deploy a basic instance of Spinnaker 1.28+ and the corresponding Scale Agent plugin and service. You can evaluate:
 
 * [Dynamic accounts]({{< ref "scale-agent/concepts/dynamic-accounts" >}}) for dynamically adding and managing Kubernetes accounts
 * [Automated scanning]({{< ref "scale-agent/concepts/dynamic-accounts#automatic-account-migration" >}}) for newly created accounts in Clouddriver and migrating those accounts to Scale Agent management
 * [Intercepting and processing requests]({{< ref "scale-agent/concepts/dynamic-accounts#clouddriver-account-management-api-request-interception" >}}) sent to Clouddriver's `<GATE-URL>/credentials` endpoint
 
-## Objectives
+### Objectives
 
 1. Meet the requirements listed in the [{{% heading "prereq" %}}](#before-you-begin) section.
 1. [Learn the options for migrating Clouddriver accounts to the Scale Agent](#options-for-migrating-accounts).
@@ -23,6 +23,8 @@ In this guide, you deploy a basic instance of Spinnaker along with the Scale Age
 1. [Get the spinnaker-kustomize-patches repo](#get-the-spinnaker-kustomize-patches-repo).
 1. [Configure Spinnaker](#configure-spinnaker).
 1. [Deploy Spinnaker and the Scale Agent](#deploy-spinnaker).
+
+>Since this guide is for installing the Armory Scale Agent in a test environment, it does not include [mTLS configuration]({{< ref "configure-mtls" >}}). The Scale Agent service and plugin do not communicate securely.
 
 
 ## {{% heading "prereq" %}}
@@ -69,17 +71,17 @@ Decide which [Spinnaker Operator release](https://github.com/armory/spinnaker-op
    kubectl apply -f deploy/crds/
    ```
 
-1.  Install the Spinnaker Operator in namespace `{{ .Params.spin-op-ns }}`.
+1.  Install the Spinnaker Operator in namespace `{{< param "spin-op-ns" >}}`.
 
    ```bash
-   kubectl create ns {{ .Params.spin-op-ns }}
-   kubectl -n {{ .Params.spin-op-ns }} apply -f deploy/operator/cluster
+   kubectl create ns {{< param "spin-op-ns" >}}
+   kubectl -n {{< param "spin-op-ns" >}} apply -f deploy/operator/cluster
    ```
 
 1. Verify that the Spinnaker Operator is running before you deploy Spinnaker.
 
    ```bash
-   kubectl get pods -n {{ .Params.spin-op-ns }} | grep operator
+   kubectl get pods -n {{< param "spin-op-ns" >}} | grep operator
    ```
 
    Output is similar to:
@@ -94,9 +96,9 @@ Decide which [Spinnaker Operator release](https://github.com/armory/spinnaker-op
 
 ## Configure Spinnaker
 
-You can find the recipe for deploying Spinnaker and the Scale Agent in `recipes/kustomization-armory-agent.yml`.
+You can find the recipe for deploying Spinnaker and the Scale Agent in `recipes/kustomization-oss-agent.yml`.
 
-{{< github repo="armory/spinnaker-kustomize-patches" file="/recipes/kustomization-armory-agent.yml" lang="yaml" options="" >}}
+{{< github repo="armory/spinnaker-kustomize-patches" file="/recipes/kustomization-oss-agent.yml" lang="yaml" options="" >}}
 
 * The `resources` [section](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/resource/) contains files that install apps that you want Spinnaker to use, such as MySQL. 
 * The `components` [section](https://kubectl.docs.kubernetes.io/guides/config_management/components/) contains paths to directories that define collections of Kubernetes resources. This section contains a link to the `targets/kubernetes/scale-agent` directory, which contains the Scale Agent installation files. 
@@ -108,7 +110,8 @@ You can find the recipe for deploying Spinnaker and the Scale Agent in `recipes/
 
 * Configures MinIO as the persistent storage provider (instead of Redis or cloud storage)
 * Installs MySQL and configures Clouddriver to use MySQL 
-* Installs the plugin; enables Clouddriver Account Management
+* Enables Clouddriver Account Management
+* Installs the plugin
 * Creates a ServiceAccount, ClusterRole, and ClusterRoleBinding for the Scale Agent service
 * Deploys the service
 
@@ -175,8 +178,17 @@ Execute all commands from the root of `spinnaker-kustomize-patches`.
 1. Verify the installation.
 
    ```bash
-   kubectl -n {{ .Params.spin-op-ns }} get spinsvc && echo "" && kubectl -n {{ .Params.spin-op-ns }} get pods
+   kubectl -n {{< param "spin-op-ns" >}} get spinsvc && echo "" && kubectl -n {{< param "spin-op-ns" >}} get pods
    ```
 
+### Confirm success
+
+Create a pipeline with a `Deploy manifest` stage. You should see your target cluster available in the `Accounts` list. Deploy a static manifest.
 
 ## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "scale-agent/concepts/dynamic-accounts.md" >}}
+* {{< linkWithTitle "scale-agent/tasks/service-monitor.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Scale Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
+* {{< linkWithTitle "scale-agent/tasks/configure-mtls.md" >}}
+* {{< linkWithTitle "scale-agent/concepts/service-permissions.md" >}}
+* {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}} page if you run into issues.

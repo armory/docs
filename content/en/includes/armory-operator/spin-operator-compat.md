@@ -1,4 +1,4 @@
-| Spinnaker Operator Version         | Kubernetes Version        | Spinnaker Version         |
+| Kubernetes Version         | Spinnaker Operator Version        | Spinnaker Version         |
 | :------------------------- | :----------------------------- | :-------------------------------- |
-|  1.3.x             |    1.21 - 1.25              |  1.27.x+ |
-| 1.2.5  | 1.21 | 1.27+ |
+| 1.22+                   |  1.3+                   | 1.27+ |
+| 1.21                     | 1.2.5                      | 1.27+                      |

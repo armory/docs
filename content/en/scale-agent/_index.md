@@ -1,5 +1,5 @@
 ---
-title: "Armory Scale Agent for Spinnaker and Kubernetes"
+title: Armory Scale Agent for Spinnaker and Kubernetes
 weight: 1
 no_list: true
 description: >
@@ -11,7 +11,10 @@ description: >
 
 The [Scale Agent for Spinnaker and Kubernetes](https://www.armory.io/products/scale-agent-for-spinnaker-kubernetes/) consists of a lightweight service that you deploy on Kubernetes and a plugin that you install into Clouddriver. With these, you can scale Kubernetes deployments to limitless clusters and namespaces with minimal latency, accelerating your pipeline execution times. 
 
-The Scale Agent works with Armory Continuous Deployment v2.26+ and Spinnaker v1.26+. 
+The Scale Agent works with Armory Continuous Deployment v2.26+ and Spinnaker v1.26+. The following Scale Agent features require Spinnaker 1.28+/Armory CD 2.28+ with [Clouddriver Account Management]() enabled:
+
+* [Automated scanning]({{< ref "scale-agent/concepts/dynamic-accounts#automatic-account-migration" >}}) for newly created accounts in Clouddriver and migrating those accounts to Scale Agent management
+* [Intercepting and processing requests]({{< ref "scale-agent/concepts/dynamic-accounts#clouddriver-account-management-api-request-interception" >}}) sent to Clouddriver's `<GATE-URL>/credentials` endpoint
 
 ### Advantages of using the Armory Scale Agent
 

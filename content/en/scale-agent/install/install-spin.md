@@ -22,16 +22,7 @@ The following features require Spinnaker 1.28+ and [Clouddriver Account Manageme
 * [Automated scanning]({{< ref "scale-agent/concepts/dynamic-accounts#automatic-account-migration" >}}) for newly created accounts in Clouddriver and migrating those accounts to Scale Agent management
 * [Intercepting and processing requests]({{< ref "scale-agent/concepts/dynamic-accounts#clouddriver-account-management-api-request-interception" >}}) sent to Clouddriver's `<GATE-URL>/credentials` endpoint
 
-### Objectives
-
-1. Meet the prerequisites outlined in the {{% heading "prereq" %}} section.
-1. [Configure the Clouddriver plugin in your `clouddriver-local.yml` file and deploy using Halyard](#install-the-plugin). 
-1. [Learn the options for migrating Clouddriver accounts to the Scale Agent](#options-for-migrating-accounts).
-1. [Configure and deploy the Scale Agent service](#deploy-the-armory-scale-agent-service) in the cluster and namespace where Spinnaker is running ([Spinnaker Service mode]({{< ref "scale-agent/install/advanced/modes#spinnaker-service-mode" >}})). 
-
->Since this guide is for installing the Armory Scale Agent in a test environment, it does not include [mTLS configuration]({{< ref "configure-mtls" >}}). The Armory Agent service and plugin do not communicate securely.
-
-## {{% heading "prereq" %}}
+### {{% heading "prereq" %}}
 
 * You are familiar with how plugins work in Spinnaker. See open source Spinnaker's [Plugin User Guide](https://spinnaker.io/docs/guides/user/plugins-users/).
 * You have read the Scale Agent [overview]({{< ref "scale-agent" >}}).
@@ -59,6 +50,14 @@ The following features require Spinnaker 1.28+ and [Clouddriver Account Manageme
 
    {{< include "scale-agent/agent-compat-matrix.md" >}}
 
+### Objectives
+
+1. Meet the prerequisites outlined in the {{% heading "prereq" %}} section.
+1. [Configure the Clouddriver plugin in your `clouddriver-local.yml` file and deploy using Halyard](#install-the-plugin). 
+1. [Learn the options for migrating Clouddriver accounts to the Scale Agent](#options-for-migrating-accounts).
+1. [Configure and deploy the Scale Agent service](#deploy-the-armory-scale-agent-service) in the cluster and namespace where Spinnaker is running ([Spinnaker Service mode]({{< ref "scale-agent/install/advanced/modes#spinnaker-service-mode" >}})). 
+
+>Since this guide is for installing the Armory Scale Agent in a test environment, it does not include [mTLS configuration]({{< ref "configure-mtls" >}}). The Armory Agent service and plugin do not communicate securely.
 
 ## Install the plugin
 
