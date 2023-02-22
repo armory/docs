@@ -4,13 +4,13 @@ linkTitle: Kubernetes Manifests
 weight: 5
 description: >
   Use Kubernetes manifests to deploy the Armory Scale Agent for Spinnaker and Kubernetes service.
+aliases:
+  - /scale-agent/install/install-agent-service-kubectl
 ---
-
-@TODO  THE CODE SAMPLES SHOULD BE GENERIC - PUT IN PLACEHOLDERS FOR THINGS LIKE NAMESPACE
 
 ## {{% heading "prereq" %}}
 
-* You have installed the Scale Agent plugin and obtained the 
+* You have installed the Scale Agent plugin and obtained its LoadBalancer address.
 
 
 ## Create a namespace
@@ -177,7 +177,7 @@ data:
 
 **Clouddriver plugin LoadBalancer**
 
-Replace **[LoadBalancer Exposed Address]** with the IP address you obtained in the [Get the LoadBalancer IP address section](#get-the-loadbalancer-ip-address).
+Replace `spin-clouddriver-grpc` with the IP address of your Clouddriver service.
 
 
 ```yaml
@@ -189,7 +189,7 @@ metadata:
 data:
   armory-agent.yaml: |
     clouddriver:
-      grpc: [LoadBalancer Exposed Address]:9091
+      grpc: spin-clouddriver-grpc:9091
       insecure: true
 ```
 
@@ -207,7 +207,7 @@ metadata:
 data:
   armory-agent.yaml: |
     clouddriver:
-      grpc: <LoadBalancer Exposed Address>:9091
+      grpc: spin-clouddriver-grpc:9091
       insecure: true
     kubernetes:
      accounts:

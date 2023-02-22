@@ -1,5 +1,5 @@
 ---
-title: Install the Armory Scale Agent in Armory CD
+title: Install the Armory Scale Agent in and Existing Armory CD Instance
 linkTitle: Armory CD
 weight: 10
 description: >
@@ -80,6 +80,12 @@ You can find the files that install the Scale Agent in the `spinnaker-kustomize-
 
 
 ## Configure the service
+
+### Version
+
+The Scale Agent service version is set in `spinnaker-kustomize-patches/targets/kubernetes/scale-agent/scale-agent-deployment.yml`. You don't have to configure a version in the `spec.template.spec.containers.image` field. The manifest pulls the latest version, which is compatible with Armory CD 2.26+ and corresponding plugin versions.
+
+### Kubernetes account
 
 You should configure a Kubernetes account or accounts for the Scale Agent service to manage. You do this in `targets/kubernetes/scale-agent/armory-agent.yml`.
 

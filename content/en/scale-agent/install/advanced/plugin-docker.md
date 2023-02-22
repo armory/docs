@@ -109,16 +109,13 @@ The Scale Agent plugin extends Clouddriver. When Halyard adds a plugin to a Spin
 
 ## Armory Operator or Spinnaker Operator
 
-The sample manifest is for the Armory Operator using Kustomize and the `spinnaker-patches-kustomize` [repo](https://github.com/armory/spinnaker-kustomize-patches/tree/master/targets/kubernetes/scale-agent). If you are using the Spinnaker Operator, you must replace the `apiVersion` value “spinnaker.armory.io/” with “spinnaker.io/”. For example:
-
-* Armory Operator: apiVersion: spinnaker.armory.io/v1alpha2
-* Spinnaker Operator: apiVersion: spinnaker.io/v1alpha2
+You can find the Kustomize file `plugin-container-patch.yml` in the `spinnaker-patches-kustomize` [repo](https://github.com/armory/spinnaker-kustomize-patches/tree/master/targets/kubernetes/scale-agent). 
 
 Change the value for `metadata.name` if your Armory CD service is called something other than “spinnaker”.
 
-Create a `plugin-container-patch.yml` file with the following contents:
 
-{{< readfile file="/includes/scale-agent/install/plugin-docker-armory-op.yaml" code="true" lang="yaml" >}}
+
+
 
 Then include the file under the `patchesStrategicMerge` section of your kustomization file.
 

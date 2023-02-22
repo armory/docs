@@ -1,5 +1,5 @@
 ---
-title: Install the Armory Scale Agent in Spinnaker
+title: Install the Armory Scale Agent in an Existing Spinnaker Instance
 linkTitle: Spinnaker
 weight: 5
 description: >

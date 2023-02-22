@@ -4,6 +4,9 @@ linkTitle: Get Started
 description: >
   Learn how to install and configure the Armory Scale Agent for Spinnaker and Kubernetes in your Spinnaker and Armory CD environments.
 weight: 1
+no_list: true
+aliases:
+  - /scale-agent/install/install-agent-plugin
 ---
 
 ## Compatibility matrix

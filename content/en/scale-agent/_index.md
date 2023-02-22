@@ -44,8 +44,8 @@ The Scale Agent works with Armory Continuous Deployment v2.26+ and Spinnaker v1.
 ## How to get started using the Scale Agent
 
 * **New Spinnaker instance**: {{< linkWithTitle "scale-agent/install/quickstart.md" >}} shows you how to use the Spinnaker Operator and Kustomize to install Spinnaker and the Scale Agent in the same Kubernetes cluster and namespace for testing the Scale Agent's features.
-* **Existing Spinnaker instance**: {{< linkWithTitle "scale-agent/install/install-spin.md" >}} covers installation using Halyard for the plugin and `kubectl` to apply the service's manifests. You deploy the Scale Agent service to the same cluster and namespace as Spinnaker.
-* **Existing Armory Continuous Deployment instance**: {{< linkWithTitle "scale-agent/install/install-armory" >}} covers how to use the Armory Operator to install the Scale Agent components. You deploy the Scale Agent service to the same cluster and namespace as Armory CD.
+* **Existing Spinnaker instance**: {{< linkWithTitle "scale-agent/install/install-spin.md" >}} shows how to use Halyard to install the plugin and `kubectl` to apply the service's manifests. You deploy the Scale Agent service to the same cluster and namespace as Spinnaker.
+* **Existing Armory Continuous Deployment instance**: {{< linkWithTitle "scale-agent/install/install-armory" >}} shows you how to use the Armory Operator and Kustomize to install the Scale Agent components. You deploy the Scale Agent service to the same cluster and namespace as Armory CD.
 
 >For installation into existing instances, note that your Clouddriver service must use a MySQL-compatible database. If yours doesn't, see the {{< linkWithTitle "clouddriver-sql-configure.md" >}} guide for instructions.
 
@@ -70,5 +70,6 @@ If you're familiar with the Kubernetes docs, you may notice that the Armory Scal
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "scale-agent/concepts/architecture.md" >}}
+* {{< linkWithTitle "scale-agent/install/quickstart.md" >}} 
 * {{< linkWithTitle "scale-agent/install/install-spin.md" >}}
 * {{< linkWithTitle "scale-agent/install/install-armory.md" >}}
