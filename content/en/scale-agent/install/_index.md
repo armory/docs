@@ -14,9 +14,9 @@ aliases:
 {{< include "scale-agent/agent-compat-matrix.md" >}}
 
 
-| Use Case | Guide | K8s Acct Config | Mode |
-|:--- |:---- |:----- |:-----|
-| New Spinnaker instance managed by the Spinnaker Operator | {{< linkWithTitle "scale-agent/install/quickstart.md" >}} | Service's ConfigMap | [Spinnaker Service]({{< ref "/scale-agent/install/advanced/modes#spinnaker-service-mode" >}}) |
-| Existing Spinnaker instance managed by Halyard | {{< linkWithTitle "scale-agent/install/install-spin.md" >}} | Service's ConfigMap | [Spinnaker Service]({{< ref "/scale-agent/install/advanced/modes#spinnaker-service-mode" >}}) |
-| Existing Armory CD instance managed by the Armory Operator | {{< linkWithTitle "scale-agent/install/install-armory.md" >}} | Service's ConfigMap | [Spinnaker Service]({{< ref "/scale-agent/install/advanced/modes#spinnaker-service-mode" >}}) |
+| Installation Use Case | Guide | Plugin Install| Service Deploy | K8s Acct Config | Mode |
+|:--- |:---- |:----- |:-----|:----- |:-----|
+| Create a new Spinnaker instance managed by the Spinnaker Operator | {{< linkWithTitle "scale-agent/install/quickstart.md" >}} | Plugin repository configured in a Kustomize patch | Kustomize patches | Service's ConfigMap | [Spinnaker Service]({{< ref "/scale-agent/install/advanced/modes#spinnaker-service-mode" >}}) |
+| Use an existing Spinnaker instance managed by Halyard | {{< linkWithTitle "scale-agent/install/install-spin.md" >}} | Plugin repository configured in `clouddriver-local` file| Kubernetes manifests | Service's ConfigMap | [Spinnaker Service]({{< ref "/scale-agent/install/advanced/modes#spinnaker-service-mode" >}}) |
+| Use an existing Armory CD instance managed by the Armory Operator | {{< linkWithTitle "scale-agent/install/install-armory.md" >}} | Plugin repository configured in a Kustomize patch | Kustomize patches | Service's ConfigMap | [Spinnaker Service]({{< ref "/scale-agent/install/advanced/modes#spinnaker-service-mode" >}}) |
 
