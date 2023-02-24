@@ -6,7 +6,7 @@ description: >
 weight: 1
 no_list: true
 aliases:
-  - /scale-agent/install/install-agent-plugin
+  - /scale-agent/install/install-agent-plugin/
 ---
 
 ## Compatibility matrix

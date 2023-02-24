@@ -5,7 +5,7 @@ weight: 5
 description: >
   Use Kubernetes manifests to deploy the Armory Scale Agent for Spinnaker and Kubernetes service.
 aliases:
-  - /scale-agent/install/install-agent-service-kubectl
+  - /scale-agent/install/install-agent-service-kubectl/
 ---
 
 ## {{% heading "prereq" %}}
