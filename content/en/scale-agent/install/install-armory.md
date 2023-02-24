@@ -87,7 +87,7 @@ The Scale Agent service version is set in `spinnaker-kustomize-patches/targets/k
 
 ### Kubernetes account
 
-You should configure a Kubernetes account or accounts for the Scale Agent service to manage. You do this in `targets/kubernetes/scale-agent/armory-agent.yml`.
+You should configure a Kubernetes account for the Scale Agent service to manage. You do this in `targets/kubernetes/scale-agent/armory-agent.yml`. The Kubernetes account should not exist in Clouddriver.
 
 Add your Kubernetes accounts to the `kubernetes.accounts` section. For example:
 
@@ -121,8 +121,14 @@ Execute all commands from the root of `spinnaker-kustomize-patches`. The followi
    ```bash
    kubectl -n spinnaker get spinsvc && echo "" && kubectl -n spinnaker get pods
    ```
+   
+   You can also access the Clouddriver log to verify that the plugin is running and communicating with the service.
 
-### Confirm success
+   ```bash
+   kubectl -n spinnaker logs deployment/spin-clouddriver | grep -E "Start plugin|Starting Kubesvc plugin|Registering agent with"
+   ```
+
+## Confirm success
 
 Create a pipeline with a `Deploy manifest` stage. You should see your target cluster available in the `Accounts` list. Deploy a static manifest.
 

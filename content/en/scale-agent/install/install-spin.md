@@ -22,6 +22,16 @@ The following features require Spinnaker 1.28+ and [Clouddriver Account Manageme
 * [Automated scanning]({{< ref "scale-agent/concepts/dynamic-accounts#automatic-account-migration" >}}) for newly created accounts in Clouddriver and migrating those accounts to Scale Agent management
 * [Intercepting and processing requests]({{< ref "scale-agent/concepts/dynamic-accounts#clouddriver-account-management-api-request-interception" >}}) sent to Clouddriver's `<GATE-URL>/credentials` endpoint
 
+### Objectives
+
+1. Meet the prerequisites outlined in the {{% heading "prereq" %}} section.
+1. [Configure the Clouddriver plugin in your `clouddriver-local.yml` file and deploy using Halyard](#install-the-plugin). 
+1. [Learn the options for migrating Clouddriver accounts to the Scale Agent](#options-for-migrating-accounts).
+1. [Configure and deploy the Scale Agent service](#deploy-the-armory-scale-agent-service) in the cluster and namespace where Spinnaker is running ([Spinnaker Service mode]({{< ref "scale-agent/install/advanced/modes#spinnaker-service-mode" >}})). 
+1. [Confirm success](#confirm-success).
+
+>Since this guide is for installing the Armory Scale Agent in a test environment, it does not include [mTLS configuration]({{< ref "configure-mtls" >}}). The Armory Agent service and plugin do not communicate securely.
+
 ### {{% heading "prereq" %}}
 
 * You are familiar with how plugins work in Spinnaker. See open source Spinnaker's [Plugin User Guide](https://spinnaker.io/docs/guides/user/plugins-users/).
@@ -50,14 +60,7 @@ The following features require Spinnaker 1.28+ and [Clouddriver Account Manageme
 
    {{< include "scale-agent/agent-compat-matrix.md" >}}
 
-### Objectives
 
-1. Meet the prerequisites outlined in the {{% heading "prereq" %}} section.
-1. [Configure the Clouddriver plugin in your `clouddriver-local.yml` file and deploy using Halyard](#install-the-plugin). 
-1. [Learn the options for migrating Clouddriver accounts to the Scale Agent](#options-for-migrating-accounts).
-1. [Configure and deploy the Scale Agent service](#deploy-the-armory-scale-agent-service) in the cluster and namespace where Spinnaker is running ([Spinnaker Service mode]({{< ref "scale-agent/install/advanced/modes#spinnaker-service-mode" >}})). 
-
->Since this guide is for installing the Armory Scale Agent in a test environment, it does not include [mTLS configuration]({{< ref "configure-mtls" >}}). The Armory Agent service and plugin do not communicate securely.
 
 ## Install the plugin
 
@@ -234,7 +237,7 @@ data:
 
 **Kubernetes account**
 
-Add your Kubernetes account configuration:
+Add your Kubernetes account configuration. This account should not exist in Clouddriver.
 
 ```yaml
 apiVersion: v1
@@ -279,7 +282,15 @@ Apply the following manifest in your `spinnaker` namespace:
 
 {{< readfile file="/includes/scale-agent/install/ns-spin/agent-service.yaml" code="true" lang="yaml" >}}
 
-### Confirm success
+### Verify that the plugin and service are communicating
+
+You can access the Clouddriver log to verify that the plugin is running and communicating with the service.
+
+```bash
+kubectl -n spinnaker logs deployment/spin-clouddriver | grep -E "Start plugin|Starting Kubesvc plugin|Registering agent with"
+```
+
+## Confirm success
 
 Create a pipeline with a `Deploy manifest` stage. You should see your target cluster available in the `Accounts` list. Deploy a static manifest.
 
@@ -291,12 +302,8 @@ Remove the Scale Agent plugin config from `clouddriver-local.yml` and `hal deplo
 
 You can use `kubectl` to delete all Scale Agent service's `Deployment` objects and their accompanying `ConfigMap` and `Secret`.
 
-
-
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "scale-agent/concepts/dynamic-accounts.md" >}}
-* {{< linkWithTitle "scale-agent/tasks/service-monitor.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Scale Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
-* {{< linkWithTitle "scale-agent/tasks/configure-mtls.md" >}}
-* {{< linkWithTitle "scale-agent/concepts/service-permissions.md" >}}
+* {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}}
 * {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}} page if you run into issues.

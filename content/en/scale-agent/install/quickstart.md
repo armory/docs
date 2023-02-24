@@ -62,7 +62,7 @@ Decide which [Spinnaker Operator release](https://github.com/armory/spinnaker-op
 
    ```bash
    mkdir -p spinnaker-operator && cd spinnaker-operator
-   bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/<release-version>latest/download/manifests.tgz | tar -xz'
+   bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/<release-version>/download/manifests.tgz | tar -xz'
    ```
 
 1. From the root of your `spinnaker-operator` directory, install the Spinnaker Operator CRDs cluster-wide.
@@ -71,7 +71,7 @@ Decide which [Spinnaker Operator release](https://github.com/armory/spinnaker-op
    kubectl apply -f deploy/crds/
    ```
 
-1.  Install the Spinnaker Operator in namespace `{{< param "spin-op-ns" >}}`.
+1. Install the Spinnaker Operator in namespace `{{< param "spin-op-ns" >}}`.
 
    ```bash
    kubectl create ns {{< param "spin-op-ns" >}}
@@ -104,7 +104,7 @@ You can find the recipe for deploying Spinnaker and the Scale Agent in `recipes/
 * The `components` [section](https://kubectl.docs.kubernetes.io/guides/config_management/components/) contains paths to directories that define collections of Kubernetes resources. This section contains a link to the `targets/kubernetes/scale-agent` directory, which contains the Scale Agent installation files. 
 * The `patchesStrategicMerge` [section](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesstrategicmerge/) contains links to files that contain partial resource definitions. Kustomize uses these patch files to overwrite sections of components or resources, such as the `SpinnakerService` definition.
 * The `patches` [section](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/) is a list of files that Kustomize executes to add or replace fields on resources. The `utilities/switch-to-oss.yml` patch instructs Kustomize to replace `apiVersion: spinnaker.armory.io/v1alpha2` with `apiVersion: spinnaker.io/v1alpha2` in the SpinnakerService manifest.
-* The `transformers` [section]() contains links to files that define Kustomize [_transformers_](https://kubectl.docs.kubernetes.io/references/kustomize/glossary/#transformer).
+* The `transformers` section contains links to files that define Kustomize [_transformers_](https://kubectl.docs.kubernetes.io/references/kustomize/glossary/#transformer).
 
 ### What this recipe does
 
@@ -124,7 +124,7 @@ You can find the recipe for deploying Spinnaker and the Scale Agent in `recipes/
 
 To change the Spinnaker version, update `spec.spinnakerConfig.config.version` in `core/patches/oss-version.yml`.
 
-If you chose a Spinnaker version earlier than 1.28, you should modify the `targets/kubernetes/scale-agent/plugin-config` file to disable Clouddriver Account Management.
+If you chose a Spinnaker version earlier than 1.28, you should modify the `targets/kubernetes/scale-agent/plugin-config` file to disable Clouddriver Account Management as in the following example:
 
 ```yaml
 spec:
@@ -181,14 +181,27 @@ Execute all commands from the root of `spinnaker-kustomize-patches`.
    kubectl -n {{< param "spin-op-ns" >}} get spinsvc && echo "" && kubectl -n {{< param "spin-op-ns" >}} get pods
    ```
 
-### Confirm success
+   You can also access the Clouddriver log to verify that the plugin is running and communicating with the service.
+
+   ```bash
+   kubectl -n {{< param "spin-op-ns" >}} logs deployment/spin-clouddriver | grep -E "Start plugin|Starting Kubesvc plugin|Registering agent with"
+   ```
+
+## Confirm success
+
+If you haven't publicly exposed Spinnaker based on your cloud provider's guides, you should `port-forward` in order to access the Spinnaker UI and API:
+
+```bash
+# port-forward for the UI
+kubectl port-forward svc/spin-deck 9000:9000 -n spinnaker
+# port-forward for the API
+kubectl port-forward svc/spin-gate 8084:8084 -n spinnaker
+```
 
 Create a pipeline with a `Deploy manifest` stage. You should see your target cluster available in the `Accounts` list. Deploy a static manifest.
 
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "scale-agent/concepts/dynamic-accounts.md" >}}
-* {{< linkWithTitle "scale-agent/tasks/service-monitor.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Scale Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
-* {{< linkWithTitle "scale-agent/tasks/configure-mtls.md" >}}
-* {{< linkWithTitle "scale-agent/concepts/service-permissions.md" >}}
+* {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}}
 * {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}} page if you run into issues.

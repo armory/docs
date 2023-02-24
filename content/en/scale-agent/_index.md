@@ -18,27 +18,29 @@ The Scale Agent works with Armory Continuous Deployment v2.26+ and Spinnaker v1.
 
 ### Advantages of using the Armory Scale Agent
 
-* **Scalability**
-  * Caching and deployment scales to thousands of Kubernetes clusters for your largest applications.
-  * By leveraging the Kubernetes `watch` mechanism, the Armory Scale Agent detects changes to Kubernetes and streams them in real time over a single TCP connection per cluster to Spinnaker<sup>TM</sup>.
-  * The Agent optimizes how infrastructure information is cached, making _Force Cache Refresh_ almost instantaneous. This means optimal performance for your end users and your pipeline executions.
+**Scalability**
+* Caching and deployment scales to thousands of Kubernetes clusters for your largest applications.
+* By leveraging the Kubernetes `watch` mechanism, the Armory Scale Agent detects changes to Kubernetes and streams them in real time over a single TCP connection per cluster to Spinnaker<sup>TM</sup>.
+* The Agent optimizes how infrastructure information is cached, making _Force Cache Refresh_ almost instantaneous. This means optimal performance for your end users and your pipeline executions.
 
-* **Security**
-  * Keep your Kubernetes API servers private from Spinnaker.
-  * Only the information Spinnaker needs leaves the cluster.
-  * Decentralize your account management. Using Kubernetes Service Accounts, teams control what Spinnaker can do. Add or remove accounts in real time, and then use them without restarting Spinnaker.
-  * Use Kubernetes Service Accounts or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "continuous-deployment/armory-admin/secrets" >}}), or provision them via the method of your choice as Kubernetes secrets.
+**Security**
+* Keep your Kubernetes API servers private from Spinnaker.
+* Only the information Spinnaker needs leaves the cluster.
+* Decentralize your account management. Using Kubernetes Service Accounts, teams control what Spinnaker can do. Add or remove accounts in real time, and then use them without restarting Spinnaker.
+* Use Kubernetes Service Accounts or store your `kubeconfig` files in one of the supported [secret engines]({{< ref "continuous-deployment/armory-admin/secrets" >}}), or provision them via the method of your choice as Kubernetes secrets.
+* Secure plugin-service communication by [configuring mTLS]({{< ref "scale-agent/tasks/configure-mtls" >}}).
 
-* **Usability**
-  * Use the Armory Scale Agent alongside Spinnaker and benefit from performance improvements.
-  * Use YAML, a HELM chart, or a Kustomize template to inject the Armory Scale Agent into newly provisioned Kubernetes clusters and immediately make those clusters software deployment targets.
-  * Use the Armory Scale Agent with little operational overhead or changes in the way you currently manage Spinnaker.
+**Usability**
+* Use the Armory Scale Agent alongside Spinnaker and benefit from performance improvements.
+* Use YAML, a HELM chart, or a Kustomize template to inject the Armory Scale Agent into newly provisioned Kubernetes clusters and immediately make those clusters software deployment targets.
+* Use the Armory Scale Agent with little operational overhead or changes in the way you currently manage Spinnaker.
+* Integrate [Prometheus]({{< ref "scale-agent/tasks/service-monitor" >}}) and [Vault]({{< ref "scale-agent/tasks/service-vault" >}}). 
 
-* **Kubernetes Account Management**
-   * Configure accounts statically in the Scale Agent service before deployment either in a ConfigMap or in an `armory-agent.yml` file in the pod. If you provision clusters automatically, the Armory Scale Agent service can dynamically reload accounts when the ConfigMap or `armory-agent.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/armory/config/armory-agent-local.yaml`.  The Scale Agent service reflects `ConfigMap` changes within seconds after etcd sync.
-   * Get Kubernetes accounts automatically registered when you deploy the Armory Scale Agent in a target cluster.
-   * Manually migrate Clouddriver Kubernetes accounts to the Scale Agent using a REST API.
-   * Automatically migrate Clouddriver Kubernetes accounts using [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/) (requires Spinnaker 1.28+)
+**Kubernetes Account Management**
+* [Configure accounts statically]({{< ref "scale-agent/install/advanced/config-service" >}}) in the Scale Agent service before deployment either in a ConfigMap or in an `armory-agent.yml` file in the pod. If you provision clusters automatically, the Armory Scale Agent service can dynamically reload accounts when the ConfigMap or `armory-agent.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/armory/config/armory-agent-local.yaml`.  The Scale Agent service reflects `ConfigMap` changes within seconds after etcd sync.
+* Get Kubernetes accounts automatically registered when you deploy the Armory Scale Agent in a target cluster.
+* [Manually migrate Clouddriver Kubernetes accounts]({{< ref "scale-agent/concepts/dynamic-accounts" >}}) to the Scale Agent using a REST API.
+* Automatically migrate Clouddriver Kubernetes accounts using [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/) (requires Spinnaker 1.28+)
 
 
 ## How to get started using the Scale Agent
