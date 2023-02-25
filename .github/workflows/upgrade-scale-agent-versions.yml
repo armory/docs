@@ -1,0 +1,80 @@
+name: Upgrade scale agent versions
+on:
+  pull_request:
+    types: [closed]
+jobs:
+  upgrade-scale-agent-versions:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout_code
+        name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          fetch-depth: '2'
+      - id: scale_agent_updated_versions
+        name: Set scale agent updated versions
+        run: |
+          file="config.toml"
+          file=$(git diff --name-only HEAD^ HEAD | grep "${file}" || true)
+          if [ -z "${file}" ]
+          then
+            echo "The file where this process look for agent and plugin updated versions was not modified, wont update anything"
+          else
+            updates=$(git diff HEAD^ HEAD ${file} | grep -E '^\+(agent_plug_latest|kubesvc-version)' | sed 's/^+//' | tr '\n' '~')
+            if [ -z "${updates}" ]
+            then
+              echo "The ${file} file where this process look for agent and plugin updated versions doesn't contains any agent update, wont update anything"
+            else
+              echo "##[set-output name=updates;]$updates"
+            fi
+          fi
+      - if: ${{ steps.scale_agent_updated_versions.outputs.updates != ''}}
+        id: checkout_spinnaker-kustomize-patches_code
+        name: Checkout spinnaker-kustomize-patches repo
+        uses: actions/checkout@v2
+        with:
+          repository: 'armory/spinnaker-kustomize-patches'
+          ref: master
+          path: 'external/spinnaker-kustomize-patches'
+          token: ${{ secrets.ASTROLABE_GITHUB_TOKEN }}
+      - if: steps.checkout_spinnaker-kustomize-patches_code.outcome != 'skipped'
+        id: upgrade_scale_agent_versions_on_spinnaker-kustomize-patches_repo
+        name: Upgrade scale agent versions on spinnaker-kustomize-patches repo
+        run: |
+          declare -A agent_translator
+          agent_translator[kubesvc-version]='Latest agent version'
+          agent_translator[agent_plug_latest]='Latest agent plugin version'
+          agent_translator[agent_plug_latest-1]='Agent plugin version compatible with 1\.27\.x'
+          agent_translator[agent_plug_latest-2]='Agent plugin version compatible with 1\.26\.x'
+          agent_translator[agent_plug_latest-3]='Agent plugin version compatible with 1\.25\.x'          
+          cd external/spinnaker-kustomize-patches
+          scale_agent_updated_versions=($(echo ${{ steps.scale_agent_updated_versions.outputs.updates }} | tr '~' ' '))
+          for scale_agent_updated_version in "${scale_agent_updated_versions[@]}"
+          do
+            key="${scale_agent_updated_version%%=*}"
+            version="${scale_agent_updated_version##*=}"
+            version=$(echo ${version} | tr -d '"')
+            value="${agent_translator[${key}]}"
+            echo "Upgrading ${key} (translation \"${value}\") to the ${version} version"
+            find targets/kubernetes/scale-agent -type f -exec sed -i "s/[0-9]*\.[0-9]*\.[0-9]* # ${value}/${version} # ${value}/g" {} +
+          done
+          git status
+          git diff
+          git add .
+          if [[ "x$(git status --porcelain)" != "x" ]] ; then
+            git config user.email "armory.docs@githubactions.com"
+            git config user.name "Armory docs"
+            git commit -m "chore(scale-agent): Automated scale agent version upgrade"
+          fi
+      - if: steps.upgrade_scale_agent_versions_on_spinnaker-kustomize-patches_repo.outcome != 'skipped'
+        name: Create spinnaker-kustomize-patches pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.ASTROLABE_GITHUB_TOKEN }}
+          path: 'external/spinnaker-kustomize-patches'
+          commit-message: "chore(scale-agent): Automated scale agent version upgrade"
+          title: "chore(scale-agent): Automated scale agent version upgrade"
+          body: "Automated PR"
+          branch: "chore/scale-agent"
