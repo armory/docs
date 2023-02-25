@@ -120,7 +120,9 @@
       "previousVersion": "1.28.4"
     },
     {
-      "commitMessages": [],
+      "commitMessages": [
+        "fix(ecr): Two credentials with same accountId confuses EcrImageProvider with different regions (#5885) (#5887)"
+      ],
       "currentVersion": "1.28.4",
       "name": "Spinnaker Echo",
       "previousVersion": "1.28.4"
