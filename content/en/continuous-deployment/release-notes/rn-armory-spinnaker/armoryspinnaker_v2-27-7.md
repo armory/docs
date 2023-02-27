@@ -65,10 +65,9 @@ The default is used if there is no value set in the UI.
 
 Now you can configure Pipelines as Code to pull Dinghy files from multiple branches in the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "continuous-deployment/armory-admin/dinghy-enable#multiple-branches" >}}) for how to enable and configure this feature.
 
-### Feature flag in Orca to use the new Igor stop endpoint 
+### Automatically Cancel Jenkins Jobs
 
-When defining a Jenkins job inside folders, the name contains slashes. Because of that, instead of matching the request to the IGOR STOP endpoint (`/masters/{name}/jobs/{jobName}/stop/{queuedBuild}/{buildNumber}`), Spring is matching the request to the BUILD one (`/masters/{name}/jobs/**`)
-The stop request is failing because it is trying to start a job that does not exist.  A [feature flag](https://spinnaker.io/changelogs/1.29.0-changelog/#orca) was added to call the existing endpoint (which accepts the job name as path variable) or the new one (which accepts the job name as a query parameter).
+You now have the ability to cancel triggered Jenkins jobs when a Spinnaker pipeline is canceled, giving you more control over your full Jenkins workflow. Learn more about Jenkins + Spinnaker in this [documentation](https://spinnaker.io/changelogs/1.29.0-changelog/#orca).
 
 ## Fixed
 
