@@ -1,9 +1,9 @@
 ---
-title: Install the Armory Scale Agent in and Existing Armory CD Instance
+title: Install the Armory Scale Agent in an Existing Armory CD Instance
 linkTitle: Armory CD
 weight: 10
 description: >
-  This guide shows you how to get started using the Scale Agent with an existing Armory Continuous Deployment instance. Configure the plugin and service in your Kustomize files and use the Armory Operator to deploy the Scale Agent components.
+  This guide shows you how to get started using the Scale Agent with an existing Armory Continuous Deployment instance managed by the Armory Operator. Configure the plugin and service in your Kustomize files and use `kubectl` to deploy the Scale Agent components.
 ---
 
 ## {{% heading "prereq" %}}
