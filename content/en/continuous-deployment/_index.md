@@ -32,4 +32,4 @@ The open source [Spinnaker Operator](https://github.com/armory/spinnaker-operato
 
 ### Armory Scale Agent for Spinnaker and Kubernetes
 
-The {{< linkWithTitle "scale-agent/_index.md" >}} is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker's Clouddriver service.
+The {{< linkWithTitle "plugins/scale-agent/_index.md" >}} is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker's Clouddriver service.
