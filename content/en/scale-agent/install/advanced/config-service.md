@@ -1,21 +1,22 @@
 ---
 title: Armory Scale Agent Service Configuration
-linkTitle: Service
+linkTitle: Configure Service
+weight: 10
 description: >
-  Learn how to configure the Armory Scale Agent for Spinnaker and Kubernetes based on installation mode and environment restrictions. This guide contains a detailed list of configuration options for the Agent service.
+  Learn advanced Armory Scale Agent for Spinnaker and Kubernetes configuration based on installation mode and environment restrictions. 
 ---
 
 
 ## Where to configure the Armory Scale Agent
 
-- If you install the Armory Scale Agent service using `kubectl`, configure the Armory Scale Agent using a `ConfigMap`. See the `kubectl` installation instruction's [Configure the service]({{< ref "install-agent-service-kubectl#configure-the-service" >}}) section for an example.
-- See {{< linkWithTitle "/scale-agent/install/install-agent-service-helm/index.md" >}} for both CLI and `values.yml` configuration options.
+- If you install the Armory Scale Agent service using `kubectl`, configure the Armory Scale Agent using a `ConfigMap`. See the `kubectl` installation instruction's [Configure the service]({{< ref "scale-agent/install/install-spin#configure-the-service" >}}) section for an example.
+- See {{< linkWithTitle "scale-agent/install/advanced/service-deploy/helm/index.md" >}} for both CLI and `values.yml` configuration options.
 
 ## Configure Kubernetes accounts
 
-You can configure Kubernetes accounts in Armory CD in multiple places:
+You can configure Kubernetes accounts in Spinnaker in multiple places:
 
-* Clouddriver configuration files: `clouddriver.yml`, c`louddriver-local.yml`, `spinnaker.yml`, `spinnaker-local.yml`
+* Clouddriver configuration files: `clouddriver.yml`, `clouddriver-local.yml`, `spinnaker.yml`, `spinnaker-local.yml`
 * Spring Cloud Config Server reading accounts from Git, Vault, or another supported backend
 * Plugins
 
@@ -133,6 +134,6 @@ kubernetes:
 
 ```
 
-## Configuration options
+## {{% heading "nextSteps" %}}
 
-{{% csv-table "|" "/static/csv/agent/agent-config-options.csv" %}}
+* {{< linkWithTitle "scale-agent/reference/config/service-options.md" >}}
