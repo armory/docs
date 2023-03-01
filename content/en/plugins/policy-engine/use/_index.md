@@ -2,6 +2,7 @@
 title: How to Use the Policy Engine
 linkTitle: Use Policy Engine
 no_list: true
+weight: 1
 description: >
   Learn how to add policies to your Open Policy Agent (OPA) server for Armory Continuous Deployment or open source Spinnaker to use when performing validations to ensure your pipelines and users follow policy requirements. This page includes information about what goes into a policy and some basic policies for you to try. There are examples for save time validation, runtime validation, and entitlements.
 aliases:
