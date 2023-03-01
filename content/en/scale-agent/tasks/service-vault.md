@@ -1,7 +1,10 @@
 ---
-title: "Integrate Vault"
+title: Integrate Vault with the Armory Scale Agent Service
+linkTitle: Integrate Vault
 description: >
   Integrate HashiCorp Vault with the Armory Scale Agent for Spinnaker and Kubernetes.
+aliases:
+  - /scale-agent/tasks/agent-vault/
 ---
 
 ## {{% heading "prereq" %}}
@@ -105,7 +108,7 @@ spec:
  * Be aware of the version of Vault's KV engine currently in your environment. This guide assumes you have the secret engine [KV version 2](https://www.vaultproject.io/docs/secrets/kv/kv-v2). For KV version 1, you need to modify the template to use `{{ range $k, $v := .Data }}` instead. See the Templating Language's [Versioned Read](https://github.com/hashicorp/consul-template/blob/master/docs/templating-language.md#versioned-read) section for more information.
  * This template expects `secret/kubernets` to hold the `kubeconfig file`: Make sure to replace both line 16 and 18 in case that's not the case in your environment.
  * Make sure to include all other
-    [Agent Options]({{< ref "agent-options#configuration-options" >}}) that you require in your environment.
+    [Agent Options]({{< ref "scale-agent/reference/config/service-options#configuration-options" >}}) that you require in your environment.
 
 After addressing the preceding points, save the template as `armory-agent-vault-patch.yaml` and refer to it in your `kustomization.yaml`:
 

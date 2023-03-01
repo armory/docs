@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: spinnaker
+  labels:
+    app: spin
+    app.kubernetes.io/name: armory-agent
+    app.kubernetes.io/part-of: spinnaker
+    cluster: spin-armory-agent
+  name: spin-armory-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spin
+      cluster: spin-armory-agent
+  template:
+    metadata:
+      labels:
+        app: spin
+        app.kubernetes.io/name: armory-agent
+        app.kubernetes.io/part-of: spinnaker
+        cluster: spin-armory-agent
+    spec:
+      serviceAccount: scale-agent-sa
+      containers:
+        - image: armory/agent-k8s:<version> # must be compatible with your Armory CD version
+          imagePullPolicy: IfNotPresent
+          name: armory-agent
+          ports:
+            - name: health
+              containerPort: 8082
+              protocol: TCP
+            - name: metrics
+              containerPort: 8008
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              port: health
+              path: /health
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /opt/armory/config
+              name: volume-armory-agent-config
+          # - mountPath: /kubeconfigfiles
+          #   name: volume-armory-agent-kubeconfigs
+      restartPolicy: Always
+      volumes:
+        - name: volume-armory-agent-config
+          configMap:
+            name: armory-agent-config
+      # - name: volume-armory-agent-kubeconfigs
+      #   secret:
+      #     defaultMode: 420
+      #     secretName: kubeconfigs-secret

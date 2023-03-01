@@ -67,14 +67,14 @@ If you want to use the page's front matter title as the text of the hyperlink, y
 
 See the {{</* linkWithTitle best-practices.md */>}} page...
 
-Look at this page: {{</* linkWithTitle "scale-agent/tasks/agent-monitoring.md" */>}}.
+Look at this page: {{</* linkWithTitle "scale-agent/tasks/service-monitor.md" */>}}.
 ```
 
 Renders as:
 
 See the {{< linkWithTitle best-practices.md >}} page...
 
-See this page: {{< linkWithTitle "scale-agent/tasks/agent-monitoring.md" >}}.
+See this page: {{< linkWithTitle "scale-agent/tasks/service-monitor.md" >}}.
 
 ### Google suite shortcode
 

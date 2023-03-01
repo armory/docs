@@ -1,5 +1,5 @@
 ---
-title: Enable Dynamic Accounts in the Armory Scale Agent
+title: Enable and Configure Dynamic Accounts in the Armory Scale Agent
 linkTitle: Enable Dynamic Accounts
 description: >
   Learn how to enable and configure the Dynamic Accounts feature in Armory Scale Agent for Spinnaker and Kubernetes.
@@ -7,12 +7,19 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-* You are familiar with [installing the Scale Agent]({{< ref "scale-agent/install" >}}) and the [Dynamic Accounts feature]({{< ref "scale-agent/concepts/dynamic-accounts" >}})
-* The Dynamic Accounts automatic migration feature uses Clouddriver Account Management, which is not enabled by default in Spinnaker or Armory Continuous Deployment. See Spinnaker's [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/) page for how to enable the feature in Spinnaker.
+* You are familiar with {{< linkWithTitle "scale-agent/concepts/dynamic-accounts" >}}.
+* The following Dynamic Accounts features use Clouddriver Account Management: 
+
+   * Automatic account migration
+   * Clouddriver Account Management API request interception
+
+   Clouddriver Account Management is not enabled by default in Spinnaker or Armory Continuous Deployment. See Spinnaker's [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/) page for how to enable the feature. 
 
 ## Scale Agent plugin
 
-You need to enable Dynamic Accounts in your plugin config. Add `kubesvc.dynamicAccounts` to the config section of your plugin declaration. For example:
+>Dynamic Accounts is enabled by default starting with plugin versions v0.11.21/0.10.69/0.9.85. 
+
+If you are using a prior version of the plugin, you should enable Dynamic Accounts by setting `kubesvc.dynamicAccounts.enabled: true` in your plugin configuration. For example:
 
 {{< prism lang="yaml" line="27-28" >}}
 spec:
@@ -60,7 +67,7 @@ spec:
 
 The remaining optional attributes in the `dynamicAccounts` section are for configuring automatic migration of Clouddriver accounts to the Scale Agent. These options are discussed in detail in {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}}.
 
-If you want to use the [interceptor]({{< ref "scale-agent/tasks/dynamic-accounts/migrate-accounts#intercept-clouddriver-account-creation-request" >}}) feature to intercept account creation requests sent to Clouddriver's `/credentials` endpoint, add:
+If you want to use the [interceptor]({{< ref "scale-agent/concepts/dynamic-accounts#intercept-clouddriver-account-management-api-requests" >}}) feature to intercept requests sent to Clouddriver's `/credentials` endpoint, add:
 
 {{< prism lang="yaml" line="3-4" >}}
 dynamicAccounts:
@@ -69,7 +76,7 @@ dynamicAccounts:
       enabled: true
 {{< /prism >}}
 
-Alternately, you can enable the [autoscan for new Clouddriver accounts]({{< ref "scale-agent/tasks/dynamic-accounts/migrate-accounts#scan-for-new-accounts" >}}) feature by configuring the following:
+Alternately, you can enable the [autoscan for new Clouddriver accounts]({{< ref "scale-agent/concepts/dynamic-accounts#migrate-accounts-using-automatic-scanning" >}}) feature by configuring the following:
 
 * `scanBatchSize`: <int> 
 * `scanFrequencySeconds`: <int> 

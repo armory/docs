@@ -1,0 +1,17 @@
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        spinnaker:
+          extensibility:
+            repositories:
+              armory-agent-k8s-spinplug-releases:
+                enabled: true
+                url: https://raw.githubusercontent.com/armory-io/agent-k8s-spinplug-releases/master/repositories.json
+            plugins:
+              Armory.Kubesvc:
+                enabled: true
+                version: 0.11.32 # Replace with a version compatible with your Armory CD version
+                extensions:
+                  armory.kubesvc:
+                    enabled: true

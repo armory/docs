@@ -95,7 +95,7 @@ Manually migrating Clouddriver accounts is a two-step process:
       - 501 Not Implemented: if the Dynamic Accounts feature isn't enabled 
 
 
-   The account state changes to FAILED if the Scale Agent plugin is not able to connect to the target Scale Agent service. The plugin does not inform you of the operation results. Check for an ACTIVE account state in the clouddriver.kubesvc_accounts table by querying the database directly or by calling /agents/kubernetes/accounts/{accountName}.
+   The account state changes to FAILED if the Scale Agent plugin is not able to connect to the target Scale Agent service. The plugin does not inform you of the operation results. Check for an ACTIVE account state in the `clouddriver.kubesvc_accounts` table by querying the database directly or by calling `/agents/kubernetes/accounts/{accountName}`.
 
 
 ## Automatic migration
