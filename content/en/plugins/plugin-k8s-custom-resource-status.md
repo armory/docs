@@ -2,7 +2,7 @@
 title: Kubernetes Custom Resource Status Check Plugin
 linkTitle: Kubernetes Custom Resource Status
 description: >
-  This Armory CD and Spinnaker plugin checks the status of your Custom Resource deployment on Kubernetes.
+  The Armory CD and Spinnaker plugin checks the status of your Custom Resource deployment on Kubernetes.
 ---
 
 ![Proprietary](/images/proprietary.svg)
@@ -26,10 +26,10 @@ These replica checks are enabled by default and do not require additional config
 
 ## Version Compatibility
 
-| Plugin | Spinnaker Version  | Armory CD Version |
-|:-------|:-------------------|:--------------------------|
-| 1.0.0  | 1.27.x, 1.28.x     | 2.27.x, 2.28.x            |
-| 2.0.x  | 1.27.x, 1.28.x     | 2.27.x, 2.28.x            |
+| Armory CD (Spinnaker) Version | Plugin Version |
+|:-------|:-------------------|
+| 2.28.x (1.28.x) | 2.0.x |
+| 2.27.x (1.27.x) | 1.0.0 |
 
 ## Configuration
 

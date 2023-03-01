@@ -8,7 +8,7 @@ description: "Policy controls whether or not a deployManifest that is triggered 
 - **Method:** Post
 - **Package:** `spinnaker.http.authz`
 - 
-{{< include "policy-engine/kubernetesAdHocInfraWritesEnabled.md" >}}
+{{< include "plugins/policy-engine/kubernetesAdHocInfraWritesEnabled.md" >}}
 
 ## Example Payload
 

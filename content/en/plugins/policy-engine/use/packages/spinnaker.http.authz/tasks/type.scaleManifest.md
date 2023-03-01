@@ -8,7 +8,7 @@ description: "Policy controls whether or not a scaleManifest that is triggered f
 - **Method:** Post
 - **Package:** `spinnaker.http.authz`
 
-{{< include "policy-engine/kubernetesAdHocInfraWritesEnabled.md" >}}
+{{< include "plugins/policy-engine/kubernetesAdHocInfraWritesEnabled.md" >}}
 
 
 ## Example Payload

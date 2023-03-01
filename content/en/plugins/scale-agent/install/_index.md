@@ -11,7 +11,7 @@ aliases:
 
 ## Compatibility matrix
 
-{{< include "scale-agent/agent-compat-matrix.md" >}}
+{{< include "plugins/scale-agent/agent-compat-matrix.md" >}}
 
 ## Basic installation use cases
 

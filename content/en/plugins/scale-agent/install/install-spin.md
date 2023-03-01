@@ -58,7 +58,7 @@ The following features require Spinnaker 1.28+ and [Clouddriver Account Manageme
 * You have at least one Kubernetes cluster to serve as your deployment target cluster.
 * Choose the Scale Agent version that is compatible with your Spinnaker version.
 
-   {{< include "scale-agent/agent-compat-matrix.md" >}}
+   {{< include "plugins/scale-agent/agent-compat-matrix.md" >}}
 
 
 

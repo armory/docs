@@ -7,7 +7,7 @@ description: >
 
 ## Migration overview
 
-{{< include "scale-agent/api-overview" >}}
+{{< include "plugins/scale-agent/api-overview" >}}
 
 
 ## {{% heading "prereq" %}}
@@ -44,7 +44,7 @@ Manually migrating Clouddriver accounts is a two-step process:
 
    Example:
 
-   {{< include "scale-agent/curl/post-armory-accounts" >}}
+   {{< include "plugins/scale-agent/curl/post-armory-accounts" >}}
 
    Responses:
 
@@ -87,7 +87,7 @@ Manually migrating Clouddriver accounts is a two-step process:
 
    Example:
 
-   {{< include "scale-agent/curl/patch-armory-accounts" >}}
+   {{< include "plugins/scale-agent/curl/patch-armory-accounts" >}}
 
    Response:
 

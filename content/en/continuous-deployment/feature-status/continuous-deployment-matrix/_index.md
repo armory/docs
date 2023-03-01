@@ -422,40 +422,6 @@ The following table lists the supported pipeline triggers:
 | Webhook        | All supported versions    |                                 |
 
 
-
-## Policy Engine
-
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
-
-The [Policy Engine]({{< ref "policy-engine" >}}) gives you the ability to ensure any pipeline meets certain requirements that you specify.
-
-{{< include "policy-engine/plugin-compat-matrix.md" >}}
-
-**OPA requirements**
-
-The Policy Engine requires an Open Policy Agent server. This can be deployed in the same cluster as Armory Continuous Deployment or in an external cluster.
-
-The following table lists the requirements:
-
-| Requirement | Version         | Note                                                                                                                                                                             |
-| ----------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| OPA Server  | 0.12.x or later | Specifically, the v1 API must be available. When you specify the OPA server URL in the Armory Continuous Deployment configs, include `v1` in the URL: `http://<your-opa-server>:<port>/v1`. |
-
-**Supported validations**
-
-| Validation           | Armory Continuous Deployment Version | Note                                                                                                             |
-| -------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Save time validation | All supported versions    | If no policies are set, you cannot save any pipelines until you set any policy or turn off save time validation. |
-| Runtime validation   | All supported versions    | If no policies are set, no policy enforcement occurs and pipelines run as they do normally.                      |
-
-## Scale Agent
-
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})![Proprietary](/images/proprietary.svg)
-
-{{< include "scale-agent/agent-compat-matrix.md" >}}
-
-For a full list of previous releases, see this [page](https://armory.jfrog.io/artifactory/manifests/).
-
 ## Secret stores
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![OSS](/images/oss.svg) ![Proprietary](/images/proprietary.svg)

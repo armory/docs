@@ -94,7 +94,7 @@ dynamicAccounts:
 
 ### Access the API
 
-{{< include "scale-agent/api-overview" >}}
+{{< include "plugins/scale-agent/api-overview" >}}
 
 ## Scale Agent service
 

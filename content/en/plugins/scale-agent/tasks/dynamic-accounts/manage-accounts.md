@@ -7,7 +7,7 @@ description: >
 
 ## Manage accounts overview
 
-{{< include "scale-agent/api-overview" >}}
+{{< include "plugins/scale-agent/api-overview" >}}
 
 See {{< linkWithTitle "plugins/scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}} for details on how to manually or automatically migrate accounts from Clouddriver to the Scale Agent using the Dynamic Accounts API.
 
@@ -49,7 +49,7 @@ Optional fields:
 
 **Example**:
 
-{{< include "scale-agent/curl/post-armory-accounts" >}}
+{{< include "plugins/scale-agent/curl/post-armory-accounts" >}}
 
 **Response**:
 
@@ -86,7 +86,7 @@ and **one** of the following: `kubeconfigContents`, `kubeconfigFile`, or `servic
 
 **Example**:
 
-{{< include "scale-agent/curl/patch-armory-accounts" >}}
+{{< include "plugins/scale-agent/curl/patch-armory-accounts" >}}
 
 **Response**:
 

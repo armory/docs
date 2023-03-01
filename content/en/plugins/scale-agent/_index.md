@@ -1,5 +1,5 @@
 ---
-title: Scale Agent for Spinnaker and Kubernetes
+title: Armory Scale Agent for Spinnaker and Kubernetes
 linkTitle: Scale Agent
 no_list: true
 description: >
@@ -52,7 +52,7 @@ The Scale Agent works with Armory Continuous Deployment v2.26+ and Spinnaker v1.
 
 ## Supported Spinnaker and Armory CD versions
 
-{{< include "scale-agent/agent-compat-matrix.md" >}}
+{{< include "plugins/scale-agent/agent-compat-matrix.md" >}}
 
 You can find a full list of previous releases in the [artifactory](https://armory.jfrog.io/artifactory/manifests/).
 

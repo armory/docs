@@ -17,7 +17,7 @@ This guide assumes you want to evaluate the Scale Agent with an existing Armory 
 1. You are not going to configure mTLS, so the Scale Agent service and plugin are not going to communicate securely.
 1. Choose the Scale Agent version that is compatible with your Armory CD version.
 
-   {{< include "scale-agent/agent-compat-matrix.md" >}}
+   {{< include "plugins/scale-agent/agent-compat-matrix.md" >}}
 
 
 {{< alert color="warning" title="Scale Agent Features Limitation" >}}

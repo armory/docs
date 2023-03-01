@@ -21,7 +21,7 @@ Rather than [manually configure]({{< ref "plugins/scale-agent/reference/config/s
 
 ### REST API
 
-{{< include "scale-agent/api-overview" >}}
+{{< include "plugins/scale-agent/api-overview" >}}
 
 ### How to enable and use Dynamic Accounts
 
@@ -80,7 +80,7 @@ sequenceDiagram
 
 | POST | PATCH |
 |:------|:-------|
-| {{< include "scale-agent/curl/post-armory-accounts" >}} | {{< include "scale-agent/curl/patch-armory-accounts" >}}   |
+| {{< include "plugins/scale-agent/curl/post-armory-accounts" >}} | {{< include "plugins/scale-agent/curl/patch-armory-accounts" >}}   |
 
 See {{< linkWithTitle "plugins/scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >}} for detailed instructions and examples.
 
