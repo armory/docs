@@ -14,7 +14,7 @@ See the [CD-as-a-Service Architecture page]({{< ref "cd-as-a-service/concepts/ar
 ## Objectives
 
 * Meet the prerequisites specified in the _{{% heading "prereq" %}}_ section.
-* [Register your Armory CD environment](#register-your-armory-cd-environment).
+* [Register your Spinnaker or Armory CD environment](#register-your-environment).
 * [Install the CD-as-a-Service Remote Network Agent](#install-the-cd-as-a-service-remote-network-agent).
 * [Install the plugin](#install-the-plugin).
 * [Use the plugin](#use-the-plugin) to deploy a "Hello World" manifest.
@@ -34,11 +34,11 @@ Your Armory CD (or open source Spinnaker) instance must meet the following requi
 
 ## {{% heading "prereq" %}}
 
-Verify that you meet or can meet these requirements before getting started.
+[Register](https://go.armory.io/signup/) to use Armory CD-as-a-Service.
 
 ### Networking
 
-Ensure that your Armory CD (or Spinnaker) instance and Armory Agents have the following networking access:
+Your Spinnaker instance and the cluster(s) where you install the CD-as-a-Service Remote Network Agent(s) need specific ports open.
 
 {{< include "cdaas/req-networking.md" >}}
 
@@ -50,12 +50,29 @@ The Spinnaker plugin does not use Clouddriver to source its accounts. Instead, i
 
 The Helm chart described in [Enable the Armory CD-as-a-Service Remote Network Agent in target Kubernetes clusters](#enable-the-armory-cd-as-a-service-remote-network-agent-in-target-kubernetes-clusters) manages the installation of both of these requirements for you.
 
-## Register your Armory CD environment
+## Register your environment
+
+{{< tabs name="RegisterEnv" >}}
+{{% tabbody name="Armory CD" %}}
 
 Register your Armory CD environment so that it can communicate with Armory services. Each environment needs to get registered if you, for example, have production and development environments.
 
-1. [Register](https://go.armory.io/signup/) to use Armory CD-as-a-Service.
-1. Register your Armory CD [environment]({{< ref "ae-instance-reg" >}}).
+Register your Armory CD [environment]({{< ref "ae-instance-reg" >}}).
+
+{{% /tabbody %}}
+{{% tabbody name="Spinnaker" %}}
+
+[Create a new CD-as-a-Service credential]({{< ref "cd-as-a-service/tasks/iam/client-creds" >}}) for your Spinnaker instance so it can authenticate with CD-as-a-Service. 
+
+In the CD-as-a-Service Console, go to the **Access Management** > **Client Credentials** screen. Click the **New Credential** button. On the **Create New Client Credential** screen:
+
+   - **Name**: enter a meaningful name for your Spinnaker instance
+   - **Select Roles**: select `Deployments Full Access`
+
+Click **Create Credential**. Copy the **Client ID** and **Client Secret** values for use in the _[Install the plugin](#install-the-plugin)_ section.
+
+{{% /tabbody %}}
+{{< /tabs >}}
 
 ## Install the CD-as-a-Service Remote Network Agent
 
