@@ -15,7 +15,7 @@ aliases:
 
 ## Overview of the Armory Policy Engine
 
-The Armory Policy Engine is a proprietary feature for Armory Continuous Deployment and open source Spinnaker. It is designed to enable more complete control of your software delivery process by providing you with the hooks necessary to make assertions about the structure and behavior of pipelines and processes in your environment. The Policy Engine uses the [Open Policy Agent](https://www.openpolicyagent.org/) (OPA) and input style documents to perform validations on the following:
+The [Armory Policy Engine](https://www.armory.io/products/policy-engine/) is a proprietary feature for Armory Continuous Deployment and open source Spinnaker. It is designed to enable more complete control of your software delivery process by providing you with the hooks necessary to make assertions about the structure and behavior of pipelines and processes in your environment. The Policy Engine uses the [Open Policy Agent](https://www.openpolicyagent.org/) (OPA) and input style documents to perform validations on the following:
 
 * **Save time validation** - Validate pipelines as they're created or modified. Tasks with no policies are not validated.
 * **Runtime validation** - Validate deployments as a pipeline is executing. Tasks with no policies are not validated.
