@@ -38,9 +38,15 @@ docker pull armory/armory-cli
 
 ### Local installation
 
-You can install the Armory Version Manager (AVM) and CLI using a one-line command or you can download the AVM manually.
+Install the CLI easily with [Homebrew](https://brew.sh/).
+```bash
+brew tap armory-io/armory
+brew install armory-cli
+```
 
-The AVM enables you to quickly and easily download, install, and update the CLI. The AVM includes additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
+Or install with Armory Version Manager (AVM). The AVM enables you to quickly and easily download, install, and update the CLI. The AVM includes additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
+
+You can install the AVM and CLI using a one-line command or you can download the AVM manually.
 
 {{< tabs name="cdaas-cli-install" >}}
 
@@ -243,6 +249,12 @@ To delete the orphaned ReplicaSet:
 
 Run the following command to upgrade your existing CLI:
 
+With [Homebrew](https://brew.sh/).
+```bash
+brew upgrade armory-cli
+```
+
+With AVM.
 ```bash
 avm install
 ```
