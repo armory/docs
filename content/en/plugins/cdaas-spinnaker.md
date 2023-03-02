@@ -2,7 +2,7 @@
 title: CD-as-a-Service Plugin for Spinnaker and Armory Continuous Deployment
 linkTitle: Armory CD-as-a-Service
 description: >
-  The Armory Continuous Deployment-as-a-Service plugin enables performing canary and blue/green deployments in a single stage from Spinnaker to CD-as-a-Service.
+  The Armory Continuous Deployment-as-a-Service plugin enables performing canary and blue/green deployments in a single stage from Spinnaker to your Kubernetes deployment target using CD-as-a-Service.
 ---
 
 ## Overview of the CD-as-a-Service Spinnaker plugin

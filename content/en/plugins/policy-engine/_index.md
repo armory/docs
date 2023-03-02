@@ -2,7 +2,7 @@
 title: Policy Engine Plugin for Spinnaker or Armory Continuous Deployment
 linkTitle: Policy Engine
 description: >
-   The Armory Policy Engine enforces save time, runtime, and user interaction policies that you create for Spinnaker or Armory Continuous Deployment. This section includes instructions for configuring and deploying an Open Policy Agent server and the Policy Engine as well as release notes, usage, and example policies.
+   Empower DevOps efforts and ensure compliance with Armory Policy Engine. You can enforce save time, runtime, and user interaction policies for Spinnaker or Armory Continuous Deployment. Ensure verification at runtime and throughout your lifecycle. Enforce trusted standards to reduce risk and scale DevOps efforts. Support workflow and collaborate without causing breaking changes.
 no_list: true
 aliases:
    - /continuous-deployment/armory-admin/policy-engine/

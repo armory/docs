@@ -3,7 +3,7 @@ title: Scale Agent for Spinnaker and Kubernetes
 linkTitle: Scale Agent
 no_list: true
 description: >
-  The Armory Scale Agent for Spinnaker and Kubernetes is a lightweight, real-time agent that scales deployment execution operations from your Spinnaker or Armory Continuous Deployment instance to all of your Kubernetes clusters.
+  The Armory Scale Agent for Spinnaker and Kubernetes is a lightweight, real-time agent that enables you to scale Kubernetes deployments to limitless clusters and namespaces with minimal latency and minimal load on your clusters. Secure, simplify, and scale your Kubernetes deployments with any Spinnaker or Armory Continuous Deployment instance.
 ---
 ![Proprietary](/images/proprietary.svg)
 
