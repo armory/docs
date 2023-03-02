@@ -9,13 +9,13 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-The Evaluate Artifacts Stage is a plugin for Armory Enterprise. You must have the plugin enabled. For more information, see [Enable the Evaluate Artifacts Stage Plugin]({{< ref "evaluate-artifacts-stage-enable.md" >}}).
+The Evaluate Artifacts Stage is a plugin for Armory Continuous Deployment. You must have the plugin enabled. For more information, see [Enable the Evaluate Artifacts Stage Plugin]({{< ref "evaluate-artifacts-stage-enable.md" >}}).
 
 ## Using the stage
 
 At a high level, using this stage involves the following steps:
 
-1. In the Armory Enterprise UI, navigate to the pipeline you want to modify.
+1. In the Armory Continuous Deployment UI, navigate to the pipeline you want to modify.
 2. Add any parameters you might use within the pipeline. 
 3. Add the stage called **Evaluate Artifacts** stage to your pipeline.
 4. Under the **Evaluate Artifacts Configuration**, select **Add Artifact** to the stage. A window appears where you can enter your artifact definition.

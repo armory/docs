@@ -1,9 +1,9 @@
 ---
-title: v2.17.4 Armory Enterprise Release (Spinnaker Release 1.17.6)
+title: v2.17.4 Armory Continuous Deployment Release (Spinnaker Release 1.17.6)
 toc_hide: true
 date: 2020-01-18
 version: 02.17.04
-description: Release notes for Armory Enterprise v2.17.4
+description: Release notes for Armory Continuous Deployment v2.17.4
 aliases:
   - armoryspinnaker_v2.17.4
 ---

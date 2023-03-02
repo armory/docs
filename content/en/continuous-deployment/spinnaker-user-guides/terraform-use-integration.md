@@ -1,6 +1,6 @@
 ---
 linkTitle: Use the Terraform Integration Stage
-title: Use the Terraform Integration Stage in Armory Enterprise
+title: Use the Terraform Integration Stage in Armory Continuous Deployment
 aliases:
   - /docs/spinnaker/terraform-use-integration/
 description: >
@@ -20,7 +20,7 @@ A Terraform Integration stage performs the following actions when it runs:
 
 ## Requirements
 
-Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. Additionally, you need to store your Terraform code in either a GitHub or BitBucket repo that Armory Enterprise can access. You grant access as part of the enablement process.
+Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. Additionally, you need to store your Terraform code in either a GitHub or BitBucket repo that Armory Continuous Deployment can access. You grant access as part of the enablement process.
 
 For more information, see {{< linkWithTitle "terraform-enable-integration.md">}}.
 

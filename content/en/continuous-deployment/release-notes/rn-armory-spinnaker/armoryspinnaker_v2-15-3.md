@@ -1,10 +1,10 @@
 ---
 
-title: v2.15.3 Armory Enterprise Release (Spinnaker Release 1.15.3)
+title: v2.15.3 Armory Continuous Deployment Release (Spinnaker Release 1.15.3)
 toc_hide: true
 date: 2019-08-30
 version: 02.15.03
-description: Release notes for Armory Enterprise v2.15.3
+description: Release notes for Armory Continuous Deployment v2.15.3
 aliases:
   - armoryspinnaker_v2.15.3
 ---

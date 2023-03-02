@@ -1,6 +1,6 @@
 ---
 linkTitle: Enable the Terraform Integration Stage
-title: Enable the Terraform Integration Stage in Armory Enterprise
+title: Enable the Terraform Integration Stage in Armory Continuous Deployment
 aliases:
   - /spinnaker/terraform_integration/
   - /spinnaker/terraform-configure-integration/
@@ -46,7 +46,7 @@ The Terraform Integration uses Redis to store Terraform logs and plans.
 
 **Note:** The Terraform Integration feature can only be configured to use a password with the default Redis user.
 
-To set/override the Armory Enterprise Redis settings do the following:
+To set/override the Armory Continuous Deployment Redis settings do the following:
 
 In `SpinnakerService` manifest:
 

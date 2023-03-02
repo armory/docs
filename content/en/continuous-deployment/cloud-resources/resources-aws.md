@@ -2,7 +2,7 @@
 title: AWS Resources
 linkTitle: AWS
 description: >
-  Services used by Armory Enterprise when it is deployed on Amazon Web Services - VPC, EKS, IAM, S3, Secrets Manager, Redis, Aurora.
+  Services used by Armory Continuous Deployment when it is deployed on Amazon Web Services - VPC, EKS, IAM, S3, Secrets Manager, Redis, Aurora.
 ---
 
 ## Armory and AWS services

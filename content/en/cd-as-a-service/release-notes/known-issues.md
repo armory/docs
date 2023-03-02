@@ -17,6 +17,6 @@ Define the namespace in your deployment file even if your manifest specifies a n
 
 ## `armory.cloud` config block location
 
-In Armory Enterprise 2.26.3, the location of where you put the `armory.cloud` block as well as an additional `plugins` block when configuring the Armory CD-as-a-Service Spinnaker Plugin is different from other versions. This issue affects both Operator and Halyard based installations of Armory Enterprise.
+In Armory Continuous Deployment 2.26.3, the location of where you put the `armory.cloud` block as well as an additional `plugins` block when configuring the Armory CD-as-a-Service Spinnaker Plugin is different from other versions. This issue affects both Operator and Halyard based installations of Armory Continuous Deployment.
 
 For more information, see the [known issues for the Spinnaker plugin]({{< ref "plugin-spinnaker#armorycloud-block-location" >}}).
