@@ -1,5 +1,5 @@
 ---
-title: Armory Scale Agent for Spinnaker and Kubernetes
+title: Scale Agent for Spinnaker and Kubernetes
 linkTitle: Scale Agent
 no_list: true
 description: >
