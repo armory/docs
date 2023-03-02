@@ -47,7 +47,7 @@
   to = "/plugins/scale-agent/:splat"
   
 [[redirects]]
-  from = "/plugins/*"
+  from = "/continuous-deployment/plugin-guide/*"
   to = "/plugins/:splat"
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
