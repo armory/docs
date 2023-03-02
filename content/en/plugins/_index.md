@@ -9,7 +9,7 @@ description: >
 
 | Plugin | Spinnaker | Armory CD |
 |:-------|:--------|:--------|
-| [Armory CD-as-a-Service]({{< ref "/plugins/cdaas-spinnaker" >}}) | 1.24+ | 2.24+ |
+| [CD-as-a-Service]({{< ref "/plugins/cdaas-spinnaker" >}}) | 1.24+ | 2.24+ |
 | [Kubernetes Custom Resource Status Check]({{< ref "/plugins/plugin-k8s-custom-resource-status" >}}) | 1.27+ | 2.27+ |
 | [Policy Engine]({{< ref "/plugins/policy-engine" >}}) | 1.26+ | 2.26+ |
 | [Scale Agent]({{< ref "/plugins/scale-agent" >}}) | 1.26+ | 2.26+ |
