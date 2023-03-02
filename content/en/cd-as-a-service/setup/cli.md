@@ -38,13 +38,14 @@ docker pull armory/armory-cli
 
 ### Local installation
 
-Install the CLI easily with [Homebrew](https://brew.sh/).
+Install the CLI using [Homebrew](https://brew.sh/):
+
 ```bash
 brew tap armory-io/armory
 brew install armory-cli
 ```
 
-Or install with Armory Version Manager (AVM). The AVM enables you to quickly and easily download, install, and update the CLI. The AVM includes additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
+You can also download, install, and update the CLI using the Armory Version Manager (AVM). The AVM includes additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
 
 You can install the AVM and CLI using a one-line command or you can download the AVM manually.
 
