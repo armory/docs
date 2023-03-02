@@ -11,7 +11,7 @@ aliases:
 
 ## Overview of Dynamic Accounts
 
-Rather than [manually configure]({{< ref "scale-agent/reference/config/agent-options#configure-kubernetes-accounts" >}}) each Scale Agent service with the Kubernetes accounts it should manage, you can use the Dynamic Accounts feature to migrate and manage your accounts. Dynamic Accounts provides:
+Rather than [manually configure]({{< ref "scale-agent/reference/config/service-options#configure-kubernetes-accounts" >}}) each Scale Agent service with the Kubernetes accounts it should manage, you can use the Dynamic Accounts feature to migrate and manage your accounts. Dynamic Accounts provides:
 
 * Manual migration of Clouddriver Kubernetes accounts to the Scale Agent using a REST API
 * Automatic migration of Clouddriver Kubernetes accounts using Clouddriver Account Management
@@ -60,7 +60,7 @@ An account has the following lifecycle states:
   - `DEACTIVATING`: A request to stop watching the account has been sent to the Scale Agent.
 
 
-### Manual migration flow
+## Manual account migration
 
 Migration of an account is the combination of taking the snapshot from a credential source and then activating the accounts.
 
@@ -100,9 +100,27 @@ See {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/migrate-accounts.md" >
 
 The plugin does not inform you of the operation results due to potentially long processing time. The more accounts you send, the longer the operation takes to complete. You can check for an ACTIVE account state in the `clouddriver.kubesvc_accounts` table by querying the database directly or by calling `/agents/kubernetes/accounts/{accountName}`.
 
-### CRUD operations
+## Automatic account migration
 
-Dynamic Accounts provides endpoints for CRUD operations. The following illustrates what happens when you initiate a deletion request.
+>This feature requires you to enable [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/) in Spinnaker.
+
+You can configure the Scale Agent to scan for newly created Clouddriver accounts that match a specified pattern and then migrate those accounts to Scale Agent management. This replaces manual requests to migrate and activate accounts.
+
+## Clouddriver Account Management API request interception
+
+>This feature requires you to enable [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/) in Spinnaker.
+
+The Scale Agent can intercept an account creation requests sent to the [Cloudddriver Account Management API](https://spinnaker.io/docs/setup/other_config/accounts/#account-management-api) `POST <GATE_URL>/credentials` endpoint and add those accounts to Scale Agent management.
+
+The intercept feature provides the following additional functionality:
+
+* **Account modification**: When you send an update request to `PUT <GATE_URL>/credentials`, the Scale Agent checks to see if the account exists in the `clouddriver.kubesvc_accounts` table and if found, updates the account and send the changes to the associated Scale Agent service.
+
+* **Account deletion**: When you send a request to `DELETE <GATE_URL>/credentials`, the Scale Agent checks to see if the account exists in the `clouddriver.kubesvc_accounts` table and if found, deletes the account.
+
+## Account management
+
+Dynamic Accounts provides create, read, update, and delete endpoints for managing accounts stored in `clouddriver.kubesvc_accounts`. The following illustrates what happens when you initiate a deletion request.
 
 
 ```mermaid
@@ -118,7 +136,7 @@ sequenceDiagram
     Plugin->>Plugin: delete in clouddriver.kubesvc_accounts
 ```
 
-See {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/manage-accounts.md" >}} for detailed instructions and examples of create, read, update, and delete endpoints.
+See {{< linkWithTitle "scale-agent/tasks/dynamic-accounts/manage-accounts.md" >}} for detailed instructions and examples.
 
 ## Failures and retry mechanism
 

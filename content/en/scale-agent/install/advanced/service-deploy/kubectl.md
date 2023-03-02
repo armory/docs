@@ -1,14 +1,16 @@
 ---
-title: "Install the Armory Scale Agent Service Using kubectl"
-linkTitle: "Install Service - kubectl"
+title: Deploy the Armory Scale Agent Service Using Kubernetes Manifests
+linkTitle: Kubernetes Manifests
+weight: 5
 description: >
-  Use 'kubectl' to install the Armory Scale Agent for Spinnaker and Kubernetes service in your Kubernetes and Spinnaker or Armory CD environments.
-weight: 30
+  Use Kubernetes manifests to deploy the Armory Scale Agent for Spinnaker and Kubernetes service.
+aliases:
+  - /scale-agent/install/install-agent-service-kubectl/
 ---
 
 ## {{% heading "prereq" %}}
 
-Make sure you have [installed the Clouddriver plugin]({{< ref "install-agent-plugin" >}}).
+* You have installed the Scale Agent plugin and obtained its LoadBalancer address.
 
 
 ## Create a namespace
@@ -175,7 +177,7 @@ data:
 
 **Clouddriver plugin LoadBalancer**
 
-Replace **[LoadBalancer Exposed Address]** with the IP address you obtained in the [Get the LoadBalancer IP address section](#get-the-loadbalancer-ip-address).
+Replace `spin-clouddriver-grpc` with the IP address of your Clouddriver service.
 
 
 ```yaml
@@ -187,7 +189,7 @@ metadata:
 data:
   armory-agent.yaml: |
     clouddriver:
-      grpc: [LoadBalancer Exposed Address]:9091
+      grpc: spin-clouddriver-grpc:9091
       insecure: true
 ```
 
@@ -205,7 +207,7 @@ metadata:
 data:
   armory-agent.yaml: |
     clouddriver:
-      grpc: <LoadBalancer Exposed Address>:9091
+      grpc: spin-clouddriver-grpc:9091
       insecure: true
     kubernetes:
      accounts:
@@ -229,7 +231,7 @@ data:
        noProxy:
 ```
 
-See the [Agent options]({{< ref "agent-options#configuration-options">}}) for field explanations.
+See the [Agent options]({{< ref "scale-agent/reference/config/service-options#configuration-options">}}) for field explanations.
 
 Apply the manifest to your `spin-agent` namespace.
 
@@ -265,7 +267,7 @@ spec:
     spec:
       serviceAccount: spin-sa
       containers:
-      - image: armory/agent-k8s:<version> # must be compatible with your Armory CD version
+      - image: armory/agent-k8s:<version> # must be compatible with your Spinnaker or Armory CD version
         imagePullPolicy: IfNotPresent
         name: armory-agent
         ports:
@@ -310,8 +312,8 @@ Create a pipeline with a `Deploy manifest` stage. You should see your target clu
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}} page if you run into issues.
-* Learn how to {{< linkWithTitle "scale-agent/tasks/agent-monitoring.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Scale Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
-* {{< linkWithTitle "scale-agent/tasks/agent-mtls.md" >}}
-* Read about {{< linkWithTitle "scale-agent/concepts/agent-permissions.md" >}}
+* Learn how to {{< linkWithTitle "scale-agent/tasks/service-monitor.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Scale Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
+* {{< linkWithTitle "scale-agent/tasks/configure-mtls.md" >}}
+* Read about {{< linkWithTitle "scale-agent/concepts/service-permissions.md" >}}
 </br>
 </br>

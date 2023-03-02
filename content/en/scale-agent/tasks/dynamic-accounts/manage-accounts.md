@@ -45,7 +45,7 @@ and **one** of the following:
 Optional fields:
 
 * `zoneId`: (Optional) the `zoneId` for the targeted Agent service, which is by default deploymentName_namespace. This can optionally be supplied during the activation step.
-* You can include any `kubernetes.accounts[]` attribute from the Scale Agent service [config options list]({{< ref "scale-agent/reference/config/agent-options#configuration-options" >}}).
+* You can include any `kubernetes.accounts[]` attribute from the Scale Agent service [config options list]({{< ref "scale-agent/reference/config/service-options#configuration-options" >}}).
 
 **Example**:
 
@@ -234,7 +234,7 @@ Required fields:
 Optional fields:
 
 * `kubeconfigAgent`: you only need to include this if the account is in an **ACTIVE** state and if the target Scale Agent service needs a **different kubeconfig from the original one.**
-* You can include any `kubernetes.accounts[]` attribute from the Scale Agent service [config options list]({{< ref "scale-agent/reference/config/agent-options#configuration-options" >}}).
+* You can include any `kubernetes.accounts[]` attribute from the Scale Agent service [config options list]({{< ref "scale-agent/reference/config/service-options#configuration-options" >}}).
 
 
 **Example**:

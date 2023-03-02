@@ -1,0 +1,7 @@
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        account:
+          storage:
+            enabled: true

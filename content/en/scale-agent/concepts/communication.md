@@ -3,11 +3,13 @@ title: Armory Scale Agent Communication With Clouddriver Instances in Kubernetes
 linkTitle: Clouddriver Communication
 description: >
   Learn how the Armory Scale Agent and Clouddriver instances communicate in a Kubernetes cluster.
+aliases:
+  - /scale-agent/concepts/agent-k8s-clustering/
 ---
 
 ## How the Armory Scale Agent plugin communicates with Clouddriver instances
 
-{{< figure src="/images/armory-agent/k8s-clustering.png"  alt="Kubernetes clustering"  height="75%" width="75%" >}}
+{{< figure src="/images/scale-agent/k8s-clustering.png"  alt="Kubernetes clustering"  height="75%" width="75%" >}}
 
 At startup, Clouddriver registers a watch for the kind `Endpoints` in the Kubernetes cluster where it is running for the namespace where Clouddriver is running. Objects of kind `Endpoints` are automatically generated based on a Kubernetes Service. The plugin knows that there's a Clouddriver Service for routing HTTP traffic to Clouddriver pods (usually named `spin-clouddriver`). This means that the Clouddriver pod needs to mount a Kubernetes Service Account that has permissions to list and watch the kind `Endpoints` in the current namespace. The Agent plugin does the equivalent of these calls at startup:
 

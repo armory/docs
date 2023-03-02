@@ -1,14 +1,14 @@
 ---
-title: "Install the Armory Scale Agent Service Using a Helm Chart"
-linkTitle: "Install Service - Helm"
+title: Deploy the Armory Scale Agent Service Using a Helm Chart
+linkTitle: Helm
 description: >
-  Use a Helm chart to install the Armory Scale Agent service in your Kubernetes and Armory CD environments.
-weight: 30
+  Use a Helm chart to deploy the Armory Scale Agent service to your Kubernetes cluster.
+weight: 10
+aliases:
+  - /scale-agent/install/install-agent-service-helm
 ---
 
 ## Chart overview
-
-This Helm chart replaces installing the Armory Scale Agent using `kubectl`. The chart:
 
 - Exposes all settings for installing the Armory Scale Agent service.
 - Enables you to easily deploy the Armory Scale Agent service with default configuration using a single command.
@@ -21,7 +21,7 @@ This Helm chart replaces installing the Armory Scale Agent using `kubectl`. The 
 
 Ensure you have completed the following steps before you install the Armory Scale Agent using the Helm chart:
 
-1. You have [installed the Clouddriver plugin]({{< ref "install-agent-plugin" >}}).
+1. You have installed the Clouddriver plugin.
 1. You are familiar with [Helm](https://helm.sh/) and have installed v3.6.3+.
 1. You have added or updated the Armory charts repo in your Kubernetes environment.
 
@@ -38,6 +38,7 @@ Ensure you have completed the following steps before you install the Armory Scal
    helm upgrade armory-agent armory-charts/agent-k8s-full
    {{< /prism >}}
 
+1. You are familiar with the various use cases for deploying Scale Agent services to your Kubernetes clusters.
 
 ## Quickstart
 
@@ -107,7 +108,7 @@ Include the `--values` parameter as part of the Helm install command:
 
 ## Custom configuration
 
-If you need greater flexibility, you can override any supported [configuration option]({{< ref "agent-options#configuration-options" >}}), either by setting values using the command line or by setting values in an `armory-agent.yml` file.
+If you need greater flexibility, you can override any supported [configuration option]({{< ref "scale-agent/reference/config/service-options#configuration-options" >}}), either by setting values using the command line or by setting values in an `armory-agent.yml` file.
 
 ### Set config values using the command line
 
@@ -148,7 +149,7 @@ helm install armory-agent armory-charts/agent-k8s-full \
 
 ### The difference between `values.yaml` and `armory-agent.yml`
 
-`armory-agent.yml`: any supported configuration option listed in the Armory Scale Agent Options [configuration option]({{< ref "agent-options#configuration-options" >}}) section.
+`armory-agent.yml`: any supported configuration option listed in the Armory Scale Agent Options [configuration option]({{< ref "scale-agent/reference/config/service-options#configuration-options" >}}) section.
 
 `values.yaml`: environmental values such as proxy settings and image repository.
 
@@ -444,8 +445,8 @@ helm uninstall <release-name> --namespace=<agent-namespace>
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "scale-agent/troubleshooting/_index.md" >}} page if you run into issues.
-* Learn how to {{< linkWithTitle "scale-agent/tasks/agent-monitoring.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Scale Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
-* {{< linkWithTitle "scale-agent/tasks/agent-mtls.md" >}}
-* Read about {{< linkWithTitle "scale-agent/concepts/agent-permissions.md" >}}
+* Learn how to {{< linkWithTitle "scale-agent/tasks/service-monitor.md" >}}. Agent CPU usage is low, but the amount of memory depends on the size of the cluster the Armory Scale Agent is monitoring. The gRPC buffer consumes about 4MB of memory.
+* {{< linkWithTitle "scale-agent/tasks/configure-mtls.md" >}}
+* Read about {{< linkWithTitle "scale-agent/concepts/service-permissions.md" >}}
 </br>
 </br>
