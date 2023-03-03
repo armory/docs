@@ -3,7 +3,7 @@ title: v2.28.1-rc2 Armory Release (OSS Spinnaker™ v1.28.1)
 toc_hide: true
 version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
 description: >
-  Release notes for Armory Enterprise v2.28.1-rc2. A beta release is not meant for installation in production environments.
+  Release notes for Armory Continuous Deployment v2.28.1-rc2. A beta release is not meant for installation in production environments.
 
 ---
 

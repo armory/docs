@@ -1,10 +1,10 @@
 ---
-title: v2.27.1 Armory Enterprise Release LTS (Spinnaker™ v1.27.0)
+title: v2.27.1 Armory Continuous Deployment Release LTS (Spinnaker™ v1.27.0)
 toc_hide: true
 version: 02.27.01
 date: 2021-11-18
 description: >
-  Release notes for Armory Enterprise v2.27.1, a long term support release. The release notes for 2.27.1 include improvements and fixes from the 2.27.0 Beta release.
+  Release notes for Armory Continuous Deployment v2.27.1, a long term support release. The release notes for 2.27.1 include improvements and fixes from the 2.27.0 Beta release.
 ---
 
 ## 2021/11/18 Release Notes
@@ -97,11 +97,11 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
   - Timeout
   - Random route
 
-- Fixed an issue where attributes that involved `health-check-type` parameters were not respected. Armory Enterprise (Spinnaker) now allows single parameters, such as `timeout`, to be set. Note that Armory Enterprise does not perform validation on parameters, so you may encounter runtime exceptions for Cloud Foundry if you provide invalid parameters. <!--BOB-30473-->
+- Fixed an issue where attributes that involved `health-check-type` parameters were not respected. Armory Continuous Deployment (Spinnaker) now allows single parameters, such as `timeout`, to be set. Note that Armory Continuous Deployment does not perform validation on parameters, so you may encounter runtime exceptions for Cloud Foundry if you provide invalid parameters. <!--BOB-30473-->
 
 ### Instance registration
 
-When you log in to the UI, you are prompted to register your Armory Enterprise (Spinnaker) instance. When you register an instance, Armory provides you with a client ID and client secret that you add to your Operator manifest.
+When you log in to the UI, you are prompted to register your Armory Continuous Deployment (Spinnaker) instance. When you register an instance, Armory provides you with a client ID and client secret that you add to your Operator manifest.
 
 Registration is required for certain features to work.
 

@@ -106,7 +106,7 @@ Do not use "we" because readers may not know if they are part of the "we".
 |**Do** |**Do Not**|
 |:------|:---------|
 | Version 1.19.0 includes ... | In version 1.19.0, we have added ...
-| Armory Enterprise provides a new feature for ... | We provide a new feature for ...|
+| Armory Continuous Deployment provides a new feature for ... | We provide a new feature for ...|
 | This guide teaches you how to use Plugins. | In this guide, we are going to learn about Plugins.|
 
 ### Avoid jargon and idioms
@@ -120,7 +120,7 @@ Avoid jargon and idioms to help non-native English speakers understand the conte
 
 ### Avoid statements about the future
 
-If you need to write about an alpha feature, use the `alpha` include tag to denote the Armory Enterprise version. You can also put a note under a heading that identifies it as alpha information. However, do not include statements about when the feature will no longer be alpha, or what will change.
+If you need to write about an alpha feature, use the `alpha` include tag to denote the Armory Continuous Deployment version. You can also put a note under a heading that identifies it as alpha information. However, do not include statements about when the feature will no longer be alpha, or what will change.
 
 `alpha` include example:
 
@@ -271,12 +271,12 @@ Use meaningful variable names that have a context rather than  'foo','bar', and 
 Use a single backtick (\`) to surround inline code in a Markdown document. In Markdown:
 
 ~~~~~~~~~
-Run `hal deploy apply` to deploy Armory Enterprise.
+Run `hal deploy apply` to deploy Armory Continuous Deployment.
 ~~~~~~~~~
 
 renders as:
 
-Run `hal deploy apply` to deploy Armory Enterprise.
+Run `hal deploy apply` to deploy Armory Continuous Deployment.
 
 Use triple backticks to enclose a code block. In Markdown:
 

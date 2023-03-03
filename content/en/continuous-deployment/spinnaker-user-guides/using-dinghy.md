@@ -1,5 +1,5 @@
 ---
-title: Use Pipelines as Code in Armory Enterprise
+title: Use Pipelines as Code in Armory Continuous Deployment
 linkTitle: Use Pipelines as Code
 aliases:
   - /spinnaker/using_dinghy/
@@ -112,9 +112,9 @@ Make sure you specify the following fields so that the Dinghyfile can create a p
 * `.globals`: Configuration used to define top-level variables. See [top-level variables](#top-level-variables) for more information.
 * `.globals.save_app_on_update`:  Flag that allows updates to application properties. See [Application updates](#application-updates) for more information.
 * `.appmetadata`: Key/value pairs where you can define application metadata, such as whether Canary analysis is enabled. You can retrieve a list of potential configs by opening the developer console for your browser when viewing the **Config** page of an application. Look for the possible parameters under the `spinnaker.application.attributes` key. Note that no validation is done for this field.
-* `.appmetadata.dataSources.enabled`:  An array of features that will be displayed on Armory Enterprise.
-* `.appmetadata.dataSources.disabled`: An array of features that will not be displayed on Armory Enterprise.
-* `.appmetadata.customBanners[*]`: An array of banners that will be displayed on Armory Enterprise. Must only have one item checked as enabled.
+* `.appmetadata.dataSources.enabled`:  An array of features that will be displayed on Armory Continuous Deployment.
+* `.appmetadata.dataSources.disabled`: An array of features that will not be displayed on Armory Continuous Deployment.
+* `.appmetadata.customBanners[*]`: An array of banners that will be displayed on Armory Continuous Deployment. Must only have one item checked as enabled.
 * `.appmetadata.cloudProviders[*]`: An array of cloud providers for the application.
 * `.pipelines`: An array of pipelines; each item defines a pipeline within the pipeline. You can have zero, one, or more pipelines in a Dinghyfile.
 * `.pipelines[*].application`: The name of the application where pipelines will be created or updated.  It must match the top-level `.application` field.
@@ -126,7 +126,7 @@ Make sure you specify the following fields so that the Dinghyfile can create a p
 Each pipeline should have a field called `stages`, which is an array of the definitions of the stages that make up the pipeline.  Each stage definition should have these fields:
 
 * `name` (*string*): The name of the stage. This can be any string.
-* `type` (*string*): The type of the stage.  Must match a stage type; the types available depend on Armory Enterprise's configuration. For example, AWS stages can only be used if the AWS provider is enabled.
+* `type` (*string*): The type of the stage.  Must match a stage type; the types available depend on Armory Continuous Deployment's configuration. For example, AWS stages can only be used if the AWS provider is enabled.
 * `refId` (*string*): A locally unique string that identifies the stage.  It is often (but not necessarily) numerical.
 * `requisiteStageRefIds` (*array of strings*):  The list of stages that must complete before this stage runs, referenced by their `refId`.  See the [Stage Dependency Graph](#stage-dependency-graph) section for details.
 

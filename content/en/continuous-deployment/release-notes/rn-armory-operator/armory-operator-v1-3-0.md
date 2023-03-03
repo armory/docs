@@ -24,9 +24,9 @@ The `spinnakeraccounts.spinnaker.io` CRD is no longer supported in this release.
 
 ### Support Diagnostics
 
-This release adds support for the `Support Diagnostics` service for Armory Enterprise.
+This release adds support for the `Support Diagnostics` service for Armory Continuous Deployment.
 
-This feature requires you to have diagnostics enabled within your `SpinnakerService`. For more information, see [Configure Support Diagnostics for Armory Enterprise]({{< ref "diagnostics-configure.md" >}}).
+This feature requires you to have diagnostics enabled within your `SpinnakerService`. For more information, see [Configure Support Diagnostics for Armory Continuous Deployment]({{< ref "diagnostics-configure.md" >}}).
 
 ### Armory Operator
 

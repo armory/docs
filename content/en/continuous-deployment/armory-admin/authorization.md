@@ -10,7 +10,7 @@ description: >
 
 ## Overview of Authentication and Authorization in Spinnaker
 
-Both Armory Enterprise and Spinnaker<sup>TM</sup> provide the same functionality for authentication ("authn")
+Both Armory Continuous Deployment and Spinnaker<sup>TM</sup> provide the same functionality for authentication ("authn")
 and authorization ("authz").  You can find a full reference of how to set up both in the [Spinnaker documentation](https://www.spinnaker.io/setup/security/#security).
 
 ## Authorization &amp; Manual Judgments

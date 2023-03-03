@@ -1,17 +1,17 @@
 ---
-title: v2.24.0 Armory Enterprise Release (Spinnaker™ v1.24.2)
+title: v2.24.0 Armory Continuous Deployment Release (Spinnaker™ v1.24.2)
 toc_hide: true
 version: 02.24.00
 date: 2021-01-21
 description: >
-  Release notes for v2.24.0 Armory Enterprise
+  Release notes for v2.24.0 Armory Continuous Deployment
 ---
 
 ## 2021/01/21 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a previous working version and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-For information about what Armory supports for this version, see the [Armory Enterprise v2.24 compatibility matrix](https://v2-24.docs.armory.io/docs/armory-platform-matrix/).
+For information about what Armory supports for this version, see the [Armory Continuous Deployment v2.24 compatibility matrix](https://v2-24.docs.armory.io/docs/armory-platform-matrix/).
 
 ## Required Halyard or Operator version
 

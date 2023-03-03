@@ -1,17 +1,17 @@
 ---
-title: v2.25.1 Armory Enterprise Release (Spinnaker™ v1.25.3)
+title: v2.25.1 Armory Continuous Deployment Release (Spinnaker™ v1.25.3)
 toc_hide: true
 version: 02.25.01
 date: 2021-12-15
 description: >
-  Release notes for Armory Enterprise 2.25.1
+  Release notes for Armory Continuous Deployment 2.25.1
 ---
 
 ## 2021/12/15 Release Notes
 
-> Note: If you're experiencing production issues after upgrading Armory Enterprise, rollback to a previous working version and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+> Note: If you're experiencing production issues after upgrading Armory Continuous Deployment, rollback to a previous working version and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-For information about what Armory supports for this version, see the [ [Armory Enterprise v2.25 compatibility matrix](https://v2-25.docs.armory.io/docs/armory-enterprise-matrix/).
+For information about what Armory supports for this version, see the [ [Armory Continuous Deployment v2.25 compatibility matrix](https://v2-25.docs.armory.io/docs/armory-enterprise-matrix/).
 
 ## Required Halyard or Operator version
 ​

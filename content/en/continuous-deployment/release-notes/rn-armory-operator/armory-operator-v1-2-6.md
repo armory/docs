@@ -22,7 +22,7 @@ Armory scans the codebase as we develop and release software. For information ab
 
 This release adds support for the `repositoriesRegex` field. Use the field to provide regex that specifies what repositories Clouddriver caches images from. This is useful if you add repos frequently. Any new repo that matches the regex gets cached automatically.
 
-This feature requires Armory Enterprise 2.25.0 or higher. For more information, see [Docker Artifacts]({{< ref "artifacts-docker-connect.md" >}}).
+This feature requires Armory Continuous Deployment 2.25.0 or higher. For more information, see [Docker Artifacts]({{< ref "artifacts-docker-connect.md" >}}).
 
 ### Armory Operator
 
