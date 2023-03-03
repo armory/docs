@@ -100,7 +100,6 @@ You can find a basic recipe for deploying Spinnaker in `recipes/kustomization-os
 
 * Configures MinIO as the persistent storage provider (instead of Redis or cloud storage)
 
-
 ### What this recipe does not do
 
 * Configure Clouddriver or other services to use a SQL backend
