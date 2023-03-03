@@ -2,7 +2,7 @@
 title: Spinnaker Plugins
 linkTitle: Spinnaker Plugins
 description: >
-  This section contains guides for products that extend Spinnaker<sup>TM</sup> and Armory Continuous Deployment functionality.
+  Spinnaker plugins are products that extend Spinnaker<sup>TM</sup> and Armory Continuous Deployment functionality.
 ---
 
 ## Plugin compatibility matrix
