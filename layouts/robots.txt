@@ -1,10 +1,10 @@
 User-agent: *
 
 {{range .Pages}}
-Disallow: /continuous-deployment/plugin-guide/plugin-appname/
-Disallow: /continuous-deployment/plugin-guide/plugin-external-account/
-Disallow: /continuous-deployment/plugin-guide/plugin-iam-authentication/
-Disallow: /continuous-deployment/plugin-guide/cdaas-spinnaker/
+Disallow: /plugins/plugin-appname/
+Disallow: /plugins/plugin-external-account/
+Disallow: /plugins/plugin-iam-authentication/
+Disallow: /cd-as-a-service/plugin-spinnaker/
 Disallow: /continuous-deployment/feature-status/deprecations/pacrd-deprecation/
 Disallow: /continuous-deployment/installation/deployment-reg/
 Disallow: /managed-spin/

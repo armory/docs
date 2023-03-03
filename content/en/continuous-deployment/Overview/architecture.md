@@ -62,7 +62,7 @@ Rosco is the "bakery" service. It is a wrapper around Hashicorp's Packer command
 
 ### Armory Scale Agent for Spinnaker and Kubernetes
 
-The {{< linkWithTitle "scale-agent/_index.md" >}} is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to the Clouddriver service.
+The {{< linkWithTitle "plugins/scale-agent/_index.md" >}} is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to the Clouddriver service.
 
 ### Dinghy
 
@@ -73,7 +73,7 @@ The {{< linkWithTitle "scale-agent/_index.md" >}} is a lightweight, scalable ser
 
 ### Policy Engine
 
-The [Armory Policy Engine]({{< ref "policy-engine" >}}) is designed to allow enterprises more complete control of their software delivery process by providing them with the hooks necessary to perform more extensive verification of their pipelines and processes in Spinnaker. This policy engine is backed by Open Policy Agent(OPA) and uses input style documents to perform validation of pipelines during save time and runtime
+The [Armory Policy Engine]({{< ref "plugins/policy-engine" >}}) is designed to allow enterprises more complete control of their software delivery process by providing them with the hooks necessary to perform more extensive verification of their pipelines and processes in Spinnaker. This policy engine is backed by Open Policy Agent(OPA) and uses input style documents to perform validation of pipelines during save time and runtime
 
 ### Terraformer
 

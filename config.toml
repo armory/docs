@@ -126,9 +126,9 @@ weight = 1
   url = "/continuous-deployment/"
 
 [[menu.main]]
-  name = "Scale Agent"
+  name = "Spinnaker Plugins"
   weight = 4
-  url = "/scale-agent/"
+  url = "/plugins/"
 
 [[menu.main]]
   name = "Support"

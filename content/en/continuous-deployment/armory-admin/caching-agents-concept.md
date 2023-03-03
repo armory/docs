@@ -59,4 +59,4 @@ When using a cache store like Redis that works across multiple Clouddriver insta
 ## Next steps
 
 * {{< linkWithTitle "caching-agents-config.md" >}}
-* If you are using Kubernetes and would like to use a different method for cataloging your Kubernetes infrastructure, see {{< linkWithTitle "scale-agent/_index.md" >}}.
+* If you are using Kubernetes and would like to use a different method for cataloging your Kubernetes infrastructure, see {{< linkWithTitle "plugins/scale-agent/_index.md" >}}.
