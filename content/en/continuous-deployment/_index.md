@@ -3,7 +3,7 @@ title: Armory Continuous Deployment
 weight: 10
 no_list: true
 description: >
-  Guides and release notes for Armory Continuous Deployment products including Armory Continuous Deployment Self-Hosted, Armory Operator, and Armory Scale Agent for Spinnaker and Kubernetes.
+  Guides and release notes for Armory Continuous Deployment Self-Hosted and the Armory Operators.
 ---
 
 ## What is Armory Continuous Deployment?
@@ -24,6 +24,8 @@ The [Armory Operator]({{< ref "armory-operator" >}}) is a Kubernetes Operator th
 
 The open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) provides features to deploy and manage open source Spinnaker.
 
-### Armory Scale Agent for Spinnaker and Kubernetes
+### Plugins for Spinnaker and Armory CD
 
-The {{< linkWithTitle "plugins/scale-agent/_index.md" >}} is a lightweight, scalable service that monitors your Kubernetes infrastructure and streams changes back to Spinnaker's Clouddriver service.
+{{% readfile "/includes/plugins/plugin-compat-matrix.md" %}}
+
+

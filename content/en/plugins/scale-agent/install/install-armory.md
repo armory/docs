@@ -69,14 +69,14 @@ You can find the files that install the Scale Agent in the `spinnaker-kustomize-
 
    In `plugin-config.yml`, check that the version listed is compatible with your Armory CD version. If it isn't, replace with a plugin version that is.
 
-   {{< readfile file="/includes/scale-agent/install/cdsh/plugin-version-snippet.yaml" code="true" lang="yaml" >}}
+   {{< readfile file="/includes/plugins/scale-agent/install/cdsh/plugin-version-snippet.yaml" code="true" lang="yaml" >}}
 
 
 1. (Optional) Disable [Clouddriver Account Management](https://spinnaker.io/docs/setup/other_config/accounts/) if your Armory CD version is earlier than 2.28.
 
    Set `spec.spinnakerConfig.profiles.clouddriver.account.storage.enabled` to `false`.
 
-   {{< readfile file="/includes/scale-agent/install/cdsh/plugin-cam-snippet.yaml" code="true" lang="yaml" >}}
+   {{< readfile file="/includes/plugins/scale-agent/install/cdsh/plugin-cam-snippet.yaml" code="true" lang="yaml" >}}
 
 
 ## Configure the service

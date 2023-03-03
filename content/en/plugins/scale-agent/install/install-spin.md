@@ -159,7 +159,7 @@ io.armory.kubesvc.KubesvcPlugin     :  Starting Kubesvc  plugin...
 
 To expose Clouddriver as a Kubernetes-type LoadBalancer, `kubectl` apply the following manifest:
 
-{{< readfile file="/includes/scale-agent/install/ns-spin/loadbalancer.yaml" code="true" lang="yaml" >}}
+{{< readfile file="/includes/plugins/scale-agent/install/ns-spin/loadbalancer.yaml" code="true" lang="yaml" >}}
 
 >Various cloud providers may require additional annotations for LoadBalancer. Consult your cloud provider's documentation.
 
@@ -198,7 +198,7 @@ The Scale Agent service _can_ run with most features on the [default ServiceAcco
 
 The following manifest creates a ServiceAccount, ClusterRole, and ClusterRoleBinding. Apply the manifest in your `spinnaker` namespace.
 
-{{< readfile file="/includes/scale-agent/install/ns-spin/sa-cr-crb.yaml" code="true" lang="yaml" >}}
+{{< readfile file="/includes/plugins/scale-agent/install/ns-spin/sa-cr-crb.yaml" code="true" lang="yaml" >}}
 
 ### Configure the service
 
@@ -280,7 +280,7 @@ Apply the manifest in your `spinnaker` namespace.
 
 Apply the following manifest in your `spinnaker` namespace:
 
-{{< readfile file="/includes/scale-agent/install/ns-spin/agent-service.yaml" code="true" lang="yaml" >}}
+{{< readfile file="/includes/plugins/scale-agent/install/ns-spin/agent-service.yaml" code="true" lang="yaml" >}}
 
 ### Verify that the plugin and service are communicating
 
