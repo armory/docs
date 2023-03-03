@@ -35,11 +35,11 @@ We conduct load testing when necessary. For instance, we perform load tests in t
 
 - Architectural changes
 - Encounter a new unit of scale
-  - For example, how does Armory Enterprise perform as
+  - For example, how does Armory Continuous Deployment perform as
     - More AWS Accounts are added
     - Number of Cloudwatch metrics increases
     - Increase in Kubernetes namespaces
 
 ### Tuning
 
-When installing Armory Enterprise in a customer environment, because customer environments are unique, we first have to understand the customer's units of scale. From there, we install a Armory Enterprise based on a few profiles we've tested. After Armory Enterprise is installed, we utilize monitoring and metrics in order to tune and scale a Armory Enterprise environment for the customers' units of scale.  See [Armory Enterprise Monitoring Metrics](https://armory.slab.com/posts/mhge9l4u)
+When installing Armory Continuous Deployment in a customer environment, because customer environments are unique, we first have to understand the customer's units of scale. From there, we install an Armory Continuous Deployment instance based on a few profiles we've tested. After Armory Continuous Deployment is installed, we utilize monitoring and metrics in order to tune and scale a Armory Continuous Deployment environment for the customers' units of scale.  See [Armory Continuous Deployment Monitoring Metrics](https://www.notion.so/Spinnaker-Monitoring-Metrics-58793b154f80440e9ab8a9928e31727e?pvs=4)

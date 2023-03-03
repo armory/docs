@@ -15,9 +15,9 @@ For more information on Spring actuators, see the [Monitoring and Management](ht
 <!-- Spinnaker issue discussing management endpoints: https://github.com/spinnaker/spinnaker/issues/3883-->
 {{% /alert %}}
 
-Armory recommends that you monitor your systems by using the [Armory Observability Plugin](https://github.com/armory-plugins/armory-observability-plugin/). This is an open source solution for monitoring Armory Enterprise. The plugin supports the following:
+Armory recommends that you monitor your systems by using the [Armory Observability Plugin](https://github.com/armory-plugins/armory-observability-plugin/). This is an open source solution for monitoring Armory Continuous Deployment. The plugin supports the following:
 
-* Adding Prometheus (OpenMetrics) endpoints to Armory Enterprise pods.
+* Adding Prometheus (OpenMetrics) endpoints to Armory Continuous Deployment pods.
 * Sending data to NewRelic (see the [plugin's README](https://github.com/armory-plugins/armory-observability-plugin)).
 
 The Observability Plugin removes the service name from the metric. This is incompatible with the behavior of the open source Spinnaker monitoring daemon system, which was the default monitoring solution in versions earlier than 2.20 and is now deprecated.

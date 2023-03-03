@@ -1,7 +1,7 @@
 ---
-title: Armory Enterprise Release Note Archive
+title: Armory Continuous Deployment Release Note Archive
 linkTitle: Archive
-description: Archive of Armory Enterprise Release Notes for versions that are no longer supported.
+description: Archive of Armory Continuous Deployment Release Notes for versions that are no longer supported.
 layout: release-notes-archive
 ---
 

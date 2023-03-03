@@ -1,17 +1,17 @@
 ---
-title: v2.26.1 Armory Enterprise Release (Spinnaker™ v1.26.6)
+title: v2.26.1 Armory Continuous Deployment Release (Spinnaker™ v1.26.6)
 toc_hide: true
 version: 02.26.01
 date: 2021-07-22
 description: >
-  Release notes for Armory Enterprise v2.26.1
+  Release notes for Armory Continuous Deployment v2.26.1
 ---
 
 ## 2021/07/22 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a previous working version and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-For information about what Armory supports for this version, see the [Armory Enterprise v2.26 compatibility matrix](https://v2-26.docs.armory.io/docs/feature-status/armory-enterprise-matrix/).
+For information about what Armory supports for this version, see the [Armory Continuous Deployment v2.26 compatibility matrix](https://v2-26.docs.armory.io/docs/feature-status/armory-enterprise-matrix/).
 
 ## Required Halyard or Operator version
 

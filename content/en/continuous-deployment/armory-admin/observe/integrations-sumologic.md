@@ -1,5 +1,5 @@
 ---
-title: Integrate a Sumo Logic Dashboard in Armory Enterprise
+title: Integrate a Sumo Logic Dashboard in Armory Continuous Deployment
 linkTitle: Integrate Sumo Logic
 description:
   Learn how to integrate a Sumo Logic Dashboard using the Armory Operator.

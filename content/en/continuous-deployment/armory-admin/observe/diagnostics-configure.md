@@ -1,5 +1,5 @@
 ---
-title: Configure Support Diagnostics for Armory Enterprise
+title: Configure Support Diagnostics for Armory Continuous Deployment
 linkTitle: Configure Support Diagnostics
 description: >
   Enable Armory Diagnostics so that Armory's Support team can better troubleshoot any issues you encounter.

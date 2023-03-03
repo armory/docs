@@ -1,17 +1,17 @@
 ---
-title: v2.26.0 Armory Enterprise Release (Spinnaker™ v1.26.3)
+title: v2.26.0 Armory Continuous Deployment Release (Spinnaker™ v1.26.3)
 toc_hide: true
 version: 02.26.00
 date: 2021-05-20
 description: >
-  Release notes for Armory Enterprise v2.26.0
+  Release notes for Armory Continuous Deployment v2.26.0
 ---
 
 ## 2021/05/20 Release Notes
 
 > Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a previous working version and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
-For information about what Armory supports for this version, see the [Armory Enterprise v2.26 compatibility matrix](https://v2-26.docs.armory.io/docs/feature-status/armory-enterprise-matrix/).
+For information about what Armory supports for this version, see the [Armory Continuous Deployment v2.26 compatibility matrix](https://v2-26.docs.armory.io/docs/feature-status/armory-enterprise-matrix/).
 
 ## Required Halyard or Operator version
 
@@ -97,7 +97,7 @@ For more information, see [Get Data Points](https://www.dynatrace.com/support/he
 
 * General performance improvements.
 * Improved the resiliency of the Cloud Foundry provider by adding retries when a socket timeout occurs.
-* Armory Enterprise now supports configuration options related to timeouts. To use these timeouts, add the following snippet to `clouddriver-local`.yml (Halyard) or the `cloudfoundry` section of your SpinnakerService manifest (Operator):
+* Armory Continuous Deployment now supports configuration options related to timeouts. To use these timeouts, add the following snippet to `clouddriver-local`.yml (Halyard) or the `cloudfoundry` section of your SpinnakerService manifest (Operator):
 
    ```yaml
    cloudfoundry:
@@ -108,15 +108,15 @@ For more information, see [Get Data Points](https://www.dynatrace.com/support/he
        retries: 3 # Replace with the number of retries you want to use
    ```
 
-- Improved the observability for the Cloud Foundry provider. You can see metrics related to Cloud Foundry through the tool you use for observability into the performance of Armory Enterprise. Look for metrics that start with the following: `cf.okhttp.requests`.
+- Improved the observability for the Cloud Foundry provider. You can see metrics related to Cloud Foundry through the tool you use for observability into the performance of Armory Continuous Deployment. Look for metrics that start with the following: `cf.okhttp.requests`.
 
 ### Performance
 
-Improved start times for air-gapped environments by fixing an issue that caused the `enableDefaultRepositories` config to not work. This led to a situation where air-gapped environments had to wait for the timeout. The config works now. If you set `enableDefaultRepositories` to false, Armory Enterprise no longer attempts to connect to the plugin repositories maintained by the Spinnaker community.
+Improved start times for air-gapped environments by fixing an issue that caused the `enableDefaultRepositories` config to not work. This led to a situation where air-gapped environments had to wait for the timeout. The config works now. If you set `enableDefaultRepositories` to false, Armory Continuous Deployment no longer attempts to connect to the plugin repositories maintained by the Spinnaker community.
 
 ### Plugin framework
 
-The following changes to the Plugin Framework may affect you if you are developing plugins for Armory Enterprise or Spinnaker:
+The following changes to the Plugin Framework may affect you if you are developing plugins for Armory Continuous Deployment or Spinnaker:
 
 - If you depend on Spinnaker jars, you need to change your dependency coordinates from `com.netflix.spinnaker.<service>` to `io.spinnaker.<service>`.
 - When working on Deck, you can now replace the literal `process.env.NODE_ENV` with the current environment variable value. This is useful for libraries such as React that expect this to be set to production or development.
