@@ -133,6 +133,7 @@ generators](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-us
 
 ## {{% heading "nextSteps" %}}
 
-* See the [Manifest Reference]({{< ref "op-manifest-reference" >}}) for configuration options by section.
-* Learn how to [manage]({{< ref op-manage-spinnaker >}}) your Armory CD instance.
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/op-manage-spinnaker.md" >}}
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/op-manage-operator.md" >}}
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/hal-op-migration.md" >}}
 

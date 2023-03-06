@@ -168,3 +168,13 @@ kubectl port-forward svc/spin-gate 8084:8084 -n spinnaker
 ## Help resources
 
 [Spinnaker Slack](https://join.spinnaker.io/) `#kubernetes-operator` channel.
+
+## Advanced configuration
+
+The `spinnaker-patches-repo` has many patches for advanced configuration
+
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/op-manage-spinnaker.md" >}}
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/op-manage-operator.md" >}}
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/hal-op-migration.md" >}}

@@ -1,6 +1,6 @@
 ---
 title: Manage Armory Continuous Deployment using the Operator
-linkTitle: Manage Armory Continuous Deployment
+linkTitle: Manage Armory CD
 weight: 15
 description: >
   Manage, upgrade, or uninstall Armory Continuous Deployment or Spinnaker using the Operator.

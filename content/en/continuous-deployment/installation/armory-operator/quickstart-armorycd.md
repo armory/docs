@@ -52,5 +52,6 @@ If you are installing Armory CD into a cluster running on your laptop, you may h
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "continuous-deployment/installation/armory-operator/op-troubleshooting.md" >}}
-* {{< linkWithTitle "continuous-deployment/installation/armory-operator/install-armorycd.md" >}}
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/op-manage-spinnaker.md" >}}
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/op-manage-operator.md" >}}
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/hal-op-migration.md" >}}
