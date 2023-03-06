@@ -30,21 +30,25 @@
   to = "/scale-agent/release-notes/:splat"
 
 [[redirects]]
-  from = "/armory-enterprise/armory-agent/armory-agent-install/*"
-  to = "/scale-agent/install/:splat"
-
-[[redirects]]
-  from = "/armory-enterprise/armory-agent/*"
-  to = "/scale-agent/"
-
-[[redirects]]
-  from = "/armory-enterprise/plugin-guide/cdaas-spinnaker/"
-  to = "/cd-as-a-service/plugin-spinnaker/"
-  force = true # ensure this always redirects because cdaas-spinnaker does exist
+  from = "/cd-as-a-service/plugin-spinnaker/"
+  to = "/plugins/cdaas-spinnaker/"
+  force = true # ensure this always redirects because cdaas-spinnaker does exist (for users clicking web search result link)
 
 [[redirects]]
   from = "/continuous-deployment/armory-admin/policy-engine/policy-engine-use/*"
-  to = "/continuous-deployment/plugin-guide/policy-engine/use/:splat"
+  to = "/plugins/policy-engine/use/:splat"
+
+[[redirects]]
+  from = "/armory-enterprise/armory-agent/*"
+  to = "/plugins/scale-agent/"
+
+[[redirects]]
+  from = "/scale-agent/*"
+  to = "/plugins/scale-agent/:splat"
+  
+[[redirects]]
+  from = "/continuous-deployment/plugin-guide/*"
+  to = "/plugins/:splat"
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
@@ -54,10 +58,10 @@ package = "@netlify/plugin-sitemap"
   buildDir = "public"
   # make sure you add a comma after each entry in the exclude list except on the last one
   exclude =[
-    './public/continuous-deploymentplugin-guide/plugin-appname/',
-    './public/continuous-deployment/plugin-guide/plugin-external-account/',
-    './public/continuous-deployment/plugin-guide/plugin-iam-authentication/',
-    './public/continuous-deployment/plugin-guide/cdaas-spinnaker/',
+    './public/plugins/plugin-appname/',
+    './public/plugins/plugin-external-account/',
+    './public/plugins/plugin-iam-authentication/',
+    './public/cd-as-a-service/plugin-spinnaker/',
     './public/continuous-deployment/feature-status/deprecations/pacrd-deprecation/',
     './public/continuous-deployment/installation/deployment-reg/',
     './public/managed-spin',

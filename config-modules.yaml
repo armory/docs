@@ -74,9 +74,9 @@ menu:
     - name: Armory CD
       weight: 3
       url: /continuous-deployment/
-    - name: Scale Agent
+    - name: Spinnaker Plugins
       weight: 4
-      url: /scale-agent/
+      url: /plugins/
     - name: Support
       weight: 5
       url: "https://support.armory.io/"

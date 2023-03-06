@@ -1,9 +1,9 @@
 ---
-title: v2.23.0 Armory Enterprise Release (Spinnaker™ v1.23.2)
+title: v2.23.0 Armory Continuous Deployment Release (Spinnaker™ v1.23.2)
 toc_hide: true
 date: 2020-11-20
 version: 02.23.00
-description: Release notes for Armory Enterprise v2.23.0
+description: Release notes for Armory Continuous Deployment v2.23.0
 ---
 
 ## 2020/11/20 Release Notes
@@ -33,7 +33,7 @@ Armory scans the codebase as we develop and release software. For information ab
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 #### Clouddriver resources
 
-There is a known issue with Clouddriver that affects the performance of Armory Enterprise, causing it to consume more resources. This can lead to a situation where pods do not have enough resources to start.
+There is a known issue with Clouddriver that affects the performance of Armory Continuous Deployment, causing it to consume more resources. This can lead to a situation where pods do not have enough resources to start.
 
 {{< include "known-issues/ki-orca-zombie-execution.md" >}}
 {{< include "known-issues/ki-lambda-ui-caching.md" >}}

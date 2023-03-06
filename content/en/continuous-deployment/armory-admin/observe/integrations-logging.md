@@ -1,19 +1,19 @@
 ---
-title: Enable Logging in Armory Enterprise
+title: Enable Logging in Armory Continuous Deployment
 linkTitle: Enable Logging
 description: >
-   Log data about what individual accounts and functions are doing within Armory Enterprise. Push data to your chosen aggregator, including Splunk. Configure Splunk dashboards to display Armory Enterprise logging data.
+   Log data about what individual accounts and functions are doing within Armory Continuous Deployment. Push data to your chosen aggregator, including Splunk. Configure Splunk dashboards to display Armory Continuous Deployment logging data.
 ---
 
 ## Metrics and logging overview
 
-Metrics allow you to investigate the health of your Armory Enterprise system. Armory's [Observability Plugin]({{< ref "observability-configure.md" >}}) provides a good overview of data over time about what is happening in particular services. You can monitor data points such as overall load, number of errors, and connection speeds.
+Metrics allow you to investigate the health of your Armory Continuous Deployment system. Armory's [Observability Plugin]({{< ref "observability-configure.md" >}}) provides a good overview of data over time about what is happening in particular services. You can monitor data points such as overall load, number of errors, and connection speeds.
 
-Logging, on the other hand, is more useful for tracing data about what individual accounts and functions are doing within Armory Enterprise. This data provides an overview on applications and errors and is primarily for auditing purposes. Armory Enterprise captures logging data in the Echo service, so you can configure Echo to send logging data to your data aggregator.
+Logging, on the other hand, is more useful for tracing data about what individual accounts and functions are doing within Armory Continuous Deployment. This data provides an overview on applications and errors and is primarily for auditing purposes. Armory Continuous Deployment captures logging data in the Echo service, so you can configure Echo to send logging data to your data aggregator.
 
 ## {{% heading "prereq" %}}
 
-You have set up a data aggregator with a unique endpoint. You need the endpoint and an authorization token when you enable logging in Armory Enterprise. Documentation for some popular data aggregators:
+You have set up a data aggregator with a unique endpoint. You need the endpoint and an authorization token when you enable logging in Armory Continuous Deployment. Documentation for some popular data aggregators:
 
 * [Create an HTTP Event Collector in Splunk](https://docs.splunk.com/Documentation/Splunk/8.2.4/Data/UsetheHTTPEventCollector)
 * [Datadog Log Collection](https://docs.datadoghq.com/logs/log_collection/?tab=tcp)
@@ -56,7 +56,7 @@ The `SERVICE_URL:PORT` can be HTTPS, which would remove the need for the insecur
 
 ## Verify data flow to your aggregator
 
-You can either wait for events to flow or run a new pipeline to test that Echo is sending logging details to your aggregator. You should now be able to search the Armory Enterprise index and see events coming in. If you don't see any data, Echo's logs may point to the source of the problem.
+You can either wait for events to flow or run a new pipeline to test that Echo is sending logging details to your aggregator. You should now be able to search the Armory Continuous Deployment index and see events coming in. If you don't see any data, Echo's logs may point to the source of the problem.
 
 ## Creating dashboards
 
@@ -86,9 +86,9 @@ If you are using Splunk, you can create a dashboard and then define the dashboar
 
 </details>
 
-### Armory Enterprise platform
+### Armory Continuous Deployment platform
 
-{{< figure src="/images/armory-admin/metrics/dash-ae-platform.png"  alt="Armory Enterprise platform dashboard" >}}
+{{< figure src="/images/armory-admin/metrics/dash-ae-platform.png"  alt="Armory Continuous Deployment platform dashboard" >}}
 
 <details><summary>Show me the JSON</summary>
 
@@ -98,7 +98,7 @@ If you are using Splunk, you can create a dashboard and then define the dashboar
 
 ### Continuous verification
 
-{{< figure src="/images/armory-admin/metrics/dash-continuous-verification.png"  alt="Armory Enterprise platform dashboard" >}}
+{{< figure src="/images/armory-admin/metrics/dash-continuous-verification.png"  alt="Armory Continuous Deployment platform dashboard" >}}
 
 <details><summary>Show me the JSON</summary>
 
@@ -108,7 +108,7 @@ If you are using Splunk, you can create a dashboard and then define the dashboar
 
 ### Compliance center
 
-{{< figure src="/images/armory-admin/metrics/dash-compliance-center.png"  alt="Armory Enterprise platform dashboard" >}}
+{{< figure src="/images/armory-admin/metrics/dash-compliance-center.png"  alt="Armory Continuous Deployment platform dashboard" >}}
 
 <details><summary>Show me the JSON</summary>
 

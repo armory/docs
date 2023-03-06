@@ -10,7 +10,7 @@ description: >
 
 ## Advantages of using an RDMS with Clouddriver
 
-Since Armory Enterprise version 2.5.x (Spinnaker 1.14.x), Clouddriver can store its data (task, infrastructure, etc) in a MySQL-compatible database. Similar to Orca, the main advantage of doing this is to improve performance and remove Redis as a single point of failure.
+Since Armory Continuous Deployment version 2.5.x (Spinnaker 1.14.x), Clouddriver can store its data (task, infrastructure, etc) in a MySQL-compatible database. Similar to Orca, the main advantage of doing this is to improve performance and remove Redis as a single point of failure.
 
 {{< include "db-compat.md" >}}
 

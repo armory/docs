@@ -4,7 +4,7 @@ toc_hide: true
 date: 2023-01-20
 version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
 description: >
-  Release notes for Armory Enterprise v2.27.6-rc2. A beta release is not meant for installation in production environments.
+  Release notes for Armory Continuous Deployment v2.27.6-rc2. A beta release is not meant for installation in production environments.
 
 ---
 

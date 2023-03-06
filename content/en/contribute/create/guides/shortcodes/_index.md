@@ -74,7 +74,7 @@ Renders as:
 
 See the {{< linkWithTitle best-practices.md >}} page...
 
-See this page: {{< linkWithTitle "scale-agent/tasks/service-monitor.md" >}}.
+See this page: {{< linkWithTitle "plugins/scale-agent/tasks/service-monitor.md" >}}.
 
 ### Google suite shortcode
 

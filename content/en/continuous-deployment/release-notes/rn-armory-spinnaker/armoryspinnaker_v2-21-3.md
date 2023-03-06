@@ -1,9 +1,9 @@
 ---
-title: v2.21.3 Armory Enterprise Release (Spinnaker™ v1.21.4)
+title: v2.21.3 Armory Continuous Deployment Release (Spinnaker™ v1.21.4)
 toc_hide: true
 date: 2020-08-05
 version: 02.21.03
-description: Release notes for Armory Enterprise v2.21.3
+description: Release notes for Armory Continuous Deployment v2.21.3
 ---
 
 ## 2020/08/05 Release Notes

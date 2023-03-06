@@ -1,10 +1,10 @@
 ---
-title: v2.27.0 Armory Enterprise Release (Spinnaker™ v1.27.0)
+title: v2.27.0 Armory Continuous Deployment Release (Spinnaker™ v1.27.0)
 toc_hide: true
 version: 02.27.00
 date: 2021-09-03
 description: >
-  Release notes for Armory Enterprise v2.27.0 Beta. A beta release is not meant for installation in production environments.
+  Release notes for Armory Continuous Deployment v2.27.0 Beta. A beta release is not meant for installation in production environments.
 ---
 
 ## 2021/09/30 Release Notes
@@ -42,7 +42,7 @@ Armory scans the codebase as we develop and release software. For information ab
 
 #### Halyard deprecation
 
-Halyard is no longer supported for installing Armory Enterprise 2.27.0 and later. Use the Operator. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
+Halyard is no longer supported for installing Armory Continuous Deployment 2.27.0 and later. Use the Operator. For more information, see [Halyard Deprecation]({{< ref "halyard-deprecation" >}}).
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
@@ -66,7 +66,7 @@ To resolve the issue, set the following property to `false` in your Operator man
 
 ### Armory Agent for Kubernetes
 
-Armory Enterprise 2.27.0 requires an updated version of the Agent Clouddriver Plugin. The minimum plugin version required is `v0.10.0`.
+Armory Continuous Deployment 2.27.0 requires an updated version of the Agent Clouddriver Plugin. The minimum plugin version required is `v0.10.0`.
 
 ### Deployment targets
 

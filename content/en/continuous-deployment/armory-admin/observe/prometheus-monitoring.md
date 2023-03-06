@@ -1,16 +1,16 @@
 ---
-title: Monitor Armory Enterprise with Prometheus
+title: Monitor Armory Continuous Deployment with Prometheus
 linkTitle: Monitor with Prometheus
 description: >
-  Monitor Armory Enterprise using Prometheus and Grafana.
+  Monitor Armory Continuous Deployment using Prometheus and Grafana.
 ---
 
 ## Overview
 
-Armory recommends monitoring the health of Armory Enterprise in every
+Armory recommends monitoring the health of Armory Continuous Deployment in every
 production instance. This document describes how to set up a basic
 [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) stack
-as well as enable monitoring for the Armory Enterprise services.
+as well as enable monitoring for the Armory Continuous Deployment services.
 
 Additional Prometheus and Grafana configuration is necessary to make them
 production-grade, and this configuration is not a part of this document. Also
@@ -20,7 +20,7 @@ Integration service (Terraformer) are not discussed on this page.
 ## {{% heading "prereq" %}}
 
 * You are familiar with Prometheus and Grafana
-* Armory Enterprise is deployed in the `spinnaker` namespace
+* Armory Continuous Deployment is deployed in the `spinnaker` namespace
 * Prometheus and Grafana are deployed in the `monitoring` namespace
 * You have [configured monitoring using the Observability Plugin]({{< ref "observability-configure.md" >}}).
 
@@ -61,10 +61,10 @@ Navigate to `http://localhost:9090/targets`.
 
 ## Grant Prometheus RBAC permissions
 
-There are two steps to configure Prometheus to monitor Armory Enterprise:
+There are two steps to configure Prometheus to monitor Armory Continuous Deployment:
 
 - Add permissions for Prometheus to talk to the Spinnaker namespace
-- Configure Prometheus to discover the Armory Enterprise endpoints
+- Configure Prometheus to discover the Armory Continuous Deployment endpoints
 
 Add permissions for Prometheus by applying the following configuration to your cluster. You can learn more about this process on the
 [Prometheus Operator homepage](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/rbac.md).  
@@ -190,9 +190,9 @@ spec:
     tlsConfig:
       insecureSkipVerify: true
 ```
-## Check for Armory Enterprise targets in Prometheus
+## Check for Armory Continuous Deployment targets in Prometheus
 
-After applying these changes, you should be able to see  Armory Enterprise targets in Prometheus. It may take 3 to 5 minutes for this to show up depending on where Prometheus is in its config polling interval.
+After applying these changes, you should be able to see  Armory Continuous Deployment targets in Prometheus. It may take 3 to 5 minutes for this to show up depending on where Prometheus is in its config polling interval.
 
 ![Prometheus Targets](/images/prometheus-2.png)
 

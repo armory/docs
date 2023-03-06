@@ -65,7 +65,7 @@ In the **Optional** section, copy the contents of IDP metadata and save to file.
 
 ### 1: Create a SAML keystore file
 
->Make sure the Java version used to generate the keystore is the same version used to run Armory Enterprise or Spinnaker.
+>Make sure the Java version used to generate the keystore is the same version used to run Armory Continuous Deployment or Spinnaker.
 
 Generate a keystore and key:
 

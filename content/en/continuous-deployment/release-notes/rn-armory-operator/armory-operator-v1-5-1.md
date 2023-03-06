@@ -18,7 +18,7 @@ No known issues.
 
 ## Highlighted updates
 
-This release fixes the [canary validator issue]({{< ref "armory-operator-v1-4-0#known-issues" >}}) that caused the Armory Enterprise deployment to fail when  `metadataCachingIntervalMS` was in the canary configuration.
+This release fixes the [canary validator issue]({{< ref "armory-operator-v1-4-0#known-issues" >}}) that caused the Armory Continuous Deployment deployment to fail when  `metadataCachingIntervalMS` was in the canary configuration.
 
 In addition to the fix, new functionality has been added that enables users to disable the canary validators by adding `spec.validation.providers.canary: false` to the Operator configuration.
 

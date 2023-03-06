@@ -1,10 +1,10 @@
 ---
-title: v2.24.3 Armory Enterprise Release
+title: v2.24.3 Armory Continuous Deployment Release
 toc_hide: true
 version: 02.24.03
 date: 2021-12-14
 description: >
-  Release notes for Armory Enterprise v2.24.3
+  Release notes for Armory Continuous Deployment v2.24.3
 ---
 
 > 2.24.x is not a supported version.

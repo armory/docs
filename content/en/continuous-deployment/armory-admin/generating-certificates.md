@@ -9,7 +9,7 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-* Make sure you are using the same version of Java that Armory Enterprise is using.
+* Make sure you are using the same version of Java that Armory Continuous Deployment is using.
 * You need a recent version of OpenSSL.
 
 ## Generating self-signed certificate authority
@@ -176,7 +176,7 @@ done
 
 ## Troubleshooting
 
-You may encounter the following error if the version of Java you are using to generate the certificates is not the same version that Armory Enterprise is using:
+You may encounter the following error if the version of Java you are using to generate the certificates is not the same version that Armory Continuous Deployment is using:
 
 {{< prism lang="shell" >}}
 java.io.IOException: Integrity check failed: java.security.NoSuchAlgorithmException: Algorithm HmacPBESHA256 not available

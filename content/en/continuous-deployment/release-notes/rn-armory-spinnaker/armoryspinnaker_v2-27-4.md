@@ -4,7 +4,7 @@ toc_hide: true
 version: 02.27.04
 date: 2022-09-02
 description: >
-  Release notes for Armory Enterprise v2.27.4
+  Release notes for Armory Continuous Deployment v2.27.4
 ---
 
 ## 2022/09/02 Release Notes

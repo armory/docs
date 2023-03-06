@@ -1,10 +1,10 @@
 ---
-title: v2.26.2 Armory Enterprise Release (Spinnaker™ v1.26.6)
+title: v2.26.2 Armory Continuous Deployment Release (Spinnaker™ v1.26.6)
 toc_hide: true
 version: 02.26.02
 date: 2021-09-03
 description: >
-  Release notes for Armory Enterprise v2.26.2
+  Release notes for Armory Continuous Deployment v2.26.2
 ---
 
 ## 2021/09/03 Release Notes
@@ -59,7 +59,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 This release includes the following improvements for git-based artifact providers:
 
 * The GitRepo artifact provider now supports token files. Use the `tokenFile:` (Operator) or `--token-file` (Halyard) parameters to specify a token file.
-* The GitHub, GitLab, and GitRepo artifact providers now support token files that are dynamically updated. The token file is automatically reloaded when Armory Enterprise makes a request.
+* The GitHub, GitLab, and GitRepo artifact providers now support token files that are dynamically updated. The token file is automatically reloaded when Armory Continuous Deployment makes a request.
 
 ### AWS ECS
 
@@ -67,12 +67,12 @@ Resolved an issue where the subnets and server groups were not being cached.
 
 ### AWS Lambda
 
-> These improvements require version 1.0.8 of the AWS Lambda Plugin in addition to Armory Enterprise 2.26.2.
+> These improvements require version 1.0.8 of the AWS Lambda Plugin in addition to Armory Continuous Deployment 2.26.2.
 
 This release includes the following new features and improvements for the Lambda provider:
 
 * Improved cache performance including fixes to cache issues found in 2.24.2
-* New configuration properties that give you greater control over how Armory Enterprise behaves when connection or cache issues occur.
+* New configuration properties that give you greater control over how Armory Continuous Deployment behaves when connection or cache issues occur.
 
 Configure the following properties in your Operator manifest (`spinnakerservice.yml` by default). Note that all these properties are optional and use the default if omitted.
 
