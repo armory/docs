@@ -6,9 +6,9 @@ description: >
   Migrate your Armory Continuous Deployment or Spinnaker installation from Halyard to the Operator.
 ---
 
-{{< include "armory-operator/os-operator-blurb.md">}}
-
 ## {{% heading "prereq" %}}
+
+{{< include "armory-operator/os-operator-blurb.md">}}
 
 You need to decide if you want to overwrite the current Halyard deployment of Armory Continuous Deployment or create a test instance.
 
@@ -20,11 +20,17 @@ The second method is preferred as it allows you to test everything before decomm
 
 ## Migrate to Operator
 
-This guide assumes you want to deploy Armory Continuous Deployment using a single `SpinnakerSerivce.yml` manifest file rather than Kustomize patches.
+This guide assumes you want to deploy Armory Continuous Deployment using a single `SpinnakerService.yml` manifest file rather than Kustomize patches.
 
 The migration process from Halyard to Operator can be completed in 7 steps:
 
-1. [Install the Operator]({{< ref "op-quickstart" >}}).
+1. Deploy the Armory Operator.
+
+   Decide which [Armory Operator release](https://github.com/armory/spinnaker-operator/releases) you need based on the compatibility matrix. 
+
+   {{< include "armory-operator/operator-compat-matrix.md" >}}
+
+   {{< include "armory-operator/op-install-cluster.md" >}}
 1. Export configuration.
 
    Copy the desired profile's content from the `config` file
@@ -49,7 +55,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
 
    Note: `config` is under `~/.hal`
 
-   You can see more details in [`spec.spinnakerConfig.config`]({{< ref "op-config-manifest#specspinnakerconfig" >}}).
+   You can see more details in [`spec.spinnakerConfig.config`]({{< ref "op-manifest-reference#specspinnakerconfig" >}}).
 
 1. Export Armory Continuous Deployment profiles.
 
@@ -76,7 +82,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
            <CONTENT>
    ```
 
-   You can see more details in [`spec.spinnakerConfig.profiles`]({{< ref "op-config-manifest#specspinnakerconfigprofiles" >}}).
+   You can see more details in [`spec.spinnakerConfig.profiles`]({{< ref "op-manifest-reference#specspinnakerconfigprofiles" >}}).
 
 1. Export Armory Continuous Deployment settings.
 
@@ -103,7 +109,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
            <CONTENT>
    ```
 
-   You can see more details in [spec.spinnakerConfig.service-settings]({{< ref "op-config-manifest#specspinnakerconfigservice-settings" >}}).
+   You can see more details in [spec.spinnakerConfig.service-settings]({{< ref "op-manifest-reference#specspinnakerconfigservice-settings" >}}).
 
 1. Export local file references.
 
@@ -171,7 +177,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
      primaryAccount: prod
    ```
 
-   You can see more details in [spec.spinnakerConfig.files]({{< ref "op-config-manifest#specspinnakerconfigfiles" >}}).
+   You can see more details in [spec.spinnakerConfig.files]({{< ref "op-manifest-reference#specspinnakerconfigfiles" >}}).
 
 1. Export Packer template files (if used).
 
@@ -205,9 +211,9 @@ The migration process from Halyard to Operator can be completed in 7 steps:
            <CONTENT>
    ```
 
-   You can see more details in [`spec.spinnakerConfig.files`]({{< ref "op-config-manifest#specspinnakerconfigfiles" >}}).
+   You can see more details in [`spec.spinnakerConfig.files`]({{< ref "op-manifest-reference#specspinnakerconfigfiles" >}}).
 
-1. Validate your Armory configuration if you plan to run the Operator in cluster mode:
+1. Validate your Armory CD configuration if you plan to run the Operator in cluster mode:
 
    ```bash
    kubectl -n <namespace> apply -f <spinnaker service manifest> --dry-run=server

@@ -7,18 +7,9 @@ You can find the Operator's deployment configuration in `spinnaker-operator/depl
 
 1. Get the latest Operator release:
 
-   **Armory Operator** ![Proprietary](/images/proprietary.svg)
-
    ```bash
    mkdir -p spinnaker-operator && cd spinnaker-operator
    bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
-   ```
-
-   **Spinnaker Operator**
-
-   ```bash
-   mkdir -p spinnaker-operator && cd spinnaker-operator
-   bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
    ```
 
 1. Install or update CRDs across the cluster:

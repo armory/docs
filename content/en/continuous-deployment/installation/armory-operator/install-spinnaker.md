@@ -40,12 +40,12 @@ You should familiarize yourself with Kustomize before you create patch files to 
 
 * You are familiar with [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which use custom resources to manage applications and their components.
 * You understand the concept of [managing Kubernetes resources using manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/).
-* You have read how Armory's operators [deploy Spinnaker or Armory CD.]({{< ref "/continuous-deployment/installation/armory-operator#how-the-armory-operator-and-the-spinnaker-operator-work" >}}).
+* You have read how Armory's operator [deploys Spinnaker.]({{< ref "/continuous-deployment/installation/armory-operator#how-the-armory-operator-and-the-spinnaker-operator-work" >}}).
 * You have a cluster with at least least 4 cores and 16GB of RAM available.
 
-### Compatibility matrix
+### Kubernetes compatibility matrix
 
-{{< readfile file="/includes/armory-operator/spin-operator-compat.md" >}}
+{{< readfile file="/includes/armory-operator/operator-compat-matrix.md" >}}
 
 ## Deploy the Spinnaker Operator 
 
@@ -53,7 +53,7 @@ Decide which [Spinnaker Operator release](https://github.com/armory/spinnaker-op
 
 In the following example, replace `<release-version>` with a specific release version or `latest`.
 
-Execute the following to deploy the Spinnaker Operator:
+Execute the following to deploy the Spinnaker Operator in cluster mode:
 
 ```bash
 mkdir -p spinnaker-operator && cd spinnaker-operator
@@ -165,15 +165,6 @@ Expose Gate for the API:
 kubectl port-forward svc/spin-gate 8084:8084 -n spinnaker
 ```
 
-## Advanced config options
+## Help resources
 
-clouddriver SQL
-
- also Clouddriver Account Management
-
-
-loadbalancer to expose spinnaker services??
-
-
-
-## {{% heading "nextSteps" %}}
+[Spinnaker Slack](https://join.spinnaker.io/) `#kubernetes-operator` channel.

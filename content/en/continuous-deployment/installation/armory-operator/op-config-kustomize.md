@@ -4,6 +4,7 @@ linkTitle: Config Using Kustomize
 weight: 5
 description: >
   This guide describes how to configure Armory Continuous Deployment or Spinnaker using Kustomize patches.
+draft: true
 ---
 {{< include "armory-operator/os-operator-blurb.md">}}
 
