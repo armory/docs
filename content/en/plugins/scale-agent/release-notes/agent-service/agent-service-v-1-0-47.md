@@ -18,14 +18,14 @@ Context:
 * Earlier versions of k8s (e.g. 1.18) some optional fields with defaults are expected to be assigned by kubectl, and agent now is able to send those defaults as well. However, it is not recommended to do so, since in SSA not including fields means yielding ownership.
 
 
-###Changes:
+### Changes:
 * ConfigMap and Secrets default to SSA to allow handle large payloads for them; in addition this manifests are immutable so that prevents multiple ownership.
 * All other manifests are ClientSide-Apply by default unless an annotation is set:
   * `agent-k8s.armory.io/serverside-apply: true` will send the payload through SSA. otherwise will use CSA
   * `agent-k8s.armory.io/ssa-manifest-defaults: true` will include missing fields with known defaults (e.g. `containerPort = TCP`) Only necesary for some older k8s cluster versions e.g. 1.18
   * `agent-k8s.armory.io/ssa-clear-managed-fields: true` will clear the field managers
 
-###Add:
+### Add:
 * Per Manifest-Kind configuration:
   * `kubernetes.serverSideApply.kinds[].kind`
     Kind name to override.
