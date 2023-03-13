@@ -580,7 +580,7 @@ strategies:
 
 ##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter`
 
-The `redirectTrafficAfter` steps are conditions for exposing the new version to the `activeService`. The steps are executed in parallel.After each step completes, Armory CD-as-a-Service exposes the new version to the `activeService`.
+The `redirectTrafficAfter` steps are conditions for exposing the new version to the `activeService`. The steps are executed in parallel. After each step completes, Armory CD-as-a-Service exposes the new version to the `activeService`.
 
 ###### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause`
 
