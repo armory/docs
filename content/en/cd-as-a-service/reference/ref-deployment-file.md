@@ -265,6 +265,14 @@ strategies:
             unit: <seconds|minutes|hours>
         - setWeight:
             weight: <integer>
+        - exposeServices:
+            services:
+              - <service 1>
+              - <service 2>
+              - <service n>
+            ttl:
+              duration: <integer>
+              unit: <seconds|minutes|hours>
         - pause:
             untilApproved: true
         - analysis:
@@ -542,6 +550,30 @@ A list of queries that you want to use as part of this `analysis` step. Provide 
 
 All the queries must pass for the step as a whole to be considered a success.
 
+##### `strategies.<strategyName>.canary.steps.exposeServices`
+
+This step allows exposing deployed `Service` resources via temporary, internet facing, randomly generated link for testing purposes. 
+The services must reside within the `Namespace` addressed by given deployment. The exposes services must define a single HTTP(S) port. 
+The link will automatically expire after predefined lifetime. There are no any security measures applied on the exposed links.  
+
+For example, this snippet instructs Armory CD-as-a-Service to create a public URL to the deployed service SVC1 and SVC2 and automatically expire both of them after 2 hours:
+
+{{< prism lang="yaml"  line-numbers="true" >}}
+...
+steps:
+...
+- exposeServices:
+  services:
+  - SVC1
+  - SVC2
+  ttl:
+    duration: 2
+    unit: hours
+{{< /prism >}}
+
+Section `ttl` is optional and if not provided it will default to 5 minutes. Minimum value is 1 minute, maximum is 24 hours.
+The `Service` name must not contain namespace information and in order to succeed, it must exist at the moment step is executed.  
+
 #### Blue/green fields
 
 ##### `strategies.<strategyName>.blueGreen.activeService`
@@ -672,6 +704,30 @@ shutdownOldVersionAfter:
         - <queryName>
         - <queryName>
 {{< /prism >}}
+
+##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.exposeServices`
+
+This step allows exposing deployed `Service` resources via temporary, internet facing, randomly generated link for testing purposes.
+The services must reside within the `Namespace` addressed by given deployment. The exposes services must define a single HTTP(S) port.
+The link will automatically expire after predefined lifetime. There are no any security measures applied on the exposed links.
+
+For example, this snippet instructs Armory CD-as-a-Service to create a public URL to the deployed service SVC1 and SVC2 and automatically expire both of them after 2 hours:
+
+{{< prism lang="yaml"  line-numbers="true" >}}
+...
+redirectTrafficAfter:
+...
+- exposeServices:
+  services:
+  - SVC1
+  - SVC2
+  ttl:
+    duration: 2
+    unit: hours
+{{< /prism >}}
+
+Section `ttl` is optional and if not provided it will default to 5 minutes. Minimum value is 1 minute, maximum is 24 hours.
+The `Service` name must not contain namespace information and in order to succeed, it must exist at the moment step is executed.
 
 ### `analysis.`
 
