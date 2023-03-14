@@ -7,7 +7,7 @@ description: >
 
 ## Overview
 
- Create a temporary public preview link to a deployed service to verify HTTP services after their deployment. The created link is generated with a random domain prefix and automatically expires after a configured time period.
+ Create a temporary public preview link to a deployed service to verify HTTP services after their deployment. The created link is generated with a cryptographically secure domain prefix and automatically expires after a configured time period.
 
 You can use this step in both canary and blue-green deployment strategies.
 
@@ -23,7 +23,7 @@ You can use this step in both canary and blue-green deployment strategies.
 
 ### Customer Portal
 
-The **Resources** section of your Deployment details page displays a clickable link to preview your service. CD-as-a-Service  automatically creates the preview link right after the `exposeServices` step completes - no need to refresh the page. On the link itself there is a tooltip with the approximate remaining lifetime of the preview link. 
+The **Resources** section of your Deployment details page displays a clickable link to preview your service. CD-as-a-Service automatically creates the preview link right after the `exposeServices` step completes - no need to refresh the page. On the link itself there is a tooltip with the approximate remaining lifetime of the preview link. 
 
 CD-as-a-Service deactivates the link after the service preview expires.
 
