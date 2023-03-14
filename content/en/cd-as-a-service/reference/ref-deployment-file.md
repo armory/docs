@@ -269,7 +269,7 @@ strategies:
             services:
               - <service-1>
               - <service-2>
-              - <service-qn>
+              - <service-n>
             ttl:
               duration: <integer>
               unit: <seconds|minutes|hours>
