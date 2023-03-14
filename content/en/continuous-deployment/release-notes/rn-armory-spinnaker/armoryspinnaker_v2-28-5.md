@@ -63,7 +63,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 To make the dynamic timeout available, you need to enable the feature flag in Orca and Deck.
 
-On the Orca side, the feature flag overrides the default value rollback timeout - 5min - with a UI input from the user.
+On the Orca side, the feature flag overrides the default value rollback timeout - 5 min - with a UI input from the user.
 
 ```
 {
