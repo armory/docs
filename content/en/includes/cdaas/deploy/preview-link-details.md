@@ -27,7 +27,7 @@ You can configure multiple `exposeServices` entries, each having a different exp
 
 **Example** 
 
-In this example, the snippet instructs Armory CD-as-a-Service to create a public URL to the deployed services SVC1 and SVC2. Both automatically expire after 2 hours.
+In this example, the snippet instructs Armory CD-as-a-Service to create a public URL to the deployed services service-name-1 and service-name-2. Both automatically expire after 2 hours.
 
 {{< prism lang="yaml"  line-numbers="true" >}}
 ...

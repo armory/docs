@@ -682,7 +682,7 @@ shutdownOldVersionAfter:
       rollForwardMode: <manual|automatic>
       queries:
         - <queryName>
-        - <queryName>
+        - <queryName>`
 {{< /prism >}}
 
 ##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.exposeServices`
