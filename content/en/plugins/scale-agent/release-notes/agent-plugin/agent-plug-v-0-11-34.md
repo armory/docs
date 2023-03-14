@@ -5,4 +5,4 @@ version: 00.11.34
 date: 2023-03-14
 ---
 
-- Fixes the possibility of running into null pointer exceptions when account definition column has no value.docs/setup/other_config/accounts/#enabling-account-management for more information.
+- Fixes the possibility of running into null pointer exceptions when account definition column is empty.
