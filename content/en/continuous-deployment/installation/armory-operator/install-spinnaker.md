@@ -40,7 +40,7 @@ You should familiarize yourself with Kustomize before you create patch files to 
 
 * You are familiar with [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which use custom resources to manage applications and their components.
 * You understand the concept of [managing Kubernetes resources using manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/).
-* You have read how Armory's operator [deploys Spinnaker.]({{< ref "/continuous-deployment/installation/armory-operator#how-the-armory-operator-and-the-spinnaker-operator-work" >}}).
+* You have read how Armory's operator [deploys Spinnaker]({{< ref "/continuous-deployment/installation/armory-operator#how-the-armory-operator-and-the-spinnaker-operator-work" >}}).
 * You have a cluster with at least least 4 cores and 16GB of RAM available.
 
 ### Kubernetes compatibility matrix
@@ -53,11 +53,11 @@ Decide which [Spinnaker Operator release](https://github.com/armory/spinnaker-op
 
 In the following example, replace `<release-version>` with a specific release version or `latest`.
 
-Execute the following to deploy the Spinnaker Operator in cluster mode:
+Execute the following to deploy the Spinnaker Operator in [cluster mode]({{< ref "continuous-deployment/installation/armory-operator#operator-installation-modes" >}}):
 
 ```bash
 mkdir -p spinnaker-operator && cd spinnaker-operator
-bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/<release-version>latest/download/manifests.tgz | tar -xz'
+bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/<release-version>/download/manifests.tgz | tar -xz'
  
 # Install or update CRDs cluster wide
 kubectl apply -f deploy/crds/
@@ -132,7 +132,7 @@ Execute all commands from the root of `spinnaker-kustomize-patches`.
 1. (Optional) Verify the Kustomize build output.
 
    ```bash
-   kubectl kustomize kustomization.yml
+   kubectl kustomize
    ```
 
    This prints out the contents of the manifest file that Kustomize built based on your `kustomization.yml` file.
@@ -149,7 +149,7 @@ Execute all commands from the root of `spinnaker-kustomize-patches`.
    kubectl -n spinnaker get spinsvc spinnaker -w
    ```
 
-## Port forward to expose Spinnaker services locally
+## Expose Spinnaker services
 
 Because the minimum recipe doesn't expose Spinnaker services, you need to `port-forward` to access the Spinnaker UI and API.
 
@@ -164,6 +164,12 @@ Expose Gate for the API:
 ```bash
 kubectl port-forward svc/spin-gate 8084:8084 -n spinnaker
 ```
+
+Alternately, you can follow your cloud provider's guide for publicly exposing an app.
+
+## Access the Spinnaker UI
+
+If you used `port-forward`, you can access the UI at `http://localhost:9000`.
 
 ## Help resources
 
