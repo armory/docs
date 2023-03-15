@@ -5,7 +5,8 @@ version: 01.00.46
 date: 2023-03-08
 ---
 
-Context:
+## Context:
+### Server Side Apply
 * Original customer blocker: Default Client-Side apply is unable to handle some of the configMaps through spinnaker because the manifest starting hitting annotation length hard limits and CSA requires a copy of the previous manifest in the annnoation named `last-applied-configuration`
 * Serverside Apply includes a new structure called field managers under `.metadata.managedFields` which allow to store the same information as last-applied-configuration without relying on annotations. Each field manager tell who set what fields and who can modify them (i.e. end-users, k8s controllers, kubeapi)
 
@@ -17,8 +18,11 @@ Context:
 
 * Earlier versions of k8s (e.g. 1.18) some optional fields with defaults are expected to be assigned by kubectl, and agent now is able to send those defaults as well. However, it is not recommended to do so, since in SSA not including fields means yielding ownership.
 
+### TLS Insecure Changes:
+- Uses the correct value when the `clouddriver.insecure` flag is not included based on the mTLS settings.
 
-### Changes:
+
+### Server Side Apply Changes:
 * ConfigMap and Secrets default to SSA to allow handle large payloads for them; in addition this manifests are immutable so that prevents multiple ownership.
 * All other manifests are ClientSide-Apply by default unless an annotation is set:
   * `agent-k8s.armory.io/serverside-apply: true` will send the payload through SSA. otherwise will use CSA
