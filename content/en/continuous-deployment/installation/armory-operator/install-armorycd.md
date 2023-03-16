@@ -44,9 +44,9 @@ You should familiarize yourself with Kustomize before you create patch files to 
 
 ## Deploy the Armory Operator 
 
-Decide which [Armory Operator release](https://github.com/armory/spinnaker-operator/releases) you need based on the compatibility matrix. Then install the Armory Operator in [cluster mode]()
+Decide which Armory Operator release you need based on the compatibility matrix. Then install the Armory Operator in [cluster mode]({{< ref "continuous-deployment/installation/armory-operator#operator-installation-modes" >}}).
 
-{{< include "armory-operator/op-install-cluster.md" >}}
+{{< include "armory-operator/armory-op-install-cluster.md" >}}
 
 ## Get the repo
 

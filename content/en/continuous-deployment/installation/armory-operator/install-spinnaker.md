@@ -43,47 +43,27 @@ You should familiarize yourself with Kustomize before you create patch files to 
 * You have read how Armory's operator [deploys Spinnaker]({{< ref "/continuous-deployment/installation/armory-operator#how-the-armory-operator-and-the-spinnaker-operator-work" >}}).
 * You have a cluster with at least least 4 cores and 16GB of RAM available.
 
-### Kubernetes compatibility matrix
-
-{{< readfile file="/includes/armory-operator/operator-compat-matrix.md" >}}
 
 ## Deploy the Spinnaker Operator 
 
-Decide which [Spinnaker Operator release](https://github.com/armory/spinnaker-operator/releases) you need based on the compatibility matrix. You can also clone the `spinnaker-operator` repo and use the master branch for the latest development work.
+Decide which Spinnaker Operator release you need based on the compatibility matrix:
 
-In the following example, replace `<release-version>` with a specific release version or `latest`.
+{{< include "armory-operator/operator-compat-matrix.md" >}}
 
-Execute the following to deploy the Spinnaker Operator in [cluster mode]({{< ref "continuous-deployment/installation/armory-operator#operator-installation-modes" >}}):
-
-```bash
-mkdir -p spinnaker-operator && cd spinnaker-operator
-bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/<release-version>/download/manifests.tgz | tar -xz'
- 
-# Install or update CRDs cluster wide
-kubectl apply -f deploy/crds/
-
-# Install operator in namespace spinnaker-operator
-kubectl create ns spinnaker-operator
-kubectl -n spinnaker-operator apply -f deploy/operator/cluster
-```
-
-Verify that the Spinnaker Operator is running before you deploy Spinnaker.
-
-```bash
-kubectl get pods -n spinnaker-operator | grep operator
-```
-
-Output is similar to:
-
-```bash
-spinnaker-operator-79599cbf55-js5pg   2/2     Running   0          159m
-```
+{{< tabpane text=true right=true >}}
+{{< tab header="**Operator Mode**:" disabled=true />}}
+{{% tab header="Cluster" text=true %}}
+{{< include "armory-operator/spin-op-install-cluster.md" >}}
+{{% /tab %}}
+{{% tab header="Basic" text=true %}}
+{{< include "armory-operator/spin-op-install-basic.md" >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 
 ## Get the spinnaker-kustomize-patches repo
 
 {{% include "armory-operator/spin-kust-repo.md" %}}
-
 
 ## Configure Spinnaker
 
@@ -177,7 +157,7 @@ If you used `port-forward`, you can access the UI at `http://localhost:9000`.
 
 ## Advanced configuration
 
-The `spinnaker-patches-repo` has many patches for advanced configuration
+Explore the `spinnaker-patches-repo` for examples of advanced configuration.
 
 ## {{% heading "nextSteps" %}}
 

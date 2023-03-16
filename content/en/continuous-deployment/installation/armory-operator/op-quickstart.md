@@ -24,10 +24,10 @@ the supported combinations of Kubernetes, Operator, and Armory Continuous Deploy
 {{< tabpane text=true right=true >}}
   {{< tab header="**Mode**:" disabled=true />}}
   {{% tab header="Cluster" text=true %}}
-  {{< include "armory-operator/op-install-cluster.md" >}}
+  {{< include "armory-operator/armory-op-install-cluster.md" >}}
   {{% /tab %}}
   {{% tab header="Basic" text=true %}}
-  {{< include "armory-operator/op-install-basic.md" >}}
+  {{< include "armory-operator/armory-op-install-basic.md" >}}
   {{% /tab %}}
 {{< /tabpane >}}
 

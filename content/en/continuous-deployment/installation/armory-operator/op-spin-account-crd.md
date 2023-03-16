@@ -1,7 +1,7 @@
 ---
 title: Spinnaker Accounts CRD
 linkTitle: Spinnaker Accounts CRD
-weight: 50
+weight: 20
 description: >
   Define and manage Kubernetes accounts outside of a manifest file.
 ---

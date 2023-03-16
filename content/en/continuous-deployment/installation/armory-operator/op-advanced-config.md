@@ -1,7 +1,7 @@
 ---
 title: Advanced Operator Configuration
 linkTitle: Advanced Operator Config
-weight: 80
+weight: 20
 description: >
   Learn how to configure the Armory Operator for specialized use cases.
 aliases:

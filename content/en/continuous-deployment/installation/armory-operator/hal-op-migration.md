@@ -30,7 +30,7 @@ The migration process from Halyard to Operator can be completed in 7 steps:
 
    {{< include "armory-operator/operator-compat-matrix.md" >}}
 
-   {{< include "armory-operator/op-install-cluster.md" >}}
+   {{< include "armory-operator/armory-op-install-cluster.md" >}}
 1. Export configuration.
 
    Copy the desired profile's content from the `config` file

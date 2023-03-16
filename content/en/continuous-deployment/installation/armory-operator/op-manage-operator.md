@@ -1,12 +1,45 @@
 ---
-title: Manage Operator
-linkTitle: Manage Operator
-weight: 50
+title: Install or Upgrade the Armory Operator or Spinnaker Operator
+linkTitle: Install/Upgrade Operator
+weight: 20
 description: >
-  Manage, upgrade, or uninstall the Armory Operator.
+  Install, upgrade, or uninstall the Armory Operator or Spinnaker Operator.
 ---
 
 {{< include "armory-operator/os-operator-blurb.md" >}}
+
+## Compatibility matrix
+
+{{< include "armory-operator/operator-compat-matrix.md" >}}
+
+## Install the Armory Operator
+
+Decide which Armory Operator release you need based on the compatibility matrix and then follow the directions for [cluster mode or basic mode]({{< ref "continuous-deployment/installation/armory-operator#operator-installation-modes" >}}).
+
+{{< tabpane text=true right=true >}}
+{{< tab header="**Operator Mode**:" disabled=true />}}
+{{% tab header="Cluster" text=true %}}
+{{< include "armory-operator/armory-op-install-cluster.md" >}}
+{{% /tab %}}
+{{% tab header="Basic" text=true %}}
+{{< include "armory-operator/armory-op-install-basic.md" >}}
+{{% /tab %}}
+{{< /tabpane >}}
+
+## Install the Spinnaker Operator
+
+Decide which Spinnaker Operator release you need based on the compatibility matrix and then follow the directions for [cluster mode or basic mode]({{< ref "continuous-deployment/installation/armory-operator#operator-installation-modes" >}}).
+
+{{< tabpane text=true right=true >}}
+{{< tab header="**Operator Mode**:" disabled=true />}}
+{{% tab header="Cluster" text=true %}}
+{{< include "armory-operator/spin-op-install-cluster.md" >}}
+{{% /tab %}}
+{{% tab header="Basic" text=true %}}
+{{< include "armory-operator/spin-op-install-basic.md" >}}
+{{% /tab %}}
+{{< /tabpane >}}
+
 
 ## Upgrade the Operator
 
@@ -18,18 +51,18 @@ Use the `kubectl replace` command to replace your Operator deployment. See the `
 
    **Armory Operator**
 
-   In the following command, replace `<version>` with the specific version or "latest" for the most recent version.
+   In the following command, replace `<release-version>` with the specific version or "latest" for the most recent version.
 
    ```bash
-   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/download/<version>/manifests.tgz | tar -xz'
+   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/download/<release-version>/manifests.tgz | tar -xz'
    ```
 
    **Spinnaker Operator**
 
-   In the following command, replace `<version>` with the specific version or "latest" for the most recent version.
+   In the following command, replace `<release-version>` with the specific version or "latest" for the most recent version.
 
    ```bash
-   bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/download/<version>/manifests.tgz | tar -xz'
+   bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/download/<release-version>/manifests.tgz | tar -xz'
    ```
 
 1. Update CRDs across the cluster:

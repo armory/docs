@@ -1,6 +1,6 @@
 ---
 title: Errors and Troubleshooting
-weight: 80
+weight: 99
 description: "This guide shows which errors are OK to ignore, how to troubleshoot Operator installation and manifest deployment, and where to ask for help."
 ---
 
