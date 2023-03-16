@@ -8,6 +8,8 @@ date: 2023-02-22
 
 ## 2023/02/22 Release Notes
 
+Upgrade the Operator using `kubectl replace`. See [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}) for details.
+
 ## Security
 
 Armory scans the codebase before releasing software. Contact your Armory representative for information about CVE scans for this release.
