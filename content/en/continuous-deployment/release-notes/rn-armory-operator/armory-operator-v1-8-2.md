@@ -14,7 +14,7 @@ Armory scans the codebase as we develop and release software. For information ab
 
 ## Known issues
 
-No known issues.
+{{< include "known-issues/ki-operator-webhookerror.md" >}}
 
 ## Highlighted updates
 

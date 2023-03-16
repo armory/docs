@@ -14,8 +14,7 @@ Armory scans the codebase as we develop and release software. For information ab
 
 ## Known issues
 
-No known issues.
-
+{{< include "known-issues/ki-operator-webhookerror.md" >}}
 ## Highlighted updates
 
 * Support for using a different Regex engine when structuring ignore patterns -- enabling this feature flag allows for negative lookahead
