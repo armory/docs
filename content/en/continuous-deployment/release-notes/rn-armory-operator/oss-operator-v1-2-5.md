@@ -8,6 +8,9 @@ date: 2021-05-07
 
 ## 2021/05/07 Release Notes
 
+Upgrade the Operator using `kubectl replace`. See [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}) for details.
+
+
 ## Security
 
 Armory scans the codebase as we develop and release software. For information about CVE scans for this release, contact your Armory account representative.
