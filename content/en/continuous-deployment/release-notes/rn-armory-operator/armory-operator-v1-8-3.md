@@ -16,6 +16,8 @@ Armory scans the codebase as we develop and release software. For information ab
 
 Armory Operator may fail to start in some EKS clusters. Please upgrade to Armory Operator v1.8.4.  
 
+{{< include "known-issues/ki-operator-webhookerror.md" >}}
+
 ## Highlighted updates
 
 * Helm chart support for basic-mode installation pattern
