@@ -265,6 +265,14 @@ strategies:
             unit: <seconds|minutes|hours>
         - setWeight:
             weight: <integer>
+        - exposeServices:
+            services:
+              - <service-1>
+              - <service-2>
+              - <service-n>
+            ttl:
+              duration: <integer>
+              unit: <seconds|minutes|hours>
         - pause:
             untilApproved: true
         - analysis:
@@ -542,6 +550,10 @@ A list of queries that you want to use as part of this `analysis` step. Provide 
 
 All the queries must pass for the step as a whole to be considered a success.
 
+##### `strategies.<strategyName>.canary.steps.exposeServices`
+
+{{< include "cdaas/deploy/preview-link-details.md" >}}
+
 #### Blue/green fields
 
 ##### `strategies.<strategyName>.blueGreen.activeService`
@@ -568,7 +580,7 @@ strategies:
 
 ##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter`
 
-The `redirectTrafficAfter` steps are conditions for exposing the new version to the `activeService`. The steps are executed in parallel.After each step completes, Armory CD-as-a-Service exposes the new version to the `activeService`.
+The `redirectTrafficAfter` steps are conditions for exposing the new version to the `activeService`. The steps are executed in parallel. After each step completes, Armory CD-as-a-Service exposes the new version to the `activeService`.
 
 ###### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause`
 
@@ -670,8 +682,12 @@ shutdownOldVersionAfter:
       rollForwardMode: <manual|automatic>
       queries:
         - <queryName>
-        - <queryName>
+        - <queryName>`
 {{< /prism >}}
+
+##### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.exposeServices`
+
+{{< include "cdaas/deploy/preview-link-details.md" >}}
 
 ### `analysis.`
 

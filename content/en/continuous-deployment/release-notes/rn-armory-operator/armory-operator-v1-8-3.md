@@ -8,6 +8,9 @@ date: 2023-01-23
 
 ## 2023-01-23 Release Notes
 
+Upgrade the Operator using `kubectl replace`. See [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}) for details.
+
+
 ## Security
 
 Armory scans the codebase as we develop and release software. For information about CVE scans for this release, contact your Armory account representative.
@@ -15,6 +18,8 @@ Armory scans the codebase as we develop and release software. For information ab
 ## Known issues
 
 Armory Operator may fail to start in some EKS clusters. Please upgrade to Armory Operator v1.8.4.  
+
+{{< include "known-issues/ki-operator-webhookerror.md" >}}
 
 ## Highlighted updates
 

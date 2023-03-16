@@ -6,7 +6,120 @@ description: >
   Examples of how to use the custom Tabs shortcode.
 ---
 
-## Tabs
+## Tabs - Docsy shortcode
+
+Introduced in 2022. https://www.docsy.dev/docs/adding-content/shortcodes/#tabbed-panes
+
+Tabbed panes with included files - **do not** use the Docsy `readfile` shortcode inside the Docsy tabbed pane shortcode! Markdown and HTML do not render correctly.
+
+Examples of including markdown files using the armory/docs `include` shortcode. **Note** the delimiters!
+
+### tab with %, include with %
+
+```go-html-template
+{{</* tabpane text=true right=true >}}
+  {{< tab header="**Mode**:" disabled=true />}}
+  {{% tab header="Cluster" text=true %}}
+  {{% include "armory-operator/op-install-cluster.md" %}}
+  {{% /tab %}}
+  {{% tab header="Basic" text=true %}}
+  {{% include  "armory-operator/op-install-basic.md" %}}
+  {{% /tab %}}
+{{< /tabpane */>}}
+```
+**RENDERED OUTPUT** 
+
+{{< tabpane text=true right=true >}}
+  {{< tab header="**Mode**:" disabled=true />}}
+  {{% tab header="Cluster" text=true %}}
+  {{% include "armory-operator/op-install-cluster.md" %}}
+  {{% /tab %}}
+  {{% tab header="Basic" text=true %}}
+  {{% include  "armory-operator/op-install-basic.md" %}}
+  {{% /tab %}}
+{{< /tabpane >}}
+
+### tab with %,  include with <
+
+```go-html-template
+{{</* tabpane text=true right=true >}}
+  {{< tab header="**Mode**:" disabled=true />}}
+  {{% tab header="Cluster" text=true %}}
+  {{< include "armory-operator/op-install-cluster.md" >}}
+  {{% /tab %}}
+  {{% tab header="Basic" text=true %}}
+  {{< include "armory-operator/op-install-basic.md" >}}
+  {{% /tab %}}
+{{< /tabpane */>}}
+
+```
+
+**RENDERED OUTPUT** 
+
+{{< tabpane text=true right=true >}}
+  {{< tab header="**Mode**:" disabled=true />}}
+  {{% tab header="Cluster" text=true %}}
+  {{< include "armory-operator/op-install-cluster.md" >}}
+  {{% /tab %}}
+  {{% tab header="Basic" text=true %}}
+  {{< include "armory-operator/op-install-basic.md" >}}
+  {{% /tab %}}
+{{< /tabpane >}}
+
+### tab with %, readfile with %
+
+```go-html-template
+{{</* tabpane text=true right=true >}}
+  {{< tab header="**Mode**:" disabled=true />}}
+  {{% tab header="Cluster" text=true %}}
+  {{% readfile file="/includes/armory-operator/op-install-cluster.md" %}}
+  {{% /tab %}}
+  {{% tab header="Basic" text=true %}}
+  {{% readfile file="/includes/armory-operator/op-install-basic.md" %}}
+  {{% /tab %}}
+{{< /tabpane */>}}
+```
+**RENDERED OUTPUT** 
+
+{{< tabpane text=true right=true >}}
+  {{< tab header="**Mode**:" disabled=true />}}
+  {{% tab header="Cluster" text=true %}}
+  {{% readfile file="/includes/armory-operator/op-install-cluster.md" %}}
+  {{% /tab %}}
+  {{% tab header="Basic" text=true %}}
+  {{% readfile file="/includes/armory-operator/op-install-basic.md" %}}
+  {{% /tab %}}
+{{< /tabpane >}}
+
+### tab with %,  readfile with <
+
+```go-html-template
+{{</* tabpane text=true right=true >}}
+  {{< tab header="**Mode**:" disabled=true />}}
+  {{% tab header="Cluster" text=true %}}
+  {{< readfile file="/includes/plugins/scale-agent/api-overview.md" >}}
+  {{% /tab %}}
+  {{% tab header="Basic" text=true %}}
+  {{< readfile file="/includes/armory-operator/op-install-basic.md" >}}
+  {{% /tab %}}
+{{< /tabpane */>}}
+
+```
+
+**RENDERED OUTPUT** 
+
+{{< tabpane text=true right=true >}}
+  {{< tab header="**Mode**:" disabled=true />}}
+  {{% tab header="Cluster" text=true %}}
+  {{< readfile "/includes/plugins/scale-agent/api-overview.md" >}}
+  {{% /tab %}}
+  {{% tab header="Basic" text=true %}}
+  {{< readfile file="/includes/armory-operator/op-install-basic.md" >}}
+  {{% /tab %}}
+{{< /tabpane >}}
+
+
+## Tabs - custom armory/docs shortcode
 <!-- Copied from github.com/kubernetes/website project, which has a Creative Commons Attribution 4.0 International license -->
 
 >This is not the same as the Tabs shortcode included with Docsy (which was created after Armory added its own Tabs shortcode).
@@ -108,7 +221,7 @@ Renders to:
 {{< /tabs >}}
 
 
-## Inserting raw HTML
+### Inserting raw HTML
 
 `rawhtml`
 
@@ -131,7 +244,7 @@ Usage:
 {{< /rawhtml >}}  
 
 
-## Includes with tabs
+### Includes with tabs
 
 Hugo doesn't render the tabs shortcodes when they are embedded in file in the `includes` directory.
 
@@ -144,7 +257,7 @@ Hugo doesn't render the tabs shortcodes when they are embedded in file in the `i
 {{% include "include-tabs.md" %}}
 
 
-## Tabs in a file in the leaf bundle
+### Tabs in a file in the leaf bundle
 
 >**This examples is supposed to render incorrectly**
 
@@ -169,7 +282,7 @@ Hugo doesn't render the tabs shortcodes when they are embedded in file in the `i
 {{< /tabs >}}
 
 
-## Tabs in a partial
+### Tabs in a partial
 
 >**This examples is supposed to render incorrectly**
 
@@ -182,3 +295,5 @@ Hugo doesn't render the tabs shortcodes when they are embedded in file in the `i
 </br></br>
 </br></br>
 </br></br>
+
+
