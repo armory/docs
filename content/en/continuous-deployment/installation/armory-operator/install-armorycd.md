@@ -6,6 +6,7 @@ description: >
   This guide describes how to deploy a basic Armory CD instance using the Armory Operator and Kustomize patches. You can use this instance as a starting point for configuring advanced features.
 aliases:
   - /continuous-deployment/installation/armory-operator/op-config-kustomize.md  
+  - /continuous-deployment/installation/armory-operator/op-quickstart.md
 ---
 
 ## Why use Kustomize patches for Armory CD configuration
@@ -64,19 +65,11 @@ Follow these steps to configure Armory CD:
 ### Choose a `kustomization` file
 
 Before you begin configuring Armory CD, you need to choose or create a `kustomization.yml` file. The `kustomization.yml` specifies the namespace for Armory CD, a list of Kubernetes resources, and a list of patch files to
-merge into the `spinnakerservice.yml` manifest file. There are several example kustomization files in the `recipes` directory. 
-
-The `kustomization.yml` file in the project root is a symlink to `recipes/kustomization-all.yml`. Choose a recipe that most closely resembles your use case and update the symlink:
-
-```bash
- ln -vfns ./recipes/<your-chosen-kustomization>.yml kustomization.yml
- ```
-
-Alternately, you can delete the symlink, move your desired Kustomization file from `recipes` to the top-level directory, and rename the file to `kustomization.yml`.
+merge into the `spinnakerservice.yml` manifest file. 
 
 #### Kustomization file breakdown
 
-The `recipes/kustomization-minimum.yml` file contains the following:
+The `recipes/kustomization-minimum.yml` recipe contains the bare minimum that you need to install Armory CD.
 
 {{< github repo="armory/spinnaker-kustomize-patches" file="/recipes/kustomization-minimum.yml" lang="yaml" options="" >}}
 
@@ -92,6 +85,17 @@ prevent the accidental deletion of the bucket when calling `kubectl delete -k
 .`.
 {{% /alert %}}
 
+There are several example kustomization files in the `recipes` directory. `kustomization-all.yml` lists the most common options. Most are commented out, so be sure to uncomment the features and software you want to install.
+
+#### Set the kustomization file
+
+The `kustomization.yml` file in the project root is a symlink to `recipes/kustomization-all.yml`, which contains patches for If you don't want to use `kustomization-all.yml`, choose a recipe that most closely resembles your use case and update the symlink:
+
+```bash
+ ln -vfns ./recipes/<your-chosen-kustomization>.yml kustomization.yml
+ ```
+
+Alternately, you can delete the symlink, move your desired Kustomization file from `recipes` to the top-level directory, and rename the file to `kustomization.yml`.
 
 ### Set the Armory CD version
 
@@ -119,8 +123,7 @@ Explore the patches in various folders to see if there are any that you want to 
 
 ### Secrets
 
-If you want to store Spinnaker secrets in Kubernetes, you should use Kustomize
-generators](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kustomize/).
+If you want to store Spinnaker secrets in Kubernetes, you should use [Kustomize generators](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kustomize/). See the `spinnaker-kustomize-patches/secrets` directory for examples.
 
 ## Deploy Armory CD
 

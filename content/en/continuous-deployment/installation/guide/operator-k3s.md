@@ -12,7 +12,7 @@ description: >
 
 This guide walks you through using the [Armory Operator]({{< ref "armory-operator" >}}) to install Armory Continuous Deployment in a [Lightweight Kubernetes (K3s)](https://k3s.io/) instance running on an AWS EC2 instance. The environment is for POCs and development only. It is **not** meant for production environments.
 
-See {{< linkWithTitle "continuous-deployment/installation/armory-operator/quickstart-armorycd.md" >}} for how to install Armory Continuous Deployment using the Armory Operator in a regular Kubernetes environment.
+See {{< linkWithTitle "continuous-deployment/installation/armory-operator/install-armorycd.md" >}} for how to install Armory Continuous Deployment using the Armory Operator in a regular Kubernetes environment.
 
 If you want to install open source Spinnaker<sup>TM</sup>, use the open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) instead of the Armory Operator.
 

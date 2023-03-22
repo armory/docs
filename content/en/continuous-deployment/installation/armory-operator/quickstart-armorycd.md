@@ -6,7 +6,10 @@ description: >
   Use an "all-in-one" script to install a basic Armory Continuous Deployment instance for evaluation.
 aliases:
   - /continuous-deployment/installation/armory-operator/op-quickstart.md
+draft: true
 ---
+
+<!-- the deploy.sh script doesn't work but leaving this here for reference -->
 
 ## Quickstart overview 
 
@@ -88,10 +91,11 @@ If you are installing Armory CD into a cluster running on your laptop, you may h
 
 {{< include "armory-operator/armory-op-install-cluster.md" >}}
 
-After the Armory Operator has successfully deployed, you can then run the `deploy` script, passing in a parameter to not install the Armory Operator:
+After the Armory Operator has successfully deployed, set you can then run the `deploy` script, passing in a parameter to not install the Armory Operator:
 
 ```bash
-./deploy.sh SPIN_OP_DEPLOY=0
+export SPIN_OP_DEPLOY=0
+./deploy.sh 
 ```
 {{% /tab %}}
 {{< /tabpane >}}

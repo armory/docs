@@ -113,9 +113,7 @@ spec:
 
 ### Verify resources
 
-Read each file linked to from your chosen `kustomization.yml` file section to
-make sure that the Kubernetes resource as configured works with your
-environment.
+Read each file linked to from your chosen `kustomization.yml` file section to make sure that the Kubernetes resource as configured works with your environment.
 
 ### Verify patches
 
