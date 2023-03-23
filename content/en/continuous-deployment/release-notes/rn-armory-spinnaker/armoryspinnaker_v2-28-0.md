@@ -10,7 +10,7 @@ description: >
 
 ## 2022/07/20 Release Notes
 
-> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "op-manage-spinnaker#rollback-armory-enterprise" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a [previous working version]({{< ref "manage-armorycd#rollback-armory-enterprise" >}}) and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Operator version
 

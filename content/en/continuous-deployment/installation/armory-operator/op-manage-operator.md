@@ -1,7 +1,7 @@
 ---
 title: Install or Upgrade the Armory Operator or Spinnaker Operator
 linkTitle: Install/Upgrade Operator
-weight: 20
+weight: 10
 description: >
   Install, upgrade, or uninstall the Armory Operator or Spinnaker Operator.
 ---
@@ -65,13 +65,13 @@ Use the `kubectl replace` command to replace your Operator deployment. See the `
    bash -c 'curl -L https://github.com/armory/spinnaker-operator/releases/download/<release-version>/manifests.tgz | tar -xz'
    ```
 
-1. Update CRDs across the cluster:
+1. Update CRDs across the cluster using `kubectl replace`:
 
    ```bash
    kubectl replace -f deploy/crds/
    ```
 
-1. Update the Operator:
+1. Update the Operator using `kubectl replace`:
 
    ```bash
    kubectl -n spinnaker-operator replace -f deploy/operator/cluster

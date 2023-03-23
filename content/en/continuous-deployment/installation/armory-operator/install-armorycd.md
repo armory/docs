@@ -1,7 +1,7 @@
 ---
 title: Install Armory CD using the Armory Operator and Kustomize patches
 linkTitle: Install Armory CD
-weight: 5
+weight: 1
 description: >
   This guide describes how to deploy a basic Armory CD instance using the Armory Operator and Kustomize patches. You can use this instance as a starting point for configuring advanced features.
 aliases:
@@ -17,9 +17,11 @@ aliases:
 
 1. Meet the requirements listed in the [{{% heading "prereq" %}}](#before-you-begin) section.
 1. [Deploy the Armory Operator](#deploy-the-spinnaker-operator).
-1. [Get the repo](#get-the-repo) that contains the Kustomize patches.
+1. [Get the spinnaker-kustomize-patches repo](#get-the-spinnaker-kustomize-patches-repo) that contains the Kustomize patches.
 1. [Configure Armory CD](#configure-armory-cd).
 1. [Deploy Armory CD](#deploy-armory-cd).
+1. [Port-forward](#port-forward-to-expose-spinnaker-services-locally) to expose Spinnaker services.
+1. Explore [advanced config options](#advanced-config-options)
 
 ## {{% heading "prereq" %}}
 
@@ -49,7 +51,7 @@ Decide which Armory Operator release you need based on the compatibility matrix.
 
 {{< include "armory-operator/armory-op-install-cluster.md" >}}
 
-## Get the repo
+## Get the spinnaker-kustomize-patches repo
 
 {{% include "armory-operator/spin-kust-repo.md" %}}
 
@@ -117,17 +119,39 @@ Read each file linked to from your chosen `kustomization.yml` file section to ma
 
 ### Verify patches
 
-Read each file linked to in the `patchesStrategicMerge` section. You may need to update each patch configuration with values specific to you and your environment. For example, the `kustomization-quickstart.yml` file described in the [Choose a `kustomization` file](#choose-a-kustomization-file) section links to `accounts/docker/patch-dockerhub.yml`. You need to update that patch file with your own DockerHub credentials.
+Read each file linked to in the `patchesStrategicMerge` section of the kustomization file that you choose. You may need to update each patch configuration with values specific to you and your environment. For example, the `kustomization-quickstart.yml` file described in the [Choose a `kustomization` file](#choose-a-kustomization-file) section links to `accounts/docker/patch-dockerhub.yml`. You need to update that patch file with your own DockerHub credentials.
 
 Explore the patches in various folders to see if there are any that you want to use. Remember to list additional patches in the `patchesStrategicMerge` section of your `kustomization.yml` file.
 
 ### Secrets
 
-If you want to store Spinnaker secrets in Kubernetes, you should use [Kustomize generators](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kustomize/). See the `spinnaker-kustomize-patches/secrets` directory for examples.
+If you want to store Armory CD secrets in Kubernetes, you should use a [Kustomize `secretGenerator`](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kustomize/) and define your secrets in the kustomization file for your component. 
 
 ## Deploy Armory CD
 
 {{% include "armory-operator/deploy-spin-kust.md" %}}
+
+## Expose Spinnaker services
+
+If you haven't included a patch to expose Armory CD services, you need to `port-forward` to access the Armory CD UI and API.
+
+Expose Deck for the UI:
+
+```bash
+kubectl port-forward svc/spin-deck 9000:9000 -n spinnaker
+```
+
+Expose Gate for the API:
+
+```bash
+kubectl port-forward svc/spin-gate 8084:8084 -n spinnaker
+```
+
+## Advanced configuration
+
+<!-- this is lame. expand later -->
+
+`spinnaker-patches-repo/recipes/kustomization-all.yml` contains many examples of advanced configuration.
 
 ## Help resources
 
@@ -136,7 +160,7 @@ If you want to store Spinnaker secrets in Kubernetes, you should use [Kustomize 
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "continuous-deployment/installation/armory-operator/op-manage-spinnaker.md" >}}
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/manage-armorycd.md" >}}
 * {{< linkWithTitle "continuous-deployment/installation/armory-operator/op-manage-operator.md" >}}
 * {{< linkWithTitle "continuous-deployment/installation/armory-operator/hal-op-migration.md" >}}
 

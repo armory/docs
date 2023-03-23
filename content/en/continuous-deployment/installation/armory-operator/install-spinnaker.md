@@ -76,20 +76,22 @@ You can find a basic recipe for deploying Spinnaker in `recipes/kustomization-os
 * The `patchesStrategicMerge` [section](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesstrategicmerge/) contains links to files that contain partial resource definitions. Kustomize uses these patch files to overwrite sections of components or resources, such as the `SpinnakerService` definition.
 * The `patches` [section](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/) is a list of files that Kustomize executes to add or replace fields on resources. The `utilities/switch-to-oss.yml` patch instructs Kustomize to replace `apiVersion: spinnaker.armory.io/v1alpha2` with `apiVersion: spinnaker.io/v1alpha2` in the SpinnakerService manifest.
 
-### What this recipe does
+**What this recipe does**
 
 * Configures MinIO as the persistent storage provider (instead of Redis or cloud storage)
 
-### What this recipe does not do
+**What this recipe does not do**
 
 * Configure Clouddriver or other services to use a SQL backend
 * Configure a LoadBalancer to expose Spinnaker services
 
-See [Advanced config options](#advanced-config-options) for how to modify your kustomization file.
-
 ### Spinnaker version
 
 To change the Spinnaker version, update `spec.spinnakerConfig.config.version` in `core/patches/oss-version.yml`.
+
+### Secrets
+
+If you want to store Armory CD secrets in Kubernetes, you should use a [Kustomize `secretGenerator`](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kustomize/) and define your secrets in the kustomization file for your component. 
 
 ## Deploy Spinnaker
 
@@ -157,10 +159,17 @@ If you used `port-forward`, you can access the UI at `http://localhost:9000`.
 
 ## Advanced configuration
 
-Explore the `spinnaker-patches-repo` for examples of advanced configuration.
+<!-- this is lame. expand later -->
+
+`spinnaker-patches-repo/recipes/kustomization-all.yml` contains many examples of advanced configuration.
+
+## Help resources
+
+* Use the [Spinnaker Slack](https://join.spinnaker.io/) `#kubernetes-operator` or `#armory` channel.
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/op-troubleshooting.md" >}}
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "continuous-deployment/installation/armory-operator/op-manage-spinnaker.md" >}}
+* {{< linkWithTitle "continuous-deployment/installation/armory-operator/manage-spinnaker.md" >}}
 * {{< linkWithTitle "continuous-deployment/installation/armory-operator/op-manage-operator.md" >}}
 * {{< linkWithTitle "continuous-deployment/installation/armory-operator/hal-op-migration.md" >}}
