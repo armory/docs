@@ -25,6 +25,9 @@ Each link automatically expires after the configured amount of time. The exposed
 
 You can configure multiple `exposeServices` entries, each having a different expiration time.
 
+The links to the exposed services would be available for further use in webhook's body template. 
+The naming convention for such links is following `armory.preview-<service-name-1>`. 
+
 **Example** 
 
 In this example, the snippet instructs Armory CD-as-a-Service to create a public URL to the deployed services service-name-1 and service-name-2. Both automatically expire after 2 hours.

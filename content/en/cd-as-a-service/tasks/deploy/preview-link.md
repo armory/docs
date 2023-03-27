@@ -36,6 +36,12 @@ You can find the `exposeServices` step in the strategy's `steps` collection. The
 * `previews`: map of `service-name:URL` objects
 * `expiresAtIso8601`: the absolute timestamp of the preview link's expiration
 
+### Webhook context
+
+After the preview link is created, you can use it in context of the webhook action for current strategy. The naming convention for the links is following: `armory.preview-<service name>`. 
+
+In case of long-running deployments do consider choosing proper TTL for the service, so the link passed to the webhook is not already expired. 
+
 ## Example
 
 If you configure the following in a canary strategy:
@@ -59,3 +65,22 @@ steps:
 If you query the REST API endpoint, you see results similar to:
 
 {{< figure src="/images/cdaas/tasks/deploy/exposeServices-API.png" alt="The preview link in the REST API results" >}}
+
+To reference exposed service in your webhook, consider following step in your strategy:
+
+{{< prism lang="yaml"  line-numbers="true" >}}
+...
+steps:
+...
+- runWebhook:
+    name: call-service
+...
+webhooks:
+- name: call-service
+  ... other webhook configuration properties
+  bodyTemplate:
+  inline: >-
+  {
+  "preview-link": "{{armory.preview-sample-app-svc}}"
+  }
+  {{< /prism >}}
