@@ -25,8 +25,8 @@ Each link automatically expires after the configured amount of time. The exposed
 
 You can configure multiple `exposeServices` entries, each having a different expiration time.
 
-The links to the exposed services would be available for further use in webhook's body template. 
-The naming convention for such links is following `armory.preview-<service-name-1>`. 
+The links to the exposed services would be available for further use in webhooks. 
+The naming convention for such links is following `armory.preview.<service-name-1>`. 
 
 **Example** 
 

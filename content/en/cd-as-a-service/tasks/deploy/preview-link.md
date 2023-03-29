@@ -38,7 +38,7 @@ You can find the `exposeServices` step in the strategy's `steps` collection. The
 
 ### Webhook context
 
-After the preview link is created, you can use it in context of the webhook action for current strategy. The naming convention for the links is following: `armory.preview-<service name>`. 
+After the preview link is created, you can use it in context of the webhook action for current strategy. The naming convention for the links is following: `armory.preview.<service name>`. 
 
 In case of long-running deployments do consider choosing proper TTL for the service, so the link passed to the webhook is not already expired. 
 
@@ -81,6 +81,6 @@ webhooks:
   bodyTemplate:
   inline: >-
   {
-  "preview-link": "{{armory.preview-sample-app-svc}}"
+  "preview-link": "{{armory.preview.sample-app-svc}}"
   }
   {{< /prism >}}
