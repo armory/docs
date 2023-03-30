@@ -460,6 +460,9 @@ Armory supports the following variables out of the box:
 - `armory.environmentName`
 - `armory.replicaSetName`
 
+If your deployment strategy contains `exposeServices` step, all exposed service preview links are available as part of the `armory.preview` sub-context. 
+For example, if you create service preview for service `my-http-service` you could access it using `armory.preview.my-http-service`.
+
 You can supply your own variables by adding them to this section. When you use them in your query, include the `context` prefix. For example, if you create a variable named `owner`, you would use `context.owner` in your query.
 
 For information about writing queries, see the [Query Reference Guide]({{< ref "ref-queries.md" >}}).
@@ -798,6 +801,9 @@ Armory supports the following variables out of the box:
 - `armory.applicationName`
 - `armory.environmentName`
 - `armory.replicaSetName`
+
+If your deployment strategy contains `exposeServices` step, all exposed service preview links are available as part of the `armory.preview` sub-context.
+For example, if you create service preview for service `my-http-service` you could access it using `armory.preview.my-http-service`.
 
 You can supply your own variables by adding them to the `strategies.<strategyName>.<strategy>.steps.analysis.context`. When you use them in your query, include the `context` prefix. For example, if you create a variable named `owner`, you would use `{{context.owner}}` in your query.
 
