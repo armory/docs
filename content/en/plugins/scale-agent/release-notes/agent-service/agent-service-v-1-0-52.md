@@ -6,6 +6,6 @@ version: 01.00.52
 
 Changes:
 
-- Send amount of replicas on registration; this need a service account with permissions to list pods, replicaSets, and deployments attached to agent pod
-- Add retry mechanism when 409 conflict error on deploy operation; it is enable just if  is set to true and  is greater than 0
+- Sends amount of replicas on registration; A service account with permissions to list pods, replicaSets, and deployments is required.
+- Adds retry mechanism on 409 conflict errors on deploy operation; `kubernetes.retries.enabled` must be true and `kubernetes.retries.maxRetries` greater than 0.
 
