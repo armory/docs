@@ -2,7 +2,7 @@ Settings|Type|Default|Description
 <code>clouddriver.auth.token</code>|string|none|<span class='badge badge-primary'>0.3.0+</span> Optional bearer token added to each request back to the endpoint.
 <code>clouddriver.auth.tokenCommand.command</code><br><code>clouddriver.auth.tokenCommand.args</code><br><code>clouddriver.auth.tokenCommand.format</code><br><code>clouddriver.auth.tokenCommand.refreshIntervalSeconds</code>|string<br>[]string<br>string<br>integer|none<br>none<br>[]<br>0|<span class='badge badge-primary'>0.3.0+</span> Allows to invoke a command every <code>refreshIntervalSeconds</code> seconds that outputs either the token (<code>format</code> is <code>raw</code>) or a JSON object with an attribute of <code>token</code> if <code>format</code> is <code>json</code> or left empty. <code>args</code> is the optional list of parameters to the command.
 <code>clouddriver.grpc</code>|string (hostname)|<code>spin-clouddriver-grpc:9091</code>|Hostname of the Clouddriver or gRPC proxy endpoint.
-<code>clouddriver.keepAliveHeartbeatSeconds</code>|integer|none|<span class='badge badge-primary'>0.6.9+</span>Optional. How often the gPRC keep alive message is sent.<br>- Not set: (default) sent every 60 seconds.<br>- 0: not sent.<br>- Any <code>n</code> value greater than 0: sent every <code>n</code> seconds. 
+<code>clouddriver.keepAliveHeartbeatSeconds</code>|integer|none|<span class='badge badge-primary'>0.6.9+</span>Optional. How often the gPRC keep alive message is sent.<br>- Not set: (default) sent every 60 seconds.<br>- 0: not sent.<br>- Any <code>n</code> value greater than 0: sent every <code>n</code> seconds.
 <code>clouddriver.keepAliveTimeOutSeconds</code>|integer|none|Timeout before closing the grpc connection.
 <code>clouddriver.insecure</code>|boolean|true|Set to false, if you are connecting to a TLS server.
 <code>clouddriver.noProxy</code>|boolean|false|<span class='badge badge-primary'>0.3.1+</span> Ignore the <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, and <code>NO_PROXY</code> environment variables when connecting back to the control plane (Armory Continuous Deployment).
@@ -43,6 +43,12 @@ Settings|Type|Default|Description
 <code>logging.file</code>|string|stdout if not defined|File to save logs to.
 <code>logging.format</code>|string|text|Format for the Agent logs. Can be <code>text</code> or <code>json</code>
 <code>logging.level</code>|string|<code>INFO</code>|Log level. Can be any of (case insensitive):<br><code>panic</code>, <code>fatal</code> , <code>error</code>, <code>warn</code> (or <code>warning</code>),  <code>info</code>, <code>debug</code>, <code>trace</code>.
+<code>logging.multiWrite</code>|boolean|false|When set to true, logs will be printed to stdout and saved to a file simultaneously.
+<code>logging.maxSizeMb</code>|integer|1|Max size of each log file.
+<code>logging.maxAgeDays</code>|integer|10|How many days to keep the log file backup.
+<code>logging.maxBackups</code>|integer|10|Max number of log file backups.
+<code>logging.localTime</code>|boolean|true|when set to true the timestamps will have local time, otherwise UTC.
+<code>logging.compress</code>|boolean|false|when set to true files are compressed as tar gz.
 <code>pprof.enabled</code>|boolean|false|Enable pprof endpoint. Useful for troubleshooting, slowness, memory leaks, and more!<br><a href='https://github.com/google/pprof/blob/master/doc/README.md' target='new'>pprof README</a>.
 <code>pprof.port</code>|integer|6060|Port on which to respond to pprof requests.
 <code>prometheus.enabled</code>|boolean|false|Enable Prometheus handler.

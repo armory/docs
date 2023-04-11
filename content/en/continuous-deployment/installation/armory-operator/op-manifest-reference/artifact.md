@@ -50,7 +50,7 @@ artifacts:
 - `token`: Bitbucket Server token. Supports encrypted value.
 - `tokenFile`: File containing a Bitbucket Server authentication token. File needs to be present on the machine running Spinnaker. Supports encrypted file. This file can be dynamically updated because it is automatically reloaded each time Armory Continuous Deployment makes a request.
 
-Note: supply `username` and `password` OR `usernamePasswordFile`
+Note: supply `username` and `password` OR `usernamePasswordFile` OR `token` OR `tokenFile`
 
 ## GCS
 
