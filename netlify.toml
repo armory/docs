@@ -17,6 +17,14 @@
   to = "/plugins/scale-agent/release-notes/:splat"
 
 [[redirects]]
+  from = "/docs/release-notes/rn-armory-agent/agent-plugin/*"
+  to = "/plugins/scale-agent/release-notes/agent-plugin/:splat"
+
+[[redirects]]
+  from = "/docs/release-notes/rn-armory-agent/agent-service/*"
+  to = "/plugins/scale-agent/release-notes/agent-service/:splat"
+
+[[redirects]]
   from = "/armory-enterprise/release-notes/rn-armory-agent/*"
   to = "/plugins/scale-agent/release-notes/:splat"
 
