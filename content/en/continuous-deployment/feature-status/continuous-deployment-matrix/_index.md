@@ -276,7 +276,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
     <li>Highlander</li>
     <li>Red/Back aka Blue/Green</li>
     <li>Custom (run a custom pipeline)</li>
-    <li>Rolling Red/Black</li>
+    <li>Rolling Blue/Green</li>
 </ul>
 {{</ caas-ec2-deploy-strategies.inline >}}
 -->
@@ -284,7 +284,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 <!--
 {{< caas-gce-deploy-strategies.inline >}}
 <ul>
-    <li>Red/Black aka Blue/Green</li>
+    <li>Blue/Green</li>
     <li>Custom</li>
 </ul>
 {{</ caas-gce-deploy-strategies.inline >}}

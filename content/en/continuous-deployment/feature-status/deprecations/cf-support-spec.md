@@ -1,6 +1,6 @@
 ---
-title: Clound Foundry Support 
-description: Armory supports Cloud Foundry on a customer-by-customer basis. Additionally, Armory's support for the Cloud Foundry provider in Armory Continuous Deployment is limited to what is explicitly defined on this page. 
+title: Clound Foundry Support
+description: Armory supports Cloud Foundry on a customer-by-customer basis. Additionally, Armory's support for the Cloud Foundry provider in Armory Continuous Deployment is limited to what is explicitly defined on this page.
 toc_hide: true
 exclude_search: true
 aliases:
@@ -35,7 +35,7 @@ This section outlines the types of Cloud Foundry resources that Armory Continuou
           - [timeout](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html#timeout)
       - [Environment Variables](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html#env-block)
       - [Services](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html#services-block)
-      - [Routes](https://docs.cloudfoundry.org/devguide/deploy-apps/routes-domains.html) 
+      - [Routes](https://docs.cloudfoundry.org/devguide/deploy-apps/routes-domains.html)
 
 * **[Services](https://docs.cloudfoundry.org/devguide/services/)**
   - User Provided
@@ -71,6 +71,6 @@ Armory Continuous Deployment supports the following rollout strategies for Cloud
 
 - No strategy
 - Highlander
-- Blue/Green (also known as Red/Black)
-- Rolling Blue/Green (also known as Rolling Red/Black)
+- Blue/Green (formerly known as Red/Black in Spinnaker)
+- Rolling Blue/Green (formerly known as Rolling Red/Black in Spinnaker)
 - Canary
