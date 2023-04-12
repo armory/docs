@@ -12,6 +12,50 @@
   GO_VERSION = "1.18"
 
 # section redirects
+[[redirects]]
+  from = "/docs/release-notes/rn-armory-agent/*"
+  to = "/plugins/scale-agent/release-notes/:splat"
+
+[[redirects]]
+  from = "/docs/release-notes/rn-armory-agent/agent-plugin/*"
+  to = "/plugins/scale-agent/release-notes/agent-plugin/:splat"
+
+[[redirects]]
+  from = "/docs/release-notes/rn-armory-agent/agent-service/*"
+  to = "/plugins/scale-agent/release-notes/agent-service/:splat"
+
+[[redirects]]
+  from = "/armory-enterprise/release-notes/rn-armory-agent/*"
+  to = "/plugins/scale-agent/release-notes/:splat"
+
+[[redirects]]
+  from = "/continuous-deployment/release-notes/rn-armory-agent/*"
+  to = "/scale-agent/release-notes/:splat"
+
+[[redirects]]
+  from = "/armory-enterprise/armory-agent/*"
+  to = "/plugins/scale-agent/:splat"
+
+[[redirects]]
+  from = "/continuous-deployment/armory-agent/*"
+  to = "/plugins/scale-agent/:splat"
+
+[[redirects]]
+  from = "/scale-agent/*"
+  to = "/plugins/scale-agent/:splat"
+
+[[redirects]]
+  from = "/cd-as-a-service/plugin-spinnaker/"
+  to = "/plugins/cdaas-spinnaker/"
+  force = true # ensure this always redirects because cdaas-spinnaker does exist (for users clicking web search result link)
+
+[[redirects]]
+  from = "/continuous-deployment/armory-admin/policy-engine/policy-engine-use/*"
+  to = "/plugins/policy-engine/use/:splat"
+  
+[[redirects]]
+  from = "/continuous-deployment/plugin-guide/*"
+  to = "/plugins/:splat"
 
 [[redirects]]
   from = "/docs/*"
@@ -24,31 +68,6 @@
 [[redirects]]
   from = "/armory-cdaas/*"
   to = "/cd-as-a-service/"
-
-[[redirects]]
-  from = "/armory-enterprise/release-notes/rn-armory-agent/*"
-  to = "/scale-agent/release-notes/:splat"
-
-[[redirects]]
-  from = "/cd-as-a-service/plugin-spinnaker/"
-  to = "/plugins/cdaas-spinnaker/"
-  force = true # ensure this always redirects because cdaas-spinnaker does exist (for users clicking web search result link)
-
-[[redirects]]
-  from = "/continuous-deployment/armory-admin/policy-engine/policy-engine-use/*"
-  to = "/plugins/policy-engine/use/:splat"
-
-[[redirects]]
-  from = "/armory-enterprise/armory-agent/*"
-  to = "/plugins/scale-agent/"
-
-[[redirects]]
-  from = "/scale-agent/*"
-  to = "/plugins/scale-agent/:splat"
-  
-[[redirects]]
-  from = "/continuous-deployment/plugin-guide/*"
-  to = "/plugins/:splat"
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
