@@ -15,7 +15,7 @@ The  Kubernetes V2 provider is centered on delivering and promoting Kubernetes m
 
 ### Current limitations
 *  The only supported services for artifact delivery are Github, GCS, or Google Pub/Sub. S3, SQS, and SNS are currently not supported.
-* Native Spinnaker deployment strategies such as red/black, highlander, rolling red/black deployment are not supported. If these strategies are desired consider using the deployment object in your manifests.
+* Native Spinnaker deployment strategies such as blue/green, highlander, rolling blue/green deployment are not supported. If these strategies are desired consider using the deployment object in your manifests.
 * While you're able to deploy all Kubernetes resource types, the V2 provider only considers `containers` and `configMaps` for [binding to the deployed manifest](https://www.spinnaker.io/reference/artifacts/in-kubernetes-v2/#kubernetes-objects-as-artifacts). `secrets` and other resource types are coming soon.
 * You cannot manually trigger the pipeline, you have to use Github triggers.
 

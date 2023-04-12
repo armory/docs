@@ -87,7 +87,7 @@ Access Armory CD in your browser on [localhost:9000](http://localhost:9000). The
 1. In the **Select Execution Parameters** window, click **Run** to execute the pipeline that prepares the deployment environment.
 1. This pipeline is configured for you to provide a manual judgement. Before the pipeline executes the `Deploy to PROD` stage, a prompt appears which must be approved. Click on the pipeline progress bar for the manual judgement stage and select **Continue** to approve the pipeline and complete the deployment.
 
-> Executing this pipeline multiple times will result in deploying new replica sets into the `quick-spin-prod` namespace. Once the newest replica set is fully available, the previous replica set has traffic to it disabled -- this behavior relies on the `red/black` deployment strategy
+> Executing this pipeline multiple times will result in deploying new replica sets into the `quick-spin-prod` namespace. Once the newest replica set is fully available, the previous replica set has traffic to it disabled -- this behavior relies on the `blue/green` deployment strategy
 
 {{< alert color="success" >}}Your pipeline is executing. Run it again to see what happens when you do not approve the deploy task to continue. Use the `teardown-quick-spin environment` pipeline to remove the deployment.
 {{< /alert >}}
@@ -96,7 +96,7 @@ Access Armory CD in your browser on [localhost:9000](http://localhost:9000). The
 
 The Armory CD instance is configured for easy installation, evaluation, testing, and proof of concept use. It has the following usage limitations:
 
-- Support for Blue/Green (red/black in Spinnaker lingo) and Highlander deployment strategies (Canary not currently supported)
-- Default providers are limited to Kubernetes using the kubernetes account you provide access to
+- Support for Blue/Green (formerly red/black in Spinnaker lingo) and Highlander deployment strategies (Canary not currently supported)
+- Default providers are limited to Kubernetes using the Kubernetes account you provide access to
 - This release does not support local cluster deployments
 - Port `9000` must be open to deploy the easy install container
