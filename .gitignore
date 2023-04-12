@@ -3,6 +3,7 @@ public/
 resources/
 node_modules/
 tmp/
+dist/
 tech-doc-hugo
 .DS_Store
 utils/vendor/

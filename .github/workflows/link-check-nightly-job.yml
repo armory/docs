@@ -1,3 +1,4 @@
+# Based on https://robb.sh/posts/check-links-in-hugo-with-htmltest/
 # Run htmltest link checker on generated HTML output in dist/
 #
 # https://github.com/wjdp/htmltest
@@ -25,19 +26,19 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: "18"
+          cache: "npm"
           # The action defaults to search for the dependency file (package-lock.json,
           # npm-shrinkwrap.json or yarn.lock) in the repository root, and uses its
           # hash as a part of the cache key.
           # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-data
-          cache-dependency-path: '**/package-lock.json'
+          cache-dependency-path: "**/package-lock.json"
       - name: Run NPM
         run: npm ci
-      - name: Build Hugo
+      - name: BuildDocsSite
         # Put the build output where the following steps can find it
         # GITHUB_WORKSPACE
-        run: hugo -s site -d $GITHUB_WORKSPACE/dist
+        run: hugo server --verbose --destination $GITHUB_WORKPLACE/dist
       - name: Test HTML
         # https://github.com/wjdp/htmltest-action/
         # Don't fail on broken links
