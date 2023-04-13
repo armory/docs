@@ -108,50 +108,6 @@ The following table lists the supported artifact stores:
 
 ## As code solutions
 
-### Pipelines as Code
-
-[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
-
-[Pipelines as Code]({{< ref "dinghy-enable" >}}) gives you the ability to manage your pipelines and their templates in source control by creating and maintaining `dinghyfiles` that contain text representations of pipelines. These files are then ingested by Armory Continuous Deployment to generate pipelines that your app devs can use to deploy their apps.
-
-**Templating languages**
-
-To create `dinghyfiles`, you can use one of the following templating languages:
-
-* HashiCorp Configuration Language (HCL) [![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})
-* JSON [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}})
-* YAML [![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}})
-
-**Version control systems**
-
-The following table lists the supported version control systems:
-
-| Feature          | Version   | Armory Continuous Deployment Version | Notes                                                                                                               |
-| ---------------- | --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| BitBucket Cloud  |           | All supported versions    |                                                                                                                     |
-| BitBucket Server | 4.x - 6.x | All supported versions    | BitBucket Server 7.x is not officially supported due to changes in webhook handling and may not behave as expected. |
-| GitHub           |           | All supported versions    | Hosted or cloud                                                                                                     |
-
-**Features**
-
-The following table lists specific features for Pipelines as Code and their supported versions:
-
-| Feature                                                                                | Armory Continuous Deployment Version | Notes                                                                 |
-| -------------------------------------------------------------------------------------- | ------------------------- | --------------------------------------------------------------------- |
-| [Fiat service account integration]({{< ref "dinghy-enable#fiat" >}})                   | All supported versions    |                                                                       |
-| GitHub status notifications                                                            | All supported versions    |                                                                       |
-| [Local modules for development]({{< ref "using-dinghy#local-module-functionality" >}}) | All supported versions    |                                                                       |
-| Modules                                                                                | All supported versions    | Templatize and re-use pipeline snippets across applications and teams |
-| [Pull Request Validation]({{< ref "dinghy-enable#pull-request-validations" >}})        | 2.21 or later             |                                                                       |
-| [Slack notifications]({{< ref "dinghy-enable#slack-notifications" >}})                 | All supported versions    |                                                                       |
-| [Webhook secret validation]({{< ref "using-dinghy#webhook-secret-validation" >}})      | All supported versions    |                                                                       |
-
-#### ARM CLI
-
-The ARM CLI is a tool to render `dinghyfiles` and modules. Use it to help develop and validate your pipelines locally.
-
-You can find the latest version on [Docker Hub](https://hub.docker.com/r/armory/arm-cli).
-
 
 ### Terraform Integration
 

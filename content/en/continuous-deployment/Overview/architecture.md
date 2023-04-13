@@ -66,7 +66,7 @@ The {{< linkWithTitle "plugins/scale-agent/_index.md" >}} is a lightweight, scal
 
 ### Dinghy
 
-[Dinghy]({{< ref "dinghy-enable" >}}) is the microservice used to manage Pipelines as Code. It supports two main capabilities:
+[Dinghy]({{< ref "plugins/pipelines-as-code" >}}) is the microservice used to manage Pipelines as Code. It supports two main capabilities:
 
 * Automatically synchronizing pipeline definitions from an external Github or BitBucket repository to Armory.
 * Creating a library of pipeline modules (components) that can be templatized and used in Dinghy-managed pipeline definitions.

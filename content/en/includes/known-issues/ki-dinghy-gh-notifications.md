@@ -9,6 +9,5 @@ There is a known issue where Pipelines as Code can generate hundreds of comments
 
 You can either manually resolve the comments so that you can merge any PRs or turn the notifications that Pipelines as Code sends to GitHub.
 
-For information about about how to disable this functionality, see [GitHub Notifications]({{< ref "dinghy-enable#github-notifications" >}}).
+For information about about how to disable this functionality, see [GitHub Notifications]({{< ref "plugins/pipelines-as-code/enable-cdsh#github-notifications" >}}).
 
-<!-- armory-admin/dinghy-enable also has a warning in the github notifications sectoin -->

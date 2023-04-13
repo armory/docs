@@ -1,15 +1,12 @@
 ---
 title: Enable Pipelines as Code in Armory Continuous Deployment
-linkTitle: Enable Pipelines as Code
+linkTitle: Enable in Armory CD
+weight: 10
 description: >
   Learn how to configure Armory CD to use pipeline templates stored in source control. Options for Pipelines as Code's Dinghy service include pulling from multiple branches and Regexp2 support.
 ---
 
-![Proprietary](/images/proprietary.svg)
-
-## Advantages to using Pipelines as Code
-
-{{% include "admin/pac-overview.md" %}}
+## Overview
 
 At a high level, follow these steps to enable Pipelines as Code:
 
@@ -164,7 +161,7 @@ spec:
           githubEndpoint: https://api.github.com # (Default: https://api.github.com) GitHub API endpoint. Useful if you’re using GitHub Enterprise
 {{< /prism >}}
 
-* `githubToken`: This field supports "encrypted" field references; see [Secrets]({{< ref "Secrets" >}}) for details.
+* `githubToken`: This field supports "encrypted" field references; see [Secrets]({{< ref "continuous-deployment/armory-admin/Secrets" >}}) for details.
 
 Apply your changes:
 
@@ -274,7 +271,7 @@ GitLab install is running on can connect to your Gate URL. Armory also needs to 
 
 ### Slack notifications
 
-If you [configured]({{< ref "notifications-slack-configure" >}}) Armory to send Slack notifications for pipeline events, you can configure Dinghy to send pipeline update results to Slack.
+If you [configured]({{< ref "notifications-slack-configure" >}}) Armory CD to send Slack notifications for pipeline events, you can configure Dinghy to send pipeline update results to Slack.
 
 Add the following to your `SpinnakerService` manifest:
 
@@ -327,7 +324,7 @@ spec:
 {{< /prism >}}
 
 
-![GitHub Notifications](/images/armory-admin/dinghy-enable/dinghy-github-notifications.jpg)
+![GitHub Notifications](/images/plugins/pac/dinghy-github-notifications.jpg)
 
 ## Additional options
 
@@ -531,28 +528,4 @@ spec:
         parserFormat: <parser-format>
 {{< /prism >}}
 
-## Known issues
-
-If Dinghy crashes on start up and you encounter an error in Dinghy similar to:
-
-{{< prism lang="bash" >}}
-time="2020-03-06T22:35:54Z"
-level=fatal
-msg="failed to load configuration: 1 error(s) decoding:\n\n* 'Logging.Level' expected type 'string', got unconvertible type 'map[string]interface {}'"
-{{< /prism >}}
-
-You probably configured global logging levels with `spinnaker-local.yml`. The work around is to override Dinghy's logging levels:
-
-{{< prism lang="yaml" line="9-10" >}}
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      dinghy:
-        Logging:
-          Level: INFO
-{{< /prism >}}
 
