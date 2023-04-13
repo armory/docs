@@ -12,7 +12,7 @@ GitHub (or BitBucket) webhooks are sent off when you modify either the Templates
 
 1. The Dinghy service looks for and fetches all dependent modules and parses the template and updates the pipelines in Spinnaker.
 2. The pipelines get automatically updated whenever a module that is used by a pipeline is updated in the version control system. This is done by maintaining a dependency graph. Dinghy looks for a `dinghyfile` in all directories, not just the root path. The only exception is when customers have modules in a local setting. In this case, a customer must update the `dinghyfile` in order to pull new updates from modules it is using.  
-3. Dinghy processes changes found in a specific branch. By default, this branch is `master`. If you are using a repo that uses a different branch for the base branch, an administrator must configure the Dinghy service to track that branch. For more information, see [Custom branch configuration]({{< ref "plugins/pipelines-as-code/enable-cdsh#custom-branch-configuration" >}}).
+3. Dinghy processes changes found in a specific branch. By default, this branch is `master`. If you are using a repo that uses a different branch for the base branch, an administrator must configure the Dinghy service to track that branch. For more information, see [Custom branch configuration]({{< ref "plugins/pipelines-as-code/install-cdsh#custom-branch-configuration" >}}).
 
 ### Intended workflow
 
@@ -1389,24 +1389,4 @@ When you make a commit to change `stage.minimal.wait.module` in `armory/template
 - With `repositoryRawdataProcessing=false` the result is `armory/template-repo`
 - With `repositoryRawdataProcessing=true` the result is `armory/my-repository`
 
-## Known issues
-
-If the Pipelines as Code service (Dinghy) crashes on start up and you encounter an error in Dinghy similar to:
-`time="2020-03-06T22:35:54Z" level=fatal msg="failed to load configuration: 1 error(s) decoding:\n\n* 'Logging.Level' expected type 'string', got unconvertible type 'map[string]interface {}'"`
-
-You have probably configured global logging levels with `spinnaker-local.yml`. The work around is to override Dinghy's logging levels:
-
-```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      dinghy: |
-        Logging:
-          Level: INFO
-          ... # Rest of config omitted for brevity
-```
 

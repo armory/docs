@@ -1,47 +1,17 @@
 ---
-title: Enable Pipelines as Code in Armory Continuous Deployment
-linkTitle: Enable in Armory CD
+title: Configure Pipelines as Code
+linkTitle: Configure
 weight: 10
 description: >
-  Learn how to configure Armory CD to use pipeline templates stored in source control. Options for Pipelines as Code's Dinghy service include pulling from multiple branches and Regexp2 support.
+  Learn how to configure Armory Pipelines as Code in your Spinnaker or Armory CD instance. 
 ---
 
-## Overview
+## {{% heading "prereq" %}}
 
-At a high level, follow these steps to enable Pipelines as Code:
+* You have installed Pipelines and Code in your [Spinnaker]({{< ref "plugins/pipelines-as-code/install-spinnaker" >}}) or [Armory CD]({{< ref "plugins/pipelines-as-code/install-cdsh" >}}) instance.
 
-1. [Enable](#enable-pipelines-as-code) Pipelines as Code in your `SpinnakerService` manifest.
-1. [Configure a database](#configure-a-database).
-1. [Enable and configure your repos](#enable-your-repos).
 
 You can also [configure notifications](#configure-notifications) to work with Pipelines as Code. Be sure to look at the [additional options](#additional-options) section for optional features such as custom branch configuration if you don't use `master` or `main` branches and how to use multiple branches instead of a default single branch.
-
-## Enable Pipelines as Code
-
-_Dinghy_ is the microservice you need to enable to use Pipelines as Code. Add the following to your `SpinnakerService` manifest:
-
-{{< prism lang="yaml" line="9-10" >}}
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    config:
-      armory:
-        dinghy:
-          enabled: true
-{{< /prism >}}
-
-- `dinghy.enabled`: `true`; required to enable Pipelines as Code.
-
-**Apply your changes**
-
-Assuming Armory CD lives in the `spinnaker` namespace, execute the following to update your instance:
-
-{{< prism lang="bash"  >}}
-kubectl -n spinnaker apply -f spinnakerservice.yml
-{{< /prism >}}
 
 ## Configure a database
 
@@ -271,12 +241,12 @@ GitLab install is running on can connect to your Gate URL. Armory also needs to 
 
 ### Slack notifications
 
-If you [configured]({{< ref "notifications-slack-configure" >}}) Armory CD to send Slack notifications for pipeline events, you can configure Dinghy to send pipeline update results to Slack.
+If you [configured]({{< ref "notifications-slack-configure" >}}) Armory CD or Spinnaker to send Slack notifications for pipeline events, you can configure Pipelines as Code to send pipeline update results to Slack.
 
 Add the following to your `SpinnakerService` manifest:
 
 {{< prism lang="yaml" line="11-15" >}}
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+...
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -309,7 +279,7 @@ Keep the following in mind when enabling GitHub notifications:
 To configure, add the following to your `SpinnakerService` manifest:
 
 {{< prism lang="yaml" line="11-12" >}}
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
+...
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -320,7 +290,7 @@ spec:
         notifiers:
           enabled: true
           github:
-            enabled: true       # (Default: true) Whether or not github notifications are enabled for Dinghy events, once spec.spinnakerConfig.profles.dinghy.notifiers are enabled
+            enabled: true  # (Default: true) Whether or not github notifications are enabled for Pipeline as Code events, once spec.spinnakerConfig.profles.dinghy.notifiers are enabled
 {{< /prism >}}
 
 
@@ -529,3 +499,6 @@ spec:
 {{< /prism >}}
 
 
+## {{% heading "nextSteps" %}}
+
+* {{< linkWithTitle "plugins/pipelines-as-code/use.md" >}}

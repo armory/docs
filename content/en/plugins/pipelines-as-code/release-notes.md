@@ -12,7 +12,9 @@ description: >
 
 ## Known issues
 
-If Dinghy crashes on start up and you encounter an error in Dinghy similar to:
+### Failed to load configuration
+
+If Pipelines as Code crashes on start up and you encounter an error similar to:
 
 {{< prism lang="bash" >}}
 time="2020-03-06T22:35:54Z"
@@ -34,8 +36,3 @@ spec:
         Logging:
           Level: INFO
 {{< /prism >}}
-
-
-
-
-

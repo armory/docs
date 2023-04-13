@@ -10,11 +10,9 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-This guide assumes that you are familiar with the Pipelines as Code feature. If you are not, see {{< linkWithTitle "plugins/pipelines-as-code/use.md" >}}.
-
-Before you start, make sure Pipelines as Code is enabled for your Armory Continuous Deployment instance. For information about how to do that, see {{< linkWithTitle "plugins/pipelines-as-code/enable-cdsh.md" >}}.
-
-Additionally, the `dinghyfile` and module repo must be available locally so that the ARM CLI can reference them.
+* You have installed Pipelines and Code in your [Spinnaker]({{< ref "plugins/pipelines-as-code/install-spinnaker" >}}) or [Armory CD]({{< ref "plugins/pipelines-as-code/install-cdsh" >}}) instance.
+* You know how to [use]({{< ref "plugins/pipelines-as-code/use" >}}) Pipelines as Code.
+* Your `dinghyfile` and module repo must be available locally so that the ARM CLI can reference them.
 
 ## Install the ARM CLI
 
