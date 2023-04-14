@@ -66,3 +66,7 @@ You can find the latest version on [Docker Hub](https://hub.docker.com/r/armory/
 1. [Configure your repos]({{< ref "plugins/pipelines-as-code/configure#enable-your-repos" >}}).
 1. [Configure additional features]({{< ref "plugins/pipelines-as-code/configure#additional-options" >}}) as needed.
 
+## Architecture
+
+Dinghy is the microservice you need to enable to use Pipelines as Code.
+

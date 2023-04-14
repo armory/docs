@@ -28,15 +28,40 @@ The Spinnaker Operator adds configuration only to extended services.
 
 {{% tab header="**Install Method**:" disabled=true /%}}
 
-{{% tab header="Spinnaker Operator" %}}
+{{% tab header="Spinnaker Operator"  %}}
 
-You can install the Pipelines as Code plugin using the the Spinnaker Operator and the sample manifest ([spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/plugins/oss/pipeline-as-a-code/pac-plugin-config.yml)).
+You can find the files to install the Pipelines as Code plugin in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/plugins/oss/pipeline-as-a-code/pac-plugin-config.yml).
 
-<details><summary><strong>Show the manifest</strong></summary>
-{{< github repo="armory/spinnaker-kustomize-patches" file="plugins/oss/pipeline-as-a-code/pac-plugin-config.yml" lang="yaml" options="" >}}
-</details><br />
+1. In `pac-plugin-config.yml`, make sure the `version` number is compatible with your Spinnaker instance.
 
-Apply the manifest using `kubectl`.
+   <details><summary><strong>Show the manifest</strong></summary>
+   {{< github repo="armory/spinnaker-kustomize-patches" file="plugins/oss/pipeline-as-a-code/pac-plugin-config.yml" lang="yaml" options="" >}}
+   </details><br />
+
+1. Add the plugin directory in the `components` section of your kustomization file. For example:
+
+   ```yaml
+   apiVersion: kustomize.config.k8s.io/v1beta1
+   kind: Kustomization
+
+   namespace: spinnaker
+
+   components:
+	   - core/base
+	   - core/persistence/in-cluster
+	   - targets/kubernetes/default
+     - plugins/oss/pipeline-as-a-code
+
+   patchesStrategicMerge:
+     - core/patches/oss-version.yml
+
+   patches:
+     - target:
+         kind: SpinnakerService
+       path: utilities/switch-to-oss.yml
+   ```
+
+1. Apply the manifest using `kubectl`.
 
 {{% /tab %}}
 
@@ -44,9 +69,11 @@ Apply the manifest using `kubectl`.
 
 The Pipelines as Code plugin extends Gate and Echo. You should create or update the extended service's local profile in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
 
+Replace `<version>` with the plugin version that's compatible with your Spinnaker instance.
+
 1. Add the following to `gate-local.yml`:
 
-   {{< prism lang="yaml" >}}
+   ```yaml
    spinnaker:
      extensibility:
        plugins:
@@ -55,7 +82,25 @@ The Pipelines as Code plugin extends Gate and Echo. You should create or update 
            version: <version>
          pipelinesAsCode:
            url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-    {{< /prism >}}
+   ```
+
+1. Add the following to `echo-local.yml`:
+
+   ```yaml
+   armorywebhooks:
+     enabled; true
+     forwarding:
+       baseUrl: http://spin-dinghy:8081
+       endpoint: v1/webhooks
+   spinnaker:
+     extensibility:
+       plugins:
+         Armory.PipelinesAsCode:
+           enabled: true
+           version: <version>
+         pipelinesAsCode:
+           url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
+   ```
 
 1. Save your files and apply your changes by running `hal deploy apply`.
 {{% /tab %}}
@@ -64,39 +109,41 @@ The Pipelines as Code plugin extends Gate and Echo. You should create or update 
 
 1. Add the plugins repository
 
-   {{< prism lang="bash" >}}
+   ```bash
    hal plugins repository add pipelinesascode \
     --url=https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-   {{< /prism >}}
+   ```
 
    This creates the following entry in your `.hal/config`:
 
-   {{< prism lang="yaml" >}}
+   ```yaml
    repositories:
       pipelinesascode:
          enabled: true
          url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-   {{< /prism >}}
+   ```
 
 1. Add the plugin
    
-   Be sure to replace `<version>` with the version that's compatible with your Spinnaker instance.
-   {{< prism lang="bash" >}}
+   Replace `<version>` with the plugin version that's compatible with your Spinnaker instance.
+   
+   ```bash
    hal plugins add Armory.PipelinesAsCode --version=<version> --enabled=true
-   {{< /prism >}}
+   ```
 
-   If you specified version 0.0.1, Halyard creates the following entry in your `.hal/config` file: 
-   {{< prism lang="yaml" >}}
+   For example, if you specified version 0.0.5, Halyard creates the following entry in your `.hal/config` file: 
+
+   ```yaml
    spinnaker:
       extensibility:
          plugins:
             Armory.PipelinesAsCode:
                id: Armory.PipelinesAsCode
                enabled: true
-               version: 0.0.1
-   {{< /prism >}}
-
-
+               version: 0.0.5
+   ```
+{{% /tab %}}
+{{< /tabpane >}}
 
 ## {{% heading "nextSteps" %}}
 
