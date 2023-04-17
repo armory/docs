@@ -8,11 +8,11 @@ description: >
 
 ## How Pipelines as Code works
 
-GitHub (or BitBucket) webhooks are sent off when you modify either the Templates or the Module definitions. Once the webhook is sent, the following actions occur:
+GitHub (or BitBucket) sends webhooks when you modify either the Templates or the Module definitions. Once the webhook is sent, the following actions occur:
 
 1. The Dinghy service looks for and fetches all dependent modules and parses the template and updates the pipelines in Spinnaker.
 2. The pipelines get automatically updated whenever a module that is used by a pipeline is updated in the version control system. This is done by maintaining a dependency graph. Dinghy looks for a `dinghyfile` in all directories, not just the root path. The only exception is when customers have modules in a local setting. In this case, a customer must update the `dinghyfile` in order to pull new updates from modules it is using.  
-3. Dinghy processes changes found in a specific branch. By default, this branch is `master`. If you are using a repo that uses a different branch for the base branch, an administrator must configure the Dinghy service to track that branch. For more information, see [Custom branch configuration]({{< ref "plugins/pipelines-as-code/install-cdsh#custom-branch-configuration" >}}).
+3. Dinghy processes changes found in a specific branch. By default, this branch is `master`. If you are using a repo that uses a different branch for the base branch, an administrator must configure the Dinghy service to track that branch. For more information, see [Custom branches]({{< ref "plugins/pipelines-as-code/configure#custom-branches" >}}).
 
 ### Intended workflow
 
@@ -30,8 +30,8 @@ without ever having had to go into Spinnaker to configure anything.
 
 As an added bonus, the pipeline definitions have now been saved in source
 control, along with the rest of the project's files.  If changes are made
-to the Dinghyfile, when committed/merged into the tracked branch, the
-pipelines are automatically re-rendered and updated.
+to the Dinghyfile, when committed/merged into the tracked branch, Spinnaker automatically updates the 
+pipelines.
 
 ## Basic format
 
