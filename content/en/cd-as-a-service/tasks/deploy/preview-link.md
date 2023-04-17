@@ -23,7 +23,7 @@ You can use this step in both canary and blue-green deployment strategies.
 
 ### Customer Portal
 
-The **Resources** section of your Deployment details page displays a clickable link to preview your service. CD-as-a-Service automatically creates the preview link right after the `exposeServices` step completes - no need to refresh the page. On the link itself there is a tooltip with the approximate remaining lifetime of the preview link. 
+The **Resources** section of your Deployment details page displays a clickable link to preview your service. CD-as-a-Service automatically creates the preview link right after the `exposeServices` step completes - no need to refresh the page. On the link itself there is a tooltip with the approximate remaining lifetime of the preview link.
 
 CD-as-a-Service deactivates the link after the service preview expires.
 
@@ -38,9 +38,9 @@ You can find the `exposeServices` step in the strategy's `steps` collection. The
 
 ### Webhook context
 
-After the preview link is created, you can use it in context of the webhook action for current strategy. The naming convention for the links is following: `armory.preview.<service name>`. 
+After the preview link is created, you can use it in context of the webhook action for current strategy. The link naming convention is `armory.preview.<service name>`.
 
-In case of long-running deployments do consider choosing proper TTL for the service, so the link passed to the webhook is not already expired. 
+If you have a long-running deployment, be suure to choose a long enough `ttl` for the service, so that the link passed to the webhook has not already expired.
 
 ## Example
 
@@ -66,9 +66,9 @@ If you query the REST API endpoint, you see results similar to:
 
 {{< figure src="/images/cdaas/tasks/deploy/exposeServices-API.png" alt="The preview link in the REST API results" >}}
 
-To reference exposed service in your webhook, consider following step in your strategy:
+To reference an exposed service in your webhook, add a `runWebhook` step in your strategy and then add a `preview-link` in your webhook definition. For example:
 
-{{< prism lang="yaml"  line-numbers="true" >}}
+{{< prism lang="yaml"  line-numbers="true" line="" >}}
 ...
 steps:
 ...
