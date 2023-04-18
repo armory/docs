@@ -1,7 +1,7 @@
 ---
 title: v2.27.8 Armory Release (OSS Spinnaker™ v1.27.0)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
+version: 02.27.08
 date: 2023-04-18
 description: >
   Release notes for Armory Continuous Deployment v2.27.8
@@ -22,12 +22,70 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
+{{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
+{{< include "breaking-changes/bc-k8s-infra-buttons.md" >}}
+{{< include "breaking-changes/bc-hal-deprecation.md" >}}
+{{< include "breaking-changes/bc-plug-version-lts-227.md" >}}
+
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
-## Highlighted updates
+### Dinghy fails to start with SQL enabled
+Known bug with the java version
+
+```
+enabledTLSProtocols=TLSv1.2
+  
+```
+needs to be added as an argument on newer JVMs.
+
+{{< include "known-issues/ki-artifact-binding-spel.md" >}}
+{{< include "known-issues/ki-dinghy-gh-notifications.md" >}}
+{{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
+{{< include "known-issues/ki-pipelines-as-code-gh-comments.md" >}}
+
+## Early Access Features
+
+### Dynamic Rollback Timeout
+
+To make the dynamic timeout available, you need to enable the feature flag in Orca and Deck.
+
+On the Orca side, the feature flag overrides the default value rollback timeout - 5min - with a UI input from the user.
+
+```
+{
+  "yaml,"
+   "orca.yml,"
+  "rollback:"
+  "timeout:"
+    "enabled: true"
+}
+```
+
+On the Deck side, the feature flag enhances the Rollback Cluster stage UI with timeout input.
+
+`window.spinnakerSettings.feature.dynamicRollbackTimeout = true;`
+
+The default is used if there is no value set in the UI.
+
+### Pipelines as Code multi-branch enhancement
+
+Now you can configure Pipelines as Code to pull Dinghy files from multiple branches in the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "continuous-deployment/armory-admin/dinghy-enable#multiple-branches" >}}) for how to enable and configure this feature.
+
+### Automatically Cancel Jenkins Jobs
+
+You now have the ability to cancel triggered Jenkins jobs when a Spinnaker pipeline is canceled, giving you more control over your full Jenkins workflow. Learn more about Jenkins + Spinnaker in this [documentation](https://spinnaker.io/changelogs/1.29.0-changelog/#orca).
+
+
+## Fixes
+
+* Clouddriver: Two credentials with same accountId confuses EcrImageProvider with different regions
+* Clouddriver: Renamed a query parameter for template tags
+* Alpine updates for Deck, Dinghy, and Terraformer
+
+
 
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
