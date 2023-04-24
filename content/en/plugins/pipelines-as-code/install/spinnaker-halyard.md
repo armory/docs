@@ -1,16 +1,48 @@
 ---
-title: Install Pipelines as Code in Spinnaker
-linkTitle: Install - Spinnaker
+title: Install Pipelines-as-Code in Spinnaker
+linkTitle: Spinnaker - Halyard
 weight: 5
 description: >
-  Learn how to install Armory's Pipelines and Code plugin in Spinnaker.
+  Learn how to install Armory Pipelines and Code in a Spinnaker instanced managed by Halyard.
 ---
+
+## Installation overview
+
+Installing Pipelines-as-Code consists of these steps:
+
+1. [Deploy the service](#deploy-the-service) in the same Kubernetes cluster as Spinnaker.
+1. [Install the plugin](#install-the-plugin) into Spinnaker. 
 
 ## {{% heading "prereq" %}}
 
+* You are familiar with with Pipelines-as-Code [architecture]({{< ref "plugins/pipelines-as-code/architecture" >}}).
+* You have created a personal access token in your repo so the Pipelines-as-Code service can fetch your dinghyfiles.
+* You have installed kubectl.
+* You have permissions to create ServiceAccount, ClusterRole, and ClusterRoleBinding objects in your cluster.
+
+
+### Configure permissions
+
+The following manifest creates a ServiceAccount, ClusterRole, and ClusterRoleBinding. Apply the manifest in your `spinnaker` namespace.
+
+{{< readfile file="/static/code/plugins/pac/k8s-permissions.yml" code="true" lang="yaml" >}}
+
+### Configure the service
+
+{{< readfile file="/static/code/plugins/pac/dinghy-config-map.yml" code="true" lang="yaml" >}}
+
+
+### Deploy the service
+
+Replace `<version>` with the Pipelines-as-Code service version compatible with your Spinnaker version. Be sure to replace `<version>` with the version compatible with your Spinnaker instance.
+
+{{< readfile file="/static/code/plugins/pac/deployment.yml" code="true" lang="yaml" >}}
+
+
+
 ## Install the plugin
 
-You have the following options for installing the Pipelines as Code plugin:
+You have the following options for installing the Pipelines-as-Code plugin:
 
 * Spinnaker Operator
 * Local Config
@@ -28,46 +60,9 @@ The Spinnaker Operator adds configuration only to extended services.
 
 {{% tab header="**Install Method**:" disabled=true /%}}
 
-{{% tab header="Spinnaker Operator"  %}}
-
-You can find the files to install the Pipelines as Code plugin in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/plugins/oss/pipeline-as-a-code/pac-plugin-config.yml).
-
-1. In `pac-plugin-config.yml`, make sure the `version` number is compatible with your Spinnaker instance.
-
-   <details><summary><strong>Show the manifest</strong></summary>
-   {{< github repo="armory/spinnaker-kustomize-patches" file="plugins/oss/pipeline-as-a-code/pac-plugin-config.yml" lang="yaml" options="" >}}
-   </details><br />
-
-1. Add the plugin directory in the `components` section of your kustomization file. For example:
-
-   ```yaml
-   apiVersion: kustomize.config.k8s.io/v1beta1
-   kind: Kustomization
-
-   namespace: spinnaker
-
-   components:
-	   - core/base
-	   - core/persistence/in-cluster
-	   - targets/kubernetes/default
-     - plugins/oss/pipeline-as-a-code
-
-   patchesStrategicMerge:
-     - core/patches/oss-version.yml
-
-   patches:
-     - target:
-         kind: SpinnakerService
-       path: utilities/switch-to-oss.yml
-   ```
-
-1. Apply the manifest using `kubectl`.
-
-{{% /tab %}}
-
 {{% tab header="Local Config" %}}
 
-The Pipelines as Code plugin extends Gate and Echo. You should create or update the extended service's local profile in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
+The Pipelines-as-Code plugin extends Gate and Echo. You should create or update the extended service's local profile in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
 
 Replace `<version>` with the plugin version that's compatible with your Spinnaker instance.
 
@@ -86,6 +81,7 @@ Replace `<version>` with the plugin version that's compatible with your Spinnake
 
 1. Add the following to `echo-local.yml`:
 
+armorywebhooks config tells the service where to forward events it receives from the repo
    ```yaml
    armorywebhooks:
      enabled; true
@@ -147,4 +143,4 @@ Replace `<version>` with the plugin version that's compatible with your Spinnake
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "plugins/pipelines-as-code/configure.md" >}}
+* {{< linkWithTitle "plugins/pipelines-as-code/install/configure.md" >}}

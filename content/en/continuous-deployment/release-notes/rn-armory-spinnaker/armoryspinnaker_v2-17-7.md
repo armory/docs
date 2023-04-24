@@ -26,7 +26,7 @@ aliases:
 ## Highlighted Updates
 ### Armory
 This release includes the following:
-  - Improved error handling in Pipelines as Code and its microservice, Dinghy.
+  - Improved error handling in Pipelines-as-Code and its microservice, Dinghy.
   - The Terraform integration now uses Clouddriver's built-in support for `git/repo` artifact types. Previously, you had to create a custom artifact that was a `git/repo` type.
   - Addresses a number of CVE's related to `springframework`, `tomcat`, and `jackson-databind` found in Spinnaker Java services
 

@@ -1,22 +1,15 @@
 ---
-title: Use Pipelines as Code in Armory Continuous Deployment
-linkTitle: Use Pipelines as Code
+title: Use Pipelines-as-Code in Armory Continuous Deployment
+linkTitle: Use Pipelines-as-Code
 weight: 10
 description: >
-  Learn how to use Spinnaker pipeline definitions that are stored in source code repos such as GitHub and BitBucket.
+  Learn how to use Pipelines-as-Code to manage Spinnaker pipeline definitions that are stored in source code repos such as GitHub and BitBucket.
 ---
 
-## How Pipelines as Code works
 
-GitHub (or BitBucket) sends webhooks when you modify either the Templates or the Module definitions. Once the webhook is sent, the following actions occur:
+## Intended workflow
 
-1. The Dinghy service looks for and fetches all dependent modules and parses the template and updates the pipelines in Spinnaker.
-2. The pipelines get automatically updated whenever a module that is used by a pipeline is updated in the version control system. This is done by maintaining a dependency graph. Dinghy looks for a `dinghyfile` in all directories, not just the root path. The only exception is when customers have modules in a local setting. In this case, a customer must update the `dinghyfile` in order to pull new updates from modules it is using.  
-3. Dinghy processes changes found in a specific branch. By default, this branch is `master`. If you are using a repo that uses a different branch for the base branch, an administrator must configure the Dinghy service to track that branch. For more information, see [Custom branches]({{< ref "plugins/pipelines-as-code/configure#custom-branches" >}}).
-
-### Intended workflow
-
-The Pipelines as Code feature is intended to make it much faster and easier
+The Pipelines-as-Code feature is intended to make it much faster and easier
 for developers to get a brand new application up and running. The general
 workflow for new projects is:
 
@@ -637,7 +630,7 @@ And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal
 {{ local_module "/local_modules/stage.minimal.wait.localmodule" }}
 ```
 
-When the Pipelines as Code service (Dinghy) sees that there's a local module being sent inside a module, it throws the following error message: `calling local_module from a module is not allowed`. For the given example scenario, the following error occurs:
+When the Pipelines-as-Code service (Dinghy) sees that there's a local module being sent inside a module, it throws the following error message: `calling local_module from a module is not allowed`. For the given example scenario, the following error occurs:
 
 ```
 Parsing dinghyfile failed: template: dinghy-render:12:11: executing "dinghy-render" at <module "stage.minimal.wait.module">: error calling module: error rendering imported module 'stage.minimal.wait.module': template: dinghy-render:6:3: executing "dinghy-render" at <local_module "/local_modules/stage.minimal.wait.localmodule">: error calling local_module: /local_modules/stage.minimal.wait.localmodule is a local_module, calling local_module from a module is not allowed

@@ -75,11 +75,11 @@ kayenta:
           - METRICS_STORE        
 ```
 
-### Pipelines as Code
+### Pipelines-as-Code
 
 #### Ignore file
 
-Pipelines as Code now supports using an ignore file for GitHub repos to ignore certain files in a repo that it watches. To use this feature, create a file named `.dinghyignore` in the root directory of the repo.
+Pipelines-as-Code now supports using an ignore file for GitHub repos to ignore certain files in a repo that it watches. To use this feature, create a file named `.dinghyignore` in the root directory of the repo.
 
 You can add specific filenames, filepaths, or glob-style paths. For example, the following `.dinghyignore` file ignores the file named `README.md`, all the files in the `milton` directory, and all `.pdf` files:
 

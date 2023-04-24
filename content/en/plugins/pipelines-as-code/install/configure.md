@@ -1,27 +1,29 @@
 ---
-title: Configure Pipelines as Code
+title: Configure Pipelines-as-Code
 linkTitle: Configure
 weight: 10
 description: >
-  Learn how to configure Armory Pipelines as Code in your Spinnaker or Armory CD instance. 
+  Learn how to configure Armory Pipelines-as-Code in your Spinnaker or Armory CD instance.
 ---
 
 ## {{% heading "prereq" %}}
 
-* You have installed Pipelines and Code in your [Spinnaker]({{< ref "plugins/pipelines-as-code/install-spinnaker" >}}) or [Armory CD]({{< ref "plugins/pipelines-as-code/install-cdsh" >}}) instance.
+* You have installed Pipelines-as-Code in your Armory CD or Spinnaker instance.
 
 
-You can also [configure notifications](#configure-notifications) to work with Pipelines as Code. Be sure to look at the [additional options](#additional-options) section for optional features such as custom branch configuration if you don't use `master` or `main` branches and how to use multiple branches instead of a default single branch.
+You can also [configure notifications](#configure-notifications) to work with Pipelines-as-Code. Be sure to look at the [additional options](#additional-options) section for optional features such as custom branch configuration if you don't use `master` or `main` branches and how to use multiple branches instead of a default single branch.
 
-## Configure a database
+## Configure an external persistent database
+
+The Pipelines-as-Code service uses an in-cluster Redis instance to store relationships between pipeline templates and pipeline config files (`.dinghyfile`). You can, however, configure the service to use an external persistent database.
 
 ### Configure Redis
 
-Dinghy can use Redis to store relationships between pipeline templates and pipeline Dinghy files. An external Redis instance is highly recommended for production use. If Redis becomes unavailable, you need to update your Dinghy files in order to repopulate Redis with the relationships.
+Armory highly recommends that you use an external Redis instance for production use. If Redis becomes unavailable, you need to update your pipeline config files in order for the service to repopulate Redis with the relationships.
 
 > Dinghy can only be configured to use a password with the default Redis user.
 
-To set/override the Armory CD Redis settings do the following:
+To set/override the default Redis settings do the following:
 
 In `SpinnakerService` manifest:
 
@@ -49,7 +51,7 @@ kubectl -n spinnaker apply -f spinnakerservice.yml
 
 {{< include "early-access-feature.html" >}}
 
-The Dinghy service can use MySQL to store relationships between pipeline templates and pipeline Dinghy files. Armory recommends an external MySQL instance for production use because it can provide more durability for Pipelines as Code. If MySQL becomes unavailable, you need to update your Dinghy files in order to repopulate MySQL with the relationships.
+The Pipelines-as-Code service can use MySQL to store relationships between pipeline templates and pipeline Dinghy files. Armory recommends an external MySQL instance for production use because it can provide more durability for Pipelines-as-Code. If MySQL becomes unavailable, you need to update your Dinghy files in order to repopulate MySQL with the relationships.
 
  {{< include "rdbms-utf8-required.md" >}}
 
@@ -63,7 +65,7 @@ CREATE SCHEMA IF NOT EXISTS dinghy DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4
       GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, LOCK TABLES, EXECUTE, SHOW VIEW ON dinghy.* TO dinghy_migrate@'%';
 {{< /prism >}}
 
-Next, configure Pipelines as Code to use your MySQL database. Add the following to your `SpinnakerService` manifest:
+Next, configure Pipelines-as-Code to use your MySQL database. Add the following to your `SpinnakerService` manifest:
 
 {{< prism lang="sql" line="8-14">}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -155,7 +157,7 @@ You can configure webhooks on multiple GitHub organizations or repositories to s
 
 #### Pull request validations
 
-When you make a GitHub pull request (PR) and there is a change in a `dinghyfile`, Pipelines as Code automatically performs a validation for that `dinghyfile`. It also updates the GitHub status accordingly. If the validation fails, you see an unsuccessful `dinghy` check.
+When you make a GitHub pull request (PR) and there is a change in a `dinghyfile`, Pipelines-as-Code automatically performs a validation for that `dinghyfile`. It also updates the GitHub status accordingly. If the validation fails, you see an unsuccessful `dinghy` check.
 
 {{< figure src="/images/dinghy/pr_validation/pr_validation.png" alt="PR that fails validation." >}}
 
@@ -209,7 +211,7 @@ You need to set up webhooks for each project that has the `dinghyfile` or module
 
 ### Enable GitLab
 
-Add the GitHub configuration to your `SpinnakerService` manifest:
+Add the GitLab configuration to your `SpinnakerService` manifest:
 
 {{< prism lang="yaml" line="11-14" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -241,7 +243,7 @@ GitLab install is running on can connect to your Gate URL. Armory also needs to 
 
 ### Slack notifications
 
-If you [configured]({{< ref "notifications-slack-configure" >}}) Armory CD or Spinnaker to send Slack notifications for pipeline events, you can configure Pipelines as Code to send pipeline update results to Slack.
+If you [configured]({{< ref "notifications-slack-configure" >}}) Armory CD or Spinnaker to send Slack notifications for pipeline events, you can configure Pipelines-as-Code to send pipeline update results to Slack.
 
 Add the following to your `SpinnakerService` manifest:
 
@@ -307,14 +309,14 @@ By default, Dinghy uses the `master` branch in your repository and fallbacks to 
 The `repoConfig` tag supports a collection of the following values:
 
 * `branch` - the name of the branch you wish to use
-* `provider` - the name of the provider. Pipelines as Code supports the following:
+* `provider` - the name of the provider. Pipelines-as-Code supports the following:
 
    * `github`
    * `bitbucket-cloud`
    * `bitbucket-server`
 * `repo` - the name of the repository
 
-For example: 
+For example:
 
 {{< prism lang="yaml" line="9-15" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -338,7 +340,7 @@ spec:
 
 {{< include "early-access-feature.html" >}}
 
-This feature enables you to select multiple branches in the UI. 
+This feature enables you to select multiple branches in the UI.
 
 If you want to pull from multiple branches in the same repo, you must add `multipleBranchesEnabled` to the `dinghy` config in your `SpinnakerService` manifest:
 
@@ -355,7 +357,7 @@ spec:
           multipleBranchesEnabled: true
 {{< /prism >}}
 
-- `multipleBranchesEnabled`: (Optional; default `false`) `true` if you want to enable pulling from multiple branches in your repo. 
+- `multipleBranchesEnabled`: (Optional; default `false`) `true` if you want to enable pulling from multiple branches in your repo.
 
 If `true`, you must configure your repo branches in the `spec.spinnakerConfig.profiles.dinghy` section of your `SpinnakerService` manifest.  For example:
 
@@ -471,7 +473,7 @@ spec:
 
 ### Define additional template formats
 
-Pipelines as Code supports two additional template formats in addition to JSON:
+Pipelines-as-Code supports two additional template formats in addition to JSON:
 
 * [HCL](https://github.com/hashicorp/hcl)
 * [YAML](https://yaml.org/)

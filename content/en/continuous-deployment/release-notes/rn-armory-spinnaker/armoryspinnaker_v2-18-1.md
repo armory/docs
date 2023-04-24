@@ -39,7 +39,7 @@ These issues do not occur immediately, and you may even see modified accounts ap
 ## Highlighted Updates
 ### Armory
 This release includes the following:
-  - Improved error handling in Pipelines as Code and its microservice, Dinghy.
+  - Improved error handling in Pipelines-as-Code and its microservice, Dinghy.
   - The Terraform integration now uses Clouddriver's built-in support for `git/repo` artifact types. Previously, you had to create a custom artifact that was a `git/repo` type.
   - Improved edge case handling in Policy Engine to better support more complex policies that include other top-level declarations besides `deny`. This resolves a previous known issue with Policy Engine where OPA policies that contain a top level declaration other than `deny` prevent any pipeline from being saved.
   - Addressed a number of CVE's related to `springframework`, `tomcat`, and `jackson-databind` found in Spinnaker Java services.

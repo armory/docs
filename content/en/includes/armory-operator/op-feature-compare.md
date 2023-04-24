@@ -12,7 +12,7 @@
 | Expose via `LoadBalancer` or `Ingress` ![Proprietary](/images/proprietary.svg)                                                                         |     &#9989;     |      &#10060;      | 
 | Deploy in an Istio-controlled cluster ![Proprietary](/images/proprietary.svg)                                                                          |      &#9989;     |      &#10060;      |
 | Configure diagnostics ![Proprietary](/images/proprietary.svg)                                                                                          |    &#9989;     |       &#10060;      | 
-| Configure Pipelines as Code ![Proprietary](/images/proprietary.svg)                                                                                    |        &#9989;     |    &#10060;      |
+| Configure Pipelines-as-Code ![Proprietary](/images/proprietary.svg)                                                                                    |        &#9989;     |    &#10060;      |
 | Configure Policy Engine ![Proprietary](/images/proprietary.svg)                                                                                        |      &#9989;     |     &#10060;      | 
 | Configure Terraform integration ![Proprietary](/images/proprietary.svg)                                                                                |       &#9989;     |     &#10060;      |
 | Configure Vault secrets ![Proprietary](/images/proprietary.svg)                                                                                        |      &#9989;     |     &#10060;      | 

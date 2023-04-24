@@ -82,11 +82,11 @@ Improvements to the Cloud Foundry provider include the following:
 * You can now filter based on location and space. This gives you the ability to scope your Spinnaker to a specific organization or space, limiting the resources, operations, and caching to a specific organization or space.
 
 
-### Pipelines as Code
+### Pipelines-as-Code
 
-Pipelines as Code now supports using MySQL as the backing store, which can provide more durability and scalability than Redis. This feature is currently in early access.
+Pipelines-as-Code now supports using MySQL as the backing store, which can provide more durability and scalability than Redis. This feature is currently in early access.
 
-For information about how to configure the backing store for Pipelines as Code, see [Configuring SQL]({{< ref "plugins/pipelines-as-code/install-cdsh#configuring-redis" >}}).
+For information about how to configure the backing store for Pipelines-as-Code, see [Configuring SQL]({{< ref "plugins/pipelines-as-code/install/cdsh#configuring-redis" >}}).
 
 ### Terraform Integration
 

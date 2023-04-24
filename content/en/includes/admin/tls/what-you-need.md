@@ -15,7 +15,7 @@ The following table lists the Armory and Spinnaker services, their type (Java or
 | Rosco | Java | Yes | Yes |
 | Terraformer* | Golang | Yes | Yes |
 
-* Dinghy is the service for Pipelines as Code.
+* Dinghy is the service for Pipelines-as-Code.
 * Terraformer is the service for the Armory Terraform Integration.
 
 **Note**: Gate may be handled differently if you already [terminating SSL at Gate]({{< ref "dns-and-ssl" >}}). If not, make sure the load balancer and ingress you are using supports self-signed certificates.
