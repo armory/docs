@@ -1,12 +1,12 @@
 ---
 title: Install Pipelines-as-Code in Armory Continuous Deployment
-linkTitle: Install - Armory CD
+linkTitle: Armory CD
 weight: 1
 description: >
   Learn how to install Armory's Pipelines and Code plugin in Armory Continuous Deployment.
 ---
 
-## Install Pipelines-as-Code
+## Enable Pipelines-as-Code
 
 _Dinghy_ is the microservice you need to enable to use Pipelines-as-Code. Add the following to your `SpinnakerService` manifest:
 
