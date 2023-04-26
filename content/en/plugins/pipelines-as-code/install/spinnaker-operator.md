@@ -42,19 +42,37 @@ You can find the relevant config and install files in `plugins/oss/pipelines-as-
 
 ## Configure the service
 
-1. Make sure the service version is compatible with your Spinnaker version.
+### Set the version
 
-   You specify the version in the `patchesStrategicMerge` section of `plugins/oss/pipelines-as-code/kustomization.yml`. 
+Make sure the service version is compatible with your Spinnaker version.
 
-   ```yaml
-   patchesStrategicMerge:
-     - ./pac-plugin-config.yml
-     - ./versions/v-1.28.yml
-   ```
+You specify the version in the `patchesStrategicMerge` section of `plugins/oss/pipelines-as-code/kustomization.yml`. 
 
-   You can find supported versions in the `plugins/oss/pipelines-as-code/versions` directory. For example, if you are running Spinnaker 1.27.x, you would replace `./versions/v-1.28.yml` with `./versions/v-1.27.yml`.
+```yaml
+patchesStrategicMerge:
+  - ./pac-plugin-config.yml
+  - ./versions/v-1.28.yml
+```
+
+You can find supported versions in the `plugins/oss/pipelines-as-code/versions` directory. For example, if you are running Spinnaker 1.27.x, you would replace `./versions/v-1.28.yml` with `./versions/v-1.27.yml`.
+
+### Configure your repo
+
+{{< readfile file="/includes/plugins/pac/before-enable-repo.md" >}}
 
 
+{{< tabpane text=true right=true >}}
+{{% tab header="**Version Control**:" disabled=true /%}}
+{{% tab header="GitHub"  %}}
+{{< readfile file="/includes/plugins/pac/config-github.md" >}}
+{{% /tab %}}
+{{% tab header="Bitbucket/Stash"  %}}
+{{< readfile file="/includes/plugins/pac/config-bitbucket.md" >}}
+{{% /tab %}}
+{{% tab header="GitLab"  %}}
+{{< readfile file="/includes/plugins/pac/config-gitlab.md" >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 
 ## Configure the plugin

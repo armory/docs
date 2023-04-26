@@ -21,20 +21,37 @@ Installing Pipelines-as-Code consists of these steps:
 * You have permissions to create ServiceAccount, ClusterRole, and ClusterRoleBinding objects in your cluster.
 
 
-### Configure permissions
+## Configure permissions
 
 The following manifest creates a ServiceAccount, ClusterRole, and ClusterRoleBinding. Apply the manifest in your `spinnaker` namespace.
 
 {{< readfile file="/static/code/plugins/pac/k8s-permissions.yml" code="true" lang="yaml" >}}
 
-### Configure the service
+## Configure the service
 
 {{< readfile file="/static/code/plugins/pac/dinghy-config-map.yml" code="true" lang="yaml" >}}
 
+### Configure your repo
 
-### Deploy the service
+{{< readfile file="/includes/plugins/pac/before-enable-repo.md" >}}
 
-Replace `<version>` with the Pipelines-as-Code service version compatible with your Spinnaker version. Be sure to replace `<version>` with the version compatible with your Spinnaker instance.
+
+{{< tabpane text=true right=true >}}
+{{% tab header="**Version Control**:" disabled=true /%}}
+{{% tab header="GitHub"  %}}
+{{< readfile file="/includes/plugins/pac/config-github.md" >}}
+{{% /tab %}}
+{{% tab header="Bitbucket/Stash"  %}}
+{{< readfile file="/includes/plugins/pac/config-bitbucket.md" >}}
+{{% /tab %}}
+{{% tab header="GitLab"  %}}
+{{< readfile file="/includes/plugins/pac/config-gitlab.md" >}}
+{{% /tab %}}
+{{< /tabpane >}}
+
+## Deploy the service
+
+Replace `<version>` with the Pipelines-as-Code service version compatible with your Spinnaker version. 
 
 {{< readfile file="/static/code/plugins/pac/deployment.yml" code="true" lang="yaml" >}}
 

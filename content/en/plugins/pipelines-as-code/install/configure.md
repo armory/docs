@@ -6,12 +6,27 @@ description: >
   Learn how to configure Armory Pipelines-as-Code in your Spinnaker or Armory CD instance.
 ---
 
-## {{% heading "prereq" %}}
+## Where to configure the service
 
-* You have installed Pipelines-as-Code in your Armory CD or Spinnaker instance.
+* Spinnaker (Halyard): `dinghy.yml` section of your ConfigMap
+* Spinnaker (Spinnaker Operator): `spinnaker-kustomize-patches/plugins/oss/pipelines-as-code/dinghy.yml`
+* Armory CD: `spinnaker-kustomize-patches/armory/features/pipelines-as-code/features.yml`
 
+## Configure your repos
 
-You can also [configure notifications](#configure-notifications) to work with Pipelines-as-Code. Be sure to look at the [additional options](#additional-options) section for optional features such as custom branch configuration if you don't use `master` or `main` branches and how to use multiple branches instead of a default single branch.
+{{< readfile file="/includes/plugins/pac/before-enable-repo.md" >}}
+
+### Configure GitHub
+
+{{< readfile file="/includes/plugins/pac/config-github.md" >}}
+
+### Configure Bitbucket Server (Stash) and Bitbucket Cloud
+
+{{< readfile file="/includes/plugins/pac/config-bitbucket.md" >}}
+
+### Configure GitLab
+
+{{< readfile file="/includes/plugins/pac/config-gitlab.md" >}}
 
 ## Configure an external persistent database
 
@@ -23,28 +38,12 @@ Armory highly recommends that you use an external Redis instance for production 
 
 > Dinghy can only be configured to use a password with the default Redis user.
 
-To set/override the default Redis settings do the following:
+To set/override the default Redis settings, add the following to your config file:
 
-In `SpinnakerService` manifest:
-
-{{< prism lang="yaml" line="8-11" >}}
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      dinghy:
-        redis:
-          baseUrl: "redis://spin-redis:6379"
-          password: "password"
-{{< /prism >}}
-
-Apply your changes:
-
-{{< prism lang="bash">}}
-kubectl -n spinnaker apply -f spinnakerservice.yml
+{{< prism lang="yaml">}}
+redis:
+  baseUrl: "redis://spin-redis:6379"
+  password: "password"
 {{< /prism >}}
 
 ### Configure MySQL
@@ -65,29 +64,15 @@ CREATE SCHEMA IF NOT EXISTS dinghy DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4
       GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, LOCK TABLES, EXECUTE, SHOW VIEW ON dinghy.* TO dinghy_migrate@'%';
 {{< /prism >}}
 
-Next, configure Pipelines-as-Code to use your MySQL database. Add the following to your `SpinnakerService` manifest:
+Next, configure Pipelines-as-Code to use your MySQL database. Add the following to your config file:
 
-{{< prism lang="sql" line="8-14">}}
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      dinghy:
-        sql:
-          baseUrl: mysql:3306
-          databaseName: dinghy
-          enabled: true
-          password: password
-          user: user
-{{< /prism >}}
-
-Apply your changes:
-
-{{< prism lang="bash">}}
-kubectl -n spinnaker apply -f spinnakerservice.yml
+{{< prism lang="yaml">}}
+sql:
+  baseUrl: mysql:3306
+  databaseName: dinghy
+  enabled: true
+  password: <password>
+  user: <user>
 {{< /prism >}}
 
 ### Migration from Redis to SQL
@@ -106,138 +91,6 @@ In `fileurls` and `fileurl_childs`, you should be able to see the migration info
 
 After Dinghy finishes the migration, it closes the Redis connection and works in full MySQL mode.
 
-## Enable your repos
-
-Before configuring your repos, ensure you have the following:
-
-1. A personal access token (in either [GitHub](https://github.com/settings/tokens) or Bitbucket/Stash) that has read access to the repo where you store your `dinghyfile` and the repo where you store `module` files.
-1. The GitHub, GitLab, or Bitbucket/Stash organization where the app repos and templates reside. For example, if your repo is `armory-io/dinghy-templates`, your `template-org` would be `armory-io`.
-1. The name of the repo containing your modules. For example, if your repo is `armory-io/dinghy-templates`, your `template-repo` would be `dinghy-templates`.
-
-### Enable GitHub
-
-{{< prism lang="yaml" line="11-14">}}
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    config:
-      armory:
-        dinghy:
-          enabled: true  # Whether or not Dinghy is enabled
-          templateOrg: my-org # SCM organization or namespace where application and template repositories are located
-          templateRepo: dinghy-templates # SCM repository where module templates are located
-          githubToken: abc  #  GitHub token.
-          githubEndpoint: https://api.github.com # (Default: https://api.github.com) GitHub API endpoint. Useful if you’re using GitHub Enterprise
-{{< /prism >}}
-
-* `githubToken`: This field supports "encrypted" field references; see [Secrets]({{< ref "continuous-deployment/armory-admin/Secrets" >}}) for details.
-
-Apply your changes:
-
-{{< prism lang="bash">}}
-kubectl -n spinnaker apply -f spinnakerservice.yml
-{{< /prism >}}
-
-#### GitHub webhooks
-
-Set up webhooks at the organization level for push events. You can do this by going to `https://github.com/organizations/<your_org_here>/settings/hooks`.
-
-1. Set `content-type` to `application/json`.
-1. Set the `Payload URL` to your Gate URL. Depending on whether you configured Gate to use its own DNS name or a path on the same DNS name as Deck, the URL follows one of the following formats:
-
-   * `https://<your-gate-url>/webhooks/git/github` if you have a separate DNS name or port for Gate
-   * `https://<your-spinnaker-url>/api/v1/webhooks/git/github` if you're using a different path for Gate
-
-If your Gate endpoint is protected by a firewall, you need to configure your firewall to allow inbound webhooks from GitHub's IP addresses. You can find the IPs in this API [response](https://api.github.com/meta). Read more about [GitHub's IP addresses](https://help.github.com/articles/about-github-s-ip-addresses/).
-
-You can configure webhooks on multiple GitHub organizations or repositories to send events to Dinghy. Only a single repository from one organization can be the shared template repository in Dinghy. However, Dinghy can process pipelines from multiple GitHub organizations. You want to ensure the GitHub token configured for Dinghy has permission for all the organizations involved.
-
-#### Pull request validations
-
-When you make a GitHub pull request (PR) and there is a change in a `dinghyfile`, Pipelines-as-Code automatically performs a validation for that `dinghyfile`. It also updates the GitHub status accordingly. If the validation fails, you see an unsuccessful `dinghy` check.
-
-{{< figure src="/images/dinghy/pr_validation/pr_validation.png" alt="PR that fails validation." >}}
-
-Make PR validations mandatory to ensure users only merge working `dinghyfiles`.
-
-Perform the following steps to configure mandatory PR validation:
-
-1. Go to your GitHub repository.
-1. Click on **Settings > Branches**.
-1. In **Branch protection rules**, select **Add rule**.
-1. Add `master` in **Branch name pattern** so that the rule gets enforced on the `master` branch. Note that if this is a new repository with no commits, the "dinghy" option does not appear. You must first create a `dinghyfile` in any branch.
-1. Select **Require status checks to pass before merging** and make **dinghy** required.  Select **Include administrators** as well so that all PRs get validated, regardless of user.
-
-The following screenshot shows what your GitHub settings should resemble:
-{{< figure src="/images/dinghy/pr_validation/branch_mandatory.png" alt="Configured dinghy PR validation." >}}
-
-
-### Enable Bitbucket Server (Stash) and Bitbucket Cloud
-
-Bitbucket has both cloud and server offerings. See the Atlassian [docs](https://confluence.atlassian.com/bitbucketserver/bitbucket-rebrand-faq-779298912.html) for more on the name change from Stash to Bitbucket Server. Consult your company's Bitbucket support desk if you need help determining what flavor and version of Bitbucket you are using.
-
-Add the Bitbucket configuration to your `SpinnakerService` manifest:
-
-{{< prism lang="yaml" line="11-15" >}}
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    config:
-      armory:
-        dinghy:
-          enabled: true                      # Whether or not Dinghy is enabled
-          templateOrg: my-org                # SCM organization or namespace where application and template repositories are located
-          templateRepo: dinghy-templates     # SCM repository where module templates are located
-          stashUsername: stash_user          # Stash username
-          stashToken: abc                    # Stash token. This field supports "encrypted" field references
-          stashEndpoint: https://my-endpoint # Stash API endpoint. If you're using Bitbucket Server, update the endpoint to include the api e.g. https://your-endpoint-here.com/rest/api/1.0
-{{< /prism >}}
-
-Apply your changes:
-
-{{< prism lang="bash">}}
-kubectl -n spinnaker apply -f spinnakerservice.yml
-{{< /prism >}}
-
-> If you're using Bitbucket Server, update the endpoint to include the api, e.g. `--stash-endpoint https://your-endpoint-here.com/rest/api/1.0`
-
-You need to set up webhooks for each project that has the `dinghyfile` or module separately. Make the webhook `POST` to: `https://spinnaker.your-company.com:8084/webhooks/git/bitbucket`. If you're using Stash `<v3.11.6`, you need to install the [webhook plugin](https://marketplace.atlassian.com/plugins/com.atlassian.stash.plugin.stash-web-post-receive-hooks-plugin/server/overview) to be able to set up webhooks.
-
-### Enable GitLab
-
-Add the GitLab configuration to your `SpinnakerService` manifest:
-
-{{< prism lang="yaml" line="11-14" >}}
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    config:
-      armory:
-        dinghy:
-          enabled: true                       # Whether or not Dinghy is enabled
-          templateOrg: my-org                 # SCM organization or namespace where application and template repositories are located
-          templateRepo: dinghy-templates      # SCM repository where module templates are located
-          gitlabToken: abc                    # GitLab token. This field supports "encrypted" field references
-          gitlabEndpoint: https://my-endpoint # GitLab endpoint
-{{< /prism >}}
-
-Apply your changes:
-
-{{< prism lang="bash">}}
-kubectl -n spinnaker apply -f spinnakerservice.yml
-{{< /prism >}}
-
-Under **Settings** -> **Integrations**  on your project page, point your webhooks to `https://<your-gate-url>/webhooks/git/gitlab`.  Make sure the server your
-GitLab install is running on can connect to your Gate URL. Armory also needs to communicate with your GitLab installation. Ensure that connectivity works as well.
 
 ## Configure notifications
 
