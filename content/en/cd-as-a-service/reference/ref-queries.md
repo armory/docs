@@ -29,22 +29,24 @@ Armory provides some metrics by default on all canary analysis requests. These v
 
 Armory provides the following variables:
 
-| Variable                 | Annotation | Environment variable | Notes                                                                     |
-|--------------------------|------------|----------------------|---------------------------------------------------------------------------|
-| applicationName          | `deploy.armory.io/application` | `ARMORY_APPLICATION_NAME` | Added as annotation resources and as environment variables on  pods*      |
-| deploymentId             | `deploy.armory.io/deployment-id` | `ARMORY_DEPLOYMENT_ID` | Added as annotation resources and as environment variables on  pods*      |
-| environmentName          | `deploy.armory.io/environment` | `ARMORY_ENVIRONMENT_NAME` | Added as annotation resources and as environment variables on  pods*      |
-| replicaSetName           | `deploy.armory.io/replica-set-name` | `ARMORY_REPLICA_SET_NAME`  | Added as annotation resources and as environment variables on  pods*      |
-| promQlStepInterval       | - | - | Used to aggregate PromQL functions to a single value                      |
-| intervalSeconds          | - | - | Length of the current query interval in seconds                           |
-| intervalMillis           | - | - | Length of the current query interval in milliseconds                      |
-| endTimeEpochMillis       | - | - | Exact end time of the current query interval in epoch milliseconds format |
-| endTimeEpochSeconds      | - | - | Exact end time of the current query interval in epoch seconds format      |
-| endTimeIso8601           | - | - | Exact end time of the current query interval in ISO 8601 format           |
-| startTimeEpochMillis     | - | - | Exact start time of the current query interval in epoch milliseconds format |
-| startTimeEpochSeconds    | - | - | Exact start time of the current query interval in epoch seconds format    |
-| startTimeIso8601         | - | - | Exact start time of the current query interval in ISO 8601 format         |
-| preview.`<service name>` | - | - | URL to the `Service` resource exposed via `exposeServices` step**         |
+| Variable                 | Annotation                          | Environment variable      | Notes                                                                       |
+|--------------------------|-------------------------------------|---------------------------|-----------------------------------------------------------------------------|
+| applicationName          | `deploy.armory.io/application`      | `ARMORY_APPLICATION_NAME` | Added as annotation resources and as environment variables on  pods*        |
+| deploymentId             | `deploy.armory.io/deployment-id`    | `ARMORY_DEPLOYMENT_ID`    | Added as annotation resources and as environment variables on  pods*        |
+| environmentName          | `deploy.armory.io/environment`      | `ARMORY_ENVIRONMENT_NAME` | Added as annotation resources and as environment variables on  pods*        |
+| replicaSetName           | `deploy.armory.io/replica-set-name` | `ARMORY_REPLICA_SET_NAME` | Added as annotation resources and as environment variables on  pods*        |
+| accountName              | -                                   | -                         | The name of the account (or agentIdentifier) used to execute the deployment |
+| namespace                | -                                   | -                         | The namespace resources are being deployed to                               |
+| promQlStepInterval       | -                                   | -                         | Used to aggregate PromQL functions to a single value                        |
+| intervalSeconds          | -                                   | -                         | Length of the current query interval in seconds                             |
+| intervalMillis           | -                                   | -                         | Length of the current query interval in milliseconds                        |
+| endTimeEpochMillis       | -                                   | -                         | Exact end time of the current query interval in epoch milliseconds format   |
+| endTimeEpochSeconds      | -                                   | -                         | Exact end time of the current query interval in epoch seconds format        |
+| endTimeIso8601           | -                                   | -                         | Exact end time of the current query interval in ISO 8601 format             |
+| startTimeEpochMillis     | -                                   | -                         | Exact start time of the current query interval in epoch milliseconds format |
+| startTimeEpochSeconds    | -                                   | -                         | Exact start time of the current query interval in epoch seconds format      |
+| startTimeIso8601         | -                                   | -                         | Exact start time of the current query interval in ISO 8601 format           |
+| preview.`<service name>` | -                                   | -                         | URL to the `Service` resource exposed via `exposeServices` step**           |
 
 `*`If you are using a metrics implementation like [Micrometer](https://micrometer.io/), make sure to configure it to report these metrics to your metrics provider.
 

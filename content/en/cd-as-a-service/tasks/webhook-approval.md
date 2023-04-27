@@ -7,13 +7,15 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-You have read the {{< linkWithTitle "cd-as-a-service/concepts/external-automation.md" >}} guide.
+You have read the {{< linkWithTitle "cd-as-a-service/concepts/external-automation.md" >}} guide and {{< linkWithTitle "cd-as-a-service/reference/ref-webhooks.md" >}}.
 
 ## How to configure a webhook in your deployment file
 
 In your deployment file, you configure your webhook by adding a top-level `webhooks` section with the following information:
 
 {{< include "cdaas/dep-file/webhooks-config.md" >}}
+
+{{< include "cdaas/dep-file/webhooks-variables.md" >}}
 
 ### Configuration examples
 
@@ -36,7 +38,7 @@ webhooks:
         "event_type": "webhookCallback",
         "client_payload": {
             "callbackUri": "{{armory.callbackUri}}/callback"
-            "environment": "{{context.environment}}"
+            "environment": "{{armory.environmentName}}"
             }
         }
     retryCount: 3
@@ -78,7 +80,8 @@ You add a `runWebhooks` section where you want to trigger the webhook.
 {{< prism lang="yaml" line-numbers="true" >}}
 - runWebhook:
     name: <webhook-name>
-    context: []
+    context: 
+        myCustomKey: myCustomValue
 {{< /prism >}}
 
 - `name`: (Required) webhook name; must match the name you gave your webhook in the `webhooks` configuration section.

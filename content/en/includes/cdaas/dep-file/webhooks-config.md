@@ -28,7 +28,7 @@ webhooks:
 
 * `agentIdentifier`: (Optional) Use when `networkMode` is `remoteNetworkAgent`; the Remote Network Agent identifier to use as a proxy; the identifier must match the **Agent Identifier** value listed on the **Agents** UI screen; if not specified, Armory CD-as-a-Service uses the Remote Network Agent associated with the environment account.
 
-* `headers`: (Optional) Request headers; the `Authorization` header is required if your webhook requires authorization.
+* `headers`: (Optional) Request headers; the `Authorization` header is required if your webhook requires authorization. Also supports use of `context` and `armory` provided variables.
 
 * `bodyTemplate`: (Optional) the body of the REST API request; the inline content depends on the endpoint you are calling.
 
