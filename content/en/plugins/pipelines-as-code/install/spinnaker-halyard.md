@@ -36,8 +36,7 @@ The following manifest creates a ServiceAccount, ClusterRole, and ClusterRoleBin
 {{< readfile file="/includes/plugins/pac/before-enable-repo.md" >}}
 
 
-{{< tabpane text=true right=true >}}
-{{% tab header="**Version Control**:" disabled=true /%}}
+{{< tabpane text=true >}}
 {{% tab header="GitHub"  %}}
 {{< readfile file="/includes/plugins/pac/config-github.md" >}}
 {{% /tab %}}
@@ -55,7 +54,7 @@ Replace `<version>` with the Pipelines-as-Code service version compatible with y
 
 {{< readfile file="/static/code/plugins/pac/deployment.yml" code="true" lang="yaml" >}}
 
-
+Apply the ConfigMap and Deployment manifests in your `spinnaker` namespace.
 
 ## Install the plugin
 
