@@ -1,13 +1,13 @@
 ---
 title: Configure a Webhook in the Deployment File
-linktitle: Configure a Webhook
+linkTitle: Configure a Webhook
 description: >
   Configure a webhook-based approval into your Armory CD-as-a-Service app deployment process.
 ---
 
 ## {{% heading "prereq" %}}
 
-You have read the {{< linkWithTitle "cd-as-a-service/concepts/external-automation.md" >}} guide and {{< linkWithTitle "cd-as-a-service/reference/ref-webhooks.md" >}}.
+You have read the {{< linkWithTitle "cd-as-a-service/concepts/external-automation.md" >}} guide.
 
 ## How to configure a webhook in your deployment file
 
@@ -15,11 +15,9 @@ In your deployment file, you configure your webhook by adding a top-level `webho
 
 {{< include "cdaas/dep-file/webhooks-config.md" >}}
 
-{{< include "cdaas/dep-file/webhooks-variables.md" >}}
-
 ### Configuration examples
 
-The first example configures a GitHub webhook that uses token authorization, with the token value configured as a Armory CD-as-a-Service secret. This webhook requires the callback URI be passed in the request body. The payload also contains an `environment` context variable that you pass in when invoking the webhook in your deployment file.
+The first example configures a GitHub webhook that uses token authorization, with the token value configured as a Armory CD-as-a-Service secret. This webhook requires the callback URI be passed in the request body. The payload also contains context variable that you pass in when invoking the webhook in your deployment file.
 
 {{< prism lang="yaml" line-numbers="true" line="8, 16-17" >}}
 webhooks:
@@ -39,6 +37,8 @@ webhooks:
         "client_payload": {
             "callbackUri": "{{armory.callbackUri}}/callback"
             "environment": "{{armory.environmentName}}"
+            "applicationName": "{{armory.applicationName}}"
+            "replicaSetName": "{{armory.replicaSetName}}"
             }
         }
     retryCount: 3
@@ -63,6 +63,10 @@ webhooks:
         value: application/json
       - key: environment
         value: {{context.environment}}
+      - key: applicationName
+        value: {{armory.applicationName}}
+      - key: replicaSetName
+        value: {{armory.replicaSetName}}
     retryCount: 5
 {{< /prism >}}
 
@@ -178,5 +182,6 @@ strategies:
 
 ## {{% heading "nextSteps" %}}
 
+* [Webhooks section in the deployment file reference]({{< ref "cd-as-a-service/reference/ref-deployment-file#webhooks." >}})
 * {{< linkWithTitle "cd-as-a-service/tutorials/external-automation/webhook-github.md" >}}
 * {{< linkWithTitle "cd-as-a-service/troubleshooting/webhook.md" >}}
