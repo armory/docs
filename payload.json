@@ -1,163 +1,141 @@
 {
   "armoryServices": [
     {
-      "commitMessages": [],
-      "currentVersion": "2.28.6-rc2",
-      "name": "Dinghy™",
-      "previousVersion": "2.28.6-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.6-rc2",
-      "name": "Armory Fiat",
-      "previousVersion": "2.28.6-rc1"
-    },
-    {
       "commitMessages": [
-        "chore(cd): update armory-commons version to 3.11.5 (#862)",
-        "Bumped aws-cli to 1.22 for FIPS compliance (#854) (#863)",
-        "chore(cd): update armory-commons version to 3.11.6 (#868)"
+        "chore(cd): update base service version to igor:2023.03.02.19.40.25.release-1.28.x (#419)",
+        "chore(cd): update base service version to igor:2023.03.02.21.16.28.release-1.28.x (#420)"
       ],
-      "currentVersion": "2.28.6-rc2",
-      "name": "Armory Clouddriver",
-      "previousVersion": "2.28.6-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.6-rc2",
+      "currentVersion": "2.28.6",
       "name": "Armory Igor",
-      "previousVersion": "2.28.6-rc1"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update armory-commons version to 3.11.5 (#526)",
-        "chore(cd): update armory-commons version to 3.11.6 (#529)"
-      ],
-      "currentVersion": "2.28.6-rc2",
-      "name": "Armory Rosco",
-      "previousVersion": "2.28.6-rc1"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update base service version to kayenta:2023.03.28.19.09.35.release-1.28.x (#398)",
-        "chore(cd): update armory-commons version to 3.11.5 (#423)",
-        "chore(cd): update armory-commons version to 3.11.6 (#430)"
-      ],
-      "currentVersion": "2.28.6-rc2",
-      "name": "Armory Kayenta",
-      "previousVersion": "2.28.6-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.6-rc2",
-      "name": "Terraformer™",
-      "previousVersion": "2.28.6-rc1"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update armory-commons version to 3.11.5 (#556)"
-      ],
-      "currentVersion": "2.28.6-rc2",
-      "name": "Armory Gate",
-      "previousVersion": "2.28.6-rc1"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update armory-commons version to 3.11.5 (#576)",
-        "chore(cd): update armory-commons version to 3.11.6 (#579)"
-      ],
-      "currentVersion": "2.28.6-rc2",
-      "name": "Armory Echo",
-      "previousVersion": "2.28.6-rc1"
-    },
-    {
-      "commitMessages": [
-        "chore(build): only run security scans on PR merge (backport #1319) (#1327)",
-        "chore(cd): update base deck version to 2023.0.0-20230410180145.release-1.28.x (#1330)",
-        "chore(cd): update base deck version to 2023.0.0-20230410180145.release-1.28.x (#1332)",
-        "chore(cd): update base deck version to 2023.0.0-20230420193214.release-1.28.x (#1333)"
-      ],
-      "currentVersion": "2.28.6-rc2",
-      "name": "Armory Deck",
-      "previousVersion": "2.28.6-rc1"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update armory-commons version to 3.11.5 (#632)"
-      ],
-      "currentVersion": "2.28.6-rc2",
-      "name": "Armory Orca",
-      "previousVersion": "2.28.6-rc1"
+      "previousVersion": "2.28.5"
     },
     {
       "commitMessages": [
         "chore(cd): update base service version to front50:2023.03.27.19.08.11.release-1.28.x (#509)",
         "chore(cd): update armory-commons version to 3.11.5 (#534)"
       ],
-      "currentVersion": "2.28.6-rc2",
+      "currentVersion": "2.28.6",
       "name": "Armory Front50",
-      "previousVersion": "2.28.6-rc1"
+      "previousVersion": "2.28.5"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to gate:2023.03.02.19.38.56.release-1.28.x (#523)",
+        "chore(cd): update base service version to gate:2023.03.02.21.17.09.release-1.28.x (#524)",
+        "chore(cd): update base service version to gate:2023.03.27.19.10.16.release-1.28.x (#530)",
+        "chore(cd): update armory-commons version to 3.11.5 (#556)"
+      ],
+      "currentVersion": "2.28.6",
+      "name": "Armory Gate",
+      "previousVersion": "2.28.5"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base orca version to 2023.03.02.19.46.59.release-1.28.x (#597)",
+        "chore(cd): update base orca version to 2023.03.02.21.24.49.release-1.28.x (#598)",
+        "chore(cd): update base orca version to 2023.03.28.15.32.53.release-1.28.x (#608)",
+        "chore(cd): update armory-commons version to 3.11.5 (#632)"
+      ],
+      "currentVersion": "2.28.6",
+      "name": "Armory Orca",
+      "previousVersion": "2.28.5"
+    },
+    {
+      "commitMessages": [
+        "chore(alpine): Upgrade alpine version (backport #1302) (#1303)",
+        "chore(build): only run security scans on PR merge (backport #1319) (#1327)",
+        "chore(cd): update base deck version to 2023.0.0-20230410180145.release-1.28.x (#1330)",
+        "chore(cd): update base deck version to 2023.0.0-20230410180145.release-1.28.x (#1332)",
+        "chore(cd): update base deck version to 2023.0.0-20230420193214.release-1.28.x (#1333)"
+      ],
+      "currentVersion": "2.28.6",
+      "name": "Armory Deck",
+      "previousVersion": "2.28.5"
+    },
+    {
+      "commitMessages": [
+        "chore(alpine): Update alpine version (backport #497) (#499)"
+      ],
+      "currentVersion": "2.28.6",
+      "name": "Terraformer™",
+      "previousVersion": "2.28.5"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to rosco:2023.03.02.19.37.08.release-1.28.x (#500)",
+        "chore(cd): update armory-commons version to 3.11.5 (#526)",
+        "chore(cd): update armory-commons version to 3.11.6 (#529)"
+      ],
+      "currentVersion": "2.28.6",
+      "name": "Armory Rosco",
+      "previousVersion": "2.28.5"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to clouddriver:2023.03.02.19.57.01.release-1.28.x (#812)",
+        "chore(cd): update base service version to clouddriver:2023.03.03.02.32.42.release-1.28.x (#813)",
+        "chore(cd): update base service version to clouddriver:2023.03.21.20.21.00.release-1.28.x (#821)",
+        "chore(cd): update base service version to clouddriver:2023.03.23.14.57.28.release-1.28.x (#826)",
+        "chore(cd): update base service version to clouddriver:2023.03.27.19.24.21.release-1.28.x (#829)",
+        "chore(cd): update armory-commons version to 3.11.5 (#862)",
+        "Bumped aws-cli to 1.22 for FIPS compliance (#854) (#863)",
+        "chore(cd): update armory-commons version to 3.11.6 (#868)"
+      ],
+      "currentVersion": "2.28.6",
+      "name": "Armory Clouddriver",
+      "previousVersion": "2.28.5"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to kayenta:2023.03.03.04.50.48.release-1.28.x (#393)",
+        "chore(cd): update base service version to kayenta:2023.03.28.19.09.35.release-1.28.x (#398)",
+        "chore(cd): update armory-commons version to 3.11.5 (#423)",
+        "chore(cd): update armory-commons version to 3.11.6 (#430)"
+      ],
+      "currentVersion": "2.28.6",
+      "name": "Armory Kayenta",
+      "previousVersion": "2.28.5"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to echo:2023.03.02.19.38.24.release-1.28.x (#542)",
+        "chore(cd): update base service version to echo:2023.03.02.21.17.15.release-1.28.x (#543)",
+        "chore(cd): update base service version to echo:2023.03.27.19.10.41.release-1.28.x (#550)",
+        "chore(cd): update armory-commons version to 3.11.5 (#576)",
+        "chore(cd): update armory-commons version to 3.11.6 (#579)"
+      ],
+      "currentVersion": "2.28.6",
+      "name": "Armory Echo",
+      "previousVersion": "2.28.5"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): bumped oss dinghy version to 20230201103309-a73a68c80965 (#480)",
+        "chore(alpine): Upgrade alpine version (backport #481) (#482)"
+      ],
+      "currentVersion": "2.28.6",
+      "name": "Dinghy™",
+      "previousVersion": "2.28.5"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to fiat:2023.03.02.19.37.20.release-1.28.x (#441)",
+        "chore(cd): update base service version to fiat:2023.03.16.17.55.44.release-1.28.x (#446)"
+      ],
+      "currentVersion": "2.28.6",
+      "name": "Armory Fiat",
+      "previousVersion": "2.28.5"
     }
   ],
-  "armoryVersion": "2.28.6-rc2",
+  "armoryVersion": "2.28.6",
   "ossServices": [
     {
-      "commitMessages": [],
-      "currentVersion": "1.28.6",
-      "name": "Spinnaker Fiat",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.6",
-      "name": "Spinnaker Clouddriver",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1093)",
+        "chore(dependencies): Autobump fiatVersion (#1094)"
+      ],
       "currentVersion": "1.28.6",
       "name": "Spinnaker Igor",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.6",
-      "name": "Spinnaker Rosco",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [
-        "chore(dependencies): Autobump orcaVersion (#943)"
-      ],
-      "currentVersion": "1.28.6",
-      "name": "Spinnaker Kayenta",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.6",
-      "name": "Spinnaker Gate",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.6",
-      "name": "Spinnaker Echo",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [
-        "fix: UI crashes when running pipeline(s) with many stages. (backport #9960) (#9973)",
-        "fix(aws): Fixing bugs related to clone CX when instance types are incompatible with image/region (backport #9901) (#9975)"
-      ],
-      "currentVersion": "1.28.6",
-      "name": "Spinnaker Deck",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.6",
-      "name": "Spinnaker Orca",
       "previousVersion": "1.28.0"
     },
     {
@@ -170,10 +148,88 @@
       "currentVersion": "1.28.6",
       "name": "Spinnaker Front50",
       "previousVersion": "1.28.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1624)",
+        "chore(dependencies): Autobump fiatVersion (#1625)",
+        "chore(dependencies): Autobump fiatVersion (#1632)"
+      ],
+      "currentVersion": "1.28.6",
+      "name": "Spinnaker Gate",
+      "previousVersion": "1.28.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#4405)",
+        "chore(dependencies): Autobump fiatVersion (#4406)",
+        "chore(dependencies): Autobump fiatVersion (#4425)",
+        "Fix/blue green deploy (backport #4414) (#4419)"
+      ],
+      "currentVersion": "1.28.6",
+      "name": "Spinnaker Orca",
+      "previousVersion": "1.28.0"
+    },
+    {
+      "commitMessages": [
+        "fix: UI crashes when running pipeline(s) with many stages. (backport #9960) (#9973)",
+        "fix(aws): Fixing bugs related to clone CX when instance types are incompatible with image/region (backport #9901) (#9975)"
+      ],
+      "currentVersion": "1.28.6",
+      "name": "Spinnaker Deck",
+      "previousVersion": "1.28.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#959)"
+      ],
+      "currentVersion": "1.28.6",
+      "name": "Spinnaker Rosco",
+      "previousVersion": "1.28.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#5897)",
+        "chore(dependencies): Autobump fiatVersion (#5898)",
+        "fix(core): Renamed a query parameter for template tags (#5906) (#5908)",
+        "chore(aws): Update AWS IAM Authenticator version (#5910)",
+        "chore(dependencies): Autobump fiatVersion (#5916)"
+      ],
+      "currentVersion": "1.28.6",
+      "name": "Spinnaker Clouddriver",
+      "previousVersion": "1.28.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump orcaVersion (#936)",
+        "chore(dependencies): Autobump orcaVersion (#943)"
+      ],
+      "currentVersion": "1.28.6",
+      "name": "Spinnaker Kayenta",
+      "previousVersion": "1.28.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1261)",
+        "chore(dependencies): Autobump fiatVersion (#1262)",
+        "chore(dependencies): Autobump fiatVersion (#1270)"
+      ],
+      "currentVersion": "1.28.6",
+      "name": "Spinnaker Echo",
+      "previousVersion": "1.28.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1026)",
+        "fix(logs): Redacted secret data in logs. (#1029) (#1030)"
+      ],
+      "currentVersion": "1.28.6",
+      "name": "Spinnaker Fiat",
+      "previousVersion": "1.28.0"
     }
   ],
   "ossVersion": "1.28.6",
-  "prerelease": true,
+  "prerelease": false,
   "stack": {
     "artifactSources": {
       "dockerRegistry": "docker.io/armory"
@@ -187,39 +243,39 @@
     "services": {
       "clouddriver": {
         "commit": "95037f6d709c2dd03318b78c42c426106ee16a01",
-        "version": "2.28.6-rc2"
+        "version": "2.28.6"
       },
       "deck": {
         "commit": "e24db15a97545fd5dda3bdb88a70f640bc5a1104",
-        "version": "2.28.6-rc2"
+        "version": "2.28.6"
       },
       "dinghy": {
         "commit": "912007004f7720b418cd133301c7fb20207e1f2f",
-        "version": "2.28.6-rc2"
+        "version": "2.28.6"
       },
       "echo": {
         "commit": "a602d9d5def0815cb52bdf6d695ca69cbf0abe3b",
-        "version": "2.28.6-rc2"
+        "version": "2.28.6"
       },
       "fiat": {
         "commit": "45039aa7952cc409329faa30b8443667566459c1",
-        "version": "2.28.6-rc2"
+        "version": "2.28.6"
       },
       "front50": {
         "commit": "3292cf2715a9e52bb4690601d4fd877407505ced",
-        "version": "2.28.6-rc2"
+        "version": "2.28.6"
       },
       "gate": {
         "commit": "c8058f4362f3f4ad108fa146d628a162445c7579",
-        "version": "2.28.6-rc2"
+        "version": "2.28.6"
       },
       "igor": {
         "commit": "60964526194a1273a03a7ade1f8939751e337735",
-        "version": "2.28.6-rc2"
+        "version": "2.28.6"
       },
       "kayenta": {
         "commit": "22fe5d47baacce77917c9026cefdedf91c64a956",
-        "version": "2.28.6-rc2"
+        "version": "2.28.6"
       },
       "monitoring-daemon": {
         "commit": null,
@@ -231,18 +287,18 @@
       },
       "orca": {
         "commit": "06352546281e21597eb59d3e993e842b9259f142",
-        "version": "2.28.6-rc2"
+        "version": "2.28.6"
       },
       "rosco": {
         "commit": "27d4a2b4a1d5f099b68471303d4fd14af156d46d",
-        "version": "2.28.6-rc2"
+        "version": "2.28.6"
       },
       "terraformer": {
         "commit": "ea9b0255b7d446bcbf0f0d4e03fc8699b7508431",
-        "version": "2.28.6-rc2"
+        "version": "2.28.6"
       }
     },
     "timestamp": "2023-04-21 21:46:22",
-    "version": "2.28.6-rc2"
+    "version": "2.28.6"
   }
 }
