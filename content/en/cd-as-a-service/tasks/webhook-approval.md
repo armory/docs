@@ -17,7 +17,7 @@ In your deployment file, you configure your webhook by adding a top-level `webho
 
 ### Configuration examples
 
-The first example configures a GitHub webhook that uses token authorization, with the token value configured as a Armory CD-as-a-Service secret. This webhook requires the callback URI be passed in the request body. The payload also contains context variable that you pass in when invoking the webhook in your deployment file.
+The first example configures a GitHub webhook that uses token authorization, with the token value configured as a Armory CD-as-a-Service secret. This webhook requires the callback URI be passed in the request body. The payload also contains context variables that you pass in when invoking the webhook in your deployment file.
 
 {{< prism lang="yaml" line-numbers="true" line="8, 16-17" >}}
 webhooks:
@@ -185,3 +185,4 @@ strategies:
 * [Webhooks section in the deployment file reference]({{< ref "cd-as-a-service/reference/ref-deployment-file#webhooks." >}})
 * {{< linkWithTitle "cd-as-a-service/tutorials/external-automation/webhook-github.md" >}}
 * {{< linkWithTitle "cd-as-a-service/troubleshooting/webhook.md" >}}
+ 
