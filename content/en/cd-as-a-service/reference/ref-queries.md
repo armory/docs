@@ -23,7 +23,7 @@ For information about using queries in your deploy file, see the following resou
 
 You can use variables in the query templates you define in the `analysis.queries.queryTemplate` block of your deployment file. Armory provides a basic set of variables that can be used for all the metrics providers, but you can configure additional ones.
 
-### Armory provided variables
+### Armory-provided variables
 
 Armory provides some metrics by default on all canary analysis requests. These variables are all prefixed with `armory` and are surrounded by `{{}}`. For example, to use `applicationName` variable that Armory supplies, you use the following snippet in the query template: `{{armory.applicationName}}`.
 
