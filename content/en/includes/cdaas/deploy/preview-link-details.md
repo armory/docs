@@ -14,8 +14,8 @@ The section enables exposing deployed `service` resources via a temporary, inter
 
 * `services`: List of one-to-many services to expose
   * Each service name must match an existing service deployed in the target cluster.
-  * Each service must be in the same namespace as the app you are deploying. 
-  * Each service must define a single HTTP port. 
+  * Each service must be in the same namespace as the app you are deploying.
+  * Each service must define a single HTTP port.
 * `ttl`: (Optional) The lifetime of the exposed service preview
   * Minimum: 1 minute (60 seconds)
   * Maximum: 24 hours
@@ -25,10 +25,9 @@ Each link automatically expires after the configured amount of time. The exposed
 
 You can configure multiple `exposeServices` entries, each having a different expiration time.
 
-The links to the exposed services would be available for further use in webhooks. 
-The naming convention for such links is following `armory.preview.<service-name-1>`. 
+You can use exposed service links elsewhere in your deploy config, such as in your webhook definitions. The naming convention is `armory.preview.<service-name>`.
 
-**Example** 
+**Example**
 
 In this example, the snippet instructs Armory CD-as-a-Service to create a public URL to the deployed services service-name-1 and service-name-2. Both automatically expire after 2 hours.
 
