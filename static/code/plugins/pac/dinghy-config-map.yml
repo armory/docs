@@ -23,6 +23,10 @@ data:
     redis:
       baseUrl: ${services.redis.baseUrl}
     repositoryRawdataProcessing: false
+    spectator:
+      applicationName: ${spring.application.name}
+      webEndpoint:
+        enabled: false
     spinnaker:
       extensibility:
         plugins: {}

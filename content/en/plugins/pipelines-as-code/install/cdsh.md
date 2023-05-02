@@ -1,10 +1,13 @@
 ---
-title: Install Pipelines-as-Code in Armory Continuous Deployment
+title: Enable Pipelines-as-Code in Armory Continuous Deployment
 linkTitle: Armory CD
 weight: 1
 description: >
-  Learn how to install Armory's Pipelines and Code plugin in Armory Continuous Deployment.
+  Learn how to enable Armory's Pipelines and Code feature in Armory Continuous Deployment.
 ---
+
+## {{% heading "prereq" %}}
+
 
 ## Enable Pipelines-as-Code
 

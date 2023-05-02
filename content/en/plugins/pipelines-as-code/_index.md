@@ -12,15 +12,51 @@ aliases:
 
 ![Proprietary](/images/proprietary.svg)
 
-
-
 ## Advantages to using Pipelines-as-Code
 
 Armory's _Pipelines-as-Code_ feature provides a way to specify pipeline definitions in source code repos such as GitHub and BitBucket.
 
-The Pipelines-as-Code installation includes a service called _Dinghy_, which keeps the Spinnaker pipeline in sync with what you define in a _dinghyfile_ in your repo. Also, you can make a pipeline by composing other pipelines, stages, or tasks and templating certain values.
+The Pipelines-as-Code has two components: 1) a Spinnaker plugin; and 2) a service called _Dinghy_, which keeps the Spinnaker pipeline in sync with what you define in a _dinghyfile_ in your repo. You can also make a pipeline by composing other pipelines, stages, or tasks and templating certain values.
 
-> GitHub is in the process of replacing `master` as the name of the default base branch. Newly created repos use `main`. As this transition happens, confirm what branch your repo is using as its base branch and explicitly refer to that branch when configuring Armory features such as Pipelines-as-Code. For more information, see GitHub's [Renaming](https://github.com/github/renaming) information.
+>GitHub is in the process of replacing `master` as the name of the default base branch. Newly created repos use `main`. As this transition happens, confirm what branch your repo is using as its base branch and explicitly refer to that branch when configuring Armory features such as Pipelines-as-Code. For more information, see GitHub's [Renaming](https://github.com/github/renaming) information.
+
+
+## Installation
+
+Pipelines-as-Code is a feature in Armory CD, so you only need to enable the service. For Spinnaker, however, you need to install both the Dinghy service and the Spinnaker plugin.
+
+{{< cardpane >}}
+{{< card header="Armory CD<br>Armory Operator" >}}
+Use Kustomize patches.
+
+1. Configure the Dinghy service.
+1. Enable the Dinghy service.
+
+[Instructions]({{< ref "plugins/pipelines-as-code/install/cdsh" >}})
+{{< /card >}}
+
+{{< card header="Spinnaker<br>Spinnaker Operator" >}}
+Use Kustomize patches.
+
+1. Configure the Dinghy service.
+1. Configure the plugin.
+1. Install both at the same time.
+
+[Instructions]({{< ref "plugins/pipelines-as-code/install/spinnaker-operator" >}})
+{{< /card >}}
+
+{{< card header="Spinnaker<br>Halyard and kubectl" >}}
+Use Kubernetes manifests and Spinnaker local config files.
+
+1. Create ServiceAccount, ClusterRole, and ClusterRoleBinding.
+1. Configure the Dinghy service in a ConfigMap.
+1. Deploy the Dinghy service using `kubectl`.
+1. Add plugin to Gate and Echo local config files.
+1. Install the plugin using `hal deploy apply`.
+
+[Instructions]({{< ref "plugins/pipelines-as-code/install/spinnaker-halyard" >}})
+{{< /card >}}
+{{< /cardpane >}}
 
 ## Compatibility
 
@@ -61,9 +97,3 @@ To create a dinghyfile, you can use one of the following templating languages:
 The ARM CLI is a tool to render dinghyfiles and modules. Use it to help develop and validate your pipelines locally.
 
 You can find the latest version on [Docker Hub](https://hub.docker.com/r/armory/arm-cli).
-
-## Installation
-
-1. Create an access token so that Pipelines-as-Code can access your dinghyfiles.
-1. Configure and install Pipelines-as-Code in Kubernetes and your [Armory Continuous Deployment]({{< ref "plugins/pipelines-as-code/install/cdsh" >}}), [Spinnaker (Halyard)]({{< ref "plugins/pipelines-as-code/install/spinnaker-halyard" >}}), or [Spinnaker (Operator)]({{< ref "plugins/pipelines-as-code/install/spinnaker-operator" >}}) instance.
-1. [Configure additional features]({{< ref "plugins/pipelines-as-code/install/configure#additional-options" >}}) as needed.
