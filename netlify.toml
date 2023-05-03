@@ -47,7 +47,12 @@
 [[redirects]]
   from = "/cd-as-a-service/plugin-spinnaker/"
   to = "/plugins/cdaas-spinnaker/"
-  force = true # ensure this always redirects because cdaas-spinnaker does exist (for users clicking web search result link)
+  force = true # ensure this always redirects because the "from" page does exist and does an TOC redirect but not for users clicking web search result link
+
+[[redirects]]
+  from = "/continuous-deployment/armory-admin/pipelines-as-code-enable/"
+  to = "/plugins/pipelines-as-code/install/armory-cd/"
+  force = true # ensure this always redirects  because the "from" page does exist and does an TOC redirect but not for users clicking web search result link
 
 [[redirects]]
   from = "/continuous-deployment/armory-admin/policy-engine/policy-engine-use/*"

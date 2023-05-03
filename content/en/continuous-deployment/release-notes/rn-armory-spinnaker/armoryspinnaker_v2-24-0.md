@@ -86,7 +86,7 @@ Improvements to the Cloud Foundry provider include the following:
 
 Pipelines-as-Code now supports using MySQL as the backing store, which can provide more durability and scalability than Redis. This feature is currently in early access.
 
-For information about how to configure the backing store for Pipelines-as-Code, see [Configuring SQL]({{< ref "plugins/pipelines-as-code/install/cdsh#configuring-redis" >}}).
+For information about how to configure the backing store for Pipelines-as-Code, see [Configuring SQL]({{< ref "plugins/pipelines-as-code/install/configure#configuring-redis" >}}).
 
 ### Terraform Integration
 

@@ -249,7 +249,7 @@ This section describes changes to Front50, Spinnaker's metadata repository:
 
 Pipelines-as-Code now supports Pull Request (PR) Validation for GitHub. When a PR is submitted, you can ensure that the `dinghyfile` is valid by enabling this feature.
 
-For more information, see [Pull Request Validation]({{< ref "plugins/pipelines-as-code/install/cdsh#pull-request-validations" >}}).
+For more information, see [Pull Request Validation]({{< ref "plugins/pipelines-as-code/install/configure#pull-request-validations" >}}).
 
 ### Task orchestration
 

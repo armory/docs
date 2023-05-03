@@ -32,7 +32,7 @@ Use Kustomize patches.
 1. Configure the Dinghy service.
 1. Enable the Dinghy service.
 
-[Instructions]({{< ref "plugins/pipelines-as-code/install/cdsh" >}})
+[Instructions]({{< ref "plugins/pipelines-as-code/install/armory-cd" >}})
 {{< /card >}}
 
 {{< card header="Spinnaker<br>Spinnaker Operator" >}}

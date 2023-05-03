@@ -63,7 +63,7 @@ The default is used if there is no value set in the UI.
 
 ### Pipelines-as-Code multi-branch enhancement
 
-Now you can configure Pipelines-as-Code to pull Dinghy files from multiple branches in the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "plugins/pipelines-as-code/install/cdsh#multiple-branches" >}}) for how to enable and configure this feature.
+Now you can configure Pipelines-as-Code to pull Dinghy files from multiple branches in the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "plugins/pipelines-as-code/install/configure#multiple-branches" >}}) for how to enable and configure this feature.
 
 ### Automatically Cancel Jenkins Jobs
 
