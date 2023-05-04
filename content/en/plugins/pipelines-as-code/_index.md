@@ -60,7 +60,7 @@ Use Kubernetes manifests and Spinnaker local config files.
 
 ## Compatibility
 
-{{< readfile file="/includes/plugins/pac/compat-matrix.md" >}}
+{{< include "plugins/pac/compat-matrix.md" >}}
 
 
 ## Version control systems

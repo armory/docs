@@ -1,9 +1,9 @@
 ---
-title: Install Pipelines-as-Code in Spinnaker
+title: Install Pipelines-as-Code in Spinnaker (Halyard)
 linkTitle: Spinnaker - Halyard
 weight: 5
 description: >
-  Learn how to install Armory Pipelines and Code in a Spinnaker instanced managed by Halyard.
+  Learn how to install Armory Pipelines-as-Code in a Spinnaker instanced managed by Halyard.
 ---
 
 ## Installation overview
@@ -15,9 +15,8 @@ Installing Pipelines-as-Code consists of these steps:
 
 ## {{% heading "prereq" %}}
 
-* You are familiar with with Pipelines-as-Code [architecture]({{< ref "plugins/pipelines-as-code/architecture" >}}).
-* You have created a personal access token in your repo so the Pipelines-as-Code service can fetch your dinghyfiles.
-* You have installed kubectl.
+* You are running open source Spinnaker.
+* You manage your instance using Halyard. If you are using the Spinnaker Operator, see {{< linkWithTitle "plugins/pipelines-as-code/install/spinnaker-operator.md" >}}
 * You have permissions to create ServiceAccount, ClusterRole, and ClusterRoleBinding objects in your cluster.
 
 
