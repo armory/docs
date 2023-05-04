@@ -2,7 +2,7 @@
 title: Deployment Environment Config
 weight: 2
 description: >
-  This page describes `spec.spinnakerConfig.config.deploymentEnvironment` config variables such as Cloudriver HA, Echo HA, sidecars, initContainers, and hostAliases.
+  This page describes `spec.spinnakerConfig.config.deploymentEnvironment` config variables such as Cloudriver High Availability (HA), Echo HA, sidecars, initContainers, and hostAliases.
 aliases:
   - /operator_reference/deploy/
 ---
