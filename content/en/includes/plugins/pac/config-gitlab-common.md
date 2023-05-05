@@ -1,12 +1,3 @@
-Add the following to your config file:
-
-```yaml
-templateOrg: <repo-org>
-templateRepo: <dinghy-templates-repo>
-gitlabToken: <abc>
-gitlabEndpoint: <https://my-endpoint>
-```
-
 All fields are required.
 
 * `templateOrg`: VCS organization or namespace where application and template repositories are located

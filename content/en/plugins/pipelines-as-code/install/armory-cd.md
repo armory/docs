@@ -32,26 +32,7 @@ If you are running open source Spinnaker, see the [Pipelines-as-Code landing pag
       config:
         armory:
           dinghy:
-            enabled: true
   ```
-
-
-## Configure your repo
-
-{{< include "plugins/pac/before-enable-repo.md" >}}
-
-{{< tabpane text=true right=true  >}}
-{{% tab header="**Version Control**:" disabled=true /%}}
-{{% tab header="GitHub"  %}}
-{{< include "plugins/pac/config-github.md" >}}
-{{% /tab %}}
-{{% tab header="Bitbucket/Stash"  %}}
-{{< include "plugins/pac/config-bitbucket.md" >}}
-{{% /tab %}}
-{{% tab header="GitLab"  %}}
-{{< include "plugins/pac/config-gitlab.md" >}}
-{{% /tab %}}
-{{< /tabpane >}}
 
 ## Enable Pipelines-as-Code
 
@@ -67,8 +48,6 @@ components:
   - armory/features/pipelines-as-code/
 ```
 
-Apply your updates.
-
 {{% /tab %}}
 {{% tab header="spinnakerservice.yml"  %}}
 Add `enabled: true` to your `dinghy` section.
@@ -82,8 +61,43 @@ spec:
           enabled: true
 ```
 
+{{% /tab %}}
+{{< /tabpane >}}
+
+## Configure your repo
+
+{{< include "plugins/pac/before-enable-repo.md" >}}
+
+{{< tabpane text=true right=true  >}}
+{{% tab header="**Version Control**:" disabled=true /%}}
+{{% tab header="GitHub"  %}}
+{{< include "plugins/pac/config-github-armory.md" >}}
+{{< include "plugins/pac/config-github-common.md" >}}
+{{% /tab %}}
+{{% tab header="Bitbucket/Stash"  %}}
+{{< include "plugins/pac/config-bitbucket-armory.md" >}}
+{{< include "plugins/pac/config-bitbucket-common.md" >}}
+{{% /tab %}}
+{{% tab header="GitLab"  %}}
+{{< include "plugins/pac/config-gitlab-armory.md" >}}
+{{< include "plugins/pac/config-gitlab-common.md" >}}
+{{% /tab %}}
+{{< /tabpane >}}
+
+## Deploy
+
 Apply your updates.
 
+{{< tabpane text=true right=true  >}}
+{{% tab header="spinnaker-kustomize-patches"  %}}
+```bash
+kubectl apply -k <kustomization-directory-path>
+```
+{{% /tab %}}
+{{% tab header="spinnakerservice.yml"  %}}
+```bash
+kubectl -n spinnaker apply -f spinnakerservice.yml
+```
 {{% /tab %}}
 {{< /tabpane >}}
 

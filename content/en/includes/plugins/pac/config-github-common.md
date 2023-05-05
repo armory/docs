@@ -1,12 +1,3 @@
-Add the following to your config file:
-
-```yaml
-templateOrg: <repo-org>
-templateRepo: <dinghy-templates-repo>
-githubToken: <abc>
-githubEndpoint: <https://api.github.com>
-```
-
 All fields are required.
 
 * `templateOrg`: VCS organization or namespace where application and template repositories are located

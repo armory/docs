@@ -53,16 +53,19 @@ Configure your repo in the `plugins/oss/pipelines-as-code/dinghy.yml` file.
 
 {{< include "plugins/pac/before-enable-repo.md" >}}
 
-{{< tabpane text=true right=true >}}
+{{< tabpane text=true right=true  >}}
 {{% tab header="**Version Control**:" disabled=true /%}}
 {{% tab header="GitHub"  %}}
-{{< include "plugins/pac/config-github.md" >}}
+{{< include "plugins/pac/config-github-spinnaker.md" >}}
+{{< include "plugins/pac/config-github-common.md" >}}
 {{% /tab %}}
 {{% tab header="Bitbucket/Stash"  %}}
-{{< include "plugins/pac/config-bitbucket.md" >}}
+{{< include "plugins/pac/config-bitbucket-spinnaker.md" >}}
+{{< include "plugins/pac/config-bitbucket-common.md" >}}
 {{% /tab %}}
 {{% tab header="GitLab"  %}}
-{{< include "plugins/pac/config-gitlab.md" >}}
+{{< include "plugins/pac/config-gitlab-spinnaker.md" >}}
+{{< include "plugins/pac/config-gitlab-common.md" >}}
 {{% /tab %}}
 {{< /tabpane >}}
 

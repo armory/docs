@@ -24,34 +24,41 @@ Installing Pipelines-as-Code consists of these steps:
 
 The following manifest creates a ServiceAccount, ClusterRole, and ClusterRoleBinding. Apply the manifest in your `spinnaker` namespace.
 
-{{< readfile file="/static/code/plugins/pac/k8s-permissions.yml" code="true" lang="yaml" >}}
+{{< codenew language="yaml" file="plugins/pac/k8s-permissions.yml" >}}
 
 ## Configure the service
 
-{{< readfile file="/static/code/plugins/pac/dinghy-config-map.yml" code="true" lang="yaml" >}}
+Create a ConfigMap to contain your Dinghy service configuration.
+
+{{< codenew language="yaml" file="plugins/pac/dinghy-config-map.yml" >}}
 
 ### Configure your repo
 
-{{< readfile file="/includes/plugins/pac/before-enable-repo.md" >}}
+{{< include "plugins/pac/before-enable-repo.md" >}}
 
 
-{{< tabpane text=true >}}
+{{< tabpane text=true right=true  >}}
+{{% tab header="**Version Control**:" disabled=true /%}}
 {{% tab header="GitHub"  %}}
-{{< readfile file="/includes/plugins/pac/config-github.md" >}}
+{{< include "plugins/pac/config-github-spinnaker.md" >}}
+{{< include "plugins/pac/config-github-common.md" >}}
 {{% /tab %}}
 {{% tab header="Bitbucket/Stash"  %}}
-{{< readfile file="/includes/plugins/pac/config-bitbucket.md" >}}
+{{< include "plugins/pac/config-bitbucket-spinnaker.md" >}}
+{{< include "plugins/pac/config-bitbucket-common.md" >}}
 {{% /tab %}}
 {{% tab header="GitLab"  %}}
-{{< readfile file="/includes/plugins/pac/config-gitlab.md" >}}
+{{< include "plugins/pac/config-gitlab-spinnaker.md" >}}
+{{< include "plugins/pac/config-gitlab-common.md" >}}
 {{% /tab %}}
 {{< /tabpane >}}
+
 
 ## Deploy the service
 
 Replace `<version>` with the Pipelines-as-Code service version compatible with your Spinnaker version. 
 
-{{< readfile file="/static/code/plugins/pac/deployment.yml" code="true" lang="yaml" >}}
+{{< codenew language="yaml" file="plugins/pac/deployment.yml" >}}
 
 Apply the ConfigMap and Deployment manifests in your `spinnaker` namespace.
 
