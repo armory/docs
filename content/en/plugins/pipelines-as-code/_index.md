@@ -27,7 +27,7 @@ Pipelines-as-Code is a feature in Armory CD, so you only need to enable the serv
 
 {{< cardpane >}}
 {{< card header="Armory CD<br>Armory Operator" >}}
-Use Kustomize patches.
+Use Kustomize patches to enable the service.
 
 1. Configure the Dinghy service.
 1. Enable the Dinghy service.
@@ -36,7 +36,7 @@ Use Kustomize patches.
 {{< /card >}}
 
 {{< card header="Spinnaker<br>Spinnaker Operator" >}}
-Use Kustomize patches.
+Use Kustomize patches to deploy the service and install the plugin.
 
 1. Configure the Dinghy service.
 1. Configure the plugin.
@@ -46,7 +46,7 @@ Use Kustomize patches.
 {{< /card >}}
 
 {{< card header="Spinnaker<br>Halyard and kubectl" >}}
-Use Kubernetes manifests and Spinnaker local config files.
+Use Kubernetes manifests to deploy the service and Spinnaker local config files to install the plugin.
 
 1. Create ServiceAccount, ClusterRole, and ClusterRoleBinding.
 1. Configure the Dinghy service in a ConfigMap.
@@ -80,7 +80,7 @@ Use Kubernetes manifests and Spinnaker local config files.
 | GitHub status notifications                                                            | All supported versions    |   1.26+ |                                              |
 | [Local modules for development]({{< ref "plugins/pipelines-as-code/use#local-module-functionality" >}}) | All supported versions    |    1.26+ |                                                  |
 | Modules                                                                                | All supported versions   1.26+ |   | Templatize and reuse pipeline snippets across applications and teams |
-| [Pull Request Validation]({{< ref "plugins/pipelines-as-code/install/configure#pull-request-validations" >}})        | 2.21 or later             |   1.26+ |                                                         |
+| Pull Request Validation      | 2.21 or later             |   1.26+ |                                                         |
 | [Slack notifications]({{< ref "plugins/pipelines-as-code/install/configure#slack-notifications" >}})                 | All supported versions    |  1.26+ |                                                            |
 | [Webhook secret validation]({{< ref "plugins/pipelines-as-code/use#webhook-secret-validation" >}})      | All supported versions    |    1.26+ |                                                       |
 

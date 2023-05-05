@@ -2,7 +2,7 @@ All fields are required.
 
 * `templateOrg`: VCS organization or namespace where application and template repositories are located
 * `templateRepo`: VCS repository where module templates are located
-* `githubToken`: GitHub token; This field supports "encrypted" field references; see [Secrets]({{< ref "continuous-deployment/armory-admin/Secrets" >}}) for details.
+* `githubToken`: GitHub token; This field supports "encrypted" field references; see [Secrets]({{< ref "continuous-deployment/armory-admin/secrets/secrets-kubernetes" >}}) for details.
 * `githubEndpoint`: (Default: `https://api.github.com`) GitHub API endpoint. Useful if you’re using GitHub Enterprise.
 
 **GitHub webhooks**

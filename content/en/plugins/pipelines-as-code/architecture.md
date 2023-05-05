@@ -8,41 +8,19 @@ description: >
 
 ## Components
 
-WHAT DOES A SECURITY DEPARTMENT NEED TO KNOW TO AUTHORIZE INSTALLATION? 
-
 The Pipelines-as-Code feature has the following components:
 
-1. Service
-  * keeps your repo pipeline definitions in sync with the corresponding pipelines in Spinnaker
-  * Called `dinghy` in config files
-  * Communicates with repos over SSL or TLS
-  
-  
-  ; formerly called Dinghy @TODO HOW DOES THE SERVICE COMMUNICATE WITH THE REPOS? 
-SSL
-even triggered in repo
-configured to send to Gate via SSL
+1. Service (_Dinghy_):
 
-Gate receives the notification, forwards to Echo, 
+   * Keeps your repo pipeline definitions in sync with the corresponding pipelines in Spinnaker
+   * Communicates with repos over SSL or TLS  
+1. Plugin: extends Gate and Echo by adding endpoints that the Dinghy service uses
 
-1. Plugin: extends Gate and Echo by adding endpoints that the service uses
+## Database
 
- - WHAT FUNCTIONALITY DOES THE PLUGIN PROVIDE?
-* GATE -> inbound traffic has to go thru gate (external)
-* ECHO -> event router
-the plugin adds endpoints that the service needs to function
-
-
-CDSH install - Armory Operator/Kustomize install both service and plugin??
-
-Spinnaker - plugin (Spinnaker Operator, local config, Halyard); install service using Halyard - what if I'm using the Spinnaker Operator and don't want to install Halyard?
-
-WHAT DATABASE? COMMENT IN SPLAT-533 "first section around SQL is deprecated" - or maybe just the Early Access part; so if I am installing in Spinnaker and need to configure a database, that config into goes into the local config 
-
-Dinghy works out of the box with in-cluster Redis. All others must configure.
+Dinghy works out-of-the-box with in-cluster Redis. You can configure Pipelines-as-Code to use an external Redis or a MySQL database.
 
 ## How Pipelines-as-Code works
-
 
 ```mermaid
 sequenceDiagram

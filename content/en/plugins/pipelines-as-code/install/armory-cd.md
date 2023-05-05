@@ -15,7 +15,7 @@ aliases:
 
 Pipelines-as-Code is a built-in feature of Armory CD. You only need to configure your repo, enable the Dinghy service, and apply your changes to use Pipelines-as-Code.
 
-If you are running open source Spinnaker, see the [Pipelines-as-Code landing page]({{< ref "plugins/pipelines-as-code/" >}}) for installation paths based on whether you are using Halyard or the Spinnaker Operator.
+If you are running open source Spinnaker, see the [Pipelines-as-Code landing page]({{< ref "plugins/pipelines-as-code/#installation" >}}) for installation paths based on whether you are using Halyard or the Spinnaker Operator.
 
 ## Where to configure the service
 

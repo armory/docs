@@ -2,7 +2,7 @@ All fields are required.
 
 * `templateRepo`: VCS repository where module templates are located
 * `stashUsername`: Stash username
-* `stashToken`: Stash token. This field supports "encrypted" field references; see [Secrets]({{< ref "continuous-deployment/armory-admin/Secrets" >}}) for details.
+* `stashToken`: Stash token. This field supports "encrypted" field references; see [Secrets]({{< ref "continuous-deployment/armory-admin/secrets/secrets-kubernetes" >}}) for details.
 * `stashEndpoint`: Stash API endpoint. If you're using Bitbucket Server, update the endpoint to include the api e.g. https://your-endpoint-here.com/rest/api/1.0
 
 >If you're using Bitbucket Server, update the endpoint to include the api, e.g. `--stash-endpoint https://your-endpoint-here.com/rest/api/1.0`
