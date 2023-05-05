@@ -2,7 +2,7 @@
 title: Pipelines-as-Code
 linkTitle: Pipelines-as-Code
 description: >
-   Armory Pipelines-as-Code for Spinnaker and Armory Continuous Deployment enables pipeline version control using GitHub or BitBucket.
+   Armory Pipelines-as-Code for Spinnaker and Armory Continuous Deployment enables pipeline version control using GitHub or BitBucket. Pipelines-as-Code is a feature in Armory CD and a service/plugin for open source Spinnaker.
 no_list: true
 aliases:
    - /continuous-deployment/armory-admin/dinghy-enable/

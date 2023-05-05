@@ -3,7 +3,7 @@ title: Architecture of Pipelines-as-Code for Spinnaker and Armory Continuous Dep
 linkTitle: Architecture
 weight: 10
 description: >
-   Learn how Pipelines-as-Code works.
+   Learn about the key components that comprise Pipelines-as-Code
 ---
 
 ## Components

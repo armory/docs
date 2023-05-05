@@ -56,19 +56,18 @@ Configure your repo in the `plugins/oss/pipelines-as-code/dinghy.yml` file.
 {{< tabpane text=true right=true >}}
 {{% tab header="**Version Control**:" disabled=true /%}}
 {{% tab header="GitHub"  %}}
-{{< readfile file="/includes/plugins/pac/config-github.md" >}}
+{{< include "plugins/pac/config-github.md" >}}
 {{% /tab %}}
 {{% tab header="Bitbucket/Stash"  %}}
-{{< readfile file="/includes/plugins/pac/config-bitbucket.md" >}}
+{{< include "plugins/pac/config-bitbucket.md" >}}
 {{% /tab %}}
 {{% tab header="GitLab"  %}}
-{{< readfile file="/includes/plugins/pac/config-gitlab.md" >}}
+{{< include "plugins/pac/config-gitlab.md" >}}
 {{% /tab %}}
 {{< /tabpane >}}
 
 
 ## Configure the plugin
-
 
 In `pac-plugin-config.yml`, make sure the `version` number is compatible with your Spinnaker instance.
 
@@ -78,12 +77,12 @@ In `pac-plugin-config.yml`, make sure the `version` number is compatible with yo
 
 ## Deploy
 
-If you want to see the generated manifest before you deploy, execute `kubectl kustomize`.
+This step deploys the Dinghy service and installs the plugin. If you want to see the generated manifest before you deploy, execute `kubectl kustomize`.
 
-Apply the manifest using `kubectl` from the root directory of the `spinnaker-patches-kustomize` repo.
+Apply the updates to your Kustomization file.
 
 ```bash
-kubectl apply -k .
+kubectl apply -k <kustomization-directory-path>
 ```
 
 ## {{% heading "nextSteps" %}}

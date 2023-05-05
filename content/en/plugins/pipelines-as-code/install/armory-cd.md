@@ -4,6 +4,8 @@ linkTitle: Armory CD
 weight: 1
 description: >
   Learn how to enable Armory CD's Pipelines-as-Code feature.
+aliases:
+   - /continuous-deployment/armory-admin/dinghy-enable/
 ---
 
 ## {{% heading "prereq" %}}
@@ -12,6 +14,8 @@ description: >
 * You manage your instance using the Armory Operator. 
 
 Pipelines-as-Code is a built-in feature of Armory CD. You only need to configure your repo, enable the Dinghy service, and apply your changes to use Pipelines-as-Code.
+
+If you are running open source Spinnaker, see the [Pipelines-as-Code landing page]({{< ref "plugins/pipelines-as-code/" >}}) for installation paths based on whether you are using Halyard or the Spinnaker Operator.
 
 ## Where to configure the service
 
@@ -53,7 +57,7 @@ Pipelines-as-Code is a built-in feature of Armory CD. You only need to configure
 
 {{< tabpane text=true right=true  >}}
 {{% tab header="spinnaker-kustomize-patches"  %}}
-The Dinghy service is already enabled in the `armory/features/pipelines-as-code/features.yml` file, so you only need to modify your Kustomization recipe. In the `components` section of your `kustomization.yml` file, add an entry for Pipelines-as-Code:
+The Dinghy service is already enabled in the `armory/features/pipelines-as-code/features.yml` file, so you only need to modify your Kustomization recipe. Add an entry for Pipelines-as-Code in the `components` section of your `kustomization.yml` file:
 
 ```yaml
 components:

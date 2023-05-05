@@ -1,6 +1,6 @@
 ---
-title: Configure Pipelines-as-Code
-linkTitle: Configure
+title: Configure Pipelines-as-Code Optional Features
+linkTitle: Configure Features
 weight: 10
 description: >
   Learn how to configure optional Pipelines-as-Code features in your Spinnaker or Armory CD instance.
@@ -10,15 +10,38 @@ description: >
 
 * Spinnaker (Halyard): `dinghy.yml` section of your ConfigMap
 * Spinnaker (Spinnaker Operator): `spinnaker-kustomize-patches/plugins/oss/pipelines-as-code/dinghy.yml`
-* Armory CD:
-  * If you are using the `spinnaker-kustomize-patches` repo, put your config in the `armory/features/pipelines-as-code/features.yml` file.
-  * If you are using a single `spinnakerservice.yml` manifest, put your config in the `spec.spinnakerConfig.config.armory.dinghy` section.
+* Armory CD: Either `spinnaker-kustomize-patches/armory/features/pipelines-as-code/features.yml` or `spinnakerservice.yml`
+
+## Auto lock pipelines - disable
+
+If you want to disable lock pipelines in the UI before overwriting changes, add the following to your config:
+
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker"  %}}
+Add the following to your `dinghy.yml` config:
+
+```yaml
+autoLockPipelines: false
+```
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
+
+```yaml
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          autoLockPipelines: false
+```
+{{% /tab %}}
+{{< /tabpane >}}
 
 ## Branches
 
 ### Custom branches
 
-> Configuring a custom branch is required if you are using a repo that does not use `master` or `main` as the default branch, or you want to use a branch other than `master` or `main`.
+Configuring a custom branch is required if you are using a repo that does not use `master` or `main` as the default branch, or you want to use a branch other than `master` or `main`.
 
 By default, Dinghy uses the `master` branch in your repository and fallbacks to `main` if `master` doesn't exist. If you wish to use a different branch in your repository, you can configure that using the `repoConfig` tag in your YAML configuration.
 
@@ -32,7 +55,9 @@ The `repoConfig` tag supports a collection of the following values:
    * `bitbucket-server`
 * `repo` - the name of the repository
 
-Add the following to your config:
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker"  %}}
+Add the following to your `dinghy.yml` config:
 
 ```yaml
 repoConfig:
@@ -43,44 +68,94 @@ repoConfig:
   provider: github
   repo: my-github-repository
 ```
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
+
+```yaml
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        repoConfig:
+        - branch: some_branch
+          provider: bitbucket-server
+          repo: my-bitbucket-repository
+        - branch: some_branch
+          provider: github
+          repo: my-github-repository
+```
+{{% /tab %}}
+{{< /tabpane >}}
+
+
 
 ### Multiple branches
 
 {{< include "early-access-feature.html" >}}
 
-This feature enables you to select multiple branches in the UI.
+This feature enables you to select multiple branches in the UI. You must enable the feature and configure your branches.
 
-Add the following to your config:
-
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker"  %}}
+Add the following to your `dinghy.yml` config:
 
 ```yaml
 multipleBranchesEnabled: true
+repoConfig:
+- branch: some_branch
+  provider: bitbucket-server
+  repo: my-bitbucket-repository
+- branch: some_branch
+  provider: github
+  repo: my-github-repository
 ```
-
-- `multipleBranchesEnabled`: (Optional; default `false`) `true` if you want to enable pulling from multiple branches in your repo.
-
-If `true`, you must configure your repo branches in the `repoConfig` section of your config.  For example:
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
 
 ```yaml
-repoConfig:
-  - branch: prod
-    provider: github
-    repo: my-github-repository
-  - branch: dev
-    provider: github
-    repo: my-github-repository
-  - branch: main
-    provider: github
-    repo: my-github-repository
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          multipleBranchesEnabled: true
+    profiles:
+      dinghy:
+        repoConfig:
+        - branch: some_branch
+          provider: bitbucket-server
+          repo: my-bitbucket-repository
+        - branch: some_branch
+          provider: github
+          repo: my-github-repository
 ```
+{{% /tab %}}
+{{< /tabpane >}}
 
 ## Custom dinghyfile name
 
-If you want to change the name of the file that describes pipelines, add the following to your config:
+This changes the name of the file that describes pipelines.
+
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker"  %}}
+Add the following to your `dinghy.yml` config:
 
 ```yaml
 dinghyFilename: <your-filename>
 ```
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
+
+```yaml
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          dinghyFilename: <your-filename>
+```
+{{% /tab %}}
+{{< /tabpane >}}
 
 ## External persistent database
 
@@ -94,11 +169,28 @@ Armory highly recommends that you use an external Redis instance for production 
 
 To set/override the default Redis settings, add the following to your config file:
 
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker"  %}}
+Add the following to your `dinghy.yml` config:
+
 ```yaml
 redis:
   baseUrl: "redis://spin-redis:6379"
   password: "password"
 ```
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
+
+```yaml
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        redis: "redis://spin-redis:6379"
+        password: "<password>"
+```
+{{% /tab %}}
+{{< /tabpane >}}
 
 ### Configure MySQL
 
@@ -120,6 +212,12 @@ CREATE SCHEMA IF NOT EXISTS dinghy DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4
 
 Next, configure Pipelines-as-Code to use your MySQL database. Add the following to your config file:
 
+
+
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker"  %}}
+Add the following to your `dinghy.yml` config:
+
 ```yaml
 sql:
   baseUrl: mysql:3306
@@ -128,6 +226,23 @@ sql:
   password: <password>
   user: <user>
 ```
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
+
+```yaml
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        sql:
+          baseUrl: mysql:3306
+          databaseName: dinghy
+          enabled: true
+          password: password
+          user: user
+```
+{{% /tab %}}
+{{< /tabpane >}}
 
 ### Migration from Redis to SQL
 
@@ -147,23 +262,32 @@ After Dinghy finishes the migration, it closes the Redis connection and works in
 
 ## Fiat
 
-If Fiat is enabled, add the field `fiatUser: <your-service-account>` to the `dinghy` section in `SpinnakerService` manifest. Note that the service account has to be in a group that has read/write access to the pipelines you are updating.
+If you have enabled Fiat, add the field `fiatUser: <your-service-account>` to your config. Note that the service account has to be in a group that has read/write access to the pipelines you are updating.
 
-Add the following to your config:
+
+If you have app specific permissions configured, make sure you add the service account. For information on how to create a service account, see [Creating service accounts](https://www.spinnaker.io/setup/security/authorization/service-accounts/#creating-service-accounts).
+
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker"  %}}
+Add the following to your `dinghy.yml` config:
 
 ```yaml
 fiatUser: <your-service-account>
 ```
-
-If you have app specific permissions configured in Armory CD, make sure you add the service account. For information on how to create a service account, see [Creating service accounts](https://www.spinnaker.io/setup/security/authorization/service-accounts/#creating-service-accounts).
-
-## Lock pipelines
-
-If you want to disable lock pipelines in the UI before overwriting changes, add the following to your config:
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
 
 ```yaml
-autoLockPipelines: false
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          fiatUser: <your-service-account>
 ```
+{{% /tab %}}
+{{< /tabpane >}}
+
 
 ## Negative expressions support
 
@@ -181,13 +305,28 @@ Both of those regular expressions product the same result:
   - minimum-wait.stage.module -> processed by Dinghy
   - maximum-wait.stage.module -> processed by Dinghy
 
-Add the following to your config:
+Add `dinghyIgnoreRegexp2Enabled: true` if you want Dinghy to ignore everything other than required files.
+
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker"  %}}
+Add the following to your `dinghy.yml` config:
 
 ```yaml
 dinghyIgnoreRegexp2Enabled: true
 ```
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
 
-- `dinghy.dinghyIgnoreRegexp2Enabled`: (Optional; default `false`) `true `if you want Dinghy to ignore everything other than required files.
+```yaml
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          dinghyIgnoreRegexp2Enabled: true
+```
+{{% /tab %}}
+{{< /tabpane >}}
 
 ## Notifications
 
@@ -195,7 +334,9 @@ dinghyIgnoreRegexp2Enabled: true
 
 If you [configured]({{< ref "notifications-slack-configure" >}}) Armory CD or Spinnaker to send Slack notifications for pipeline events, you can configure Pipelines-as-Code to send pipeline update results to Slack.
 
-Add the following to your config:
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker"  %}}
+Add the following to your `dinghy.yml` config:
 
 ```yaml
 notifiers:
@@ -206,6 +347,26 @@ notifiers:
   github:
     enabled: false       # (Default: true) Whether or not github notifications are enabled for Dinghy events; once `spec.spinnakerConfig.profiles.dinghy.notifiers` are enabled, only enable this if you want both Slack and GitHub notifications at the same time
 ```
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
+
+```yaml
+spec:
+  spinnakerConfig:
+    config:
+      armory:
+        dinghy:
+          enabled: true
+          notifiers:
+            enabled: true         # Enable to allow any notifier type to occur
+            slack:
+              enabled: true       # Whether or not Slack notifications are enabled for dinghy events
+              channel: my-channel # Slack channel where notifications will be sent to
+            github:
+              enabled: false       # (Default: true) Whether or not github notifications are enabled for Dinghy events, once spec.spinnakerConfig.prifles.dinghy.notifiers are enabled.  Only enable if you want both slack and github notifications at the same time
+```
+{{% /tab %}}
+{{< /tabpane >}}
 
 ![Slack Notifications](/images/dinghy-slack-notifications.png)
 
@@ -218,15 +379,31 @@ Keep the following in mind when enabling GitHub notifications:
 * When using Armory CD versions below 2.26.2, GitHub notifications are not supported with custom endpoints and [should be disabled due to a known issue](https://support.armory.io/support?id=kb_article&sysparm_article=KB0010290). This issue has been resolved as of [2.26.2, Dinghy Change #447]({{< ref "armoryspinnaker_v2-26-2#dinghy---226622610" >}}).
 * Enabling this functionality may lead to a large number of comments on a pull request if, for example, you update a module that is used by multiple pipelines. This can lead to the GitHub UI not loading or GitHub rate limiting cause of related API calls.
 
-Add the following to your config:
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker"  %}}
+Add the following to your `dinghy.yml` config:
 
 ```yaml
 notifiers:
   enabled: true
   github:
-    enabled: true   # (Default: true) Whether or not github notifications are enabled for Dinghy events; once `spec.spinnakerConfig.profiles.dinghy.notifiers` are enabled, only enable this if you want both Slack and GitHub notifications at the same time
+    enabled: true # (Default: true) Whether or not github notifications are enabled for Dinghy events; once `notifiers` are enabled, only enable this if you want both Slack and GitHub notifications at the same time
 ```
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
 
+```yaml
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        notifiers:
+          enabled: true
+          github:
+            enabled: true # (Default: true) Whether or not github notifications are enabled for Dinghy events, once spec.spinnakerConfig.profles.dinghy.notifiers are enabled
+```
+{{% /tab %}}
+{{< /tabpane >}}
 
 ![GitHub Notifications](/images/plugins/pac/dinghy-github-notifications.jpg)
 
@@ -239,11 +416,25 @@ Pipelines-as-Code supports two additional template formats in addition to the de
 
 >Selecting one of these parsers means that all of your templates must also be in that format.
 
-Add the following to your config:
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker"  %}}
+Add the following to your `dinghy.yml` config:
 
 ```yaml
 parserFormat: <parser-format>
 ```
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
+
+```yaml
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        parserFormat: <parser-format>
+```
+{{% /tab %}}
+{{< /tabpane >}}
 
 Replace `<parser-format` with one of the parsers:
 
