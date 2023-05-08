@@ -1,6 +1,6 @@
 ---
 title: Configure a Webhook in the Deployment File
-linktitle: Configure a Webhook
+linkTitle: Configure a Webhook
 description: >
   Configure a webhook-based approval into your Armory CD-as-a-Service app deployment process.
 ---
@@ -17,7 +17,7 @@ In your deployment file, you configure your webhook by adding a top-level `webho
 
 ### Configuration examples
 
-The first example configures a GitHub webhook that uses token authorization, with the token value configured as a Armory CD-as-a-Service secret. This webhook requires the callback URI be passed in the request body. The payload also contains an `environment` context variable that you pass in when invoking the webhook in your deployment file.
+The first example configures a GitHub webhook that uses token authorization, with the token value configured as a Armory CD-as-a-Service secret. This webhook requires the callback URI be passed in the request body. The payload also contains context variables that you pass in when invoking the webhook in your deployment file.
 
 {{< prism lang="yaml" line-numbers="true" line="8, 16-17" >}}
 webhooks:
@@ -36,7 +36,9 @@ webhooks:
         "event_type": "webhookCallback",
         "client_payload": {
             "callbackUri": "{{armory.callbackUri}}/callback"
-            "environment": "{{context.environment}}"
+            "environment": "{{armory.environmentName}}"
+            "applicationName": "{{armory.applicationName}}"
+            "replicaSetName": "{{armory.replicaSetName}}"
             }
         }
     retryCount: 3
@@ -61,6 +63,10 @@ webhooks:
         value: application/json
       - key: environment
         value: {{context.environment}}
+      - key: applicationName
+        value: {{armory.applicationName}}
+      - key: replicaSetName
+        value: {{armory.replicaSetName}}
     retryCount: 5
 {{< /prism >}}
 
@@ -78,7 +84,8 @@ You add a `runWebhooks` section where you want to trigger the webhook.
 {{< prism lang="yaml" line-numbers="true" >}}
 - runWebhook:
     name: <webhook-name>
-    context: []
+    context: 
+        myCustomKey: myCustomValue
 {{< /prism >}}
 
 - `name`: (Required) webhook name; must match the name you gave your webhook in the `webhooks` configuration section.
@@ -175,5 +182,7 @@ strategies:
 
 ## {{% heading "nextSteps" %}}
 
+* [Webhooks section in the deployment file reference]({{< ref "cd-as-a-service/reference/ref-deployment-file#webhooks." >}})
 * {{< linkWithTitle "cd-as-a-service/tutorials/external-automation/webhook-github.md" >}}
 * {{< linkWithTitle "cd-as-a-service/troubleshooting/webhook.md" >}}
+ 
