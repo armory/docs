@@ -57,6 +57,11 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "known-issues/ki-secrets-and-spring-cloud.md" >}}
 
+### Blue/Green(Red/Black) in the non-default namespace for kubernetes fails
+Version 2.28.6 introduced a bug which affects the Blue/Green(Red/black) deployment strategy in Kubernetes. 
+As an afterStage during the deployment with enabled the Blue/Green (Red/Black) rollout strategy Spinnaker is trying to select the RS and switch the traffic to the newly deployed RS. 
+However, when Orca sends the API request to clouddriver for the RS details it doesn’t include the namespace, which results in failure of the task with Manifest not found.
+
 ## Early access
 
 ### Dynamic Rollback Timeout
