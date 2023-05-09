@@ -20,7 +20,7 @@ No known issues.
 
 ## Highlighted updates
 
-This release adds support for the GA Ingress controller which is needed when deploying Spinnaker Operator into versions of Kubernetes >= 1.22. Additionally, the release updates the Alpine base image version of the Spinnaker Operator and Halyard images to 3.17.
+This release adds support for the GA Ingress controller, which is needed when deploying Spinnaker Operator into versions of Kubernetes >= 1.22. Additionally, the release updates the Alpine base image version of the Spinnaker Operator and Halyard images to 3.17.
 
 The following table outlines compatible versions of Kubernetes, the Armory Operator, Armory CD, the Spinnaker Operator, and Spinnaker:
 
