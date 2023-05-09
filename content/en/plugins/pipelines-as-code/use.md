@@ -4,6 +4,8 @@ linkTitle: Use Pipelines-as-Code
 weight: 10
 description: >
   Learn how to use Pipelines-as-Code to manage Spinnaker pipeline definitions that are stored in source code repos such as GitHub and BitBucket.
+aliases:
+  - /continuous-deployment/spinnaker-user-guides/using-dinghy/
 ---
 
 
