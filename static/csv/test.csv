@@ -1,4 +1,4 @@
 Setting;Type;Default;Description;Misc
 clouddriver.grpc;string (hostname);spin-clouddriver-grpc:9091;Hostname of the Clouddriver or gPRC proxy;wow
-clouddriver.keepAliveHeartbeatSeconds;integer;none;How often is the gPRC ping;ewww
+clouddriver.keepAliveHeartbeatSeconds;integer;20;How often is the gPRC ping;ewww
 go_memstats_alloc_bytes;guage;;Number of bytes allocated and still in use.;harumph
