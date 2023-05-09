@@ -14,7 +14,7 @@ description: >
 
 ## Auto lock pipelines - disable
 
-If you want to disable lock pipelines in the UI before overwriting changes, add the following to your config:
+Set `autoLockPipelines: false` to disable lock pipelines in the UI before overwriting changes.
 
 {{< tabpane text=true right=true >}}
 {{% tab header="Spinnaker"  %}}
@@ -167,8 +167,6 @@ Armory highly recommends that you use an external Redis instance for production 
 
 > You can only configure Dinghy to use a password with the default Redis user.
 
-To set/override the default Redis settings, add the following to your config file:
-
 {{< tabpane text=true right=true >}}
 {{% tab header="Spinnaker"  %}}
 Add the following to your `dinghy.yml` config:
@@ -198,7 +196,7 @@ spec:
 
 The Pipelines-as-Code service can use MySQL to store relationships between pipeline templates and pipeline Dinghy files. Armory recommends an external MySQL instance for production use because it can provide more durability for Pipelines-as-Code. If MySQL becomes unavailable, you need to update your Dinghy files in order to repopulate MySQL with the relationships.
 
- {{< include "rdbms-utf8-required.md" >}}
+{{< include "rdbms-utf8-required.md" >}}
 
 First make sure the schema exists in your database.
 
@@ -210,9 +208,7 @@ CREATE SCHEMA IF NOT EXISTS dinghy DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4
       GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, LOCK TABLES, EXECUTE, SHOW VIEW ON dinghy.* TO dinghy_migrate@'%';
 ```
 
-Next, configure Pipelines-as-Code to use your MySQL database. Add the following to your config file:
-
-
+Next, configure Pipelines-as-Code to use your MySQL database.
 
 {{< tabpane text=true right=true >}}
 {{% tab header="Spinnaker"  %}}
@@ -263,7 +259,6 @@ After Dinghy finishes the migration, it closes the Redis connection and works in
 ## Fiat
 
 If you have enabled Fiat, add the field `fiatUser: <your-service-account>` to your config. Note that the service account has to be in a group that has read/write access to the pipelines you are updating.
-
 
 If you have app specific permissions configured, make sure you add the service account. For information on how to create a service account, see [Creating service accounts](https://www.spinnaker.io/setup/security/authorization/service-accounts/#creating-service-accounts).
 
