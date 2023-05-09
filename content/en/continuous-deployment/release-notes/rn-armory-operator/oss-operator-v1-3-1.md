@@ -3,10 +3,10 @@ title: v1.3.1 Operator for Spinnaker
 toc_hide: true
 version: 01.03.01
 description: Release notes for open source Spinnaker Operator v1.3.1
-date: 2023-05-23
+date: 2023-05-09
 ---
 
-## 2023/05/23 Release Notes
+## 2023/05/09 Release Notes
 
 Upgrade the Operator using `kubectl replace`. See [Upgrade the Operator]({{< ref "op-manage-operator#upgrade-the-operator" >}}) for details.
 
