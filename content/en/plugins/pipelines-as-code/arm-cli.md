@@ -5,7 +5,7 @@ weight: 10
 description: >
   The Armory (ARM) CLI is a standalone tool that renders dinghyfiles for you to use with Armory's Pipelines-as-Code feature.
 aliases:
-   - /continuous-deployment/armory-admin/dinghy-arm-cli/
+   - /continuous-deployment/spinnaker-user-guides/dinghy-arm-cli/
 ---
 
 ![Proprietary](/images/proprietary.svg)
