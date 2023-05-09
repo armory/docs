@@ -6,16 +6,11 @@ description: >
 no_list: true
 ---
 
-![Proprietary](/images/proprietary.svg)
+![Proprietary](/images/proprietary.svg) [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) 
 
 ## Advantages to using Pipelines-as-Code
 
-Armory's _Pipelines-as-Code_ feature provides a way to specify pipeline definitions in source code repos such as GitHub and BitBucket.
-
-The Pipelines-as-Code has two components: 1) a Spinnaker plugin; and 2) a service called _Dinghy_, which keeps the Spinnaker pipeline in sync with what you define in a _dinghyfile_ in your repo. You can also make a pipeline by composing other pipelines, stages, or tasks and templating certain values.
-
->GitHub is in the process of replacing `master` as the name of the default base branch. Newly created repos use `main`. As this transition happens, confirm what branch your repo is using as its base branch and explicitly refer to that branch when configuring Armory features such as Pipelines-as-Code. For more information, see GitHub's [Renaming](https://github.com/github/renaming) information.
-
+{{< include "plugins/pac/pac-advantages.md" >}}
 
 ## Installation
 
@@ -58,38 +53,10 @@ Use Kubernetes manifests to deploy the service and Spinnaker local config files 
 
 {{< include "plugins/pac/compat-matrix.md" >}}
 
-
 ## Version control systems
 
-| Feature          | Version   | Armory CD Version | Spinnaker Version |Notes                                                                                                               |
-| ---------------- | --------- | ------------------------- | --------| ------- |
-| BitBucket Cloud  |           | All supported versions    |  1.26+   |                                                                                |
-| BitBucket Server | 4.x - 6.x | All supported versions    |  1.26+  | BitBucket Server 7.x is not officially supported due to changes in webhook handling and may not behave as expected. |
-| GitHub           |           | All supported versions    |  1.26+  | Hosted or cloud |
-| GitLab          |           | All supported versions    |  1.26+  | Hosted or cloud  |
+{{< include "plugins/pac/pac-vcs.md" >}}
 
 ## Features
 
-| Feature       | Armory CD Version | Spinnaker Version | Notes   |
-| ------------- | ----------------- | ----------------- | ------- |
-| [Fiat service account integration]({{< ref "plugins/pipelines-as-code/install/configure#fiat" >}})                   | All supported versions    | 1.26+ |                 |
-| GitHub status notifications                                                            | All supported versions    |   1.26+ |                                              |
-| [Local modules for development]({{< ref "plugins/pipelines-as-code/use#local-module-functionality" >}}) | All supported versions    |    1.26+ |                                                  |
-| Modules                                                                                | All supported versions   1.26+ |   | Templatize and reuse pipeline snippets across applications and teams |
-| Pull Request Validation      | 2.21 or later             |   1.26+ |                                                         |
-| [Slack notifications]({{< ref "plugins/pipelines-as-code/install/configure#slack-notifications" >}})                 | All supported versions    |  1.26+ |                                                            |
-| [Webhook secret validation]({{< ref "plugins/pipelines-as-code/use#webhook-secret-validation" >}})      | All supported versions    |    1.26+ |                                                       |
-
-### Templating languages
-
-To create a dinghyfile, you can use one of the following templating languages:
-
-* HashiCorp Configuration Language (HCL)
-* JSON
-* YAML
-
-### ARM CLI
-
-The ARM CLI is a tool to render dinghyfiles and modules. Use it to help develop and validate your pipelines locally.
-
-You can find the latest version on [Docker Hub](https://hub.docker.com/r/armory/arm-cli).
+{{< include "plugins/pac/pac-features.md" >}}

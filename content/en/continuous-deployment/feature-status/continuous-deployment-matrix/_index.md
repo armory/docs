@@ -108,6 +108,14 @@ The following table lists the supported artifact stores:
 
 ## As code solutions
 
+### Pipelines-as-Code
+[![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
+
+{{< include "plugins/pac/pac-advantages.md" >}}
+**Version control systems**
+{{< include "plugins/pac/pac-vcs.md" >}}
+**Features**
+{{< include "plugins/pac/pac-features.md" >}}
 
 ### Terraform Integration
 
