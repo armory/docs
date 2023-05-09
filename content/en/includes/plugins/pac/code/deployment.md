@@ -1,3 +1,4 @@
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -79,3 +80,4 @@ spec:
         - name: spin-dinghy-config-file
           secret:
             secretName: spin-dinghy-config-file
+```

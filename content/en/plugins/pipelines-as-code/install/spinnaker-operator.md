@@ -10,6 +10,10 @@ description: >
 
 In this guide, you use the Kustomize files in the [`spinnaker-kustomize-patches` repo](https://github.com/armory/spinnaker-kustomize-patches) to deploy the service and install the plugin. You do need to update the contents of some files.
 
+### Compatibility
+
+{{< include "plugins/pac/compat-matrix.md" >}}
+
 ## {{% heading "prereq" %}}
 
 * You are running open source Spinnaker.
@@ -30,8 +34,6 @@ You can find the Pipelines-as-Code files in the `spinnaker-kustomize-patches` re
 The `spinnaker-kustomize-patches/recipes` directory contains the example `kustomization-oss-pac.yml` recipe. You can use that recipe or copy the entries to your  recipe. This guide uses the `kustomization-oss-pac.yml` recipe for examples.
 
 ## Configure the service
-
-{{< include "plugins/pac/compat-matrix.md" >}}
 
 ### Set your Spinnaker version
 
