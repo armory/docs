@@ -15,7 +15,7 @@ great code rather than deploying it. By automating code deployment across all of
 
 {{< include "cdaas/mermaid/how-it-works.md" >}}
 
-See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture" >}}) and [System Requirements]({{< ref "cd-as-a-service/release-notes/requirements">}}) pages for details.
+See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture/_index.md" >}}) section and the [System Requirements]({{< ref "cd-as-a-service/release-notes/requirements">}}) page for details.
 
 The [Armory CDaaS](https://www.armory.io/products/continuous-deployment-as-a-service/) product page contains a full list of features and pricing.
 
