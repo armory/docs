@@ -36,7 +36,7 @@ graph TB
     A  --  1...* --> C(Tenant)
 ```
 
-* Belongs to a single Organization; a User cannot belong to multiple organizations
+* Belongs to a single Organization
 * Can be granted access to multiple Tenants within the Organization
 {{< /card >}}
 {{< /cardpane >}}
