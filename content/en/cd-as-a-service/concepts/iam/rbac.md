@@ -9,6 +9,9 @@ description: >
 No mention of targetGroups, applications because that's not been implemented yet.
 Removed grant types, resources, and permissions that haven't been (or won't be) implemented
 -->
+## {{% heading "prereq" %}}
+
+You are familiar with the concepts discussed in  {{< linkWithTitle "cd-as-a-service/concepts/architecture/orgs-tenants.md" >}}.
 
 ## Overview of RBAC in CD-as-a-Service
 

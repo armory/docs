@@ -14,7 +14,7 @@ By default, a new user has no permission to access functionality within CD-as-a-
 ## {{% heading "prereq" %}}
 
 * You are an Organization or Tenant Admin within CD-as-a-Service.
-* You have read {{< linkWithTitle "cd-as-a-service/concepts/iam/rbac.md" >}}.
+* You are familiar with {{< linkWithTitle "cd-as-a-service/concepts/architecture/orgs-tenants.md" >}} and {{< linkWithTitle "cd-as-a-service/concepts/iam/rbac.md" >}}.
 
 ## How to create a custom role
 
