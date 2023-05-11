@@ -76,7 +76,7 @@ Foothold has 3 project teams and wants app-level deployment separation.
 
 For this scenario, Organization Admin Shannon has to create the tenants and roles for users to access specific tenants. Then Shannon assigns roles to project team members, with Cassidy assigned two roles since she works on two different apps.
 
-The drawback to this approach is that it may not scale if your company has or could have a lot of apps. 
+This approach might become cumbersome if your company has or could have a lot of apps. 
 
 ### Scenario: one tenant for each project team
 
