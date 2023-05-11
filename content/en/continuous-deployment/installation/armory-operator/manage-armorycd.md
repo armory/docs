@@ -5,7 +5,7 @@ weight: 1
 description: >
   Manage, upgrade, or uninstall Armory Continuous Deployment using the Armory Operator.
 aliases:
-  - /continuous-deployment/installation/armory-operator/op-manage-spinnaker.md  
+  - /continuous-deployment/installation/armory-operator/op-manage-spinnaker/
 ---
 
 ## Kubernetes tools

@@ -5,8 +5,8 @@ weight: 1
 description: >
   This guide describes how to deploy a basic Armory CD instance using the Armory Operator and Kustomize patches. You can use this instance as a starting point for configuring advanced features.
 aliases:
-  - /continuous-deployment/installation/armory-operator/op-config-kustomize.md  
-  - /continuous-deployment/installation/armory-operator/op-quickstart.md
+  - /continuous-deployment/installation/armory-operator/op-config-kustomize/
+  - /continuous-deployment/installation/armory-operator/op-quickstart/
 ---
 
 ## Why use Kustomize patches for Armory CD configuration
