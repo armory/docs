@@ -25,6 +25,10 @@ Installing Pipelines-as-Code consists of these steps:
 * You manage your instance using Halyard. If you are using the Spinnaker Operator, see {{< linkWithTitle "plugins/pipelines-as-code/install/spinnaker-operator.md" >}}
 * You have permissions to create ServiceAccount, ClusterRole, and ClusterRoleBinding objects in your cluster.
 
+{{% alert title="Warning" color="warning" %}}
+The examples in this guide are for a vanilla Spinnaker installation. You may need to adjust them for your environment.
+{{% /alert %}}
+
 ## Configure Kubernetes permissions
 
 The following manifest creates a ServiceAccount, ClusterRole, and ClusterRoleBinding. Apply the manifest in your `spinnaker` namespace.
@@ -33,7 +37,7 @@ The following manifest creates a ServiceAccount, ClusterRole, and ClusterRoleBin
 
 ## Configure the service
 
-Create a ConfigMap to contain your Dinghy service configuration.
+Create a ConfigMap to contain your Dinghy service configuration. Be sure to check the `spinnaker.yml` entry in the `data` section to ensure the values match your Spinnaker installation.
 
 {{< include "plugins/pac/code/dinghy-config-map.md" >}}
 

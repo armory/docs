@@ -10,11 +10,11 @@ description: >
 
 The Pipelines-as-Code feature has the following components:
 
-1. Service (_Dinghy_):
+1. _Dinghy_ Service:
 
    * Keeps your repo pipeline definitions in sync with the corresponding pipelines in Spinnaker
    * Communicates with repos over SSL or TLS  
-1. Plugin: extends Gate and Echo by adding endpoints that the Dinghy service uses
+1. Spinnaker Plugin: extends Gate and Echo by adding endpoints that the Dinghy service uses
 
 ## Database
 
@@ -26,13 +26,13 @@ Dinghy works out-of-the-box with in-cluster Redis. You can configure Pipelines-a
 sequenceDiagram
     actor User
     participant Repo
-    participant Service
-    participant Plugin    
+    participant Dinghy Service
+    participant Spinnaker Plugin    
 
     User->>Repo: update pipeline template
-    Repo->>Service: send notification
-    Service->>Repo: fetch updated .dinghyfile
-    Service->>Plugin: update pipeline
+    Repo->>Dinghy Service: send notification
+    Dinghy Service->>Repo: fetch updated .dinghyfile
+    Dinghy Service->>Spinnaker Plugin: update pipeline
 ```
 <br>
 
