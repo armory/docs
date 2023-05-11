@@ -2,6 +2,8 @@
 public/
 resources/
 node_modules/
+tmp/
+dist/
 tech-doc-hugo
 .DS_Store
 utils/vendor/
@@ -10,3 +12,4 @@ utils/vendor/
 # Local Netlify folder
 .netlify
 .hugo_build.lock
+

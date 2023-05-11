@@ -1,0 +1,3 @@
+DirectoryPath: "dist"
+# Hugo's directory structure triggers this:
+IgnoreDirectoryMissingTrailingSlash: true

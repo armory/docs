@@ -1,5 +1,5 @@
 Setting;Type;Default;Description
 `clouddriver.grpc`;string (hostname);<code>spin-clouddriver-grpc:9091</code>;Hostname of the Clouddriver or gPRC proxy
-clouddriver.keepAliveHeartbeatSeconds;integer;none;How often is the gPRC ping
+clouddriver.keepAliveHeartbeatSeconds;integer;20;How often is the gPRC ping
 go_memstats_alloc_bytes;guage;;Number of bytes allocated and still in use.
 kubesvc.credentials.poller.reloadFrequencyMs;long;3000;" <span class=""badge badge-primary"">2.23.0+</span> <span class=""badge badge-primary"">1.23.0+</span> How often the plugin will refresh account credentials to clouddriver in case <code>credentials.poller.enabled</code> is disabled. Otherwise the standard properties of <code>credentials.poller.enabled</code> and <code>credentials.poller.types.kubernetes.reloadFrequencyMs</code> are respected"

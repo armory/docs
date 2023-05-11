@@ -11,8 +11,14 @@ For your users to get access to Armory CD-as-a-Service, you must invite them to 
 
 ## {{% heading "prereq" %}}
 
+1. You are familiar with the concepts discussed in {{< linkWithTitle "cd-as-a-service/concepts/architecture/orgs-tenants.md" >}}.
 1. You need to create at least one role or your user won't be able to access CD-as-a-Service. See {{< linkWithTitle "cd-as-a-service/tasks/iam/create-role.md" >}}.
 1. You need the user's name and email address. Note that the email domain must match your organization's format. For example, users that work for Acme (which uses `username@acme.com`) must have `@acme.com` email addresses. Users are automatically added to your organization once they accept the invite and complete the sign up.
+
+{{% alert title="Important" color="warning" %}}
+* **A user can belong to only one CD-as-as-Service Organization (company account)**. If you try to invite a person that already belongs to another org, you get a `409 Conflict: The user already exists` error. 
+* A user can have access to multiple tenants within a single org.
+{{% /alert %}}
 
 ## How to invite a user
 
@@ -37,4 +43,4 @@ The new user receives an email with instructions for accessing the CD-as-a-Servi
    * {{< linkWithTitle "cd-as-a-service/tasks/iam/manage-role-user.md" >}}
    * {{< linkWithTitle "cd-as-a-service/tutorials/access-management/rbac-users.md" >}}
 
-* {{< linkWithTitle "cd-as-a-service/troubleshoOting/rbac.md" >}}
+* {{< linkWithTitle "cd-as-a-service/troubleshooting/rbac.md" >}}

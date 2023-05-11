@@ -7,7 +7,7 @@ date: 2023-03-13
 
 ### Features:
 - Automatically migrates account to Scale Agent when doing a POST request on `/credentials`.
-- If account existis in Scale-Agent it can also be deleted and updated using DELETE `/credentias/{account}` and PUT `/credentials` respectively.
+- If account existis in Scale-Agent it can also be deleted and updated using DELETE `/credentials/{account}` and PUT `/credentials` respectively.
 - Can be turned on or off with:
 ```yml
 kubesvc:

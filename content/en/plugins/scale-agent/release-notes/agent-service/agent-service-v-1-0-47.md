@@ -4,6 +4,9 @@ toc_hide: true
 version: 01.00.46
 date: 2023-03-08
 ---
+## Summary:
+Manifests deployed and updated with kubectl<1.26 and agent versions v1.0.32 to v1.0.46 in tandem, may have an inconsistent state which prevents `apply` operations from deleting container sidecars, volumes, volumeMounts, container envs, and other lists representing maps.
+Running either `kubectl apply --server-side --force-conflicts` with kubectl>=1.26 or agent v1.0.47 with `kubernetes.serverSideApply.enabled: always` option in the config file will migrate the manifest to consistent state again.
 
 ## Context:
 ### Server Side Apply
@@ -14,7 +17,7 @@ date: 2023-03-08
 * Serverside apply removes field managers that have no corresponding field included in the payload
 * The last two points combine to prevent SSA from deleting a side-car and own the side in order to be allowed to deleted it
 * ~The only workaround it to clear or the fieldManagers so that the next apply becomes the sole owner of the complete manifest. Whoever that approach might lead to issues that the CSA's last-applied-configuration annotation and the SSA's field manager are trying to prevent down the road.~
-* There's a new bookkeeping logic in kuebctl 1.26.0 that handles both csa annotation and field managers to keep  both consistent and allow CSA and SSA to coexist. In case a third fieldManager (i.e. a k8s controller) insists on retaining ownership, you can clear the field managers in order to become the sole owner. But it is unlikely to be necessary
+* There's a new bookkeeping logic in kubectl 1.26.0 that handles both csa annotation and field managers to keep  both consistent and allow CSA and SSA to coexist. In case a third fieldManager (i.e. a k8s controller) insists on retaining ownership, you can clear the field managers in order to become the sole owner. But it is unlikely to be necessary. Using `kubectl apply --server-side --force-conflicts` to deploy the lastest baked manifest is the manual fix to keep CSA and SSA consistent
 
 * Earlier versions of k8s (e.g. 1.18) some optional fields with defaults are expected to be assigned by kubectl, and agent now is able to send those defaults as well. However, it is not recommended to do so, since in SSA not including fields means yielding ownership.
 

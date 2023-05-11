@@ -195,6 +195,7 @@ Use the following configs to configure this deployment to wait until a manual ap
 
 - `targets.<targetName>.constraints.beforeDeployment.pause.untilApproved` set to true
 - `targets.<targetName>.constraints.beforeDeployment.pause.requiresRole` (Optional) list of RBAC roles that can issue a manual approval
+- `targets.<targetName>.constraints.beforeDeployment.pause.approvalExpiration` (Optional) Optional timeout configuration; when expired the ongoing deployment is cancelled 
 
 {{< prism lang="yaml"  line-numbers="true" >}}
 targets:
@@ -208,6 +209,9 @@ targets:
         - pause:
             untilApproved: true
             requiresRole: []
+            approvalExpiration:
+              duration: 60
+              unit: seconds
 {{< /prism >}}
 
 **Pause for a certain amount of time**
@@ -376,6 +380,9 @@ steps:
 ...
   - pause:
       untilApproved: true
+      approvalExpiration:
+        duration: 60
+        unit: seconds
 {{< /prism >}}
 
 **Pause for a set amount of time**
@@ -403,6 +410,7 @@ When you configure a manual judgment, the deployment waits when it hits the corr
 
 - `strategies.<strategyName>.canary.steps.pause.untilApproved: true`
 - `strategies.<strategyName>.canary.steps.pause.requiresRole` (Optional) list of RBAC roles that can issue a manual approval
+- `strategies.<strategyName>.canary.steps.pause.approvalExpiration` (Optional) time to wait for the approval - if expired, current deployment is cancelled
 
 For example:
 
@@ -412,6 +420,9 @@ steps:
   - pause:
       untilApproved: true
       requiresRoles: []
+      approvalExpiration:
+        duration: 60
+        unit: minutes
 {{< /prism >}}
 
 ##### `strategies.<strategyName>.canary.steps.analysis`
@@ -459,6 +470,9 @@ Armory supports the following variables out of the box:
 - `armory.applicationName`
 - `armory.environmentName`
 - `armory.replicaSetName`
+
+If your deployment strategy contains `exposeServices` step, all exposed service preview links are available as part of the `armory.preview` sub-context. 
+For example, if you create service preview for service `my-http-service` you could access it using `armory.preview.my-http-service`.
 
 You can supply your own variables by adding them to this section. When you use them in your query, include the `context` prefix. For example, if you create a variable named `owner`, you would use `context.owner` in your query.
 
@@ -597,6 +611,9 @@ redirectTrafficAfter:
 redirectTrafficAfter:
   - pause:
       untilApproved: true
+      approvalExpiration:
+        duration: 60
+        unit: seconds
 {{< /prism >}}
 
 **Pause for a set amount of time**
@@ -623,7 +640,8 @@ When you configure a manual judgment, the deployment waits for manual approval t
 
 - `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.untilApproved: true`
 - `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.requiresRole` (Optional) list of RBAC roles that can issue a manual approval
-
+- `strategies.<strategyName>.blueGreen.redirectTrafficAfter.pause.approvalExpiration` (Optional) time to wait for the approval - if expired, current deployment is cancelled
+- 
 For example:
 
 {{< prism lang="yaml"  line-numbers="true" >}}
@@ -631,6 +649,9 @@ redirectTrafficAfter:
   - pause:
       untilApproved: true
       requiresRoles: []
+      approvalExpiration:
+        duration: 60
+        unit: minutes
 {{< /prism >}}
 
 ###### `strategies.<strategyName>.blueGreen.redirectTrafficAfter.analysis`
@@ -798,6 +819,9 @@ Armory supports the following variables out of the box:
 - `armory.applicationName`
 - `armory.environmentName`
 - `armory.replicaSetName`
+
+If your deployment strategy contains `exposeServices` step, all exposed service preview links are available as part of the `armory.preview` sub-context.
+For example, if you create service preview for service `my-http-service` you could access it using `armory.preview.my-http-service`.
 
 You can supply your own variables by adding them to the `strategies.<strategyName>.<strategy>.steps.analysis.context`. When you use them in your query, include the `context` prefix. For example, if you create a variable named `owner`, you would use `{{context.owner}}` in your query.
 

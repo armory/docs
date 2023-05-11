@@ -13,7 +13,7 @@ Additionally, a Remote Network Agent uses a Client Credential for authentication
 ## {{% heading "prereq" %}}
 
 * You are an Organization or Tenant Admin within CD-as-a-Service.
-* You are familiar with [RBAC in CD-as-a-Service]({{< ref "cd-as-a-service/concepts/iam/rbac.md" >}})
+* You are familiar with {{< linkWithTitle "cd-as-a-service/concepts/architecture/orgs-tenants.md" >}} and [RBAC in CD-as-a-Service]({{< ref "cd-as-a-service/concepts/iam/rbac.md" >}})
 
 
 ## Create a Client Credential
