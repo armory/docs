@@ -83,7 +83,7 @@ Request format:
 curl --request POST \
   --url https://auth.cloud.armory.io/oauth/token \
   --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data 'data=audience=https://api.cloud.armory.io&grant_type=client_credentials&client_id=$CDAAS_CLIENT_ID&client_secret=$CDAAS_CLIENT_SECRET'
+  --data "data=audience=https://api.cloud.armory.io&grant_type=client_credentials&client_id=$CDAAS_CLIENT_ID&client_secret=$CDAAS_CLIENT_SECRET"
 {{< /prism >}}
 
 Example response:
