@@ -241,6 +241,142 @@ Common errors:
   # Remember to replace $TOKEN_SECRET with the actual contents from the command above
   ```
 
+## Caching K8s cluster objects
+Follow the next validations when k8s objects are not displaying on spinnaker cluster tab UI.
+
+### Validate that the k8s objects are in fact deployed in the cluster
+
+### Validate if the cache for the k8s objects is storage in `kubesvc_cache` database table
+```sql
+mysql> SELECT id, agent, kind, account, application, namespace, last_updated FROM clouddriver.kubesvc_cache WHERE id LIKE '%:account1:%:minimal-ingress';
++-----------------------------------------------------------------------+-------+---------+----------+-------------+-----------+---------------+
+| id                                                                    | agent | kind    | account  | application | namespace | last_updated  |
++-----------------------------------------------------------------------+-------+---------+----------+-------------+-----------+---------------+
+| kubernetes.v2:infrastructure:ingress:account1:default:minimal-ingress |       | ingress | account1 | NULL        | default   | 1683925888736 |
++-----------------------------------------------------------------------+-------+---------+----------+-------------+-----------+---------------+
+1 row in set (0.00 sec)
+```
+Modify :
+1. `account1` by the name of the account that is doing the caching
+2. `minimal-ingress` by the name of the k8s deployment
+>Note that the account could be removed to just filter by the name of the k8s deployment: `WHERE id LIKE '%:myapp'`.
+
+### Validate agent clouddriver plugin is receiving cache events for the k8s objects
+
+#### Validate agent clouddriver plugin has the changing enable for the required kind
+The `kubesvc.cache.cacheKinds` agent clouddriver plugin property has the k8s kinds to caching, the default value is: 
+`kubesvc.cache.cacheKinds: ['ReplicaSet','Service','Ingress','DaemonSet','Deployment','Pod','StatefulSet','Job','CronJob','NetworkPolicy','Namespace','CustomResourceDefinition']`, 
+add or remove a k8s kind as needed.
+
+#### Validate agent clouddriver plugin has debug caching logs enable
+Add `logging.level.io.armory.kubesvc.services.cache.CachingHandler: DEBUG` under clouddriver profiles property to enable caching logs.
+```YAML
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        logging.level.io.armory.kubesvc.services.cache.CachingHandler: DEBUG
+```
+Then look for the caching logs of the k8s objects.
+```bash
+$ kubectl -n spinnaker logs deployment/spin-clouddriver | grep -E 'New entry to cache from instance.*account: account1.*Kind=Ingress/minimal-ingress'
+2023-05-12 21:05:08.966 DEBUG 1 --- [ault-executor-2] i.a.k.services.cache.CachingHandler      : New entry to cache from instance: armory-agent-7bfc4dd84-5kt2r, account: account1, type: ADD, onDemand: false, key: default/networking.k8s.io/v1, Kind=Ingress/minimal-ingress, syncKey: , resourceVersion: 2157, watchedNamespace: , startTimestamp: 1683925507264, endTimestamp: 0
+2023-05-12 21:11:28.732 DEBUG 1 --- [ault-executor-2] i.a.k.services.cache.CachingHandler      : New entry to cache from instance: armory-agent-7bfc4dd84-5kt2r, account: account1, type: ADD, onDemand: false, key: default/networking.k8s.io/v1, Kind=Ingress/minimal-ingress, syncKey: , resourceVersion: 2157, watchedNamespace: , startTimestamp: 1683925507264, endTimestamp: 0
+```
+Modify :
+1. `spinnaker` by the name of the namespace where clouddriver is running
+2. `spin-clouddriver` by the name of the clouddriver deployment
+3. `account1` by the name of the account that is doing the caching
+4. `Ingress` by the kind of the k8s deployment
+5. `minimal-ingress` by the name of the k8s deployment
+
+### Validate agent is sending cache events for the k8s object kinds
+Check the received agent clouddriver plugin list of caching kinds contains the required.
+```bash
+$ kubectl -n spinnaker logs deployments/armory-agent | grep 'Using kind list:'
+time="2023-05-12T21:05:07Z" level=info msg="Using kind list: [ReplicaSet Service Ingress DaemonSet Deployment Pod StatefulSet Job CronJob NetworkPolicy Namespace CustomResourceDefinition]" account=account1 agentId=armory-agent-7bfc4dd84-5kt2r
+```
+Modify :
+1. `spinnaker` by the name of the namespace where agent is running
+2. `armory-agent` by the name of the agent deployment
+
+#### Validate agent has the changing enable for the required kind
+The `kubernetes.accounts[].kinds` and `kubernetes.accounts[].omitKinds` agent properties could restrict what agent caching.
+Then look for the logs that indicate agent is caching the k8s kinds.
+```bash
+$ kubectl -n spinnaker logs deployments/armory-agent | grep -E 'Watcher: full kind recache with . objects" account=account1.*kind=Ingress'
+time="2023-05-12T21:05:08Z" level=info msg="Watcher: full kind recache with 1 objects" account=account1 agentId=armory-agent-7bfc4dd84-5kt2r group=networking.k8s.io kind=Ingress watchedNamespace=default
+time="2023-05-12T21:11:28Z" level=info msg="Watcher: full kind recache with 1 objects" account=account1 agentId=armory-agent-7bfc4dd84-5kt2r group=networking.k8s.io kind=Ingress watchedNamespace=default
+```
+Modify :
+1. `spinnaker` by the name of the namespace where agent is running
+2. `armory-agent` by the name of the agent deployment
+3. `account1` by the name of the account that is doing the caching
+4. `Ingress` by the kind of the k8s deployment
+
+## Orphan accounts
+If notice an account in `kubesvc_accounts` table has ORPHANED `status`.
+```sql
+mysql> SELECT * FROM kubesvc_accounts;
++----------+----------+
+| name     | status   |
++----------+----------+
+| account1 | ORPHANED |
++----------+----------+
+1 row in set (0.00 sec)
+```
+
+### Validate that the account is included in the agent config file
+```YAML
+kubernetes:
+  accounts:
+    - name: account1
+      serviceAccount: true
+```
+
+### Validate that the account is not in conflict with other agent instance by the k8s host or cert fingerprint
+
+If the account was dynamically added by another agent instance; that doesn't exist anymore, 
+pointing to a different k8s cluster, and it was not dynamically deleted.  
+The record of the dynamic account will persist under `kubesvc_accounts` table, 
+using a different k8s host and/or cert fingerprint.
+```sql
+mysql> SELECT name, kube_host, cert_fingerprint, status  FROM kubesvc_accounts;
++----------+-----------------------------------------+-------------------------------------------------+----------+
+| name     | kube_host                               | cert_fingerprint                                | status   |
++----------+-----------------------------------------+-------------------------------------------------+----------+
+| account1 | https://kubernetes.docker.internal:6443 | 27:5E:05:42:E0:9B:EE:74:53:B9:6B:63:9D:A4:9C:B4 | ORPHANED |
++----------+-----------------------------------------+-------------------------------------------------+----------+
+1 row in set (0.00 sec)
+
+mysql>
+
+```
+By having enabled debug log using `logging.level.io.armory.kubesvc.services.registration.kubesvc.DefaultAgentHandler: DEBUG` under clouddriver profiles property.
+```YAML
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        logging.level.io.armory.kubesvc.services.registration.kubesvc.DefaultAgentHandler: DEBUG
+```
+while trying to add the same account name pointing to a different k8s cluster
+will notice the following log showing the account was ignored `ignored accounts [account1]`:
+```bash
+$ kubectl -n spinnaker logs deployments/spin-clouddriver | grep -E 'Agent .*: registered newly added accounts'                     
+2023-05-12 22:29:53.536 DEBUG 1 --- [ault-executor-1] i.a.k.s.r.kubesvc.DefaultAgentHandler    : Agent armory-agent-7974564c46-2fqj2: registered newly added accounts [], stopped handling removed accounts [], updated accounts [], ignored accounts [account1]. Originally had existing accounts [account1], and just now had incoming accounts [account1]
+```
+Modify :
+1. `spinnaker` by the name of the namespace where clouddriver is running
+2. `spin-clouddriver` by the name of the clouddriver deployment
 
 ## Scale Agent tips
 
