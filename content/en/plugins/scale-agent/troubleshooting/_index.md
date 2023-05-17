@@ -276,7 +276,7 @@ When Kubernetes objects are not displaying in the Spinnaker cluster tab UI, perf
 
       Check the `kubesvc.cache.cacheKinds` plugin property has the Kubernetes kinds to cache. The default value is `kubesvc.cache.cacheKinds: ['ReplicaSet','Service','Ingress','DaemonSet','Deployment','Pod','StatefulSet','Job','CronJob','NetworkPolicy','Namespace','CustomResourceDefinition']`. Add or remove a Kubernetes kinds as needed.
 
-   1. Enable the caching handler. 
+   1. Set the `CachingHandler` log level to `DEBUG`.
    
       Add `logging.level.io.armory.kubesvc.services.cache.CachingHandler: DEBUG`:
 
