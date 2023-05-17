@@ -272,13 +272,13 @@ When Kubernetes objects are not displaying in the Spinnaker cluster tab UI, perf
 
 1. Verify that the Agent Couddriver plugin is receiving cache events for the Kubernetes objects.
 
-   1. The Clouddriver plugin should have the caching enabled for the required kind.
+   1. The Clouddriver plugin should have caching enabled for the required kind.
 
-      The `kubesvc.cache.cacheKinds` agent clouddriver plugin property has the Kubernetes kinds to caching, the default value is `kubesvc.cache.cacheKinds: ['ReplicaSet','Service','Ingress','DaemonSet','Deployment','Pod','StatefulSet','Job','CronJob','NetworkPolicy','Namespace','CustomResourceDefinition']`. Add or remove a Kubernetes kind as needed.
+      Check the `kubesvc.cache.cacheKinds` plugin property has the Kubernetes kinds to cache. The default value is `kubesvc.cache.cacheKinds: ['ReplicaSet','Service','Ingress','DaemonSet','Deployment','Pod','StatefulSet','Job','CronJob','NetworkPolicy','Namespace','CustomResourceDefinition']`. Add or remove a Kubernetes kinds as needed.
 
-   1. Verify the plugin has debug caching logs enabled.
-
-      Add `logging.level.io.armory.kubesvc.services.cache.CachingHandler: DEBUG` under clouddriver profiles property to enable caching logs.
+   1. Enable the caching handler. 
+   
+      Add `logging.level.io.armory.kubesvc.services.cache.CachingHandler: DEBUG`:
 
       ```yaml
       apiVersion: spinnaker.armory.io/v1alpha2
@@ -315,7 +315,7 @@ When Kubernetes objects are not displaying in the Spinnaker cluster tab UI, perf
 
 1. Verify that the Agent is sending cache events for the Kubernetes object kinds.
 
-   Check that the plugin's list of caching kinds contains the required ones.
+   Check that the plugin's list of kinds contains the ones you want.
 
    ```bash
    kubectl -n spinnaker logs deployments/armory-agent | grep 'Using kind list:'
@@ -332,9 +332,9 @@ When Kubernetes objects are not displaying in the Spinnaker cluster tab UI, perf
    time="2023-05-12T21:05:07Z" level=info msg="Using kind list: [ReplicaSet Service Ingress DaemonSet Deployment Pod StatefulSet Job CronJob NetworkPolicy Namespace CustomResourceDefinition]" account=account1 agentId=armory-agent-7bfc4dd84-5kt2r
    ```
 
-1. Verify that the Agent has the caching enabled for the required kind.
+1. Verify that the Agent has the caching enabled for the desired kind.
 
-   The `kubernetes.accounts[].kinds` and `kubernetes.accounts[].omitKinds` Agent properties could restrict what the Agent is caching. Look for the logs that indicate Agent is caching the Kubernetes kinds.
+   The `kubernetes.accounts[].kinds` and `kubernetes.accounts[].omitKinds` Agent properties could restrict what the Agent is caching. Look for the logs that indicate Agent is caching the Kubernetes kinds you want cached.
 
    ```bash
    kubectl -n spinnaker logs deployments/armory-agent | grep -E 'Watcher: full kind recache with . objects" account=account1.*kind=Ingress'
@@ -401,7 +401,7 @@ Follow these steps to determine why the account is orphaned:
    1 row in set (0.00 sec)
    ```
 
-   Enable debug logging using `logging.level.io.armory.kubesvc.services.registration.kubesvc.DefaultAgentHandler: DEBUG` in the `profiles.clouddriver` section. For example:
+   Set the `DefaultAgentHandler` log level to `DEBUG`. For example:
 
    ```YAML
    apiVersion: spinnaker.armory.io/v1alpha2
