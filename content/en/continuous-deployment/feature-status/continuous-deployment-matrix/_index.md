@@ -18,7 +18,7 @@ You can find the compatibility matrix for previous Armory Continuous Deployment 
 * [Armory Continuous Deployment v2.26 compatibility matrix](https://v2-26.docs.armory.io/docs/feature-status/armory-enterprise-matrix/)
 * [Armory Continuous Deployment v2.25 compatibility matrix](https://v2-25.docs.armory.io/docs/armory-enterprise-matrix/)
 
->See {{< linkWithTitle "system-requirements" >}} for information about the system requirements you need to install Armory Continuous Deployment.
+>See {{< linkWithTitle "continuous-deployment/installation/system-requirements" >}} for information about the system requirements you need to install Armory Continuous Deployment.
 
 <!-- If you don't want to make markdown tables manually, use something like https://www.tablesgenerator.com/markdown_tables#
 Or you can write raw HTML :shrug: You might want to do that if you need to do bulleted lists etc inside of the table

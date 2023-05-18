@@ -1,31 +1,35 @@
 ---
 title: Install a Remote Network Agent
 linktitle: Install RNA
-
 description: >
-  Install a Remote Network Agent in your Kubernetes cluster.
+  Install a CD-as-a-Service Remote Network Agent in your Kubernetes cluster.
 ---
 
-<!--## Deployment targets
+<!-- The CDaaS UI links to this page. Do not change the title. -->
 
-### Add a Kubernetes deployment target
+## Remote Network Agent installation methods
 
-[**Deployment Targets > Kubernetes**](https://console.cloud.armory.io/configuration/accounts/kubernetes)
+By default, the RNA is installed with full access to the cluster. At a minimum, the RNA needs permissions to create, edit, and delete all `kind` objects that you plan to deploy with CD-as-a-Service, in all namespaces you plan to deploy to. The RNA also requires network access to any monitoring solutions or webhook APIs that you plan to forward through it.
 
-For a deployment target to be available, you need to add it to Armory CD-as-a-Service.
+You can install the Remote Network Agent (RNA) in your Kubernetes cluster using one of the following:
 
-How you add a deployment target depends on whether or not the Kubernetes cluster is accessible from the public internet. If it is, you add it through the **Configuration UI**, and no additional steps are needed. If it is not, you must first install a Remote Network Agent (RNA) on it and then add it through the **Configuration UI**.
+* **kubectl**: default configuration
+* **Helm**: default or advanced configuration
 
-For information about how to add a deployment target, see [Prepare your deployment target]({{< ref "get-started#prepare-your-deployment-target" >}}).
--->
+{{% alert title="Warning" color="warning" %}}
+If you are coming to this guide from the UI **Install a Remote Network Agent** screen because you want to manually install the RNA, follow the [Helm instructions](#install-using-helm). Use the cluster name you created to identify your RNA. Copy the **Client ID** and **Client Secret**.
+
+_Do not close the pop-up window in the UI until you have completed RNA installation. The credentials in the pop-up window are deleted if you close the window before the RNA has connected._
+{{% /alert %}}
 
 ## {{% heading "prereq" %}}
 
-* If you are coming to this guide from the **Add a New Remote Network Agent** page in the UI, you have your RNA name (**Agent Identifier**), **Client ID**, and **Client Secret**. _Do not close the pop-up window in the UI until you have completed RNA installation. The credentials in the pop-up window are deleted if you close the window before the RNA has connected._
-* You have created client credentials. See the {{< linkWithTitle "cd-as-a-service/tasks/iam/client-creds.md" >}} guide for instructions.
-* You have access to a Kubernetes cluster and have installed [kubectl](https://kubernetes.io/docs/tasks/tools/).
-* You have installed [Helm](https://helm.sh/)(v3), which is used to install the Remote Network Agent.
+* You have **Client Credentials**. See the {{< linkWithTitle "cd-as-a-service/tasks/iam/client-creds.md" >}} guide for instructions.
 
-## Install the Remote Network Agent
+## Install using kubectl
 
-{{< include "cdaas/rna-install.md" >}}
+{{< include "cdaas/rna-install-kubectl.md" >}}
+
+## Install using Helm
+
+{{< include "cdaas/rna-install-helm.md" >}}

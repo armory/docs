@@ -36,7 +36,7 @@ Before you install Armory on AWS, it is essential that you familiarize yourself 
 
 ## {{% heading "prereq" %}}
 
-- You have reviewed and met the Armory Continuous Deployment [system requirements]({{< ref "system-requirements.md" >}}).
+- You have reviewed and met the Armory Continuous Deployment [system requirements]({{< ref "continuous-deployment/installation/system-requirements" >}}).
 - You have a running EKS and can access the Kubernetes API. Either your user/role created the EKS cluster or your user/role has been added to the `aws-auth` configmap in the EKS cluster. See the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html) for more details.
 - You have access to an S3 bucket or access to create an S3 bucket.
 - You have access to an IAM role or user with access to the S3 bucket or can create an IAM role or user with access to the S3 bucket.

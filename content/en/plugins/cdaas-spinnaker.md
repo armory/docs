@@ -82,7 +82,7 @@ Click **Create Credential**. Copy the **Client ID** and **Client Secret** values
 
 ### Deploy the RNA in your target Kubernetes cluster
 
-{{< include "cdaas/rna-install.md" >}}
+{{< include "cdaas/rna-install-helm.md" >}}
 
 ### Verify the Agent deployment
 

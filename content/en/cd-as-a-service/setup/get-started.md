@@ -1,52 +1,37 @@
 ---
-title: Get Started with Armory CD-as-a-Service
-linktitle: Armory CD-as-a-Service
+title: Sign Up and Connect Your Kubernetes Cluster
+linktitle: Sign Up
 description: >
-  Learn how to get started using Armory CD-as-a-Service to deploy apps to your Kubernetes clusters.
-
+  Sign up for Armory Continuous Deployment-as-a-Service. Connect to your Kubernetes cluster by installing a Kubernetes agent.
 weight: 10
+aliases:
+  - cd-as-a-service/setup/get-started/
 ---
 
 ## How to get started using Armory CD-as-a-Service
 
 The following steps should take less than 5 minutes to complete:
 
-1. [Register for Armory CD-as-a-Service](#register-for-armory-cd-as-a-service).
+1. [Sign up for Armory CD-as-a-Service](#register-for-armory-cd-as-a-service).
 1. [Connect your Kubernetes cluster](#connect-your-kubernetes-cluster).
 
 ## {{% heading "prereq" %}}
 
-* You have reviewed the system requirements for using Armory CD-as-a-Service on the [Requirements]({{< ref "requirements.md" >}}) page.
-* You have access to a Kubernetes cluster and have installed [kubectl](https://kubernetes.io/docs/tasks/tools/).
-* You have installed [Helm](https://helm.sh/)(v3), which is used to install the Remote Network Agent.
+* You have reviewed the CD-as-a-Service [system requirements]({{< ref "cd-as-a-service/concepts/architecture/system-requirements.md" >}}).
+* You have access to a Kubernetes cluster.
 
+## Sign up for Armory CD-as-a-Service
 
-## Register for Armory CD-as-a-Service
-
-Access the [Registration screen](https://go.armory.io/signup/) to create an account. Fill in the required fields. When you're done, click **Create Account**.  
-
-When you create your account, CD-as-a-Service does the following:
-
-* Creates an Organization for your company
-* Creates a Tenant for the Organization
-* Creates a User account with an _Organization Admin_ role for you.
-
-See {{< linkWithTitle "/cd-as-a-service/concepts/architecture/orgs-tenants.md" >}} for details.
-
-> You may have to log in after creating your account.
-
-The **Welcome to Continuous Deployment-as-a-Service** [Configuration page](https://console.cloud.armory.io/configuration) lists the steps you need to complete to begin using Armory CD-as-a-Service.
+{{< include "cdaas/register.md" >}}
 
 ## Connect your Kubernetes Cluster
 
 1. In the CD-as-a-Service Console, navigate to the **Welcome to Continuous Deployment-as-a-Service** [Configuration page](https://console.cloud.armory.io/configuration).
 1. Click the **Connect your Kubernetes Cluster** link.
-1. In the **Add a New Remote Network Agent** pop-up window, enter a name for your Remote Network Agent (RNA) in the **Agent Identifier** field. You install this RNA in the cluster where you want to deploy your app, so create a meaningful name.
+1. In the **Select Installation Method** window, choose **Connect Cluster Using Kubectl**.
+1. In the **Identify Your Cluster** window, enter a name for your Remote Network Agent (RNA) in the **Cluster Name** field. You install this RNA in the cluster where you want to deploy your app, so create a meaningful name.
 1. Click **Continue**.
-1. The pop-up window displays options for installing the RNA.
-
-   - **Quick**: The quickest option is to copy the provided script and run it in your terminal after you have set your `kubectl` context. _By default, the RNA is installed with `*` (all) permissions in the cluster. You need to do a manual install if you want to modify the default permissions._
-   - **Manual**: Copy the **Client ID**, **Client Secret**, and the name you gave you RNA (the value of the **Agent Identifier** field). Then follow the instructions in the {{< linkWithTitle "cd-as-a-service/tasks/networking/install-agent.md" >}} guide.
+1. The **Connect New Remote Network Agent** window displays a script that you run to install the RNA in your cluster.
 
 ## {{%  heading "nextSteps" %}}
 
