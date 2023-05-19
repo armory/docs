@@ -3,9 +3,7 @@ title: Sign Up and Connect Your Kubernetes Cluster
 linktitle: Sign Up
 description: >
   Sign up for Armory Continuous Deployment-as-a-Service. Connect to your Kubernetes cluster by installing a Kubernetes agent.
-weight: 10
-aliases:
-  - cd-as-a-service/setup/get-started/
+weight: 1
 ---
 
 ## How to get started using Armory CD-as-a-Service
@@ -35,8 +33,5 @@ The following steps should take less than 5 minutes to complete:
 
 ## {{%  heading "nextSteps" %}}
 
-Learn how to deploy your app using one of these options:
+* {{< linkWithTitle "cd-as-a-service/setup/quickstart.md" >}}
 
-* {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}}
-* {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}}
-* {{< linkWithTitle "cd-as-a-service/setup/argo-rollouts.md" >}}

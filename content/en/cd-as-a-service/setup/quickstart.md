@@ -1,26 +1,27 @@
 ---
-title: Armory CD-as-a-Service Quickstart - Hello Armory!
+title: Armory CD-as-a-Service Quickstart
 linktitle: Quickstart
 description: >
-  Deploy an example app to your Kubernetes cluster using Armory Continuous Deployment-as-a-Service.
-weight: 1
+  Install the Armory Continuous Deployment-as-a-Service CLI, connect your Kubernetes cluster, and deploy an example app using a traffic split st. Learn deployment file sun
+weight: 2
 ---
 
 ## Learning objectives
 
-1. Install the CD-as-as-Service CLI on your Mac or Linux workstation.
-1. Connect your Kubernetes cluster to CD-as-a-Service.
-1. Deploy Armory's sample application `potato-facts` to two environments: `staging` and `prod`.
-1. Use Armory's Cloud Console to approve an environment promotion.
-1. Observe a traffic split between two application versions.
-1. Learn CD-as-a-Service deployment YAML syntax.
+1. [Install the CD-as-as-Service CLI](#install-the-cd-as-as-service-cli) on your Mac or Linux workstation.
+1. [Connect your Kubernetes cluster](#connect-your-cluster) to CD-as-a-Service.
+1. [Deploy Armory's example app](#deploy-the-example-app) `potato-facts` to two environments: `staging` and `prod`.
+   * Use the CD-as-a-Service Console to approve an environment promotion.
+   * Observe a traffic split between two app versions.
+1. [Learn CD-as-a-Service deployment file syntax](#learn-deployment-file-syntax).
+1. [Remove](#clean-up) the resources you created. 
 
 ## {{% heading "prereq" %}}
 
 * You are familiar with CD-as-a-Service's [key components]({{< ref "cd-as-a-service/concepts/architecture/key-components.md" >}}) and [system requirements]({{< ref "cd-as-a-service/concepts/architecture/system-requirements.md" >}}).
-* You have access to a Kubernetes cluster. If you do not have access to a Kubernetes cluster, consider installing a local [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or [Minikube](https://minikube.sigs.k8s.io/docs/start/) cluster.  Your cluster's API endpoint does not need to be publicly accessible to use CD-as-a-Service. 
+* You have access to a Kubernetes cluster. If you need a cluster, consider installing a local [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or [Minikube](https://minikube.sigs.k8s.io/docs/start/) cluster.  Your cluster's API endpoint does not need to be publicly accessible to use CD-as-a-Service. 
 
-## Install the CD-as-as-Service CLI.
+## Install the CD-as-as-Service CLI
 
 Install `armory` on Mac OS using [Homebrew](https://brew.sh/):
 
@@ -34,11 +35,11 @@ To install `armory` on Linux, run the following command:
 curl -sL go.armory.io/get-cli | bash
 ```
 
-   The script will install `armory` and `avm`. You can use `avm` (**A**rmory **V**ersion **M**anager) to manage your `armory` version.
+   The script installs `armory` and `avm`. You can use `avm` (**A**rmory **V**ersion **M**anager) to manage your `armory` version.
 
-## Log in with the CLI.
+### Log in with the CLI
     
-If you've arrived at this tutorial without an Armory CD-as-a-Service account, that's OK! You can sign up for a free account when you run `armory login`.
+If you've arrived at this guide without an Armory CD-as-a-Service account, that's OK! You can sign up for a free account when you run `armory login`.
 
 ```shell
 armory login
@@ -56,16 +57,18 @@ Run the following command to install an agent in your Kubernetes cluster:
 armory agent create
 ```
 
-You name your agent during the installation process. This tutorial references that name as `<my-agent-identifier>` throughout this tutorial.
+You name your agent during the installation process. This guide references that name as `<my-agent-identifier>`.
 
-## First deployment
+## Deploy the example app
 
-Armory's sample application `potato-facts` is a [simple web application](https://github.com/armory-io/potato-facts-go). 
-The UI polls the API backend for facts about potatoes and renders them for users.
+Armory's [`potato-facts` example app](https://github.com/armory-io/potato-facts-go) is a simple web app. The UI polls the API backend for facts about potatoes and renders them for users.
 
-Your first deployment will deploy the following resources into your Kubernetes cluster:
-- Two namespaces: `potato-facts-staging` and `potato-facts-prod`.
-- In each namespace, the `potato-facts` application and a Kubernetes `Service`.
+### First deployment
+
+Your first deployment deploys the following resources into your Kubernetes cluster:
+
+- Two namespaces: `potato-facts-staging` and `potato-facts-prod`
+- In each namespace: the `potato-facts` app and a Kubernetes `Service`
 
 **Deploy**
 
@@ -77,25 +80,23 @@ armory deploy start -f https://go.armory.io/hello-armory-first-deployment --acco
 
 Congratulations, you've just started your first deployment with CD-as-a-Service! 
 
-You can use the link provided by the CLI to observe your deployment's progression in [Cloud Console](https://console.cloud.armory.io/deployments). 
-Your resources will be deployed to `staging`. Once those resources have deployed successfully, CD-as-a-Service will deploy to `prod`.
+You can use the link provided by the CLI to observe your deployment's progression in the [CD-as-a-Service Console](https://console.cloud.armory.io/deployments). CD-as-a-Service deploys your resources to `staging`. Once those resources have deployed successfully, CD-as-a-Service deploys to `prod`.
 
-## Second deployment
+### Second deployment
 
-CD-as-a-Service is designed to help you build safety into your application deployment process. It does so by giving you 
-declarative levers to control the scope of your deployment. 
+CD-as-a-Service is designed to help you build safety into your app deployment process. It does so by giving you declarative levers to control the scope of your deployment. 
 
 CD-as-a-Service has four kinds of constraints that you can use to control your deployment:
 
 - Manual Approvals
 - Timed Pauses
-- [Webhooks](https://docs.armory.io/cd-as-a-service/tasks/webhook-approval/)
-- [Automated Canary Analysis](https://docs.armory.io/cd-as-a-service/setup/canary/)
+- [Webhooks]({{< ref "cd-as-a-service/tasks/webhook-approval" >}})
+- [Automated Canary Analysis]({{< ref "cd-as-a-service/setup/canary" >}})
 
 You can use these constraints _between_ environments and _within_ environments:
 
-- During your next deployment, you will need to issue a manual approval between `staging` and `prod`. 
-- Within the `prod` deployment, CD-as-a-Service will create a 25/75% traffic split between your application versions. CD-as-a-Service will wait for your approval before continuing the deployment.
+- During your next deployment, you need to issue a manual approval between `staging` and `prod`. 
+- Within the `prod` deployment, CD-as-a-Service creates a 25/75% traffic split between your app versions. CD-as-a-Service waits for your approval before continuing the deployment.
 
 **Deploy**
 
@@ -105,32 +106,35 @@ Start your second deployment:
 armory deploy start -f https://go.armory.io/hello-armory-second-deployment --account <my-agent-identifier>
 ```
 
-Use the link provided by the CLI to navigate to your deployment in Cloud Console. Once the `staging` deployment has completed, click "Approve" to allow the `prod` deployment to begin.
+Use the link provided by the CLI to navigate to your deployment in the CD-as-a-Service Console. Once the `staging` deployment has completed, click **Approve** to allow the `prod` deployment to begin.
 
-Click on the `prod` deployment, then click on the `potato-facts` link under "Resources":
+{{< figure src="/images/cdaas/setup/quickstart/clickApprove.jpg" width=80%" height="80%" >}}
 
-![Screenshot of preview link](./assets/preview.png)
+Once deployment begins, you can see the traffic split. CD-as-a-Service has deployed a new `ReplicaSet` with only one pod to achieve a 25/75% traffic split between app versions. Click the **prod** deployment to open the details window.
 
-This will open a preview of `potato-facts`. The app's graph plots the ratio of facts served by a given Kubernetes `ReplicaSet`.
+{{< figure src="/images/cdaas/setup/quickstart/openTrafficSplitDetails.jpg"  width=80%" height="80%"  >}}
 
-CD-as-a-Service has deployed a new `ReplicaSet` with only one pod to achieve a 25/75% traffic split between application versions. The ratio of facts served by `ReplicaSet` backends in the graph 
-should roughly match this 25/75% split.
+Click on `potato-facts` in the **Resources** section to open a preview of `potato-facts`.
 
-Once you're ready to continue, return to Cloud Console to approve the `prod` deployment. CD-as-a-Service will fully shift traffic to the new
-application version and tear down the previous application version.
+{{< figure src="/images/cdaas/setup/quickstart/trafficSplitDetailsWindow.jpg" width=80%" height="80%"  >}}
 
-## Deployment YAML
+The app's graph plots the ratio of facts served by a given Kubernetes `ReplicaSet`. The ratio of facts served by `ReplicaSet` backends in the graph should roughly match the 25/75% split.
 
-Now that you've used CD-as-a-Service to deploy to two environments, let's break down CD-as-a-Service's deployment YAML. You can find 
-the [full specification on our docs site](https://docs.armory.io/cd-as-a-service/reference/ref-deployment-file/#sections).
+{{< figure src="/images/cdaas/setup/quickstart/potatoFactsTrafficSplit.jpg"  width=80%" height="80%"  >}}
 
-### `targets`
+Return to the deployment details window. Click **Approve & Continue** to finish deployment. CD-as-a-Service fully shifts traffic to the new app version and tears down the previous app version.
 
-In CD-as-a-Service, a `target` is an `(account, namespace)` pair where `account` is the name of your agent identifier.
+{{< figure src="/images/cdaas/setup/quickstart/deployFinishedDetails.jpg"  width=80%" height="80%"  >}}
 
-When deploying to multiple targets, you can specify dependencies between targets
-using the `constraints.dependsOn` field. In the case of this tutorial, the `prod` deployment will start only when the `staging`
-deployment has completed successfully.
+## Learn deployment file syntax
+
+Now that you've used CD-as-a-Service to deploy to two environments, it's time to break down the example app's deployment file. You can find full specification details in the [Deployment Config File Reference](https://docs.armory.io/cd-as-a-service/reference/ref-deployment-file/#sections).
+
+**`targets`**
+
+In CD-as-a-Service, a `target` is an `(account, namespace)` pair where `account` is the agent identifier you created when you connected your cluster.
+
+When deploying to multiple targets, you can specify dependencies between targets using the `constraints.dependsOn` field. In this guide, the `prod` deployment starts only after the `staging` deployment has completed successfully, and you have manually approved deployment to prod.
 
 ```yaml
 targets:
@@ -150,14 +154,13 @@ targets:
             untilApproved: true
 ```
 
-### `manifests`
+**`manifests`**
 
-CD-as-a-Service can deploy any Kubernetes manifest. You do not need to alter your manifests or apply any special annotations to use CD-as-a-Service.
+CD-as-a-Service can deploy any Kubernetes manifest. You do not need to alter your manifests or apply any special annotations.
 
-By default, the manifests defined in `path` will be deployed to all of your `targets`. If you want to restrict the targets where a manifest
-should be deployed, use the `manifests.targets` field.
+By default, CD-as-a-Service deploys all the manifests defined in `path` to all of your `targets`. If you want to restrict the targets where a manifest should be deployed, use the `manifests.targets` field.
 
-A `path` can be a path to an individual file or a directory. Each file can contain one or more Kubernetes manifests.
+A `path` can be a path to a directory or to an individual file. Each file may contain one or more Kubernetes manifests. 
 
 ```yaml
 manifests:
@@ -169,23 +172,18 @@ manifests:
     targets: ["prod"]
 ```
 
-### `strategies`
+**`strategies`**
 
-A `strategy` defines how manifests are deployed to a target.
+A `strategy` defines how CD-as-a-Service deploys manifests to a target.
 
-A `canary`-type strategy is a linear sequence of steps. The `setWeight` step defines the ratio of traffic
-between application versions. This tutorial will introduce other step types later on.
-
-CD-as-a-Service integrates with service meshes like [Istio](https://docs.armory.io/cd-as-a-service/tasks/deploy/traffic-management/istio/) 
-and [Linkerd](https://docs.armory.io/cd-as-a-service/tasks/deploy/traffic-management/linkerd/), 
-but you do not need to use a service mesh to use a CD-as-a-Service `canary` strategy.
+A `canary`-type strategy is a linear sequence of steps. The `setWeight` step defines the ratio of traffic between app versions.
 
 ```yaml
 strategies:
   rolling:
     canary:
       steps:
-        # This strategy immediately flips all traffic to the new application version.
+        # This strategy immediately flips all traffic to the new app version.
         - setWeight:
             weight: 100
   trafficSplit:
@@ -197,18 +195,30 @@ strategies:
             services:
               - potato-facts
             ttl:
-              duration: 2
-              unit: hours
+              duration: 30
+              unit: minutes
         - pause:
             untilApproved: true
         - setWeight:
             weight: 100
 ```
 
-## Clean Up
 
-You can clean up the resources created by this tutorial with `kubectl`:
+CD-as-a-Service integrates with service meshes like [Istio]({{< ref "cd-as-a-service/tasks/deploy/traffic-management/istio" >}}) and [Linkerd]({{< ref "cd-as-a-service/tasks/deploy/traffic-management/linkerd" >}}), but you do not need to use a service mesh to use a CD-as-a-Service `canary` strategy.
+
+CD-as-a-Service also supports a [blue/green]({{< ref "cd-as-a-service/setup/blue-green" >}}) deployment strategy.
+
+## Clean up
+
+You can clean kubectl to clean up the resources you created:
 
 ```shell
 kubectl delete ns potato-facts-staging potato-facts-prod
 ```
+
+## {{%  heading "nextSteps" %}}
+
+* {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}}
+* {{< linkWithTitle "cd-as-a-service/setup/blue-green.md" >}}
+* {{< linkWithTitle "cd-as-a-service/setup/canary.md" >}}
+* {{< linkWithTitle "cd-as-a-service/setup/argo-rollouts.md" >}}
