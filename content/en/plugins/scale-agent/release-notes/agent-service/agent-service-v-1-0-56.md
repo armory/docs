@@ -6,4 +6,4 @@ date: 2023-05-18
 ---
 
 ## Fixes
-* Prevent application hangup when defining >1000 accounts
+* Prevent application hangup when defining a big number of accounts.
