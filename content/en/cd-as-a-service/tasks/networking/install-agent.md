@@ -16,8 +16,8 @@ You can install the Remote Network Agent (RNA) in your Kubernetes cluster using 
 * **kubectl**: default configuration
 * **Helm**: default or advanced configuration
 
-{{% alert title="Warning" color="warning" %}}
-If you are coming to this guide from the UI **Install a Remote Network Agent** screen because you want to manually install the RNA, follow the [Helm instructions](#install-using-helm). Use the cluster name you created to identify your RNA. Copy the **Client ID** and **Client Secret**.
+{{% alert title="Important" color="warning" %}}
+If you are coming to this guide from the UI **Install a Remote Network Agent** screen because you want to manually install the RNA, follow the [Helm instructions](#install-using-helm). Use the cluster name you created to identify your RNA. Copy the **Client ID** and **Client Secret** from the UI.
 
 _Do not close the pop-up window in the UI until you have completed RNA installation. The credentials in the pop-up window are deleted if you close the window before the RNA has connected._
 {{% /alert %}}
