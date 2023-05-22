@@ -80,7 +80,7 @@ _Do not close the pop-up window in the UI until you have completed RNA installat
    armory agent create
    ```
 
-   You choose your cluster and provide an `agent identifier` (cluster name) for the RNA during the installation process.
+   You choose your cluster and provide an **agent identifier** (cluster name) for the RNA during the installation process.
 
 ## Install manually using kubectl
 
