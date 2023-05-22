@@ -22,12 +22,12 @@ The following steps should take less than 5 minutes to complete:
 
 {{< include "cdaas/register.md" >}}
 
-## Connect your Kubernetes Cluster
+## Connect a Kubernetes Cluster
 
 1. In the CD-as-a-Service Console, navigate to the **Welcome to Continuous Deployment-as-a-Service** [Configuration page](https://console.cloud.armory.io/configuration).
 1. Click the **Connect your Kubernetes Cluster** link.
 1. In the **Select Installation Method** window, choose **Connect Cluster Using Kubectl**.
-1. In the **Identify Your Cluster** window, enter a name for your Remote Network Agent (RNA) in the **Cluster Name** field. You install this RNA in the cluster where you want to deploy your app, so create a meaningful name.
+1. In the **Identify Your Cluster** window, enter an agent identifier for your Remote Network Agent (RNA) in the **Cluster Name** field. You install this RNA in the cluster where you want to deploy your app, so create a meaningful identifier.
 1. Click **Continue**.
 1. The **Connect New Remote Network Agent** window displays a script that you run to install the RNA in your cluster.
 
