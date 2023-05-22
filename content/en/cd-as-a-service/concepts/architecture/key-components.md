@@ -9,6 +9,8 @@ aliases:
   - /cd-as-as-service/architecture/
 ---
 
+<!-- The CDaaS UI links to this page. Do not change the title or headings without checking with engineering. -->
+
 ## How Armory CD-as-a-Service works
 
 Armory CD-as-a-Service is a platform of cloud-based services that orchestrate app deployments and monitor their progress. These services have API endpoints with which users and non-cloud services interact via HTTPS or gRPC/HTTP2. The [Networking](#networking) section contains details of the endpoints that need to be whitelisted.
