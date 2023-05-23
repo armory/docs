@@ -4,6 +4,7 @@ linkTitle: Install in AWS EC2 using Operator
 weight: 50
 description: >
   Use the Armory Operator to deploy Spinnaker or Armory Continuous Deployment in a Lightweight Kubernetes (K3s) instance running on an AWS EC2 virtual machine. This environment is for proofs of concept and development.
+draft: true
 ---
 
 {{< include "armory-license.md" >}}

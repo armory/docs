@@ -43,11 +43,12 @@ You should familiarize yourself with Kustomize before you create patch files to 
 
 ### Kubernetes compatibility matrix
 
-{{< readfile file="/includes/armory-operator/operator-compat-matrix.md" >}}
+{{< include "armory-operator/operator-compat-matrix.md" >}}
 
 ## Deploy the Armory Operator 
 
-Decide which Armory Operator release you need based on the compatibility matrix. Then install the Armory Operator in [cluster mode]({{< ref "continuous-deployment/installation/armory-operator#operator-installation-modes" >}}).
+Decide which Armory Operator release you need based on the compatibility matrix and the 
+{{< linkWithTitle "continuous-deployment/release-notes/rn-armory-operator" >}}. Then install the Armory Operator in [cluster mode]({{< ref "continuous-deployment/installation/armory-operator#operator-installation-modes" >}}).
 
 {{< include "armory-operator/armory-op-install-cluster.md" >}}
 

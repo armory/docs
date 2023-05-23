@@ -7,11 +7,11 @@ You can find the Armory Operator's deployment configuration in `spinnaker-operat
 
 1. Download the Armory Operator.
 
-   In the following example, replace `<release-version>` with a specific release version or `latest`.
+   In the following example, replace `<release-version>` with a specific release version.
 
    ```bash
    mkdir -p spinnaker-operator && cd spinnaker-operator
-   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
+   bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/v<release-version>/download/manifests.tgz | tar -xz'
    ```
 
 1. Install or update CRDs across the cluster.
