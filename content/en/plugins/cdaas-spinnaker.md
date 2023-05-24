@@ -274,7 +274,7 @@ You have the following options for adding your Armory CD-as-a-Service deployment
 
 1. Add the Kubernetes manifest for your app as a pipeline artifact in the Configuration section of your pipeline. Or you can generate it using the 'Bake (Manifest)' stage, as you would for a standard Kubernetes deployment in Armory CD.
 
-1. Prepare your Armory CD-as-a-Service deployment YAML. You can use the [Armory CD-as-a-Service CLI]({{< ref "cd-as-a-service/setup/cli#manually-deploy-apps-using-the-cli" >}}) to generate a deployment file template. In your deployment YAML `manifests.path` section, you have to specify the file name of the app's Kubernetes manifest artifact, which may vary from the **Display Name** on the **Expected Artifact** screen.
+1. Prepare your Armory CD-as-a-Service deployment YAML. You can use the [Armory CD-as-a-Service CLI]({{< ref "cd-as-a-service/setup/deploy-your-app" >}}) to generate a deployment file template. In your deployment YAML `manifests.path` section, you have to specify the file name of the app's Kubernetes manifest artifact, which may vary from the **Display Name** on the **Expected Artifact** screen.
 
 #### Configure the stage
 

@@ -21,13 +21,11 @@ The [Armory CDaaS](https://www.armory.io/products/continuous-deployment-as-a-ser
 
 ## Start using Armory CD-as-a-Service
 
-The **Get Started** section contains guides that walk you through the core functionality. The {{< linkWithTitle "cd-as-a-service/setup/get-started.md" >}} guide shows you how to sign up for an account and then connect to your Kubernetes cluster. You can complete the process in under 5 minutes.
+The **Get Started** section contains guides that walk you through the core functionality. 
 
-Read the {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}} guide to learn how to install the CLI, create a deployment file, and deploy your app.
-
-After you've completed those guides, you can follow the {{< linkWithTitle "cd-as-a-service/tutorials/deploy-sample-app.md" >}}, in which you fork a demo app repo and deploy that app to your Kubernetes cluster.
-
-In addition to deployment using the CLI, you can start a deployment from your GitHub workflow. Read the {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}} guide to integrate Armory CD-as-a-Service's GitHub Action into your workflow.
+* {{< linkWithTitle "cd-as-a-service/setup/quickstart.md" >}} guide shows you how to sign up for an account, connect to your Kubernetes cluster, and deploy an example app.
+* {{< linkWithTitle "cd-as-a-service/setup/deploy-your-app.md" >}} guide to learn how to create a deployment file for your own app and then deploy using the CLI.
+* {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}} guide walks you through integrateing Armory CD-as-a-Service's GitHub Action into your workflow.
 
 Learn how to configure deployment strategies with these guides:
 

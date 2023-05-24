@@ -1,7 +1,8 @@
 Install `armory` on Mac OS using [Homebrew](https://brew.sh/):
 
 ```shell
-brew install armory-io/armory/armory-cli
+brew tap armory-io/armory
+brew install armory-cli
 ```
 
 To install `armory` on Linux, run the following command:

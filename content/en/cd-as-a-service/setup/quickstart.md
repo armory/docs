@@ -3,11 +3,15 @@ title: Armory CD-as-a-Service Quickstart
 linktitle: Quickstart
 description: >
   Install the Armory Continuous Deployment-as-a-Service CLI, connect your Kubernetes cluster with a single command, and deploy an example app using a traffic split. Learn deployment file syntax.
-weight: 2
+weight: 1
+aliases:
+  - /cd-as-a-service/setup/get-started/
+  - /cd-as-a-service/setup/cli/
 ---
 
 ## Learning objectives
 
+1. [Sign up for CD-as-a-Service](#sign-up-for-cd-as-a-service).
 1. [Install the CD-as-as-Service CLI](#install-the-cd-as-as-service-cli) on your Mac or Linux workstation.
 1. [Connect your Kubernetes cluster](#connect-your-cluster) to CD-as-a-Service.
 1. [Deploy Armory's example app](#deploy-the-example-app) `potato-facts` to two environments: `staging` and `prod`.
@@ -21,14 +25,16 @@ weight: 2
 * You are familiar with CD-as-a-Service's [key components]({{< ref "cd-as-a-service/concepts/architecture/key-components.md" >}}) and [system requirements]({{< ref "cd-as-a-service/concepts/architecture/system-requirements.md" >}}).
 * You have access to a Kubernetes cluster. If you need a cluster, consider installing a local [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or [Minikube](https://minikube.sigs.k8s.io/docs/start/) cluster.  Your cluster's API endpoint does not need to be publicly accessible to use CD-as-a-Service. 
 
+## Sign up for CD-as-a-Service
+
+{{< include "cdaas/register.md" >}}
+
 ## Install the CD-as-as-Service CLI
 
 {{< include "cdaas/install-cli.md" >}}
 
 ### Log in with the CLI
     
-If you've arrived at this guide without an Armory CD-as-a-Service account, that's OK! You can sign up for a free account when you run `armory login`.
-
 ```shell
 armory login
 ```
@@ -84,7 +90,7 @@ CD-as-a-Service has four kinds of constraints that you can use to control your d
 You can use these constraints _between_ environments and _within_ environments:
 
 - During your next deployment, you need to issue a manual approval between `staging` and `prod`. 
-- Within the `prod` deployment, CD-as-a-Service creates a 25/75% traffic split between your app versions. CD-as-a-Service waits for your approval before continuing the deployment.
+- Within the `prod` deployment, CD-as-a-Service creates a traffic split between your app versions: 75% goes to the old version and 25% goes to the new version. CD-as-a-Service waits for your approval before continuing the deployment.
 
 **Deploy**
 
@@ -94,11 +100,11 @@ Start your second deployment:
 armory deploy start -f https://go.armory.io/hello-armory-second-deployment --account <my-agent-identifier>
 ```
 
-Use the link provided by the CLI to navigate to your deployment in the CD-as-a-Service Console. Once the `staging` deployment has completed, click **Approve** to allow the `prod` deployment to begin.
+Use the link provided by the CLI to navigate to your deployment in the [CD-as-a-Service Console](https://console.cloud.armory.io/deployments). Once the `staging` deployment has completed, click **Approve** to allow the `prod` deployment to begin.
 
 {{< figure src="/images/cdaas/setup/quickstart/clickApprove.jpg" width=80%" height="80%" >}}
 
-Once deployment begins, you can see the traffic split. CD-as-a-Service has deployed a new `ReplicaSet` with only one pod to achieve a 25/75% traffic split between app versions. Click the **prod** deployment to open the details window.
+Once deployment begins, you can see the traffic split. CD-as-a-Service has deployed a new `ReplicaSet` with only one pod to achieve a 75/25% traffic split between app versions. Click the **prod** deployment to open the details window.
 
 {{< figure src="/images/cdaas/setup/quickstart/openTrafficSplitDetails.jpg"  width=80%" height="80%"  >}}
 
@@ -106,7 +112,7 @@ Click on `potato-facts` in the **Resources** section to open a preview of `potat
 
 {{< figure src="/images/cdaas/setup/quickstart/trafficSplitDetailsWindow.jpg" width=80%" height="80%"  >}}
 
-The app's graph plots the ratio of facts served by a given Kubernetes `ReplicaSet`. The ratio of facts served by `ReplicaSet` backends in the graph should roughly match the 25/75% split.
+The app's graph plots the ratio of facts served by a given Kubernetes `ReplicaSet`. The ratio of facts served by `ReplicaSet` backends in the graph should roughly match the 75/25% split.
 
 {{< figure src="/images/cdaas/setup/quickstart/potatoFactsTrafficSplit.jpg"  width=80%" height="80%"  >}}
 
@@ -206,6 +212,7 @@ kubectl delete ns potato-facts-staging potato-facts-prod
 
 ## {{%  heading "nextSteps" %}}
 
+* {{< linkWithTitle "cd-as-a-service/setup/deploy-your-app.md" >}}
 * {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}}
 * {{< linkWithTitle "cd-as-a-service/setup/blue-green.md" >}}
 * {{< linkWithTitle "cd-as-a-service/setup/canary.md" >}}

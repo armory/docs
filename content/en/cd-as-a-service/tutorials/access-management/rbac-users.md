@@ -19,8 +19,7 @@ In this tutorial, you learn how to:
 
 ## {{% heading "prereq" %}}
 
-* You have [set up your Armory CD-as-a-Service account]({{< ref "get-started" >}}).
-* You have [installed the `armory` CLI]({{< ref "cd-as-a-service/setup/cli" >}}).
+* You have completed the Armory CD-as-a-Service [quickstart]({{< ref "cd-as-a-service/setup/quickstart" >}}), in which you create your login credentials, install the CLI, and deploy an example app.
 * You are familiar with the following content:
 
     * {{< linkWithTitle "cd-as-a-service/concepts/iam/rbac.md" >}}

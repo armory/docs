@@ -18,9 +18,7 @@ This tutorial is designed to use a single Kubernetes cluster with multiple names
 
 ## {{% heading "prereq" %}}
 
-* You have installed `kubectl` and have access to a Kubernetes cluster
-* You have [set up your Armory CD-as-a-Service account]({{< ref "get-started" >}}).
-* You have [installed the `armory` CLI]({{< ref "cd-as-a-service/setup/cli" >}}).
+* You have completed the Armory CD-as-a-Service [quickstart]({{< ref "cd-as-a-service/setup/quickstart" >}}), in which you create your login credentials, install the CLI, and deploy an example app.
 * You have installed [Helm](https://helm.sh/docs/intro/install/).
 * You have a GitHub account so you can fork the sample project.
 
