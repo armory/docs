@@ -126,25 +126,21 @@ If your initial deployment fails, you should [manually delete]({{< ref "cd-as-a-
 
    The CLI returns a `Device Code` and opens your default browser.  Confirm the code in your browser to complete the login process,.
 
-   After you successfully authenticate, the CLI returns a list of tenants if you have access to more than one. Select the tenant you want to access. Note that most users only have access to one tenant. If you have access to several tenants, you can log in directly to your desired tenant with `armory login -e '<tenant>'`.
-
 1. Start the deployment from the root of your directory.
 
    ```bash
    armory deploy start  -f deployment.yaml
    ```
 
-   The `deploy start` command starts your deployment and progresses until the first pause for manual approval. It also returns a **Deployment ID** that you can use to check the status of your deployment and a link to your deployment's details page in the [CD-as-a-Service Console](https://console.cloud.armory.io/deployments).
+   The `deploy start` command starts your deployment. The command returns a **Deployment ID** and a link to your deployment details. 
 
-   Note that you can deploy an app without manually logging into CD-as-a-Service. See the {{< linkWithTitle "cd-as-a-service/tasks/deploy/deploy-with-creds.md" >}} page for details.   
+1. Monitor your deployment execution.
 
-1. Monitor your deployment.
-
-   Use the link provided by the CLI to navigate to your deployment in the [CD-as-a-Service Console](https://console.cloud.armory.io/deployments).
+   Use the link provided by the CLI to navigate to your deployment details page in the [CD-as-a-Service Console](https://console.cloud.armory.io/deployments). 
 
 1. Issue manual approval.
 
-   Once the `staging` deployment has completed, click **Approve** to allow the `prod` deployment to begin. Because this is the first time deploying your app, CD-as-a-Service deploys 100% to your prod environment, skipping the defined `trafficSplit` strategy. CD-as-a-Service uses the `trafficSplit` when deploying subsequent versions of your app.
+   Since you defined a manual approval to deploy to prod in your strategy, you need to issue your manual approval using the UI. Once the `staging` deployment has completed, click **Approve** to allow the `prod` deployment to begin. Because this is the first time deploying your app, CD-as-a-Service deploys 100% to your prod environment, skipping the defined `trafficSplit` strategy. CD-as-a-Service uses the `trafficSplit` when deploying subsequent versions of your app.
 
 ### Deploy second version
 

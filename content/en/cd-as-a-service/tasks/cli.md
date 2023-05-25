@@ -7,38 +7,26 @@ description: >
 
 ## CLI overview
 
-You can install the CLI (`armory`) on your Mac or Linux workstation, or you can run the CLI in Docker. 
+You can install the CLI (`armory`) on your Mac, Linux, or Windows workstation. Additionally, you can run the CLI in Docker. 
 
 On Mac, you can also download, install, and update the CLI using the Armory Version Manager (AVM). The AVM includes additional features such as the ability to list installed CLI versions and to declare which version of the CLI to use.
 
-{{% alert title="Supported Operating Systems" color="warning" %}}
-The Armory Version Manager (`avm`) and CLI (`armory`) are only supported on Linux and Mac OSX.<br>
-They do not run on Windows.
-{{% /alert %}}
 
-## Docker image
-
-Armory provides the CD-as-a-Service CLI as a [Docker image](https://hub.docker.com/r/armory/armory-cli).
-
-```bash
-docker pull armory/armory-cli
-```
-
-## Mac 
 
 {{< tabpane text=true right=true >}}
 {{% tab header="**Method**:" disabled=true /%}}
+
 {{% tab header="Homebrew" %}}
 ```bash
 brew tap armory-io/armory
 brew install armory-cli
 ```
 {{% /tab %}}
-{{% tab header="Script" %}}
+{{% tab header="Script Mac/Linux" %}}
 
 You can install the CLI with a one-line script that does the following:
 
-1. Fetches the correct Armory Version Manager binary (`avm`) for your Mac operating system
+1. Fetches the correct Armory Version Manager binary (`avm`) for your operating system
 1. Installs the AVM binary
 1. Uses the AVM to install the CLI binary (`armory`)
 1. Adds the AVM and the CLI to the path in your bash or zsh profile
@@ -53,29 +41,8 @@ After installation completes, you should start a new terminal session or source 
 
 {{% /tab %}}
 
-{{< /tabpane >}}
 
-
-## Linux
-
-You can install the CLI with a one-line script that does the following:
-
-1. Fetches the correct Armory Version Manager binary (`avm`) for your Linux operating system
-1. Installs the AVM binary
-1. Uses the AVM to install the CLI binary (`armory`)
-1. Adds the AVM and the CLI to the path in your bash or zsh profile
-
-Execute the following script on the machine that has access to your Kubernetes cluster:
-
-```bash
-curl -sL go.armory.io/get-cli | bash
-```
-
-After installation completes, you should start a new terminal session or source your profile.
-
-
-## Manual AVM and CLI installation
-
+{{% tab header="Manual Mac/Linux" %}}
 1. Download the AVM for your operating system and CPU architecture. You can manually download it from the [repo](https://github.com/armory/avm/releases/) or use the following command:
 
    ```bash
@@ -158,6 +125,23 @@ After installation completes, you should start a new terminal session or source 
    The command returns basic information about the  CLI, including available commands.
 
 For the AVM or the CLI, you can use the `-h` flag for more information about specific commands.
+
+{{% /tab %}}
+
+{{% tab header="Docker" %}}
+Armory provides the CD-as-a-Service CLI as a [Docker image](https://hub.docker.com/r/armory/armory-cli).
+
+```bash
+docker pull armory/armory-cli
+```
+{{% /tab %}}
+
+{{% tab header="Windows" %}}
+Download the latest `armory-cli` Windows executable from the [repo Releases page](https://github.com/armory-io/armory-cli/releases). Install on the machine that has access to your Kubernetes cluster.
+{{% /tab %}}
+
+{{< /tabpane >}}
+
 
 ## Upgrade the CLI
 
