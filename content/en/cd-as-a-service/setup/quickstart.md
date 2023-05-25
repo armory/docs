@@ -2,7 +2,7 @@
 title: Armory CD-as-a-Service Quickstart
 linktitle: Quickstart
 description: >
-  Install the Armory Continuous Deployment-as-a-Service CLI, connect your Kubernetes cluster with a single command, and deploy an example app using a traffic split. Learn deployment file syntax.
+  Install the Armory Continuous Deployment-as-a-Service CLI, connect your Kubernetes cluster with a single command, and deploy an sample app using a traffic split. Learn deployment file syntax.
 weight: 1
 aliases:
   - /cd-as-a-service/setup/get-started/
@@ -14,7 +14,7 @@ aliases:
 1. [Sign up for CD-as-a-Service](#sign-up-for-cd-as-a-service).
 1. [Install the CD-as-as-Service CLI](#install-the-cd-as-as-service-cli) on your Mac or Linux workstation.
 1. [Connect your Kubernetes cluster](#connect-your-cluster) to CD-as-a-Service.
-1. [Deploy Armory's example app](#deploy-the-example-app) `potato-facts` to two environments: `staging` and `prod`.
+1. [Deploy Armory's sample app](#deploy-the-sample-app) `potato-facts` to two environments: `staging` and `prod`.
    * Use the CD-as-a-Service Console to approve an environment promotion.
    * Observe a traffic split between two app versions.
 1. [Learn CD-as-a-Service deployment file syntax](#learn-deployment-file-syntax).
@@ -24,6 +24,8 @@ aliases:
 
 * You are familiar with CD-as-a-Service's [key components]({{< ref "cd-as-a-service/concepts/architecture/key-components.md" >}}) and [system requirements]({{< ref "cd-as-a-service/concepts/architecture/system-requirements.md" >}}).
 * You have access to a Kubernetes cluster. If you need a cluster, consider installing a local [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or [Minikube](https://minikube.sigs.k8s.io/docs/start/) cluster.  Your cluster's API endpoint does not need to be publicly accessible to use CD-as-a-Service. 
+
+>If you do not have a Kubernetes cluster and still wish to tour CD-as-a-Service, you can [sign up ](https://go.armory.io/signup/) and select **Self-Guided Browser Tour**. CD-as-a-Service creates a short-lived Kubernetes cluster for you and then guides you through deploying the sample app.
 
 ## Sign up for CD-as-a-Service
 
@@ -53,9 +55,9 @@ armory agent create
 
 You name your agent during the installation process. This guide references that name as `<my-agent-identifier>`.
 
-## Deploy the example app
+## Deploy the sample app
 
-Armory's [`potato-facts` example app](https://github.com/armory-io/potato-facts-go) is a simple web app. The UI polls the API backend for facts about potatoes and renders them for users.
+Armory's [`potato-facts` sample app](https://github.com/armory-io/potato-facts-go) is a simple web app. The UI polls the API backend for facts about potatoes and renders them for users.
 
 ### First deployment
 
@@ -122,7 +124,7 @@ Return to the deployment details window. Click **Approve & Continue** to finish 
 
 ## Learn deployment file syntax
 
-Now that you've used CD-as-a-Service to deploy to two environments, it's time to break down the example app's deployment file. You can find full specification details in the [Deployment Config File Reference](https://docs.armory.io/cd-as-a-service/reference/ref-deployment-file/#sections).
+Now that you've used CD-as-a-Service to deploy to two environments, it's time to break down the sample app's deployment file. You can find full specification details in the [Deployment Config File Reference](https://docs.armory.io/cd-as-a-service/reference/ref-deployment-file/#sections).
 
 **`targets`**
 

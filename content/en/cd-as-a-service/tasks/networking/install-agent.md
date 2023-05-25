@@ -86,7 +86,12 @@ _Do not close the pop-up window in the UI until you have completed RNA installat
 
 ### {{% heading "prereq" %}}
 
-* You have **Client Credentials**. See the {{< linkWithTitle "cd-as-a-service/tasks/iam/client-creds.md" >}} guide for instructions.
+You have **Client Credentials** with Remote Network Agent permissions.
+
+<details><summary>Show me how</summary>
+{{< include "cdaas/client-creds.md" >}}
+
+</details>
 
 ### Steps
 
@@ -96,7 +101,11 @@ _Do not close the pop-up window in the UI until you have completed RNA installat
 
 ### {{% heading "prereq" %}}
 
-* You have **Client Credentials**. See the {{< linkWithTitle "cd-as-a-service/tasks/iam/client-creds.md" >}} guide for instructions.
+You have **Client Credentials** with Remote Network Agent permissions.
+
+<details><summary>Show me how</summary>
+{{< include "cdaas/client-creds.md" >}}
+</details>
 
 ### Steps
 
