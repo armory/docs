@@ -25,7 +25,7 @@ The **Get Started** section contains guides that walk you through the core funct
 
 * {{< linkWithTitle "cd-as-a-service/setup/quickstart.md" >}} guide shows you how to sign up for an account, connect to your Kubernetes cluster, and deploy an example app.
 * {{< linkWithTitle "cd-as-a-service/setup/deploy-your-app.md" >}} guide to learn how to create a deployment file for your own app and then deploy using the CLI.
-* {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}} guide walks you through integrateing Armory CD-as-a-Service's GitHub Action into your workflow.
+* {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}} guide walks you through integrating Armory CD-as-a-Service's GitHub Action into your workflow.
 
 Learn how to configure deployment strategies with these guides:
 
