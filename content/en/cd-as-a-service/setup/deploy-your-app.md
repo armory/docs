@@ -223,5 +223,3 @@ This `armory deploy status` command returns a point-in-time status and exits. It
 * {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}
 * {{< linkWithTitle "cd-as-a-service/troubleshooting/tools.md" >}}
 * {{< linkWithTitle "add-context-variable.md" >}}
-* {{< linkWithTitle "deploy-sample-app.md" >}}
-
