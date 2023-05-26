@@ -38,11 +38,11 @@ categories: ["CD-as-a-Service"]
 {{% /card %}}
 
 {{% card header="Deployment..." %}}
-  Content card 3
+ traffic management, create deploy config, etc
 {{% /card %}}
 
-{{% card header="6th card" %}}
-
+{{% card header="Tutorials?" %}}
+existing tutorials need to be updated
 {{% /card %}}
 {{< /cardpane >}}
 
