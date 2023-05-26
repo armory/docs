@@ -5,6 +5,7 @@ description: >
   Configure your Armory CD-as-a-Service deployment to use Linkerd for traffic management.
 aliases:
   - /cd-as-a-service/tasks/deploy/traffic-management/
+tags: ["Guides", "Deployment", "Traffic Management", "Linkerd", "Setup"]
 ---
 
 ## {{% heading "prereq" %}}

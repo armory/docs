@@ -3,6 +3,8 @@ title: "Kubernetes Horizontal Pod Autoscaling in Armory CD-as-a-Service"
 linktitle: "Kubernetes HPA"
 description: >
   Learn how Armory Continuous Deployment-as-a-Service implements Kubernetes Horizontal Pod Autoscaling.
+categories: ["CD-as-a-Service"]
+tags: ["Concepts", "Deployment", "Kubernetes", "Horizontal Pod Autoscaling"]
 ---
 
 ## {{% heading "prereq" %}}

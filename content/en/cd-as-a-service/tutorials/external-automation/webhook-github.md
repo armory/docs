@@ -3,6 +3,8 @@ title: Deploy a Sample App That Uses GitHub Webhook-Based Approval
 linktitle: GitHub Webhook Approval
 description: >
   Learn how to configure GitHub webhook-based approvals in your Armory CD-as-a-Service app deployment process.
+categories: ["CD-as-a-Service"]
+tags: ["Tutorials", "Webhooks", "GitHub"]
 ---
 
 ## Objectives

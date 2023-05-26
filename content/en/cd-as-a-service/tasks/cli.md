@@ -3,6 +3,8 @@ title: Install and Upgrade the CD-as-a-Service CLI
 linkTitle: Install/Upgrade CLI
 description: >
   Install the Armory Continuous Deployment-as-a-Service CLI natively on Linux or Mac or use a Docker image. 
+categories: ["CD-as-a-Service"]
+tags: ["Guides", "Tools", "CLI", "Setup"]
 ---
 
 ## CLI overview

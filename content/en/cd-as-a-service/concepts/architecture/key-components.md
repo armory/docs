@@ -4,6 +4,8 @@ linkTitle: Key Components
 description: >
   Learn about the key components that comprise Armory Continuous Deployment-as-a-Service and how they work together to orchestrate deployments. Remote Network Agent (RNA), Kubernetes permissions, networking requirements, CLI, GitHub Action.
 weight: 10
+categories: ["CD-as-a-Service"]
+tags: ["Architecture", "Key Components"]
 aliases:
   - /armory-deployments/architecture/
   - /cd-as-as-service/architecture/

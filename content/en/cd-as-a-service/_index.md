@@ -4,35 +4,49 @@ linkTitle: Armory CD-as-a-Service
 no_list: true
 description: >
   Use Armory CD-as-a-Service to continuously deliver your apps to your Kubernetes clusters. CD-as-a-Service (CDaaS) integrates with external automation tools so you can create your own CI/CD pipelines.
+categories: ["CD-as-a-Service"]
 ---
 
 ## Overview of Armory CD-as-a-Service
 
 {{< youtube-enhanced id="r29UCKMXEi4" title="CD-as-a-Service Simplifies Your Deployment Process" widthPercent="75" heightPercent="85" >}}
 
-Armory CD-as-a-Service delivers intelligent deployment-as-a-service that supports advanced deployment strategies so developers can focus on building
-great code rather than deploying it. By automating code deployment across all of your Kubernetes environments, Armory CD-as-a-Service removes demands on developers and reduces the risk of service disruptions due to change failures. It does this by seamlessly integrating pre-production verification tasks with advanced production deployment strategies. This mitigates risks by providing deployment flexibility while limiting blast radius, which leads to a better customer experience. Best of all, Armory CD-as-a-Service doesn’t require migrating to a new deployment platform. It easily plugs into any existing SDLC.
+{{< cardpane >}}
 
-{{< include "cdaas/mermaid/how-it-works.md" >}}
+{{% card header="Get Started" %}}
+[Quickstart]({{< ref "cd-as-a-service/setup/quickstart" >}})
+{{% /card %}}
 
-See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture/_index.md" >}}) section for details.
+{{% card header="Learn About CD-as-a-Service" %}}
+[Key Components]({{<  ref "cd-as-a-service/concepts/architecture/key-components.md" >}})</br>
+[Orgs, Tenants, and Users]({{<  ref "cd-as-a-service/concepts/architecture/orgs-tenants.md" >}})</br>
+[RBAC]({{<  ref "cd-as-a-service/concepts/iam/rbac.md" >}})</br>
+{{% /card %}}
+
+{{% card header="Set Up Your Organization" %}}
+[Add Tenants]({{<  ref "cd-as-a-service/tasks/tenants/add-tenants.md" >}})</br>
+[Create Roles]({{<  ref "cd-as-a-service/tasks/iam/create-role.md" >}})</br>
+[Invite Users]({{<  ref "cd-as-a-service/tasks/iam/invite-users.md" >}})</br>
+{{% /card %}}
+
+{{< /cardpane >}}
+
+{{< cardpane >}}
+{{% card header="Connect a Kubernetes Cluster" %}}
+[Quickstart]({{< ref "cd-as-a-service/setup/quickstart.md" >}})</br>
+[Install a Remote Network Agent]({{<  ref "cd-as-a-service/tasks/networking/install-agent.md" >}})</br>
+{{% /card %}}
+
+{{% card header="Deployment..." %}}
+  Content card 3
+{{% /card %}}
+
+{{% card header="6th card" %}}
+
+{{% /card %}}
+{{< /cardpane >}}
 
 The [Armory CDaaS](https://www.armory.io/products/continuous-deployment-as-a-service/) product page contains a full list of features and pricing.
-
-## Start using Armory CD-as-a-Service
-
-The **Get Started** section contains guides that walk you through the core functionality. 
-
-* {{< linkWithTitle "cd-as-a-service/setup/quickstart.md" >}} guide shows you how to sign up for an account, connect to your Kubernetes cluster, and deploy an example app.
-* {{< linkWithTitle "cd-as-a-service/setup/deploy-your-app.md" >}} guide to learn how to create a deployment file for your own app and then deploy using the CLI.
-* {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}} guide walks you through integrating Armory CD-as-a-Service's GitHub Action into your workflow.
-
-Learn how to configure deployment strategies with these guides:
-
-* {{< linkWithTitle "cd-as-a-service/setup/blue-green.md" >}}
-* {{< linkWithTitle "cd-as-a-service/setup/canary.md" >}}    
-
-[Install the Armory CD (Spinnaker) plugin]({{< ref "cd-as-a-service/plugin-spinnaker" >}}) if you want to integrate Armory CD-as-a-Service into your pipelines.
 
 ## Docs organization
 
