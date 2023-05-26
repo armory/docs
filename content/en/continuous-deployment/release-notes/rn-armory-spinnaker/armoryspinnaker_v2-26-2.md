@@ -121,11 +121,11 @@ spec:
               threads: 5  
 ```
 
-### Pipelines as Code
+### Pipelines-as-Code
 
 #### Strict JSON Validation
 
-Pipelines as Code (PaC) will now attempt a strict JSON validation of template modules and pipelines to catch certain syntactical errors sooner. This behavior may break existing users that make heavy use of template language constructs. If you find that behavior has changed and need to revert to the previous parsing behavior, add the `jsonValidationDisabled` config to your PaC profile:
+Pipelines-as-Code (PaC) will now attempt a strict JSON validation of template modules and pipelines to catch certain syntactical errors sooner. This behavior may break existing users that make heavy use of template language constructs. If you find that behavior has changed and need to revert to the previous parsing behavior, add the `jsonValidationDisabled` config to your PaC profile:
 
 ```yaml
 spec:

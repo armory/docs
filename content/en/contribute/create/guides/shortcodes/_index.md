@@ -104,12 +104,12 @@ This shortcode takes in two named parameters: `language` and `file`. The mandato
 For example:
 
 ```none
-{{</* codenew language="yaml" file="plugins/pac/k8s-permissions.yml" */>}}
+{{</* codenew language="yaml" file="cdaas/deploy/deploy.yaml" */>}}
 ```
 
 The output is:
 
-{{< codenew language="yaml" file="plugins/pac/k8s-permissions.yml" >}}
+{{< codenew language="yaml" file="cdaas/deploy/deploy.yaml" >}}
 
 When adding a new sample file, such as a YAML file, create the file in one of the `content/en/examples/` subdirectories. In the markdown of your page, use the `codenew` shortcode:
 

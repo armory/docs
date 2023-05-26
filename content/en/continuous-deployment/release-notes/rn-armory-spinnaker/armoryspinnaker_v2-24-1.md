@@ -44,7 +44,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ### Fixed issues
 
-* Fixed an issue where pull request comments on GitHub caused the Dinghy pod for Pipelines as Code to crash or report incorrect information.
+* Fixed an issue where pull request comments on GitHub caused the Dinghy pod for Pipelines-as-Code to crash or report incorrect information.
 
 ## Highlighted updates
 

@@ -46,7 +46,7 @@ If you use Vault secrets, you should not use this version and instead update to 
 
 If you use Pipelines as code, skip Armory 2.20.0 and wait for 2.20.4.
 
-Dinghy, the Pipelines as code service, creates an application for a pipeline in a dinghyfile if the application doesn't exist. You can specify an initial permission specification for the application as [documented here]({{< ref "using-dinghy#application-permissions" >}}).
+Dinghy, the Pipelines as code service, creates an application for a pipeline in a dinghyfile if the application doesn't exist. You can specify an initial permission specification for the application as [documented here]({{< ref "plugins/pipelines-as-code/use#application-permissions" >}}).
 
 Previously, the application specification is not updated if the application already exists. This means that after the initial application creation, no further changes to it get made by Dinghy even if you change the application spec in the `dinghyfile`.
 

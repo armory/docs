@@ -1,3 +1,4 @@
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -133,3 +134,4 @@ subjects:
 - kind: ServiceAccount
   name: dinghy-sa
   namespace: spinnaker
+```

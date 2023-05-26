@@ -40,7 +40,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ### Fixed issues
 
 - Fixed an issue where Clouddriver consumed more threads than it needed, which led to situations where pods did not have enough resources to start.
-- Fixed an issue where Slack notifications for Pipelines as Code (Dinghy) did not work.
+- Fixed an issue where Slack notifications for Pipelines-as-Code (Dinghy) did not work.
 - Fixed an issue where an old version of Deck, the Spinnaker UI, was included in the Armory release.
 
 ## Highlighted updates

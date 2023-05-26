@@ -1,19 +1,20 @@
 ---
-title: Use the ARM CLI to Render Pipline JSON
+title: Use the ARM CLI to Render Pipeline JSON
 linkTitle: Use the ARM CLI
+weight: 10
 description: >
-  The Armory (ARM) CLI is a standalone tool that renders dinghyfiles for you to use with Armory's Pipelines as Code feature.
+  The Armory (ARM) CLI is a standalone tool that renders dinghyfiles for you to use with Armory's Pipelines-as-Code feature.
+aliases:
+   - /continuous-deployment/spinnaker-user-guides/dinghy-arm-cli/
 ---
-![Proprietary](/images/proprietary.svg)
 
+![Proprietary](/images/proprietary.svg)
 
 ## {{% heading "prereq" %}}
 
-This guide assumes that you are familiar with the Pipelines as Code feature. If you are not, see {{< linkWithTitle using-dinghy.md >}}.
-
-Before you start, make sure Pipelines as Code is enabled for your Armory instance. For information about how to do that, see {{< linkWithTitle dinghy-enable.md >}}.
-
-Additionally, the `dinghyfile` and module repo must be available locally so that the ARM CLI can reference them.
+* You have installed Pipelines-as-Code in your Spinnaker Armory CD instance.
+* You know how to [use]({{< ref "plugins/pipelines-as-code/use" >}}) Pipelines-as-Code.
+* Your `dinghyfile` and module repo must be available locally so that the ARM CLI can reference them.
 
 ## Install the ARM CLI
 

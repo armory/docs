@@ -1,3 +1,4 @@
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -140,3 +141,4 @@ data:
         enabled: false
         host: 0.0.0.0
         port: 7088
+```

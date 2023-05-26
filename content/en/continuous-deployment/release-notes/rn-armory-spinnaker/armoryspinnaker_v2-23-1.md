@@ -36,9 +36,9 @@ Armory scans the codebase as we develop and release software. For information ab
 
 There is a known issue with Clouddriver that affects the performance of Armory Continuous Deployment, causing it to consume more resources. This can lead to a situation where pods do not have enough resources to start.
 
-#### Pipelines as Code Slack notifications
+#### Pipelines-as-Code Slack notifications
 
-There is a known issue where Slack notifications do not work for Pipelines as Code (Dinghy).
+There is a known issue where Slack notifications do not work for Pipelines-as-Code (Dinghy).
 
 #### Spinnaker UI
 

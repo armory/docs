@@ -1,32 +1,17 @@
 ---
-title: Use Pipelines as Code in Armory Continuous Deployment
-linkTitle: Use Pipelines as Code
-aliases:
-  - /spinnaker/using_dinghy/
-  - /docs/spinnaker/using-dinghy/
+title: Use Pipelines-as-Code in Armory Continuous Deployment
+linkTitle: Use Pipelines-as-Code
+weight: 10
 description: >
-  Learn how to use Spinnaker pipeline definitions that are stored in source code repos such as GitHub and BitBucket.
+  Learn how to use Pipelines-as-Code to manage Spinnaker pipeline definitions that are stored in source code repos such as GitHub and BitBucket.
+aliases:
+  - /continuous-deployment/spinnaker-user-guides/using-dinghy/
 ---
-![Proprietary](/images/proprietary.svg)
-## Advantages to using Pipelines as Code in Spinnaker
 
-{{< alert title="Note" >}}
-Before you can use this feature, please ensure you have [configured]({{< ref "dinghy-enable" >}}) it correctly.
-{{< /alert >}}
 
-{{% include "admin/pac-overview.md" %}}
+## Intended workflow
 
-## How Pipelines as Code works
-
-GitHub (or BitBucket) webhooks are sent off when you modify either the Templates or the Module definitions. Once the webhook is sent, the following actions occur:
-
-1. The Dinghy service looks for and fetches all dependent modules and parses the template and updates the pipelines in Spinnaker.
-2. The pipelines get automatically updated whenever a module that is used by a pipeline is updated in the version control system. This is done by maintaining a dependency graph. Dinghy looks for a `dinghyfile` in all directories, not just the root path. The only exception is when customers have modules in a local setting. In this case, a customer must update the `dinghyfile` in order to pull new updates from modules it is using.  
-3. Dinghy processes changes found in a specific branch. By default, this branch is `master`. If you are using a repo that uses a different branch for the base branch, an administrator must configure the Dinghy service to track that branch. For more information, see [Custom branch configuration]({{< ref "dinghy-enable#custom-branch-configuration" >}}).
-
-### Intended workflow
-
-The Pipelines as Code feature is intended to make it much faster and easier
+The Pipelines-as-Code feature is intended to make it much faster and easier
 for developers to get a brand new application up and running. The general
 workflow for new projects is:
 
@@ -40,8 +25,8 @@ without ever having had to go into Spinnaker to configure anything.
 
 As an added bonus, the pipeline definitions have now been saved in source
 control, along with the rest of the project's files.  If changes are made
-to the Dinghyfile, when committed/merged into the tracked branch, the
-pipelines are automatically re-rendered and updated.
+to the Dinghyfile, when committed/merged into the tracked branch, Spinnaker automatically updates the 
+pipelines.
 
 ## Basic format
 
@@ -647,7 +632,7 @@ And inside the `dinghyfile`, `stage.minimal.wait.localmodule` and `stage.minimal
 {{ local_module "/local_modules/stage.minimal.wait.localmodule" }}
 ```
 
-When the Pipelines as Code service (Dinghy) sees that there's a local module being sent inside a module, it throws the following error message: `calling local_module from a module is not allowed`. For the given example scenario, the following error occurs:
+When the Pipelines-as-Code service (Dinghy) sees that there's a local module being sent inside a module, it throws the following error message: `calling local_module from a module is not allowed`. For the given example scenario, the following error occurs:
 
 ```
 Parsing dinghyfile failed: template: dinghy-render:12:11: executing "dinghy-render" at <module "stage.minimal.wait.module">: error calling module: error rendering imported module 'stage.minimal.wait.module': template: dinghy-render:6:3: executing "dinghy-render" at <local_module "/local_modules/stage.minimal.wait.localmodule">: error calling local_module: /local_modules/stage.minimal.wait.localmodule is a local_module, calling local_module from a module is not allowed
@@ -1399,24 +1384,4 @@ When you make a commit to change `stage.minimal.wait.module` in `armory/template
 - With `repositoryRawdataProcessing=false` the result is `armory/template-repo`
 - With `repositoryRawdataProcessing=true` the result is `armory/my-repository`
 
-## Known issues
-
-If the Pipelines as Code service (Dinghy) crashes on start up and you encounter an error in Dinghy similar to:
-`time="2020-03-06T22:35:54Z" level=fatal msg="failed to load configuration: 1 error(s) decoding:\n\n* 'Logging.Level' expected type 'string', got unconvertible type 'map[string]interface {}'"`
-
-You have probably configured global logging levels with `spinnaker-local.yml`. The work around is to override Dinghy's logging levels:
-
-```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      dinghy: |
-        Logging:
-          Level: INFO
-          ... # Rest of config omitted for brevity
-```
 

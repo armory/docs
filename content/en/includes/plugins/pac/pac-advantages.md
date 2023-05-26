@@ -1,0 +1,5 @@
+Armory's _Pipelines-as-Code_ feature provides a way to specify pipeline definitions in source code repos such as GitHub and BitBucket.
+
+The Pipelines-as-Code has two components: 1) a Spinnaker plugin; and 2) a service called _Dinghy_, which keeps the Spinnaker pipeline in sync with what you define in a _dinghyfile_ in your repo. You can also make a pipeline by composing other pipelines, stages, or tasks and templating certain values.
+
+>GitHub is in the process of replacing `master` as the name of the default base branch. Newly created repos use `main`. As this transition happens, confirm what branch your repo is using as its base branch and explicitly refer to that branch when configuring Armory features such as Pipelines-as-Code. For more information, see GitHub's [Renaming](https://github.com/github/renaming) information.

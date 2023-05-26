@@ -353,7 +353,7 @@ The Policy Engine requires Armory and the OPA server to be connected. Once you h
 
 ### Ignore directories, files, or file types
 
-Pipelines as Code supports using an ignore file for GitHub repos to ignore certain files in a repo that it watches. To use this feature, create a file named `.dinghyignore` in the root directory of the repo.
+Pipelines-as-Code supports using an ignore file for GitHub repos to ignore certain files in a repo that it watches. To use this feature, create a file named `.dinghyignore` in the root directory of the repo.
 
 You can add specific filenames, file paths, or glob-style paths. For example, the following `.dinghyignore` file ignores the file named `README.md`, all the files in the `milton` directory, and all `.pdf` files:
 
