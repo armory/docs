@@ -7,7 +7,7 @@ description: >
 
 ## {{% heading "prereq" %}}
 
-Make sure you have [installed the CD-as-a-Service CLI]({{< ref "cd-as-a-service/setup/cli" >}}), which you use to generate a deployment template.
+Make sure you have [installed the CD-as-a-Service CLI]({{< ref "cd-as-a-service/tasks/cli" >}}), which you use to generate a deployment template.
 
 ## How to create a deployment config file
 
@@ -15,5 +15,5 @@ Make sure you have [installed the CD-as-a-Service CLI]({{< ref "cd-as-a-service/
 
 ## {{% heading "nextSteps" %}}
 
-* [Deploy your app using the CLI]({{< ref "cd-as-a-service/setup/cli#deploy-your-app" >}}).
+* [Deploy your app using the CLI]({{< ref "cd-as-a-service/setup/deploy-your-app" >}}).
 * [Deploy your app using a GitHub Action]({{< ref "cd-as-a-service/setup/gh-action" >}}).

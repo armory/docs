@@ -9,6 +9,25 @@ description: >
 
 The CLI and GitHub Action (GHA) both call the same API, so you should see similar error reporting in both tools.
 
+## Initial deployment failure: orphaned ReplicaSet
+
+If the initial deployment of your app fails or is manually rolled back, the ReplicaSet is orphaned rather than deleted. In this situation, you should manually delete the orphaned ReplicaSet _only after the initial deployment runs successfully_.
+
+Follow these steps to delete the orphaned ReplicaSet:
+
+1. Get a list of ReplicaSet objects
+
+   ```bash
+   kubectl get rs -n <namespace>
+   ```
+
+1. Identify the ReplicaSet with the old version of your application. This is typically the ReplicaSet with the greater age.
+1. Delete the orphaned ReplicaSet:
+
+   ```bash
+   kubectl delete rs <ReplicaSet_name> -n <namespace>
+   ```
+
 ## Common CLI and GHA error messages
 
 ## Status code 422

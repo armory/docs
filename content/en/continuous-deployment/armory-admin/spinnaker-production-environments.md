@@ -10,7 +10,7 @@ exclude_search: true
 - Use MySQL compatible database engine
   - Managed services like Aurora provide cross-region replication
 - Kubernetes
-  - See [System Requirements]({{< ref "system-requirements" >}}) for more information
+  - See [System Requirements]({{< ref "continuous-deployment/installation/system-requirements" >}}) for more information
 - Each service has at least 2 replicas to provide basic availability at the Kubernetes level
 - Monitoring is optional but strongly recommended
 - Armory provides optional log Spinnaker aggregation for troubleshooting but we also recommend customers to have a log management solution in place

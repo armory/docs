@@ -1,12 +1,8 @@
-### Kubernetes permissions for the Remote Network Agent
-
-By default, the RNA is installed with full access to the cluster. At a minimum, the RNA needs permissions to create, edit, and delete all `kind` objects that you plan to deploy with CD-as-a-Service, in all namespaces to which you plan to deploy. The RNA also requires network access to any monitoring solutions or webhook APIs that you plan to forward through it.
+Installation requires Helm v3+.
 
 For advanced use cases such as restricting permissions, proxy configurations, custom annotations, labels, or environment variables, download and modify the [`values.yaml` for the RNA](https://github.com/armory-io/remote-network-agent-helm-chart/blob/main/values.yaml) or override existing values on the command line using `--set`. For information about using a `values file`, see the [Helm Values Files guide](https://helm.sh/docs/chart_template_guide/values_files/) and the [Customizing the Chart Before Installing](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing) section of the _Using Helm_ guide.
 
-### Installation
-
-1. In your terminal, configure your `kubectl` [context](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-em-set-context-em-) to connect to the cluster where you want to deploy your app:
+1. Set your `kubectl` [context](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-em-set-context-em-) to connect to the cluster where you want to deploy the RNA:
 
    ```bash
    kubectl config use-context <NAME>
@@ -46,4 +42,4 @@ For advanced use cases such as restricting permissions, proxy configurations, cu
 
    You can specify the path to your customized values file using `-f <your-path>values.yaml` or you can override values using the command line `--set <key:value>`. Refer to the [Customizing the Chart Before Installing](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing) section in the Helm docs.
 
-1. You can go to the [Agents page](https://console.cloud.armory.io/configuration/agents) in the CD-as-a-Service Console to verify that your RNA has been installed and is communicating with CD-as-a-Service. If you do not see the RNA, check the cluster logs to see if the RNA is running.
+1. You can go to the [Agents page](https://console.cloud.armory.io/configuration/agents) in the CD-as-a-Service Console to verify that your RNA has been installed and is communicating with CD-as-a-Service. If you do not see the RNA, check your cluster logs to see if the RNA is running.

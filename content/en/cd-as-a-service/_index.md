@@ -3,31 +3,29 @@ title: Armory Continuous Deployment-as-a-Service
 linkTitle: Armory CD-as-a-Service
 no_list: true
 description: >
-  Use Armory CD-as-a-Service to continuously deliver your apps to your Kubernetes clusters. Armory CDaaS integrates with external automation tools so you can create your own CI/CD pipelines.
+  Use Armory CD-as-a-Service to continuously deliver your apps to your Kubernetes clusters. CD-as-a-Service (CDaaS) integrates with external automation tools so you can create your own CI/CD pipelines.
 ---
 
 ## Overview of Armory CD-as-a-Service
 
-{{< youtube id="r29UCKMXEi4" title="Watch How CD-as-a-Service Simplifies Your Deployment Process" autoplay="false" >}}
-<br><br>
+{{< youtube-enhanced id="r29UCKMXEi4" title="CD-as-a-Service Simplifies Your Deployment Process" widthPercent="75" heightPercent="85" >}}
+
 Armory CD-as-a-Service delivers intelligent deployment-as-a-service that supports advanced deployment strategies so developers can focus on building
-great code rather than deploying it. By automating code deployment across all of your Kubernetes environments, Armory CD-as-a-Service removes demands on developers and reduces the risk of service disruptions due to change failures. It does this by seamlessly integrating preproduction verification tasks with advanced production deployment strategies. This mitigates risks by providing deployment flexibility while limiting blast radius, which leads to a better customer experience. Best of all, Armory CD-as-a-Service doesn’t require migrating to a new deployment platform. It easily plugs into any existing SDLC.
+great code rather than deploying it. By automating code deployment across all of your Kubernetes environments, Armory CD-as-a-Service removes demands on developers and reduces the risk of service disruptions due to change failures. It does this by seamlessly integrating pre-production verification tasks with advanced production deployment strategies. This mitigates risks by providing deployment flexibility while limiting blast radius, which leads to a better customer experience. Best of all, Armory CD-as-a-Service doesn’t require migrating to a new deployment platform. It easily plugs into any existing SDLC.
 
 {{< include "cdaas/mermaid/how-it-works.md" >}}
 
-See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture/_index.md" >}}) section and the [System Requirements]({{< ref "cd-as-a-service/release-notes/requirements">}}) page for details.
+See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture/_index.md" >}}) section for details.
 
 The [Armory CDaaS](https://www.armory.io/products/continuous-deployment-as-a-service/) product page contains a full list of features and pricing.
 
 ## Start using Armory CD-as-a-Service
 
-The **Get Started** section contains guides that walk you through the core functionality. The {{< linkWithTitle "cd-as-a-service/setup/get-started.md" >}} guide shows you how to sign up for an account and then connect to your Kubernetes cluster. You can complete the process in under 5 minutes.
+The **Get Started** section contains guides that walk you through the core functionality. 
 
-Read the {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}} guide to learn how to install the CLI, create a deployment file, and deploy your app.
-
-After you've completed those guides, you can follow the {{< linkWithTitle "cd-as-a-service/tutorials/deploy-sample-app.md" >}}, in which you fork a demo app repo and deploy that app to your Kubernetes cluster.
-
-In addition to deployment using the CLI, you can start a deployment from your GitHub workflow. Read the {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}} guide to integrate Armory CD-as-a-Service's GitHub Action into your workflow.
+* {{< linkWithTitle "cd-as-a-service/setup/quickstart.md" >}} guide shows you how to sign up for an account, connect to your Kubernetes cluster, and deploy an example app.
+* {{< linkWithTitle "cd-as-a-service/setup/deploy-your-app.md" >}} guide to learn how to create a deployment file for your own app and then deploy using the CLI.
+* {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}} guide walks you through integrating Armory CD-as-a-Service's GitHub Action into your workflow.
 
 Learn how to configure deployment strategies with these guides:
 
@@ -42,7 +40,7 @@ If you're familiar with the Kubernetes docs, you may notice that the CD-as-a-Ser
 
 * [Get Started]({{< ref "cd-as-a-service/setup" >}}): This section contains guides to quickly get you started using core CD-as-a-Service functionality.
 * [Concepts]({{< ref "cd-as-a-service/concepts" >}}): These pages explain aspects of CD-as-a-Service. The content is objective, containing architecture, definitions, rules, and guidelines. Rather than containing a sequence of steps, these pages link to related tasks and tutorials.
-* [Tasks]({{< ref "cd-as-a-service/tasks" >}}): Pages in the this section show you how to perform discreet tasks (single procedures) by following a short series of steps that produce an intended outcome. Task content expects a minimum level of background knowledge, and each page links to conceptual content that you should be familiar with before you begin the task.
+* [Guides]({{< ref "cd-as-a-service/tasks" >}}): Pages in the this section show you how to perform discreet tasks (single procedures) by following a short series of steps that produce an intended outcome. Task content expects a minimum level of background knowledge, and each page links to conceptual content that you should be familiar with before you begin the task.
 * [Tutorials]({{< ref "cd-as-a-service/tutorials" >}}): A tutorial is an end-to-end example of how to do accomplish a goal and is comprised of several tasks performed in sequence. For example, a tutorial might show you how to deploy an demo app by cloning a repo, logging in using the CLI, creating a deployment file, and finally deploying the app. Like a task, a tutorial should link to content you should know and items you should complete before starting the tutorial.
 * [Reference]({{< ref "cd-as-a-service/reference" >}}): This section contains both manually maintained and autogenerated reference material such as a breakdown of the deployment file, canary analysis queries, and CLI command options.
 * [Release Notes]({{< ref "cd-as-a-service/release-notes" >}})
