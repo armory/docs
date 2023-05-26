@@ -41,8 +41,12 @@ categories: ["CD-as-a-Service"]
  traffic management, create deploy config, etc
 {{% /card %}}
 
-{{% card header="Tutorials?" %}}
-existing tutorials need to be updated
+{{% card header="Tutorials" %}}
+
+[Create and Manage RBAC Roles]({{<  ref "cd-as-a-service/tutorials/access-management/rbac-users" >}})</br>
+[Deploy a Sample App]({{<  ref "cd-as-a-service/tutorials/deploy-sample-app" >}})</br>
+[GitHub Webhook-Based Approval]({{<  ref "cd-as-a-service/tutorials/external-automation/webhook-github" >}})</br>
+
 {{% /card %}}
 {{< /cardpane >}}
 
