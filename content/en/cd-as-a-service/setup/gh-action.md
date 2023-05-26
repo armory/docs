@@ -1,6 +1,6 @@
 ---
 title: Get Started with the GitHub Action to Deploy Apps
-linkTitle: GitHub Action
+linkTitle: Deploy Using GitHub Action
 weight: 30
 description: >
   Use the Armory CD-as-a-Service Deployment Action to integrate your GitHub repo with Armory CD-as-a-Service.
@@ -16,14 +16,14 @@ You can find the Action in the [GitHub Action Marketplace](https://github.com/ma
 
 If you have previously configured Armory CD-as-a-Service for your deployment target, you can skip to step 3.
 
-1. Review the full set of requirements for Armory CD-as-a-Service at [System Requirements]({{< ref "requirements" >}}).
-1. If you have already prepared a deployment target for Armory CD-as-a-Service, skip this step. If you have not, complete the {{< linkWithTitle "get-started.md" >}} tasks, which include the following:
+1. Review the CD-as-a-Service [system requirements]({{< ref "cd-as-a-service/concepts/architecture/system-requirements" >}}).
+1. If you have already prepared a deployment target for Armory CD-as-a-Service, skip this step. If you have not, complete the the following:
 
-   - [Register for Armory CD-as-a-Service]({{< ref "cd-as-a-service/setup/get-started" >}}).
-   - [Create machine-to-machine client credentials]({{< ref "client-creds" >}}) for the Remote Network Agent (RNA), which you install on your deployment target cluster.
-   - Add a Kubernetes Cluster by installing the RNA.
+   - [Register for Armory CD-as-a-Service](https://go.armory.io/signup/).
+   - [Create machine-to-machine client credentials]({{< ref "cd-as-a-service/tasks/iam/client-creds" >}}) for the Remote Network Agent (RNA), which you install on your deployment target cluster.
+   - Connect your Kubernetes cluster by [installing the RNA]({{< ref "cd-as-a-service/tasks/networking/install-agent" >}}).
 
-1. (Optional) [Install the CD-as-a-Service CLI]({{< ref "cd-as-a-service/setup/cli#local-installation" >}}) on your workstation. You can use the CLI to generate a deployment file template. You can also create a deployment file manually. See {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}.
+1. (Optional) [Install the CD-as-a-Service CLI]({{< ref "cd-as-a-service/setup/quickstart#install-the-cd-as-as-service-cli" >}}) on your workstation. You can use the CLI to generate a deployment file template. You can also create a deployment file manually. See {{< linkWithTitle "cd-as-a-service/reference/ref-deployment-file.md" >}}.
 1. If you are new to using GitHub Actions, see GitHub's [Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart) guide for information about setting up GitHub Actions.
 1. [Create a CD-as-a-Service Client Credential]({{< ref "cd-as-a-service/tasks/iam/client-creds" >}}) for your GitHub Action to use to connect to CD-as-a-Service. Assign the `Deployments Full Access` role to your credential.
 1. Create GitHub [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for the Client ID and a Client Secret so you don't expose them in plain text in your GitHub workflow file. Use descriptive name for these two values. You reference these secrets when you configure the CD-as-a-Service GitHub Action.

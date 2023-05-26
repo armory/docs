@@ -2,7 +2,7 @@
 title: Deploy a Sample App Tutorial
 linktitle: Deploy a Sample App
 description: >
-  Learn how to deploy a sample app to a Kubernetes cluster using Armory Continuous Deployment-as-a-Service.
+  Learn how to deploy a sample app to your Kubernetes cluster using Armory Continuous Deployment-as-a-Service. Use Helm to install the Remote Network Agent. Deploy the sample app to multiple targets.  
 aliases:
   - /cd-as-a-service/tutorials/deploy-demo-app/
 ---
@@ -18,15 +18,13 @@ This tutorial is designed to use a single Kubernetes cluster with multiple names
 
 ## {{% heading "prereq" %}}
 
-* You have installed `kubectl` and have access to a Kubernetes cluster
-* You have [set up your Armory CD-as-a-Service account]({{< ref "get-started" >}}).
-* You have [installed the `armory` CLI]({{< ref "cd-as-a-service/setup/cli" >}}).
+* You have completed the Armory CD-as-a-Service [quickstart]({{< ref "cd-as-a-service/setup/quickstart" >}}), in which you create your login credentials, install the CLI, and deploy a sample app.
 * You have installed [Helm](https://helm.sh/docs/intro/install/).
 * You have a GitHub account so you can fork the sample project.
 
 ## Fork and clone the repo
 
-[Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the  [sample repo](https://github.com/armory/docs-cdaas-sample) to your own GitHub account and then clone it to the machine where you installed `kubectl` and the `armory` CLI.
+[Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the [sample repo](https://github.com/armory/docs-cdaas-sample) to your own GitHub account and then clone it to the machine where you installed `kubectl` and the `armory` CLI.
 
 The `configuration` directory contains a script to set up Kubernetes cluster and connect it to Armory CD-as-a-Service.
 
@@ -44,10 +42,10 @@ Configure the sample environments and install the Remote Network Agents in your 
 1. Log into your Armory CD-as-a-Service environment using the CLI:
 
    ```bash
-   armory login --envName "<envName>"
+   armory login --envName "<tenant-name>"
    ```
 
-   `--envName <envName` is optional. Replace `<envName>` with the name of your Armory CD-as-a-Service environment if you have access to multiple environments.
+   `--envName` is optional. Replace `<<tenant-name>>` with the name of your Armory CD-as-a-Service tenant if you have access to multiple ones.
 
 1. Navigate to the `docs-cdaas-sample/configuration` directory and run the `setup-helm.sh` script using the "docs-sample-rna" Client Credentials you created for this tutorial.
 
@@ -107,7 +105,7 @@ Because Armory CD-as-a-Service deploys to 100% of nodes on initial deployment, y
 
 ## {{% heading "nextSteps" %}}
 
-* [Introduction to leveraging external automation]({{< ref "webhook-approval" >}}) and [detailed tutorials]({{< ref "external-automation" >}}).
+* [Introduction to leveraging external automation]({{< ref "webhook-approval" >}}) and [detailed tutorial]({{< ref "external-automation" >}}).
 
 
 <br>

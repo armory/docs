@@ -15,15 +15,13 @@ In this guide, you learn how to use Argo Rollouts with Armory CD-as-a-Service.
 1. [Deploy your app](#deploy-your-app)
 1. [Extend deployment functionality](#extend-functionality-for-rollout-deployments) to use webhooks and to deploy multiple rollouts
 
-
 ## {{% heading "prereq" %}}
 
 Make sure that you have performed the following steps:
 
-- [Connected Armory CD-as-a-Service to your Kubernetes cluster]({{< ref "cd-as-a-service/setup/get-started#connect-your-kubernetes-cluster" >}}). 
-- [Deployed an app with the CLI]({{< ref "cd-as-a-service/setup/cli" >}}).
+- Connected to your Kubernetes cluster and deployed an app using the CLI. See {{< linkWithTitle "cd-as-a-service/setup/quickstart.md" >}}.
 
-To complete this quick start, you need the following:
+To complete this guide, you need the following:
 
 - Access to a Kubernetes cluster where you have installed the Remote Network Agent (RNA). This cluster acts as the deployment target for the sample app. (Optional) You can connect multiple Kubernetes clusters to deploy to multiple environments
 - One or more [Argo Rollout manifests](https://argoproj.github.io/argo-rollouts/features/specification/). For example:

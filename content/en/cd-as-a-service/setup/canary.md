@@ -15,8 +15,8 @@ The examples in this guide use Prometheus as the metrics provider.
 
 You have completed the following guides:
 
-1. {{< linkWithTitle "cd-as-a-service/setup/get-started.md" >}}
-1. {{< linkWithTitle "cd-as-a-service/setup/cli.md" >}}
+1. {{< linkWithTitle "cd-as-a-service/setup/quickstart.md" >}}
+1. {{< linkWithTitle "cd-as-a-service/setup/deploy-your-app.md" >}}
 
 You need the following to work through this guide:
 
