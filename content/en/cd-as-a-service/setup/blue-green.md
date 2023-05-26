@@ -4,7 +4,8 @@ linkTitle: Blue/Green Deployment
 description: >
   This guide walks you through how to deploy using a blue/green strategy.
 weight: 40  
-
+categories: ["CD-as-a-Service"]
+tags: ["Get Started", "Deployment", "Strategy", "Blue/Green"]
 ---
 
 ## Blue/Green deployment overview

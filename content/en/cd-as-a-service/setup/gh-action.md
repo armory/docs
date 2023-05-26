@@ -4,6 +4,8 @@ linkTitle: Deploy Using GitHub Action
 weight: 30
 description: >
   Use the Armory CD-as-a-Service Deployment Action to integrate your GitHub repo with Armory CD-as-a-Service.
+categories: ["CD-as-a-Service"]
+tags: ["Get Started", "Deployment", "Quickstart", "GitHub", "GitHub Action"]
 ---
 
 ## Overview of the Armory Continuous Deployment-as-a-Service GitHub Action
