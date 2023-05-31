@@ -14,13 +14,20 @@ categories: ["CD-as-a-Service"]
 {{< cardpane >}}
 
 {{% card header="Get Started" %}}
-[Quickstart]({{< ref "cd-as-a-service/setup/quickstart" >}})
+[Quickstart]({{< ref "cd-as-a-service/setup/quickstart" >}})</br>
+[Deploy Your Own App]({{< ref "cd-as-a-service/setup/deploy-your-app" >}})</br>
+[Deploy Using GitHub Action]({{< ref "cd-as-a-service/setup/gh-action" >}})</br>
+[Blue/Green Deployment]({{< ref "cd-as-a-service/setup/blue-green" >}})</br>
+[Integrate a Metrics Provider]({{< ref "cd-as-a-service/tasks/canary/add-integrations" >}})</br>
+[Canary Analysis]({{< ref "cd-as-a-service/setup/canary" >}})</br>
 {{% /card %}}
 
 {{% card header="Learn About CD-as-a-Service" %}}
 [Key Components]({{<  ref "cd-as-a-service/concepts/architecture/key-components.md" >}})</br>
 [Orgs, Tenants, and Users]({{<  ref "cd-as-a-service/concepts/architecture/orgs-tenants.md" >}})</br>
 [RBAC]({{<  ref "cd-as-a-service/concepts/iam/rbac.md" >}})</br>
+[Traffic Management Using Istio]({{<  ref "cd-as-a-service/concepts/deployment/traffic-management/istio.md" >}})</br>
+[Traffic Management Using Linkerd]({{<  ref "cd-as-a-service/concepts/deployment/traffic-management/smi-linkerd.md" >}})</br>
 {{% /card %}}
 
 {{% card header="Set Up Your Organization" %}}
@@ -33,12 +40,15 @@ categories: ["CD-as-a-Service"]
 
 {{< cardpane >}}
 {{% card header="Connect a Kubernetes Cluster" %}}
-[Quickstart]({{< ref "cd-as-a-service/setup/quickstart.md" >}})</br>
+[Quickstart]({{< ref "cd-as-a-service/setup/quickstart" >}})</br>
 [Install a Remote Network Agent]({{<  ref "cd-as-a-service/tasks/networking/install-agent.md" >}})</br>
 {{% /card %}}
 
-{{% card header="Deployment..." %}}
- traffic management, create deploy config, etc
+{{% card header="Deployment" %}}
+[Create a Deployment Config File]({{< ref "cd-as-a-service/tasks/deploy/create-deploy-config" >}})</br>
+[Deployment Config File Reference]({{< ref "cd-as-a-service/reference/ref-deployment-file.md" >}})</br>
+[Configure Istio]({{< ref "cd-as-a-service/tasks/deploy/traffic-management/istio" >}})</br>
+[Configure Linkerd]({{< ref "cd-as-a-service/tasks/deploy/traffic-management/linkerd" >}})</br>
 {{% /card %}}
 
 {{% card header="Tutorials" %}}
