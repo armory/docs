@@ -4,8 +4,8 @@ linktitle: Quickstart
 description: >
   Install the Armory Continuous Deployment-as-a-Service CLI, connect your Kubernetes cluster with a single command, and deploy an sample app using a traffic split. Learn deployment file syntax.
 weight: 1
-categories: ["CD-as-a-Service"]
-tags: ["Get Started", "Deployment", "Quickstart"]
+categories: ["Get Started"]
+tags: ["Deployment", "Quickstart"]
 aliases:
   - /cd-as-a-service/setup/get-started/
   - /cd-as-a-service/setup/cli/

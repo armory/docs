@@ -7,7 +7,7 @@ weight: 10
 aliases:
   - /armory-deployments/architecture/
   - /cd-as-as-service/concepts/architecture/
-categories: ["CD-as-a-Service"]
+categories: ["Concepts"]
 tags: ["Architecture"]
 ---
 

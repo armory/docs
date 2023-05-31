@@ -4,7 +4,7 @@ linkTitle: System Requirements
 weight: 20
 aliases:
   - /cd-as-a-service/release-notes/requirements/
-categories: ["CD-as-a-Service"]
+categories: ["Concepts"]
 tags: ["Architecture"]
 ---
 

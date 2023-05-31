@@ -4,8 +4,8 @@ linkTitle: Argo Rollouts Deployment
 description: >
   Use Armory CD-as-a-Service to deploy Argo Rollout Objects across multiple environments.
 weight: 40
-categories: ["CD-as-a-Service"]
-tags: ["Get Started", "Argo Rollouts", "Deployment"]
+categories: ["Get Started"]
+tags: ["Argo Rollouts", "Deployment"]
 ---
 
 ## Objectives

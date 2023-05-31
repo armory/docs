@@ -2,7 +2,9 @@
 title: Manage a Client Credential's RBAC Role
 linkTitle: Manage Credential's Role
 description: >
-  Assign and revoke a Client Credential's RBAC role in Armory CArmory CD-as-a-Service.
+  Assign and revoke a Client Credential's RBAC role in Armory CD-as-a-Service.
+categories: ["Guides"]
+tags: [ "Access", "RBAC"]
 ---
 
 ## {{% heading "prereq" %}}

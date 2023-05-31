@@ -2,8 +2,8 @@
 title: View and Switch Tenants
 description: >
   View and switch tenants in your Armory CD-as-a-Service organization.
-categories: ["CD-as-a-Service"]
-tags: ["Guides", "Tenants"]
+categories: ["Guides"]
+tags: [ "Tenants"]
 ---
 
 ## {{% heading "prereq" %}}

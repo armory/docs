@@ -5,6 +5,8 @@ description: >
   Use secrets to integrate Armory CD-as-a-Service with external systems and tools.
 aliases:
   - /cd-as-a-service/tasks/iam/secrets-create/
+categories: ["Guides"]
+tags: [ "Access", "Secrets"]
 ---
 
 

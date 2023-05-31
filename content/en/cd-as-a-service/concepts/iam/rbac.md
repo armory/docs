@@ -3,8 +3,8 @@ title: Role-Based Access Control
 linktitle: RBAC
 description: >
   Learn how Armory Continuous Deployment-as-a-Service implements Role-Based Access Control (RBAC).
-categories: ["CD-as-a-Service"]
-tags: ["Concepts", "RBAC", "Access Management"]
+categories: ["Concepts"]
+tags: ["RBAC", "Access"]
 ---
 
 <!--

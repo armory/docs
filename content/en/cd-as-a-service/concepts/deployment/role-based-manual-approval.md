@@ -2,8 +2,8 @@
 title: Role-Based Manual Approval
 description: >
   Learn how role-based manual approvals in Armory Continuous Deployment-as-a-Service can enforce your SDLC's approval processes.
-categories: ["CD-as-a-Service"]
-tags: ["Concepts", "Deployment", "RBAC", "Role-Based Approval", "Manual Approval"]
+categories: ["Concepts"]
+tags: ["Deployment", "RBAC", "Approvals"]
 ---
 
 ## Overview of role-based manual approval in Armory CD-as-a-Service
