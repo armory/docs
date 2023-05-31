@@ -54,8 +54,6 @@ The [Armory CDaaS](https://www.armory.io/products/continuous-deployment-as-a-ser
 
 ## Docs organization
 
-If you're familiar with the Kubernetes docs, you may notice that the CD-as-a-Service docs are organized in a similar fashion:
-
 * [Get Started]({{< ref "cd-as-a-service/setup" >}}): This section contains guides to quickly get you started using core CD-as-a-Service functionality.
 * [Concepts]({{< ref "cd-as-a-service/concepts" >}}): These pages explain aspects of CD-as-a-Service. The content is objective, containing architecture, definitions, rules, and guidelines. Rather than containing a sequence of steps, these pages link to related tasks and tutorials.
 * [Guides]({{< ref "cd-as-a-service/tasks" >}}): Pages in the this section show you how to perform discreet tasks (single procedures) by following a short series of steps that produce an intended outcome. Task content expects a minimum level of background knowledge, and each page links to conceptual content that you should be familiar with before you begin the task.
