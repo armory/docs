@@ -17,9 +17,7 @@ categories: ["CD-as-a-Service"]
 [Quickstart]({{< ref "cd-as-a-service/setup/quickstart" >}})</br>
 [Deploy Your Own App]({{< ref "cd-as-a-service/setup/deploy-your-app" >}})</br>
 [Deploy Using GitHub Action]({{< ref "cd-as-a-service/setup/gh-action" >}})</br>
-[Blue/Green Deployment]({{< ref "cd-as-a-service/setup/blue-green" >}})</br>
-[Integrate a Metrics Provider]({{< ref "cd-as-a-service/tasks/canary/add-integrations" >}})</br>
-[Canary Analysis]({{< ref "cd-as-a-service/setup/canary" >}})</br>
+[Install a Remote Network Agent]({{<  ref "cd-as-a-service/tasks/networking/install-agent.md" >}})</br>
 {{% /card %}}
 
 {{% card header="Learn About CD-as-a-Service" %}}
@@ -39,9 +37,11 @@ categories: ["CD-as-a-Service"]
 {{< /cardpane >}}
 
 {{< cardpane >}}
-{{% card header="Connect a Kubernetes Cluster" %}}
-[Quickstart]({{< ref "cd-as-a-service/setup/quickstart" >}})</br>
-[Install a Remote Network Agent]({{<  ref "cd-as-a-service/tasks/networking/install-agent.md" >}})</br>
+{{% card header="Strategies" %}}
+[Blue/Green Deployment]({{< ref "cd-as-a-service/setup/blue-green" >}})</br>
+[Canary Analysis]({{< ref "cd-as-a-service/setup/canary" >}})</br>
+[Query Reference Guide]({{< ref "cd-as-a-service/reference/ref-queries.md" >}})</br>
+[Integrate a Metrics Provider]({{< ref "cd-as-a-service/tasks/canary/add-integrations" >}})</br>
 {{% /card %}}
 
 {{% card header="Deployment" %}}
@@ -49,6 +49,7 @@ categories: ["CD-as-a-Service"]
 [Deployment Config File Reference]({{< ref "cd-as-a-service/reference/ref-deployment-file.md" >}})</br>
 [Configure Istio]({{< ref "cd-as-a-service/tasks/deploy/traffic-management/istio" >}})</br>
 [Configure Linkerd]({{< ref "cd-as-a-service/tasks/deploy/traffic-management/linkerd" >}})</br>
+[Create and Use Secrets]({{< ref "cd-as-a-service/tasks/secrets/secrets-create" >}})</br>
 {{% /card %}}
 
 {{% card header="Tutorials" %}}
