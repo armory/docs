@@ -17,7 +17,7 @@ blue/green, for your applications.
 
 1. Install an agent in your cluster to communicate with Armory CDaaS
 2. Install the Armory CLI on your machine
-3. Configure your CDaaS deployment yaml with paths to your K8s manifests
+3. Configure your CDaaS deployment yaml with paths to your Kubernetes manifests
 4. Issue the CLI deploy command and 🚀🚀🚀
 
 
