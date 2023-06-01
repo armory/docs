@@ -23,8 +23,7 @@ description: >
 [Key Components]({{<  ref "cd-as-a-service/concepts/architecture/key-components.md" >}})</br>
 [Orgs, Tenants, and Users]({{<  ref "cd-as-a-service/concepts/architecture/orgs-tenants.md" >}})</br>
 [RBAC]({{<  ref "cd-as-a-service/concepts/iam/rbac.md" >}})</br>
-[Traffic Management Using Istio]({{<  ref "cd-as-a-service/concepts/deployment/traffic-management/istio.md" >}})</br>
-[Traffic Management Using Linkerd]({{<  ref "cd-as-a-service/concepts/deployment/traffic-management/smi-linkerd.md" >}})</br>
+
 {{% /card %}}
 
 {{% card header="Set Up Your Organization" %}}
@@ -41,21 +40,46 @@ description: >
 [Canary Analysis]({{< ref "cd-as-a-service/setup/canary" >}})</br>
 [Query Reference Guide]({{< ref "cd-as-a-service/reference/ref-queries.md" >}})</br>
 [Integrate a Metrics Provider]({{< ref "cd-as-a-service/tasks/canary/add-integrations" >}})</br>
+[Construct Retrospective Analysis Queries]({{< ref "cd-as-a-service/tasks/canary/retro-analysis" >}})</br>
 {{% /card %}}
+
+
 
 {{% card header="Deployment" %}}
 [Create a Deployment Config File]({{< ref "cd-as-a-service/tasks/deploy/create-deploy-config" >}})</br>
 [Deployment Config File Reference]({{< ref "cd-as-a-service/reference/ref-deployment-file.md" >}})</br>
+[Deploy Using Credentials]({{< ref "cd-as-a-service/tasks/deploy/deploy-with-creds.md" >}})</br>
+[Add Context Variables]({{< ref "cd-as-a-service/tasks/deploy/add-context-variable" >}})</br>
+[Create and Use Secrets]({{< ref "cd-as-a-service/tasks/secrets/secrets-create" >}})</br>
+{{% /card %}}
+
+{{% card header="Traffic Management" %}}
+[Traffic Management Using Istio]({{<  ref "cd-as-a-service/concepts/deployment/traffic-management/istio.md" >}})</br>
+[Traffic Management Using Linkerd]({{<  ref "cd-as-a-service/concepts/deployment/traffic-management/smi-linkerd.md" >}})</br>
 [Configure Istio]({{< ref "cd-as-a-service/tasks/deploy/traffic-management/istio" >}})</br>
 [Configure Linkerd]({{< ref "cd-as-a-service/tasks/deploy/traffic-management/linkerd" >}})</br>
-[Create and Use Secrets]({{< ref "cd-as-a-service/tasks/secrets/secrets-create" >}})</br>
+{{% /card %}}
+
+{{< /cardpane >}}
+
+{{< cardpane >}}
+
+
+{{% card header="Webhooks" %}}
+[Webhook-Based Approvals]({{< ref "cd-as-a-service/concepts/external-automation" >}})</br>
+[Configure a Webhook]({{< ref "cd-as-a-service/tasks/webhook-approval" >}})</br>
+[GitHub Webhook-Based Approval]({{<  ref "cd-as-a-service/tutorials/external-automation/webhook-github" >}})</br>
+{{% /card %}}
+
+{{% card header="Tools" %}}
+[CLI]({{< ref "cd-as-a-service/tasks/cli" >}})</br>
 {{% /card %}}
 
 {{% card header="Tutorials" %}}
 
 [Create and Manage RBAC Roles]({{<  ref "cd-as-a-service/tutorials/access-management/rbac-users" >}})</br>
 [Deploy a Sample App]({{<  ref "cd-as-a-service/tutorials/deploy-sample-app" >}})</br>
-[GitHub Webhook-Based Approval]({{<  ref "cd-as-a-service/tutorials/external-automation/webhook-github" >}})</br>
+
 
 {{% /card %}}
 {{< /cardpane >}}
