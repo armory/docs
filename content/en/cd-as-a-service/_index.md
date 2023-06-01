@@ -6,18 +6,65 @@ description: >
   Use Armory CD-as-a-Service to continuously deliver your apps to your Kubernetes clusters. CD-as-a-Service (CDaaS) integrates with external automation tools so you can create your own CI/CD pipelines.
 ---
 
-## Overview of Armory CD-as-a-Service
+## What is CD-as-a-Service?
 
-{{< youtube-enhanced id="r29UCKMXEi4" title="CD-as-a-Service Simplifies Your Deployment Process" widthPercent="75" heightPercent="85" >}}
+Armory CD-as-a-Service is a single control plane that allows you to deploy to multiple Kubernetes clusters using our secure 
+one-way agents. These agents enable multi-cluster orchestration and advanced deployment strategies, such as canary and 
+blue/green, for your applications.
 
-Armory CD-as-a-Service delivers intelligent deployment-as-a-service that supports advanced deployment strategies so developers can focus on building
-great code rather than deploying it. By automating code deployment across all of your Kubernetes environments, Armory CD-as-a-Service removes demands on developers and reduces the risk of service disruptions due to change failures. It does this by seamlessly integrating pre-production verification tasks with advanced production deployment strategies. This mitigates risks by providing deployment flexibility while limiting blast radius, which leads to a better customer experience. Best of all, Armory CD-as-a-Service doesn’t require migrating to a new deployment platform. It easily plugs into any existing SDLC.
 
-{{< include "cdaas/mermaid/how-it-works.md" >}}
+## How does it work?
 
-See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture/_index.md" >}}) section for details.
+1. Install an agent in your cluster to communicate with Armory CDaaS
+2. Install the Armory CLI on your machine
+3. Configure your CDaaS deployment yaml with paths to your K8s manifests
+4. Issue the CLI deploy command and 🚀🚀🚀
 
+
+## What can I do with it?
+
+- A merge with main automatically kicks off a deploy to staging, and a webhook automatically triggers integration tests to run. If the tests fail, the deployment is rolled back automatically. If they pass, the app is deployed to prod.
+- Deploy a new version of your app to 10% of servers (optionally using service mesh). Use RBAC to require an approval by users with a particular role before the app can be deployed to a greater percentage of servers
+- Integrate with metrics providers to only allow the next deployment phase if certain metrics pass
+
+
+## Core Features
+
+- Multi-cluster support
+- Automated rollbacks
+- Reliable deployment strategies
+  - Blue/green
+  - Canary
+- Traffic management
+  - istio
+  - linkerd
+- Automated canary analysis with metrics providers integration
+    - Prometheus
+    - Datadog
+    - New Relic
+- CI integrations
+  - GitHub Actions
+  - Jenkins
+  - Spinnaker
+  - CircleCI
+- Security
+  - RBAC
+  - Two-factor authentication
+  - SSO
+  - Secure secret storage
+  
 The [Armory CDaaS](https://www.armory.io/products/continuous-deployment-as-a-service/) product page contains a full list of features and pricing.
+
+## We take security seriously
+
+- SOC2 certified
+- Agent explainer
+- Secrets handling
+
+## Demo
+
+{{< youtube-enhanced id="r29UCKMXEi4" title="CD-as-a-Service Simplifies Your Deployment Process" widthPercent="60" heightPercent="100" >}}
+
 
 ## Start using Armory CD-as-a-Service
 
@@ -32,16 +79,7 @@ Learn how to configure deployment strategies with these guides:
 * {{< linkWithTitle "cd-as-a-service/setup/blue-green.md" >}}
 * {{< linkWithTitle "cd-as-a-service/setup/canary.md" >}}    
 
-[Install the Armory CD (Spinnaker) plugin]({{< ref "cd-as-a-service/plugin-spinnaker" >}}) if you want to integrate Armory CD-as-a-Service into your pipelines.
-
-## Docs organization
-
-If you're familiar with the Kubernetes docs, you may notice that the CD-as-a-Service docs are organized in a similar fashion:
-
-* [Get Started]({{< ref "cd-as-a-service/setup" >}}): This section contains guides to quickly get you started using core CD-as-a-Service functionality.
-* [Concepts]({{< ref "cd-as-a-service/concepts" >}}): These pages explain aspects of CD-as-a-Service. The content is objective, containing architecture, definitions, rules, and guidelines. Rather than containing a sequence of steps, these pages link to related tasks and tutorials.
-* [Guides]({{< ref "cd-as-a-service/tasks" >}}): Pages in the this section show you how to perform discreet tasks (single procedures) by following a short series of steps that produce an intended outcome. Task content expects a minimum level of background knowledge, and each page links to conceptual content that you should be familiar with before you begin the task.
-* [Tutorials]({{< ref "cd-as-a-service/tutorials" >}}): A tutorial is an end-to-end example of how to do accomplish a goal and is comprised of several tasks performed in sequence. For example, a tutorial might show you how to deploy an demo app by cloning a repo, logging in using the CLI, creating a deployment file, and finally deploying the app. Like a task, a tutorial should link to content you should know and items you should complete before starting the tutorial.
-* [Reference]({{< ref "cd-as-a-service/reference" >}}): This section contains both manually maintained and autogenerated reference material such as a breakdown of the deployment file, canary analysis queries, and CLI command options.
-* [Release Notes]({{< ref "cd-as-a-service/release-notes" >}})
+To integrate CD-as-a-Service into your Spinnaker pipelines, install the [Armory CD plugin]({{< ref "cd-as-a-service/plugin-spinnaker" >}})
+</br>
+</br>
 
