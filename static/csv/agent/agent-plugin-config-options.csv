@@ -37,7 +37,7 @@ Setting|Type|Default|Description
 <code>kubesvc.v2-cache-eviction.disable</code>|boolean| |<span class='badge badge-primary'>0.10.3+</span> Set this to <code>true</code> if you want to turn off the eviction of the V2 cache.
 <code>kubesvc.v2-cache-eviction.batch-size</code>|integer|5|<span class='badge badge-primary'>0.10.3+</span> How many Kubernetes kinds to evict for each eviction event.
 <code>kubesvc.v2-cache-eviction.millis</code>|integer|200|<span class='badge badge-primary'>0.10.3+</span> The time between evictions in milliseconds. Using a low value can lead to a spike in resource usage when migration occurs.
-
+<code>kubesvc.ops.processTime.metric.result.maxLength</code>|integer|255|How many characters as a maximum could have the <code>kubesvc.ops.processTime.result</code> attribute metric
 
 
 
