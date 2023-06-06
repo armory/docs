@@ -407,3 +407,4 @@ matches your custom resource.
 * v1.0.0 Initial release - 09/09/2022
 * v2.0.0 Support multiple statuses - 10/28/2022
 * v2.0.1 Bug fixes - 10/14/2022
+* v2.0.2 Bug fixes - 05/20/2023  
