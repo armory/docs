@@ -3,12 +3,12 @@ title: Armory Continuous Deployment-as-a-Service
 linkTitle: Armory CD-as-a-Service
 no_list: true
 description: >
-  Use Armory CD-as-a-Service to continuously deliver your apps to your Kubernetes clusters. CD-as-a-Service (CDaaS) integrates with external automation tools so you can create your own CI/CD pipelines.
+  Use Armory CD-as-a-Service to continuously deliver your apps to your Kubernetes clusters. CD-as-a-Service (CDaaS) integrates with external automation tools like GitHub and Jenkins so you can create your own CI/CD pipelines.
 ---
 
-## Overview of Armory CD-as-a-Service
+Armory CD-as-a-Service is a single control plane that enables deployment to multiple Kubernetes clusters using CD-as-a-Service's secure, one-way agents. These agents enable multi-cluster orchestration and advanced deployment strategies, such as canary and blue/green, for your apps.
 
-{{< youtube-enhanced id="r29UCKMXEi4" title="CD-as-a-Service Simplifies Your Deployment Process" widthPercent="75" heightPercent="85" >}}
+(insert Nicole's graphic)
 
 {{< cardpane >}}
 
@@ -68,7 +68,7 @@ description: >
 {{% card header="Webhooks" %}}
 [Webhook-Based Approvals]({{< ref "cd-as-a-service/concepts/external-automation" >}})</br>
 [Configure a Webhook]({{< ref "cd-as-a-service/tasks/webhook-approval" >}})</br>
-[GitHub Webhook-Based Approval]({{<  ref "cd-as-a-service/tutorials/external-automation/webhook-github" >}})</br>
+[GitHub Webhook-Based Approval Tutorial]({{<  ref "cd-as-a-service/tutorials/external-automation/webhook-github" >}})</br>
 {{% /card %}}
 
 {{% card header="Tools" %}}
@@ -84,6 +84,7 @@ description: >
 {{% /card %}}
 {{< /cardpane >}}
 
+<!-- Anna asked for this link to be here -->
 The [Armory CDaaS](https://www.armory.io/products/continuous-deployment-as-a-service/) product page contains a full list of features and pricing.
 
 <!--
