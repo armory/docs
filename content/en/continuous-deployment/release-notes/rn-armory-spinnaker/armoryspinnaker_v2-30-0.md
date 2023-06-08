@@ -1,7 +1,7 @@
 ---
 title: v2.30.0 Armory Release (OSS Spinnaker™ v1.30.2)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
+version: 02.30.0
 date: 2023-06-07
 description: >
   Release notes for Armory Continuous Deployment v2.30.0
@@ -27,6 +27,10 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+###  Dinghy fails to start with SQL enabled
+This is a known bug with the java version
+* *enabledTLSProtocols=TLSv1.2* needs to be added as an argument on newer JVMs.
+
 ## Highlighted updates
 
 <!--
@@ -35,6 +39,50 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
+### Deck
+* Fixed an issue where the UI was crashing  when running pipeline(s) with many stages. This change prevents iterating over child nodes as it has already been checked and as a result greatly reduces the number of interactions and increases speed.
+
+### Cloudddriver
+
+#### Unable to deploy to ECS when tags are defined in manifest
+* Addressed an issue where users were unable to complete ECS deployments and received an error in the deploy stage of their pipeline
+
+### Echo
+* Fixed an issue where Echo was failing to handle /webhooks/git/github requests
+
+### Kayenta
+* Implemented a MySQL data source for storage
+
+### Azure Baking
+
+### AWS EC2 improvements
+* Improvements to AWS EC2 instance types API integration: The integration previously used AWS EC2 pricing docs to retrieve EC2 instance types and information. It was replaced with [AWS EC2 describe-instance-types API instead](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html).
+* Improvements to /instanceTypes API: Addition of instance type metadata/ information to API response. See before-after at (https://github.com/spinnaker/clouddriver/pull/5609).
+* Changes to /images API:
+	◦	Addition of architecture type to images API (used to filter out incompatible instance types in Deck). 
+	◦	Images Caching agentType was modified to include the account information. Due to this change, your cache might still contain entries for the old cache keys [as seen in Redis](https://github.com/spinnaker/clouddriver/pull/5609#discussion_r951929849). These old keys will need to be cleaned up manually after upgrading to v1.29, if they are set to never expire.
+  example: 
+  * *old key: com.netflix.spinnaker.clouddriver.aws.provider.AwsInfrastructureProvider:AmazonInstanceTypeCachingAgent/eu-central-1:relationships*
+  * *new key: com.netflix.spinnaker.clouddriver.aws.provider.AwsInfrastructureProvider:AmazonInstanceTypeCachingAgent/my-aws-devel-acct/eu-central-1:relationships*
+
+### Kubernetes
+Change 'red/black' to 'blue/green' in Spinnaker. Users coming to Spinnaker are now more familiar with Blue/Green industry terminology than the Netflix-specific phrasing Red/Black.
+
+* The Red/Black rollout strategy is marked as deprecated in the UI.
+* A Blue/Green rollout strategy is added that is functionally equivalent to the Red/Black rollout strategy. Changes made in Clouddriver and Orca.
+* Introduce a pipeline validator in Front50 that validates if red/black is used when creating/updating a Kubernetes pipeline. For now, it is logging a warning, but it will fail when we remove the red/black Kubernetes traffic management strategy.
+
+Red/Black to Blue/Green migration details:
+* Front50 already supports migrations but you need to be enable it by adding migrations.enabled=true in your Front50 config. When Front50 starts, it automatically migrates existing pipelines using red/black to blue/green.
+* *If you do not enable migration*, red/black continues to work until the Spinnaker community decides to remove red/black.
+
+### Artifact Handling
+Changes to the way artifact constraints on triggers work
+If you have a pipeline with multiple triggers using different artifact constraints/expected artifacts, these have for a while been evaluated in an unexpected matter. To learn more, visit 
+https://spinnaker.io/changelogs/1.30.0-changelog/#changes-to-the-way-artifact-constraints-on-triggers-work.
+
+### Spring Boot 2.4 changes
+* Read more about Spring boot in the [1.30 Release notes](https://spinnaker.io/changelogs/1.30.0-changelog/#spring-boot-24)
 
 
 
