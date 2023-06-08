@@ -3,7 +3,7 @@ title: Armory Continuous Deployment-as-a-Service
 linkTitle: Armory CD-as-a-Service
 no_list: true
 description: >
-  Use Armory CD-as-a-Service to continuously deliver your apps to your Kubernetes clusters. CD-as-a-Service (CDaaS) integrates with external automation tools so you can create your own CI/CD pipelines.
+  Armory CD-as-a-Service is a single control plane that enables deployment to multiple Kubernetes clusters using CD-as-a-Service's secure, one-way Kubernetes agents. These agents facilitate multi-cluster orchestration and advanced deployment strategies, such as canary and blue/green, for your apps.
 ---
 
 ## Overview of Armory CD-as-a-Service
