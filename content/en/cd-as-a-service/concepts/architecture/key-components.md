@@ -17,7 +17,7 @@ Armory CD-as-a-Service is a platform of cloud-based services that orchestrate ap
 
 Armory CD-as-a-Service contains components that you manage: the CLI, the Remote Network Agent (RNA), and the GitHub Action (GHA). These components communicate with Armory CD-as-a-Service to deploy your apps to your existing infrastructure.
 
-{{< include "cdaas/mermaid/how-it-works.md" >}}
+{{< figure src="/images/cdaas/cdaas-arch.png" alt="CD-as-a-Service High-Level Architecture" height="75%" width="75%" >}}
 
 When you start a deployment from the CLI or the GHA, Armory CD-as-a-Service forwards your deployment request to the designated RNA in your Kubernetes cluster.
 
@@ -27,7 +27,7 @@ You can track the status of a deployment in the Armory CD-as-a-Service UI.
 
 ### Remote Network Agent (RNA)
 
-The RNA enables Armory CD-as-a-Service to interact with your Kubernetes clusters and orchestrate deployments without direct network access to your clusters. The RNA that you install in your cluster engages in bidirectional communication with Armory CD-as-a-Service over encrypted, long-lived gRPC/HTTP2 connections. The RNA issues calls to your Kubernetes cluster based on requests from Armory CD-as-a-Service.
+The RNA is a Kubernetes Agent that enables Armory CD-as-a-Service to interact with your Kubernetes clusters and orchestrate deployments without direct network access to your clusters. The RNA that you install in your cluster engages in secure communication with Armory CD-as-a-Service over encrypted, long-lived gRPC/HTTP2 connections. The RNA issues calls to your Kubernetes cluster based on requests from Armory CD-as-a-Service.
 
 Once you install the RNA in your cluster, you don't need to update it beyond security updates. Deployment logic is encapsulated in server-side services.
 
