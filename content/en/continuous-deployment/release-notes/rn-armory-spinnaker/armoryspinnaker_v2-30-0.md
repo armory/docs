@@ -50,6 +50,18 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 ### Echo
 * Fixed an issue where Echo was failing to handle /webhooks/git/github requests
 
+### Gate
+https://github.com/spinnaker/gate/pull/1610 expands support for adding request headers to the response header. Previously limited to X-SPINNAKER-REQUEST-ID, it’s now possible to specify any fields with a X-SPINNAKER prefix via the new interceptors.responseHeader.fields configuration property. The default value is X-SPINNAKER-REQUEST-ID to preserve the previous functionality.
+```
+#gate.yml
+
+interceptors:
+  responseHeader:
+    fields:
+      - X-SPINNAKER-REQUEST-ID
+      - X-SPINNAKER-USER
+```
+
 ### Kayenta
 * Implemented a MySQL data source for storage
 
@@ -83,8 +95,6 @@ https://spinnaker.io/changelogs/1.30.0-changelog/#changes-to-the-way-artifact-co
 
 ### Spring Boot 2.4 changes
 * Read more about Spring boot in the [1.30 Release notes](https://spinnaker.io/changelogs/1.30.0-changelog/#spring-boot-24)
-
-
 
 ###  Spinnaker Community Contributions
 
