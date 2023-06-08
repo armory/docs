@@ -24,12 +24,18 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
+{{< include "breaking-changes/bc-kubectl-120.md" >}}
+{{< include "breaking-changes/bc-k8s-v2-provider-aws-iam-auth.md" >}}
+
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
 ###  Dinghy fails to start with SQL enabled
 This is a known bug with the java version
 * *enabledTLSProtocols=TLSv1.2* needs to be added as an argument on newer JVMs.
+
+{{< include "known-issues/ki-app-eng-acct-auth.md" >}}
 
 ## Highlighted updates
 
