@@ -14,7 +14,7 @@ With that said, Armory is donating the source code for PaCRD to the open source 
 
 ## Why is Armory removing support?
 
-Technology and customer needs change quickly, and we understand that this decision impacts your business. Our PaCRD and Pipelines as Code (PaC) offerings solve similar customer problems; however, adoption for PaCRD remains below the threshold for us to continue investment. We are making this decision in order to continue focusing our attention on augmenting Armory’s core deployment experience which you rely on.
+Technology and customer needs change quickly, and we understand that this decision impacts your business. Our PaCRD and Pipelines-as-Code (PaC) offerings solve similar customer problems; however, adoption for PaCRD remains below the threshold for us to continue investment. We are making this decision in order to continue focusing our attention on augmenting Armory’s core deployment experience which you rely on.
 
 We understand that this decision may be disruptive to you, so we are giving as much advance notice as possible. For more information about how Armory handles feature and technology deprecation, please see the [Deprecations section]({{< ref "deprecations" >}}).
 
@@ -26,7 +26,7 @@ If your company currently uses PaCRD, then yes.  As mentioned above, you can sti
 
 To assure the best user-experience possible, we recommend the following options:
 
-- Migrate to using our more mature Pipelines as Code feature
+- Migrate to using our more mature Pipelines-as-Code feature
 
  ## What happens if I don't act in time?
 

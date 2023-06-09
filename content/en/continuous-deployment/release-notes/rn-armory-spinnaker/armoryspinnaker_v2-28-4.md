@@ -58,9 +58,9 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Early access
 
-### Pipelines as Code multi-branch enhancement
+### Pipelines-as-Code multi-branch enhancement
 
-Now you can configure Pipelines as Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "continuous-deployment/armory-admin/dinghy-enable#multiple-branches" >}}) for how to enable and configure this feature.
+Now you can configure Pipelines-as-Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "plugins/pipelines-as-code/install/configure#multiple-branches" >}}) for how to enable and configure this feature.
 
 ### Enhanced BitBucket Server pull request handling
 

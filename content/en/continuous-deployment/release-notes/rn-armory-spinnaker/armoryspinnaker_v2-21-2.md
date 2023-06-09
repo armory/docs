@@ -81,7 +81,7 @@ Armory has identified and is triaging the following CVEs in Terraformer, the ser
 
 Fixed an issue where SAML login did not work.
 
-### Pipelines as Code
+### Pipelines-as-Code
 
 Fixed an issue with `dinghyfile` validation when no changes are made to the file.
 

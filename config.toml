@@ -24,6 +24,11 @@ pygmentsUseClassic = false
 # See https://help.farbox.com/pygments.html
 pygmentsStyle = "tango"
 
+# Google Analytics configuration
+# https://gohugo.io/templates/internal/#configure-google-analytics
+# https://www.docsy.dev/docs/adding-content/feedback/#adding-analytics
+googleAnalytics = 'G-W14B82N2D2'
+
 # Docsy is now a Go module; need to map theme dirs to local dirs
 [module]
 proxy = "direct"
@@ -93,11 +98,8 @@ resampleFilter = "CatmullRom"
 quality = 75
 anchor = "smart"
 
-# Google Analytics configuration
-[services]
-[services.googleAnalytics]
-# Comment out the next line to disable GA tracking. Also disables the feature described in [params.ui.feedback].
-id = "UA-79996712-5"
+
+
 
 # Language configuration
 
@@ -165,7 +167,7 @@ postgresql-version="10+"
 #used in the Operator docs
 armory-version-exact = "2.28.0"
 halyard-armory-version = "1.12.1"
-kubesvc-version="1.0.55"
+kubesvc-version="1.0.57"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
@@ -224,14 +226,17 @@ prism_syntax_highlighting = true
 
 # Armory Agent plugin versions
 [params.kubesvc-plugin]
-agent_plug_latest-3="0.8.66"
-agent_plug_latest_spin-3="2.25.x (1.25.x)"
-agent_plug_latest-2="0.9.90"
-agent_plug_latest_spin-2="2.26.x (1.26.x)"
-agent_plug_latest-1="0.10.74"
-agent_plug_latest_spin-1="2.27.x (1.27.x)"
-agent_plug_latest="0.11.36"
-agent_plug_latest_spin="2.28.x (1.28.x)"
+
+agent_plug_latest-4="0.9.92"
+agent_plug_latest_spin-4="2.26.x (1.26.x)"
+agent_plug_latest-3="0.10.78"
+agent_plug_latest_spin-3="2.27.x (1.27.x)"
+agent_plug_latest-2="0.11.42"
+agent_plug_latest_spin-2="2.28.x (1.28.x)"
+agent_plug_latest-1="0.12.4"
+agent_plug_latest_spin-1="1.29.x"
+agent_plug_latest="0.13.4"
+agent_plug_latest_spin="2.30.x (1.30.x)"
 
 # Policy Engine plugin versions
 [params.policy-engine-plugin]

@@ -1,3 +1,4 @@
 * You are familiar with [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which use custom resources to manage applications and their components.
 * You understand the concept of [managing Kubernetes resources using manifests](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/).
-* Your deployment environment meets the Armory CD [system requirements]({{< ref "system-requirements.md" >}}).
+* You have reviewed and met the Armory Continuous Deployment [system requirements]({{< ref "continuous-deployment/installation/system-requirements" >}}).
+

@@ -58,7 +58,7 @@ There is a known issue where you cannot edit AWS server groups with the **Edit**
 
 ### Fixed issues
 
-- Fixed an issue where Pipelines as Code fails unexpectedly when updating modules.
+- Fixed an issue where Pipelines-as-Code fails unexpectedly when updating modules.
 - Fixed an issue where usernames were not deduplicated properly because of case sensitivity.
 - Fixed a start up issue that occurs when `spinnaker.base-url.www` is not set
 - Fixed an issue that occurs when a user enters a value for the **Manifest** field and then deletes it. This caused the resulting stage config to use `"manifest":""`. The manifest now defaults to `spinnaker.yml`.

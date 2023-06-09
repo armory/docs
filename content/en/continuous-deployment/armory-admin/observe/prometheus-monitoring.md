@@ -14,7 +14,7 @@ as well as enable monitoring for the Armory Continuous Deployment services.
 
 Additional Prometheus and Grafana configuration is necessary to make them
 production-grade, and this configuration is not a part of this document. Also
-note that monitoring the Pipelines as Code service (Dinghy) and the Terraform
+note that monitoring the Pipelines-as-Code service (Dinghy) and the Terraform
 Integration service (Terraformer) are not discussed on this page.
 
 ## {{% heading "prereq" %}}

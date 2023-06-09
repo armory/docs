@@ -112,7 +112,7 @@ Armory has identified and is triaging the following CVEs in Terraformer, the ser
 
 Summary of changes in the latest release.
 
-### Pipelines as Code
+### Pipelines-as-Code
 
 Fixed an issue with older versions of Bitbucket Server that sent inconsistent webhook headers.
 

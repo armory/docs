@@ -45,7 +45,7 @@ Armory scans the codebase as we develop and release software. For information ab
              dinghyIgnoreRegexp2Enabled: true
    ```
 
-   See [Negative expressions support in your `dinghyfile`]({{<  ref "continuous-deployment/armory-admin/dinghy-enable#negative-expressions-support-in-your-dinghyfile" >}}) for more information.
+   See [Negative expressions support in your `dinghyfile`]({{<  ref "plugins/pipelines-as-code/install/configure#negative-expressions-support-in-your-dinghyfile" >}}) for more information.
 
 ### Armory Operator
 

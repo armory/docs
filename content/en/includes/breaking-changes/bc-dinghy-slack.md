@@ -1,8 +1,8 @@
-### Pipelines as Code Slack notifications stop working
+### Pipelines-as-Code Slack notifications stop working
 
 **Impact**
 
-After upgrading to 2.27.x, your Pipelines as Code Slack notifications may stop working even though they were working previously.
+After upgrading to 2.27.x, your Pipelines-as-Code Slack notifications may stop working even though they were working previously.
 
 **Hotfix**
 

@@ -1,0 +1,13 @@
+{{ $id := .Get "id" | default (.Get 0) }}
+{{ $start := .Get "start" | default 0 }}
+{{ $title := .Get "title" | default "YouTube Video" }}
+{{ $widthPercent := .Get "widthPercent" | default "100%" }}
+{{ $heightPercent := .Get "heightPercent" | default "100%" }}
+
+<div style="position: relative; padding-bottom: 35%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube-nocookie.com/embed/{{ $id }}?rel=0&start={{ $start }}"
+          style="position: absolute; top: 0; left: 0; width: {{ $widthPercent }}%; height: {{ $heightPercent }}%; border: 0;"
+          allowfullscreen="" title="{{ $title }}"></iframe>
+</div>
+
+<!-- based on https://www.kiroule.com/article/use-video-embeds-in-hugo-theme/ -->

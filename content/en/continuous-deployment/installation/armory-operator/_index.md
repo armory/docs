@@ -100,6 +100,7 @@ Each Operator has `basic` and `cluster` installation modes. The option you use d
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "system-requirements.md" >}}
+* {{< linkWithTitle "continuous-deployment/installation/system-requirements.md" >}}
 * {{< linkWithTitle "continuous-deployment/installation/armory-operator/install-armorycd.md" >}}
 * {{< linkWithTitle "continuous-deployment/installation/armory-operator/install-spinnaker.md" >}}
+
