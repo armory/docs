@@ -92,7 +92,9 @@ Replace `<version>` with the plugin version that's compatible with your Spinnake
          Armory.PipelinesAsCode:
            enabled: true
            version: <version>
+       repositories:
          pipelinesAsCode:
+           enabled: true
            url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
    ```
 
@@ -110,7 +112,9 @@ Replace `<version>` with the plugin version that's compatible with your Spinnake
          Armory.PipelinesAsCode:
            enabled: true
            version: <version>
+       repositories:
          pipelinesAsCode:
+           enabled: true
            url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
    ```
 
