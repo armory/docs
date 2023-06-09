@@ -14,23 +14,25 @@ The goal of this guide is to deploy Armory Continuous Deployment with bare minim
 
 {{% include "armory-operator/k8s-reqs.md" %}}
 
-Depending on your Kubernetes version, you may need to adjust the following
-instructions to use a support Operator version. The following table outlines
-the supported combinations of Kubernetes, Armory Operator and Armory Continuous Deployment pair, Spinnaker OSS Operator and Spinnaker OSS pair:
+If you are using Armory Continuous Deployment, be sure to choose the Armory Operator version that is compatible with your Armory CD and Kubernetes versions. Likewise, if you are using open source Spinnaker, choose the Spinnaker Operator that is compatible with your Spinnaker and Kubernetes versions.
 
 {{< include "armory-operator/operator-compat-matrix.md" >}}
 
+>Depending on your Kubernetes version, you may need to adjust the following instructions to use a supported Operator version. 
+
 ## Operator installation options
 
-The Operator has `basic` and `cluster` installation modes. The option you use depends on which namespace you want to deploy Armory Continuous Deployment or to Spinnaker OSS.
+The Operator has `basic` and `cluster` installation modes.  The option you use depends on which namespace you want to deploy Armory Continuous Deployment or open source Spinnaker to.
+
+Most users choose Cluster Mode.
 
 
 |                                                           |Basic Mode | Cluster Mode |
 |:-------------------------------------------------------- |:------------------:|:---------------:|
-| Must deploy Armory Continuous Deployment in the same namespace as the Operator;<br>permissions scoped to single namespace; suitable for a Proof of Concept (POC)   |      &#9989;       |    &#10060;     |
-| Can deploy Armory Continuous Deployment to multiple namespaces<br>(requires Kubernetes ClusterRole)                 |      &#10060;      |     &#9989;     |
-| Configure Armory Continuous Deployment using a single manifest file            |      &#9989;       |     &#9989;     |
-| Configure Armory Continuous Deployment using Kustomize patches            |      &#9989;       |     &#9989;     |
+| Must deploy Armory Continuous Deployment or open source Spinnaker in the same namespace as the Operator;<br>permissions scoped to single namespace; suitable for a Proof of Concept (POC)   |      &#9989;       |    &#10060;     |
+| Can deploy Armory Continuous Deployment or open source Spinnaker to multiple namespaces<br>(requires Kubernetes ClusterRole)                 |      &#10060;      |     &#9989;     |
+| Configure Armory Continuous Deployment or open source Spinnaker using a single manifest file            |      &#9989;       |     &#9989;     |
+| Configure Armory Continuous Deployment or open source Spinnaker using Kustomize patches            |      &#9989;       |     &#9989;     |
 | Perform pre-flight checks to prevent misconfiguration             |     &#10060;       |     &#9989;     |
 
 
@@ -83,8 +85,8 @@ spec:
       type: LoadBalancer
 ```
 
-The Armory Operator contains Halyard to manage a portion of the deployment Armory Continuous Deployment.
-See [Advanced Operator Configuration]({{< ref "op-advanced-config.md" >}}) if you need to override the default settings for the Halyard Container for some advanced features.
+The Armory Operator contains Halyard to manage a portion of your Armory Continuous Deployment installation.
+See [Advanced Operator Configuration]({{< ref "op-advanced-config.md" >}}) if you need to override the default settings for the Halyard container for some advanced features.
 
 Deploy using `kubectl`:
 
@@ -94,7 +96,7 @@ kubectl -n spinnaker apply -f deploy/spinnaker/basic/SpinnakerService.yml
 ```
 
 {{% /tabbody %}}
-{{% tabbody name="Spinnaker OSS"%}}
+{{% tabbody name="Open Source Spinnaker"%}}
 
 You can find the basic `spinnakerservice.yml` manifest file in `/spinnaker-operator/deploy/spinnaker/basic/`.
 
@@ -191,9 +193,9 @@ The Armory Operator contains Halyard to manage a portion of the deployment Armor
 See [Advanced Operator Configuration]({{< ref "op-advanced-config.md" >}}) if you need to override the default settings for the Halyard Container for some advanced features.
 
 {{% /tabbody %}}
-{{% tabbody name="Spinnaker OSS"%}}
+{{% tabbody name="Open Source Spinnaker" %}}
 
-You can see the list of Spinnaker OSS versions on the Spinnaker [Versions](https://spinnaker.io/community/releases/versions/) page.
+You can see the list of open source Spinnaker versions on the Spinnaker website's [Versions](https://spinnaker.io/community/releases/versions/) page.
 
 ```yaml
 apiVersion: spinnaker.io/{{< param "operator-oss-crd-version" >}}
@@ -255,5 +257,5 @@ spec:
 * See advanced manifest configuration in the  {{< linkWithTitle "op-config-manifest.md" >}} guide.
 * See advanced configuration using Kustomize in the {{< linkWithTitle "op-config-kustomize.md" >}} guide.
 * See the {{< linkWithTitle "op-troubleshooting.md" >}} guide if you encounter issues.
-* If you are deploying Armory Continuous Deployment,you may need to override the default settings for the Halyard Container for some advanced features. See the {{< linkWithTitle "op-advanced-config.md" >}} guide.
+* If you are deploying Armory Continuous Deployment, you may need to override the default settings for the Halyard container for some advanced features. See the {{< linkWithTitle "op-advanced-config.md" >}} guide.
 * Learn how to {{< linkWithTitle "op-manage-operator.md" >}}.

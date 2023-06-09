@@ -1,7 +1,9 @@
 <!-- this file does not contain H2 etc headings
 Hugo does not render headings in included files
 -->
-You need Kubernetes `ClusterRole` authority to install the Operator in `cluster` mode.  Cluster mode should be used to install a single Operator to manage the entire Kubernetes Cluster of Spinnaker installations (one correlating Operator for multiple Armory CD or Spinnaker OSS installs)
+You need Kubernetes `ClusterRole` authority to install the Operator in `cluster` mode.  You should use Cluster mode to do one of the following:
+- Install a single Spinnaker Operator to manage an entire Kubernetes cluster of Spinnaker installations
+- Install a single Armory Operator to manage an entire Kubernetes cluster of Armory CD installations
 
 You can find the Operator's deployment configuration in `spinnaker-operator/deploy/operator/cluster` after you download and unpack the archive. You don't need to update any configuration values.
 
@@ -14,7 +16,7 @@ You can find the Operator's deployment configuration in `spinnaker-operator/depl
    bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
    ```
 
-   **Spinnaker Operato for Spinnaker OSS Installation**
+   **Spinnaker Operator for Open Source Spinnaker Installation**
 
    ```bash
    mkdir -p spinnaker-operator && cd spinnaker-operator
