@@ -1,7 +1,7 @@
 <!-- this file does not contain H2 etc headings
 Hugo does not render headings in included files
 -->
-You need Kubernetes `ClusterRole` authority to install the Operator in `cluster` mode.  You should use Cluster mode to do one of the following:
+You need Kubernetes `ClusterRole` authority to install the Operator in `cluster` mode.  You should use Cluster mode to do **one** of the following:
 - Install a single Spinnaker Operator to manage an entire Kubernetes cluster of Spinnaker installations
 - Install a single Armory Operator to manage an entire Kubernetes cluster of Armory CD installations
 
