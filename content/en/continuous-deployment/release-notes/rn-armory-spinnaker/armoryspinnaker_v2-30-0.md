@@ -73,7 +73,7 @@ interceptors:
 
 ### Azure Baking
 
-### AWS EC2 improvements
+### AWS EC2 improvements, including UI changes
 * Improvements to AWS EC2 instance types API integration: The integration previously used AWS EC2 pricing docs to retrieve EC2 instance types and information. It was replaced with [AWS EC2 describe-instance-types API instead](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html).
 * Improvements to /instanceTypes API: Addition of instance type metadata/ information to API response. See before-after at (https://github.com/spinnaker/clouddriver/pull/5609).
 * Changes to /images API:
@@ -82,6 +82,20 @@ interceptors:
   example: 
   * *old key: com.netflix.spinnaker.clouddriver.aws.provider.AwsInfrastructureProvider:AmazonInstanceTypeCachingAgent/eu-central-1:relationships*
   * *new key: com.netflix.spinnaker.clouddriver.aws.provider.AwsInfrastructureProvider:AmazonInstanceTypeCachingAgent/my-aws-devel-acct/eu-central-1:relationships*
+
+UI Changes
+- Displaying instance type info in Custom instance type selector in 2 places:
+  - As a tooltip for already selected instance types
+  - Enhanced drop down for list of available instance types
+- Adding filtering capability to the drop down in custom instance type selector. Filters implemented:
+  - instance family / size / type e.g. c3/ large/ c3.large
+  - min vcpu e.g. 16vcpu
+  - min memory e.g 32gib
+  - instance storage type e.g. ssd, hdd
+  - spot support
+  - ebs support
+  - gpu support
+  - current generation v/s old generation like *'currentGen' / 'oldGen'
 
 ### Kubernetes
 Change 'red/black' to 'blue/green' in Spinnaker. Users coming to Spinnaker are now more familiar with Blue/Green industry terminology than the Netflix-specific phrasing Red/Black.
