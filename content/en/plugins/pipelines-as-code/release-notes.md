@@ -10,7 +10,9 @@ description: >
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
 
-## 2.28
+## 2.30
+
+
 
 ## 2.27
 
