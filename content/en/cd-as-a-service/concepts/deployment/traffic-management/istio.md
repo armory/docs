@@ -3,6 +3,8 @@ title: Traffic Management Using Istio
 linkTitle: Istio
 description: >
   Learn how CD-as-a-Service implements traffic management using Istio.
+categories: ["Concepts"]
+tags: ["Deployment", "Traffic Management", "Istio"]
 ---
 
 ## {{% heading "prereq" %}}

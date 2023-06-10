@@ -2,6 +2,8 @@
 title: Delete an RBAC Role
 description: >
   Delete an RBAC role using Armory CD-as-a-Service's CLI.
+categories: ["Guides"]
+tags: [ "Access", "RBAC"]
 ---
 
 ## {{% heading "prereq" %}}

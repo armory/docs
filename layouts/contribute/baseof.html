@@ -16,17 +16,22 @@
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
             {{ partial "page-meta-links.html" . }}
             {{ partial "toc.html" . }}
+                       <!--
+    Disabling because of https://github.com/google/docsy/issues/38
+
+    Essentially there is just one set of tags across /docs and /blog
+    So for now we disable showing the tag cloud, etc in our documentation.
+
             {{ partial "taxonomy_terms_clouds.html" . }}
+-->
           </aside>
           <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
-            {{ partial "version-banner.html" . }}
-            {{ partial "cdaas/cdaas-banner.html" . }}
             {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
             {{ block "main" . }}{{ end }}
           </main>
         </div>
       </div>
-      {{ partial "cdaas/cdaas-footer.html" . }}
+      {{ partial "footer.html" . }}
     </div>
     {{ partial "scripts.html" . }}
   </body>

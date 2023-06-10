@@ -3,6 +3,8 @@ title: Create a Deployment Config File for Armory CD-as-a-Service
 linkTitle: Create Deploy Config
 description: >
   Create a config file to deploy your app using Armory Continuous Deployment-as-a-Service.
+categories: ["Guides"]
+tags: ["Deployment", "Config"]
 ---
 
 ## {{% heading "prereq" %}}

@@ -3,6 +3,8 @@ title: Install a Remote Network Agent in Your Cluster
 linktitle: Install RNA
 description: >
   Install a CD-as-a-Service Remote Network Agent in your Kubernetes cluster.
+categories: ["Guides"]
+tags: [ "Networking", "Remote Network Agent", "Setup"]
 ---
 
 <!-- The CDaaS UI links to this page. Do not change the title. -->

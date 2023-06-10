@@ -2,7 +2,9 @@
 title: Manage a User's RBAC Role
 linkTitle: Manage User's Role
 description: >
-  Assign and revoke a user's RBAC role in Armory CArmory CD-as-a-Service.
+  Assign and revoke a user's RBAC role in Armory CD-as-a-Service.
+categories: ["Guides"]
+tags: [ "Access", "RBAC"]
 ---
 
 ## {{% heading "prereq" %}}

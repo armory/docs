@@ -4,6 +4,8 @@ linkTitle: Orgs, Tenants, Users
 description: >
   Learn how to organize your Armory Continuous Deployment-as-a-Service workspace.
 weight: 10
+categories: ["Concepts"]
+tags: ["Architecture", "Tenants", "Access", "RBAC"]
 ---
 
 

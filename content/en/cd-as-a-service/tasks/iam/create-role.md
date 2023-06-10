@@ -2,6 +2,8 @@
 title: Create an RBAC Role
 description: >
   Create an RBAC role using Armory CD-as-a-Service's CLI.
+categories: ["Guides"]
+tags: [ "Access", "RBAC"]
 ---
 <!-- content is geared towareds creating a User role since the other types haven't been implemented yet -->
 
