@@ -1,12 +1,12 @@
 ---
-title: Manage Armory Continuous Deployment using the Operator
-linkTitle: Manage Armory Continuous Deployment
-weight: 15
+title: Manage Armory Continuous Deployment using the Armory Operator
+linkTitle: Manage Armory CD
+weight: 1
 description: >
-  Manage, upgrade, or uninstall Armory Continuous Deployment or Spinnaker using the Operator.
+  Manage, upgrade, or uninstall Armory Continuous Deployment using the Armory Operator.
+aliases:
+  - /continuous-deployment/installation/armory-operator/op-manage-spinnaker/
 ---
-
-{{< include "armory-operator/os-operator-blurb.md">}}
 
 ## Kubernetes tools
 
@@ -28,41 +28,22 @@ kubectl -n <namespace> describe spinsvc spinnaker
 
 Consult the `kubectl` [docs](https://kubernetes.io/docs/reference/kubectl/) for a list of commands.
 
-## Deploy Armory Continuous Deployment
+## Upgrade 
 
-{{< tabs name="deploy" >}}
-{{% tabbody name="Manifest" %}}
+{{< tabpane text=true right=true >}}
+{{< tab header="**Method**:" disabled=true />}}
+{{% tab header="Kustomize" text=true %}}
+
+Change the `version` value in `spinnaker-kustomize-patches/core/patches/version.yml` to the target version for the upgrade.
+
+From the root of your `spinnaker-kustomize-patches` directory, apply the update:
 
 ```bash
-kubectl -n <namespace> apply -f <path-to-manifest-file>
+kubctl -n <namespace> apply -k .
 ```
 
-{{% /tabbody %}}
-{{% tabbody name="Kustomize" %}}
-
-```bash
-kubctl -n <namespace> apply -k <path-to-kustomize-directory>
-```
-
-{{% /tabbody %}}
-{{< /tabs >}}
-
-You can watch the installation progress by executing:
-
-```bash
-kubectl -n <namespace> get spinsvc spinnaker -w
-```
-
-You can verify pod status by executing:
-
-```bash
- kubectl -n <namespace> get pods
- ```
-
-## Upgrade Armory Continuous Deployment
-
-{{< tabs name="upgrade" >}}
-{{% tabbody name="Manifest" %}}
+{{% /tab %}}
+{{% tab header="Manifest" text=true %}}
 
 Change the `version` field in your manifest file to the target version for the upgrade:
 
@@ -82,19 +63,8 @@ Apply the updated manifest:
 kubectl -n <namespace> apply -f <path-to-manifest-file>
 ```
 
-{{% /tabbody %}}
-{{% tabbody name="Kustomize" %}}
-
-Change the `version` field in your Kustomize patch to the target version for the upgrade.
-
-Apply the update:
-
-```bash
-kubctl -n <namespace> apply -k <path-to-kustomize-directory>
-```
-
-{{% /tabbody %}}
-{{< /tabs >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 You can view the upgraded services starting up by executing `describe`:
 
@@ -117,10 +87,21 @@ spinnaker    2.20.2
 
 `VERSION` should reflect the target version for your upgrade.
 
-## Rollback Armory Continuous Deployment
+## Rollback
+{{< tabpane text=true right=true >}}
+{{< tab header="**Method**:" disabled=true />}}
+{{% tab header="Kustomize" text=true %}}
 
-{{< tabs name="rollback" >}}
-{{% tabbody name="Manifest" %}}
+Change the `version` value in `spinnaker-kustomize-patches/core/patches/version.yml` to the target version for the upgrade.
+
+From the root of your `spinnaker-kustomize-patches` directory, apply the update:
+
+```bash
+kubctl -n <namespace> apply -k .
+```
+
+{{% /tab %}}
+{{% tab header="Manifest" text=true %}}
 
 Change the `version` field in your manifest file to the target version for the rollback:
 
@@ -140,19 +121,8 @@ Apply the updated manifest:
 kubectl -n <namespace> apply -f <path-to-manifest-file>
 ```
 
-{{% /tabbody %}}
-{{% tabbody name="Kustomize" %}}
-
-Change the `version` field in your Kustomize patch to the target version for the rollback.
-
-Apply the update:
-
-```bash
-kubctl -n <namespace> apply -k <path-to-kustomize-directory>
-```
-
-{{% /tabbody %}}
-{{< /tabs >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 You can view the rolled back services starting up by executing `describe`:
 
@@ -176,11 +146,13 @@ spinnaker    2.27.2
 `VERSION` should reflect the target version for your rollback.
 
 
-## Delete Armory Continuous Deployment
+## Remove
 
 ```bash
 kubectl -n <namespace> delete spinnakerservice spinnaker
 ```
+
+
 
 ## Help resources
 

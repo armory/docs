@@ -54,7 +54,7 @@ This guide shows you how to statically add an account to the Scale Agent service
 
 Decide which [Spinnaker Operator release](https://github.com/armory/spinnaker-operator/releases) you need based on the Kubernetes version you are using.
 
-{{< readfile file="/includes/armory-operator/spin-operator-compat.md" >}}
+{{< readfile file="/includes/armory-operator/operator-compat-matrix.md" >}}
 
 1. Fetch the Spinnaker Operator.
 

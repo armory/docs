@@ -67,10 +67,7 @@ Armory recommends a minimum of 3 nodes that match the following profile:
 
 ## kubectl
 
-To install and manage Armory Continuous Deployment, Armory recommends using the [Armory Operator with Kustomize]({{< ref "op-config-kustomize" >}}) and tailoring the Kustomize files to meet the requirements of your instance and environment. This installation method supports the following versions of `kubectl`: 1.16 to 1.19.
-<!-- this is cause of the go-yaml bug: https://github.com/kubernetes-sigs/kustomize/issues/3605 -->
-
-It is possible to use the Operator to [install Armory Continuous Deployment without the Kustomize repo]({{< ref "op-config-manifest" >}}). In that case, any actively maintained version of `kubectl` is supported.
+To install and manage Armory Continuous Deployment, Armory recommends using the [Armory Operator with Kustomize]({{< ref "continuous-deployment/installation/armory-operator/install-armorycd" >}}) and tailoring the Kustomize files to meet the requirements of your instance and environment. 
 
 ## Networking
 

@@ -40,7 +40,7 @@ Golang services need a X509 certificate (PEM format) and a private key for #1 as
 
 ## Configuring Java services
 
-Add the following to each Java service profile under `profiles` in the [SpinnakerService's profiles]({{< ref "op-config-manifest#specspinnakerconfigprofiles" >}}):
+Add the following to each Java service profile under `profiles` in the [SpinnakerService's profiles]({{< ref "continuous-deployment/installation/armory-operator/op-manifest-reference#specspinnakerconfigprofiles" >}}):
 
 ```yaml
 # Only needed for "server" role

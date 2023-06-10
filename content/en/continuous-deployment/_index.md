@@ -20,9 +20,9 @@ description: >
 
 ### Kubernetes Operators for installation
 
-The [Armory Operator]({{< ref "armory-operator" >}}) is a Kubernetes Operator that helps you configure, deploy, and update Armory Continuous Deployment on Kubernetes clusters.
+The Armory Operator is a Kubernetes Operator that enables you to [install]({{< ref "continuous-deployment/installation/armory-operator/install-armorycd" >}}) and manage Armory Continuous Deployment on Kubernetes clusters.
 
-The open source [Spinnaker Operator](https://github.com/armory/spinnaker-operator) provides features to deploy and manage open source Spinnaker.
+Like the Armory Operator, the open source Spinnaker Operator is a Kubernetes Operator that enables you to [install]({{< ref "continuous-deployment/installation/armory-operator/install-spinnaker" >}}) and manage open source Spinnaker.
 
 ### Plugins for Spinnaker and Armory CD
 

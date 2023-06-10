@@ -20,10 +20,10 @@ Examples of including markdown files using the armory/docs `include` shortcode. 
 {{</* tabpane text=true right=true >}}
   {{< tab header="**Mode**:" disabled=true />}}
   {{% tab header="Cluster" text=true %}}
-  {{% include "armory-operator/op-install-cluster.md" %}}
+  {{% include "armory-operator/armory-op-install-cluster.md" %}}
   {{% /tab %}}
   {{% tab header="Basic" text=true %}}
-  {{% include  "armory-operator/op-install-basic.md" %}}
+  {{% include  "armory-operator/armory-op-install-basic.md" %}}
   {{% /tab %}}
 {{< /tabpane */>}}
 ```
@@ -32,10 +32,10 @@ Examples of including markdown files using the armory/docs `include` shortcode. 
 {{< tabpane text=true right=true >}}
   {{< tab header="**Mode**:" disabled=true />}}
   {{% tab header="Cluster" text=true %}}
-  {{% include "armory-operator/op-install-cluster.md" %}}
+  {{% include "armory-operator/armory-op-install-cluster.md" %}}
   {{% /tab %}}
   {{% tab header="Basic" text=true %}}
-  {{% include  "armory-operator/op-install-basic.md" %}}
+  {{% include  "armory-operator/armory-op-install-basic.md" %}}
   {{% /tab %}}
 {{< /tabpane >}}
 
@@ -45,10 +45,10 @@ Examples of including markdown files using the armory/docs `include` shortcode. 
 {{</* tabpane text=true right=true >}}
   {{< tab header="**Mode**:" disabled=true />}}
   {{% tab header="Cluster" text=true %}}
-  {{< include "armory-operator/op-install-cluster.md" >}}
+  {{< include "armory-operator/armory-op-install-cluster.md" >}}
   {{% /tab %}}
   {{% tab header="Basic" text=true %}}
-  {{< include "armory-operator/op-install-basic.md" >}}
+  {{< include "armory-operator/armory-op-install-basic.md" >}}
   {{% /tab %}}
 {{< /tabpane */>}}
 
@@ -59,10 +59,10 @@ Examples of including markdown files using the armory/docs `include` shortcode. 
 {{< tabpane text=true right=true >}}
   {{< tab header="**Mode**:" disabled=true />}}
   {{% tab header="Cluster" text=true %}}
-  {{< include "armory-operator/op-install-cluster.md" >}}
+  {{< include "armory-operator/armory-op-install-cluster.md" >}}
   {{% /tab %}}
   {{% tab header="Basic" text=true %}}
-  {{< include "armory-operator/op-install-basic.md" >}}
+  {{< include "armory-operator/armory-op-install-basic.md" >}}
   {{% /tab %}}
 {{< /tabpane >}}
 
@@ -72,10 +72,10 @@ Examples of including markdown files using the armory/docs `include` shortcode. 
 {{</* tabpane text=true right=true >}}
   {{< tab header="**Mode**:" disabled=true />}}
   {{% tab header="Cluster" text=true %}}
-  {{% readfile file="/includes/armory-operator/op-install-cluster.md" %}}
+  {{% readfile file="/includes/armory-operator/armory-op-install-cluster.md" %}}
   {{% /tab %}}
   {{% tab header="Basic" text=true %}}
-  {{% readfile file="/includes/armory-operator/op-install-basic.md" %}}
+  {{% readfile file="/includes/armory-operator/armory-op-install-basic.md" %}}
   {{% /tab %}}
 {{< /tabpane */>}}
 ```
@@ -84,10 +84,10 @@ Examples of including markdown files using the armory/docs `include` shortcode. 
 {{< tabpane text=true right=true >}}
   {{< tab header="**Mode**:" disabled=true />}}
   {{% tab header="Cluster" text=true %}}
-  {{% readfile file="/includes/armory-operator/op-install-cluster.md" %}}
+  {{% readfile file="/includes/armory-operator/armory-op-install-cluster.md" %}}
   {{% /tab %}}
   {{% tab header="Basic" text=true %}}
-  {{% readfile file="/includes/armory-operator/op-install-basic.md" %}}
+  {{% readfile file="/includes/armory-operator/armory-op-install-basic.md" %}}
   {{% /tab %}}
 {{< /tabpane >}}
 
@@ -100,7 +100,7 @@ Examples of including markdown files using the armory/docs `include` shortcode. 
   {{< readfile file="/includes/plugins/scale-agent/api-overview.md" >}}
   {{% /tab %}}
   {{% tab header="Basic" text=true %}}
-  {{< readfile file="/includes/armory-operator/op-install-basic.md" >}}
+  {{< readfile file="/includes/armory-operator/armory-op-install-basic.md" >}}
   {{% /tab %}}
 {{< /tabpane */>}}
 
@@ -114,7 +114,7 @@ Examples of including markdown files using the armory/docs `include` shortcode. 
   {{< readfile "/includes/plugins/scale-agent/api-overview.md" >}}
   {{% /tab %}}
   {{% tab header="Basic" text=true %}}
-  {{< readfile file="/includes/armory-operator/op-install-basic.md" >}}
+  {{< readfile file="/includes/armory-operator/armory-op-install-basic.md" >}}
   {{% /tab %}}
 {{< /tabpane >}}
 

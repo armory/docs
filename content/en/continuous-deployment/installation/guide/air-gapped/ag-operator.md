@@ -22,7 +22,7 @@ This guide details how you can host the Armory Continuous Deployment Bill of Mat
 
 ## {{% heading "prereq" %}}
 
-* You are familiar with the [Armory Operator]({{< ref "armory-operator" >}}) and [configuring Armory Continuous Deployment using Kustomize patches]({{< ref "op-config-kustomize" >}}).
+* You are familiar with the [Armory Operator]({{< ref "armory-operator" >}}) and [configuring Armory Continuous Deployment using Kustomize patches]({{< ref "continuous-deployment/installation/armory-operator/install-armorycd" >}}).
 * You have read the [introduction]({{< ref "air-gapped" >}}) to air-gapped environments.
 * You have public internet access.
 * You have administrator access to your Kubernetes cluster.
@@ -374,4 +374,4 @@ Contact [Armory Support](https://support.armory.io/) or use the [Spinnaker Slack
 
 ## {{% heading "nextSteps" %}}
 
-[Configure and deploy Armory Continuous Deployment using Kustomize patches]({{< ref "op-config-kustomize#configure-armory-enterprise">}}).
+{{< linkWithTitle "continuous-deployment/installation/armory-operator/install-armorycd.md" >}}

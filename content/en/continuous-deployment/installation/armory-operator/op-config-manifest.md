@@ -7,6 +7,7 @@ aliases:
   - /installation/armory-operator/op-manifest-reference/operator-config
 description: >
   This guide describes the fields in the `SpinnakerService` manifest that the the Armory Operator uses to deploy Armory Continuous Deployment or the Spinnaker Operator uses to deploy Spinnaker.
+draft: true
 ---
 
 {{< include "armory-operator/os-operator-blurb.md" >}}
