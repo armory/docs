@@ -2,6 +2,8 @@
 title: Add Tenants
 description: >
   Add tenants to your Armory CD-as-a-Service organization.
+categories: ["Guides"]
+tags: [ "Tenants"]
 ---
 
 ## {{% heading "prereq" %}}

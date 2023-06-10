@@ -3,6 +3,8 @@ title: Invite a User
 linktitle: Invite a User
 description: >
   Use the Armory CD-as-a-Service Console to invite a user to your CD-as-a-Service organization.
+categories: ["Guides"]
+tags: [ "Access", "RBAC"]
 ---
 
 ## Overview
