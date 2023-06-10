@@ -9,11 +9,12 @@ tags: ["Architecture", "Key Components", "Secrets"]
 aliases:
   - /armory-deployments/architecture/
   - /cd-as-as-service/architecture/
-  - /cd-as-as-service/architecture/system-requirements/
+  - /cd-as-as-service/concepts/architecture/
+  - /cd-as-as-service/concepts/architecture/system-requirements/
   - /cd-as-a-service/release-notes/requirements/
 ---
 
-<!-- Both armory.io and the CDaaS UI links to this page. Do not change the title or headings without checking with engineering. -->
+<!-- Both armory.io and the CDaaS UI links to this page. Do not change the title or headings without checking with engineering and marketing. -->
 
 ## How Armory CD-as-a-Service works
 
@@ -79,7 +80,8 @@ You can configure a webhook to authenticate with a GitHub PAT to kick off GitHub
 
 ### Security
 
-Secrets are [encrypted in transit and at rest]({{< ref "cd-as-a-service/concepts/architecture#encryption-at-rest" >}}). They are additionally encrypted at rest with a per-tenant key using AES-256 encryption.
+Secrets are encrypted in transit and at rest. They are additionally encrypted at rest with a per-tenant key using AES-256 encryption.
+
 ## {{% heading "nextSteps" %}}
 
 * {{< linkWithTitle "cd-as-a-service/setup/quickstart.md" >}}
