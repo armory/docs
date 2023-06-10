@@ -10,7 +10,7 @@ aliases:
   - /armory-deployments/architecture/
   - /cd-as-as-service/architecture/
   - /cd-as-as-service/concepts/architecture/
-  - /cd-as-as-service/concepts/architecture/system-requirements/
+  - /cd-as-a-service/concepts/architecture/system-requirements/
   - /cd-as-a-service/release-notes/requirements/
 ---
 
