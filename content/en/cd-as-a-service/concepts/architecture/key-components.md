@@ -4,16 +4,25 @@ linkTitle: Key Components
 description: >
   Learn about the key components that comprise Armory Continuous Deployment-as-a-Service and how they work together to orchestrate deployments. Remote Network Agent (RNA), Kubernetes permissions, networking requirements, CLI, GitHub Action.
 weight: 10
+categories: ["Concepts"]
+tags: ["Architecture", "Key Components", "Secrets"]
 aliases:
   - /armory-deployments/architecture/
   - /cd-as-as-service/architecture/
+  - /cd-as-as-service/concepts/architecture/
+  - /cd-as-a-service/concepts/architecture/system-requirements/
+  - /cd-as-a-service/release-notes/requirements/
 ---
 
-<!-- The CDaaS UI links to this page. Do not change the title or headings without checking with engineering. -->
+<!-- Both armory.io and the CDaaS UI links to this page. Do not change the title or headings without checking with engineering and marketing. -->
 
 ## How Armory CD-as-a-Service works
 
 Armory CD-as-a-Service is a platform of cloud-based services that orchestrate app deployments and monitor their progress. These services have API endpoints with which users and non-cloud services interact via HTTPS or gRPC/HTTP2. The [Networking](#networking) section contains details of the endpoints that need to be whitelisted.
+
+Armory CD-as-a-Service uses secure agents that run in target Kubernetes 1.16+ clusters to communicate with Armory CD-as-a-Service. Make sure your environment meets the [networking](#networking) requirements so that the agents can communicate with Armory CD-as-a-Service.
+
+There are no additional requirements for installing the agents that Armory CD-as-a-Service uses. For information about how to install these agents, see {{< linkWithTitle "cd-as-a-service/tasks/networking/install-agent" >}}.
 
 Armory CD-as-a-Service contains components that you manage: the CLI, the Remote Network Agent (RNA), and the GitHub Action (GHA). These components communicate with Armory CD-as-a-Service to deploy your apps to your existing infrastructure.
 
@@ -51,10 +60,28 @@ You can use the `armory/cli-deploy-action` to trigger a deployment from your Git
 
 {{< include "cdaas/req-networking.md" >}}
 
+## Secrets
+
+Secrets allow Armory CD-as-a-Service to authenticate with external systems and tools during a deployment.
+
+### Metrics providers
+
+You can store credentials for metrics providers like New Relic, DataDog, or Prometheus as secrets. Armory CD-as-a-Service uses these credentials to authenticate with your metric provider when querying for application metrics during a canary analysis.
+
+### Kubernetes clusters
+
+You can store long-lived Kubernetes authentication tokens as secrets.
+Armory CD-as-a-Service uses these credentials to deploy, scale, and cache Kubernetes resources.
+
+### GitHub actions
+
+You can store GitHub Personal Access Tokens (PATs) as secrets.
+You can configure a webhook to authenticate with a GitHub PAT to kick off GitHub Actions-based integration tests during a deployment.
+
+### Security
+
+Secrets are encrypted in transit and at rest. They are additionally encrypted at rest with a per-tenant key using AES-256 encryption.
+
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "cd-as-a-service/concepts/architecture/system-requirements.md" >}}
 * {{< linkWithTitle "cd-as-a-service/setup/quickstart.md" >}}
-
-<br>
-<br>

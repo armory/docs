@@ -4,6 +4,8 @@ linkTitle:  Deploy Your Own App
 description: >
   Create a deployment config file for your app. Deploy two versions of your app to your Kubernetes cluster using Armory CD-as-a-Service.
 weight: 20
+categories: ["Get Started"]
+tags: ["Deployment", "Quickstart"]
 ---
 
 ## Learning objectives

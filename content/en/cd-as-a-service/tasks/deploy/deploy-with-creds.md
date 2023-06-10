@@ -3,6 +3,8 @@ title: Deploy an App Using Credentials
 linkTitle: Deploy with Credentials
 description: >
   Use the CLI to deploy an app using CD-as-a-Service machine to machine credentials.
+categories: ["Guides"]
+tags: ["Deployment", "Config", "Credentials"]
 ---
 
 ## Deploy your app using a Client ID and Client Secret

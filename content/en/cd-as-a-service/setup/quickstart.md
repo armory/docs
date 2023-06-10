@@ -4,6 +4,8 @@ linktitle: Quickstart
 description: >
   Install the Armory Continuous Deployment-as-a-Service CLI, connect your Kubernetes cluster with a single command, and deploy an sample app using a traffic split. Learn deployment file syntax.
 weight: 1
+categories: ["Get Started"]
+tags: ["Deployment", "Quickstart"]
 aliases:
   - /cd-as-a-service/setup/get-started/
   - /cd-as-a-service/setup/cli/
@@ -22,7 +24,7 @@ aliases:
 
 ## {{% heading "prereq" %}}
 
-* You are familiar with CD-as-a-Service's [key components]({{< ref "cd-as-a-service/concepts/architecture/key-components.md" >}}) and [system requirements]({{< ref "cd-as-a-service/concepts/architecture/system-requirements.md" >}}).
+* You are familiar with CD-as-a-Service's [key components]({{< ref "cd-as-a-service/concepts/architecture/key-components.md" >}}).
 * You have access to a Kubernetes cluster. If you need a cluster, consider installing a local [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or [Minikube](https://minikube.sigs.k8s.io/docs/start/) cluster.  Your cluster's API endpoint does not need to be publicly accessible to use CD-as-a-Service. 
 
 >If you do not have a Kubernetes cluster and still wish to tour CD-as-a-Service, you can [sign up ](https://go.armory.io/signup/) and select **Self-Guided Browser Tour**. CD-as-a-Service creates a short-lived Kubernetes cluster for you and then guides you through deploying the sample app.

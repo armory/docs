@@ -3,6 +3,8 @@ title: How to Monitor Deployments
 linkTitle: Monitor Deployments
 description: >
   Monitor the status of your deployments and approve or rollback deployments.
+categories: ["Guides"]
+tags: ["Deployment", "Monitor"]
 ---
 
 

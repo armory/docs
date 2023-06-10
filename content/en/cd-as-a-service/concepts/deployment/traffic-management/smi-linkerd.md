@@ -5,6 +5,8 @@ description: >
   Learn how CD-as-a-Service implements progressive canary traffic management using Linkerd.
 aliases: 
   - /cd-as-a-service/concepts/deployment/progressive-canary/
+categories: ["Concepts"]
+tags: ["Deployment", "Traffic Management", "Linkerd"]
 ---
 
 ## Service meshes and the Service Mesh Interface (SMI)
