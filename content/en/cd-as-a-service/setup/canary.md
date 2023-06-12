@@ -5,7 +5,7 @@ description: >
   This guide walks you through using canary analysis on the app you deployed in the Get Started with the CLI to Deploy Apps guide. You perform a retrospective analysis on the app. Then, you use those queries to create canary analysis steps for subsequent deployments.
 weight: 40  
 categories: ["Get Started"]
-tags: ["Deployment", "Strategy", "Canary"]
+tags: ["Deployment", "Deploy Strategy", "Canary"]
 ---
 
 Performing retrospective analysis on a deployment is a great way to understand how your app is performing over a predefined time period. It is the first step to enabling automatic canary analysis where you create queries that control how canary deployments react based on metrics you consider important.

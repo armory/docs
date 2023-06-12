@@ -5,12 +5,12 @@ weight: 30
 description: >
   Use the Armory CD-as-a-Service Deployment Action to integrate your GitHub repo with Armory CD-as-a-Service.
 categories: ["Get Started"]
-tags: ["Deployment", "Quickstart", "GitHub"]
+tags: ["Deployment", "Quickstart", "GitHub", "Tools", "Automation"]
 ---
 
 ## Overview of the Armory Continuous Deployment-as-a-Service GitHub Action
 
-This Action enables deploying your app based on a specific GitHub trigger, such as a push to the main branch of your repo. You can configure the action to return immediately or wait for a final deployment state before exiting. 
+This Action enables deploying your app based on a specific GitHub trigger, such as a push to the main branch of your repo. You can configure the action to return immediately or wait for a final deployment state before exiting.
 
 You can find the Action in the [GitHub Action Marketplace](https://github.com/marketplace/actions/armory-continuous-deployment-as-a-service).
 
@@ -40,7 +40,7 @@ Configuring the GitHub Action is a multi-part process:
 
 ### Determine your manifest path
 
-Decide where you are going to store the app manifest(s) you want to deploy to CD-as-a-Service. You need to know this path when you create your deployment file. 
+Decide where you are going to store the app manifest(s) you want to deploy to CD-as-a-Service. You need to know this path when you create your deployment file.
 
 Note that the path is relative to where the GitHub Action YAML is stored (`.github/workflows`). For example, if your repo looks like this:
 
@@ -85,9 +85,9 @@ jobs:
         id: deploy
         uses: armory/cli-deploy-action@main
         with:
-          clientId: "<github-secret-name-for-client-id>" 
-          clientSecret:  "<github-secret-name-for-client-secret>" 
-          path-to-file: "<path-to-deployment-file>" 
+          clientId: "<github-secret-name-for-client-id>"
+          clientSecret:  "<github-secret-name-for-client-secret>"
+          path-to-file: "<path-to-deployment-file>"
           waitForDeployment: <true-or-false>
 ```
 
@@ -95,7 +95,7 @@ jobs:
 
 * `clientId`: GitHub secret that you created for your CD-as-a-Service Client ID. For example, if you named your secret **CDAAS_CLIENT_ID**, the value for `clientId` would be `"${{ secrets.CDAAS_CLIENT_ID }}"`.
 * `clientSecret`: GitHub secret that you created for your CD-as-a-Service Client ID. For example, if you named your secret **CDAAS_CLIENT_SECRET**, the value for `clientSecret` would be `"${{ secrets.CDAAS_CLIENT_SECRET }}"`.
-* `path-to-file`: Relative path to your deployment file. The path you provide for the `path-to-file` parameter is relative to where your GitHub Action YAML is stored (`.github/workflows`). 
+* `path-to-file`: Relative path to your deployment file. The path you provide for the `path-to-file` parameter is relative to where your GitHub Action YAML is stored (`.github/workflows`).
 
    For example, if your repo looks like this:
 
@@ -110,7 +110,7 @@ jobs:
    ```
 
    Then `path-to-file` would be `/deployments/deployment.yaml`.
-   
+
 * `waitForDeployment`: (Optional); Default: false; this blocks the GitHub Action from completing until the deployment has transitioned to its final state (FAILED, SUCCEEDED, CANCELLED).
 
 When the Action is done running, it prints out the Deployment ID, a link to the Deployments UI, and optionally the deployment's final state. It also returns that information in output parameters that you can use elsewhere in your workflow:
@@ -175,7 +175,7 @@ jobs:
 
 ## Trigger a deployment
 
-After you have created your deployment file and configured your workflow, you can trigger a CD-as-a-Service deployment based on the trigger you defined in your workflow. 
+After you have created your deployment file and configured your workflow, you can trigger a CD-as-a-Service deployment based on the trigger you defined in your workflow.
 
 You can monitor your deployment's progress in the GitHub UI or in the CD-as-a-Service UI. Be sure to you know how to access a GitHub Action [workflow run log](https://docs.github.com/en/act##ions/monitoring-and-troubleshooting-workflows/about-monitoring-and-troubleshooting) before you begin.
 

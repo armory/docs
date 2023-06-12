@@ -1,9 +1,9 @@
 ---
-title: Traffic Management Using Linkerd
+title: Traffic Management With Linkerd
 linkTitle: Linkerd
 description: >
   Learn how CD-as-a-Service implements progressive canary traffic management using Linkerd.
-aliases: 
+aliases:
   - /cd-as-a-service/concepts/deployment/progressive-canary/
 categories: ["Concepts"]
 tags: ["Deployment", "Traffic Management", "Linkerd"]

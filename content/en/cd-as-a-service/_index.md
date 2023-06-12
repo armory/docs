@@ -12,9 +12,7 @@ Armory CD-as-a-Service delivers intelligent deployment-as-a-service that support
 
 {{< figure src="/images/cdaas/cdaas-arch.png" alt="CD-as-a-Service High-Level Architecture" height="75%" width="75%" >}}
 
-See the [Key Components]({{< ref "cd-as-a-service/concepts/architecture/key-components" >}}) section for details.
-
-The [Armory CDaaS product page](https://www.armory.io/products/continuous-deployment-as-a-service/) contains a full list of features and pricing.
+See the [Key Components]({{< ref "cd-as-a-service/concepts/architecture/key-components" >}}) section for details. The [Armory CDaaS product page](https://www.armory.io/products/continuous-deployment-as-a-service/) contains a full list of features and pricing.
 
 
 {{< cardpane >}}
@@ -61,8 +59,8 @@ The [Armory CDaaS product page](https://www.armory.io/products/continuous-deploy
 {{% /card %}}
 
 {{% card header="Traffic Management" %}}
-[Traffic Management Using Istio]({{<  ref "cd-as-a-service/concepts/deployment/traffic-management/istio.md" >}})</br>
-[Traffic Management Using Linkerd]({{<  ref "cd-as-a-service/concepts/deployment/traffic-management/smi-linkerd.md" >}})</br>
+[Traffic Management With Istio]({{<  ref "cd-as-a-service/concepts/deployment/traffic-management/istio.md" >}})</br>
+[Traffic Management With Linkerd]({{<  ref "cd-as-a-service/concepts/deployment/traffic-management/smi-linkerd.md" >}})</br>
 [Configure Istio]({{< ref "cd-as-a-service/tasks/deploy/traffic-management/istio" >}})</br>
 [Configure Linkerd]({{< ref "cd-as-a-service/tasks/deploy/traffic-management/linkerd" >}})</br>
 {{% /card %}}

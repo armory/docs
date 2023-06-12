@@ -4,7 +4,7 @@ linkTitle: Create Preview Links
 description: >
   Create a temporary public preview link to a deployed service for testing.
 categories: ["Guides"]
-tags: ["Deployment", "Config", "Deploy Preview"]
+tags: ["Deployment", "Deploy Config", "Deploy Preview"]
 ---
 
 ## Overview
