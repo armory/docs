@@ -50,6 +50,7 @@ Settings|Type|Default|Description
 <code>logging.maxBackups</code>|integer|10|Max number of log file backups.
 <code>logging.localTime</code>|boolean|true|when set to true the timestamps will have local time, otherwise UTC.
 <code>logging.compress</code>|boolean|false|when set to true files are compressed as tar gz.
+<code>logging.fields</code>|map|empty|Logging contextual key-value pairs.<br>The <code>agentCluster</code> and <code>agentNamespace</code> keys could be detected automatically when a value is not provided, and being populated with the name/host of the cluster, and namespace where the instance is running.<br>E.g.<br><code>logging.fields.agentNamespace:</code><br>The agentNamespace will be automatically discover by the instance.<br><code>logging.fields.agentNamespace: test</code><br>The agentNamespace will use the provided value.
 <code>pprof.enabled</code>|boolean|false|Enable pprof endpoint. Useful for troubleshooting, slowness, memory leaks, and more!<br><a href='https://github.com/google/pprof/blob/master/doc/README.md' target='new'>pprof README</a>.
 <code>pprof.port</code>|integer|6060|Port on which to respond to pprof requests.
 <code>prometheus.enabled</code>|boolean|false|Enable Prometheus handler.
