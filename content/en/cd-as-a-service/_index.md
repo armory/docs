@@ -14,14 +14,14 @@ Armory CD-as-a-Service delivers intelligent deployment-as-a-service that support
 
 See the [Key Components]({{< ref "cd-as-a-service/concepts/architecture/key-components" >}}) section for details. The [Armory CDaaS product page](https://www.armory.io/products/continuous-deployment-as-a-service/) contains a full list of features and pricing.
 
-
+<!-- I couldn't get linkWithLinkTitle to render correctly inside the cardpane card so had to use hard-coded title and ref shortcode -->
 {{< cardpane >}}
 
 {{% card header="Get Started" %}}
 [Quickstart]({{< ref "cd-as-a-service/setup/quickstart" >}})</br>
 [Deploy Your Own App]({{< ref "cd-as-a-service/setup/deploy-your-app" >}})</br>
 [Deploy Using GitHub Action]({{< ref "cd-as-a-service/setup/gh-action" >}})</br>
-[Install an Agent]({{<  ref "cd-as-a-service/tasks/networking/install-agent.md" >}})</br>
+[Install a Remote Network Agent]({{<  ref "cd-as-a-service/tasks/networking/install-agent.md" >}})</br>
 {{% /card %}}
 
 {{% card header="Learn About CD-as-a-Service" %}}
