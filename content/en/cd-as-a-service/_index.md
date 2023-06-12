@@ -12,7 +12,7 @@ Armory CD-as-a-Service delivers intelligent deployment-as-a-service that support
 
 {{< figure src="/images/cdaas/cdaas-arch.png" alt="CD-as-a-Service High-Level Architecture" height="75%" width="75%" >}}
 
-See the [Key Components]({{< ref "cd-as-a-service/concepts/architecture/key-components" >}}) section for details. The [Armory CDaaS product page](https://www.armory.io/products/continuous-deployment-as-a-service/) contains a full list of features and pricing.
+See the [Key Components]({{< ref "cd-as-a-service/concepts/architecture/key-components" >}}) section for details. The [Armory CD-as-a-Service (CDaaS) product page](https://www.armory.io/products/continuous-deployment-as-a-service/) contains a full list of features and pricing.
 
 <!-- I couldn't get linkWithLinkTitle to render correctly inside the cardpane card so had to use hard-coded title and ref shortcode -->
 {{< cardpane >}}
