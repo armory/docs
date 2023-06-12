@@ -5,7 +5,7 @@ description: >
   This guide walks you through how to deploy using a blue/green strategy.
 weight: 40  
 categories: ["Get Started"]
-tags: ["Deployment", "Strategy", "Blue/Green"]
+tags: ["Deployment", "Deploy Strategy", "Blue/Green"]
 ---
 
 ## Blue/Green deployment overview

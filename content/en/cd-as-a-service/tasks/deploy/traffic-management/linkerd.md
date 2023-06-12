@@ -6,7 +6,7 @@ description: >
 aliases:
   - /cd-as-a-service/tasks/deploy/traffic-management/
 categories: ["Guides"]
-tags: ["Deployment", "Traffic Management", "Linkerd", "Config"]
+tags: ["Deployment", "Traffic Management", "Linkerd", "Deploy Config"]
 ---
 
 ## {{% heading "prereq" %}}

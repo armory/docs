@@ -4,7 +4,7 @@ linkTitle: Configure a Webhook
 description: >
   Configure a webhook-based approval into your Armory CD-as-a-Service app deployment process.
 categories: ["Guides"]
-tags: [ "Webhooks", "Setup"]
+tags: [ "Webhooks", "Deploy Config"]
 ---
 
 ## {{% heading "prereq" %}}
@@ -86,7 +86,7 @@ You add a `runWebhooks` section where you want to trigger the webhook.
 {{< prism lang="yaml" line-numbers="true" >}}
 - runWebhook:
     name: <webhook-name>
-    context: 
+    context:
         myCustomKey: myCustomValue
 {{< /prism >}}
 
@@ -187,4 +187,3 @@ strategies:
 * [Webhooks section in the deployment file reference]({{< ref "cd-as-a-service/reference/ref-deployment-file#webhooks." >}})
 * {{< linkWithTitle "cd-as-a-service/tutorials/external-automation/webhook-github.md" >}}
 * {{< linkWithTitle "cd-as-a-service/troubleshooting/webhook.md" >}}
- 
