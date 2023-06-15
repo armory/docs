@@ -93,14 +93,6 @@ resampleFilter = "CatmullRom"
 quality = 75
 anchor = "smart"
 
-# Google Analytics configuration
-[services]
-[services.googleAnalytics]
-# Comment out the next line to disable GA tracking. Also disables the feature described in [params.ui.feedback].
-id = "UA-79996712-5"
-# https://gohugo.io/templates/internal/#configure-google-analytics
-# https://www.docsy.dev/docs/adding-content/feedback/#adding-analytics
-
 # Language configuration
 
 [languages]
@@ -189,13 +181,13 @@ version_menu = "Armory CD v2.28"
 # Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
 # Set this flag to "true" if you want to display the banner.
-archived_version = false
+archived_version = true
 
 # The version number for the version of the docs represented in this doc set.
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
 # Also used in the PCM to highlight what version the PCM is for
-version = "2.28.0"
+version = "2.28.x"
 
 # A link to latest version of the Armory CD docs. Used in the "version-banner" partial to
 # point people to the main Armory CD docs site.
@@ -315,14 +307,9 @@ theme = "forest"
 
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
-[[params.versions]]
-  version = "Armory CD v2.27"
-  githubbranch = "v2.27"
-  url = "https://v2-27.docs.armory.io/docs/"
 
 [[params.versions]]
-  version = "Armory CD v2.26"
-  githubbranch = "v2.26"
-  url = "https://v2-26.docs.armory.io/docs/"
-
+  version = "Latest"
+  githubbranch = "master"
+  url = "https://docs.armory.io/continuous-deployment/"
 

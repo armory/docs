@@ -1,13 +1,2 @@
 User-agent: *
-
-{{range .Pages}}
-Disallow: /plugins/plugin-appname/
-Disallow: /plugins/plugin-external-account/
-Disallow: /plugins/plugin-iam-authentication/
-Disallow: /cd-as-a-service/plugin-spinnaker/
-Disallow: /continuous-deployment/feature-status/deprecations/pacrd-deprecation/
-Disallow: /continuous-deployment/installation/deployment-reg/
-Disallow: /managed-spin/
-Disallow: /contribute/
-Disallow: /continuous-deployment/try/
-{{end}}
+Disallow: /
