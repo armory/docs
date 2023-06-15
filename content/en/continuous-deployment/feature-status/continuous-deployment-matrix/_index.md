@@ -14,9 +14,10 @@ This compatibility matrix details what is supported in the **Armory Continuous D
 
 You can find the compatibility matrix for previous Armory Continuous Deployment releases in the docs version for the release you are using:
 
-* [Armory Continuous Deployment v2.27 compatibility matrix](https://v2-27.docs.armory.io/docs/armory-platform-matrix/)  
+* [Armory Continuous Deployment v2.28 compatibility matrix](https://v2-28.docs.armory.io/continuous-deployment/feature-status/continuous-deployment-matrix/)  
+* [Armory Continuous Deployment v2.27 compatibility matrix](https://v2-27.docs.armory.io/armory-enterprise/feature-status/armory-enterprise-matrix/)  
 * [Armory Continuous Deployment v2.26 compatibility matrix](https://v2-26.docs.armory.io/docs/feature-status/armory-enterprise-matrix/)
-* [Armory Continuous Deployment v2.25 compatibility matrix](https://v2-25.docs.armory.io/docs/armory-enterprise-matrix/)
+
 
 >See {{< linkWithTitle "continuous-deployment/installation/system-requirements" >}} for information about the system requirements you need to install Armory Continuous Deployment.
 
