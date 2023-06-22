@@ -26,8 +26,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "breaking-changes/bc-kubectl-120.md" >}}
 
-{{< include "breaking-changes/bc-dinghy-slack.md" >}}
-
 {{< include "breaking-changes/bc-java-tls-mysql.md" >}}
 
 {{< include "breaking-changes/bc-k8s-version-pre1-16.md" >}}
