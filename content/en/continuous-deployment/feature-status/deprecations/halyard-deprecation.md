@@ -26,7 +26,7 @@ features at a faster pace.
 We understand that this decision may be disruptive to you, so we are giving as much
 advance notice as possible.  For more information about how Armory handles
 feature and technology deprecation, please see
-[Feature Deprecations & End of Support]({{> ref "deprecations" >}}).
+[Feature Deprecations & End of Support]({{< ref "deprecations" >}}).
 
 ## Am I affected?
 
