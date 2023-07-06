@@ -47,7 +47,7 @@ To ensure you have ample time to prepare for these planned changes, we’ll comm
 * **Email Communication** - Armory will send a series of emails leading up to the deprecation to ensure that you have taken or have plans to take complete any required actions to ensure a smooth transition.  Additionally, any deprecations will be noted in the Armory newsletter.
 
 
-* **In-Person Communication** - Armory customers who have an assigned Technical Account Manager and/or an Account Executive will receive a direct communication in addition to general email notifications.
+* **In-Person Communication** - Armory customers who have an assigned Customer Success Manager and/or an Account Executive will receive a direct communication in addition to general email notifications.
 
 #### Who do I contact with any questions or concerns?
 
