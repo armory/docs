@@ -189,7 +189,7 @@ The following table lists the supported image bakeries:
 | -------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AWS      | All supported versions    |                                                                                                                                                               |
 | GCE      | All supported versions    |                                                                                                                                                               |
-| Packer   | All supported versions    | The following lists the included Packer versions: <ul><li> Armory 2.22.x includes Packer 1.4.4</li><li>Armory 2.23.x and later include Packer 1.6.4</li></ul> |
+| Packer   | All supported versions    | The following lists the included Packer versions: <ul><li>Armory 2.23.x through 2.28.x include Packer 1.6.4</li><li>Armory 2.30.x and later include Packer 1.8.1</li></ul> |
 
 ## Baking Kubernetes manifests
 
