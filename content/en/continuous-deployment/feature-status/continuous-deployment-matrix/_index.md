@@ -128,9 +128,9 @@ Use Terraform within your pipelines to create your infrastructure as part of you
 
 | CDSH Version | Terraform Supported Versions                | Notes                                                                         |
 | ------------ | ------------------------------------------- | ----------------------------------------------------------------------------- |
-| 2.26         | 0.11, 0.12, 0.13, 0.14, 0.15, 1.0           |
-| 2.27         | 0.11, 0.12, 0.13, 0.14, 0.15, 1.0, 1.1, 1.2 |
-| 2.28         | 0.12, 0.13, 0.14, 0.15,  1.0, 1.1, 1.2      | Version 0.12 was not available in 2.28 but is supported as of release 2.28.1. |
+| 2.27         | 0.11, 0.12, 0.13, 0.14, 0.15, 1.0, 1.1, 1.2 |                                                                               |
+| 2.28         | 0.12, 0.13, 0.14, 0.15, 1.0, 1.1, 1.2       | Version 0.12 was not available in 2.28 but is supported as of release 2.28.1. |
+| 2.30         | 0.12, 0.13, 0.14, 0.15, 1.0, 1.1, 1.2, 1.3  |                                                                               |
 
 {{% alert title="Note" color="primary" %}}
 Not all patch versions are included for each release. Although other Terraform versions may be usable with Armory Continuous Deployment and the Terraform Integration, only the versions listed here are supported.
