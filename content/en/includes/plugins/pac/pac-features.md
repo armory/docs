@@ -7,6 +7,7 @@
 | Pull Request Validation      | 2.21 or later             |   1.26+ |                                                         |
 | [Slack notifications]({{< ref "plugins/pipelines-as-code/install/configure#slack-notifications" >}})                 | All supported versions    |  1.26+ |                                                            |
 | [Webhook secret validation]({{< ref "plugins/pipelines-as-code/use#webhook-secret-validation" >}})      | All supported versions    |    1.26+ |                                                       |
+| [Permissions validation on commit]({{< ref "plugins/pipelines-as-code/install/configure#permissions-check-for-a-commit" >}})      | 2.30 or later    |    1.30+ |                                                       |
 
 **Templating languages**
 
