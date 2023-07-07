@@ -266,7 +266,7 @@ These are manifest-based providers. Armory Continuous Deployment applies the man
 
 | Provider       | Version       | Armory Continuous Deployment Version | Notes |
 | -------------- | ------------- | ------------------------- | ----- |
-| Kubernetes     | 1.16 or later | All supported versions    |       |
+| Kubernetes     | 1.23 or later | All supported versions    |       |
 | Amazon AWS EKS | All versions  | All supported versions    |       |
 | Google GKE     | All versions  | All supported versions    |       |
 
