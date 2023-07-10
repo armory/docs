@@ -77,7 +77,7 @@ strategies:
             name: <webhookName>
             ...
             context:
-              - <variableName>: <variableValue>
+              <variableName>: <variableValue>
 ```
 
 You need to configure your custom variables for each webhook step that references them.
