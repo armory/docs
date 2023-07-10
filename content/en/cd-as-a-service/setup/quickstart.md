@@ -57,6 +57,15 @@ armory agent create
 
 You name your agent during the installation process. This guide references that name as `<my-agent-identifier>`.
 
+<details><summary>Having connection issues? Expand to see alternate instructions</summary>
+
+1. [Open a ticket](https://github.com/armory/docs//issues/new?title=Armory%20CD-as-a-Service%20Quickstart) so Armory knows what issues you are having.
+1. Use the [CD-as-a-Service Console](https://console.cloud.armory.io/) to generate an install script that you can run locally using kubectl.
+
+   {{< include "cdaas/rna-ui-add-agent.md" >}}
+
+</details>
+
 ## Deploy the sample app
 
 Armory's [`potato-facts` sample app](https://github.com/armory-io/potato-facts-go) is a simple web app. The UI polls the API backend for facts about potatoes and renders them for users.
@@ -208,11 +217,19 @@ CD-as-a-Service also supports a [blue/green]({{< ref "cd-as-a-service/setup/blue
 
 ## Clean up
 
-You can clean kubectl to clean up the resources you created:
+You can clean kubectl to clean up the app resources you created:
 
 ```shell
 kubectl delete ns potato-facts-staging potato-facts-prod
 ```
+
+To remove the Remote Network Agent, run:
+
+```shell
+kubectl delete ns armory-rna
+```
+
+>Don't delete your Remote Network Agent if you plan to use the same cluster to deploy your own app.
 
 ## {{%  heading "nextSteps" %}}
 
