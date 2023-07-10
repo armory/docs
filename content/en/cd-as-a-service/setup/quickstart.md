@@ -32,6 +32,7 @@ aliases:
 ## Sign up for CD-as-a-Service
 
 {{< include "cdaas/register.md" >}}
+<!-- after creating an account, the user sees the Let's Get Started wizard. https://next.console.cloud.armory.io/getting-started -->
 
 ## Install the CD-as-as-Service CLI
 
@@ -47,7 +48,7 @@ Confirm the device code in your browser when prompted. Then return to this guide
 
 ## Connect your cluster
 
-CD-as-a-Service uses an agent to execute deployments in your Kubernetes cluster. The installation process uses credentials from your `~/.kube/config` file to install the CD-as-a-Service agent.
+CD-as-a-Service uses an agent to execute deployments in your Kubernetes cluster. The installation process uses credentials from your `~/.kube/config` file to install the CD-as-a-Service agent into a new `armory-rna` namespace.
 
 Run the following command to install an agent in your Kubernetes cluster:
 
@@ -57,12 +58,15 @@ armory agent create
 
 You name your agent during the installation process. This guide references that name as `<my-agent-identifier>`.
 
-<details><summary>Having connection issues? Expand to see alternate instructions</summary>
+<details><summary>Having connection issues? Expand to see alternate instructions.</summary>
 
-1. [Open a ticket](https://github.com/armory/docs//issues/new?title=Armory%20CD-as-a-Service%20Quickstart) so Armory knows what issues you are having.
-1. Use the [CD-as-a-Service Console](https://console.cloud.armory.io/) to generate an install script that you can run locally using kubectl.
+Use the **CD-as-a-Service Console** to generate kubectl commands that you can run locally.
 
-   {{< include "cdaas/rna-ui-add-agent.md" >}}
+<!-- If the user is already logged in, clicking https://console.cloud.armory.io/configuration/agents goes directly to that page. If the user has an account but is not logged into the web UI,  the user is also redirected to the Agent page (even after all the Auth0 authenticator stuff) -->
+
+{{< include "cdaas/rna-ui-add-agent.md" >}}
+
+You can also [open a ticket](https://github.com/armory/docs//issues/new?title=Armory%20CD-as-a-Service%20Quickstart) so Armory knows what issues you had.
 
 </details>
 
@@ -87,7 +91,7 @@ armory deploy start -f https://go.armory.io/hello-armory-first-deployment --acco
 
 Congratulations, you've just started your first deployment with CD-as-a-Service! 
 
-You can use the link provided by the CLI to observe your deployment's progression in the [CD-as-a-Service Console](https://console.cloud.armory.io/deployments). CD-as-a-Service deploys your resources to `staging`. Once those resources have deployed successfully, CD-as-a-Service deploys to `prod`.
+You can use the link provided by the CLI to observe your deployment's progression in the [CD-as-a-Service Deployments Console](https://console.cloud.armory.io/deployments). CD-as-a-Service deploys your resources to `staging`. Once those resources have deployed successfully, CD-as-a-Service deploys to `prod`.
 
 ### Second deployment
 
