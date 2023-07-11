@@ -40,9 +40,10 @@ Use [simple, human-readable, and logical URL paths for your pages](https://devel
 ### Page titles
 
 Google analyzes the content of the page, catalogs images and video files embedded on the page, and otherwise tries to understand the page.
+
 When listing search results, Google truncates longer page titles but still finds keywords in the entire title when building the index.
-**Create short, meaningful titles that accurately reflect the page content.** Include relevant keywords. Do not sacrifice accuracy (or keyword) for brevity.
-Armory's priority is accurate/descriptive page titles, but do your best to keep them a manageable length.
+
+**Create short, meaningful titles that accurately reflect the page content.** Include relevant keywords. Do not sacrifice accuracy (or keyword) for brevity. Armory's priority is accurate/descriptive page titles, but do your best to keep them a manageable length.
 
 ### Approver SEO checklist
 
@@ -62,7 +63,7 @@ To improve our placement in search rankings, keep these in mind when editing and
     - &quot;Prerequisites for deploying to …&quot; rather than &quot;Prerequisites&quot;  (Yes, it may be repetitive but SEO rankings are voodoo)
 1. Short intro sections directly below header tags (1-2 sentences is enough) that include the keyword target
 1. Link to other relevant content using keyword-focused anchor text
-    -   Anchor text sends ranking signals to Google. When you use keywords in the anchor text, that reinforces the keyword targeting of the linked page. Plus, it can be clearer for users and shows them exactly what the link they're clicking focuses on.
+    - Anchor text sends ranking signals to Google. When you use keywords in the anchor text, that reinforces the keyword targeting of the linked page. Plus, it can be clearer for users and shows them exactly what the link they're clicking focuses on.
     - In general, internal links between content are powerful for SEO. When you link from a high-ranking, high-traffic page to another page, it passes some of that page's power on to other areas of the site.
     - You can use the `linkWithTitle` shortcode to insert the page title as the link text
 1. Page URLs
