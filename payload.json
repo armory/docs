@@ -1,146 +1,161 @@
 {
   "armoryServices": [
     {
-      "commitMessages": [],
-      "currentVersion": "2.30.0-rc7",
-      "name": "Armory Fiat",
-      "previousVersion": "2.30.0-rc6"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.30.0-rc7",
-      "name": "Armory Orca",
-      "previousVersion": "2.30.0-rc6"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.30.0-rc7",
-      "name": "Armory Rosco",
-      "previousVersion": "2.30.0-rc6"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.30.0-rc7",
-      "name": "Armory Gate",
-      "previousVersion": "2.30.0-rc6"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.30.0-rc7",
-      "name": "Armory Front50",
-      "previousVersion": "2.30.0-rc6"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.30.0-rc7",
-      "name": "Armory Igor",
-      "previousVersion": "2.30.0-rc6"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.30.0-rc7",
-      "name": "Armory Echo",
-      "previousVersion": "2.30.0-rc6"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.30.0-rc7",
+      "commitMessages": [
+        "chore(cd): update base service version to kayenta:2023.06.01.03.14.40.release-1.30.x (#445)"
+      ],
+      "currentVersion": "2.30.0-rc8",
       "name": "Armory Kayenta",
-      "previousVersion": "2.30.0-rc6"
+      "previousVersion": "2.30.0-rc7"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.30.0-rc7",
-      "name": "Terraformer™",
-      "previousVersion": "2.30.0-rc6"
+      "currentVersion": "2.30.0-rc8",
+      "name": "Armory Front50",
+      "previousVersion": "2.30.0-rc7"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.30.0-rc8",
+      "name": "Armory Rosco",
+      "previousVersion": "2.30.0-rc7"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.30.0-rc8",
+      "name": "Armory Fiat",
+      "previousVersion": "2.30.0-rc7"
     },
     {
       "commitMessages": [
-        "chore(cd): update base service version to clouddriver:2023.05.30.19.45.40.release-1.30.x (#882)"
+        "fix: Enable bootstrap mechanism disabled and deprecated starting with spring cloud 2020.0.0 (#888) (#889)"
       ],
-      "currentVersion": "2.30.0-rc7",
+      "currentVersion": "2.30.0-rc8",
       "name": "Armory Clouddriver",
-      "previousVersion": "2.30.0-rc6"
+      "previousVersion": "2.30.0-rc7"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.30.0-rc7",
+      "currentVersion": "2.30.0-rc8",
+      "name": "Armory Igor",
+      "previousVersion": "2.30.0-rc7"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.30.0-rc8",
+      "name": "Armory Gate",
+      "previousVersion": "2.30.0-rc7"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base orca version to 2023.06.20.15.55.26.release-1.30.x (#656)",
+        "chore(cd): update base orca version to 2023.06.29.14.44.25.release-1.30.x (#658)"
+      ],
+      "currentVersion": "2.30.0-rc8",
+      "name": "Armory Orca",
+      "previousVersion": "2.30.0-rc7"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.30.0-rc8",
+      "name": "Terraformer™",
+      "previousVersion": "2.30.0-rc7"
+    },
+    {
+      "commitMessages": [
+        "Updating base image since adoptopenjdk/openjdk11 has been migrated (#592) (#594)"
+      ],
+      "currentVersion": "2.30.0-rc8",
+      "name": "Armory Echo",
+      "previousVersion": "2.30.0-rc7"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base deck version to 2023.0.0-20230621174859.release-1.30.x (#1335)",
+        "chore(alpine): Upgrade alpine version (#1302) (#1336)"
+      ],
+      "currentVersion": "2.30.0-rc8",
       "name": "Armory Deck",
-      "previousVersion": "2.30.0-rc6"
+      "previousVersion": "2.30.0-rc7"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.30.0-rc7",
+      "currentVersion": "2.30.0-rc8",
       "name": "Dinghy™",
-      "previousVersion": "2.30.0-rc6"
+      "previousVersion": "2.30.0-rc7"
     }
   ],
-  "armoryVersion": "2.30.0-rc7",
+  "armoryVersion": "2.30.0-rc8",
   "ossServices": [
     {
-      "commitMessages": [],
-      "currentVersion": "1.30.1",
-      "name": "Spinnaker Fiat",
-      "previousVersion": "1.30.1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.30.1",
-      "name": "Spinnaker Orca",
-      "previousVersion": "1.30.1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.30.1",
-      "name": "Spinnaker Rosco",
-      "previousVersion": "1.30.1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.30.1",
-      "name": "Spinnaker Gate",
-      "previousVersion": "1.30.1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.30.1",
-      "name": "Spinnaker Front50",
-      "previousVersion": "1.30.1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.30.1",
-      "name": "Spinnaker Igor",
-      "previousVersion": "1.30.1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.30.1",
-      "name": "Spinnaker Echo",
-      "previousVersion": "1.30.1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.30.1",
+      "commitMessages": [
+        "chore(dependencies): Autobump orcaVersion (#965)"
+      ],
+      "currentVersion": "1.30.2",
       "name": "Spinnaker Kayenta",
-      "previousVersion": "1.30.1"
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.30.2",
+      "name": "Spinnaker Front50",
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.30.2",
+      "name": "Spinnaker Rosco",
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.30.2",
+      "name": "Spinnaker Fiat",
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.30.2",
+      "name": "Spinnaker Clouddriver",
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.30.2",
+      "name": "Spinnaker Igor",
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.30.2",
+      "name": "Spinnaker Gate",
+      "previousVersion": "1.30.0"
     },
     {
       "commitMessages": [
-        "fix(aws): ECS Service Tagging broken (backport #5954) (#5958)"
+        "fix(queue): Manual Judgment propagation (#4474)",
+        "fix(queue): fix ability to cancel a zombied execution (#4473) (#4478)"
       ],
-      "currentVersion": "1.30.1",
-      "name": "Spinnaker Clouddriver",
-      "previousVersion": "1.30.1"
+      "currentVersion": "1.30.2",
+      "name": "Spinnaker Orca",
+      "previousVersion": "1.30.0"
     },
     {
       "commitMessages": [],
-      "currentVersion": "1.30.1",
+      "currentVersion": "1.30.2",
+      "name": "Spinnaker Echo",
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [
+        "feat(deck): make StageFailureMessage component overridable (backport #9994) (#10007)"
+      ],
+      "currentVersion": "1.30.2",
       "name": "Spinnaker Deck",
-      "previousVersion": "1.30.1"
+      "previousVersion": "1.30.0"
     }
   ],
-  "ossVersion": "1.30.1",
+  "ossVersion": "1.30.2",
   "prerelease": true,
   "stack": {
     "artifactSources": {
@@ -154,40 +169,40 @@
     },
     "services": {
       "clouddriver": {
-        "commit": "5dfa9fe9e2285a875f0f39cb29e46a6470f34665",
-        "version": "2.30.0-rc7"
+        "commit": "4512ba1b391b06d49a017b29113010631ddabb14",
+        "version": "2.30.0-rc8"
       },
       "deck": {
-        "commit": "a5ae63596f79df5c3dd4999253a9ed72dece7de3",
-        "version": "2.30.0-rc7"
+        "commit": "7737669d9a68843f448cc4c93ac2a6ea3485f95e",
+        "version": "2.30.0-rc8"
       },
       "dinghy": {
         "commit": "5250de80948732c8caac6ffc5293a8af80a63a0f",
-        "version": "2.30.0-rc7"
+        "version": "2.30.0-rc8"
       },
       "echo": {
-        "commit": "86c586f7c523a4c320189eff00731271b8d31e32",
-        "version": "2.30.0-rc7"
+        "commit": "f7ae187ab1df1e0bc34596e24539c4032749f8d7",
+        "version": "2.30.0-rc8"
       },
       "fiat": {
         "commit": "0150c145b239568c294ab88251dc2fbb20ace279",
-        "version": "2.30.0-rc7"
+        "version": "2.30.0-rc8"
       },
       "front50": {
         "commit": "bdbf36960c30b3599bdf0fa31620dfaf08927074",
-        "version": "2.30.0-rc7"
+        "version": "2.30.0-rc8"
       },
       "gate": {
         "commit": "679225a36b20fe39ecb175813929972c497d1a92",
-        "version": "2.30.0-rc7"
+        "version": "2.30.0-rc8"
       },
       "igor": {
         "commit": "020e01bbeaadf3d5eb745b33180bd1011c4b068f",
-        "version": "2.30.0-rc7"
+        "version": "2.30.0-rc8"
       },
       "kayenta": {
-        "commit": "16aa401c453de95b670524b491cbaa682bcf2817",
-        "version": "2.30.0-rc7"
+        "commit": "81c3f853d5a604b4d03815d95f8ea4b63acb4429",
+        "version": "2.30.0-rc8"
       },
       "monitoring-daemon": {
         "commit": null,
@@ -198,19 +213,19 @@
         "version": "2.26.0"
       },
       "orca": {
-        "commit": "25ccf32473a809846c1c3d4c967bb05ad9622549",
-        "version": "2.30.0-rc7"
+        "commit": "efd892c9c43301bd79c318601dc4eca09c7346d3",
+        "version": "2.30.0-rc8"
       },
       "rosco": {
         "commit": "c72a24d8c560ea7b27fd8ecf45c9c11ca63682f4",
-        "version": "2.30.0-rc7"
+        "version": "2.30.0-rc8"
       },
       "terraformer": {
         "commit": "418546f57129380e383e62b6178ed582e6d64a93",
-        "version": "2.30.0-rc7"
+        "version": "2.30.0-rc8"
       }
     },
-    "timestamp": "2023-05-31 22:11:31",
-    "version": "2.30.0-rc7"
+    "timestamp": "2023-07-11 04:55:03",
+    "version": "2.30.0-rc8"
   }
 }
