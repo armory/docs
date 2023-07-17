@@ -69,7 +69,7 @@ However, when Orca sends the API request to Clouddriver for the rollout strategy
 
 To make the dynamic timeout available, you need to enable the feature flag in Orca and Deck.
 
-On the Orca side, the feature flag overrides the default value rollback timeout - 5 min - with a UI input from the user. You will need to add this block to the **orca.yml** file if you want to enable the dynamic rollback timeout feature.
+On the Orca side, the feature flag overrides the default value rollback timeout - 5 min - with a UI input from the user. You **must** add this block to the **orca.yml** file if you want to enable the dynamic rollback timeout feature.
 
 ```
 {
