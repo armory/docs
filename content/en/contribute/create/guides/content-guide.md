@@ -22,7 +22,7 @@ Armory docs does not repeat content from third party product documentation. For 
 
 ## Where to add content
 
-Markdown files go into `content/en/<section>`. Each section has its own `_index` file that generates a landing page for that section. We’ll slowly move toward using these meaningfully as we break up and rewrite content. The index page can display a simple list of the contents in the section or no list (set with frontmatter variable `no_list: true`.
+Markdown files go into `content/en/<section>`. Each section has its own `_index` file that generates a landing page for that section. The index page can display a simple list of the contents in the section or no list (set with frontmatter variable `no_list: true`).
 
 You can go one directory down and have `content/en/<section>/<subsection>`. This is useful for a series of pages that you want to group together.
 
