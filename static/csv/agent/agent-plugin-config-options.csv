@@ -3,6 +3,7 @@ Setting|Type|Default|Description
 <code>kubesvc.cache.onDemandQuickWaitMs</code>|integer|10000|How long to wait for a recache operation.
 <code>kubesvc.cache.operationWaitMs</code>|integer|30000|How long to wait for a Kubernetes operation like deploy, scale, delete, or others
 <code>kubesvc.cache.eventsCleanupFrequencySeconds</code>|integer|7200 (2h)|How long to keep Kubernetes events cached for.
+<code>kubesvc.cache.namespaceExpiryMinutes</code>|integer|0|Disabled by default, set it to a value greater than 0 to enable. Specifies minutes to keep namespace definitions in memory to reduce calls to the database.
 <code>kubesvc.cache.accountCleanupFrequencySeconds</code>|integer|600 (10m)|How long to keep accounts that are no longer connected to any Agent
 <code>kubesvc.cache.cleanDataWithUnusedAccounts</code>|boolean|true|When cleaning an old account, also clean its associated data
 <code>kubesvc.cache.cacheDefaults</code>|array|<code>ReplicaSet</code><br><code>Service</code><br><code>Ingress</code><br><code>DaemonSet</code><br><code>Deployment</code><br><code>Pod</code><br><code>StatefulSet</code><br><code>Job</code><br><code>CronJob</code><br><code>NetworkPolicy</code><br><code>Namespace</code><br><code>CustomResourceDefinition</code>|Which kubernetes kinds to cache.
