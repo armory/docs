@@ -70,9 +70,7 @@
   from = "/armory-enterprise/*"
   to = "/continuous-deployment/:splat"
 
-[[redirects]]
-  from = "/armory-cdaas/*"
-  to = "/cd-as-a-service/"
+
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
 [[plugins]]
@@ -85,7 +83,6 @@ package = "@netlify/plugin-sitemap"
     './public/plugins/plugin-appname/',
     './public/plugins/plugin-external-account/',
     './public/plugins/plugin-iam-authentication/',
-    './public/cd-as-a-service/plugin-spinnaker/',
     './public/continuous-deployment/feature-status/deprecations/pacrd-deprecation/',
     './public/continuous-deployment/installation/deployment-reg/',
     './public/managed-spin',
