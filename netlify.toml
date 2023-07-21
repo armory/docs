@@ -45,11 +45,6 @@
   to = "/plugins/scale-agent/:splat"
 
 [[redirects]]
-  from = "/cd-as-a-service/plugin-spinnaker/"
-  to = "/plugins/cdaas-spinnaker/"
-  force = true # ensure this always redirects because the "from" page does exist and does a TOC redirect but not for users clicking web search result link
-
-[[redirects]]
   from = "/continuous-deployment/armory-admin/pipelines-as-code-enable/"
   to = "/plugins/pipelines-as-code/install/armory-cd/"
   force = true # ensure this always redirects  because the "from" page does exist and does a TOC redirect but not for users clicking web search result link
@@ -70,6 +65,27 @@
   from = "/armory-enterprise/*"
   to = "/continuous-deployment/:splat"
 
+# cdaas redirects
+# The Netlify redirects engine will process the first matching rule it finds, reading from top to bottom. The redirect engine processes the first matching rule it finds, so more specific rules should be listed before more general ones
+# https://docs.netlify.com/routing/redirects/
+# https://docs.netlify.com/routing/redirects/redirect-options/
+# status = 301 (default); permanent redirect code. Tells the client that the address for this resource has permanently changed, and any indexes using the old address should start using the new one. The URL in the browser address bar will display the new address.
+
+[[redirects]]
+  from = "/cd-as-a-service/*"
+  to = "http://developer.armory.io"
+
+[[redirects]]
+  from = "/cd-as-a-service/reference/ref-deployment-file/"
+  to = "https://developer.armory.io/docs/reference/deployment/config-file/"
+
+
+
+
+# this has to be last since it functions as a catchall for paths not previously defined
+[[redirects]]
+  from = "/cd-as-a-service/*"
+  to = "http://developer.armory.io"
 
 
 # https://github.com/netlify-labs/netlify-plugin-sitemap
