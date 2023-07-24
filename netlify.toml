@@ -156,7 +156,7 @@
 # redirect anything in concepts/deployment
 [[redirects]]
   from = "/cd-as-a-service/concepts/deployment/*"
-  to = "https://developer.armory.io/docs/deployment/"
+  to = "https://developer.armory.io/docs/deployment/overview/"
 
 # redirect anything in concepts/architecture/
 [[redirects]]
