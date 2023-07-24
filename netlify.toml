@@ -72,15 +72,126 @@
 # status = 301 (default); permanent redirect code. Tells the client that the address for this resource has permanently changed, and any indexes using the old address should start using the new one. The URL in the browser address bar will display the new address.
 
 [[redirects]]
-  from = "/cd-as-a-service/*"
-  to = "http://developer.armory.io"
-
-[[redirects]]
   from = "/cd-as-a-service/reference/ref-deployment-file/"
   to = "https://developer.armory.io/docs/reference/deployment/config-file/"
 
+[[redirects]]
+  from = "/cd-as-a-service/reference/ref-queries/"
+  to = "https://developer.armory.io/reference/canary-analysis-query/"
+
+[[redirects]]
+  from = "/cd-as-a-service/reference/ref-queries/"
+  to = "https://developer.armory.io/reference/canary-analysis-query/"
+
+[[redirects]]
+  from = "/cd-as-a-service/setup/quickstart/"
+  to = "https://developer.armory.io/get-started/quickstart/"
+
+[[redirects]]
+  from = "/cd-as-a-service/setup/deploy-your-app/"
+  to = "https://developer.armory.io/get-started/deploy-your-app/"
+
+[[redirects]]
+  from = "/cd-as-a-service/setup/gh-action/"
+  to = "https://developer.armory.io/integrations/ci-systems/gh-action/"
+
+[[redirects]]
+  from = "/cd-as-a-service/setup/blue-green/"
+  to = "https://developer.armory.io/deployment/strategies/blue-green/"
+
+[[redirects]]
+  from = "/cd-as-a-service/setup/canary/"
+  to = "https://developer.armory.io/deployment/strategies/canary/"
+
+[[redirects]]
+  from = "/cd-as-a-service/setup/argo-rollouts/"
+  to = "https://developer.armory.io/deployment/kubernetes/argo-rollouts/"
+
+[[redirects]]
+  from = "/cd-as-a-service/concepts/external-automation/"
+  to = "https://developer.armory.io/webhooks/overview/"
 
 
+[[redirects]]
+  from = "/cd-as-a-service/tasks/cli/"
+  to = "https://developer.armory.io/cli/"
+ 
+[[redirects]]
+  from = "/cd-as-a-service/tasks/deploy/monitor-deployment/"
+  to = "https://developer.armory.io/deployment/monitor-deployment/"
+
+[[redirects]]
+  from = "/cd-as-a-service/tasks/deploy/create-deploy-config/"
+  to = "https://developer.armory.io/deployment/create-deploy-config/"
+
+[[redirects]]
+  from = "/cd-as-a-service/tasks/deploy/add-context-variable/"
+  to = "https://developer.armory.io/deployment/add-context-variable/"
+
+
+[[redirects]]
+  from = "/cd-as-a-service/tasks/deploy/deploy-with-creds/"
+  to = "https://developer.armory.io/deployment/deploy-with-creds/"
+
+[[redirects]]
+  from = "/cd-as-a-service/tasks/deploy/preview-link/"
+  to = "https://developer.armory.io/reference/deployment/config-preview-link/"
+
+[[redirects]]
+  from = "/cd-as-a-service/tasks/deploy/role-based-manual-approval/"
+  to = "https://developer.armory.io/reference/deployment/config-role-based-manual-approval/"
+
+[[redirects]]
+  from = "/cd-as-a-service/tasks/secrets/secrets-create/"
+  to = "https://developer.armory.io/iam/manage-secrets/"
+
+[[redirects]]
+  from = "/cd-as-a-service/tutorials/deploy-sample-app/"
+  to = "https://developer.armory.io/tutorials/deploy-sample-app/"
+
+[[redirects]]
+  from = "/cd-as-a-service/tutorials/external-automation/webhook-github/"
+  to = "https://developer.armory.io/tutorials/tutorial-webhook-github/"
+
+# redirect anything in concepts/deployment
+[[redirects]]
+  from = "/cd-as-a-service/concepts/deployment/*"
+  to = "https://developer.armory.io/docs/deployment/"
+
+# redirect anything in concepts/architecture/
+[[redirects]]
+  from = "/cd-as-a-service/concepts/architecture/*"
+  to = "https://developer.armory.io/architecture/"
+
+# redirect anything in concepts/iam/
+[[redirects]]
+  from = "/cd-as-a-service/concepts/iam/*"
+  to = "https://developer.armory.io/docs/iam/"
+
+# redirect anything in tasks/deploy/traffic-management
+[[redirects]]
+  from = "/cd-as-a-service/tasks/deploy/traffic-management/*"
+  to = "https://developer.armory.io/docs/traffic-management/"
+
+# redirect anything in tasks/networking
+[[redirects]]
+  from = "/cd-as-a-service/tasks/networking/*"
+  to = "https://developer.armory.io/remote-network-agent/overview/"
+
+# redirect anything in tutorials/access-management/
+[[redirects]]
+  from = "/cd-as-a-service/tutorials/access-management/*"
+  to = "https://developer.armory.io/tutorials/tutorial-rbac-users/"
+
+# redirect anything in /release-notes/
+[[redirects]]
+  from = "cd-as-a-service/release-notes/*"
+  to = "https://developer.armory.io/docs/release-notes/"
+
+# redirect anything in /troubleshooting/
+[[redirects]]
+  from = "cd-as-a-service/troubleshooting/*"
+  to = "https://developer.armory.io/docs/troubleshooting/"
 
 # this has to be last since it functions as a catchall for paths not previously defined
 [[redirects]]
