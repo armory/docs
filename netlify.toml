@@ -112,6 +112,10 @@
   to = "https://developer.armory.io/docs/webhooks/overview/"
 
 [[redirects]]
+  from = "/cd-as-a-service/tasks/webhook-approval/"
+  to = "https://developer.armory.io/docs/webhooks/webhook-approval/"
+
+[[redirects]]
   from = "/cd-as-a-service/tasks/cli/"
   to = "https://developer.armory.io/docs/cli/"
  
