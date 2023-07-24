@@ -10,7 +10,15 @@ description: >
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
 
-## 2.28
+## 2.30
+
+### Permissions check for a commit
+
+`userWritePermissionsCheckEnabled`
+
+This new feature, when enabled, verifies if the author of a commit that changed app parameters has sufficient WRITE permission for that app. Users can specify a list of authors whose permissions are not valid. This option’s purpose is to skip permissions checks for bots and tools.
+
+This feature is **disabled by default**. To enable this feature, see [Permissions check for a commit]({{< ref "plugins/pipelines-as-code/install/configure#permissions-check-for-a-commit" >}}).
 
 ## 2.27
 
