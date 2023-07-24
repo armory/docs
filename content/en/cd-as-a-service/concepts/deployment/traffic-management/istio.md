@@ -1,8 +1,10 @@
 ---
-title: Traffic Management Using Istio
+title: Traffic Management With Istio
 linkTitle: Istio
 description: >
-  Learn how CD-as-a-Service implements traffic management using Istio.
+  Learn how CD-as-a-Service implements traffic management with Istio.
+categories: ["Concepts"]
+tags: ["Deployment", "Traffic Management", "Istio"]
 ---
 
 ## {{% heading "prereq" %}}
@@ -18,7 +20,7 @@ In the following example, you define a CD-as-a-Service deployment that uses a Vi
 
 {{< include "cdaas/deploy/istio-example.md" >}}
 
-When you deploy your app, CD-as-a-Service modifies your VirtualService and DestinationRule, setting weights for `stable` and `canary` subsets based on the weights specified in your deployment strategy.  CD-as-a-Service also adds the `armory-pod-template-hash` label to the DestinationRule subsets for routing traffic to the pods of each ReplicaSet. 
+When you deploy your app, CD-as-a-Service modifies your VirtualService and DestinationRule, setting weights for `stable` and `canary` subsets based on the weights specified in your deployment strategy.  CD-as-a-Service also adds the `armory-pod-template-hash` label to the DestinationRule subsets for routing traffic to the pods of each ReplicaSet.
 
 {{< prism lang="yaml" line="13-17, 30-34" line-numbers="true" >}}
 apiVersion: networking.istio.io/v1alpha3
@@ -34,7 +36,7 @@ spec:
         host: reviews.istiodemo.svc.cluster.local
         subset: stable
       weight: 10
-    - destination: 
+    - destination:
         host: reviews.istiodemo.svc.cluster.local
         subset: canary
       weight: 90
@@ -57,7 +59,7 @@ spec:
       armory-pod-template-hash: cd6648
 {{< /prism >}}
 
-At the end of the deployment, CD-as-a-Service removes the lines it added so the resources look the same as before the deployment began. 
+At the end of the deployment, CD-as-a-Service removes the lines it added so the resources look the same as before the deployment began.
 
 ## Additional capabilities
 

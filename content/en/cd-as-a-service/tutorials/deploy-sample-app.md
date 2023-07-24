@@ -5,6 +5,8 @@ description: >
   Learn how to deploy a sample app to your Kubernetes cluster using Armory Continuous Deployment-as-a-Service. Use Helm to install the Remote Network Agent. Deploy the sample app to multiple targets.  
 aliases:
   - /cd-as-a-service/tutorials/deploy-demo-app/
+categories: ["Tutorials"]
+tags: ["Webhooks", "GitHub"]
 ---
 
 ## Objectives

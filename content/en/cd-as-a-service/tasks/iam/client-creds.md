@@ -2,6 +2,8 @@
 title: Create Client Credentials
 description: >
   Create machine-to-machine credentials and assign RBAC roles to them in Armory CD-as-a-Service.
+categories: ["Guides"]
+tags: [ "Access", "Credentials"]
 ---
 
 ## Overview

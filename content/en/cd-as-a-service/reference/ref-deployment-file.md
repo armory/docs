@@ -6,6 +6,8 @@ description: >
 aliases:
   - /cd-as-a-service/reference/deployfile/
   - /cd-as-a-service/reference/deployfile/ref-deployment-file/
+categories: ["Reference"]
+tags: ["Deployment", "Deploy Config"]
 ---
 
 ## Deployment config file reference overview

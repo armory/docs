@@ -3,6 +3,8 @@ title: Troubleshoot Webhooks
 linktitle: Webhooks
 description: >
   Solutions for issues you might encounter while using webhooks with Armory Continuous Deployment-as-a-Service.
+categories: ["Troubleshooting"]
+tags: ["Webhooks"]
 ---
 
 ## GitHub

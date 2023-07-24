@@ -24,7 +24,7 @@ Resources you can consult for more info:
 - [docsy.dev/docs](https://www.docsy.dev/docs/) (This is the theme  will use too)
 - [gohugo.io](https://gohugo.io/)
 
-## How Hugo generates `meta` tags from front matter and page content
+## How Hugo generates `meta` tags
 
 It there is a `description` in the front matter, Hugo generates meta tags using the content of that `description`. For example:
 

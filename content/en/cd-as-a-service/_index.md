@@ -3,45 +3,89 @@ title: Armory Continuous Deployment-as-a-Service
 linkTitle: Armory CD-as-a-Service
 no_list: true
 description: >
-  Use Armory CD-as-a-Service to continuously deliver your apps to your Kubernetes clusters. CD-as-a-Service (CDaaS) integrates with external automation tools so you can create your own CI/CD pipelines.
+  Armory CD-as-a-Service is a single control plane that enables deployment to multiple Kubernetes clusters using CD-as-a-Service's secure, one-way Kubernetes agents. These agents facilitate multi-cluster orchestration and advanced deployment strategies, such as canary and blue/green, for your apps.
 ---
 
 ## Overview of Armory CD-as-a-Service
 
-{{< youtube-enhanced id="r29UCKMXEi4" title="CD-as-a-Service Simplifies Your Deployment Process" widthPercent="75" heightPercent="85" >}}
+Armory CD-as-a-Service delivers intelligent deployment-as-a-service that supports advanced deployment strategies so developers can focus on building great code rather than deploying it. By automating code deployment across all of your Kubernetes environments, Armory CD-as-a-Service removes demands on developers and reduces the risk of service disruptions due to change failures. It does this by seamlessly integrating pre-production verification tasks with advanced production deployment strategies. This mitigates risks by providing deployment flexibility while limiting blast radius, which leads to a better customer experience. Best of all, Armory CD-as-a-Service doesn’t require migrating to a new deployment platform. It easily plugs into any existing SDLC.
 
-Armory CD-as-a-Service delivers intelligent deployment-as-a-service that supports advanced deployment strategies so developers can focus on building
-great code rather than deploying it. By automating code deployment across all of your Kubernetes environments, Armory CD-as-a-Service removes demands on developers and reduces the risk of service disruptions due to change failures. It does this by seamlessly integrating pre-production verification tasks with advanced production deployment strategies. This mitigates risks by providing deployment flexibility while limiting blast radius, which leads to a better customer experience. Best of all, Armory CD-as-a-Service doesn’t require migrating to a new deployment platform. It easily plugs into any existing SDLC.
+{{< figure src="/images/cdaas/cdaas-arch.png" alt="CD-as-a-Service High-Level Architecture" height="75%" width="75%" >}}
 
-{{< include "cdaas/mermaid/how-it-works.md" >}}
+See the [Key Components]({{< ref "cd-as-a-service/concepts/architecture/key-components" >}}) section for details. The [Armory CD-as-a-Service (CDaaS) product page](https://www.armory.io/products/continuous-deployment-as-a-service/) contains a full list of features and pricing.
 
-See the [Architecture]({{< ref "cd-as-a-service/concepts/architecture/_index.md" >}}) section for details.
+<!-- I couldn't get linkWithLinkTitle to render correctly inside the cardpane card so had to use hard-coded title and ref shortcode -->
+{{< cardpane >}}
 
-The [Armory CDaaS](https://www.armory.io/products/continuous-deployment-as-a-service/) product page contains a full list of features and pricing.
+{{% card header="Get Started" %}}
+[Quickstart]({{< ref "cd-as-a-service/setup/quickstart" >}})</br>
+[Deploy Your Own App]({{< ref "cd-as-a-service/setup/deploy-your-app" >}})</br>
+[Deploy Using GitHub Action]({{< ref "cd-as-a-service/setup/gh-action" >}})</br>
+[Install a Remote Network Agent]({{<  ref "cd-as-a-service/tasks/networking/install-agent.md" >}})</br>
+{{% /card %}}
 
-## Start using Armory CD-as-a-Service
+{{% card header="Learn About CD-as-a-Service" %}}
+[Key Components]({{<  ref "cd-as-a-service/concepts/architecture/key-components.md" >}})</br>
+[Orgs, Tenants, and Users]({{<  ref "cd-as-a-service/concepts/architecture/orgs-tenants.md" >}})</br>
+[RBAC]({{<  ref "cd-as-a-service/concepts/iam/rbac.md" >}})</br>
 
-The **Get Started** section contains guides that walk you through the core functionality. 
+{{% /card %}}
 
-* {{< linkWithTitle "cd-as-a-service/setup/quickstart.md" >}} guide shows you how to sign up for an account, connect to your Kubernetes cluster, and deploy an example app.
-* {{< linkWithTitle "cd-as-a-service/setup/deploy-your-app.md" >}} guide to learn how to create a deployment file for your own app and then deploy using the CLI.
-* {{< linkWithTitle "cd-as-a-service/setup/gh-action.md" >}} guide walks you through integrating Armory CD-as-a-Service's GitHub Action into your workflow.
+{{% card header="Set Up Your Organization" %}}
+[Add Tenants]({{<  ref "cd-as-a-service/tasks/tenants/add-tenants.md" >}})</br>
+[Create Roles]({{<  ref "cd-as-a-service/tasks/iam/create-role.md" >}})</br>
+[Invite Users]({{<  ref "cd-as-a-service/tasks/iam/invite-users.md" >}})</br>
+{{% /card %}}
 
-Learn how to configure deployment strategies with these guides:
+{{< /cardpane >}}
 
-* {{< linkWithTitle "cd-as-a-service/setup/blue-green.md" >}}
-* {{< linkWithTitle "cd-as-a-service/setup/canary.md" >}}    
+{{< cardpane >}}
+{{% card header="Strategies" %}}
+[Blue/Green Deployment]({{< ref "cd-as-a-service/setup/blue-green" >}})</br>
+[Canary Analysis]({{< ref "cd-as-a-service/setup/canary" >}})</br>
+[Query Reference Guide]({{< ref "cd-as-a-service/reference/ref-queries.md" >}})</br>
+[Integrate a Metrics Provider]({{< ref "cd-as-a-service/tasks/canary/add-integrations" >}})</br>
+[Construct Retrospective Analysis Queries]({{< ref "cd-as-a-service/tasks/canary/retro-analysis" >}})</br>
+{{% /card %}}
 
-[Install the Armory CD (Spinnaker) plugin]({{< ref "cd-as-a-service/plugin-spinnaker" >}}) if you want to integrate Armory CD-as-a-Service into your pipelines.
 
-## Docs organization
 
-If you're familiar with the Kubernetes docs, you may notice that the CD-as-a-Service docs are organized in a similar fashion:
+{{% card header="Deployment" %}}
+[Create a Deployment Config File]({{< ref "cd-as-a-service/tasks/deploy/create-deploy-config" >}})</br>
+[Deployment Config File Reference]({{< ref "cd-as-a-service/reference/ref-deployment-file.md" >}})</br>
+[Deploy Using Credentials]({{< ref "cd-as-a-service/tasks/deploy/deploy-with-creds.md" >}})</br>
+[Add Context Variables]({{< ref "cd-as-a-service/tasks/deploy/add-context-variable" >}})</br>
+[Create and Use Secrets]({{< ref "cd-as-a-service/tasks/secrets/secrets-create" >}})</br>
+{{% /card %}}
 
-* [Get Started]({{< ref "cd-as-a-service/setup" >}}): This section contains guides to quickly get you started using core CD-as-a-Service functionality.
-* [Concepts]({{< ref "cd-as-a-service/concepts" >}}): These pages explain aspects of CD-as-a-Service. The content is objective, containing architecture, definitions, rules, and guidelines. Rather than containing a sequence of steps, these pages link to related tasks and tutorials.
-* [Guides]({{< ref "cd-as-a-service/tasks" >}}): Pages in the this section show you how to perform discreet tasks (single procedures) by following a short series of steps that produce an intended outcome. Task content expects a minimum level of background knowledge, and each page links to conceptual content that you should be familiar with before you begin the task.
-* [Tutorials]({{< ref "cd-as-a-service/tutorials" >}}): A tutorial is an end-to-end example of how to do accomplish a goal and is comprised of several tasks performed in sequence. For example, a tutorial might show you how to deploy an demo app by cloning a repo, logging in using the CLI, creating a deployment file, and finally deploying the app. Like a task, a tutorial should link to content you should know and items you should complete before starting the tutorial.
-* [Reference]({{< ref "cd-as-a-service/reference" >}}): This section contains both manually maintained and autogenerated reference material such as a breakdown of the deployment file, canary analysis queries, and CLI command options.
-* [Release Notes]({{< ref "cd-as-a-service/release-notes" >}})
+{{% card header="Traffic Management" %}}
+[Traffic Management With Istio]({{<  ref "cd-as-a-service/concepts/deployment/traffic-management/istio.md" >}})</br>
+[Traffic Management With Linkerd]({{<  ref "cd-as-a-service/concepts/deployment/traffic-management/smi-linkerd.md" >}})</br>
+[Configure Istio]({{< ref "cd-as-a-service/tasks/deploy/traffic-management/istio" >}})</br>
+[Configure Linkerd]({{< ref "cd-as-a-service/tasks/deploy/traffic-management/linkerd" >}})</br>
+{{% /card %}}
+
+{{< /cardpane >}}
+
+{{< cardpane >}}
+
+
+{{% card header="Webhooks" %}}
+[Webhook-Based Approvals]({{< ref "cd-as-a-service/concepts/external-automation" >}})</br>
+[Configure a Webhook]({{< ref "cd-as-a-service/tasks/webhook-approval" >}})</br>
+[GitHub Webhook-Based Approval Tutorial]({{<  ref "cd-as-a-service/tutorials/external-automation/webhook-github" >}})</br>
+{{% /card %}}
+
+{{% card header="Tools" %}}
+[CLI]({{< ref "cd-as-a-service/tasks/cli" >}})</br>
+{{% /card %}}
+
+{{% card header="Tutorials" %}}
+
+[Create and Manage RBAC Roles]({{<  ref "cd-as-a-service/tutorials/access-management/rbac-users" >}})</br>
+[Deploy a Sample App]({{<  ref "cd-as-a-service/tutorials/deploy-sample-app" >}})</br>
+
+
+{{% /card %}}
+{{< /cardpane >}}
 

@@ -3,6 +3,8 @@ title: Access Management Concepts
 linkTitle: Access Management
 description: >
   In this section, learn about Access Management in Armory CD-as-a-Service.
+categories: ["Concepts"]
+tags: ["OIDC", "Access"]
 ---
 
 ## Armory CD-as-a-Service Access Management

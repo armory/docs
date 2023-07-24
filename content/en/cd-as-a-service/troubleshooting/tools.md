@@ -3,6 +3,8 @@ title: Troubleshoot CD-as-a-Service Tools
 linkTitle: Tools
 description: >
   Solutions for issues you might encounter while using the Armory Continuous Deployment-as-a-Service AVM, CLI, or GitHub Action.
+categories: ["Troubleshooting"]
+tags: ["Tools"]
 ---
 
 ## Troubleshooting overview

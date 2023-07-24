@@ -2,8 +2,10 @@
 title: Armory CD-as-a-Service Quickstart
 linktitle: Quickstart
 description: >
-  Install the Armory Continuous Deployment-as-a-Service CLI, connect your Kubernetes cluster with a single command, and deploy an sample app using a traffic split. Learn deployment file syntax.
+  Install the Armory Continuous Deployment-as-a-Service CLI, connect your Kubernetes cluster with a single CLI command, and deploy an sample app using a traffic split. Learn deployment file syntax.
 weight: 1
+categories: ["Get Started"]
+tags: ["Deployment", "Quickstart"]
 aliases:
   - /cd-as-a-service/setup/get-started/
   - /cd-as-a-service/setup/cli/
@@ -22,7 +24,7 @@ aliases:
 
 ## {{% heading "prereq" %}}
 
-* You are familiar with CD-as-a-Service's [key components]({{< ref "cd-as-a-service/concepts/architecture/key-components.md" >}}) and [system requirements]({{< ref "cd-as-a-service/concepts/architecture/system-requirements.md" >}}).
+* You are familiar with CD-as-a-Service's [key components]({{< ref "cd-as-a-service/concepts/architecture/key-components.md" >}}).
 * You have access to a Kubernetes cluster. If you need a cluster, consider installing a local [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or [Minikube](https://minikube.sigs.k8s.io/docs/start/) cluster.  Your cluster's API endpoint does not need to be publicly accessible to use CD-as-a-Service. 
 
 >If you do not have a Kubernetes cluster and still wish to tour CD-as-a-Service, you can [sign up ](https://go.armory.io/signup/) and select **Self-Guided Browser Tour**. CD-as-a-Service creates a short-lived Kubernetes cluster for you and then guides you through deploying the sample app.
@@ -30,6 +32,7 @@ aliases:
 ## Sign up for CD-as-a-Service
 
 {{< include "cdaas/register.md" >}}
+<!-- after creating an account, the user sees the Let's Get Started wizard. https://next.console.cloud.armory.io/getting-started -->
 
 ## Install the CD-as-as-Service CLI
 
@@ -45,7 +48,7 @@ Confirm the device code in your browser when prompted. Then return to this guide
 
 ## Connect your cluster
 
-CD-as-a-Service uses an agent to execute deployments in your Kubernetes cluster. The installation process uses credentials from your `~/.kube/config` file to install the CD-as-a-Service agent.
+CD-as-a-Service uses an agent to execute deployments in your Kubernetes cluster. The installation process uses credentials from your `~/.kube/config` file to install the CD-as-a-Service agent into a new `armory-rna` namespace.
 
 Run the following command to install an agent in your Kubernetes cluster:
 
@@ -54,6 +57,18 @@ armory agent create
 ```
 
 You name your agent during the installation process. This guide references that name as `<my-agent-identifier>`.
+
+<details><summary>Having connection issues? Expand to see alternate instructions.</summary>
+
+Use the **CD-as-a-Service Console** to generate kubectl commands that you can run locally.
+
+<!-- If the user is already logged in, clicking https://console.cloud.armory.io/configuration/agents goes directly to that page. If the user has an account but is not logged into the web UI,  the user is also redirected to the Agent page (even after all the Auth0 authenticator stuff) -->
+
+{{< include "cdaas/rna-ui-add-agent.md" >}}
+
+You can also [open a ticket](https://github.com/armory/docs//issues/new?title=Armory%20CD-as-a-Service%20Quickstart) so Armory knows what issues you had.
+
+</details>
 
 ## Deploy the sample app
 
@@ -76,7 +91,7 @@ armory deploy start -f https://go.armory.io/hello-armory-first-deployment --acco
 
 Congratulations, you've just started your first deployment with CD-as-a-Service! 
 
-You can use the link provided by the CLI to observe your deployment's progression in the [CD-as-a-Service Console](https://console.cloud.armory.io/deployments). CD-as-a-Service deploys your resources to `staging`. Once those resources have deployed successfully, CD-as-a-Service deploys to `prod`.
+You can use the link provided by the CLI to observe your deployment's progression in the [CD-as-a-Service Deployments Console](https://console.cloud.armory.io/deployments). CD-as-a-Service deploys your resources to `staging`. Once those resources have deployed successfully, CD-as-a-Service deploys to `prod`.
 
 ### Second deployment
 
@@ -206,11 +221,19 @@ CD-as-a-Service also supports a [blue/green]({{< ref "cd-as-a-service/setup/blue
 
 ## Clean up
 
-You can clean kubectl to clean up the resources you created:
+You can clean kubectl to clean up the app resources you created:
 
 ```shell
 kubectl delete ns potato-facts-staging potato-facts-prod
 ```
+
+To remove the Remote Network Agent, run:
+
+```shell
+kubectl delete ns armory-rna
+```
+
+>Don't delete your Remote Network Agent if you plan to use the same cluster to deploy your own app.
 
 ## {{%  heading "nextSteps" %}}
 
