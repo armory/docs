@@ -159,11 +159,6 @@
   from = "/cd-as-a-service/tutorials/external-automation/webhook-github/"
   to = "https://developer.armory.io/docs/tutorials/tutorial-webhook-github/"
 
-# redirect anything in concepts/deployment/traffic-management
-[[redirects]]
-  from = "/cd-as-a-service/concepts/deployment/traffic-management/*"
-  to = "https://developer.armory.io/docs/traffic-management/overview/"
-
 # redirect anything in concepts/deployment
 [[redirects]]
   from = "/cd-as-a-service/concepts/deployment/*"
