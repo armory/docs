@@ -1,12 +1,11 @@
 ---
-linkTitle: Use the Terraform Integration Stage
-title: Use the Terraform Integration Stage in Armory Continuous Deployment
-aliases:
-  - /docs/spinnaker/terraform-use-integration/
+linkTitle: Use
+title: Use the Terraform Integration Stage in Spinnaker or Armory Continuous Deployment
 description: >
   Learn how to use the Terraform Integration pipeline stage to execute tasks against your Terraform projects.
 ---
 ![Proprietary](/images/proprietary.svg)
+
 ## Overview of Terraform integration
 
 At the core of Terraform Integration is the Terraformer service. This service fetches your Terraform projects from source and executes various Terraform commands against them. When a `terraform` stage starts, Orca submits the task to Terraformer and monitors it until completion. Once a task is submitted, Terraformer fetches your target project, runs `terraform init` to initialize the project, and then runs your desired `action` (`plan` or `apply`). If the task is successful, the stage gets marked successful as well. If the task fails, the stage gets marked as a failure, and the pipeline stops.
@@ -93,11 +92,11 @@ Run the pipeline.
 
 ## Create a Terraform Integration stage
 
-![Terraform Stage in Deck](/images/terraform_stage_ui.png)
+![Terraform Stage in Deck](/images/plugins/terraform/terraform_stage_ui.png)
 
 {{< include "rdbms-utf8-required.md" >}}
 
- {{% alert title="Warning" color=warning %}} 
+ {{% alert title="Warning" color=warning %}}
  > If the Clouddriver MYSQL schema is not configured correctly, the Terraform Integration stage fails.
  {{% /alert %}}
 To create a new Terraform stage, perform the following steps:
@@ -121,7 +120,7 @@ To create a new Terraform stage, perform the following steps:
       * **Workspace**: [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html) to use. The workspace gets created if it does not already exist. For remote backends, the workspace must be explicit or prefixed. For more information about what that means, see the Terraform documentation about [remote backends](https://www.terraform.io/docs/backends/types/remote.html)
     * **Main Terraform Artifact**
       * **Expected Artifact**: Required. Select or define only one `git/repo` type artifact.
-        ![Terraform git repo artifact](/images/terraform-git-repo.png)
+        ![Terraform git repo artifact](/images/plugins/terraform/terraform-git-repo.png)
         * **Account**: The account to use for your artifact.
         * **URL**: If you use a GitHub artifact, make sure you supply the _API_ URL of the file, not the URL from the `Raw` GitHub page. Use the following examples as a reference for the API URL:
 
@@ -200,7 +199,7 @@ Terraform Integration caches all the defined plugins by default and does not red
 
 ## View Terraform log output
 
-![Terraform Integration logs](/images/terraformer-ui-logs.png)
+![Terraform Integration logs](/images/plugins/terraform/terraformer-ui-logs.png)
 
 Terraform provides logs that describe the status of your Terraform action. When you run Terraform actions on your workstation, the log output is streamed to `stdout`. For Armory's Terraform Integration, Spinnaker captures the log output and makes it available on the **Pipelines** page of Deck as part of the **Execution Details**. Exit codes in the log represent the following states:
 
