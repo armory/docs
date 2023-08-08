@@ -1,14 +1,13 @@
 ---
 title: Deploy a Docker Image to Kubernetes
-linkTitle: Deploy a Docker Image to Kubernetes
-aliases:
-  - /spinnaker/kubernetes_deployments/
-  - /docs/spinnaker/kubernetes-deployments/
+linkTitle: Deploy a Docker Image
 description: >
   Learn how to use Spinnaker's Kubernetes V2 provider to deploy your Docker image.
+aliases:
+  - /spinnaker-user-guides/kubernetes-deployments/
 ---
 
-## Kubernetes Deployments
+## Kubernetes deployments
 Spinnaker delegates the deployment of containers to Kubernetes. Kubernetes then proceeds with a rolling update deployment which is effectively a rolling blue/green deployment.
 Pods are created in batches and when a pod is deemed [healthy](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/) it starts receiving traffic.
 

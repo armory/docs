@@ -1,12 +1,10 @@
 ---
-title: Deploy Applications to Kubernetes
-# This is different from user-guides/kubernetes - no redirect
-aliases:
-  - /spinnaker_user_guides/kubernetes-v2/
-  - /spinnaker_user_guides/kubernetes_v2/
-  - /spinnaker-user-guides/kubernetes_v2/
+title: Use Spinnaker to Deploy Apps to Kubernetes
+linkTitle: Deploy Apps
 description: >
   Learn how to use Spinnaker's Kubernetes V2 provider to deploy your applications.
+aliases:
+  - /spinnaker-user-guides/kubernetes-v2/
 ---
 
 ## Overview of Spinnaker's Kubernetes V2 Provider

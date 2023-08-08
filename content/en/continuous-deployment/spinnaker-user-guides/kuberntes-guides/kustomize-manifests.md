@@ -1,8 +1,10 @@
 ---
 title: Use Kustomize for Manifest-Based Kubernetes Deployments in Spinnaker
-linkTitle: Use Kustomize for App Manifests
+linkTitle: Kustomize App Manifests
 description: >
   Learn how to use Kustomize within your Spinnaker pipeline to generate a custom Kubernetes deployment manifest artifact. You can use this artifact in a downstream stage to deploy your application.
+aliases:
+  - /spinnaker-user-guides/kustomize-manifests/
 ---
 
 ## Overview of Kustomize

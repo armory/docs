@@ -1,0 +1,301 @@
+{
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "anonymous",
+  "limitConcurrent": true,
+  "parameterConfig": [
+    {
+      "default": "",
+      "description": "Select deployment",
+      "hasOptions": true,
+      "label": "",
+      "name": "deployment",
+      "options": [
+        {
+          "value": "blue"
+        },
+        {
+          "value": "green"
+        }
+      ],
+      "pinned": false,
+      "required": true
+    }
+  ],
+  "schema": "1",
+  "spelEvaluator": "v4",
+  "stages": [
+    {
+      "account": "spinnaker",
+      "cloudProvider": "kubernetes",
+      "manifests": [
+        {
+          "apiVersion": "v1",
+          "data": {
+            "index.html": "<html>\n<body bgcolor=blue>\n<marquee behavior=alternate>\n<font face=arial size=6 color=white>\n!!! Welcome to Nginx Blue Deployment !!!\n</font>\n</marquee>\n</body>\n</html>\n"
+          },
+          "kind": "ConfigMap",
+          "metadata": {
+            "name": "blue-index-html"
+          }
+        },
+        {
+          "apiVersion": "apps/v1",
+          "kind": "Deployment",
+          "metadata": {
+            "name": "nginx-deployment"
+          },
+          "spec": {
+            "replicas": 2,
+            "selector": {
+              "matchLabels": {
+                "app": "nginx"
+              }
+            },
+            "template": {
+              "metadata": {
+                "labels": {
+                  "app": "nginx",
+                  "version": "blue"
+                }
+              },
+              "spec": {
+                "containers": [
+                  {
+                    "image": "nginx:1.14.2",
+                    "name": "nginx",
+                    "ports": [
+                      {
+                        "containerPort": 80
+                      }
+                    ],
+                    "volumeMounts": [
+                      {
+                        "mountPath": "/usr/share/nginx/html/index.html",
+                        "name": "index-html",
+                        "readOnly": true,
+                        "subPath": "index.html"
+                      }
+                    ]
+                  }
+                ],
+                "volumes": [
+                  {
+                    "configMap": {
+                      "items": [
+                        {
+                          "key": "index.html",
+                          "path": "index.html"
+                        }
+                      ],
+                      "name": "blue-index-html"
+                    },
+                    "name": "index-html"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "moniker": {
+        "app": "nginx"
+      },
+      "name": "Blue Deployment",
+      "refId": "1",
+      "requisiteStageRefIds": [
+        "3"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "text",
+      "trafficManagement": {
+        "enabled": true,
+        "options": {
+          "enableTraffic": true,
+          "namespace": "your-namespace",
+          "services": [
+            "service nginx"
+          ],
+          "strategy": "redblack"
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "completeOtherBranchesThenFail": false,
+      "continuePipeline": false,
+      "failPipeline": true,
+      "name": "Check If Blue",
+      "preconditions": [
+        {
+          "context": {
+            "expression": "${parameters.deployment.equals('blue')}"
+          },
+          "failPipeline": false,
+          "type": "expression"
+        }
+      ],
+      "refId": "3",
+      "requisiteStageRefIds": [
+        "6"
+      ],
+      "restrictExecutionDuringTimeWindow": false,
+      "type": "checkPreconditions"
+    },
+    {
+      "failOnFailedExpressions": false,
+      "name": "Check If Green",
+      "preconditions": [
+        {
+          "context": {
+            "expression": "${parameters.deployment.equals('green')}"
+          },
+          "failPipeline": false,
+          "type": "expression"
+        }
+      ],
+      "refId": "4",
+      "requisiteStageRefIds": [
+        "6"
+      ],
+      "type": "checkPreconditions"
+    },
+    {
+      "account": "spinnaker",
+      "cloudProvider": "kubernetes",
+      "manifests": [
+        {
+          "apiVersion": "v1",
+          "data": {
+            "index.html": "<html>\n<body bgcolor=green>\n<marquee behavior=alternate>\n<font face=arial size=6 color=white>\n!!! Welcome to Nginx Green Deployment !!!\n</font>\n</marquee>\n</body>\n</html>\n"
+          },
+          "kind": "ConfigMap",
+          "metadata": {
+            "name": "green-index-html"
+          }
+        },
+        {
+          "apiVersion": "apps/v1",
+          "kind": "Deployment",
+          "metadata": {
+            "name": "nginx-deployment"
+          },
+          "spec": {
+            "replicas": 2,
+            "selector": {
+              "matchLabels": {
+                "app": "nginx"
+              }
+            },
+            "template": {
+              "metadata": {
+                "labels": {
+                  "app": "nginx",
+                  "version": "green"
+                }
+              },
+              "spec": {
+                "containers": [
+                  {
+                    "image": "nginx:1.14.2",
+                    "name": "nginx",
+                    "ports": [
+                      {
+                        "containerPort": 80
+                      }
+                    ],
+                    "volumeMounts": [
+                      {
+                        "mountPath": "/usr/share/nginx/html/index.html",
+                        "name": "index-html",
+                        "readOnly": true,
+                        "subPath": "index.html"
+                      }
+                    ]
+                  }
+                ],
+                "volumes": [
+                  {
+                    "configMap": {
+                      "items": [
+                        {
+                          "key": "index.html",
+                          "path": "index.html"
+                        }
+                      ],
+                      "name": "green-index-html"
+                    },
+                    "name": "index-html"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "moniker": {
+        "app": "nginx"
+      },
+      "name": "Green Deployment",
+      "refId": "5",
+      "requisiteStageRefIds": [
+        "4"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "text",
+      "trafficManagement": {
+        "enabled": true,
+        "options": {
+          "enableTraffic": true,
+          "namespace": "your-namespace",
+          "services": [
+            "service nginx"
+          ],
+          "strategy": "redblack"
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "account": "spinnaker",
+      "cloudProvider": "kubernetes",
+      "manifests": [
+        {
+          "apiVersion": "v1",
+          "kind": "Service",
+          "metadata": {
+            "name": "nginx"
+          },
+          "spec": {
+            "ports": [
+              {
+                "port": 80,
+                "protocol": "TCP"
+              }
+            ],
+            "selector": {
+              "name": "nginx"
+            },
+            "type": "LoadBalancer"
+          }
+        }
+      ],
+      "moniker": {
+        "app": "nginx"
+      },
+      "name": "Create LoadBalancer",
+      "refId": "6",
+      "requisiteStageRefIds": [],
+      "skipExpressionEvaluation": false,
+      "source": "text",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    }
+  ],
+  "triggers": []
+}
