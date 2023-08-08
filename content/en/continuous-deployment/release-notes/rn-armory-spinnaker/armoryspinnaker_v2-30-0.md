@@ -107,9 +107,9 @@ The default is used if there is no value set in the UI.
 
 ### Dinghy PR Checks
 
-**Update: We will link to docs for this feature.**
+This feature, when enabled, verifies if the author of a commit that changed app parameters has sufficient WRITE permission for that app. You can specify a list of authors whose permissions are not valid. This option’s purpose is to skip permissions checks for bots and tools.
 
-We improved the regular expression engine used by Dinghy when processing `.dinghyignore` files. It now supports the full regex standard, allowing users to define inverse matches such as `^(?!.*(.stage.module)|(dinghyfile)).`
+See [Permissions check for a commit]({{< ref "plugins/pipelines-as-code/install/configure#permissions-check-for-a-commit" >}}) for details.
 
 ### **Terraform template fix**
 
@@ -117,7 +117,7 @@ Armory fixed an issue with SpEL expression failures appearing while using Terraf
 
 ### **Pipelines as Code multi-branch enhancement**
 
-Now you can configure Pipelines as Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches](https://docs.armory.io/plugins/pipelines-as-code/install/configure/#multiple-branches) for how to enable and configure this feature.
+Now you can configure Pipelines as Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{<  ref "plugins/pipelines-as-code/install/configure#multiple-branches" >}}) for how to enable and configure this feature.
 
 ## Highlighted updates
 
