@@ -19,6 +19,9 @@ To install, upgrade, or configure Armory 2.30.0, use Armory Operator 1.70 or lat
 
 Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
 
+## Armory Compatibility Matrix
+Please consult the [Armory Compatibility Matrix](https://docs.armory.io/continuous-deployment/feature-status/continuous-deployment-matrix/) for information about support and compatibility for Armory Continuous Deployment as well as the products and platforms with which it integrates.
+
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
@@ -68,7 +71,7 @@ This is a known bug with the java version
 * *enabledTLSProtocols=TLSv1.2* needs to be added as an argument on newer JVMs.
 
 ## Deprecations
-Reference: https://docs.armory.io/continuous-deployment/feature-status/deprecations/
+Reference [Feature Deprecations and end of support](https://docs.armory.io/continuous-deployment/feature-status/deprecations/)
 
 ## Early access enabled by default
 
