@@ -1,7 +1,7 @@
 ---
 title: v2.30.0 Armory Release (OSS Spinnaker™ v1.30.2)
 toc_hide: true
-version: 02.30.0
+version: 2.30.0
 date: 2023-08-09
 description: >
   Release notes for Armory Continuous Deployment v2.30.0
