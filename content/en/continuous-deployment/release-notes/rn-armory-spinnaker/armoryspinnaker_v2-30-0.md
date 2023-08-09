@@ -37,6 +37,7 @@ Please consult the [Armory Compatibility Matrix](https://docs.armory.io/continuo
 
 {{< include "breaking-changes/bc-kubectl-120.md" >}}
 {{< include "breaking-changes/bc-k8s-v2-provider-aws-iam-auth.md" >}}
+{{< include "breaking-changes/bc-plugin-compatibility-2-28-0.md" >}}
 
 
 ## Known issues
@@ -65,10 +66,6 @@ There is an issue where it appears that SpEL expressions are not being evaluated
 This setting only binds the version when the tag is missing, such as `image: nginx` without a version number.
 
 **Affected versions**: Armory CD 2.27.x and later
-
-###  Dinghy fails to start with SQL enabled
-This is a known bug with the java version
-* *enabledTLSProtocols=TLSv1.2* needs to be added as an argument on newer JVMs.
 
 ## Deprecations
 Reference [Feature Deprecations and end of support](https://docs.armory.io/continuous-deployment/feature-status/deprecations/)
