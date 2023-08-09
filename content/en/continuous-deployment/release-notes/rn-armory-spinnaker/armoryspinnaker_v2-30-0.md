@@ -24,6 +24,7 @@ Please consult the [Armory Compatibility Matrix](https://docs.armory.io/continuo
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
+> Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
 ### Orca requires RDBMS configured for UTF-8 encoding
 **Impact**
@@ -31,9 +32,6 @@ Please consult the [Armory Compatibility Matrix](https://docs.armory.io/continuo
 - 2.28.6 migrates to the AWS MySQL driver from the OSS MySQL drivers.  This change is mostly seamless, but we’ve identified one breaking change.  If your database was created without utf8mb4 you will see failures after this upgrade.  utf8mb4 is the recommended DB format for any Spinnaker database, and we don’t anticipate most users who’ve followed setup instructions to encounter this failure. However, we’re calling out this change as a safeguard.
 
 **Introduced in**: Armory CD 2.28.6
-
-> Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
-
 
 {{< include "breaking-changes/bc-kubectl-120.md" >}}
 {{< include "breaking-changes/bc-k8s-v2-provider-aws-iam-auth.md" >}}
