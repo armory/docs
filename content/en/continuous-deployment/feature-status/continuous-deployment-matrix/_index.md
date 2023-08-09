@@ -14,9 +14,10 @@ This compatibility matrix details what is supported in the **Armory Continuous D
 
 You can find the compatibility matrix for previous Armory Continuous Deployment releases in the docs version for the release you are using:
 
-* [Armory Continuous Deployment v2.27 compatibility matrix](https://v2-27.docs.armory.io/docs/armory-platform-matrix/)  
+* [Armory Continuous Deployment v2.28 compatibility matrix](https://v2-28.docs.armory.io/continuous-deployment/feature-status/continuous-deployment-matrix/)  
+* [Armory Continuous Deployment v2.27 compatibility matrix](https://v2-27.docs.armory.io/armory-enterprise/feature-status/armory-enterprise-matrix/)  
 * [Armory Continuous Deployment v2.26 compatibility matrix](https://v2-26.docs.armory.io/docs/feature-status/armory-enterprise-matrix/)
-* [Armory Continuous Deployment v2.25 compatibility matrix](https://v2-25.docs.armory.io/docs/armory-enterprise-matrix/)
+
 
 >See {{< linkWithTitle "continuous-deployment/installation/system-requirements" >}} for information about the system requirements you need to install Armory Continuous Deployment.
 
@@ -127,9 +128,9 @@ Use Terraform within your pipelines to create your infrastructure as part of you
 
 | CDSH Version | Terraform Supported Versions                | Notes                                                                         |
 | ------------ | ------------------------------------------- | ----------------------------------------------------------------------------- |
-| 2.26         | 0.11, 0.12, 0.13, 0.14, 0.15, 1.0           |
-| 2.27         | 0.11, 0.12, 0.13, 0.14, 0.15, 1.0, 1.1, 1.2 |
-| 2.28         | 0.12, 0.13, 0.14, 0.15,  1.0, 1.1, 1.2      | Version 0.12 was not available in 2.28 but is supported as of release 2.28.1. |
+| 2.27         | 0.11, 0.12, 0.13, 0.14, 0.15, 1.0, 1.1, 1.2 |                                                                               |
+| 2.28         | 0.12, 0.13, 0.14, 0.15, 1.0, 1.1, 1.2       | Version 0.12 was not available in 2.28 but is supported as of release 2.28.1. |
+| 2.30         | 0.12, 0.13, 0.14, 0.15, 1.0, 1.1, 1.2, 1.3  |                                                                               |
 
 {{% alert title="Note" color="primary" %}}
 Not all patch versions are included for each release. Although other Terraform versions may be usable with Armory Continuous Deployment and the Terraform Integration, only the versions listed here are supported.
@@ -188,7 +189,7 @@ The following table lists the supported image bakeries:
 | -------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AWS      | All supported versions    |                                                                                                                                                               |
 | GCE      | All supported versions    |                                                                                                                                                               |
-| Packer   | All supported versions    | The following lists the included Packer versions: <ul><li> Armory 2.22.x includes Packer 1.4.4</li><li>Armory 2.23.x and later include Packer 1.6.4</li></ul> |
+| Packer   | All supported versions    | The following lists the included Packer versions: <ul><li>Armory 2.23.x through 2.28.x include Packer 1.6.4</li><li>Armory 2.30.x and later include Packer 1.8.1</li></ul> |
 
 ## Baking Kubernetes manifests
 
@@ -200,7 +201,8 @@ The following table lists the supported manifest templating engines:
 | --------- | ------------------------- | ------------------------------------ |
 | Helm 2    | All supported versions    |                                      |
 | Helm 3    | 2.19.x or later           |                                      |
-| Kustomize | All supported versions    | Kustomize version installed is 3.8.1 |
+| Kustomize | All supported versions    | Kustomize version installed is 3.8.6 |
+| Kustomize4 | 2.30.x or later          | Kustomize version installed is 4.5.5 |
 
 ## Build systems
 
@@ -240,7 +242,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
     <li>Highlander</li>
     <li>Red/Back aka Blue/Green</li>
     <li>Custom (run a custom pipeline)</li>
-    <li>Rolling Red/Black</li>
+    <li>Rolling Blue/Green</li>
 </ul>
 {{</ caas-ec2-deploy-strategies.inline >}}
 -->
@@ -248,7 +250,7 @@ Here's a [great chart by Google](https://cloud.google.com/docs/compare/aws#servi
 <!--
 {{< caas-gce-deploy-strategies.inline >}}
 <ul>
-    <li>Red/Black aka Blue/Green</li>
+    <li>Blue/Green</li>
     <li>Custom</li>
 </ul>
 {{</ caas-gce-deploy-strategies.inline >}}
@@ -264,7 +266,7 @@ These are manifest-based providers. Armory Continuous Deployment applies the man
 
 | Provider       | Version       | Armory Continuous Deployment Version | Notes |
 | -------------- | ------------- | ------------------------- | ----- |
-| Kubernetes     | 1.16 or later | All supported versions    |       |
+| Kubernetes     | 1.23 or later | All supported versions    |       |
 | Amazon AWS EKS | All versions  | All supported versions    |       |
 | Google GKE     | All versions  | All supported versions    |       |
 
@@ -365,6 +367,7 @@ The following table lists the supported observability providers:
 | ---------- | ---------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | New Relic  | All supported versions | All supported versions    |                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Prometheus | All supported versions | All supported versions    | Use Grafana for dashboards. Armory supports offerings that are proprietary versions of Prometheus, such as Cortex, to the extent that the offering overlaps with open source Prometheus. That is, Armory guarantees functionality that is compatible with open source Prometheus. Compatibility between open source Prometheus and the proprietary version is the responsibility of that vendor, not Armory. |
+| Datadog | All supported versions | All supported versions    |                                                                                                                                                                                                                                                                                                                                                                                                              |
 
 
 ## Pipeline triggers
