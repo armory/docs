@@ -158,6 +158,7 @@ interceptors:
 * Implemented a MySQL data source for storage
 
 ### Azure Baking
+* Visit [Bake Azure Images in an Armory CD or Spinnaker pipeline](https://docs.armory.io/continuous-deployment/spinnaker-user-guides/azure-guides/bake-images/) to learn more about this feature.
 
 ### AWS EC2 improvements, including UI changes
 * Improvements to AWS EC2 instance types API integration: The integration previously used AWS EC2 pricing docs to retrieve EC2 instance types and information. It was replaced with [AWS EC2 describe-instance-types API instead](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html).
