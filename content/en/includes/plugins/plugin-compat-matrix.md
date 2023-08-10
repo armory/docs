@@ -5,3 +5,4 @@
 | {{< linkWithLinkTitle "plugins/pipelines-as-code/_index.md" >}}<br>{{% getPageDesc "/plugins/pipelines-as-code/_index.md" %}}  | 1.26+ | 2.21+ |
 | {{< linkWithLinkTitle "plugins/policy-engine/_index.md" >}}<br>{{% getPageDesc "/plugins/policy-engine/_index.md" %}}  | 1.26+ | 2.26+ |
 | {{< linkWithLinkTitle "plugins/scale-agent/_index.md" >}}<br>{{% getPageDesc "/plugins/scale-agent/_index.md" %}}  | 1.26+ | 2.26+ |
+| {{< linkWithLinkTitle "plugins/terraform/_index.md" >}}<br>{{% getPageDesc "/plugins/terraform/_index.md" %}}  | 1.26+ | 2.26+ |

@@ -1,6 +1,7 @@
 ---
-linkTitle: Enable the Terraform Integration Stage
+linkTitle: Armory CD
 title: Enable the Terraform Integration Stage in Armory Continuous Deployment
+weight: 1
 description: >
   Learn how to configure the Terraform Integration stage so that app developers can provision infrastructure using Terraform as part of their delivery pipelines.
 ---
