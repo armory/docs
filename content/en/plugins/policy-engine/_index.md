@@ -218,10 +218,10 @@ The Spinnaker Operator and Armory Operator add configuration only to extended se
 
 {{% tab header="Spinnaker Operator" %}}
 
-You can install the Policy Engine plugin using the the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml).
+You can install the Policy Engine plugin using the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/armory/features/policy-engine).
 
 <details><summary><strong>Show the manifest</strong></summary>
-{{< github repo="armory/spinnaker-kustomize-patches" file="armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
+{{< github repo="armory/spinnaker-kustomize-patches" file="armory/features/policy-engine/kustomization.yml" lang="yaml" options="" >}}
 </details><br />
 
 **Note: The sample manifest is for the Armory Operator and Armory CD. When using the Spinnaker Operator and Spinnaker, you must replace the `apiVersion` value "spinnaker.armory.io/" with "spinnaker.io/". For example:**
@@ -236,10 +236,10 @@ Apply the manifest using `kubectl`.
 
 {{% tab header="Armory Operator" %}}
 
-You can enable the Policy Engine plugin using the the Armory Operator and the sample manifest, which uses Kustomize and is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml).
+You can enable the Policy Engine plugin using the Armory Operator and the sample manifest, which uses Kustomize and is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/armory/features/policy-engine).
 
 <details><summary><strong>Show the manifest</strong></summary>
-{{< github repo="armory/spinnaker-kustomize-patches" file="armory/patch-policy-engine-plugin.yml" lang="yaml" options="" >}}
+{{< github repo="armory/spinnaker-kustomize-patches" file="armory/features/policy-engine/kustomization.yml" lang="yaml" options="" >}}
 </details><br />
 
 This patch uses [YAML anchors](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_advanced_syntax.html#yaml-anchors-and-aliases-sharing-variable-values) to ensure that plugin versions are set correctly throughout Armory CD's config. In the `gate.spinnaker.extensibility.deck-proxy.plugins.Armory.PolicyEngine.version` entry, make sure to replace the version number listed after `&version` with the version of the plugin you want to use. Refer to the [supported

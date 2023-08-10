@@ -2,7 +2,7 @@
 title: Deploy an Application to Amazon EC2
 linkTitle: Deploy to EC2
 description: >
-  Learn how to create a Spinnaker pipeline that uses a Red/Black (Blue/Green) deployment strategy to deploy a web server.
+  Learn how to create a Spinnaker pipeline that uses a Blue/Green deployment strategy to deploy a web server.
 aliases:
   - /user-guides/deploying/
   - /user_guides/deploying/
@@ -64,7 +64,7 @@ Select the same **VPC Subnet** type as the ELB you just made. Remember to input 
 
 >If you skipped the ELB steps above and do not see the VPCs grouping available, or you need to crate a new VPC group, follow the instructions in the [VPC Subnet Type]({{< ref "aws-subnets-configure" >}}) guide. Tag your VPCs so that they are available for selection in the dropdown.
 
-For this example, we'll use a Red/Black (also known as Blue/Green) **deployment strategy**. Leave 3 **maximum server groups** alive for normal services allows you to manually rollback in case of emergency easily.
+For this example, you use a Blue/Green **deployment strategy**. Leave 3 **maximum server groups** alive for normal services allows you to manually rollback in case of emergency easily.
 
 Scroll down and select the **load balancer** that was just created from the list and select the preconfigured security group.
 
@@ -155,9 +155,11 @@ Sometimes you may encounter an 'Unknown Error' message when executing your deplo
 
 ## Deployment strategies
 
-### Red/Black (also known as Blue/Green)
+### Blue/Green
 
-This strategy will deploy a fresh server group and add it to the load balancer. The older server group will then be [disabled](#what-does-disabled-mean).
+>This strategy was formerly called "Red/Black" in Spinnaker.
+
+This strategy deploys a fresh server group and add it to the load balancer. The older server group will then be [disabled](#what-does-disabled-mean).
 
 ![](/images/user-guides/aws/deploy/Image-2017-03-30-at-5.23.57-PM.png)
 
@@ -165,11 +167,11 @@ When you configure this strategy you can choose to scale down the old server gro
 
 ### Highlander
 
-This strategy will create a new server group and add it to the load balancer. Once everything is healthy, the old server group(s) will be destroyed.
+This strategy creates a new server group and add it to the load balancer. Once everything is healthy, the old server group(s) will be destroyed.
 
 ### None
 
-This strategy will deploy a new server group. It won't do anything about the older server groups. They will just all be in the load balancer together like one big happy family!
+This strategy deploys a new server group. It won't do anything about the older server groups. They will just all be in the load balancer together like one big happy family!
 
 
 ## What does disabled mean?
