@@ -34,7 +34,6 @@ Please consult the [Armory Compatibility Matrix](https://docs.armory.io/continuo
 **Introduced in**: Armory CD 2.28.6
 
 {{< include "breaking-changes/bc-kubectl-120.md" >}}
-{{< include "breaking-changes/bc-k8s-v2-provider-aws-iam-auth.md" >}}
 {{< include "breaking-changes/bc-plugin-compatibility-2-28-0.md" >}}
 
 
