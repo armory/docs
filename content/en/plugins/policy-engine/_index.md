@@ -218,7 +218,7 @@ The Spinnaker Operator and Armory Operator add configuration only to extended se
 
 {{% tab header="Spinnaker Operator" %}}
 
-You can install the Policy Engine plugin using the the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml).
+You can install the Policy Engine plugin using the Spinnaker Operator and the sample manifest, which uses Kustomize and is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/armory/features/policy-engine).
 
 <details><summary><strong>Show the manifest</strong></summary>
 {{< github repo="armory/spinnaker-kustomize-patches" file="armory/features/policy-engine/kustomization.yml" lang="yaml" options="" >}}
@@ -236,7 +236,7 @@ Apply the manifest using `kubectl`.
 
 {{% tab header="Armory Operator" %}}
 
-You can enable the Policy Engine plugin using the the Armory Operator and the sample manifest, which uses Kustomize and is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/blob/master/armory/patch-policy-engine-plugin.yml).
+You can enable the Policy Engine plugin using the Armory Operator and the sample manifest, which uses Kustomize and is in the [spinnaker-kustomize-patches repository](https://github.com/armory/spinnaker-kustomize-patches/tree/master/armory/features/policy-engine).
 
 <details><summary><strong>Show the manifest</strong></summary>
 {{< github repo="armory/spinnaker-kustomize-patches" file="armory/features/policy-engine/kustomization.yml" lang="yaml" options="" >}}
