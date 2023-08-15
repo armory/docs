@@ -3,10 +3,10 @@ title: Install Terraform Integration in Spinnaker (Halyard)
 linkTitle: Spinnaker - Halyard
 weight: 5
 description: >
-  Learn how to install Armory's Terraform Integration Plugin in a Spinnaker instance managed by Halyard.
+  Learn how to install Armory's Terraform Integration Plugin in a Spinnaker instance managed by Halyard. Terraform Integration enables your app developers to provision infrastructure using Terraform as part of their delivery pipelines.
 ---
 
-## Installation overview
+## Overview of installing Terraform Integration
 
 Installing the Terraform Integration plugin consists of these steps:
 
@@ -23,13 +23,32 @@ Installing the Terraform Integration plugin consists of these steps:
 
 ## {{% heading "prereq" %}}
 
+You have read the [Terraform Integration Overview]({{< ref "plugins/terraform/_index.md" >}}).
+
+**Spinnaker requirements**
+
 * You are running open source Spinnaker.
 * You manage your instance using Halyard. If you are using the Spinnaker Operator, see {{< linkWithTitle "plugins/terraform/install/spinnaker-operator.md" >}}
-
 
 {{% alert title="Warning" color="warning" %}}
 The examples in this guide are for a vanilla Spinnaker installation. You may need to adjust them for your environment.
 {{% /alert %}}
+
+{{< include "plugins/terraform/terraform-prereqs.md" >}}
+
+## Configure Spinnaker
+
+### Configure Redis
+
+{{< include "plugins/terraform/config-redis.md" >}}
+
+### Configure your artifact account
+
+{{< include "plugins/terraform/config-artifact-acct.md" >}}
+
+### Configure additional repos
+
+{{< include "plugins/terraform/configure-optional-repos.md" >}}
 
 ## Install the service
 
@@ -96,4 +115,4 @@ Replace `<version>` with the plugin version that's compatible with your Spinnake
 
 ## {{% heading "nextSteps" %}}
 
-* {{< linkWithTitle "plugins/terraform/install/configure.md" >}}
+{{< include "plugins/terraform/whats-next.md" >}}
