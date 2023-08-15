@@ -6,4 +6,4 @@ date: 2023-08-03
 ---
 
 Fixes
-* Compatibility with k8s v1.27.x  (resulted in SIGSEGV)
+* Compatibility with Kubernetes v1.27.x  (resulted in SIGSEGV)
