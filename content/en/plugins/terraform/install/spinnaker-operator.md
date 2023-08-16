@@ -54,7 +54,7 @@ You can find the Terraform Integration service and plugin files in the `spinnake
 * `service.yml`: `spin-terraformer` Service manifest
 * `terraformer-plugin-config.yml`: plugin installation
 * `terraformer.yml`: config file
-* `terraformer-local.yml`: config file
+* `terraformer-local.yml`: config file for [Named Profiles]({{< ref "plugins/terraform/install/configure#named-profiles" >}})
 * `spinnaker.yml`: Spinnaker service mapping 
 * `versions` directory: contains version-specific values that Kustomize inserts into the manifest during generation
 

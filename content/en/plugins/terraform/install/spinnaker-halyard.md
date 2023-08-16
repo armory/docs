@@ -19,7 +19,7 @@ Installing the Terraform Integration plugin consists of these steps:
 
 ### Compatibility
 
-{{< include "plugins/pac/compat-matrix.md" >}}
+{{< include "plugins/terraform/compat-matrix.md" >}}
 
 ## {{% heading "prereq" %}}
 
@@ -54,12 +54,23 @@ The examples in this guide are for a vanilla Spinnaker installation. You may nee
 
 ### Configure Kubernetes permissions
 
+The following manifest creates a ServiceAccount, ClusterRole, and ClusterRoleBinding. Apply the manifest in your `spinnaker` namespace.
+
+{{< include "plugins/terraform/code/k8s-permissions.md" >}}
 
 ### Configure the service
 
+Create a ConfigMap to contain your Terraformer Integration service configuration. Be sure to check the `spinnaker.yml` entry in the `data` section to ensure the values match your Spinnaker installation.
+
+{{< include "plugins/terraform/code/terraform-config-map.md" >}}
 
 ### Deploy the service
 
+Replace `<version>` with the Terraform Integration service version [compatible](#compatibility) with your Spinnaker version. 
+
+{{< include "plugins/terraform/code/deployment.md" >}}
+
+Apply the ConfigMap and Deployment manifests in your `spinnaker` namespace.
 
 ## Install the plugin
 
@@ -72,44 +83,56 @@ The Terraform plugin extends Deck, Gate, and Orca. To avoid every Spinnaker serv
 
 The Pipelines-as-Code plugin extends Deck, Gate, and Orca. You should create or update the extended service's local profile in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
 
-Replace `<version>` with the plugin version that's compatible with your Spinnaker instance.
+Replace `<version>` with the plugin version [that's compatible with your Spinnaker instance].
 
 1. Add the following to `gate-local.yml`:
 
    ```yaml
+   proxies:
+     - id: terraform
+       uri: http://spin-terraformer:7088
+       methods:
+         - GET
+   services:
+     terraformer:
+       enabled: true
+       baseUrl: http://spin-terraformer:7088
    spinnaker:
      extensibility:
        plugins:
-         Armory.PipelinesAsCode:
+         Armory.Terraformer:
            enabled: true
            version: <version>
        repositories:
-         pipelinesAsCode:
+         terraformer:
            enabled: true
            url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
+       deck-proxy:
+         enabled: true
+         plugins:
+           Armory.Terraformer:
+             enabled: true
+             version: <version>
    ```
 
-1. Add the following to `echo-local.yml`:
+1. Add the following to `orca-local.yml`:
 
    ```yaml
-   armorywebhooks:
-     enabled; true
-     forwarding:
-       baseUrl: http://spin-dinghy:8081
-       endpoint: v1/webhooks
+   services:
+     terraformer:
+       enabled: true
+       baseUrl: http://spin-terraformer:7088
    spinnaker:
      extensibility:
        plugins:
-         Armory.PipelinesAsCode:
+         Armory.Terraformer:
            enabled: true
            version: <version>
        repositories:
-         pipelinesAsCode:
+         terraformer:
            enabled: true
            url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
    ```
-
-   `armorywebhooks` config tells the service where to forward events it receives from the repo.
 
 1. Save your files and apply your changes by running `hal deploy apply`.
 

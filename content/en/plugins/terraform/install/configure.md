@@ -6,18 +6,50 @@ description: >
   Learn how to configure optional Terraform Integration features in your Spinnaker or Armory CD instance.
 ---
 
-## Configure Terraform for your cloud provider
+## Where to configure the Terraform Integration service
 
->The Terraform Integration is cloud provider agnostic. Terraform commands execute against the terraform binary. All methods of configuring authentication are supported as per Terraform's compatibility and capabilities.
 
-You can also configure a profile that grants access to resources such as AWS.
+* Spinnaker (Spinnaker Operator): `spinnaker-kustomize-patches/plugins/oss/pipelines-as-code/terraformer.yml`; use `spinnaker-kustomize-patches/plugins/oss/pipelines-as-code/terraformer-local.yml` for [Named Profiles](#named-profiles)-terraformer.yml` or `spinnakerservice.yml`
+* Spinnaker (Halyard): `terraformer.yml` section of your ConfigMap; create a new `terraformer-local.yml` section to configure [Named Profiles](#named-profiles)
+* Armory CD: `spinnaker-kustomize-patches/armory/features/patch-terraformer.yml`
+
+
+## Cloud provider
+
+Terraform Integration is cloud provider agnostic. Terraform commands execute against the terraform binary. All methods of configuring authentication are supported as per Terraform's compatibility and capabilities.
+
+You can also configure a [Named Profile](#named-profiles) that grants access to resources such as AWS.
 
 ## Logging and metrics
 
-> If the logging URL is not responsive, the Terraform Integration may not process deploys until the URL can be reached.
+> If the logging URL is not responsive, Terraform Integration may not process deploys until the URL can be reached.
 
 You can enable logging and metrics for Prometheus by adding the following configuration to the `spec.spinnakerConfig.profiles.terraformer.logging.remote` block in your `SpinnakerService` manifest:
 
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker"  %}}
+Add the following to your `terraformer.yml` config:
+
+```yaml
+logging:
+  remote:
+    enabled: true
+    endpoint: <TheLoggingEndPoint> # For example, https://debug.armory.io
+    version: 1.2.3
+    customerId: someCustomer123 # Your Armory Customer ID
+  metrics:
+    enabled: true
+    frequency: <Seconds> # Replace with an integer value for seconds based on how frequently you want metrics to be scraped
+    prometheus:
+      enabled: true
+      commonTags: # The following tags are examples. Use tags that are relevant for your environment
+        # env: dev
+        # nf_app: exampleApp
+        # nf_region: us-west-1
+```
+
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
 
 ```yaml
 spec:
@@ -40,6 +72,8 @@ spec:
                 # nf_app: exampleApp
                 # nf_region: us-west-1
 ```
+{{% /tab %}}
+{{< /tabpane >}}
 
 
 ## Named Profiles
@@ -48,27 +82,62 @@ When creating pipelines, a Named Profile gives you the ability to reference cert
 
 ### Configure a Named Profile
 
-Configure profiles that you can select when creating a Terraform Integration stage:
+Configure profiles that you can select when creating a Terraform Integration stage.
 
-1. In your `SpinnakerService`, add the profiles to `spec.spinnakerConfig.profiles.terraformer` that you would like to enable. The following example adds a profile named `pixel-git` for an SSH key secured in Vault. You can find additional profile examples at [Types of credentials](#types-of-credentials).
+{{< tabpane text=true right=true >}}
+{{% tab header="Spinnaker (Operator)"  %}}
 
-   ```yaml
-   - name: pixel-git # Unique profile name displayed in Deck
-     variables:
-     - kind: git-ssh
-       options:
-         sshPrivateKey: encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?>
-   ```
+Add profiles to the  `terraformer-local.yml` file. The following example adds a profile named `pixel-git` for an SSH key secured in Vault. You can find additional profile examples at [Types of credentials](#types-of-credentials).
 
-1. Save the file and apply changes:
-
-```bash
-kubectl -n spinnaker apply -f spinnakerservice.yml
+```yaml
+- name: pixel-git # Unique profile name displayed in Deck
+  variables:
+  - kind: git-ssh
+    options:
+      sshPrivateKey: encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?>
 ```
+
+{{% /tab %}}
+{{% tab header="Spinnaker (Halyard)"  %}}
+
+Add profiles to the  `terraformer-local.yml` section of your ConfigMap. The following example adds a profile named `pixel-git` for an SSH key secured in Vault. You can find additional profile examples at [Types of credentials](#types-of-credentials).
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spin-terraformer-config
+  namespace: spinnaker
+data:
+  terraformer-local.yml |
+    profiles:
+      - name: pixel-git # Unique profile name displayed in Deck
+        variables:
+        - kind: git-ssh
+          options:
+            sshPrivateKey: encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?>
+```
+
+{{% /tab %}}
+{{% tab header="Armory CD"  %}}
+
+Add profiles to the  `spec.spinnakerConfig.profiles.terraformer.profiles` section. The following example adds a profile named `pixel-git` for an SSH key secured in Vault. You can find additional profile examples at [Types of credentials](#types-of-credentials).
+
+```yaml
+- name: pixel-git # Unique profile name displayed in Deck
+  variables:
+  - kind: git-ssh
+    options:
+      sshPrivateKey: encrypted:vault!e:<secret engine>!p:<path to secret>!k:<key>!b:<is base64 encoded?>
+```
+
+{{% /tab %}}
+{{< /tabpane >}}
+
 
 Keep in mind:
 
-1. When you create or edit a Terraform Integration stage in Deck, you can select the profile `pixel-git` from a dropdown.
+1. When you create or edit a Terraform Integration stage in the UI, you can select the profile `pixel-git` from a dropdown.
 1. When adding profiles:
 
    * You can add multiple profiles under the `profiles` section.
@@ -84,27 +153,23 @@ Keep in mind:
 
 ### Add authz to Named Profiles
 
-Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the roles you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in Deck. Also, any stage that uses a Named Profile that a user is not authorized for fails.
+Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the roles you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in the UI. Also, any stage that uses a Named Profile that a user is not authorized for fails.
 
-{{% alert color=note title="Note" %}}Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/).{{% /alert %}}
+{{% alert color=note title="Note" %}}
+Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/).
+{{% /alert %}}
 
 This example does the following:
 
 * Grants access to the resources and accounts that you need, such as permissions to deploy to AWS via FIAT in Cloud
 * Enables FIAT authz to work with Terraformer
 
-In your `SpinnakerService` manifest:
-
 ```yaml
-apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
-kind: SpinnakerService
-metadata:
-  name: spinnaker
 spec:
   spinnakerConfig:
     profiles:
-      profiles:
-        terraformer:
+      terraformer:
+        profiles:
           fiat:
             enabled: true
             baseUrl: https://spin-fiat:7003     # ${services.fiat.baseUrl}
@@ -119,9 +184,7 @@ The Terraform integration supports multiple types of credentials for Named Profi
 * Static
 * Terraform remote backend
 
-If you’re not using AWS, you should configure one of the other credential types in your Named Profile. If you don't see a credential that suits your use case, [submit a feature request](https://feedback.armory.io/feature-requests).
-
-For information about how to configure a Profile, see [Configuring a profile](#configuring-a-named-profile).
+If you’re not using AWS, you should configure one of the other credential types in your Named Profile. 
 
 **AWS**
 
@@ -201,7 +264,7 @@ When using remote backends, keep the following in mind:
 
 #### Enable remote backend support
 
-End users can use remote backends by configuring the Terraform Integration stage with the following parameters:
+You can use remote backends by configuring the Terraform Integration stage with the following parameters:
 
 * A Terraform version that is 0.12.0 or later and matches the version that your Terraform Cloud/Enterprise runs.
 * Reference a remote backend in your Terraform code.
@@ -214,11 +277,9 @@ terraform:
 ```
 
 
-
 ## Retries
 
 The Terraformer service can retry connections if it fails to fetch artifacts from Clouddriver. Configure the retry behavior in your `terraformer-local.yml` file by adding the following snippet:
-
 
 ```yaml
 # terraformer-local.yml
