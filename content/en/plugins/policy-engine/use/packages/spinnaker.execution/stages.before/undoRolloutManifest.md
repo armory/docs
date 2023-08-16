@@ -211,7 +211,7 @@ See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifes
 
 Requires a reason to be provided for any rollback.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.http.authz
 default message=""
 allow = message==""
@@ -225,7 +225,7 @@ createsTaskOfType(tasktype){
     input.path=["tasks"]
     input.body.job[_].type=tasktype
 }
-{{< /prism >}}
+```
 
 ## Keys
 

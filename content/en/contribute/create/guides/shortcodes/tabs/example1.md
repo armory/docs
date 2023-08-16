@@ -9,12 +9,12 @@ This is an **example** content file inside the leaf bundle.
 
 Code rendered using Prism:
 
-{{< prism lang="java" line-numbers="true">}}
+{{< highlight java "linenos=table" >}}
 class HelloWorld {
   static public void main( String args[] ) {
     System.out.println( "Hello World!" );
   }
 }
-{{< /prism >}}
+{{< /highlight >}}
 
 --- end of file 1 content --

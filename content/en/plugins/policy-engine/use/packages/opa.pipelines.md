@@ -195,7 +195,7 @@ weight: 10
 
 Requires a manual approval by the `qa` role, and a manual approval by the `infosec` role happen earlier in a pipeline than any deployment to a production account. Production accounts must have been loaded into the OPA data document in an array named `production_accounts`:
 
-  {{< prism lang="rego" line-numbers="true" >}}
+  ```rego
   package opa.pipelines
 
   deny["production deploy stage must follow approval by 'qa' and 'infosec'"] {
@@ -222,13 +222,13 @@ Requires a manual approval by the `qa` role, and a manual approval by the `infos
   lacksEarlierApprovalBy(role,idx) {
       not hasEarlierApprovalBy(role,idx) 
   }
-  {{< /prism >}}
+  ```
 
 ## Allow list for target namespaces
 
 Only allows applications to deploy to namespaces that are on an allow list.
 
-  {{< prism lang="rego" line-numbers="true" >}}
+  ```rego
   package opa.pipelines
 
   allowedNamespaces:=[{"app":"app1","ns": ["ns1","ns2"]},
@@ -245,13 +245,13 @@ Only allows applications to deploy to namespaces that are on an allow list.
       allowedNamespaces[i].app==application
       allowedNamespaces[i].ns[_]==namespace
   }
-  {{< /prism >}}
+  ```
 
 ## Deployment window
 
 The policy prevents a user from saving a pipeline that deploys to production accounts unless the first stage of the pipeline specifies a schedule that prevents it from starting executions between 2pm and 7pm Pacific Standard Time (PST). 
 
-  {{< prism lang="rego" line-numbers="true" >}}
+  ```rego
   package opa.pipelines
   
   productionAccounts:=["spinnaker"]
@@ -291,7 +291,7 @@ The policy prevents a user from saving a pipeline that deploys to production acc
       {
         count(window.whitelist)==0
       }
-  {{< /prism >}}
+  ```
 
 
 ## Keys

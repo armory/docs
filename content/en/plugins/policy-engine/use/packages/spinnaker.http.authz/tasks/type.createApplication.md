@@ -58,7 +58,7 @@ description: "A policy call is made for this type anytime a user attmpts to crea
 
 - This policy disables the ability to create new applications for non-admin users unless their role is 'applicationCreators'.
 
-  {{< prism lang="rego" line-numbers="true" >}}
+  ```rego
   package spinnaker.http.authz
   default message=""
   allow = message==""
@@ -75,12 +75,12 @@ description: "A policy call is made for this type anytime a user attmpts to crea
       input.path=["tasks"]
       input.body.job[_].type=tasktype
   }
-  {{< /prism >}}
+  ```
 
 - This policy disables the ability to create new applications, or update existing applications unless the applications have specified at least 1 role with 'write' permissions.
   **Note:** The spinnaker UI is not currently able to display an error message when this policy denies the action.
 
-  {{< prism lang="rego" line-numbers="true" >}}
+  ```rego
   package spinnaker.http.authz
 
   allow = message==""
@@ -100,7 +100,7 @@ description: "A policy call is made for this type anytime a user attmpts to crea
       input.path=["tasks"]
       input.body.job[_].type=tasktype
   }
-  {{< /prism >}}
+  ```
 
 ## Keys
 

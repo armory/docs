@@ -338,7 +338,8 @@ description: "Used by policies to affect the ‘Cleanup Artifacts’ task."
 
 ## Example Policy
 Prevents cleanupArtifacts tasks from running on any account in a predefined list.
-{{< prism lang="rego" line-numbers="true" >}}
+
+```rego
 package spinnaker.deployment.tasks.before.cleanupArtifacts
 
 productionAccounts :=["prod1","prod2"]
@@ -346,8 +347,8 @@ productionAccounts :=["prod1","prod2"]
 deny["Artifactss may not be cleaned up from production accounts"] { 
 	input.deploy.account==productionAccounts[_]
 }
+```
 
-{{< /prism >}}
 
 ## Keys
 

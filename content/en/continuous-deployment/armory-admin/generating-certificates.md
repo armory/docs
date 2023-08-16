@@ -95,7 +95,7 @@ The following script generates these files in the `services` directory:
 - a `tls-passwords` file containing all the passwords. You can store as-is in a bucket.
 
 
-{{< prism lang="shell" line-numbers="true" >}}
+{{< highlight bash "linenos=table" >}}
 #!/bin/bash -e
 
 # You can change it to a different method
@@ -172,12 +172,12 @@ EOF
 
   echo "${svc}: ${password}" >> services/tls-passwords
 done
-{{< /prism >}}
+{{< /highlight >}}
 
 ## Troubleshooting
 
 You may encounter the following error if the version of Java you are using to generate the certificates is not the same version that Armory Continuous Deployment is using:
 
-{{< prism lang="shell" >}}
+```bash
 java.io.IOException: Integrity check failed: java.security.NoSuchAlgorithmException: Algorithm HmacPBESHA256 not available
-{{< /prism >}}
+```

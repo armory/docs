@@ -436,7 +436,7 @@ weight: 10
 
 - This example checks the manifest being applied and ensures that it contains a set of required annotations.
 
-  {{< prism lang="rego" line-numbers="true" >}}
+  ```rego
   package spinnaker.execution.stages.before.patchManifest
 
   required_annotations:=["app","owner"]
@@ -446,17 +446,17 @@ weight: 10
       # Use object.get to check if data exists
       object.get(annotations,required_annotations[_],null)==null
   }
-  {{< /prism >}}
+  ```
 
 - This example prevents patchManifest stages from running unless they require recording the patch annotation.
 
-  {{< prism lang="rego" line-numbers="true" >}}
+  ```rego
   package spinnaker.execution.stages.before.patchManifest
 
   deny["Patching manifests is not allowed by policy unless recording the patch annotation is enabled."] {
       input.stage.context.options.record!=true
   }
-  {{< /prism >}}
+  ```
 
 ## Keys
 

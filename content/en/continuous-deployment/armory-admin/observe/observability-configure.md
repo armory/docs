@@ -31,7 +31,7 @@ You have two options for installing the Observability plugin:
 
 The following example adds the Observability Plugin configuration for all services to the `spinnaker-local.yml` file and enables Prometheus:
 
-{{< prism lang="yaml" >}}
+```yaml
 # These lines are spring-boot configuration to allow access to the metrics
 # endpoints.  This plugin adds the "aop-prometheus" endpoint on the
 # "<service>:<port>/aop-prometheus" path.
@@ -54,6 +54,6 @@ spinnaker:
     repositories:
       armory-observability-plugin-releases:
         url: https://raw.githubusercontent.com/armory-plugins/armory-observability-plugin-releases/master/repositories.json
-{{< /prism >}}
+```
 
 You can find more options for management endpoints and the plugin in the [plugin's README](https://github.com/armory-plugins/armory-observability-plugin).

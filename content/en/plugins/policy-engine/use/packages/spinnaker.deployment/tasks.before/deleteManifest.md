@@ -46,13 +46,13 @@ If your policy is for controlling manual deletion triggers from within the Armor
 ## Example Policy
 This example policy prevents deleteManifest tasks from running unless they provide a grace period of 30 seconds or more.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```
 package spinnaker.deployment.tasks.before.deleteManifest
 
 deny["A minimum 30 second grace period must be given when deleting a kubernetes manifest"] { 
   input.deploy.options.gracePeriodSeconds<30
 }
-{{< /prism >}}
+```
 
 ## Keys
 

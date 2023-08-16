@@ -21,7 +21,7 @@ description: >
 
 If you are using a prior version of the plugin, you should enable Dynamic Accounts by setting `kubesvc.dynamicAccounts.enabled: true` in your plugin configuration. For example:
 
-{{< prism lang="yaml" line="27-28" >}}
+{{< highlight bash "linenos=table,hl_lines=27-28">}}
 spec:
   spinnakerConfig:
     profiles:
@@ -57,7 +57,7 @@ spec:
              scanBatchSize: <int> # (Optional) # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
              scanFrequencySeconds: <int> # (Optional) # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
              namePatterns: ['^account1.*','^.*account2.*'] # (Optional) # requires Clouddriver Account Management be enabled in Spinnaker/Armory Continuous Deployment
-{{< /prism >}}
+{{< /highlight >}}
 
 `dynamicAccounts`:
 
@@ -69,12 +69,12 @@ The remaining optional attributes in the `dynamicAccounts` section are for confi
 
 If you want to use the [interceptor]({{< ref "plugins/scale-agent/concepts/dynamic-accounts#intercept-clouddriver-account-management-api-requests" >}}) feature to intercept requests sent to Clouddriver's `/credentials` endpoint, add:
 
-{{< prism lang="yaml" line="3-4" >}}
+```yaml
 dynamicAccounts:
    enabled: true
    interceptor:
       enabled: true
-{{< /prism >}}
+```
 
 Alternately, you can enable the [autoscan for new Clouddriver accounts]({{< ref "plugins/scale-agent/concepts/dynamic-accounts#migrate-accounts-using-automatic-scanning" >}}) feature by configuring the following:
 
@@ -84,13 +84,13 @@ Alternately, you can enable the [autoscan for new Clouddriver accounts]({{< ref 
 
 For example:
 
-{{< prism lang="yaml" line="3-5" >}}
+{{< highlight bash "linenos=table,hl_lines=3-5">}}
 dynamicAccounts:
    enabled: true
    scanBatchSize: 15
    scanFrequencySeconds: 120
    namePatterns: ['^account1.*','^.*account2.*']
-{{< /prism >}}
+{{< /highlight >}}
 
 ### Access the API
 
@@ -100,7 +100,7 @@ dynamicAccounts:
 
 The Dynamic Accounts API is enabled by default in the Scale Agent Service:
 
-{{< prism lang="yaml" line=10" line-numbers="true" >}}
+{{< highlight bash "linenos=table,hl_lines=10">}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -111,7 +111,7 @@ data:
   server:
     port: 8082
   dynamicAccountsEnabled: true # (Optional; default: true)
-{{< /prism >}}
+{{< /highlight >}}
 
 You can disable dynamic accounts features by setting `dynamicAccountsEnabled` to `false`.
 

@@ -52,7 +52,7 @@ Note: this package only allows hiding functionality entirely. If you instead wan
 
 Disables the **Configure Application**, **Create Application**, and **Create Project** buttons in the UI for non-admin users unless they have a particular role.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
     package spinnaker.ui.entitlements.isFeatureEnabled
     default message=""
     allow = message==""
@@ -74,7 +74,7 @@ Disables the **Configure Application**, **Create Application**, and **Create Pro
         input.path=["tasks"]
         input.body.job[_].type=tasktype
     }
-{{< /prism >}}
+```
 
 ## Keys
 

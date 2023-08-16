@@ -362,7 +362,7 @@ description: "Policy that is evaluated when a pipeline starts executing, but bef
 
 ## Example Policy
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.execution.pipelines.before
 
 deny["Kubernetes deployments can only be triggered by webhooks, docker, or manually."] { 
@@ -374,7 +374,7 @@ deny["Kubernetes deployments can only be triggered by webhooks, docker, or manua
   trigger.type != "webhook"
   trigger.type != "manual"
 }
-{{< /prism >}}
+```
 
 ## Keys
 
