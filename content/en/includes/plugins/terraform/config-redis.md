@@ -1,4 +1,4 @@
-The Terraform Integration uses Redis to store Terraform logs and plans.
+Terraform Integration uses Redis to store Terraform logs and plans.
 
 >The Terraform Integration feature can only be configured to use a password with the default Redis user.
 
