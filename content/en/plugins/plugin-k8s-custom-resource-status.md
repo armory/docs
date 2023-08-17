@@ -35,7 +35,6 @@ These replica checks are enabled by default and do not require additional config
 
 Put the plugin configuration in the `spec.spinnakerConfig.profiles.clouddriver` section of your Operator `spinnakerservice.yml`:
 
-
 {{< highlight yaml "linenos=table,hl_lines=5-14">}}
 ... (omitted for brevity)
 spec:

@@ -55,7 +55,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 There is a new Terraform Show stage available as part of the Terraform Integration. This stage is the equivalent of running the `terraform show` command with Terraform. The JSON output from your `planfile` can be used in subsequent stages.
 
-To use the stage, select **Terraform** for the stage type and **Show** as the action in the stage configuration UI. Note that the Show stage depends on your Plan stage. For more information, see the [Show Stage section in the Terraform Integration docs]({{< ref "terraform-use-integration#example-terraform-integration-stage" >}}).
+To use the stage, select **Terraform** for the stage type and **Show** as the action in the stage configuration UI. Note that the Show stage depends on your Plan stage. For more information, see the [Show Stage section in the Terraform Integration docs]({{< ref "plugins/terraform/use#example-terraform-integration-stage" >}}).
 
 
 ###  Spinnaker Community Contributions

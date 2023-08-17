@@ -52,7 +52,17 @@
 [[redirects]]
   from = "/continuous-deployment/armory-admin/policy-engine/policy-engine-use/*"
   to = "/plugins/policy-engine/use/:splat"
-  
+
+# terraform plugin redirects
+[[redirects]]
+  from = "/continuous-deployment/armory-admin/terraform-enable-integration/"
+  to = "/plugins/terraform/install/armory-cd/"
+  force = true # ensure this always redirects  because the "from" page does exist and does a TOC redirect but not for users clicking web search result link
+
+[[redirects]]
+  from = "/continuous-deployment/spinnaker-user-guides/terraform-use-integration/"
+  to = "/plugins/terraform/use/"
+
 [[redirects]]
   from = "/continuous-deployment/plugin-guide/*"
   to = "/plugins/:splat"
