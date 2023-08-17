@@ -1,15 +1,15 @@
 ---
-linkTitle: Use the Terraform Integration Stage
-title: Use the Terraform Integration Stage in Armory Continuous Deployment
-aliases:
-  - /docs/spinnaker/terraform-use-integration/
+linkTitle: Use
+title: Use the Terraform Integration Stage in Spinnaker or Armory Continuous Deployment
+weight: 20
 description: >
   Learn how to use the Terraform Integration pipeline stage to execute tasks against your Terraform projects.
 ---
 ![Proprietary](/images/proprietary.svg)
+
 ## Overview of Terraform integration
 
-At the core of Terraform Integration is the Terraformer service. This service fetches your Terraform projects from source and executes various Terraform commands against them. When a `terraform` stage starts, Orca submits the task to Terraformer and monitors it until completion. Once a task is submitted, Terraformer fetches your target project, runs `terraform init` to initialize the project, and then runs your desired `action` (`plan` or `apply`). If the task is successful, the stage gets marked successful as well. If the task fails, the stage gets marked as a failure, and the pipeline stops.
+At the core of Terraform Integration is the Terraformer service, which fetches your Terraform projects from source and executes various Terraform commands against them. When a `terraform` stage starts, Orca submits the task to Terraformer and monitors it until completion. Once a task is submitted, Terraformer fetches your target project, runs `terraform init` to initialize the project, and then runs your desired `action` (`plan` or `apply`). If the task is successful, the stage gets marked successful as well. If the task fails, the stage gets marked as a failure, and the pipeline stops.
 
 A Terraform Integration stage performs the following actions when it runs:
 
@@ -18,19 +18,24 @@ A Terraform Integration stage performs the following actions when it runs:
 1. Optionally uses a Spinnaker artifact provider (Github, BitBucket, or HTTP) to pull in a `tfvars`-formatted variable file.
 1. Runs the Terraform action you select.
 
-## Requirements
+## {{% heading "prereq" %}}
 
-Before you can use the Terraform Integration stage, verify that Armory's Terraform Integration for Spinnaker is enabled. Additionally, you need to store your Terraform code in either a GitHub or BitBucket repo that Armory Continuous Deployment can access. You grant access as part of the enablement process.
-
-For more information, see {{< linkWithTitle "terraform-enable-integration.md">}}.
+* You have read the [Terraform Integration Overview]({{< ref "plugins/terraform/_index.md" >}}).
+* If you are using Armory CD, you have [enabled Terraform Integration]({{< ref "plugins/terraform/install/armory-cd.md" >}}).
+* If you are using Spinnaker, you have installed the Terraform Integration service and plugin ([Spinnaker Operator]({{< ref "plugins/terraform/install/spinnaker-operator.md" >}}), [Halyard]({{< ref "plugins/terraform/install/spinnaker-halyard.md" >}}))
 
 ## Example Terraform Integration stage
 
-The following example describes a basic pipeline that performs the plan and apply Terraform actions. This is a simple example. For a more involved one, watch this [demo](https://youtu.be/_p8v-6_5DTI) of the Terraform Integration.
+The following example describes a basic pipeline that performs the `plan` and `apply` Terraform actions.
 
-The pipeline consists of these parts:
+The pipeline consists of these stages:
 
-**Plan stage**
+1. [Plan stage](#plan-stage)
+1. [Show stage](#show-stage)
+1. [Manual Judgment stage](#manual-judgment-stage)
+1. [Apply stage](#apply-stage)
+
+### Plan stage
 
 A Plan stage in a pipeline performs the same action as running the `terraform plan` command. Although a Plan stage is not strictly required since an Apply stage performs a `terraform plan` if no plan file exists, it's a good idea to have one. You'll understand why during the Manual Judgment stage.
 
@@ -50,7 +55,7 @@ For this stage, configure the following:
 
 The output of this stage, the embedded artifact named `planfile`, can be consumed by subsequent stages in this pipeline. In this example, this occurs during the final stage of the pipeline. Additionally, more complex use cases that involve parent-child pipelines can also use plan files.
 
-**Show stage**
+### Show stage
 
 The Show stage performs the same action as running the `terraform show` command.
 You can then use the JSON output from your `planfile` in subsequent stages.
@@ -72,11 +77,11 @@ You can add an Evaluate Variables stage to get the output from the `planfile` JS
 - **Variable Name**: `planfile_json`
 - **Variable Value**: `${#stage('Show').outputs.status.outputs.show.planfile_json}`
 
-**Manual Judgment stage**
+### Manual Judgment stage
 
 You can use the default values for this stage. Manual judgment stages ask the user to approve or fail a pipeline. Having a Manual Judgment stage between a Plan and Apply stage gives you a chance to confirm that the Terraform code is doing what you expect it to do.
 
-**Apply stage**
+### Apply stage
 
 The Apply stage performs the same action as running the `terraform apply` command. For this stage, configure the following:
 
@@ -93,12 +98,12 @@ Run the pipeline.
 
 ## Create a Terraform Integration stage
 
-![Terraform Stage in Deck](/images/terraform_stage_ui.png)
+![Terraform Stage in Deck](/images/plugins/terraform/terraform_stage_ui.png)
 
 {{< include "rdbms-utf8-required.md" >}}
 
- {{% alert title="Warning" color=warning %}} 
- > If the Clouddriver MYSQL schema is not configured correctly, the Terraform Integration stage fails.
+ {{% alert title="Warning" color=warning %}}
+If the Clouddriver MySQL schema is not configured correctly, the Terraform Integration stage fails.
  {{% /alert %}}
 To create a new Terraform stage, perform the following steps:
 
@@ -121,7 +126,7 @@ To create a new Terraform stage, perform the following steps:
       * **Workspace**: [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html) to use. The workspace gets created if it does not already exist. For remote backends, the workspace must be explicit or prefixed. For more information about what that means, see the Terraform documentation about [remote backends](https://www.terraform.io/docs/backends/types/remote.html)
     * **Main Terraform Artifact**
       * **Expected Artifact**: Required. Select or define only one `git/repo` type artifact.
-        ![Terraform git repo artifact](/images/terraform-git-repo.png)
+        ![Terraform git repo artifact](/images/plugins/terraform/terraform-git-repo.png)
         * **Account**: The account to use for your artifact.
         * **URL**: If you use a GitHub artifact, make sure you supply the _API_ URL of the file, not the URL from the `Raw` GitHub page. Use the following examples as a reference for the API URL:
 
@@ -200,7 +205,7 @@ Terraform Integration caches all the defined plugins by default and does not red
 
 ## View Terraform log output
 
-![Terraform Integration logs](/images/terraformer-ui-logs.png)
+![Terraform Integration logs](/images/plugins/terraform/terraformer-ui-logs.png)
 
 Terraform provides logs that describe the status of your Terraform action. When you run Terraform actions on your workstation, the log output is streamed to `stdout`. For Armory's Terraform Integration, Spinnaker captures the log output and makes it available on the **Pipelines** page of Deck as part of the **Execution Details**. Exit codes in the log represent the following states:
 
