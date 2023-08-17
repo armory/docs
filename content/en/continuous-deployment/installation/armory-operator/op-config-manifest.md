@@ -20,7 +20,6 @@ description: >
 
 The structure of the manifest file is the same whether you are using the Armory Operator or the Spinnaker Operator. The value of certain keys, though, depends on whether you are deploying Armory Continuous Deployment or Spinnaker. The following snippet is the first several lines from a `spinnakerservice.yml` manifest that deploys Armory Continuous Deployment.
 
-
 {{< highlight yaml "linenos=table,hl_lines=1 8" >}}
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}
 kind: SpinnakerService

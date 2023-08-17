@@ -94,8 +94,7 @@ The following script generates these files in the `services` directory:
 - Certificate and key files for each Golang services (`terraformer.crt` and `terraformer.key`, ...)
 - a `tls-passwords` file containing all the passwords. You can store as-is in a bucket.
 
-
-{{< highlight bash "linenos=table" >}}
+```shell
 #!/bin/bash -e
 
 # You can change it to a different method
@@ -172,7 +171,7 @@ EOF
 
   echo "${svc}: ${password}" >> services/tls-passwords
 done
-{{< /highlight >}}
+```
 
 ## Troubleshooting
 

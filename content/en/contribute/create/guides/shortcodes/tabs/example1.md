@@ -7,7 +7,7 @@ This is an **example** content file inside the leaf bundle.
 
 {{< alert >}}Included content files can also contain shortcodes.{{< /alert >}}
 
-Code rendered using Prism:
+Code rendered using Hugo's `highlight` shortcode:
 
 {{< highlight java "linenos=table" >}}
 class HelloWorld {
