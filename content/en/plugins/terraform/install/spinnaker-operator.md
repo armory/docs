@@ -18,7 +18,7 @@ In this guide, you use the Kustomize files in the [`spinnaker-kustomize-patches`
 
 ### Compatibility
 
-{{< include "plugins/pac/compat-matrix.md" >}}
+{{< include "plugins/terraform/compat-matrix.md" >}}
 
 ## {{% heading "prereq" %}}
 

@@ -10,12 +10,9 @@ description: >
 
 Installing the Terraform Integration plugin consists of these steps:
 
-1. Install the service
-
-   1. Configure Kubernetes permissions
-   1. Configure the service
-   1. Deploy the service
-1. Install the plugin
+1. [Configure Spinnaker](#configure-spinnaker): Redis, `gitrepo` artifact, and optional repos
+1. [Install the service](#install-the-service): Kubernetes manifests
+1. [Install the plugin](#install-the-plugin): Local config files
 
 ### Compatibility
 
@@ -76,12 +73,9 @@ Apply the ConfigMap and Deployment manifests in your `spinnaker` namespace.
 
 {{% alert color="warning" title="A note about installing plugins in Spinnaker" %}}
 When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to all services, not just the ones the plugin is for. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. Clouddriver can take an hour or more to restart if you have many accounts configured.
-
-The Terraform plugin extends Deck, Gate, and Orca. To avoid every Spinnaker service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, follow the **Local Config** installation method, in which you configure the plugin in each extended service’s local profile.
-
 {{% /alert %}}
 
-The Pipelines-as-Code plugin extends Deck, Gate, and Orca. You should create or update the extended service's local profile in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
+The Terraform plugin extends Deck, Gate, and Orca. To avoid every Spinnaker service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, follow the local config installation method, in which you configure the plugin in each extended service’s local profile.
 
 Replace `<version>` with the plugin version [that's compatible with your Spinnaker instance].
 

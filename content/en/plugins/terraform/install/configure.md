@@ -9,7 +9,7 @@ description: >
 ## Where to configure the Terraform Integration service
 
 
-* Spinnaker (Spinnaker Operator): `spinnaker-kustomize-patches/plugins/oss/pipelines-as-code/terraformer.yml`; use `spinnaker-kustomize-patches/plugins/oss/pipelines-as-code/terraformer-local.yml` for [Named Profiles](#named-profiles)-terraformer.yml` or `spinnakerservice.yml`
+* Spinnaker (Spinnaker Operator): `spinnaker-kustomize-patches/plugins/oss/pipelines-as-code/terraformer.yml`; use `spinnaker-kustomize-patches/plugins/oss/pipelines-as-code/terraformer-local.yml` for [Named Profiles](#named-profiles)
 * Spinnaker (Halyard): `terraformer.yml` section of your ConfigMap; create a new `terraformer-local.yml` section to configure [Named Profiles](#named-profiles)
 * Armory CD: `spinnaker-kustomize-patches/armory/features/patch-terraformer.yml`
 
@@ -155,7 +155,7 @@ Keep in mind:
 
 Armory recommends that you enable authorization for your Named Profiles to provide more granular control and give App Developers better guardrails. When you configure authz for Named Profiles, you need to explicitly grant permission to the roles you want to have access to the profile. Users who do not have permission to use a certain Named Profile do not see it as an option in the UI. Also, any stage that uses a Named Profile that a user is not authorized for fails.
 
-{{% alert color=note title="Note" %}}
+{{% alert color=warning title="Note" %}}
 Before you start, make sure you enable Fiat. For more information about Fiat, see [Fiat Overview]({{< ref "fiat-permissions-overview" >}}) and [Authorization (RBAC)](https://spinnaker.io/setup/security/authorization/).
 {{% /alert %}}
 

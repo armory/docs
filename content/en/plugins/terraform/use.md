@@ -20,13 +20,13 @@ A Terraform Integration stage performs the following actions when it runs:
 
 ## {{% heading "prereq" %}}
 
-* You have read the [Terraform Integration Overview]({{ ref "plugins/terraform/_index.md" }}).
+* You have read the [Terraform Integration Overview]({{< ref "plugins/terraform/_index.md" >}}).
 * If you are using Armory CD, you have [enabled Terraform Integration]({{< ref "plugins/terraform/install/armory-cd.md" >}}).
 * If you are using Spinnaker, you have installed the Terraform Integration service and plugin ([Spinnaker Operator]({{< ref "plugins/terraform/install/spinnaker-operator.md" >}}), [Halyard]({{< ref "plugins/terraform/install/spinnaker-halyard.md" >}}))
 
 ## Example Terraform Integration stage
 
-The following example describes a basic pipeline that performs the plan and apply Terraform actions.
+The following example describes a basic pipeline that performs the `plan` and `apply` Terraform actions.
 
 The pipeline consists of these stages:
 
@@ -103,7 +103,7 @@ Run the pipeline.
 {{< include "rdbms-utf8-required.md" >}}
 
  {{% alert title="Warning" color=warning %}}
- > If the Clouddriver MYSQL schema is not configured correctly, the Terraform Integration stage fails.
+If the Clouddriver MySQL schema is not configured correctly, the Terraform Integration stage fails.
  {{% /alert %}}
 To create a new Terraform stage, perform the following steps:
 

@@ -18,7 +18,7 @@ Enabling the Terraform Integration stage consists of these steps:
 
 ### Compatibility
 
-{{< include "plugins/pac/compat-matrix.md" >}}
+{{< include "plugins/terraform/compat-matrix.md" >}}
 
 ## {{% heading "prereq" %}}
 
@@ -28,7 +28,7 @@ Enabling the Terraform Integration stage consists of these steps:
 
 Terraform Integration is a built-in feature of Armory CD.
 
-If you are running open source Spinnaker, see the [Pipelines-as-Code landing page]({{< ref "plugins/pipelines-as-code/#installation" >}}) for installation paths based on whether you are using Halyard or the Spinnaker Operator.
+If you are running open source Spinnaker, see the [Terraform Integration Overview]({{< ref "plugins/terraform#installation-paths" >}}) for installation paths based on whether you are using Halyard or the Spinnaker Operator.
 
 {{< include "plugins/terraform/terraform-prereqs.md" >}}
 
@@ -38,9 +38,9 @@ If you are running open source Spinnaker, see the [Pipelines-as-Code landing pag
 
 Terraform Integration uses Redis to store Terraform logs and plans.
 
->The Terraform Integration feature can only be configured to use a password with the default Redis user.
+>You can only configure the Terraform Integration feature to use a password with the default Redis user.
 
-Configure Redis settings in your configuration and then apply.
+Configure Redis settings in your Armory CD configuration and then apply your changes.
 
 {{< tabpane text=true right=true  >}}
 {{% tab header="spinnaker-kustomize-patches"  %}}
