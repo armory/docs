@@ -35,7 +35,7 @@ These replica checks are enabled by default and do not require additional config
 
 Put the plugin configuration in the `spec.spinnakerConfig.profiles.clouddriver` section of your Operator `spinnakerservice.yml`:
 
-{{< prism lang="yaml" line="5-14" >}}
+```yaml
 ... (omitted for brevity)
 spec:
   spinnakerConfig:
@@ -50,7 +50,7 @@ spec:
               repositories:
                 pluginRepository:
                   url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-{{< /prism >}}
+```
 
 * `version`: The plugin version that corresponds to your Armory CD version.
 
