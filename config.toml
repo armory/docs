@@ -51,7 +51,7 @@ pygmentsStyle = "dracula"
     noClasses = true
     noHl = false
     tabWidth = 4
-    guessSyntax = false
+    guessSyntax = true
     # Set guessSyntax to true if you want your chosen highlight style used for code blocks without a specified language
 
 # Docsy is now a Go module; need to map theme dirs to local dirs
