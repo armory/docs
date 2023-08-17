@@ -1,6 +1,6 @@
 | Plugin | Spinnaker | Armory CD |
 |:-------|:--------:|:--------:|
-| {{< linkWithLinkTitle "plugins/cdaas-spinnaker.md" >}}<br>{{% getPageDesc "/plugins/cdaas-spinnaker.md" %}} | 1.24+ | 2.24+<br>(included with Armory CD)|
+| [Armory CD-as-a-Service Plugin](https://developer.armory.io/docs/integrations/plugin-spinnaker)<br>The Armory Continuous Deployment-as-a-Service plugin enables performing canary and blue/green deployments in a single stage from Spinnaker to your Kubernetes deployment target using CD-as-a-Service. | 1.24+ | 2.24+<br>(included with Armory CD)|
 | {{< linkWithLinkTitle "plugins/echo-event-filter.md" >}}<br>{{% getPageDesc "/plugins/echo-event-filter.md" %}} | 1.29+ | 2.30+ |
 | {{< linkWithLinkTitle "plugins/plugin-k8s-custom-resource-status.md" >}}<br>{{% getPageDesc "/plugins/plugin-k8s-custom-resource-status.md" %}}  | 1.27+ | 2.27+ |
 | {{< linkWithLinkTitle "plugins/pipelines-as-code/_index.md" >}}<br>{{% getPageDesc "/plugins/pipelines-as-code/_index.md" %}}  | 1.26+ | 2.21+ |
