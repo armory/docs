@@ -27,16 +27,16 @@ Ensure you have completed the following steps before you install the Armory Scal
 
    To add the Armory chart repo, execute the following command:
 
-   {{< prism lang="bash" >}}
+   ```bash
    helm repo add armory-charts http://armory.jfrog.io/artifactory/charts
-   {{< /prism >}}
+   ```
 
    If you have previously added the chart repo, update it with the following commands:
 
-   {{< prism lang="bash" >}}
+   ```bash
    helm repo update
    helm upgrade armory-agent armory-charts/agent-k8s-full
-   {{< /prism >}}
+   ```
 
 1. You are familiar with the various use cases for deploying Scale Agent services to your Kubernetes clusters.
 
@@ -55,18 +55,18 @@ Create a pipeline with a **Deploy manifest** stage. You should see your target c
 
 The `env` parameters are optional and only need to be used if Armory CD is behind an HTTP(S) proxy. If you need to set more than one of the `env` parameters, you must increment the index value for the parameters. For example: `env[0].name="HTTP_PROXY`, `env[1].name="HTTPS_PROXY"`, and `env[2].name="NO_PROXY"`.
 
-{{< prism lang="bash" line="4-6">}}
+{{< highlight rego "linenos=table,hl_lines=4-6" >}}
 helm install armory-agent armory-charts/agent-k8s-full \
 --create-namespace \
 --namespace=<agent-namespace> \
 --set env[0].name=”HTTP_PROXY”,env[0].value="<hostname>:<port>" \
 ,env[1].name=”HTTPS_PROXY”,env[1].value="<hostname>:<port>" \
 ,env[2].name=”NO_PROXY”,env[2].value="localhost,127.0.0.1,*.spinnaker"
-{{< /prism >}}
+{{< /highlight >}}
 
 Alternatively, you can create a `values.yaml` file to include the parameters:
 
-{{< prism lang="yaml" >}}
+```yaml
 env:
   - name: HTTP_PROXY
     value: <hostname>:<port>
@@ -74,7 +74,7 @@ env:
     value: <hostname>:<port>
   - name: NO_PROXY
     value: localhost,127.0.0.1,*.spinnaker
-{{< /prism >}}
+```
 
 With the file, you can avoid setting individual `env` parameters in the `helm install` command. Instead include the `--values` parameter as part of the Helm install command:
 
@@ -86,25 +86,25 @@ With the file, you can avoid setting individual `env` parameters in the `helm in
 
 If you need to download the Armory Scale Agent image from a different registry, you can specify that repository using the following settings:
 
-{{< prism lang="bash">}}
+```bash
 --set image.repository=<repo-name>,image.imagePullPolicy=IfNotPresent, /
 image.imagePullSecrets=<secret>
-{{< /prism>}}
+```
 
 Alternatively, you can create a `values.yaml` file to include the settings:
 
-{{< prism lang="yaml" >}}
+```yaml
 image:
   repository: <repo-name>
   imagePullPolicy: IfNotPresent
   imagePullSecrets: <secret>
-{{< /prism >}}
+```
 
 Include the `--values` parameter as part of the Helm install command:
 
-{{< prism lang="bash" >}}
+```bash
 --values=<path>/values.yaml
-{{< /prism >}}
+```
 
 ## Custom configuration
 
@@ -119,33 +119,33 @@ You can update configuration options via the command line by using `--set config
 
 You can also override default settings in your own `armory-agent.yml` file. For example, if you want to modify the default logging settings, create an `armory-agent.yml` file with the following content:
 
-{{< prism lang="yaml" >}}
+```yaml
 logging:
   file: "my-log"
   format: "json"
   level: "debug"
-{{< /prism >}}
+```
 
 Note that you do not use "config" in the `armory-agent` file even though you do when setting config using the command line.
 
 Then use the `--set-file` option in the Helm `install` command:
 
-{{< prism lang="bash" line="4">}}
+{{< highlight bash "linenos=table,hl_lines=4" >}}
 helm install armory-agent armory-charts/agent-k8s-full \
 --create-namespace \
 --namespace=<agent-namespace> \
 --set-file agentyml=<path-to>/armory-agent.yml
-{{< /prism >}}
+{{< /highlight >}}
 
 You can pass in an `armory-agent.yml` file and also override values on the command line:
 
-{{< prism lang="bash" line="4-5">}}
+{{< highlight bash "linenos=table,hl_lines=4-5">}}
 helm install armory-agent armory-charts/agent-k8s-full \
 --create-namespace \
 --namespace=<agent-namespace> \
 --set-file agentyml=<path-to>/armory-agent.yml \
 --set config.logging.level=debug
-{{< /prism >}}
+{{< /highlight >}}
 
 ### The difference between `values.yaml` and `armory-agent.yml`
 
@@ -155,13 +155,13 @@ helm install armory-agent armory-charts/agent-k8s-full \
 
 You can use both files. For example:
 
-{{< prism lang="bash" line="4-5">}}
+{{< highlight bash "linenos=table,hl_lines=4-5">}}
 helm install armory-agent armory-charts/agent-k8s-full \
 --create-namespace \
 --namespace=<agent-namespace> \
 --set-file agentyml=<path-to>/armory-agent.yml \
 --values=<path-to>/values.yaml
-{{< /prism >}}
+```
 
 ## Examples
 
@@ -170,23 +170,24 @@ helm install armory-agent armory-charts/agent-k8s-full \
 <details><summary><string>Armory Cloud, custom config</strong></summary>
 
 This example installs the Armory Scale Agent service into the "dev" namespace with a connection to Armory Cloud services and the following custom configuration:
+
 - `debug` logging level
 - Increase the Armory Scale Agent request retry attempts to 5
 - Increase the time (in milliseconds) to wait between retry attempts to 5000
 - Enables Prometheus.
 
-{{< prism lang="bash" >}}
+```bash
 helm install armory-agent armory-charts/agent-k8s-full \
 --create-namespace \
 --namespace=dev \
 --set hub.auth.armory.clientId=clientID123,hub.auth.armory.secret=s3cret \
 ,config.logging.level=debug,config.kubernetes.retries.maxRetries=5 \
 ,config.kubernetes.retries.backOffMs=5000,config.prometheus.enabled=true
-{{< /prism >}}
+```
 
 The same custom configuration in an `armory-agent.yml` file:
 
-{{< prism lang="yaml" >}}
+```yaml
 logging:
   level: "debug"
 kubernetes:
@@ -195,17 +196,17 @@ kubernetes:
     backOffMs: 5000
 prometheus:
   enabled: true
-{{< /prism >}}
+```
 
 Install the Armory Scale Agent with configuration in a file:
 
-{{< prism lang="bash" >}}
+```bash
 helm install armory-agent armory-charts/agent-k8s-full \
 --create-namespace \
 --namespace=dev \
 --set hub.auth.armory.clientId=clientID123,hub.auth.armory.secret=s3cret
 --set-file agentyml=/Users/armory/armory-agent.yml
-{{< /prism >}}
+```
 
 </details>
 
@@ -213,7 +214,7 @@ helm install armory-agent armory-charts/agent-k8s-full \
 
 This example installs the Armory Scale Agent service into the "dev" namespace with a local gPRC endpoint (no Armory Cloud services connection), pulls the image from a private registry, and configures proxy settings.
 
-{{< prism lang="bash" >}}
+```bash
 helm install armory-agent armory-charts/agent-k8s-full \
 --create-namespace \
 --namespace=dev \
@@ -225,11 +226,11 @@ helm install armory-agent armory-charts/agent-k8s-full \
 ,env[1].name=”HTTPS_PROXY”,env[1].value="corp.proxy.com:443" \
 ,env[2].name=”NO_PROXY”,env[2].value="localhost,127.0.0.1,*.spinnaker"
 
-{{< /prism >}}
+```
 
 The same custom configuration in a `values.yaml` file:
 
-{{< prism lang="yaml" >}}
+```yaml
 image:
   repository: private-reg/agent-k8s
   imagePullPolicy: IfNotPresent
@@ -242,17 +243,17 @@ env:
     value: corp.proxy.com:443
   - name: NO_PROXY
     value: localhost,127.0.0.1,*.spinnaker
-{{< /prism >}}
+```
 
 Install the Armory Scale Agent with configuration in a file:
 
-{{< prism lang="bash" >}}
+```bash
 helm install armory-agent armory-charts/agent-k8s-full \
 --create-namespace \
 --namespace=dev \
 --values=/Users/armory/values.yaml
 --set config.clouddriver.grpc=spin-clouddriver-grpc:9091
-{{< /prism >}}
+```
 
 </details>
 
@@ -266,7 +267,7 @@ This example installs the Armory Scale Agent service into the "dev" namespace wi
 
 Agent configuration in an `armory-agent.yml` file:
 
-{{< prism lang="yaml" >}}
+```yaml
 logging:
   level: "debug"
 kubernetes:
@@ -275,11 +276,11 @@ kubernetes:
     backOffMs: 5000
 prometheus:
   enabled: true
-{{< /prism >}}
+```
 
 Additionally, a `values.yaml` file contains custom repository and proxy settings:
 
-{{< prism lang="yaml" >}}
+```yaml
 image:
   repository: private-reg/agent-k8s
   imagePullPolicy: IfNotPresent
@@ -292,19 +293,19 @@ env:
     value: corp.proxy.com:443
   - name: NO_PROXY
     value: localhost,127.0.0.1,*.spinnaker
-{{< /prism >}}
+```
 
 
 Install command:
 
-{{< prism lang="bash" >}}
+```bash
 helm install armory-agent armory-charts/agent-k8s-full \
 --create-namespace \
 --namespace=dev \
 --set hub.auth.armory.clientId=clientID123,hub.auth.armory.secret=s3cret
 --set-file agentyml=/Users/armory/armory-agent.yml
 --vaues=/Users/amory/values.yaml
-{{< /prism >}}
+```
 
 </details>
 
@@ -321,19 +322,19 @@ This example installs the Armory Scale Agent service into the "dev" namespace wi
 
 Create the namespace:
 
-{{< prism lang="bash" >}}
+```bash
 kubectl create namespace dev
-{{< /prism >}}
+```
 
 Create the secret:
 
-{{< prism lang="bash" >}}
+```bash
 kubectl create secret generic kubeconfig --from-file=/User/armory/.kube/config -n dev
-{{< /prism >}}
+```
 
 Install the Armory Scale Agent:
 
-{{< prism lang="bash" >}}
+```bash
 helm install armory-agent armory-charts/agent-k8s-full \
 --namespace=dev \
 --set hub.auth.armory.clientId=clientID123,hub.auth.armory.secret=s3cret \
@@ -341,11 +342,11 @@ helm install armory-agent armory-charts/agent-k8s-full \
 ,kubeconfigs.account1.secret=s3cr3t \
 ,config.logging.level=debug,config.kubernetes.retries.maxRetries=5 \
 ,config.kubernetes.retries.backOffMs=5000,config.prometheus.enabled=true
-{{< /prism >}}
+```
 
 The same custom configuration in an `armory-agent.yml` file:
 
-{{< prism lang="yaml" >}}
+```yaml
 logging:
   level: "debug"
 kubernetes:
@@ -354,18 +355,18 @@ kubernetes:
     backOffMs: 5000
 prometheus:
   enabled: true
-{{< /prism >}}
+```
 
 Install the Armory Scale Agent with configuration in a file:
 
-{{< prism lang="bash" >}}
+```bash
 helm install armory-agent armory-charts/agent-k8s-full \
 --namespace=dev \
 --set hub.auth.armory.clientId=clientID123,hub.auth.armory.secret=s3cret \
 ,kubeconfigs.account1.file=config \
 ,kubeconfigs.account1.secret=s3cr3t \
 --set-file agentyml=/Users/armory/armory-agent.yml
-{{< /prism >}}
+```
 
 </details>
 
@@ -377,19 +378,19 @@ This example installs the Armory Scale Agent service into the "dev" namespace wi
 
 Create the namespace:
 
-{{< prism lang="bash" >}}
+```bash
 kubectl create namespace dev
-{{< /prism >}}
+```
 
 Create the secret:
 
-{{< prism lang="bash" >}}
+```bash
 kubectl create secret generic kubeconfig --from-file=/User/armory/.kube/config -n dev
-{{< /prism >}}
+```
 
 Install the Armory Scale Agent:
 
-{{< prism lang="bash" >}}
+```bash
 helm install armory-agent armory-charts/agent-k8s-full \
 --namespace=dev \
 --set config.clouddriver.grpc=spin-clouddriver-grpc:9091 \
@@ -401,11 +402,11 @@ helm install armory-agent armory-charts/agent-k8s-full \
 ,env[0].name=”HTTP_PROXY”,env[0].value="corp.proxy.com:8080" \
 ,env[1].name=”HTTPS_PROXY”,env[1].value="corp.proxy.com:443" \
 ,env[2].name=”NO_PROXY”,env[2].value="localhost,127.0.0.1,*.spinnaker"
-{{< /prism >}}
+```
 
 The same custom configuration in a `values.yaml` file:
 
-{{< prism lang="yaml" >}}
+```yaml
 image:
   repository: private-reg/agent-k8s
   imagePullPolicy: IfNotPresent
@@ -418,26 +419,26 @@ env:
     value: corp.proxy.com:443
   - name: NO_PROXY
     value: localhost,127.0.0.1,*.spinnaker
-{{< /prism >}}
+```
 
 Install the Armory Scale Agent with configuration in a file:
 
-{{< prism lang="bash" >}}
+```bash
 helm install armory-agent armory-charts/agent-k8s-full \
 --namespace=dev \
 --values=/Users/armory/values.yaml
 --set config.clouddriver.grpc=spin-clouddriver-grpc:9091 \
 ,kubeconfigs.account1.file=config \
 ,kubeconfigs.account1.secret=s3cr3t
-{{< /prism >}}
+```
 
 </details>
 
 ## Uninstall
 
-{{< prism lang="bash" >}}
+```bash
 helm uninstall <release-name> --namespace=<agent-namespace>
-{{< /prism >}}
+```
 
 - `<release-name>`: (Reqired) the Armory Scale Agent service release, such as {{<param kubesvc-version>}}.
 - `<agent-namespace>`: (Required) The namespace where you installed the Armory Scale Agent.

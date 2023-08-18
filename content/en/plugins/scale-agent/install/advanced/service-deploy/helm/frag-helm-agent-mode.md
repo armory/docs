@@ -8,24 +8,24 @@ Run one of the following commands:
 
    You must include your Armory Cloud **clientId** and **clientSecret** credentials.
 
-   {{< prism lang="bash" line="4" >}}
+   ```bash
    helm install armory-agent armory-charts/agent-k8s-full \
    --create-namespace \
    --namespace=<agent-namespace> \
    --set hub.auth.armory.clientId=<your-clientID>,hub.auth.armory.secret=<your-clientSecret>
-   {{< /prism >}}
+   ```
 
 
 1. If you don't want to connect to Armory Cloud services:
 
    You must include your gPRC endpoint, such as `localhost:9090`.
-
-   {{< prism lang="bash" line="4" >}}
+   
+   ```bash
    helm install armory-agent armory-charts/agent-k8s-full \
    --create-namespace \
    --namespace=<agent-namespace> \
    --set config.clouddriver.grpc=<endpoint>
-   {{< /prism >}}
+   ```
 
 
 Command options:

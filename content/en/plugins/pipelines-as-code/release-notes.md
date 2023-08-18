@@ -48,15 +48,15 @@ For more information, see [Pull Request Validation]({{< ref "plugins/pipelines-a
 
 If Pipelines-as-Code crashes on start up and you encounter an error similar to:
 
-{{< prism lang="bash" >}}
+```bash
 time="2020-03-06T22:35:54Z"
 level=fatal
 msg="failed to load configuration: 1 error(s) decoding:\n\n* 'Logging.Level' expected type 'string', got unconvertible type 'map[string]interface {}'"
-{{< /prism >}}
+```
 
 You probably configured global logging levels with `spinnaker-local.yml`. The workaround is to override Dinghy's logging levels:
 
-{{< prism lang="yaml" line="9-10" >}}
+{{< highlight yaml "linenos=table,hl_lines=9-10" >}}
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
@@ -67,4 +67,4 @@ spec:
       dinghy:
         Logging:
           Level: INFO
-{{< /prism >}}
+{{< /highlight >}}

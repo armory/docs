@@ -413,7 +413,7 @@ weight: 10
 
 Prevent server groups from being created in production with fewer than 1 instance.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.execution.stages.before.createServerGroup
 
 productionAccounts :=["prod1","prod2"]
@@ -422,7 +422,7 @@ deny["ASGs running in production must have a minimum of 2 instances to avoid hav
 	input.stage.context.account==productionAccounts[_]
     object.get(input.stage.context.capacity,"min",0)<2
 }
-{{< /prism >}}
+```
 
 ## Keys
 

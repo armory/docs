@@ -38,19 +38,19 @@ Agent may not use all the properties you copy from the original source definitio
 
 In Agent mode, your configuration should look similar to this:
 
-{{< prism lang="yaml" >}}
+```yaml
 kubernetes:
   accounts:
     - name: account-01
       serviceAccount: true
       ...
-{{< /prism >}}
+```
 
 #### Spinnaker Service and Infrastructure modes
 
 You set up multiple accounts per Agent in these modes. Your configuration should look similar to this:
 
-{{< prism lang="yaml" >}}
+```yaml
 kubernetes:
   accounts:
     - name: account-name-01
@@ -58,7 +58,7 @@ kubernetes:
     - name: account-name-02
       kubeconfigFile: /kubeconfigfiles/kubecfg-account02.yaml
     - ...  
-{{< /prism >}}
+```
 
 ### Automatically migrate accounts from Clouddriver to Agent
 

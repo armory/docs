@@ -35,7 +35,7 @@ These replica checks are enabled by default and do not require additional config
 
 Put the plugin configuration in the `spec.spinnakerConfig.profiles.clouddriver` section of your Operator `spinnakerservice.yml`:
 
-```yaml
+{{< highlight yaml "linenos=table,hl_lines=5-14">}}
 ... (omitted for brevity)
 spec:
   spinnakerConfig:
@@ -50,7 +50,7 @@ spec:
               repositories:
                 pluginRepository:
                   url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-```
+{{< /highlight >}}
 
 * `version`: The plugin version that corresponds to your Armory CD version.
 
@@ -80,7 +80,7 @@ The plugin uses the following statuses:
 
 All supported properties with some example values:
 
-{{< prism lang="yaml" >}}
+```yaml
 spinnaker:
   extensibility:
     plugins:
@@ -148,7 +148,7 @@ spinnaker:
               fields:
                 - field1: value1
                 - field2: value2
-{{< /prism >}}
+```
 
 * `markAsUnavailableUntilStable`: (Optional) Only used under `stable` properties. If the plugin doesn't find any of the fields declared under `stable`, it marks the deployment as unavailable and waits for the deployment to become stable. The status changes to stable when the plugin finds any of the fields in the properties.
 * `failIfNoMatch`: (Optional) Only used under `stable` properties. In this example, if the plugin doesn't find any of the fields, it marks the deployment as failed.
@@ -181,7 +181,7 @@ Accepted field formats:
 
 For example, if you want to access the field `ready` with the value `True`:
 
-{{< prism lang="yaml" >}}
+```yaml
 apiVersion: example.com
 kind: Foo
 metadata:
@@ -193,18 +193,18 @@ status:
   observedGeneration: 12
   values:
     - ready: "True"
-{{< /prism >}}
+```
 
 The syntax is:
 
-{{< prism lang="yaml" >}}ml
+```yamlml
 config:
   kind:
     status:
       available:
         fields:
           - status.values.[0].ready: "True"
-{{< /prism >}}
+```
 
 ## Examples
 
@@ -212,7 +212,7 @@ config:
 
 `kubectl get foo -o yaml`
 
-{{< prism lang="yaml" >}}
+```yaml
 apiVersion: example.com
 kind: Foo
 metadata:
@@ -233,13 +233,13 @@ status:
       lastUpdateTime: "2020-03-25T21:20:39Z"
       status: "False"
       type: Stalled
-{{< /prism>}}
+```
 
 First map this custom resource's status values to the plugin configuration. The plugin updates the status if the values from the config match the values from your custom resource.
 
 #### Example 1.1: Config per kind
 
-{{< prism lang="yaml" >}}
+```yaml
 spinnaker:
   extensibility:
     plugins:
@@ -274,13 +274,13 @@ spinnaker:
                     reason: Reconciling
                     status: "True"
                     type: Reconciling
-{{< /prism >}}
+```
 
 These properties are only for `Foo` kind. Every time you deploy `Foo`, the plugin compares the resource status values against these properties. In this case, the plugin marks the deployment as unavailable since it matches your custom resource.
 
 #### Example 1.2: Config for all Custom Resources
 
-{{< prism lang="yaml" >}}
+```yaml
 spinnaker:
   extensibility:
     plugins:
@@ -314,7 +314,7 @@ spinnaker:
                   reason: Reconciling
                   status: "True"
                   type: Reconciling
-{{< /prism >}}
+```
 
 These properties apply to all custom resource kinds you deploy. If you deploy different kinds with different statuses, you should declare per kind like in `Example 1.1`. In this case, the plugin marks the deployment as unavailable since that matches your custom resource.
 
@@ -322,7 +322,7 @@ These properties apply to all custom resource kinds you deploy. If you deploy di
 
 `kubectl get foo -o yaml`
 
-{{< prism lang="yaml" >}}
+```yaml
 apiVersion: example.com
 kind: Foo
 metadata:
@@ -334,13 +334,13 @@ status:
   status: Ready
   message: API is ready
   collisionCount: 0
-{{< /prism >}}
+```
 
 First map this custom resource's status value to the plugin configuration. The plugin updates the status if the values from the config match the values from your custom resource.
 
 #### Example 2.1: Config per kind
 
-{{< prism lang="yaml" >}}
+```yaml
 spinnaker:
   extensibility:
     plugins:
@@ -366,13 +366,13 @@ spinnaker:
                 fields:
                   - status.available: False
                     status.collisionCount: 0
-{{< /prism >}}
+```
 
 These properties are only for `Foo` kind. Every time you deploy `Foo`, it compares the resource status values against these properties. In this case, the plugin marks the deployment as ready since that matches your custom resource.
 
 #### Example 2.2: Config for all Custom Resources
 
-{{< prism lang="yaml" >}}
+```yaml
 spinnaker:
   extensibility:
     plugins:
@@ -397,7 +397,7 @@ spinnaker:
               fields:
                 - status.available: False
                   status.collisionCount: 0
-{{< /prism >}}
+```
 
 These properties apply to all custom resource kinds you deploy. If you deploy different kinds with different statuses, you should declare per kind like in `Example 2.1`. In this case, the plugin marks the deployment as ready since that
 matches your custom resource.

@@ -144,7 +144,7 @@ description: "Policy checks that run immediately before a task deploys a Spinnak
 
 This example prevents deploying of pods, pod templates (deployments/jobs/replicasets) and services that use the following services: HTTP, FTP, TELNET, POP3, NNTP, IMAP, LDAP, SMTP
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.deployment.tasks.before.deployManifest
 
 blockedPorts := [20,21,23,80,110,119,143,389,587,8080,8088,8888]
@@ -161,11 +161,11 @@ deny["A port typically used by an unencrypted protocol was detected."] {
     #Check for pod template
     input.deploy.manifests[_].spec.template.spec.containers[_].ports[_].containerPort=blockedPorts[_]
     }
-{{< /prism >}}
+```
 
 This example requires that the annotations 'owner' and 'app' are applied on all deployed infrastructure.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.deployment.tasks.before.deployManifest
 
 required_annotations:=["app","owner"]
@@ -176,7 +176,7 @@ deny["Manifest is missing a required annotation"] {
     # Use object.get to check if data exists
     object.get(annotations,required_annotations[_],null)==null
 }
-{{< /prism >}}
+```
 
 ## Keys
 

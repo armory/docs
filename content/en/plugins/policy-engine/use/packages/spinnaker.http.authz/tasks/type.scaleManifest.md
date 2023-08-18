@@ -52,7 +52,7 @@ description: "Policy controls whether or not a scaleManifest that is triggered f
 
 - This policy prevents requires users to enter a reason when performing a scale from outside or a pipeline.
 
-  {{< prism lang="rego" line-numbers="true" >}}
+  ```rego
   package spinnaker.http.authz
   default message=""
   allow = message==""
@@ -66,11 +66,11 @@ description: "Policy controls whether or not a scaleManifest that is triggered f
       input.path=["tasks"]
       input.body.job[_].type=tasktype
   }
-  {{< /prism >}}
+  ```
 
 - This policy prevents non-admin users from initiating a scaleManifest from the 'clusters' tab of an application.
 
-  {{< prism lang="rego" line-numbers="true" >}}
+  ```rego
   package spinnaker.http.authz
   default message=""
   allow = message==""
@@ -84,7 +84,7 @@ description: "Policy controls whether or not a scaleManifest that is triggered f
       input.path=["tasks"]
       input.body.job[_].type=tasktype
   }
-  {{< /prism >}}
+  ```
 
 ## Keys
 

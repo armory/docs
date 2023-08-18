@@ -18,7 +18,7 @@ The Armory Scale Agent is compatible with properties Armory CD uses for [storing
 
 This is an example of what the [Kubernetes service account]({{< ref "secrets-vault#1-kubernetes-service-account-recommended" >}}) configuration looks like in Agent, using an `encryptedFile:` reference for `kubeconfigFile`:
 
-{{< prism line="5" lang="yaml" >}}
+{{< highlight yaml "linenos=table,hl_lines=5">}}
 # ./armory-agent.yaml
 kubernetes:
   accounts:
@@ -32,7 +32,7 @@ secrets:
     url: https://your.vault.instance
     role: spinnaker
     path: kubernetes
-{{< /prism >}}
+{{< /highlight >}}
 
 ## Dynamically load accounts from Vault
 
@@ -53,7 +53,7 @@ vault kv put secret/kubernetes account01=@kubeconfig.yaml
 
 Replace the configuration files and `kubeconfig` files with [Vault injector annotations](https://www.vaultproject.io/docs/platform/k8s/injector/annotations) to provide a template.
 
-{{< prism lang="yaml" line="13-23" >}}
+{{< highlight yaml "linenos=table,hl_lines=13-23">}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -102,7 +102,7 @@ spec:
               name: volume-armory-agent-kubeconfigs
               mounthPath:
               mountPath: /kubeconfigfiles
-{{</ prism >}}
+{{</ highlight >}}
 
  * Make sure to include the required [Vault injector annotations](https://www.vaultproject.io/docs/platform/k8s/injector/annotations) like [`vault.hashicorp.com/role` or `vault.hashicorp.com/agent-configmap`](https://www.vaultproject.io/docs/platform/k8s/injector/annotations#vault-hashicorp-com-role) that correspond to your environment.
  * Be aware of the version of Vault's KV engine currently in your environment. This guide assumes you have the secret engine [KV version 2](https://www.vaultproject.io/docs/secrets/kv/kv-v2). For KV version 1, you need to modify the template to use `{{ range $k, $v := .Data }}` instead. See the Templating Language's [Versioned Read](https://github.com/hashicorp/consul-template/blob/master/docs/templating-language.md#versioned-read) section for more information.
@@ -112,8 +112,7 @@ spec:
 
 After addressing the preceding points, save the template as `armory-agent-vault-patch.yaml` and refer to it in your `kustomization.yaml`:
 
-
-{{< prism lang="yaml" line="10-11" >}}
+{{< highlight yaml "linenos=table,hl_lines=10-11">}}
 # ./kustomization.yaml
 # Pre-existing SpinnakerService resource (may be different)
 namespace: spinnaker
@@ -125,7 +124,7 @@ bases:
 
 patchesStrategicMerge:
   - armory-agent-vault-patch.yaml
-{{</ prism >}}
+{{</ highlight >}}
 
 ## Troubleshooting
 

@@ -207,7 +207,7 @@ description: "Controls access to the Spinnaker pipelines API. Can be used to pre
 
 ## Example Policy
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.http.authz
 default message=""
 allow=message==""
@@ -217,7 +217,7 @@ message="Only admins can save pipelines"{
     input.method="POST"
     input.user.isAdmin!=true
 }
-{{< /prism >}}
+```
 
 ## Keys
 

@@ -49,13 +49,13 @@ Other paths contain additional keys/data that can be used when writing policies.
 
 This policy simply grants all users access to all APIs. It is a good policy to enable on `spinnaker.http.authz` if you do not need a more complicated policy.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.http.authz
 default allow = true
 allow {
     input.user.isAdmin == true
 }
-{{< /prism >}}
+```
 
 ## Special considerations
 

@@ -83,7 +83,7 @@ For example, to ensure that a `ConfigMap` is present on all Spinnaker services,
 you would add the following configuration block to your `SpinnakerService`
 config:
 
-{{< prism lang="yaml" line="5-9" >}}
+{{< highlight yaml "linenos=table,hl_lines=5-9" >}}
 apiVersion: spinnaker.armory.io/v1alpha2
 kind: SpinnakerService
 metadata:
@@ -105,7 +105,7 @@ spec:
               mountPath: /opt/spinnaker/config/foo
               type: configMap
               name: custom-volume
-{{< /prism >}}
+{{< /highlight >}}
 
 The previous configuration sample indicates how to specify patches in the
 [`patchesJson6902`

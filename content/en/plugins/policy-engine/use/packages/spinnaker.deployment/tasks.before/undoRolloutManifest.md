@@ -27,13 +27,13 @@ description: "Policy checks that run immediately before a task rolls back a spin
 
 ## Example Policy
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.deployment.tasks.before.undoRolloutManifest
 
 deny ["You may only rollback 1 revision at a time."]{
 	input.deploy.numRevisionsBack!=1
 }
-{{< /prism >}}
+```
 
 ## Keys
 

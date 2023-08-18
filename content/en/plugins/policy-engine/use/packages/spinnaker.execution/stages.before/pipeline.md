@@ -290,13 +290,13 @@ weight: 10
 
 This policy prevents a pipeline from starting execution of other pipelines unless it waits for them to complete before continuing.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.execution.stages.before.pipeline
 
 deny["Parent pipelines must wait for any triggered child pipelines to complete before continuing execution."] {
     input.stage.context.waitForCompletion!=true
 }
-{{< /prism >}}
+```
 
 ## Keys
 
