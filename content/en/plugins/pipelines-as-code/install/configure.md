@@ -93,21 +93,22 @@ spec:
 
 {{< include "early-access-feature.html" >}}
 
-This feature enables you to select multiple branches in the UI. You must enable the feature and configure your branches.
-
 {{< tabpane text=true right=true >}}
 {{% tab header="Spinnaker"  %}}
-Add the following to your `dinghy.yml` config:
+Each branch in a repository must be explicitly configured in a separate  `repoConfig` item. In the example below, Dinghy will properly handle changes from two branches, `branch_a` and `branch_b` in `repository-GitHub-repository`. Add the following to your `dinghy.yml` config:
 
 ```yaml
 multipleBranchesEnabled: true
 repoConfig:
+- branch: branch_a
+  provider: github
+  repo: my-github-repository
+- branch: branch_b
+  provider: github
+  repo: my-github-repository
 - branch: some_branch
   provider: bitbucket-server
   repo: my-bitbucket-repository
-- branch: some_branch
-  provider: github
-  repo: my-github-repository
 ```
 {{% /tab %}}
 {{% tab header="Armory CD"  %}}
