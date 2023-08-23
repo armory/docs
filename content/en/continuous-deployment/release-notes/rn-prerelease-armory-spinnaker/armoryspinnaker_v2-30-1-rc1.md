@@ -57,7 +57,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
 ### Kayenta errors on startup
-In some instances Kayenta will error because the *DiscoveryCompositeHealthContributor* does not implement *HealthIndicator.* There is a fix for this that should land in the next dot release.
+In some instances Kayenta will error because the *DiscoveryCompositeHealthContributor* does not implement *HealthIndicator.* There is a fix for this issue that should land in the next dot release.
 
 **Affected versions**: Armory CD 2.30.0
 
@@ -144,15 +144,14 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 ### Clouddriver
 * Fixed AWS CLI pip installation
-* Due to the fact it is not possible to override the default handler behavior from a Spinnaker plugin code, we introduced a new setter function specifically designed to update the default handler for the Global Resource.
+* feat: Add the possibility to update the default handler for the Global Resource Property Registry. Due to the fact it is not possible to override the default handler behavior from a Spinnaker plugin code, we introduced a new setter function specifically designed to update the default handler for the Global Resource.
+* fix(gce): remove the duplicate cache attribute "subnet" 
 
 ### Orca
 * fix(waiting-executions) : Waiting executions doesn't follow FIFO. The fix makes Changes to push *StartWaitingExecutions* to the queue only when execution status is not running and disabled concurrent executions, in all other cases no need to push *StartWaitingExecutions* to the queue.
 
-
-
-
-
+### Terraformer
+* Session duration support on AWS roles
 
 ###  Spinnaker Community Contributions
 
