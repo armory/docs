@@ -95,7 +95,7 @@ spec:
 
 {{< tabpane text=true right=true >}}
 {{% tab header="Spinnaker"  %}}
-Each branch in a repository must be explicitly configured in a separate  `repoConfig` item. In the example below, Dinghy will properly handle changes from two branches, `branch_a` and `branch_b` in `repository-GitHub-repository`. Add the following to your `dinghy.yml` config:
+Each branch in a repository must be explicitly configured in a separate  `repoConfig` item. In the example below, Dinghy properly handles changes from two branches, `branch_a` and `branch_b` in `repository-GitHub-repository`. Add the following to your `dinghy.yml` profile config:
 
 ```yaml
 multipleBranchesEnabled: true
