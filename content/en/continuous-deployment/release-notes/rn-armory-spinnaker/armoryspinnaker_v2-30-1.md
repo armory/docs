@@ -123,7 +123,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 * Add the possibility to update the default handler for the Global Resource Property Registry. Due to the fact it is not possible to override the default handler behavior from a Spinnaker plugin code, we introduced a new setter function specifically designed to update the default handler for the Global Resource.
 
 ### Orca
-* fix(waiting-executions) : Waiting executions doesn't follow FIFO. The fix makes Changes to push *StartWaitingExecutions* to the queue only when execution status is not running and disabled concurrent executions, in all other cases no need to push *StartWaitingExecutions* to the queue.
+* Waiting executions didn't follow FIFO. The fix makes changes to push *StartWaitingExecutions* to the queue only when execution status is not running and disabled concurrent executions, in all other cases no need to push *StartWaitingExecutions* to the queue.
 
 ### Terraformer
 * Session duration support on AWS roles
