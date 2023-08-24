@@ -120,8 +120,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 
 ### Clouddriver
 * Addressed an issue related to AWS CLI pip installation where users were unable to install aws-cli via pip because a package dependency broke
-* feat: Add the possibility to update the default handler for the Global Resource Property Registry. Due to the fact it is not possible to override the default handler behavior from a Spinnaker plugin code, we introduced a new setter function specifically designed to update the default handler for the Global Resource.
-* fix(gce): remove the duplicate cache attribute "subnet" 
+* Add the possibility to update the default handler for the Global Resource Property Registry. Due to the fact it is not possible to override the default handler behavior from a Spinnaker plugin code, we introduced a new setter function specifically designed to update the default handler for the Global Resource.
 
 ### Orca
 * fix(waiting-executions) : Waiting executions doesn't follow FIFO. The fix makes Changes to push *StartWaitingExecutions* to the queue only when execution status is not running and disabled concurrent executions, in all other cases no need to push *StartWaitingExecutions* to the queue.
