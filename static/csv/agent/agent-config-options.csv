@@ -16,6 +16,8 @@ Settings|Type|Default|Description
 <code>dynamicAccountsEnabled</code>|boolean|true|<span class='badge badge-primary'>1.0.39+</span> Enable or disable access to the Dynamic Accounts API.
 <code>kubernetes.noProxy</code>|boolean|false|<span class='badge badge-primary'>0.3.1+</span> Ignore the <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, and <code>NO_PROXY</code> environment variables when connecting to any Kubernetes cluster.
 <code>kubernetes.reconnectTimeoutMs</code>|integer|5000|How long to wait before reconnecting to Armory Continuous Deployment.
+<code>kubernetes.cacheGroupSize</code>|integer|0|Number of accounts per group when delaying watcher initialization.
+<code>kubernetes.cacheGroupDelayMs</code>|integer|0|How long to wait between each group of accounts when initializing watchers.
 <code>kubernetes.accounts[].context</code>|string|empty|If provided, use the given context of the configured kubeconfig.
 <code>kubernetes.accounts[].customResourceDefinitions</code>|[]{kind: <string>}|empty|<span class='badge badge-primary'>0.4.0+</span> List of CustomResourceDefinition to expose to Armory Continuous Deployment. This is not needed if <code>onlyNamespacedResources</code> is left off. The format of <code>kind</code> is <code>Kind.group</code>.
 <code>kubernetes.accounts[].customResourceDefinitions.scope</code>|string|Namespaced|<span class='badge badge-primary'>1.0.9+</span> Possible values are 'Cluster' and 'Namespaced'. The default value if left unconfigured is 'Namespaced'.
