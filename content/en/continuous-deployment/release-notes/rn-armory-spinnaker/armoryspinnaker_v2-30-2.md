@@ -120,7 +120,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 -->
 
 ### Gate 
-* [Placeholder] fix: esapi CVE scan report
+* fix: regression in saml configuration that prevented successful configuration of authn/z
 
 ###  Spinnaker Community Contributions
 
