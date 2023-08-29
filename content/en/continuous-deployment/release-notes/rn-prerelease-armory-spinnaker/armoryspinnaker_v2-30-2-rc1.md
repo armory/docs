@@ -171,8 +171,6 @@ version: 2.30.2-rc1
 
 #### Spinnaker Clouddriver - 1.30.3
 
-  - fix(builds): Backport flag for installing aws cli (#6006)
-
 #### Spinnaker Deck - 1.30.3
 
 
