@@ -1,0 +1,99 @@
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: spin-terraformer
+  labels:
+    app: spin
+    cluster: spin-terraformer
+spec:
+  selector:
+    app: spin
+    cluster: spin-terraformer
+  ports:
+    - name: http
+      port: 7088
+      protocol: TCP
+      targetPort: 7088
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spin-terraformer
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    moniker.spinnaker.io/application: '"spin"'
+    moniker.spinnaker.io/cluster: '"terraformer"'
+  labels:
+    app: spin
+    app.kubernetes.io/managed-by: armory
+    app.kubernetes.io/name: terraformer
+    app.kubernetes.io/part-of: spinnaker
+    app.kubernetes.io/version: <version>  # CHANGE
+    cluster: spin-terraformer
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: spin
+      cluster: spin-terraformer
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: spin
+        app.kubernetes.io/managed-by: armory
+        app.kubernetes.io/name: terraformer
+        app.kubernetes.io/part-of: spinnaker
+        app.kubernetes.io/version: <version> # CHANGE
+        cluster: spin-terraformer
+    spec:
+      affinity: {}
+      containers:
+        - env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: local
+          image: docker.io/armory/terraformer
+          imagePullPolicy: IfNotPresent
+          lifecycle: {}
+          name: terraformer
+          ports:
+            - containerPort: 7088
+              protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+                - wget
+                - --no-check-certificate
+                - --spider
+                - -q
+                - http://localhost:7088/health
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /opt/spinnaker/config
+              name: spin-terraformer-config-file
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: spin-terraformer-config-file
+          secret:
+            secretName: spin-terraformer-config-file
+
+```

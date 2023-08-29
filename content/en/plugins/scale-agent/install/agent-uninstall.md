@@ -8,18 +8,18 @@ weight: 99
 
 Remove the Scale Agent plugin manifest file entry from your `kustomization` file.
 
-{{< prism lang="yaml" line="4" >}}
+```yaml
 bases:
   - agent-service
 patchesStrategicMerge:
   - armory-agent/clouddriver-plugin-repo.yaml # or clouddriver-plugin-docker.yaml
-{{< /prism >}}
+```
 
 Then execute:
 
-{{< prism lang="bash" >}}
+```bash
  kustomize build </path/to/kustomize> | kubectl delete -f -
-{{< /prism >}}
+```
 
 ## Uninstall the service
 

@@ -29,7 +29,7 @@ description: "A policy that runs before executing each task in a Scale Manifest 
 
 This policy prevents scaling a deployment or replicaset in a production account to have <2 replicas.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.deployment.tasks.before.scaleManifest
 
 productionAccounts :=["prod1","prod2"]
@@ -38,7 +38,7 @@ deny["production accounts require >1 replicas to avoid a single point of failure
 	input.deploy.location==productionAccounts[_]
     input.deploy.replicas<2
 }
-{{< /prism >}}
+```
 
 ## Keys
 

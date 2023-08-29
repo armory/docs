@@ -411,8 +411,3 @@ When in doubt, check the company’s website.
 | Elastic Compute Cloud | EC2 | Spinnaker can deploy EC2 instances after baking an AMI for them. |
 | NGINX, NGINX Plus, NGINX Controller|  | |
 
-
-## {{% heading "nextSteps" %}}
-
-{{< linkWithTitle "diagram-guide.md" >}}
-<br><br>

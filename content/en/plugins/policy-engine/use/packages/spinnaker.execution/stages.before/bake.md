@@ -410,13 +410,13 @@ More information about the bake stage can be found in [Bake Amazon Machine Image
 
 Requires that baked images are of type `hvm`.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.execution.stages.before.bake
 
 deny["all baked images must be of type hvm"]{
 	input.stage.context.vmType!="hvm"
 }
-{{< /prism >}}
+```
 
 ## Keys
 

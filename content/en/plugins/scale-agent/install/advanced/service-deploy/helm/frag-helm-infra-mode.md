@@ -6,15 +6,15 @@ Before you start, make sure:
 
 1. Each account has a **kubeconfig** file that grants access to the deployment target cluster. If you use Amazon EKS, you can run the following command:
 
-   {{< prism lang="bash" >}}
+   ```bash
    aws eks update-kubeconfig --name <target-cluster>
-   {{< /prism >}}
+   ```
 
 1. Each account has a **kubeconfig** file and a secret created from that file. For example:
 
-   {{< prism lang="bash" >}}
+   ```bash
    kubectl create secret generic kubeconfig --from-file=<path>/.kube/config -n <namespace>
-   {{< /prism >}}
+   ```
 
    See the `kubectl create secret generic` [docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-em-secret-generic-em-) for command details.
 
@@ -27,7 +27,7 @@ Run one of the following commands:
 
    You must set your **kubeconfig** file and secret. `<kubeconfig>` is the name of the file you used when you created the secret. If you used `--from-file=<path>/.kube/config`, the value of `<kubeconfig>` is `config`.
 
-   {{< prism lang="bash" line="4" >}}
+   ```bash
    helm install armory-agent armory-charts/agent-k8s-full \
    --create-namespace \
    --namespace=<agent-namespace> \
@@ -35,7 +35,7 @@ Run one of the following commands:
    ,hub.auth.armory.secret=<your-clientSecret> \
    ,kubeconfigs.<account-name>.file=<kubeconfig> \
    ,kubeconfigs.<account-name>.secret=<secret>
-   {{< /prism >}}
+   ```
 
 
 1. If you don't want to connect to Armory Cloud services:
@@ -44,14 +44,14 @@ Run one of the following commands:
 
    You must set your **kubeconfig** file and secret. `<kubeconfig>` is the name of the file you used when you created the secret. If you used `--from-file=<path>/.kube/config`, the value of `<kubeconfig>` is `config`.
 
-   {{< prism lang="bash" line="4" >}}
+   ```bash
    helm install armory-agent armory-charts/agent-k8s-full \
    --create-namespace \
    --namespace=<agent-namespace> \
    --set config.clouddriver.grpc=<endpoint> \
    ,kubeconfigs.<account-name>.file=<kubeconfig> \
    ,kubeconfigs.<account-name>.secret=<secret>
-   {{< /prism >}}
+   ```
 
 Command options:
 

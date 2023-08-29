@@ -218,7 +218,7 @@ See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifes
 
 This policy prevents scaleManifest stages from running in a pipeline unless it is triggered by a webhook with a source of 'prometheus'
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.execution.stages.before.scaleManifest
 
 deny ["scaling can only be run in pipelines that are triggered by monitoring, not by manually triggered pipelines"]{
@@ -226,7 +226,7 @@ deny ["scaling can only be run in pipelines that are triggered by monitoring, no
     }{
 	object.get(input.pipeline.trigger,"source","")!="prometheus"
 }
-{{< /prism >}}
+```
 
 ## Keys
 

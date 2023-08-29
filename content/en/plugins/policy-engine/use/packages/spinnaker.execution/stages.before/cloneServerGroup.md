@@ -382,7 +382,7 @@ More information on the clone server group stage can be found in Spinnaker's [do
 
 ## Example Policy
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.execution.stages.before.cloneServerGroup
 
 productionAccounts :=["prod1","prod2"]
@@ -396,7 +396,7 @@ deny["ASGs running in production must have a minimum of 2 instances to avoid hav
     input.stage.context.useSourceCapacity==false
     object.get(input.stage.context,"capacity",null)==null
 }
-{{< /prism >}}
+```
 
 ## Keys
 

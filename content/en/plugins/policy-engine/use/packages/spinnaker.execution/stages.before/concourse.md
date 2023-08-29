@@ -285,11 +285,11 @@ weight: 10
 
 This example disables the use of concourse stages.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.execution.stages.before.concourse
 
 deny["Pipelines may not use the 'Concourse' stage."]
-{{< /prism >}}
+```
 
 ## Keys
 

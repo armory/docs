@@ -235,7 +235,7 @@ If a user attempts to perform an action that they are not allowed to, a window a
 The following example policy prevents the user `milton` from taking specific actions in the UI. Specifically, the user cannot use the  **Edit** or **Delete** buttons on the **Clusters** tab.
 
 **Example policy:**
-{{< prism lang="rego" line="2-8" >}}
+{{< highlight rego "linenos=table,hl_lines=2-8" >}}
 package spinnaker.http.authz
     default allow=false
     allow {
@@ -260,7 +260,7 @@ package spinnaker.http.authz
       input.body.job[_].type="deleteManifest"
       input.user.username="milton"
     }
-{{< /prism >}}
+{{< /highlight >}}
 
 Note the highlighted lines. This is where defining and returning a custom message for the `spinnaker.http.authz` package differs from other packages.
 

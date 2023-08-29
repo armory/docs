@@ -437,7 +437,7 @@ weight: 10
 
 This example policy prevents execution of any manual judgement stage that can be approved by multiple roles, or for which the approving role is not on a whitelist of approving roles.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.execution.stages.before.manualJudgment
 
 approving_roles=["infosec","qa"]
@@ -454,7 +454,7 @@ deny["Manual Judgement stages may only approved by the following roles: qa, info
 isApprovedRole(role){
     approving_roles[_]==role
 }
-{{< /prism >}}
+```
 
 ## Keys
 

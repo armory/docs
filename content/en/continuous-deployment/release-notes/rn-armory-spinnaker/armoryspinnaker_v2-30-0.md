@@ -40,6 +40,11 @@ Please consult the [Armory Compatibility Matrix](https://docs.armory.io/continuo
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+### Kayenta errors on startup
+In some instances Kayenta will error because the *DiscoveryCompositeHealthContributor* does not implement *HealthIndicator.* There is a fix for this that should land in the next dot release.
+
+**Affected versions**: Armory CD 2.30.0
+
 ### 1.30+ “required artifacts to bind” breaks pipelines
 Expected artifacts can be used in automated triggers and stages, and OSS [1.30](https://spinnaker.io/changelogs/1.30.0-changelog/#changes-to-the-way-artifact-constraints-on-triggers-work) changed the way artifact constraints work on triggers. Unfortunately those changes broke the previous behavior when triggering a pipeline from a stage, and this fix restores the previous behavior.
 

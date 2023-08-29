@@ -54,7 +54,7 @@ description: "Policy controls whether or not a deleteManifest that is triggered 
 
 This example prevents users from deleting deployed manifests from production accounts on the 'Clusters' tab of the spinnaker UI.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.http.authz
 default message=""
 allow = message==""
@@ -72,7 +72,7 @@ createsTaskOfType(tasktype){
     input.path=["tasks"]
     input.body.job[_].type=tasktype
 }
-{{< /prism >}}
+```
 
 ## Keys
 

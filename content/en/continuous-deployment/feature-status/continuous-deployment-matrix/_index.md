@@ -122,31 +122,15 @@ The following table lists the supported artifact stores:
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) ![Proprietary](/images/proprietary.svg)
 
-Use Terraform within your pipelines to create your infrastructure as part of your software delivery pipeline. For more information see {{< linkWithTitle terraform-enable-integration.md >}} and {{< linkWithTitle terraform-use-integration.md >}}.
+Use Terraform within your pipelines to create your infrastructure as part of your software delivery pipeline. Terraform Integration is a feature in Armory CD and a plugin for Spinnaker. For more information see the [Terrafrom Integration docs]({{< ref "plugins/terraform/_index.md" >}}).
 
 **Supported Terraform versions**
 
-| CDSH Version | Terraform Supported Versions                | Notes                                                                         |
-| ------------ | ------------------------------------------- | ----------------------------------------------------------------------------- |
-| 2.27         | 0.11, 0.12, 0.13, 0.14, 0.15, 1.0, 1.1, 1.2 |                                                                               |
-| 2.28         | 0.12, 0.13, 0.14, 0.15, 1.0, 1.1, 1.2       | Version 0.12 was not available in 2.28 but is supported as of release 2.28.1. |
-| 2.30         | 0.12, 0.13, 0.14, 0.15, 1.0, 1.1, 1.2, 1.3  |                                                                               |
-
-{{% alert title="Note" color="primary" %}}
-Not all patch versions are included for each release. Although other Terraform versions may be usable with Armory Continuous Deployment and the Terraform Integration, only the versions listed here are supported.
-{{% /alert %}}
-
-
+{{< include "plugins/terraform/terraform-versions.md" >}}
 
 **Features**
 
-The following table lists the Terraform Integration features and their supported versions:
-
-| Feature                                                                                        | Armory Continuous Deployment Version | Notes |
-| ---------------------------------------------------------------------------------------------- | ------------------------- | ----- |
-| [Base Terraform Integration]({{< ref "terraform-enable-integration" >}})                       | All supported versions    |       |
-| [Named Profiles with authorization]({{< ref "terraform-enable-integration#named-profiles" >}}) | All supported versions    |       |
-
+{{< include "plugins/terraform/features.md" >}}
 
 Support is limited to configuring Terraform Integration and using the stage within Armory Continuous Deployment. Armory's Customer Care team does not troubleshoot Terraform script issues or infrastructure creation using Terraform. If you have questions, contact your assigned Technical Account Manager and/or Account Executive. Alternatively, you can reach our Customer Care team by visiting the [Armory Support Portal](https://support.armory.io/) to [submit a case](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010136).
 

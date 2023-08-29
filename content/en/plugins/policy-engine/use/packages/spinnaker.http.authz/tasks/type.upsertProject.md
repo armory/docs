@@ -64,9 +64,9 @@ description: "A policy call is made for this type anytime a user attmpts to crea
 
 ## Example Policy
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 
-{{< /prism >}}
+```
 
 ## Keys
 

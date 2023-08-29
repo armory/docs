@@ -25,7 +25,7 @@ The following configuration example shows how to configure Echo to send data to 
 
 Add the <b>rest</b> block to the <b>spec.spinnakerConfig.profiles.echo</b> section of your Operator manifest.
 
-{{< prism lang="yaml" >}}
+```yaml
 apiVersion: spinnaker.armory.io/v1alpha2
 kind: SpinnakerService
 metadata:
@@ -43,7 +43,7 @@ spec:
               Authorization: "<TOKEN>"
             template: '{"event":{{event}} }'
           insecure: true
-{{< /prism  >}}
+```
 
 
 * `SERVICE_URL`: the FQDN of the service; for example `https://splunk.armory.io`.

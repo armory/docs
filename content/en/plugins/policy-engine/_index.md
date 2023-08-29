@@ -255,7 +255,7 @@ The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You
 
 1. Add the following to `gate-local.yml`, `orca-local.yml`, `front50-local.yml`, and `clouddriver.yml`:
 
-   {{< prism lang="yaml" >}}
+   ```yaml
    armory:
       policyEngine:
          failOpen: false
@@ -271,7 +271,7 @@ The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You
                 enabled: true
              policyEngine:
                 url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-    {{< /prism >}}
+    ```
 
 1. Save your files and apply your changes by running `hal deploy apply`.
 {{% /tab %}}
@@ -280,29 +280,29 @@ The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You
 
 1. Add the plugins repository
 
-   {{< prism lang="bash" >}}
+   ```bash
    hal plugins repository add policyEngine \
     --url=https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-   {{< /prism >}}
+   ```
 
    This creates the following entry in your `.hal/config`:
 
-   {{< prism lang="yaml" >}}
+   ```yaml
    repositories:
       policyEngine:
          enabled: true
          url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-   {{< /prism >}}
+   ```
 
 1. Add the plugin
    
    Be sure to replace `<version>` with the version that's compatible with your Spinnaker instance.
-   {{< prism lang="bash" >}}
+   ```bash
    hal plugins add Armory.PolicyEngine --version=<version> --enabled=true
-   {{< /prism >}}
+   ```
 
    If you specified version 0.2.2, Halyard creates the following entry in your `.hal/config` file: 
-   {{< prism lang="yaml" >}}
+   ```yaml
    spinnaker:
       extensibility:
          plugins:
@@ -310,7 +310,7 @@ The Policy Engine plugin extends Orca, Gate, Front50, Clouddriver, and Deck. You
                id: Armory.PolicyEngine
                enabled: true
                version: 0.2.2
-   {{< /prism >}}
+   ```
 
 1. Apply the changes by executing `hal deploy apply`. 
 {{% /tab %}}

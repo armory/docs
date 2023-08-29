@@ -43,7 +43,7 @@ In your `agent-plugin/clouddriver-plugin.yaml` file,
 `spec.kustomize.clouddriver.deployment.patchesStrategicMerge` section,
 add the following lines to mount the Clouddriver cert from your secret:
 
-{{< prism lang="yaml" line="10-18" >}}
+{{< highlight yaml "linenos=table,hl_lines=10-18">}}
 spec:
   kustomize:
     clouddriver:
@@ -62,14 +62,14 @@ spec:
                   - name: cert
                     secret:
                       secretName: <clouddriver-secret-name>
-{{< /prism >}}
+{{< /highlight >}}
 
 
 ### Configure the plugin
 
 In the `agent-plugin/config.yaml` file, configure the plugin to use the mounted certs. Note that `trustCertCollection`, `certificateChain`, and `privateKey` values must in `file:///filepath/filename` format.
 
-{{< prism lang="yaml" line="12-18" >}}
+{{< highlight yaml "linenos=table,hl_lines=12-18">}}
 apiVersion: spinnaker.armory.io/{{< param "operator-extended-crd-version" >}}
 kind: SpinnakerService
 metadata:
@@ -88,7 +88,7 @@ spec:
                 certificateChain: file:<path-to-your-clouddriver-cert>
                 privateKey: file:<path-to-your-clouddriver-key>
                 clientAuth: REQUIRE
-{{< /prism >}}
+{{< /highlight >}}
 
 See the {{< linkWithTitle "plugin-options.md" >}} page for additional options.
 
@@ -109,7 +109,7 @@ Modify the Armory Scale Agent's deployment configuration in `deployment.yaml` to
 
 >The paths that files are mounted to in the `deployment.yaml` file should always match the corresponding location in the `armory-agent.yaml` configuration file. For example, the `mountPath` of the CA cert in the `deployment.yaml` file must match the `clouddriver.tls.clientCertFile` location in `armory-agent.yaml`.
 
-{{< prism lang="yaml" line="5-19" >}}
+{{< highlight yaml "linenos=table,hl_lines=5-19">}}
 spec:
   template:
     spec:
@@ -129,7 +129,7 @@ spec:
       - name: certpem
         secret:
           secretName: <CA-secret-name>
-{{< /prism >}}
+{{< /highlight >}}
 
 If you use a custom CA, you can install it on the Armory Scale Agent pod. The default location on that image, which uses the Alpine base, is `/etc/ssl/cert.pem`, so you can either append your CA cert to the trust store, which is `/etc/ssl/cert.pem`, or you can mount the file anywhere and configure the
 `clouddriver.tls.cacertFile` property in your YAML to point to that location.
@@ -140,7 +140,7 @@ See the [Agent Options]({{< ref "plugins/scale-agent/reference/config/service-op
 
 Add the certificate information in `armory-agent.yaml`. Note that `clientCertFile` and `clientKeyFile` values must in `file:///filepath/filename` format.
 
-{{< prism lang="yaml" line="7-8">}}
+{{< highlight yaml "linenos=table,hl_lines=7-8">}}
 clouddriver:
   grpc: <:443
   insecure: false
@@ -150,7 +150,7 @@ clouddriver:
     clientCertFile: <path-to-your-agent-cert> #client cert for mTLS.
     clientKeyFile: <path-to-your-agent-key>
     #clientKeyPassword:
-{{< /prism >}}
+{{< /highlight >}}
 
 See the [Agent Options]({{< ref "plugins/scale-agent/reference/config/service-options#configuration-options" >}}) for configuration details.
 
@@ -164,7 +164,7 @@ You can specify multiple filtering criteria. However, the order in which the cri
 
 Add an `grpc.auth.x509` section to your Clouddriver profile:
 
-{{< prism lang="yaml" line="7-12" >}}
+{{< highlight yaml "linenos=table,hl_lines=7-12">}}
 spec:
   spinnakerConfig:
     profiles:
@@ -177,6 +177,6 @@ spec:
                 enabled: true # must be true for filters to be applied
                 filters:
                   - UID=([a-z]){3}:[1-9]{3}:ksvc
-{{< /prism >}}
+{{< /highlight >}}
 
 See the {{< linkWithTitle "plugin-options.md" >}} page for configuration options.

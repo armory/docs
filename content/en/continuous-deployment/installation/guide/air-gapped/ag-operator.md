@@ -144,7 +144,7 @@ Each subdirectory in the `profiles` directory contains a `<service-name>.yml` pr
 
 If you need to change your Docker registry, you can manually edit the `<armory-version>.yml` file located under `halconfig/bom`.  Update the value for the key `artifactSources.dockerRegistry`.
 
-{{< prism lang="yaml" line="18" >}}
+{{< highlight yaml "linenos=table,hl_lines=18" >}}
 version: 2.25.0
 timestamp: "2021-03-25 09:28:32"
 services:
@@ -163,7 +163,7 @@ dependencies:
         version: 2:2.8.4-2
 artifactSources:
     dockerRegistry: my.jfrog.io/myteam/armory
-{{< /prism >}}
+{{< /highlight >}}
 
 ## Copy the BOM
 
@@ -257,7 +257,7 @@ From the `spinnaker-kustomize-patches/operator` folder, execute the `operatorima
 You also need to update Armory Operator configuration to include the secret access key for MinIO.
 Locate `spinnaker-kustomize-patches/operator/patch-config.yml` and update the `AWS_SECRET_ACCESS_KEY` value with the `minioAccessKey` value you created in the [Deploy MinIO to host the BOM](#deploy-minio-to-host-the-bom) section.
 
-{{< prism lang="yaml" line="14, 24" >}}
+{{< highlight yaml "linenos=table,hl_lines=14 24" >}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -291,13 +291,13 @@ spec:
             defaultMode: 420
             name: operator-config
           name: operator-config
-{{< /prism >}}
+{{< /highlight >}}
 
 ### Update Halyard configuration
 
 The Armory Operator uses its own Halyard installation to deploy and manage Armory Continuous Deployment. You need to configure the new BOM location in `spinnaker-kustomize-patches/operator/halyard-local.yml`.  Update your `halyard-local.yml` to match the content of the highlighted lines in the following example:
 
-{{< prism lang="yaml" line="8-14" >}}
+{{< highlight yaml "linenos=table,hl_lines=8-14" >}}
 halyard:
   halconfig:
     directory: /home/spinnaker/.hal
@@ -312,7 +312,7 @@ spinnaker:
       enablePathStyleAccess: true # If you are using a platform that does not support PathStyleAccess, such as MinIO, switch this to true (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro).
       endpoint: http://minio.spinnaker:9000
       anonymousAccess: false
-{{< /prism >}}
+{{< /highlight >}}
 
 
 ## Deploy the Armory Operator

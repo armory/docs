@@ -3,6 +3,7 @@ title: Diagram Guide
 weight: 3
 description: >
    Use Mermaid to create diagrams and charts in your content pages.
+draft: true
 ---
 
 ## {{% heading "prereq" %}}
@@ -58,7 +59,7 @@ Additional Mermaid resources:
 ```
 
 <details><summary>Show me the code.</summary>
-{{< prism >}}
+{{< highlight >}}
 ```mermaid
  graph TB
 
@@ -95,7 +96,7 @@ Additional Mermaid resources:
  classDef external fill:#c0d89d,stroke:#39546a;
  class deck,api external
 ```
-{{< /prism >}}
+{{< /highlight >}}
 </details>
 
 ### Flowchart examples
@@ -126,7 +127,7 @@ flowchart LR
 ```
 
 <details><summary>Show me the code.</summary>
-{{< prism >}}
+{{< highlight >}}
 ```mermaid
 flowchart LR
    id0<--"REST API"-->id2
@@ -151,7 +152,7 @@ flowchart LR
    class id2,id3,id0 armory
    class outside ext
 ```
-{{< /prism >}}
+{{< /highlight >}}
 </details>
 
 <br>
@@ -182,7 +183,7 @@ flowchart TB
 ```
 
 <details><summary>Show me the code.</summary>
-{{< prism >}}
+{{< highlight >}}
 ```mermaid
 flowchart TB   
    A --> B
@@ -205,7 +206,7 @@ flowchart TB
    E[Callback to Deployment]
    end
 ```
-{{< /prism >}}
+{{< /highlight >}}
 </details>
 
 

@@ -100,7 +100,7 @@ version](https://spinnaker.io/community/releases/versions/) that you want to
 deploy, such as `{{< param "armory-version-exact" >}}` (Armory Continuous Deployment) or
 `1.25.3` (Spinnaker).
 
-{{< prism lang="yaml" line="8" >}}
+{{< highlight yaml "linenos=table,hl_lines=8" >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -108,7 +108,7 @@ spec:
   spinnakerConfig:
     config:
       version: {{< param "armory-version-exact" >}}
-{{< /prism >}}
+{{< /highlight >}}
 
 ### Verify resources
 

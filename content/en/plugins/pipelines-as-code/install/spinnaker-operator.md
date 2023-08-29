@@ -1,7 +1,7 @@
 ---
 title: Install Pipelines-as-Code in Spinnaker (Spinnaker Operator)
 linkTitle: Spinnaker - Operator
-weight: 5
+weight: 3
 description: >
   Learn how to install Armory Pipelines-as-Code in a Spinnaker instance managed by the Spinnaker Operator.
 ---

@@ -46,7 +46,7 @@ See [Deploy Applications to Kubernetes]({{< ref "kubernetes-v2#available-manifes
 
 This example policy requires Delete Manifest stages to provide a minimum 2 minute grace period when run in production.
 
-{{< prism lang="rego" line-numbers="true" >}}
+```rego
 package spinnaker.execution.stages.before.deleteManifest
 
 productionAccounts :=["prod1","prod2"]
@@ -55,7 +55,7 @@ deny["deletions in production accounts must allow a minimum of 2 minutes for gra
 	input.deploy.account==productionAccounts[_]
     input.deploy.options.gracePeriodSeconds<120
 }
-{{< /prism >}}
+```
 
 ## Keys
 
