@@ -30,7 +30,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 - 2.28.6 migrates to the AWS MySQL driver from the OSS MySQL drivers.  This change is mostly seamless, but we’ve identified one breaking change.  If your database was created without utf8mb4 you will see failures after this upgrade.  utf8mb4 is the recommended DB format for any Spinnaker database, and we don’t anticipate most users who’ve followed setup instructions to encounter this failure. However, we’re calling out this change as a safeguard.
 
 {{< include "breaking-changes/bc-kubectl-120.md" >}}
-{{< include "breaking-changes/bc-plugin-compatibility-2-28-0.md" >}}
+{{< include "breaking-changes/bc-plugin-compatibility-2-30-0.md" >}}
 
 **Introduced in**: Armory CD 2.28.6
 
