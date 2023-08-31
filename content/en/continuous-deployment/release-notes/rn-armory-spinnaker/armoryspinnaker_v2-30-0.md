@@ -40,6 +40,14 @@ Please consult the [Armory Compatibility Matrix](https://docs.armory.io/continuo
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+### Using Custom Resource Status Plugin and Scale Agent generates an error
+Armory customers that may be using the Custom Resource Status Plugin (2.0.3) may encounter an error “An attempt was made to call a method that does not exist."
+That error will prevent Armory CDSH from starting.
+
+**Workaround**: Customers encountering this issue can downgrade to [Custom Resource Status Plugin (2.0.2)](https://docs.armory.io/plugins/plugin-k8s-custom-resource-status/) as an option until Armory CDSH versions 2.30.3+ or 2.28.7+ are available.
+
+**Affected versions**: Armory CD 2.30.0
+
 ### Kayenta errors on startup
 In some instances Kayenta will error because the *DiscoveryCompositeHealthContributor* does not implement *HealthIndicator.* There is a fix for this that should land in the next dot release.
 
