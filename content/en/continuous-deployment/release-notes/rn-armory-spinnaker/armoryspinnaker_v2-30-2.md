@@ -37,14 +37,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
-### Using Custom Resource Status Plugin and Scale Agent generates an error
-Armory customers that may be using the Custom Resource Status Plugin (2.0.3) may encounter an error “An attempt was made to call a method that does not exist."
-That error will prevent Armory CDSH from starting.
-
-**Workaround**: Customers encountering this issue can downgrade to [Custom Resource Status Plugin (2.0.2)](https://docs.armory.io/plugins/plugin-k8s-custom-resource-status/) as an option until Armory CDSH versions 2.30.3+ or 2.28.7+ are available.
-
-**Affected versions**: Armory CD 2.30.0 and later
-
 ### 1.30+ “required artifacts to bind” breaks pipelines
 Expected artifacts can be used in automated triggers and stages, and OSS [1.30](https://spinnaker.io/changelogs/1.30.0-changelog/#changes-to-the-way-artifact-constraints-on-triggers-work) changed the way artifact constraints work on triggers. Unfortunately those changes broke the previous behavior when triggering a pipeline from a stage, and this fix restores the previous behavior.
 
