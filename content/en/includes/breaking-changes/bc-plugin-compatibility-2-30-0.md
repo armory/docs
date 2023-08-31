@@ -1,4 +1,4 @@
-### Plugin Compatibility
+### Plugin compatibility
 
 Due to changes in the underlying services, older versions of some plugins may not work with Armory CD 2.30.x or later.
 
