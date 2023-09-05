@@ -51,7 +51,6 @@ Examples of including markdown files using the armory/docs `include` shortcode. 
   {{< include "armory-operator/op-install-basic.md" >}}
   {{% /tab %}}
 {{< /tabpane */>}}
-
 ```
 
 **RENDERED OUTPUT**
