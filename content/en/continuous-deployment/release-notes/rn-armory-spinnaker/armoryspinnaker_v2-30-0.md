@@ -34,7 +34,7 @@ Please consult the [Armory Compatibility Matrix](https://docs.armory.io/continuo
 **Introduced in**: Armory CD 2.28.6
 
 {{< include "breaking-changes/bc-kubectl-120.md" >}}
-{{< include "breaking-changes/bc-plugin-compatibility-2-28-0.md" >}}
+{{< include "breaking-changes/bc-plugin-compatibility-2-30-0.md" >}}
 
 
 ## Known issues
