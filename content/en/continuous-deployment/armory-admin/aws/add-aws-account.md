@@ -88,9 +88,6 @@ Here's an example situation:
 
 ### Spinnaker configuration examples
 
-{{< tabs name="configuration" >}}
-{{% tabbody name="Operator" %}}
-
 Here's a sample `SpinnakerService` manifest block that supports the above:
 
 ```yaml
@@ -150,10 +147,6 @@ spec:
           defaults:
             iamRole: BaseIAMRole
 ```
-
-{{% /tabbody %}}
-{{< /tabs >}}
-
 
 ## Configuring Spinnaker to use AWS IAM Roles
 
@@ -324,9 +317,6 @@ For each account you want to deploy to, perform the following:
 
 The Clouddriver pod(s) should be now able to assume each of the Managed Roles (Target Roles) in each of your Deployment Target accounts.  We need to configure Spinnaker to be aware of the accounts and roles it is allowed to consume.
 
-{{< tabs name="add-managing-account" >}}
-{{% tabbody name="Operator" %}}
-
 For each of the Managed (Target) accounts you want to deploy to, add a new entry to the `accounts` array in `SpinnakerService` manifest as follows:
 
 ```yaml
@@ -368,19 +358,10 @@ spec:
             iamRole: BaseIAMRole
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
-
 ### IAM User Part 7: Adding/Enabling the AWS CloudProvider configuration to Spinnaker
-
-{{< tabs name="enable-cloudprovider" >}}
-{{% tabbody name="Operator" %}}
 
 Apply the changes done in `Spinnakerservice` manifest:
 
 ```bash
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest file>
 ```
-
-{{% /tabbody %}}
-{{< /tabs >}}

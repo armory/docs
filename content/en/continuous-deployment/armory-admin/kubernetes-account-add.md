@@ -147,9 +147,6 @@ export TARGET_NAMESPACES_COMMA_SEPARATED=dev-1,dev-2
 
 ## Add the kubeconfig and cloud provider to Spinnaker
 
-{{< tabs name="add" >}}
-{{% tabbody name="Operator" %}}
-
 Add the following configuration to the `SpinnakerServce` manifest, replacing values as needed:
 
 ```yaml
@@ -193,9 +190,6 @@ Finally, apply the changes
 ```bash
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest file>
 ```
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 ## Verify the Kubernetes account appears in the Spinnaker UI
 

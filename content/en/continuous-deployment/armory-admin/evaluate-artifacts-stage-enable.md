@@ -22,10 +22,6 @@ For information about how to use the stage, see {{< linkWithTitle "evaluate-arti
 
 ## Setup
 
-{{< tabs name="enable-plugin" >}}
-
-{{% tabbody name="Operator" %}}
-
 Add the following snippet to your Spinnaker manifest, such as `spinnakerservice.yml`:
 
    ```yaml
@@ -76,9 +72,6 @@ Then, deploy your updated Armory Continuous Deployment configuration using one o
    ```bash
    kubctl -n <namespace> apply -k <path-to-kustomize-directory>
    ```
-
-{{% /tabbody %}}
-{{< /tabs>}}
 
 ## Versions
 

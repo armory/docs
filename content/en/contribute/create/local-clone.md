@@ -18,8 +18,8 @@ To make a significant changes to the `armory/docs` repository, you can fork the 
 
 
 
-{{< tabs name="forkAndClone" >}}
-{{% tabbody name="General User" %}}
+{{< tabpane text=true right=true >}}
+{{% tab header="General User" %}}
 1. Navigate to the `armory/docs` [repository](https://github.com/armory/docs) with a web browser.
 1. Click **Fork**.
 1. In a terminal window, clone your fork:
@@ -51,8 +51,8 @@ To make a significant changes to the `armory/docs` repository, you can fork the 
    upstream	https://github.com/armory/docs.git (push)
    ```
 
-{{% /tabbody %}}
-{{% tabbody name="Armory Employee" %}}
+{{% /tab %}}
+{{% tab header="Armory Employee" %}}
 
 1. Navigate to the `armory/docs` [repository](https://github.com/armory/docs) with a web browser.
 1. In a terminal window, clone the repo:
@@ -61,28 +61,28 @@ To make a significant changes to the `armory/docs` repository, you can fork the 
    git clone git@github.com:armory/docs.git
    ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 ## Update your local repository
 
-{{< tabs name="updateLocal" >}}
-{{% tabbody name="General User" %}}
+{{< tabpane text=true right=true >}}
+{{% tab header="General User" %}}
 Make sure your local repository is current before you start making changes. Fetch commits from your fork's `origin/master` and `armory/docs` `upstream/master`:
 
 ```bash
 git fetch origin
 git fetch upstream
 ```
-{{% /tabbody %}}
-{{%  tabbody name="Armory Employee" %}}
+{{% /tab %}}
+{{%  tab header="Armory Employee" %}}
 
 ```bash
 git pull
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 ## Create a working branch
 
@@ -105,8 +105,8 @@ If you are not in `master`, execute `git checkout master` to go to your `master`
 
 Create a new working branch:
 
-{{< tabs name="workingBranch" >}}
-{{% tabbody name="General User" %}}
+{{< tabpane text=true right=true >}}
+{{% tab header="General User" %}}
 Create a new working branch based on `upstream/master`.
 
 ```bash
@@ -115,15 +115,15 @@ git checkout -b <your-working-branch> upstream/master
 
 Since `git` tracks changes to `upstream\master`, you don't need to rebase your fork before you create a working branch.
 
-{{% /tabbody %}}
-{{% tabbody name="Armory Employee" %}}
+{{% /tab %}}
+{{% tab header="Armory Employee" %}}
 
 ```bash
 git checkout -b <your-working-branch>
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 ## Create your content
 

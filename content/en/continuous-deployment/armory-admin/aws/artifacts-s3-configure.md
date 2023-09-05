@@ -25,8 +25,6 @@ additional options that may be useful (or possibly required).
 
 If you've just installed Spinnaker or Armory, you need to enable S3 as an artifact source.
 
-{{< tabs name="enable-s3-artifacts" >}}
-{{% tabbody name="Operator" %}}
 Add the following snippet to `SpinnakerService` manifest:
 
 ```yaml
@@ -44,16 +42,10 @@ spec:
           enabled: true
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
-
 ## Add S3 account
 
 You only need to configure the S3 credentials as an account -- all buckets
 that account has access to can be referenced after that.
-
-{{< tabs name="add-s3-artifacts" >}}
-{{% tabbody name="Operator" %}}
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
@@ -72,12 +64,7 @@ spec:
           - name: my-s3-account
             region: us-west-2 # S3 region
             awsAccessKeyId: ABCDEF01234... # Your AWS Access Key ID. If not provided, Spinnaker will try to find AWS credentials as described at http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default
-            awsSecretAccessKey: abc        # Your AWS Secret Key. This field supports "encrypted" secret references 
+            awsSecretAccessKey: abc        # Your AWS Secret Key. This field supports "encrypted" secret references
 ```
 
 Apply your changes with `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>`.
-
-{{% /tabbody %}}
-{{< /tabs >}}
-
-

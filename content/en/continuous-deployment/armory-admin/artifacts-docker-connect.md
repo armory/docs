@@ -13,9 +13,6 @@ possibly required.
 
 If you've just installed Armory or Open Source Spinnaker<sup>TM</sup>, you need to enable Docker registry providers.
 
-{{< tabs name="enableDocker" >}}
-{{% tabbody name="Operator" %}}
-
 Add the following snippet to `SpinnakerService` manifest:
 
 ```yaml
@@ -31,8 +28,7 @@ spec:
           enabled: true
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
+
 
 ### Add a Docker registry and repositories to Spinnaker
 
@@ -42,9 +38,6 @@ would not use the `username` or `password` options, since the registry is
 public.  In most cases, you'll be configuring a private registry and the
 authentication credentials will be required, so the options are shown here
 as an example.
-
-{{< tabs name="addDocker" >}}
-{{% tabbody name="Operator" %}}
 
 Add the following snippet to `SpinnakerService` manifest:
 
@@ -83,9 +76,6 @@ spec:
             # passwordCommand: abc # Command to retrieve docker token/password, commands must be available in environment
             # environment: dev # The environment name for the account. Many accounts can share the same environmen(e.g. dev, test, prod)
 ```
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 >Some registries, like Docker Hub, require you to identify the
 repositories explicitly, like above.  Some do not (such as the Google

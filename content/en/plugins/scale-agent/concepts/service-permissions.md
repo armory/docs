@@ -18,8 +18,8 @@ The Scale Agent service should have `ClusterRole` authorization if you need to d
 
 Example configuration for deploying `Pod` manifests:
 
-{{< tabs name="service-permissions" >}}
-{{% tabbody name="ClusterRole" %}}
+{{< tabpane text=true right=true >}}
+{{% tab header="ClusterRole" %}}
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -42,8 +42,8 @@ rules:
   - delete
 ```
 
-{{% /tabbody %}}
-{{% tabbody name="Role" %}}
+{{% /tab %}}
+{{% tab header="Role" %}}
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -66,8 +66,8 @@ rules:
   - delete
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 See the Kubernetes [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) guide for details on configuring `ClusterRole` and `Role` authorization.
 

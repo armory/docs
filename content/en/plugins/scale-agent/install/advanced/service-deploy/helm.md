@@ -42,10 +42,15 @@ Ensure you have completed the following steps before you install the Armory Scal
 
 ## Quickstart
 
-{{< tabs name="agent-quickstart-tabs" >}}
-{{< tabbody name="Agent Mode" include="frag-helm-agent-mode" />}}
-{{< tabbody name="Infrastructure Mode" include="frag-helm-infra-mode" />}}
-{{< /tabs >}}
+{{< tabpane text=true right=true >}}
+{{% tab header="**Mode**:" disabled=true /%}}
+{{% tab header="Agent" %}}
+{{< include "plugins/scale-agent/install/helm/frag-helm-agent-mode.md" >}}
+{{% /tab %}}
+{{% tab header="Infrastructure"  %}}
+{{< include "plugins/scale-agent/install/helm/frag-helm-infra-mode.md" >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 ### Confirm success
 
