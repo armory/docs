@@ -39,7 +39,7 @@ Most users choose Cluster Mode.
 
 ## {{% heading "installOperator" %}}
 
-{{< tabpane right=true >}}
+{{< tabpane text=true right=true >}}
 {{% tab header="**Mode**:" disabled=true /%}}
 {{% tab header="Cluster"%}}
 {{% include "armory-operator/op-install-cluster.md" %}}
