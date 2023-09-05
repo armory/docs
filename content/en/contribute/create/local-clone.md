@@ -299,20 +299,21 @@ This results in a number of files marked as conflicted.
 
 1. Continue the rebase:
 
-```bash
-git rebase --continue
-```
+   ```bash
+   git rebase --continue
+   ```
 
-1.  Repeat steps 2 to 5 as needed.
+1.  Repeat the preceding steps as needed.
+
 
 After applying all commits, the `git status` command shows that the rebase is complete.
 
-1. Force-push your working branch to your remote fork:
+Force-push your working branch to your remote fork:
 
-   ```bash
-   git push --force-with-lease origin <your-working-branch>
-   ```
+```bash
+git push --force-with-lease origin <your-working-branch>
+```
 
-   The pull request no longer shows any conflicts.
+The pull request no longer shows any conflicts.
 
 > For more information, see [Git Branching - Basic Branching and Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging#_basic_merge_conflicts), [Advanced Merging](https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging).
