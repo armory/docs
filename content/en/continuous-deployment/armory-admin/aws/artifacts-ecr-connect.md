@@ -19,9 +19,6 @@ configuration when using the Operator.
 
 ### Update your Spinnaker installation
 
-{{< tabs name="update" >}}
-{{% tabbody name="Operator" %}}
-
 ```bash
 dockerRegistry:
   enabled: true
@@ -31,12 +28,9 @@ dockerRegistry:
     requiredGroupMembership:
     providerVersion: V1
     address: 012345678910.dkr.ecr.us-east-1.amazonaws.com
-    username: AWS 
+    username: AWS
     passwordCommand: "aws --region ue-east-2ecr get-authorization-token --output text --query 'authorizationData[].authorizationToken' | base64 -d | sed 's/^AWS://"
 ```
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 Success! Now you will be able to use ECR as a Docker registry in the configuration stage.
 

@@ -30,22 +30,22 @@ Consult the `kubectl` [docs](https://kubernetes.io/docs/reference/kubectl/) for 
 
 ## Deploy Armory Continuous Deployment
 
-{{< tabs name="deploy" >}}
-{{% tabbody name="Manifest" %}}
+{{< tabpane text=true right=true >}}
+{{% tab header="Manifest" %}}
 
 ```bash
 kubectl -n <namespace> apply -f <path-to-manifest-file>
 ```
 
-{{% /tabbody %}}
-{{% tabbody name="Kustomize" %}}
+{{% /tab %}}
+{{% tab header="Kustomize" %}}
 
 ```bash
 kubctl -n <namespace> apply -k <path-to-kustomize-directory>
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 You can watch the installation progress by executing:
 
@@ -61,8 +61,8 @@ You can verify pod status by executing:
 
 ## Upgrade Armory Continuous Deployment
 
-{{< tabs name="upgrade" >}}
-{{% tabbody name="Manifest" %}}
+{{< tabpane text=true right=true >}}
+{{% tab header="Manifest" %}}
 
 Change the `version` field in your manifest file to the target version for the upgrade:
 
@@ -82,8 +82,8 @@ Apply the updated manifest:
 kubectl -n <namespace> apply -f <path-to-manifest-file>
 ```
 
-{{% /tabbody %}}
-{{% tabbody name="Kustomize" %}}
+{{% /tab %}}
+{{% tab header="Kustomize" %}}
 
 Change the `version` field in your Kustomize patch to the target version for the upgrade.
 
@@ -93,8 +93,8 @@ Apply the update:
 kubctl -n <namespace> apply -k <path-to-kustomize-directory>
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 You can view the upgraded services starting up by executing `describe`:
 
@@ -119,8 +119,8 @@ spinnaker    2.20.2
 
 ## Rollback Armory Continuous Deployment
 
-{{< tabs name="rollback" >}}
-{{% tabbody name="Manifest" %}}
+{{< tabpane text=true right=true >}}
+{{% tab header="Manifest" %}}
 
 Change the `version` field in your manifest file to the target version for the rollback:
 
@@ -140,8 +140,8 @@ Apply the updated manifest:
 kubectl -n <namespace> apply -f <path-to-manifest-file>
 ```
 
-{{% /tabbody %}}
-{{% tabbody name="Kustomize" %}}
+{{% /tab %}}
+{{% tab header="Kustomize" %}}
 
 Change the `version` field in your Kustomize patch to the target version for the rollback.
 
@@ -151,8 +151,8 @@ Apply the update:
 kubctl -n <namespace> apply -k <path-to-kustomize-directory>
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 You can view the rolled back services starting up by executing `describe`:
 

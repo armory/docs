@@ -23,9 +23,6 @@ Note: If multiple clusters need to access the same Vault server, you'll need to 
 
 After configuring authentication on the Vault side, use the following configuration to enable Vault secrets in Spinnaker:
 
-{{< tabs name="serviceAccount" >}}
-{{% tabbody name="Operator" %}}
-
 Add the following snippet to the `SpinnakerService` manifest:
 
 ```yaml
@@ -45,8 +42,6 @@ spec:
             role: <Vault role> # (Applies to KUBERNETES authentication method) Name of the role against which the login is being attempted.
             # path: <k8s cluster path> (Optional; default: kubernetes) Applies to KUBERNETES authentication method) Path of the kubernetes authentication backend mount. Default is "kubernetes"
 ```
-{{% /tabbody %}}
-{{< /tabs >}}
 
 ### 2. Token authentication
 

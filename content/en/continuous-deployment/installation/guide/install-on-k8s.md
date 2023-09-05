@@ -1,5 +1,5 @@
 ---
-title: Install Armory Continuous Deployment for Spinnaker in Kubernetes
+title: Install Armory Continuous Deployment in Kubernetes
 linkTitle: Install in Kubernetes
 weight: 3
 draft: true
@@ -22,10 +22,7 @@ This guide describes the initial installation of Armory Continuous Deployment in
 
 See [Next Steps](#next-steps) for information related to these topics.
 
-## Choosing an installation method
-
-{{< tabs name="install-methods" >}}
-{{% tabbody name="Armory Operator" %}}
+## Installation method
 
 The _Armory Operator_ is the newest installation and configuration method for Armory Continuous Deployment. Using the Operator, you can entirely manage Armory Continuous Deployment using only Kubernetes manifest files. You treat Armory Continuous Deployment like any other Kubernetes application, running standard tools like `kubectl`, `helm`, and `kustomize`. You can even use an Armory Continuous Deployment pipeline to roll out configuration changes to itself. The Operator runs a few "hot" validations before accepting a manifest into the cluster, preventing some configuration problems from affecting a running Armory Continuous Deployment installation.
 
@@ -45,8 +42,7 @@ The _Armory Operator_ is the newest installation and configuration method for Ar
 * Create a Kubernetes namespace for Armory Continuous Deployment.
 * Install Armory Continuous Deployment in that namespace.
 
-{{% /tabbody %}}
-{{< /tabs >}}
+
 
 ## Prerequisites for installing Armory Continuous Deployment
 
@@ -231,9 +227,6 @@ kubectl get namespaces
 The command returns the namespaces in the EKS cluster.
 
 ## Install Armory Continuous Deployment
-
-{{< tabs name="install-steps" >}}
-{{% tabbody name="Armory Operator" %}}
 
 ### Install Armory Operator
 
@@ -451,9 +444,6 @@ Deploy the manifest with the following command:
 ```bash
 kubectl -n spinnaker apply -f spinnakerservice.yml
 ```
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 ## Ingress
 

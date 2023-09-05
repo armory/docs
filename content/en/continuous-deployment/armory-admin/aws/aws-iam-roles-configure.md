@@ -89,9 +89,6 @@ Here's an example situation:
 
 ### Spinnaker configuration examples
 
-{{< tabs name="configure" >}}
-{{% tabbody name="Operator" %}}
-
 Here's a sample `SpinnakerService` manifest block that supports the above:
 
    ```yaml
@@ -146,9 +143,6 @@ Here's a sample `SpinnakerService` manifest block that supports the above:
              defaults:
                iamRole: BaseIAMRole
    ```
-
-{{% /tabbody %}}
-{{< /tabs >}}
 
 ## Configuring Armory to use AWS IAM Instance Roles
 
@@ -329,9 +323,6 @@ For each account you want to deploy to, perform the following:
 
 The Clouddriver pod(s) should be now able to assume each of the Managed Roles (Target Roles) in each of your Deployment Target accounts.  We need to configure Armory to be aware of the accounts and roles its allowed to consume.
 
-{{< tabs name="managed" >}}
-{{% tabbody name="Operator" %}}
-
 For each of the Managed (Target) accounts you want to deploy to, add a new entry to the `accounts` array in `SpinnakerService` manifest as follows:
 
 ```yaml
@@ -369,19 +360,10 @@ spinnakerConfig:
 
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
-
 ### Instance Role Part 7: Adding/Enabling the AWS CloudProvider configuration to Armory
-
-{{< tabs name="enable" >}}
-{{% tabbody name="Operator" %}}
 
 Apply the changes done in `Spinnakerservice` manifest:
 
 ```bash
 kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest file>
 ```
-
-{{% /tabbody %}}
-{{< /tabs >}}

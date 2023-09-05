@@ -18,7 +18,7 @@ If you are using Armory Continuous Deployment, be sure to choose the Armory Oper
 
 {{< include "armory-operator/operator-compat-matrix.md" >}}
 
->Depending on your Kubernetes version, you may need to adjust the following instructions to use a supported Operator version. 
+>Depending on your Kubernetes version, you may need to adjust the following instructions to use a supported Operator version.
 
 ## Operator installation options
 
@@ -39,22 +39,22 @@ Most users choose Cluster Mode.
 
 ## {{% heading "installOperator" %}}
 
-{{< tabs name="install-operator" >}}
-{{% tabbody name="Cluster Mode"%}}
+{{< tabpane text=true right=true >}}
+{{% tab header="**Mode**:" disabled=true /%}}
+{{% tab header="Cluster"%}}
 {{% include "armory-operator/op-install-cluster.md" %}}
-{{% /tabbody %}}
-{{% tabbody name="Basic Mode"%}}
+{{% /tab %}}
+{{% tab header="Basic"%}}
 {{% include "armory-operator/op-install-basic.md" %}}
-{{% /tabbody %}}
-{{< /tabs >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 ## Deploy an Armory Continuous Deployment instance
 
 ### Single manifest file option
 
-{{< tabs name="deploy-spinnaker-manifest" >}}
-
-{{% tabbody name="Armory Continuous Deployment"%}}
+{{< tabpane text=true right=true >}}
+{{% tab header="Armory Continuous Deployment"%}}
 
 ![Proprietary](/images/proprietary.svg)
 
@@ -95,8 +95,8 @@ kubectl create ns spinnaker
 kubectl -n spinnaker apply -f deploy/spinnaker/basic/SpinnakerService.yml
 ```
 
-{{% /tabbody %}}
-{{% tabbody name="Open Source Spinnaker"%}}
+{{% /tab %}}
+{{% tab header="Open Source Spinnaker"%}}
 
 You can find the basic `spinnakerservice.yml` manifest file in `/spinnaker-operator/deploy/spinnaker/basic/`.
 
@@ -132,8 +132,8 @@ kubectl create ns spinnaker
 kubectl -n spinnaker apply -f deploy/spinnaker/basic/spinnakerservice.yml
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 You can watch the installation progress by executing:
 
@@ -164,9 +164,8 @@ The following example uses an AWS S3 bucket. You can find configuration for othe
 
 >This quickstart example is suitable for a proof of concept. For production environments, you should use a robust set of Kustomize patches. See the [Configure Armory Continuous Deployment Using Kustomize]({{< ref "op-config-Kustomize" >}}) guide for details.
 
-{{< tabs name="deploy-spinnaker-kustomize" >}}
-
-{{% tabbody name="Armory Continuous Deployment"%}}
+{{< tabpane text=true right=true >}}
+{{% tab header="Armory Continuous Deployment"%}}
 ![Proprietary](/images/proprietary.svg)
 
 You can see the list of Armory Continuous Deployment versions on the [Release Notes]({{< ref "rn-armory-spinnaker" >}}) page.
@@ -192,8 +191,8 @@ spec:
 The Armory Operator contains Halyard to manage a portion of the deployment Armory Continuous Deployment.
 See [Advanced Operator Configuration]({{< ref "op-advanced-config.md" >}}) if you need to override the default settings for the Halyard Container for some advanced features.
 
-{{% /tabbody %}}
-{{% tabbody name="Open Source Spinnaker" %}}
+{{% /tab %}}
+{{% tab header="Open Source Spinnaker" %}}
 
 You can see the list of open source Spinnaker versions on the Spinnaker website's [Versions](https://spinnaker.io/community/releases/versions/) page.
 
@@ -215,8 +214,8 @@ spec:
           rootFolder: front50
 ```
 
-{{% /tabbody %}}
-{{< /tabs >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 1. If you want to verify the contents of the manifest file, execute from the `/spinnaker-operator/deploy/spinnaker/kustomize/` directory:
 
