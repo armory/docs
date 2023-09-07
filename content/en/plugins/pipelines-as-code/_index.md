@@ -16,17 +16,19 @@ no_list: true
 
 Pipelines-as-Code is a feature in Armory CD, so you only need to enable the service. For Spinnaker, however, you need to install both the Dinghy service and the Spinnaker plugin.
 
-{{< cardpane >}}
-{{< card header="Armory CD<br>Armory Operator" >}}
+<!-- https://www.docsy.dev/docs/adding-content/shortcodes/#card-panes -->
+
+{{% cardpane %}}
+{{% card header="Armory CD<br>Armory Operator" %}}
 Use Kustomize patches to enable the service.
 
 1. Configure the Dinghy service.
 1. Enable the Dinghy service.
 
 [Instructions]({{< ref "plugins/pipelines-as-code/install/armory-cd" >}})
-{{< /card >}}
+{{% /card %}}
 
-{{< card header="Spinnaker<br>Spinnaker Operator" >}}
+{{% card header="Spinnaker<br>Spinnaker Operator" %}}
 Use Kustomize patches to deploy the service and install the plugin.
 
 1. Configure the Dinghy service.
@@ -34,9 +36,9 @@ Use Kustomize patches to deploy the service and install the plugin.
 1. Install both at the same time.
 
 [Instructions]({{< ref "plugins/pipelines-as-code/install/spinnaker-operator" >}})
-{{< /card >}}
+{{% /card %}}
 
-{{< card header="Spinnaker<br>Halyard and kubectl" >}}
+{{% card header="Spinnaker<br>Halyard and kubectl" %}}
 Use Kubernetes manifests to deploy the service and Spinnaker local config files to install the plugin.
 
 1. Create ServiceAccount, ClusterRole, and ClusterRoleBinding.
@@ -46,8 +48,8 @@ Use Kubernetes manifests to deploy the service and Spinnaker local config files 
 1. Install the plugin using `hal deploy apply`.
 
 [Instructions]({{< ref "plugins/pipelines-as-code/install/spinnaker-halyard" >}})
-{{< /card >}}
-{{< /cardpane >}}
+{{% /card %}}
+{{% /cardpane %}}
 
 ## Compatibility
 
