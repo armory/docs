@@ -105,7 +105,7 @@ broken reference to the controller so applications now properly display their at
 ###  Spinnaker Community Contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
-[Spinnaker v1.28.0](https://www.spinnaker.io/changelogs/1.28.0-changelog/) changelog for details.
+[Spinnaker v1.28.6](https://spinnaker.io/changelogs/1.28.6-changelog/) changelog for details.
 
 ## Detailed updates
 
