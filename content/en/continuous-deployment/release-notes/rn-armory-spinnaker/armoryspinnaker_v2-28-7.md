@@ -98,6 +98,9 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 ### Orca
 * Fixed an issue where Blue/Green(Red/Black) in the non-default namespace for kubernetes was failing
 
+### Deck
+* Fixed an issue where applications in the config view always show up as unconfigured. We fixed the
+broken reference to the controller so applications now properly display their attributes.
 
 ###  Spinnaker Community Contributions
 
