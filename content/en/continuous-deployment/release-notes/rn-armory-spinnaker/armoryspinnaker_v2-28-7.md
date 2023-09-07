@@ -80,8 +80,9 @@ You now have the ability to cancel triggered Jenkins jobs when a Spinnaker pipel
 ### Pipelines adapt to sub pipeline with manual judgment color
 When a child/sub pipeline is running and requires a manual judgment, the parent pipeline provides a visual representation that the child pipeline has an manual judgement waiting. This [Github pull request](https://github.com/spinnaker/deck/pull/9863) shows a visual representation of the feature in action.
 
-### Triggering pipelines with Bitbucket server
-Please see this [Pipeline User Guide](https://spinnaker.io/docs/guides/user/pipeline/triggers/bitbucket-events/) to use this feature
+### **Enhanced BitBucket Server pull request handling**
+
+Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. See [Triggering pipelines with Bitbucket Server](https://spinnaker.io/docs/guides/user/pipeline/triggers/bitbucket-events/) in the Spinnaker docs for details.
 
 ## Highlighted updates
 
