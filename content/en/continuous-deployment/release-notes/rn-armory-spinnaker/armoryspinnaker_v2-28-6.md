@@ -91,7 +91,7 @@ Now you can configure Pipelines as Code to pull Dinghy files from multiple branc
 
 ### Enhanced BitBucket Server pull request handling
 
-Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. See [Triggering pipelines with Bitbucket Server](https://spinnaker.io/docs/guides/user/pipeline/triggers/bitbucket-events/)in the Spinnaker docs for details.
+Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. See [Triggering pipelines with Bitbucket Server](https://spinnaker.io/docs/guides/user/pipeline/triggers/bitbucket-events/) in the Spinnaker docs for details.
 
 <!-- Spinnaker docs PR https://github.com/spinnaker/spinnaker.io/pull/285 -->
 
