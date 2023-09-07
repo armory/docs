@@ -82,6 +82,9 @@ Reference [Feature Deprecations and end of support](https://docs.armory.io/conti
 
 ## Early access enabled by default
 
+### **Pipelines adapt to sub pipeline with manual judgment color**
+When a child/sub pipeline is running and requires a manual judgment, the parent pipeline provides a visual representation that the child pipeline has an manual judgement waiting. This [Github pull request](https://github.com/spinnaker/deck/pull/9863) shows a visual representation of the feature in action.
+
 ### **Automatically Cancel Jenkins Jobs**
 
 You now have the ability to cancel triggered Jenkins jobs when a Spinnaker pipeline is canceled, giving you more control over your full Jenkins workflow. Learn more about Jenkins + Spinnaker in this [Spinnaker changelog.](https://spinnaker.io/changelogs/1.29.0-changelog/#orca).
