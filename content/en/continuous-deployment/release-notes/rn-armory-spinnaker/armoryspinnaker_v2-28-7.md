@@ -1,5 +1,5 @@
 ---
-title: v2.28.7 Armory Release (OSS Spinnaker™ v1.28.0)
+title: v2.28.7 Armory Release
 toc_hide: true
 version: 2.28.7
 date: 2023-09-07
