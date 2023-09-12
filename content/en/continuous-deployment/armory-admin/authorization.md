@@ -39,9 +39,3 @@ enabled into your pipeline before the actual deploy, you can allow users
 with limited access to kick off pipelines safely; a user _with_ full access
 to the environment can then continue the pipeline successfully after approval.
 
-## Spinnaker
-
-Here are some other resources that may help you properly configure security in
-Spinnaker:
-
-* [Armory Webinar on Authorization](https://www.armory.io/blog/webinar-configuring-auth-n-z-in-spinnaker-with-isaac-mosquera/)
