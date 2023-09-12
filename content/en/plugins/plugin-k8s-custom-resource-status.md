@@ -26,11 +26,11 @@ These replica checks are enabled by default and do not require additional config
 
 ## Version Compatibility
 
-| Armory CD (Spinnaker) Version | Plugin Version |
-|:------------------------------|:---------------|
-| 2.30.x (1.30.x)               | 3.0.x          |
-| 2.28.x (1.28.x)               | 2.0.x          |
-| 2.27.x (1.27.x)               | 1.0.0          |
+| Armory CD (Spinnaker) Version | Plugin Version  |
+|:------------------------------|:----------------|
+| 2.30.x (1.30.x)               | 2.0.3, 3.0.x    |
+| 2.28.0 - 2.28.6 (1.28.x)      | 2.0.0 - 2.0.2.1 |
+| 2.27.x (1.27.x)               | 1.0.0           |
 
 ## Configuration
 
@@ -201,11 +201,14 @@ The syntax is:
 ```yamlml
 config:
   kind:
-    status:
+    Foo:
       available:
         fields:
-          - status.values.[0].ready: "True"
+          - "[status.values.[0].ready]": "True"
 ```
+
+Important note: Make sure you double quotation and surround the field with brackets `[]` notation so that the original
+value is preserved. 
 
 ## Examples
 
@@ -409,4 +412,7 @@ matches your custom resource.
 * v2.0.0 Support multiple statuses - 10/28/2022
 * v2.0.1 Bug fixes - 10/14/2022
 * v2.0.2 Bug fixes - 05/20/2023  
-* v3.0.0 Bug fixes, Compatibility to Spinnaker 1.30.x (Armory 2.30.x) - 08/31/2023  
+* v2.0.2.1 Fixes a bug when using partial conditions - 11/07/2023
+* v2.0.3 Adds support with Armory Scale Agent - 06/15/2023
+* v3.0.0 Bug fixes: returning stable if fields values match. Compatibility to Spinnaker 1.30.x (Armory 2.30.x) - 08/31/2023
+* v3.0.1 Fixes a bug when using partial conditions - 09/07/2023
