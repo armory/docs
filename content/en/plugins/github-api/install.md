@@ -1,12 +1,17 @@
 ---
 title: Install the GiHub API Plugin
 linkTitle: Install
+weight: 1
 description: >
   TBD
 ---
 
 
+## {{% heading "prereq" %}}
 
+In order for Spinnaker to access 
+
+For more information about GitHub applications, please check https://docs.github.com/en/apps/overview
 
 # GitHub Application Setup
 
