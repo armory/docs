@@ -55,11 +55,6 @@ The Spring Boot version has been upgraded, introducing a backwards incompatible 
 
 **Affected versions**: Armory CD 2.30.0
 
-### Application attributes section displays “This Application has not been configured”
-There is a known issue that relates to the **Application Attributes** section under the **Config** menu. An application that was already created and configured in Spinnaker displays the message, “This application has not been configured.” While the information is missing, there is no functional impact.
-
-**Affected versions**: Armory CD 2.28.0 and later
-
 ### SpEL expressions and artifact binding
 There is an issue where it appears that SpEL expressions are not being evaluated properly in artifact declarations (such as container images) for events such as the Deploy Manifest stage. What is actually happening is that an artifact binding is overriding the image value.
 
