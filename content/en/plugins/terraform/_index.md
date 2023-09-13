@@ -52,17 +52,17 @@ When creating a Terraform Integration stage, pipeline creators select a specific
 
 Terraform Integration is a feature in Armory CD, so you only need to enable the service. For Spinnaker, however, you need to install both the Terraform Integration service and the Spinnaker plugin.
 
-{{< cardpane >}}
-{{< card header="Armory CD<br>Armory Operator" >}}
+{{% cardpane %}}
+{{% card header="Armory CD<br>Armory Operator" %}}
 
 1. Configure Armory CD.
 1. Enable Terraform Integration.
 1. Apply the updated configuration.
 
 [Instructions]({{< ref "plugins/terraform/install/armory-cd" >}})
-{{< /card >}}
+{{% /card %}}
 
-{{< card header="Spinnaker<br>Spinnaker Operator" >}}
+{{% card header="Spinnaker<br>Spinnaker Operator" %}}
 Use Kustomize patches to deploy the service and install the plugin.
 
 1. Configure Spinnaker.
@@ -70,9 +70,9 @@ Use Kustomize patches to deploy the service and install the plugin.
 1. Install both at the same time.
 
 [Instructions]({{< ref "plugins/terraform/install/spinnaker-operator" >}})
-{{< /card >}}
+{{% /card %}}
 
-{{< card header="Spinnaker<br>Halyard and kubectl" >}}
+{{% card header="Spinnaker<br>Halyard and kubectl" %}}
 Use Kubernetes manifests to deploy the service and Spinnaker local config files to install the plugin.
 
 1. Configure Spinnaker
@@ -82,5 +82,5 @@ Use Kubernetes manifests to deploy the service and Spinnaker local config files 
 1. Install the plugin using `hal deploy apply`.
 
 [Instructions]({{< ref "plugins/terraform/install/spinnaker-halyard" >}})
-{{< /card >}}
-{{< /cardpane >}}
+{{% /card %}}
+{{% /cardpane %}}
