@@ -3,22 +3,20 @@ title: GiHub API Plugin for Spinnaker
 linkTitle: GitHub API
 no_list: true
 description: >
-  TBD
+  Armory's GitHub API Plugin provides features that enable engineers to trigger Spinnaker pipelines from GitHub workflows, update GitHub deployment status based on pipeline outcome, and view GitHub Action logs in Spinnaker.
 ---
 
 
-## What the GitHub API plugin does
+## GitHub API Plugin features
 
-Spinnaker is not offering a native integration with GitHub actions as it does with other CI systems like Jenkin, Gitlab CI, Travis, etc. 
+The GitHub API Plugin provides GitHub integration features that Spinnaker lacks:
 
-By using the GitHub API plugin, we offer you multiple integration points between GitHub and Spinnaker: 
-
-- Spinnaker stages to trigger GitHub workflows using **workflow_dispatch** or **repo_dispatch** events
-- Monitor GH workflow and finish the pipeline execution based on the GitHub Workflow conclusion
+- Trigger a Spinnaker pipeline from a GitHub workflow using **workflow_dispatch** or **repo_dispatch** events
 - Trigger a Spinnaker pipeline automatically when a GitHub workflow finishes successfully
 - Trigger a Spinnaker pipeline when a new GitHub Deployment is created
+- Monitor a GitHub workflow and finish pipeline execution based on the GitHub workflow result
 - Update GitHub deployment status based on Spinnaker pipeline conclusion
-- View Github Action Logs in Spinnaker, meaning there is no need to navigate to GitHub to view the logs
+- View Github Action Logs in Spinnaker -- there is no need to navigate to GitHub to view the logs
 
 All the integration points mentioned above use the concept of GitHub Apps.
 
@@ -61,5 +59,35 @@ orca ->> gh: "Deployment status update: in_progress, success, failure, or error"
 
 ## Compatibility matrix
 
+{{< include "plugins/github/compat-matrix.md" >}}
 
 ## Installation paths
+
+{{% cardpane %}}
+{{% card header="Armory CD<br>Armory Operator" %}}
+Use a Kustomize patch to install the plugin.
+
+1. Create a GitHub App and install it in your repo.
+1. Install the plugin using the Armory Operator.
+
+[Instructions]({{< ref "plugins/github-api/install/armory-cd" >}})
+{{% /card %}}
+
+{{% card header="Spinnaker<br>Spinnaker Operator" %}}
+Use a Kustomize patch to install the plugin.
+
+1. Create a GitHub App and install it in your repo.
+1. Install the plugin using the Spinnaker Operator.
+
+[Instructions]({{< ref "plugins/github-api/install/spinnaker-operator" >}})
+{{% /card %}}
+
+{{% card header="Spinnaker<br>Halyard" %}}
+Use Spinnaker local config files to install the plugin.
+
+1. Create a GitHub App and install it in your repo.
+1. Install the plugin in local config files and apply those changes using Halyard.
+
+[Instructions]({{< ref "plugins/github-api/install/spinnaker-halyard" >}})
+{{% /card %}}
+{{% /cardpane %}}
