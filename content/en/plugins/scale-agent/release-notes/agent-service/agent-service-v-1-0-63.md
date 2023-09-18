@@ -6,4 +6,4 @@ date: 2023-08-31
 ---
 
 ### Changes
-* Agent is now available under the container names armory/agent-k8s and armory/scale-agent
+* Agent is now available under the container names 'armory/agent-k8s' and 'armory/scale-agent'.
