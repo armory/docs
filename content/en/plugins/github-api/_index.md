@@ -9,21 +9,16 @@ description: >
 
 ## GitHub API Plugin features
 
-The GitHub API Plugin provides GitHub integration features that Spinnaker lacks:
+The GitHub API Plugin provides the following GitHub integration features:
 
 - Trigger a Spinnaker pipeline from a GitHub workflow using **workflow_dispatch** or **repo_dispatch** events
 - Trigger a Spinnaker pipeline automatically when a GitHub workflow finishes successfully
-- Trigger a Spinnaker pipeline when a new GitHub Deployment is created
+- Trigger a Spinnaker pipeline when GitHub creates a new GitHub Deployment
 - Monitor a GitHub workflow and finish pipeline execution based on the GitHub workflow result
-- Update GitHub deployment status based on Spinnaker pipeline conclusion
+- Update GitHub deployment status based on Spinnaker pipeline outcome
 - View Github Action Logs in Spinnaker -- there is no need to navigate to GitHub to view the logs
 
-All the integration points mentioned above use the concept of GitHub Apps.
-
-A GitHub App is a type of integration you can build to interact with and extend the functionality of GitHub. You can build a GitHub App to provide flexibility and reduce process friction without signing in as a user or creating a service account.
-
-One of the use cases of a Github app is integrating your tool or external service with GitHub, which in our case is Spinnaker.
-GitHub Apps can be installed directly on organizations or personal accounts and granted access to specific repositories. They come with built-in webhooks and narrow, specific permissions.
+The GitHub API plugin uses [GitHub Apps](https://docs.github.com/en/apps/overview) to integrate with GitHub. GitHup Apps provide webhooks and narrow, specific permissions. You install a GitHub App in your organization and specify which repositories the GitHub API plugin can access. 
 
 ## How the plugin works with GitHub
 
@@ -38,8 +33,7 @@ graph TD
 	Echo --> |Notifications|Github
 ```
 
-
-Deployment flow diagram
+For example, the plugin processes a GitHub Deployment event like this:
 
 ```mermaid
 sequenceDiagram

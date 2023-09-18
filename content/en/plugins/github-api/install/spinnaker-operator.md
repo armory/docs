@@ -6,17 +6,28 @@ description: >
   Learn how to install Armory's GitHub API Plugin in a Spinnaker instance managed by the Spinnaker Operator. The GitHub API enables your app developers to trigger a Spinnaker pipeline from a GitHub workflow.
 ---
 
+## Installation overview
+
+Enabling the GitHub API plugin consists of the following steps:
+
+1. [Meet the prerequisites](#before-you-begin)
+1. [Create and install a GitHub App](#create-and-install-a-github-app)
+1. [Configure the plugin](#configure-the-plugin)
+1. [Install the plugin](#install-the-plugin)
+
 ## {{% heading "prereq" %}}
 
+{{< include "plugins/github/install-reqs.md" >}}
 * You are running open source Spinnaker.
 * You manage your instance using the Spinnaker Operator and the `spinnaker-kustomize-patches` [repo](https://github.com/armory/spinnaker-kustomize-patches). If you are using Halyard, see {{< linkWithTitle "plugins/github-api/install/spinnaker-halyard.md" >}}.
-
-{{< include "plugins/github/install-reqs.md" >}}
 
 ## Compatibility
 
 {{< include "plugins/github/compat-matrix.md" >}}
 
+## Create and install a GitHub App
+
+{{< include "plugins/github/github-app.md" >}}
 
 ## Configure the plugin
 

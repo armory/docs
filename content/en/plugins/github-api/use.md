@@ -3,50 +3,95 @@ title: Use the GiHub API Plugin
 linkTitle: Use
 weight: 5
 description: >
-  TBD
+  Learn how to use the GitHup API Plugin to trigger Spinnaker pipelines from GitHub and also to trigger GitHub workflows from Spinnaker pipelines.
 ---
 
+## {{% heading "prereq" %}}
 
-## Trigger GitHub Workflow using workflow_dispatch
+You should be familiar with [GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows).
 
-To trigger a GitHub Workflow from Spinnaker using the ************************************workflow_dispatch************************************ event, we will use the new **************************Github API Workflow Trigger Stage************************** configured like in the screenshot below. We will have to select the GitHub account, the organization, the repository, the workflow name, and the branch where the workflow should be triggered.
+## Trigger GitHub workflows from Spinnaker pipelines
+
+Use the **Github API Workflow Trigger Stage** to trigger your GitHub workflow from your Spinnaker pipeline.
+
+### `workflow_dispatch` event
+
+Configure the **Github API Workflow Trigger Stage** as in the following screenshot: 
 
 {{< figure src="/images/plugins/github/workflowDispatch.png" >}}
 
-## Trigger GitHub Workflow using repo_dispatch
+* **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
+* **Organization or User**: (Required) The organization or username that should trigger the workflow
+* **Project**: (Required) Spinnaker project name
+* **Workflow Name**: (Required) The filename of your workflow
+* **Git reference (branch or tag name)**: (Required) The branch or tag name that contains the workflow 
+* **Workflow Inputs**: (Optional) Key/value pairs to pass to your GitHub workflow
 
-To trigger a GitHub Workflow from Spinnaker using the ************************************repo_dispatch************************************ event, we will use the new **************************Github API Workflow Trigger Stage************************** configured like in the screenshot below. We will have to select the GitHub account, the organization, the repository, and the **********************event_type********************** that should be used to trigger the workflow.
+### `repository_dispatch` event
+
+Configure the **Github API Workflow Trigger Stage** as in the following screenshot: 
 
 {{< figure src="/images/plugins/github/repoDispatch.png" >}}
 
-## View Workflow logs in Spinnaker
+* **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
+* **Organization or User**: (Required) The organization or username that should trigger the workflow
+* **Project**: (Required) Spinnaker project name
+* **Event Type**: (Required) The event type that should trigger the workflow
+* **Client Payload Inputs**: (Optional) Key/value pairs to pass to your GitHub workflow
 
-### Trigger Spinnaker pipeline when a GitHub workflow is finished successfully
+## Trigger Spinnaker pipelines from GitHub workflows
 
-To trigger a Spinnaker pipeline when a GitHub workflow is finished successfully we can select the new **GitHub Event Trigger** type from the dropdown. We must select the GitHub account, the organization, the repository, and the workflow Spinnaker should monitor.
+### Workflow success trigger
+
+To trigger a Spinnaker pipeline when a GitHub workflow finishes successfully, configure an automated trigger in your pipeline.
 
 {{< figure src="/images/plugins/github/workflowFinish.png" >}}
 
-###  Trigger Spinnaker pipeline when a new GitHub deployment was created
+* **Type**: (Required) Select **Github Event Trigger**
+* **Github Event Type**: (Required) Select **workflow**
+* **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
+* **Organization**: (Required) Select the organization associated with the **Github Account**
+* **Repository**: (Required) Select the repository that contains the workflow
+* **Workflow**: (Required) Select the name of the workflow that Spinnaker should monitor
 
-To trigger a Spinnaker pipeline when a new GitHub deployment is created, we can select the new **GitHub Event Trigger** type from the dropdown. We must select the GitHub account, the organization, and the repository. Optionally, but strongly recommended to provide a secret when creating the deployment event webhook in Github. 
+###  New deployment trigger
+
+To trigger a Spinnaker pipeline when GitHub creates a new deployment, first [create a deployment event webhook in GitHub](https://docs.github.com/en/webhooks/using-webhooks/creating-webhooks). Armory strongly recommends you create a secret for the webhook.
 
 {{< figure src="/images/plugins/github/deploymentCreated.png" >}}
 
-The same secret we will use to verify the message received is hashed with the same secret. If not, we will not process the request.
+Next, configure an automated trigger to process the deployment event from GitHub.
 
 {{< figure src="/images/plugins/github/deploymentCreated2.png" >}}
 
-###  Update GitHub deployment when Spinnaker pipeline is finished
+* **Type**: (Required) Select **Github Event Trigger**
+* **Github Event Type**: (Required) Select **events**
+* **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
+* **Organization**: (Required) Select the organization associated with the **Github Account**
+* **Repository**: (Required) Select the repository that contains the workflow
+* **Secret**: (Optional) Provide the name of the GitHub secret associated with the deployment workflow event webhook; the GitHub API Plugin does not process the request when the secrets do not match
 
-When the pipeline triggered by a deployment event is finished, Spinnaker will automatically update the status of the GitHub deployment based on the conclusion of the Spinnaker pipeline. 
+When the pipeline triggered by a deployment event finishes, Spinnaker automatically update the status of the GitHub deployment based on the pipeline's outcome. 
 
-## Fetch release and pre-release information
+## Fetch release information
 
-The ******GitHub API Releases Get Details****** stage can be configured like below to fetch the latest release information.
+You can use the **GitHub API Releases Get Details** stage to fetch the latest release information.
 
 {{< figure src="/images/plugins/github/getDetails.png" >}}
 
-To fetch the latest pre-release the retrieve action should be ********************************************Get Latest Pre-Release********************************************
+* **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
+* **Retrieve**: (Required) Select **Get Latest Release**
+* **Organization or User**: (Required) The organization or username that should trigger the workflow
+* **Project**: (Required) Spinnaker project name
+
+## Fetch prerelease information
+
+You can use the **GitHub API Releases Get Details** stage to fetch the latest prerelease information.
 
 {{< figure src="/images/plugins/github/preRelease.png" >}}
+
+
+* **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
+* **Retrieve**: (Required) Select **Get Latest PreRelease**
+* **Organization or User**: (Required) The organization or username that should trigger the workflow
+* **Project**: (Required) Spinnaker project name

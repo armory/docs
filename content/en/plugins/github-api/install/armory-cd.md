@@ -7,17 +7,28 @@ description: >
 ---
 ![Proprietary](/images/proprietary.svg)
 
+## Installation overview
+
+Enabling the GitHub API plugin consists of the following steps:
+
+1. [Meet the prerequisites](#before-you-begin)
+1. [Create and install a GitHub App](#create-and-install-a-github-app)
+1. [Configure the plugin](#configure-the-plugin)
+1. [Install the plugin](#install-the-plugin)
 
 ## {{% heading "prereq" %}}
 
+{{< include "plugins/github/install-reqs.md" >}}
 * You are running Armory Continuous Deployment.
 * You manage your instance using the Armory Operator and the `spinnaker-kustomize-patches` [repo](https://github.com/armory/spinnaker-kustomize-patches). 
-
-{{< include "plugins/github/install-reqs.md" >}}
 
 ## Compatibility
 
 {{< include "plugins/github/compat-matrix.md" >}}
+
+## Create and install a GitHub App
+
+{{< include "plugins/github/github-app.md" >}}
 
 ## Configure the plugin
 

@@ -6,13 +6,20 @@ description: >
   Learn how to install Armory's GitHub API Plugin in a Spinnaker instance managed by Halyard. The GitHub API enables your app developers to trigger a Spinnaker pipeline from a GitHub workflow.
 ---
 
+## Installation overview
+
+Enabling the GitHub API plugin consists of the following steps:
+
+1. [Meet the prerequisites](#before-you-begin)
+1. [Create and install a GitHub App](#create-and-install-a-github-app)
+1. [Add the plugin to local config files](#add-the-plugin-to-local-config-files)
+1. [Install the plugin](#install-the-plugin)
+
 ## {{% heading "prereq" %}}
 
+{{< include "plugins/github/install-reqs.md" >}}
 * You are running open source Spinnaker.
 * You manage your instance using Halyard. If you are using the Spinnaker Operator, see {{< linkWithTitle "plugins/github-api/install/spinnaker-operator.md" >}}.
-
-{{< include "plugins/github/install-reqs.md" >}}
-
 
 {{% alert color="warning" title="A note about installing plugins in Spinnaker" %}}
 When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to all services, not just the ones the plugin is for. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. Clouddriver can take an hour or more to restart if you have many accounts configured.
@@ -25,6 +32,9 @@ The GitHub API plugin extends Deck, Echo, Gate, Igor, and Orca. To avoid every S
 
 {{< include "plugins/github/compat-matrix.md" >}}
 
+## Create and install a GitHub App
+
+{{< include "plugins/github/github-app.md" >}}
 
 ## Add the plugin to local config files
 
