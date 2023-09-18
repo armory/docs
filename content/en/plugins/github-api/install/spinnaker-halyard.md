@@ -113,6 +113,14 @@ github:
     accounts: []   
 {{< /highlight >}}
 
+## Install the plugin
+
+Apply your changes:
+
+```bash
+hal deploy apply
+```
+
 ## {{% heading "nextSteps" %}}
 
 [Learn how to use the GitHub API plugin]({{< ref "plugins/github-api/use" >}}).
