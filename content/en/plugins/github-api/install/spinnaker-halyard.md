@@ -26,61 +26,13 @@ The GitHub API plugin extends Deck, Echo, Gate, Igor, and Orca. To avoid every S
 {{< include "plugins/github/compat-matrix.md" >}}
 
 
-### Add plugin.json
+## Add the plugin to local config files
 
-```json
-hal plugins repository add githubapi \
-    --url=https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-```
+### settings-local.js
 
-The entry will create the following entry in halconfig:
+Add `github` to the `triggerTypes` array: 
 
-```jsx
-spinnaker:
-    extensibility:
-      plugins: {}
-      repositories:
-        githubapi:
-          id: githubapi
-          url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-```
-
-### Add the plugin
-
-Run the following hal command
-
-```json
-hal plugins add Armory.GithubApi  --version=1.0.0 --enabled=true
-```
-
-Halyard adds the plugin configuration to the `.hal/config` file.
-
-```yaml
-spinnaker:
-  extensibility:
-    plugins:
-      Armory.GithubApi:
-        id: Armory.GithubApi
-        enabled: true
-        version: 1.0.
-```
-
-Additionally, the gate-local.yml should contain a deck proxy entry to load the Deck plugin.
-
-```yaml
-spinnaker:
-  extensibility:
-    deck-proxy:
-      enabled: true
-      plugins:
-         Armory.GithubApi:
-            enabled: true
-            version: 1.0.0 
-```
-
-Update settings-local.js by adding the ************github************ entry in the ********triggerTypes******** array
-
-```yaml
+```js
 window.spinnakerSettings = {
 ...
 triggerTypes: [
@@ -104,59 +56,62 @@ triggerTypes: [
 }
 ```
 
-Update echo-local.yml, gate-local.yml igor-local.yml, and  orcal-local.yml files with the following configuration if you have an organization-wide GitHub application installation
+### Service config files
+
+Update `echo-local.yml`, `gate-local.yml`, `igor-local.yml`, and `orca-local.yml` config files with the following:
 
 ```yaml
+spinnaker:
+  extensibility:
+    plugins:
+      Armory.GithubApi:
+        id: Armory.GithubApi
+        enabled: true
+        version: <version>
+    repositories:
+      githubApi:
+        enabled: true
+        url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
 github:
   plugin:
-    accounts:
-      - name: orgwide # github app organization level installation
-        organization: <github_organization>
-        orgWide: true
-        defaultBranch: <default_github_branch>
-        githubAppId: <github_app_id>
-        githubAppPrivateKey: <your_github_private_key>
+    accounts: []
 ```
 
-or with the following if you installed the GitHub application only in one repository
 
-```yaml
+{{< include "plugins/github/plugin-config.md" >}}
+
+
+#### Accounts config example
+
+{{< include "plugins/github/accounts-config-example.md" >}}
+
+
+### Deck plugin
+
+Configure the Deck plugin in your `gate-local.yml` config file:
+
+{{< highlight yaml "linenos=table,hl_lines=12-17" >}}
+spinnaker:
+  extensibility:
+    plugins:
+      Armory.GithubApi:
+        id: Armory.GithubApi
+        enabled: true
+        version: <version>
+    repositories:
+      githubApi:
+        enabled: true
+        url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json  
+    deck-proxy:
+      enabled: true
+      plugins:
+         Armory.GithubApi:
+            enabled: true
+            version: <version>
 github:
   plugin:
-    accounts:
-      - name: account1 # github app repo installation
-        organization:  <github_organization>
-        repository: <github_repository>
-        defaultBranch: <default_github_branch>
-        githubAppId: <github_app_id>
-        githubAppPrivateKey: <your_github_private_key>
-```
-
-You can define multiple accounts using different Github applications like below
-
-```yaml
-github:
-  plugin:
-    accounts:
-      - name: account1 # github app repo installation
-        organization:  <github_organization>
-        repository: <github_repository>
-        defaultBranch: <default_github_branch>
-        githubAppId: <github_app_id>
-        githubAppPrivateKey: <your_github_private_key>
-      - name: account2 # github app repo installation
-        organization:  <another_github_organization>
-        repository: <another_github_repository>
-        defaultBranch: <another_default_github_branch>
-        githubAppId: <another_github_app_id>
-        githubAppPrivateKey: <another_github_private_key>
-      - name: orgwide # github app organization level installation
-        organization: <github_organization>
-        orgWide: true
-        defaultBranch: <default_github_branch>
-        githubAppId: <github_app_id>
-        githubAppPrivateKey: <your_github_private_key>
-```
+    accounts: []   
+{{< /highlight >}}
 
 ## {{% heading "nextSteps" %}}
 
