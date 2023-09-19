@@ -110,7 +110,7 @@ On the Deck side, the feature flag enhances the Rollback Cluster stage UI with t
 
 The default is used if there is no value set in the UI.
 
-### Dinghy PR Checks
+### **Pipelines-as-Code PR Checks**
 
 This feature, when enabled, verifies if the author of a commit that changed app parameters has sufficient WRITE permission for that app. You can specify a list of authors whose permissions are not valid. This option’s purpose is to skip permissions checks for bots and tools.
 
@@ -120,9 +120,9 @@ See [Permissions check for a commit]({{< ref "plugins/pipelines-as-code/install/
 
 Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you will be able to use the Terraform template file provider. Please open a support ticket if you need this fix.
 
-### **Pipelines as Code multi-branch enhancement**
+### **Pipelines-as-Code multi-branch enhancement**
 
-Now you can configure Pipelines as Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{<  ref "plugins/pipelines-as-code/install/configure#multiple-branches" >}}) for how to enable and configure this feature.
+Now you can configure Pipelines-as-Code to pull Pipelines-as-Code files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{<  ref "plugins/pipelines-as-code/install/configure#multiple-branches" >}}) for how to enable and configure this feature.
 
 ## Highlighted updates
 
