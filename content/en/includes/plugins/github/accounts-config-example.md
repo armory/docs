@@ -13,17 +13,17 @@ github:
         repository: first-app-repo
         defaultBranch: master
         githubAppId: 9753
-        githubAppPrivateKey: encrypted:k8s!n:spin-secrets!k:github-company-public-token
+        githubAppPrivateKey: encrypted:k8s!n:spin-secrets!k:github-app-9753-privatekey
       - name: SecondAppRepo
         organization:  company-public
         repository: second-app-repo
         defaultBranch: main
         githubAppId: 9753
-        githubAppPrivateKey: encrypted:k8s!n:spin-secrets!k:github-company-public-token
+        githubAppPrivateKey: encrypted:k8s!n:spin-secrets!k:github-app-9753-privatekey
       - name: CompanyPrivateOrgAllRepos
         organization: company-private
         orgWide: true
         defaultBranch: main
         githubAppId: 1357
-        githubAppPrivateKey: encrypted:k8s!n:spin-secrets!k:github-company-private-token
+        githubAppPrivateKey: encrypted:k8s!n:spin-secrets!k:github-app-1357-privatekey
 ```

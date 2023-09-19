@@ -61,7 +61,8 @@ orca ->> gh: "Deployment status update: in_progress, success, failure, or error"
 {{% card header="Armory CD<br>Armory Operator" %}}
 Use a Kustomize patch to install the plugin.
 
-1. Create a GitHub App and install it in your repo.
+1. Create a GitHub App and install it in your repo or organization.
+1. Configure the plugin with your GitHub repo(s) and/or organization(s).
 1. Install the plugin using the Armory Operator.
 
 [Instructions]({{< ref "plugins/github-api/install/armory-cd" >}})
@@ -71,6 +72,7 @@ Use a Kustomize patch to install the plugin.
 Use a Kustomize patch to install the plugin.
 
 1. Create a GitHub App and install it in your repo.
+1. Configure the plugin with your GitHub repo(s) and/or organization(s).
 1. Install the plugin using the Spinnaker Operator.
 
 [Instructions]({{< ref "plugins/github-api/install/spinnaker-operator" >}})
@@ -80,6 +82,7 @@ Use a Kustomize patch to install the plugin.
 Use Spinnaker local config files to install the plugin.
 
 1. Create a GitHub App and install it in your repo.
+1. Configure the plugin with your GitHub repo(s) and/or organization(s).
 1. Install the plugin in local config files and apply those changes using Halyard.
 
 [Instructions]({{< ref "plugins/github-api/install/spinnaker-halyard" >}})

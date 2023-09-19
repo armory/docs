@@ -6,8 +6,11 @@ You need to create and install a GitHub App that interacts with the GitHub API p
    * Your GitHub App should have the following **Repository permissions**:
  
      * **Actions**: `Read and write`
-     * **Contents**: `Read and write`
+     * **Contents**: `Read`
      * **Deployments**: `Read and write`
      * **Metadata**: `Read-only`
+
+   * You do need to generate a private key (**Private keys** section).
+   * Be sure to note the GitHub App's **App ID** and **Private key**. You need these to configure the GitHub API plugin.
 
 1. Install the GitHub App you created either in a specific repo or organization-wide. Follow the instructions in GitHub's [Installing your own GitHub App](https://docs.github.com/en/apps/using-github-apps/installing-your-own-github-app) guide.

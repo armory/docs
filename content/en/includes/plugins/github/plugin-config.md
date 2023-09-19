@@ -8,11 +8,11 @@
 
 ```yaml
 - name: <name>
-  organization:  <github_organization>
-  repository: <github_repository>
-  defaultBranch: <default_github_branch>
-  githubAppId: <github_app_id>
-  githubAppPrivateKey: <your_github_private_key>
+  organization:  <github-organization>
+  repository: <github-repository>
+  defaultBranch: <default-github-branch>
+  githubAppId: <github-app-id>
+  githubAppPrivateKey: <github-app-private-key>
 ```
 
 All fields are required.
@@ -29,11 +29,11 @@ All fields are required.
 
 ```yaml
 - name: <name>
-  organization:  <github_organization>
+  organization:  <github-organization>
   orgWide: true
-  defaultBranch: <default_github_branch>
-  githubAppId: <github_app_id>
-  githubAppPrivateKey: <your_github_private_key>
+  defaultBranch: <default-github-branch>
+  githubAppId: <github-app-id>
+  githubAppPrivateKey: <github-app-private-key>
 ```
 
 All fields are required.

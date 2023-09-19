@@ -24,7 +24,7 @@ Configure the **Github API Workflow Trigger Stage** as in the following screensh
 * **Organization or User**: (Required) The organization or username that should trigger the workflow
 * **Project**: (Required) Spinnaker project name
 * **Workflow Name**: (Required) The filename of your workflow
-* **Git reference (branch or tag name)**: (Required) The branch or tag name that contains the workflow 
+* **Git reference (branch or tag name)**: (Required) The branch or tag name that receives the `workflow_dispatch` event
 * **Workflow Inputs**: (Optional) Key/value pairs to pass to your GitHub workflow
 
 ### `repository_dispatch` event
@@ -70,6 +70,7 @@ Next, configure an automated trigger to process the deployment event from GitHub
 * **Organization**: (Required) Select the organization associated with the **Github Account**
 * **Repository**: (Required) Select the repository that contains the workflow
 * **Secret**: (Optional) Provide the name of the GitHub secret associated with the deployment workflow event webhook; the GitHub API Plugin does not process the request when the secrets do not match
+* **Environment**: (Optional) If specified, only deployment to the environment that matches this Java Regular Expression is triggered. Leave empty to trigger builds for every environment.
 
 When the pipeline triggered by a deployment event finishes, Spinnaker automatically update the status of the GitHub deployment based on the pipeline's outcome. 
 

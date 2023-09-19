@@ -1,0 +1,53 @@
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      spinnaker:
+        github:
+          plugin:
+            accounts: []
+        spinnaker:
+          extensibility:
+            repositories:
+              repository:
+                enabled: true
+                url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
+      deck:
+        settings-local.js:
+      gate:
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.GithubApi:
+                enabled: true
+                version: <version>
+            deck-proxy:
+              enabled: true
+              plugins:
+                Armory.GithubApi:
+                  enabled: true
+                  version: <version>
+      orca:
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.GithubApi:
+                enabled: true
+                version: <version>
+      igor:
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.GithubApi:
+                enabled: true
+                version: <version>
+      echo:
+        spinnaker:
+          extensibility:
+            plugins:
+              Armory.GithubApi:
+                enabled: true
+                version: <version>

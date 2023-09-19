@@ -3,7 +3,7 @@ title: Install the GitHub API Plugin in Spinnaker (Operator)
 linkTitle: Spinnaker - Operator
 weight: 2
 description: >
-  Learn how to install Armory's GitHub API Plugin in a Spinnaker instance managed by the Spinnaker Operator. The GitHub API enables your app developers to trigger a Spinnaker pipeline from a GitHub workflow.
+  Learn how to install Armory's GitHub API Plugin in a Spinnaker instance managed by the Spinnaker Operator.  The GitHub API enables enhanced Spinnaker-GitHub integration.
 ---
 
 ## Installation overview
@@ -33,65 +33,8 @@ Enabling the GitHub API plugin consists of the following steps:
 
 Create a `github-api.yml` file with the following contents: 
 
-```yaml
-apiVersion: spinnaker.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      # Configs in the spinnaker profile get applied to all services
-      spinnaker:
-        github:
-          plugin:
-            accounts: []
-        spinnaker:
-          extensibility:
-            repositories:
-              repository:
-                enabled: true
-                url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-			deck:
-				settings-local.js: |
-						window.spinnakerSettings.triggerTypes=['artifactory','concourse','cron','docker','git','github','helm','jenkins','nexus','pipeline','plugin','pubsub','travis','webhook','wercker']
-      gate:
-        spinnaker:
-          extensibility:
-            plugins:
-              Armory.GithubApi:
-                enabled: true
-                version: <version>
-            deck-proxy:
-              enabled: true
-              plugins:
-                Armory.GithubApi:
-                  enabled: true
-                  version: <version>    
-      orca:
-        spinnaker:
-          extensibility:
-            plugins:
-              Armory.GithubApi:
-                enabled: true
-                version: <version>
-      igor:
-        spinnaker:
-          extensibility:
-            plugins:
-              Armory.GithubApi:
-                enabled: true
-                version: <version>
-      echo:
-        spinnaker:
-          extensibility:
-            plugins:
-              Armory.GithubApi:
-                enabled: true
-                version: <version>
-```
-
-
+{{< readfile file="/includes/plugins/github/spinnaker-operator.yaml" code="true" lang="yaml" >}}
+{{< include "plugins/github/settings-js-config.md" >}}
 {{< include "plugins/github/plugin-config.md" >}}
 
 Save the file to your `spinnaker-kustomize-patches/plugins/oss` directory.

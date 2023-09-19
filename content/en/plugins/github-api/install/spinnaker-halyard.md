@@ -3,7 +3,7 @@ title: Install the GitHub API Plugin in Spinnaker (Halyard)
 linkTitle: Spinnaker - Halyard
 weight: 3
 description: >
-  Learn how to install Armory's GitHub API Plugin in a Spinnaker instance managed by Halyard. The GitHub API enables your app developers to trigger a Spinnaker pipeline from a GitHub workflow.
+  Learn how to install Armory's GitHub API Plugin in a Spinnaker instance managed by Halyard. The GitHub API enables enhanced Spinnaker-GitHub integration.
 ---
 
 ## Installation overview
@@ -40,9 +40,9 @@ The GitHub API plugin extends Deck, Echo, Gate, Igor, and Orca. To avoid every S
 
 ### settings-local.js
 
-Add `github` to the `triggerTypes` array: 
+Add `github` to the `triggerTypes` array in your existing settings-local.js file: 
 
-```js
+{{< highlight javascript "linenos=table, hl_lines=9" >}}
 window.spinnakerSettings = {
 ...
 triggerTypes: [
@@ -64,7 +64,7 @@ triggerTypes: [
   ]
 ...
 }
-```
+{{< /highlight >}}
 
 ### Service config files
 
