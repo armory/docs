@@ -18,8 +18,9 @@ When configuring a registry, you normally use standard `SpinnakerService`
 configuration when using the Operator.
 
 ### Update your Spinnaker installation
+
 The configuration below must go under `spinnakerConfig.config.providers`,
-as explained in [Connect Docker Registries](https://docs.armory.io/continuous-deployment/armory-admin/artifacts-docker-connect/)
+as explained in [Connect Docker Registries]({{< ref "continuous-deployment/armory-admin/artifacts-docker-connect" >}}).
 
 ```yaml
 apiVersion: spinnaker.armory.io/v1alpha2
@@ -42,6 +43,6 @@ spec:
             passwordCommand: "aws --region us-east-2 ecr get-authorization-token --output text --query 'authorizationData[].authorizationToken' | base64 -d | sed 's/^AWS://'"
 ```
 
-Success! Now you will be able to use ECR as a Docker registry in the configuration stage.
+Success! Now you can use ECR as a Docker registry in the configuration stage.
 
 ![](/images/armory-admin/artifacts/ecr-test.png)
