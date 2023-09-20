@@ -5,7 +5,7 @@ weight: 1
 description: >
   Learn how to install the GitHub API Plugin in Armory CD.  The GitHub API enables enhanced Spinnaker-GitHub integration.
 ---
-![Proprietary](/images/proprietary.svg)
+![Proprietary](/images/proprietary.svg) ![Early Access](/images/ea.svg)
 
 ## Installation overview
 

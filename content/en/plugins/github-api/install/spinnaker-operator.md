@@ -6,6 +6,8 @@ description: >
   Learn how to install Armory's GitHub API Plugin in a Spinnaker instance managed by the Spinnaker Operator.  The GitHub API enables enhanced Spinnaker-GitHub integration.
 ---
 
+![Proprietary](/images/proprietary.svg) ![Early Access](/images/ea.svg)
+
 ## Installation overview
 
 Enabling the GitHub API plugin consists of the following steps:

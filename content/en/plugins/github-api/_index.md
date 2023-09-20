@@ -3,9 +3,10 @@ title: GiHub API Plugin for Spinnaker
 linkTitle: GitHub API
 no_list: true
 description: >
-  Armory's GitHub API Plugin provides features that enable engineers to trigger Spinnaker pipelines from GitHub workflows, update GitHub deployment status based on pipeline outcome, and view GitHub Action logs in Spinnaker.
+  Armory's GitHub API plugin for Spinnaker streamlines integration with GitHub Actions, filling the native support gap. The plugin enables easy triggering of GitHub workflows, dynamic control of Spinnaker pipelines based on workflow outcomes, and seamless synchronization of GitHub Deployment statuses with Spinnaker pipeline conclusions.
 ---
 
+![Proprietary](/images/proprietary.svg) ![Early Access](/images/ea.svg)
 
 ## GitHub API Plugin features
 
