@@ -94,10 +94,8 @@ roleRef:
 
 Be sure to replace `<namespace>` with your namespace.
 
-Apply the manifest using `kubectl apply -f  cluster-roles.yml`. 
-
-You should now be able to list and watch endpoints in the namespace.
-</details>
+Apply the manifest using `kubectl apply -f  cluster-roles.yml`.  You should now be able to list and watch endpoints in the namespace.
+</details><br><br>
 
 
 The output of the REST request `GET /armory/clouddrivers` should return all existing Clouddriver pods. If there are missing pods, run this command inside each Clouddriver pod:
