@@ -52,6 +52,50 @@ kubectl auth can-i list endpoints
 
 kubectl auth can-i watch endpoints
 ```
+If any of the answers is **no**, then you need to add a ClusterRole and ClusterRoleBindings in order to be able to list/get and watch endpoints in the namespace.
+Below is a procedure for creating the ClusterRole and ClusterRoleBindings:
+
+#### Create the ClusterRole and ClusterRoleBinding:
+```yaml
+### Cluster Role
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: watch-endpoints
+rules:
+- apiGroups:
+  - "*"
+  resources:
+  - endpoints
+  verbs:
+  - "list"
+  - "get"
+  - "watch"
+---
+
+### Cluster Role Binding
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: watch-endpoints-rb
+  namespace: "<CHANGE_NAMESPACE>"
+subjects:
+  - kind: User
+    name: system:serviceaccount:<CHANGE_NAMESPACE>:default
+    apiGroup: rbac.authorization.k8s.io
+  - kind: Group
+    name: system:serviceaccounts
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: watch-endpoints
+  apiGroup: rbac.authorization.k8s.io
+```
+
+Place the above yaml contents in a yaml file and apply it with `kubectl apply -f  <file>.yml`. 
+Now you should be able to list and watch endpoints in the namespace.
+
+---
 
 The output of the REST request `GET /armory/clouddrivers` should return all existing Clouddriver pods. If there are missing pods, run this command inside each Clouddriver pod:
 
@@ -61,20 +105,20 @@ kubectl get endpoints
 
 The result should be similar to:
 
-```
+```yaml
 NAME                       ENDPOINTS                                                      AGE
 spin-clouddriver           10.0.11.54:7002,10.0.11.88:7002,10.0.13.152:7002 + 5 more...   9d
 ```
 
 Then execute:
 
-```
+```bash
 kubectl describe endpoints spin-clouddriver
 ```
 
 There should be one or more entries having `NAME` beginning with what is specified in the config setting `kubesvc.cluster-kubernetes.clouddriverServiceNamePrefix`, which defaults to `spin-clouddriver`. Also, the entry should have at least one port named like what is configured in `kubesvc.cluster-kubernetes.httpPortName`, which defaults to `http`. Your output should be similar to:
 
-```bash
+```yaml
 Name:         spin-clouddriver
 Namespace:    spinnaker
 Labels:       app=spin
