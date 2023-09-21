@@ -23,7 +23,7 @@ spin-clouddriver-grpc   ClusterIP   172.20.110.67   <none>        9091/TCP   30s
 
 Clouddriver's log should have the following messages:
 
-```
+```text
 2020-10-02 16:23:58.031  INFO 1 --- [           main] org.pf4j.AbstractPluginManager           : Start plugin 'Armory.Kubesvc@0.4.4'
 
 ...
@@ -108,7 +108,7 @@ kubectl get endpoints
 
 The result should be similar to:
 
-```yaml
+```bash
 NAME                       ENDPOINTS                                                      AGE
 spin-clouddriver           10.0.11.54:7002,10.0.11.88:7002,10.0.13.152:7002 + 5 more...   9d
 ```
@@ -121,7 +121,7 @@ kubectl describe endpoints spin-clouddriver
 
 There should be one or more entries having `NAME` beginning with what is specified in the config setting `kubesvc.cluster-kubernetes.clouddriverServiceNamePrefix`, which defaults to `spin-clouddriver`. Also, the entry should have at least one port named like what is configured in `kubesvc.cluster-kubernetes.httpPortName`, which defaults to `http`. Your output should be similar to:
 
-```yaml
+```bash
 Name:         spin-clouddriver
 Namespace:    spinnaker
 Labels:       app=spin
@@ -191,13 +191,13 @@ You have to change the logging and verbosity levels to display detailed logging 
 
 First execute the following:
 
-```
+```bash
 export GRPC_GO_LOG_SEVERITY_LEVEL=info GRPC_GO_LOG_VERBOSITY_LEVEL=2
 ```
 
 Then run `grpcurl` with the `-v` switch:
 
-```
+```bash
 grpcurl -v <your-grpc-endpoint>:<port> list
 ```
 
@@ -231,7 +231,7 @@ INFO: 2021/01/25 22:10:52 Subchannel Connectivity change to SHUTDOWN
 
 On a normal startup, the Armory Scale Agent shows the following messages:
 
-```
+```bash
 # This shows where the configuration is read. "no such file" is expected.
 time="2020-10-02T22:22:14Z" level=info msg="Config file /opt/armory/config/armory-agent-local.yaml not present; falling back to default settings" error="stat /opt/armory/config/armory-agent-local.yaml: no such file or directory"
 ...
@@ -450,7 +450,7 @@ Follow these steps to determine why the account is orphaned:
 
    Set the `DefaultAgentHandler` log level to `DEBUG`. For example:
 
-   ```YAML
+   ```yaml
    apiVersion: spinnaker.armory.io/v1alpha2
    kind: SpinnakerService
    metadata:
