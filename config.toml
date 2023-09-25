@@ -31,6 +31,8 @@ pygmentsUseClassic = false
 pygmentsStyle = "dracula"
 
 [markup]
+  [markup.tableOfContents]
+    endLevel = 4 # page TOC render ##, ###, #### headings
   [markup.goldmark]
     [markup.goldmark.parser.attribute]
       block = true
