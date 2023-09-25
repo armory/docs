@@ -23,7 +23,7 @@ spin-clouddriver-grpc   ClusterIP   172.20.110.67   <none>        9091/TCP   30s
 
 Clouddriver's log should have the following messages:
 
-```
+```text
 2020-10-02 16:23:58.031  INFO 1 --- [           main] org.pf4j.AbstractPluginManager           : Start plugin 'Armory.Kubesvc@0.4.4'
 
 ...
@@ -53,6 +53,51 @@ kubectl auth can-i list endpoints
 kubectl auth can-i watch endpoints
 ```
 
+If any of the answers is **no**, then you need to add a ClusterRole and ClusterRoleBinding so Scale Agent can list/get and watch endpoints in the namespace.
+
+<details><summary>Show me how</summary>
+
+Create a `cluster-roles.yml` file with the following contents:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: watch-endpoints
+rules:
+- apiGroups:
+  - "*"
+  resources:
+  - endpoints
+  verbs:
+  - "list"
+  - "get"
+  - "watch"
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: watch-endpoints-rb
+  namespace: <namespace>
+subjects:
+  - kind: User
+    name: system:serviceaccount:<CHANGE_NAMESPACE>:default
+    apiGroup: rbac.authorization.k8s.io
+  - kind: Group
+    name: system:serviceaccounts
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: watch-endpoints
+  apiGroup: rbac.authorization.k8s.io
+```
+
+Be sure to replace `<namespace>` with your namespace.
+
+Apply the manifest using `kubectl apply -f  cluster-roles.yml`.  You should now be able to list and watch endpoints in the namespace.
+</details><br><br>
+
+
 The output of the REST request `GET /armory/clouddrivers` should return all existing Clouddriver pods. If there are missing pods, run this command inside each Clouddriver pod:
 
 ```bash
@@ -61,14 +106,14 @@ kubectl get endpoints
 
 The result should be similar to:
 
-```
+```bash
 NAME                       ENDPOINTS                                                      AGE
 spin-clouddriver           10.0.11.54:7002,10.0.11.88:7002,10.0.13.152:7002 + 5 more...   9d
 ```
 
 Then execute:
 
-```
+```bash
 kubectl describe endpoints spin-clouddriver
 ```
 
@@ -144,13 +189,13 @@ You have to change the logging and verbosity levels to display detailed logging 
 
 First execute the following:
 
-```
+```bash
 export GRPC_GO_LOG_SEVERITY_LEVEL=info GRPC_GO_LOG_VERBOSITY_LEVEL=2
 ```
 
 Then run `grpcurl` with the `-v` switch:
 
-```
+```bash
 grpcurl -v <your-grpc-endpoint>:<port> list
 ```
 
@@ -184,7 +229,7 @@ INFO: 2021/01/25 22:10:52 Subchannel Connectivity change to SHUTDOWN
 
 On a normal startup, the Armory Scale Agent shows the following messages:
 
-```
+```bash
 # This shows where the configuration is read. "no such file" is expected.
 time="2020-10-02T22:22:14Z" level=info msg="Config file /opt/armory/config/armory-agent-local.yaml not present; falling back to default settings" error="stat /opt/armory/config/armory-agent-local.yaml: no such file or directory"
 ...
@@ -403,7 +448,7 @@ Follow these steps to determine why the account is orphaned:
 
    Set the `DefaultAgentHandler` log level to `DEBUG`. For example:
 
-   ```YAML
+   ```yaml
    apiVersion: spinnaker.armory.io/v1alpha2
    kind: SpinnakerService
    metadata:

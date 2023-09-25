@@ -31,6 +31,8 @@ pygmentsUseClassic = false
 pygmentsStyle = "dracula"
 
 [markup]
+  [markup.tableOfContents]
+    endLevel = 4 # page TOC render ##, ###, #### headings
   [markup.goldmark]
     [markup.goldmark.parser.attribute]
       block = true
@@ -186,7 +188,7 @@ postgresql-version="10+"
 #used in the Operator docs
 armory-version-exact = "2.30.0"
 halyard-armory-version = "1.12.1"
-kubesvc-version="1.0.62"
+kubesvc-version="1.0.66"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
