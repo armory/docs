@@ -25,6 +25,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
 ### Orca requires RDBMS configured for UTF-8 encoding
+
 **Impact**
 
 - 2.28.6 migrates to the AWS MySQL driver from the OSS MySQL drivers.  This change is mostly seamless, but we’ve identified one breaking change.  If your database was created without utf8mb4 you will see failures after this upgrade.  utf8mb4 is the recommended DB format for any Spinnaker database, and we don’t anticipate most users who’ve followed setup instructions to encounter this failure. However, we’re calling out this change as a safeguard.
@@ -38,49 +39,51 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
 ### 1.30+ “required artifacts to bind” breaks pipelines
+
 Expected artifacts can be used in automated triggers and stages, and OSS [1.30](https://spinnaker.io/changelogs/1.30.0-changelog/#changes-to-the-way-artifact-constraints-on-triggers-work) changed the way artifact constraints work on triggers. Unfortunately those changes broke the previous behavior when triggering a pipeline from a stage, and this fix restores the previous behavior.
 
 **Affected versions**: Armory CD 2.30.0
 
 ### Clouddriver and Spring Cloud
+
 The Spring Boot version has been upgraded, introducing a backwards incompatible change to the way configuration is loaded in Spinnaker. Users will need to set the ***spring.cloud.config.enabled*** property to ***true*** in the service settings of Clouddriver to preserve existing behavior. All of the other configuration blocks remain the same.
 
 **Affected versions**: Armory CD 2.30.0
 
 ### SpEL expressions and artifact binding
+
 There is an issue where it appears that SpEL expressions are not being evaluated properly in artifact declarations (such as container images) for events such as the Deploy Manifest stage. What is actually happening is that an artifact binding is overriding the image value.
 
 **Workaround**:
-2.27.x or later: Disable artifact binding by adding the following parameter to the stage JSON: `enableArtifactBinding: false`.
-This setting only binds the version when the tag is missing, such as `image: nginx` without a version number.
+
+2.27.x or later: Disable artifact binding by adding the following parameter to the stage JSON: `enableArtifactBinding: false`. This setting only binds the version when the tag is missing, such as `image: nginx` without a version number.
 
 **Affected versions**: Armory CD 2.27.x and later
 
 ## Deprecations
+
 Reference [Feature Deprecations and end of support](https://docs.armory.io/continuous-deployment/feature-status/deprecations/)
 
-## Early access enabled by default
+## Early access features enabled by default
 
-### **Automatically Cancel Jenkins Jobs**
+### Automatically cancel Jenkins jobs
 
-You now have the ability to cancel triggered Jenkins jobs when a Spinnaker pipeline is canceled, giving you more control over your full Jenkins workflow. Learn more about Jenkins + Spinnaker in this [Spinnaker changelog.](https://spinnaker.io/changelogs/1.29.0-changelog/#orca).
+You now have the ability to cancel triggered Jenkins jobs when a Spinnaker pipeline is canceled, giving you more control over your full Jenkins workflow. Learn more about Jenkins + Spinnaker in this [Spinnaker changelog](https://spinnaker.io/changelogs/1.29.0-changelog/#orca).
 
-### **Enhanced BitBucket Server pull request handling**
+### Enhanced BitBucket Server pull request handling
 
 Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. See [Triggering pipelines with Bitbucket Server](https://spinnaker.io/docs/guides/user/pipeline/triggers/bitbucket-events/) in the Spinnaker docs for details
 
-## Early Access
+## Early access features enabled manually
 
-### **Dynamic Rollback Timeout**
+### Dynamic rollback timeout
 
 To make the dynamic timeout available, you need to enable the feature flag in Orca and Deck. You need to add this block to `orca.yml` file if you want to enable the dynamic rollback timeout feature:
 
-```
-
+```yaml
 rollback:
   timeout:
     enabled: true
-
 ```
 
 On the Orca side, the feature flag overrides the default value rollback timeout - 5 min - with a UI input from the user.
@@ -91,20 +94,19 @@ On the Deck side, the feature flag enhances the Rollback Cluster stage UI with t
 
 The default is used if there is no value set in the UI.
 
-### **Pipelines-as-Code PR Checks**
+### Pipelines-as-Code PR checks
 
 This feature, when enabled, verifies if the author of a commit that changed app parameters has sufficient WRITE permission for that app. You can specify a list of authors whose permissions are not valid. This option’s purpose is to skip permissions checks for bots and tools.
 
 See [Permissions check for a commit]({{< ref "plugins/pipelines-as-code/install/configure#permissions-check-for-a-commit" >}}) for details.
 
-### **Terraform template fix**
-
-Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you will be able to use the Terraform template file provider. Please open a support ticket if you need this fix.
-
-### **Pipelines-as-Code multi-branch enhancement**
+### Pipelines-as-Code multi-branch enhancement
 
 Now you can configure Pipeline-as-Code to pull Pipelines-as-Code files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{<  ref "plugins/pipelines-as-code/install/configure#multiple-branches" >}}) for how to enable and configure this feature.
 
+### Terraform template fix
+
+Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you are able to use the Terraform template file provider. Open a support ticket if you need this fix.
 
 ## Highlighted updates
 
@@ -115,9 +117,10 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 -->
 
 ### Gate 
+
 * fix: regression in saml configuration that prevented successful configuration of authn/z
 
-###  Spinnaker Community Contributions
+###  Spinnaker community contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
 [Spinnaker v1.30.3](https://www.spinnaker.io/changelogs/1.30.3-changelog/) changelog for details.

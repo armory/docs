@@ -43,21 +43,33 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 {{< include "known-issues/ki-spel-expr-art-binding.md" >}}
 
-## Early access
+## Early access features enabled by default
 
-### **Dynamic Rollback Timeout**
+### Automatically cancel Jenkins jobs
 
-To make the dynamic timeout available, you need to enable the feature flag in Orca and Deck.
+You now have the ability to cancel triggered Jenkins jobs when a Spinnaker pipeline is canceled, giving you more control over your full Jenkins workflow. Learn more about Jenkins + Spinnaker in this [Spinnaker changelog](https://spinnaker.io/changelogs/1.29.0-changelog/#orca).
 
-On the Orca side, the feature flag overrides the default value rollback timeout - 5 min - with a UI input from the user. You **must** add this block to the **orca.yml** file if you want to enable the dynamic rollback timeout feature.
+### Enhanced BitBucket Server pull request handling
 
+Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. See [Triggering pipelines with Bitbucket Server](https://spinnaker.io/docs/guides/user/pipeline/triggers/bitbucket-events/) in the Spinnaker docs for details
+
+### Pipelines adapt to sub pipeline with manual judgment color
+
+When a child/sub pipeline is running and requires a manual judgment, the parent pipeline provides a visual representation that the child pipeline has an manual judgement waiting. This [Github pull request](https://github.com/spinnaker/deck/pull/9863) shows a visual representation of the feature in action.
+
+## Early access features enabled manually
+
+### Dynamic rollback timeout
+
+To make the dynamic timeout available, you need to enable the feature flag in Orca and Deck. You need to add this block to `orca.yml` file if you want to enable the dynamic rollback timeout feature:
+
+```yaml
+rollback:
+  timeout:
+    enabled: true
 ```
-{
-  "rollback:"
-  "timeout:"
-    "enabled: true"
-}
-```
+
+On the Orca side, the feature flag overrides the default value rollback timeout - 5 min - with a UI input from the user.
 
 On the Deck side, the feature flag enhances the Rollback Cluster stage UI with timeout input.
 
@@ -65,25 +77,19 @@ On the Deck side, the feature flag enhances the Rollback Cluster stage UI with t
 
 The default is used if there is no value set in the UI.
 
-### **Pipelines as Code multi-branch enhancement**
+### Pipelines-as-Code PR checks
 
-Now you can configure Pipelines as Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{< ref "plugins/pipelines-as-code/install/configure#multiple-branches" >}}) for how to enable and configure this feature.
+This feature, when enabled, verifies if the author of a commit that changed app parameters has sufficient WRITE permission for that app. You can specify a list of authors whose permissions are not valid. This option’s purpose is to skip permissions checks for bots and tools.
 
-### **Terraform template fix**
+See [Permissions check for a commit]({{< ref "plugins/pipelines-as-code/install/configure#permissions-check-for-a-commit" >}}) for details.
 
-Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you will be able to use the Terraform template file provider. Please open a support ticket if you need this fix.
+### Pipelines-as-Code multi-branch enhancement
 
-### **Automatically Cancel Jenkins Jobs**
+Now you can configure Pipeline-as-Code to pull Pipelines-as-Code files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{<  ref "plugins/pipelines-as-code/install/configure#multiple-branches" >}}) for how to enable and configure this feature.
 
-You now have the ability to cancel triggered Jenkins jobs when a Spinnaker pipeline is canceled, giving you more control over your full Jenkins workflow. Learn more about Jenkins + Spinnaker in this [documentation](https://spinnaker.io/changelogs/1.29.0-changelog/#orca).
+### Terraform template fix
 
-### **Pipelines adapt to sub pipeline with manual judgment color**
-When a child/sub pipeline is running and requires a manual judgment, the parent pipeline provides a visual representation that the child pipeline has an manual judgement waiting. This [Github pull request](https://github.com/spinnaker/deck/pull/9863) shows a visual representation of the feature in action.
-
-### **Enhanced BitBucket Server pull request handling**
-
-Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. See [Triggering pipelines with Bitbucket Server](https://spinnaker.io/docs/guides/user/pipeline/triggers/bitbucket-events/) in the Spinnaker docs for details.
-
+Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you are able to use the Terraform template file provider. Open a support ticket if you need this fix.
 
 ## Highlighted updates
 
