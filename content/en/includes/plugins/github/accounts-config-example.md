@@ -22,7 +22,7 @@ github:
         githubAppPrivateKey: encrypted:k8s!n:spin-secrets!k:github-app-9753-privatekey
       - name: CompanyPrivateOrgAllRepos
         organization: company-private
-        orgWide: true
+        orgWideInstallation: true
         defaultBranch: main
         githubAppId: 1357
         githubAppPrivateKey: encrypted:k8s!n:spin-secrets!k:github-app-1357-privatekey

@@ -30,7 +30,7 @@ All fields are required.
 ```yaml
 - name: <name>
   organization:  <github-organization>
-  orgWide: true
+  orgWideInstallation: true
   defaultBranch: <default-github-branch>
   githubAppId: <github-app-id>
   githubAppPrivateKey: <github-app-private-key>

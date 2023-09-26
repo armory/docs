@@ -6,8 +6,9 @@ You need to create and install a GitHub App that interacts with the GitHub API p
    * Your GitHub App should have the following **Repository permissions**:
  
      * **Actions**: `Read and write`
-     * **Contents**: `Read`
+     * **Contents**: `Read and write`
      * **Deployments**: `Read and write`
+     * **Environments**: `Read and write`
      * **Metadata**: `Read-only`
 
    * You do need to generate a private key (**Private keys** section).

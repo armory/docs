@@ -38,7 +38,13 @@ Create a `github-api.yml` file with the following contents:
 {{< include "plugins/github/settings-js-config.md" >}}
 {{< include "plugins/github/plugin-config.md" >}}
 
-Save the file to your `spinnaker-kustomize-patches/plugins` directory.
+{{% alert title="Conflict with Armory CDSH v2.30.x" color="warning" %}}
+
+[Known issue]({{< ref "plugins/github-api/release-notes#armoryheader-plugin-conflict" >}}): The GitHub API plugin conflicts with the Armory.Header plugin version included in CDSH v2.30.x. You must install version 0.2.0 of the Armory.Header plugin. 
+<details><summary>Show me how</summary>
+{{< include "plugins/github/armory-header-plugin.md" >}}
+</details>
+{{% /alert %}}
 
 ### Accounts config example
 
