@@ -19,7 +19,7 @@ The GitHub API Plugin provides the following GitHub integration features:
 - Update GitHub deployment status based on Spinnaker pipeline outcome
 - View Github Action Logs in Spinnaker -- there is no need to navigate to GitHub to view the logs
 
-The GitHub API plugin uses [GitHub Apps](https://docs.github.com/en/apps/overview) to integrate with GitHub. GitHup Apps provide webhooks and narrow, specific permissions. You install a GitHub App in your organization and specify which repositories the GitHub API plugin can access. 
+The GitHub API plugin uses [GitHub Apps](https://docs.github.com/en/apps/overview) to integrate with GitHub. GitHup Apps provide webhooks and narrow, specific permissions. You can install a GitHub App  that gives the GitHub API plugin access to all the repos in your GitHub organization, or you can install a Github App that gives the GitHub API plugin access to specific repos. You can install as many GitHub Apps as your use case requires.
 
 ## How the plugin works with GitHub
 
