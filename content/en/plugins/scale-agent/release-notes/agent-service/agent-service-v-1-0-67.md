@@ -6,4 +6,4 @@ date: 2023-09-28
 ---
 
 Changes:
-- Improve validation for CR operations
+- Improve validation for operations on Kubernetes Custom Resources.
