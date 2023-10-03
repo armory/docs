@@ -31,6 +31,7 @@ All fields are required.
 - name: <name>
   organization:  <github-organization>
   orgWideInstallation: true
+  includePublicRepositories: false
   defaultBranch: <default-github-branch>
   githubAppId: <github-app-id>
   githubAppPrivateKey: <github-app-private-key>
@@ -40,7 +41,8 @@ All fields are required.
 
 * `name`:  Unique name; this name appears in the GitHub API stages' `GitHub Account` select list.
 * `organization`: GitHub organization that you installed the GitHub App in
-* `orgWide`: `true`
+* `orgWideInstallation`: `true`
+* `includePublicRepositories`: `true/false` (Optional) Defaults to `false`. Flag to limit the Spinnaker triggers to only PRIVATE/INTERNAL repositories that the Github App installation has access to.
 * `defaultBranch`: Default repository branch; for example, main or master
 * `githubAppId`: The GitHub App's **App ID**
 * `githubAppPrivateKey`: The GitHub App's private key; this field supports encrypted field references; see [Work with Secrets in Spinnaker]({{< ref "continuous-deployment/armory-admin/secrets" >}}) for details.

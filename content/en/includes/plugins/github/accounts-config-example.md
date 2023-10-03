@@ -23,6 +23,7 @@ github:
       - name: CompanyPrivateOrgAllRepos
         organization: company-private
         orgWideInstallation: true
+        includePublicRepositories: false
         defaultBranch: main
         githubAppId: 1357
         githubAppPrivateKey: encrypted:k8s!n:spin-secrets!k:github-app-1357-privatekey
