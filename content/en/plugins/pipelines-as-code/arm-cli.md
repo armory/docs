@@ -22,7 +22,7 @@ You can either run the ARM CLI in a Docker container or install and run it local
 
 ### Docker container
 
-The ARM CLI is available on [Docker Hub](https://hub.docker.com/r/armory/arm-cli). To download and run the ARMO CLI, use the following commands:
+The ARM CLI is available on [Docker Hub](https://hub.docker.com/r/armory/arm-cli). To download and run the ARM CLI, use the following commands:
 
 ```bash
 # Pull the latest container for the CLI
