@@ -68,7 +68,7 @@ There is an issue where it appears that SpEL expressions are not being evaluated
 
 ## Deprecations
 
-Reference [Feature Deprecations and end of support](https://docs.armory.io/continuous-deployment/feature-status/deprecations/)
+Reference [Feature Deprecations and end of support]({{< ref "continuous-deployment/feature-status/deprecations/" >}})
 
 ## Early access features enabled by default
 
