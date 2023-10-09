@@ -269,7 +269,6 @@ version: 2.30.3
 #### Armory Igor - 2.30.2...2.30.3
 
   - chore(cd): update base service version to igor:2023.09.07.17.50.00.release-1.30.x (#491)
-  - chore(ci): removed aquasec scan action (#495) (#508)
 
 
 ### Spinnaker
