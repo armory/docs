@@ -260,8 +260,6 @@ version: 2.30.3
 
 #### Terraformer™ - 2.30.2...2.30.3
 
-  - chore(ci): removing aquasec scans on push (#517) (#519)
-  - chore(ci): removed aquasec scan action (#510) (#512)
 
 #### Armory Deck - 2.30.2...2.30.3
 
