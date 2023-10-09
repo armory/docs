@@ -219,7 +219,6 @@ version: 2.30.3
 #### Armory Orca - 2.30.2...2.30.3
 
   - chore(cd): update base orca version to 2023.09.07.17.59.31.release-1.30.x (#693)
-  - chore(ci): removed aquasec scan action (#695) (#706)
   - chore(cd): update base orca version to 2023.09.26.15.03.20.release-1.30.x (#721)
 
 #### Armory Fiat - 2.30.2...2.30.3
