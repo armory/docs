@@ -21,7 +21,7 @@ Enabling the GitHub Integration plugin consists of the following steps:
 
 {{< include "plugins/github/install-reqs.md" >}}
 * You are running open source Spinnaker.
-* You manage your instance using Halyard. If you are using the Spinnaker Operator, see {{< linkWithTitle "plugins/github-api/install/spinnaker-operator.md" >}}.
+* You manage your instance using Halyard. If you are using the Spinnaker Operator, see {{< linkWithTitle "plugins/github-integration/install/spinnaker-operator.md" >}}.
 
 {{% alert color="warning" title="A note about installing plugins in Spinnaker" %}}
 When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to all services, not just the ones the plugin is for. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. Clouddriver can take an hour or more to restart if you have many accounts configured.
@@ -135,4 +135,4 @@ hal deploy apply
 
 ## {{% heading "nextSteps" %}}
 
-[Learn how to use the GitHub Integration plugin]({{< ref "plugins/github-api/use" >}}).
+[Learn how to use the GitHub Integration plugin]({{< ref "plugins/github-integration/use" >}}).

@@ -1,9 +1,9 @@
 ---
-title: GiHub Integration Plugin for Spinnaker
+title: GitHub Integration Plugin for Spinnaker
 linkTitle: GitHub Integration
 no_list: true
 description: >
-  Armory's GitHub Integration plugin for Spinnaker streamlines integration with GitHub Actions, filling the native support gap. The plugin enables easy triggering of GitHub workflows, dynamic control of Spinnaker pipelines based on workflow outcomes, and seamless synchronization of GitHub Deployment statuses with Spinnaker pipeline conclusions.
+  Armory's GitHub Integration plugin for Spinnaker streamlines integration with GitHub Actions, filling the native support gap. The plugin enables easy triggering of GitHub Actions workflows, dynamic control of Spinnaker pipelines based on workflow outcomes, and seamless synchronization of GitHub Deployment statuses with Spinnaker pipeline conclusions.
 ---
 
 ![Proprietary](/images/proprietary.svg) ![Early Access](/images/ea.svg)
@@ -27,19 +27,19 @@ The GitHub Integration plugin uses [GitHub Apps](https://docs.github.com/en/apps
 graph TD
 	Orca -->|Workflow Trigger| Igor
 	Gate --> |Trigger based on Deployment event|Echo
-	Igor -->|Trigger/Monitor triggered workflows| Github
+	Igor -->|Trigger/Monitor triggered workflows| GitHub
 	Echo -->|Pipeline triggers|Orca
 	Orca -->|Pipeline notifications|Echo
-	Github --> |Deployment event| Gate
-	Echo --> |Notifications|Github
+	GitHub --> |Deployment event| Gate
+	Echo --> |Notifications|GitHub
 ```
 
 For example, the plugin processes a GitHub Deployment event like this:
 
 ```mermaid
 sequenceDiagram
-participant ghActions as "Github Workflow job"
-participant gh as "Github"
+participant ghActions as "GitHub Workflow job"
+participant gh as "GitHub"
 participant gate as "Gate"
 participant echo as "Echo"
 participant orca as "Orca"
@@ -66,7 +66,7 @@ Use a Kustomize patch to install the plugin.
 1. Configure the plugin with your GitHub repo(s) and/or organization(s).
 1. Install the plugin using the Armory Operator.
 
-[Instructions]({{< ref "plugins/github-api/install/armory-cd" >}})
+[Instructions]({{< ref "plugins/github-integration/install/armory-cd" >}})
 {{% /card %}}
 
 {{% card header="Spinnaker<br>Spinnaker Operator" %}}
@@ -76,7 +76,7 @@ Use a Kustomize patch to install the plugin.
 1. Configure the plugin with your GitHub repo(s) and/or organization(s).
 1. Install the plugin using the Spinnaker Operator.
 
-[Instructions]({{< ref "plugins/github-api/install/spinnaker-operator" >}})
+[Instructions]({{< ref "plugins/github-integration/install/spinnaker-operator" >}})
 {{% /card %}}
 
 {{% card header="Spinnaker<br>Halyard" %}}
@@ -86,6 +86,6 @@ Use Spinnaker local config files to install the plugin.
 1. Configure the plugin with your GitHub repo(s) and/or organization(s).
 1. Install the plugin in local config files and apply those changes using Halyard.
 
-[Instructions]({{< ref "plugins/github-api/install/spinnaker-halyard" >}})
+[Instructions]({{< ref "plugins/github-integration/install/spinnaker-halyard" >}})
 {{% /card %}}
 {{% /cardpane %}}

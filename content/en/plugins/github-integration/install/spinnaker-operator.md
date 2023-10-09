@@ -21,7 +21,7 @@ Enabling the GitHub Integration plugin consists of the following steps:
 
 {{< include "plugins/github/install-reqs.md" >}}
 * You are running open source Spinnaker.
-* You manage your instance using the Spinnaker Operator and the `spinnaker-kustomize-patches` [repo](https://github.com/armory/spinnaker-kustomize-patches). If you are using Halyard, see {{< linkWithTitle "plugins/github-api/install/spinnaker-halyard.md" >}}.
+* You manage your instance using the Spinnaker Operator and the `spinnaker-kustomize-patches` [repo](https://github.com/armory/spinnaker-kustomize-patches). If you are using Halyard, see {{< linkWithTitle "plugins/github-integration/install/spinnaker-halyard.md" >}}.
 
 ## Compatibility
 
@@ -78,4 +78,4 @@ Save the file to your `spinnaker-kustomize-patches/plugins/oss` directory.
 
 ## {{% heading "nextSteps" %}}
 
-[Learn how to use the GitHub Integration plugin]({{< ref "plugins/github-api/use" >}}).
+[Learn how to use the GitHub Integration plugin]({{< ref "plugins/github-integration/use" >}}).
