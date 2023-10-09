@@ -212,7 +212,6 @@ version: 2.30.3
 
   - chore(cd): update base service version to gate:2023.09.01.01.26.23.release-1.30.x (#608)
   - chore(cd): update base service version to gate:2023.09.07.17.47.28.release-1.30.x (#612)
-  - chore(ci): removed aquasec scan action (#616) (#622)
 
 #### Armory Rosco - 2.30.2...2.30.3
 
