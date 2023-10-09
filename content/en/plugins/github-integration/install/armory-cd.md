@@ -3,7 +3,7 @@ linkTitle: Armory CD
 title: Install the GitHub Integration Plugin in Armory Continuous Deployment
 weight: 1
 description: >
-  Learn how to install the GitHub Integration Plugin in Armory CD.  The GitHub Integration plugin enables enhanced Spinnaker-GitHub integration.
+  Learn how to install the GitHub Integration Plugin in Armory CD.  The GitHub Integration plugin provides enhanced Spinnaker-GitHub integration.
 ---
 ![Proprietary](/images/proprietary.svg) ![Early Access](/images/ea.svg)
 
@@ -67,7 +67,7 @@ Create a `github-integration-plugin.yml` file with the following contents:
    
    patchesStrategicMerge:
      - core/patches/oss-version.yml
-     - plugins/github-integration-plugin.yml
+     - plugins/patch-github-integration-plugin.yml
    
    patches:
      - target:
