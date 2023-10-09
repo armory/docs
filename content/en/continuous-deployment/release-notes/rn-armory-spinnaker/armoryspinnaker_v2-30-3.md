@@ -227,7 +227,6 @@ version: 2.30.3
 #### Armory Echo - 2.30.2...2.30.3
 
   - chore(cd): update base service version to echo:2023.09.07.17.49.13.release-1.30.x (#616)
-  - chore(ci): removed aquasec scan action (#618) (#622)
 
 #### Dinghy™ - 2.30.2...2.30.3
 
