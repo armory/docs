@@ -255,7 +255,6 @@ version: 2.30.3
 #### Armory Front50 - 2.30.2...2.30.3
 
   - chore(cd): update base service version to front50:2023.09.07.17.50.48.release-1.30.x (#588)
-  - chore(ci): removed aquasec scan action (#590) (#594)
   - chore(cd): update base service version to front50:2023.09.25.18.58.31.release-1.30.x (#601)
   - fix(dependencies): match google cloud storage version to this set in OSS, and bump OSS front50 version. (#602)
 
