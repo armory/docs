@@ -265,8 +265,6 @@ version: 2.30.3
 
   - chore(cd): update base deck version to 2023.0.0-20230918174859.release-1.30.x (#1342)
   - chore(cd): update base deck version to 2023.0.0-20230920215154.release-1.30.x (#1343)
-  - chore(ci): removed aquasec scan action (#1340) (#1345)
-  - chore(ci): removing docker build and aquasec scans (#1350)
 
 #### Armory Igor - 2.30.2...2.30.3
 
