@@ -223,7 +223,6 @@ version: 2.30.3
 
 #### Armory Fiat - 2.30.2...2.30.3
 
-  - chore(ci): removed aquasec scan action (#523) (#526)
 
 #### Armory Echo - 2.30.2...2.30.3
 
