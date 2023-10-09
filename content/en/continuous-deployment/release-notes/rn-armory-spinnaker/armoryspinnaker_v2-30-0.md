@@ -41,6 +41,11 @@ Please consult the [Armory Compatibility Matrix]({{< ref "continuous-deployment/
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+### Artifact Binding
+Customers who utilize parent pipelines to provide artifacts to child pipelines may encounter unexpected errors or results in 2.30+ as child pipelines may not resolve those artifacts correctly.
+
+Affected versions: Armory CD 2.30.0 and later
+
 ### Using Custom Resource Status Plugin and Scale Agent generates an error
 
 Armory customers that may be using the Custom Resource Status Plugin (2.0.3) may encounter an error “An attempt was made to call a method that does not exist."

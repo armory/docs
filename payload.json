@@ -1,167 +1,221 @@
 {
   "armoryServices": [
     {
-      "commitMessages": [],
-      "currentVersion": "2.28.7",
-      "name": "Armory Echo",
-      "previousVersion": "2.28.6"
-    },
-    {
       "commitMessages": [
-        "chore(cd): update base service version to kayenta:2023.06.01.03.10.17.release-1.28.x (#443)"
+        "chore(cd): update base service version to gate:2023.09.01.01.26.23.release-1.30.x (#608)",
+        "chore(cd): update base service version to gate:2023.09.07.17.47.28.release-1.30.x (#612)",
+        "chore(ci): removed aquasec scan action (#616) (#622)"
       ],
-      "currentVersion": "2.28.7",
-      "name": "Armory Kayenta",
-      "previousVersion": "2.28.6"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update base service version to igor:2023.03.27.19.09.31.release-1.28.x (#426)",
-        "chore(cd): update armory-commons version to 3.11.5 (#450)",
-        "chore(cd): update armory-commons version to 3.11.6 (#453)"
-      ],
-      "currentVersion": "2.28.7",
-      "name": "Armory Igor",
-      "previousVersion": "2.28.6"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.7",
+      "currentVersion": "2.30.3",
       "name": "Armory Gate",
-      "previousVersion": "2.28.6"
+      "previousVersion": "2.30.2"
     },
     {
       "commitMessages": [
-        "chore(cd): update base orca version to 2023.05.18.14.27.20.release-1.28.x (#645)"
+        "chore(ci): removed aquasec scan action (#565) (#568)"
       ],
-      "currentVersion": "2.28.7",
-      "name": "Armory Orca",
-      "previousVersion": "2.28.6"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update base deck version to 2023.0.0-20230430115438.release-1.28.x (#1334)"
-      ],
-      "currentVersion": "2.28.7",
-      "name": "Armory Deck",
-      "previousVersion": "2.28.6"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update armory-commons version to 3.11.5 (#472)",
-        "chore(cd): update armory-commons version to 3.11.6 (#476)"
-      ],
-      "currentVersion": "2.28.7",
-      "name": "Armory Fiat",
-      "previousVersion": "2.28.6"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.7",
+      "currentVersion": "2.30.3",
       "name": "Armory Rosco",
-      "previousVersion": "2.28.6"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.7",
-      "name": "Armory Front50",
-      "previousVersion": "2.28.6"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.28.7",
-      "name": "Terraformer™",
-      "previousVersion": "2.28.6"
+      "previousVersion": "2.30.2"
     },
     {
       "commitMessages": [
-        "chore(cd): update base service version to clouddriver:2023.05.30.19.45.25.release-1.28.x (#880)"
+        "chore(cd): update base orca version to 2023.09.07.17.59.31.release-1.30.x (#693)",
+        "chore(ci): removed aquasec scan action (#695) (#706)",
+        "chore(cd): update base orca version to 2023.09.26.15.03.20.release-1.30.x (#721)"
       ],
-      "currentVersion": "2.28.7",
-      "name": "Armory Clouddriver",
-      "previousVersion": "2.28.6"
+      "currentVersion": "2.30.3",
+      "name": "Armory Orca",
+      "previousVersion": "2.30.2"
     },
     {
-      "commitMessages": [],
-      "currentVersion": "2.28.7",
+      "commitMessages": [
+        "chore(ci): removed aquasec scan action (#523) (#526)"
+      ],
+      "currentVersion": "2.30.3",
+      "name": "Armory Fiat",
+      "previousVersion": "2.30.2"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to echo:2023.09.07.17.49.13.release-1.30.x (#616)",
+        "chore(ci): removed aquasec scan action (#618) (#622)"
+      ],
+      "currentVersion": "2.30.3",
+      "name": "Armory Echo",
+      "previousVersion": "2.30.2"
+    },
+    {
+      "commitMessages": [
+        "chore(ci): removed aquasec scan action (#489) (#492)",
+        "chore(ci): removing aquasec scans for any push (#497) (#499)",
+        "chore(log): Bumped up dinghy and plank versions. (backport #490) (#505)"
+      ],
+      "currentVersion": "2.30.3",
       "name": "Dinghy™",
-      "previousVersion": "2.28.6"
+      "previousVersion": "2.30.2"
+    },
+    {
+      "commitMessages": [
+        "chore(ci): removed aquasec scan action (#469) (#471)"
+      ],
+      "currentVersion": "2.30.3",
+      "name": "Armory Kayenta",
+      "previousVersion": "2.30.2"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to clouddriver:2023.08.29.09.35.30.release-1.30.x (#945)",
+        "chore(cd): update base service version to clouddriver:2023.09.07.19.02.07.release-1.30.x (#953)",
+        "chore(cd): update base service version to clouddriver:2023.09.07.22.04.28.release-1.30.x (#955)",
+        "chore(cd): update base service version to clouddriver:2023.09.08.02.48.03.release-1.30.x (#958)",
+        "chore(cd): update base service version to clouddriver:2023.09.08.03.51.25.release-1.30.x (#959)",
+        "chore(cd): update base service version to clouddriver:2023.09.08.04.42.03.release-1.30.x (#962)",
+        "chore(cd): update base service version to clouddriver:2023.09.08.05.40.38.release-1.30.x (#963)",
+        "chore(cd): update base service version to clouddriver:2023.09.08.14.33.30.release-1.30.x (#965)",
+        "chore(cd): update base service version to clouddriver:2023.09.16.22.42.11.release-1.30.x (#976)",
+        "chore(cd): update base service version to clouddriver:2023.09.20.19.03.35.release-1.30.x (#980)",
+        "chore(ci): removed aquasec scan action (#971) (#983)",
+        "fix: CVE-2023-37920 (#977) (#992)"
+      ],
+      "currentVersion": "2.30.3",
+      "name": "Armory Clouddriver",
+      "previousVersion": "2.30.2"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to front50:2023.09.07.17.50.48.release-1.30.x (#588)",
+        "chore(ci): removed aquasec scan action (#590) (#594)",
+        "chore(cd): update base service version to front50:2023.09.25.18.58.31.release-1.30.x (#601)",
+        "fix(dependencies): match google cloud storage version to this set in OSS, and bump OSS front50 version. (#602)"
+      ],
+      "currentVersion": "2.30.3",
+      "name": "Armory Front50",
+      "previousVersion": "2.30.2"
+    },
+    {
+      "commitMessages": [
+        "chore(ci): removing aquasec scans on push (#517) (#519)",
+        "chore(ci): removed aquasec scan action (#510) (#512)"
+      ],
+      "currentVersion": "2.30.3",
+      "name": "Terraformer™",
+      "previousVersion": "2.30.2"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base deck version to 2023.0.0-20230918174859.release-1.30.x (#1342)",
+        "chore(cd): update base deck version to 2023.0.0-20230920215154.release-1.30.x (#1343)",
+        "chore(ci): removed aquasec scan action (#1340) (#1345)",
+        "chore(ci): removing docker build and aquasec scans (#1350)"
+      ],
+      "currentVersion": "2.30.3",
+      "name": "Armory Deck",
+      "previousVersion": "2.30.2"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to igor:2023.09.07.17.50.00.release-1.30.x (#491)",
+        "chore(ci): removed aquasec scan action (#495) (#508)"
+      ],
+      "currentVersion": "2.30.3",
+      "name": "Armory Igor",
+      "previousVersion": "2.30.2"
     }
   ],
-  "armoryVersion": "2.28.7",
+  "armoryVersion": "2.30.3",
   "ossServices": [
     {
-      "commitMessages": [],
-      "currentVersion": "1.28.0",
-      "name": "Spinnaker Echo",
-      "previousVersion": "1.28.0"
-    },
-    {
       "commitMessages": [
-        "chore(dependencies): Autobump orcaVersion (#963)"
+        "fix(cachingFilter: Allow disabling the content caching filter (#1699) (#1700)",
+        "chore(dependencies): Autobump fiatVersion (#1708)"
       ],
-      "currentVersion": "1.28.0",
-      "name": "Spinnaker Kayenta",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [
-        "chore(dependencies): Autobump fiatVersion (#1101)"
-      ],
-      "currentVersion": "1.28.0",
-      "name": "Spinnaker Igor",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.0",
+      "currentVersion": "1.30.4",
       "name": "Spinnaker Gate",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [
-        "fix(deployment): fixed missing namespace while fetching manifest details from clouddriver (#4453) (#4455)"
-      ],
-      "currentVersion": "1.28.0",
-      "name": "Spinnaker Orca",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [
-        "fix(aws): Fixing bugs related to clone CX when instance types are incompatible with image/region (backport #9901) (#9975)"
-      ],
-      "currentVersion": "1.28.0",
-      "name": "Spinnaker Deck",
-      "previousVersion": "1.28.0"
+      "previousVersion": "1.30.0"
     },
     {
       "commitMessages": [],
-      "currentVersion": "1.28.0",
-      "name": "Spinnaker Fiat",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.0",
+      "currentVersion": "1.30.4",
       "name": "Spinnaker Rosco",
-      "previousVersion": "1.28.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.28.0",
-      "name": "Spinnaker Front50",
-      "previousVersion": "1.28.0"
+      "previousVersion": "1.30.0"
     },
     {
       "commitMessages": [
-        "chore(dependencies): Autobump fiatVersion (#5916)"
+        "chore(dependencies): Autobump fiatVersion (#4520)",
+        "fix(vpc): add data annotation to vpc (#4534) (#4536)",
+        "fix: duplicate entry exception for correlation_ids table. (#4521) (#4532)"
       ],
-      "currentVersion": "1.28.0",
+      "currentVersion": "1.30.4",
+      "name": "Spinnaker Orca",
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.30.4",
+      "name": "Spinnaker Fiat",
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump fiatVersion (#1338)"
+      ],
+      "currentVersion": "1.30.4",
+      "name": "Spinnaker Echo",
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.30.4",
+      "name": "Spinnaker Kayenta",
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump fiatVersion (#6017)",
+        "chore(gha): update to docker/login-action@v2 to stay up to date (#5920) (#6020)",
+        "chore(deps): bump actions/cache from 2 to 3 (#5926) (#6022)",
+        "chore(deps): bump actions/checkout from 2 to 3 (#5924) (#6024)",
+        "chore(gha): replace action for creating github releases (backport #5929) (#6026)",
+        "chore(deps): bump actions/setup-java from 2 to 3 (#5928) (#6029)",
+        "chore(deps): bump docker/build-push-action from 3 to 4 (#5927) (#6030)",
+        "chore(gha): replace deprecated set-output commands with environment files (#5930) (#6032)",
+        "fix: Fix docker build in GHA by removing some of the GHA tools (#6033) (#6035)",
+        "feat(lambda): Lambda calls default timeout after 50 seconds causing longer running lambdas to fail.  This adds configurable timeouts for lambda invocations (#6041) (#6044)",
+        "fix(lambda): Lambda is leaking threads on agent refreshes.  remove the custom threadpool (#6048) (#6051)"
+      ],
+      "currentVersion": "1.30.4",
       "name": "Spinnaker Clouddriver",
-      "previousVersion": "1.28.0"
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump fiatVersion (#1388)",
+        "fix(dependency): fix dependency version leak of google-api-services-storage from kork in front50-web (#1302) (#1393)"
+      ],
+      "currentVersion": "1.30.4",
+      "name": "Spinnaker Front50",
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [
+        "Revert \"fix(core): conditionally hide expression evaluation warning messages (#9771)\" (#10021) (#10024)",
+        "fix: Scaling bounds should parse float not int (#10026) (#10031)"
+      ],
+      "currentVersion": "1.30.4",
+      "name": "Spinnaker Deck",
+      "previousVersion": "1.30.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump fiatVersion (#1167)"
+      ],
+      "currentVersion": "1.30.4",
+      "name": "Spinnaker Igor",
+      "previousVersion": "1.30.0"
     }
   ],
-  "ossVersion": "1.28.0",
+  "ossVersion": "1.30.4",
   "prerelease": false,
   "stack": {
     "artifactSources": {
@@ -175,40 +229,40 @@
     },
     "services": {
       "clouddriver": {
-        "commit": "50b4f4881597a374a9ba85aac90c0c0b9b22cee5",
-        "version": "2.28.7"
+        "commit": "767aa739e9c38d2ec7822e9e9a1838b69a56d4c0",
+        "version": "2.30.3"
       },
       "deck": {
-        "commit": "5e7cef7a443e096cf8158c0c405c3ebbf8b97c35",
-        "version": "2.28.7"
+        "commit": "18e1727665cc52111760bf8e7f41cbf23da3b1a9",
+        "version": "2.30.3"
       },
       "dinghy": {
-        "commit": "912007004f7720b418cd133301c7fb20207e1f2f",
-        "version": "2.28.7"
+        "commit": "a3b59d9e4b810cc968d0f5e8e8370e1670574768",
+        "version": "2.30.3"
       },
       "echo": {
-        "commit": "a602d9d5def0815cb52bdf6d695ca69cbf0abe3b",
-        "version": "2.28.7"
+        "commit": "2ef241fd3da29fb70cdb05432d022f0edd752d51",
+        "version": "2.30.3"
       },
       "fiat": {
-        "commit": "d0874307a60cbc457616569be910f4142c152586",
-        "version": "2.28.7"
+        "commit": "5d44e1f53d2f33b17f8decfb057a18cfe4b6fa08",
+        "version": "2.30.3"
       },
       "front50": {
-        "commit": "3292cf2715a9e52bb4690601d4fd877407505ced",
-        "version": "2.28.7"
+        "commit": "5d9bb31f65f96087be30ce96cea1b6d481a6bef4",
+        "version": "2.30.3"
       },
       "gate": {
-        "commit": "c8058f4362f3f4ad108fa146d628a162445c7579",
-        "version": "2.28.7"
+        "commit": "04598366642300d6f028df33b6206b5ce75f1038",
+        "version": "2.30.3"
       },
       "igor": {
-        "commit": "00998fa8b33acd6db5ffa8722e37593f608e9f64",
-        "version": "2.28.7"
+        "commit": "f3d890427c79b7db6cf5fcb681e30542df97ff7c",
+        "version": "2.30.3"
       },
       "kayenta": {
-        "commit": "3da923fd822202425b90a181c9734910c5c4a609",
-        "version": "2.28.7"
+        "commit": "1d2f5193ec681b5122fe7c34da6bbd569da8e0b8",
+        "version": "2.30.3"
       },
       "monitoring-daemon": {
         "commit": null,
@@ -219,19 +273,19 @@
         "version": "2.26.0"
       },
       "orca": {
-        "commit": "27a66c125270377772675b0e24d93566d878cfb9",
-        "version": "2.28.7"
+        "commit": "ba62a86ef3af0007506b589a4272e3c2e03de00b",
+        "version": "2.30.3"
       },
       "rosco": {
-        "commit": "27d4a2b4a1d5f099b68471303d4fd14af156d46d",
-        "version": "2.28.7"
+        "commit": "a2b4662a40281e553de2182b680d5fd7e6bc3955",
+        "version": "2.30.3"
       },
       "terraformer": {
-        "commit": "ea9b0255b7d446bcbf0f0d4e03fc8699b7508431",
-        "version": "2.28.7"
+        "commit": "249e7be18074af100212ddd554d9fb35afd65873",
+        "version": "2.30.3"
       }
     },
-    "timestamp": "2023-06-01 05:41:58",
-    "version": "2.28.7"
+    "timestamp": "2023-09-29 15:15:45",
+    "version": "2.30.3"
   }
 }
