@@ -1,16 +1,16 @@
 ---
-title: GiHub API Plugin for Spinnaker
-linkTitle: GitHub API
+title: GiHub Integration Plugin for Spinnaker
+linkTitle: GitHub Integration
 no_list: true
 description: >
-  Armory's GitHub API plugin for Spinnaker streamlines integration with GitHub Actions, filling the native support gap. The plugin enables easy triggering of GitHub workflows, dynamic control of Spinnaker pipelines based on workflow outcomes, and seamless synchronization of GitHub Deployment statuses with Spinnaker pipeline conclusions.
+  Armory's GitHub Integration plugin for Spinnaker streamlines integration with GitHub Actions, filling the native support gap. The plugin enables easy triggering of GitHub workflows, dynamic control of Spinnaker pipelines based on workflow outcomes, and seamless synchronization of GitHub Deployment statuses with Spinnaker pipeline conclusions.
 ---
 
 ![Proprietary](/images/proprietary.svg) ![Early Access](/images/ea.svg)
 
-## GitHub API Plugin features
+## GitHub Integration Plugin features
 
-The GitHub API Plugin provides the following GitHub integration features:
+The GitHub Integration Plugin provides the following GitHub integration features:
 
 - Trigger a Spinnaker pipeline from a GitHub workflow using **workflow_dispatch** or **repo_dispatch** events
 - Trigger a Spinnaker pipeline automatically when a GitHub workflow finishes successfully
@@ -19,7 +19,7 @@ The GitHub API Plugin provides the following GitHub integration features:
 - Update GitHub deployment status based on Spinnaker pipeline outcome
 - View Github Action Logs in Spinnaker -- there is no need to navigate to GitHub to view the logs
 
-The GitHub API plugin uses [GitHub Apps](https://docs.github.com/en/apps/overview) to integrate with GitHub. GitHup Apps provide webhooks and narrow, specific permissions. You can install a GitHub App  that gives the GitHub API plugin access to all the repos in your GitHub organization, or you can install a Github App that gives the GitHub API plugin access to specific repos. You can install as many GitHub Apps as your use case requires.
+The GitHub Integration plugin uses [GitHub Apps](https://docs.github.com/en/apps/overview) to integrate with GitHub. GitHup Apps provide webhooks and narrow, specific permissions. You can install a GitHub App  that gives the GitHub Integration plugin access to all the repos in your GitHub organization, or you can install a Github App that gives the GitHub Integration plugin access to specific repos. You can install as many GitHub Apps as your use case requires.
 
 ## How the plugin works with GitHub
 

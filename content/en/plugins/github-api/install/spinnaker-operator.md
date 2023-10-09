@@ -1,16 +1,16 @@
 ---
-title: Install the GitHub API Plugin in Spinnaker (Operator)
+title: Install the GitHub Integration Plugin in Spinnaker (Operator)
 linkTitle: Spinnaker - Operator
 weight: 2
 description: >
-  Learn how to install Armory's GitHub API Plugin in a Spinnaker instance managed by the Spinnaker Operator.  The GitHub API enables enhanced Spinnaker-GitHub integration.
+  Learn how to install Armory's GitHub Integration Plugin in a Spinnaker instance managed by the Spinnaker Operator.  The GitHub Integration plugin enables enhanced Spinnaker-GitHub integration.
 ---
 
 ![Proprietary](/images/proprietary.svg) ![Early Access](/images/ea.svg)
 
 ## Installation overview
 
-Enabling the GitHub API plugin consists of the following steps:
+Enabling the GitHub Integration plugin consists of the following steps:
 
 1. [Meet the prerequisites](#before-you-begin)
 1. [Create and install a GitHub App](#create-and-install-a-github-app)
@@ -33,7 +33,7 @@ Enabling the GitHub API plugin consists of the following steps:
 
 ## Configure the plugin
 
-Create a `github-api.yml` file with the following contents: 
+Create a `github-integration-plugin.yml` file with the following contents: 
 
 {{< readfile file="/includes/plugins/github/spinnaker-operator.yaml" code="true" lang="yaml" >}}
 {{< include "plugins/github/settings-js-config.md" >}}
@@ -62,7 +62,7 @@ Save the file to your `spinnaker-kustomize-patches/plugins/oss` directory.
    
    patchesStrategicMerge:
      - core/patches/oss-version.yml
-     - plugins/oss/github-api.yml
+     - plugins/oss/github-integration-plugin.yml
    
    patches:
      - target:
@@ -78,4 +78,4 @@ Save the file to your `spinnaker-kustomize-patches/plugins/oss` directory.
 
 ## {{% heading "nextSteps" %}}
 
-[Learn how to use the GitHub API plugin]({{< ref "plugins/github-api/use" >}}).
+[Learn how to use the GitHub Integration plugin]({{< ref "plugins/github-api/use" >}}).

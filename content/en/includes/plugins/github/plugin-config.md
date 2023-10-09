@@ -17,7 +17,7 @@
 
 All fields are required.
 
-* `name`:  Unique name; this name appears in the GitHub API stages' `GitHub Account` select list.
+* `name`:  Unique name; this name appears in the GitHub Integration stages' `GitHub Account` select list.
 * `organization`: GitHub organization that you installed the GitHub App in
 * `repository`: The GitHub repository to access
 * `defaultBranch`: Default repository branch; for example, main or master
@@ -39,7 +39,7 @@ All fields are required.
 
 All fields are required.
 
-* `name`:  Unique name; this name appears in the GitHub API stages' `GitHub Account` select list.
+* `name`:  Unique name; this name appears in the GitHub Integration stages' `GitHub Account` select list.
 * `organization`: GitHub organization that you installed the GitHub App in
 * `orgWideInstallation`: `true`
 * `includePublicRepositories`: `true/false` (Optional) Defaults to `false`. Flag to limit the Spinnaker triggers to only PRIVATE/INTERNAL repositories that the Github App installation has access to.

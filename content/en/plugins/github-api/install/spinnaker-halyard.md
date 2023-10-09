@@ -1,16 +1,16 @@
 ---
-title: Install the GitHub API Plugin in Spinnaker (Halyard)
+title: Install the GitHub Integration Plugin in Spinnaker (Halyard)
 linkTitle: Spinnaker - Halyard
 weight: 3
 description: >
-  Learn how to install Armory's GitHub API Plugin in a Spinnaker instance managed by Halyard. The GitHub API enables enhanced Spinnaker-GitHub integration.
+  Learn how to install Armory's GitHub Integration Plugin in a Spinnaker instance managed by Halyard. The GitHub Integration plugin enables enhanced Spinnaker-GitHub integration.
 ---
 
 ![Proprietary](/images/proprietary.svg) ![Early Access](/images/ea.svg)
 
 ## Installation overview
 
-Enabling the GitHub API plugin consists of the following steps:
+Enabling the GitHub Integration plugin consists of the following steps:
 
 1. [Meet the prerequisites](#before-you-begin)
 1. [Create and install a GitHub App](#create-and-install-a-github-app)
@@ -26,7 +26,7 @@ Enabling the GitHub API plugin consists of the following steps:
 {{% alert color="warning" title="A note about installing plugins in Spinnaker" %}}
 When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to all services, not just the ones the plugin is for. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. Clouddriver can take an hour or more to restart if you have many accounts configured.
 
-The GitHub API plugin extends Deck, Echo, Gate, Igor, and Orca. To avoid every Spinnaker service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, follow the local config installation method, in which you configure the plugin in each extended service’s local profile.
+The GitHub Integration plugin extends Deck, Echo, Gate, Igor, and Orca. To avoid every Spinnaker service restarting and downloading the plugin, do not add the plugin using Halyard. Instead, follow the local config installation method, in which you configure the plugin in each extended service’s local profile.
 
 {{% /alert %}}
 
@@ -76,12 +76,12 @@ Update `echo-local.yml`, `gate-local.yml`, `igor-local.yml`, and `orca-local.yml
 spinnaker:
   extensibility:
     plugins:
-      Armory.GithubApi:
-        id: Armory.GithubApi
+      Armory.Integration:
+        id: Armory.Integration
         enabled: true
         version: <version>
     repositories:
-      githubApi:
+      githubIntegration:
         enabled: true
         url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
 github:
@@ -106,18 +106,18 @@ Configure the Deck plugin in your `gate-local.yml` config file:
 spinnaker:
   extensibility:
     plugins:
-      Armory.GithubApi:
-        id: Armory.GithubApi
+      Armory.Integration:
+        id: Armory.Integration
         enabled: true
         version: <version>
     repositories:
-      githubApi:
+      githubIntegration:
         enabled: true
         url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json  
     deck-proxy:
       enabled: true
       plugins:
-         Armory.GithubApi:
+         Armory.Integration:
             enabled: true
             version: <version>
 github:
@@ -135,4 +135,4 @@ hal deploy apply
 
 ## {{% heading "nextSteps" %}}
 
-[Learn how to use the GitHub API plugin]({{< ref "plugins/github-api/use" >}}).
+[Learn how to use the GitHub Integration plugin]({{< ref "plugins/github-api/use" >}}).

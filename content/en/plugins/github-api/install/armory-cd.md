@@ -1,15 +1,15 @@
 ---
 linkTitle: Armory CD
-title: Install the GitHub API Plugin in Armory Continuous Deployment
+title: Install the GitHub Integration Plugin in Armory Continuous Deployment
 weight: 1
 description: >
-  Learn how to install the GitHub API Plugin in Armory CD.  The GitHub API enables enhanced Spinnaker-GitHub integration.
+  Learn how to install the GitHub Integration Plugin in Armory CD.  The GitHub Integration plugin enables enhanced Spinnaker-GitHub integration.
 ---
 ![Proprietary](/images/proprietary.svg) ![Early Access](/images/ea.svg)
 
 ## Installation overview
 
-Enabling the GitHub API plugin consists of the following steps:
+Enabling the GitHub Integration plugin consists of the following steps:
 
 1. [Meet the prerequisites](#before-you-begin)
 1. [Create and install a GitHub App](#create-and-install-a-github-app)
@@ -32,7 +32,7 @@ Enabling the GitHub API plugin consists of the following steps:
 
 ## Configure the plugin
 
-Create a `github-api.yml` file with the following contents: 
+Create a `github-integration-plugin.yml` file with the following contents: 
 
 {{< readfile file="/includes/plugins/github/armory-operator.yaml" code="true" lang="yaml" >}}
 {{< include "plugins/github/settings-js-config.md" >}}
@@ -40,7 +40,7 @@ Create a `github-api.yml` file with the following contents:
 
 {{% alert title="Conflict with Armory CDSH v2.30.x" color="warning" %}}
 
-[Known issue]({{< ref "plugins/github-api/release-notes#armoryheader-plugin-conflict" >}}): The GitHub API plugin conflicts with the Armory.Header plugin version included in CDSH v2.30.x. You must install version 0.2.0 of the Armory.Header plugin. 
+[Known issue]({{< ref "plugins/github-api/release-notes#armoryheader-plugin-conflict" >}}): The GitHub Integration plugin conflicts with the Armory.Header plugin version included in CDSH v2.30.x. You must install version 0.2.0 of the Armory.Header plugin. 
 <details><summary>Show me how</summary>
 {{< include "plugins/github/armory-header-plugin.md" >}}
 </details>
@@ -67,7 +67,7 @@ Create a `github-api.yml` file with the following contents:
    
    patchesStrategicMerge:
      - core/patches/oss-version.yml
-     - plugins/github-api.yml
+     - plugins/github-integration-plugin.yml
    
    patches:
      - target:
@@ -83,4 +83,4 @@ Create a `github-api.yml` file with the following contents:
 
 ## {{% heading "nextSteps" %}}
 
-[Learn how to use the GitHub API plugin]({{< ref "plugins/github-api/use" >}}).
+[Learn how to use the GitHub Integration plugin]({{< ref "plugins/github-api/use" >}}).

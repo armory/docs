@@ -1,9 +1,9 @@
 ---
-title: Use the GiHub API Plugin
+title: Use the GiHub Integration Plugin
 linkTitle: Use
 weight: 5
 description: >
-  Learn how to use the GitHup API Plugin to trigger Spinnaker pipelines from GitHub and also to trigger GitHub workflows from Spinnaker pipelines.
+  Learn how to use the GitHup Integration Plugin to trigger Spinnaker pipelines from GitHub and also to trigger GitHub workflows from Spinnaker pipelines.
 ---
 
 ## {{% heading "prereq" %}}
@@ -12,11 +12,11 @@ You should be familiar with [GitHub workflows](https://docs.github.com/en/action
 
 ## Trigger GitHub workflows from Spinnaker pipelines
 
-Use the **Github API Workflow Trigger Stage** to trigger your GitHub workflow from your Spinnaker pipeline.
+Use the **Github Integration Workflow Trigger Stage** to trigger your GitHub workflow from your Spinnaker pipeline.
 
 ### `workflow_dispatch` event
 
-Configure the **Github API Workflow Trigger Stage** as in the following screenshot: 
+Configure the **Github Integration Workflow Trigger Stage** as in the following screenshot: 
 
 {{< figure src="/images/plugins/github/workflowDispatch.png" >}}
 
@@ -29,7 +29,7 @@ Configure the **Github API Workflow Trigger Stage** as in the following screensh
 
 ### `repository_dispatch` event
 
-Configure the **Github API Workflow Trigger Stage** as in the following screenshot: 
+Configure the **Github Integration Workflow Trigger Stage** as in the following screenshot: 
 
 {{< figure src="/images/plugins/github/repoDispatch.png" >}}
 
@@ -69,14 +69,14 @@ Next, configure an automated trigger to process the deployment event from GitHub
 * **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
 * **Organization**: (Required) Select the organization associated with the **Github Account**
 * **Repository**: (Required) Select the repository that contains the workflow
-* **Secret**: (Optional) Provide the name of the GitHub secret associated with the deployment workflow event webhook; the GitHub API Plugin does not process the request when the secrets do not match
+* **Secret**: (Optional) Provide the name of the GitHub secret associated with the deployment workflow event webhook; the GitHub Integration Plugin does not process the request when the secrets do not match
 * **Environment**: (Optional) If specified, only deployment to the environment that matches this Java Regular Expression is triggered. Leave empty to trigger builds for every environment.
 
 When the pipeline triggered by a deployment event finishes, Spinnaker automatically update the status of the GitHub deployment based on the pipeline's outcome. 
 
 ## Fetch release information
 
-You can use the **GitHub API Releases Get Details** stage to fetch the latest release information.
+You can use the **GitHub Integration Releases Get Details** stage to fetch the latest release information.
 
 {{< figure src="/images/plugins/github/getDetails.png" >}}
 
@@ -87,7 +87,7 @@ You can use the **GitHub API Releases Get Details** stage to fetch the latest re
 
 ## Fetch prerelease information
 
-You can use the **GitHub API Releases Get Details** stage to fetch the latest prerelease information.
+You can use the **GitHub Integration Releases Get Details** stage to fetch the latest prerelease information.
 
 {{< figure src="/images/plugins/github/preRelease.png" >}}
 

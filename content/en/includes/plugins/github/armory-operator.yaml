@@ -21,33 +21,33 @@ spec:
         spinnaker:
           extensibility:
             plugins:
-              Armory.GithubApi:
+              Armory.GitHubIntegration:
                 enabled: true
                 version: <version>
             deck-proxy:
               enabled: true
               plugins:
-                Armory.GithubApi:
+                Armory.GitHubIntegration:
                   enabled: true
                   version: <version>
       orca:
         spinnaker:
           extensibility:
             plugins:
-              Armory.GithubApi:
+              Armory.GitHubIntegration:
                 enabled: true
                 version: <version>
       igor:
         spinnaker:
           extensibility:
             plugins:
-              Armory.GithubApi:
+              Armory.GitHubIntegration:
                 enabled: true
                 version: <version>
       echo:
         spinnaker:
           extensibility:
             plugins:
-              Armory.GithubApi:
+              Armory.GitHubIntegration:
                 enabled: true
                 version: <version>

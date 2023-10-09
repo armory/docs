@@ -9,7 +9,7 @@ profiles:
           pluginRepository:
             url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
         plugins:
-          Armory.GithubApi:
+          Armory.GitHubIntegration:
             enabled: true
             version: <version>
           Armory.ArmoryHeader:
@@ -18,7 +18,7 @@ profiles:
         deck-proxy:
           enabled: true
           plugins:
-            Armory.GithubApi:
+            Armory.GitHubIntegration:
               enabled: true
               version: <version>
             Armory.ArmoryHeader:

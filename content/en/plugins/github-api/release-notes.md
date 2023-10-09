@@ -1,9 +1,9 @@
 ---
-title: GiHub API Plugin Release Notes
+title: GiHub Integration Plugin Release Notes
 linkTitle: Release Notes
 weight: 99
 description: >
-  Github API Plugin for Spinnaker release notes.
+  Github Integration Plugin for Spinnaker release notes.
 ---
 
 ## v0.1.0 2023/09
@@ -16,9 +16,9 @@ Initial release
 
 #### Armory.Header plugin conflict
 
-**Armory Continuous Deployment**: The GitHub API plugin conflicts with the Armory.Header plugin's default version installed in Armory Continuous Deployment 2.30.x. 
+**Armory Continuous Deployment**: The GitHub Integration plugin conflicts with the Armory.Header plugin's default version installed in Armory Continuous Deployment 2.30.x. 
 
-**Fix**: Update your GitHub API plugin config to include the Armory.Header plugin v0.2.0
+**Fix**: Update your GitHub Integration plugin config to include the Armory.Header plugin v0.2.0
 
 {{< include "plugins/github/armory-header-plugin.md" >}}
 
