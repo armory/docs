@@ -215,7 +215,6 @@ version: 2.30.3
 
 #### Armory Rosco - 2.30.2...2.30.3
 
-  - chore(ci): removed aquasec scan action (#565) (#568)
 
 #### Armory Orca - 2.30.2...2.30.3
 
