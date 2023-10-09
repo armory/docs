@@ -250,7 +250,6 @@ version: 2.30.3
   - chore(cd): update base service version to clouddriver:2023.09.08.14.33.30.release-1.30.x (#965)
   - chore(cd): update base service version to clouddriver:2023.09.16.22.42.11.release-1.30.x (#976)
   - chore(cd): update base service version to clouddriver:2023.09.20.19.03.35.release-1.30.x (#980)
-  - chore(ci): removed aquasec scan action (#971) (#983)
   - fix: CVE-2023-37920 (#977) (#992)
 
 #### Armory Front50 - 2.30.2...2.30.3
