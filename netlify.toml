@@ -238,6 +238,13 @@ package = "@netlify/plugin-sitemap"
   changeFreq = "daily"
   priority = 0.5
 
+# https://github.com/netlify/netlify-plugin-lighthouse
+[[plugins]]
+package = "@netlify/plugin-lighthouse"
+# optional, deploy the lighthouse report to a path under your site
+  [plugins.inputs.audits]
+    output_path = "reports/lighthouse.html"
+
 
 # headers  https://docs.netlify.com/routing/headers/#syntax-for-the-headers-file
 # https://cloud-armory.slack.com/archives/CH4RVCCTS/p1608572781420500
