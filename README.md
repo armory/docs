@@ -15,7 +15,6 @@ Mermaid resources:
 
 The theme also supports PlantUML and draw.io.
 
-
 ## Cloning the project
 
 [Contributor's Guide](https://docs.armory.io/contribute)
