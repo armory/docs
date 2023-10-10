@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/bep/tech-doc-hugo#readme",
   "devDependencies": {
-    "@netlify/plugin-lighthouse": "^5.0.0",
     "autoprefixer": "^9.4.6",
     "postcss-cli": "^5.0.1"
   }
