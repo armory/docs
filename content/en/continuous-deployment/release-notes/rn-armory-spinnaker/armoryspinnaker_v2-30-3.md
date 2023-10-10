@@ -230,13 +230,10 @@ version: 2.30.3
 
 #### Dinghy™ - 2.30.2...2.30.3
 
-  - chore(ci): removed aquasec scan action (#489) (#492)
-  - chore(ci): removing aquasec scans for any push (#497) (#499)
   - chore(log): Bumped up dinghy and plank versions. (backport #490) (#505)
 
 #### Armory Kayenta - 2.30.2...2.30.3
 
-  - chore(ci): removed aquasec scan action (#469) (#471)
 
 #### Armory Clouddriver - 2.30.2...2.30.3
 
