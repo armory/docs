@@ -100,6 +100,12 @@ On the Deck side, the feature flag enhances the Rollback Cluster stage UI with t
 
 The default is used if there is no value set in the UI.
 
+### Run Pipelines-as-Code with permissions scoped to a specific service account
+
+Enhancing Pipelines-as-Code to upsert pipeline using an Orca call instead of a Front50 call, to mimic the calls from Deck. By default, it is disabled. Enabling can be achieved by setting the following in `dinghy.yml`:
+
+```upsertPipelineUsingOrcaTaskEnabled: true```
+
 ### Pipelines-as-Code PR checks
 
 This feature, when enabled, verifies if the author of a commit that changed app parameters has sufficient WRITE permission for that app. You can specify a list of authors whose permissions are not valid. This option’s purpose is to skip permissions checks for bots and tools.
