@@ -5,7 +5,7 @@ weight: 1
 description: >
   Learn how to install the GitHub Integration Plugin in Armory CD.  The GitHub Integration plugin provides enhanced Spinnaker-GitHub integration.
 ---
-![Proprietary](/images/proprietary.svg) ![Early Access](/images/ea.svg)
+![Proprietary](/images/proprietary.svg) ![Beta](/images/beta.svg)
 
 ## Installation overview
 
