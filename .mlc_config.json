@@ -1,0 +1,26 @@
+{
+  "ignorePatterns": [
+  {
+    "pattern": "^https:\/\/console.cloud.armory.io"
+  },
+  {
+    "pattern": "^https:\/\/auth.cloud.armory.io"
+  },
+  {
+    "pattern": "^https:\/\/api.cloud.armory.io"
+  },
+  {
+    "pattern": "^https:\/\/go.armory.io"
+  },
+  {
+    "pattern": "^https:\/\/api.github.com"
+  },
+  {
+    "pattern": "^#[a-zA-Z0-9-]*"
+  }
+],
+  "aliveStatusCodes": [
+      200,
+      429
+  ]
+}
