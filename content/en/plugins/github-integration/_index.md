@@ -12,7 +12,7 @@ description: >
 
 The GitHub Integration Plugin provides the following GitHub integration features:
 
-- Trigger a Spinnaker pipeline from a GitHub workflow using **workflow_dispatch** or **repo_dispatch** events
+- Trigger a GitHub Actions workflow from a Spinnaker pipeline using **workflow_dispatch** or **repo_dispatch** events
 - Trigger a Spinnaker pipeline automatically when a GitHub workflow finishes successfully
 - Trigger a Spinnaker pipeline when GitHub creates a new GitHub Deployment
 - Monitor a GitHub workflow and finish pipeline execution based on the GitHub workflow result
