@@ -6,4 +6,4 @@ date: 2023-09-01
 ---
 
 ### Fixes
-* Improve orphaned account recovery logic
+* Improve orphaned account recovery logic.

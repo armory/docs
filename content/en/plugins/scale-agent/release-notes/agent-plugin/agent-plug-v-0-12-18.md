@@ -6,4 +6,6 @@ date: 2023-09-28
 ---
 
 # Changes
-Allow migration of accounts from any source.
+Allow account migration to be managed by Scale Agent from any source.
+
+> Check the `dynamicAccounts` settings for adjustments.

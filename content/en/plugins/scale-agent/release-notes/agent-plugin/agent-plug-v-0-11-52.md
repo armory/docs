@@ -6,4 +6,4 @@ date: 2023-09-12
 ---
 
 ### Changes
-- Load CRDs from config file when validating search api
+- Load CRDs from config file when validating search api.

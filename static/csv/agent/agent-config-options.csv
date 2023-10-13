@@ -13,7 +13,12 @@ Settings|Type|Default|Description
 <code>clouddriver.tls.insecureSkipVerify</code>|boolean|false|Do not verify the endpoint's certificate.
 <code>clouddriver.tls.clientCertFile</code><br><code>clouddriver.tls.clientKeyFile</code><br><code>clouddriver.tls.clientKeyFilePassword</code>|string<br>string<br>string|none<br>none<br>none|Client certificate file for mTLS.<br>Client key file if not included in the certificate.<br>Password the key file if needed.
 <code>clouddriver.tls.cacertFile</code>|string|none|If provided, verify endpoint certificate with the trust store. Otherwise, the system trust store is used.
-<code>dynamicAccountsEnabled</code>|boolean|true|<span class='badge badge-primary'>1.0.39+</span> Enable or disable access to the Dynamic Accounts API.
+<code>dynamicAccounts.interceptor.enabled</code>|boolean|true|Whether to intercept new accounts being added on the fly.
+<code>dynamicAccounts.enabled</code>|boolean|false|Dynamic account feature enabled.
+<code>dynamicAccounts.scanBatchSize</code>|integer|572|How many accounts to send to scale agent at a time.
+<code>dynamicAccounts.scanFrequencySeconds</code>|integer|120|How often should accounts be scanned for.
+<code>dynamicAccounts.namePatterns</code>|list|[]|Patterns to match for account migration in accounts table.
+<code>dynamicAccounts.credentialScanNamePatterns</code>|list|[]|Patterns to match in credential sources.
 <code>kubernetes.noProxy</code>|boolean|false|<span class='badge badge-primary'>0.3.1+</span> Ignore the <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, and <code>NO_PROXY</code> environment variables when connecting to any Kubernetes cluster.
 <code>kubernetes.reconnectTimeoutMs</code>|integer|5000|How long to wait before reconnecting to Armory Continuous Deployment.
 <code>kubernetes.cacheGroupSize</code>|integer|0|Number of accounts per group when delaying watcher initialization.
