@@ -3,7 +3,7 @@
 # Default build settings
 [build]
   publish = "public"
-  command = "hugo"
+  command = "hugo --gc --minify"
 
 # "production" environment specific build settings
 [build.environment]
@@ -237,7 +237,6 @@ package = "@netlify/plugin-sitemap"
   trailingSlash = true
   changeFreq = "daily"
   priority = 0.5
-
 
 # headers  https://docs.netlify.com/routing/headers/#syntax-for-the-headers-file
 # https://cloud-armory.slack.com/archives/CH4RVCCTS/p1608572781420500
