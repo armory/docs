@@ -15,7 +15,6 @@ Mermaid resources:
 
 The theme also supports PlantUML and draw.io.
 
-
 ## Cloning the project
 
 [Contributor's Guide](https://docs.armory.io/contribute)
@@ -145,4 +144,3 @@ See the GitHub [docs](https://help.github.com/en/github/collaborating-with-issue
 ## Monitoring
 
 The Armory documentation uses New Relic to monitor the website status and other metrics.
-

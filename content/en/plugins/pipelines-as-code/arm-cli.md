@@ -22,7 +22,7 @@ You can either run the ARM CLI in a Docker container or install and run it local
 
 ### Docker container
 
-The ARM CLI is available on [Docker Hub](https://hub.docker.com/r/armory/arm-cli). To download and run the ARMO CLI, use the following commands:
+The ARM CLI is available on [Docker Hub](https://hub.docker.com/r/armory/arm-cli). To download and run the ARM CLI, use the following commands:
 
 ```bash
 # Pull the latest container for the CLI
@@ -83,30 +83,30 @@ JSON Example files:
 
 | Filename                                    | Module             | RawData            | Local Module       | Parameters                                                                                                                      |
 |---------------------------------------------|--------------------|--------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| dinghyfile_basic                            | No                | No                | No                | dinghy render ./examples/json/dinghyfile_basic                                                                                       |
-| dinghyfile_rawdata                          | No                | Yes | No                | dinghy render ./examples/json/dinghyfile_rawdata --rawdata ./examples/RawData.json                                                   |
-| dinghyfile_conditionals                     | No                | No                | No                | dinghy render ./examples/json/dinghyfile_conditionals                                                                                |
-| dinghyfile_globals                          | Yes | No                | No                | dinghy render ./examples/json/dinghyfile_globals --modules ./examples/json/modules                                                        |
-| dinghyfile_makeSlice                        | Yes | No                | No                | dinghy render ./examples/json/dinghyfile_makeSlice --modules ./examples/json/modules                                                      |
-| dinghyfile_makeSlice_conditional_rawdata    | Yes | Yes | No                | dinghy render ./examples/json/dinghyfile_makeSlice_conditional_rawdata --modules ./examples/json/modules --rawdata ./examples/RawData.json|
-| dinghyfile_localmodule                      | Yes | No                | No                | dinghy render ./examples/json/dinghyfile_localmodule --modules ./examples/json/modules                                                    |
-| dinghyfile_pipelineID                       | No                | No                | No                | dinghy render ./examples/json/dinghyfile_pipelineID                                                                                  |
-| dinghyfile_localmodule_parameter            | Yes | No                | Yes | dinghy render ./examples/json/dinghyfile_localmodule_parameter --modules ./examples/json/modules --local_modules ./                       |
+| dinghyfile_basic                            | No                | No                | No                | `dinghy render ./examples/json/dinghyfile_basic`                                                                                       |
+| dinghyfile_rawdata                          | No                | Yes | No                | `dinghy render ./examples/json/dinghyfile_rawdata --rawdata ./examples/RawData.json`                                                   |
+| dinghyfile_conditionals                     | No                | No                | No                | `dinghy render ./examples/json/dinghyfile_conditionals`                                                                                |
+| dinghyfile_globals                          | Yes | No                | No                | `dinghy render ./examples/json/dinghyfile_globals --modules ./examples/json/modules`                                                        |
+| dinghyfile_makeSlice                        | Yes | No                | No                | `dinghy render ./examples/json/dinghyfile_makeSlice --modules ./examples/json/modules`                                                      |
+| dinghyfile_makeSlice_conditional_rawdata    | Yes | Yes | No                | `dinghy render ./examples/json/dinghyfile_makeSlice_conditional_rawdata --modules ./examples/json/modules --rawdata ./examples/RawData.json`|
+| dinghyfile_localmodule                      | Yes | No                | No                | `dinghy render ./examples/json/dinghyfile_localmodule --modules ./examples/json/modules`                                                    |
+| dinghyfile_pipelineID                       | No                | No                | No                | `dinghy render ./examples/json/dinghyfile_pipelineID`                                                                                  |
+| dinghyfile_localmodule_parameter            | Yes | No                | Yes | `dinghy render ./examples/json/dinghyfile_localmodule_parameter --modules ./examples/json/modules --local_modules ./`                       |
 
 
 YAML Example files:
 
 | Filename                                    | Module             | RawData            | Local Module       | Parameters                                                                                                                      |
 |---------------------------------------------|--------------------|--------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| dinghyfile_basic                            | No                | No                | No                | dinghy render ./examples/yaml/dinghyfile_basic --type yaml                                                                                       |
-| dinghyfile_rawdata                          | No                | Yes | No                | dinghy render ./examples/yaml/dinghyfile_rawdata --rawdata ./examples/RawData.json --type yaml                                                  |
-| dinghyfile_conditionals                     | No                | No                | No                | dinghy render ./examples/yaml/dinghyfile_conditionals --type yaml                                                                               |
-| dinghyfile_globals                          | Yes | No                | No                | dinghy render ./examples/yaml/dinghyfile_globals --modules ./examples/yaml/modules --type yaml                                                        |
-| dinghyfile_makeSlice                        | Yes | No                | No                | dinghy render ./examples/yaml/dinghyfile_makeSlice --modules ./examples/yaml/modules --type yaml                                                      |
-| dinghyfile_makeSlice_conditional_rawdata    | Yes | Yes | No                | dinghy render ./examples/yaml/dinghyfile_makeSlice_conditional_rawdata --modules ./examples/yaml/modules --rawdata ./examples/RawData.json --type yaml|
-| dinghyfile_localmodule                      | Yes | No                | No                | dinghy render ./examples/yaml/dinghyfile_localmodule --modules ./examples/yaml/modules --type yaml                                                   |
-| dinghyfile_pipelineID                       | No                | No                | No                | dinghy render ./examples/yaml/dinghyfile_pipelineID --type yaml                                                                                  |
-| dinghyfile_localmodule_parameter            | Yes | No                | Yes | dinghy render ./examples/yaml/dinghyfile_localmodule_parameter --modules ./examples/yaml/modules --local_modules ./ --type yaml                       |
+| dinghyfile_basic                            | No                | No                | No                | `dinghy render ./examples/yaml/dinghyfile_basic --type yaml`                                                                                       |
+| dinghyfile_rawdata                          | No                | Yes | No                | `dinghy render ./examples/yaml/dinghyfile_rawdata --rawdata ./examples/RawData.json --type yaml`                                                  |
+| dinghyfile_conditionals                     | No                | No                | No                | `dinghy render ./examples/yaml/dinghyfile_conditionals --type yaml`                                                                               |
+| dinghyfile_globals                          | Yes | No                | No                | `dinghy render ./examples/yaml/dinghyfile_globals --modules ./examples/yaml/modules --type yaml                                                        |
+| dinghyfile_makeSlice                        | Yes | No                | No                | `dinghy render ./examples/yaml/dinghyfile_makeSlice --modules ./examples/yaml/modules --type yaml`                                                      |
+| dinghyfile_makeSlice_conditional_rawdata    | Yes | Yes | No                | `dinghy render ./examples/yaml/dinghyfile_makeSlice_conditional_rawdata --modules ./examples/yaml/modules --rawdata ./examples/RawData.json --type yaml`|
+| dinghyfile_localmodule                      | Yes | No                | No                | `dinghy render ./examples/yaml/dinghyfile_localmodule --modules ./examples/yaml/modules --type yaml`                                                   |
+| dinghyfile_pipelineID                       | No                | No                | No                | `dinghy render ./examples/yaml/dinghyfile_pipelineID --type yaml`                                                                                  |
+| dinghyfile_localmodule_parameter            | Yes | No                | Yes | `dinghy render ./examples/yaml/dinghyfile_localmodule_parameter --modules ./examples/yaml/modules --local_modules ./ --type yaml`                       |
 
 
 ### Example
