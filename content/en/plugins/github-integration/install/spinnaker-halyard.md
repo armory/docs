@@ -6,7 +6,7 @@ description: >
   Learn how to install Armory's GitHub Integration Plugin in a Spinnaker instance managed by Halyard. The GitHub Integration plugin enables enhanced Spinnaker-GitHub integration.
 ---
 
-![Proprietary](/images/proprietary.svg) ![Early Access](/images/ea.svg)
+![Proprietary](/images/proprietary.svg) ![Beta](/images/beta.svg)
 
 ## Installation overview
 
