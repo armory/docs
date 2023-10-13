@@ -32,7 +32,7 @@ Or a mixture of html + markdown. ## Deployment targets has an example of what th
 
 [![Generally available](/images/ga.svg)]({{< ref "release-definitions#ga" >}}) The feature as a whole is generally available. There may be newer extended functionality that is in a different state.
 
-[Beta]({{< ref "release-definitions#beta" >}}) The feature is in Early Access. For more information about using this feature, [contact us](https://www.armory.io/contact-us/).
+![Beta](/images/beta.svg)({{< ref "release-definitions#beta" >}}) The feature is in Beta. For more information about using this feature, [contact us](https://www.armory.io/contact-us/).
 
 [![Early Access](/images/ea.svg)]({{< ref "release-definitions#early-release">}}) The feature is in Early Access. For more information about using this feature, [contact us](https://www.armory.io/contact-us/).
 
