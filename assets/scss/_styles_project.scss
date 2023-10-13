@@ -1,2 +1,7 @@
 .td-page-meta--child { display: none !important; }
 .td-page-meta--project-issue { display: none !important; }
+
+/* do not display the site title "Armory Docs" because the logo has "armory" in it */
+.td-navbar .navbar-brand__name {
+  display: none;
+}

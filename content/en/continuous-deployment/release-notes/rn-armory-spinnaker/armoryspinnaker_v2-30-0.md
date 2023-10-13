@@ -20,7 +20,8 @@ To install, upgrade, or configure Armory 2.30.0, use Armory Operator 1.70 or lat
 Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
 
 ## Armory Compatibility Matrix
-Please consult the [Armory Compatibility Matrix](https://docs.armory.io/continuous-deployment/feature-status/continuous-deployment-matrix/) for information about support and compatibility for Armory Continuous Deployment as well as the products and platforms with which it integrates.
+
+Please consult the [Armory Compatibility Matrix]({{< ref "continuous-deployment/feature-status/continuous-deployment-matrix" >}}) for information about support and compatibility for Armory Continuous Deployment as well as the products and platforms with which it integrates.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
@@ -40,7 +41,13 @@ Please consult the [Armory Compatibility Matrix](https://docs.armory.io/continuo
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+### Artifact Binding
+Customers who utilize parent pipelines to provide artifacts to child pipelines may encounter unexpected errors or results in 2.30+ as child pipelines may not resolve those artifacts correctly.
+
+Affected versions: Armory CD 2.30.0 and later
+
 ### Using Custom Resource Status Plugin and Scale Agent generates an error
+
 Armory customers that may be using the Custom Resource Status Plugin (2.0.3) may encounter an error “An attempt was made to call a method that does not exist."
 That error will prevent Armory CDSH from starting.
 
@@ -49,6 +56,7 @@ That error will prevent Armory CDSH from starting.
 **Affected versions**: Armory CD 2.30.0
 
 ### Kayenta errors on startup
+
 In some instances Kayenta will error because the *DiscoveryCompositeHealthContributor* does not implement *HealthIndicator.* There is a fix for this that should land in the next dot release.
 
 **Affected versions**: Armory CD 2.30.0
@@ -59,16 +67,13 @@ Expected artifacts can be used in automated triggers and stages, and OSS [1.30](
 **Affected versions**: Armory CD 2.30.0
 
 ### Clouddriver and Spring Cloud
+
 The Spring Boot version has been upgraded, introducing a backwards incompatible change to the way configuration is loaded in Spinnaker. Users will need to set the ***spring.cloud.config.enabled*** property to ***true*** in the service settings of Clouddriver to preserve existing behavior. All of the other configuration blocks remain the same.
 
 **Affected versions**: Armory CD 2.30.0
 
-### Application attributes section displays “This Application has not been configured”
-There is a known issue that relates to the **Application Attributes** section under the **Config** menu. An application that was already created and configured in Spinnaker displays the message, “This application has not been configured.” While the information is missing, there is no functional impact.
-
-**Affected versions**: Armory CD 2.28.0 and later
-
 ### SpEL expressions and artifact binding
+
 There is an issue where it appears that SpEL expressions are not being evaluated properly in artifact declarations (such as container images) for events such as the Deploy Manifest stage. What is actually happening is that an artifact binding is overriding the image value.
 
 **Workaround**:
@@ -78,33 +83,33 @@ This setting only binds the version when the tag is missing, such as `image: ng
 **Affected versions**: Armory CD 2.27.x and later
 
 ## Deprecations
+
 Reference [Feature Deprecations and end of support](https://docs.armory.io/continuous-deployment/feature-status/deprecations/)
 
-## Early access enabled by default
+## Early access features enabled by default
 
-### **Pipelines adapt to sub pipeline with manual judgment color**
+### Pipelines adapt to sub pipeline with manual judgment color
+
 When a child/sub pipeline is running and requires a manual judgment, the parent pipeline provides a visual representation that the child pipeline has an manual judgement waiting. This [Github pull request](https://github.com/spinnaker/deck/pull/9863) shows a visual representation of the feature in action.
 
-### **Automatically Cancel Jenkins Jobs**
+### Automatically cancel Jenkins jobs
 
-You now have the ability to cancel triggered Jenkins jobs when a Spinnaker pipeline is canceled, giving you more control over your full Jenkins workflow. Learn more about Jenkins + Spinnaker in this [Spinnaker changelog.](https://spinnaker.io/changelogs/1.29.0-changelog/#orca).
+You now have the ability to cancel triggered Jenkins jobs when a Spinnaker pipeline is canceled, giving you more control over your full Jenkins workflow. Learn more about Jenkins + Spinnaker in this [Spinnaker changelog](https://spinnaker.io/changelogs/1.29.0-changelog/#orca).
 
-### **Enhanced BitBucket Server pull request handling**
+### Enhanced BitBucket Server pull request handling
 
 Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. See [Triggering pipelines with Bitbucket Server](https://spinnaker.io/docs/guides/user/pipeline/triggers/bitbucket-events/) in the Spinnaker docs for details.
 
-## Early Access
+## Early access features enabled manually
 
-### **Dynamic Rollback Timeout**
+### Dynamic rollback timeout
 
 To make the dynamic timeout available, you need to enable the feature flag in Orca and Deck. You need to add this block to `orca.yml` file if you want to enable the dynamic rollback timeout feature:
 
-```
-
+```yaml
 rollback:
   timeout:
     enabled: true
-
 ```
 
 On the Orca side, the feature flag overrides the default value rollback timeout - 5 min - with a UI input from the user.
@@ -115,19 +120,19 @@ On the Deck side, the feature flag enhances the Rollback Cluster stage UI with t
 
 The default is used if there is no value set in the UI.
 
-### Dinghy PR Checks
+### Pipelines-as-Code PR checks
 
 This feature, when enabled, verifies if the author of a commit that changed app parameters has sufficient WRITE permission for that app. You can specify a list of authors whose permissions are not valid. This option’s purpose is to skip permissions checks for bots and tools.
 
 See [Permissions check for a commit]({{< ref "plugins/pipelines-as-code/install/configure#permissions-check-for-a-commit" >}}) for details.
 
-### **Terraform template fix**
+### Pipelines-as-Code multi-branch enhancement
 
-Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you will be able to use the Terraform template file provider. Please open a support ticket if you need this fix.
+Now you can configure Pipeline-as-Code to pull Pipelines-as-Code files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{<  ref "plugins/pipelines-as-code/install/configure#multiple-branches" >}}) for how to enable and configure this feature.
 
-### **Pipelines as Code multi-branch enhancement**
+### Terraform template fix
 
-Now you can configure Pipelines as Code to pull Dinghy files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{<  ref "plugins/pipelines-as-code/install/configure#multiple-branches" >}}) for how to enable and configure this feature.
+Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you are able to use the Terraform template file provider. Open a support ticket if you need this fix.
 
 ## Highlighted updates
 
@@ -138,23 +143,29 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 -->
 
 ### Cloudddriver
+
 * New mechanism to cache applications known to Front50. See https://spinnaker.io/changelogs/1.29.0-changelog/#clouddriver
 
 ### Deck
+
 * Fixed an issue where the UI was crashing  when running pipeline(s) with many stages. This change prevents iterating over child nodes as it has already been checked and as a result greatly reduces the number of interactions and increases speed.
 
 ### Echo
+
 * Fixed an issue where Echo was failing to handle /webhooks/git/github requests
 
 ### Fiat
+
 * New way to control how Fiat queries Clouddriver during a role sync (performance improvement)
     - https://spinnaker.io/changelogs/1.29.0-changelog/#fiat
 * Addressed an issue related to concurrent sync calls causing memory exceptions and lack of available SQL connections. The fix prevents a new synchronization from starting if one is already in progress.
 
 ### Front50
+
 * Resolved a performance regression where Front50 cached all pipeline configs on every sync, causing unnecessarily high service load
 
 ### Gate
+
 https://github.com/spinnaker/gate/pull/1610 expands support for adding request headers to the response header. Previously limited to X-SPINNAKER-REQUEST-ID, it’s now possible to specify any fields with a X-SPINNAKER prefix via the new interceptors.responseHeader.fields configuration property. The default value is X-SPINNAKER-REQUEST-ID to preserve the previous functionality.
 ```
 #gate.yml
@@ -166,16 +177,20 @@ interceptors:
       - X-SPINNAKER-USER
 ```
 ### Igor
+
 - New stop API endpoint
     - https://spinnaker.io/changelogs/1.29.0-changelog/#igor
 
 ### Kayenta
+
 * Implemented a MySQL data source for storage
 
 ### Azure Baking
+
 * Visit [Bake Azure Images in an Armory CD or Spinnaker pipeline](https://docs.armory.io/continuous-deployment/spinnaker-user-guides/azure-guides/bake-images/) to learn more about this feature.
 
 ### AWS EC2 improvements, including UI changes
+
 * Improvements to AWS EC2 instance types API integration: The integration previously used AWS EC2 pricing docs to retrieve EC2 instance types and information. It was replaced with [AWS EC2 describe-instance-types API instead](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html).
 * Improvements to /instanceTypes API: Addition of instance type metadata/ information to API response. See before-after at (https://github.com/spinnaker/clouddriver/pull/5609).
 * Changes to /images API:
@@ -200,6 +215,7 @@ UI Changes
   - current generation v/s old generation like *'currentGen' / 'oldGen'
 
 ### Kubernetes
+
 Change 'red/black' to 'blue/green' in Spinnaker. Users coming to Spinnaker are now more familiar with Blue/Green industry terminology than the Netflix-specific phrasing Red/Black.
 
 * The Red/Black rollout strategy is marked as deprecated in the UI.
@@ -210,15 +226,17 @@ Red/Black to Blue/Green migration details:
 * Front50 already supports migrations but you need to be enable it by adding migrations.enabled=true in your Front50 config. When Front50 starts, it automatically migrates existing pipelines using red/black to blue/green.
 * *If you do not enable migration*, red/black continues to work until the Spinnaker community decides to remove red/black.
 
-### Artifact Handling
+### Artifact handling
+
 Changes to the way artifact constraints on triggers work
 If you have a pipeline with multiple triggers using different artifact constraints/expected artifacts, these have for a while been evaluated in an unexpected matter. To learn more, visit 
 https://spinnaker.io/changelogs/1.30.0-changelog/#changes-to-the-way-artifact-constraints-on-triggers-work.
 
 ### Spring Boot 2.4 changes
+
 * Read more about Spring boot in the [1.30 Release notes](https://spinnaker.io/changelogs/1.30.0-changelog/#spring-boot-24)
 
-###  Spinnaker Community Contributions
+###  Spinnaker community contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
 [Spinnaker v1.30.2](https://www.spinnaker.io/changelogs/1.30.2-changelog/) changelog for details.

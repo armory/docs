@@ -11,6 +11,8 @@ Each one of these release definitions is for Armory Continuous Deployment and wh
 
 ## Experiment
 
+![EXP](/images/exp.svg)
+
 An _experiment_ is a test version of a new feature that we think will solve some of your pain points. This is your opportunity to provide us feedback. We want to hear the good, the bad, and the ugly, so we can create the best feature to solve your problem.
 
 ### Where to install an Experiment
@@ -18,6 +20,8 @@ An _experiment_ is a test version of a new feature that we think will solve some
 Not production! No, really don’t do it! An experimental feature is meant to give the user access to a concept we think would be useful and gives Armory a chance to collect feedback on validating the usefulness and direction of the feature. Experiments are meant for a closed development environment or a learning environment that can be destroyed at any minute and rebuilt.
 
 ## Early Access
+
+![EA](/images/ea.svg)
 
 An _Early Access_ feature is working and installable. However, some functionality is likely to be missing, and a number of known and unknown issues are likely to surface. Early Access features are released to a limited set of technology partners.
 
@@ -27,6 +31,8 @@ Not production! No, really don’t do it! This release is meant to give the user
 
 ## Beta
 
+![Beta](/images/beta.svg)
+
 The feature is working, and installation works. All of the major known issues are fixed, Armory is working with customers to test the feature out. It's close to what we expect to ship to our users.
 
 ### Where to install Beta
@@ -34,6 +40,8 @@ The feature is working, and installation works. All of the major known issues ar
 Pretty much anywhere except production. A production installation could occur but proceed with caution and have proper rollbacks ready. If you want to experiment with the feature, Armory recommends using your development, QA, staging, or pre-prod environments. This release is meant to give the user a chance to set up new functionality and hit the ground running when GA releases. It is also an opportunity to give feedback on any final major issues.
 
 ## GA
+
+![GA](/images/ga.svg)
 
 All major technical issues have been identified and/or resolved. The application is available for install by all customers in the official Armory release.
 
