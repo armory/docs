@@ -30,7 +30,7 @@ user doesn't have access to those environments.
 There is one exception to this rule, and that is for Manual Judgment stages.
 You can configure a Manual Judgment stage to "Propagate Authentication":
 
-![Propagate Authentication](/images/Image-2018-10-16-at-10.05.04-AM.png)
+{{< figure src="/images/Image-2018-10-16-at-10.05.04-AM.png" >}}
 
 Checking this box will cause the pipeline to use the identity and
 authorizations of the user who approved the stage for all

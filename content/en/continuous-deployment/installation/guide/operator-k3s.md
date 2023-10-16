@@ -2,6 +2,7 @@
 title: Install Armory Continuous Deployment in Lightweight Kubernetes using the Armory Operator
 linkTitle: Install in AWS EC2 using Operator
 weight: 50
+draft: true
 description: >
   Use the Armory Operator to deploy Spinnaker or Armory Continuous Deployment in a Lightweight Kubernetes (K3s) instance running on an AWS EC2 virtual machine. This environment is for proofs of concept and development.
 ---
@@ -68,7 +69,7 @@ Spinnaker's Front50 service needs access to an S3 bucket, so create an S3 bucket
 
 On the **Configure options** screen, select **Versioning** and **Default encryption**.
 
-![ Create bucket - configure options](/images/installation/guide/create-bucket-config-options.jpg)
+{{< figure src="/images/installation/guide/create-bucket-config-options.jpg" >}}
 
 On the **Set permissions** screen, select **Block all public access**.
 
@@ -80,38 +81,38 @@ Create an IAM Role that you will attach to your EC2 instance. Calls to S3 use th
 
 1. From the **Services** menu, select **IAM** in the **Security, Identity, & Compliance** section.
 
-   ![ Select IAM](/images/installation/guide/selectIAM.png)
+   {{< figure src="/images/installation/guide/selectIAM.png" >}}
 
 1. Select the **Roles** section.
 
-   ![ Select Roles section](/images/installation/guide/selectRolesSection.png)
+   {{< figure src="/images/installation/guide/selectRolesSection.png" >}}
 
 1. Press the **Create role** button.
 
-   ![ Press Create role](/images/installation/guide/createRoleButton.png)
+   {{< figure src="/images/installation/guide/createRoleButton.png" >}}
 
 1. **AWS Service** is highlighted. Select **EC2**. Then press the **Next: Permissions** button.
 
-   ![ Select EC2](/images/installation/guide/createIAMRoleForEc2-01.png)
+   {{< figure src="/images/installation/guide/createIAMRoleForEc2-01.png" >}}
 
 
 1. In the **Filter policies** field, type "s3" and press enter. This action displays polices for S3. Select **AmazonS3FullAccess**. Then press the **Next: Tags** button.
 
-   ![ Select AmazonS3FullAccess](/images/installation/guide/roleSelectS3Policy-02.png)
+   {{< figure src="/images/installation/guide/roleSelectS3Policy-02.png" >}}
 
 1. You can optionally add tags to your Role. Press the **Next: Review** button to move to the **Review** screen. Type in a name for your role in the **Role name** field and then press the **Create role** button.
 
-   ![ Role review](/images/installation/guide/roleReview03.png)
+   {{< figure src="/images/installation/guide/roleReview03.png" >}}
 
 ## Attach your IAM Role to your EC2 instance
 
 1. Navigate to the EC2 services screen and then access your running instance. Select your instance. From the **Actions** menu, select **Instance Settings** and then **Attach/Replace IAM Role**.
 
-   ![ Attach Replace IAM Role](/images/installation/guide/assignRoleToVM01.jpg)
+   {{< figure src="/images/installation/guide/assignRoleToVM01.jpg" >}}
 
 1. Select the **IAM role** you created in the previous section. The press **Apply**.
 
-   ![ Select IAM Role](/images/installation/guide/attachRoleToVM02.jpg)
+   {{< figure src="/images/installation/guide/attachRoleToVM02.jpg" >}}
 
 ## Install the Armory Operator
 

@@ -144,7 +144,7 @@ Once you've written your policy, push it to your OPA server using a ConfigMap or
 Now that the policy has been uploaded to the OPA server, the policy gets enforced on any deployment to Kubernetes without additional input from the end user. Error messages returned by the policy are surfaced in the UI immediately following a halted deployment.
 
 
-![](/images/runtime-policy-validation.png)
+{{< figure src="/images/runtime-policy-validation.png" >}}
 
 
 ## Entitlements using API authorization

@@ -18,7 +18,7 @@ This example focuses on the manifest-based [Kubernetes V2 provider]({{< ref "kub
 We've defined a simple pipeline where we first define an artifact (a Docker image) with a version coming from a pipeline parameter.
 You'd usually get the image from a trigger via container registry or a Jenkins job with the same result.
 
-![image](/images/kubernetes_deployments_1.png)
+{{< figure src="/images/kubernetes_deployments_1.png" >}}
 
 
 The second step defines the deployment of that image. It's a simple "*Deploy (Manifest)*" stage. Here we're adding the static deployment manifest via a text field but you'd usually retrieve it as an artifact directly
@@ -27,12 +27,12 @@ or via a Helm bake stage.
 {{% alert title="Note" %}}For more information, watch this video about [Deploying Helm Charts with Armory](https://youtu.be/u7QF2X4WzE8?t=360) -- Example of artifact promotion through environments managed by a single pipeline.{{% /alert %}}
 
 
-![image](/images/kubernetes_deployments_2.png)
+{{< figure src="/images/kubernetes_deployments_2.png" >}}
 
 As a matter of fact, the deployment manifest is not entirely static: Spinnaker will replace the image name with the actual tagged name from the bound artifact.
 
 Let's see how a new version of the container gets deployed with this pipeline:
-![image](/images/rollingupdate-default.gif)
+{{< figure src="/images/rollingupdate-default.gif" >}}
 
 
 ## Can we change how containers are deployed?
@@ -44,9 +44,9 @@ Two [parameters](https://kubernetes.io/docs/concepts/workloads/controllers/deplo
 
 Let's modify our deployment manifest and ensure that we always have 4 pods running during deployment:
 
-![image](/images/kubernetes_deployments_3.png)
+{{< figure src="/images/kubernetes_deployments_3.png" >}}
 
 Let's see how we deploy with our new configuration:
-![image](/images/rollingupdate-0.gif)
+{{< figure src="/images/rollingupdate-0.gif" >}}
 
 We keep 4 pods running throughout the deployment and never more than 5 non *Terminating* pods (4 pods + 25%) existing at any given time.

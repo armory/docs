@@ -90,7 +90,7 @@ Answer the following questions to figure out how to map roles and permissions in
 
 The following image shows an example result of this exercise based on the user roles described in [Example Roles](#example-roles):
 
-![Mapping Exercise Role Matrix](/images/fiat_overview_role_matrix.png)
+{{< figure src="/images/fiat_overview_role_matrix.png" >}}
 
 ## Example Configurations
 
@@ -160,7 +160,7 @@ ci:
 
 `app1` is one of the applications that needs to be deployed. Configuring permissions for an application is done in Deck, Spinnaker's UI, when you create or edit an application:
 
-![app1 permissions](/images/fiat_overview_app1_perms.png)
+{{< figure src="/images/fiat_overview_app1_perms.png" >}}
 
 `app2`, `app3`, and `app4` will look slightly different since they have different permissions based on the mapping exercise.
 

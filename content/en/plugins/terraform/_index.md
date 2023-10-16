@@ -40,7 +40,7 @@ Armory ships several versions of Terraform as part of the Terraform Integration 
 
 When creating a Terraform Integration stage, pipeline creators select a specific available version from a list of available versions:
 
-![Terraform version to use](/images/plugins/terraform/terraform_version.png)
+![Terraform version to use](/images/plugins/terraform/terraform_version.png" >}}
 
 >All Terraform stages within a pipeline that affects state must use the same Terraform version.
 

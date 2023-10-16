@@ -24,7 +24,7 @@ Need help setting this up? -  For a guided tutorial, watch the **Video Walkthrou
 
 ## Prepare AWS by creating Roles, Permissions, and Trust
 
-![No CREATE Permission](/images/AWS-Roles-Spinnaker.png)
+{{< figure src="/images/AWS-Roles-Spinnaker.png" >}}
 
 
 ### In this step, we configure 2 AWS Roles to enable Spinnaker to deploy to your AWS environment
@@ -164,9 +164,7 @@ Need help setting this up? -  For a guided tutorial, watch the **Video Walkthrou
        }
    }
    ```
-## Congratulations!
+## Congratulations
 You have completed the 1st step in setting up the Spinnaker AWS Provider.  For Step 2, see [AWS Quick Start Step 2]({{< ref "Armory-Spinnaker-Quickstart-2" >}}).
 
-## AWS QuickStart Step 1 Video
 
-{{< youtube rHd0xyC7__c >}}

@@ -26,7 +26,7 @@ In this guide, you create a pipeline that takes the Debian package produced by a
 
 ## Step 1: After selecting your Application, click the Pipelines category.
 
-![An empty Pipelines view](/images/overview/your-first-pipeline/empty-pipelines.png)
+{{< figure src="/images/overview/your-first-pipeline/empty-pipelines.png" >}}
 
 ## Step 2: On this page, click the “+” icon.
 
@@ -44,15 +44,15 @@ _Note_: Strategy will be covered in a separate guide.
 * Notifications
 * Description
 
-![A new pipeline](/images/overview/your-first-pipeline/first-pipeline-view.png)
+{{< figure src="/images/overview/your-first-pipeline/first-pipeline-view.png" >}}
 
 ## Step 5: The first thing you should do is set up how your pipeline will be triggered. Scroll down to the Automated Triggers sub section. This section will allow you to select a Type first, looking like this.
 
-![Automated Trigger Types](/images/overview/your-first-pipeline/automated-trigger-types.png)
+{{< figure src="/images/overview/your-first-pipeline/automated-trigger-types.png" >}}
 
 ## Step 6: For this example we will select Jenkins. By adding a trigger we are defining how our pipeline will be initiated.
 
-![A new Jenkins trigger](/images/overview/your-first-pipeline/jenkins-trigger.png)
+{{< figure src="/images/overview/your-first-pipeline/jenkins-trigger.png" >}}
 
 _Note_: The Property File is an important topic that will be [covered in a separate guide]({{< ref "working-with-jenkins#property-file" >}}).
 
@@ -61,11 +61,11 @@ _Note_: The Property File is an important topic that will be [covered in a separ
 ## Step 8: Add a new stage.
 Click the add stage button in the visual representations section.
 
-![Pipeline visual representation, with only a config added](/images/overview/your-first-pipeline/pipeline-config-only.png)
+{{< figure src="/images/overview/your-first-pipeline/pipeline-config-only.png" >}}
 
 ## Step 9: Select Bake from the different types category.
 
-![The stage type menu, selecting "Bake"](/images/overview/your-first-pipeline/add-bake-stage.png)
+{{< figure src="/images/overview/your-first-pipeline/add-bake-stage.png" >}}
 
 ## Step 10: Select the region you want to bake in.
 Enter the name of the package that was archived by the Jenkins job.
@@ -74,11 +74,11 @@ Enter the name of the package that was archived by the Jenkins job.
 
 * _Note_: If you would like to configure your own Base AMI under the Advanced Options, the Base OS configuration will be ignored.
 
-![Bake configuration for an AMI image](/images/overview/your-first-pipeline/bake-ami-config.png)
+{{< figure src="/images/overview/your-first-pipeline/bake-ami-config.png" >}}
 
 ## Step 11: Now add a Deploy stage by clicking Add Stage again. In the Type category select Deploy. Deploy’s configuration settings should pop up on the screen.
 
-![Add a Deploy stage to the Pipeline](/images/overview/your-first-pipeline/add-deploy-stage.png)
+{{< figure src="/images/overview/your-first-pipeline/add-deploy-stage.png" >}}
 
 _Note_: If we want to reorganize the order that the stages execute in the pipeline, we can add or remove precursor stages in the Depends On category.
 
@@ -87,12 +87,12 @@ _Note_: If we want to reorganize the order that the stages execute in the pipeli
 ## Step 13: Select “Continue without a template”.
 Since this is a new application we will not choose to copy a configuration from a template.
 
-![Template selection for deployment server group](/images/overview/your-first-pipeline/continue-without-template.png)
+{{< figure src="/images/overview/your-first-pipeline/continue-without-template.png" >}}
 
 ## Step 14: Set up the Deploy Strategy.
 We will use the Highlander strategy for this example, which will ensure that only one server group for our application exists at a time.
 
-![The Highlander method under Strategy](/images/overview/your-first-pipeline/deploy-strategy.png)
+{{< figure src="/images/overview/your-first-pipeline/deploy-strategy.png" >}}
 
 _Note_: Different deployment strategies are important and there will be a separate guide for those.
 
@@ -105,12 +105,12 @@ Make sure to select the right instance type for your application, preferably the
 ## Step 17: Select the Capacity
 Select how many instances you want in your server group on deploy. For our example, we will set it at 1.
 
-![Capacity options](/images/overview/your-first-pipeline/deploy-capacity.png)
+{{< figure src="/images/overview/your-first-pipeline/deploy-capacity.png" >}}
 
 ## Step 18: Add the server group.
 Click "Add" and you'll be brought back to your Application and to see your new Deploy Configuration.
 
-![An overview of a newly configured Deployment stage](/images/overview/your-first-pipeline/new-deployment-overview.png)
+{{< figure src="/images/overview/your-first-pipeline/new-deployment-overview.png" >}}
 
 ## Step 19: Save the changes
 Press “Save Changes” at the bottom right of your window.
@@ -118,16 +118,16 @@ Press “Save Changes” at the bottom right of your window.
 ## Step 20: Go back to the Pipeline Overview.
 You should see your new pipeline. Click on “Start Manual Execution”.
 
-![Highlighting the Start Manual Execution option](/images/overview/your-first-pipeline/start-manual-execution.png)
+{{< figure src="/images/overview/your-first-pipeline/start-manual-execution.png" >}}
 
 ## Step 21: Select the build to run.
 You will be able to select a Build for your Jenkins job from a drop down menu. By default, Spinnaker will not recreate an AMI unless the underlying package has changed. If you would like to force it, you may use the checkbox for “Rebake”.
 
-![Selecting a build for manual deployment](/images/overview/your-first-pipeline/select-build.png)
+{{< figure src="/images/overview/your-first-pipeline/select-build.png" >}}
 
 ## Step 22: Run
 You should see a progress bar where blue represents running and green represents complete. Gray represents not ran or canceled. Red is a failed task.
 
-![A manual execution in progress](/images/overview/your-first-pipeline/job-in-progress.png)
+{{< figure src="/images/overview/your-first-pipeline/job-in-progress.png" >}}
 
 If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "spin-pipelines#troubleshooting" >}}), [baking]({{< ref "aws-baking-images#troubleshooting" >}}), or [deploying]({{< ref "aws-deploy#common-errors-and-troubleshooting" >}}) guides.

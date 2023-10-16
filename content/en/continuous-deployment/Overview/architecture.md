@@ -11,7 +11,7 @@ aliases:
 
 Armory Continuous Deployment is an enterprise version of open source [Spinnaker](https://spinnaker.io/). It is composed of several microservices for resiliency and follows the single-responsibility principle. It allows for faster iteration on each individual component and a more pluggable architecture for custom components. See the open source Spinnaker [microservices overview](https://spinnaker.io/docs/reference/architecture/microservices-overview/#system-dependencies) for port mappings and a table of service interdependencies. 
 
-![Architecture Diagram](/images/overview/SpinnakerArchitecture.png)
+{{< figure src="/images/overview/SpinnakerArchitecture.png" >}}
 
 ## Armory Continuous Deployment microservices
 

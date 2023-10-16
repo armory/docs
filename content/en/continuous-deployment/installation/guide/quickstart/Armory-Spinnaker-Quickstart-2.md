@@ -31,7 +31,7 @@ Before you start, ensure that have completed the following requirements:
 
 ## First: Configure the AWS Provider for Spinnaker
 
-![No CREATE Permission](/images/AWS-Deploy-Spinnaker.png)
+{{< figure src="/images/AWS-Deploy-Spinnaker.png" >}}
 
 ### Adding AWS Role to Spinnaker through Halyard configuration.  Note AWS account name is within Spinnaker and will appear in UI ###
 
@@ -102,7 +102,7 @@ immutable_metadata  {"purpose":"example-purpose"}
 
 For the tasks in this section, complete them on your local workstation, *not from the Minnaker VM*.
 
-![No CREATE Permission](/images/Spinnaker-to-EKS.png)
+{{< figure src="/images/Spinnaker-to-EKS.png" >}}
 
 ## Using spinnaker-tools
 
@@ -164,8 +164,7 @@ Run this command to apply your changes to Spinnaker:
 hal deploy apply --wait-for-completion
 ```
 
-## Congratulations!  
+## Congratulations  
 You have configured the Spinnaker AWS Provider and Kubernetes Account for EKS.  You can now deploy to EC2, ECS, Fargate, and EKS.  Lets build some pipelines in [AWS QuickStart Step 3]({{< ref "Armory-Spinnaker-Quickstart-3" >}}).
 
-## AWS QuickStart Step 2 Video
-{{< youtube XBdc0z-xdS0 >}}
+
