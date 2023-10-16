@@ -54,5 +54,5 @@ Solution:
 
 ## Help resources
 
-* Armory Operator: contact [Armory Support](https://support.armory.io/) or use the [Spinnaker Slack](https://join.spinnaker.io/) `#armory` channel.
-* Spinnaker Operator: [Spinnaker Slack](https://join.spinnaker.io/) `#kubernetes-operator` channel.
+* Armory Operator: contact [Armory Support](https://support.armory.io/) or use the [Spinnaker Slack](https://join.slack.com/t/spinnakerteam/shared_invite/zt-7juwxmx0-nQ4Ud4pJcbuPykX3SXwQrg) `#armory` channel.
+* Spinnaker Operator: [Spinnaker Slack](https://join.slack.com/t/spinnakerteam/shared_invite/zt-7juwxmx0-nQ4Ud4pJcbuPykX3SXwQrg) `#kubernetes-operator` channel.

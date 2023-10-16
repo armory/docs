@@ -166,7 +166,7 @@ params:
         icon: fab fa-github
         desc: Docs repository
       - name: Slack
-        url: "https://join.spinnaker.io/"
+        url: "https://join.slack.com/t/spinnakerteam/shared_invite/zt-7juwxmx0-nQ4Ud4pJcbuPykX3SXwQrg"
         icon: fab fa-slack
         desc: Chat with Armory users and developers in the Spinnaker Slack
   versions:

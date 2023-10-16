@@ -7,7 +7,7 @@ Armory maintains the `spinnakaker-kustomize-patches` [repo](https://github.com/a
 To start, create your own copy of the `spinnaker-kustomize-patches` repository
 by clicking the `Use this template` button:
 
-![button](/images/kustomize-patches-repo-clone.png)
+{{< figure src="mages/kustomize-patches-repo-clone.png" >}}
 
 >If you intend to update your copy from upstream, use **Fork** instead. See [Creating a repository from a template](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) for the difference between **Use this template** and **Fork**.
 

@@ -1,19 +1,22 @@
 {
   "ignorePatterns": [
   {
-    "pattern": "^https:\/\/console.cloud.armory.io"
+    "pattern": "^\/images\/proprietary.svg"
   },
   {
-    "pattern": "^https:\/\/auth.cloud.armory.io"
+    "pattern": "^\/images\/oss.svg"
   },
   {
-    "pattern": "^https:\/\/api.cloud.armory.io"
+    "pattern": "^\/images\/ea.svg"
   },
   {
-    "pattern": "^https:\/\/go.armory.io"
+    "pattern": "^\/images\/ga.svg"
   },
   {
-    "pattern": "^https:\/\/api.github.com"
+    "pattern": "^\/images\/beta.svg"
+  },
+  {
+    "pattern": "^\/images\/exp.svg"
   },
   {
     "pattern": "^#[a-zA-Z0-9-]*"

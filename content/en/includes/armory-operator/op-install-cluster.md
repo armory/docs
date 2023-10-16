@@ -9,13 +9,16 @@ You can find the Operator's deployment configuration in `spinnaker-operator/depl
 
 1. Get the latest Operator release:
 
-   **Armory Operator for Armory CD Installation** ![Proprietary](/images/proprietary.svg)
+   **Armory Operator for Armory CD Installation**
+   
+   {{< figure src="/images/proprietary.svg" >}}
 
    ```bash
    mkdir -p spinnaker-operator && cd spinnaker-operator
    bash -c 'curl -L https://github.com/armory-io/spinnaker-operator/releases/latest/download/manifests.tgz | tar -xz'
    ```
-
+   <br>
+   
    **Spinnaker Operator for Open Source Spinnaker Installation**
 
    ```bash
