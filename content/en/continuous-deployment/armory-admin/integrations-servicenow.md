@@ -30,12 +30,12 @@ To create the Scripted Web Service, perform the following task:
 
 1. Search for `Scripted REST APIs` in the ServiceNow Navigator.
 
-   ![](/images/integrations-snow-scripted-rest-apis.png)
+   {{< figure src="/images/integrations-snow-scripted-rest-apis.png" >}}
 
 
 2. Create a new Scripted Web Service and give it a descriptive name. For example, you can name it “SpinnakerWebhookListener”.
 
-   ![](/images/integrations-snow-spinwebhooklistener.png)
+   {{< figure src="/images/integrations-snow-spinwebhooklistener.png" >}}
 
 3. Submit the information to create the service.
 
@@ -43,11 +43,11 @@ To create the Scripted Web Service, perform the following task:
 
    You can create multiple Resources, each with its own specific URL and script to do something. In this example, the “SpinnakerWebhookListener” is the **Scripted REST API** that handles all the various calls that Spinnaker makes to this specific ServiceNow Instance. You define Resources to handle each specific call. For example, you may want to create separate calls to create different type of tickets or perform different actions within ServiceNow.
 
-   ![](/images/integrations-snow-create-resource.png)
+   {{< figure src="/images/integrations-snow-create-resource.png" >}}
 
 5. Create a new resource and give it a meaningful name. The example below uses `create-change-ticket`.
 
-   ![](/images/integrations-snow-resource-changeticket.png)
+   {{< figure src="/images/integrations-snow-resource-changeticket.png" >}}
 
 
 6. Set the **HTTP method** to **POST**.
@@ -148,19 +148,19 @@ To create a custom stage, perform the following steps:
 4. Once you apply your changes, open Deck, Spinnaker's UI.
 5. When you create or edit a pipeline, a new stage available is available:
 
-   ![](/images/integrations-snow-stage.png)
+   {{< figure src="/images/integrations-snow-stage.png" >}}
 
    If the new stage does not appear, perform a hard refresh or clear your browser cache and reopen Deck.
 
 
 Other Spinnaker users can use the ServiceNow stage you created.
 
-![](/images/integrations-snow-stage-2.png)
+{{< figure src="/images/integrations-snow-stage-2.png" >}}
 
 
 The following screenshot shows a Change Request in ServiceNow created by the custom webhook stage:
 
-![](/images/integrations-snow-cr-from-spinn.png)
+{{< figure src="/images/integrations-snow-cr-from-spinn.png" >}}
 
 
 ## Triggering a pipeline based on webhooks
@@ -172,7 +172,7 @@ At it’s simplest implementation, an approval can trigger a pipeline execution.
 The following screenshot shows a pipeline with that gets triggered based on a webhook:
 
 
-![](/images/integrations-snow-webhook-trigger.png)
+{{< figure src="/images/integrations-snow-webhook-trigger.png" >}}
 
 
 You can add payload constraints to avoid webhooks without the right payload from being processed. Armory recommends testing the webhook without contraints first.
@@ -182,7 +182,7 @@ On the ServiceNow side, you need something to call this URL. In the example envi
 The first step is to define the REST call you need to make. To do this, type ‘REST’ on the navigation filter box and, from the results, select **System Web Services** > **Outbound** > **REST Message**:
 
 
-![](/images/integrations-snow-outbound-rest.png)
+{{< figure src="/images/integrations-snow-outbound-rest.png" >}}
 
 
 > **Note**:  On the menu shown above, select REST API Explorer to get code samples on how to use the ServiceNow REST API to create, search, or edit objects in ServiceNow.
@@ -190,27 +190,27 @@ The first step is to define the REST call you need to make. To do this, type ‘
 In the **REST Messages** window, create a new REST Message. The following image shows an example to trigger the pipeline.
 
 
-![](/images/integrations-snow-rest-msg-1.png)
+{{< figure src="/images/integrations-snow-rest-msg-1.png" >}}
 
-![](/images/integrations-snow-rest-msg-2.png)
+{{< figure src="/images/integrations-snow-rest-msg-2.png" >}}
 
 
 Once you have the REST Message set up, configure something to call it. Examples include when a ticket transitions as a step in a workflow or orchestration or a button or link on a form. This example uses a button in the form. Type “change” in the navigation filter as shown in the following image:
 
 
-![](/images/integrations-snow-filter-change.png)
+{{< figure src="/images/integrations-snow-filter-change.png" >}}
 
 
 Click on **Change** > **Open** to get a list of all open Change Requests. Open any of Change Request from the list and right click on the top of the form as shown below to select **Configure** > **UI Actions**:
 
 
-![](/images/integrations-snow-ui-actions.png)
+{{< figure src="/images/integrations-snow-ui-actions.png" >}}
 
 
 The following screenshot shows how a UI action can be configured:
 
 
-![](/images/integrations-snow-ui-actions-configure.png)
+{{< figure src="/images/integrations-snow-ui-actions-configure.png" >}}
 
 
-Note that you can use the **Condition** field to determine under which conditions the button should be active, such as when the status is “Ready for Approval”).
+Note that you can use the **Condition** field to determine under which conditions the button should be active, such as when the status is “Ready for Approval”.

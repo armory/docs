@@ -137,35 +137,35 @@ We'll describe how to create these load balancers from AWS console, but you can 
 
 Navigate to AWS EC2 management console, in `Load Balancers` section, and click on `Create New Load Balancer`
 
-![image](/images/configure_ingress_new_lb.png)
+{{< figure src="/images/configure_ingress_new_lb.png" >}}
 
 We'll be creating a new Application Load Balancer:
 
-![image](/images/configure_ingress_create_alb.png)
+{{< figure src="/images/configure_ingress_create_alb.png" >}}
 
 Make sure to select `internal` scheme, and if you have a SSL certificate available, use `HTTPS` protocol:
 
-![image](/images/configure_ingress_alb_1.png)
+{{< figure src="/images/configure_ingress_alb_1.png" >}}
 
 Select the VPC and subnets where EKS worker nodes live:
 
-![image](/images/configure_ingress_alb_2.png)
+{{< figure src="/images/configure_ingress_alb_2.png" >}}
 
 If you selected `HTTPS` for the protocol, you can configure here the ACM certificate:
 
-![image](/images/configure_ingress_alb_ssl.png)
+{{< figure src="/images/configure_ingress_alb_ssl.png" >}}
 
 In the next screen you can either select an existing security group or create a new one for your load balancer:
 
-![image](/images/configure_ingress_sg.png)
+{{< figure src="/images/configure_ingress_sg.png" >}}
 
 Now you want to create a new target group that points to `DECK_PORT` or `GATE_PORT`, taken from the NodePort created in the previous step:
 
-![image](/images/configure_ingress_tg.png)
+{{< figure src="/images/configure_ingress_tg.png" >}}
 
-Finally, you need to select all EKS worker nodes to be registered with the load balancer target, review and save the changes:
+Finally, you need to select all EKS worker nodes to be registered with the load balancer target, review, and save the changes:
 
-![image](/images/configure_ingress_register_targets.png)
+{{< figure src="/images/configure_ingress_register_targets.png" >}}
 
 If for some reason you get `Unhealthy` status in the target group you created, make sure that EKS worker nodes security groups allow traffic to the target ports, at least from Load Balancer's security groups.
 

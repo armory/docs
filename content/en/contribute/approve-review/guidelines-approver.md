@@ -74,7 +74,7 @@ To improve our placement in search rankings, keep these in mind when editing and
     - Ensure that the image name is human readable and conveys what the image is
 1. SEO resources
     - [https://developers.google.com/search/docs/beginner/seo-starter-guide](https://developers.google.com/search/docs/beginner/seo-starter-guide)
-    - [https://github.com/armory-io/docs-team/blob/master/seo/BestPractices/3Q-guidelines.md](https://github.com/armory-io/docs-team/blob/master/seo/BestPractices/3Q-guidelines.md)
+
 
 
 

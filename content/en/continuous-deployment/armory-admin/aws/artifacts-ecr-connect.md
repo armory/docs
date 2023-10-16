@@ -45,4 +45,4 @@ spec:
 
 Success! Now you can use ECR as a Docker registry in the configuration stage.
 
-![](/images/armory-admin/artifacts/ecr-test.png)
+{{< figure src="/images/armory-admin/artifacts/ecr-test.png" >}}
