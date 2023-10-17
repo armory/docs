@@ -101,4 +101,5 @@ The Armory Splunk App for Spinnaker includes a Splunk webhook for data driven au
    {{< figure src="/images/splunk-gate-spinnaker-app.png" >}}
 
 ## Video Walkthrough
-{{< youtube y8Dm6k7c94Q >}}
+
+{{< youtube-enhanced id="y8Dm6k7c94Q" widthPercent="75" heightPercent="75"  >}}
