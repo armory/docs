@@ -47,6 +47,7 @@ Let's modify our deployment manifest and ensure that we always have 4 pods runni
 {{< figure src="/images/kubernetes_deployments_3.png" >}}
 
 Let's see how we deploy with our new configuration:
+
 {{< figure src="/images/rollingupdate-0.gif" >}}
 
 We keep 4 pods running throughout the deployment and never more than 5 non *Terminating* pods (4 pods + 25%) existing at any given time.
