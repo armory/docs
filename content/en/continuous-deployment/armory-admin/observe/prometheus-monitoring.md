@@ -194,7 +194,7 @@ spec:
 
 After applying these changes, you should be able to see  Armory Continuous Deployment targets in Prometheus. It may take 3 to 5 minutes for this to show up depending on where Prometheus is in its config polling interval.
 
-![Prometheus Targets](/images/prometheus-2.png)
+{{< figure src="/images/prometheus-2.png" alt="Prometheus Targets" >}}
 
 ## Access Grafana
 
@@ -220,8 +220,7 @@ To import the sample dashboards, perform the following steps:
 
 After importing the dashboards, you can explore graphs for each service by clicking on **Dashboards > Manage > Spinnaker Kubernetes Details**.
 
-![Grafana Dashboard](/images/grafana-2.png)
-
+{{< figure src="/images/grafana-2.png" alt="Grafana Dashboard" >}}
 
 ## Available metrics by service
 

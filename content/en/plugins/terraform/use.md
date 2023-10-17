@@ -98,7 +98,7 @@ Run the pipeline.
 
 ## Create a Terraform Integration stage
 
-![Terraform Stage in Deck](/images/plugins/terraform/terraform_stage_ui.png)
+{{< figure src="/images/plugins/terraform/terraform_stage_ui.png" >}}
 
 {{< include "rdbms-utf8-required.md" >}}
 
@@ -126,7 +126,7 @@ To create a new Terraform stage, perform the following steps:
       * **Workspace**: [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html) to use. The workspace gets created if it does not already exist. For remote backends, the workspace must be explicit or prefixed. For more information about what that means, see the Terraform documentation about [remote backends](https://www.terraform.io/docs/backends/types/remote.html)
     * **Main Terraform Artifact**
       * **Expected Artifact**: Required. Select or define only one `git/repo` type artifact.
-        ![Terraform git repo artifact](/images/plugins/terraform/terraform-git-repo.png)
+        {{< figure src="/images/plugins/terraform/terraform-git-repo.png" >}}
         * **Account**: The account to use for your artifact.
         * **URL**: If you use a GitHub artifact, make sure you supply the _API_ URL of the file, not the URL from the `Raw` GitHub page. Use the following examples as a reference for the API URL:
 
@@ -205,7 +205,7 @@ Terraform Integration caches all the defined plugins by default and does not red
 
 ## View Terraform log output
 
-![Terraform Integration logs](/images/plugins/terraform/terraformer-ui-logs.png)
+{{< figure src="/images/plugins/terraform/terraformer-ui-logs.png" >}}
 
 Terraform provides logs that describe the status of your Terraform action. When you run Terraform actions on your workstation, the log output is streamed to `stdout`. For Armory's Terraform Integration, Spinnaker captures the log output and makes it available on the **Pipelines** page of Deck as part of the **Execution Details**. Exit codes in the log represent the following states:
 

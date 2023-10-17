@@ -118,4 +118,5 @@ To restrict which users can create applications in Spinnaker, perform the follow
 5. Apply your configuration changes to Spinnaker by running the following command: `kubectl -n <spinnaker namespace> apply -f <SpinnakerService manifest>`.
 
 The following screenshot shows what happens when a user without sufficient permissions attempts to create an application in Deck, Spinnaker's UI:
-![No CREATE Permission](/images/authz_create_permission.png)
+
+{{< figure src="/images/authz_create_permission.png" >}}

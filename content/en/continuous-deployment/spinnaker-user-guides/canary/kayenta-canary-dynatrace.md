@@ -33,16 +33,16 @@ kayenta:
 
 In the UI, you need to create a new canary config for the metrics you are interested in.
 
-![image](/images/user-guides/canary/canary_config_dynatrace.png)
+{{< figure src="/images/user-guides/canary/canary_config_dynatrace.png" >}}
 
 
 Add your Dynatrace query in the **Dynatrace USQL** field.
 
-![image](/images/user-guides/canary/canary_config_dynatrace_query.png)
+{{< figure src="/images/user-guides/canary/canary_config_dynatrace_query.png" >}}
 
 
 ## Pipeline configs
 
 In your canary stage, set up the canary config you just created. Then use the application values from Dynatrace to fill in the **Baseline + Canary Pair** and **MetricScope** fields.
 
-![image](/images/user-guides/canary/canary_stage_dynatrace.png)
+{{< figure src="/images/user-guides/canary/canary_stage_dynatrace.png" >}}

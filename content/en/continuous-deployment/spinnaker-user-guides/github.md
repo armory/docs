@@ -26,4 +26,4 @@ with common patterns or partial matches.
 
 {{< include "regex_vs_wildcard.md" >}}
 
-![Configure GitHub Trigger](/images/github-user-guide-1.gif)
+{{< figure src="/images/github-user-guide-1.gif" >}}

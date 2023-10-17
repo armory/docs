@@ -32,4 +32,4 @@ a possible selection in later stages.  For example, if you wanted to use the
 S3 file as a deployment manifest, you could reference it in the "Deploy
 (Manifest)" stage:
 
-![Example of S3 Manifest Artifact](/images/s3-user-guide-1.gif)
+{{< figure src="/images/s3-user-guide-1.gif" >}}

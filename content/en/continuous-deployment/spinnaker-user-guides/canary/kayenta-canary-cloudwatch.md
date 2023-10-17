@@ -41,7 +41,7 @@ kayenta:
 
 In the UI, you need to create a new canary config for the metrics you are interested in.
 
-![image](/images/user-guides/canary/cloudwatch/canary_config_cloudwatch.png)
+{{< figure src="/images/user-guides/canary/cloudwatch/canary_config_cloudwatch.png" >}}
 
 Add your Cloudwatch MetricStat JSON in the **Template** field.
 
@@ -67,10 +67,10 @@ Add your Cloudwatch MetricStat JSON in the **Template** field.
 }
 ```
 
-![image](/images/user-guides/canary/cloudwatch/canary_config_cloudwatch_query.png)
+{{< figure src="/images/user-guides/canary/cloudwatch/canary_config_cloudwatch_query.png" >}}
 
 ## Pipeline configs
 
 In your canary stage, set up the canary config you just created. Then use the application values from CloudWatch to fill in the **Baseline + Canary Pair** and **MetricScope** fields.
 
-![image](/images/user-guides/canary/cloudwatch/canary_stage_cloudwatch.png)
+{{< figure src="/images/user-guides/canary/cloudwatch/canary_stage_cloudwatch.png" >}}

@@ -27,7 +27,7 @@ This example creates a pipeline that takes the Debian package produced by a Jenk
 
 1. After selecting your Application, click the Pipelines category.
 
-   ![An empty Pipelines view](/images/overview/your-first-pipeline/empty-pipelines.png)
+   {{< figure src="/images/overview/your-first-pipeline/empty-pipelines.png" >}}
 
 1. On this page, click **Configure a new pipeline**.
 
@@ -42,17 +42,17 @@ This example creates a pipeline that takes the Debian package produced by a Jenk
    - Notifications
    - Description
 
-   ![A new pipeline](/images/overview/your-first-pipeline/first-pipeline-view.png)
+   {{< figure src="/images/overview/your-first-pipeline/first-pipeline-view.png" >}}
 
 ### Add a trigger
 
 1. Define how your pipeline is triggered. Scroll down to the **Automated Triggers** section and click **{{< icon "plus-circle" >}} Add Trigger**. This section enables you to select a **Type**:
 
-   ![Automated Trigger Types](/images/overview/your-first-pipeline/automated-trigger-types.png)
+   {{< figure src="/images/overview/your-first-pipeline/automated-trigger-types.png" >}}
 
 1. For this example, select Jenkins. By adding a trigger, you are defining how your pipeline is initialized.
 
-   ![A new Jenkins trigger](/images/overview/your-first-pipeline/jenkins-trigger.png)
+   {{< figure src="/images/overview/your-first-pipeline/jenkins-trigger.png" >}}
 
    **Note:** **Property File** is an important topic that will be covered in a [separate guide]({{< ref "working-with-jenkins#property-file" >}}).
 
@@ -62,24 +62,24 @@ This example creates a pipeline that takes the Debian package produced by a Jenk
 
 1. Now add your first stage: Baking an AMI. Click the **{{< icon "plus-circle" >}} Add stage** button in the visual representations section:
 
-   ![Pipeline visual representation, with only a config added](/images/overview/your-first-pipeline/pipeline-config-only.png)
+   {{< figure src="/images/overview/your-first-pipeline/pipeline-config-only.png" >}}
 
 1. Select **Bake** from the **Types** drop down list.
 
-   ![The stage type menu, selecting "Bake"](/images/overview/your-first-pipeline/add-bake-stage.png)
+   {{< figure src="/images/overview/your-first-pipeline/add-bake-stage.png" >}}
 
 1. If you have multiple providers configured, select **Amazon** from the **Provider** drop down list. Next select the region or regions you want to bake in. In the **Package** field, enter the name of the package that your Jenkins job archived.
 
    - The package name should not include any version numbers. For example, if your build produces a deb file named “myapp_1.27-h343”, you would enter “myapp” here.
    - If you configure your own Base AMI under the Advanced Options, the Base OS configuration is ignored.
 
-   ![Bake configuration for an AMI image](/images/overview/your-first-pipeline/bake-ami-config.png)
+   {{< figure src="/images/overview/your-first-pipeline/bake-ami-config.png" >}}
 
 ### Add a Deploy stage
 
 1. Now add a Deploy stage by clicking **{{< icon "plus-circle" >}} Add stage** again. Select **Deploy** In the **Type** drop down list. Deploy’s configuration settings should pop up on the screen.
 
-   ![Add a Deploy stage to the Pipeline](/images/overview/your-first-pipeline/add-deploy-stage.png)
+   {{< figure src="/images/overview/your-first-pipeline/add-deploy-stage.png" >}}
 
    **Note:** If you want to reorganize the order that the stages execute in the pipeline, you can add or remove precursor stages in the **Depends On** field.
 
@@ -87,13 +87,13 @@ This example creates a pipeline that takes the Debian package produced by a Jenk
 
 1. Because this is a new application, do not choose to copy a configuration from a template. Press the **Continue without a template** button.
 
-   ![Template selection for deployment server group](/images/overview/your-first-pipeline/continue-without-template.png)
+   {{< figure src="/images/overview/your-first-pipeline/continue-without-template.png" >}}
 
 1. It's important to set up the correct Deploy Strategy for your use case. Use the Highlander strategy for this example, which will ensure that only one server group for your application exists at a time.
 
-   ![The Highlander method under Strategy](/images/overview/your-first-pipeline/deploy-strategy.png)
+   {{< figure src="/images/overview/your-first-pipeline/deploy-strategy.png" >}}
 
-1. In the **Load Balancers** section, select the load balancer you created before you began this tutorial. 
+1. In the **Load Balancers** section, select the load balancer you created before you began this tutorial.
 
 1. Select a security group that you are comfortable with, which will define the access rights to your resource.
 
@@ -101,25 +101,25 @@ This example creates a pipeline that takes the Debian package produced by a Jenk
 
 1. For Capacity, select how many instances you want in your server group. For our example, we will set it at 1.
 
-   ![Capacity options](/images/overview/your-first-pipeline/deploy-capacity.png)
+   {{< figure src="/images/overview/your-first-pipeline/deploy-capacity.png" >}}
 
 1. Click “add”. You will be brought back to your Application and see a new Deploy Configuration. Press “Save Changes” at the bottom right of your window.
 
-   ![An overview of a newly configured Deployment stage](/images/overview/your-first-pipeline/new-deployment-overview.png)
+   {{< figure src="/images/overview/your-first-pipeline/new-deployment-overview.png" >}}
 
 ## Execute the Pipeline
 
 1. Click on the Pipelines option. You should see your new pipeline. Click on **{{< icon "play" >}} Start Manual Execution**.
 
-   ![Highlighting the Start Manual Execution option](/images/overview/your-first-pipeline/start-manual-execution.png)
+   {{< figure src="/images/overview/your-first-pipeline/start-manual-execution.png" >}}
 
 1. You will be able to select a Build for your Jenkins job from a drop down menu. By default, Spinnaker will not recreate an AMI unless the underlying package has changed. If you would like to force it, you may use the checkbox for “Rebake”.
 
-   ![Selecting a build for manual deployment](/images/overview/your-first-pipeline/select-build.png)
+   {{< figure src="/images/overview/your-first-pipeline/select-build.png" >}}
 
 1. Press “Run”, and you should see a progress bar where blue represents running and green represents complete. Gray represents not ran or canceled, which is not in our example picture.
 
-   ![A manual execution in progress](/images/overview/your-first-pipeline/job-in-progress.png)
+   {{< figure src="/images/overview/your-first-pipeline/job-in-progress.png" >}}
 
    If your pipeline does not succeed, refer to one of the troubleshooting sections in the [pipelines]({{< ref "spin-pipelines#troubleshooting" >}}), [baking]({{< ref "aws-baking-images#troubleshooting" >}}), or [deploying]({{< ref "aws-deploy#common-errors-and-troubleshooting" >}}) guides.
 

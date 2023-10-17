@@ -16,7 +16,7 @@ An application represents the service which you are going to deploy using Spinna
 
 When you first log in to Spinnaker, the landing page should look like this:
 
-![The landing page of a fresh installation](/images/overview/your-first-application/default-view-top.png)
+{{< figure src="/images/overview/your-first-application/default-view-top.png" >}}
 
 The navigation bar at the top allows you to access Projects, Applications, and
 Infrastructure. The search bar allows you to search through your Infrastructure.
@@ -37,18 +37,18 @@ Remember that Spinnaker considers an application to be anything you would put in
 
 1. Click the “Create Application” button:
 
-   ![Highlight the "Create Application" button](/images/overview/your-first-application/create-application.png)
+   {{< figure src="/images/overview/your-first-application/create-application.png" >}}
 
 1. Fill out the pop-up form with desired user definitions.
 
-   ![The "New Application" modal](/images/overview/your-first-application/new-application-modal.png)
+   {{< figure src="/images/overview/your-first-application/new-application-modal.png" >}}
 
    - The name of the application cannot have hyphens. Using a hyphen in the application name interferes with the naming convention. This applies to all types of applications except for those that use the Kubernetes V2 provider to deploy.
    - When you create an application in Spinnaker, consider it to be anything you would put into a single code repository.
 
 1. After you fill out the form you should see this:
 
-   ![A fresh application view](/images/overview/your-first-application/new-application.png)
+   {{< figure src="/images/overview/your-first-application/new-application.png" >}}
 
 1. If you wish to modify the settings for the application, click “Config” for configurations.
 
@@ -59,4 +59,4 @@ Note that by now you should have created an application, but as you have not cre
 
 Go to your application, click on “Config” and scroll all the way down. There will be a prompt to confirm if you would like to delete your application.
 
-![Deleting an application](/images/overview/your-first-application/delete-application.png)
+{{< figure src="/images/overview/your-first-application/delete-application.png" >}}

@@ -10,7 +10,7 @@ Hugo is a robust static site generator that supports templates. In addition to b
 
 You can preview changes you or others make by doing one of the following:
 
-- building the site locally by installing Hugo locally with `brew install hugo`. If you installed your tooling from the Engineering brewfile, you already have Hugo: [Eng onboarding brewfile](https://github.com/armory-io/engineering-toolset/tree/master/software)
+- Building the site locally by installing Hugo locally with `brew install hugo`. Make sure to install the Hugo extended version. 
 - You also have to initialize the submodules in the `docs` repo to build locally:
 
    ```

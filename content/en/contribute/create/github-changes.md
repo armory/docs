@@ -11,12 +11,12 @@ description: >
 1. Click the **Suggest an Edit** link on the documentation page you want to update. This takes you to the page's source file in GitHub.
 1. Click the **Edit this file...** pencil icon to edit the file.
 
-   ![EditFileIcon](/images/contribute/github-edit-file-icon.jpg)
-
+   {{< figure src="/images/contribute/github-edit-file-icon.jpg">}}
+   
 1. Make your changes in the GitHub markdown editor. Be sure to follow the guidelines in the {{< linkWithTitle "docs-style-guide.md" >}}.
 1. Fill in the **Propose file change** form.
 
-   ![ProposeFileChange](/images/contribute/github-propose-file-change-form.jpg)
+   {{< figure src="/images/contribute/github-propose-file-change-form.jpg" >}}
 
    1. Explain what your file change is about in a short summary.
 
@@ -28,7 +28,7 @@ description: >
 
 1. Fill in the **Open a pull request** form.
 
-   ![OpenPullRequest](/images/contribute/github-open-pull-request.jpg)
+   {{< figure src="/images/contribute/github-open-pull-request.jpg" >}}
 
    1. The **Title** defaults to the file change summary. Update the title so it follows the `<type>(<scope>): <subject>` format. Make sure you include a space after the colon. For example:
 

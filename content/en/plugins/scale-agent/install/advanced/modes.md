@@ -12,7 +12,7 @@ description: >
 
 In this mode, you install the Armory Scale Agent service as a new Spinnaker service (`spin-armory-agent`), so you can configure it like other services.
 
-![Spinnaker service mode](/images/scale-agent/in-cluster-mode.png)
+{{< figure src="/images/scale-agent/in-cluster-mode.png" >}}
 
 If you provision clusters automatically, the Armory Scale Agent service can dynamically reload accounts when `armory-agent.yaml` changes. You could, for example, configure accounts in a `ConfigMap` mounting to `/opt/armory/config/armory-agent-local.yaml`.  The Agent service reflects `ConfigMap` changes within seconds after [etcd](https://etcd.io/) sync.
 
@@ -42,7 +42,7 @@ Keep the following pros and cons in mind when deciding if Infrastructure mode fi
 - The API servers of the target clusters need to be accessible from the Armory Scale Agent cluster.
 - You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
 
-![Infra mode](/images/scale-agent/agent-infra-mode.png)
+{{< figure src="/images/scale-agent/agent-infra-mode.png" >}}
 
 > Kubernetes account names must be unique across all your infrastructure. Clouddriver rejects new accounts with a name that matches a different cluster.
 
@@ -69,7 +69,7 @@ Keep the following pros and cons in mind when deciding if Agent mode fits your u
 - There is no authentication/authorization, so any team can start an Agent and register itself with Armory CD (Spinnaker). mTLS encryption can be used so that only agents with the right certificate can register. For information about how to configure mTLS, see {{< linkWithTitle "plugins/scale-agent/tasks/configure-mtls.md" >}}.
 - You need to expose gRPC port for Clouddriver through an external load balancer capable of handling HTTP/2 for gRPC communication.
 
-![Agent mode](/images/scale-agent/agent-mode.png)
+{{< figure src="/images/scale-agent/agent-mode.png" >}}
 
 
 

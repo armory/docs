@@ -62,7 +62,7 @@ Add a **git/repo** Expected Artifact in the _Configuration_ section:
 - **URL** (Required): The location of the Git repository.
 - **Branch** (Optional): The branch of the repository you want to use. _Defaults to  `master`._
 - **Subpath** (Optional): By clicking `Checkout subpath`, you can optionally pass in a relative subpath within the repository. This provides the option to checkout only a portion of the repository, thereby reducing the size of the generated artifact.
-​![](/images/kustomize-expected-artifact.png)
+​{{< figure src="/images/kustomize-expected-artifact.png" >}}
 >In order to execute the pipeline manually, it is necessary to select **Use Default Artifact** and also fill the fields (same information above).
 ​
 
@@ -70,19 +70,19 @@ Add a **git/repo** Expected Artifact in the _Configuration_ section:
 ​
 Add a **Bake (Manifest)** stage and choose the Render Engine *KUSTOMIZE*. Then, select the Expected Artifact you created in step 1 and specify the path for the **kustomization.yaml** file.
 ​
- ![](/images/kustomize-bake.png)
+ {{< figure src="/images/kustomize-bake.png" >}}
 ​
 ### Step 3 - Produce the Artifact
 ​
 Spinnaker returns the _manifest_ in a Base64 encoded file, so it is necessary to Produce a single Base64 Artifact in this Bake (Manifest) stage:
 ​
-![](/images/kustomize-base64.png)
+{{< figure src="/images/kustomize-base64.png" >}}
 ​
 ### Step 4 - Deploy
 ​
 Add a **Deploy (Manifest)** stage. Make sure to select the _Manifest Source_: **Artifact** and select the Base64 Artifact produced by the _Bake (Manifest)_ stage.
 ​
-![](/images/kustomize-deploy.png)
+{{< figure src="/images/kustomize-deploy.png" >}}
 ​
 > **Note:** As we are deploying a manifest without a specified namespace, we need to override the namespace by checking the _"Override Namespace"_ option in the deployment stage.
 
@@ -91,6 +91,6 @@ Add a **Deploy (Manifest)** stage. Make sure to select the _Manifest Source_: **
 ​
 After you execute the pipeline, you can see the manifest generated in YAML format by clicking on the _Baked Manifest YAML_ link:
 ​
-![](/images/kustomize-execution.png)
+{{< figure src="/images/kustomize-execution.png" >}}
 ​
 

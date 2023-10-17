@@ -58,7 +58,7 @@ Add a CNAME entry for the given ELB to create a simple name you will use to acce
 
 Update the endpoints for Spinnaker Deck (the Spinnaker UI microservice) and Spinnaker Gate (the Spinnaker API microservice)
 
-
+<!-- markdown-link-check-disable --> 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
@@ -73,6 +73,7 @@ spec:
         uiSecurity:
           overrideBaseUrl: https://spinnaker.mydomain.com
 ```
+<!-- markdown-link-check-enable-->
 
 Don't forget to apply your changes:
 

@@ -95,3 +95,5 @@ zsh
 {{% heading "prereq" %}}
 {{% heading "nextSteps" %}}
 {{< heading "nextSteps" >}}
+<!-- markdown-link-check-disable -->
+<!-- markdown-link-check-enable-->

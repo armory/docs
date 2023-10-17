@@ -39,7 +39,7 @@ After you log in to Deck, perform the following steps:
 
 1. Create an Application called **QuickStart** by clicking "**Applications**" tab > "**Action**" (top right) > "**Create New App**" with the following Settings
 
-  ![New app settings](/images/New-App.png)
+  {{< figure src="/images/New-App.png" >}}
 
 2. Go into Application **QuickStart** and create your first pipeline. This pipeline will deploy to an EC2 instance.
 
@@ -53,11 +53,11 @@ After you log in to Deck, perform the following steps:
 
 ## EC2 Pipeline and deployment
 
-![No CREATE Permission](/images/Deploy-to-EC2.png)
+{{< figure src="/images/Deploy-to-EC2.png" >}}
 
 **Note** - Don't mind the red dot in the Bake Stage. It's an informational tip suggesting a CI Trigger should be configured for a Bake Stage to ensure you are deploying the latest code and artifacts.
 
-![No CREATE Permission](/images/AutoScale-Group.png)
+{{< figure src="/images/AutoScale-Group.png" >}}
 
 ## EKS deployment
 
@@ -67,7 +67,7 @@ After you log in to Deck, perform the following steps:
 kubectl create ns quickstart
 ```
 
-![No CREATE Permission](/images/Deploy-Service-EKS.png)
+{{< figure src="/images/Deploy-Service-EKS.png" >}}
 
 1. Navigate to the pipeline page within your **QuickStart** application.
 2. Click **Create** button in top right corner.
@@ -144,11 +144,11 @@ spec:
 
 3. Copy and paste the FQDN from the load balancer status section into a web browser to test the NGINX landing page.
 
-![No CREATE Permission](/images/kubectl-validate.png)
+{{< figure src="/images/kubectl-validate.png" >}}
 
-![No CREATE Permission](/images/Deployment-Validation.png)
+{{< figure src="/images/Deployment-Validation.png" >}}
 
-## Congratulations!
+## Congratulations
 
 You completed the QuickStart exercise! You can now deploy to AWS using Spinnaker. What's Next?
 
@@ -159,6 +159,4 @@ You completed the QuickStart exercise! You can now deploy to AWS using Spinnaker
 
 To get expert help in any of the areas above you can contact Armory.io at <https://go.armory.io/needs-analysis>
 
-## AWS QuickStart Step 3 Video
 
-{{< youtube Yi-2AZ5n_kA >}}

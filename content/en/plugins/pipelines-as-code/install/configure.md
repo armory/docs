@@ -364,7 +364,7 @@ spec:
 {{% /tab %}}
 {{< /tabpane >}}
 
-![Slack Notifications](/images/dinghy-slack-notifications.png)
+{{< figure src="/images/dinghy-slack-notifications.png" >}}
 
 ### GitHub notifications
 
@@ -401,7 +401,7 @@ spec:
 {{% /tab %}}
 {{< /tabpane >}}
 
-![GitHub Notifications](/images/plugins/pac/dinghy-github-notifications.jpg)
+{{< figure src="/images/plugins/pac/dinghy-github-notifications.jpg" >}}
 
 ## Permissions check for a commit
 
