@@ -23,6 +23,9 @@
   },
   {
     "pattern": "^#[a-zA-Z0-9-]*"
+  },
+  {
+    "pattern": "^https:\/\/twitter.com"
   }
 ],
   "aliveStatusCodes": [
