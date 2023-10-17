@@ -348,7 +348,7 @@ example), the steps are:
    stage to fail if the canary failed.  Here we just check that the Canary
    Analysis stage succeeded (and if it did not, it will fail the pipeline).
 
-   {{< figure src="images/Image-2018-04-20-at-2.35.22-PM.png" >}}
+   {{< figure src="/images/Image-2018-04-20-at-2.35.22-PM.png" >}}
 
 
 This should give you some idea of how you might want to integrate the Kayenta

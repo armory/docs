@@ -81,6 +81,6 @@ volumes:
 ### Executing the pipeline
 
 Your final pipeline should look similar to the one below.
-{{< figure src="images/pipeline.png" >}}
+{{< figure src="/images/pipeline.png" >}}
 
 In order to execute your pipeline the first time you'll need to edit both the `config-map.yml` and `deployment.yml`, commit the changes to git and push the changes to Github. The pipeline should trigger and execute.

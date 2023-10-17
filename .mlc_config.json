@@ -26,6 +26,12 @@
   },
   {
     "pattern": "^https:\/\/twitter.com"
+  },
+  {
+    "pattern": "(?s) *({{< highlight [^>]* ?>}}.*?{{< ?/ ?highlight >}})"
+  },
+  {
+    "pattern": "(?s) *(\x60\x60\x60.*?\x60\x60\x60)"
   }
 ],
   "aliveStatusCodes": [
