@@ -6,11 +6,16 @@ description: >
   Github Integration Plugin for Spinnaker release notes.
 ---
 
-## v0.1.0 2023/09
+## v0.1.1 2023/10/18
+
+### Fixes
+- Fixed bug where the Igor fastForward admin endpoint didnt include the `githubBuildMonitor` monitor 
+
+## v0.1.0 2023/10/12
 
 ### Features
 
-Initial release
+- Initial release
 
 ### Known issues
 
