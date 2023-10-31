@@ -4,7 +4,7 @@ Add `githubEvent` to the `triggerTypes` array to enable the GitHub event trigger
 
     For example:
 
-    {{< highlight yaml "linenos=table, hl_lines=24" >}}
+    {{< highlight yaml "linenos=table, hl_lines=24-25" >}}
     spec:
       spinnakerConfig:
         profiles:
