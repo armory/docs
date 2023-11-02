@@ -52,7 +52,7 @@ To trigger a Spinnaker pipeline when a GitHub workflow finishes successfully, co
 * **Organization**: (Required) Select the organization associated with the **Github Account**
 * **Repository**: (Required) Select the repository that contains the workflow
 * **Workflow**: (Required) Select the name of the workflow that Spinnaker should monitor
-* **Branch**: (Optional) If specified, only pushes to the branches that match this Java Regular Expression will be triggered. Leave empty to trigger builds for every branch.
+* **Branch**: (Optional) If specified, only pushes to the branches that match this Java Regular Expression are triggered. Leave empty to trigger builds for every branch.
 
 ###  New deployment trigger
 
