@@ -9,7 +9,7 @@ description: >
 ## v0.1.2 2023/11/01
 
 ### Features
-- Added support for Manual(or Rerun) Execution of pipelines with trigger type *GitHub Workflow Trigger*.
+- Added support for Manual (or Rerun) Execution of pipelines with trigger type *GitHub Workflow Trigger*.
 - Modified *GitHub Workflow Trigger* & *GitHub Event Trigger* Types to be enabled independently in Deck configuration.  
 
 
