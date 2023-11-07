@@ -6,4 +6,4 @@ date: 2023-11-06
 ---
 
 Changes:
-- send `kubesvc.cache.operationWaitMs` to scale agent on delete operations
+- send the value of `kubesvc.cache.operationWaitMs` property to scale agent on delete operations
