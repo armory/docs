@@ -1,5 +1,5 @@
 ---
-title: v1.8.6 Armory Operator
+title: v1.8.8 Armory Operator
 toc_hide: true
 version: 01.08.08
 description: Release notes for Armory Operator v1.8.8
