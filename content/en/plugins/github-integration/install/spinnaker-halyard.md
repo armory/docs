@@ -44,7 +44,7 @@ The GitHub Integration plugin extends Deck, Echo, Gate, Igor, and Orca. To avoid
 
 Add `github` to the `triggerTypes` array in your existing settings-local.js file: 
 
-{{< highlight javascript "linenos=table, hl_lines=9" >}}
+{{< highlight javascript "linenos=table, hl_lines=9-10" >}}
 window.spinnakerSettings = {
 ...
 triggerTypes: [
@@ -53,7 +53,8 @@ triggerTypes: [
     'cron',
     'docker',
     'git',
-    'github',
+    'githubWorkflow',
+    'githubEvent',
     'helm',
     'jenkins',
     'nexus',

@@ -47,12 +47,12 @@ To trigger a Spinnaker pipeline when a GitHub workflow finishes successfully, co
 
 {{< figure src="/images/plugins/github/workflowFinish.png" >}}
 
-* **Type**: (Required) Select **Github Event Trigger**
-* **Github Event Type**: (Required) Select **workflow**
+* **Type**: (Required) Select **GitHub Workflow Trigger**
 * **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
 * **Organization**: (Required) Select the organization associated with the **Github Account**
 * **Repository**: (Required) Select the repository that contains the workflow
 * **Workflow**: (Required) Select the name of the workflow that Spinnaker should monitor
+* **Branch**: (Optional) If specified, only pushes to the branches that match this Java Regular Expression are triggered. Leave empty to trigger builds for every branch.
 
 ###  New deployment trigger
 
@@ -64,9 +64,8 @@ Next, configure an automated trigger to process the deployment event from GitHub
 
 {{< figure src="/images/plugins/github/deploymentCreated2.png" >}}
 
-* **Type**: (Required) Select **Github Event Trigger**
-* **Github Event Type**: (Required) Select **events**
-* **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
+* **Type**: (Required) Select **GitHub Event Trigger**
+* **GitHub Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
 * **Organization**: (Required) Select the organization associated with the **Github Account**
 * **Repository**: (Required) Select the repository that contains the workflow
 * **Secret**: (Optional) Provide the name of the GitHub secret associated with the deployment workflow event webhook; the GitHub Integration Plugin does not process the request when the secrets do not match
