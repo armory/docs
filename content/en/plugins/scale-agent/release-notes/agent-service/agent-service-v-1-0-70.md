@@ -6,4 +6,4 @@ date: 2023-11-08
 ---
 
 ### Fixes
-- Fixes a problem preventing operations on k8s kinds that happened when onlyNamespacedResources = true and a custom resource with cluster scope of the same name exists. For example having batch/v1 Job and armory.runnable Job.
+- Fixes an issue with operations when `onlyNamespacedResources = true` and two kinds with the same name exist. For example having `batch/v1` Job and `armory.runnable` Job.
