@@ -1,8 +1,10 @@
-* `deck.settings-local.js`: Copy the contents of your existing `setting-local.js` to this section. Add `github` to the `triggerTypes` array.
+* `deck.settings-local.js`: Copy the contents of your existing `setting-local.js` to this section. 
+Add `githubWorkflow` to the `triggerTypes` array to enable the GitHub Workflow trigger option.
+Add `githubEvent` to the `triggerTypes` array to enable the GitHub event trigger option for GitHub Deployment events.
 
     For example:
 
-    {{< highlight yaml "linenos=table, hl_lines=24" >}}
+    {{< highlight yaml "linenos=table, hl_lines=24-25" >}}
     spec:
       spinnakerConfig:
         profiles:
@@ -26,7 +28,8 @@
                   'cron',
                   'docker',
                   'git',
-                  'github',
+                  'githubWorkflow',
+                  'githubEvent',
                   'helm',
                   'jenkins',
                   'nexus',

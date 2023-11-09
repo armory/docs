@@ -17,7 +17,7 @@ The GitHub Integration Plugin provides the following GitHub integration features
 - Trigger a Spinnaker pipeline when GitHub creates a new GitHub Deployment
 - Monitor a GitHub workflow and finish pipeline execution based on the GitHub workflow result
 - Update GitHub deployment status based on Spinnaker pipeline outcome
-- View Github Action Logs in Spinnaker -- there is no need to navigate to GitHub to view the logs
+- View GitHub Action Logs in Spinnaker -- there is no need to navigate to GitHub to view the logs
 
 The GitHub Integration plugin uses [GitHub Apps](https://docs.github.com/en/apps/overview) to integrate with GitHub. GitHup Apps provide webhooks and narrow, specific permissions. You can install a GitHub App  that gives the GitHub Integration plugin access to all the repos in your GitHub organization, or you can install a Github App that gives the GitHub Integration plugin access to specific repos. You can install as many GitHub Apps as your use case requires.
 
