@@ -38,18 +38,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
-### Artifact Binding
-
-Customers who utilize parent pipelines to provide artifacts to child pipelines may encounter unexpected errors or results in 2.30+ as child pipelines may not resolve those artifacts correctly.
-
-**Affected versions**: Armory CD 2.30.0 and later
-
-### 1.30+ “required artifacts to bind” breaks pipelines
-
-Expected artifacts can be used in automated triggers and stages, and OSS [1.30](https://spinnaker.io/changelogs/1.30.0-changelog/#changes-to-the-way-artifact-constraints-on-triggers-work) changed the way artifact constraints work on triggers. Unfortunately those changes broke the previous behavior when triggering a pipeline from a stage, and this fix restores the previous behavior.
-
-**Affected versions**: Armory CD 2.30.0 and later
-
 ### Clouddriver and Spring Cloud
 
 The Spring Boot version has been upgraded, introducing a backwards incompatible change to the way configuration is loaded in Spinnaker. Users will need to set the ***spring.cloud.config.enabled*** property to ***true*** in the service settings of Clouddriver to preserve existing behavior. All of the other configuration blocks remain the same.
