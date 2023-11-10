@@ -219,7 +219,6 @@ version: 2.30.5
 
   - chore(cd): update base orca version to 2023.11.06.18.16.22.release-1.30.x (#762)
   - chore(cd): update base orca version to 2023.11.07.00.08.28.release-1.30.x (#764)
-  - re-trigger build (#766)
 
 #### Armory Igor - 2.30.4...2.30.5
 
