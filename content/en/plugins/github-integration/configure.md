@@ -1,10 +1,11 @@
 ---
 title: Configure GitHub Integration plugin Advanced Features
-linkTitle: Configure Features
+linkTitle: GitHub Integration
 weight: 10
 description: >
-Learn how to configure GitHub Integration plugin's advanced features in your Spinnaker or Armory CD instance.
+  Learn how to configure GitHub Integration plugin's advanced features in your Spinnaker or Armory CD instance.
 ---
+
 ![Proprietary](/images/proprietary.svg) ![Beta](/images/beta.svg)
 
 ## Authorization (AuthZ) support for GitHub App accounts
