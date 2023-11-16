@@ -13,6 +13,7 @@
   defaultBranch: <default-github-branch>
   githubAppId: <github-app-id>
   githubAppPrivateKey: <github-app-private-key>
+  permissions: []
 ```
 
 All fields are required.
@@ -35,6 +36,7 @@ All fields are required.
   defaultBranch: <default-github-branch>
   githubAppId: <github-app-id>
   githubAppPrivateKey: <github-app-private-key>
+  permissions: []
 ```
 
 All fields are required.
