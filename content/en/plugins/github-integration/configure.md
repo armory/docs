@@ -5,6 +5,7 @@ weight: 10
 description: >
 Learn how to configure GitHub Integration plugin's advanced features in your Spinnaker or Armory CD instance.
 ---
+![Proprietary](/images/proprietary.svg) ![Beta](/images/beta.svg)
 
 ## Authorization (AuthZ) support for GitHub App accounts
 
@@ -54,6 +55,7 @@ end
 **How to enable**
 
 AuthZ support can be enabled per GitHub App account by setting the `permissions` block in the `github-integration-plugin.yml` file.
+
 ```yaml
 github:
   plugin:
@@ -140,6 +142,7 @@ end
 
 **How to enable**
 `impersonateGitHubTeam` feature can be enabled per GitHub App account by setting the `impersonateGitHubTeam` block in the `github-integration-plugin.yml` file.
+
 ```yaml
 github:
   plugin:
