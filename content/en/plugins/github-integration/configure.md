@@ -1,9 +1,9 @@
 ---
-title: Configure GitHub Integration plugin Advanced Features
-linkTitle: GitHub Integration
+title: Configure GitHub Integration plugin advanced Features
+linkTitle: Advanced Features
 weight: 10
 description: >
-  Learn how to configure GitHub Integration plugin's advanced features in your Spinnaker or Armory CD instance.
+  Learn how to configure GitHub Integration plugin's advanced features.
 ---
 
 ![Proprietary](/images/proprietary.svg) ![Beta](/images/beta.svg)
@@ -98,6 +98,7 @@ github:
 ```
 
 ## Validate GitHub access based on GitHub App account assigned configuration
+
 Using the `impersonateGitHubTeam` feature in the GitHub Integration plugin, GitHub App accounts access to repositories 
 can be validated and enforced based on the GitHub team's assigned configuration.
 
@@ -142,6 +143,7 @@ end
 ```
 
 **How to enable**
+
 `impersonateGitHubTeam` feature can be enabled per GitHub App account by setting the `impersonateGitHubTeam` block in the `github-integration-plugin.yml` file.
 
 ```yaml
