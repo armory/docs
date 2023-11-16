@@ -1,9 +1,9 @@
 ---
 title: Use the GitHub Integration Plugin
-linkTitle: Use GitHub Integration plugin
+linkTitle: How to Use
 weight: 5
 description: >
-  Learn how to use the GitHub Integration Plugin to trigger Spinnaker pipelines from GitHub and also to trigger GitHub workflows from Spinnaker pipelines.
+  Learn how to use the GitHub Integration plugin to trigger Spinnaker pipelines from GitHub and also to trigger GitHub workflows from Spinnaker pipelines.
 ---
 
 ## {{% heading "prereq" %}}

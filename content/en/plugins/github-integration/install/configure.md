@@ -1,26 +1,25 @@
 ---
-title: Configure GitHub Integration plugin advanced Features
-linkTitle: Advanced Features
+title: Configure GitHub Integration Features
+linkTitle: Configure Features
 weight: 10
 description: >
-  Learn how to configure GitHub Integration plugin's advanced features.
+  Learn how to configure advanced GitHub Integration features in your Spinnaker or Armory CD instance.
 ---
 
 ![Proprietary](/images/proprietary.svg) ![Beta](/images/beta.svg)
 
-## Authorization (AuthZ) support for GitHub App accounts
+## Authorization (AuthZ)
 
-Fiat is the microservice in Spinnaker responsible for authorization (authz) for the other Spinnaker services. 
-By default, it is not enabled, so users are able to perform any action in Spinnaker. 
-When enabled, Fiat will check the user's permissions before allowing the action to proceed.
+This feature enables AuthZ support for GitHub App accounts.
 
-GitHub integration plugin supports Fiat authz for GitHub App accounts configured to determine whether a role or group 
-can perform the following actions:
+Fiat is the Spinnaker microservice responsible for authorization (authz) for the other Spinnaker services. It is not enabled by default, so users are able to perform any action in Spinnaker. When enabled, Fiat checks the user's permissions before allowing the action to proceed.
+
+The GitHub Integration plugin supports Fiat authz for GitHub App accounts configured to determine whether a role or group can perform the following actions:
 
 - `READ`: A user can view the GitHub App account's configuration and/or use it as a trigger source.
 - `WRITE`: A user can use the GitHub App account as the target account for the GitHub integration plugin stages.
 
-**How this feature works**
+### How this feature works
 
 ```mermaid
 sequenceDiagram
@@ -47,17 +46,17 @@ else Authorized
 end
 ```
 
-**Pre-requisites**
+### {{% heading "prereq" %}}
 
-- You are familiar with how Spinnaker's [AuthZ](https://docs.armory.io/continuous-deployment/overview/fiat-permissions-overview/) works.
+- You are familiar with how Spinnaker's [AuthZ]({{< ref "continuous-deployment/overview/fiat-permissions-overview" >}}) works.
 - You have read the GitHub Integration Plugin [overview]({{< ref "plugins/github-integration/_index.md" >}}).
-- You have enabled Fiat micorservice in your Spinnaker or Armory CD instance integrated with an external identity provider (IDP).
+- You have enabled Fiat in your Spinnaker or Armory CD instance integrated with an external identity provider (IDP).
 
-**How to enable**
+### How to enable AuthZ support
 
-AuthZ support can be enabled per GitHub App account by setting the `permissions` block in the `github-integration-plugin.yml` file.
+You can enable AuthZ support per GitHub App account by setting the `permissions` block in the `github-integration-plugin.yml` file. For example:
 
-```yaml
+{{< highlight yaml "linenos=table,hl_lines=10-17 32-37" >}}
 github:
   plugin:
     accounts:
@@ -95,22 +94,23 @@ github:
             - "ops-role"
           EXECUTE:
             - "ops-role"
-```
+{{< /highlight >}}
 
-## Validate GitHub access based on GitHub App account assigned configuration
+## Validate GitHub access
 
-Using the `impersonateGitHubTeam` feature in the GitHub Integration plugin, GitHub App accounts access to repositories 
-can be validated and enforced based on the GitHub team's assigned configuration.
+This feature validates GitHub access based on configuration assigned to a GitHub App account.
 
-**How this feature works**
+Using the `impersonateGitHubTeam` feature, you can validate and enforce GitHub App account access to repositories based on the GitHub team's assigned configuration.
 
-GitHub integration plugin will validate before performing any action in a pipeline stage that the GitHub Teams configured
-using the `impersonateGitHubTeam` feature are assigned with one of the following roles in GitHub:
+### How this feature works
+
+Before performing any action in a pipeline stage, the plugin validates that the GitHub teams configured using the `impersonateGitHubTeam` feature are assigned with one of the following roles in GitHub:
+
 - `Admin`: Full access to the repository
 - `Write`: Read and write access to the repository
 - `Maintain`: Read and write access to the repository, including managing issues and pull requests
 
-If the GitHub team does not have appropriate access to the repository, the pipeline stage will fail with an error message.
+If the GitHub team does not have appropriate access to the repository, the pipeline stage fails with an error message.
 
 ```mermaid
 sequenceDiagram
@@ -142,11 +142,11 @@ else Authorized
 end
 ```
 
-**How to enable**
+### How to enable
 
-`impersonateGitHubTeam` feature can be enabled per GitHub App account by setting the `impersonateGitHubTeam` block in the `github-integration-plugin.yml` file.
+You enable the `impersonateGitHubTeam` feature per GitHub App account by setting the `impersonateGitHubTeam` block in the `github-integration-plugin.yml` file. For example:
 
-```yaml
+{{< highlight yaml "linenos=table,hl_lines=26-28 36-37" >}}
 github:
   plugin:
     accounts:
@@ -190,20 +190,20 @@ github:
             - "ops-role"
           EXECUTE:
             - "ops-role"
-```
+{{< /highlight >}}
 
 ## Configure GitHub Commit Status Echo notifications
 
-**How this feature works**
+### How this feature works
 
-**How to enable**
+### How to enable
 
-**Migrating from Spinnaker's default implementation**
+### Migrate from Spinnaker's default implementation
 
-## GitHub Commit Status pipeline Stage
+## GitHub Commit Status pipeline stage
 
-**How this feature works**
+### How this feature works
 
-**How to enable**
+### How to enable
 
-**Migrating from a Orca preconfigure webhook implementation**
+### Migrate from a Orca preconfigured webhook implementation
