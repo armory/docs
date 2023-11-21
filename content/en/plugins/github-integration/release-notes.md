@@ -8,7 +8,7 @@ description: >
 
 ## v0.2.4 2023/11/21
 ### Features
-- Added support for AuthZ for GitHub App accounts. See [Configure AuthZ](/docs/plugins/github-integration/install/configure/#configure-authz) for more information.
+- Added support for AuthZ for GitHub App accounts. See [Configure AuthZ](/docs/plugins/github-integration/install/configure/#authorization-authz) for more information.
 - Added support for Validating GitHub App accounts access. See [Validate GitHub access](/docs/plugins/github-integration/install/configure/#validate-github-access) for more information.
 
 ## v0.1.2 2023/11/01
