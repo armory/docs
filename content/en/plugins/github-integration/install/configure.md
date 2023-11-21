@@ -223,7 +223,8 @@ spec:
           window.spinnakerSettings = {
             ... (content omitted for brevity)
             feature.githubIntegrationFlags = {
-              github-status: true,
+              githubStatus: true
+            };  
             ... (content omitted for brevity)
           }
 {{< /highlight >}}
