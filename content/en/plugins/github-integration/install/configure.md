@@ -14,12 +14,13 @@ This feature enables AuthZ support for GitHub App accounts.
 
 Fiat is the Spinnaker microservice responsible for authorization (authz) for the other Spinnaker services. It is not enabled by default, so users are able to perform any action in Spinnaker. When enabled, Fiat checks the user's permissions before allowing the action to proceed.
 
+### How this feature works
+
 The GitHub Integration plugin supports Fiat authz for GitHub App accounts configured to determine whether a role or group can perform the following actions:
 
 - `READ`: A user can view the GitHub App account's configuration and/or use it as a trigger source.
 - `WRITE`: A user can use the GitHub App account as the target account for the GitHub integration plugin stages.
 
-### How this feature works
 
 ```mermaid
 sequenceDiagram
@@ -193,17 +194,87 @@ github:
 {{< /highlight >}}
 
 ## Configure GitHub Commit Status Echo notifications
+Echo is the microservice in Spinnaker which (among other functionalities) manages notifications for Spinnaker pipelines and stages.
+Using the GitHub Integration plugin you can configure Echo to create [GitHub Commit Statuses](https://docs.github.com/en/rest/commits/statuses?apiVersion=2022-11-28#create-a-commit-status)
+in a repository by authenticating using the GitHub App accounts configured in the plugin.
 
 ### How this feature works
 
+GitHub Integration plugin offers an enhanced Echo notification type which can be configured to send notifications
+for pipelines and/or stages statuses with custom context and description linking to the Spinnaker UI as a target URL.
+
 ### How to enable
 
-### Migrate from Spinnaker's default implementation
+GitHub Commit Status notifications can be enabled per GitHub App account by enabling the feature in Echo and Deck services 
+in the `github-integration-plugin.yml` file.
+
+{{< highlight yaml "linenos=table,hl_lines=7-8 14-15" >}}
+spec:
+  spinnakerConfig:
+    profiles:
+      spinnaker:
+        github:
+          plugin:
+            github-status:
+              enabled: true
+            accounts: []
+      deck:
+        settings-local.js: |
+          window.spinnakerSettings = {
+            ... (content omitted for brevity)
+            feature.githubIntegrationFlags = {
+              github-status: true,
+            ... (content omitted for brevity)
+          }
+{{< /highlight >}}
+
+### Migrating from Echo's default implementation
+
+Migrating from the default implementation to the GitHub Integration plugin's implementation does not require any changes in your pipelines.
+The GitHub Integration plugin's implementation will be used automatically when the feature is enabled in Echo and Deck services and the default
+implementation is disabled. To ensure a smooth migration, follow these steps:
+
+
+1. Disable the default implementation by disabling the `github-status` feature in Echo and Deck services:
+{{< highlight yaml "linenos=table,hl_lines=6 13" >}}
+spec:
+  spinnakerConfig:
+    profiles:
+      echo:
+        github-status:
+          enabled: false
+          token: <PAT>
+          endpoint: https://api.github.com
+      deck:
+        settings-local.js: |
+          window.spinnakerSettings = {
+            ... (content omitted for brevity)
+            notifications.githubStatus.enabled = false;
+            ... (content omitted for brevity)
+          }
+{{< /highlight >}}
+2. Enable the GitHub Integration plugin's implementation as described in the previous section.
+
+3. Ensure that you have configured the appropriate GitHub App accounts for every GitHub organisation that you want to 
+send notifications to as described in the [GitHub App accounts configuration](#github-app-accounts-configuration) section.
+
+4. Verify that the Deck UI is showing the plugin's Commit Status notification type in the notification settings for 
+your pipelines and the Commit Statuses are being created in GitHub.
+
 
 ## GitHub Commit Status pipeline stage
 
-### How this feature works
+The GitHub Commit Status pipeline stage allows you to create a GitHub Commit Status in a repository using the GitHub App
+accounts configured in the plugin without the need to configure a notification block in your pipelines and viewing the execution
+status of the stage in your pipeline's execution details.
 
-### How to enable
+Configure the **Github Integration Commit Status Stage** as in the following screenshot:
 
-### Migrate from a Orca preconfigured webhook implementation
+{{< figure src="/images/plugins/github/commitStatus.png" >}}
+
+* **GitHub Repo**: (Required) The full repository name including the GitHub Org. For example myorg/mygithubrepo.
+* **Commit Ref**: (Required) The commit reference. Can be a commit SHA, branch name (heads/BRANCH_NAME), or tag name (tags/TAG_NAME).
+* **Status**: (Required) The state of the status. Can be one of: error, failure, pending, success.
+* **Context**: (Required) A string label to differentiate this status from the status of other systems. This field is case-insensitive.
+* **Description**: (Optional) A short description of the status.
+
