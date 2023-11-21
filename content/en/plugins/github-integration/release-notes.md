@@ -5,7 +5,7 @@ weight: 99
 description: >
   Github Integration Plugin for Spinnaker release notes.
 ---
-## v0.3.1 2023/12/21
+## v0.3.1 2023/11/21
 ### Features
 - Added support for GitHub Commit Statuses notifications for pipelines and/or stages using Echo service. See [Configure GitHub Commit Status Echo notifications](/plugins/github-integration/install/configure/#configure-github-commit-status-echo-notifications) for more information.
 - Added GitHub Commit Status stage for pipelines. See [Create GitHub Commit Status](/plugins/github-integration/use/#create-github-commit-status) for more information.
