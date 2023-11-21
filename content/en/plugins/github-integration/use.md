@@ -102,7 +102,7 @@ The GitHub Commit Status pipeline stage allows you to create a GitHub Commit Sta
 accounts configured in the plugin without the need to configure a notification block in your pipelines and viewing the execution
 status of the stage in your pipeline's execution details.
 
-Configure the **Github Integration Commit Status Stage** as in the following screenshot:
+Configure the **GitHub Integration Commit Status Stage** as in the following screenshot:
 
 {{< figure src="/images/plugins/github/commitStatus.png" >}}
 
