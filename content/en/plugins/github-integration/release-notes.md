@@ -8,7 +8,7 @@ description: >
 ## v0.3.1 2023/12/21
 ### Features
 - Added support for GitHub Commit Statuses notifications for pipelines and/or stages using Echo service. See [Configure GitHub Commit Status Echo notifications](/plugins/github-integration/install/configure/#configure-github-commit-status-echo-notifications) for more information.
-- Added GitHub Commit Status stage for pipelines. See [GitHub Commit Status stage](/plugins/github-integration/use/github-commit-status-stage/) for more information.
+- Added GitHub Commit Status stage for pipelines. See [Create GitHub Commit Status](/plugins/github-integration/use/#create-github-commit-status) for more information.
 
 ## v0.2.4 2023/11/21
 ### Features
