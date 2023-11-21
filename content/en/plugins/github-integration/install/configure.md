@@ -260,21 +260,3 @@ send notifications to as described in the [GitHub App accounts configuration](#g
 
 4. Verify that the Deck UI is showing the plugin's Commit Status notification type in the notification settings for 
 your pipelines and the Commit Statuses are being created in GitHub.
-
-
-## GitHub Commit Status pipeline stage
-
-The GitHub Commit Status pipeline stage allows you to create a GitHub Commit Status in a repository using the GitHub App
-accounts configured in the plugin without the need to configure a notification block in your pipelines and viewing the execution
-status of the stage in your pipeline's execution details.
-
-Configure the **Github Integration Commit Status Stage** as in the following screenshot:
-
-{{< figure src="/images/plugins/github/commitStatus.png" >}}
-
-* **GitHub Repo**: (Required) The full repository name including the GitHub Org. For example myorg/mygithubrepo.
-* **Commit Ref**: (Required) The commit reference. Can be a commit SHA, branch name (heads/BRANCH_NAME), or tag name (tags/TAG_NAME).
-* **Status**: (Required) The state of the status. Can be one of: error, failure, pending, success.
-* **Context**: (Required) A string label to differentiate this status from the status of other systems. This field is case-insensitive.
-* **Description**: (Optional) A short description of the status.
-
