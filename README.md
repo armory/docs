@@ -9,12 +9,11 @@ The latest version of the docs website is the `master` branch. Previous releases
 The site has built-in support for [Mermaid](https://mermaid-js.github.io/mermaid/), which is a Javascript based diagramming and charting tool that uses Markdown-inspired text definitions and a renderer to create and modify complex diagrams. <i>Diagramming and documentation costs precious developer time and gets outdated quickly. But not having diagrams or docs ruins productivity and hurts organizational learning. Mermaid addresses this problem by cutting the time, effort and tooling that is required to create modifiable diagrams and charts, for smarter and more reusable content. The text definitions for Mermaid diagrams allows for it to be updated easily, it can also be made part of production scripts (and other pieces of code). So less time needs to be spent on documenting, as a separate and laborious task. Even non-programmers can create diagrams through the Mermaid Live Editor.</i>
 
 Mermaid resources:
-- [Quick Start](https://mermaid-js.github.io/mermaid/getting-started/n00b-gettingStarted.html)
-- [Tutorials](https://mermaid-js.github.io/mermaid/getting-started/Tutorials.html)
+- [Quick Start](http://mermaid.js.org/intro/getting-started.html)
+- [Tutorials](hhttp://mermaid.js.org/config/Tutorials.html)
 - [Mermaid Live Editor](https://mermaid-js.github.io/mermaid-live-editor/) - create your diagrams visually and copy the generated Mermaid code to your page
 
 The theme also supports PlantUML and draw.io.
-
 
 ## Cloning the project
 
@@ -145,4 +144,3 @@ See the GitHub [docs](https://help.github.com/en/github/collaborating-with-issue
 ## Monitoring
 
 The Armory documentation uses New Relic to monitor the website status and other metrics.
-

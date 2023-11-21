@@ -54,7 +54,7 @@ spec:
 
 ## Spinnaker pipeline Bake stage configuration
 
-![Bake Stage](/images/bake-and-share-1.png)
+{{< figure src="/images/bake-and-share-1.png" >}}
 
 Make sure to check the `Show Advanced Options` checkbox. Then where it says `Template File Name` use [aws-multi-ebs.json](https://github.com/spinnaker/rosco/blob/ccb004e511b14642218aaf229923fefa0a9c250c/rosco-web/config/packer/aws-multi-ebs.json) as the value.
 

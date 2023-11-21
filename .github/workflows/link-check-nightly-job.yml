@@ -4,6 +4,9 @@
 # https://github.com/wjdp/htmltest
 
 name: run-htmltest-nightly
+
+permissions:
+  contents: read # (default) needed for the actions/checkout task
 on:
   schedule:
     - cron: "0 1 * * *" # every day at 01:00
@@ -15,7 +18,7 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.1.0
         with:
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
       - name: Hugo setup
@@ -24,7 +27,7 @@ jobs:
           hugo-version: "0.110.0"
           extended: true
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v3.8.1
         with:
           node-version: "18"
           cache: "npm"
@@ -35,20 +38,20 @@ jobs:
           cache-dependency-path: "**/package-lock.json"
       - name: Run NPM
         run: npm ci
-      - name: BuildDocsSite
-        # Put the build output where the following steps can find it
-        # GITHUB_WORKSPACE
-        run: hugo server --verbose --destination $GITHUB_WORKPLACE/dist
+      - name: BuildDocsSite 
+        # Put the build output where the following steps can find it  GITHUB_WORKSPACE; this doesn't work
+        # https://patrickod.com/2023/05/06/til-using-htmltest-to-find-broken-links-in-your-blog/
+        run: hugo
       - name: Test HTML
         # https://github.com/wjdp/htmltest-action/
         # Don't fail on broken links
         continue-on-error: true
-        uses: wjdp/htmltest-action@master
+        uses: wjdp/htmltest-action@v0.13.0-rc1
         with:
           # For consistency, use the same config file as for local builds
           config: .htmltest.yml
       - name: Archive htmltest results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.3
         # Note: Set ACTIONS_RUNTIME_TOKEN env variable to test with nektos/act
         with:
           name: htmltest-report

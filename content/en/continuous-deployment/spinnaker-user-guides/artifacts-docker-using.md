@@ -29,7 +29,7 @@ expression here to limit triggering to tag pattern names (for example,
 
 {{< include "regex_vs_wildcard.md" >}}
 
-![Add Trigger](/images/docker-user-guide-1.gif)
+{{< figure src="/images/docker-user-guide-1.gif" >}}
 
 ## Referencing the new image
 

@@ -26,11 +26,11 @@ These replica checks are enabled by default and do not require additional config
 
 ## Version Compatibility
 
-| Armory CD (Spinnaker) Version | Plugin Version |
-|:------------------------------|:---------------|
-| 2.30.x (1.30.x)               | 3.0.x          |
-| 2.28.x (1.28.x)               | 2.0.x          |
-| 2.27.x (1.27.x)               | 1.0.0          |
+| Armory CD (Spinnaker) Version | Plugin Version            |
+|:------------------------------|:--------------------------|
+| 2.30.x (1.30.x)               | 3.1.x <br/> 3.0.x         |
+| 2.28.0 - 2.28.6 (1.28.x)      | 2.1.x <br/> 2.0.0 - 2.0.2 |
+| 2.27.x (1.27.x)               | 1.0.0                     |
 
 ## Configuration
 
@@ -89,19 +89,21 @@ spinnaker:
         enabled: true
         config:
           kind:
-            my-kind: # The name of your Custom Resource
-              stable:
-                conditions:
-                  - message:
-                    reason:
-                    status:
-                    type:
-                  - status:
-                    type:
-                fields:
-                  - field1: value1
-                    field2: value2
-                  - item2: valueX
+            - name: Foo.example.com # The name of your Custom Resource including API group
+              status:
+                stable:
+                  conditions:
+                    - message:
+                      reason:
+                      status:
+                      type:
+                    - status:
+                      type:
+                  fields:
+                    - field1: value1
+                      field2: value2
+                    - item2: valueX
+            - name: Bar.example.com # The name of your Custom Resource including API group
           status:
             stable:
               markAsUnavailableUntilStable: false # optional
@@ -198,14 +200,17 @@ status:
 
 The syntax is:
 
-```yamlml
+```yaml
 config:
   kind:
-    status:
-      available:
-        fields:
-          - status.values.[0].ready: "True"
+    - name: Foo.example.com
+      status:
+        available:
+          fields:
+            - "[status.values.[0].ready]": "True"
 ```
+
+>`fields` syntax: Make sure you use quotation marks (`"`) and surround the field with brackets `[]` so that the original value is preserved. 
 
 ## Examples
 
@@ -248,33 +253,34 @@ spinnaker:
         enabled: true
         config:
           kind:
-            Foo: # Foo is the name of your Custom Resource kind
-              stable:
-                conditions:
-                  - message: Resource is Ready
-                    reason: ResourceReady
-                    status: True
-                    type: Ready
-                  - status: Pod is stable
-                    type: Stable
-              failed:
-                conditions:
-                  - message: Deployment exceeded its progress deadline
-                    reason: ProgressDeadlineExceeded
-                    status: "False"
-                    type: Progressing
-              paused:
-                conditions:
-                  - message: Deployment paused
-                    reason: DeploymentPaused
-                    status: "True"
-                    type: Progressing
-              unavailable:
-                conditions:
-                  - message: Resource is reconciling
-                    reason: Reconciling
-                    status: "True"
-                    type: Reconciling
+            - name: Foo.example.com
+              status:
+                stable:
+                  conditions:
+                    - message: Resource is Ready
+                      reason: ResourceReady
+                      status: True
+                      type: Ready
+                    - status: Pod is stable
+                      type: Stable
+                failed:
+                  conditions:
+                    - message: Deployment exceeded its progress deadline
+                      reason: ProgressDeadlineExceeded
+                      status: "False"
+                      type: Progressing
+                paused:
+                  conditions:
+                    - message: Deployment paused
+                      reason: DeploymentPaused
+                      status: "True"
+                      type: Progressing
+                unavailable:
+                  conditions:
+                    - message: Resource is reconciling
+                      reason: Reconciling
+                      status: "True"
+                      type: Reconciling
 ```
 
 These properties are only for `Foo` kind. Every time you deploy `Foo`, the plugin compares the resource status values against these properties. In this case, the plugin marks the deployment as unavailable since it matches your custom resource.
@@ -288,6 +294,9 @@ spinnaker:
       Armory.K8sCustomResourceStatus:
         enabled: true
         config:
+          kind:
+            - name: Foo.example.com
+            - name: Bar.example.com
           status:
             stable:
               conditions:
@@ -317,7 +326,7 @@ spinnaker:
                   type: Reconciling
 ```
 
-These properties apply to all custom resource kinds you deploy. If you deploy different kinds with different statuses, you should declare per kind like in `Example 1.1`. In this case, the plugin marks the deployment as unavailable since that matches your custom resource.
+These properties apply to all custom resource kinds you deploy, `Foo` and `Bar` in this case. If you deploy different kinds with different statuses, you should declare per kind like in `Example 1.1`. In this case, the plugin marks the deployment as unavailable since that matches your custom resource.
 
 ### Example 2: Custom Resource with Non-Standard status fields
 
@@ -349,24 +358,25 @@ spinnaker:
         enabled: true
         config:
           kind:
-            Foo: # The name of your Custom Resource
-              stable:
-                fields:
-                  - status.status: Ready
-                    status.message: API is ready
-                    status.collisionCount: 0
-              failed:
-                fields:
-                  - status.ready: False
-                    status.collisionCount: 1
-              paused:
-                fields:
-                  - status.paused: True
-                    status.collisionCount: 0
-              unavailable:
-                fields:
-                  - status.available: False
-                    status.collisionCount: 0
+            - name: Foo.example.com
+              status:
+                stable:
+                  fields:
+                    - status.status: Ready
+                      status.message: API is ready
+                      status.collisionCount: 0
+                failed:
+                  fields:
+                    - status.ready: False
+                      status.collisionCount: 1
+                paused:
+                  fields:
+                    - status.paused: True
+                      status.collisionCount: 0
+                unavailable:
+                  fields:
+                    - status.available: False
+                      status.collisionCount: 0
 ```
 
 These properties are only for `Foo` kind. Every time you deploy `Foo`, it compares the resource status values against these properties. In this case, the plugin marks the deployment as ready since that matches your custom resource.
@@ -380,6 +390,9 @@ spinnaker:
       Armory.K8sCustomResourceStatus:
         enabled: true
         config:
+          kind:
+            - name: Foo.example.com
+            - name: Bar.example.com
           status:
             stable:
               fields:
@@ -400,7 +413,7 @@ spinnaker:
                   status.collisionCount: 0
 ```
 
-These properties apply to all custom resource kinds you deploy. If you deploy different kinds with different statuses, you should declare per kind like in `Example 2.1`. In this case, the plugin marks the deployment as ready since that
+These properties apply to all custom resource kinds you deploy, `Foo` and `Bar` in this case. If you deploy different kinds with different statuses, you should declare per kind like in `Example 2.1`. In this case, the plugin marks the deployment as ready since that
 matches your custom resource.
 
 ## Release Notes
@@ -408,5 +421,10 @@ matches your custom resource.
 * v1.0.0 Initial release - 09/09/2022
 * v2.0.0 Support multiple statuses - 10/28/2022
 * v2.0.1 Bug fixes - 10/14/2022
-* v2.0.2 Bug fixes - 05/20/2023  
-* v3.0.0 Bug fixes, Compatibility to Spinnaker 1.30.x (Armory 2.30.x) - 08/31/2023  
+* v2.0.2 Bug fixes - 05/20/2023
+* v2.0.3 Adds support with Armory Scale Agent - 06/15/2023
+* v2.1.0 Fixes a bug when using partial conditions - 11/07/2023
+* v2.2.0 Fixes a bug when the service account has permissions to fetch CRD metadata. Changes configuration format to prevent potential conflicts arising from similar kind names offered by various providers - 10/10/2023
+* v3.0.0 Bug fixes: returning stable if fields values match. Compatibility to Spinnaker 1.30.x (Armory 2.30.x) - 08/31/2023
+* v3.0.1 Fixes a bug when using partial conditions - 09/07/2023
+* v3.1.0 Fixes a bug when the service account has permissions to fetch CRD metadata. Changes configuration format to prevent potential conflicts arising from similar kind names offered by various providers - 10/10/2023

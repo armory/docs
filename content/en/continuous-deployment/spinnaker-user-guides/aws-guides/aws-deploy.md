@@ -31,11 +31,11 @@ This guide continues the example in the {{< linkWithTitle aws-baking-images.md >
 
 Go to the application screen to create a load balancer. Select the **Load Balancers** tab:
 
-![](/images/user-guides/aws/deploy/Image-2019-02-21-at-15.27.01.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2019-02-21-at-15.27.01.png" >}}
 
 Press the '+' on the right to create a new load balancer, you may need to select AWS > then select a Load Balance Type.
 
-![](/images/user-guides/aws/deploy/Screen-Shot-2019-02-21-at-15.32.49.png)
+{{< figure src="/images/user-guides/aws/deploy/Screen-Shot-2019-02-21-at-15.32.49.png" >}}
 
 We'll enter 'prod' into the 'Stack' field because our environment contains dev, stage, and prod.
 
@@ -43,7 +43,7 @@ Set the [**VPC Subnet Type**]({{< ref "aws-subnets-configure" >}}) grouping by t
 
 Then press _Create_.
 
-![](/images/user-guides/aws/deploy/Image-2019-02-21-at-16.33.44.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2019-02-21-at-16.33.44.png" >}}
 
 
 ## Create a deploy pipeline
@@ -58,7 +58,7 @@ Select **AWS** option for the provider.
 
 We'll be shown the option to copy a configuration from a currently running server group if a server group for this application already exists. In our case, let's select 'None' and continue.
 
-![](/images/user-guides/aws/deploy/ezgif.com-gif-maker-(3).gif)
+{{< figure src="/images/user-guides/aws/deploy/ezgif.com-gif-maker-(3).gif" >}}
 
 Select the same **VPC Subnet** type as the ELB you just made. Remember to input 'prod' to the **Stack** field since that is what you used when creating the ELB.  
 
@@ -74,7 +74,7 @@ Under the **Instance Type** section, select 'Micro Utility'.
 
 We'll set the capacity at 1 for now, but we can later set it up to do auto-scaling.
 
-![](/images/user-guides/aws/deploy/Screen-Shot-2019-02-21-at-16.44.29.png)
+{{< figure src="/images/user-guides/aws/deploy/Screen-Shot-2019-02-21-at-16.44.29.png" >}}
 
 
 Scroll all the way down to the **Advanced Settings** section and change the **Health Check Type** from 'EC2' to 'ELB', we'll later see green boxes for health instances, gray for EC2 healthcheck instances, or red for unhealthy instances.
@@ -83,7 +83,7 @@ Select the keypair for the EC2 instances in **Key Name**.
 
 Erase the **IAM Instance Profile** field. In our example, we don't need access to any other AWS resources and the field may be filled in by default depending on your configurations.
 
-![](/images/user-guides/aws/deploy/Image-2019-02-21-at-16.51.16.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2019-02-21-at-16.51.16.png" >}}
 
 
 Then click **Add** to complete this step.
@@ -92,17 +92,17 @@ We return back to the deploy stage, with it now looking like:
 
 Finally, we can click **Save Changes** and select the back arrow to return to the Pipeline Executions screen.
 
-![](/images/user-guides/aws/deploy/Screen-Shot-2019-02-21-at-16.58.56.png)
+{{< figure src="/images/user-guides/aws/deploy/Screen-Shot-2019-02-21-at-16.58.56.png" >}}
 
 
 
 I press 'Start Manual Execution' on my pipeline. This is what I see:
 
-![](/images/user-guides/aws/deploy/ezgif.com-gif-maker-(4).gif)
+{{< figure src="/images/user-guides/aws/deploy/ezgif.com-gif-maker-(4).gif" >}}
 
 When this pipeline finishes the Bake stage, we can see it's current stage/tasks status and we can also see it in the **Clusters** tab to see a new server group come up.
 
-![](/images/user-guides/aws/deploy/Image-2017-03-30-at-3.23.24-PM.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2017-03-30-at-3.23.24-PM.png" >}}
 
 For more information about the details of this screen, see the {{< linkWithTitle application-screen.md >}} guide.
 
@@ -111,17 +111,17 @@ I can see here that a new server has indeed come up and is healthy. Healthy in t
 Now, to demonstrate the Blue/Green, go back to the Pipeline Executions screen and press 'Start Manual Execution' again. Then go back to the 'Clusters' tab to watch the execution process.
 
 First you see that a new server group named `v001` is being created. It doesn't have any instances in it yet:
-![](/images/user-guides/aws/deploy/Image-2017-03-30-at-3.46.44-PM.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2017-03-30-at-3.46.44-PM.png" >}}
 
 After a few moments an instance is created and is initially 'unhealthy':
-![](/images/user-guides/aws/deploy/Image-2017-03-30-at-3.47.16-PM.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2017-03-30-at-3.47.16-PM.png" >}}
 
 Once it passes its healthchecks and becomes healthy, it will visually indicate so by turning green. At this point Armory will add the server group to the load balancer.
-![](/images/user-guides/aws/deploy/Image-2017-03-30-at-3.50.01-PM.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2017-03-30-at-3.50.01-PM.png" >}}
 
 Immediately after that, the old server group is removed from the load balancer. Armory will turn the old server group's instances blue. This means that they are disabled and no longer receiving traffic.
 
-![](/images/user-guides/aws/deploy/Image-2017-03-30-at-3.50.18-PM.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2017-03-30-at-3.50.18-PM.png" >}}
 
 Because of how I configured my deploy stage, the old Blue server group will stick around until I either manually scale it down or destroy it. If you like, you can configure your deploy stage to automatically scale down the old server group after the new one is healthy.
 
@@ -138,7 +138,7 @@ Often when your deploy stage is timing out, it is because your instances are nev
 
 Select your red instance and hover your cursor over the red triangle next to the load balancer under the 'Status' section. This should display some helpful information for understanding why your instance is not deploying correctly.
 
-![](/images/user-guides/aws/deploy/Image-2017-03-30-at-3.29.02-PM.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2017-03-30-at-3.29.02-PM.png" >}}
 
 ### Incorrect health check
 
@@ -161,7 +161,7 @@ Sometimes you may encounter an 'Unknown Error' message when executing your deplo
 
 This strategy deploys a fresh server group and add it to the load balancer. The older server group will then be [disabled](#what-does-disabled-mean).
 
-![](/images/user-guides/aws/deploy/Image-2017-03-30-at-5.23.57-PM.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2017-03-30-at-5.23.57-PM.png" >}}
 
 When you configure this strategy you can choose to scale down the old server group. You can always scale it back up if you need it for a rollback. Also, you can choose how many old server groups to leave in the cluster.
 
@@ -184,7 +184,7 @@ You can re-enable a server group by selecting it from the 'Cluster' screen, clic
 
 You can pass custom information to your deployed instances through the 'User Data' field under the 'Advanced Settings' section of the deploy stage configuration.
 
-![](/images/user-guides/aws/deploy/Image-2017-03-30-at-4.30.36-PM.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2017-03-30-at-4.30.36-PM.png" >}}
 
 Make sure to base64 encode the content before putting it into the field in the options.
 
@@ -221,11 +221,11 @@ Yup. Sometimes you need to rollback to a known previously working state.
 
 From the 'Cluster' tab, select a server group. Click the button on the right pane labeled 'Server Group Actions' and press 'Rollback'
 
-![](/images/user-guides/aws/deploy/Image-2017-03-30-at-5.14.14-PM.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2017-03-30-at-5.14.14-PM.png" >}}
 
 In the window that pops up, you can select which server group to rollback to.
 
-![](/images/user-guides/aws/deploy/Image-2017-03-30-at-5.15.27-PM.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2017-03-30-at-5.15.27-PM.png" >}}
 
 The server group that you select will re-enabled and scaled up to the necessary number of replicas. Then the rolled back server group will be disabled.
 
@@ -294,6 +294,6 @@ In order to use a subnet within Spinnaker, you will need to tag it in AWS a cert
 
 There are two ways you can tag them. One option is to use the convention `spinnaker.<internal|external>.<region>` for the subnet's name. In the screenshot below, you can see that is what I have done on my subnets.
 
-![](/images/user-guides/aws/deploy/Image-2017-03-30-at-1.48.35-PM.png)
+{{< figure src="/images/user-guides/aws/deploy/Image-2017-03-30-at-1.48.35-PM.png" >}}
 
 Another option is to create a tag named `immutable_metadata` with value `{"purpose": "MySubnetNameInsideSpinnaker"}`

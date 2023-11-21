@@ -370,7 +370,7 @@ The following example uses version 2.25.0 and a private Docker registry called `
 
 ## Help resources
 
-Contact [Armory Support](https://support.armory.io/) or use the [Spinnaker Slack](https://join.spinnaker.io/) `#armory` channel.
+Contact [Armory Support](https://support.armory.io/) or use the [Spinnaker Slack](https://join.slack.com/t/spinnakerteam/shared_invite/zt-7juwxmx0-nQ4Ud4pJcbuPykX3SXwQrg) `#armory` channel.
 
 ## {{% heading "nextSteps" %}}
 

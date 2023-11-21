@@ -65,7 +65,7 @@ have actual direct access to the credentials for production.
 The following diagram attempts to outline this design, showing the barrier
 between the developer and the actual secrets their code uses:
 
-![Diagram](/images/app_secrets_diagram.png)
+{{< figure src="/images/app_secrets_diagram.png" >}}
 
 > NOTE:  Vault (and other tools) have taken this security a step further by connecting the secrets service with the backend systems such that the actual password being used is cycled automatically and is never actually known to any specific person.  If your environment permits this setup, it's definitely a more secure mechanism of password management, but it's also a much more complicated topic, and may not be possible depending on what services you are attempting to secure.
 

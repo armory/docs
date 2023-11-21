@@ -65,7 +65,7 @@ You can provide `helm/index` as a type when specifying an artifact path.
 
 In the artifact selection UI, you can use `#` after the artifact to indicate the version you want to use. For example:
 
-![oci version](/images/release/223/oci-buckets.png)
+{{< figure src="/images/release/223/oci-buckets.png" >}}
 
 ### Baking
 
@@ -140,7 +140,7 @@ This new stage was created in order to support various configuration settings fo
 
 For example, `appengine` supports cron configuration. You can update or deploy cron configuration similar to how you deploy services. This stage replicates the functionality offered and allows you to deploy cron, dispatch, index, and queue configuration files to your `appengine` environments.
 
-![stage example](/images/release/223/appengine-stage.png)
+{{< figure src="/images/release/223/appengine-stage.png" >}}
 
 ### Load Balancers
 
@@ -170,9 +170,9 @@ redis:
 
 #### Pipelines can now be triggered by Helm Charts when they are published
 
-![Helm automated trigger](/images/release/223/helm-trigger02.png)
+{{< figure src="/images/release/223/helm-trigger02.png" >}}
 
-![Helm execution parm](/images/release/223/helm-trigger.png)
+{{< figure src="/images/release/223/helm-trigger.png" >}}
 
 #### Clusters page
 

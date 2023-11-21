@@ -1,0 +1,41 @@
+{
+  "ignorePatterns": [
+  {
+    "pattern": "^\/images\/proprietary.svg"
+  },
+  {
+    "pattern": "^\/images\/oss.svg"
+  },
+  {
+    "pattern": "^\/images\/ea.svg"
+  },
+  {
+    "pattern": "^\/images\/ga.svg"
+  },
+  {
+    "pattern": "^\/images\/beta.svg"
+  },
+  {
+    "pattern": "^\/images\/exp.svg"
+  },
+  {
+    "pattern": "((http([s]){0,1}:\/\/){0,1}(localhost|127.0.0.1){1}(([:]){0,1}[\0-9]{4}){0,1}\/{0,1}){1}"
+  },
+  {
+    "pattern": "^#[a-zA-Z0-9-]*"
+  },
+  {
+    "pattern": "^https:\/\/twitter.com"
+  },
+  {
+    "pattern": "(?s) *({{< highlight [^>]* ?>}}.*?{{< ?/ ?highlight >}})"
+  },
+  {
+    "pattern": "(?s) *(\x60\x60\x60.*?\x60\x60\x60)"
+  }
+],
+  "aliveStatusCodes": [
+      200,
+      429
+  ]
+}

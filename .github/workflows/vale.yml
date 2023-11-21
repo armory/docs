@@ -5,18 +5,15 @@ jobs:
   prose:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
+      - name: Checkout
+        uses: actions/checkout@v4.1.0
 
-    - name: Vale
-      uses: errata-ai/vale-action@master
-      with:
+      - name: Vale Linter
+        # https://github.com/marketplace/actions/vale-linter
+        uses: errata-ai/vale-action@reviewdog
+        with:
+          # https://github.com/reviewdog/reviewdog#filter-mode
+          filter_mode: added
 
-        # Optional. Only lint modified files. Once we pay off tech debt, we'll switch the linting to  onlyAnnotateModifiedLines afterwards
-        files: __onlyModified  # this is for versions > 1.3.0
-
-        #  only annotate lines that have been modified within a PR
-        onlyAnnotateModifiedLines: true
-      env:
-        # Required
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          # Optional. Only lint modified files. Once we pay off tech debt, we'll switch the linting to  onlyAnnotateModifiedLines afterwards
+          # files: __onlyModified  # this is for versions > 1.3.0

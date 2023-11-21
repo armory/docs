@@ -31,6 +31,8 @@ pygmentsUseClassic = false
 pygmentsStyle = "dracula"
 
 [markup]
+  [markup.tableOfContents]
+    endLevel = 4 # page TOC render ##, ###, #### headings
   [markup.goldmark]
     [markup.goldmark.parser.attribute]
       block = true
@@ -186,7 +188,7 @@ postgresql-version="10+"
 #used in the Operator docs
 armory-version-exact = "2.30.0"
 halyard-armory-version = "1.12.1"
-kubesvc-version="1.0.62"
+kubesvc-version="1.0.72"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
@@ -246,11 +248,11 @@ agent_plug_latest-4="0.9.92"
 agent_plug_latest_spin-4="2.26.x (1.26.x)"
 agent_plug_latest-3="0.10.81"
 agent_plug_latest_spin-3="2.27.x (1.27.x)"
-agent_plug_latest-2="0.11.47"
+agent_plug_latest-2="0.11.56"
 agent_plug_latest_spin-2="2.28.x (1.28.x)"
-agent_plug_latest-1="0.12.10"
+agent_plug_latest-1="0.12.21"
 agent_plug_latest_spin-1="1.29.x"
-agent_plug_latest="0.13.9"
+agent_plug_latest="0.13.20"
 agent_plug_latest_spin="2.30.x (1.30.x)"
 
 # Policy Engine plugin versions
@@ -324,7 +326,7 @@ theme = "forest"
    desc = "Docs repository"
 [[params.links.developer]]
 	name = "Slack"
-	url = "https://join.spinnaker.io/"
+	url = "https://join.slack.com/t/spinnakerteam/shared_invite/zt-7juwxmx0-nQ4Ud4pJcbuPykX3SXwQrg"
 	icon = "fab fa-slack"
    desc = "Chat with Armory users and developers in the Spinnaker Slack"
 

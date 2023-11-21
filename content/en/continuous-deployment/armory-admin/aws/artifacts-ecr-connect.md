@@ -19,19 +19,30 @@ configuration when using the Operator.
 
 ### Update your Spinnaker installation
 
-```bash
-dockerRegistry:
-  enabled: true
-  primaryAccount: dockerhub
-  accounts:
-  - name: dockerhub
-    requiredGroupMembership:
-    providerVersion: V1
-    address: 012345678910.dkr.ecr.us-east-1.amazonaws.com
-    username: AWS
-    passwordCommand: "aws --region ue-east-2ecr get-authorization-token --output text --query 'authorizationData[].authorizationToken' | base64 -d | sed 's/^AWS://"
+The configuration below must go under `spinnakerConfig.config.providers`,
+as explained in [Connect Docker Registries]({{< ref "continuous-deployment/armory-admin/artifacts-docker-connect" >}}).
+
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    config:
+      providers:
+        dockerRegistry:
+          enabled: true
+          primaryAccount: dockerhub
+          accounts:
+          - name: dockerhub
+            requiredGroupMembership:
+            providerVersion: V1
+            address: 012345678910.dkr.ecr.us-east-1.amazonaws.com
+            username: AWS
+            passwordCommand: "aws --region us-east-2 ecr get-authorization-token --output text --query 'authorizationData[].authorizationToken' | base64 -d | sed 's/^AWS://'"
 ```
 
-Success! Now you will be able to use ECR as a Docker registry in the configuration stage.
+Success! Now you can use ECR as a Docker registry in the configuration stage.
 
-![](/images/armory-admin/artifacts/ecr-test.png)
+{{< figure src="/images/armory-admin/artifacts/ecr-test.png" >}}

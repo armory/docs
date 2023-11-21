@@ -19,13 +19,13 @@ that](https://www.spinnaker.io/guides/user/pipeline/triggers/webhooks/).
 
 Spinnaker has a stage type called "Webhook" which allows the stage to call out to APIs as part of running a pipeline:
 
-![Webhook Type Selection](/images/webhook-type-selection.png)
+{{< figure src="/images/webhook-type-selection.png" >}}
 
 
 ## Setting up the a webhook stage
 The basic configuration is what you might expect. Fill in the URL to make the request against, the HTTP method to use, and depending on the request type the payload and/or additional headers:
 
-![Webhook Basic Config](/images/webhook-basic.png)
+{{< figure src="/images/webhook-basic.png" >}}
 
 Of particular note is that you can use [the Spinnaker pipeline expression language]({{< ref "expression-language" >}}) both as part of the URL field and within the payload, making it easy to pass anything that's available as part of the pipeline context.
 
@@ -33,7 +33,7 @@ In this simple configuration the stage will be marked as successful if it gets a
 
 
 ## Wait for completion using status field
-![Webhook Wait For Completion](/images/webhook-completion.png)
+{{< figure src="/images/webhook-completion.png" >}}
 
 There are three different techniques Spinnaker can use to lookup the overall status:
 
@@ -47,7 +47,7 @@ Spinnaker will use one of those mechanisms to find the status URL, and then repe
 ## Webhook execution
 Spinnaker records the URL used as part of the webhook, the payload, and the status URL as part of the stage details. If the webhook transaction can run for a long time and there's information available from the API, you can set the "Progress location" expression to also extract info to give some feedback about status in the Spinnaker UI. The "Progress location" value shows up in the Info field of the stage details:
 
-![Webhook Stage Details](/images/webhook-stage-details.png)
+{{< figure src="/images/webhook-stage-details.png" >}}
 
 Once the webhook stage is complete the payload is attached to the stage context as "buildInfo". So if you need you can pull info out of the webhook response to pass into future stages using a pipeline expression. For instance, if the response from our stage above contains the value "threshold" that we want to use in another stage we can reference it like this:
 

@@ -224,7 +224,7 @@ Note that only the `application` and `pipelines` keys are required; everything e
 
 - **Modules**: These are templates that define a Stage/Task in the pipeline. They are kept in a single GitHub repo that is configurable when the dinghy service starts. eg:
 
-![](/images/dinghy-template-repo.png)
+{{< figure src="/images/dinghy-template-repo.png" >}}
 
  They are JSON files with replacable values in them. e.g., a module that defines a wait stage in a pipeline might look like:
 
@@ -240,7 +240,7 @@ Note that only the `application` and `pipelines` keys are required; everything e
 
 - **Pipeline definitions**: These define a pipeline for an application in a file called `dinghyfile`. The `dinghyfile` usually resides at the root level of the application repo. eg:
 
-![](/images/dinghyfile.png)
+{{< figure src="/images/dinghyfile.png" >}}
 
 You can compose stage/task templates to make a full definition. e.g., a Pipeline definition that has a single wait stage might look like:
 
@@ -341,7 +341,7 @@ Optionally, you can include a default parameter: `{{ var "waitName" ?: "defaultV
 
 Let us create a more realistic pipeline using templates. One that would look like this:
 
-![](/images/Screen-Shot-2018-03-12-at-11.18.38-AM.png)
+{{< figure src="/images/Screen-Shot-2018-03-12-at-11.18.38-AM.png" >}}
 
 You would use the following JSON to create such. Note that any of the stages could have come from an imported module, but we show the full JSON here for readability:
 
@@ -474,7 +474,7 @@ This module inherits two stages and overrides variables within them. The `wait.s
 
 Note how the `requisiteStageRefIds` is overwritten while calling the module so that the deploy stage _depends on_ the wait stage. This pipeline would look like this in the spinnaker UI:
 
-![](/images/Screen_Shot_2018-03-26_at_5_06_25_PM.png)
+{{< figure src="/images/Screen_Shot_2018-03-26_at_5_06_25_PM.png" >}}
 
 ## Local module functionality
 
