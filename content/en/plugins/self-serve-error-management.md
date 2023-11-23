@@ -2,7 +2,7 @@
 title: Self Serve Error Management Plugin
 linkTitle: Self Serve Error Management 
 description: >
-The Self Serve Error Management Plugin for Spinnaker enables overriding and customizing errors from CloudDriver or Scale Agent.
+  The Self Serve Error Management Plugin for Spinnaker enables overriding and customizing errors from CloudDriver or Scale Agent.
 ---
 
 ![Proprietary](/images/proprietary.svg)
@@ -101,7 +101,7 @@ spec:
               enabled: true
               url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
             plugins:
-              Armory.SelfServeErrorManagement :
+              Armory.SelfServeErrorManagement:
                 enabled: true
                 version: <version>
         override-error:
@@ -132,7 +132,7 @@ spec:
               enabled: true
               url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
             plugins:
-              Armory.SelfServeErrorManagement :
+              Armory.SelfServeErrorManagement:
                 enabled: true
                 version: 0.1.0
         override-error:
@@ -160,11 +160,11 @@ Add the following to your `clouddriver-local.yml` file:
 spinnaker:
   extensibility:
     plugins:
-      Armory.SelfServeErrorManagement :
+      Armory.SelfServeErrorManagement:
         enabled: true
         version: <version>
     repositories:
-      SelfServeErrorManagement :
+      selfservesrrormanagement:
         enabled: true
         url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
 override-error:
@@ -186,7 +186,7 @@ spinnaker:
         enabled: true
         version: 0.1.0
     repositories:
-      SelfServeErrorManagement :
+      selfservesrrormanagement:
         enabled: true
         url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
 override-error:
