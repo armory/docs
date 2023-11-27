@@ -37,8 +37,8 @@ For this plugin to be available, the Kubernetes provider or Scale Agent must be 
 
 ## Config Constraints
 
-For each rule, you can either define `appendWith` or `replaceWith`. Defining both will cause an exception to be thrown
-when that specific rule is triggered.
+For each rule, you can either define `appendWith` or `replaceWith`. Defining both will log an warning and the original behaviour 
+will be kept for this rule. Others will be handled as it should.
 
 ## Example 
 
