@@ -1,15 +1,15 @@
 ---
-title: Self Serve Error Management Plugin
-linkTitle: Self Serve Error Management 
+title: Self-Serve Error Management Plugin
+linkTitle: Self-Serve Error Management 
 description: >
-  The Self Serve Error Management Plugin for Spinnaker enables overriding and customizing errors from CloudDriver or Scale Agent.
+  The Self-Serve Error Management Plugin for Spinnaker enables overriding and customizing errors from CloudDriver or Scale Agent.
 ---
 
 ![Proprietary](/images/proprietary.svg)
 
-## What the Self Serve Error Management plugin does
+## What the Self-Serve Error Management plugin does
 
-The Self Serve Error Management plugin extends CloudDriver and has the following features:
+The Self-Serve Error Management plugin extends CloudDriver and has the following features:
 
 1. **Replacing** the Kubernetes error into a totally new message 
 2. **Enhancing** the Kubernetes error, so it has more context for the end user
@@ -27,7 +27,7 @@ Installing the plugin consists of the following:
 
 ## Compatiblity matrix
 
-| Spinnaker Version | Self Serve Error Management Plugin Version |
+| Spinnaker Version | Self-Serve Error Management Plugin Version |
 |-------------------|-----------------------------|
 | 1.28.x            | 0.1.0                       |
 
@@ -152,7 +152,7 @@ Alternately, add the plugin configuration in the `spec.spinnakerConfig.profiles.
 When Halyard adds a plugin to a Spinnaker installation, it adds the plugin repository information to all services, not just the ones the plugin is for. This means that when you restart Spinnaker, each service restarts, downloads the plugin, and checks if an extension exists for that service. Each service restarting is not ideal for large Spinnaker installations due to service restart times. To avoid every Spinnaker service restarting and downloading the plugin, do not add the plugin using Halyard.
 {{% /alert %}}
 
-The Self Serve Error Management Plugin extends CloudDriver. You should create or update the extended service's local profile in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
+The Self-Serve Error Management Plugin extends CloudDriver. You should create or update the extended service's local profile in the same directory as the other Halyard configuration files. This is usually `~/.hal/default/profiles` on the machine where Halyard is running.
 
 Add the following to your `clouddriver-local.yml` file:
 
