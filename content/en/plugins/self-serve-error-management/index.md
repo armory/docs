@@ -76,7 +76,7 @@ This is how the appended error message appears in the UI:
 
 ### `replaceWith` example
 
-`replaceWith` enables you to replace the entire error message with a different one. 
+Use `replaceWith` when you want to replace the entire error message with a different one. 
 
 This example replaces the `no matches for kind` error message:
 
@@ -84,7 +84,7 @@ This example replaces the `no matches for kind` error message:
 override-error:
   rules:
     - errorContains: "no matches for kind"
-      replaceWith: "This is a custom error message appended to the end of the error message"
+      replaceWith: "This is a custom error message for replacing no matches for kind error."
 ```
 
 This is the new message in the UI:
