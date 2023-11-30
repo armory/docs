@@ -3,7 +3,7 @@ title: Overview
 linkTitle: Overview
 weight: 1
 description: >
-  Learn about the AWS Event Cache plugin's features, how the plugin works, Spinnaker version compatibility, and installation paths.
+  Learn about the AWS Event Cache plugin's features, how the plugin works, Spinnaker version compatibility, and plugin installation paths.
 ---
 
 

@@ -12,9 +12,13 @@ description: >
 
 Enabling the AWS Event Cache plugin consists of the following steps:
 
+1. [Configure the plugin](#configure-the-plugin)
+1. [Install the plugin](#install-the-plugin)
+1. [Create an AWS SNS topic and subscription](#create-an-aws-sns-topic-and-subscription)
 
 ## {{% heading "prereq" %}}
 
+* You have read the AWS Event Cache [overview]({{< ref "plugins/aws-event-cache/overview/index" >}}).
 * You are running Armory Continuous Deployment.
 * You manage your instance using the Armory Operator and the `spinnaker-kustomize-patches` [repo](https://github.com/armory/spinnaker-kustomize-patches). 
 

@@ -12,13 +12,13 @@ description: >
 
 Enabling the AWS Event Cache plugin consists of the following steps:
 
-1. [Meet the prerequisites](#before-you-begin)
 1. [Configure the plugin](#configure-the-plugin)
 1. [Install the plugin](#install-the-plugin)
-1. [Configure the provider infrastructure](#configure-infra)
+1. [Create an AWS SNS topic and subscription](#create-an-aws-sns-topic-and-subscription)
 
 ## {{% heading "prereq" %}}
 
+* You have read the AWS Event Cache [overview]({{< ref "plugins/aws-event-cache/overview/index" >}}).
 * You are running open source Spinnaker.
 * You manage your instance using the Spinnaker Operator and the `spinnaker-kustomize-patches` [repo](https://github.com/armory/spinnaker-kustomize-patches). If you are using Halyard, see {{< linkWithTitle "plugins/aws-event-cache/install/spinnaker-halyard.md" >}}.
 
