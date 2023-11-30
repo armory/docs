@@ -71,11 +71,11 @@ Save the file to your `spinnaker-kustomize-patches/plugins/oss` directory.
 After our plugin installation we gonna have able the endpoint ‘aws/notify’  in our gate service. So next step is create a subscription in SNS AWS service following next steps:
 - First go to our AWS Console → Simple Notification Service
 
-  {{< figure src="plugins/cache-agents-on-event/install/sns-step1.png" height="80%" weight="80%" >}}
+  {{< figure src="/images/sns-step1.png" height="80%" weight="80%" >}}
 
 - Now, we gonna go to Topics section, and click if you have one already created:
 
-  {{< figure src="plugins/cache-agents-on-event/install/sns-step1.1.png" height="80%" weight="80%" >}}
+  {{< figure src="/images/sns-step1.1.png" height="80%" weight="80%" >}}
 
 If we do not have any topic created, them press in Create topic, in the next window follow:
 1. Choose **Standard**.
@@ -103,14 +103,14 @@ If we do not have any topic created, them press in Create topic, in the next win
 
 - Now click in the Config Topic, and click on Create subscription
 
-  {{< figure src="plugins/cache-agents-on-event/install/sns-step2.png" height="80%" weight="80%" >}}
+  {{< figure src="/images/sns-step2.png" height="80%" weight="80%" >}}
 - Fill the fields with the desired information, just select the correct protocol (HTTP, HTTPS) depending in your gate exposed endpoint
 
-  {{< figure src="plugins/cache-agents-on-event/install/sns-step3.png" height="80%" weight="80%" >}}
+  {{< figure src="/images/sns-step3.png" height="80%" weight="80%" >}}
 - And click in Create Subscription
 
 Now you will be redirected to subscriptions lists, your recently subscription created will appear, and will be confirmed automatically for the CATS Plugin
 
-{{< figure src="plugins/cache-agents-on-event/install/sns-step4.png" height="80%" weight="80%" >}}
+{{< figure src="/images/sns-step4.png" height="80%" weight="80%" >}}
 
 If you don’t see the confirmed check after 1 or 2 minutes, check your service, and validate if your endpoint and plugin installation is working as expected.
