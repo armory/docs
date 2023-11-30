@@ -32,7 +32,7 @@ The event handling workflow is triggered by the event scheduler and consists of 
 Event Validation: The plugin validates the incoming event, ensuring it is legitimate and corresponds to a relevant change in the AWS environment.
 Decision Logic: Based on the type of event (e.g., rate limit increase, IAM role modification), the plugin determines the appropriate action to take.
 
-{{< figure src="arquitecture.png" height="80%" weight="80%" >}}
+{{< figure src="arquitecture.png" height="65%" weight="65%" >}}
 
 ## Compatibility matrix
 
