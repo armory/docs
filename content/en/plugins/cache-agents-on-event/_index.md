@@ -32,7 +32,7 @@ The event handling workflow is triggered by the event scheduler and consists of 
 Event Validation: The plugin validates the incoming event, ensuring it is legitimate and corresponds to a relevant change in the AWS environment.
 Decision Logic: Based on the type of event (e.g., rate limit increase, IAM role modification), the plugin determines the appropriate action to take.
 
-!https://slabstatic.com/prod/uploads/n4300ziu/posts/images/BW42mtckyCvkxpntQLSlGM-k.png
+{{< figure src="arquitecture.png" height="80%" weight="80%" >}}
 
 ## Compatibility matrix
 
@@ -49,5 +49,5 @@ Use Kustomize patches to deploy the service and install the plugin.
 1. [Configure the provider infrastructure](#configure-infra)
 
 
-[Instructions]({{< ref "plugins/pipelines-as-code/install/spinnaker-operator" >}})
+[Instructions]({{< ref "plugins/cache-agents-on-event/install/spinnaker-operator" >}})
 {{% /card %}}
