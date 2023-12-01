@@ -5,7 +5,7 @@ description: >
   The Self-Serve Error Management Plugin for Spinnaker enables overriding and customizing error messages from Clouddriver or the Scale Agent.
 ---
 
-![Proprietary](/images/proprietary.svg)
+![Proprietary](/images/proprietary.svg) ![Beta](/images/beta.svg)
 
 ## What the Self-Serve Error Management plugin does
 
@@ -27,6 +27,9 @@ Installing the plugin consists of the following:
 
 | Spinnaker Version | Self-Serve Error Management Plugin Version |
 |-------------------|-----------------------------|
+| 1.31.x            | 0.1.0 | 
+| 1.30.x            | 0.1.0 | 
+| 1.29.x            | 0.1.0                       |
 | 1.28.x            | 0.1.0                       |
 
 ## {{% heading "prereq" %}}
