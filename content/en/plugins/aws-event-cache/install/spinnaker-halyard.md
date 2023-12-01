@@ -36,11 +36,27 @@ The AWS Event Cache plugin extends Clouddriver and Gate. To avoid every Spinnake
 {{< include "plugins/aws-event-cache/compat-matrix.md" >}}
 
 ## Configure the plugin
-
-
+Update `clouddriver-local.yml`, and `gate-local.yml` config files with the following:
+```yaml
+spinnaker:
+  extensibility:
+    plugins:
+      Armory.Integration:
+        id: Armory.AWSCATsOnEvent
+        enabled: true
+        version: <version>
+    repositories:
+      githubIntegration:
+        enabled: true
+        url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
+```
+Replace `<version>` with the plugin version compatible with your Spinnaker version.
 
 ## Install the plugin
-
+Once you've apply your changes:
+```bash
+hal deploy apply
+```
 
 ## Create an AWS SNS topic and subscription
 
