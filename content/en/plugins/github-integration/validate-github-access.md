@@ -1,6 +1,5 @@
 ---
-title: Validate GitHub Access
-linkTitle: Validate GitHub Access
+title: Enable GitHub Access Validation
 weight: 10
 description: >
   Learn how to enable the GitHub Integration feature that validates GitHub access based on configuration assigned to a GitHub App account.

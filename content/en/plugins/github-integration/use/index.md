@@ -18,7 +18,7 @@ Use the **Github Integration Workflow Trigger Stage** to trigger your GitHub wor
 
 Configure the **Github Integration Workflow Trigger Stage** as in the following screenshot: 
 
-{{< figure src="/images/plugins/github/workflowDispatch.png" >}}
+{{< figure src="workflowDispatch.png" width="80%" height="80%" >}}
 
 * **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
 * **Organization or User**: (Required) The organization or username that should trigger the workflow
@@ -31,7 +31,7 @@ Configure the **Github Integration Workflow Trigger Stage** as in the following 
 
 Configure the **Github Integration Workflow Trigger Stage** as in the following screenshot: 
 
-{{< figure src="/images/plugins/github/repoDispatch.png" >}}
+{{< figure src="repoDispatch.png"  width="80%" height="80%" >}}
 
 * **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
 * **Organization or User**: (Required) The organization or username that should trigger the workflow
@@ -45,7 +45,7 @@ Configure the **Github Integration Workflow Trigger Stage** as in the following 
 
 To trigger a Spinnaker pipeline when a GitHub workflow finishes successfully, configure an automated trigger in your pipeline.
 
-{{< figure src="/images/plugins/github/workflowFinish.png" >}}
+{{< figure src="workflowFinish.png"  width="80%" height="80%" >}}
 
 * **Type**: (Required) Select **GitHub Workflow Trigger**
 * **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
@@ -58,11 +58,11 @@ To trigger a Spinnaker pipeline when a GitHub workflow finishes successfully, co
 
 To trigger a Spinnaker pipeline when GitHub creates a new deployment, first [create a deployment event webhook in GitHub](https://docs.github.com/en/webhooks/using-webhooks/creating-webhooks). Armory strongly recommends you create a secret for the webhook.
 
-{{< figure src="/images/plugins/github/deploymentCreated.png" >}}
+{{< figure src="deploymentCreated.png"  width="80%" height="80%">}}
 
 Next, configure an automated trigger to process the deployment event from GitHub.
 
-{{< figure src="/images/plugins/github/deploymentCreated2.png" >}}
+{{< figure src="deploymentCreated2.png"  width="80%" height="80%" >}}
 
 * **Type**: (Required) Select **GitHub Event Trigger**
 * **GitHub Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
@@ -77,7 +77,7 @@ When the pipeline triggered by a deployment event finishes, Spinnaker automatica
 
 You can use the **GitHub Integration Releases Get Details** stage to fetch the latest release information.
 
-{{< figure src="/images/plugins/github/getDetails.png" >}}
+{{< figure src="getDetails.png" width="80%" height="80%" >}}
 
 * **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
 * **Retrieve**: (Required) Select **Get Latest Release**
@@ -88,7 +88,7 @@ You can use the **GitHub Integration Releases Get Details** stage to fetch the l
 
 You can use the **GitHub Integration Releases Get Details** stage to fetch the latest prerelease information.
 
-{{< figure src="/images/plugins/github/preRelease.png" >}}
+{{< figure src="reRelease.png"  width="80%" height="80%" >}}
 
 
 * **Github Account**: (Required) Select the GitHub Account; this is one of the accounts you configured when you installed the plugin
@@ -98,13 +98,11 @@ You can use the **GitHub Integration Releases Get Details** stage to fetch the l
 
 ## Create GitHub Commit Status
 
-The GitHub Commit Status pipeline stage allows you to create a GitHub Commit Status in a repository using the GitHub App
-accounts configured in the plugin without the need to configure a notification block in your pipelines and viewing the execution
-status of the stage in your pipeline's execution details.
+The GitHub Commit Status pipeline stage allows you to create a GitHub Commit Status in a repository using the GitHub App accounts configured in the plugin without the need to configure a notification block in your pipelines and viewing the execution status of the stage in your pipeline's execution details.
 
 Configure the **GitHub Integration Commit Status Stage** as in the following screenshot:
 
-{{< figure src="/images/plugins/github/commitStatus.png" >}}
+{{< figure src="commitStatus.png"  width="80%" height="80%" >}}
 
 * **GitHub Repo**: (Required) The full repository name including the GitHub Org. For example myorg/mygithubrepo.
 * **Commit Ref**: (Required) The commit reference. Can be a commit SHA, branch name (heads/BRANCH_NAME), or tag name (tags/TAG_NAME).

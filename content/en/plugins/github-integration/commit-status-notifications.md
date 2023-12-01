@@ -1,6 +1,6 @@
 ---
-title: Configure GitHub Commit Status Echo notifications
-linkTitle: GitHub Notifications
+title: Enable GitHub Commit Status Echo notifications
+linkTitle: Enable Notifications
 weight: 10
 description: >
   Learn how to enable an enhanced Echo notification type which can be configured to send notifications for pipelines and/or stages statuses with custom context and description linking to the Spinnaker UI as a target URL. 
@@ -12,6 +12,7 @@ description: >
 ## Configure GitHub Commit Status Echo notifications
 
 Echo is the microservice in Spinnaker which (among other functionalities) manages notifications for Spinnaker pipelines and stages.
+
 Using the GitHub Integration plugin you can configure Echo to create [GitHub Commit Statuses](https://docs.github.com/en/rest/commits/statuses?apiVersion=2022-11-28#create-a-commit-status)
 in a repository by authenticating using the GitHub App accounts configured in the plugin.
 
@@ -22,8 +23,7 @@ for pipelines and/or stages statuses with custom context and description linking
 
 ## How to enable
 
-GitHub Commit Status notifications can be enabled per GitHub App account by enabling the feature in Echo and Deck services 
-in the `github-integration-plugin.yml` file.
+GitHub Commit Status notifications can be enabled per GitHub App account by enabling the feature in Echo and Deck services in the `github-integration-plugin.yml` file.
 
 {{< highlight yaml "linenos=table,hl_lines=7-8 14-15" >}}
 spec:
@@ -48,9 +48,7 @@ spec:
 
 ## Migrating from Echo's default implementation
 
-Migrating from the default implementation to the GitHub Integration plugin's implementation does not require any changes in your pipelines.
-The GitHub Integration plugin's implementation will be used automatically when the feature is enabled in Echo and Deck services and the default
-implementation is disabled. To ensure a smooth migration, follow these steps:
+Migrating from the default implementation to the GitHub Integration plugin's implementation does not require any changes in your pipelines. The GitHub Integration plugin's implementation is used automatically when the feature is enabled in Echo and Deck services and the default implementation is disabled. To ensure a smooth migration, follow these steps:
 
 
 1. Disable the default implementation by disabling the `github-status` feature in Echo and Deck services
@@ -73,10 +71,10 @@ implementation is disabled. To ensure a smooth migration, follow these steps:
              }
    {{< /highlight >}}
 
-1. Enable the GitHub Integration plugin's implementation as described in the previous section.
+1. Enable the GitHub Integration plugin. See the [Get Started]({{< ref "plugins/github-integration/install/_index.md" >}}) section for instructions.
 
-1. Ensure that you have configured the appropriate GitHub App accounts for every GitHub organisation that you want to 
-send notifications to as described in the [GitHub App accounts configuration](#github-app-accounts-configuration) section.
+1. Ensure that you have configured the appropriate GitHub App accounts for every GitHub organization that you want to send notifications to.
 
 1. Verify that the Deck UI is showing the plugin's Commit Status notification type in the notification settings for 
 your pipelines and the Commit Statuses are being created in GitHub.
+

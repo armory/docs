@@ -51,7 +51,7 @@ end
 ### {{% heading "prereq" %}}
 
 - You are familiar with how Spinnaker's [AuthZ]({{< ref "continuous-deployment/overview/fiat-permissions-overview" >}}) works.
-- You have read the GitHub Integration Plugin [overview]({{< ref "plugins/github-integration/_index.md" >}}).
+- You have read the GitHub Integration Plugin [overview]({{< ref "plugins/github-integration/overview.md" >}}).
 - You have enabled Fiat in your Spinnaker or Armory CD instance integrated with an external identity provider (IDP).
 
 ### How to enable AuthZ support
