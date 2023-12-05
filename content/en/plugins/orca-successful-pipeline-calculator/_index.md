@@ -1,6 +1,6 @@
 ---
 title: Orca-Successful-Pipeline-Calculator
-linkTitle: Pipelines-as-Code
+linkTitle: Orca Successful Pipeline Calculator
 description: >
   Armory SPE Calculator automates the aggregation of Successful Pipeline count by day and makes the information available to query and visualize through an API 
 no_list: true
