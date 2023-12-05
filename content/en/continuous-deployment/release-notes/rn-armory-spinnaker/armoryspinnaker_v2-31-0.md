@@ -1,7 +1,7 @@
 ---
 title: v2.31.0 Armory Release (OSS Spinnaker™ v1.31.3)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
+version: 2.31.0
 date: 2023-12-05
 description: >
   Release notes for Armory Continuous Deployment v2.31.0
@@ -24,8 +24,104 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
+### Orca requires RDBMS configured for UTF-8 encoding
+
+**Impact**
+
+- 2.28.6 migrates to the AWS MySQL driver from the OSS MySQL drivers.  This change is mostly seamless, but we’ve identified one breaking change.  If your database was created without utf8mb4 you will see failures after this upgrade.  utf8mb4 is the recommended DB format for any Spinnaker database, and we don’t anticipate most users who’ve followed setup instructions to encounter this failure. However, we’re calling out this change as a safeguard.
+
+**Introduced in**: Armory CD 2.28.6
+
+{{< include "breaking-changes/bc-kubectl-120.md" >}}
+{{< include "breaking-changes/bc-plugin-compatibility-2-30-0.md" >}}
+
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
+### Clouddriver and Spring Cloud
+
+The Spring Boot version has been upgraded, introducing a backwards incompatible change to the way configuration is loaded in Spinnaker. Users will need to set the ***spring.cloud.config.enabled*** property to ***true*** in the service settings of Clouddriver to preserve existing behavior. All of the other configuration blocks remain the same.
+
+**Affected versions**: Armory CD 2.30.0 and later
+
+### SpEL expressions and artifact binding
+
+There is an issue where it appears that SpEL expressions are not being evaluated properly in artifact declarations (such as container images) for events such as the Deploy Manifest stage. What is actually happening is that an artifact binding is overriding the image value.
+
+**Workaround**:
+
+2.27.x or later: Disable artifact binding by adding the following parameter to the stage JSON: `enableArtifactBinding: false`. This setting only binds the version when the tag is missing, such as `image: nginx` without a version number.
+
+**Affected versions**: Armory CD 2.27.x and later
+
+## Deprecations
+
+Reference [Feature Deprecations and end of support]({{< ref "continuous-deployment/feature-status/deprecations/" >}})
+
+## Early access features enabled by default
+
+### doNotEval SPeL expression
+- This feature introduces a new SpEL `doNotEval` method that includes the received JSON object with the NotEvaluableExpression class.
+- The toJson method (and others in the future) will not evaluate expressions and will not throw exceptions for instances of the NotEvaluableExpression class.
+- Please visit [doNotEval SPeL expression documentation](https://spinnaker.io/changelogs/1.30.0-changelog/#donoteval-spel-helper) for more details regarding this feature flag.
+
+
+
+
+
+## Early access features enabled manually
+
+### **New**: Pipeline Triggers: only cache enabled pipelines with enabled triggers of specific types. 
+Enabling this flag may allow Echo to better utilize it’s cache, improving overall pipeline trigger performance for frequently used pipelines
+
+### **New**: Option to disable healthcheck for google provider
+Added the option to disable the healthcheck for Google provider similar to AWS and Kubernetes.
+
+### **New**: Implementation work for Helm Parameters feature request
+Please reference [this documentation](https://spinnaker.io/docs/guides/user/kubernetes-v2/deploy-helm/#configure-api-versions-and-a-kubernetes-version) for more details regarding this feature flag.
+
+### Helm Parameters
+
+Spinnaker users baking Helm charts can now use SpEL expression parameters for API Version and Kubernetes Version in the Bake Manifest stage so that they can conditionally deploy different versions of artifacts depending on the target cluster API and K8s versions. To learn more about this exciting new feature, visit [Helm Parameters](https://spinnaker.io/docs/guides/user/kubernetes-v2/deploy-helm/).
+
+### Dynamic rollback timeout
+
+To make the dynamic timeout available, you need to enable the feature flag in Orca and Deck. You need to add this block to `orca.yml` file if you want to enable the dynamic rollback timeout feature:
+
+```yaml
+rollback:
+  timeout:
+    enabled: true
+```
+
+On the Orca side, the feature flag overrides the default value rollback timeout - 5 min - with a UI input from the user.
+
+On the Deck side, the feature flag enhances the Rollback Cluster stage UI with timeout input.
+
+`window.spinnakerSettings.feature.dynamicRollbackTimeout = true;`
+
+The default is used if there is no value set in the UI.
+
+### Run Pipelines-as-Code with permissions scoped to a specific service account
+
+Enhancing Pipelines-as-Code to upsert pipeline using an Orca call instead of a Front50 call, to mimic the calls from Deck. By default, it is disabled. Enabling can be achieved by setting the following in `dinghy.yml`:
+
+```upsertPipelineUsingOrcaTaskEnabled: true```
+
+### Pipelines-as-Code PR checks
+
+This feature, when enabled, verifies if the author of a commit that changed app parameters has sufficient WRITE permission for that app. You can specify a list of authors whose permissions are not valid. This option’s purpose is to skip permissions checks for bots and tools.
+
+See [Permissions check for a commit]({{< ref "plugins/pipelines-as-code/install/configure#permissions-check-for-a-commit" >}}) for details.
+
+### Pipelines-as-Code multi-branch enhancement
+
+Now you can configure Pipeline-as-Code to pull Pipelines-as-Code files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos; have a single repo for Spinnaker application pipelines. See [Multiple branches]({{<  ref "plugins/pipelines-as-code/install/configure#multiple-branches" >}}) for how to enable and configure this feature.
+
+### Terraform template fix
+
+Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you are able to use the Terraform template file provider. Open a support ticket if you need this fix.
 
 ## Highlighted updates
 
@@ -35,8 +131,38 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
+### Spring Boot
+As part of the modernization effort, Spring Boot has been updated to 2.5. Note that there is no expected change for end users due to this change. Plugin developers may need to update their projects to work with 2.31.0+.
 
+### Clouddriver
+- Bumped aws-cli to 1.22 to enable FIPS compliance configuration options.
+- Allow operations on all kinds in Kubernetes
+  - Spinnaker operators can now more easily omit deprecated kinds from being cached without impacting users ability to deploy resources to older Kubernetes cluster.
 
+### Deck
+- Added Cloud Run manifest functionality in Deck.
+- Made the *StageFailureMessage* component overridable, which enables the ability to override the red error box in the component of a plugin.
+- Added the ability to allow plugins to provide custom icon components.
+  - Enables plugins to use the Icon component with a custom icon.  Currently the Icon component is limited to only icons defined in *iconsByName.*
+- For the Helm bake feature, added additional input fields where the user can fill in details of the APIs versions. These input fields will not be pre-populated with versions of the target cluster available in the environment.  They will become part of the bake result. Added *API_VERSIONS_ENABLED* env variable flag.
+
+### Fiat
+- Added the ability to register *SpinnakerRetrofitErrorHandler* with each Retrofit.RestAdapter and replaces each RetrofitError catch block with a catch-block using SpinnakerServerException or the appropriate subclass. This change does not alter any of this service's behavior, it merely allows error messages to be surfaced even when the error was thrown in a microservice more than one network call from the service in which the request originated. This is part of an effort to consume *SpinnakerRetrofitErrorHandler* in each Spinnaker microservice, as detailed in [this Github issue](https://github.com/spinnaker/spinnaker/issues/5473).
+
+### Front50
+- Added optional query params to the GET /pipelines endpoint.
+- Return all pipelines triggered when the given pipeline configuration id completes with the given status. Initially used by (https://github.com/spinnaker/orca/pull/4448).
+- Added three new config flags to each object type under service-storage.
+   - Two of the three are performance improvements which you can read about in the [pull request](https://github.com/spinnaker/front50/pull/1249).
+
+### Kayenta
+- Added a storage service migrator.
+   - Added the ability to migrate account credentials and account configurations data from S3/GCS to MySQL/PostgreSQL and vice versa
+   - See (https://github.com/spinnaker/kayenta/pull/940#issue-1639273840) for instructions on how to use these properties (in kayenta-local.yml) to enable the data migration and MySQL or PostgreSQL data source.
+ 
+### Orca
+- Added an endpoint to call Front50's *GET /pipelines/triggeredBy/{pipelineId}/{status}*. The advantage of the new endpoint is that Front50 only returns a (potentially very small) subset of pipelines over the wire to Orca, in contrast to the current behavior where Front50 returns all pipelines, and leaves it to Orca to filter them.
+- 
 
 ###  Spinnaker Community Contributions
 
