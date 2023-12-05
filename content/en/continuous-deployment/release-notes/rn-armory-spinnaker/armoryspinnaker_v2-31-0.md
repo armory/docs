@@ -24,15 +24,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
-### Orca requires RDBMS configured for UTF-8 encoding
-
-**Impact**
-
-- 2.28.6 migrates to the AWS MySQL driver from the OSS MySQL drivers.  This change is mostly seamless, but we’ve identified one breaking change.  If your database was created without utf8mb4 you will see failures after this upgrade.  utf8mb4 is the recommended DB format for any Spinnaker database, and we don’t anticipate most users who’ve followed setup instructions to encounter this failure. However, we’re calling out this change as a safeguard.
-
-**Introduced in**: Armory CD 2.28.6
-
-{{< include "breaking-changes/bc-kubectl-120.md" >}}
 {{< include "breaking-changes/bc-plugin-compatibility-2-30-0.md" >}}
 
 ## Known issues
@@ -43,16 +34,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 The Spring Boot version has been upgraded, introducing a backwards incompatible change to the way configuration is loaded in Spinnaker. Users will need to set the ***spring.cloud.config.enabled*** property to ***true*** in the service settings of Clouddriver to preserve existing behavior. All of the other configuration blocks remain the same.
 
 **Affected versions**: Armory CD 2.30.0 and later
-
-### SpEL expressions and artifact binding
-
-There is an issue where it appears that SpEL expressions are not being evaluated properly in artifact declarations (such as container images) for events such as the Deploy Manifest stage. What is actually happening is that an artifact binding is overriding the image value.
-
-**Workaround**:
-
-2.27.x or later: Disable artifact binding by adding the following parameter to the stage JSON: `enableArtifactBinding: false`. This setting only binds the version when the tag is missing, such as `image: nginx` without a version number.
-
-**Affected versions**: Armory CD 2.27.x and later
 
 ## Deprecations
 
@@ -78,7 +59,7 @@ Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket 
 ### **New**: Pipeline Triggers: only cache enabled pipelines with enabled triggers of specific types. 
 Enabling this flag may allow Echo to better utilize it’s cache, improving overall pipeline trigger performance for frequently used pipelines
 
-### **New**: Option to disable healthcheck for google provider
+### **New**: Option to disable healthcheck for Google provider
 Added the option to disable the healthcheck for Google provider similar to AWS and Kubernetes.
 
 ### Helm Parameters
