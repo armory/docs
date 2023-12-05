@@ -49,5 +49,5 @@ spec:
 - `insights.jobs.pipelinStatusCount.cron`: Replace with a cron expression that corresponds to the time of the day with lowest load. It can be disabled by using `-` as an expression.
 - `insights.jobs.pipelineStatusCount.fetch.limit`: Indicates how many records are read at a time from `orca.pipelines`, adjust based on performance (Defaults to 1000).
 
-### [API Usage]({{< linkWithTitle "plugins/orca-successful-pipeline-calculator/usage/api.md" >}})
+### [API Usage]({{< linkWithTitle "plugins/orca-successful-pipeline-calculator/api.md" >}})
 
