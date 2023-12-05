@@ -35,7 +35,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 {{< include "breaking-changes/bc-kubectl-120.md" >}}
 {{< include "breaking-changes/bc-plugin-compatibility-2-30-0.md" >}}
 
-
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
@@ -61,14 +60,18 @@ Reference [Feature Deprecations and end of support]({{< ref "continuous-deployme
 
 ## Early access features enabled by default
 
-### doNotEval SPeL expression
+### **New**: doNotEval SPeL expression
 - This feature introduces a new SpEL `doNotEval` method that includes the received JSON object with the NotEvaluableExpression class.
 - The toJson method (and others in the future) will not evaluate expressions and will not throw exceptions for instances of the NotEvaluableExpression class.
 - Please visit [doNotEval SPeL expression documentation](https://spinnaker.io/changelogs/1.30.0-changelog/#donoteval-spel-helper) for more details regarding this feature flag.
 
+### Automatically cancel Jenkins jobs
 
+You now have the ability to cancel triggered Jenkins jobs when a Spinnaker pipeline is canceled, giving you more control over your full Jenkins workflow. Learn more about Jenkins + Spinnaker in this [Spinnaker changelog](https://spinnaker.io/changelogs/1.29.0-changelog/#orca).
 
+### Enhanced BitBucket Server pull request handling
 
+Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. See [Triggering pipelines with Bitbucket Server](https://spinnaker.io/docs/guides/user/pipeline/triggers/bitbucket-events/) in the Spinnaker docs for details
 
 ## Early access features enabled manually
 
@@ -78,12 +81,9 @@ Enabling this flag may allow Echo to better utilize it’s cache, improving over
 ### **New**: Option to disable healthcheck for google provider
 Added the option to disable the healthcheck for Google provider similar to AWS and Kubernetes.
 
-### **New**: Implementation work for Helm Parameters feature request
-Please reference [this documentation](https://spinnaker.io/docs/guides/user/kubernetes-v2/deploy-helm/#configure-api-versions-and-a-kubernetes-version) for more details regarding this feature flag.
-
 ### Helm Parameters
 
-Spinnaker users baking Helm charts can now use SpEL expression parameters for API Version and Kubernetes Version in the Bake Manifest stage so that they can conditionally deploy different versions of artifacts depending on the target cluster API and K8s versions. To learn more about this exciting new feature, visit [Helm Parameters](https://spinnaker.io/docs/guides/user/kubernetes-v2/deploy-helm/).
+Spinnaker users baking Helm charts can now use SpEL expression parameters for API Version and Kubernetes Version in the Bake Manifest stage so that they can conditionally deploy different versions of artifacts depending on the target cluster API and K8s versions. To learn more about this exciting new feature, visit [Helm Parameters](https://spinnaker.io/docs/guides/user/kubernetes-v2/deploy-helm/#configure-api-versions-and-a-kubernetes-version).
 
 ### Dynamic rollback timeout
 
@@ -135,16 +135,18 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 As part of the modernization effort, Spring Boot has been updated to 2.5. Note that there is no expected change for end users due to this change. Plugin developers may need to update their projects to work with 2.31.0+.
 
 ### Clouddriver
+- Changed the validation Clouddriver runs before performing operations for the Kubernetes provider. The *kinds* and *omitKinds* fields on a Kubernetes account definition no longer restrict what Kubernetes kinds can be deployed by Clouddriver; instead, these fields will now only control what kinds Clouddriver caches. Spinnaker operators should ensure that Kubernetes RBAC controls are used to restrict what kinds Spinnaker can deploy.
 - Bumped aws-cli to 1.22 to enable FIPS compliance configuration options.
-- Allow operations on all kinds in Kubernetes
-  - Spinnaker operators can now more easily omit deprecated kinds from being cached without impacting users ability to deploy resources to older Kubernetes cluster.
-
+  
 ### Deck
 - Added Cloud Run manifest functionality in Deck.
 - Made the *StageFailureMessage* component overridable, which enables the ability to override the red error box in the component of a plugin.
 - Added the ability to allow plugins to provide custom icon components.
   - Enables plugins to use the Icon component with a custom icon.  Currently the Icon component is limited to only icons defined in *iconsByName.*
 - For the Helm bake feature, added additional input fields where the user can fill in details of the APIs versions. These input fields will not be pre-populated with versions of the target cluster available in the environment.  They will become part of the bake result. Added *API_VERSIONS_ENABLED* env variable flag.
+
+### Echo
+- Added a new configuration flag: *pipelineCache.filterFront50Pipelines* that defaults to false. When false, Echo caches all pipelines Front50. When true, it only caches enabled pipelines with enabled triggers of specific types – the types that echo knows how to trigger, along with some changes to the logic for handling manual executions so they continue to function. This is typically a very small subset of all pipelines.
 
 ### Fiat
 - Added the ability to register *SpinnakerRetrofitErrorHandler* with each Retrofit.RestAdapter and replaces each RetrofitError catch block with a catch-block using SpinnakerServerException or the appropriate subclass. This change does not alter any of this service's behavior, it merely allows error messages to be surfaced even when the error was thrown in a microservice more than one network call from the service in which the request originated. This is part of an effort to consume *SpinnakerRetrofitErrorHandler* in each Spinnaker microservice, as detailed in [this Github issue](https://github.com/spinnaker/spinnaker/issues/5473).
@@ -153,7 +155,7 @@ As part of the modernization effort, Spring Boot has been updated to 2.5. Note t
 - Added optional query params to the GET /pipelines endpoint.
 - Return all pipelines triggered when the given pipeline configuration id completes with the given status. Initially used by (https://github.com/spinnaker/orca/pull/4448).
 - Added three new config flags to each object type under service-storage.
-   - Two of the three are performance improvements which you can read about in the [pull request](https://github.com/spinnaker/front50/pull/1249).
+   - Two of the three are performance improvements which you can read about [here](https://spinnaker.io/changelogs/1.31.0-changelog/#front50)
 
 ### Kayenta
 - Added a storage service migrator.
@@ -161,8 +163,9 @@ As part of the modernization effort, Spring Boot has been updated to 2.5. Note t
    - See (https://github.com/spinnaker/kayenta/pull/940#issue-1639273840) for instructions on how to use these properties (in kayenta-local.yml) to enable the data migration and MySQL or PostgreSQL data source.
  
 ### Orca
-- Added an endpoint to call Front50's *GET /pipelines/triggeredBy/{pipelineId}/{status}*. The advantage of the new endpoint is that Front50 only returns a (potentially very small) subset of pipelines over the wire to Orca, in contrast to the current behavior where Front50 returns all pipelines, and leaves it to Orca to filter them.
-- 
+- Added a new configuration flag: *front50.useTriggeredByEndpoint* that defaults to false. When false, Orca queries Front50 for all pipelines each time a pipeline execution completes. When true, Orca only queries for pipelines triggered when a specific pipeline completes which is potentially a very small subset of all pipelines.
+
+
 
 ###  Spinnaker Community Contributions
 
