@@ -26,9 +26,4 @@ description: >
 
 ## Known issues
 
-- If provider infa is not correctly configured, and SNS topic confirmed, the Gate endpoint does not receive messages.
-
-- When Spinnaker is configured with Authentication (for example, SAML or Oauth2) the Gate endpoint is not excluded from the Spring Security filters, which means the notifications are not delivered.
-
-**Fix**: Deploy a dedicated Gate replicaset without authentication enabled. Only expose the `/aws/notify` endpoint
-
+- If provider infra is not correctly configured, and SNS topic confirmed, the Gate endpoint does not receive messages.
