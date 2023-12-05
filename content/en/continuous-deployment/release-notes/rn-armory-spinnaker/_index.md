@@ -32,5 +32,15 @@ To install, upgrade, and configure Armory Continuous Deployment (Armory CD), ens
 
 Starting with version 2.27.1, Armory CD follows a Long Term Support (LTS) release model with two LTS releases per year. Significant features and changes are packaged into an LTS release.
 
-Each LTS is supported for at least 1 year from its release date. During the supported lifetime of an LTS release, Armory ships patch releases for the LTS that include improvements such as CVE remediation, bug fixes, and performance improvements.
+Armory supports the three (3) most recent major LTS releases. During the supported lifetime of an LTS release, Armory ships minor releases for the LTS that include improvements such as CVE remediation, bug fixes, and performance improvements. Non-breaking features or enhancements may also be included and will typically be placed behind a feature flag.
 
+## Feature releases
+
+Starting with version 2.31.0 Armory CD is introducing feature releases which are an additional type of major release that will complement LTS releases. Feature releases will be released in between the two major LTS releases each year and will have a shortened support window of 6 months.
+
+Feature releases will
+
+* Enable Armory customer to test and consume Armory & OSS features faster
+* Improve the quality and stability of LTS releases by having changes pre-tested and validated ahead of time within the feature releases
+
+LTS releases will continue to go out roughly every 6 months with one or two feature releases also going out between them.
