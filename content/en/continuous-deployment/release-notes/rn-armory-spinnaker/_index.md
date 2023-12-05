@@ -1,6 +1,7 @@
 ---
 title: Armory Continuous Deployment Release Notes
 linkTitle: Armory CD Release Notes
+weight: 1
 aliases:
   - /releases/
   - /release/
@@ -17,7 +18,7 @@ description: >
 
 
 
-## Minimum Operator version
+## Minimum Armory Operator version
 
 To install, upgrade, and configure Armory Continuous Deployment (Armory CD), ensure that you are running at least the minimum Operator version for your release:
 
@@ -30,17 +31,19 @@ To install, upgrade, and configure Armory Continuous Deployment (Armory CD), ens
 
 ## LTS releases
 
-Starting with version 2.27.1, Armory CD follows a Long Term Support (LTS) release model with two LTS releases per year. Significant features and changes are packaged into an LTS release.
+Starting with version 2.27.1, Armory CD follows a Long Term Support (LTS) release model with two LTS releases per year. An LTS release contains significant features and changes.
 
-Armory supports the three (3) most recent major LTS releases. During the supported lifetime of an LTS release, Armory ships minor releases for the LTS that include improvements such as CVE remediation, bug fixes, and performance improvements. Non-breaking features or enhancements may also be included and will typically be placed behind a feature flag.
+Armory supports the three (3) most recent LTS releases. 
+
+During the supported lifetime of an LTS release, Armory ships _Feature_ releases for the LTS. 
 
 ## Feature releases
 
-Starting with version 2.31.0 Armory CD is introducing feature releases which are an additional type of major release that will complement LTS releases. Feature releases will be released in between the two major LTS releases each year and will have a shortened support window of 6 months.
+Starting with version 2.31.0, Armory is introducing a _Feature_ release, which is an additional type of major release that complements an LTS release. Feature releases may contain bug fixes, performance improvements, CVE remediation, and non-breaking features or enhancements placed behind a feature flag.
 
-Feature releases will
+Feature releases do the following:
 
-* Enable Armory customer to test and consume Armory & OSS features faster
-* Improve the quality and stability of LTS releases by having changes pre-tested and validated ahead of time within the feature releases
+* Enable customers to test and consume Armory CD and open source Spinnaker features faster
+* Improve the quality and stability of LTS releases by having changes tested and validated within the Feature releases
 
-LTS releases will continue to go out roughly every 6 months with one or two feature releases also going out between them.
+Armory releases an LTS version approximately every 6 months, with one or two Feature releases between LTS releases. Feature releases have a shortened support window of 6 months.
