@@ -57,7 +57,7 @@ Trigger Spinnaker pipelines natively when pull requests are opened in BitBucket 
 ## Early access features enabled manually
 
 ### **New**: Pipeline Triggers: only cache enabled pipelines with enabled triggers of specific types. 
-Enabling this flag may allow Echo to better utilize it’s cache, improving overall pipeline trigger performance for frequently used pipelines
+Enabling this flag may allow Echo to better utilize it’s cache, improving overall pipeline trigger performance for frequently used pipelines. See (https://github.com/spinnaker/echo/pull/1292) for more information regarding this feature flag.
 
 ### **New**: Option to disable healthcheck for Google provider
 Added the option to disable the healthcheck for Google provider similar to AWS and Kubernetes.
