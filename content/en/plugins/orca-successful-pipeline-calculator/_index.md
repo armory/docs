@@ -25,9 +25,7 @@ spec:
         insights:
           jobs:
             pipelineStatusCount:
-              cron: '1    1    1    *    *    *'
-              fetch:
-                limit: 1000
+              cron: '1 1 1 * * *'              
         spinnaker:
           extensibility:
             repositories:
@@ -47,7 +45,6 @@ spec:
 ```
 - `version`: Replace `<version>` with the plugin version compatible with your Spinnaker version.
 - `insights.jobs.pipelinStatusCount.cron`: Replace with a cron expression that corresponds to the time of the day with lowest load. It can be disabled by using `-` as an expression.
-- `insights.jobs.pipelineStatusCount.fetch.limit`: Indicates how many records are read at a time from `orca.pipelines`, adjust based on performance (Defaults to 1000).
 
-### [API Usage]({{< linkWithTitle "plugins/orca-successful-pipeline-calculator/api.md" >}})
+### {{< linkWithTitle "plugins/orca-successful-pipeline-calculator/api.md" >}}
 
