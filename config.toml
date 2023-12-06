@@ -14,10 +14,8 @@ defaultContentLanguageInSubdir = false
 enableMissingTranslationPlaceholders = true
 
 
-# Google Analytics configuration
-# https://gohugo.io/templates/internal/#configure-google-analytics
-# https://www.docsy.dev/docs/adding-content/feedback/#adding-analytics
-googleAnalytics = 'G-W14B82N2D2'
+# Google Analytics configuration - none for archived versions
+
 
 #disableKinds = ["taxonomy", "taxonomyTerm"]
 
@@ -209,7 +207,7 @@ version_menu = "Armory CD v2.30"
 # Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
 # Set this flag to "true" if you want to display the banner.
-archived_version = false
+archived_version = true
 
 # The version number for the version of the docs represented in this doc set.
 # Used in the "version-banner" partial to display a version number for the
@@ -333,18 +331,6 @@ theme = "forest"
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
 [[params.versions]]
-  version = "Armory CD v2.28"
-  githubbranch = "v2.28"
-  url = "https://v2-28.docs.armory.io/continuous-deployment/"
-
-[[params.versions]]
-  version = "Armory CD v2.27"
-  githubbranch = "v2.27"
-  url = "https://v2-27.docs.armory.io/armory-enterprise/"
-
-[[params.versions]]
-  version = "Armory CD v2.26"
-  githubbranch = "v2.26"
-  url = "https://v2-26.docs.armory.io/docs/"
-
-
+  version = "Armory CD Latest"
+  githubbranch = "master"
+  url = "https://docs.armory.io/"
