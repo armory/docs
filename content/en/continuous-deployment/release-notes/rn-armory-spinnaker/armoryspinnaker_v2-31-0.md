@@ -4,7 +4,7 @@ toc_hide: true
 version: 2.31.0
 date: 2023-12-05
 description: >
-  Release notes for Armory Continuous Deployment v2.31.0
+  Release notes for Armory Continuous Deployment v2.31.0. This is a Feature release with 6-month support.
 ---
 
 ## 2023/12/05 Release Notes
