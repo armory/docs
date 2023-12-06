@@ -4,16 +4,21 @@ toc_hide: true
 version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
 date: {{ (time.Now).Format "2006-01-02" }}
 description: >
-  Release notes for Armory Continuous Deployment v{{ (ds "payload").armoryVersion }}
+  Release notes for Armory Continuous Deployment v{{ (ds "payload").armoryVersion }}.
 ---
 
-## {{ (time.Now).Format "2006/01/02" }} Release Notes
+<!-- 
+MAKE SURE TO ADD 'LTS' OR 'FEATURE' TO THE TITLE TO INDICATE RELEASE CATEGORY. 
+FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous Deployment Release Feature" so users know release category and support time period 
+-->
 
-> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a previous working version and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+## {{ (time.Now).Format "2006/01/02" }} release notes
+
+>Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory {{ (ds "payload").armoryVersion }}, use Armory Operator 1.70 or later.
+To install, upgrade, or configure Armory CD {{ (ds "payload").armoryVersion }}, use Armory Operator 1.70 or later.
 
 ## Security
 
@@ -47,8 +52,7 @@ There have also been numerous enhancements, fixes, and features across all of Sp
 
 ### Bill Of Materials (BOM)
 
-Here's the BOM for this version.
-<details><summary>Expand</summary>
+<details><summary>Expand to see the BOM</summary>
 <pre class="highlight">
 <code>{{ (ds "payload").stack | data.ToYAML }}</code>
 </pre>
