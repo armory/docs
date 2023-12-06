@@ -1,5 +1,5 @@
 ---
-title: v2.31.0 Armory Release (Spinnaker™ v1.31.3)
+title: v2.31.0 Armory Continuous Deployment Release (Spinnaker™ v1.31.3)
 toc_hide: true
 version: 2.31.0
 date: 2023-12-05
