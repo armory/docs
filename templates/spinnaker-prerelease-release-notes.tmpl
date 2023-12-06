@@ -8,7 +8,7 @@ description: >
 
 ---
 
-## {{ (time.Now).Format "2006/01/02" }} Release Notes
+## {{ (time.Now).Format "2006/01/02" }} release notes
 
 ## Disclaimer
 
@@ -31,7 +31,7 @@ You acknowledge that Armory has provided the Services in reliance upon the limit
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory {{ (ds "payload").armoryVersion }}, use Armory Operator 1.70 or later.
+To install, upgrade, or configure Armory CD {{ (ds "payload").armoryVersion }}, use Armory Operator 1.70 or later.
 
 ## Security
 
@@ -65,8 +65,7 @@ There have also been numerous enhancements, fixes, and features across all of Sp
 
 ### Bill Of Materials (BOM)
 
-Here's the BOM for this version.
-<details><summary>Expand</summary>
+<details><summary>Expand to see the BOM</summary>
 <pre class="highlight">
 <code>{{ (ds "payload").stack | data.ToYAML }}</code>
 </pre>
