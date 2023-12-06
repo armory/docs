@@ -1,5 +1,5 @@
 ---
-title: v2.27.8 Armory Release (OSS Spinnaker™ v1.27.0)
+title: v2.27.8 Armory Continuous Deployment Release (Spinnaker™ v1.27.0)
 toc_hide: true
 version: 02.27.08
 date: 2023-04-18
