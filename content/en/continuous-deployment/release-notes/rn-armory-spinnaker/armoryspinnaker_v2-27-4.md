@@ -1,5 +1,5 @@
 ---
-title: v2.27.4 Armory Release (OSS Spinnaker™ v1.27.1)
+title: v2.27.4 Armory Continuous Deployment Release (Spinnaker™ v1.27.1)
 toc_hide: true
 version: 02.27.04
 date: 2022-09-02
