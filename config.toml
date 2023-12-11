@@ -15,7 +15,7 @@ enableMissingTranslationPlaceholders = true
 
 
 # Google Analytics configuration - none for archived versions
-
+googleAnalytics = 'G-41Q5S15LP7'
 
 #disableKinds = ["taxonomy", "taxonomyTerm"]
 
