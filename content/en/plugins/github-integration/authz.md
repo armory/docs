@@ -11,9 +11,24 @@ description: >
 
 ## Authorization (AuthZ)
 
-This feature enables AuthZ support for GitHub App accounts.
+This feature enables AuthZ support for GitHub App accounts providing:
 
-Fiat is the Spinnaker microservice responsible for authorization (authz) for the other Spinnaker services. It is not enabled by default, so users are able to perform any action in Spinnaker. When enabled, Fiat checks the user's permissions before allowing the action to proceed.
+**Compliance and Security**
+* Authz for GitHub App accounts allows you to enforce access controls on a per-account basis, securing access to specific
+repositories and/or GitHub organisations to only authorised groups/teams.
+
+**Granular Control**
+* Authz for GitHub App accounts provides granular control over who can perform actions within each account. This 
+fine-grained permission control is crucial for maintaining a least privilege principle, where users have only the necessary access to perform their tasks, reducing the overall security surface.
+
+**Scalability**
+* Authz for GitHub App accounts scales effectively as the number of accounts grows. This scalability is essential for 
+organizations managing diverse and expanding infrastructure, ensuring that access controls remain manageable 
+and effective.
+
+Fiat is the Spinnaker microservice responsible for authorization (authz) for the other Spinnaker services. 
+It is not enabled by default, so users are able to perform any action in Spinnaker. When enabled, Fiat checks the user's permissions before allowing the action to proceed.
+
 
 ### How this feature works
 
