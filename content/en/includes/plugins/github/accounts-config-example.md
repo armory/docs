@@ -14,12 +14,14 @@ github:
         defaultBranch: master
         githubAppId: 9753
         githubAppPrivateKey: encrypted:k8s!n:spin-secrets!k:github-app-9753-privatekey
+        permissions: []
       - name: SecondAppRepo
         organization:  company-public
         repository: second-app-repo
         defaultBranch: main
         githubAppId: 9753
         githubAppPrivateKey: encrypted:k8s!n:spin-secrets!k:github-app-9753-privatekey
+        permissions: []
       - name: CompanyPrivateOrgAllRepos
         organization: company-private
         orgWideInstallation: true
@@ -27,4 +29,5 @@ github:
         defaultBranch: main
         githubAppId: 1357
         githubAppPrivateKey: encrypted:k8s!n:spin-secrets!k:github-app-1357-privatekey
+        permissions: []
 ```

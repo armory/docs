@@ -1,13 +1,31 @@
 <div class="section-index">
 
 <div>
-  <h3><a class="fas fa-rss" target="_blank" href="{{ .Permalink }}/index.xml"></a></h3>
+
+<strong>Release number layout</strong>
+<p>
+Armory release numbers help customers to distinguish releases at a glance.
+</p>
+<details><summary>Click to expand explanation</summary>
+<pre><!-- language: lang-none -->
+| Armory CD Sample |
+| ---------------- |
+|  2  .  30  .  1  |
+   \      \     \
+    \      \     Dot Release: Contains bug fixes, CVE updates, and/or features behind a feature flag
+     \      Long Term Support (LTS) Release: Contains significant features, bug fixes, CVE updates, and code/library changes (3 releases support schedule)
+      \     Feature Release: Contains significant features, bug fixes, CVE updates, and code/library changes (~6 month support schedule)
+       Indicates Armory CD (a "1" denotes an open source Spinnaker release)
+</pre>
+</details>
+<br>
+
 </div>
   {{ $pages := (where .Site.Pages "Section" .Section).ByParam "version" }}
   {{ $pagesReverse := $pages.Reverse }}
   {{ $parent := .Page }}
 
-  <div>Armory supports the three most recent minor versions:</div>
+  <div><strong>These are the latest three releases</strong></div>
 
   <ul>
     {{ $semverActiveMajor := 10000 }}
@@ -19,9 +37,9 @@
     {{ range $pagesReverse }}
       {{ if eq .Parent $parent }}
 
-        {{/* this will pickout the first {major}.{minor}.{patch} numbers */}}
+        {{/* this will pick out the first {major}.{minor}.{patch} numbers */}}
         {{ $semverSlice := findRE "[0-9]+" .Title }}
-        {{ if and (ge (len $semverSlice) 3) (lt (len $displayedTitles) 3) }}
+        {{ if and (ge (len $semverSlice) 4) (lt (len $displayedTitles) 4) }}
           {{if and (le ( index $semverSlice 0 ) $semverActiveMajor) (lt ( index $semverSlice 1 ) $semverActiveMinor)  }}
             {{ $semverActiveMajor = index $semverSlice 0 }}
             {{ $semverActiveMinor = index $semverSlice 1 }}
@@ -33,7 +51,7 @@
       {{end}}
     {{ end }}
   </ul>
-  <div>Versions listed below will soon be deprecated:</div>
+  <div><strong>Versions listed below will soon be deprecated</strong></div>
   <ul>
 
     {{$displayedMinoredVersions := 0}}
@@ -41,7 +59,7 @@
     {{ range $pagesReverse }}
       {{ if and (eq .Parent $parent) (not (in $displayedTitles .Title)) }}
 
-        {{/* this will pickout the first {major}.{minor}.{patch} numbers */}}
+        {{/* this will pick out the first {major}.{minor}.{patch} numbers */}}
         {{ $semverSlice := findRE "[0-9]+" .Title }}
 
         {{ if and (ge (len $semverSlice) 3)  (lt $displayedMinoredVersions 1) }}
@@ -54,6 +72,6 @@
     {{ end }}
   </ul>
 
-  <div>Versions older than the last 3 minor versions can be found in the <a href="archive">Armory Release Notes Archive</a>.</div>
+  <div>You can find older versions in the <a href="archive">Armory Release Notes Archive</a>.</div>
 
 </div>

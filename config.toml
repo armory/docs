@@ -179,16 +179,16 @@ weight = 1
 [params]
 # See codenew shortcode
 deploy-engine-plugin-version = "0.16.8"
-armory-version = "2.30.x"
+armory-version = "2.31.x"
 #used in air-gapped
 matching-oss-version-exact = "1.27.0"
 # used in agent compat and system requirements
 mysql-version="5.7; AWS Aurora"
 postgresql-version="10+"
 #used in the Operator docs
-armory-version-exact = "2.30.0"
+armory-version-exact = "2.31"
 halyard-armory-version = "1.12.1"
-kubesvc-version="1.0.72"
+kubesvc-version="1.0.73"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
@@ -204,7 +204,7 @@ terms_and_conditions = "https://www.armory.io/terms-and-conditions/"
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
-version_menu = "Armory CD v2.30"
+version_menu = "Armory CD v2.31"
 
 # Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
@@ -215,7 +215,7 @@ archived_version = false
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
 # Also used in the PCM to highlight what version the PCM is for
-version = "2.30.0"
+version = "2.31.x"
 
 # A link to latest version of the Armory CD docs. Used in the "version-banner" partial to
 # point people to the main Armory CD docs site.
@@ -333,6 +333,11 @@ theme = "forest"
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
 [[params.versions]]
+  version = "Armory CD v2.30"
+  githubbranch = "v2.30"
+  url = "https://v2-30.docs.armory.io/continuous-deployment/"
+
+[[params.versions]]
   version = "Armory CD v2.28"
   githubbranch = "v2.28"
   url = "https://v2-28.docs.armory.io/continuous-deployment/"
@@ -341,10 +346,3 @@ theme = "forest"
   version = "Armory CD v2.27"
   githubbranch = "v2.27"
   url = "https://v2-27.docs.armory.io/armory-enterprise/"
-
-[[params.versions]]
-  version = "Armory CD v2.26"
-  githubbranch = "v2.26"
-  url = "https://v2-26.docs.armory.io/docs/"
-
-
