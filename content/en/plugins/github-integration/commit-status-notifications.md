@@ -16,8 +16,7 @@ Echo is the microservice in Spinnaker which (among other functionalities) manage
 Using the GitHub Integration plugin you can configure Echo to create [GitHub Commit Statuses](https://docs.github.com/en/rest/commits/statuses?apiVersion=2022-11-28#create-a-commit-status)
 in a repository by authenticating using the GitHub App accounts configured in the plugin.
 
-By using the GitHub Integration's plugin GitHub Commit Status notifications you can link the deployment pipeline statuses 
-to GitHub status checks providing clear and immediate feedback to Developers about the deployment pipeline status. 
+By using the GitHub Integration's plugin GitHub Commit Status notifications, you can link the deployment pipeline statuses to GitHub status checks. This feature provides clear and immediate feedback to developers about the deployment pipeline status. 
 
 ## How this feature works
 

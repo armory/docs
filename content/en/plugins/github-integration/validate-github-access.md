@@ -10,11 +10,9 @@ description: >
 
 ## Validate GitHub access
 
-This feature validates GitHub access based on configuration assigned to a GitHub App account providing an additional
-**access control** validation layer of a GitHub App account in Spinnaker against the defined GitHub Teams in the repository.
+This feature validates GitHub access based on configuration assigned to a GitHub App account, providing an additional **access control** validation layer of a GitHub App account in Spinnaker against the defined GitHub Teams in the repository.
 
 Using the `impersonateGitHubTeam` feature, you can validate and enforce GitHub App account access to repositories based on the GitHub team's assigned configuration.
-
 
 ### How this feature works
 
