@@ -38,6 +38,14 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+### Pipelines-as-Code `multipleBranchesEnabled: false` not working as expected
+
+When `multipleBranchesEnabled: false`, you may notice that the configuration `multipleBranchesEnabled` is never set to  even though it is set to false under the Dinghy profiles settings. This may cause `dinghyfile` changes on the master/main branch to be pushed unexpectedly. 
+
+You can read more about this issue in the [KB article](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010817).
+
+**Affected versions**: Armory CD 2.30.3
+
 ### Artifact Binding
 
 Customers who utilize parent pipelines to provide artifacts to child pipelines may encounter unexpected errors or results in 2.30+ as child pipelines may not resolve those artifacts correctly.
