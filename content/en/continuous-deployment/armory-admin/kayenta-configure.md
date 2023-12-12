@@ -10,16 +10,14 @@ description: >
 
 ## Kayenta Overview
 
-Kayenta is the Spinnaker service that performs Automated Canary Analysis (ACA). The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence. For information about how to use Canary deployments, see {{< linkWithTitle "kayenta-canary-use" >}}.
+Kayenta is the Spinnaker service that performs automated canary analysis. The goal of Kayenta is to provide you with confidence that a deployment is safe through automation and intelligence. 
 
 ## Configure Kayenta
 
 The following example is a `SpinnakerService` manifest. The example config uses Datadog as the metrics provider and stores canary configs and analysis in a GCS bucket:
 
-> For information about how to configure other providers see [Canary Config]({{< ref "canary-op-config" >}}) unless you use Dynatrace or AWS CloudWatch. If you use one of those as the metrics provider, see [Use Canary Analysis with Dynatrace]({{< ref "kayenta-canary-dynatrace" >}}) or [Use Canary Analysis with AWS CloudWatch]({{< ref "kayenta-canary-cloudwatch" >}}).
-
 ```yaml
-apiversion: spinnaker.io/{{< param operator-extended-crd-version >}}
+apiversion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}
 kind: SpinnakerService
 metadata:
   name: spinnaker
@@ -66,3 +64,10 @@ spec:
       gcp-sa.json: |
         <JSON CONTENT HERE. WATCH YOUR SPACING>
 ```
+
+For information about how to configure other providers see [Canary Config]({{< ref "continuous-deployment/installation/armory-operator/op-manifest-reference/canary-op-config" >}}) unless you use Dynatrace or AWS CloudWatch. If you use one of those as the metrics provider, see [Use Canary Analysis with Dynatrace]({{< ref "continuous-deployment/spinnaker-user-guides/canary/kayenta-canary-dynatrace" >}}) or the [AWS CloudWatch Metrics Plugin]({{< ref "plugins/aws-cloudwatch/index.md" >}}).
+
+
+## {{% heading "nextSteps" %}}
+
+For information about how to use canary deployments, see {{< linkWithTitle "continuous-deployment/spinnaker-user-guides/canary/kayenta-canary-use" >}}.
