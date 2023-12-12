@@ -40,7 +40,7 @@ Create a `github-integration-plugin.yml` file with the following contents:
 
 {{% alert title="Conflict with Armory CDSH v2.30.x" color="warning" %}}
 
-[Known issue]({{< ref "plugins/github-integration/release-notes#armoryheader-plugin-conflict" >}}): The GitHub Integration plugin conflicts with the Armory.Header plugin version included in CDSH v2.30.x. You must install version 0.2.0 of the Armory.Header plugin. 
+[Known issue]({{< ref "plugins/github-integration/release-notes#armoryheader-plugin-conflict" >}}): The GitHub Integration plugin conflicts with the Armory.Header plugin version included in Armory CD v2.30.x. You must install version 0.2.0 of the Armory.Header plugin. 
 <details><summary>Show me how</summary>
 {{< include "plugins/github/armory-header-plugin.md" >}}
 </details>
