@@ -14,7 +14,7 @@ description: >
   Armory Continuous Deployment releases, long term support releases, and patches.
 ---
 
-<!-- the release-notes-recent.html layout inserts the section index list at the top of the page -->
+<!-- partials/list-release-notes-recent.html layout inserts the section index list at the top of the page -->
 
 
 

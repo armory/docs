@@ -8,9 +8,9 @@ Armory release numbers help customers to distinguish releases at a glance.
 </p>
 <details><summary>Click to expand explanation</summary>
 <pre><!-- language: lang-none -->
-| Armory CD Sample | 
-| ---------------- | 
-|  2  .  30  .  1  | 
+| Armory CD Sample |
+| ---------------- |
+|  2  .  30  .  1  |
    \      \     \
     \      \     Dot Release: Contains bug fixes, CVE updates, and/or features behind a feature flag
      \      Long Term Support (LTS) Release: Contains significant features, bug fixes, CVE updates, and code/library changes (3 releases support schedule)
@@ -25,7 +25,7 @@ Armory release numbers help customers to distinguish releases at a glance.
   {{ $pagesReverse := $pages.Reverse }}
   {{ $parent := .Page }}
 
-  <div><strong>Armory supports the three most recent major releases</strong></div>
+  <div><strong>These are the latest three releases</strong></div>
 
   <ul>
     {{ $semverActiveMajor := 10000 }}
@@ -37,9 +37,9 @@ Armory release numbers help customers to distinguish releases at a glance.
     {{ range $pagesReverse }}
       {{ if eq .Parent $parent }}
 
-        {{/* this will pickout the first {major}.{minor}.{patch} numbers */}}
+        {{/* this will pick out the first {major}.{minor}.{patch} numbers */}}
         {{ $semverSlice := findRE "[0-9]+" .Title }}
-        {{ if and (ge (len $semverSlice) 3) (lt (len $displayedTitles) 3) }}
+        {{ if and (ge (len $semverSlice) 4) (lt (len $displayedTitles) 4) }}
           {{if and (le ( index $semverSlice 0 ) $semverActiveMajor) (lt ( index $semverSlice 1 ) $semverActiveMinor)  }}
             {{ $semverActiveMajor = index $semverSlice 0 }}
             {{ $semverActiveMinor = index $semverSlice 1 }}
@@ -59,7 +59,7 @@ Armory release numbers help customers to distinguish releases at a glance.
     {{ range $pagesReverse }}
       {{ if and (eq .Parent $parent) (not (in $displayedTitles .Title)) }}
 
-        {{/* this will pickout the first {major}.{minor}.{patch} numbers */}}
+        {{/* this will pick out the first {major}.{minor}.{patch} numbers */}}
         {{ $semverSlice := findRE "[0-9]+" .Title }}
 
         {{ if and (ge (len $semverSlice) 3)  (lt $displayedMinoredVersions 1) }}
@@ -72,6 +72,6 @@ Armory release numbers help customers to distinguish releases at a glance.
     {{ end }}
   </ul>
 
-  <div>You can find versions older than the last 3 major releases in the <a href="archive">Armory Release Notes Archive</a>.</div>
+  <div>You can find older versions in the <a href="archive">Armory Release Notes Archive</a>.</div>
 
 </div>
