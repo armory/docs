@@ -20,6 +20,17 @@ This new feature, when enabled, verifies if the author of a commit that changed 
 
 This feature is **disabled by default**. To enable this feature, see [Permissions check for a commit]({{< ref "plugins/pipelines-as-code/install/configure#permissions-check-for-a-commit" >}}).
 
+### Known issue
+
+#### `multipleBranchesEnabled: false` not working as expected
+
+**Armory CD 2.30.3, 2.30.4, 2.30.5**
+
+When `multipleBranchesEnabled: false`, you may notice that the configuration `multipleBranchesEnabled` is never set to  even though it is set to false under the Dinghy profiles settings. This may cause `dinghyfile` changes on the master/main branch to be pushed unexpectedly. 
+
+You can read more about this issue in the [KB article](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010817).
+
+
 ## 2.27
 
 ### Multi-branch enhancement

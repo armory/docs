@@ -9,11 +9,11 @@ description: >
 
 ## 2023/11/06 Release Notes
 
-> Note: If you're experiencing production issues after upgrading Spinnaker, rollback to a previous working version and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
+> Note: If you're experiencing production issues after upgrading Spinnaker or Armory CD, rollback to a previous working version and please report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory 2.30.4, use Armory Operator 1.70 or later.
+To install, upgrade, or configure Armory 2.30.4+, use Armory Operator 1.70 or later.
 
 ## Security
 
@@ -37,6 +37,14 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+
+### Pipelines-as-Code `multipleBranchesEnabled: false` not working as expected
+
+When `multipleBranchesEnabled: false`, you may notice that the configuration `multipleBranchesEnabled` is never set to  even though it is set to false under the Dinghy profiles settings. This may cause `dinghyfile` changes on the master/main branch to be pushed unexpectedly. 
+
+You can read more about this issue in the [KB article](https://support.armory.io/support?id=kb_article_view&sysparm_article=KB0010817).
+
+**Affected versions**: Armory CD 2.30.3, 2.30.4
 
 ### Artifact Binding
 
