@@ -31,7 +31,7 @@ See [Create a Terraform Integration stage]({{</* ref "plugins/terraform/use#crea
 
 ### `ref`
 
-`ref` relies on unique file names. This method is preferred because we do not have to update relative file paths in links when we reorganize content. 
+`ref` relies on unique file names. If the filename is not unique, you must use include the path.
 
 Examples:
 
@@ -39,6 +39,10 @@ Examples:
 [Overview - Load Balancers]({{</* ref "load-balancers" */>}})
 
 [SpinnakerService manifest sections]({{</* ref "op-config-manifest#manifest-sections"  */>}})
+
+Because there are many files named `release-notes.md`, include the path:
+
+See the Policy Engine [release notes]({{</* ref "plugins/policy-engine/release-notes" */>}}).
 ```
 
 Renders to:
@@ -47,7 +51,9 @@ Renders to:
 
 [SpinnakerService  manifest sections]({{< ref "continuous-deployment/installation/armory-operator/op-config-manifest#manifest-sections"  >}})
 
->With `ref`, you can use a unique file name or the the path to the file.
+See the Policy Engine [release notes]({{< ref "plugins/policy-engine/release-notes" >}}).
+
+
 
 Reference:
 
@@ -56,7 +62,7 @@ Reference:
 
 ### `relref`
 
-The second is `relref`, which requires the complete path to the file. Code:
+The second is `relref`, which **requires** the complete path to the file. 
 
 ```markdown
 [Overview - Load Balancers]({{</* relref "/continuous-deployment/overview/load-balancers" */>}})
