@@ -1,9 +1,9 @@
 ---
-title: Enable GitHub Commit Status Echo notifications
+title: Enable GitHub Commit Status Echo Notifications
 linkTitle: Enable Notifications
 weight: 10
 description: >
-  Learn how to enable an enhanced Echo notification type which can be configured to send notifications for pipelines and/or stages statuses with custom context and description linking to the Spinnaker UI as a target URL. 
+  Learn how to enable an enhanced Echo notification type that can be configured to send notifications for pipelines and/or stages statuses with custom context and description linking to the Spinnaker UI as a target URL. 
 ---
 
 ![Proprietary](/images/proprietary.svg) ![Beta](/images/beta.svg)
