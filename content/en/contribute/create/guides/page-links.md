@@ -7,15 +7,13 @@ description: >
 
 ## How to link to other pages in the docs
 
-Hugo has two useful shortcodes, `ref` and `relref`, for linking to other pages within the docs.
+Hugo has two useful shortcodes, `ref` and `relref`, for linking to other pages within the docs. Additionally, the docs has custom shortcodes that create links with either the page's `title` or `linkTitle`.
 
 {{% alert color="warning" title="DO NOT HARDCODE PATHS" %}}
 
-Hugo doesn't detect broken links when the hardcode the path to an internal page.
+Hugo doesn't detect broken links when you hardcode the path to an internal page.
 
-When you use a shortcode, Hugo **does** throw a compile error when you change the page's location.
-
-
+When you use a shortcode, Hugo **does** throw a compile error when page's path is incorrect (typo, changed page name, moved the page's location, etc).
 
 **DO NOT**
 
