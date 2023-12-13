@@ -44,16 +44,15 @@ So here are some takeaways and guiding principles that result from the above:
     * More specific permissions in your cluster (this is not covered in the scope of this document)
 * It is preferable to create a distinct kubeconfig file for each Spinnaker Cloud Provider Kubernetes account; each of these kubeconfigs should have **one** cluster, **one** user, and **one** context referencing the cluster and user.  Its default context should reference the single context
 
-## Prerequisites for adding a Kubernetes Service Account
+## {{% heading "prereq" %}}
 
 This document assumes the following:
 
-* Your Spinnaker is up and running
-* Your Spinnaker was installed and configured via the Operator
-* If Spinnaker was installed with the Operator, you have access to the `SpinnakerService` manifest and have the kubeconfig for the Spinnaker cluster.
+* Your Armory CD or Spinnaker instance is running
+* If using Spinnaker, you installed and configured Spinnaker using Armory's Spinnaker Operator. You have access to the `SpinnakerService` manifest and have the kubeconfig for the Spinnaker cluster.
 * You have a valid kubeconfig that currently has Cluster Admin access to your target Kubernetes cluster so you can create the relevant Kubernetes entities (`service account`, `role`, and `rolebinding`) in the target cluster; you have `kubectl` and are able to use it to interact with your target Kubernetes cluster.
 
-The first several steps of this document will take place on a system that has `kubectl` and the kubeconfig.
+The first several steps of this document take place on a system that has `kubectl` and the kubeconfig.
 
 
 ## Workflow for adding a Kubernetes Service Account
@@ -132,6 +131,13 @@ export TARGET_NAMESPACES_COMMA_SEPARATED=dev-1,dev-2
   --namespace ${SPINNAKER_NAMESPACE} \
   --service-account-name ${SPINNAKER_SERVICE_ACCOUNT_NAME}
 ```
+
+{{% alert color="warning" title="Important" %}}
+
+For Kubernetes v1.24+, service account tokens are no longer generated when you execute this script. See the `LegacyServiceAccountTokenNoAutoGeneration` entry in Kubernetes 1.24's [Urgent Upgrade Notes](LegacyServiceAccountTokenNoAutoGeneration) for details and the new process to follow for creating service account tokens.
+
+{{% /alert %}}
+
 
 ### Option 2: Create the service account with namespace-specific permissions
 
