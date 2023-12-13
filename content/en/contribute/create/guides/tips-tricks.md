@@ -96,26 +96,3 @@ Have something that you need consistent across multiple pages, such as a known i
 
 See examples in `content/en/includes` and any release notes page.
 
-## Link to other pages in the docs
-
-Hugo has two useful shortcodes, `ref` and `relref`, for linking to other pages within the docs.
-
-`ref` relies on unique file names. This method is preferred because we don&#39;t have to update relative file paths in links when we reorganize content. Code:
-
-```
-[ref link to Overview - Load Balancers]({{</* ref "load-balancers" */>}})
-
-[SpinnakerService Options]({{</* ref "operator-config#specspinnakerconfigfiles"  */>}})
-```
-
-The second is `relref`, which requires the complete path to the file. Code:
-
-```
-[relref link to Overview - Load Balancers]({{</* relref "/docs/overview/load-balancers" */>}})
-```
-
-The third option option is the custom `linkWithTitle` shortcode, which displays the page's title as the link text.
-
-```
-See the {{</* linkWithTitle "artifacts-ecr-connect" */>}} guide for details.
-```
