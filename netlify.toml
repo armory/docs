@@ -64,6 +64,7 @@
   to = "/plugins/terraform/use/"
 
 # cloudwatch plugin redirect
+[[redirects]]
   from = "/continuous-deployment/spinnaker-user-guides/kayenta-canary-cloudwatch/"
   to = "/plugins/aws-cloudwatch/"
 
