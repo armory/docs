@@ -12,6 +12,18 @@ description: >
 
 Kayenta is the Spinnaker service that performs automated canary analysis. The goal of Kayenta is to provide you with confidence that a deployment is safe through automation and intelligence. 
 
+## Enable Kayenta
+
+Add the following to your  `SpinnakerService` manifest:
+
+```yaml
+spec:
+  spinnakerConfig:
+    config:
+      canary:
+        enabled: true   # Enable/disable canary analysis
+```
+
 ## Configure Kayenta
 
 The following example is a `SpinnakerService` manifest. The example config uses Datadog as the metrics provider and stores canary configs and analysis in a GCS bucket:
@@ -65,7 +77,7 @@ spec:
         <JSON CONTENT HERE. WATCH YOUR SPACING>
 ```
 
-For information about how to configure other providers see [Canary Config]({{< ref "continuous-deployment/installation/armory-operator/op-manifest-reference/canary-op-config" >}}) unless you use Dynatrace or AWS CloudWatch. If you use one of those as the metrics provider, see [Use Canary Analysis with Dynatrace]({{< ref "continuous-deployment/spinnaker-user-guides/canary/kayenta-canary-dynatrace" >}}) or the [AWS CloudWatch Metrics Plugin]({{< ref "plugins/aws-cloudwatch/index.md" >}}).
+For information about how to configure other providers see [Canary Config]({{< ref "continuous-deployment/installation/armory-operator/op-manifest-reference/canary-op-config" >}}) unless you use Dynatrace or AWS CloudWatch. If you use one of those as the metrics provider, see [Use Canary Analysis with Dynatrace]({{< ref "continuous-deployment/spinnaker-user-guides/canary/kayenta-canary-dynatrace" >}}) or the [AWS CloudWatch Metrics Plugin]({{< ref "plugins/aws-cloudwatch/overview.md" >}}).
 
 
 ## {{% heading "nextSteps" %}}
