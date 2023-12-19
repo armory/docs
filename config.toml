@@ -188,7 +188,7 @@ postgresql-version="10+"
 #used in the Operator docs
 armory-version-exact = "2.31"
 halyard-armory-version = "1.12.1"
-kubesvc-version="1.0.73"
+kubesvc-version="1.1.0"
 operator-extended-crd-version = "v1alpha2"
 operator-oss-crd-version = "v1alpha2"
 opa-server-version = "0.28.0"
