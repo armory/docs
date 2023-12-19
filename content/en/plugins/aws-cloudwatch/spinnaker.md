@@ -1,8 +1,8 @@
 ---
-title: Install and Use the AWS CloudWatch Metrics Plugin in Spinnaker
+title: Install and Use the AWS CloudWatch Integration Plugin in Spinnaker
 linkTitle: Spinnaker Install
 description: >
-  Install and use the AWS CloudWatch Metrics Plugin in your Spinnaker instance.
+  Install and use the AWS CloudWatch Integration Plugin in your Spinnaker instance.
 ---
 
 

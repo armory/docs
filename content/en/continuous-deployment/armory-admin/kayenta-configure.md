@@ -77,7 +77,7 @@ spec:
         <JSON CONTENT HERE. WATCH YOUR SPACING>
 ```
 
-For information about how to configure other providers see [Canary Config]({{< ref "continuous-deployment/installation/armory-operator/op-manifest-reference/canary-op-config" >}}) unless you use Dynatrace or AWS CloudWatch. If you use one of those as the metrics provider, see [Use Canary Analysis with Dynatrace]({{< ref "continuous-deployment/spinnaker-user-guides/canary/kayenta-canary-dynatrace" >}}) or the [AWS CloudWatch Metrics Plugin]({{< ref "plugins/aws-cloudwatch/overview.md" >}}).
+For an overview of how to configure metrics providers see [Canary Config]({{< ref "continuous-deployment/installation/armory-operator/op-manifest-reference/canary-op-config" >}}). For Dynatrace and AWS Cloudwatch providers, see [Use Canary Analysis with Dynatrace]({{< ref "continuous-deployment/spinnaker-user-guides/canary/kayenta-canary-dynatrace" >}}) or [AWS CloudWatch Integration Plugin]({{< ref "plugins/aws-cloudwatch/overview.md" >}}).
 
 
 ## {{% heading "nextSteps" %}}

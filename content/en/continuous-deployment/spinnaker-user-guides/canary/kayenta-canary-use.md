@@ -8,8 +8,6 @@ description: >
   Learn how to configure and use Kayenta for Automatic Canary Analysis in Spinnaker.
 ---
 
-
-
 ## Overview of Kayenta for automated canary analysis
 
 Kayenta is the Spinnaker service that performs automated canary analysis. The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence.
@@ -20,7 +18,7 @@ Kayenta uses real-time data sources to validate that a canary is good or bad. Ka
 * Stackdriver (Google)
 * Prometheus
 * New Relic
-* Dynatrace (Armory feature)
+* Dynatrace
 * AWS CloudWatch
 
 ## {{% heading "prereq" %}}
@@ -41,7 +39,7 @@ You can also find more information about Kayenta in [Automated Canary Deployment
 
 ## Canary configs
 
->You may need to refresh your browser page to see these changes after enabling the Canary above.
+>You may need to refresh your browser page to see your changes.
 
 Your menubar should show **Delivery** and you should see the option for **Canary Configs** as a hover, or as a submenu element:
 

@@ -1,8 +1,8 @@
 ---
-title: Enable and Use the AWS CloudWatch Metrics Plugin in Armory CD
+title: Enable and Use the AWS CloudWatch Integration Plugin in Armory CD
 linkTitle: Armory CD Enable
 description: >
-  Enable and use the AWS CloudWatch Metrics Plugin in your Armory Continuous Deployment instance.
+  Enable and use the AWS CloudWatch Integration Plugin in your Armory Continuous Deployment instance.
 ---
 
 
