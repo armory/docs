@@ -8,65 +8,55 @@ description: >
   Learn how to configure and use Kayenta for Automatic Canary Analysis in Spinnaker.
 ---
 
-{{< include "user-guide/canary/config-kayenta-frag.md" >}}
+## Overview of Kayenta for automated canary analysis
 
-## Overview of Kayenta for Automated Canary Analysis
+Kayenta is the Spinnaker service that performs automated canary analysis. The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence.
 
-Kayenta is the Spinnaker service that performs Automated Canary Analysis (ACA). The goal of Kayenta is to provide the end user with confidence that a deployment is safe through automation and intelligence.
-
-Kayenta uses real-time data sources to validate that a canary is good or bad. Today, Kayenta supports the following real-time data sources:
+Kayenta uses real-time data sources to validate that a canary is good or bad. Kayenta supports the following real-time data sources:
 
 * DataDog
 * Stackdriver (Google)
 * Prometheus
 * New Relic
-* Dynatrace (Armory feature)
-* CloudWatch (Armory feature)
+* Dynatrace
+* AWS CloudWatch
 
-## Configuring Kayenta on an application
+## {{% heading "prereq" %}}
 
-If Kayenta is enabled for your instance, if you go to an application's config
-you should see a checkbox to enable Canarying:
+{{< include "user-guide/canary/config-kayenta-frag.md" >}}
+
+## Configuring Kayenta on an app
+
+When Kayenta is enabled for your instance, you should see a **Canary** option in your app's config section:
 
 {{< figure src="/images/Image-2018-10-23-at-3.25.33-PM.png" >}}
 
-Make sure it's checked and saved.
+Check **Canary** and save.
 
 If you don't see this option in your application config, make sure you've [configured Kayenta](https://www.spinnaker.io/guides/user/canary/).
 
-You can also find more information about Kayenta on [Automated Canary Deployments]({{< ref "kayenta-configure" >}}).
-
-In this document, we will quickly run through the process to simply get you going.
+You can also find more information about Kayenta in [Automated Canary Deployments]({{< ref "continuous-deployment/armory-admin/kayenta-configure" >}}).
 
 ## Canary configs
 
-NOTE:  You may need to refresh your browser page to see these changes
-after enabling the Canary above.
+>You may need to refresh your browser page to see your changes.
 
-Your menubar should show "Delivery" and you should see the option for
-"Canary Configs" as a hover, or as a submenu element:
+Your menubar should show **Delivery** and you should see the option for **Canary Configs** as a hover, or as a submenu element:
 
 {{< figure src="/images/[069c7e1865637f78eb92a091172c92da]_Image-2018-04-18-at-12.45.18-PM.png" >}}
 
-Click on "Canary Configs" and "Add configuration".  You should see a
-mostly-blank form:
+Click on **Canary Configs** and **Add configuration**.  You should see form similar to this:
 
-{{< figure src="/images/Image-2018-04-18-at-12.56.54-PM.png" >}}
+{{< figure src="/images/Image-2018-04-18-at-12.56.54-PM.png" width="80%" height="80%" >}}
 
-*Configuration Name*:  Spaces are not allowed, only alphanumerics, hyphens and
-underscores.  This name will be displayed as an option in the canary stage
-configuration later, so we recommend you make it a meaningful name.
+**Configuration Name**:  Spaces are not allowed, only alphanumerics, hyphens and
+underscores. This name is displayed as an option in the canary stage configuration later, so choose a meaningful name.
 
-*Metric Store*:  If you only configured one metrics store, this will already
-be set for you.  Otherwise, you can choose from the options, the default will
-be the one you referenced in the environment file.
+**Metric Store**:  If you only configured one metrics store, this is set for you. Otherwise, you can choose from the options. The default is the one you referenced in the environment file.
 
-*Description*:  Free form text to help your coworkers know what this canary
-is doing.
+**Description**:  Free form text to help your coworkers know what this canary is doing.
 
-Note: If you see the following error `The was an error saving your config: 400` when you are trying to save your "Canary Config", add the following setting:
-
-In your Armory Operator's `SpinnakerService` manifest, add the following snippet:
+If you see the following error `The was an error saving your config: 400` when you are trying to save your canary config, add the following setting in your  `SpinnakerService` manifest:
 
 ```yaml
 apiVersion: spinnaker.armory.io/{{< param operator-extended-crd-version >}}

@@ -52,44 +52,6 @@ canary:
       accounts:
 ```
 
-### AWS
-
-```yaml
-- name:
-  enabled:
-  accounts:
-  - name:
-    bucket:
-    region:
-    rootFolder:
-    profileName:
-    endpoint:
-    accessKeyId:
-    secretAccessKey:
-    supportedTypes:
-    - METRICS_STORE
-    - CONFIGURATION_STORE
-    - OBJECT_STORE
-  s3Enabled:
-```
-
-- `name`: aws
-  - `enabled`: true or false
-  - `accounts`:
-      - `name`: account name
-        - `bucket`: The name of a storage bucket that your specified account has access to. If you specify a globally unique bucket name that doesn't exist yet, Kayenta will create that bucket for you.
-        - `region`: The region to use.
-        - `rootFolder`: The root folder in the chosen bucket to place all of the canary service's persistent data in (Default: kayenta).
-        - `profileName`: The profile name to use when resolving AWS credentials. Typically found in ~/.aws/credentials (Default: default).
-        - `endpoint`: The endpoint used to reach the service implementing the AWS api. Typical use is with Minio.
-        - `accessKeyId`: The default access key used to communicate with AWS.
-        - `secretAccessKey`: The secret key used to communicate with AWS. Supports encrypted value.
-        - `supportedTypes`: One of: `METRICS_STORE`, `METRICS_STORE`, `OBJECT_STORE`
-            - METRICS_STORE
-            - CONFIGURATION_STORE
-            - OBJECT_STORE
-  - `s3Enabled`: true or false; whether or not to enable S3 as a persistent store (Default: `false`).
-
 ### Datadog
 
 ```yaml

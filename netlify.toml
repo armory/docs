@@ -63,6 +63,11 @@
   from = "/continuous-deployment/spinnaker-user-guides/terraform-use-integration/"
   to = "/plugins/terraform/use/"
 
+# cloudwatch plugin redirect
+[[redirects]]
+  from = "/continuous-deployment/spinnaker-user-guides/kayenta-canary-cloudwatch/"
+  to = "/plugins/aws-cloudwatch/"
+
 [[redirects]]
   from = "/continuous-deployment/plugin-guide/*"
   to = "/plugins/:splat"
