@@ -6,4 +6,4 @@ date: 2024-01-11
 ---
 
 ### Fixes
-- Duplicate discovery process when config file is modified before current process completes.
+- Prevents duplicate discovery requests when config file is modified before current process completes.
