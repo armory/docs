@@ -166,7 +166,7 @@ helm install armory-agent armory-charts/agent-k8s-full \
 --namespace=<agent-namespace> \
 --set-file agentyml=<path-to>/armory-agent.yml \
 --values=<path-to>/values.yaml
-```
+{{< /highlight >}}
 
 ## Examples
 
