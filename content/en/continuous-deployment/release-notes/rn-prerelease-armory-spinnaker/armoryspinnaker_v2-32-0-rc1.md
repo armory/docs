@@ -104,6 +104,11 @@ OSS Reference PRs:
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+### GitHub webhook triggers not working
+GitHub webhook triggers are not working in this release. We are working on a fix and will release it in the next version.
+
+### Terraformer artifact binding not working when s3 artifact store is enabled
+When using Terraformer with an S3 artifact store, the artifact binding is not working as expected. We are working on a fix and will release it in the next version.
 
 ## Highlighted updates
 
