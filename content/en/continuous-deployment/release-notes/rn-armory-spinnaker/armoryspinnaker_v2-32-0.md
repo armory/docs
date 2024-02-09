@@ -18,7 +18,7 @@ FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous De
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.32.0, use Armory Operator 1.7.3 or later.
+To install, upgrade, or configure Armory CD 2.32.0, use Armory Operator 1.8.6 or later.
 
 ## Security
 
