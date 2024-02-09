@@ -31,7 +31,7 @@ You acknowledge that Armory has provided the Services in reliance upon the limit
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.32.0-rc1, use Armory Operator 1.7.3 or later.
+To install, upgrade, or configure Armory CD 2.32.0-rc2, use Armory Operator 1.7.3 or later.
 
 ## Security
 
