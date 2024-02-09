@@ -10,7 +10,7 @@ jobs:
 
       - name: Vale Linter
         # https://github.com/marketplace/actions/vale-linter
-        uses: errata-ai/vale-action@f09fb90a5b517d38ec44512d1a6a1361c38f58ac
+        uses: errata-ai/vale-action@3f7188c866bcb3259339a09f517d7c4a8838303c
         with:
           # https://github.com/reviewdog/reviewdog#filter-mode
           filter_mode: added
