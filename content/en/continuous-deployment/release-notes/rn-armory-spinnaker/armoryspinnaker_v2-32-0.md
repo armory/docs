@@ -129,6 +129,47 @@ When enabling the artifact-store feature it is recommended to deploy the service
 3. Orca service
 4. Rosco service
 
+### Enable Jenkins job triggers for jobs located sub-folders
+When defining a Jenkins job in a sub-folder, the path contains forward slashes. By enabling this feature, Armory CD will be
+able to trigger Jenkins jobs located in sub-folders, correctly matching the job path.
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      echo:
+        feature:
+          igor:
+            jobNameAsQueryParameter: true
+      orca:
+        feature:
+          igor:
+            jobNameAsQueryParameter: true
+```
+
+### Pipeline As Code: Bitbucket support for custom branches
+Configuring a custom branch is required if you are using a repo that does not use `master` or `main` as the default branch, 
+or you want to use a branch other than master or main.
+
+By default, Dinghy uses the `master` branch in your repository and fallbacks to `main` if `master` doesn’t exist.
+If you wish to use a different branch in your repository, you can configure that using the `repoConfig` tag in your YAML configuration.
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        repoConfig:
+        - branch: some_branch
+          provider: bitbucket-server
+          repo: my-bitbucket-repository
+```
 
 
 ###  Spinnaker community contributions
