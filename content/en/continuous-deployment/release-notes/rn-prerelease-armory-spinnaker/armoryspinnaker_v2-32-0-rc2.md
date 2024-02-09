@@ -31,7 +31,7 @@ You acknowledge that Armory has provided the Services in reliance upon the limit
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.32.0-rc2, use Armory Operator 1.70 or later.
+To install, upgrade, or configure Armory CD 2.32.0-rc1, use Armory Operator 1.7.3 or later.
 
 ## Security
 
@@ -39,11 +39,73 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
-
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
+
+### AWS Lambda plugin migrated to OSS
+Starting from Armory version 2.32.0 (OSS version 1.32.0), the AWS Lambda plugin has been migrated to OSS codebase.
+If you are using the AWS Lambda plugin, you will need to disable/remove it when upgrading to Armory version 2.32.0+ to
+avoid compatibility issues.
+
+Additionally, the AWS Lambda stages are now enabled using the Deck feature flag `feature.lambdaAdditionalStages = true;`
+as shown in the configuration block below.
+{{< highlight yaml "linenos=table,hl_lines=12" >}}
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      deck:
+        settings-local.js: |
+          ...
+          window.spinnakerSettings.feature.functions = true;
+          // Enable the AWS Lambda pipeline stages in Deck using the feature flag
+          window.spinnakerSettings.feature.lambdaAdditionalStages = true; 
+          ...
+      clouddriver:
+        aws:
+          enabled: true
+          features:
+            lambda:
+              enabled: true
+      ## Remove the AWS Lambda plugin from the Armory CD configuration.
+      #gate:
+      #  spinnaker:
+      #    extensibility:
+      #      deck-proxy:
+      #        enabled: true
+      #        plugins:
+      #          Aws.LambdaDeploymentPlugin:
+      #            enabled: true
+      #            version: <version>
+      #      repositories:
+      #        awsLambdaDeploymentPluginRepo:
+      #          url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json  
+      #orca:
+      #  spinnaker:
+      #    extensibility:
+      #      plugins:
+      #        Aws.LambdaDeploymentPlugin:
+      #          enabled: true
+      #          version: <version>
+      #          extensions:
+      #            Aws.LambdaDeploymentStage:
+      #              enabled: true
+      #      repositories:
+      #        awsLambdaDeploymentPluginRepo:
+      #          id: awsLambdaDeploymentPluginRepo
+      #          url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json
+{{< /highlight >}}
+
+OSS Reference PRs:
+- https://github.com/spinnaker/orca/pull/4449
+- https://github.com/spinnaker/deck/pull/9988
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+### Terraformer artifact binding not working when s3 artifact store is enabled
+When using Terraformer with an S3 artifact store, the artifact binding is not working as expected. We are working on a fix and will release it in the next version.
 
 ## Highlighted updates
 
