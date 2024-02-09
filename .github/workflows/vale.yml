@@ -14,6 +14,7 @@ jobs:
         with:
           # https://github.com/reviewdog/reviewdog#filter-mode
           filter_mode: added
+          version: 2.0.1
 
           # Optional. Only lint modified files. Once we pay off tech debt, we'll switch the linting to  onlyAnnotateModifiedLines afterwards
           # files: __onlyModified  # this is for versions > 1.3.0
