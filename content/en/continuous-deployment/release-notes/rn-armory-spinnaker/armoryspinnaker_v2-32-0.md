@@ -18,7 +18,7 @@ FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous De
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.32.0, use Armory Operator 1.70 or later.
+To install, upgrade, or configure Armory CD 2.32.0, use Armory Operator 1.7.3 or later.
 
 ## Security
 
@@ -28,18 +28,106 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
+### AWS Lambda plugin migrated to OSS
+Starting from Armory version 2.32.0 (OSS version 1.32.0), the AWS Lambda plugin has been migrated to OSS codebase.
+If you are using the AWS Lambda plugin, you will need to disable/remove it when upgrading to Armory version 2.32.0+ to
+avoid compatibility issues.
+
+Additionally, the AWS Lambda stages are now enabled using the Deck feature flag `feature.lambdaAdditionalStages = true;`
+as shown in the configuration block below.
+{{< highlight yaml "linenos=table,hl_lines=12" >}}
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      deck:
+        settings-local.js: |
+          ...
+          window.spinnakerSettings.feature.functions = true;
+          // Enable the AWS Lambda pipeline stages in Deck using the feature flag
+          window.spinnakerSettings.feature.lambdaAdditionalStages = true; 
+          ...
+      clouddriver:
+        aws:
+          enabled: true
+          features:
+            lambda:
+              enabled: true
+      ## Remove the AWS Lambda plugin from the Armory CD configuration.
+      #gate:
+      #  spinnaker:
+      #    extensibility:
+      #      deck-proxy:
+      #        enabled: true
+      #        plugins:
+      #          Aws.LambdaDeploymentPlugin:
+      #            enabled: true
+      #            version: <version>
+      #      repositories:
+      #        awsLambdaDeploymentPluginRepo:
+      #          url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json  
+      #orca:
+      #  spinnaker:
+      #    extensibility:
+      #      plugins:
+      #        Aws.LambdaDeploymentPlugin:
+      #          enabled: true
+      #          version: <version>
+      #          extensions:
+      #            Aws.LambdaDeploymentStage:
+      #              enabled: true
+      #      repositories:
+      #        awsLambdaDeploymentPluginRepo:
+      #          id: awsLambdaDeploymentPluginRepo
+      #          url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json
+{{< /highlight >}}
+
+Related OSS PRs:
+- https://github.com/spinnaker/orca/pull/4449
+- https://github.com/spinnaker/deck/pull/9988
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
 ## Highlighted updates
-
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+### Terraformer support for AWS S3 Artifact Store
+OSS Spinnaker 1.32.0 introduced support for [artifact storage](https://spinnaker.io/changelogs/1.32.0-changelog/#artifact-store) 
+with AWS S3. This feature compresses `embdedded/base64` artifacts to `remote/base64` and uploads them to an AWS S3 bucket significantly 
+reducing the artifact size in the execution context. 
 
+Armory version 2.32.0 adds support for the same feature for the Terraform Integration stage.
+
+>Note: The artifact-store feature is disabled by default. To enable the artifact-store feature the following configuration is required:
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      spinnaker:
+        artifact-store:
+        enabled: true
+        s3:
+          enabled: true
+          region: <S3Bucket Region>
+          bucket: <S3Bucket Name>
+```
+
+When enabling the artifact-store feature it is recommended to deploy the services in this order:
+1. Clouddriver service
+2. Terraformer service
+3. Orca service
+4. Rosco service
 
 
 
@@ -211,7 +299,6 @@ version: 2.32.0
   - chore(cd): update armory-commons version to 3.15.2 (#805)
   - chore(build): pull latest changes from master (#806)
   - fix(terraformer): Fixing NPE for artifact binding (#810)
-  - Update RunTerraformTask.java
 
 #### Armory Igor - 2.31.0...2.32.0
 
@@ -276,7 +363,7 @@ version: 2.32.0
   - chore(alpine): Update alpine version (#497)
   - chore(cd): Merge master to release-2.32.x branch (#540)
   - fix(remote/artifacts): Adding support to fetch remote artifacts from clouddriver (#543) (#544)
-  - fixes for planfile (#545) (#546)
+  - fix(remote/artifacts): Fix for planfile (#545) (#546)
 
 
 ### Spinnaker
