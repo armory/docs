@@ -104,12 +104,10 @@ OSS Reference PRs:
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
-
-## Highlighted updates
-
 ### Terraformer artifact binding not working when s3 artifact store is enabled
 When using Terraformer with an S3 artifact store, the artifact binding is not working as expected. We are working on a fix and will release it in the next version.
 
+## Highlighted updates
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
