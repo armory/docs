@@ -148,12 +148,13 @@ spec:
         feature:
           igor:
             jobNameAsQueryParameter: true
+      igor:
+        feature:
+          igor:
+            jobNameAsQueryParameter: true
 ```
 
-### Pipeline As Code: Bitbucket support for custom branches
-Configuring a custom branch is required if you are using a repo that does not use `master` or `main` as the default branch, 
-or you want to use a branch other than master or main.
-
+### Pipeline As Code: Bitbucket fallback support for default branch
 By default, Dinghy uses the `master` branch in your repository and fallbacks to `main` if `master` doesn’t exist.
 If you wish to use a different branch in your repository, you can configure that using the `repoConfig` tag in your YAML configuration.
 ```yaml
