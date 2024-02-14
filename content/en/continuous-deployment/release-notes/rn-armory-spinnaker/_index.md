@@ -23,7 +23,8 @@ description: >
 To install, upgrade, and configure Armory Continuous Deployment (Armory CD), ensure that you are running at least the minimum Operator version for your release:
 
 | Armory CD version | Minimum Operator version |
-| ----------------- | ------------------------ |
+|-------------------| ------------------------ |
+| 2.32.x            | 1.8.6                    |
 | 2.30.x            | 1.8.6                    |
 | 2.28.x            | 1.6.0                    |
 | 2.27.x            | 1.4.0                    |
