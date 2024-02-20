@@ -91,7 +91,7 @@ Related OSS PRs:
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
-### Failed to fetch Terraform artifacts when AWS S3 Artifact store is enabled on AuthZ enabled applications
+### With S3 artifact storage enabled Terraformer stages break when authentication is set on applications
 The Terraform Integration stage does not support Applications that have RBAC rules enabled (Application roles) with the AWS S3 Artifact Store feature enabled.
 Customers that enable the AWS S3 Artifact Store feature and have Application level RBAC rules will experience issues with 
 the Terraform Integration stage leading to pipeline failures with `Failed to fetch artifact` errors, similar to:
