@@ -91,6 +91,15 @@ Related OSS PRs:
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+### With S3 artifact storage enabled Terraformer stages break when authentication is set on applications
+The Terraform Integration stage does not support Applications that have RBAC rules enabled (Application roles) with the AWS S3 Artifact Store feature enabled.
+Customers that enable the AWS S3 Artifact Store feature and have Application level RBAC rules will experience issues with 
+the Terraform Integration stage leading to pipeline failures with `Failed to fetch artifact` errors, similar to:
+```
+level=error msg="Error executing job c5b8edb5-7944-49ac-adb4-26875e999030: failed to stage directory for terraform execution:
+There was a problem downloading an artifact type: remote/base64, reference: ref://myapp/c01487060c05cc2c31301c41c5811ca4ea02310e03bd02e879f13f87ec43c221 - failed to fetch artifact.
+```
+This will be resolved in 2.32.1 release of Armory CD. Customers are advised to contact Armory Support for assistance on working around this issue on 2.32.0
 
 ## Highlighted updates
 <!--
