@@ -28,6 +28,10 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
+
+### agent plugin 'pluginsRootPath' field is unsupported
+Starting from Armory version 2.32.0 (OSS version 1.32.0) the pluginsRootPath field isn't supported please comment it while we are working on a fix
+
 ### AWS Lambda plugin migrated to OSS
 Starting from Armory version 2.32.0 (OSS version 1.32.0), the AWS Lambda plugin has been migrated to OSS codebase.
 If you are using the AWS Lambda plugin, you will need to disable/remove it when upgrading to Armory version 2.32.0+ to
