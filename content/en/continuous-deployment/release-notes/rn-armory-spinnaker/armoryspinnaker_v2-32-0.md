@@ -28,6 +28,27 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
+
+### Agent plugin 'pluginsRootPath' field is not supported
+Starting from Armory version 2.32.0 (OSS version 1.32.0), the pluginsRootPath is not supported, please comment this until issue is fixed
+as shown in the configuration block below.
+{{< highlight yaml "linenos=table,hl_lines=12" >}}
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        spinnaker:
+          extensibility:
+            # pluginsRootPath: /opt/clouddriver/lib/plugins
+            plugins:
+              Armory.Kubesvc:
+                enabled: true
+{{< /highlight >}}
+
 ### AWS Lambda plugin migrated to OSS
 Starting from Armory version 2.32.0 (OSS version 1.32.0), the AWS Lambda plugin has been migrated to OSS codebase.
 If you are using the AWS Lambda plugin, you will need to disable/remove it when upgrading to Armory version 2.32.0+ to
