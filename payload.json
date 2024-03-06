@@ -2,158 +2,164 @@
   "armoryServices": [
     {
       "commitMessages": [
-        "chore(cd): update base orca version to 2024.02.27.15.33.36.release-1.32.x (#833)"
+        "chore(cd): update armory-commons version to 3.15.3 (#659)",
+        "chore(cd): update armory-commons version to 3.15.4 (#660)",
+        "Fixing gcs dependencies (#662)",
+        "chore(armory-commons): Update armory-commons to 3.15.4 (#665)"
       ],
-      "currentVersion": "2.32.1-rc1",
-      "name": "Armory Orca",
-      "previousVersion": "2.32.0"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update base service version to echo:2024.02.27.15.33.43.release-1.32.x (#692)"
-      ],
-      "currentVersion": "2.32.1-rc1",
-      "name": "Armory Echo",
-      "previousVersion": "2.32.0"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update base service version to igor:2024.02.27.15.32.19.release-1.32.x (#579)"
-      ],
-      "currentVersion": "2.32.1-rc1",
-      "name": "Armory Igor",
-      "previousVersion": "2.32.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.32.1-rc1",
-      "name": "Armory Deck",
-      "previousVersion": "2.32.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.32.1-rc1",
-      "name": "Armory Fiat",
-      "previousVersion": "2.32.0"
-    },
-    {
-      "commitMessages": [
-        "fix(remote/artifacts): Passing user to clouddriver when using remote store (#548) (#549)"
-      ],
-      "currentVersion": "2.32.1-rc1",
-      "name": "Terraformer™",
-      "previousVersion": "2.32.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.32.1-rc1",
+      "currentVersion": "2.32.1-rc2",
       "name": "Armory Front50",
-      "previousVersion": "2.32.0"
+      "previousVersion": "2.32.1-rc1"
     },
     {
       "commitMessages": [
-        "chore(cd): update base service version to clouddriver:2024.02.27.14.37.13.release-1.32.x (#1083)"
+        "chore(cd): update armory-commons version to 3.15.4 (#524)"
       ],
-      "currentVersion": "2.32.1-rc1",
-      "name": "Armory Clouddriver",
-      "previousVersion": "2.32.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.32.1-rc1",
+      "currentVersion": "2.32.1-rc2",
       "name": "Armory Kayenta",
-      "previousVersion": "2.32.0"
+      "previousVersion": "2.32.1-rc1"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.32.1-rc2",
+      "name": "Armory Deck",
+      "previousVersion": "2.32.1-rc1"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.32.1-rc2",
+      "name": "Dinghy™",
+      "previousVersion": "2.32.1-rc1"
     },
     {
       "commitMessages": [
-        "fix: esapi CVE scan report (#602) (#700)"
+        "chore(cd): update armory-commons version to 3.15.3 (#1086)",
+        "chore(cd): update armory-commons version to 3.15.4 (#1088)"
       ],
-      "currentVersion": "2.32.1-rc1",
-      "name": "Armory Gate",
-      "previousVersion": "2.32.0"
+      "currentVersion": "2.32.1-rc2",
+      "name": "Armory Clouddriver",
+      "previousVersion": "2.32.1-rc1"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update armory-commons version to 3.15.3 (#694)",
+        "chore(cd): update armory-commons version to 3.15.4 (#695)"
+      ],
+      "currentVersion": "2.32.1-rc2",
+      "name": "Armory Echo",
+      "previousVersion": "2.32.1-rc1"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.32.1-rc1",
-      "name": "Dinghy™",
-      "previousVersion": "2.32.0"
+      "currentVersion": "2.32.1-rc2",
+      "name": "Terraformer™",
+      "previousVersion": "2.32.1-rc1"
     },
     {
-      "commitMessages": [],
-      "currentVersion": "2.32.1-rc1",
+      "commitMessages": [
+        "chore(cd): update armory-commons version to 3.15.3 (#647)",
+        "chore(cd): update armory-commons version to 3.15.4 (#648)"
+      ],
+      "currentVersion": "2.32.1-rc2",
       "name": "Armory Rosco",
-      "previousVersion": "2.32.0"
+      "previousVersion": "2.32.1-rc1"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update armory-commons version to 3.15.3 (#836)",
+        "chore(cd): update armory-commons version to 3.15.4 (#837)"
+      ],
+      "currentVersion": "2.32.1-rc2",
+      "name": "Armory Orca",
+      "previousVersion": "2.32.1-rc1"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update armory-commons version to 3.15.3 (#581)",
+        "chore(cd): update armory-commons version to 3.15.4 (#582)"
+      ],
+      "currentVersion": "2.32.1-rc2",
+      "name": "Armory Igor",
+      "previousVersion": "2.32.1-rc1"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update armory-commons version to 3.15.4 (#704)"
+      ],
+      "currentVersion": "2.32.1-rc2",
+      "name": "Armory Gate",
+      "previousVersion": "2.32.1-rc1"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update armory-commons version to 3.15.4 (#587)"
+      ],
+      "currentVersion": "2.32.1-rc2",
+      "name": "Armory Fiat",
+      "previousVersion": "2.32.1-rc1"
     }
   ],
-  "armoryVersion": "2.32.1-rc1",
+  "armoryVersion": "2.32.1-rc2",
   "ossServices": [
-    {
-      "commitMessages": [
-        "fix(jenkins): Enable properties and artifacts with job name as query parameter (#4661) (#4664)"
-      ],
-      "currentVersion": "1.32.3",
-      "name": "Spinnaker Orca",
-      "previousVersion": "1.32.3"
-    },
-    {
-      "commitMessages": [
-        "fix(jenkins): Enable properties and artifacts with job name as query parameter (#1393) (#1396)"
-      ],
-      "currentVersion": "1.32.3",
-      "name": "Spinnaker Echo",
-      "previousVersion": "1.32.3"
-    },
-    {
-      "commitMessages": [
-        "fix(jenkins): Enable properties and artifacts with job name as query parameter (#1230) (#1233)"
-      ],
-      "currentVersion": "1.32.3",
-      "name": "Spinnaker Igor",
-      "previousVersion": "1.32.3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.32.3",
-      "name": "Spinnaker Deck",
-      "previousVersion": "1.32.3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.32.3",
-      "name": "Spinnaker Fiat",
-      "previousVersion": "1.32.3"
-    },
     {
       "commitMessages": [],
       "currentVersion": "1.32.3",
       "name": "Spinnaker Front50",
-      "previousVersion": "1.32.3"
-    },
-    {
-      "commitMessages": [
-        "fix: Change the agent type name to not include the account name since this would generate LOTS of tables and cause problems long term (#6158) (#6165)"
-      ],
-      "currentVersion": "1.32.3",
-      "name": "Spinnaker Clouddriver",
-      "previousVersion": "1.32.3"
+      "previousVersion": "1.32.0"
     },
     {
       "commitMessages": [],
       "currentVersion": "1.32.3",
       "name": "Spinnaker Kayenta",
-      "previousVersion": "1.32.3"
+      "previousVersion": "1.32.0"
     },
     {
       "commitMessages": [],
       "currentVersion": "1.32.3",
-      "name": "Spinnaker Gate",
-      "previousVersion": "1.32.3"
+      "name": "Spinnaker Deck",
+      "previousVersion": "1.32.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.32.3",
+      "name": "Spinnaker Clouddriver",
+      "previousVersion": "1.32.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.32.3",
+      "name": "Spinnaker Echo",
+      "previousVersion": "1.32.0"
     },
     {
       "commitMessages": [],
       "currentVersion": "1.32.3",
       "name": "Spinnaker Rosco",
-      "previousVersion": "1.32.3"
+      "previousVersion": "1.32.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.32.3",
+      "name": "Spinnaker Orca",
+      "previousVersion": "1.32.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.32.3",
+      "name": "Spinnaker Igor",
+      "previousVersion": "1.32.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.32.3",
+      "name": "Spinnaker Gate",
+      "previousVersion": "1.32.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.32.3",
+      "name": "Spinnaker Fiat",
+      "previousVersion": "1.32.0"
     }
   ],
   "ossVersion": "1.32.3",
@@ -170,40 +176,40 @@
     },
     "services": {
       "clouddriver": {
-        "commit": "64b5303b0645b1ffe83fa7f2d4e22ce2f38cd981",
-        "version": "2.32.1-rc1"
+        "commit": "e3e765a19daa02a3c82fa1c4505d6d3da98d1ac1",
+        "version": "2.32.1-rc2"
       },
       "deck": {
         "commit": "e7c8c0982afe9a49ab6c3d230f3aaa38e874eb30",
-        "version": "2.32.1-rc1"
+        "version": "2.32.1-rc2"
       },
       "dinghy": {
         "commit": "f5b14ffba75721322ada662f2325e80ec86347de",
-        "version": "2.32.1-rc1"
+        "version": "2.32.1-rc2"
       },
       "echo": {
-        "commit": "5d8f6310d1bb8d931975c107d29862e0e34c8772",
-        "version": "2.32.1-rc1"
+        "commit": "8132dd28a7461c85a8ade99e867d1db8ca1d57ca",
+        "version": "2.32.1-rc2"
       },
       "fiat": {
-        "commit": "2c0d010ce00d9519b316e15af734a05835df1048",
-        "version": "2.32.1-rc1"
+        "commit": "804e5f862ed600d42e1acab3b67dc9c282c7cf3a",
+        "version": "2.32.1-rc2"
       },
       "front50": {
-        "commit": "c68b97b642a6d9168d361d74dad373e565850f5d",
-        "version": "2.32.1-rc1"
+        "commit": "90972680ae73ef9ec6df43ab4987cfde9fe4416c",
+        "version": "2.32.1-rc2"
       },
       "gate": {
-        "commit": "f0f75e4457e679578b75cc629a562e29ccaca211",
-        "version": "2.32.1-rc1"
+        "commit": "619047a5a3afc11b367c6b0b3aa36e237288c456",
+        "version": "2.32.1-rc2"
       },
       "igor": {
-        "commit": "c55a06f48e48fc15871a07a52db8d592948e26cc",
-        "version": "2.32.1-rc1"
+        "commit": "344e258677d460acd4a4a86310d69f3975c846db",
+        "version": "2.32.1-rc2"
       },
       "kayenta": {
-        "commit": "af68e872b806eb49f4f0071187f998f18f04c3c2",
-        "version": "2.32.1-rc1"
+        "commit": "6a4369342998682c8c35ba1e1144b72f42484c6c",
+        "version": "2.32.1-rc2"
       },
       "monitoring-daemon": {
         "commit": null,
@@ -214,19 +220,19 @@
         "version": "2.26.0"
       },
       "orca": {
-        "commit": "3e50cec268e441587b99816cab4550d701e9b84c",
-        "version": "2.32.1-rc1"
+        "commit": "b36a5eb32c8167067cc5ba536adf52732d46b520",
+        "version": "2.32.1-rc2"
       },
       "rosco": {
-        "commit": "776c66208dd16ad41defad3d0b6d8bcc3dbba24d",
-        "version": "2.32.1-rc1"
+        "commit": "d258548dff17a766c7d0e110ae618ab24f27bb53",
+        "version": "2.32.1-rc2"
       },
       "terraformer": {
         "commit": "6dbdb8b4c277cca4285b4d29d10f6cf3765f7590",
-        "version": "2.32.1-rc1"
+        "version": "2.32.1-rc2"
       }
     },
-    "timestamp": "2024-02-29 15:20:51",
-    "version": "2.32.1-rc1"
+    "timestamp": "2024-03-06 10:58:48",
+    "version": "2.32.1-rc2"
   }
 }
