@@ -2,167 +2,187 @@
   "armoryServices": [
     {
       "commitMessages": [
-        "chore(cd): update armory-commons version to 3.15.3 (#659)",
-        "chore(cd): update armory-commons version to 3.15.4 (#660)",
-        "Fixing gcs dependencies (#662)",
-        "chore(armory-commons): Update armory-commons to 3.15.4 (#665)"
+        "chore(cd): update base service version to front50:2024.03.08.16.52.13.release-1.32.x (#666)",
+        "chore(cd): update base service version to front50:2024.03.08.19.18.53.release-1.32.x (#667)"
       ],
-      "currentVersion": "2.32.1-rc2",
+      "currentVersion": "2.32.1-rc3",
       "name": "Armory Front50",
-      "previousVersion": "2.32.1-rc1"
+      "previousVersion": "2.32.1-rc2"
     },
     {
       "commitMessages": [
-        "chore(cd): update armory-commons version to 3.15.4 (#524)"
+        "chore(cd): update base service version to clouddriver:2024.03.08.19.52.28.release-1.32.x (#1091)"
       ],
-      "currentVersion": "2.32.1-rc2",
-      "name": "Armory Kayenta",
-      "previousVersion": "2.32.1-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.32.1-rc2",
-      "name": "Armory Deck",
-      "previousVersion": "2.32.1-rc1"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.32.1-rc2",
-      "name": "Dinghy™",
-      "previousVersion": "2.32.1-rc1"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update armory-commons version to 3.15.3 (#1086)",
-        "chore(cd): update armory-commons version to 3.15.4 (#1088)"
-      ],
-      "currentVersion": "2.32.1-rc2",
+      "currentVersion": "2.32.1-rc3",
       "name": "Armory Clouddriver",
-      "previousVersion": "2.32.1-rc1"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update armory-commons version to 3.15.3 (#694)",
-        "chore(cd): update armory-commons version to 3.15.4 (#695)"
-      ],
-      "currentVersion": "2.32.1-rc2",
-      "name": "Armory Echo",
-      "previousVersion": "2.32.1-rc1"
+      "previousVersion": "2.32.1-rc2"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.32.1-rc2",
-      "name": "Terraformer™",
-      "previousVersion": "2.32.1-rc1"
+      "currentVersion": "2.32.1-rc3",
+      "name": "Armory Deck",
+      "previousVersion": "2.32.1-rc2"
     },
     {
       "commitMessages": [
-        "chore(cd): update armory-commons version to 3.15.3 (#647)",
-        "chore(cd): update armory-commons version to 3.15.4 (#648)"
+        "chore(cd): update base orca version to 2024.03.08.16.54.30.release-1.32.x (#840)",
+        "chore(cd): update base orca version to 2024.03.08.19.21.42.release-1.32.x (#841)"
       ],
-      "currentVersion": "2.32.1-rc2",
-      "name": "Armory Rosco",
-      "previousVersion": "2.32.1-rc1"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update armory-commons version to 3.15.3 (#836)",
-        "chore(cd): update armory-commons version to 3.15.4 (#837)"
-      ],
-      "currentVersion": "2.32.1-rc2",
+      "currentVersion": "2.32.1-rc3",
       "name": "Armory Orca",
-      "previousVersion": "2.32.1-rc1"
+      "previousVersion": "2.32.1-rc2"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.32.1-rc3",
+      "name": "Dinghy™",
+      "previousVersion": "2.32.1-rc2"
     },
     {
       "commitMessages": [
-        "chore(cd): update armory-commons version to 3.15.3 (#581)",
-        "chore(cd): update armory-commons version to 3.15.4 (#582)"
+        "chore(cd): update base service version to gate:2024.03.08.19.17.43.release-1.32.x (#707)"
       ],
-      "currentVersion": "2.32.1-rc2",
-      "name": "Armory Igor",
-      "previousVersion": "2.32.1-rc1"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update armory-commons version to 3.15.4 (#704)"
-      ],
-      "currentVersion": "2.32.1-rc2",
+      "currentVersion": "2.32.1-rc3",
       "name": "Armory Gate",
-      "previousVersion": "2.32.1-rc1"
+      "previousVersion": "2.32.1-rc2"
     },
     {
       "commitMessages": [
-        "chore(cd): update armory-commons version to 3.15.4 (#587)"
+        "chore(cd): update base service version to rosco:2024.03.08.16.49.31.release-1.32.x (#650)"
       ],
-      "currentVersion": "2.32.1-rc2",
+      "currentVersion": "2.32.1-rc3",
+      "name": "Armory Rosco",
+      "previousVersion": "2.32.1-rc2"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to echo:2024.03.08.16.50.19.release-1.32.x (#697)",
+        "chore(cd): update base service version to echo:2024.03.08.19.17.18.release-1.32.x (#698)"
+      ],
+      "currentVersion": "2.32.1-rc3",
+      "name": "Armory Echo",
+      "previousVersion": "2.32.1-rc2"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.32.1-rc3",
+      "name": "Terraformer™",
+      "previousVersion": "2.32.1-rc2"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to fiat:2024.03.08.16.48.59.release-1.32.x (#590)"
+      ],
+      "currentVersion": "2.32.1-rc3",
       "name": "Armory Fiat",
-      "previousVersion": "2.32.1-rc1"
+      "previousVersion": "2.32.1-rc2"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to kayenta:2024.03.08.20.48.11.release-1.32.x (#525)"
+      ],
+      "currentVersion": "2.32.1-rc3",
+      "name": "Armory Kayenta",
+      "previousVersion": "2.32.1-rc2"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to igor:2024.03.08.16.52.17.release-1.32.x (#584)",
+        "chore(cd): update base service version to igor:2024.03.08.19.18.39.release-1.32.x (#585)"
+      ],
+      "currentVersion": "2.32.1-rc3",
+      "name": "Armory Igor",
+      "previousVersion": "2.32.1-rc2"
     }
   ],
-  "armoryVersion": "2.32.1-rc2",
+  "armoryVersion": "2.32.1-rc3",
   "ossServices": [
     {
-      "commitMessages": [],
-      "currentVersion": "1.32.3",
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1439)",
+        "chore(dependencies): Autobump fiatVersion (#1440)"
+      ],
+      "currentVersion": "1.32.4",
       "name": "Spinnaker Front50",
-      "previousVersion": "1.32.0"
+      "previousVersion": "1.32.3"
     },
     {
-      "commitMessages": [],
-      "currentVersion": "1.32.3",
-      "name": "Spinnaker Kayenta",
-      "previousVersion": "1.32.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.32.3",
-      "name": "Spinnaker Deck",
-      "previousVersion": "1.32.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.32.3",
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#6169)",
+        "chore(dependencies): Autobump fiatVersion (#6170)"
+      ],
+      "currentVersion": "1.32.4",
       "name": "Spinnaker Clouddriver",
-      "previousVersion": "1.32.0"
+      "previousVersion": "1.32.3"
     },
     {
       "commitMessages": [],
-      "currentVersion": "1.32.3",
-      "name": "Spinnaker Echo",
-      "previousVersion": "1.32.0"
+      "currentVersion": "1.32.4",
+      "name": "Spinnaker Deck",
+      "previousVersion": "1.32.3"
     },
     {
-      "commitMessages": [],
-      "currentVersion": "1.32.3",
-      "name": "Spinnaker Rosco",
-      "previousVersion": "1.32.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.32.3",
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#4667)",
+        "chore(dependencies): Autobump fiatVersion (#4668)"
+      ],
+      "currentVersion": "1.32.4",
       "name": "Spinnaker Orca",
-      "previousVersion": "1.32.0"
+      "previousVersion": "1.32.3"
     },
     {
-      "commitMessages": [],
-      "currentVersion": "1.32.3",
-      "name": "Spinnaker Igor",
-      "previousVersion": "1.32.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.32.3",
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1773)",
+        "chore(dependencies): Autobump fiatVersion (#1774)"
+      ],
+      "currentVersion": "1.32.4",
       "name": "Spinnaker Gate",
-      "previousVersion": "1.32.0"
+      "previousVersion": "1.32.3"
     },
     {
-      "commitMessages": [],
-      "currentVersion": "1.32.3",
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1077)"
+      ],
+      "currentVersion": "1.32.4",
+      "name": "Spinnaker Rosco",
+      "previousVersion": "1.32.3"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1398)",
+        "chore(dependencies): Autobump fiatVersion (#1399)"
+      ],
+      "currentVersion": "1.32.4",
+      "name": "Spinnaker Echo",
+      "previousVersion": "1.32.3"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1145)"
+      ],
+      "currentVersion": "1.32.4",
       "name": "Spinnaker Fiat",
-      "previousVersion": "1.32.0"
+      "previousVersion": "1.32.3"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump orcaVersion (#1023)"
+      ],
+      "currentVersion": "1.32.4",
+      "name": "Spinnaker Kayenta",
+      "previousVersion": "1.32.3"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1235)",
+        "chore(dependencies): Autobump fiatVersion (#1236)"
+      ],
+      "currentVersion": "1.32.4",
+      "name": "Spinnaker Igor",
+      "previousVersion": "1.32.3"
     }
   ],
-  "ossVersion": "1.32.3",
+  "ossVersion": "1.32.4",
   "prerelease": true,
   "stack": {
     "artifactSources": {
@@ -176,40 +196,40 @@
     },
     "services": {
       "clouddriver": {
-        "commit": "e3e765a19daa02a3c82fa1c4505d6d3da98d1ac1",
-        "version": "2.32.1-rc2"
+        "commit": "b29acea67a40b4145431137ba96454c1d1bf0d73",
+        "version": "2.32.1-rc3"
       },
       "deck": {
         "commit": "e7c8c0982afe9a49ab6c3d230f3aaa38e874eb30",
-        "version": "2.32.1-rc2"
+        "version": "2.32.1-rc3"
       },
       "dinghy": {
         "commit": "f5b14ffba75721322ada662f2325e80ec86347de",
-        "version": "2.32.1-rc2"
+        "version": "2.32.1-rc3"
       },
       "echo": {
-        "commit": "8132dd28a7461c85a8ade99e867d1db8ca1d57ca",
-        "version": "2.32.1-rc2"
+        "commit": "9d2abeeea4341e5ba94654925ba6488a9038af3f",
+        "version": "2.32.1-rc3"
       },
       "fiat": {
-        "commit": "804e5f862ed600d42e1acab3b67dc9c282c7cf3a",
-        "version": "2.32.1-rc2"
+        "commit": "3f3fe6bf09708847a0f853bc74f6755920a4312b",
+        "version": "2.32.1-rc3"
       },
       "front50": {
-        "commit": "90972680ae73ef9ec6df43ab4987cfde9fe4416c",
-        "version": "2.32.1-rc2"
+        "commit": "ba318cd2c445f14e5d6c3db87fa1658549385403",
+        "version": "2.32.1-rc3"
       },
       "gate": {
-        "commit": "619047a5a3afc11b367c6b0b3aa36e237288c456",
-        "version": "2.32.1-rc2"
+        "commit": "dd64887668a2e2212667ca942e0bfd303aa34c60",
+        "version": "2.32.1-rc3"
       },
       "igor": {
-        "commit": "344e258677d460acd4a4a86310d69f3975c846db",
-        "version": "2.32.1-rc2"
+        "commit": "9339ab63ab3d85ebcb00131033d19f26ad436f05",
+        "version": "2.32.1-rc3"
       },
       "kayenta": {
-        "commit": "6a4369342998682c8c35ba1e1144b72f42484c6c",
-        "version": "2.32.1-rc2"
+        "commit": "bccd150fcc8a7cb7df537ec6269bce5d2843c703",
+        "version": "2.32.1-rc3"
       },
       "monitoring-daemon": {
         "commit": null,
@@ -220,19 +240,19 @@
         "version": "2.26.0"
       },
       "orca": {
-        "commit": "b36a5eb32c8167067cc5ba536adf52732d46b520",
-        "version": "2.32.1-rc2"
+        "commit": "9d45d87956abd9aad29ef8f9858e602e72d78c3c",
+        "version": "2.32.1-rc3"
       },
       "rosco": {
-        "commit": "d258548dff17a766c7d0e110ae618ab24f27bb53",
-        "version": "2.32.1-rc2"
+        "commit": "dfe611ffdd2cf9ae7c524fb9970af47350ca5e96",
+        "version": "2.32.1-rc3"
       },
       "terraformer": {
         "commit": "6dbdb8b4c277cca4285b4d29d10f6cf3765f7590",
-        "version": "2.32.1-rc2"
+        "version": "2.32.1-rc3"
       }
     },
-    "timestamp": "2024-03-06 10:58:48",
-    "version": "2.32.1-rc2"
+    "timestamp": "2024-03-12 14:53:28",
+    "version": "2.32.1-rc3"
   }
 }
