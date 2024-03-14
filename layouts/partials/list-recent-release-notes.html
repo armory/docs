@@ -39,7 +39,7 @@ Armory release numbers help customers to distinguish releases at a glance.
 
         {{/* this will pick out the first {major}.{minor}.{patch} numbers */}}
         {{ $semverSlice := findRE "[0-9]+" .Title }}
-        {{ if and (ge (len $semverSlice) 4) (lt (len $displayedTitles) 4) }}
+        {{ if and (ge (len $semverSlice) 3) (lt (len $displayedTitles) 3) }}
           {{if and (le ( index $semverSlice 0 ) $semverActiveMajor) (lt ( index $semverSlice 1 ) $semverActiveMinor)  }}
             {{ $semverActiveMajor = index $semverSlice 0 }}
             {{ $semverActiveMinor = index $semverSlice 1 }}
