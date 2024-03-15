@@ -45,6 +45,84 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+### Clouddriver and Spring Cloud
+
+The Spring Boot version has been upgraded, introducing a backwards incompatible change to the way configuration is loaded in Spinnaker. Users will need to set the ***spring.cloud.config.enabled*** property to ***true*** in the service settings of Clouddriver to preserve existing behavior. All of the other configuration blocks remain the same.
+
+**Affected versions**: Armory CD 2.30.0 and later
+
+## Deprecations
+
+Reference [Feature Deprecations and end of support]({{< ref "continuous-deployment/feature-status/deprecations/" >}})
+
+## Early access features enabled by default
+
+### **New**: doNotEval SPeL expression
+
+- This feature introduces a new SpEL `doNotEval` method that includes the received JSON object with the `NotEvaluableExpression` class.
+- The `toJson` method (and others in the future) do not evaluate expressions and do not throw exceptions for instances of the `NotEvaluableExpression` class.
+- See the Spinnaker doc's [doNotEval SPeL expression changelog note](https://spinnaker.io/changelogs/1.30.0-changelog/#donoteval-spel-helper) for more details regarding this feature flag.
+
+### Automatically cancel Jenkins jobs
+
+You now have the ability to cancel triggered Jenkins jobs when a pipeline is canceled, giving you more control over your full Jenkins workflow. Learn more this [Spinnaker changelog](https://spinnaker.io/changelogs/1.29.0-changelog/#orca).
+
+### Enhanced BitBucket Server pull request handling
+
+Trigger pipelines natively when pull requests are opened in BitBucket with newly added events including PR opened, deleted, and declined. See [Triggering pipelines with Bitbucket Server](https://spinnaker.io/docs/guides/user/pipeline/triggers/bitbucket-events/) in the Spinnaker docs for details
+
+## Early access features enabled manually
+
+### **New**: Pipeline Triggers: only cache enabled pipelines with enabled triggers of specific types
+
+Enabling this flag may allow Echo to better utilize its cache, improving overall pipeline trigger performance for frequently used pipelines. See the [pull request](https://github.com/spinnaker/echo/pull/1292) for more information regarding this feature flag.
+
+### **New**: Option to disable healthcheck for Google provider
+
+Added the option to disable the healthcheck for Google provider similar to AWS and Kubernetes.
+
+### Helm parameters
+
+Spinnaker users baking Helm charts can now use SpEL expression parameters for **API Version** and **Kubernetes Version** in the Bake Manifest stage so that they can conditionally deploy different versions of artifacts depending on the target cluster API and Kubernetes versions. To learn more about this exciting new feature, see [Helm Parameters](https://spinnaker.io/docs/guides/user/kubernetes-v2/deploy-helm/#configure-api-versions-and-a-kubernetes-version) in the Spinnaker docs.
+
+### Dynamic rollback timeout
+
+To make the dynamic timeout available, you need to enable the feature flag in Orca and Deck. Add this block to  your `orca.yml` file if you want to enable the dynamic rollback timeout feature:
+
+```yaml
+rollback:
+  timeout:
+    enabled: true
+```
+
+In Orca, the feature flag overrides the default value rollback timeout - 5 min - with a UI input from the user.
+
+In Deck, the feature flag enhances the Rollback Cluster stage UI with timeout input.
+
+`window.spinnakerSettings.feature.dynamicRollbackTimeout = true;`
+
+The default is used if there is no value set in the UI.
+
+### Run Pipelines-as-Code with permissions scoped to a specific service account
+
+Enhancing Pipelines-as-Code to upsert a pipeline using an Orca call instead of a Front50 call, to mimic the calls from Deck. By default, it is disabled. To enable, set the following in `dinghy.yml`:
+
+```upsertPipelineUsingOrcaTaskEnabled: true```
+
+### Pipelines-as-Code PR checks
+
+This feature, when enabled, verifies if the author of a commit that changed app parameters has sufficient WRITE permission for that app. You can specify a list of authors whose permissions are not valid. This option’s purpose is to skip permissions checks for bots and tools.
+
+See [Permissions check for a commit]({{< ref "plugins/pipelines-as-code/install/configure#permissions-check-for-a-commit" >}}) for details.
+
+### Pipelines-as-Code multi-branch enhancement
+
+Now you can configure Pipeline-as-Code to pull Pipelines-as-Code files from multiple branches on the same repo. Cut out the tedious task of managing multiple repos. Use a single repo for application pipelines. See [Multiple branches]({{<  ref "plugins/pipelines-as-code/install/configure#multiple-branches" >}}) for how to enable and configure this feature.
+
+### Terraform template fix
+
+Armory fixed an issue with SpEL expression failures appearing while using Terraformer to serialize data from a Terraform Plan execution. With this feature flag fix enabled, you are able to use the Terraform template file provider. Open a support ticket if you need this fix.
+
 ## Highlighted updates
 
 <!--
@@ -53,8 +131,72 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
+### Spring Boot
 
+As part of the modernization effort, Spring Boot has been updated to 2.5. Note that there is no expected change for end users due to this change. Plugin developers may need to update their projects to work with 2.31.0+.
 
+### Clouddriver
+
+- Changed the validation Clouddriver runs before performing operations for the Kubernetes provider. The *kinds* and *omitKinds* fields on a Kubernetes account definition no longer restrict what Kubernetes kinds can be deployed by Clouddriver; instead, these fields now only control what kinds Clouddriver caches. Armory CD operators should ensure that Kubernetes RBAC controls are used to restrict what kinds Armory CD can deploy.
+- Bumped aws-cli to 1.22 to enable FIPS compliance configuration options.
+  
+### Deck
+
+- Added Cloud Run manifest functionality in Deck.
+- Made the *StageFailureMessage* component overridable, which enables the ability to override the red error box in the component of a plugin.
+- Added the ability to allow plugins to provide custom icon components.
+  - Enables plugins to use the Icon component with a custom icon.  Currently the Icon component is limited to only icons defined in *iconsByName.*
+- For the Helm bake feature, added additional input fields where the user can fill in details of the API's versions. These input fields are not be pre-populated with versions of the target cluster available in the environment.  They become part of the bake result. Added *API_VERSIONS_ENABLED* env variable flag.
+
+### Echo
+
+- Added a new configuration flag: *pipelineCache.filterFront50Pipelines* that defaults to false. When false, Echo caches all pipelines Front50. When true, it only caches enabled pipelines with enabled triggers of specific types. – The types that Echo knows how to trigger, along with some changes to the logic for handling manual executions so they continue to function. This is typically a very small subset of all pipelines.
+
+### Fiat
+
+- Added the ability to register *SpinnakerRetrofitErrorHandler* with each Retrofit.RestAdapter and replaces each RetrofitError catch block with a catch-block using SpinnakerServerException or the appropriate subclass. This change does not alter any of this service's behavior, it merely allows error messages to surface even when the error was thrown in a microservice more than one network call from the service in which the request originated. This is part of an effort to consume *SpinnakerRetrofitErrorHandler* in each Spinnaker microservice, as detailed in [this Github issue](https://github.com/spinnaker/spinnaker/issues/5473).
+
+### Front50
+
+- Added optional query params to the GET /pipelines endpoint.
+- Return all pipelines triggered when the given pipeline configuration ID completes with the given status. Initially used in this [PR](https://github.com/spinnaker/orca/pull/4448).
+- Added three new config flags to each object type under service-storage.
+   - Two of the three are performance improvements which you can read about in the Spinnaker 1.31.0 [changelog](https://spinnaker.io/changelogs/1.31.0-changelog/#front50)
+
+### Kayenta
+
+- Added a storage service migrator.
+   - Added the ability to migrate account credentials and account configurations data from S3/GCS to MySQL/PostgreSQL and vice versa
+   - See the [PR comment](https://github.com/spinnaker/kayenta/pull/940#issue-1639273840) for instructions on how to use these properties (in kayenta-local.yml) to enable the data migration and MySQL or PostgreSQL data source.
+ 
+### Orca
+
+- Added a new configuration flag: *front50.useTriggeredByEndpoint* that defaults to false. When false, Orca queries Front50 for all pipelines each time a pipeline execution completes. When true, Orca only queries for pipelines triggered when a specific pipeline completes which is potentially a very small subset of all pipelines.
+
+### Enable Jenkins job triggers for jobs located sub-folders
+When defining a Jenkins job in a sub-folder, the path contains forward slashes. By enabling this feature, Armory CD will be
+able to trigger Jenkins jobs located in sub-folders, correctly matching the job path.
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      echo:
+        feature:
+          igor:
+            jobNameAsQueryParameter: true
+      orca:
+        feature:
+          igor:
+            jobNameAsQueryParameter: true
+      igor:
+        feature:
+          igor:
+            jobNameAsQueryParameter: true
+```
 
 ###  Spinnaker community contributions
 
