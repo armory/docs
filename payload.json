@@ -2,43 +2,46 @@
   "armoryServices": [
     {
       "commitMessages": [
+        "Adding aws mysql jdbc drivers (#816)",
         "chore(cd): update armory-commons version to 3.14.4 (#832)",
         "chore(cd): update armory-commons version to 3.14.5 (#835)",
         "chore(cd): update base orca version to 2024.03.11.15.12.53.release-1.31.x (#843)",
         "chore(cd): update base orca version to 2024.03.14.15.56.51.release-1.31.x (#848)",
         "chore(cd): update base orca version to 2024.03.14.16.21.01.release-1.31.x (#849)"
       ],
-      "currentVersion": "2.31.1-rc2",
+      "currentVersion": "2.31.1",
       "name": "Armory Orca",
-      "previousVersion": "2.31.1-rc1"
+      "previousVersion": "2.31.0"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.31.1-rc2",
+      "currentVersion": "2.31.1",
       "name": "Terraformer™",
-      "previousVersion": "2.31.1-rc1"
+      "previousVersion": "2.31.0"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.31.1-rc2",
+      "currentVersion": "2.31.1",
       "name": "Armory Fiat",
-      "previousVersion": "2.31.1-rc1"
+      "previousVersion": "2.31.0"
     },
     {
       "commitMessages": [
+        "chore(cd): update base service version to igor:2024.01.22.15.24.57.release-1.31.x (#555)",
+        "chore: OS Updates (#516) (#567)",
         "chore(cd): update armory-commons version to 3.14.4 (#578)",
         "chore(cd): update armory-commons version to 3.14.5 (#580)",
         "chore(cd): update base service version to igor:2024.03.14.15.50.26.release-1.31.x (#589)"
       ],
-      "currentVersion": "2.31.1-rc2",
+      "currentVersion": "2.31.1",
       "name": "Armory Igor",
-      "previousVersion": "2.31.1-rc1"
+      "previousVersion": "2.31.0"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.31.1-rc2",
+      "currentVersion": "2.31.1",
       "name": "Armory Deck",
-      "previousVersion": "2.31.1-rc1"
+      "previousVersion": "2.31.0"
     },
     {
       "commitMessages": [
@@ -47,37 +50,40 @@
         "chore(cd): update base service version to echo:2024.03.14.14.32.38.release-1.31.x (#701)",
         "chore(cd): update base service version to echo:2024.03.14.16.01.06.release-1.31.x (#702)"
       ],
-      "currentVersion": "2.31.1-rc2",
+      "currentVersion": "2.31.1",
       "name": "Armory Echo",
-      "previousVersion": "2.31.1-rc1"
+      "previousVersion": "2.31.0"
     },
     {
       "commitMessages": [
+        "fix(ci): Removing integration tests as not stable (backport #627) (#629)",
         "chore(cd): update armory-commons version to 3.14.4 (#645)",
         "chore(cd): update armory-commons version to 3.14.5 (#646)"
       ],
-      "currentVersion": "2.31.1-rc2",
+      "currentVersion": "2.31.1",
       "name": "Armory Rosco",
-      "previousVersion": "2.31.1-rc1"
+      "previousVersion": "2.31.0"
     },
     {
       "commitMessages": [
+        "chore(cd): update base service version to kayenta:2023.11.21.08.03.27.release-1.31.x (#499)",
         "chore(cd): update armory-commons version to 3.14.4 (#521)",
         "chore(cd): update armory-commons version to 3.14.5 (#522)"
       ],
-      "currentVersion": "2.31.1-rc2",
+      "currentVersion": "2.31.1",
       "name": "Armory Kayenta",
-      "previousVersion": "2.31.1-rc1"
+      "previousVersion": "2.31.0"
     },
     {
       "commitMessages": [
+        "chore: Front50 OS upgrade (#604) (#640)",
         "chore(cd): update armory-commons version to 3.14.4 (#657)",
         "chore(cd): update armory-commons version to 3.14.5 (#658)",
         "Updating force dependency on com.google.cloud:google-cloud-storage:1.108.0 (#663) (#664)"
       ],
-      "currentVersion": "2.31.1-rc2",
+      "currentVersion": "2.31.1",
       "name": "Armory Front50",
-      "previousVersion": "2.31.1-rc1"
+      "previousVersion": "2.31.0"
     },
     {
       "commitMessages": [
@@ -85,29 +91,31 @@
         "chore(cd): update base service version to clouddriver:2024.02.27.14.37.01.release-1.31.x (#1082)",
         "chore(cd): update armory-commons version to 3.14.5 (#1085)"
       ],
-      "currentVersion": "2.31.1-rc2",
+      "currentVersion": "2.31.1",
       "name": "Armory Clouddriver",
-      "previousVersion": "2.31.1-rc1"
+      "previousVersion": "2.31.0"
     },
     {
       "commitMessages": [
+        "chore(gate): Removing Instance registration from Gate (backport #677) (#679)",
+        "fix(header): Fixing header plugin reference in config (backport #684) (#686)",
         "chore(cd): update armory-commons version to 3.14.4 (#701)",
         "chore(cd): update armory-commons version to 3.14.5 (#702)"
       ],
-      "currentVersion": "2.31.1-rc2",
+      "currentVersion": "2.31.1",
       "name": "Armory Gate",
-      "previousVersion": "2.31.1-rc1"
+      "previousVersion": "2.31.0"
     },
     {
       "commitMessages": [
         "chore(dependencies): v0.0.0-20240213103436-d0dc889db2c6 (backport #529) (#531)"
       ],
-      "currentVersion": "2.31.1-rc2",
+      "currentVersion": "2.31.1",
       "name": "Dinghy™",
-      "previousVersion": "2.31.1-rc1"
+      "previousVersion": "2.31.0"
     }
   ],
-  "armoryVersion": "2.31.1-rc2",
+  "armoryVersion": "2.31.1",
   "ossServices": [
     {
       "commitMessages": [
@@ -127,6 +135,7 @@
     },
     {
       "commitMessages": [
+        "feat(jenkins): Enable Jenkins job triggers for jobs in sub-folders (#1204) (#1215)",
         "fix(jenkins): Enable properties and artifacts with job name as query parameter (#1230) (#1240)"
       ],
       "currentVersion": "1.31.3",
@@ -155,7 +164,9 @@
       "previousVersion": "1.31.0"
     },
     {
-      "commitMessages": [],
+      "commitMessages": [
+        "chore(dependencies): Autobump orcaVersion (#1001)"
+      ],
       "currentVersion": "1.31.3",
       "name": "Spinnaker Kayenta",
       "previousVersion": "1.31.0"
@@ -182,7 +193,7 @@
     }
   ],
   "ossVersion": "1.31.3",
-  "prerelease": true,
+  "prerelease": false,
   "stack": {
     "artifactSources": {
       "dockerRegistry": "docker.io/armory"
@@ -196,39 +207,39 @@
     "services": {
       "clouddriver": {
         "commit": "cb7a25cc5d610afc67346cf25af98082566e38f6",
-        "version": "2.31.1-rc2"
+        "version": "2.31.1"
       },
       "deck": {
         "commit": "1dd95e4ef5ed631f24253bf917200c3cf52655af",
-        "version": "2.31.1-rc2"
+        "version": "2.31.1"
       },
       "dinghy": {
         "commit": "1bbb649f71d128d167229d72a1c94aa480f99684",
-        "version": "2.31.1-rc2"
+        "version": "2.31.1"
       },
       "echo": {
         "commit": "abefa81c6eac597a0db45e33ebaebd464cfdc5df",
-        "version": "2.31.1-rc2"
+        "version": "2.31.1"
       },
       "fiat": {
         "commit": "f1079f69f0184aae517680c48283cf9a52c9cf26",
-        "version": "2.31.1-rc2"
+        "version": "2.31.1"
       },
       "front50": {
         "commit": "13814c48944265261af52c3929a4b96fc6c45add",
-        "version": "2.31.1-rc2"
+        "version": "2.31.1"
       },
       "gate": {
         "commit": "abfb0120ca617cb5806c7f2082ab4f8e9d7190b2",
-        "version": "2.31.1-rc2"
+        "version": "2.31.1"
       },
       "igor": {
         "commit": "a66db7a9037a4ddec4e131ec0b0bb137956a9395",
-        "version": "2.31.1-rc2"
+        "version": "2.31.1"
       },
       "kayenta": {
         "commit": "18b22f0e9ca778f354ec5ac8255d0014ba6339ff",
-        "version": "2.31.1-rc2"
+        "version": "2.31.1"
       },
       "monitoring-daemon": {
         "commit": null,
@@ -240,18 +251,18 @@
       },
       "orca": {
         "commit": "e46aab32af0ec1031eb216fc3fa2cf00f957aea0",
-        "version": "2.31.1-rc2"
+        "version": "2.31.1"
       },
       "rosco": {
         "commit": "9812503db8271e32cd5d7960db12441fa8a39494",
-        "version": "2.31.1-rc2"
+        "version": "2.31.1"
       },
       "terraformer": {
         "commit": "50082463ccd180cb4763078671a105ab70dee5e6",
-        "version": "2.31.1-rc2"
+        "version": "2.31.1"
       }
     },
     "timestamp": "2024-03-14 18:17:56",
-    "version": "2.31.1-rc2"
+    "version": "2.31.1"
   }
 }
