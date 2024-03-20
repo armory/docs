@@ -333,9 +333,14 @@ theme = "forest"
 #Add new release versions here. These entries appear in the drop-down menu
 # at the top of the website.
 [[params.versions]]
+  version = "Armory CD v2.32"
+  githubbranch = "v2.32"
+  url = "https://v2-32.docs.armory.io/continuous-deployment/"
+
+[[params.versions]]
   version = "Armory CD v2.31"
   githubbranch = "v2.31"
-  url = "https://docs.armory.io/continuous-deployment/"
+  url = "https://v2-31.docs.armory.io/continuous-deployment/"
 
 [[params.versions]]
   version = "Armory CD v2.30"
