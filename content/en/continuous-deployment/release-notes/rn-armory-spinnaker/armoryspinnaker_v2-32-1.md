@@ -29,6 +29,9 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
+### RetrofitError thrown on login
+In versions 2.32.0 and 2.32.1 of Spinnaker, there is an issue with x509 authentication that affects certificates without roles. Certificates lacking roles will fail to authenticate in these versions. However, certificates with roles are not affected and will continue to function properly. Users relying on x509 authentication are advised to exercise caution when upgrading to versions 2.32.0 and 2.32.1. It's recommended to wait for version 2.32.2 or a later release, which includes a fix for this issue. Testing the upgrade in a non-production environment is advisable to ensure smooth operation.
+
 ### AWS Lambda plugin migrated to OSS
 Starting from Armory version 2.32.0 (OSS version 1.32.0), the AWS Lambda plugin has been migrated to OSS codebase.
 If you are using the AWS Lambda plugin, you will need to disable/remove it when upgrading to Armory version 2.32.0+ to
