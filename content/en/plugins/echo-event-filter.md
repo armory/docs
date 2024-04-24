@@ -249,6 +249,10 @@ event:
 
 ## Release notes
 
+- 0.1.1: Performance improvements on event filtering
+- 0.1.0: 1.32 compatible version
+- 0.0.5: Performance improvements on event filtering
+- 0.0.4: Added Jinja template support
 - 0.0.2: 1.30 compatible version
 - 0.0.1: Initial release
 
