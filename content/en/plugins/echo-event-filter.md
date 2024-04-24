@@ -27,10 +27,11 @@ Installing the plugin consists of the following:
 
 ## Compatiblity matrix
 
-| Spinnaker Version | Event Filter Plugin Version |
-| ------------------ | -------------------------- |
-| 1.30.x              | 0.0.2 |
-| 1.29.x              | 0.0.1 |
+| Armory CD Version | Spinnaker Version | Event Filter Plugin Version |
+|-------------------|-------------------|-----------------------------|
+| 2.32.x            | 1.32.x            | 0.1.1                       |
+| 2.30.x            | 1.30.x            | 0.0.5                       |
+| -                 | 1.29.x            | 0.0.1                       |
 
 ## {{% heading "prereq" %}}
 
