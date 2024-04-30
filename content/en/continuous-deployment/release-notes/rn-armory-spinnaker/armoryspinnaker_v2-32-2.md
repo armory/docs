@@ -1,10 +1,10 @@
 ---
-title: v2.32.1 Armory Continuous Deployment Release (Spinnaker™ v1.32.4)
+title: v2.32.2 Armory Continuous Deployment Release (Spinnaker™ v1.32.4)
 toc_hide: true
-version: 2.32.1
-date: 2024-03-14
+version: 2.32.2
+date: 2024-04-30
 description: >
-  Release notes for Armory Continuous Deployment v2.32.1.
+  Release notes for Armory Continuous Deployment v2.32.2.
 ---
 
 <!-- 
@@ -12,7 +12,7 @@ MAKE SURE TO ADD 'LTS' OR 'FEATURE' TO THE TITLE TO INDICATE RELEASE CATEGORY.
 FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous Deployment Release Feature" so users know release category and support time period 
 -->
 
-## 2024/03/14 release notes
+## 2024/04/30 release notes
 
 >Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
@@ -28,9 +28,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
-
-### RetrofitError thrown on login
-In versions 2.32.0 and 2.32.1 of Spinnaker, there is an issue with x509 authentication that affects certificates without roles. Certificates lacking roles will fail to authenticate in these versions. However, certificates with roles are not affected and will continue to function properly. Users relying on x509 authentication are advised to exercise caution when upgrading to versions 2.32.0 and 2.32.1. It's recommended to wait for version 2.32.2 or a later release, which includes a fix for this issue. Testing the upgrade in a non-production environment is advisable to ensure smooth operation.
 
 ### AWS Lambda plugin migrated to OSS
 Starting from Armory version 2.32.0 (OSS version 1.32.0), the AWS Lambda plugin has been migrated to OSS codebase.
@@ -94,30 +91,19 @@ Related OSS PRs:
 - https://github.com/spinnaker/orca/pull/4449
 - https://github.com/spinnaker/deck/pull/9988
 
+
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
-### RetrofitError thrown on login
-In versions 2.32.0 and 2.32.1 of Spinnaker, there is an issue with x509 authentication that affects certificates without roles.
-Certificates lacking roles will fail to authenticate in these versions. However, certificates with roles are not affected and will continue to function properly.
-Users relying on x509 authentication are advised to exercise caution when upgrading to versions 2.32.0 and 2.32.1.
-It's recommended to update on version 2.32.2 or a later release, which includes a fix for this issue. 
-Testing the upgrade in a non-production environment is advisable to ensure smooth operation.
-
-### Terraform Show stage failures
-In Armory version 2.32.0 and 2.32.1, the Terraform Show stage fails with Buffer errors during execution.
-It's recommended to update on version 2.32.2 or a later release, which includes a fix for this issue.
-
-### AWS Lambda Stages are not visible in the UI
-In Armory version 2.32.0 and 2.32.1, the AWS Lambda stages are not visible in the UI due to an issue with the Deck feature flag.
-It's recommended to update on version 2.32.2 or a later release, which includes a fix for this issue.
-
 ## Highlighted updates
+
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+
 ### Terraformer support for AWS S3 Artifact Store
 OSS Spinnaker 1.32.0 introduced support for [artifact storage](https://spinnaker.io/changelogs/1.32.0-changelog/#artifact-store) 
 with AWS S3. This feature compresses `embdedded/base64` artifacts to `remote/base64` and uploads them to an AWS S3 bucket significantly 
@@ -192,6 +178,12 @@ spec:
           repo: my-bitbucket-repository
 ```
 
+### Performance improvements for the search executions API operations
+The search executions API operations have been optimized to improve performance and reduce the time taken to search for pipelines by triggerType or eventId.
+
+### RunJob stage improvement
+RunJob stage now persist any External Log links after the deletion of the pods. This enhancement ensures that the External Log links are available even after the pods are deleted.
+
 ###  Spinnaker community contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
@@ -212,31 +204,31 @@ dependencies:
 services:
   clouddriver:
     commit: b29acea67a40b4145431137ba96454c1d1bf0d73
-    version: 2.32.1
+    version: 2.32.2
   deck:
-    commit: e7c8c0982afe9a49ab6c3d230f3aaa38e874eb30
-    version: 2.32.1
+    commit: 13f331421b292db61f14392e6932880aa5c49f25
+    version: 2.32.2
   dinghy:
     commit: f5b14ffba75721322ada662f2325e80ec86347de
-    version: 2.32.1
+    version: 2.32.2
   echo:
     commit: 9d2abeeea4341e5ba94654925ba6488a9038af3f
-    version: 2.32.1
+    version: 2.32.2
   fiat:
-    commit: 3f3fe6bf09708847a0f853bc74f6755920a4312b
-    version: 2.32.1
+    commit: 5e1839ef81812c439fb37b411bd3b381131c8c40
+    version: 2.32.2
   front50:
     commit: ba318cd2c445f14e5d6c3db87fa1658549385403
-    version: 2.32.1
+    version: 2.32.2
   gate:
-    commit: dd64887668a2e2212667ca942e0bfd303aa34c60
-    version: 2.32.1
+    commit: c6654ca6e316eef474c59296120d3f9f34eb0bdf
+    version: 2.32.2
   igor:
     commit: 9339ab63ab3d85ebcb00131033d19f26ad436f05
-    version: 2.32.1
+    version: 2.32.2
   kayenta:
     commit: bccd150fcc8a7cb7df537ec6269bce5d2843c703
-    version: 2.32.1
+    version: 2.32.2
   monitoring-daemon:
     commit: null
     version: 2.26.0
@@ -244,16 +236,16 @@ services:
     commit: null
     version: 2.26.0
   orca:
-    commit: 9d45d87956abd9aad29ef8f9858e602e72d78c3c
-    version: 2.32.1
+    commit: aa898e512f93921b8786ea790bfe1cb5abc12f2b
+    version: 2.32.2
   rosco:
     commit: dfe611ffdd2cf9ae7c524fb9970af47350ca5e96
-    version: 2.32.1
+    version: 2.32.2
   terraformer:
-    commit: 6dbdb8b4c277cca4285b4d29d10f6cf3765f7590
-    version: 2.32.1
-timestamp: "2024-03-12 14:53:28"
-version: 2.32.1
+    commit: 2dc7666ca2d25acb85ab2b9f8efc864599061c45
+    version: 2.32.2
+timestamp: "2024-04-25 15:56:08"
+version: 2.32.2
 </code>
 </pre>
 </details>
@@ -261,128 +253,97 @@ version: 2.32.1
 ### Armory
 
 
-#### Armory Front50 - 2.32.0...2.32.1
-
-  - chore(cd): update armory-commons version to 3.15.3 (#659)
-  - chore(cd): update armory-commons version to 3.15.4 (#660)
-  - Fixing gcs dependencies (#662)
-  - chore(armory-commons): Update armory-commons to 3.15.4 (#665)
-  - chore(cd): update base service version to front50:2024.03.08.16.52.13.release-1.32.x (#666)
-  - chore(cd): update base service version to front50:2024.03.08.19.18.53.release-1.32.x (#667)
-
-#### Armory Clouddriver - 2.32.0...2.32.1
-
-  - chore(cd): update base service version to clouddriver:2024.02.27.14.37.13.release-1.32.x (#1083)
-  - chore(cd): update armory-commons version to 3.15.3 (#1086)
-  - chore(cd): update armory-commons version to 3.15.4 (#1088)
-  - chore(cd): update base service version to clouddriver:2024.03.08.19.52.28.release-1.32.x (#1091)
-
-#### Armory Deck - 2.32.0...2.32.1
+#### Armory Clouddriver - 2.32.1...2.32.2
 
 
-#### Armory Orca - 2.32.0...2.32.1
-
-  - chore(cd): update base orca version to 2024.02.27.15.33.36.release-1.32.x (#833)
-  - chore(cd): update armory-commons version to 3.15.3 (#836)
-  - chore(cd): update armory-commons version to 3.15.4 (#837)
-  - chore(cd): update base orca version to 2024.03.08.16.54.30.release-1.32.x (#840)
-  - chore(cd): update base orca version to 2024.03.08.19.21.42.release-1.32.x (#841)
-
-#### Dinghy™ - 2.32.0...2.32.1
+#### Armory Kayenta - 2.32.1...2.32.2
 
 
-#### Armory Gate - 2.32.0...2.32.1
+#### Armory Echo - 2.32.1...2.32.2
 
-  - fix: esapi CVE scan report (#602) (#700)
-  - chore(cd): update armory-commons version to 3.15.4 (#704)
-  - chore(cd): update base service version to gate:2024.03.08.19.17.43.release-1.32.x (#707)
 
-#### Armory Rosco - 2.32.0...2.32.1
+#### Armory Deck - 2.32.1...2.32.2
 
-  - chore(cd): update armory-commons version to 3.15.3 (#647)
-  - chore(cd): update armory-commons version to 3.15.4 (#648)
-  - chore(cd): update base service version to rosco:2024.03.08.16.49.31.release-1.32.x (#650)
+  - chore(cd): update base deck version to 2024.0.0-20240416232157.release-1.32.x (#1400)
+  - chore(cd): update base deck version to 2024.0.0-20240425133704.release-1.32.x (#1403)
+  - chore(cd): update base deck version to 2024.0.0-20240425135304.release-1.32.x (#1404)
 
-#### Armory Echo - 2.32.0...2.32.1
+#### Armory Fiat - 2.32.1...2.32.2
 
-  - chore(cd): update base service version to echo:2024.02.27.15.33.43.release-1.32.x (#692)
-  - chore(cd): update armory-commons version to 3.15.3 (#694)
-  - chore(cd): update armory-commons version to 3.15.4 (#695)
-  - chore(cd): update base service version to echo:2024.03.08.16.50.19.release-1.32.x (#697)
-  - chore(cd): update base service version to echo:2024.03.08.19.17.18.release-1.32.x (#698)
+  - fix(build): Updating vault addr for gradle build (#597) (#598)
 
-#### Terraformer™ - 2.32.0...2.32.1
+#### Armory Gate - 2.32.1...2.32.2
 
-  - fix(remote/artifacts): Passing user to clouddriver when using remote store (#548) (#549)
+  - chore(cd): update base service version to gate:2024.03.25.21.57.21.release-1.32.x (#712)
 
-#### Armory Fiat - 2.32.0...2.32.1
+#### Terraformer™ - 2.32.1...2.32.2
 
-  - chore(cd): update armory-commons version to 3.15.4 (#587)
-  - chore(cd): update base service version to fiat:2024.03.08.16.48.59.release-1.32.x (#590)
+  - fix(tf-show): Reverting go-cmd implementation (#551) (#552)
+  - Build: Removing full history fetch (#553) (#554)
+  - Updating Dockerfile with harness email list and pull from Dockerhub (#550) (#556)
+  - Fixing Dockerfile with missing tools (#557) (#558)
+  - fix(build): Refarctoring Dockerfile to fix build failures (#559) (#560)
+  - fix(build): Fixing Dockerfile for multi-build process (#561) (#562)
 
-#### Armory Kayenta - 2.32.0...2.32.1
+#### Armory Rosco - 2.32.1...2.32.2
 
-  - chore(cd): update armory-commons version to 3.15.4 (#524)
-  - chore(cd): update base service version to kayenta:2024.03.08.20.48.11.release-1.32.x (#525)
 
-#### Armory Igor - 2.32.0...2.32.1
+#### Dinghy™ - 2.32.1...2.32.2
 
-  - chore(cd): update base service version to igor:2024.02.27.15.32.19.release-1.32.x (#579)
-  - chore(cd): update armory-commons version to 3.15.3 (#581)
-  - chore(cd): update armory-commons version to 3.15.4 (#582)
-  - chore(cd): update base service version to igor:2024.03.08.16.52.17.release-1.32.x (#584)
-  - chore(cd): update base service version to igor:2024.03.08.19.18.39.release-1.32.x (#585)
+
+#### Armory Orca - 2.32.1...2.32.2
+
+  - chore(cd): update base orca version to 2024.03.26.22.19.53.release-1.32.x (#856)
+  - chore(cd): update base orca version to 2024.04.02.15.59.15.release-1.32.x (#860)
+  - chore(cd): update base orca version to 2024.04.15.20.03.44.release-1.32.x (#865)
+  - chore(cd): update base orca version to 2024.04.15.22.28.52.release-1.32.x (#867)
+
+#### Armory Igor - 2.32.1...2.32.2
+
+
+#### Armory Front50 - 2.32.1...2.32.2
+
 
 
 ### Spinnaker
 
 
-#### Spinnaker Front50 - 1.32.4
-
-  - chore(dependencies): Autobump korkVersion (#1439)
-  - chore(dependencies): Autobump fiatVersion (#1440)
-
 #### Spinnaker Clouddriver - 1.32.4
 
-  - fix: Change the agent type name to not include the account name since this would generate LOTS of tables and cause problems long term (#6158) (#6165)
-  - chore(dependencies): Autobump korkVersion (#6169)
-  - chore(dependencies): Autobump fiatVersion (#6170)
+
+#### Spinnaker Kayenta - 1.32.4
+
+
+#### Spinnaker Echo - 1.32.4
+
 
 #### Spinnaker Deck - 1.32.4
+
+  - fix(runJobs): Persist External Log links after the deletion of the pods (#10081) (#10084)
+  - fix(pipelineGraph): Handling exception when requisiteStageRefIds is not defined (#10086) (#10089)
+  - fix(lambdaStages): Exporting Lambda stages based on the feature flag settings (#10085) (#10092)
+
+#### Spinnaker Fiat - 1.32.4
+
+
+#### Spinnaker Gate - 1.32.4
+
+  - fix(core): RetrofitError thrown on login (#1737) (#1779)
+
+#### Spinnaker Rosco - 1.32.4
 
 
 #### Spinnaker Orca - 1.32.4
 
-  - fix(jenkins): Enable properties and artifacts with job name as query parameter (#4661) (#4664)
-  - chore(dependencies): Autobump korkVersion (#4667)
-  - chore(dependencies): Autobump fiatVersion (#4668)
-
-#### Spinnaker Gate - 1.32.4
-
-  - chore(dependencies): Autobump korkVersion (#1773)
-  - chore(dependencies): Autobump fiatVersion (#1774)
-
-#### Spinnaker Rosco - 1.32.4
-
-  - chore(dependencies): Autobump korkVersion (#1077)
-
-#### Spinnaker Echo - 1.32.4
-
-  - fix(jenkins): Enable properties and artifacts with job name as query parameter (#1393) (#1396)
-  - chore(dependencies): Autobump korkVersion (#1398)
-  - chore(dependencies): Autobump fiatVersion (#1399)
-
-#### Spinnaker Fiat - 1.32.4
-
-  - chore(dependencies): Autobump korkVersion (#1145)
-
-#### Spinnaker Kayenta - 1.32.4
-
-  - chore(dependencies): Autobump orcaVersion (#1023)
+  - feat(servergroup): Allow users to opt-out of the target desired size check when verifying if the instances scaled up or down successfully (#4649) (#4653)
+  - fix(queue): Fix `ZombieExecutionCheckingAgent` to handle queues with more than 100 items (#4648) (#4683)
+  - fix(explicitRollback): Add configurable timeout for serverGroup lookup from Clouddriver API (#4686) (#4690)
+  - perf(sql): Optimise searchForPipelinesByTrigger LIMIT and OFFSET SQL query (#4698) (#4699)
+  - fix(SqlExecutionRepository): fixed bug in sql repository in orca-sql … (backport #4697) (#4701)
 
 #### Spinnaker Igor - 1.32.4
 
-  - fix(jenkins): Enable properties and artifacts with job name as query parameter (#1230) (#1233)
-  - chore(dependencies): Autobump korkVersion (#1235)
-  - chore(dependencies): Autobump fiatVersion (#1236)
+
+#### Spinnaker Front50 - 1.32.4
+
 
