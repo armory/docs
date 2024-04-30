@@ -97,6 +97,21 @@ Related OSS PRs:
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+### RetrofitError thrown on login
+In versions 2.32.0 and 2.32.1 of Spinnaker, there is an issue with x509 authentication that affects certificates without roles.
+Certificates lacking roles will fail to authenticate in these versions. However, certificates with roles are not affected and will continue to function properly.
+Users relying on x509 authentication are advised to exercise caution when upgrading to versions 2.32.0 and 2.32.1.
+It's recommended to update on version 2.32.2 or a later release, which includes a fix for this issue. 
+Testing the upgrade in a non-production environment is advisable to ensure smooth operation.
+
+### Terraform Show stage failures
+In Armory version 2.32.0 and 2.32.1, the Terraform Show stage fails with Buffer errors during execution.
+It's recommended to update on version 2.32.2 or a later release, which includes a fix for this issue.
+
+### AWS Lambda Stages are not visible in the UI
+In Armory version 2.32.0 and 2.32.1, the AWS Lambda stages are not visible in the UI due to an issue with the Deck feature flag.
+It's recommended to update on version 2.32.2 or a later release, which includes a fix for this issue.
+
 ## Highlighted updates
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
