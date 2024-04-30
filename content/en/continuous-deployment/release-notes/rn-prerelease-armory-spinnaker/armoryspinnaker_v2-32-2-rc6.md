@@ -125,42 +125,54 @@ version: 2.32.2-rc6
 ### Armory
 
 
-#### Armory Clouddriver - 2.32.2-rc5...2.32.2-rc6
+#### Armory Clouddriver - 2.32.1...2.32.2-rc6
 
 
-#### Armory Kayenta - 2.32.2-rc5...2.32.2-rc6
+#### Armory Kayenta - 2.32.1...2.32.2-rc6
 
 
-#### Armory Echo - 2.32.2-rc5...2.32.2-rc6
+#### Armory Echo - 2.32.1...2.32.2-rc6
 
 
-#### Armory Deck - 2.32.2-rc5...2.32.2-rc6
+#### Armory Deck - 2.32.1...2.32.2-rc6
+- chore(cd): update base deck version to 2024.0.0-20240416232157.release-1.32.x (#1400)
+- chore(cd): update base deck version to 2024.0.0-20240425133704.release-1.32.x (#1403)
+- chore(cd): update base deck version to 2024.0.0-20240425135304.release-1.32.x (#1404)
 
-  - chore(cd): update base deck version to 2024.0.0-20240425133704.release-1.32.x (#1403)
-  - chore(cd): update base deck version to 2024.0.0-20240425135304.release-1.32.x (#1404)
-
-#### Armory Fiat - 2.32.2-rc5...2.32.2-rc6
-
-
-#### Armory Gate - 2.32.2-rc5...2.32.2-rc6
+#### Armory Fiat - 2.32.1...2.32.2-rc6
+- fix(build): Updating vault addr for gradle build (#597) (#598)
 
 
-#### Terraformer™ - 2.32.2-rc5...2.32.2-rc6
+#### Armory Gate - 2.32.1...2.32.2-rc6
+- chore(cd): update base service version to gate:2024.03.25.21.57.21.release-1.32.x (#712)
 
 
-#### Armory Rosco - 2.32.2-rc5...2.32.2-rc6
+#### Terraformer™ - 2.32.1...2.32.2-rc6
+- fix(tf-show): Reverting go-cmd implementation (#551) (#552)
+- Build: Removing full history fetch (#553) (#554)
+- Updating Dockerfile with harness email list and pull from Dockerhub (#550) (#556)
+- Fixing Dockerfile with missing tools (#557) (#558)
+- fix(build): Refarctoring Dockerfile to fix build failures (#559) (#560)
+- fix(build): Fixing Dockerfile for multi-build process (#561) (#562)
 
 
-#### Dinghy™ - 2.32.2-rc5...2.32.2-rc6
+#### Armory Rosco - 2.32.1...2.32.2-rc6
 
 
-#### Armory Orca - 2.32.2-rc5...2.32.2-rc6
+#### Dinghy™ - 2.32.1...2.32.2-rc6
 
 
-#### Armory Igor - 2.32.2-rc5...2.32.2-rc6
+#### Armory Orca - 2.32.1...2.32.2-rc6
+- chore(cd): update base orca version to 2024.04.15.20.03.44.release-1.32.x (#865)
+- chore(cd): update base orca version to 2024.04.15.22.28.52.release-1.32.x (#867)
+- chore(cd): update base orca version to 2024.03.26.22.19.53.release-1.32.x (#856)
+- chore(cd): update base orca version to 2024.04.02.15.59.15.release-1.32.x (#860)
 
 
-#### Armory Front50 - 2.32.2-rc5...2.32.2-rc6
+#### Armory Igor - 2.32.1...2.32.2-rc6
+
+
+#### Armory Front50 - 2.32.1...2.32.2-rc6
 
 
 
@@ -177,20 +189,27 @@ version: 2.32.2-rc6
 
 
 #### Spinnaker Deck - 1.32.4
-
-  - fix(pipelineGraph): Handling exception when requisiteStageRefIds is not defined (#10086) (#10089)
-  - fix(lambdaStages): Exporting Lambda stages based on the feature flag settings (#10085) (#10092)
+- fix(runJobs): Persist External Log links after the deletion of the pods (#10081) (#10084)
+- fix(pipelineGraph): Handling exception when requisiteStageRefIds is not defined (#10086) (#10089)
+- fix(lambdaStages): Exporting Lambda stages based on the feature flag settings (#10085) (#10092)
 
 #### Spinnaker Fiat - 1.32.4
 
 
 #### Spinnaker Gate - 1.32.4
+- fix(core): RetrofitError thrown on login (#1737) (#1779)
+
 
 
 #### Spinnaker Rosco - 1.32.4
 
 
 #### Spinnaker Orca - 1.32.4
+- perf(sql): Optimise searchForPipelinesByTrigger LIMIT and OFFSET SQL query (#4698) (#4699)
+- fix(SqlExecutionRepository): fixed bug in sql repository in orca-sql … (backport #4697) (#4701)
+- feat(servergroup): Allow users to opt-out of the target desired size check when verifying if the instances scaled up or down successfully (#4649) (#4653)
+- fix(queue): Fix `ZombieExecutionCheckingAgent` to handle queues with more than 100 items (#4648) (#4683)
+- fix(explicitRollback): Add configurable timeout for serverGroup lookup from Clouddriver API (#4686) (#4690)
 
 
 #### Spinnaker Igor - 1.32.4
