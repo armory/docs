@@ -1,24 +1,37 @@
 ---
-title: v2.32.2 Armory Continuous Deployment Release (Spinnaker™ v1.32.4)
+title: v2.32.3-rc1 Armory Continuous Deployment Release (Spinnaker™ v1.32.4)
 toc_hide: true
-version: 2.32.2
-date: 2024-04-30
+date: 2024-05-09
+version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
 description: >
-  Release notes for Armory Continuous Deployment v2.32.2.
+  Release notes for Armory Continuous Deployment v2.32.3-rc1. A beta release is not meant for installation in production environments.
+
 ---
 
-<!-- 
-MAKE SURE TO ADD 'LTS' OR 'FEATURE' TO THE TITLE TO INDICATE RELEASE CATEGORY. 
-FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous Deployment Release Feature" so users know release category and support time period 
--->
+## 2024/05/09 release notes
 
-## 2024/04/30 release notes
+## Disclaimer
 
->Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
+This pre-release software is to allow limited access to test or beta versions of the Armory services (“Services”) and to provide feedback and comments to Armory regarding the use of such Services. By using Services, you agree to be bound by the terms and conditions set forth herein.
+
+Your Feedback is important and we welcome any feedback, analysis, suggestions and comments (including, but not limited to, bug reports and test results) (collectively, “Feedback”) regarding the Services. Any Feedback you provide will become the property of Armory and you agree that Armory may use or otherwise exploit all or part of your feedback or any derivative thereof in any manner without any further remuneration, compensation or credit to you. You represent and warrant that any Feedback which is provided by you hereunder is original work made solely by you and does not infringe any third party intellectual property rights.
+
+Any Feedback provided to Armory shall be considered Armory Confidential Information and shall be covered by any confidentiality agreements between you and Armory.
+
+You acknowledge that you are using the Services on a purely voluntary basis, as a means of assisting, and in consideration of the opportunity to assist Armory to use, implement, and understand various facets of the Services. You acknowledge and agree that nothing herein or in your voluntary submission of Feedback creates any employment relationship between you and Armory.
+
+Armory may, in its sole discretion, at any time, terminate or discontinue all or your access to the Services. You acknowledge and agree that all such decisions by Armory are final and Armory will have no liability with respect to such decisions.
+
+YOUR USE OF THE SERVICES IS AT YOUR OWN RISK. THE SERVICES, THE ARMORY TOOLS AND THE CONTENT ARE PROVIDED ON AN “AS IS” BASIS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. ARMORY AND ITS LICENSORS MAKE NO REPRESENTATION, WARRANTY, OR GUARANTY AS TO THE RELIABILITY, TIMELINESS, QUALITY, SUITABILITY, TRUTH, AVAILABILITY, ACCURACY OR COMPLETENESS OF THE SERVICES, THE ARMORY TOOLS OR ANY CONTENT. ARMORY EXPRESSLY DISCLAIMS ON ITS OWN BEHALF AND ON BEHALF OF ITS EMPLOYEES, AGENTS, ATTORNEYS, CONSULTANTS, OR CONTRACTORS ANY AND ALL WARRANTIES INCLUDING, WITHOUT LIMITATION (A) THE USE OF THE SERVICES OR THE ARMORY TOOLS WILL BE TIMELY, UNINTERRUPTED OR ERROR-FREE OR OPERATE IN COMBINATION WITH ANY OTHER HARDWARE, SOFTWARE, SYSTEM OR DATA, (B) THE SERVICES AND THE ARMORY TOOLS AND/OR THEIR QUALITY WILL MEET CUSTOMER”S REQUIREMENTS OR EXPECTATIONS, (C) ANY CONTENT WILL BE ACCURATE OR RELIABLE, (D) ERRORS OR DEFECTS WILL BE CORRECTED, OR (E) THE SERVICES, THE ARMORY TOOLS OR THE SERVER(S) THAT MAKE THE SERVICES AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. CUSTOMER AGREES THAT ARMORY SHALL NOT BE RESPONSIBLE FOR THE AVAILABILITY OR ACTS OR OMISSIONS OF ANY THIRD PARTY, INCLUDING ANY THIRD-PARTY APPLICATION OR PRODUCT, AND ARMORY HEREBY DISCLAIMS ANY AND ALL LIABILITY IN CONNECTION WITH SUCH THIRD PARTIES.
+
+IN NO EVENT SHALL ARMORY, ITS EMPLOYEES, AGENTS, ATTORNEYS, CONSULTANTS, OR CONTRACTORS BE LIABLE UNDER THIS AGREEMENT FOR ANY CONSEQUENTIAL, SPECIAL, LOST PROFITS, INDIRECT OR OTHER DAMAGES, INCLUDING BUT NOT LIMITED TO LOST PROFITS, LOSS OF BUSINESS, COST OF COVER WHETHER BASED IN CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, EVEN IF ARMORY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES AND NOTWITHSTANDING ANY FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY. IN ANY EVENT, ARMORY, ITS EMPLOYEES’, AGENTS’, ATTORNEYS’, CONSULTANTS’ OR CONTRACTORS’ AGGREGATE LIABILITY UNDER THIS AGREEMENT FOR ANY CLAIM SHALL BE STRICTLY LIMITED TO $100.00. SOME STATES DO NOT ALLOW THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE LIMITATION OR EXCLUSION MAY NOT APPLY TO YOU.
+
+You acknowledge that Armory has provided the Services in reliance upon the limitations of liability set forth herein and that the same is an essential basis of the bargain between the parties.
+
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.32.2, use Armory Operator 1.8.6 or later.
+To install, upgrade, or configure Armory CD 2.32.3-rc1, use Armory Operator 1.8.6 or later.
 
 ## Security
 
@@ -184,6 +197,7 @@ The search executions API operations have been optimized to improve performance 
 ### RunJob stage improvement
 RunJob stage now persist any External Log links after the deletion of the pods. This enhancement ensures that the External Log links are available even after the pods are deleted.
 
+
 ###  Spinnaker community contributions
 
 There have also been numerous enhancements, fixes, and features across all of Spinnaker's other services. See the
@@ -203,32 +217,32 @@ dependencies:
     version: 2:2.8.4-2
 services:
   clouddriver:
-    commit: b29acea67a40b4145431137ba96454c1d1bf0d73
-    version: 2.32.2
+    commit: 7d9e31043c8baa81afb59a2a30aee2235b7e90ab
+    version: 2.32.3-rc1
   deck:
-    commit: 13f331421b292db61f14392e6932880aa5c49f25
-    version: 2.32.2
+    commit: ae348ea3facfd841e722a65d9a31d6799cb36004
+    version: 2.32.3-rc1
   dinghy:
     commit: f5b14ffba75721322ada662f2325e80ec86347de
-    version: 2.32.2
+    version: 2.32.3-rc1
   echo:
     commit: 9d2abeeea4341e5ba94654925ba6488a9038af3f
-    version: 2.32.2
+    version: 2.32.3-rc1
   fiat:
     commit: 5e1839ef81812c439fb37b411bd3b381131c8c40
-    version: 2.32.2
+    version: 2.32.3-rc1
   front50:
     commit: ba318cd2c445f14e5d6c3db87fa1658549385403
-    version: 2.32.2
+    version: 2.32.3-rc1
   gate:
     commit: c6654ca6e316eef474c59296120d3f9f34eb0bdf
-    version: 2.32.2
+    version: 2.32.3-rc1
   igor:
     commit: 9339ab63ab3d85ebcb00131033d19f26ad436f05
-    version: 2.32.2
+    version: 2.32.3-rc1
   kayenta:
     commit: bccd150fcc8a7cb7df537ec6269bce5d2843c703
-    version: 2.32.2
+    version: 2.32.3-rc1
   monitoring-daemon:
     commit: null
     version: 2.26.0
@@ -236,16 +250,16 @@ services:
     commit: null
     version: 2.26.0
   orca:
-    commit: aa898e512f93921b8786ea790bfe1cb5abc12f2b
-    version: 2.32.2
+    commit: a1d218042cd26832f9fa352051d0a9ba8d2150dd
+    version: 2.32.3-rc1
   rosco:
     commit: dfe611ffdd2cf9ae7c524fb9970af47350ca5e96
-    version: 2.32.2
+    version: 2.32.3-rc1
   terraformer:
     commit: 2dc7666ca2d25acb85ab2b9f8efc864599061c45
-    version: 2.32.2
-timestamp: "2024-04-25 15:56:08"
-version: 2.32.2
+    version: 2.32.3-rc1
+timestamp: "2024-05-08 15:17:03"
+version: 2.32.3-rc1
 </code>
 </pre>
 </details>
@@ -253,62 +267,47 @@ version: 2.32.2
 ### Armory
 
 
-#### Armory Clouddriver - 2.32.1...2.32.2
+#### Armory Kayenta - 2.32.2...2.32.3-rc1
 
 
-#### Armory Kayenta - 2.32.1...2.32.2
+#### Armory Echo - 2.32.2...2.32.3-rc1
 
 
-#### Armory Echo - 2.32.1...2.32.2
+#### Armory Fiat - 2.32.2...2.32.3-rc1
 
 
-#### Armory Deck - 2.32.1...2.32.2
-
-  - chore(cd): update base deck version to 2024.0.0-20240416232157.release-1.32.x (#1400)
-  - chore(cd): update base deck version to 2024.0.0-20240425133704.release-1.32.x (#1403)
-  - chore(cd): update base deck version to 2024.0.0-20240425135304.release-1.32.x (#1404)
-
-#### Armory Fiat - 2.32.1...2.32.2
-
-  - fix(build): Updating vault addr for gradle build (#597) (#598)
-
-#### Armory Gate - 2.32.1...2.32.2
-
-  - chore(cd): update base service version to gate:2024.03.25.21.57.21.release-1.32.x (#712)
-
-#### Terraformer™ - 2.32.1...2.32.2
-
-  - fix(tf-show): Reverting go-cmd implementation (#551) (#552)
-  - Build: Removing full history fetch (#553) (#554)
-  - Updating Dockerfile with harness email list and pull from Dockerhub (#550) (#556)
-  - Fixing Dockerfile with missing tools (#557) (#558)
-  - fix(build): Refarctoring Dockerfile to fix build failures (#559) (#560)
-  - fix(build): Fixing Dockerfile for multi-build process (#561) (#562)
-
-#### Armory Rosco - 2.32.1...2.32.2
+#### Armory Gate - 2.32.2...2.32.3-rc1
 
 
-#### Dinghy™ - 2.32.1...2.32.2
+#### Terraformer™ - 2.32.2...2.32.3-rc1
 
 
-#### Armory Orca - 2.32.1...2.32.2
-
-  - chore(cd): update base orca version to 2024.03.26.22.19.53.release-1.32.x (#856)
-  - chore(cd): update base orca version to 2024.04.02.15.59.15.release-1.32.x (#860)
-  - chore(cd): update base orca version to 2024.04.15.20.03.44.release-1.32.x (#865)
-  - chore(cd): update base orca version to 2024.04.15.22.28.52.release-1.32.x (#867)
-
-#### Armory Igor - 2.32.1...2.32.2
+#### Armory Rosco - 2.32.2...2.32.3-rc1
 
 
-#### Armory Front50 - 2.32.1...2.32.2
+#### Armory Clouddriver - 2.32.2...2.32.3-rc1
+
+  - chore(cd): update base service version to clouddriver:2024.05.07.00.14.24.release-1.32.x (#1123)
+
+#### Armory Deck - 2.32.2...2.32.3-rc1
+
+  - chore(cd): update base deck version to 2024.0.0-20240507164950.release-1.32.x (#1408)
+
+#### Dinghy™ - 2.32.2...2.32.3-rc1
+
+
+#### Armory Igor - 2.32.2...2.32.3-rc1
+
+
+#### Armory Orca - 2.32.2...2.32.3-rc1
+
+  - chore(cd): update base orca version to 2024.05.07.00.09.39.release-1.32.x (#885)
+
+#### Armory Front50 - 2.32.2...2.32.3-rc1
 
 
 
 ### Spinnaker
-
-
-#### Spinnaker Clouddriver - 1.32.4
 
 
 #### Spinnaker Kayenta - 1.32.4
@@ -317,32 +316,29 @@ version: 2.32.2
 #### Spinnaker Echo - 1.32.4
 
 
-#### Spinnaker Deck - 1.32.4
-
-  - fix(runJobs): Persist External Log links after the deletion of the pods (#10081) (#10084)
-  - fix(pipelineGraph): Handling exception when requisiteStageRefIds is not defined (#10086) (#10089)
-  - fix(lambdaStages): Exporting Lambda stages based on the feature flag settings (#10085) (#10092)
-
 #### Spinnaker Fiat - 1.32.4
 
 
 #### Spinnaker Gate - 1.32.4
 
-  - fix(core): RetrofitError thrown on login (#1737) (#1779)
 
 #### Spinnaker Rosco - 1.32.4
 
 
-#### Spinnaker Orca - 1.32.4
+#### Spinnaker Clouddriver - 1.32.4
 
-  - feat(servergroup): Allow users to opt-out of the target desired size check when verifying if the instances scaled up or down successfully (#4649) (#4653)
-  - fix(queue): Fix `ZombieExecutionCheckingAgent` to handle queues with more than 100 items (#4648) (#4683)
-  - fix(explicitRollback): Add configurable timeout for serverGroup lookup from Clouddriver API (#4686) (#4690)
-  - perf(sql): Optimise searchForPipelinesByTrigger LIMIT and OFFSET SQL query (#4698) (#4699)
-  - fix(SqlExecutionRepository): fixed bug in sql repository in orca-sql … (backport #4697) (#4701)
+  - fix(gcp): Relaxed health check for GCP accounts (#6200) (#6204)
+
+#### Spinnaker Deck - 1.32.4
+
+  - fix(lambda): Invoke stage excludedArtifactTypes not including the embedded-artifact type (#10097) (#10102)
 
 #### Spinnaker Igor - 1.32.4
 
+
+#### Spinnaker Orca - 1.32.4
+
+  - fix(check-pre-condition): CheckPrecondition doesn't evaluate expression correctly after upstream stages get restarted (#4682) (#4719)
 
 #### Spinnaker Front50 - 1.32.4
 
