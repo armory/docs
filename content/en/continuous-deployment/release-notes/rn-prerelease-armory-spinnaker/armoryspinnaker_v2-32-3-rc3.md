@@ -42,6 +42,70 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
+### AWS Lambda plugin migrated to OSS
+Starting from Armory version 2.32.0 (OSS version 1.32.0), the AWS Lambda plugin has been migrated to OSS codebase.
+If you are using the AWS Lambda plugin, you will need to disable/remove it when upgrading to Armory version 2.32.0+ to
+avoid compatibility issues.
+
+Additionally, the AWS Lambda stages are now enabled using the Deck feature flag `feature.lambdaAdditionalStages = true;`
+as shown in the configuration block below.
+{{< highlight yaml "linenos=table,hl_lines=12" >}}
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      deck:
+        settings-local.js: |
+          ...
+          window.spinnakerSettings.feature.functions = true;
+          // Enable the AWS Lambda pipeline stages in Deck using the feature flag
+          window.spinnakerSettings.feature.lambdaAdditionalStages = true; 
+          ...
+      clouddriver:
+        aws:
+          enabled: true
+          features:
+            lambda:
+              enabled: true
+      ## Remove the AWS Lambda plugin from the Armory CD configuration.
+      #gate:
+      #  spinnaker:
+      #    extensibility:
+      #      deck-proxy:
+      #        enabled: true
+      #        plugins:
+      #          Aws.LambdaDeploymentPlugin:
+      #            enabled: true
+      #            version: <version>
+      #      repositories:
+      #        awsLambdaDeploymentPluginRepo:
+      #          url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json  
+      #orca:
+      #  spinnaker:
+      #    extensibility:
+      #      plugins:
+      #        Aws.LambdaDeploymentPlugin:
+      #          enabled: true
+      #          version: <version>
+      #          extensions:
+      #            Aws.LambdaDeploymentStage:
+      #              enabled: true
+      #      repositories:
+      #        awsLambdaDeploymentPluginRepo:
+      #          id: awsLambdaDeploymentPluginRepo
+      #          url: https://raw.githubusercontent.com/spinnaker-plugins/aws-lambda-deployment-plugin-spinnaker/master/plugins.json
+{{< /highlight >}}
+
+
+Related OSS PRs:
+- https://github.com/spinnaker/orca/pull/4449
+- https://github.com/spinnaker/deck/pull/9988
+
+
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
@@ -52,6 +116,86 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+
+### Terraformer support for AWS S3 Artifact Store
+OSS Spinnaker 1.32.0 introduced support for [artifact storage](https://spinnaker.io/changelogs/1.32.0-changelog/#artifact-store) 
+with AWS S3. This feature compresses `embdedded/base64` artifacts to `remote/base64` and uploads them to an AWS S3 bucket significantly 
+reducing the artifact size in the execution context. 
+
+Armory version 2.32.0 adds support for the same feature for the Terraform Integration stage.
+
+>Note: The artifact-store feature is disabled by default. To enable the artifact-store feature the following configuration is required:
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      spinnaker:
+        artifact-store:
+        enabled: true
+        s3:
+          enabled: true
+          region: <S3Bucket Region>
+          bucket: <S3Bucket Name>
+```
+
+When enabling the artifact-store feature it is recommended to deploy the services in this order:
+1. Clouddriver service
+2. Terraformer service
+3. Orca service
+4. Rosco service
+
+### Enable Jenkins job triggers for jobs located sub-folders
+When defining a Jenkins job in a sub-folder, the path contains forward slashes. By enabling this feature, Armory CD will be
+able to trigger Jenkins jobs located in sub-folders, correctly matching the job path.
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      echo:
+        feature:
+          igor:
+            jobNameAsQueryParameter: true
+      orca:
+        feature:
+          igor:
+            jobNameAsQueryParameter: true
+      igor:
+        feature:
+          igor:
+            jobNameAsQueryParameter: true
+```
+
+### Pipeline As Code: Bitbucket fallback support for default branch
+By default, Dinghy uses the `master` branch in your repository and fallbacks to `main` if `master` doesn’t exist.
+If you wish to use a different branch in your repository, you can configure that using the `repoConfig` tag in your YAML configuration.
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      dinghy:
+        repoConfig:
+        - branch: some_branch
+          provider: bitbucket-server
+          repo: my-bitbucket-repository
+```
+
+### Performance improvements for the search executions API operations
+The search executions API operations have been optimized to improve performance and reduce the time taken to search for pipelines by triggerType or eventId.
+
+### RunJob stage improvement
+RunJob stage now persist any External Log links after the deletion of the pods. This enhancement ensures that the External Log links are available even after the pods are deleted.
 
 
 
