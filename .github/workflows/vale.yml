@@ -7,7 +7,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.0
-
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - run: echo "/home/runner/.local/share/gem/ruby/3.3.0/bin" >> $GITHUB_PATH
       - name: Vale Linter
         # https://github.com/marketplace/actions/vale-linter
         uses: errata-ai/vale-action@3f7188c866bcb3259339a09f517d7c4a8838303c
