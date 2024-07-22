@@ -40,6 +40,7 @@ Breaking Change: Update your kubeconfig files to use the v1beta1 apiVersion: `cl
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+- API documentation (Swagger UI) is not available in Armory CD 2.34.0. Ongoing work to migrate to Spring Docs is in progress.  
 
 ## Highlighted updates
 <!--
