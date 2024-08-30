@@ -40,6 +40,12 @@ Breaking Change: Update your kubeconfig files to use the v1beta1 apiVersion: `cl
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
+### Spinnaker 2.34.0 Front50 GCS object store issue
+Spinnaker 2.34.0 includes a known issue in Front50 that causes issues with GCS object store configurations. This issue affects:
+- When GCS is used as a persistent store
+- When GCS is used in a dual repository configuration
+
+This is resolved in Spinnaker 2.34.1.
 
 ## Highlighted updates
 <!--
