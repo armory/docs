@@ -31,7 +31,7 @@ You acknowledge that Armory has provided the Services in reliance upon the limit
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.34.1-rc1, use Armory Operator 1.70 or later.
+To install, upgrade, or configure Armory CD 2.34.1-rc1, use Armory Operator 1.8.6 or later.
 
 ## Security
 
@@ -41,20 +41,139 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
+### Swagger UI endpoint change
+API documentation implementing swagger has been upgraded to use Springfox 3.0.0.
+
+Breaking Change: Swagger-ui endpoint changed from /swagger-ui.html to /swagger-ui/index.html.
+
+### Kubernetes API version change for `client.authentication.k8s.io`
+kubectl in the latest releases has removed support for external auth flows using the apiVersion: client.authentication.k8s.io/v1alpha1 exec API.
+
+Breaking Change: Update your kubeconfig files to use the v1beta1 apiVersion: `client.authentication.k8s.io/v1beta1`
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
 ## Highlighted updates
-
 <!--
 Each item category (such as UI) under here should be an h3 (###). List the following info that service owners should be able to provide:
 - Major changes or new features we want to call out for Armory and OSS. Changes should be grouped under end user understandable sections. For example, instead of Deck, use UI. Instead of Fiat, use Permissions.
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
+### Spring Boot 2.6.15
 
+Spring Boot 2.6 considers session data cached by previous Spring Boot versions invalid. Therefore, users with cached 
+sessions will be unable to log in until the invalid information is removed from the cache. 
 
+Open browser windows to Spinnaker are unresponsive after the deployment until they’re reloaded. 
+Once Gate is updated to the new Armory CD version please execute:
+```bash
+$ redis-cli keys "spring:session*" | xargs redis-cli del
+```
+on Gate’s redis instance removes the cached session information.
 
+### Lambda Operations
+Introduced in OSS Spinnaker 1.33.0 and included in the 2.34.0-rc4 release, Armory CD now supports configurable Invocation timeouts 
+and retries for Lambda operations. Previously the SDK would restrict timeouts despite any configuration to 55 seconds.
+
+To set the timeout and retry values, add the following to your `clouddriver-local.yml`:
+
+{{< highlight yaml "linenos=table,hl_lines=12-14" >}}
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      clouddriver:
+        aws:
+          features:
+            lambda:
+              enabled: true
+          lambda:
+            invokeTimeoutMs: 4000000
+            retries: 3
+{{< /highlight >}}
+
+### Changes in S3 Artifact Store configuration
+OSS Spinnaker 1.32.0 introduced support for [artifact storage](https://spinnaker.io/changelogs/1.32.0-changelog/#artifact-store)
+with AWS S3. This feature compresses `embdedded/base64` artifacts to `remote/base64` and uploads them to an AWS S3 bucket significantly
+reducing the artifact size in the execution context.
+
+Armory version 2.32.0 added support for the same feature for the Terraform Integration stage.
+
+In Armory CD version 2.34.0-rc4, the S3 Artifact Store configuration flags have been modified to support either store 
+or retrieval or both of remote artifacts.
+
+#### Configuration in 2.32.x
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      spinnaker:
+        artifact-store:
+        enabled: true
+        s3:
+          enabled: true
+          region: <S3Bucket Region>
+          bucket: <S3Bucket Name>
+```
+
+#### Configuration in 2.34.0-rc4 (Store/Get)
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      spinnaker:
+        artifact-store:
+        type: s3
+        s3:
+          enabled: true
+          region: <S3Bucket Region>
+          bucket: <S3Bucket Name>
+```
+
+#### Configuration in 2.34.0-rc4 (Get only)
+```yaml
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      spinnaker:
+        artifact-store:
+        type: s3
+        s3:
+          enabled: false
+          region: <S3Bucket Region>
+          bucket: <S3Bucket Name>
+```
+
+### Dinghy support for delete stale pipelines
+Dinghy now support deleting stale pipelines - Any pipelines in the Spinnaker application that are not part of the `dinghyfile`.
+
+These pipelines are identified and deleted automatically when the `dinghyfile` is updated and processed. You can set 
+the `deleteStalePipelines` flag to `true` in the `dinghyfile` to enable this feature.
+
+```json
+{
+  "application": "yourspinnakerapplicationname",
+  "deleteStalePipelines": true,
+  "pipelines": [
+  ]
+}
+```
 
 ###  Spinnaker community contributions
 
