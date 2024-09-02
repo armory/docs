@@ -1,10 +1,10 @@
 ---
-title: v2.32.4 Armory Continuous Deployment Release (Spinnaker™ v1.32.4)
+title: v2.32.5 Armory Continuous Deployment Release (Spinnaker™ v1.32.4)
 toc_hide: true
-version: 2.32.4
-date: 2024-08-30
+version: 2.32.5
+date: 2024-09-02
 description: >
-  Release notes for Armory Continuous Deployment v2.32.4.
+  Release notes for Armory Continuous Deployment v2.32.5.
 ---
 
 <!-- 
@@ -12,13 +12,13 @@ MAKE SURE TO ADD 'LTS' OR 'FEATURE' TO THE TITLE TO INDICATE RELEASE CATEGORY.
 FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous Deployment Release Feature" so users know release category and support time period 
 -->
 
-## 2024/08/30 release notes
+## 2024/09/02 release notes
 
 >Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.32.4, use Armory Operator 1.8.6 or later.
+To install, upgrade, or configure Armory CD 2.32.5, use Armory Operator 1.8.6 or later.
 
 ## Security
 
@@ -227,31 +227,31 @@ dependencies:
 services:
   clouddriver:
     commit: 2736c8796b346d892fb68180ed1534cd882c5f6c
-    version: 2.32.4
+    version: 2.32.5
   deck:
     commit: 9f22fea76ec0ce4ad425a09fd5793372d077f243
-    version: 2.32.4
+    version: 2.32.5
   dinghy:
     commit: f5b14ffba75721322ada662f2325e80ec86347de
-    version: 2.32.4
+    version: 2.32.5
   echo:
     commit: e376d0eb3f19fd3027820bb013b0fbf9fee98e55
-    version: 2.32.4
+    version: 2.32.5
   fiat:
     commit: b674ce72dc02d7e39008bfbf2a551b3d1cc9544e
-    version: 2.32.4
+    version: 2.32.5
   front50:
     commit: b774859c8e27ebfd90455cf0e5f3583eb9afe5d4
-    version: 2.32.4
+    version: 2.32.5
   gate:
     commit: 9a3705729990d170a142b297d2df150fac71bf0f
-    version: 2.32.4
+    version: 2.32.5
   igor:
     commit: c4e429724d83aae802796cda7c5d9b39ce6efba1
-    version: 2.32.4
+    version: 2.32.5
   kayenta:
-    commit: bccd150fcc8a7cb7df537ec6269bce5d2843c703
-    version: 2.32.4
+    commit: 1d0be49daf965910063c3ee611da1453b4fc5a2a
+    version: 2.32.5
   monitoring-daemon:
     commit: null
     version: 2.26.0
@@ -260,15 +260,15 @@ services:
     version: 2.26.0
   orca:
     commit: 9feaae8ddcf27315da951b4a51ffc7f0c4d4ffe6
-    version: 2.32.4
+    version: 2.32.5
   rosco:
     commit: dfe611ffdd2cf9ae7c524fb9970af47350ca5e96
-    version: 2.32.4
+    version: 2.32.5
   terraformer:
     commit: 709bc0b11d21230009e34a3229443e943db9036f
-    version: 2.32.4
-timestamp: "2024-08-29 13:18:29"
-version: 2.32.4
+    version: 2.32.5
+timestamp: "2024-09-02 08:31:29"
+version: 2.32.5
 </code>
 </pre>
 </details>
@@ -276,105 +276,76 @@ version: 2.32.4
 ### Armory
 
 
-#### Armory Igor - 2.32.3...2.32.4
-
-  - chore(build): Updating Build dependencies (#613) (#624)
-
-#### Armory Echo - 2.32.3...2.32.4
-
-  - chore(build): Updating Build dependencies (#723) (#739)
-
-#### Armory Kayenta - 2.32.3...2.32.4
+#### Armory Echo - 2.32.4...2.32.5
 
 
-#### Armory Fiat - 2.32.3...2.32.4
-
-  - chore(build): Updating Build dependencies (#613) (#626)
-
-#### Armory Deck - 2.32.3...2.32.4
-
-  - chore(cd): update base deck version to 2024.0.0-20240610151853.release-1.32.x (#1421)
-  - chore(cd): update base deck version to 2024.0.0-20240808191000.release-1.32.x (#1427)
-
-#### Armory Rosco - 2.32.3...2.32.4
+#### Armory Igor - 2.32.4...2.32.5
 
 
-#### Armory Clouddriver - 2.32.3...2.32.4
+#### Armory Fiat - 2.32.4...2.32.5
 
-  - chore(cd): update base service version to clouddriver:2024.05.15.16.46.29.release-1.32.x (#1127)
-  - chore(cd): update base service version to clouddriver:2024.06.05.17.20.53.release-1.32.x (#1129)
-  - chore(build): Updating Build dependencies (#1140) (#1169)
-  - chore(cd): update base service version to clouddriver:2024.08.08.19.07.30.release-1.32.x (#1156)
 
-#### Armory Front50 - 2.32.3...2.32.4
+#### Armory Deck - 2.32.4...2.32.5
 
-  - chore(cd): update base service version to front50:2024.06.11.18.14.17.release-1.32.x (#692)
-  - chore(build): Updating Build dependencies (#697) (#713)
-  - chore(cd): update base service version to front50:2024.08.23.02.19.43.release-1.32.x (#715)
 
-#### Armory Gate - 2.32.3...2.32.4
+#### Armory Rosco - 2.32.4...2.32.5
 
-  - chore(build): Updating Build dependencies (#732) (#750)
 
-#### Terraformer™ - 2.32.3...2.32.4
+#### Armory Clouddriver - 2.32.4...2.32.5
 
-  - chore(terraformer): Backport fixes (#571) (#573)
 
-#### Armory Orca - 2.32.3...2.32.4
+#### Armory Gate - 2.32.4...2.32.5
 
-  - chore(cd): update base orca version to 2024.06.10.16.25.01.release-1.32.x (#893)
-  - chore(build): Updating Build dependencies (#911) (#935)
 
-#### Dinghy™ - 2.32.3...2.32.4
+#### Armory Front50 - 2.32.4...2.32.5
+
+
+#### Terraformer™ - 2.32.4...2.32.5
+
+
+#### Armory Kayenta - 2.32.4...2.32.5
+
+  - chore(build): Updating Build dependencies (backport #544) (#553)
+  - chore(cd): update base service version to kayenta:2024.08.08.22.44.15.release-1.32.x (#550)
+
+#### Armory Orca - 2.32.4...2.32.5
+
+
+#### Dinghy™ - 2.32.4...2.32.5
 
 
 
 ### Spinnaker
 
 
-#### Spinnaker Kayenta - 1.32.4
-
-
 #### Spinnaker Echo - 1.32.4
 
 
-#### Spinnaker Orca - 1.32.4
+#### Spinnaker Igor - 1.32.4
 
-- fix(check-pre-condition): CheckPrecondition doesn't evaluate expression correctly after upstream stages get restarted (#4682) (#4719)
-- fix(jenkins): Wrong Job name encoding in query params for Artifacts/Properties (#4722) (#4725)
-- fix(blueGreen): Scaling replicaSets should not be considered for deletion (#4728) (#4732)
-- feat(build): add orca-integration module to exercise the just-built docker image (backport #4721) (#4737)
 
 #### Spinnaker Fiat - 1.32.4
 
 
-#### Spinnaker Gate - 1.32.4
-
-
-#### Spinnaker Clouddriver - 1.32.4
-
-- fix(gcp): Relaxed health check for GCP accounts (#6200) (#6204)
-- fix(ClusterController): Fix GetClusters returning only the last 2 providers clusterNames of application (#6210) (#6211)
-- feat(build): add clouddriver-integration module to exercise the just-built docker imageTest docker image (backport #6206) (#6222) 
-- chore(gcp): Adding STRONG_COOKIE_AFFINITY in gcp LB model (#6259) (#6260)
+#### Spinnaker Deck - 1.32.4
 
 
 #### Spinnaker Rosco - 1.32.4
 
 
-#### Spinnaker Deck - 1.32.4
+#### Spinnaker Clouddriver - 1.32.4
 
-- fix(lambda): Invoke stage excludedArtifactTypes not including the embedded-artifact type (#10097) (#10102)
-- feat(taskView): Implement opt-in paginated request for TaskView (backport #10093) (#10094)
-- fix(pipeline): Handle render/validation when stageTimeoutMs is a Spel expression (#10103) (#10106)
-- fix(redblack): fixing redblack onchange values (#10107) (#10111)
-- fix(lambda): Export LambdaRoute stage on aws module (#10116) (#10117)
-- chore(gcp): Adding STRONG_COOKIE_AFFINITY in gcp LB model (#10124) (#10125)
 
-#### Spinnaker Igor - 1.32.4
+#### Spinnaker Gate - 1.32.4
 
 
 #### Spinnaker Front50 - 1.32.4
 
-- fix(front50-gcs): Fix ObjectType filenames for GCS Front50 persistent store (#1493) (#1496)
-- fix(migrator): GCS to SQL migrator APPLICATION_PERMISSION objectType fix (#1466) (#1472)
+
+#### Spinnaker Kayenta - 1.32.4
+- fix(stackdriver): handle null timeSeries and empty points (backport #1047) (#1048)
+
+
+#### Spinnaker Orca - 1.32.4
+
+
