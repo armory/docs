@@ -110,11 +110,11 @@ spec:
     profiles:
       spinnaker:
         artifact-store:
-        enabled: true
-        s3:
           enabled: true
-          region: <S3Bucket Region>
-          bucket: <S3Bucket Name>
+          s3:
+            enabled: true
+            region: <S3Bucket Region>
+            bucket: <S3Bucket Name>
 ```
 
 #### Configuration in 2.34.0 (Store/Get)
@@ -128,11 +128,11 @@ spec:
     profiles:
       spinnaker:
         artifact-store:
-        type: s3
-        s3:
-          enabled: true
-          region: <S3Bucket Region>
-          bucket: <S3Bucket Name>
+          type: s3
+          s3:
+            enabled: true
+            region: <S3Bucket Region>
+            bucket: <S3Bucket Name>
 ```
 
 #### Configuration in 2.34.0 (Get only)
@@ -146,11 +146,11 @@ spec:
     profiles:
       spinnaker:
         artifact-store:
-        type: s3
-        s3:
-          enabled: false
-          region: <S3Bucket Region>
-          bucket: <S3Bucket Name>
+          type: s3
+          s3:
+            enabled: false
+            region: <S3Bucket Region>
+            bucket: <S3Bucket Name>
 ```
 
 ### Dinghy support for delete stale pipelines
