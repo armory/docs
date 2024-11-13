@@ -84,6 +84,9 @@ spec:
 {{< /highlight >}}
 
 ### Changes in S3 Artifact Store configuration
+NOTE: If upgrading from 2.32.x to 2.34.x, this reference format has changed from s3://bucket/ref://application/hash to s3://bucket/application/hash due to the execution compression feature, which is not backwards compatible. Please ensure everything is working correctly before enabling this feature!
+In case of a rollback, manual correction of the reference format will be required. 
+
 OSS Spinnaker 1.32.0 introduced support for [artifact storage](https://spinnaker.io/changelogs/1.32.0-changelog/#artifact-store)
 with AWS S3. This feature compresses `embdedded/base64` artifacts to `remote/base64` and uploads them to an AWS S3 bucket significantly
 reducing the artifact size in the execution context.
