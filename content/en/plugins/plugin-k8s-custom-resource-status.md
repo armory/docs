@@ -28,16 +28,53 @@ These replica checks are enabled by default and do not require additional config
 
 | Armory CD (Spinnaker) Version | Plugin Version            |
 |:------------------------------|:--------------------------|
-| 2.30.x (1.30.x)               | 3.1.x <br/> 3.0.x         |
-| 2.28.0 - 2.28.6 (1.28.x)      | 2.1.x <br/> 2.0.0 - 2.0.2 |
+| 2.34.x (1.30.x)               | 3.1.x <br/> 3.0.x         |
+| 2.24.0 - 2.34.1 (1.28.x)      | 2.1.x <br/> 2.0.0 - 2.0.5 |
 | 2.27.x (1.27.x)               | 1.0.0                     |
+
+# Breaking Change in Versions 2.0.5 and 3.0.x
+
+**Important**: If you are upgrading to version 2.0.5 or any 3.0.x versions, you will need to update your configuration due to changes in how the `kind` and `status` properties are structured. Failure to update your configuration could lead to errors or unexpected behavior.
+
+## Previous Configuration (before upgrade)
+
+In versions prior to 2.0.5, your configuration for custom resources would look like this:
+
+```yaml
+kind:
+  SealedSecret:
+    stable:
+      conditions:
+        - status: "False"
+          message: "no key could decrypt secret (username, password)"
+          type: Synced yaml
+```
+
+## New Configuration (after upgrade)
+
+In version 2.0.5 and 3.0.x, the configuration for custom resources has changed. You will need to update your configuration as shown below:
+```yaml
+kind:
+  - name: VPCEndpoint.ec2.aws.upbound.io
+    status:
+      failed:
+        conditions:
+          - reason: Success
+            status: "True"
+            type: LastAsyncOperation
+```
+
+### Action Required:
+To avoid issues with your deployment, you must update your configuration to reflect these changes:
+
+For each custom resource in your configuration, update the kind and status sections according to the new format shown above.
+Ensure that the kind corresponds to the correct APIGROUP based on your manifest.
 
 ## Configuration
 
 Put the plugin configuration in the `spec.spinnakerConfig.profiles.clouddriver` section of your Operator `spinnakerservice.yml`:
 
-{{< highlight yaml "linenos=table,hl_lines=5-14">}}
-... (omitted for brevity)
+```yaml
 spec:
   spinnakerConfig:
     profiles:
@@ -51,7 +88,7 @@ spec:
               repositories:
                 pluginRepository:
                   url: https://raw.githubusercontent.com/armory-plugins/pluginRepository/master/repositories.json
-{{< /highlight >}}
+```
 
 * `version`: The plugin version that corresponds to your Armory CD version.
 
@@ -390,9 +427,6 @@ spinnaker:
       Armory.K8sCustomResourceStatus:
         enabled: true
         config:
-          kind:
-            - name: Foo.example.com
-            - name: Bar.example.com
           status:
             stable:
               fields:
@@ -413,7 +447,7 @@ spinnaker:
                   status.collisionCount: 0
 ```
 
-These properties apply to all custom resource kinds you deploy, `Foo` and `Bar` in this case. If you deploy different kinds with different statuses, you should declare per kind like in `Example 2.1`. In this case, the plugin marks the deployment as ready since that
+These properties apply to all custom resource kinds you deploy through Spinnaker. If you deploy different kinds with different statuses, you should declare per kind like in `Example 2.1`. In this case, the plugin marks the deployment as ready since that
 matches your custom resource.
 
 ## Release Notes
