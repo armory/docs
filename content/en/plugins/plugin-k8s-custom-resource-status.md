@@ -41,7 +41,7 @@ In versions prior to 2.0.5, your configuration for custom resources would look l
 
 ```yaml
 kind:
-  SealedSecret:
+  Foo:
     stable:
       conditions:
         - status: "False"
@@ -54,7 +54,7 @@ kind:
 In version 2.0.5 and 3.0.x, the configuration for custom resources has changed. You will need to update your configuration as shown below:
 ```yaml
 kind:
-  - name: VPCEndpoint.ec2.aws.upbound.io
+  - name: Foo.example.com
     status:
       failed:
         conditions:
@@ -321,7 +321,7 @@ spinnaker:
 
 These properties are only for `Foo` kind. Every time you deploy `Foo`, the plugin compares the resource status values against these properties. In this case, the plugin marks the deployment as unavailable since it matches your custom resource.
 
-#### Example 1.2: Config for all Custom Resources
+#### Example 1.2: Global Config for all Custom Resources
 
 ```yaml
 spinnaker:
@@ -330,9 +330,6 @@ spinnaker:
       Armory.K8sCustomResourceStatus:
         enabled: true
         config:
-          kind:
-            - name: Foo.example.com
-            - name: Bar.example.com
           status:
             stable:
               conditions:
@@ -362,7 +359,8 @@ spinnaker:
                   type: Reconciling
 ```
 
-These properties apply to all custom resource kinds you deploy, `Foo` and `Bar` in this case. If you deploy different kinds with different statuses, you should declare per kind like in `Example 1.1`. In this case, the plugin marks the deployment as unavailable since that matches your custom resource.
+These properties apply to all custom resource kinds you deploy through Spinnaker. If you deploy different kinds with different statuses, you should declare per kind like in `Example 2.1`. In this case, the plugin marks the deployment as ready since that
+matches your custom resource.
 
 ### Example 2: Custom Resource with Non-Standard status fields
 
