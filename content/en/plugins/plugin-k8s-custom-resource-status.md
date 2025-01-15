@@ -44,9 +44,6 @@ kind:
   Foo:
     stable:
       conditions:
-        - status: "False"
-          message: "no key could decrypt secret (username, password)"
-          type: Synced yaml
 ```
 
 ## New Configuration (after upgrade)
@@ -58,9 +55,6 @@ kind:
     status:
       failed:
         conditions:
-          - reason: Success
-            status: "True"
-            type: LastAsyncOperation
 ```
 
 ### Action Required:
@@ -321,7 +315,7 @@ spinnaker:
 
 These properties are only for `Foo` kind. Every time you deploy `Foo`, the plugin compares the resource status values against these properties. In this case, the plugin marks the deployment as unavailable since it matches your custom resource.
 
-#### Example 1.2: Global Config for all Custom Resources
+#### Example 1.2: Global config for all Custom Resources
 
 ```yaml
 spinnaker:
@@ -415,7 +409,7 @@ spinnaker:
 
 These properties are only for `Foo` kind. Every time you deploy `Foo`, it compares the resource status values against these properties. In this case, the plugin marks the deployment as ready since that matches your custom resource.
 
-#### Example 2.2: Config for all Custom Resources
+#### Example 2.2: Global config for all Custom Resources
 
 ```yaml
 spinnaker:
