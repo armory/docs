@@ -28,13 +28,12 @@ These replica checks are enabled by default and do not require additional config
 
 | Armory CD (Spinnaker) Version | Plugin Version            |
 |:------------------------------|:--------------------------|
-| 2.34.x (1.30.x)               | 3.1.x <br/> 3.0.x         |
-| 2.24.0 - 2.34.1 (1.28.x)      | 2.1.x <br/> 2.0.0 - 2.0.5 |
-| 2.27.x (1.27.x)               | 1.0.0                     |
+| 2.34.x (1.30.x)               | 3.1.4                     |
+| 2.30 - 2.32 (1.28.x)          | 2.0.5.                    |
 
-# Breaking Change in Versions 2.0.5 and 3.0.x
+## Breaking change in 2.0.5 and 3.x.x
 
-**Important**: If you are upgrading to version 2.0.5 or any 3.0.x versions, you will need to update your configuration due to changes in how the `kind` and `status` properties are structured. Failure to update your configuration could lead to errors or unexpected behavior.
+**Important**: A config change was introduced to support api groups on Kubernetes kind types to handle duplicate names.  Please update your config to match the documented configuration.  Previous configurations and versions are no longer supported.
 
 ## Previous Configuration (before upgrade)
 
@@ -457,8 +456,13 @@ matches your custom resource.
 * v2.0.1 Bug fixes - 10/14/2022
 * v2.0.2 Bug fixes - 05/20/2023
 * v2.0.3 Adds support with Armory Scale Agent - 06/15/2023
+* v2.0.4 fix image genration name
+* v2.0.5 support api groups on Kubernetes kind types
 * v2.1.0 Fixes a bug when using partial conditions - 11/07/2023
 * v2.2.0 Fixes a bug when the service account has permissions to fetch CRD metadata. Changes configuration format to prevent potential conflicts arising from similar kind names offered by various providers - 10/10/2023
 * v3.0.0 Bug fixes: returning stable if fields values match. Compatibility to Spinnaker 1.30.x (Armory 2.30.x) - 08/31/2023
 * v3.0.1 Fixes a bug when using partial conditions - 09/07/2023
 * v3.1.0 Fixes a bug when the service account has permissions to fetch CRD metadata. Changes configuration format to prevent potential conflicts arising from similar kind names offered by various providers - 10/10/2023
+* v3.1.1 fix a bug - default checking condition
+* v3.1.3 Fixing Dockerfile with proper permissions
+* v3.1.4 Fixing test - add parameter name explicitly 
