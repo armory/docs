@@ -31,7 +31,7 @@ These replica checks are enabled by default and do not require additional config
 | 2.34.x (1.30.x)               | 3.1.4                     |
 | 2.30 - 2.32 (1.28.x)          | 2.0.5.                    |
 
-## Breaking change in 2.0.5 and 3.x.x
+## Breaking change in versions higher than 2.0.4  
 
 **Important**: A config change was introduced to support api groups on Kubernetes kind types to handle duplicate names.  Please update your config to match the documented configuration.  Previous configurations and versions are no longer supported.
 
@@ -48,12 +48,12 @@ kind:
 
 ## New Configuration (after upgrade)
 
-In version 2.0.5 and 3.0.x, the configuration for custom resources has changed. You will need to update your configuration as shown below:
+In version higher than 2.0.4 the configuration for custom resources has changed. You will need to update your configuration as shown below:
 ```yaml
 kind:
   - name: Foo.example.com
     status:
-      failed:
+      stable:
         conditions:
 ```
 
@@ -133,8 +133,7 @@ spinnaker:
                     - field1: value1
                       field2: value2
                     - item2: valueX
-            - name: Bar.example.com # The name of your Custom Resource including API group
-          status:
+          status:  # Global config
             stable:
               markAsUnavailableUntilStable: false # optional
               failIfNoMatch: false # optional
@@ -353,8 +352,7 @@ spinnaker:
                   type: Reconciling
 ```
 
-These properties apply to all custom resource kinds you deploy through Spinnaker. If you deploy different kinds with different statuses, you should declare per kind like in `Example 2.1`. In this case, the plugin marks the deployment as ready since that
-matches your custom resource.
+These properties apply to all custom resource kinds deployed through Spinnaker. If you deploy different kinds with various statuses and haven't configured properties specifically for each kind, the plugin will compare the resource status values against the global properties. In such cases, if the status matches your custom resource, the plugin will mark the deployment accordingly. To ensure specific handling, you should declare properties per kind, as shown in Example 1.1.
 
 ### Example 2: Custom Resource with Non-Standard status fields
 
@@ -438,8 +436,7 @@ spinnaker:
                   status.collisionCount: 0
 ```
 
-These properties apply to all custom resource kinds you deploy through Spinnaker. If you deploy different kinds with different statuses, you should declare per kind like in `Example 2.1`. In this case, the plugin marks the deployment as ready since that
-matches your custom resource.
+These properties apply to all custom resource kinds deployed through Spinnaker. If you deploy different kinds with various statuses and haven't configured properties specifically for each kind, the plugin will compare the resource status values against the global properties. In such cases, if the status matches your custom resource, the plugin will mark the deployment accordingly. To ensure specific handling, you should declare properties per kind, as shown in Example 2.1.
 
 ## Release Notes
 
@@ -448,7 +445,7 @@ matches your custom resource.
 * v2.0.1 Bug fixes - 10/14/2022
 * v2.0.2 Bug fixes - 05/20/2023
 * v2.0.3 Adds support with Armory Scale Agent - 06/15/2023
-* v2.0.4 fix image genration name
+* v2.0.4 Fixing Dockerfile with proper permissions
 * v2.0.5 support api groups on Kubernetes kind types
 * v2.1.0 Fixes a bug when using partial conditions - 11/07/2023
 * v2.2.0 Fixes a bug when the service account has permissions to fetch CRD metadata. Changes configuration format to prevent potential conflicts arising from similar kind names offered by various providers - 10/10/2023
