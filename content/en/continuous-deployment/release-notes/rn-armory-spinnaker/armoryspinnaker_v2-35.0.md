@@ -79,7 +79,7 @@ https://github.com/spinnaker/orca/pull/4716 removed RetrofitExceptionHandler fro
 ```
 .setErrorHandler(SpinnakerRetrofitErrorHandler.getInstance())
 ```
-to the RestAdapter.Builder call, and change the corresponding exception handling. See here(https://github.com/spinnaker/orca/blob/9898ae1a673f0481abe082f4b681dbc314682c3f/orca-front50/src/main/groovy/com/netflix/spinnaker/orca/front50/config/Front50Configuration.groovy#L82) for an example.
+to the `RestAdapter.Builder` call, and change the corresponding exception handling. See here(https://github.com/spinnaker/orca/blob/9898ae1a673f0481abe082f4b681dbc314682c3f/orca-front50/src/main/groovy/com/netflix/spinnaker/orca/front50/config/Front50Configuration.groovy#L82) for an example.
 ### Label Selector Support in Deploy Manifest Stages
 https://github.com/spinnaker/clouddriver/pull/6220 adds support for label selectors in deploy manifest stages. 
 
