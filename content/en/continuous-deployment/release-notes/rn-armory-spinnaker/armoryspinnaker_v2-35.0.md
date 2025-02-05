@@ -12,7 +12,7 @@ MAKE SURE TO ADD 'LTS' OR 'FEATURE' TO THE TITLE TO INDICATE RELEASE CATEGORY.
 FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous Deployment Release Feature" so users know release category and support time period 
 -->
 
-## 2025/01/24 release notes
+## 2025/01/24 Release notes
 
 >Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
@@ -98,12 +98,12 @@ For example:
 }
 '''
 
-See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ and KubernetesSelector(https://github.com/spinnaker/clouddriver/blob/ad1a8efc214264276e3a22d30af179b825145cab/clouddriver-kubernetes/src/main/java/com/netflix/spinnaker/clouddriver/kubernetes/security/KubernetesSelector.java#L59) for more. Multiple selectors combine with AND (i.e. must all be satisfied).
+See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ and KubernetesSelector(https://github.com/spinnaker/clouddriver/blob/ad1a8efc214264276e3a22d30af179b825145cab/clouddriver-kubernetes/src/main/java/com/netflix/spinnaker/clouddriver/kubernetes/security/KubernetesSelector.java#L59) for more. Multiple selectors combine with AND (must all be satisfied).
 Note that ```kubectl replace``` doesn’t support label selectors, so KubernetesDeployManifestOperation throws an exception if a deploy manifest stage that specifies (non-empty) label selectors has a manifest with a ```strategy.spinnaker.io/replace: "true"``` annotation.
 It’s possible that none of the manifests may satisfy the label selectors. In that case, a new pipeline configuration property named ```allowNothingSelected``` determines the behavior. If false (the default), KubernetesDeployManifestOperation throws an exception. If true, the operation succeeds even though nothing was deployed.
 
-### maxExpressionLength to set maximum expression length for SpEL evaluation
-Spring Expression Lanuage (SpEL) has a default limit of 10,000 characters. Springframework provides the feature to configure the limit. This feature allows to configure the limit of characters for SpEL expressions.
+### The maxExpressionLength to set maximum expression length for SpEL evaluation
+Spring Expression Language (SpEL) has a default limit of 10,000 characters. Springframework provides the feature to configure the limit. This feature allows to configure the limit of characters for SpEL expressions.
 Use this feature as given below:
 ```
 # orca-local.yml
