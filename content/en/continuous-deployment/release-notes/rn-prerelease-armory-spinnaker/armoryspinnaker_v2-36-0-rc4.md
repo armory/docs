@@ -40,7 +40,32 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
-> Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
+The following configuration properties have been restructured:
+
+Previous Configuration:
+
+'''
+tasks:
+   days-of-execution-history:  
+   number-of-old-pipeline-executions-to-include: 
+'''
+
+New configuration format
+
+'''
+tasks:
+   controller:
+      days-of-execution-history: 
+      number-of-old-pipeline-executions-to-include: 
+      optimize-execution-retrieval: <boolean>
+      max-execution-retrieval-threads:
+      max-number-of-pipeline-executions-to-process: 
+      execution-retrieval-timeout-seconds: 
+'''
+
+These changes improve query performance and execution retrieval efficiency, particularly for large-scale pipeline applications. 
+
+[Performance Improvements for SQL Backend](#performance-improvements-for-sql-backend)
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
@@ -63,6 +88,73 @@ spec:
         env:
           JAVA_OPTS: "--add-exports=java.base/sun.security.x509=ALL-UNNAMED --add-exports=java.base/sun.security.pkcs=ALL-UNNAMED --add-exports=java.base/sun.security.rsa=ALL-UNNAMED"
 {{< /highlight >}}
+
+### Performance Improvements for Pipeline Executions
+
+This release includes several optimizations to improve pipeline execution times, particularly for complex pipeline structures.
+
+Key Improvements
+
+1. Memorize the `anyUpstreamStagesFailed` extension function to improve time complexity from exponential to linear
+2. Optimize `getAncestorsImpl` to reduce time complexity by a factor of N, where N is the number of stages in a pipeline
+3. Optimize `StartStageHandler` to only call withAuth (which calls getAncestorsImpl) when 
+
+These enhancements significantly reduce pipeline execution time, with the most notable gains observed in dense pipeline graphs. For example, in the `ComplexPipeline.kt` test scenario, execution time improved from not completing at all to approximately `160ms`.
+
+*[PR 4824](https://github.com/spinnaker/orca/pull/4824)*
+
+### Performance Improvements for SQL Backend
+
+This release enhances the performance of SQL-backed pipeline queries by optimizing database operations, particularly for the API call:
+
+'''
+/applications/{application}/pipelines?expand=false&limit=2
+'''
+
+which is frequently initiated by Deck and forwarded through Gate to Orca.
+
+Key Improvements
+
+- Improved Query Efficiency: Optimized the retrieval of pipeline execution data, significantly reducing database query times.
+- Refactored `TaskController`: Externalized configuration properties to allow better flexibility and tuning.
+- Enhanced `getPipelinesForApplication()`
+  - Limits the number of pipeline config IDs queried.
+  - Processes multiple pipeline config IDs simultaneously.
+  - Introduces multi-threading to handle batches efficiently.
+
+*[PR 4804](https://github.com/spinnaker/orca/pull/4804)*
+
+### Feature: Read Connection Pool for SQL Execution Repository
+
+This release introduces support for a dedicated read connection pool for specific read-only database queries in `SqlExecutionRepository`
+
+Key Improvements
+
+1. New "read" Connection Pool: Allows read operations to be routed to a separate connection pool.
+2. Configurable Read Pool: Users can define an additional read connection pool in the SQL configuration.
+3. Ensures Data Consistency: Some read queries still rely on recently written data and are not yet converted to use a read replica due to potential replication lag.
+
+Configuration Example
+
+To enable the read connection pool, add the following configuration:
+'''
+sql:
+  connectionPools:
+    default:
+      <...>
+    read:
+      jdbcUrl: jdbc:...
+      user: orca_service
+      password: 
+      connectionTimeoutMs: 
+      validationTimeoutMs: 
+      maxPoolSize:
+      minIdle:
+      maxLifetimeMs:
+      idleTimeoutMs:
+'''
+
+*[PR 4803](https://github.com/spinnaker/orca/pull/4803)*
 
 ### Enhanced pipeline batch update feature
 
