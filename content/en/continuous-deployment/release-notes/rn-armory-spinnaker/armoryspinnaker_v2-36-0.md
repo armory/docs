@@ -31,15 +31,15 @@ The following configuration properties have been restructured:
 
 Previous Configuration:
 
-'''
+```yaml
 tasks:
   days-of-execution-history:  
   number-of-old-pipeline-executions-to-include:
-'''
+```
 
 New configuration format
 
-'''
+```yaml
 tasks:
   controller:
     days-of-execution-history:
@@ -48,7 +48,7 @@ tasks:
     max-execution-retrieval-threads:
     max-number-of-pipeline-executions-to-process:
     execution-retrieval-timeout-seconds:
-'''
+```
 
 These changes improve query performance and execution retrieval efficiency, particularly for large-scale pipeline applications.
 
@@ -94,9 +94,9 @@ These enhancements significantly reduce pipeline execution time, with the most n
 
 This release enhances the performance of SQL-backed pipeline queries by optimizing database operations, particularly for the API call:
 
-'''
+```
 /applications/{application}/pipelines?expand=false&limit=2
-'''
+```
 
 which is frequently initiated by Deck and forwarded through Gate to Orca.
 
@@ -124,7 +124,7 @@ Key Improvements
 Configuration Example
 
 To enable the read connection pool, add the following configuration:
-'''
+```yaml
 sql:
   connectionPools:
     default:
@@ -139,7 +139,7 @@ sql:
       minIdle:
       maxLifetimeMs:
       idleTimeoutMs:
-'''
+```
 
 *[PR 4803](https://github.com/spinnaker/orca/pull/4803)*
 
@@ -149,18 +149,18 @@ sql:
 
 Adds a new enpdoint, `POST /pipelines/bulksave`, which can take a list of pipeline configurations to save. The endpoint will return a response that indicates how many of the saves were successful, how many failed, and what the failures are. The structure is
 
-'''
+```
 [
    "successful_pipelines_count"  : <int>,
    "successful_pipelines"        : <List<String>>,
    "failed_pipelines_count"      : <int>,
    "failed_pipelines"            : <List<Map<String, Object>>>
 ]
-'''
+```
 
 There are a few config knobs which control some bulk save functionality. The gate endpoint invokes an orca asynchronous process to manage saving the pipelines and polls until the orca operations are complete.
 
-'''
+```yaml
 controller:
   pipeline:
     bulksave:
@@ -168,7 +168,7 @@ controller:
       max-polls-for-task-completion: <int>
       # the interval at which gate will poll orca.
       taskCompletionCheckIntervalMs: <int>
-'''
+```
 
 #### Orca
 
@@ -217,21 +217,21 @@ spec:
 
 Separate config knobs are also provided at the AbstractCheckIfApplicationExistsTask level to determine if clouddriver needs to be queried for the application or not. It is by default set to true, so it is an opt-out capability. the config property is:
 
-'''
+```yaml
 tasks:
   clouddriver:
     checkIfApplicationExistsTask:
       checkClouddriver: false   # default is true
-'''
+```
 
 This feature runs in audit mode by default which means if checkIfApplicationExistsTask finds no application, a warning message is logged. But when audit mode is disabled through the following property, pipelines fail if application is not found:
 
-'''
+```yaml
 tasks:
   clouddriver:
     checkIfApplicationExistsTask:
       auditModeEnabled: false  # default is true
-'''
+```
 
 #### Front50
 
@@ -255,14 +255,14 @@ spec:
 
 Batch update call now responds with a status of succeeded and failed pipelines info. The response will be a map containing information in the following format:
 
-'''
+```
 [
   "successful_pipelines_count"  : <int>,
   "successful_pipelines"        : <List<String>>,
   "failed_pipelines_count"      : <int>,
   "failed_pipelines"            : <List<Map<String, Object>>>
 ]
-'''
+```
 
 Here the value for `successful_pipelines` is the list of successful pipeline names whereas the value for `failed_pipelines` is the list of failed pipelines expressed as maps.
 
