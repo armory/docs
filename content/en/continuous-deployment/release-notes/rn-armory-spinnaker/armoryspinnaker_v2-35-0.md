@@ -1,7 +1,7 @@
 ---
 title: v2.35.0 Armory Continuous Deployment Release (Spinnaker™ v1.35.5)
 toc_hide: true
-version:version: 2.35.0
+version: 2.35.0
 date: 2025-01-24
 description: >
   Release notes for Armory Continuous Deployment v2.35.0.
@@ -18,7 +18,7 @@ FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous De
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.35.0, use Armory Operator 1.70 or later.
+To install, upgrade, or configure Armory CD 2.35.0, use Armory Operator 1.8.6 or later.
 
 ## Security
 
@@ -53,38 +53,68 @@ spec:
             pipelineRef:
                 enabled: true
 {{< /highlight >}}
-When enabled, child pipeline execution ids are stored in sql instead of the entire child pipeline execution context.
-The in-memory representation of pipelines doesn’t change whether this feature is enabled or not. As well, pipelines stored with child pipeline execution ids are processed properly when the feature is disabled.
-Barring any issues discovered in this release, the flag will be removed, and the behavior will become default in an upcoming release.
-For details on the changes, please visit this link(https://github.com/spinnaker/orca/pull/4749)
+When this feature is enabled, **child pipeline execution IDs** are stored in SQL instead of the full child pipeline execution context. This improves efficiency without altering the in-memory representation of pipelines.
+
+- Pipelines function the same way in-memory, regardless of whether this feature is enabled.
+- Pipelines stored with child execution IDs remain fully functional even if the feature is later disabled.
+- If no issues arise in this release, the feature flag will be removed, and this behavior will become the default in an upcoming release.
+
+For a detailed breakdown of these changes, see [this PR](https://github.com/spinnaker/orca/pull/4749).
+
+
 ### Java 17
-All Spinnaker services are now compiled by JDK 17, transpiling to Java 11 bytecode. Published images run JRE 17. In 1.36, compilation will switch to Java 17 bytecode, completing our migration to Java 17. Please continue to report issues by opening an issue in the spinnaker repository (https://github.com/spinnaker/spinnaker) .
-Note that JDK 17 enforces Strong Encapsulation(https://docs.oracle.com/en/java/javase/17/migrate/migrating-jdk-8-later-jdk-releases.html#GUID-7BB28E4D-99B3-4078-BDC4-FC24180CE82B) . Evaluation of some SpEL expressions uses reflection that the JDK no longer permits by default, for example:
-```
+#### Spinnaker Services Migration to JDK 17
+
+All Spinnaker services are now compiled using **JDK 17**, which is transpiled to Java 11 bytecode. Published images currently run **JRE 17**. In **version 1.36**, compilation will switch to Java 17 bytecode, completing our migration to JDK 17.
+
+Please continue to report any issues by opening an issue in the [Spinnaker repository](https://github.com/spinnaker/spinnaker).
+
+#### Important Notes on JDK 17
+
+JDK 17 enforces **[Strong Encapsulation](https://docs.oracle.com/en/java/javase/17/migrate/migrating-jdk-8-later-jdk-releases.html#GUID-7BB28E4D-99B3-4078-BDC4-FC24180CE82B)**. This means that some SpEL expressions, which previously used reflection, may not work as expected since the JDK now restricts reflection by default.
+
+For example:
+
+```json
 ${ {"foo": "bar"}.toString() }
 ```
-For this evaluation to succeed, add ```--add-opens=java.base/java.util=ALL-UNNAMED``` to JAVA_OPTS for orca and echo.
+For this evaluation to succeed, add ```java--add-opens=java.base/java.util=ALL-UNNAMED``` to ```JAVA_OPTS``` for orca and echo.
 ### Spring Boot 2.7.18
-As part of the continued effort to upgrade Spring Boot, Spinnaker 1.35.0 now uses Spring Boot 2.7.18, an upgrade from Spinnaker 1.34.0`s use of Spring Boot 2.6.15. Spring Boot 2.7 considers session data cached by Spring Boot 2.6 invalid. Therefore, users with cached sessions will be unable to log in until the invalid information is removed from the cache. Open browser windows to Spinnaker are unresponsive after the deployment until they’re reloaded. Executing:
-```
-$ redis-cli keys "spring:session*" | xargs redis-cli del
-```
-on Gate’s redis instance removes the cached session information.
-Spring Boot 2.7 brings with it the following changes:
-- Groovy upgrade from 3.0.17 to 3.0.19
-- Replaces mysql connector coordinate from mysql:mysql-connector-java to com.mysql:mysql-connector-j with version 8.0.33.
-- Changes to Auto-configuration
+
+As part of the continued effort to upgrade Spring Boot, **Spinnaker 1.35.0** now uses **Spring Boot 2.7.18**, an upgrade from **Spinnaker 1.34.0**'s use of **Spring Boot 2.6.15**. 
+
+**Spring Boot 2.7** considers session data cached by **Spring Boot 2.6** to be invalid. Therefore, users with cached sessions will be unable to log in until the invalid information is removed from the cache. Additionally, open browser windows to Spinnaker will be unresponsive after deployment until they’re reloaded.
+
+To remove the cached session information, you can execute the following command on Gate’s Redis instance:
+
+```bash $ redis-cli keys "spring:session*" | xargs redis-cli del ```
+#### Spring Boot 2.7 Changes
+
+**Spring Boot 2.7** brings the following updates:
+
+- **Groovy** upgrade from version 3.0.17 to 3.0.19
+- Replacement of the **MySQL connector** coordinate from `mysql:mysql-connector-java` to `com.mysql:mysql-connector-j` (version 8.0.33)
+- Changes to **auto-configuration**
+  
 ### RetrofitExceptionHandler Removed
-https://github.com/spinnaker/orca/pull/4716 removed RetrofitExceptionHandler from orca. There’s an ongoing effort to upgrade to retrofit2. One step along the way is to adjust error handling code based on RetrofitError (a retrofit1 class not available in retrofit2) to use SpinnakerServerException(https://github.com/spinnaker/kork/blob/v7.231.0/kork-retrofit/src/main/java/com/netflix/spinnaker/kork/retrofit/exceptions/SpinnakerServerException.java) and its children, by using SpinnakerRetrofitErrorHandler(https://github.com/spinnaker/kork/blob/v7.231.0/kork-retrofit/src/main/java/com/netflix/spinnaker/kork/retrofit/exceptions/SpinnakerRetrofitErrorHandler.java#L52) . That’s been done in orca, so there isn’t any code left to throw RetrofitError exceptions. If your instance of Spinnaker has plugins or other code that still relies on RetrofitError, adjust it to use SpinnakerRetrofitErrorHandler by adding, e.g.:
+
+[RetrofitExceptionHandler](https://github.com/spinnaker/orca/pull/4716) has been removed from Orca as part of the ongoing effort to upgrade to Retrofit2. One step in this upgrade is to adjust error handling code, replacing `RetrofitError` (a Retrofit1 class not available in Retrofit2) with `SpinnakerServerException` ([SpinnakerServerException.java](https://github.com/spinnaker/kork/blob/v7.231.0/kork-retrofit/src/main/java/com/netflix/spinnaker/kork/retrofit/exceptions/SpinnakerServerException.java)) and its children, using `SpinnakerRetrofitErrorHandler` ([SpinnakerRetrofitErrorHandler.java](https://github.com/spinnaker/kork/blob/v7.231.0/kork-retrofit/src/main/java/com/netflix/spinnaker/kork/retrofit/exceptions/SpinnakerRetrofitErrorHandler.java#L52)).
+
+This has been completed in Orca, so there’s no longer any code that throws `RetrofitError` exceptions. If your instance of Spinnaker has plugins or other code that still relies on `RetrofitError`, adjust it to use `SpinnakerRetrofitErrorHandler` by adding:
+
 ```
 .setErrorHandler(SpinnakerRetrofitErrorHandler.getInstance())
 ```
-to the `RestAdapter.Builder` call, and change the corresponding exception handling. See here(https://github.com/spinnaker/orca/blob/9898ae1a673f0481abe082f4b681dbc314682c3f/orca-front50/src/main/groovy/com/netflix/spinnaker/orca/front50/config/Front50Configuration.groovy#L82) for an example.
-### Label Selector Support in Deploy Manifest Stages
-https://github.com/spinnaker/clouddriver/pull/6220 adds support for label selectors in deploy manifest stages. 
 
-For example:
-'''json
+to the `RestAdapter.Builder` call, and change the corresponding exception handling. See [this example](https://github.com/spinnaker/orca/blob/9898ae1a673f0481abe082f4b681dbc314682c3f/orca-front50/src/main/groovy/com/netflix/spinnaker/orca/front50/config/Front50Configuration.groovy#L82).
+
+
+
+### Label Selector Support in Deploy Manifest Stages
+
+[Label selector support](https://github.com/spinnaker/clouddriver/pull/6220) has been added to deploy manifest stages. For example:
+
+```json
 "labelSelectors": {
   "selectors": [
     {
@@ -92,15 +122,22 @@ For example:
       "key": "my-label-key",
       "values": [
         "my-value"
-      ],
+      ]
     }
   ]
 }
-'''
+```
 
-See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ and KubernetesSelector(https://github.com/spinnaker/clouddriver/blob/ad1a8efc214264276e3a22d30af179b825145cab/clouddriver-kubernetes/src/main/java/com/netflix/spinnaker/clouddriver/kubernetes/security/KubernetesSelector.java#L59) for more. Multiple selectors combine with AND (must all be satisfied).
-Note that ```kubectl replace``` doesn’t support label selectors, so KubernetesDeployManifestOperation throws an exception if a deploy manifest stage that specifies (non-empty) label selectors has a manifest with a ```strategy.spinnaker.io/replace: "true"``` annotation.
-It’s possible that none of the manifests may satisfy the label selectors. In that case, a new pipeline configuration property named ```allowNothingSelected``` determines the behavior. If false (the default), KubernetesDeployManifestOperation throws an exception. If true, the operation succeeds even though nothing was deployed.
+For more details, refer to [Kubernetes label overview](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) and [KubernetesSelector](https://github.com/spinnaker/clouddriver/blob/ad1a8efc214264276e3a22d30af179b825145cab/clouddriver-kubernetes/src/main/java/com/netflix/spinnaker/clouddriver/kubernetes/security/KubernetesSelector.java#L59). Multiple selectors combine with AND (must all be satisfied).
+
+**Important Note:**  
+`kubectl replace` does not support label selectors, so KubernetesDeployManifestOperation throws an exception if a deploy manifest stage specifies (non-empty) label selectors and has a manifest with the `strategy.spinnaker.io/replace: "true"` annotation.
+
+It’s possible that none of the manifests may satisfy the label selectors. In that case, a new pipeline configuration property named `allowNothingSelected` determines the behavior:
+
+- If `false` (the default), KubernetesDeployManifestOperation throws an exception.
+- If `true`, the operation succeeds even though nothing was deployed.
+
 
 ### The maxExpressionLength to set maximum expression length for SpEL evaluation
 Spring Expression Language (SpEL) has a default limit of 10,000 characters. Springframework provides the feature to configure the limit. This feature allows to configure the limit of characters for SpEL expressions.
