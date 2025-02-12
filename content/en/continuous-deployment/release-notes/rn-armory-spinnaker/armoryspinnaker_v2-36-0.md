@@ -174,7 +174,7 @@ controller:
 
 Updates Orca’s SavePipelineTask to support bulk saves using the updated functionality in the front50 bulk save endpoint.
 
-With https://github.com/spinnaker/orca/pull/4781, keys from the stage context’s outputs section can now be removed (there by reducing the context size significantly). At present the following tasks support this feature:
+With [Orca PR 4781](https://github.com/spinnaker/orca/pull/4781), keys from the stage context’s outputs section can now be removed (there by reducing the context size significantly). At present the following tasks support this feature:
 
 * PromoteManifestKatoOutputsTask
 * WaitOnJobCompletionTask
@@ -182,7 +182,7 @@ With https://github.com/spinnaker/orca/pull/4781, keys from the stage context’
 * BindProducedArtifactsTask
 
 
-The PR https://github.com/spinnaker/orca/pull/4788 introduced a new CheckIfApplicationExists task that is added to various pipeline stages to check if the application defined in the pipeline stage context is known to front50 and/or clouddriver. The following config knobs are provided so that all of these stages can be individually configured to not perform this check if needed. Default value is set to false for all of them.
+The [Orca PR 4788](https://github.com/spinnaker/orca/pull/4788) introduced a new CheckIfApplicationExists task that is added to various pipeline stages to check if the application defined in the pipeline stage context is known to front50 and/or clouddriver. The following config knobs are provided so that all of these stages can be individually configured to not perform this check if needed. Default value is set to false for all of them.
 
 {{< highlight yaml "linenos=table,hl_lines=9-28" >}}
 apiVersion: spinnaker.armory.io/v1alpha2
