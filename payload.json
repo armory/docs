@@ -2,180 +2,6 @@
   "armoryServices": [
     {
       "commitMessages": [
-        "Fix permissions on container (#675)",
-        "chore(build): Updating Build dependencies (#671) (#672)",
-        "chore(cd): update base service version to rosco:2024.04.18.17.06.07.release-1.34.x (#666)",
-        "chore(cd): update armory-commons version to 3.16.2 (#664)",
-        "chore(cd): update base service version to rosco:2024.04.18.16.53.13.master (#659)",
-        "chore(cd): update base service version to rosco:2024.05.10.18.26.57.master (#665)",
-        "chore(cd): update base service version to rosco:2024.06.06.14.05.00.master (#667)",
-        "chore(cd): update base service version to rosco:2024.06.07.06.01.10.master (#668)",
-        "chore(cd): update base service version to rosco:2024.06.12.03.37.34.master (#669)",
-        "chore(cd): update base service version to rosco:2024.06.12.14.46.35.master (#670)",
-        "chore(build): Updating Build dependencies (#671)",
-        "chore(cd): update base service version to rosco:2024.07.01.17.46.03.master (#673)",
-        "chore(cd): update base service version to rosco:2024.07.01.23.43.22.master (#674)",
-        "chore(cd): update base service version to rosco:2024.07.02.18.24.20.master (#678)",
-        "chore(cd): update base service version to rosco:2024.08.06.19.21.17.master (#683)",
-        "chore(cd): update armory-commons version to 3.17.3 (#689)",
-        "chore(cd): update base service version to rosco:2024.08.06.19.21.17.release-1.35.x (#694)",
-        "chore(java): Migrate to Java 17 (#695) (#696)",
-        "fix(java): fix merge conflict (#697)",
-        "chore(cd): update base service version to rosco:2024.11.26.16.17.32.release-1.35.x (#708)"
-      ],
-      "currentVersion": "2.35.0",
-      "name": "Armory Rosco",
-      "previousVersion": "2.34.0"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update armory-commons version to 3.16.2 (#716)",
-        "chore(cd): update base service version to echo:2024.04.27.02.26.26.master (#712)",
-        "chore(cd): update base service version to echo:2024.05.10.18.24.59.master (#717)",
-        "chore(cd): update base service version to echo:2024.06.06.14.04.52.master (#718)",
-        "chore(cd): update base service version to echo:2024.06.07.06.00.43.master (#719)",
-        "chore(cd): update base service version to echo:2024.06.12.05.10.02.master (#720)",
-        "chore(cd): update base service version to echo:2024.06.12.14.34.33.master (#721)",
-        "chore(cd): update base service version to echo:2024.06.12.14.52.56.master (#722)",
-        "chore(build): Updating Build dependencies (#723)",
-        "chore(cd): update base service version to echo:2024.07.01.23.39.31.master (#726)",
-        "chore(cd): update base service version to echo:2024.07.02.19.53.07.master (#729)",
-        "chore(cd): update base service version to echo:2024.07.09.16.15.40.master (#730)",
-        "chore(cd): update base service version to echo:2024.07.11.21.33.00.master (#731)",
-        "chore(cd): update base service version to echo:2024.07.18.11.05.25.master (#732)",
-        "chore(cd): update base service version to echo:2024.07.19.13.57.31.master (#733)",
-        "chore(cd): update base service version to echo:2024.07.30.18.39.41.master (#734)",
-        "chore(cd): update base service version to echo:2024.08.06.19.58.37.master (#735)",
-        "chore(cd): update base service version to echo:2024.08.13.08.15.00.master (#736)",
-        "chore(cd): update armory-commons version to 3.17.3 (#743)",
-        "chore(java): migrate to jdk 17 (backport #750) (#751)",
-        "chore(cd): update base service version to echo:2024.08.13.08.15.00.release-1.35.x (#763)"
-      ],
-      "currentVersion": "2.35.0",
-      "name": "Armory Echo",
-      "previousVersion": "2.34.0"
-    },
-    {
-      "commitMessages": [
-        "fix: ASSMT-304: Jobs are in RUNNING status indefinitely. (#563)",
-        "fix: ASSMT-304: func passes lock by value issue. (#564)",
-        "fix: ASSMT-304: panic: interface conversion: interface {} is **runner.Job, not *runner.Job. (#565)",
-        "chore: Move terraformer versions to docker hub (#567)",
-        "Fix: typo in secret for docker password (#568)",
-        "fix: ASSMT-304: Performance degradation. (#566)",
-        "fix: ASSMT-304: incorrect Terraform stage execution status, logs appeared after the stage was executed, truncated logs, missing data in the context outputs of the stage. (#570)"
-      ],
-      "currentVersion": "2.35.0",
-      "name": "Terraformer™",
-      "previousVersion": "2.34.0"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update base service version to front50:2024.06.18.14.36.38.release-1.34.x (#696)",
-        "chore(cd): update armory-commons version to 3.16.2 (#685)",
-        "chore(cd): update base service version to front50:2024.04.29.15.39.38.master (#682)",
-        "chore(cd): update base service version to front50:2024.05.10.18.26.08.master (#686)",
-        "chore(cd): update base service version to front50:2024.05.16.17.58.24.master (#687)",
-        "chore(cd): update base service version to front50:2024.06.03.19.41.03.master (#688)",
-        "chore(cd): update base service version to front50:2024.06.06.14.02.13.master (#689)",
-        "chore(cd): update base service version to front50:2024.06.07.05.54.32.master (#690)",
-        "chore(cd): update base service version to front50:2024.06.10.17.07.03.master (#691)",
-        "chore(cd): update base service version to front50:2024.06.11.21.15.35.master (#693)",
-        "chore(cd): update base service version to front50:2024.06.12.04.59.08.master (#694)",
-        "chore(cd): update base service version to front50:2024.06.12.14.34.39.master (#695)",
-        "chore(build): Updating Build dependencies (#697)",
-        "chore(cd): update base service version to front50:2024.07.01.23.39.55.master (#699)",
-        "chore(cd): update base service version to front50:2024.07.02.18.24.06.master (#701)",
-        "chore(cd): update base service version to front50:2024.07.12.17.45.40.master (#702)",
-        "chore(cd): update base service version to front50:2024.07.17.18.08.28.master (#703)",
-        "chore(cd): update base service version to front50:2024.07.23.02.51.23.master (#704)",
-        "chore(cd): update base service version to front50:2024.07.30.18.37.55.master (#705)",
-        "chore(cd): update base service version to front50:2024.08.06.19.20.30.master (#706)",
-        "chore(cd): update base service version to front50:2024.08.13.08.16.50.master (#707)",
-        "chore(cd): update base service version to front50:2024.08.17.02.15.46.master (#709)",
-        "chore(cd): update base service version to front50:2024.08.18.01.59.14.master (#710)",
-        "chore(cd): update base service version to front50:2024.08.23.15.47.09.master (#714)",
-        "chore(cd): update armory-commons version to 3.17.3 (#719)",
-        "chore(cd): update base service version to front50:2024.08.23.16.11.34.release-1.35.x (#724)",
-        "chore(java): migrate to jdk 17 (backport #726) (#727)"
-      ],
-      "currentVersion": "2.35.0",
-      "name": "Armory Front50",
-      "previousVersion": "2.34.0"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update armory-commons version to 3.16.2 (#606)",
-        "chore(cd): update base service version to fiat:2024.04.27.01.37.20.master (#602)",
-        "chore(cd): update base service version to fiat:2024.05.01.20.55.58.master (#607)",
-        "chore(cd): update base service version to fiat:2024.05.10.18.23.12.master (#608)",
-        "chore(cd): update base service version to fiat:2024.06.06.14.02.18.master (#609)",
-        "chore(cd): update base service version to fiat:2024.06.07.05.54.34.master (#610)",
-        "chore(cd): update base service version to fiat:2024.06.12.03.57.15.master (#611)",
-        "chore(cd): update base service version to fiat:2024.06.12.14.43.24.master (#612)",
-        "chore(build): Updating Build dependencies (#613)",
-        "chore(cd): update base service version to fiat:2024.07.01.23.37.17.master (#616)",
-        "chore(cd): update base service version to fiat:2024.07.02.18.24.28.master (#618)",
-        "chore(cd): update base service version to fiat:2024.08.06.19.16.43.master (#624)",
-        "chore(cd): update armory-commons version to 3.17.3 (#630)",
-        "chore(cd): update base service version to fiat:2024.08.06.19.16.43.release-1.35.x (#635)",
-        "chore(java): migrate to java 17 (backport #636) (#637)"
-      ],
-      "currentVersion": "2.35.0",
-      "name": "Armory Fiat",
-      "previousVersion": "2.34.0"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update base deck version to 2024.0.0-20240513181436.release-1.34.x (#1417)",
-        "chore(cd): update base deck version to 2024.0.0-20240510163512.release-1.34.x (#1413)",
-        "chore(cd): update base deck version to 2024.0.0-20240509180831.release-1.34.x (#1410)",
-        "chore(cd): update base deck version to 2024.0.0-20240507163358.release-1.34.x (#1407)",
-        "chore(cd): update base deck version to 2024.0.0-20240425133611.master (#1402)",
-        "chore(cd): update base deck version to 2024.0.0-20240507073802.master (#1405)",
-        "chore(cd): update base deck version to 2024.0.0-20240507161802.master (#1406)",
-        "chore(cd): update base deck version to 2024.0.0-20240510143732.master (#1411)",
-        "chore(cd): update base deck version to 2024.0.0-20240512134402.master (#1414)",
-        "chore(cd): update base deck version to 2024.0.0-20240513123242.master (#1415)",
-        "chore(cd): update base deck version to 2024.0.0-20240610143829.master (#1419)",
-        "chore(cd): update base deck version to 2024.0.0-20240626113443.master (#1422)",
-        "chore(cd): update base deck version to 2024.0.0-20240701180101.master (#1423)",
-        "chore(cd): update base deck version to 2024.0.0-20240709230956.master (#1424)",
-        "chore(cd): update base deck version to 2024.0.0-20240801174507.master (#1425)",
-        "chore(cd): update base deck version to 2024.0.0-20240808170143.master (#1426)",
-        "chore(cd): update base deck version to 2024.0.0-20240808170143.master (#1429)",
-        "chore(cd): update base deck version to 2024.0.0-20240911165928.release-1.35.x (#1431)"
-      ],
-      "currentVersion": "2.35.0",
-      "name": "Armory Deck",
-      "previousVersion": "2.34.0"
-    },
-    {
-      "commitMessages": [
-        "chore(build): Updating Build dependencies (#732) (#733)",
-        "chore(cd): update armory-commons version to 3.16.2 (#721)",
-        "Updating Armory commons and gradle jar (#714)",
-        "chore(build): Updating Build dependencies (#732)",
-        "chore(cd): update base service version to gate:2024.06.12.14.34.23.master (#731)",
-        "chore(cd): update base service version to gate:2024.07.02.02.26.57.master (#736)",
-        "chore(cd): update base service version to gate:2024.07.02.18.25.11.master (#738)",
-        "chore(cd): update base service version to gate:2024.07.12.17.45.03.master (#739)",
-        "chore(cd): update base service version to gate:2024.07.17.16.39.39.master (#740)",
-        "chore(cd): update base service version to gate:2024.07.17.18.06.59.master (#741)",
-        "chore(cd): update base service version to gate:2024.07.30.18.41.46.master (#742)",
-        "chore(cd): update base service version to gate:2024.08.06.19.17.52.master (#743)",
-        "chore(cd): update base service version to gate:2024.08.13.08.18.00.master (#748)",
-        "chore(cd): update base service version to gate:2024.08.23.19.46.38.master (#749)",
-        "chore(cd): update armory-commons version to 3.17.3 (#755)",
-        "chore(base): bump base 1.35 and migrate to jdk17 (#766)",
-        "chore(java): migrate to jdk 17 (backport #767) (#768)"
-      ],
-      "currentVersion": "2.35.0",
-      "name": "Armory Gate",
-      "previousVersion": "2.34.0"
-    },
-    {
-      "commitMessages": [
         "chore(build): Updating Build dependencies (#911)",
         "chore(cd): update base orca version to 2024.06.12.02.19.43.release-1.34.x (#899)",
         "chore(cd): update base orca version to 2024.06.11.23.58.30.release-1.34.x (#898)",
@@ -211,12 +37,182 @@
         "chore(cd): update base orca version to 2024.08.28.15.02.07.master (#936)",
         "chore(cd): update armory-commons version to 3.17.3 (#940)",
         "chore(dep): update base to 2024.08.13.08.26.10.release-1.35.x (#950)",
-        "chore(java): migrate to java 17 (#949) (#951)",
-        "chore(cd): update base orca version to 2024.12.11.15.53.21.release-1.35.x (#967)",
-        "chore(cd): update base orca version to 2024.12.13.15.15.00.release-1.35.x (#970)"
+        "chore(java): migrate to java 17 (#949) (#951)"
       ],
-      "currentVersion": "2.35.0",
+      "currentVersion": "2.35.0-rc1",
       "name": "Armory Orca",
+      "previousVersion": "2.34.0"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update armory-commons version to 3.16.2 (#606)",
+        "chore(cd): update base service version to fiat:2024.04.27.01.37.20.master (#602)",
+        "chore(cd): update base service version to fiat:2024.05.01.20.55.58.master (#607)",
+        "chore(cd): update base service version to fiat:2024.05.10.18.23.12.master (#608)",
+        "chore(cd): update base service version to fiat:2024.06.06.14.02.18.master (#609)",
+        "chore(cd): update base service version to fiat:2024.06.07.05.54.34.master (#610)",
+        "chore(cd): update base service version to fiat:2024.06.12.03.57.15.master (#611)",
+        "chore(cd): update base service version to fiat:2024.06.12.14.43.24.master (#612)",
+        "chore(build): Updating Build dependencies (#613)",
+        "chore(cd): update base service version to fiat:2024.07.01.23.37.17.master (#616)",
+        "chore(cd): update base service version to fiat:2024.07.02.18.24.28.master (#618)",
+        "chore(cd): update base service version to fiat:2024.08.06.19.16.43.master (#624)",
+        "chore(cd): update armory-commons version to 3.17.3 (#630)",
+        "chore(cd): update base service version to fiat:2024.08.06.19.16.43.release-1.35.x (#635)",
+        "chore(java): migrate to java 17 (backport #636) (#637)"
+      ],
+      "currentVersion": "2.35.0-rc1",
+      "name": "Armory Fiat",
+      "previousVersion": "2.34.0"
+    },
+    {
+      "commitMessages": [
+        "chore(build): Updating Build dependencies (#544) (#545)",
+        "chore(cd): update base service version to kayenta:2024.04.01.18.08.38.master (#530)",
+        "chore(build): Updating Build dependencies (#544)",
+        "chore(cd): update base service version to kayenta:2024.06.13.14.30.12.master (#542)",
+        "chore(cd): update base service version to kayenta:2024.07.01.15.11.36.master (#546)",
+        "chore(cd): update base service version to kayenta:2024.07.03.20.32.39.master (#547)",
+        "chore(cd): update base service version to kayenta:2024.08.08.17.03.42.master (#548)",
+        "chore(cd): update base service version to kayenta:2024.08.13.23.14.13.master (#551)",
+        "chore(cd): update armory-commons version to 3.17.3 (#557)",
+        "chore(java): migrate to java 17 (#560) (#561)"
+      ],
+      "currentVersion": "2.35.0-rc1",
+      "name": "Armory Kayenta",
+      "previousVersion": "2.34.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): v0.0.0-20240213103436-d0dc889db2c6 (#529)",
+        "chore: Bumps and delete support (#533)"
+      ],
+      "currentVersion": "2.35.0-rc1",
+      "name": "Dinghy™",
+      "previousVersion": "2.34.0"
+    },
+    {
+      "commitMessages": [
+        "Fix permissions on container (#675)",
+        "chore(build): Updating Build dependencies (#671) (#672)",
+        "chore(cd): update base service version to rosco:2024.04.18.17.06.07.release-1.34.x (#666)",
+        "chore(cd): update armory-commons version to 3.16.2 (#664)",
+        "chore(cd): update base service version to rosco:2024.04.18.16.53.13.master (#659)",
+        "chore(cd): update base service version to rosco:2024.05.10.18.26.57.master (#665)",
+        "chore(cd): update base service version to rosco:2024.06.06.14.05.00.master (#667)",
+        "chore(cd): update base service version to rosco:2024.06.07.06.01.10.master (#668)",
+        "chore(cd): update base service version to rosco:2024.06.12.03.37.34.master (#669)",
+        "chore(cd): update base service version to rosco:2024.06.12.14.46.35.master (#670)",
+        "chore(build): Updating Build dependencies (#671)",
+        "chore(cd): update base service version to rosco:2024.07.01.17.46.03.master (#673)",
+        "chore(cd): update base service version to rosco:2024.07.01.23.43.22.master (#674)",
+        "chore(cd): update base service version to rosco:2024.07.02.18.24.20.master (#678)",
+        "chore(cd): update base service version to rosco:2024.08.06.19.21.17.master (#683)",
+        "chore(cd): update armory-commons version to 3.17.3 (#689)",
+        "chore(cd): update base service version to rosco:2024.08.06.19.21.17.release-1.35.x (#694)",
+        "chore(java): Migrate to Java 17 (#695) (#696)",
+        "fix(java): fix merge conflict (#697)"
+      ],
+      "currentVersion": "2.35.0-rc1",
+      "name": "Armory Rosco",
+      "previousVersion": "2.34.0"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update armory-commons version to 3.16.2 (#606)",
+        "chore(cd): update base service version to igor:2024.04.27.02.25.13.master (#602)",
+        "chore(cd): update base service version to igor:2024.05.08.16.58.51.master (#607)",
+        "chore(cd): update base service version to igor:2024.05.10.18.23.25.master (#608)",
+        "chore(cd): update base service version to igor:2024.06.06.14.04.06.master (#609)",
+        "chore(cd): update base service version to igor:2024.06.07.05.55.00.master (#610)",
+        "chore(cd): update base service version to igor:2024.06.12.03.35.53.master (#611)",
+        "chore(cd): update base service version to igor:2024.06.12.14.42.33.master (#612)",
+        "chore(build): Updating Build dependencies (#613)",
+        "chore(cd): update base service version to igor:2024.07.01.15.13.01.master (#615)",
+        "chore(cd): update base service version to igor:2024.07.01.23.40.57.master (#616)",
+        "chore(cd): update base service version to igor:2024.07.02.18.22.57.master (#618)",
+        "chore(cd): update base service version to igor:2024.07.17.18.07.09.master (#619)",
+        "chore(cd): update base service version to igor:2024.07.30.18.41.52.master (#620)",
+        "chore(cd): update base service version to igor:2024.08.06.19.18.18.master (#621)",
+        "chore(cd): update base service version to igor:2024.08.13.08.13.54.master (#622)",
+        "chore(cd): update armory-commons version to 3.17.3 (#628)",
+        "chore(cd): update base service version to igor:2024.08.13.08.13.54.release-1.35.x (#634)",
+        "chore(java): migrate to java 17 (#635)"
+      ],
+      "currentVersion": "2.35.0-rc1",
+      "name": "Armory Igor",
+      "previousVersion": "2.34.0"
+    },
+    {
+      "commitMessages": [
+        "chore(build): Updating Build dependencies (#732) (#733)",
+        "chore(cd): update armory-commons version to 3.16.2 (#721)",
+        "Updating Armory commons and gradle jar (#714)",
+        "chore(build): Updating Build dependencies (#732)",
+        "chore(cd): update base service version to gate:2024.06.12.14.34.23.master (#731)",
+        "chore(cd): update base service version to gate:2024.07.02.02.26.57.master (#736)",
+        "chore(cd): update base service version to gate:2024.07.02.18.25.11.master (#738)",
+        "chore(cd): update base service version to gate:2024.07.12.17.45.03.master (#739)",
+        "chore(cd): update base service version to gate:2024.07.17.16.39.39.master (#740)",
+        "chore(cd): update base service version to gate:2024.07.17.18.06.59.master (#741)",
+        "chore(cd): update base service version to gate:2024.07.30.18.41.46.master (#742)",
+        "chore(cd): update base service version to gate:2024.08.06.19.17.52.master (#743)",
+        "chore(cd): update base service version to gate:2024.08.13.08.18.00.master (#748)",
+        "chore(cd): update base service version to gate:2024.08.23.19.46.38.master (#749)",
+        "chore(cd): update armory-commons version to 3.17.3 (#755)",
+        "chore(base): bump base 1.35 and migrate to jdk17 (#766)",
+        "chore(java): migrate to jdk 17 (backport #767) (#768)"
+      ],
+      "currentVersion": "2.35.0-rc1",
+      "name": "Armory Gate",
+      "previousVersion": "2.34.0"
+    },
+    {
+      "commitMessages": [
+        "chore(cd): update base service version to front50:2024.06.18.14.36.38.release-1.34.x (#696)",
+        "chore(cd): update armory-commons version to 3.16.2 (#685)",
+        "chore(cd): update base service version to front50:2024.04.29.15.39.38.master (#682)",
+        "chore(cd): update base service version to front50:2024.05.10.18.26.08.master (#686)",
+        "chore(cd): update base service version to front50:2024.05.16.17.58.24.master (#687)",
+        "chore(cd): update base service version to front50:2024.06.03.19.41.03.master (#688)",
+        "chore(cd): update base service version to front50:2024.06.06.14.02.13.master (#689)",
+        "chore(cd): update base service version to front50:2024.06.07.05.54.32.master (#690)",
+        "chore(cd): update base service version to front50:2024.06.10.17.07.03.master (#691)",
+        "chore(cd): update base service version to front50:2024.06.11.21.15.35.master (#693)",
+        "chore(cd): update base service version to front50:2024.06.12.04.59.08.master (#694)",
+        "chore(cd): update base service version to front50:2024.06.12.14.34.39.master (#695)",
+        "chore(build): Updating Build dependencies (#697)",
+        "chore(cd): update base service version to front50:2024.07.01.23.39.55.master (#699)",
+        "chore(cd): update base service version to front50:2024.07.02.18.24.06.master (#701)",
+        "chore(cd): update base service version to front50:2024.07.12.17.45.40.master (#702)",
+        "chore(cd): update base service version to front50:2024.07.17.18.08.28.master (#703)",
+        "chore(cd): update base service version to front50:2024.07.23.02.51.23.master (#704)",
+        "chore(cd): update base service version to front50:2024.07.30.18.37.55.master (#705)",
+        "chore(cd): update base service version to front50:2024.08.06.19.20.30.master (#706)",
+        "chore(cd): update base service version to front50:2024.08.13.08.16.50.master (#707)",
+        "chore(cd): update base service version to front50:2024.08.17.02.15.46.master (#709)",
+        "chore(cd): update base service version to front50:2024.08.18.01.59.14.master (#710)",
+        "chore(cd): update base service version to front50:2024.08.23.15.47.09.master (#714)",
+        "chore(cd): update armory-commons version to 3.17.3 (#719)",
+        "chore(cd): update base service version to front50:2024.08.23.16.11.34.release-1.35.x (#724)",
+        "chore(java): migrate to jdk 17 (backport #726) (#727)"
+      ],
+      "currentVersion": "2.35.0-rc1",
+      "name": "Armory Front50",
+      "previousVersion": "2.34.0"
+    },
+    {
+      "commitMessages": [
+        "fix: ASSMT-304: Jobs are in RUNNING status indefinitely. (#563)",
+        "fix: ASSMT-304: func passes lock by value issue. (#564)",
+        "fix: ASSMT-304: panic: interface conversion: interface {} is **runner.Job, not *runner.Job. (#565)",
+        "chore: Move terraformer versions to docker hub (#567)",
+        "Fix: typo in secret for docker password (#568)",
+        "fix: ASSMT-304: Performance degradation. (#566)",
+        "fix: ASSMT-304: incorrect Terraform stage execution status, logs appeared after the stage was executed, truncated logs, missing data in the context outputs of the stage. (#570)"
+      ],
+      "currentVersion": "2.35.0-rc1",
+      "name": "Terraformer™",
       "previousVersion": "2.34.0"
     },
     {
@@ -265,243 +261,67 @@
         "chore(cd): update base service version to clouddriver:2024.08.27.16.52.09.release-1.35.x (#1182)",
         "chore(cd): update base service version to clouddriver:2024.10.15.15.18.20.release-1.35.x (#1185)",
         "chore(java): compile base service with Java 17 (#1183) (#1186)",
-        "chore(java): Migrate to java 17 (#1187) (#1188)",
-        "chore(cd): update base service version to clouddriver:2024.12.13.19.41.27.release-1.35.x (#1203)",
-        "chore(cd): update base service version to clouddriver:2025.01.03.20.45.15.release-1.35.x (#1207)"
+        "chore(java): Migrate to java 17 (#1187) (#1188)"
       ],
-      "currentVersion": "2.35.0",
+      "currentVersion": "2.35.0-rc1",
       "name": "Armory Clouddriver",
       "previousVersion": "2.34.0"
     },
     {
       "commitMessages": [
-        "chore(dependencies): v0.0.0-20240213103436-d0dc889db2c6 (#529)",
-        "chore: Bumps and delete support (#533)"
+        "chore(cd): update base deck version to 2024.0.0-20240513181436.release-1.34.x (#1417)",
+        "chore(cd): update base deck version to 2024.0.0-20240510163512.release-1.34.x (#1413)",
+        "chore(cd): update base deck version to 2024.0.0-20240509180831.release-1.34.x (#1410)",
+        "chore(cd): update base deck version to 2024.0.0-20240507163358.release-1.34.x (#1407)",
+        "chore(cd): update base deck version to 2024.0.0-20240425133611.master (#1402)",
+        "chore(cd): update base deck version to 2024.0.0-20240507073802.master (#1405)",
+        "chore(cd): update base deck version to 2024.0.0-20240507161802.master (#1406)",
+        "chore(cd): update base deck version to 2024.0.0-20240510143732.master (#1411)",
+        "chore(cd): update base deck version to 2024.0.0-20240512134402.master (#1414)",
+        "chore(cd): update base deck version to 2024.0.0-20240513123242.master (#1415)",
+        "chore(cd): update base deck version to 2024.0.0-20240610143829.master (#1419)",
+        "chore(cd): update base deck version to 2024.0.0-20240626113443.master (#1422)",
+        "chore(cd): update base deck version to 2024.0.0-20240701180101.master (#1423)",
+        "chore(cd): update base deck version to 2024.0.0-20240709230956.master (#1424)",
+        "chore(cd): update base deck version to 2024.0.0-20240801174507.master (#1425)",
+        "chore(cd): update base deck version to 2024.0.0-20240808170143.master (#1426)",
+        "chore(cd): update base deck version to 2024.0.0-20240808170143.master (#1429)",
+        "chore(cd): update base deck version to 2024.0.0-20240911165928.release-1.35.x (#1431)"
       ],
-      "currentVersion": "2.35.0",
-      "name": "Dinghy™",
+      "currentVersion": "2.35.0-rc1",
+      "name": "Armory Deck",
       "previousVersion": "2.34.0"
     },
     {
       "commitMessages": [
-        "chore(build): Updating Build dependencies (#544) (#545)",
-        "chore(cd): update base service version to kayenta:2024.04.01.18.08.38.master (#530)",
-        "chore(build): Updating Build dependencies (#544)",
-        "chore(cd): update base service version to kayenta:2024.06.13.14.30.12.master (#542)",
-        "chore(cd): update base service version to kayenta:2024.07.01.15.11.36.master (#546)",
-        "chore(cd): update base service version to kayenta:2024.07.03.20.32.39.master (#547)",
-        "chore(cd): update base service version to kayenta:2024.08.08.17.03.42.master (#548)",
-        "chore(cd): update base service version to kayenta:2024.08.13.23.14.13.master (#551)",
-        "chore(cd): update armory-commons version to 3.17.3 (#557)",
-        "chore(java): migrate to java 17 (#560) (#561)",
-        "chore(cd): update base service version to kayenta:2025.01.22.22.30.54.release-1.35.x (#575)"
+        "chore(cd): update armory-commons version to 3.16.2 (#716)",
+        "chore(cd): update base service version to echo:2024.04.27.02.26.26.master (#712)",
+        "chore(cd): update base service version to echo:2024.05.10.18.24.59.master (#717)",
+        "chore(cd): update base service version to echo:2024.06.06.14.04.52.master (#718)",
+        "chore(cd): update base service version to echo:2024.06.07.06.00.43.master (#719)",
+        "chore(cd): update base service version to echo:2024.06.12.05.10.02.master (#720)",
+        "chore(cd): update base service version to echo:2024.06.12.14.34.33.master (#721)",
+        "chore(cd): update base service version to echo:2024.06.12.14.52.56.master (#722)",
+        "chore(build): Updating Build dependencies (#723)",
+        "chore(cd): update base service version to echo:2024.07.01.23.39.31.master (#726)",
+        "chore(cd): update base service version to echo:2024.07.02.19.53.07.master (#729)",
+        "chore(cd): update base service version to echo:2024.07.09.16.15.40.master (#730)",
+        "chore(cd): update base service version to echo:2024.07.11.21.33.00.master (#731)",
+        "chore(cd): update base service version to echo:2024.07.18.11.05.25.master (#732)",
+        "chore(cd): update base service version to echo:2024.07.19.13.57.31.master (#733)",
+        "chore(cd): update base service version to echo:2024.07.30.18.39.41.master (#734)",
+        "chore(cd): update base service version to echo:2024.08.06.19.58.37.master (#735)",
+        "chore(cd): update base service version to echo:2024.08.13.08.15.00.master (#736)",
+        "chore(cd): update armory-commons version to 3.17.3 (#743)",
+        "chore(java): migrate to jdk 17 (backport #750) (#751)"
       ],
-      "currentVersion": "2.35.0",
-      "name": "Armory Kayenta",
-      "previousVersion": "2.34.0"
-    },
-    {
-      "commitMessages": [
-        "chore(cd): update armory-commons version to 3.16.2 (#606)",
-        "chore(cd): update base service version to igor:2024.04.27.02.25.13.master (#602)",
-        "chore(cd): update base service version to igor:2024.05.08.16.58.51.master (#607)",
-        "chore(cd): update base service version to igor:2024.05.10.18.23.25.master (#608)",
-        "chore(cd): update base service version to igor:2024.06.06.14.04.06.master (#609)",
-        "chore(cd): update base service version to igor:2024.06.07.05.55.00.master (#610)",
-        "chore(cd): update base service version to igor:2024.06.12.03.35.53.master (#611)",
-        "chore(cd): update base service version to igor:2024.06.12.14.42.33.master (#612)",
-        "chore(build): Updating Build dependencies (#613)",
-        "chore(cd): update base service version to igor:2024.07.01.15.13.01.master (#615)",
-        "chore(cd): update base service version to igor:2024.07.01.23.40.57.master (#616)",
-        "chore(cd): update base service version to igor:2024.07.02.18.22.57.master (#618)",
-        "chore(cd): update base service version to igor:2024.07.17.18.07.09.master (#619)",
-        "chore(cd): update base service version to igor:2024.07.30.18.41.52.master (#620)",
-        "chore(cd): update base service version to igor:2024.08.06.19.18.18.master (#621)",
-        "chore(cd): update base service version to igor:2024.08.13.08.13.54.master (#622)",
-        "chore(cd): update armory-commons version to 3.17.3 (#628)",
-        "chore(cd): update base service version to igor:2024.08.13.08.13.54.release-1.35.x (#634)",
-        "chore(java): migrate to java 17 (#635)"
-      ],
-      "currentVersion": "2.35.0",
-      "name": "Armory Igor",
+      "currentVersion": "2.35.0-rc1",
+      "name": "Armory Echo",
       "previousVersion": "2.34.0"
     }
   ],
-  "armoryVersion": "2.35.0",
+  "armoryVersion": "2.35.0-rc1",
   "ossServices": [
-    {
-      "commitMessages": [
-        "chore(dependencies): Autobump korkVersion (#1086)",
-        "fix(install): Removed install_aws_cli2 function from Debian post installation script which installs a Debian package within a Debian package causing errors, as well as errors when an aws cli is already installed (#6945) (#1088)",
-        "chore(dependencies): Autobump korkVersion (#1090)",
-        "chore(dependencies): Autobump korkVersion (#1091)",
-        "chore(dependencies): Autobump korkVersion (#1092)",
-        "chore(dependencies): Autobump korkVersion (#1093)",
-        "chore(dependencies): Autobump korkVersion (#1094)",
-        "chore(dependencies): Autobump korkVersion (#1095)",
-        "chore(build): enable cross compilation plugin for Java 17 (#1096)",
-        "chore(deps): bump docker/build-push-action from 5 to 6 (#1097)",
-        "chore(dependencies): Autobump korkVersion (#1098)",
-        "chore(dependencies): Autobump korkVersion (#1099)",
-        "chore(dependencies): Autobump korkVersion (#1100)",
-        "chore(dependencies): Autobump korkVersion (#1101)",
-        "refactor(test): fix scope of init method while upgrading junit to 5.9.0 (#1102)",
-        "chore(dependencies): Autobump korkVersion (#1103)",
-        "chore(dependencies): Autobump korkVersion (#1104)",
-        "chore(dependencies): Autobump korkVersion (#1105)",
-        "fix(gceBakeHandler): Updating Image name pattern to match googlecompute pre/post 1.1.2 plugin (#1122) (#1124)"
-      ],
-      "currentVersion": "1.35.5",
-      "name": "Spinnaker Rosco",
-      "previousVersion": "1.34.0"
-    },
-    {
-      "commitMessages": [
-        "chore(dependencies): Autobump korkVersion (#1419)",
-        "chore(dependencies): Autobump korkVersion (#1420)",
-        "chore(dependencies): Autobump korkVersion (#1422)",
-        "chore(dependencies): Autobump korkVersion (#1423)",
-        "chore(dependencies): Autobump korkVersion (#1425)",
-        "chore(dependencies): Autobump fiatVersion (#1427)",
-        "chore(build): enable cross compilation plugin for Java 17 (#1426)",
-        "chore(deps): bump docker/build-push-action from 5 to 6 (#1430)",
-        "chore(dependencies): Autobump korkVersion (#1431)",
-        "chore(dependencies): Autobump korkVersion (#1432)",
-        "chore(dependencies): Autobump korkVersion (#1433)",
-        "feat(SpEL): implement to configure the limit of characters for SpEL expressions (#1429)",
-        "test(pipelinetriggers): demonstrate behavior of SpEL expression evaluation (#1434)",
-        "feat(notifications/cdEvents): added support for customData (#1424)",
-        "chore(dependencies): Autobump korkVersion (#1435)",
-        "chore(dependencies): Autobump korkVersion (#1436)",
-        "refactor(amazon_sqs_subscriber): moved AmazonSQSSubscriberSpec (groovy) unit test to AmazonSQSSubscriberTest (java) (#1428)",
-        "chore(dependencies): Autobump korkVersion (#1437)",
-        "chore(dependencies): Autobump korkVersion (#1438)",
-        "chore(dependencies): Autobump fiatVersion (#1439)"
-      ],
-      "currentVersion": "1.35.5",
-      "name": "Spinnaker Echo",
-      "previousVersion": "1.34.0"
-    },
-    {
-      "commitMessages": [
-        "chore(dependencies): Autobump fiatVersion (#1454)",
-        "refactor(web): change ensureCronTriggersHaveIdentifier to return void (#1457)",
-        "chore(dependencies): Autobump korkVersion (#1460)",
-        "chore(dependencies): Autobump fiatVersion (#1461)",
-        "chore(dependencies): Autobump korkVersion (#1462)",
-        "feat(migrations): Support for migrations defined in plugins (#1458)",
-        "chore(dependencies): Autobump korkVersion (#1463)",
-        "chore(dependency): unpin mysql-connector-java (#1464)",
-        "fix(web): Retrieve dependent pipelines correctly (#1459)",
-        "chore(dependencies): Autobump korkVersion (#1467)",
-        "chore(dependencies): Autobump korkVersion (#1468)",
-        "fix(migrator): GCS to SQL migrator APPLICATION_PERMISSION objectType fix (#1466)",
-        "chore(build): enable cross compilation plugin for Java 17 (#1469)",
-        "chore(dependencies): Autobump korkVersion (#1475)",
-        "chore(dependencies): Autobump fiatVersion (#1476)",
-        "chore(deps): bump docker/build-push-action from 5 to 6 (#1477)",
-        "chore(dependencies): Autobump korkVersion (#1478)",
-        "chore(dependencies): Autobump korkVersion (#1479)",
-        "chore(dependencies): Autobump korkVersion (#1480)",
-        "chore(dependencies): Autobump korkVersion (#1481)",
-        "chore(dependencies): Autobump korkVersion (#1482)",
-        "refactor(validator): moved validator groovy unit tests to java (#1484)",
-        "chore(dependencies): Autobump korkVersion (#1485)",
-        "chore(dependencies): Autobump korkVersion (#1486)",
-        "chore(dependencies): Autobump fiatVersion (#1487)",
-        "fix(gha): only bump halyard on master (#1490) (#1492)",
-        "fix(front50-gcs): Fix ObjectType filenames for GCS Front50 persistent store (#1493) (#1495)"
-      ],
-      "currentVersion": "1.35.5",
-      "name": "Spinnaker Front50",
-      "previousVersion": "1.34.0"
-    },
-    {
-      "commitMessages": [
-        "chore(dependencies): Autobump korkVersion (#1157)",
-        "feat(build): add fiat-integration module to exercise the just-built docker imageTest docker image (#1158)",
-        "chore(dependencies): Autobump korkVersion (#1159)",
-        "chore(dependencies): Autobump korkVersion (#1163)",
-        "chore(dependencies): Autobump korkVersion (#1164)",
-        "chore(dependencies): Autobump korkVersion (#1165)",
-        "chore(build): enable cross compilation plugin for Java 17 (#1166)",
-        "chore(deps): bump docker/build-push-action from 5 to 6 (#1167)",
-        "chore(dependencies): Autobump korkVersion (#1168)",
-        "chore(dependencies): Autobump korkVersion (#1169)",
-        "chore(dependencies): Autobump korkVersion (#1170)",
-        "chore(dependencies): Autobump korkVersion (#1171)",
-        "chore(dependencies): Autobump korkVersion (#1172)",
-        "refactor(fiat-core): convert groovy unit tests to java (#1174)",
-        "chore(dependencies): Autobump korkVersion (#1175)",
-        "fix(ldap/roles): fix the issue of multiple entries in Ldap for single user (#1173)",
-        "chore(dependencies): Autobump korkVersion (#1176)"
-      ],
-      "currentVersion": "1.35.5",
-      "name": "Spinnaker Fiat",
-      "previousVersion": "1.34.0"
-    },
-    {
-      "commitMessages": [
-        "fix(redblack): fixing redblack onchange values (#10107) (#10109)",
-        "fix(pipeline): Handle render/validation when stageTimeoutMs is a Spel expression (#10103) (#10104)",
-        "feat(taskView): Implement opt-in paginated request for TaskView (#10093) (#10096)",
-        "fix(lambda): Invoke stage excludedArtifactTypes not including the embedded-artifact type (#10097) (#10100)",
-        "fix(lambdaStages): Exporting Lambda stages based on the feature flag settings (#10085) (#10090)",
-        "fix(pipelineGraph): Handling exception when requisiteStageRefIds is not defined (#10086) (#10087)",
-        "chore(deps-dev): bump vite from 2.9.17 to 2.9.18 in /packages/app (#10082)",
-        "fix(pipelineGraph): Handling exception when requisiteStageRefIds is not defined (#10086)",
-        "fix(lambdaStages): Exporting Lambda stages based on the feature flag settings (#10085)",
-        "feat(taskView): Implement opt-in paginated request for TaskView (#10093)",
-        "fix(lambda): Invoke stage excludedArtifactTypes not including the embedded-artifact type (#10097)",
-        "fix(pipeline): Handle render/validation when stageTimeoutMs is a Spel expression (#10103)",
-        "Publish packages to NPM (#10074)",
-        "fix(redblack): fixing redblack onchange values (#10107)",
-        "fix(lambda): Export LambdaRoute stage on aws module (#10116)",
-        "Publish packages to NPM (#10108)",
-        "feat(pluginsdk): Allow overriding proxy ports in deck dev-proxy (#10115)",
-        "chore(deps): bump @spinnaker/kayenta from 2.1.0 to 2.3.0 (#10114)",
-        "chore(deps): bump docker/build-push-action from 5 to 6 (#10121)",
-        "chore(secrets): adding GHA to sync NPM_AUTH_TOKEN to spinnaker/spinna… (#10122)",
-        "chore(deps): bump actions/checkout from 2 to 4 (#10123)",
-        "chore(gcp): Adding STRONG_COOKIE_AFFINITY in gcp LB model (#10124)",
-        "fix(aws): Fix userData getting lost when cloning an AWS server group that uses launch templates (#6771) (#10132) (#10141)",
-        "fix(aws): Fix IPv6 addresses being incorrectly associated when cloning server groups that have launch templates enabled (#6979) (#10142) (#10144)"
-      ],
-      "currentVersion": "1.35.5",
-      "name": "Spinnaker Deck",
-      "previousVersion": "1.34.0"
-    },
-    {
-      "commitMessages": [
-        "chore(dependencies): Autobump korkVersion (#1791)",
-        "chore(dependencies): Autobump fiatVersion (#1792)",
-        "chore(dependencies): Autobump korkVersion (#1793)",
-        "feat(build): add gate-integration module to exercise the just-built docker image (#1794)",
-        "feat(gha): run integration test in branch builds (#1795)",
-        "feat(saml): Update SAML to use Spring Security (#1744)",
-        "chore(dependencies): Autobump korkVersion (#1797)",
-        "fix(web/test): stop leaking system properties from FunctionalSpec (#1798)",
-        "chore(dependencies): Autobump korkVersion (#1801)",
-        "chore(dependencies): Autobump korkVersion (#1802)",
-        "chore(build): enable cross compilation plugin for Java 17 (#1803)",
-        "chore(dependencies): Autobump korkVersion (#1804)",
-        "chore(dependencies): Autobump fiatVersion (#1805)",
-        "chore(dependencies): Autobump korkVersion (#1806)",
-        "chore(deps): bump docker/build-push-action from 5 to 6 (#1807)",
-        "chore(dependencies): Autobump korkVersion (#1808)",
-        "chore(dependencies): Autobump korkVersion (#1809)",
-        "chore(dependencies): Autobump korkVersion (#1810)",
-        "refactor(test): fix scope of setup method while upgrading junit to 5.9.0 (#1811)",
-        "chore(dependencies): Autobump korkVersion (#1812)",
-        "chore(dependencies): Autobump korkVersion (#1814)",
-        "chore(dependencies): Autobump korkVersion (#1815)",
-        "fix(core): remove ErrorPageSecurityFilter bean named errorPageSecurityFilter (#1819)",
-        "chore(dependencies): Autobump fiatVersion (#1820)"
-      ],
-      "currentVersion": "1.35.5",
-      "name": "Spinnaker Gate",
-      "previousVersion": "1.34.0"
-    },
     {
       "commitMessages": [
         "fix(liquibase): fix checkSum errors occurring with spinnaker upgrade (#4727) (#4744)",
@@ -557,12 +377,168 @@
         "chore(dependency): add explicit assertj-core dependency while spockframework upgrade to 2.2-groovy-3.0 (#4770)",
         "chore(dependency): add explicit byte-buddy dependency while upgrading spockframework to 2.2-groovy-3.0 (#4771)",
         "chore(dependencies): Autobump korkVersion (#4772)",
-        "chore(dependencies): Autobump fiatVersion (#4774)",
-        "fix(ecs): Docker image extraction from context (#4812) (#4814)",
-        "fix(pipelineRef): add resolvedExpectedArtifacts from pipelineTrigger to PipelineRefTrigger (#4816) (#4818)"
+        "chore(dependencies): Autobump fiatVersion (#4774)"
       ],
-      "currentVersion": "1.35.5",
+      "currentVersion": "1.35.4",
       "name": "Spinnaker Orca",
+      "previousVersion": "1.34.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1157)",
+        "feat(build): add fiat-integration module to exercise the just-built docker imageTest docker image (#1158)",
+        "chore(dependencies): Autobump korkVersion (#1159)",
+        "chore(dependencies): Autobump korkVersion (#1163)",
+        "chore(dependencies): Autobump korkVersion (#1164)",
+        "chore(dependencies): Autobump korkVersion (#1165)",
+        "chore(build): enable cross compilation plugin for Java 17 (#1166)",
+        "chore(deps): bump docker/build-push-action from 5 to 6 (#1167)",
+        "chore(dependencies): Autobump korkVersion (#1168)",
+        "chore(dependencies): Autobump korkVersion (#1169)",
+        "chore(dependencies): Autobump korkVersion (#1170)",
+        "chore(dependencies): Autobump korkVersion (#1171)",
+        "chore(dependencies): Autobump korkVersion (#1172)",
+        "refactor(fiat-core): convert groovy unit tests to java (#1174)",
+        "chore(dependencies): Autobump korkVersion (#1175)",
+        "fix(ldap/roles): fix the issue of multiple entries in Ldap for single user (#1173)",
+        "chore(dependencies): Autobump korkVersion (#1176)"
+      ],
+      "currentVersion": "1.35.4",
+      "name": "Spinnaker Fiat",
+      "previousVersion": "1.34.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump orcaVersion (#1027)",
+        "chore(deps): bump gradle/wrapper-validation-action from 2 to 3 (#1031)",
+        "feat(build): add kayenta-integration module to exercise the just-built docker image (#1032)",
+        "refactor(retrofit): add SpinnakerServerExceptionHandler (#1035)",
+        "chore(dependencies): Autobump orcaVersion (#1036)",
+        "chore(dependency): unpin mysql-connector-java and liquibase-core (#1037)",
+        "chore(dependencies): Autobump orcaVersion (#1041)",
+        "refactor(auto-configuration): replace spring.factories with AutoConfiguration.imports file to enable auto-configuration during upgrade to spring boot 2.7.x (#1039)",
+        "chore(build): enable cross compilation plugin for Java 17 (#1040)",
+        "chore(deps): bump docker/build-push-action from 5 to 6 (#1044)",
+        "chore(build): upgrade builder image to gradle:7.6.1-jdk17 (#1045)",
+        "fix(stackdriver): handle null timeSeries and empty points (#1047)",
+        "chore(dependencies): Autobump orcaVersion (#1057)"
+      ],
+      "currentVersion": "1.35.4",
+      "name": "Spinnaker Kayenta",
+      "previousVersion": "1.34.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1086)",
+        "fix(install): Removed install_aws_cli2 function from Debian post installation script which installs a Debian package within a Debian package causing errors, as well as errors when an aws cli is already installed (#6945) (#1088)",
+        "chore(dependencies): Autobump korkVersion (#1090)",
+        "chore(dependencies): Autobump korkVersion (#1091)",
+        "chore(dependencies): Autobump korkVersion (#1092)",
+        "chore(dependencies): Autobump korkVersion (#1093)",
+        "chore(dependencies): Autobump korkVersion (#1094)",
+        "chore(dependencies): Autobump korkVersion (#1095)",
+        "chore(build): enable cross compilation plugin for Java 17 (#1096)",
+        "chore(deps): bump docker/build-push-action from 5 to 6 (#1097)",
+        "chore(dependencies): Autobump korkVersion (#1098)",
+        "chore(dependencies): Autobump korkVersion (#1099)",
+        "chore(dependencies): Autobump korkVersion (#1100)",
+        "chore(dependencies): Autobump korkVersion (#1101)",
+        "refactor(test): fix scope of init method while upgrading junit to 5.9.0 (#1102)",
+        "chore(dependencies): Autobump korkVersion (#1103)",
+        "chore(dependencies): Autobump korkVersion (#1104)",
+        "chore(dependencies): Autobump korkVersion (#1105)"
+      ],
+      "currentVersion": "1.35.4",
+      "name": "Spinnaker Rosco",
+      "previousVersion": "1.34.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1255)",
+        "fix(travis): Properly return API triggered builds (#1256)",
+        "chore(dependencies): Autobump korkVersion (#1257)",
+        "chore(dependencies): Autobump korkVersion (#1259)",
+        "chore(dependencies): Autobump korkVersion (#1260)",
+        "refactor(artifact): moved artifacts (groovy) unit tests to artifacts (java) (#1258)",
+        "chore(dependencies): Autobump korkVersion (#1261)",
+        "chore(dependencies): Autobump fiatVersion (#1262)",
+        "chore(deps): bump docker/build-push-action from 5 to 6 (#1263)",
+        "chore(dependencies): Autobump korkVersion (#1264)",
+        "chore(dependencies): Autobump korkVersion (#1265)",
+        "chore(dependencies): Autobump korkVersion (#1266)",
+        "chore(dependencies): Autobump korkVersion (#1267)",
+        "chore(dependencies): Autobump korkVersion (#1268)",
+        "chore(dependencies): Autobump korkVersion (#1269)",
+        "chore(dependencies): Autobump korkVersion (#1270)",
+        "chore(dependencies): Autobump fiatVersion (#1271)"
+      ],
+      "currentVersion": "1.35.4",
+      "name": "Spinnaker Igor",
+      "previousVersion": "1.34.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump korkVersion (#1791)",
+        "chore(dependencies): Autobump fiatVersion (#1792)",
+        "chore(dependencies): Autobump korkVersion (#1793)",
+        "feat(build): add gate-integration module to exercise the just-built docker image (#1794)",
+        "feat(gha): run integration test in branch builds (#1795)",
+        "feat(saml): Update SAML to use Spring Security (#1744)",
+        "chore(dependencies): Autobump korkVersion (#1797)",
+        "fix(web/test): stop leaking system properties from FunctionalSpec (#1798)",
+        "chore(dependencies): Autobump korkVersion (#1801)",
+        "chore(dependencies): Autobump korkVersion (#1802)",
+        "chore(build): enable cross compilation plugin for Java 17 (#1803)",
+        "chore(dependencies): Autobump korkVersion (#1804)",
+        "chore(dependencies): Autobump fiatVersion (#1805)",
+        "chore(dependencies): Autobump korkVersion (#1806)",
+        "chore(deps): bump docker/build-push-action from 5 to 6 (#1807)",
+        "chore(dependencies): Autobump korkVersion (#1808)",
+        "chore(dependencies): Autobump korkVersion (#1809)",
+        "chore(dependencies): Autobump korkVersion (#1810)",
+        "refactor(test): fix scope of setup method while upgrading junit to 5.9.0 (#1811)",
+        "chore(dependencies): Autobump korkVersion (#1812)",
+        "chore(dependencies): Autobump korkVersion (#1814)",
+        "chore(dependencies): Autobump korkVersion (#1815)",
+        "fix(core): remove ErrorPageSecurityFilter bean named errorPageSecurityFilter (#1819)",
+        "chore(dependencies): Autobump fiatVersion (#1820)"
+      ],
+      "currentVersion": "1.35.4",
+      "name": "Spinnaker Gate",
+      "previousVersion": "1.34.0"
+    },
+    {
+      "commitMessages": [
+        "chore(dependencies): Autobump fiatVersion (#1454)",
+        "refactor(web): change ensureCronTriggersHaveIdentifier to return void (#1457)",
+        "chore(dependencies): Autobump korkVersion (#1460)",
+        "chore(dependencies): Autobump fiatVersion (#1461)",
+        "chore(dependencies): Autobump korkVersion (#1462)",
+        "feat(migrations): Support for migrations defined in plugins (#1458)",
+        "chore(dependencies): Autobump korkVersion (#1463)",
+        "chore(dependency): unpin mysql-connector-java (#1464)",
+        "fix(web): Retrieve dependent pipelines correctly (#1459)",
+        "chore(dependencies): Autobump korkVersion (#1467)",
+        "chore(dependencies): Autobump korkVersion (#1468)",
+        "fix(migrator): GCS to SQL migrator APPLICATION_PERMISSION objectType fix (#1466)",
+        "chore(build): enable cross compilation plugin for Java 17 (#1469)",
+        "chore(dependencies): Autobump korkVersion (#1475)",
+        "chore(dependencies): Autobump fiatVersion (#1476)",
+        "chore(deps): bump docker/build-push-action from 5 to 6 (#1477)",
+        "chore(dependencies): Autobump korkVersion (#1478)",
+        "chore(dependencies): Autobump korkVersion (#1479)",
+        "chore(dependencies): Autobump korkVersion (#1480)",
+        "chore(dependencies): Autobump korkVersion (#1481)",
+        "chore(dependencies): Autobump korkVersion (#1482)",
+        "refactor(validator): moved validator groovy unit tests to java (#1484)",
+        "chore(dependencies): Autobump korkVersion (#1485)",
+        "chore(dependencies): Autobump korkVersion (#1486)",
+        "chore(dependencies): Autobump fiatVersion (#1487)",
+        "fix(gha): only bump halyard on master (#1490) (#1492)",
+        "fix(front50-gcs): Fix ObjectType filenames for GCS Front50 persistent store (#1493) (#1495)"
+      ],
+      "currentVersion": "1.35.4",
+      "name": "Spinnaker Front50",
       "previousVersion": "1.34.0"
     },
     {
@@ -623,62 +599,71 @@
         "fix(install): Fixed Debian post install script for aws-iam-authenticator (#6274) (#6275)",
         "fix(install): Fix Debian post installation script when awscli2 is already installed or the installation failed previously (#6276) (#6277)",
         "fix(aws): Fix AWS CLI v2 for Alpine Linux (#6279) (#6280)",
-        "fix(cloudfoundry): Update ProcessStats model due to capi-1.84.0 changes (#6283) (#6293)",
-        "feat(aws): CleanupAlarmsAgent with an optional user-defined name pattern (#6317) (#6318)",
-        "fix(mergify): Mergify config needs adjusting for latest mergify releases (#6321) (#6327)"
+        "fix(cloudfoundry): Update ProcessStats model due to capi-1.84.0 changes (#6283) (#6293)"
       ],
-      "currentVersion": "1.35.5",
+      "currentVersion": "1.35.4",
       "name": "Spinnaker Clouddriver",
       "previousVersion": "1.34.0"
     },
     {
       "commitMessages": [
-        "chore(dependencies): Autobump orcaVersion (#1027)",
-        "chore(deps): bump gradle/wrapper-validation-action from 2 to 3 (#1031)",
-        "feat(build): add kayenta-integration module to exercise the just-built docker image (#1032)",
-        "refactor(retrofit): add SpinnakerServerExceptionHandler (#1035)",
-        "chore(dependencies): Autobump orcaVersion (#1036)",
-        "chore(dependency): unpin mysql-connector-java and liquibase-core (#1037)",
-        "chore(dependencies): Autobump orcaVersion (#1041)",
-        "refactor(auto-configuration): replace spring.factories with AutoConfiguration.imports file to enable auto-configuration during upgrade to spring boot 2.7.x (#1039)",
-        "chore(build): enable cross compilation plugin for Java 17 (#1040)",
-        "chore(deps): bump docker/build-push-action from 5 to 6 (#1044)",
-        "chore(build): upgrade builder image to gradle:7.6.1-jdk17 (#1045)",
-        "fix(stackdriver): handle null timeSeries and empty points (#1047)",
-        "chore(dependencies): Autobump orcaVersion (#1057)",
-        "chore(dependencies): Autobump orcaVersion (#1076)"
+        "fix(redblack): fixing redblack onchange values (#10107) (#10109)",
+        "fix(pipeline): Handle render/validation when stageTimeoutMs is a Spel expression (#10103) (#10104)",
+        "feat(taskView): Implement opt-in paginated request for TaskView (#10093) (#10096)",
+        "fix(lambda): Invoke stage excludedArtifactTypes not including the embedded-artifact type (#10097) (#10100)",
+        "fix(lambdaStages): Exporting Lambda stages based on the feature flag settings (#10085) (#10090)",
+        "fix(pipelineGraph): Handling exception when requisiteStageRefIds is not defined (#10086) (#10087)",
+        "chore(deps-dev): bump vite from 2.9.17 to 2.9.18 in /packages/app (#10082)",
+        "fix(pipelineGraph): Handling exception when requisiteStageRefIds is not defined (#10086)",
+        "fix(lambdaStages): Exporting Lambda stages based on the feature flag settings (#10085)",
+        "feat(taskView): Implement opt-in paginated request for TaskView (#10093)",
+        "fix(lambda): Invoke stage excludedArtifactTypes not including the embedded-artifact type (#10097)",
+        "fix(pipeline): Handle render/validation when stageTimeoutMs is a Spel expression (#10103)",
+        "Publish packages to NPM (#10074)",
+        "fix(redblack): fixing redblack onchange values (#10107)",
+        "fix(lambda): Export LambdaRoute stage on aws module (#10116)",
+        "Publish packages to NPM (#10108)",
+        "feat(pluginsdk): Allow overriding proxy ports in deck dev-proxy (#10115)",
+        "chore(deps): bump @spinnaker/kayenta from 2.1.0 to 2.3.0 (#10114)",
+        "chore(deps): bump docker/build-push-action from 5 to 6 (#10121)",
+        "chore(secrets): adding GHA to sync NPM_AUTH_TOKEN to spinnaker/spinna… (#10122)",
+        "chore(deps): bump actions/checkout from 2 to 4 (#10123)",
+        "chore(gcp): Adding STRONG_COOKIE_AFFINITY in gcp LB model (#10124)",
+        "fix(aws): Fix userData getting lost when cloning an AWS server group that uses launch templates (#6771) (#10132) (#10141)",
+        "fix(aws): Fix IPv6 addresses being incorrectly associated when cloning server groups that have launch templates enabled (#6979) (#10142) (#10144)"
       ],
-      "currentVersion": "1.35.5",
-      "name": "Spinnaker Kayenta",
+      "currentVersion": "1.35.4",
+      "name": "Spinnaker Deck",
       "previousVersion": "1.34.0"
     },
     {
       "commitMessages": [
-        "chore(dependencies): Autobump korkVersion (#1255)",
-        "fix(travis): Properly return API triggered builds (#1256)",
-        "chore(dependencies): Autobump korkVersion (#1257)",
-        "chore(dependencies): Autobump korkVersion (#1259)",
-        "chore(dependencies): Autobump korkVersion (#1260)",
-        "refactor(artifact): moved artifacts (groovy) unit tests to artifacts (java) (#1258)",
-        "chore(dependencies): Autobump korkVersion (#1261)",
-        "chore(dependencies): Autobump fiatVersion (#1262)",
-        "chore(deps): bump docker/build-push-action from 5 to 6 (#1263)",
-        "chore(dependencies): Autobump korkVersion (#1264)",
-        "chore(dependencies): Autobump korkVersion (#1265)",
-        "chore(dependencies): Autobump korkVersion (#1266)",
-        "chore(dependencies): Autobump korkVersion (#1267)",
-        "chore(dependencies): Autobump korkVersion (#1268)",
-        "chore(dependencies): Autobump korkVersion (#1269)",
-        "chore(dependencies): Autobump korkVersion (#1270)",
-        "chore(dependencies): Autobump fiatVersion (#1271)"
+        "chore(dependencies): Autobump korkVersion (#1419)",
+        "chore(dependencies): Autobump korkVersion (#1420)",
+        "chore(dependencies): Autobump korkVersion (#1422)",
+        "chore(dependencies): Autobump korkVersion (#1423)",
+        "chore(dependencies): Autobump korkVersion (#1425)",
+        "chore(dependencies): Autobump fiatVersion (#1427)",
+        "chore(build): enable cross compilation plugin for Java 17 (#1426)",
+        "chore(deps): bump docker/build-push-action from 5 to 6 (#1430)",
+        "chore(dependencies): Autobump korkVersion (#1431)",
+        "chore(dependencies): Autobump korkVersion (#1432)",
+        "chore(dependencies): Autobump korkVersion (#1433)",
+        "feat(SpEL): implement to configure the limit of characters for SpEL expressions (#1429)",
+        "test(pipelinetriggers): demonstrate behavior of SpEL expression evaluation (#1434)",
+        "feat(notifications/cdEvents): added support for customData (#1424)",
+        "chore(dependencies): Autobump korkVersion (#1435)",
+        "chore(dependencies): Autobump korkVersion (#1436)",
+        "refactor(amazon_sqs_subscriber): moved AmazonSQSSubscriberSpec (groovy) unit test to AmazonSQSSubscriberTest (java) (#1428)",
+        "chore(dependencies): Autobump korkVersion (#1437)"
       ],
-      "currentVersion": "1.35.5",
-      "name": "Spinnaker Igor",
+      "currentVersion": "1.35.4",
+      "name": "Spinnaker Echo",
       "previousVersion": "1.34.0"
     }
   ],
-  "ossVersion": "1.35.5",
-  "prerelease": false,
+  "ossVersion": "1.35.4",
+  "prerelease": true,
   "stack": {
     "artifactSources": {
       "dockerRegistry": "docker.io/armory"
@@ -691,40 +676,40 @@
     },
     "services": {
       "clouddriver": {
-        "commit": "f0e7a7470b06b6a8a007f1494bc1d97ea6d4a52c",
-        "version": "2.35.0"
+        "commit": "61870a298437653ac15a109e0e2a4e13dfdb61ca",
+        "version": "2.35.0-rc1"
       },
       "deck": {
         "commit": "b04971d387e1a0664f536427976c0d64733044b5",
-        "version": "2.35.0"
+        "version": "2.35.0-rc1"
       },
       "dinghy": {
         "commit": "50041173d1a043493409059e7fa5d7a1a80fb553",
-        "version": "2.35.0"
+        "version": "2.35.0-rc1"
       },
       "echo": {
-        "commit": "6117e5941dda2f2faa52639cba5e8449b0a64d0c",
-        "version": "2.35.0"
+        "commit": "1bb22da7c0c104b25b56271ff3e4016fd0ceda22",
+        "version": "2.35.0-rc1"
       },
       "fiat": {
         "commit": "ce4a5e689b66fce9f5aa4e3039f0fe1af5e69f74",
-        "version": "2.35.0"
+        "version": "2.35.0-rc1"
       },
       "front50": {
         "commit": "900b169d3cea95992d781e22939bb5fa1224a75d",
-        "version": "2.35.0"
+        "version": "2.35.0-rc1"
       },
       "gate": {
         "commit": "af49faafbd341109028335630f25c46e9077bc1f",
-        "version": "2.35.0"
+        "version": "2.35.0-rc1"
       },
       "igor": {
         "commit": "56f0c75e06b79f2e3029b0b0da323a2d6c0dff6f",
-        "version": "2.35.0"
+        "version": "2.35.0-rc1"
       },
       "kayenta": {
-        "commit": "8c63692f834f965848a6f238035d0fb01fbc2834",
-        "version": "2.35.0"
+        "commit": "ac4b20926966e3b984c9b46ae241c5a12e0dddc2",
+        "version": "2.35.0-rc1"
       },
       "monitoring-daemon": {
         "commit": null,
@@ -735,19 +720,19 @@
         "version": "2.26.0"
       },
       "orca": {
-        "commit": "9e94501096394c824bbfca5be5707d0d2c5f1713",
-        "version": "2.35.0"
+        "commit": "007b767579a0b983049ae5da7960d8b286462e94",
+        "version": "2.35.0-rc1"
       },
       "rosco": {
-        "commit": "9259f32ee4c6beb1bf1da32c0161590ecf3de800",
-        "version": "2.35.0"
+        "commit": "8e22b77b251ee3083cddfa6cdc11e8eaec2dfdb0",
+        "version": "2.35.0-rc1"
       },
       "terraformer": {
         "commit": "9756bee07eaabbb25b54812996314c22554ec1c0",
-        "version": "2.35.0"
+        "version": "2.35.0-rc1"
       }
     },
-    "timestamp": "2025-01-23 23:27:17",
-    "version": "2.35.0"
+    "timestamp": "2024-11-06 06:52:08",
+    "version": "2.35.0-rc1"
   }
 }
