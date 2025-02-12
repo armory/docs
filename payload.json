@@ -2,81 +2,87 @@
   "armoryServices": [
     {
       "commitMessages": [],
-      "currentVersion": "2.36.0-rc4",
+      "currentVersion": "2.36.0-rc5",
+      "name": "Armory Rosco",
+      "previousVersion": "2.36.0-rc4"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.36.0-rc5",
       "name": "Armory Fiat",
-      "previousVersion": "2.36.0-rc3"
+      "previousVersion": "2.36.0-rc4"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.36.0-rc4",
+      "currentVersion": "2.36.0-rc5",
+      "name": "Terraformer™",
+      "previousVersion": "2.36.0-rc4"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.36.0-rc5",
+      "name": "Armory Kayenta",
+      "previousVersion": "2.36.0-rc4"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.36.0-rc5",
+      "name": "Armory Clouddriver",
+      "previousVersion": "2.36.0-rc4"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.36.0-rc5",
+      "name": "Dinghy™",
+      "previousVersion": "2.36.0-rc4"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.36.0-rc5",
+      "name": "Armory Orca",
+      "previousVersion": "2.36.0-rc4"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.36.0-rc5",
+      "name": "Armory Echo",
+      "previousVersion": "2.36.0-rc4"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.36.0-rc5",
       "name": "Armory Front50",
-      "previousVersion": "2.36.0-rc3"
+      "previousVersion": "2.36.0-rc4"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.36.0-rc4",
-      "name": "Armory Deck",
-      "previousVersion": "2.36.0-rc3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.36.0-rc4",
-      "name": "Armory Gate",
-      "previousVersion": "2.36.0-rc3"
+      "currentVersion": "2.36.0-rc5",
+      "name": "Armory Igor",
+      "previousVersion": "2.36.0-rc4"
     },
     {
       "commitMessages": [
-        "feat(cherry-picks): adding selected improvements to 1.36.x release (#983)"
+        "chore(cd): update base service version to gate:2025.02.11.20.51.46.release-1.36.x (#793)"
       ],
-      "currentVersion": "2.36.0-rc4",
-      "name": "Armory Orca",
-      "previousVersion": "2.36.0-rc3"
+      "currentVersion": "2.36.0-rc5",
+      "name": "Armory Gate",
+      "previousVersion": "2.36.0-rc4"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.36.0-rc4",
-      "name": "Armory Igor",
-      "previousVersion": "2.36.0-rc3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.36.0-rc4",
-      "name": "Armory Rosco",
-      "previousVersion": "2.36.0-rc3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.36.0-rc4",
-      "name": "Terraformer™",
-      "previousVersion": "2.36.0-rc3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.36.0-rc4",
-      "name": "Dinghy™",
-      "previousVersion": "2.36.0-rc3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.36.0-rc4",
-      "name": "Armory Clouddriver",
-      "previousVersion": "2.36.0-rc3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.36.0-rc4",
-      "name": "Armory Echo",
-      "previousVersion": "2.36.0-rc3"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.36.0-rc4",
-      "name": "Armory Kayenta",
-      "previousVersion": "2.36.0-rc3"
+      "currentVersion": "2.36.0-rc5",
+      "name": "Armory Deck",
+      "previousVersion": "2.36.0-rc4"
     }
   ],
-  "armoryVersion": "2.36.0-rc4",
+  "armoryVersion": "2.36.0-rc5",
   "ossServices": [
+    {
+      "commitMessages": [],
+      "currentVersion": "1.36.1",
+      "name": "Spinnaker Rosco",
+      "previousVersion": "1.36.0"
+    },
     {
       "commitMessages": [],
       "currentVersion": "1.36.1",
@@ -86,37 +92,7 @@
     {
       "commitMessages": [],
       "currentVersion": "1.36.1",
-      "name": "Spinnaker Front50",
-      "previousVersion": "1.36.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.36.1",
-      "name": "Spinnaker Deck",
-      "previousVersion": "1.36.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.36.1",
-      "name": "Spinnaker Gate",
-      "previousVersion": "1.36.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.36.1",
-      "name": "Spinnaker Orca",
-      "previousVersion": "1.36.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.36.1",
-      "name": "Spinnaker Igor",
-      "previousVersion": "1.36.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.36.1",
-      "name": "Spinnaker Rosco",
+      "name": "Spinnaker Kayenta",
       "previousVersion": "1.36.0"
     },
     {
@@ -128,13 +104,39 @@
     {
       "commitMessages": [],
       "currentVersion": "1.36.1",
+      "name": "Spinnaker Orca",
+      "previousVersion": "1.36.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.36.1",
       "name": "Spinnaker Echo",
       "previousVersion": "1.36.0"
     },
     {
       "commitMessages": [],
       "currentVersion": "1.36.1",
-      "name": "Spinnaker Kayenta",
+      "name": "Spinnaker Front50",
+      "previousVersion": "1.36.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.36.1",
+      "name": "Spinnaker Igor",
+      "previousVersion": "1.36.0"
+    },
+    {
+      "commitMessages": [
+        "fix(swagger): ensure byteArrayHttpMessageConverter is the first converter to render swagger UI (#1865) (#1867)"
+      ],
+      "currentVersion": "1.36.1",
+      "name": "Spinnaker Gate",
+      "previousVersion": "1.36.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.36.1",
+      "name": "Spinnaker Deck",
       "previousVersion": "1.36.0"
     }
   ],
@@ -153,39 +155,39 @@
     "services": {
       "clouddriver": {
         "commit": "e52a253da499f54ea951d46472ee20ada1326d1a",
-        "version": "2.36.0-rc4"
+        "version": "2.36.0-rc5"
       },
       "deck": {
         "commit": "da852d30ae5d29448b8546c3a55e799ef08bec8a",
-        "version": "2.36.0-rc4"
+        "version": "2.36.0-rc5"
       },
       "dinghy": {
         "commit": "50041173d1a043493409059e7fa5d7a1a80fb553",
-        "version": "2.36.0-rc4"
+        "version": "2.36.0-rc5"
       },
       "echo": {
         "commit": "4c2efbbb9e57b64a1a4fa85aef8eeccc8aaa80a7",
-        "version": "2.36.0-rc4"
+        "version": "2.36.0-rc5"
       },
       "fiat": {
         "commit": "bd424d60f055e6694aeaf74af5b92862932b09c3",
-        "version": "2.36.0-rc4"
+        "version": "2.36.0-rc5"
       },
       "front50": {
         "commit": "9e2606c2d386d00b18b76104564b6467ea2010d3",
-        "version": "2.36.0-rc4"
+        "version": "2.36.0-rc5"
       },
       "gate": {
-        "commit": "c866fd92e6ae109fc31f0f75b456a205c722e2cf",
-        "version": "2.36.0-rc4"
+        "commit": "cc3f1b3059533feb0bc770eebde4f2c0714c7800",
+        "version": "2.36.0-rc5"
       },
       "igor": {
         "commit": "c5540e0bfe83bb87fa8896c7c7924113c17453b4",
-        "version": "2.36.0-rc4"
+        "version": "2.36.0-rc5"
       },
       "kayenta": {
         "commit": "1dab7bb6f4156bdf7f15ef74722139e07ceb4581",
-        "version": "2.36.0-rc4"
+        "version": "2.36.0-rc5"
       },
       "monitoring-daemon": {
         "commit": null,
@@ -197,18 +199,18 @@
       },
       "orca": {
         "commit": "9fa8bf04e3b5882c0b03d0309684ef0cd00a64c0",
-        "version": "2.36.0-rc4"
+        "version": "2.36.0-rc5"
       },
       "rosco": {
         "commit": "80f1885bcd93da023fdb858d563cc24ccadce276",
-        "version": "2.36.0-rc4"
+        "version": "2.36.0-rc5"
       },
       "terraformer": {
         "commit": "9756bee07eaabbb25b54812996314c22554ec1c0",
-        "version": "2.36.0-rc4"
+        "version": "2.36.0-rc5"
       }
     },
-    "timestamp": "2025-02-05 12:35:00",
-    "version": "2.36.0-rc4"
+    "timestamp": "2025-02-12 14:24:22",
+    "version": "2.36.0-rc5"
   }
 }
