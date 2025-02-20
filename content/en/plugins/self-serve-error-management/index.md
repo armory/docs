@@ -27,6 +27,11 @@ Installing the plugin consists of the following:
 
 | Spinnaker Version | Self-Serve Error Management Plugin Version |
 |-------------------|-----------------------------|
+| 1.36.x            | 0.0.3 |
+| 1.35.x            | 0.0.3 |
+| 1.34.x            | 0.1.0 |
+| 1.33.x            | 0.1.0 |
+| 1.32.x            | 0.1.0 |
 | 1.31.x            | 0.1.0 | 
 | 1.30.x            | 0.1.0 | 
 | 1.29.x            | 0.1.0                       |
