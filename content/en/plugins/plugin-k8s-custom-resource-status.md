@@ -26,10 +26,11 @@ These replica checks are enabled by default and do not require additional config
 
 ## Version Compatibility
 
-| Armory CD (Spinnaker) Version | Plugin Version            |
-|:------------------------------|:--------------------------|
-| 2.34.x (1.30.x)               | 3.1.4                     |
-| 2.30 - 2.32 (1.28.x)          | 2.0.5.                    |
+| Armory CD (Spinnaker) Version | Plugin Version |
+|:------------------------------|:---------------|
+| 2.36.x (1.36.x)               | 3.1.5          |
+| 2.34.x (1.30.x)               | 3.1.4          |
+| 2.30 - 2.32 (1.28.x)          | 2.0.5          |
 
 ## Breaking change in versions higher than 2.0.4  
 
@@ -455,3 +456,4 @@ These properties apply to all custom resource kinds deployed through Spinnaker. 
 * v3.1.1 fix a bug - default checking condition
 * v3.1.3 Fixing Dockerfile with proper permissions
 * v3.1.4 Fixing test - add parameter name explicitly 
+* v3.1.5 Update plugin to be compatible with Armory Continuous Deployment 2.36.0 and later
