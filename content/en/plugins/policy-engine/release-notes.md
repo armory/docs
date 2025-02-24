@@ -9,6 +9,7 @@ description: >
 
 ## Release notes
 
+* 0.4.0 - Update plugin to be compatible with Armory Continuous Deployment 2.36.0 and later.
 * 0.3.0 - Fixed bug in 1.28 & 2.28 that prevented proper deserialization of Instant values when validating policies
 * 0.2.2 - Fixed bug for createApplication button with Spinnaker 1.28, to be included in 2.28 release
 * 0.2.1 - Fixed bug with the projects tab on deck for Armory Continuous Deployment 2.27.1 and later

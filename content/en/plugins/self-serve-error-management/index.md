@@ -26,11 +26,12 @@ Installing the plugin consists of the following:
 ## Compatiblity matrix
 
 | Spinnaker Version | Self-Serve Error Management Plugin Version |
-|-------------------|-----------------------------|
-| 1.31.x            | 0.1.0 | 
-| 1.30.x            | 0.1.0 | 
-| 1.29.x            | 0.1.0                       |
-| 1.28.x            | 0.1.0                       |
+|-------------------|--------------------------------------------|
+| 1.36.x            | 0.0.3                                      | 
+| 1.31.x            | 0.1.0                                      | 
+| 1.30.x            | 0.1.0                                      | 
+| 1.29.x            | 0.1.0                                      |
+| 1.28.x            | 0.1.0                                      |
 
 ## {{% heading "prereq" %}}
 

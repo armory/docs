@@ -259,12 +259,12 @@ agent_plug_latest_spin="2.35.x (1.35.x)"
 
 # Policy Engine plugin versions
 [params.policy-engine-plugin]
-pe_plug_latest="0.3.0"
-pe_plug_latest_spin="2.28.x (1.28.x)"
-pe_plug_latest-1="0.2.2"
-pe_plug_latest_spin-1="2.27.x (1.27.x)"
-pe_plug_latest-2="0.1.6"
-pe_plug_latest_spin-2="2.26.x (1.26.x)"
+pe_plug_latest="0.4.0"
+pe_plug_latest_spin="2.36.x (1.36.x)"
+pe_plug_latest-1="0.3.0"
+pe_plug_latest_spin-1="2.28.x (1.28.x)"
+pe_plug_latest-2="0.2.2"
+pe_plug_latest_spin-2="2.27.x (1.27.x)"
 
 # User interface configuration
 [params.ui]
