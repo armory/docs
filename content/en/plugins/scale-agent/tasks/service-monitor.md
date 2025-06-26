@@ -36,4 +36,4 @@ spec:
 
 ## Import a Grafana dashboard
 
-You can import [this Grafana dashboard definition](https://armory.jfrog.io/artifactory/manifests/kubesvc/armory-agent-dashboard.json) to use with Prometheus.
+You can import [this Grafana dashboard definition](https://github.com/armory-io/agent-k8s-spinplug-releases/tree/master/monitoring) to use with Prometheus.
