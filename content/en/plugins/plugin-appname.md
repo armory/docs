@@ -249,8 +249,10 @@ url: file:///opt/spinnaker/lib/local-plugins/appname/plugins.json
 with:
 
 ```yaml
-url: https://armory.jfrog.io/artifactory/plugins/appname/plugins.json
+url: https://example.com/plugins/appname/plugins.json
 ```
+
+An example plugins.json is available on the public armory plugins github at https://github.com/armory-plugins/pluginRepository 
 
 ## Usage
 

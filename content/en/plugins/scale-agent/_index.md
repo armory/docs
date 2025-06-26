@@ -54,7 +54,7 @@ The Scale Agent works with Armory Continuous Deployment v2.26+ and Spinnaker v1.
 
 {{< include "plugins/scale-agent/agent-compat-matrix.md" >}}
 
-You can find a full list of previous releases in the [artifactory](https://armory.jfrog.io/artifactory/manifests/).
+You can find a full list of releases [in our docs](https://docs.armory.io/plugins/scale-agent/release-notes/agent-service/).
 
 ## Docs organization
 

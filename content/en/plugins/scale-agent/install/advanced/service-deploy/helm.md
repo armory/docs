@@ -28,7 +28,7 @@ Ensure you have completed the following steps before you install the Armory Scal
    To add the Armory chart repo, execute the following command:
 
    ```bash
-   helm repo add armory-charts http://armory.jfrog.io/artifactory/charts
+   helm repo add armory-charts https://armory-charts.s3.amazonaws.com/
    ```
 
    If you have previously added the chart repo, update it with the following commands:

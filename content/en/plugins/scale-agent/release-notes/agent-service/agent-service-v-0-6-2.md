@@ -10,7 +10,7 @@ date: 2021-09-22
 * You can now install the Armory Agent service with Helm:
 
 ```
-helm repo add armory-charts http://armory.jfrog.io/artifactory/charts
+helm repo add armory-charts https://armory-charts.s3.amazonaws.com/
 helm install armory-agent armory-charts/agent-k8s-full \
     --set config.clouddriver.grpc=${CLOUDDRIVER_HOST_AND_PORT}
 ```
