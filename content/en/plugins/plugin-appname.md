@@ -249,10 +249,10 @@ url: file:///opt/spinnaker/lib/local-plugins/appname/plugins.json
 with:
 
 ```yaml
-url: https://example.com/plugins/iam/plugins.json
+url: https://example.com/plugins/appname/plugins.json
 ```
 
-A plugins.json is available on the public armory plugins github at https://github.com/armory-plugins/pluginRepository 
+An example plugins.json is available on the public armory plugins github at https://github.com/armory-plugins/pluginRepository 
 
 ## Usage
 
