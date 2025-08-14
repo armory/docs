@@ -57,6 +57,24 @@ These changes improve query performance and execution retrieval efficiency, part
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
+### Echo Filter enabled pipelines feature
+Spinnaker OSS Version 1.31.0 introduced a feature to filter pipelines from front50 , that was disabled by default.
+Version 1.35.0 enabled it by default , which is not recommended and can cause issues with automated triggers.
+In Armory CD 2.36.2 we recommend to explicitly disable this feature by setting the following configuration:
+
+```
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      echo:
+        pipelineCache:
+          filterFront50Pipelines: false 
+```
+
 ## Highlighted updates
 
 ### Java upgrades
