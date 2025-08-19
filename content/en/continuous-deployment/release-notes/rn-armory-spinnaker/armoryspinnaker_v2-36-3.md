@@ -1,8 +1,8 @@
 ---
-title: v2.36.1 Armory Continuous Deployment Release (Spinnaker™ v1.36.1)
+title: v2.36.3 Armory Continuous Deployment Release (Spinnaker™ v1.36.1)
 toc_hide: true
-version: 2.36.1
-date: 2025-02-20
+version: 2.36.3
+date: 2025-08-18
 description: >
   Release notes for Armory Continuous Deployment v2.36.1.
 ---
@@ -12,13 +12,13 @@ MAKE SURE TO ADD 'LTS' OR 'FEATURE' TO THE TITLE TO INDICATE RELEASE CATEGORY.
 FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous Deployment Release Feature" so users know release category and support time period 
 -->
 
-## 2025/02/20 release notes
+## 2025-08-14 release notes
 
 >Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.36.1, use Armory Operator 1.8.6 or later.
+To install, upgrade, or configure Armory CD 2.36.3, use Armory Operator 1.8.6 or later.
 
 ## Security
 
@@ -57,7 +57,7 @@ These changes improve query performance and execution retrieval efficiency, part
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
-### Echo Filter enabled pipelines feature
+### Echo Filter enabled pipelines feature 
 Spinnaker OSS Version 1.31.0 introduced a feature to filter pipelines from front50 , that was disabled by default.
 Version 1.35.0 enabled it by default , which is not recommended and can cause issues with automated triggers.
 In Armory CD 2.36.2 we recommend to explicitly disable this feature by setting the following configuration:
@@ -76,6 +76,76 @@ spec:
 ```
 
 ## Highlighted updates
+
+### Armory Continuous Deployment 2.36.2 Docker images now based on Ubuntu
+The Armory Continuous Deployment 2.36.2 Docker images have been updated to use Ubuntu as the base image, replacing the previous Alpine base.
+This change enhances compatibility with various libraries and tools, improving overall stability and performance.
+Additionally, the new images now include all the necessary dependencies for authentication on a Kebreros server.
+
+### Pipeline Reference feature is now able to Lazy load the pipeline reference pipelines
+In Spinnaker OSS release 1.35.0 Orca introduced a feature flag to reduce the execution size in nested pipelines by 
+converting PipelineTrigger to PipelineRefTrigger:
+{{< highlight yaml "linenos=table,hl_lines=12-13" >}}
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      orca:
+        executionRepository:
+          sql:
+            enabled: true
+            pipelineRef:
+              enabled: true
+{{< /highlight >}}
+
+When enabled, child pipeline execution ids are stored in sql instead of the entire child pipeline execution context.
+
+In Armory CD 2.36.2 this functionality is now extended to make the in-memory representation of the pipelines aware of the pipeline reference 
+and to not load in-memory a full representation of the pipeline context. To enable this feature in Deck add the following in `settings-local.js`:
+
+{{< highlight yaml "linenos=table,hl_lines=11" >}}
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      deck:
+        settings-local.js: |
+          ...
+          window.spinnakerSettings.feature.pipelineRefEnabled = true;
+          ...
+{{< /highlight >}}
+
+*Orca [PR 4842](https://github.com/spinnaker/orca/pull/4842)*
+*Deck [PR 10164](https://github.com/spinnaker/deck/pull/10164)*
+
+### New pipeline stage configuration `backOffPeriodMs`
+A new configuration option `backOffPeriodMs` has been added to the pipeline stage configuration. This option allows users
+to specify a back-off period in milliseconds for stages that may need to retry operations after a failure. Before this,
+pipeline authors had no control over the backoff period. It came from either spinnaker configuration properties or
+implementations of RetryableTask.getDynamicBackoffPeriod.
+
+Additionally, the following configuration options have been added that allow admins to specify globablly the backoff period:
+{{< highlight yaml "linenos=table,hl_lines=9-11" >}}
+apiVersion: spinnaker.armory.io/v1alpha2
+kind: SpinnakerService
+metadata:
+  name: spinnaker
+spec:
+  spinnakerConfig:
+    profiles:
+      orca:
+        tasks.global.backOffPeriod:
+        tasks.<cloud provider>.backOffPeriod:
+        tasks.<cloud provider>.<account name>.backOffPeriod:
+{{< /highlight >}}
+
+*Orca [PR 4841](https://github.com/spinnaker/orca/pull/4841)*
 
 ### Java upgrades
 
@@ -304,57 +374,55 @@ There have also been numerous enhancements, fixes, and features across all of Sp
 
 <details><summary>Expand to see the BOM</summary>
 <pre class="highlight">
-<code>artifactSources:
-  dockerRegistry: docker.io/armory
-dependencies:
-  redis:
-    commit: null
-    version: 2:2.8.4-2
+<code>
+version: 2.36.3
+timestamp: 2025-08-18 14:22:07
 services:
-  clouddriver:
-    commit: e52a253da499f54ea951d46472ee20ada1326d1a
-    version: 2.36.1
-  deck:
-    commit: 1c97b782e123ee219673c245878aeb59e87b0a06
-    version: 2.36.1
-  dinghy:
-    commit: 50041173d1a043493409059e7fa5d7a1a80fb553
-    version: 2.36.1
-  echo:
-    commit: 4c2efbbb9e57b64a1a4fa85aef8eeccc8aaa80a7
-    version: 2.36.1
   fiat:
-    commit: bd424d60f055e6694aeaf74af5b92862932b09c3
-    version: 2.36.1
+    version: 2.36.3
+    commit: e7412ae8d6a0c4fe765098315696fe24eeb3e2f5
   front50:
-    commit: 9e2606c2d386d00b18b76104564b6467ea2010d3
-    version: 2.36.1
+    version: 2.36.3
+    commit: 08c2d640ec2818a990602c40f22952782af0781f
   gate:
-    commit: cc3f1b3059533feb0bc770eebde4f2c0714c7800
-    version: 2.36.1
+    version: 2.36.3
+    commit: 4008ca9592054ea4cb100231dffe13dd8f819367
   igor:
-    commit: c5540e0bfe83bb87fa8896c7c7924113c17453b4
-    version: 2.36.1
+    version: 2.36.3
+    commit: 7fccfb59279c325d5368a82ed9859f9cc7253302
+  terraformer:
+    version: 2.36.3
+    commit: 8453d42107fda5f0c315c8459f523e9182805832
+  rosco:
+    version: 2.36.3
+    commit: 8e35f1c3560b3b8f7de6fc4a35718b4aee98a47c
+  dinghy:
+    version: 2.36.3
+    commit: d36fdf5b496b18212275686d4c9069d72c9dbeb1
+  echo:
+    version: 2.36.3
+    commit: 93303566f7d718f115520dd0b00852cfa183f413
   kayenta:
-    commit: 1dab7bb6f4156bdf7f15ef74722139e07ceb4581
-    version: 2.36.1
+    version: 2.36.3
+    commit: 4b9fb28ad8fa0e4b44fa162691b5d51691d90891
+  deck:
+    version: 2.36.3
+    commit: 0ca57d9581c7d4ce101422b75665b2e22635711a
+  orca:
+    version: 2.36.3
+    commit: 7a3859e21f389b81aba72e294243bb41a7653d8f
+  clouddriver:
+    version: 2.36.3
+    commit: feb14e1f16e7d26ed9390c6911da9a9d50038c68
   monitoring-daemon:
-    commit: null
     version: 2.26.0
   monitoring-third-party:
-    commit: null
     version: 2.26.0
-  orca:
-    commit: 9fa8bf04e3b5882c0b03d0309684ef0cd00a64c0
-    version: 2.36.1
-  rosco:
-    commit: 80f1885bcd93da023fdb858d563cc24ccadce276
-    version: 2.36.1
-  terraformer:
-    commit: 9756bee07eaabbb25b54812996314c22554ec1c0
-    version: 2.36.1
-timestamp: "2025-02-20 12:49:12"
-version: 2.36.1
+dependencies:
+  redis:
+    version: 2:2.8.4-2
+artifactSources:
+  dockerRegistry: docker.io/armory
 </code>
 </pre>
 </details>
@@ -362,41 +430,40 @@ version: 2.36.1
 ### Armory
 
 
-#### Armory Igor - 2.36.0...2.36.1
+#### Armory Igor - 2.36.1...2.36.3
 
 
-#### Terraformer™ - 2.36.0...2.36.1
+#### Terraformer™ - 2.36.1...2.36.3
 
 
-#### Armory Rosco - 2.36.0...2.36.1
+#### Armory Rosco - 2.36.1...2.36.3
 
 
-#### Armory Gate - 2.36.0...2.36.1
+#### Armory Gate - 2.36.1...2.36.3
 
 
-#### Armory Echo - 2.36.0...2.36.1
+#### Armory Echo - 2.36.1...2.36.3
 
 
-#### Armory Deck - 2.36.0...2.36.1
-
-  - fix(metadata): Reverting MetadataFilterOverride (#1450) (#1451)
-
-#### Armory Orca - 2.36.0...2.36.1
+#### Armory Deck - 2.36.1...2.36.3
 
 
-#### Armory Kayenta - 2.36.0...2.36.1
+#### Armory Orca - 2.36.1...2.36.3
 
 
-#### Dinghy™ - 2.36.0...2.36.1
+#### Armory Kayenta - 2.36.1...2.36.3
 
 
-#### Armory Front50 - 2.36.0...2.36.1
+#### Dinghy™ - 2.36.1...2.36.3
 
 
-#### Armory Clouddriver - 2.36.0...2.36.1
+#### Armory Front50 - 2.36.1...2.36.3
 
 
-#### Armory Fiat - 2.36.0...2.36.1
+#### Armory Clouddriver - 2.36.1...2.36.3
+
+
+#### Armory Fiat - 2.36.1...2.36.3
 
 
 
