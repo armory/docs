@@ -1,8 +1,8 @@
 ---
-title: v2.36.2 Armory Continuous Deployment Release (Spinnaker™ v1.36.1)
+title: v2.36.3 Armory Continuous Deployment Release (Spinnaker™ v1.36.1)
 toc_hide: true
-version: 2.36.2
-date: 2025-08-14
+version: 2.36.3
+date: 2025-08-18
 description: >
   Release notes for Armory Continuous Deployment v2.36.1.
 ---
@@ -18,7 +18,7 @@ FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous De
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.36.2, use Armory Operator 1.8.6 or later.
+To install, upgrade, or configure Armory CD 2.36.3, use Armory Operator 1.8.6 or later.
 
 ## Security
 
@@ -375,45 +375,45 @@ There have also been numerous enhancements, fixes, and features across all of Sp
 <details><summary>Expand to see the BOM</summary>
 <pre class="highlight">
 <code>
-version: 2.36.2
-timestamp: 2025-08-14 07:29:50
+version: 2.36.3
+timestamp: 2025-08-18 14:22:07
 services:
-  echo:
-    version: 2.36.2
-    commit: 93303566f7d718f115520dd0b00852cfa183f413
-  igor:
-    version: 2.36.2
-    commit: 7fccfb59279c325d5368a82ed9859f9cc7253302
-  kayenta:
-    version: 2.36.2
-    commit: 4b9fb28ad8fa0e4b44fa162691b5d51691d90891
-  orca:
-    version: 2.36.2
-    commit: 7a3859e21f389b81aba72e294243bb41a7653d8f
-  rosco:
-    version: 2.36.2
-    commit: 8e35f1c3560b3b8f7de6fc4a35718b4aee98a47c
-  dinghy:
-    version: 2.36.2
-    commit: 50041173d1a043493409059e7fa5d7a1a80fb553
-  clouddriver:
-    version: 2.36.2
-    commit: feb14e1f16e7d26ed9390c6911da9a9d50038c68
+  fiat:
+    version: 2.36.3
+    commit: e7412ae8d6a0c4fe765098315696fe24eeb3e2f5
   front50:
-    version: 2.36.2
+    version: 2.36.3
     commit: 08c2d640ec2818a990602c40f22952782af0781f
   gate:
-    version: 2.36.2
+    version: 2.36.3
     commit: 4008ca9592054ea4cb100231dffe13dd8f819367
-  fiat:
-    version: 2.36.2
-    commit: e7412ae8d6a0c4fe765098315696fe24eeb3e2f5
+  igor:
+    version: 2.36.3
+    commit: 7fccfb59279c325d5368a82ed9859f9cc7253302
   terraformer:
-    version: 2.36.2
-    commit: 9756bee07eaabbb25b54812996314c22554ec1c0
+    version: 2.36.3
+    commit: 8453d42107fda5f0c315c8459f523e9182805832
+  rosco:
+    version: 2.36.3
+    commit: 8e35f1c3560b3b8f7de6fc4a35718b4aee98a47c
+  dinghy:
+    version: 2.36.3
+    commit: d36fdf5b496b18212275686d4c9069d72c9dbeb1
+  echo:
+    version: 2.36.3
+    commit: 93303566f7d718f115520dd0b00852cfa183f413
+  kayenta:
+    version: 2.36.3
+    commit: 4b9fb28ad8fa0e4b44fa162691b5d51691d90891
   deck:
-    version: 2.36.2
-    commit: 7a9eab2a2a9c29455d2be8b7655e1495937ba1a4
+    version: 2.36.3
+    commit: 0ca57d9581c7d4ce101422b75665b2e22635711a
+  orca:
+    version: 2.36.3
+    commit: 7a3859e21f389b81aba72e294243bb41a7653d8f
+  clouddriver:
+    version: 2.36.3
+    commit: feb14e1f16e7d26ed9390c6911da9a9d50038c68
   monitoring-daemon:
     version: 2.26.0
   monitoring-third-party:
@@ -430,40 +430,40 @@ artifactSources:
 ### Armory
 
 
-#### Armory Igor - 2.36.1...2.36.2
+#### Armory Igor - 2.36.1...2.36.3
 
 
-#### Terraformer™ - 2.36.1...2.36.2
+#### Terraformer™ - 2.36.1...2.36.3
 
 
-#### Armory Rosco - 2.36.1...2.36.2
+#### Armory Rosco - 2.36.1...2.36.3
 
 
-#### Armory Gate - 2.36.1...2.36.2
+#### Armory Gate - 2.36.1...2.36.3
 
 
-#### Armory Echo - 2.36.1...2.36.2
+#### Armory Echo - 2.36.1...2.36.3
 
 
-#### Armory Deck - 2.36.1...2.36.2
+#### Armory Deck - 2.36.1...2.36.3
 
 
-#### Armory Orca - 2.36.1...2.36.2
+#### Armory Orca - 2.36.1...2.36.3
 
 
-#### Armory Kayenta - 2.36.1...2.36.2
+#### Armory Kayenta - 2.36.1...2.36.3
 
 
-#### Dinghy™ - 2.36.1...2.36.2
+#### Dinghy™ - 2.36.1...2.36.3
 
 
-#### Armory Front50 - 2.36.1...2.36.2
+#### Armory Front50 - 2.36.1...2.36.3
 
 
-#### Armory Clouddriver - 2.36.1...2.36.2
+#### Armory Clouddriver - 2.36.1...2.36.3
 
 
-#### Armory Fiat - 2.36.1...2.36.2
+#### Armory Fiat - 2.36.1...2.36.3
 
 
 
