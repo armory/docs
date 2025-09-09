@@ -1,10 +1,10 @@
 ---
-title: v2.36.3 Armory Continuous Deployment Release (Spinnaker™ v1.36.1)
+title: v2.36.4 Armory Continuous Deployment Release (Spinnaker™ v1.36.1)
 toc_hide: true
-version: 2.36.3
-date: 2025-08-18
+version: 2.36.4
+date: 2025-09-09
 description: >
-  Release notes for Armory Continuous Deployment v2.36.3.
+  Release notes for Armory Continuous Deployment v2.36.4.
 ---
 
 <!-- 
@@ -12,13 +12,13 @@ MAKE SURE TO ADD 'LTS' OR 'FEATURE' TO THE TITLE TO INDICATE RELEASE CATEGORY.
 FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous Deployment Release Feature" so users know release category and support time period 
 -->
 
-## 2025-08-14 release notes
+## 2025-09-09 release notes
 
 >Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.36.3, use Armory Operator 1.8.6 or later.
+To install, upgrade, or configure Armory CD 2.36.4, use Armory Operator 1.8.6 or later.
 
 ## Security
 
@@ -56,17 +56,6 @@ These changes improve query performance and execution retrieval efficiency, part
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
-### Deck - Failing to bind address when SSL is used
-In Armory CD 2.36.3 Deck may fail to start with the following error when SSL is enabled:
-```
-AH00526: Syntax error on line 17 of /etc/apache2/sites-enabled/spinnaker.conf:
-Cannot define multiple Listeners on the same IP:port
-Action '-D FOREGROUND' failed.
-The Apache error log may have more information.
-```
-The issue is fully resolved in Armory CD 2.36.4. Please upgrade to that version if you encounter this issue.
-
-
 ### Echo Filter enabled pipelines feature 
 Spinnaker OSS Version 1.31.0 introduced a feature to filter pipelines from front50 , that was disabled by default.
 Version 1.35.0 enabled it by default , which is not recommended and can cause issues with automated triggers.
