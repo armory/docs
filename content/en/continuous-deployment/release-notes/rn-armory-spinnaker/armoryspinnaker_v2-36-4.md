@@ -1,10 +1,10 @@
 ---
-title: v2.36.3 Armory Continuous Deployment Release (Spinnaker™ v1.36.1)
+title: v2.36.4 Armory Continuous Deployment Release (Spinnaker™ v1.36.1)
 toc_hide: true
-version: 2.36.3
-date: 2025-08-18
+version: 2.36.4
+date: 2025-09-09
 description: >
-  Release notes for Armory Continuous Deployment v2.36.3.
+  Release notes for Armory Continuous Deployment v2.36.4.
 ---
 
 <!-- 
@@ -12,13 +12,13 @@ MAKE SURE TO ADD 'LTS' OR 'FEATURE' TO THE TITLE TO INDICATE RELEASE CATEGORY.
 FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous Deployment Release Feature" so users know release category and support time period 
 -->
 
-## 2025-08-14 release notes
+## 2025-09-09 release notes
 
 >Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.36.3, use Armory Operator 1.8.6 or later.
+To install, upgrade, or configure Armory CD 2.36.4, use Armory Operator 1.8.6 or later.
 
 ## Security
 
@@ -56,17 +56,6 @@ These changes improve query performance and execution retrieval efficiency, part
 
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
-### Deck - Failing to bind address when SSL is used
-In Armory CD 2.36.3 Deck may fail to start with the following error when SSL is enabled:
-```
-AH00526: Syntax error on line 17 of /etc/apache2/sites-enabled/spinnaker.conf:
-Cannot define multiple Listeners on the same IP:port
-Action '-D FOREGROUND' failed.
-The Apache error log may have more information.
-```
-The issue is fully resolved in Armory CD 2.36.4. Please upgrade to that version if you encounter this issue.
-
-
 ### Echo Filter enabled pipelines feature 
 Spinnaker OSS Version 1.31.0 introduced a feature to filter pipelines from front50 , that was disabled by default.
 Version 1.35.0 enabled it by default , which is not recommended and can cause issues with automated triggers.
@@ -385,45 +374,45 @@ There have also been numerous enhancements, fixes, and features across all of Sp
 <details><summary>Expand to see the BOM</summary>
 <pre class="highlight">
 <code>
-version: 2.36.3
-timestamp: 2025-08-18 14:22:07
+version: 2.36.4
+timestamp: 2025-09-03 13:19:57
 services:
-  fiat:
-    version: 2.36.3
-    commit: e7412ae8d6a0c4fe765098315696fe24eeb3e2f5
   front50:
-    version: 2.36.3
+    version: 2.36.4
     commit: 08c2d640ec2818a990602c40f22952782af0781f
   gate:
-    version: 2.36.3
+    version: 2.36.4
     commit: 4008ca9592054ea4cb100231dffe13dd8f819367
   igor:
-    version: 2.36.3
+    version: 2.36.4
     commit: 7fccfb59279c325d5368a82ed9859f9cc7253302
-  terraformer:
-    version: 2.36.3
-    commit: 8453d42107fda5f0c315c8459f523e9182805832
-  rosco:
-    version: 2.36.3
-    commit: 8e35f1c3560b3b8f7de6fc4a35718b4aee98a47c
-  dinghy:
-    version: 2.36.3
-    commit: d36fdf5b496b18212275686d4c9069d72c9dbeb1
-  echo:
-    version: 2.36.3
-    commit: 93303566f7d718f115520dd0b00852cfa183f413
   kayenta:
-    version: 2.36.3
+    version: 2.36.4
     commit: 4b9fb28ad8fa0e4b44fa162691b5d51691d90891
-  deck:
-    version: 2.36.3
-    commit: 0ca57d9581c7d4ce101422b75665b2e22635711a
+  terraformer:
+    version: 2.36.4
+    commit: 8453d42107fda5f0c315c8459f523e9182805832
   orca:
-    version: 2.36.3
+    version: 2.36.4
     commit: 7a3859e21f389b81aba72e294243bb41a7653d8f
+  rosco:
+    version: 2.36.4
+    commit: 8e35f1c3560b3b8f7de6fc4a35718b4aee98a47c
   clouddriver:
-    version: 2.36.3
+    version: 2.36.4
     commit: feb14e1f16e7d26ed9390c6911da9a9d50038c68
+  deck:
+    version: 2.36.4
+    commit: 54a2aada8cb187554536daeb8b8b2858714d1afe
+  echo:
+    version: 2.36.4
+    commit: 93303566f7d718f115520dd0b00852cfa183f413
+  fiat:
+    version: 2.36.4
+    commit: e7412ae8d6a0c4fe765098315696fe24eeb3e2f5
+  dinghy:
+    version: 2.36.4
+    commit: d36fdf5b496b18212275686d4c9069d72c9dbeb1
   monitoring-daemon:
     version: 2.26.0
   monitoring-third-party:
