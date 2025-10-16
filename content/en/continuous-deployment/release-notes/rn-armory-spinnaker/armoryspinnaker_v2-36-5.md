@@ -1,10 +1,10 @@
 ---
-title: v2.36.4 Armory Continuous Deployment Release (Spinnaker™ v1.36.1)
+title: v2.36.5 Armory Continuous Deployment Release (Spinnaker™ v1.36.1)
 toc_hide: true
-version: 2.36.4
-date: 2025-09-09
+version: 2.36.5
+date: 2025-10-16
 description: >
-  Release notes for Armory Continuous Deployment v2.36.4.
+  Release notes for Armory Continuous Deployment v2.36.5.
 ---
 
 <!-- 
@@ -12,13 +12,13 @@ MAKE SURE TO ADD 'LTS' OR 'FEATURE' TO THE TITLE TO INDICATE RELEASE CATEGORY.
 FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous Deployment Release Feature" so users know release category and support time period 
 -->
 
-## 2025-09-09 release notes
+## 2025-10-16 release notes
 
 >Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Armory Operator version
 
-To install, upgrade, or configure Armory CD 2.36.4, use Armory Operator 1.8.6 or later.
+To install, upgrade, or configure Armory CD 2.36.5, use Armory Operator 1.8.6 or later.
 
 ## Security
 
@@ -76,7 +76,33 @@ spec:
 
 ## Highlighted updates
 
-### Armory Continuous Deployment 2.36.2 Docker images now based on Ubuntu
+### Security enhancement: Url Filtering/Restriction capabilities on Artifact accounts
+Starting in Armory Continuous Deployment 2.36.5, we have enabled to capability to filter/restrict urls that can be accessed per artifact accounts.
+This feature provides a safeguard around user input of remote urls when artifact accounts are in used in the context of a pipeline execution.
+
+An example configuration can be found below which can be added per artifact account (http, github, helm):
+```yaml
+artifacts:
+  http:
+    enabled: true
+    accounts:
+      - name: http_account
+        urlRestrictions:
+          allowedDomains:
+          - mydomain.com
+          - raw.github.com
+          - api.github.com
+          rejectLocalhost: true #default value
+          rejectLinkLocal: true #default value
+          rejectVerbatimIps: true #default value
+          rejectedIps: [] #default value
+```
+
+By default the configuration blocks any local CIDR ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16), localhost, link local and raw IPs.
+For full configuration details please refer to this [configuration class](https://github.com/spinnaker/spinnaker/blob/main/clouddriver/clouddriver-artifacts/src/main/java/com/netflix/spinnaker/clouddriver/artifacts/config/HttpUrlRestrictions.java)
+
+
+### Armory Continuous Deployment 2.36.2 onwards Docker images now based on Ubuntu
 The Armory Continuous Deployment 2.36.2 Docker images have been updated to use Ubuntu as the base image, replacing the previous Alpine base.
 This change enhances compatibility with various libraries and tools, improving overall stability and performance.
 Additionally, the new images now include all the necessary dependencies for authentication on a Kebreros server.
@@ -374,45 +400,45 @@ There have also been numerous enhancements, fixes, and features across all of Sp
 <details><summary>Expand to see the BOM</summary>
 <pre class="highlight">
 <code>
-version: 2.36.4
-timestamp: 2025-09-03 13:19:57
+version: 2.36.5
+timestamp: 2025-10-15 09:32:06
 services:
-  front50:
-    version: 2.36.4
-    commit: 08c2d640ec2818a990602c40f22952782af0781f
-  gate:
-    version: 2.36.4
-    commit: 4008ca9592054ea4cb100231dffe13dd8f819367
   igor:
-    version: 2.36.4
+    version: 2.36.5
     commit: 7fccfb59279c325d5368a82ed9859f9cc7253302
+  gate:
+    version: 2.36.5
+    commit: 7cad31c006f10d4549bd666c76dbd85bd8286921
   kayenta:
-    version: 2.36.4
+    version: 2.36.5
     commit: 4b9fb28ad8fa0e4b44fa162691b5d51691d90891
-  terraformer:
-    version: 2.36.4
-    commit: 8453d42107fda5f0c315c8459f523e9182805832
-  orca:
-    version: 2.36.4
-    commit: 7a3859e21f389b81aba72e294243bb41a7653d8f
+  dinghy:
+    version: 2.36.5
+    commit: d36fdf5b496b18212275686d4c9069d72c9dbeb1
   rosco:
-    version: 2.36.4
+    version: 2.36.5
     commit: 8e35f1c3560b3b8f7de6fc4a35718b4aee98a47c
+  orca:
+    version: 2.36.5
+    commit: 138f6665e75d2e600b4cb07631079cc83a6560ec
   clouddriver:
-    version: 2.36.4
-    commit: feb14e1f16e7d26ed9390c6911da9a9d50038c68
+    version: 2.36.5
+    commit: 485642649712e3d69472ed62edfbd7e8e9df1118
   deck:
-    version: 2.36.4
+    version: 2.36.5
     commit: 54a2aada8cb187554536daeb8b8b2858714d1afe
   echo:
-    version: 2.36.4
+    version: 2.36.5
     commit: 93303566f7d718f115520dd0b00852cfa183f413
   fiat:
-    version: 2.36.4
+    version: 2.36.5
     commit: e7412ae8d6a0c4fe765098315696fe24eeb3e2f5
-  dinghy:
-    version: 2.36.4
-    commit: d36fdf5b496b18212275686d4c9069d72c9dbeb1
+  terraformer:
+    version: 2.36.5
+    commit: 8453d42107fda5f0c315c8459f523e9182805832
+  front50:
+    version: 2.36.5
+    commit: 08c2d640ec2818a990602c40f22952782af0781f
   monitoring-daemon:
     version: 2.26.0
   monitoring-third-party:
