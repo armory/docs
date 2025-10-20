@@ -11,6 +11,11 @@ aliases:
 
 {{< include "armory-license.md" >}}
 
+{{% alert color="warning" title="Important" %}}
+[Armory Operator]({{< ref "armory-operator" >}}) has been deprecated and will is considered EOL. Please migrate to the [Kustomize]({{< ref "armory-operator-to-kustomize-migration" >}}) method of deployment.
+{{% /alert %}}
+
+
 ## What are Kubernetes Operators for Spinnaker?
 
 From the Kubernetes [Operator pattern docs](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/): "Operators are software extensions to Kubernetes that make use of custom resources to manage applications and their components." In other words, an Operator is a Kubernetes controller that manages a specific application using a custom resource. Both the proprietary Armory Operator and the open source [Spinnaker Operator for Kubernetes](https://github.com/armory/spinnaker-operator) are custom Kubernetes Operators that you can install in your cluster.

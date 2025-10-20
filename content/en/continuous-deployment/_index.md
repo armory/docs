@@ -19,6 +19,9 @@ description: >
 ## Additional Armory products
 
 ### Kubernetes Operators for installation
+{{% alert color="warning" title="Important" %}}
+[Armory Operator]({{< ref "armory-operator" >}}) has been deprecated and will is considered EOL. Please migrate to the [Kustomize]({{< ref "armory-operator-to-kustomize-migration" >}}) method of deployment.
+{{% /alert %}}
 
 The [Armory Operator]({{< ref "armory-operator" >}}) is a Kubernetes Operator that helps you configure, deploy, and update Armory Continuous Deployment on Kubernetes clusters.
 

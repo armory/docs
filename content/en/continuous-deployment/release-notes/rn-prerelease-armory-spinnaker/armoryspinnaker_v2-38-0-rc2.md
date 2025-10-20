@@ -30,8 +30,11 @@ You acknowledge that Armory has provided the Services in reliance upon the limit
 
 
 ## Required Armory Operator version
+{{% alert color="warning" title="Important" %}}
+[Armory Operator]({{< ref "armory-operator" >}}) has been deprecated and will is considered EOL. Please migrate to the [Kustomize]({{< ref "armory-operator-to-kustomize-migration" >}}) method of deployment.
+{{% /alert %}}
 
-To install, upgrade, or configure Armory CD 2.38.0-rc2, use Armory Operator 1.70 or later.
+To install, upgrade, or configure Armory CD 2.38.0-rc2, use Armory Operator 1.8.6 or later.
 
 ## Security
 
@@ -43,7 +46,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
 ### Gate: Spring Security 5 Oauth2 Migration
-Armory CD 2.38.0 removes deprecate Oauth2 annotations and uses Spring Security 5 DSL. In order to configure oauth2 in gate have changed to:
+Armory CD 2.38.0 removes deprecate Oauth2 annotations and uses Spring Security 5 DSL. In order to configure oauth2 in `gate-local.yml` have changed to:
 
 ## Google Oauth configuration
 ```yaml
@@ -94,7 +97,7 @@ spring:
 ```
 
 ### Orca: Tasks configuration changes
-The following configuration properties have been restructured:
+The following configuration properties have been restructured in `orca-local.yml`:
 
 Previous Configuration:
 
@@ -136,7 +139,7 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 Starting in Armory Continuous Deployment 2.36.5, we have enabled to capability to filter/restrict urls that can be accessed per artifact accounts.
 This feature provides a safeguard around user input of remote urls when artifact accounts are in used in the context of a pipeline execution.
 
-An example configuration for clouddriver-local.yml can be found below which can be added per artifact account (http, github, helm):
+An example configuration for `clouddriver-local.yml` can be found below which can be added per artifact account (http, github, helm):
 ```yaml
 artifacts:
   http:
@@ -157,12 +160,42 @@ artifacts:
 By default the configuration blocks any local CIDR ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16), localhost, link local and raw IPs.
 For full configuration details please refer to this [configuration class](https://github.com/spinnaker/spinnaker/blob/main/clouddriver/clouddriver-artifacts/src/main/java/com/netflix/spinnaker/clouddriver/artifacts/config/HttpUrlRestrictions.java)
 
-### Clouddriver: Account management API enhancement  for ECS and GCP accounts
+### Clouddriver: Account management API enhancement  for AWS, ECS and GCP accounts
+OSS Spinnaker 1.28 introduced the [account management API feature](https://spinnaker.io/docs/setup/other_config/accounts/) for loading, storing, updating, and otherwise managing Clouddriver account configurations from a database.
+In Armory CD 2.38.x the Account management API has been enhanced to support AWS, ECS and GCP accounts. To enable this functionality please use the following configuration in your `clouddriver-local.yml`:
+
+```yaml
+account:
+  storage:
+    enabled: true
+  aws:
+    enabled: true
+  ecs:
+    enabled: true
+  google:
+    enabled: true
+credentials: #Enable the credentials poller per provider congifuration enabled in the Account Managment API
+  poller:
+    enabled: true
+    types:
+      kubernetes:
+        reloadFrequencyMs: 60000
+      aws:
+        reloadFrequencyMs: 60000
+      ecs:
+        reloadFrequencyMs: 60000
+      google:
+        reloadFrequencyMs: 60000
+```
+
+[Clouddriver PR7238](https://github.com/spinnaker/spinnaker/pull/7238)
+[Clouddriver PR7247](https://github.com/spinnaker/spinnaker/pull/7247)
+[Clouddriver PR7270](https://github.com/spinnaker/spinnaker/pull/7270)
 
 
 ### Clouddriver AWS accounts assume-role enhancement
 Introduce in OSS Spinnaker 1.37.0 a configurable retry and backoff logic for AWS credentials parsing has been added.
-Additionally a configurable per account (or default) sessionDurationSeconds property has been added. 
+Additionally a configurable per account (or default) sessionDurationSeconds property has been added in `clouddriver-local.yml`. 
 ```yaml
 aws:
   loadAccounts:
@@ -177,22 +210,6 @@ aws:
 [PR6342](https://github.com/spinnaker/clouddriver/pull/6342)
 [PR6344](https://github.com/spinnaker/clouddriver/pull/6344)
 
-### Orca: Webhook stage improvements and security features
-
-
-```yaml
-orca:
-  webhooks:
-    allowList: ["https://hooks.company.com"]
-    maxRequestSizeBytes: 1048576
-    maxResponseSizeBytes: 1048576
-    followRedirects: false
-    timeoutSeconds: 60
-    audit:
-      enabled: true
-
-```
-
 ### Helm OCI Registry Chart Support
 Docker registry provider now supports adding OCI-based registries hosting Helm repositories. This feature allows
 users to download and bake Helm charts hosted in OCI-compliant registries (such as Docker Hub).
@@ -203,7 +220,7 @@ Related PRs:
 - https://github.com/spinnaker/spinnaker/pull/7113
 
 To enable the Helm OCI support in a Docker Registry account set a list of OCI repositories in the `helmOciRepositories`
-of the Docker Registry account configuration. The `helmOciRepositories` is a list of repository names in the format `<registry>/<repository>`. For example:
+of the Docker Registry account configuration. The `helmOciRepositories` is a list of repository names in the format `<registry>/<repository>`. For example in your `clouddriver-local.yml`:
 ```yaml
 dockerRegistry:
   enabled: true
@@ -275,7 +292,7 @@ Additionally, a new trigger type (named `helm/oci`) has been implemented to allo
 
 
 ### Orca: Limit the execution retrieval of Disabled pipelines
-A new configuration has been added to exclude execution retrieval for disabled pipelines in Front50. This can be enabled with:
+A new configuration has been added to exclude execution retrieval for disabled pipelines in Front50. This can be enabled in your `orca-local.yml` with:
 ```yaml
 tasks:
    controller:
@@ -289,7 +306,7 @@ load for applications with numerous pipelines, especially when obsolete, disable
 ### Front50: Scheduled agent for Disabling unused pipelines
 An agent has been introduced to detect and disable unused or unexecuted pipelines within an application.
 This agent checks pipelines that have not been executed for the past `thresholdDays` days and disables them in Front50.
-This feature is only available for SQL execution repositories and is configurable as bellow:
+This feature is only available for SQL execution repositories and is configurable in your `front50-local.yml` as bellow:
 ```yaml
 pollers:
   unused-pipelines-disable:
@@ -306,20 +323,12 @@ to specify a back-off period in milliseconds for stages that may need to retry o
 pipeline authors had no control over the backoff period. It came from either spinnaker configuration properties or
 implementations of RetryableTask.getDynamicBackoffPeriod.
 
-Additionally, the following configuration options have been added that allow admins to specify globablly the backoff period:
-{{< highlight yaml "linenos=table,hl_lines=9-11" >}}
-apiVersion: spinnaker.armory.io/v1alpha2
-kind: SpinnakerService
-metadata:
-  name: spinnaker
-spec:
-  spinnakerConfig:
-    profiles:
-      orca:
-        tasks.global.backOffPeriod:
-        tasks.<cloud provider>.backOffPeriod:
-        tasks.<cloud provider>.<account name>.backOffPeriod:
-{{< /highlight >}}
+Additionally, the following configuration options have been added that allow admins to specify globablly the backoff period in your `orca-local.yml`:
+```
+tasks.global.backOffPeriod:
+tasks.<cloud provider>.backOffPeriod:
+tasks.<cloud provider>.<account name>.backOffPeriod:
+```
 
 *Orca [PR 4841](https://github.com/spinnaker/orca/pull/4841)*
 
@@ -371,7 +380,7 @@ Key Improvements
 
 Configuration Example
 
-To enable the read connection pool, add the following configuration:
+To enable the read connection pool, add the following configuration in your `orca-local.yml`:
 ```yaml
 sql:
   connectionPools:
@@ -393,6 +402,15 @@ sql:
 
 
 ### Migration of Retrofit1 to Retrofit2 for all services
+Retrofit1 clients from the following spinnaker services have been upgraded to retrofit2. With this release, retrofit2 upgrade of all spinnaker services is completed.
+Any internal plugins that rely on retrofit1 clients will need to be upgraded to retrofit2.
+
+A new CallAdapter named LegacySignatureCallAdapter has been introduced in Kork to provide support for legacy Retrofit 
+method signatures. This adapter enables the use of Retrofit interfaces that do not return Call<..>, similar to how 
+Retrofit 1 worked. Both Kayenta and Halyard leveraged this feature during their Retrofit 2 upgrades, allowing them to
+maintain their existing method signatures without wrapping them in Call<..> or using Retrofit2SyncCall.execute()
+
+- https://github.com/spinnaker/spinnaker/pull/7088
 
 
 ###  Spinnaker community contributions
