@@ -17,6 +17,9 @@ FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous De
 >Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Armory Operator version
+{{% alert color="warning" title="Important" %}}
+[Armory Operator]({{< ref "armory-operator" >}}) has been deprecated and will is considered EOL. Please migrate to the [Kustomize]({{< ref "armory-operator-to-kustomize-migration" >}}) method of deployment.
+{{% /alert %}}
 
 To install, upgrade, or configure Armory CD {{ (ds "payload").armoryVersion }}, use Armory Operator 1.8.6 or later.
 
