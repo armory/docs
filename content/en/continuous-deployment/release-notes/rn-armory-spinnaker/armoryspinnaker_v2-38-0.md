@@ -1,33 +1,20 @@
 ---
-title: v2.38.0-rc3 Armory Continuous Deployment Release (Spinnaker™ v1.38.0)
+title: v2.38.0 Armory Continuous Deployment Release (Spinnaker™ v1.36.1)
 toc_hide: true
+version: 2.38.0
 date: 2025-10-21
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
 description: >
-  Release notes for Armory Continuous Deployment v2.38.0-rc3. A beta release is not meant for installation in production environments.
-
+  Release notes for Armory Continuous Deployment v2.38.0.
 ---
 
-## 2025/10/21 release notes
+<!-- 
+MAKE SURE TO ADD 'LTS' OR 'FEATURE' TO THE TITLE TO INDICATE RELEASE CATEGORY. 
+FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous Deployment Release Feature" so users know release category and support time period 
+-->
 
-## Disclaimer
+## 2025-10-21 release notes
 
-This pre-release software is to allow limited access to test or beta versions of the Armory services (“Services”) and to provide feedback and comments to Armory regarding the use of such Services. By using Services, you agree to be bound by the terms and conditions set forth herein.
-
-Your Feedback is important and we welcome any feedback, analysis, suggestions and comments (including, but not limited to, bug reports and test results) (collectively, “Feedback”) regarding the Services. Any Feedback you provide will become the property of Armory and you agree that Armory may use or otherwise exploit all or part of your feedback or any derivative thereof in any manner without any further remuneration, compensation or credit to you. You represent and warrant that any Feedback which is provided by you hereunder is original work made solely by you and does not infringe any third party intellectual property rights.
-
-Any Feedback provided to Armory shall be considered Armory Confidential Information and shall be covered by any confidentiality agreements between you and Armory.
-
-You acknowledge that you are using the Services on a purely voluntary basis, as a means of assisting, and in consideration of the opportunity to assist Armory to use, implement, and understand various facets of the Services. You acknowledge and agree that nothing herein or in your voluntary submission of Feedback creates any employment relationship between you and Armory.
-
-Armory may, in its sole discretion, at any time, terminate or discontinue all or your access to the Services. You acknowledge and agree that all such decisions by Armory are final and Armory will have no liability with respect to such decisions.
-
-YOUR USE OF THE SERVICES IS AT YOUR OWN RISK. THE SERVICES, THE ARMORY TOOLS AND THE CONTENT ARE PROVIDED ON AN “AS IS” BASIS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. ARMORY AND ITS LICENSORS MAKE NO REPRESENTATION, WARRANTY, OR GUARANTY AS TO THE RELIABILITY, TIMELINESS, QUALITY, SUITABILITY, TRUTH, AVAILABILITY, ACCURACY OR COMPLETENESS OF THE SERVICES, THE ARMORY TOOLS OR ANY CONTENT. ARMORY EXPRESSLY DISCLAIMS ON ITS OWN BEHALF AND ON BEHALF OF ITS EMPLOYEES, AGENTS, ATTORNEYS, CONSULTANTS, OR CONTRACTORS ANY AND ALL WARRANTIES INCLUDING, WITHOUT LIMITATION (A) THE USE OF THE SERVICES OR THE ARMORY TOOLS WILL BE TIMELY, UNINTERRUPTED OR ERROR-FREE OR OPERATE IN COMBINATION WITH ANY OTHER HARDWARE, SOFTWARE, SYSTEM OR DATA, (B) THE SERVICES AND THE ARMORY TOOLS AND/OR THEIR QUALITY WILL MEET CUSTOMER”S REQUIREMENTS OR EXPECTATIONS, (C) ANY CONTENT WILL BE ACCURATE OR RELIABLE, (D) ERRORS OR DEFECTS WILL BE CORRECTED, OR (E) THE SERVICES, THE ARMORY TOOLS OR THE SERVER(S) THAT MAKE THE SERVICES AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. CUSTOMER AGREES THAT ARMORY SHALL NOT BE RESPONSIBLE FOR THE AVAILABILITY OR ACTS OR OMISSIONS OF ANY THIRD PARTY, INCLUDING ANY THIRD-PARTY APPLICATION OR PRODUCT, AND ARMORY HEREBY DISCLAIMS ANY AND ALL LIABILITY IN CONNECTION WITH SUCH THIRD PARTIES.
-
-IN NO EVENT SHALL ARMORY, ITS EMPLOYEES, AGENTS, ATTORNEYS, CONSULTANTS, OR CONTRACTORS BE LIABLE UNDER THIS AGREEMENT FOR ANY CONSEQUENTIAL, SPECIAL, LOST PROFITS, INDIRECT OR OTHER DAMAGES, INCLUDING BUT NOT LIMITED TO LOST PROFITS, LOSS OF BUSINESS, COST OF COVER WHETHER BASED IN CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, EVEN IF ARMORY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES AND NOTWITHSTANDING ANY FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY. IN ANY EVENT, ARMORY, ITS EMPLOYEES’, AGENTS’, ATTORNEYS’, CONSULTANTS’ OR CONTRACTORS’ AGGREGATE LIABILITY UNDER THIS AGREEMENT FOR ANY CLAIM SHALL BE STRICTLY LIMITED TO $100.00. SOME STATES DO NOT ALLOW THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE LIMITATION OR EXCLUSION MAY NOT APPLY TO YOU.
-
-You acknowledge that Armory has provided the Services in reliance upon the limitations of liability set forth herein and that the same is an essential basis of the bargain between the parties.
-
+>Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
 ## Required Armory Operator version
 {{% alert color="warning" title="Important" %}}
@@ -428,57 +415,55 @@ There have also been numerous enhancements, fixes, and features across all of Sp
 
 <details><summary>Expand to see the BOM</summary>
 <pre class="highlight">
-<code>artifactSources:
-  dockerRegistry: docker.io/armory
-dependencies:
-  redis:
-    commit: null
-    version: 2:2.8.4-2
+<code>
+version: 2.38.0
+timestamp: 2025-10-21 09:16:45
 services:
-  clouddriver:
-    commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
-    version: 2.38.0-rc3
-  deck:
-    commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
-    version: 2.38.0-rc3
   dinghy:
+    version: 2.38.0
     commit: babaa4704f1df8a6f6b42e533716396c8a0f529b
-    version: 2.38.0-rc3
-  echo:
+  rosco:
+    version: 2.38.0
     commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
-    version: 2.38.0-rc3
-  fiat:
+  clouddriver:
+    version: 2.38.0
     commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
-    version: 2.38.0-rc3
-  front50:
+  deck:
+    version: 2.38.0
     commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
-    version: 2.38.0-rc3
   gate:
+    version: 2.38.0
     commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
-    version: 2.38.0-rc3
-  igor:
-    commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
-    version: 2.38.0-rc3
   kayenta:
+    version: 2.38.0
     commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
-    version: 2.38.0-rc3
+  orca:
+    version: 2.38.0
+    commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
+  echo:
+    version: 2.38.0
+    commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
+  fiat:
+    version: 2.38.0
+    commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
+  front50:
+    version: 2.38.0
+    commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
+  igor:
+    version: 2.38.0
+    commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
+  terraformer:
+    version: 2.38.0
+    commit: babaa4704f1df8a6f6b42e533716396c8a0f529b
   monitoring-daemon:
-    commit: null
     version: 2.26.0
   monitoring-third-party:
-    commit: null
     version: 2.26.0
-  orca:
-    commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
-    version: 2.38.0-rc3
-  rosco:
-    commit: e891413d1ffd7fa5a49f232a048e7ab2a1cbe63b
-    version: 2.38.0-rc3
-  terraformer:
-    commit: babaa4704f1df8a6f6b42e533716396c8a0f529b
-    version: 2.38.0-rc3
-timestamp: "2025-10-21 09:16:45"
-version: 2.38.0-rc3
+dependencies:
+  redis:
+    version: 2:2.8.4-2
+artifactSources:
+  dockerRegistry: docker.io/armory
 </code>
 </pre>
 </details>
@@ -486,79 +471,73 @@ version: 2.38.0-rc3
 ### Armory
 
 
-#### Armory Dinghy - 2.38.0-rc2...2.38.0-rc3
+#### Armory Igor - 2.36.5...2.38.0
 
 
-#### Armory Rosco - 2.38.0-rc2...2.38.0-rc3
+#### Terraformer™ - 2.36.5...2.38.0
 
 
-#### Armory Clouddriver - 2.38.0-rc2...2.38.0-rc3
+#### Armory Rosco - 2.36.5...2.38.0
 
 
-#### Armory Deck - 2.38.0-rc2...2.38.0-rc3
+#### Armory Gate - 2.36.5...2.38.0
 
 
-#### Armory Gate - 2.38.0-rc2...2.38.0-rc3
+#### Armory Echo - 2.36.5...2.38.0
 
 
-#### Armory Kayenta - 2.38.0-rc2...2.38.0-rc3
+#### Armory Deck - 2.36.5...2.38.0
 
 
-#### Armory Orca - 2.38.0-rc2...2.38.0-rc3
+#### Armory Orca - 2.36.5...2.38.0
 
 
-#### Armory Echo - 2.38.0-rc2...2.38.0-rc3
+#### Armory Kayenta - 2.36.5...2.38.0
 
 
-#### Armory Fiat - 2.38.0-rc2...2.38.0-rc3
+#### Dinghy™ - 2.36.5...2.38.0
 
 
-#### Armory Front50 - 2.38.0-rc2...2.38.0-rc3
+#### Armory Front50 - 2.36.5...2.38.0
 
 
-#### Armory Igor - 2.38.0-rc2...2.38.0-rc3
+#### Armory Clouddriver - 2.36.5...2.38.0
 
 
-#### Armory Terraformer - 2.38.0-rc2...2.38.0-rc3
+#### Armory Fiat - 2.36.5...2.38.0
 
 
 
 ### Spinnaker
 
 
-#### Spinnaker Dinghy - 1.38.0
+#### Spinnaker Igor - 2025.2.2
 
 
-#### Spinnaker Rosco - 1.38.0
+#### Spinnaker Rosco - 2025.2.2
 
 
-#### Spinnaker Clouddriver - 1.38.0
+#### Spinnaker Gate - 2025.2.2
 
 
-#### Spinnaker Deck - 1.38.0
+#### Spinnaker Echo - 2025.2.2
 
 
-#### Spinnaker Gate - 1.38.0
+#### Spinnaker Deck - 2025.2.2
 
 
-#### Spinnaker Kayenta - 1.38.0
+#### Spinnaker Orca - 2025.2.2
 
 
-#### Spinnaker Orca - 1.38.0
+#### Spinnaker Kayenta - 2025.2.2
 
 
-#### Spinnaker Echo - 1.38.0
+#### Spinnaker Front50 - 2025.2.2
 
 
-#### Spinnaker Fiat - 1.38.0
+#### Spinnaker Clouddriver - 2025.2.2
 
 
-#### Spinnaker Front50 - 1.38.0
-
-
-#### Spinnaker Igor - 1.38.0
-
-
-#### Spinnaker Terraformer - 1.38.0
+#### Spinnaker Fiat - 2025.2.2
 
 
