@@ -1,5 +1,5 @@
 ---
-title: v2.38.0 Armory Continuous Deployment Release (Spinnaker™ v1.36.1)
+title: v2.38.0 Armory Continuous Deployment Release (Spinnaker™ v2025.2.2)
 toc_hide: true
 version: 2.38.0
 date: 2025-10-21
