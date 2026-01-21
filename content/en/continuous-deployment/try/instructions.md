@@ -46,7 +46,7 @@ Before you can use the evaluation product, you must configure your Kubernetes cl
 Run the container using Docker Compose by executing:
 
    ```bash
-   curl -sSL https://go.armory.io/quick-spin-compose | docker compose -f - up
+   curl -sSL https://go.armory.io/quick-spin-compose-oss | docker compose -f - up
    ```
    When the installation is complete the ready banner appears:
 
