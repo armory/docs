@@ -111,6 +111,63 @@ These changes improve query performance and execution retrieval efficiency, part
 
 [Orca: Performance Improvements for SQL Backend](#orca-performance-improvements-for-sql-backend)
 
+### Policy Engine (OPA) is now built into Armory CD
+
+The Policy Engine is now built into the Armory CD distribution. The `Armory.PolicyEngine` plugin and the `armory.opa` configuration block are replaced by a native `armory.policy-engine` block. Remove the `Armory.PolicyEngine` plugin from `spinnaker.extensibility.plugins` in every service that had it configured and update the configuration block in `clouddriver-local.yml`, `front50-local.yml`, and any other service profile that references OPA:
+
+Previous:
+```yaml
+armory:
+  opa:
+    enabled: true
+    url: http://opa-server.opa:8181/v1
+```
+
+New:
+```yaml
+armory:
+  policy-engine:
+    enabled: true
+    baseurl: http://opa-server.opa:8181/v1
+```
+
+The OPA server deployment and policies are unchanged.
+
+### Kubernetes Agent (Kubesvc) is now built into Armory CD
+
+The Scale Agent plugin (`Armory.Kubesvc`) is now built into the Armory CD Clouddriver image. The plugin, its repository, and the top-level `kubesvc:` configuration block must be replaced by the native `armory.kubesvc:` block in `clouddriver-local.yml`:
+
+Previous:
+```yaml
+kubesvc:
+  cluster: kubernetes
+  # ...remaining kubesvc settings...
+
+spinnaker:
+  extensibility:
+    plugins:
+      Armory.Kubesvc:
+        enabled: true
+        version: 0.16.2
+        extensions:
+          armory.kubesvc:
+            enabled: true
+    repositories:
+      armory-agent:
+        url: https://raw.githubusercontent.com/armory-io/agent-k8s-spinplug-releases/master/repositories.json
+```
+
+New:
+```yaml
+armory:
+  kubesvc:
+    enabled: true
+    cluster: kubernetes
+    # ...remaining kubesvc settings (unchanged)...
+```
+
+All sub-properties (grpc, cache, heartbeat, operations, credentials) stay the same — only the parent key changes. Remove `Armory.Kubesvc` from `spinnaker.extensibility.plugins` and `armory-agent` from `spinnaker.extensibility.repositories`. The Armory Agent **service** deployed in target clusters is unchanged.
+
 ## Known issues
 <!-- Copy/paste known issues from the previous version if they're not fixed. Add new ones from OSS and Armory. If there aren't any issues, state that so readers don't think we forgot to fill out this section. -->
 
