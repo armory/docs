@@ -25,13 +25,7 @@ To install, upgrade, or configure Armory CD 2.36.9, use Armory Operator 1.8.6 or
 
 ## Security
 
-Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
-
-This release includes a security fix (CVE remediation) via upstream backports in Clouddriver that improve validation around user-supplied Git repository inputs used by GitRepo artifacts.
-
-Upstream references:
-- [spinnaker/spinnaker#7542](https://github.com/spinnaker/spinnaker/pull/7542)
-- [spinnaker/spinnaker#7564](https://github.com/spinnaker/spinnaker/pull/7564)
+Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about this release.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
@@ -112,6 +106,8 @@ redis:
 If `redis.scheduler.type` is missing or blank, Clouddriver defaults to `default` for compatibility.
 
 ### Security hardening: URL restriction validation for artifacts and webhooks
+
+This release includes fixes that improve validation around user-supplied Git repository inputs used by GitRepo artifacts.
 
 This release tightens URL host validation for artifact accounts and Orca webhook URL restrictions:
 
