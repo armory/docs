@@ -125,9 +125,9 @@
     },
     {
       "commitMessages": [],
-      "currentVersion": "1.38.0",
-      "name": "Spinnaker Fiat",
-      "previousVersion": "1.38.0"
+      "currentVersion": "1.36.0",
+      "name": "Spinnaker Orca",
+      "previousVersion": "1.36.0"
     },
     {
       "commitMessages": [],
