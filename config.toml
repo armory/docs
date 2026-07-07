@@ -333,11 +333,11 @@ theme = "forest"
 [[params.versions]]
   version = "Armory CD v2.38"
   githubbranch = "v2.38"
-  url = "https://v2-38.docs.armory.io/continuous-deployment/"
+  url = "https://docs.armory.io/continuous-deployment/"
 
 [[params.versions]]
   version = "Armory CD v2.36"
   githubbranch = "v2.36"
-  url = "https://v2-36.docs.armory.io/continuous-deployment/"
+  url = "https://docs.armory.io/continuous-deployment/"
 
 
