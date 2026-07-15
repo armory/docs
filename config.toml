@@ -199,7 +199,7 @@ terms_and_conditions = "https://www.armory.io/terms-and-conditions/"
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
-version_menu = "Armory CD v2.39"
+version_menu = "Armory CD v2.40"
 
 # Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
@@ -210,7 +210,7 @@ archived_version = false
 # Used in the "version-banner" partial to display a version number for the
 # current doc set.
 # Also used in the PCM to highlight what version the PCM is for
-version = "2.39.x"
+version = "2.40.x"
 
 # A link to latest version of the Armory CD docs. Used in the "version-banner" partial to
 # point people to the main Armory CD docs site.
@@ -331,13 +331,13 @@ theme = "forest"
 # at the top of the website.
 
 [[params.versions]]
-  version = "Armory CD v2.38"
-  githubbranch = "v2.38"
+  version = "Armory CD v2.39"
+  githubbranch = "v2.39"
   url = "https://docs.armory.io/continuous-deployment/"
 
 [[params.versions]]
-  version = "Armory CD v2.36"
-  githubbranch = "v2.36"
+  version = "Armory CD v2.38"
+  githubbranch = "v2.38"
   url = "https://docs.armory.io/continuous-deployment/"
 
 
