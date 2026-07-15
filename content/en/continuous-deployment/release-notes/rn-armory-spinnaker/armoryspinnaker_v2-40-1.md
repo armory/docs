@@ -188,9 +188,9 @@ snakeyaml:
   code-point-limit: 10485760         # default: 3145728
 ```
 
-### Docker images moved to GHCR
+### OSS Spinnaker images moved to GHCR
 
-Spinnaker and Armory CD images are no longer published to Google Artifact Registry (GAR). All images now pull from GitHub Container Registry (GHCR) at `ghcr.io/spinnaker/`. Update any allowlists, pull-through mirrors, or image references in your deployment configuration before upgrading.
+OSS Spinnaker images are no longer published to Google Artifact Registry (GAR) and now pull from GitHub Container Registry (GHCR) at `ghcr.io/spinnaker/`. **Armory CD images continue to be published to Docker Hub** (`docker.io/armory`) and are unaffected. If you consume any OSS Spinnaker images directly alongside your Armory CD deployment, update those image references to point to GHCR before upgrading.
 
 ### Halyard fully deprecated
 
@@ -200,6 +200,10 @@ Halyard is no longer supported and will not receive patches or updates. Migrate 
 
 Due to recent SQL library upgrades, MySQL 5.7 is no longer supported and will fail on startup. You must be running MySQL 8.0+ or an equivalent MariaDB version before upgrading to Armory CD 2.40.1.
 
+### Redis/Valkey 7+ now required
+
+Redis or Valkey 7.0+ is required for Armory CD 2.40.1. Older versions are not supported and may cause failures. Armory already deploys Redis 7+ by default — verify your Redis version before upgrading if you manage your own Redis instance.
+
 ### AWS SDK v1 deprecated
 
 AWS SDK v2 support has been introduced across Spinnaker services. AWS SDK v1 is expected to be removed in an upcoming release. If you have custom implementations using SDK v1, begin migrating to the v2 integrations now.
@@ -207,6 +211,10 @@ AWS SDK v2 support has been introduced across Spinnaker services. AWS SDK v1 is 
 ### EDDA support removed
 
 EDDA is no longer supported and will be removed once the AWS SDK v2 migration is complete. If you rely on EDDA, contact the Spinnaker Slack community before upgrading.
+
+### Armory Scale Agent (Kubesvc) deprecation notice
+
+The Armory Scale Agent (Kubesvc) is planned for deprecation in the next major release of Armory CD.
 
 ### URL trailing-slash handling changed
 
