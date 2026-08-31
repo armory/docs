@@ -158,6 +158,8 @@ armory:
 
 All sub-properties (grpc, cache, heartbeat, operations, credentials) stay the same — only the parent key changes. Remove `Armory.Kubesvc` from `spinnaker.extensibility.plugins` and `armory-agent` from `spinnaker.extensibility.repositories`. The Armory Agent **service** deployed in target clusters is unchanged.
 
+If Clouddriver fails to start after this change with a `Table 'kubesvc_cache' already exists` migration error, see [Clouddriver fails to start with a Kubesvc migration error](#clouddriver-fails-to-start-with-a-kubesvc-migration-error) under Known issues.
+
 ### Spring Boot 3.5 upgrade
 
 Armory CD 2.40.1 upgrades to Spring Boot 3.5, the latest supported release. This is a major upgrade from Spring Boot 3.0 introduced in Armory CD 2.39.0. Plugins built against earlier Spring Boot versions will need to be updated to be compatible with this release.
@@ -232,7 +234,7 @@ It is recommended to update any affected controllers to handle both paths with a
 
 ## Known issues
 
-No known issues at this time.
+{{< include "known-issues/ki-kubesvc-changelog-migration.md" >}}
 
 ## Highlighted updates
 
