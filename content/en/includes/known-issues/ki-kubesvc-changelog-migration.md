@@ -13,9 +13,7 @@ Reason: Table 'kubesvc_cache' already exists
 
 **Workaround**: Copy the Kubesvc changelog entries from Clouddriver's `DATABASECHANGELOG` table into `KUBESVC_AGENT_CHANGELOG` so the built-in agent recognizes the migrations as already applied.
 
-1. Back up your Clouddriver database.
-2. Scale Clouddriver down to zero replicas. The failed startup attempt creates the empty `KUBESVC_AGENT_CHANGELOG` table, so run the upgrade at least once before executing the statement below.
-3. Run the following statement against your Clouddriver database. Replace the `clouddriver` schema name if your database uses a different one.
+Run the following statement against your Clouddriver database. Replace the `clouddriver` schema name if your database uses a different one.
 
    ```sql
    INSERT INTO clouddriver.KUBESVC_AGENT_CHANGELOG
@@ -50,5 +48,3 @@ Reason: Table 'kubesvc_cache' already exists
      'db/changelog/20230706-alter-kubesvc_assignments.yml'
    );
    ```
-
-4. Scale Clouddriver back up. The built-in agent skips the already-applied changesets and recomputes the `MD5SUM` values, and Clouddriver starts normally.
