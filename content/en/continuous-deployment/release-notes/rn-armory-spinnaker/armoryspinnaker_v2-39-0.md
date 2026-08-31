@@ -158,6 +158,8 @@ armory:
 
 All sub-properties (grpc, cache, heartbeat, operations, credentials) stay the same — only the parent key changes. Remove `Armory.Kubesvc` from `spinnaker.extensibility.plugins` and `armory-agent` from `spinnaker.extensibility.repositories`. The Armory Agent **service** deployed in target clusters is unchanged.
 
+If Clouddriver fails to start after this change with a `Table 'kubesvc_cache' already exists` migration error, see [Clouddriver fails to start with a Kubesvc migration error](#clouddriver-fails-to-start-with-a-kubesvc-migration-error) under Known issues.
+
 ### Spring Boot 3 upgrade
 
 Armory CD 2.39.0 upgrades from Spring Boot 2.7 to Spring Boot 3.0. This has two immediate operational impacts:
@@ -209,7 +211,7 @@ Halyard is no longer supported and will not receive patches or updates. Migrate 
 
 ## Known issues
 
-No known issues at this time.
+{{< include "known-issues/ki-kubesvc-changelog-migration.md" >}}
 
 ## Highlighted updates
 

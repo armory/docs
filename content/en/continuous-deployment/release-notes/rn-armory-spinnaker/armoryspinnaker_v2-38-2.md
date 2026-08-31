@@ -160,10 +160,14 @@ armory:
 
 All sub-properties (grpc, cache, heartbeat, operations, credentials) stay the same — only the parent key changes. Remove `Armory.Kubesvc` from `spinnaker.extensibility.plugins` and `armory-agent` from `spinnaker.extensibility.repositories`. The Armory Agent **service** deployed in target clusters is unchanged.
 
+If Clouddriver fails to start after this change with a `Table 'kubesvc_cache' already exists` migration error, see [Clouddriver fails to start with a Kubesvc migration error](#clouddriver-fails-to-start-with-a-kubesvc-migration-error) under Known issues.
+
 ### Clouddriver: AWS SDK v2 upgrade
 `S3ArtifactValidator`'s `validate` method signature has changed when `clouddriver-artifacts` was upgraded to AWS SDK v2. Any custom implementations of this interface need to be updated accordingly. Echo, Front50, and Igor were also upgraded to AWS SDK v2 in this release.
 
 ## Known issues
+
+{{< include "known-issues/ki-kubesvc-changelog-migration.md" >}}
 
 ## Highlighted updates
 
