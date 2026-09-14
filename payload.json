@@ -2,107 +2,83 @@
   "armoryServices": [
     {
       "commitMessages": [],
-      "currentVersion": "2.40.6",
-      "name": "Armory Deck",
-      "previousVersion": "2.40.5"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.40.6",
-      "name": "Armory Rosco",
-      "previousVersion": "2.40.5"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.40.6",
-      "name": "Armory Terraformer",
-      "previousVersion": "2.40.5"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.40.6",
-      "name": "Armory Kayenta",
-      "previousVersion": "2.40.5"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.40.6",
-      "name": "Armory Orca",
-      "previousVersion": "2.40.5"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.40.6",
-      "name": "Armory Gate",
-      "previousVersion": "2.40.5"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.40.6",
-      "name": "Armory Igor",
-      "previousVersion": "2.40.5"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.40.6",
-      "name": "Armory Fiat",
-      "previousVersion": "2.40.5"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "2.40.6",
+      "currentVersion": "2.40.7",
       "name": "Armory Front50",
-      "previousVersion": "2.40.5"
+      "previousVersion": "2.40.6"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.40.6",
-      "name": "Armory Dinghy",
-      "previousVersion": "2.40.5"
+      "currentVersion": "2.40.7",
+      "name": "Armory Gate",
+      "previousVersion": "2.40.6"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.40.6",
-      "name": "Armory Echo",
-      "previousVersion": "2.40.5"
+      "currentVersion": "2.40.7",
+      "name": "Armory Igor",
+      "previousVersion": "2.40.6"
     },
     {
       "commitMessages": [],
-      "currentVersion": "2.40.6",
+      "currentVersion": "2.40.7",
+      "name": "Armory Kayenta",
+      "previousVersion": "2.40.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.40.7",
+      "name": "Armory Orca",
+      "previousVersion": "2.40.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.40.7",
+      "name": "Armory Rosco",
+      "previousVersion": "2.40.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.40.7",
+      "name": "Armory Terraformer",
+      "previousVersion": "2.40.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.40.7",
       "name": "Armory Clouddriver",
-      "previousVersion": "2.40.5"
+      "previousVersion": "2.40.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.40.7",
+      "name": "Armory Deck",
+      "previousVersion": "2.40.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.40.7",
+      "name": "Armory Dinghy",
+      "previousVersion": "2.40.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.40.7",
+      "name": "Armory Echo",
+      "previousVersion": "2.40.6"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "2.40.7",
+      "name": "Armory Fiat",
+      "previousVersion": "2.40.6"
     }
   ],
-  "armoryVersion": "2.40.6",
+  "armoryVersion": "2.40.7",
   "ossServices": [
     {
       "commitMessages": [],
       "currentVersion": "1.40.0",
-      "name": "Spinnaker Deck",
-      "previousVersion": "1.40.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.40.0",
-      "name": "Spinnaker Rosco",
-      "previousVersion": "1.40.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.40.0",
-      "name": "Spinnaker Terraformer",
-      "previousVersion": "1.40.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.40.0",
-      "name": "Spinnaker Kayenta",
-      "previousVersion": "1.40.0"
-    },
-    {
-      "commitMessages": [],
-      "currentVersion": "1.40.0",
-      "name": "Spinnaker Orca",
+      "name": "Spinnaker Front50",
       "previousVersion": "1.40.0"
     },
     {
@@ -120,13 +96,37 @@
     {
       "commitMessages": [],
       "currentVersion": "1.40.0",
-      "name": "Spinnaker Fiat",
+      "name": "Spinnaker Kayenta",
       "previousVersion": "1.40.0"
     },
     {
       "commitMessages": [],
       "currentVersion": "1.40.0",
-      "name": "Spinnaker Front50",
+      "name": "Spinnaker Orca",
+      "previousVersion": "1.40.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.40.0",
+      "name": "Spinnaker Rosco",
+      "previousVersion": "1.40.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.40.0",
+      "name": "Spinnaker Terraformer",
+      "previousVersion": "1.40.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.40.0",
+      "name": "Spinnaker Clouddriver",
+      "previousVersion": "1.40.0"
+    },
+    {
+      "commitMessages": [],
+      "currentVersion": "1.40.0",
+      "name": "Spinnaker Deck",
       "previousVersion": "1.40.0"
     },
     {
@@ -144,7 +144,7 @@
     {
       "commitMessages": [],
       "currentVersion": "1.40.0",
-      "name": "Spinnaker Clouddriver",
+      "name": "Spinnaker Fiat",
       "previousVersion": "1.40.0"
     }
   ],
@@ -162,40 +162,40 @@
     },
     "services": {
       "clouddriver": {
-        "commit": "b38a6833fa13146aa92462c39589d4e8bec150bf",
-        "version": "2.40.6"
+        "commit": "78a05b1dc26b9e99d5aca682bd989c7f10acd4fd",
+        "version": "2.40.7"
       },
       "deck": {
-        "commit": "b38a6833fa13146aa92462c39589d4e8bec150bf",
-        "version": "2.40.6"
+        "commit": "78a05b1dc26b9e99d5aca682bd989c7f10acd4fd",
+        "version": "2.40.7"
       },
       "dinghy": {
-        "commit": "b38a6833fa13146aa92462c39589d4e8bec150bf",
-        "version": "2.40.6"
+        "commit": "78a05b1dc26b9e99d5aca682bd989c7f10acd4fd",
+        "version": "2.40.7"
       },
       "echo": {
-        "commit": "b38a6833fa13146aa92462c39589d4e8bec150bf",
-        "version": "2.40.6"
+        "commit": "78a05b1dc26b9e99d5aca682bd989c7f10acd4fd",
+        "version": "2.40.7"
       },
       "fiat": {
-        "commit": "b38a6833fa13146aa92462c39589d4e8bec150bf",
-        "version": "2.40.6"
+        "commit": "78a05b1dc26b9e99d5aca682bd989c7f10acd4fd",
+        "version": "2.40.7"
       },
       "front50": {
-        "commit": "b38a6833fa13146aa92462c39589d4e8bec150bf",
-        "version": "2.40.6"
+        "commit": "78a05b1dc26b9e99d5aca682bd989c7f10acd4fd",
+        "version": "2.40.7"
       },
       "gate": {
-        "commit": "b38a6833fa13146aa92462c39589d4e8bec150bf",
-        "version": "2.40.6"
+        "commit": "78a05b1dc26b9e99d5aca682bd989c7f10acd4fd",
+        "version": "2.40.7"
       },
       "igor": {
-        "commit": "b38a6833fa13146aa92462c39589d4e8bec150bf",
-        "version": "2.40.6"
+        "commit": "78a05b1dc26b9e99d5aca682bd989c7f10acd4fd",
+        "version": "2.40.7"
       },
       "kayenta": {
-        "commit": "b38a6833fa13146aa92462c39589d4e8bec150bf",
-        "version": "2.40.6"
+        "commit": "78a05b1dc26b9e99d5aca682bd989c7f10acd4fd",
+        "version": "2.40.7"
       },
       "monitoring-daemon": {
         "commit": null,
@@ -206,19 +206,19 @@
         "version": "2.26.0"
       },
       "orca": {
-        "commit": "b38a6833fa13146aa92462c39589d4e8bec150bf",
-        "version": "2.40.6"
+        "commit": "78a05b1dc26b9e99d5aca682bd989c7f10acd4fd",
+        "version": "2.40.7"
       },
       "rosco": {
-        "commit": "b38a6833fa13146aa92462c39589d4e8bec150bf",
-        "version": "2.40.6"
+        "commit": "78a05b1dc26b9e99d5aca682bd989c7f10acd4fd",
+        "version": "2.40.7"
       },
       "terraformer": {
-        "commit": "b38a6833fa13146aa92462c39589d4e8bec150bf",
-        "version": "2.40.6"
+        "commit": "78a05b1dc26b9e99d5aca682bd989c7f10acd4fd",
+        "version": "2.40.7"
       }
     },
-    "timestamp": "2026-09-10 12:56:33",
-    "version": "2.40.6"
+    "timestamp": "2026-09-11 12:28:15",
+    "version": "2.40.7"
   }
 }
