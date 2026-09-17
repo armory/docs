@@ -23,7 +23,7 @@ You can configure webhooks on multiple GitHub organizations or repositories to s
 
 When you make a GitHub pull request (PR) and there is a change in a `dinghyfile`, Pipelines-as-Code automatically performs a validation for that `dinghyfile`. It also updates the GitHub status accordingly. If the validation fails, you see an unsuccessful `dinghy` check.
 
-{{< figure src="/images/dinghy/pr_validation/pr_validation.png" alt="PR that fails validation." >}}
+{{< figure src="/media/plugins/pac/pr_validation.png" alt="PR that fails validation." >}}
 
 Make PR validations mandatory to ensure users only merge working `dinghyfiles`.
 
@@ -37,4 +37,4 @@ Perform the following steps to configure mandatory PR validation:
 
 The following screenshot shows what your GitHub settings should resemble:
 
-{{< figure src="/images/dinghy/pr_validation/branch_mandatory.png" alt="Configured dinghy PR validation." >}}
+{{< figure src="/media/plugins/pac/branch_mandatory.png" alt="Configured dinghy PR validation." >}}
