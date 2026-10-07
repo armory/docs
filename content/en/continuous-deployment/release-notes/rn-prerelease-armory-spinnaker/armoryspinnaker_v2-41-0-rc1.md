@@ -50,7 +50,7 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 > Breaking changes are kept in this list for 3 minor versions from when the change is introduced. For example, a breaking change introduced in 2.21.0 appears in the list up to and including the 2.24.x releases. It would not appear on 2.25.x release notes.
 
 ### Gate: Spring Security 5 Oauth2 Migration
-Armory CD 2.38.0 removes deprecate Oauth2 annotations and uses Spring Security 5 DSL. In order to configure oauth2 in `gate-local.yml` have changed to:
+Gate no longer supports the deprecated OAuth2 annotations and uses the Spring Security 5 DSL. Configure OAuth2 in `gate-local.yml` as follows:
 
 ## Google Oauth configuration
 ```yaml
@@ -185,9 +185,9 @@ If Clouddriver fails to start after this change with a `Table 'kubesvc_cache' al
 
 ### Spring Boot 3.5 upgrade
 
-Armory CD 2.40.3 upgrades to Spring Boot 3.5, the latest supported release. This is a major upgrade from Spring Boot 3.0 introduced in Armory CD 2.39.0. Plugins built against earlier Spring Boot versions will need to be updated to be compatible with this release.
+Armory CD runs on Spring Boot 3.5. Plugins built against earlier Spring Boot versions, such as 3.0, must be updated to be compatible with this release.
 
-**Actuator metrics export property changes** (introduced in 2.39.0)
+**Actuator metrics export property changes**
 
 If upgrading from a version prior to 2.39.0, note that the metrics export properties have moved:
 
@@ -195,7 +195,7 @@ If upgrading from a version prior to 2.39.0, note that the metrics export proper
 |---------------------|---------------------|
 | `management.metrics.export.<product>` | `management.<product>.metrics.export` |
 
-**Gate session data cleanup** (introduced in 2.39.0)
+**Gate session data cleanup**
 
 If upgrading from a version prior to 2.39.0, flush Gate's Redis session cache before upgrading:
 
@@ -277,11 +277,11 @@ OSS Spinnaker images are no longer published to Google Artifact Registry (GAR) a
 
 ### MySQL 8+ now required
 
-Due to recent SQL library upgrades, MySQL 5.7 is no longer supported and will fail on startup. You must be running MySQL 8.0+ or an equivalent MariaDB version before upgrading to Armory CD 2.40.3.
+Due to recent SQL library upgrades, MySQL 5.7 is no longer supported and will fail on startup. You must be running MySQL 8.0+ or an equivalent MariaDB version before upgrading.
 
 ### Redis/Valkey 7+ now required
 
-Redis or Valkey 7.0+ is required for Armory CD 2.40.3. Older versions are not supported and may cause failures. Armory already deploys Redis 7+ by default — verify your Redis version before upgrading if you manage your own Redis instance.
+Redis or Valkey 7.0+ is required. Older versions are not supported and may cause failures. Armory already deploys Redis 7+ by default — verify your Redis version before upgrading if you manage your own Redis instance.
 
 ### Armory Scale Agent (Kubesvc) deprecation notice
 
