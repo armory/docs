@@ -31,6 +31,10 @@ To install, upgrade, or configure Armory CD 2.41.2, use Armory Operator 1.8.6 or
 
 Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
 
+**emSign ECC Root CA - G3 removed from service images**
+
+Service images no longer trust the `emSign ECC Root CA - G3` certificate authority ([#8242](https://github.com/spinnaker/spinnaker/pull/8242)), following reports of a CA trust issue with eMudhra's emSign hierarchy. Previous images still trusted it, along with the `EM DV/OV/EV TLS CA - G3B/G3C` and `EM OV CS CA - G3B/G3C` intermediates it issued. The images now upgrade the CA packages at build time, and the build fails if the certificate is still present in the JVM trust store. If your services connect to endpoints whose certificates chain to this root, those connections fail after the upgrade.
+
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
 
