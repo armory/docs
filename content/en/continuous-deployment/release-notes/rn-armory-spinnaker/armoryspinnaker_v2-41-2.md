@@ -4,7 +4,7 @@ toc_hide: true
 version: 2.41.2
 date: 2026-10-23
 description: >
-  Release notes for Armory Continuous Deployment v2.41.1.
+  Release notes for Armory Continuous Deployment v2.41.2.
 ---
 
 <!--
