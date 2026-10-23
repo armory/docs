@@ -180,6 +180,59 @@ If upgrading from a version prior to 2.39.0, flush Gate's Redis session cache be
 redis-cli keys "spring:session*" | xargs redis-cli del
 ```
 
+**Ignored `server.*` properties**
+
+Earlier Spring Boot upgrades removed the following properties. Spring Boot ignores them without an error, so they have no effect if still set:
+
+| Ignored property | Ignored since | Replacement |
+|------------------|---------------|-------------|
+| `server.max-http-header-size` | Armory CD 2.39.0 (Spring Boot 3.0) | `server.max-http-request-header-size` |
+| `server.tomcat.max-http-header-size` | Spring Boot 2.2 | `server.max-http-request-header-size` |
+| `server.tomcat.protocolHeader`, `remoteIpHeader`, `internalProxies` | Spring Boot 2.5 | `server.forward-headers-strategy` and `server.tomcat.remoteip.*` |
+| `server.tomcat.httpsServerPort` | Never supported | `server.tomcat.remoteip.port-header` (default `X-Forwarded-Port`) |
+| `server.session.cookie.*` | Spring Boot 2.0 | `server.servlet.session.cookie.*` |
+
+If you raised the header limit with an old property, services are back on the 8KB default and reject larger headers, such as large SAML or OAuth tokens, with HTTP 400. Set the new property in the `spinnaker` profile to apply it to every service.
+
+For example, this Gate profile:
+
+```yaml
+server:
+  servlet:
+    session:
+      timeout: 86400
+  session:
+    cookie:
+      same-site: none
+      secure: true
+  tomcat:
+    max-http-header-size: 256KB
+    httpsServerPort: X-Forwarded-Port
+    internalProxies: .*
+    protocolHeader: X-Forwarded-Proto
+    remoteIpHeader: X-Forwarded-For
+```
+
+Becomes:
+
+```yaml
+server:
+  forward-headers-strategy: native
+  max-http-request-header-size: 256KB
+  servlet:
+    session:
+      cookie:
+        same-site: none
+        secure: true
+  session:
+    timeout-in-seconds: 86400
+```
+
+- On Kubernetes, Spring Boot already applies `native` when no strategy is set; setting it explicitly matters on other platforms.
+- `native` trusts forwarded headers only from private and loopback addresses. For a load balancer on another address, set `server.tomcat.remoteip.internal-proxies`.
+- If your proxy strips a path prefix and sends `X-Forwarded-Prefix`, use `framework` instead. It trusts these headers from any client, so the proxy must overwrite them.
+- Gate's session lifetime is set by `server.session.timeout-in-seconds` (default `3600`), not `server.servlet.session.timeout`.
+
 ### YAML parsing limits now configurable
 
 Starting with SnakeYAML 1.33, strict safety limits are enforced by default (`maxAliasesForCollections = 50`, `codePointLimit = 3145728`). These can cause large or alias-heavy YAML files such as Kubernetes manifests to fail. Two new properties allow operators to override these limits:
