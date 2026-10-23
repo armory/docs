@@ -300,13 +300,11 @@ spec:
     profiles:
       gate:
         server:
-          tomcat:
-            protocolHeader: X-Forwarded-Proto
-            remoteIpHeader: X-Forwarded-For
-            internalProxies: .*
-            httpsServerPort: X-Forwarded-Port
-            ...  # rest of config omitted for brevity
+          forward-headers-strategy: native
+          ...  # rest of config omitted for brevity
 ```
+
+With `native`, Gate honors the `X-Forwarded-Proto`, `X-Forwarded-For`, `X-Forwarded-Port`, and `X-Forwarded-Host` headers, but only from load balancers with private or loopback addresses. If your load balancer connects to Gate from a non-private address, also set `server.tomcat.remoteip.internal-proxies` to a regular expression that matches it. The older `server.tomcat.protocolHeader`, `remoteIpHeader`, `internalProxies`, and `httpsServerPort` properties are ignored by current Spring Boot versions.
 
 Assuming that Armory is installed in `spinnaker` namespace:
 
