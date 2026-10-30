@@ -1,7 +1,7 @@
 ---
 title: v2.40.11 Armory Continuous Deployment Release (Spinnaker™ 2026.2.x)
 toc_hide: true
-version: 2.40.11
+version: 02.40.11
 date: 2026-10-29
 description: >
   Release notes for Armory Continuous Deployment v2.40.11.

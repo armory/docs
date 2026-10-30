@@ -1,7 +1,7 @@
 ---
 title: v2.40.4 Armory Continuous Deployment Release (Spinnaker™ 2026.2.3)
 toc_hide: true
-version: 2.40.4
+version: 02.40.04
 date: 2026-09-07
 description: >
   Release notes for Armory Continuous Deployment v2.40.4.
