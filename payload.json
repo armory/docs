@@ -148,7 +148,7 @@
       "previousVersion": "1.40.0"
     }
   ],
-  "ossVersion": "1.40.0",
+  "ossVersion": "1.41.0",
   "prerelease": false,
   "stack": {
     "artifactSources": {
