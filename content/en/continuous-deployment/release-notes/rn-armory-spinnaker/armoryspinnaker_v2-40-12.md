@@ -16,6 +16,25 @@ FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous De
 
 >Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
+## What's new in 2.40.12
+
+{{% alert color="success" title="Changes since 2.40.11" %}}
+These are the only changes in this release. Everything after this section is unchanged from earlier 2.40.x releases.
+
+**Security**
+
+- **emSign Root CA - G1 removed from the Java truststore of base images.** The Armory base images no longer trust the compromised eMudhra `emSign Root CA - G1` certificate authority ([armory-spinnaker-base-images#17](https://github.com/armory-io/armory-spinnaker-base-images/pull/17)). The images deselect the certificate, rebuild the Java truststore, and fail the build if `emSign Root CA - G1`, G2, G3, or Comodo AAA are still trusted. If your services connect to endpoints whose certificates chain to this root, those connections fail after the upgrade.
+
+**Fixed issues**
+
+- Gate looks up a pipeline by id only within the requested application. Previously, an id that matched a pipeline name in the requested application returned a pipeline from a different application, so `GET /applications/{application}/pipelineConfigs/{pipelineName}` could return another application's pipeline, and triggering by name or id could start it ([#8352](https://github.com/spinnaker/spinnaker/pull/8352)).
+- Front50 validates pipeline ids on save, update, and batch update. A supplied pipeline id can no longer be associated with a different application, and updates keep the pipeline in its existing application ([#8356](https://github.com/spinnaker/spinnaker/pull/8356)).
+{{% /alert %}}
+
+{{% alert color="info" title="Unchanged from previous 2.40.x releases" %}}
+The sections below are carried over from 2.40.0 through 2.40.11 for reference. They contain no new changes in 2.40.12.
+{{% /alert %}}
+
 ## Required Armory Operator version
 {{% alert color="warning" title="Important" %}}
 [Armory Operator]({{< ref "armory-operator" >}}) has been deprecated and will is considered EOL. Please migrate to the [Kustomize]({{< ref "armory-operator-to-kustomize-migration" >}}) method of deployment.
@@ -30,10 +49,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 **emSign ECC Root CA - G3 removed from service images**
 
 Service images no longer trust the `emSign ECC Root CA - G3` certificate authority ([#8242](https://github.com/spinnaker/spinnaker/pull/8242)), following reports of a CA trust issue with eMudhra's emSign hierarchy. Previous images still trusted it, along with the `EM DV/OV/EV TLS CA - G3B/G3C` and `EM OV CS CA - G3B/G3C` intermediates it issued. The images now upgrade the CA packages at build time, and the build fails if the certificate is still present in the JVM trust store. If your services connect to endpoints whose certificates chain to this root, those connections fail after the upgrade.
-
-**emSign Root CA - G1 removed from the Java truststore of base images**
-
-The Armory base images no longer trust the compromised eMudhra `emSign Root CA - G1` certificate authority ([armory-spinnaker-base-images#17](https://github.com/armory-io/armory-spinnaker-base-images/pull/17)). The images deselect the certificate, rebuild the Java truststore, and fail the build if `emSign Root CA - G1`, G2, G3, or Comodo AAA are still trusted. If your services connect to endpoints whose certificates chain to this root, those connections fail after the upgrade.
 
 **Dependency updates for CVEs**
 
@@ -469,8 +484,6 @@ spring:
 
 ### Fixed issues
 
-- Gate looks up a pipeline by id only within the requested application. Previously, an id that matched a pipeline name in the requested application returned a pipeline from a different application, so `GET /applications/{application}/pipelineConfigs/{pipelineName}` could return another application's pipeline, and triggering by name or id could start it ([#8352](https://github.com/spinnaker/spinnaker/pull/8352)).
-- Front50 validates pipeline ids on save, update, and batch update. A supplied pipeline id can no longer be associated with a different application, and updates keep the pipeline in its existing application ([#8356](https://github.com/spinnaker/spinnaker/pull/8356)).
 - Orca sends the Clouddriver requests that its Retrofit 2 migration left unsent. Clouddriver's cache is refreshed again after stages delete a load balancer, create, update, or delete a security group, destroy a job, or change a Lambda function. Canceling a Run Job stage, or letting it time out, now stops the job instead of leaving it running ([#8144](https://github.com/spinnaker/spinnaker/pull/8144)).
 - Clouddriver's SQL task, account definition, and event repositories retry transient database errors, such as failovers, dropped connections, and deadlocks, using the `sql.retries` settings (by default, 5 attempts with a 100 ms backoff). Previously, the retry configuration had no effect and these errors failed on the first attempt ([#8111](https://github.com/spinnaker/spinnaker/pull/8111)).
 - ECS accounts pick up changes to their backing AWS account, such as a new region, without restarting Clouddriver ([#8196](https://github.com/spinnaker/spinnaker/pull/8196)).
