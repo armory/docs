@@ -16,6 +16,54 @@ FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous De
 
 >Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
+## What's new in 2.41.3
+
+{{% alert color="success" title="Changes since 2.41.2" %}}
+These are the only changes in this release. Everything after this section is unchanged from earlier 2.41.x releases.
+
+**Security: dependency updates for CVEs**
+
+- Bouncy Castle 1.86.2 (CVE-2026-8763). Earlier 2.41.x releases still shipped Bouncy Castle 1.84.
+- Tomcat 10.1.59 (CVE-2026-65182) ([#8268](https://github.com/spinnaker/spinnaker/pull/8268)).
+- Netty 4.1.137.Final (CVE-2026-75595) ([#8267](https://github.com/spinnaker/spinnaker/pull/8267)).
+
+**Gate: API rate limiting**
+
+Gate can limit how many API requests each user or service account makes. Limits are shared across Gate instances through the Redis configured in `redis.connection`. Rate limiting is off by default. When enabled, it starts in learning mode, which logs requests that go over the limit instead of rejecting them with HTTP 429. To enable, add the following to your `gate-local.yml`:
+
+```yaml
+armory:
+  rate-limit:
+    enabled: true
+    learning: false     # default true: log over-limit requests without rejecting them
+    capacity: 60        # requests per rate-seconds window, default 60
+    rate-seconds: 10    # default 10
+    capacity-by-role:
+      - {role: SPINNAKER_ADMIN, override: 600}
+    capacity-by-principal:
+      - {principal: jenkins-bot@example.com, override: 2000}
+    rules:
+      - {name: pipeline-start, methods: [POST], path-patterns: ["/pipelines/**"], capacity: 10, rate-seconds: 60}
+```
+
+Requests that match a rule's methods and paths count against that rule's limit instead of the default one. Don't also enable the OSS `rate-limit.enabled` property: Gate fails to start if both are enabled.
+
+**Java 25 runtime**
+
+The Clouddriver, Echo, Fiat, Front50, Gate, Igor, Kayenta, Orca, and Rosco images now run on a Java 25 JRE. The services are still built with JDK 17. If you pass custom JVM options or run plugins that rely on JDK internals, validate them on this release.
+
+**Fixed issues**
+
+- Fiat renews GitHub App installation tokens. Previously, GitHub team role syncs failed with `401 Bad credentials` about an hour after Fiat started and used stale roles until Fiat restarted ([#8224](https://github.com/spinnaker/spinnaker/pull/8224)). Fiat also tolerates clock skew with GitHub and picks up a rotated GitHub App private key without a restart ([#8229](https://github.com/spinnaker/spinnaker/pull/8229)).
+- A failed GitHub membership refresh no longer removes every user's roles in Fiat. Fiat keeps the last known memberships and retries ([#8224](https://github.com/spinnaker/spinnaker/pull/8224)).
+- Front50 no longer overwrites its pipeline cache with an older snapshot when cache refreshes run concurrently ([#8228](https://github.com/spinnaker/spinnaker/pull/8228)).
+- The pipeline editor no longer freezes when you add or select stages, open stages with an account field, or open the account dropdown in installations with thousands of accounts ([#8274](https://github.com/spinnaker/spinnaker/pull/8274)).
+{{% /alert %}}
+
+{{% alert color="info" title="Unchanged from previous 2.41.x releases" %}}
+The rest of these notes are carried over from 2.41.0 through 2.41.2 for reference. They contain no new changes in 2.41.3.
+{{% /alert %}}
+
 {{% alert color="warning" title="Major upgrade" %}}
 Armory CD 2.41.0 moves all AWS integrations to AWS SDK v2, removes Angular from the UI, moves Gate SAML configuration to Spring Security properties, and switches the Google provider to the Compute v1 API. Rebuild and validate custom backend and Deck plugins against 2.41.0; plugins that use removed APIs must be migrated before they can load. Validate this release in a non-production environment and read the [Breaking changes](#breaking-changes) before upgrading.
 {{% /alert %}}
@@ -34,12 +82,6 @@ Armory scans the codebase as we develop and release software. Contact your Armor
 **emSign ECC Root CA - G3 removed from service images**
 
 Service images no longer trust the `emSign ECC Root CA - G3` certificate authority ([#8242](https://github.com/spinnaker/spinnaker/pull/8242)), following reports of a CA trust issue with eMudhra's emSign hierarchy. Previous images still trusted it, along with the `EM DV/OV/EV TLS CA - G3B/G3C` and `EM OV CS CA - G3B/G3C` intermediates it issued. The images now upgrade the CA packages at build time, and the build fails if the certificate is still present in the JVM trust store. If your services connect to endpoints whose certificates chain to this root, those connections fail after the upgrade.
-
-**Dependency updates for CVEs**
-
-- Bouncy Castle 1.86.2 (CVE-2026-8763). Earlier 2.41.x releases still shipped Bouncy Castle 1.84.
-- Tomcat 10.1.59 (CVE-2026-65182) ([#8268](https://github.com/spinnaker/spinnaker/pull/8268)).
-- Netty 4.1.137.Final (CVE-2026-75595) ([#8267](https://github.com/spinnaker/spinnaker/pull/8267)).
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
@@ -868,31 +910,6 @@ Clouddriver's SQL task repository now orders task history by a per-task sequence
 
 On startup, Clouddriver migrates the `tasks` schema: it adds nullable columns, adds the `tasks_current_state_owner_idx` and `tasks_current_state_completed_at_idx` indexes, and replaces the `request_id` index with a unique index. Existing duplicate request IDs are kept and renamed with a `:duplicate:<id>` suffix. On PostgreSQL the indexes aren't created concurrently, so on large installations consider creating them with `CREATE INDEX CONCURRENTLY` before upgrading.
 
-### Gate: API rate limiting
-
-Gate can limit how many API requests each user or service account makes. Limits are shared across Gate instances through the Redis configured in `redis.connection`. Rate limiting is off by default. When enabled, it starts in learning mode, which logs requests that go over the limit instead of rejecting them with HTTP 429. To enable, add the following to your `gate-local.yml`:
-
-```yaml
-armory:
-  rate-limit:
-    enabled: true
-    learning: false     # default true: log over-limit requests without rejecting them
-    capacity: 60        # requests per rate-seconds window, default 60
-    rate-seconds: 10    # default 10
-    capacity-by-role:
-      - {role: SPINNAKER_ADMIN, override: 600}
-    capacity-by-principal:
-      - {principal: jenkins-bot@example.com, override: 2000}
-    rules:
-      - {name: pipeline-start, methods: [POST], path-patterns: ["/pipelines/**"], capacity: 10, rate-seconds: 60}
-```
-
-Requests that match a rule's methods and paths count against that rule's limit instead of the default one. Don't also enable the OSS `rate-limit.enabled` property: Gate fails to start if both are enabled.
-
-### Java 25 runtime
-
-The Clouddriver, Echo, Fiat, Front50, Gate, Igor, Kayenta, Orca, and Rosco images now run on a Java 25 JRE. The services are still built with JDK 17. If you pass custom JVM options or run plugins that rely on JDK internals, validate them on this release.
-
 ### Fixed issues
 
 - Paging executions by pipeline config ID honors `page` ([#7850](https://github.com/spinnaker/spinnaker/pull/7850)).
@@ -906,10 +923,6 @@ The Clouddriver, Echo, Fiat, Front50, Gate, Igor, Kayenta, Orca, and Rosco image
 - Echo compares GitHub webhook signatures in constant time and no longer logs the computed digest ([#8162](https://github.com/spinnaker/spinnaker/pull/8162)).
 - Fiat role syncs are faster for installations with many users and restricted resources ([#8136](https://github.com/spinnaker/spinnaker/pull/8136)).
 - OSS image packages and shared Java dependencies are updated to address CVEs ([#8181](https://github.com/spinnaker/spinnaker/pull/8181)).
-- Fiat renews GitHub App installation tokens. Previously, GitHub team role syncs failed with `401 Bad credentials` about an hour after Fiat started and used stale roles until Fiat restarted ([#8224](https://github.com/spinnaker/spinnaker/pull/8224)). Fiat also tolerates clock skew with GitHub and picks up a rotated GitHub App private key without a restart ([#8229](https://github.com/spinnaker/spinnaker/pull/8229)).
-- A failed GitHub membership refresh no longer removes every user's roles in Fiat. Fiat keeps the last known memberships and retries ([#8224](https://github.com/spinnaker/spinnaker/pull/8224)).
-- Front50 no longer overwrites its pipeline cache with an older snapshot when cache refreshes run concurrently ([#8228](https://github.com/spinnaker/spinnaker/pull/8228)).
-- The pipeline editor no longer freezes when you add or select stages, open stages with an account field, or open the account dropdown in installations with thousands of accounts ([#8274](https://github.com/spinnaker/spinnaker/pull/8274)).
 
 ###  Spinnaker community contributions
 
