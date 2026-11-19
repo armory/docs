@@ -1,7 +1,7 @@
 ---
-title: v2.40.14 Armory Continuous Deployment Release (Spinnaker™ v1.40.0)
+title: v2.40.14 Armory Continuous Deployment Release (Spinnaker™ 2026.2.5)
 toc_hide: true
-version: <!-- version in 00.00.00 format ex 02.23.01 for sorting, grouping -->
+version: 02.40.14
 date: 2026-11-19
 description: >
   Release notes for Armory Continuous Deployment v2.40.14.
@@ -16,6 +16,15 @@ FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous De
 
 >Note: If you experience production issues after upgrading Armory Continuous Deployment, roll back to a previous working version and report issues to [http://go.armory.io/support](http://go.armory.io/support).
 
+{{% alert color="success" title="Changes since 2.40.13" %}}
+These are the only changes in this release.
+
+**Changes**
+
+- Deck: you can now configure the options in the "Show N executions per pipeline" dropdown. Set `window.spinnakerSettings.executionCountOptions` to an array of numbers (for example, `[5, 10, 25, 100]`) in `settings-local.js`. If the setting is unset or empty, Deck keeps the default options (1, 2, 5, 10, 20, 30, 40, 50, 100, 200).
+- Security: the base images are updated to address CVE-2026-114938.
+{{% /alert %}}
+
 ## Required Armory Operator version
 {{% alert color="warning" title="Important" %}}
 [Armory Operator]({{< ref "armory-operator" >}}) has been deprecated and will is considered EOL. Please migrate to the [Kustomize]({{< ref "armory-operator-to-kustomize-migration" >}}) method of deployment.
@@ -26,6 +35,10 @@ To install, upgrade, or configure Armory CD 2.40.14, use Armory Operator 1.8.6 o
 ## Security
 
 Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
+
+**Base image updates for CVEs**
+
+- The base images are updated to address CVE-2026-114938.
 
 ## Breaking changes
 <!-- Copy/paste from the previous version if there are recent ones. We can drop breaking changes after 3 minor versions. Add new ones from OSS and Armory. -->
@@ -44,7 +57,17 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 -->
 
 
+### UI
 
+#### Configurable pipeline execution count options
+
+Open source Deck hardcodes the options in the "Show N executions per pipeline" dropdown. Armory Deck now reads them from `executionCountOptions` in `settings-local.js`:
+
+```js
+window.spinnakerSettings.executionCountOptions = [5, 10, 25, 100];
+```
+
+If the setting is unset or empty, Deck uses the default options (1, 2, 5, 10, 20, 30, 40, 50, 100, 200).
 
 ###  Spinnaker community contributions
 
