@@ -19,76 +19,19 @@ FOR EXAMPLE, "Armory Continuous Deployment Release LTS" or "Armory Continuous De
 ## What's new in 2.41.5
 
 {{% alert color="success" title="Changes since 2.41.2" %}}
-This release is based on Spinnaker 2026.3.3. It includes everything in 2.41.0 through 2.41.4, and the changes below. Everything after this section carries over from earlier 2.41.x releases.
+This release is based on Spinnaker 2026.3.3 and includes the changes from 2.41.3 and 2.41.4. Everything after this section is unchanged from earlier 2.41.x releases.
 
-**Spinnaker 2026.3.3**
+**Changes**
 
-Armory CD 2.41.5 is based on OSS Spinnaker 2026.3.3. See the [Spinnaker 2026.3.3](https://www.spinnaker.io/changelogs/2026.3.3-changelog/) changelog for details.
+- Spinnaker: Armory CD is now based on [Spinnaker 2026.3.3](https://www.spinnaker.io/changelogs/2026.3.3-changelog/).
+- Deck: you can now configure the options in the "Show N executions per pipeline" dropdown. Set `window.spinnakerSettings.executionCountOptions` to an array of numbers (for example, `[5, 10, 25, 100]`) in `settings-local.js`. If the setting is unset or empty, Deck keeps the default options (1, 2, 5, 10, 20, 30, 40, 50, 100, 200).
+- Policy Engine: Clouddriver now enforces policy engine validation on atomic operations, and you can opt in to a catch-all policy check before any operation. Deck policy checks are now opt-in through `feature.policyEngine`. See [Clouddriver: Catch-all policy check for operations](#clouddriver-catch-all-policy-check-for-operations) and [Policy Engine checks are opt-in](#policy-engine-checks-are-opt-in).
+- Gate: API rate limiting. See [Gate: API rate limiting](#gate-api-rate-limiting).
+- Security: the base images are updated to address CVE-2026-114938. Dependencies are updated for CVE-2026-8763 (Bouncy Castle 1.86.2), CVE-2026-65182 (Tomcat 10.1.59), and CVE-2026-75595 (Netty 4.1.137.Final).
+- Java: the Clouddriver, Echo, Fiat, Front50, Gate, Igor, Kayenta, Orca, and Rosco images now run on a Java 25 JRE. The services are still built with JDK 17. If you pass custom JVM options or run plugins that rely on JDK internals, validate them on this release.
+- Observability: the `Armory.ObservabilityPlugin` is pinned to version 2.0.0.
 
-**Pipelines: configurable executions count options (2.41.5)**
-
-The "Show N executions per pipeline" dropdown on the Pipelines page previously offered a fixed set of values (1, 2, 5, 10, 20, 30, 40, 50, 100, 200). You can now customize these options by setting `window.spinnakerSettings.executionCountOptions` in `settings-local.js`. If the setting is unset or empty, Deck falls back to the default options.
-
-```js
-window.spinnakerSettings.executionCountOptions = [5, 10, 25, 50];
-```
-
-**Policy Engine changes (2.41.4)**
-
-- Clouddriver now enforces policy engine validation on atomic operations. The Clouddriver OPA registry bean was not marked `@Primary`, so `OperationsService` was wired to the OSS registry and OPA validation was never invoked.
-- Optional catch-all policy check: Clouddriver can also query `spinnaker/deployment/tasks/any/before` with `{deploy, operation}` before every atomic operation, so a single policy can guard `runJob`, `invokeLambdaFunction`, and others. A deny blocks the operation before it is queued. To enable, add the following to your `clouddriver-local.yml`:
-
-  ```yaml
-  armory.policyEngine:
-    failOpen: false
-    evaluateAnyOperation: true
-    evaluateAnyOperationFor: [runJob, invokeLambdaFunction]   # strongly recommended
-    evaluateOperationSpecific: false                          # optional
-  ```
-
-  `evaluateAnyOperationFor` limits the catch-all query to the listed operations; each evaluated operation costs one synchronous OPA call. `evaluateOperationSpecific` (default `true`) controls the per-operation `spinnaker.deployment.tasks.before.<operation>` query. Set it to `false` once the catch-all covers your policies so each operation costs one OPA call instead of two.
-- Deck policy checks are now opt-in. Deck calls Gate's `/armory/entitlements/api/v1/check` endpoint only when `feature.policyEngine` is `true`. Previously Deck always called it, and when Gate's policy engine was off the endpoint returned 404 and Deck hid Config and the create application/project buttons for everyone. If you enable the policy engine in Gate (`armory.policyEngine.enabled`), also add the following to your `settings-local.js`:
-
-  ```js
-  window.spinnakerSettings.feature.policyEngine = true;
-  ```
-
-**Observability plugin pinned (2.41.4)**
-
-The `Armory.ObservabilityPlugin` is pinned to version 2.0.0 in Clouddriver, Echo, Fiat, Front50, Gate, Igor, Kayenta, Orca, and Rosco.
-
-**Security: dependency updates for CVEs (2.41.3)**
-
-- Bouncy Castle 1.86.2 (CVE-2026-8763). Earlier 2.41.x releases still shipped Bouncy Castle 1.84.
-- Tomcat 10.1.59 (CVE-2026-65182) ([#8268](https://github.com/spinnaker/spinnaker/pull/8268)).
-- Netty 4.1.137.Final (CVE-2026-75595) ([#8267](https://github.com/spinnaker/spinnaker/pull/8267)).
-
-**Gate: API rate limiting (2.41.3)**
-
-Gate can limit how many API requests each user or service account makes. Limits are shared across Gate instances through the Redis configured in `redis.connection`. Rate limiting is off by default. When enabled, it starts in learning mode, which logs requests that go over the limit instead of rejecting them with HTTP 429. To enable, add the following to your `gate-local.yml`:
-
-```yaml
-armory:
-  rate-limit:
-    enabled: true
-    learning: false     # default true: log over-limit requests without rejecting them
-    capacity: 60        # requests per rate-seconds window, default 60
-    rate-seconds: 10    # default 10
-    capacity-by-role:
-      - {role: SPINNAKER_ADMIN, override: 600}
-    capacity-by-principal:
-      - {principal: jenkins-bot@example.com, override: 2000}
-    rules:
-      - {name: pipeline-start, methods: [POST], path-patterns: ["/pipelines/**"], capacity: 10, rate-seconds: 60}
-```
-
-Requests that match a rule's methods and paths count against that rule's limit instead of the default one. Don't also enable the OSS `rate-limit.enabled` property: Gate fails to start if both are enabled.
-
-**Java 25 runtime (2.41.3)**
-
-The Clouddriver, Echo, Fiat, Front50, Gate, Igor, Kayenta, Orca, and Rosco images now run on a Java 25 JRE. The services are still built with JDK 17. If you pass custom JVM options or run plugins that rely on JDK internals, validate them on this release.
-
-**Fixed issues (2.41.3)**
+**Fixed issues**
 
 - Fiat renews GitHub App installation tokens. Previously, GitHub team role syncs failed with `401 Bad credentials` about an hour after Fiat started and used stale roles until Fiat restarted ([#8224](https://github.com/spinnaker/spinnaker/pull/8224)). Fiat also tolerates clock skew with GitHub and picks up a rotated GitHub App private key without a restart ([#8229](https://github.com/spinnaker/spinnaker/pull/8229)).
 - A failed GitHub membership refresh no longer removes every user's roles in Fiat. Fiat keeps the last known memberships and retries ([#8224](https://github.com/spinnaker/spinnaker/pull/8224)).
@@ -97,7 +40,7 @@ The Clouddriver, Echo, Fiat, Front50, Gate, Igor, Kayenta, Orca, and Rosco image
 {{% /alert %}}
 
 {{% alert color="info" title="Unchanged from previous 2.41.x releases" %}}
-The rest of these notes are carried over from 2.41.0 through 2.41.3 for reference.
+The rest of these notes are carried over from 2.41.0 through 2.41.2 for reference.
 {{% /alert %}}
 
 {{% alert color="warning" title="Major upgrade" %}}
@@ -114,6 +57,16 @@ To install, upgrade, or configure Armory CD 2.41.5, use Armory Operator 1.8.6 or
 ## Security
 
 Armory scans the codebase as we develop and release software. Contact your Armory account representative for information about CVE scans for this release.
+
+**Base image updates for CVEs**
+
+- The base images are updated to address CVE-2026-114938.
+
+**Dependency updates for CVEs**
+
+- Bouncy Castle 1.86.2 (CVE-2026-8763). Earlier 2.41.x releases still shipped Bouncy Castle 1.84.
+- Tomcat 10.1.59 (CVE-2026-65182) ([#8268](https://github.com/spinnaker/spinnaker/pull/8268)).
+- Netty 4.1.137.Final (CVE-2026-75595) ([#8267](https://github.com/spinnaker/spinnaker/pull/8267)).
 
 **emSign ECC Root CA - G3 removed from service images**
 
@@ -945,6 +898,67 @@ tasks:
 Clouddriver's SQL task repository now orders task history by a per-task sequence instead of timestamps, and a task's state no longer changes once it is terminal, except to retry a `FAILED_RETRYABLE` task ([#8130](https://github.com/spinnaker/spinnaker/pull/8130)). Previously, completed tasks could be listed as running, and a duplicate request could mark a running task as failed. PostgreSQL can now store the `FAILED_RETRYABLE` state.
 
 On startup, Clouddriver migrates the `tasks` schema: it adds nullable columns, adds the `tasks_current_state_owner_idx` and `tasks_current_state_completed_at_idx` indexes, and replaces the `request_id` index with a unique index. Existing duplicate request IDs are kept and renamed with a `:duplicate:<id>` suffix. On PostgreSQL the indexes aren't created concurrently, so on large installations consider creating them with `CREATE INDEX CONCURRENTLY` before upgrading.
+
+### Gate: API rate limiting
+
+Gate can limit how many API requests each user or service account makes. Limits are shared across Gate instances through the Redis configured in `redis.connection`. Rate limiting is off by default. When enabled, it starts in learning mode, which logs requests that go over the limit instead of rejecting them with HTTP 429. To enable, add the following to your `gate-local.yml`:
+
+```yaml
+armory:
+  rate-limit:
+    enabled: true
+    learning: false     # default true: log over-limit requests without rejecting them
+    capacity: 60        # requests per rate-seconds window, default 60
+    rate-seconds: 10    # default 10
+    capacity-by-role:
+      - {role: SPINNAKER_ADMIN, override: 600}
+    capacity-by-principal:
+      - {principal: jenkins-bot@example.com, override: 2000}
+    rules:
+      - {name: pipeline-start, methods: [POST], path-patterns: ["/pipelines/**"], capacity: 10, rate-seconds: 60}
+```
+
+Requests that match a rule's methods and paths count against that rule's limit instead of the default one. Don't also enable the OSS `rate-limit.enabled` property: Gate fails to start if both are enabled.
+
+### Clouddriver: Catch-all policy check for operations
+
+Clouddriver evaluates `spinnaker.deployment.tasks.before.<operation>` for each atomic operation. To write one policy that sees every operation (`runJob`, `deployManifest`, `invokeLambdaFunction`, and so on), enable the catch-all check. Clouddriver then also queries `spinnaker/deployment/tasks/any/before` with `{deploy, operation}`. A deny blocks the operation before it is queued. This is off by default. To enable, add the following to your `clouddriver-local.yml`:
+
+```yaml
+armory:
+  policy-engine:
+    fail-open: false
+    evaluate-any-operation: true
+    evaluate-any-operation-for: [runJob, invokeLambdaFunction]  # strongly recommended
+    evaluate-operation-specific: false                          # optional, default true
+```
+
+- `evaluate-any-operation-for` limits the catch-all query to the listed operations. Every other operation skips the extra OPA call. If you leave it empty, every operation is evaluated.
+- `evaluate-operation-specific` (default `true`) controls the per-operation `spinnaker.deployment.tasks.before.<operation>` query. Set it to `false` once the catch-all covers your policies, so each operation costs one OPA call instead of two. The two checks are independent.
+- With `fail-open: false`, a missing catch-all policy package is treated as a denial.
+- Each evaluated operation adds one synchronous OPA call, so keep OPA close to Clouddriver (sidecar or same node) and keep `deny` rules cheap.
+
+Clouddriver's OPA operations registry is now marked `@Primary`. Previously, `OperationsService` was wired to the OSS registry and OPA validation on atomic operations was never invoked.
+
+### UI
+
+#### Configurable pipeline execution count options
+
+Open source Deck hardcodes the options in the "Show N executions per pipeline" dropdown. Armory Deck now reads them from `executionCountOptions` in `settings-local.js`:
+
+```js
+window.spinnakerSettings.executionCountOptions = [5, 10, 25, 100];
+```
+
+If the setting is unset or empty, Deck uses the default options (1, 2, 5, 10, 20, 30, 40, 50, 100, 200).
+
+#### Policy Engine checks are opt-in
+
+Deck calls the Gate entitlements API (`/armory/entitlements/api/v1/check`) to decide whether to show Config, the create application and project buttons, and the project configuration button. This is now off by default, like the Gate side (`armory.policy-engine.enabled`). Previously, Deck always made the call, and when Gate's policy engine was off the endpoint returned 404 and the controls were hidden for everyone. If you enable the policy engine in Gate, also add the following to your `settings-local.js`:
+
+```js
+window.spinnakerSettings.feature.policyEngine = true;
+```
 
 ### Fixed issues
 
