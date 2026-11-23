@@ -43,8 +43,17 @@ Each item category (such as UI) under here should be an h3 (###). List the follo
 - Fixes to any known issues from previous versions that we have in release notes. These can all be grouped under a Fixed issues H3.
 -->
 
+### UI
 
+#### Configurable pipeline executions count options
 
+The "Show N executions per pipeline" dropdown on the Pipelines page previously offered a fixed set of values (1, 2, 5, 10, 20, 30, 40, 50, 100, 200). You can now customize these options by setting `window.spinnakerSettings.executionCountOptions` in `settings-local.js`, for example:
+
+```js
+window.spinnakerSettings.executionCountOptions = [5, 10, 25, 50];
+```
+
+If the setting is unset or empty, Deck falls back to the default options.
 
 ###  Spinnaker community contributions
 
