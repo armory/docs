@@ -1,6 +1,13 @@
 ---
 title: "Armory Operator Release Notes"
 layout: release-notes-operator
+_build:
+  render: always
+  list: never
+cascade:
+  _build:
+    render: always
+    list: never
 description: >
   The Armory Operator is an extended version of the open source Spinnaker Operator, a Kubernetes operator that deploys and manages Spinnaker using familiar tools.
 ---
